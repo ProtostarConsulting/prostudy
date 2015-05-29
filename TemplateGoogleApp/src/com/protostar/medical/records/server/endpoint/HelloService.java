@@ -14,7 +14,7 @@ public class HelloService {
 	@ApiMethod(name = "say2Hi")
 	public MyBean sayHi(@Named("myName2") String myName) {
 		MyBean bean = new MyBean(); 
-		bean.setData("Good Morning, " + myName);
+		bean.setData("#Good Morning, " + myName);
 		return bean;
 	}
 }
