@@ -11,8 +11,10 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.protostar.medical.records.server.data.EMF;
+import com.protostar.medical.records.server.data.MyBean;
 import com.protostar.medical.records.server.data.Patient;
 import com.protostar.medical.records.server.data.PatientInfo;
+import com.protostar.medical.records.server.data.PatientInfoUtil;
 
 /**
  * The server-side implementation of the RPC service.
@@ -39,22 +41,26 @@ public class PatientServiceImpl{
 				.replaceAll(">", "&gt;");
 	}
 
-	public String savePatient(PatientInfo patient)
+	@ApiMethod(name = "savePatient")
+	public MyBean savePatient(PatientInfo patient)
 			throws IllegalArgumentException {
 		// Store it in Google datastore
+		MyBean myBean = new MyBean();
 		EntityManager em = null;
 
-		Patient patientEntity = PatientInfo.toPatient(patient);
+		Patient patientEntity = PatientInfoUtil.toPatient(patient);
 		try {
 			em = EMF.get().createEntityManager();
 			em.persist(patientEntity);
 		} finally {
 			em.close();
 		}
-		return "Patient Record Added Successfully. " + patientEntity.toString() + ", ID:" + patientEntity.getId();
+		
+		myBean.setData("Patient Record Added Successfully. " + patientEntity.toString() + ", ID:" + patientEntity.getId());
+		return myBean;
 	}
 
-//	@Override
+	@ApiMethod(name = "getAllPatients")
 	public List<PatientInfo> getAllPatients()  {
 
 		List<PatientInfo> resultList = new ArrayList<PatientInfo>();
@@ -67,7 +73,7 @@ public class PatientServiceImpl{
 			Query q = em.createQuery("select p from Patient p");
 			List<Patient> resultList2 = q.getResultList();
 			for (Patient p: resultList2)
-				resultList.add(PatientInfo.toPatientInfo(p));
+				resultList.add(PatientInfoUtil.toPatientInfo(p));
 
 		} finally {
 			em.close();
@@ -87,7 +93,7 @@ public class PatientServiceImpl{
 			List<Patient> resultList = q.getResultList();
 			if (resultList.size() > 0) {
 				Patient	patient = resultList.get(0);
-				patientInfo = PatientInfo.toPatientInfo(patient);
+				patientInfo = PatientInfoUtil.toPatientInfo(patient);
 			}
 
 		} finally {
