@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<title>Registration</title>
+</head>
+<body ng-app="regi">
+
+	<div ng-controller="regicontrolle">
+		<form role="form">
+		
+			<div class="form-group">
+				<label for="fname">First Name:</label> <input type="text"
+					class="form-control" id="fname" ng-model="fname">
+			</div>
+			
+			<div class="form-group">
+				<label for="lname">Last Name:</label> <input type="text"
+					class="form-control" id="lname" ng-model="lname">
+			</div>
+			
+			<div class="form-group">
+				<label for="email">Email:</label> <input type="text"
+					class="form-control" id="city" ng-model="email">
+			</div>
+			
+			<div class="form-group">
+				<label for="number">Number:</label> <input type="text"
+					class="form-control" id="city" ng-model="number">
+			</div>
+			
+			<button type="submit" class="btn btn-default"
+				ng-click="savedata.saveRegiUser()">Submit</button>
+				
+		</form>
+	</div>
+	
+	
+	
+	<script>
+		angular.module("regi", []).controller("regicontrolle",
+				function($scope) {
+					//$scope.serMsg = "";
+					$scope.savedata = {};
+					
+					$scope.savedata.saveRegiUser = function() {
+						gapi.client.patientservice.savePatient({
+							 "firstName": $scope.fname,
+							 "lastName": $scope.lname,
+							 "emailID": $scope.email
+							 "mobileNumber": $scope.number
+						}).execute(function(resp) {
+							alert(resp.data);
+							$scope.serMsg = resp.data;								
+						});
+					}
+				});
+	</script>
+	
+	
+	
+		<script>
+		function init() {
+
+			//http%3A%2F%2Flocalhost%3A8888%2F_ah%2Fapi#p/myhelloservice/v0.1/myhelloservice.say2Hi?myName2=Ganesh+L1&_h=2&
+
+			var apiRoot = '//' + window.location.host + '/_ah/api';
+
+			// Loads the OAuth and helloworld APIs asynchronously, and triggers login
+			// when they have completed.
+			var apisToLoad;
+
+			var callback = function() {
+				//alert("Inside callback111 : apiRoot: " + apiRoot);
+				//myhelloservice.say2Hi("Ravi").execute();
+				/* gapi.client.myhelloservice.say2Hi({
+					'myName2' : "Ravi"
+				}).execute(function(resp) {
+					alert(resp.data);
+				}); */
+			};
+
+			apisToLoad = 1; // must match number of calls to gapi.client.load()
+			gapi.client.load('saveRegiUser', 'v0.1', callback, apiRoot);
+			
+		}
+	</script>
+	<script src="https://apis.google.com/js/client.js?onload=init"></script>
+	
+</body>
+</html>
