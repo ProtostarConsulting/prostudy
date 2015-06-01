@@ -54,11 +54,11 @@
 
 
 				<button type="submit" class="btn btn-default"
-					ng-click="fetchdata.FetchRegisterUser()">Register User</button>
+					ng-click="savedata.fetchRegisterUser()">Get All Registered User</button>
 
 			</form>
 		</div>
-
+		<h1>Server Says--: {{serMsg}}</h1>
 	</div>
 
 	<script>
@@ -81,11 +81,14 @@
 					
 					
 					
-					$scope.fetchdata.FetchRegisterUser = function() {
-						gapi.client.registrationservice.FetchRegisterUser( {
+					$scope.savedata.fetchRegisterUser = function() {
+						gapi.client.registrationservice.getAllRegisteredUsers( {
 						} ).execute(function(resp) {
-							alert(resp.data);
-							$scope.serMsg = resp.data;								
+							alert(resp.items[0]);
+							alert(resp.items[0].id);
+							alert(resp.items[0].firstName);
+							$scope.serMsg = resp.items;	
+							console.log(resp.items);
 						});
 					}
 					

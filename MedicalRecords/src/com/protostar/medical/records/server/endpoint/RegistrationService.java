@@ -1,12 +1,19 @@
 package com.protostar.medical.records.server.endpoint;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.protostar.medical.records.server.data.EMF;
 import com.protostar.medical.records.server.data.MyBean;
+import com.protostar.medical.records.server.data.Patient;
+import com.protostar.medical.records.server.data.PatientInfo;
+import com.protostar.medical.records.server.data.PatientInfoUtil;
 import com.protostar.medical.records.server.data.RegisterUserEntity;
 import com.protostar.medical.records.server.data.RegisterUserEntityInfo;
 
@@ -21,7 +28,7 @@ public class RegistrationService {
 		EntityManager en=null;
 		RegisterUserEntity registerUserEntity = new RegisterUserEntity();
 		
-		registerUserEntity.setId(regiUser.getId());
+		//registerUserEntity.setId(regiUser.getId());
 		registerUserEntity.setFirstName(regiUser.getFirstName());
 		registerUserEntity.setLastName(regiUser.getLastName());
 		registerUserEntity.setMobileNumber(regiUser.getMobileNumber());
@@ -42,8 +49,32 @@ public class RegistrationService {
 		return mybean;
 	}
 	
+	
+	@ApiMethod(name = "getAllRegisteredUsers")
+	public List<RegisterUserEntity> getAllRegisteredUsers()  {
+
+		List<RegisterUserEntity> resultList = new ArrayList<RegisterUserEntity>();
+		EntityManager em = null;
+
+		
+		try {
+			em = EMF.get().createEntityManager();
+//			Query q = em.createQuery("select * from " + Patient.class.getName());
+			Query q = em.createQuery("select u from RegisterUserEntity u");
+			resultList = q.getResultList();
+//			for (RegisterUserEntity u: resultList2)
+//				resultList.add(u);
+
+		} finally {
+			em.close();
+		}
+		return resultList;
+	}
+	
 
 }
+
+
 //HttpServletRequest request=null;
 /*String scheme = request.getScheme();             
 String serverName = request.getServerName();  
