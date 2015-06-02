@@ -41,14 +41,14 @@
 					</div>
 
 
-					<button type="button" class="btn btn-default">Cancel</button>
+					<button type="button" class="btn btn-default" ng-click="clickDiv.cancelBtn()">Cancel</button>
 					<button type="submit" class="btn btn-primary"
 						ng-click="clickDiv.savePatient()">Submit</button>
 
 				</form>
 			</div>
 
-			<div id="actionMsgDiv" class="panel panel-success">
+			<div id="actionMsgDiv" class="panel panel-success hidden">
 				<div class="panel-heading">Patient Added Successfully.</div>
 				<div class="panel-body">
 					<button type="submit" class="btn btn-primary"
@@ -64,7 +64,7 @@
 				function($scope) {
 					//$scope.serMsg = "";
 					//Initialize 
-					$("#actionMsgDiv").addClass('hidden');
+					//$("#actionMsgDiv").addClass('hidden');
 					
 					//Initialize ends
 					$scope.clickDiv = {};
@@ -92,13 +92,19 @@
 							$("#actionMsgDiv").removeClass('hidden');
 						});
 					}
-
+					
 					$scope.clickDiv.addPatient = function() {
 						$scope.fname = "";
 						$scope.lname = "";
 						$scope.city = "";
 						$("#formDiv").removeClass('hidden');
 						$("#actionMsgDiv").addClass('hidden');
+					}
+					
+					$scope.clickDiv.cancelBtn = function() {
+						$scope.fname = "";
+						$scope.lname = "";
+						$scope.city = "";						
 					}
 
 				});
