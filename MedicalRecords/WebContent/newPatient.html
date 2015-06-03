@@ -51,7 +51,10 @@
 			<div id="actionMsgDiv" class="panel panel-success hidden">
 				<div class="panel-heading">Patient Added Successfully.</div>
 				<div class="panel-body">
-					<button type="submit" class="btn btn-primary"
+				    
+				    <button type="submit" class="btn btn-primary"
+						ng-click="clickDiv.cancelBtn()">Cancel</button>
+					<button type="submit" class="btn btn-primary"					
 						ng-click="clickDiv.addPatient()">Add Patient</button>
 				</div>
 			</div>
@@ -102,9 +105,10 @@
 					}
 					
 					$scope.clickDiv.cancelBtn = function() {
-						$scope.fname = "";
+						/* $scope.fname = "";
 						$scope.lname = "";
-						$scope.city = "";						
+						$scope.city = "";	 */
+						 document.location = '/index.html';
 					}
 
 				});
