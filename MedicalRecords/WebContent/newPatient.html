@@ -21,97 +21,200 @@
 
 
 	<div class="container">
-		<h3>New Patient Page</h3>
+		<h3>New Patient Page1</h3>
 
 
 		<div ng-controller="MyController">
 			<div id="formDiv">
 				<form role="form" visible="true">
-					<div class="form-group">
-						<label for="fname">First Name:</label> <input type="text"
-							class="form-control" id="fname" ng-model="fname">
-					</div>
-					<div class="form-group">
-						<label for="lname">Last Name:</label> <input type="text"
-							class="form-control" id="lname" ng-model="lname">
-					</div>
-					<div class="form-group">
-						<label for="city">City:</label> <input type="text"
-							class="form-control" id="city" ng-model="city">
-					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="fname">First Name:</label> <input type="text"
+								class="form-control" id="fname" ng-model="fname">
+						</div>
+						<div class="form-group">
+							<label for="lname">Last Name:</label> <input type="text"
+								class="form-control" id="lname" ng-model="lname">
+						</div>
 
+						<div class="form-group">
+							<label for="age">Age:</label> <input type="text"
+								class="form-control" id="age" ng-model="age">
+						</div>
+						<!-- 					<div class="form-group">
+						<label for="sex">Sex:</label> <input type="text"
+							class="form-control" id="sex" ng-model="sex">
+					</div> -->
 
-					<button type="button" class="btn btn-default" ng-click="clickDiv.cancelBtn()">Cancel</button>
+						<div class="form-group">
+							<label for="occupation">Occupation:</label> <input type="text"
+								class="form-control" id="occupation" ng-model="occupation">
+						</div>
+
+						<div class="form-group">
+							<label for="addr1">Address Line1:</label> <input type="text"
+								class="form-control" id="addr1" ng-model="addr1">
+						</div>
+
+						<div class="form-group">
+							<label for="addr2">Address Line2:</label> <input type="text"
+								class="form-control" id="addr2" ng-model="addr2">
+						</div>
+						<div class="form-group">
+							<label for="city">City:</label> <input type="text"
+								class="form-control" id="city" ng-model="city">
+						</div>
+
+						<div class="form-group">
+							<label for="pin">PIN:</label> <input type="text"
+								class="form-control" id="pin" ng-model="pin">
+						</div>
+
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="firstvisit">Date of First Visit:</label> <input
+								type="text" class="form-control" id="firstvisit"
+								ng-model="firstvisit">
+						</div>
+
+						<div class="form-group">
+							<label for="clinicalnote">Clinical Note:</label> <input
+								type="text" class="form-control" id="clinicalnote"
+								ng-model="clinicalnote">
+						</div>
+
+						<div class="form-group">
+							<label for="followup">Follow Up:</label> <input type="text"
+								class="form-control" id="followup" ng-model="followup">
+						</div>
+
+						<div class="form-group">
+							<label for="observations">Observations:</label> <input
+								type="text" class="form-control" id="observations"
+								ng-model="observations">
+						</div>
+
+						<div class="form-group">
+							<label for="provdig">Provisional Diagnosis:</label> <input
+								type="text" class="form-control" id="provdig" ng-model="provdig">
+						</div>
+
+						<div class="form-group">
+							<label for="investigationreport">Investigations With
+								Report:</label> <input type="text" class="form-control"
+								id="investigationreport" ng-model="investigationreport">
+						</div>
+
+						<div class="form-group">
+							<label for="digeval">Diagnosis After Evaluation:</label> <input
+								type="text" class="form-control" id="digeval" ng-model="digeval">
+						</div>
+
+						<div class="form-group">
+							<label for="advice">Advice:</label> <input type="text"
+								class="form-control" id="advice" ng-model="advice">
+						</div>
+					</div>
+					<button type="button" class="btn btn-default"
+						ng-click="clickDiv.cancelBtn()">Cancel</button>
 					<button type="submit" class="btn btn-primary"
 						ng-click="clickDiv.savePatient()">Submit</button>
 
 				</form>
 			</div>
+			<PanelFooter>
+			<div class="col-sm-12">
+				<div id="actionMsgDiv" class="panel panel-success hidden">
+					<div class="panel-heading">Patient Added Successfully.</div>
+					<div class="panel-body">
 
-			<div id="actionMsgDiv" class="panel panel-success hidden">
-				<div class="panel-heading">Patient Added Successfully.</div>
-				<div class="panel-body">
-				    
-				    <button type="submit" class="btn btn-primary"
-						ng-click="clickDiv.cancelBtn()">Cancel</button>
-					<button type="submit" class="btn btn-primary"					
-						ng-click="clickDiv.addPatient()">Add Patient</button>
+						<button type="submit" class="btn btn-primary"
+							ng-click="clickDiv.addPatient()">Add Patient</button>
+						<button type="submit" class="btn btn-primary"
+							ng-click="clickDiv.cancelBtn()">Cancel</button>
+					</div>
 				</div>
+				
 			</div>
+			</PanelFooter>
 		</div>
 	</div>
 
 
 	<script>
-		angular.module("myapp", []).controller("MyController",
-				function($scope) {
-					//$scope.serMsg = "";
-					//Initialize 
-					//$("#actionMsgDiv").addClass('hidden');
-					
-					//Initialize ends
-					$scope.clickDiv = {};
-					
-					$scope.clickDiv.doClick = function() {
-						gapi.client.myhelloservice.say2Hi({
-							'myName2' : $scope.name
-						}).execute(function(resp) {
-							alert(resp.data);
-							//$scope.serMsg = resp.data;							
-							//alert(resp.data);
-							$scope.serMsg = resp.data;
-						});
-					};
+		angular
+				.module("myapp", [])
+				.controller(
+						"MyController",
+						function($scope) {
+							//$scope.serMsg = "";
+							//Initialize 
+							//$("#actionMsgDiv").addClass('hidden');
 
-					$scope.clickDiv.savePatient = function() {
-						gapi.client.patientservice.savePatient({
-							"firstName" : $scope.fname,
-							"lastName" : $scope.lname,
-							"city" : $scope.city
-						}).execute(function(resp) {
-							//alert(resp.data);
-							//$scope.serMsg = resp.data;
-							$("#formDiv").addClass('hidden');
-							$("#actionMsgDiv").removeClass('hidden');
-						});
-					}
-					
-					$scope.clickDiv.addPatient = function() {
-						$scope.fname = "";
-						$scope.lname = "";
-						$scope.city = "";
-						$("#formDiv").removeClass('hidden');
-						$("#actionMsgDiv").addClass('hidden');
-					}
-					
-					$scope.clickDiv.cancelBtn = function() {
-						/* $scope.fname = "";
-						$scope.lname = "";
-						$scope.city = "";	 */
-						 document.location = '/index.html';
-					}
+							//Initialize ends
+							$scope.clickDiv = {};
 
-				});
+							$scope.clickDiv.doClick = function() {
+								gapi.client.myhelloservice.say2Hi({
+									'myName2' : $scope.name
+								}).execute(function(resp) {
+									alert(resp.data);
+									//$scope.serMsg = resp.data;							
+									//alert(resp.data);
+									$scope.serMsg = resp.data;
+								});
+							};
+
+							$scope.clickDiv.savePatient = function() {
+								gapi.client.patientservice
+										.savePatient(
+												{
+													"firstName" : $scope.fname,
+													"lastName" : $scope.lname,
+													"age" : $scope.age,
+													/* 							"sex":$scope.sex, */
+													"occupation" : $scope.occupation,
+													"addressLine1" : $scope.addr1,
+													"addressLine2" : $scope.addr2,
+													"City" : $scope.city,
+													"PIN" : $scope.pin,
+													"dateofvisit" : $scope.firstvisit,
+													"clinical_note" : $scope.clinicalnote,
+													"follo_up" : $scope.followup,
+													"observation" : $scope.observations,
+													"provisional_dignosis" : $scope.provdig,
+													"investigation_report" : $scope.investigationreport,
+													"Digno_after_investigation" : $scope.digeval,
+													"Advice" : $scope.advice
+												}).execute(
+												function(resp) {
+													//alert(resp.data);
+													//$scope.serMsg = resp.data;
+													$("#formDiv").addClass(
+															'hidden');
+													$("#actionMsgDiv")
+															.removeClass(
+																	'hidden');
+												});
+							}
+
+							$scope.clickDiv.addPatient = function() {
+								$scope.fname = "";
+								$scope.lname = "";
+								$scope.city = "";
+								$("#formDiv").removeClass('hidden');
+								$("#actionMsgDiv").addClass('hidden');
+							}
+
+							$scope.clickDiv.cancelBtn = function() {
+								/* $scope.fname = "";
+								$scope.lname = "";
+								$scope.city = "";	 */
+								document.location = '/index.html';
+							}
+
+						});
 	</script>
 
 	<script>
@@ -145,9 +248,9 @@
 			$("#footer").load("footer.html");
 		});
 	</script>
-	<p> </p>
-	<p> </p>
-	<p> </p>
+	<p></p>
+	<p></p>
+	<p></p>
 	<!--Remaining section-->
 	<div id="footer"></div>
 </body>
