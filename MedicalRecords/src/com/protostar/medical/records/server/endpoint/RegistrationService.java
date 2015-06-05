@@ -59,11 +59,9 @@ public class RegistrationService {
 		
 		try {
 			em = EMF.get().createEntityManager();
-//			Query q = em.createQuery("select * from " + Patient.class.getName());
-			Query q = em.createQuery("select u from RegisterUserEntity u");
+			Query q =em.createQuery("SELECT c FROM RegisterUserEntity c", RegisterUserEntity.class); 
+	
 			resultList = q.getResultList();
-//			for (RegisterUserEntity u: resultList2)
-//				resultList.add(u);
 
 		} finally {
 			em.close();
