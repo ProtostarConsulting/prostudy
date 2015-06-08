@@ -1,4 +1,4 @@
-package com.protostar.medical.records.server.data;
+package com.protostar.billingnstock.data;
 
 import java.io.Serializable;
 
@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.protostar.medical.records.server.data.LoginInfo.UserRole;
+import com.protostar.billingnstock.data.LoginInfo.UserRole;
 
 @Entity
 public class AppUser implements Serializable {

@@ -1,4 +1,4 @@
-package com.protostar.medical.records.server.data;
+package com.protostar.billingnstock.data;
 
 import java.io.Serializable;
 

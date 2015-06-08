@@ -1,14 +1,14 @@
-package com.protostar.medical.records.server.endpoint;
+package com.protostar.billingnstock.data.service;
 
 import javax.inject.Named;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
-import com.protostar.medical.records.server.data.MyBean;
+import com.protostar.billingnstock.data.MyBean;
 
 
-@Api(name = "myhelloservice", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.medical.records.server.endpoint", ownerName = "com.protostar.medical.records.server.endpoint", packagePath = ""))
+@Api(name = "myhelloservice", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.data.service", ownerName = "com.protostar.billingnstock.data.service", packagePath = ""))
 public class HelloService {
 	
 	@ApiMethod(name = "say2Hi")

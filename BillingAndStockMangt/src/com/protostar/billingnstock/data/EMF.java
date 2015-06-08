@@ -1,4 +1,4 @@
-package com.protostar.medical.records.server.data;
+package com.protostar.billingnstock.data;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

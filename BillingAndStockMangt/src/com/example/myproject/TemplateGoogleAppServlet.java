@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.appengine.api.users.User;
-import com.protostar.medical.records.server.data.EMF;
+import com.protostar.billingnstock.data.EMF;
 
 @SuppressWarnings("serial")
 public class TemplateGoogleAppServlet extends HttpServlet {

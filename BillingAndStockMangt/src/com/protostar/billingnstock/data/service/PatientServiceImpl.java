@@ -1,4 +1,4 @@
-package com.protostar.medical.records.server.endpoint;
+package com.protostar.billingnstock.data.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,17 +10,17 @@ import javax.persistence.Query;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
-import com.protostar.medical.records.server.data.EMF;
-import com.protostar.medical.records.server.data.MyBean;
-import com.protostar.medical.records.server.data.Patient;
-import com.protostar.medical.records.server.data.PatientInfo;
-import com.protostar.medical.records.server.data.PatientInfoUtil;
+import com.protostar.billingnstock.data.EMF;
+import com.protostar.billingnstock.data.MyBean;
+import com.protostar.billingnstock.data.Patient;
+import com.protostar.billingnstock.data.PatientInfo;
+import com.protostar.billingnstock.data.PatientInfoUtil;
 
 /**
  * The server-side implementation of the RPC service.
  */
 
-@Api(name = "patientservice", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.medical.records.server.endpoint", ownerName = "com.protostar.medical.records.server.endpoint", packagePath = ""))
+@Api(name = "patientservice", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.data.service", ownerName = "com.protostar.billingnstock.data.service", packagePath = ""))
 
 public class PatientServiceImpl{
 
