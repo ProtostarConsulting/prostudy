@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Vechile add</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
+</head>
+<body ng-app="myapp">
+
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">WebSiteName</a>
+			</div>
+			<div>
+				<ul class="nav navbar-nav">
+					<li><a href="/">Home</a></li>
+					<li class="active"><a href="page1.html">Page 1</a></li>
+					<li><a href="page2.html">Page 2</a></li>
+					<li><a href="page3.html">Page 3</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<h3>Page1</h3>
+		
+			
+			<div ng-controller="MyController">
+
+		<form role="form">
+			<div class="form-group">
+				<label for="vechile_No">Vechile No:</label> <input type="text"
+					class="form-control" id="vechile_No" ng-model="saveVechile.vechile_No">
+			</div>
+			<div class="form-group">
+				<label for="owner_Name">Owner Name:</label> <input type="text"
+					class="form-control" id="owner_Name" ng-model="saveVechile.owner_Name">
+			</div>
+			<div class="form-group">
+				<label for="date_Time_Recevied">date Time Recevied:</label> <input type="text"
+					class="form-control" id="date_Time_Recevied" ng-model="saveVechile.date_Time_Recevied">
+			</div>
+
+	<div class="form-group">
+				<label for="notes">Notes:</label> <input type="text"
+					class="form-control" id="notes" ng-model="saveVechile.notes">
+			</div>
+
+
+			<button type="submit" class="btn btn-default"
+				ng-click="clickDiv.addVechile()">Submit</button>
+		</form>
+<!-- <div id="msg"></div> -->
+<div data-ng-init="init()">
+
+</div>
+
+	</div>
+
+	</div>
+
+	<script>
+		angular.module("myapp", []).controller("MyController",
+				function($scope) {
+			
+			$scope.clickDiv = {};
+					$scope.saveVechile = {};
+					$scope.saveVechile.id="";
+					$scope.saveVechile.vechile_No="";
+					$scope.saveVechile.owner_Name="";
+					$scope.saveVechile.date_Time_Recevied="";
+					$scope.saveVechile.notes="";
+			
+					$scope.clickDiv.addVechile = function() {
+						//alert("shailesh");
+						gapi.client.vechileServices.addVechile($scope.saveVechile).execute(function(resp) 
+						{
+							alert(resp.data);
+							console.log(resp);
+							
+						});
+					};
+
+					$scope.init = function () {
+						alert("okkk");
+						gapi.client.vechileServices.getAllVechile().execute(function(resp) 
+								{
+									alert(resp);
+									console.log(resp);
+									
+								});
+					    // check if there is query in url
+					    // and fire search in case its value is not empty
+					};
+					   /*  angular.element(document).ready(function () {
+					        document.getElementById('msg').innerHTML = 'Hello';
+	alert("in");
+					        gapi.client.vechileServices.getAllVechile().execute(function(resp) 
+									{
+										alert(resp);
+										console.log(resp);
+										
+									});
+					    }); */
+					
+					
+				});
+	</script>
+
+	<script>
+		function init() {
+
+			var apiRoot = '//' + window.location.host + '/_ah/api';
+
+			// Loads the OAuth and helloworld APIs asynchronously, and triggers login
+			// when they have completed.
+			var apisToLoad;
+
+			var callback = function() {
+				
+				alert("Inside callback111 : apiRoot: " + apiRoot);
+				//myhelloservice.say2Hi("Ravi").execute();
+				/* gapi.client.myhelloservice.say2Hi({
+					'myName2' : "Ravi"
+				}).execute(function(resp) {
+					alert(resp.data);
+				}); */
+				
+			};
+
+			apisToLoad = 1; // must match number of calls to gapi.client.load()
+			gapi.client.load('vechileServices', 'v0.1', callback, apiRoot);
+	
+		}
+	</script>
+	<script src="https://apis.google.com/js/client.js?onload=init"></script>
+
+</body>
+</html>

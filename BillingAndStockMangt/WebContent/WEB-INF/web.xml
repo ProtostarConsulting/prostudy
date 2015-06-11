@@ -19,7 +19,7 @@
   <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
   <init-param>
    <param-name>services</param-name>
-   <param-value>com.protostar.billingnstock.data.service.HelloService,com.protostar.billingnstock.data.service.PatientServiceImpl</param-value>
+   <param-value>com.protostar.billingnstock.data.service.HelloService,com.protostar.billingnstock.data.service.PatientServiceImpl,com.protostar.billingnstock.data.service.vechileServices</param-value>
   </init-param>
  </servlet>
  <servlet-mapping>
