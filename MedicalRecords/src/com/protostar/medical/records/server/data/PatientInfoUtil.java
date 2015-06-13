@@ -20,7 +20,7 @@ public class PatientInfoUtil {
 		patientInfo.setAddressLine1(p.getAddressLine1());
 		patientInfo.setAddressLine2(p.getAddressLine2());
 		patientInfo.setCity(p.getCity());
-		patientInfo.setPIN(p.getPIN());
+		patientInfo.setPin(p.getPin());
 
 		patientInfo.setDateofvisit(p.getDateofvisit());
 		patientInfo.setClinical_note(p.getClinical_note());
@@ -51,7 +51,7 @@ public class PatientInfoUtil {
 		patient.setAddressLine1(p.getAddressLine1());
 		patient.setAddressLine2(p.getAddressLine2());
 		patient.setCity(p.getCity());
-		patient.setPIN(p.getPIN());
+		patient.setPin(p.getPin());
 
 		patient.setDateofvisit(p.getDateofvisit());
 		patient.setClinical_note(p.getClinical_note());

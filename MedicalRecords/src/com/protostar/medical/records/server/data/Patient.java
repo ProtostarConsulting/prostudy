@@ -23,13 +23,13 @@ public class Patient implements Serializable {
 	private String addressLine1;
 	private String addressLine2;
 	private String City;
-	private Integer PIN;
+	private Integer pin;
 	private String dateofvisit;
 	private String clinical_note;
 	private String provisional_dignosis;
 	private String investigation_report;
-	private String Digno_after_investigation;
-	private String Advice;
+	private String digno_after_investigation;
+	private String advice;
 	private String follo_up;
 	private String date;
 	private String observation;
@@ -116,21 +116,8 @@ public class Patient implements Serializable {
 		this.investigation_report = investigation_report;
 	}
 
-	public String getDigno_after_investigation() {
-		return Digno_after_investigation;
-	}
 
-	public void setDigno_after_investigation(String digno_after_investigation) {
-		Digno_after_investigation = digno_after_investigation;
-	}
 
-	public String getAdvice() {
-		return Advice;
-	}
-
-	public void setAdvice(String advice) {
-		Advice = advice;
-	}
 
 	public String getFollo_up() {
 		return follo_up;
@@ -169,12 +156,29 @@ public class Patient implements Serializable {
 		City = city;
 	}
 
-	public Integer getPIN() {
-		return PIN;
+
+	public Integer getPin() {
+		return pin;
 	}
 
-	public void setPIN(Integer pIN) {
-		PIN = pIN;
+	public void setPin(Integer pin) {
+		this.pin = pin;
+	}
+
+	public String getDigno_after_investigation() {
+		return digno_after_investigation;
+	}
+
+	public void setDigno_after_investigation(String digno_after_investigation) {
+		this.digno_after_investigation = digno_after_investigation;
+	}
+
+	public String getAdvice() {
+		return advice;
+	}
+
+	public void setAdvice(String advice) {
+		this.advice = advice;
 	}
 
 	public String getFirstName() {

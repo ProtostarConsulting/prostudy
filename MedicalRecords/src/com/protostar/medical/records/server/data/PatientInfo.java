@@ -1,15 +1,44 @@
 package com.protostar.medical.records.server.data;
 
-
 public class PatientInfo {
 
 
+	private Long id;
+	private Long p_ID;
+	public String firstName;
+	private String lastName;
+	private Integer age;
+	private String occupation;
+	private String sex;
+	private String addressLine1;
+	private String addressLine2;
+	private String city;
+    private Integer pin;	
+	private String dateofvisit;
+	private String clinical_note;
+	private String provisional_dignosis;
+	private String investigation_report;
+	private String digno_after_investigation;
+	private String advice;
+	private String follo_up;
+	private String date;
+	private String observation;
+	private String phone;
+	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	public Integer getPin() {
+		return pin;
+	}
+	public void setPin(Integer pin) {
+		this.pin = pin;
+	}
+	
 	public Long getP_ID() {
 		return p_ID;
 	}
@@ -58,18 +87,7 @@ public class PatientInfo {
 	public void setAddressLine2(String addressLine2) {
 		this.addressLine2 = addressLine2;
 	}
-	public String getCity() {
-		return City;
-	}
-	public void setCity(String city) {
-		City = city;
-	}
-	public Integer getPIN() {
-		return PIN;
-	}
-	public void setPIN(Integer pIN) {
-		PIN = pIN;
-	}
+	
 	public String getDateofvisit() {
 		return dateofvisit;
 	}
@@ -94,17 +112,25 @@ public class PatientInfo {
 	public void setInvestigation_report(String investigation_report) {
 		this.investigation_report = investigation_report;
 	}
+	
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+
 	public String getDigno_after_investigation() {
-		return Digno_after_investigation;
+		return digno_after_investigation;
 	}
 	public void setDigno_after_investigation(String digno_after_investigation) {
-		Digno_after_investigation = digno_after_investigation;
+		this.digno_after_investigation = digno_after_investigation;
 	}
 	public String getAdvice() {
-		return Advice;
+		return advice;
 	}
 	public void setAdvice(String advice) {
-		Advice = advice;
+		this.advice = advice;
 	}
 	public String getFollo_up() {
 		return follo_up;
@@ -130,38 +156,5 @@ public class PatientInfo {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	private Long id;
-	private Long p_ID;
-	
-	public String firstName;
-	
-	private String lastName;
-	
-	private Integer age;
-	
-	private String occupation;
-	
-	private String sex;
-
-	private String addressLine1;
-
-	private String addressLine2;
-	
-	private String City;
-	
-
-    private Integer PIN;
-	
-	private String dateofvisit;
-	private String clinical_note;
-	private String provisional_dignosis;
-	private String investigation_report;
-	private String Digno_after_investigation;
-	private String Advice;
-	private String follo_up;
-	private String date;
-	private String observation;
-	private String phone;
-
 
 }

@@ -21,25 +21,8 @@ import com.protostar.medical.records.server.data.PatientInfoUtil;
  */
 
 @Api(name = "patientservice", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.medical.records.server.endpoint", ownerName = "com.protostar.medical.records.server.endpoint", packagePath = ""))
+public class PatientServiceImpl {
 
-public class PatientServiceImpl{
-
-	
-	/**
-	 * Escape an html string. Escaping data received from the client helps to
-	 * prevent cross-site script vulnerabilities.
-	 * 
-	 * @param html
-	 *            the html string to escape
-	 * @return the escaped string
-	 */
-	private String escapeHtml(String html) {
-		if (html == null) {
-			return null;
-		}
-		return html.replaceAll("&", "&amp;").replaceAll("<", "&lt;")
-				.replaceAll(">", "&gt;");
-	}
 
 	@ApiMethod(name = "savePatient")
 	public MyBean savePatient(PatientInfo patient)
@@ -55,24 +38,26 @@ public class PatientServiceImpl{
 		} finally {
 			em.close();
 		}
-		
-		myBean.setData("Patient Record Added Successfully. " + patientEntity.toString() + ", ID:" + patientEntity.getId());
+
+		myBean.setData("Patient Record Added Successfully. "
+				+ patientEntity.toString() + ", ID:" + patientEntity.getId());
 		return myBean;
 	}
 
 	@ApiMethod(name = "getAllPatients")
-	public List<PatientInfo> getAllPatients()  {
+	public List<PatientInfo> getAllPatients() {
 
 		List<PatientInfo> resultList = new ArrayList<PatientInfo>();
+		MyBean myBean = new MyBean();
 		EntityManager em = null;
 
-		
 		try {
 			em = EMF.get().createEntityManager();
-//			Query q = em.createQuery("select * from " + Patient.class.getName());
+			// Query q = em.createQuery("select * from " +
+			// Patient.class.getName());
 			Query q = em.createQuery("select p from Patient p");
 			List<Patient> resultList2 = q.getResultList();
-			for (Patient p: resultList2)
+			for (Patient p : resultList2)
 				resultList.add(PatientInfoUtil.toPatientInfo(p));
 
 		} finally {
@@ -82,24 +67,24 @@ public class PatientServiceImpl{
 	}
 
 	@ApiMethod(name = "getPatientByID")
-	public PatientInfo getPatientByID(@Named("id")Long id) {
+	public PatientInfo getPatientByID(@Named("id") Long id) {
 		PatientInfo patientInfo = null;
+		MyBean mybean = new MyBean();
 		EntityManager em = null;
 		try {
 			em = EMF.get().createEntityManager();
-			Query q = em
-					.createQuery("select p from Patient p where p.id ="
-							+ id);
+			Query q = em.createQuery("select p from Patient p where p.id ="
+					+ id);
 			List<Patient> resultList = q.getResultList();
 			if (resultList.size() > 0) {
-				Patient	patient = resultList.get(0);
+				Patient patient = resultList.get(0);
 				patientInfo = PatientInfoUtil.toPatientInfo(patient);
 			}
 
 		} finally {
 			em.close();
 		}
-		
+
 		return patientInfo;
 	}
 }
