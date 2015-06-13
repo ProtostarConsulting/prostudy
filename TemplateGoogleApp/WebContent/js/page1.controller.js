@@ -1,6 +1,6 @@
 function init() {
 	alert("Inside init");
-	window.init(); // Calls the init function defined on the window
+	window.initGAPI(); // Calls the init function defined on the window
 
 }
 
@@ -82,14 +82,14 @@ angular
 
 							// New code in ctler
 
-							$window.init = function() {
+							$window.initGAPI = function() {
 								// $scope.$apply($scope.initgapi);
-								$scope.$apply($scope.load_guestbook_lib);
-								alert("Inside window.init");
+								$scope.$apply($scope.loadCustomServices);
+								alert("Inside window.initGAPI");
 
 							};
 
-							$scope.load_guestbook_lib = function() {
+							$scope.loadCustomServices = function() {
 								var apiRoot = '//' + window.location.host
 										+ '/_ah/api';
 
@@ -98,11 +98,6 @@ angular
 								// triggers login
 								// when they have completed.
 								var apisToLoad;
-
-								var callback = function() {
-									console
-											.log("Custom Service Loaded successfully!");
-								};
 
 								apisToLoad = 2; // must match number of calls to
 								// gapi.client.load()
