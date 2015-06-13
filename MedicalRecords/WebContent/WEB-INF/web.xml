@@ -19,7 +19,7 @@
     <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
     <init-param>
       <param-name>services</param-name>
-      <param-value>com.protostar.medical.records.server.endpoint.HelloService,com.protostar.medical.records.server.endpoint.MedicineStockServiceImpl,com.protostar.medical.records.server.endpoint.PatientServiceImpl,com.protostar.medical.records.server.endpoint.RegistrationService,com.protostar.medical.records.server.endpoint.UserManagementServiceImpl</param-value>
+      <param-value>com.protostar.medical.records.server.endpoint.EmployeeServiceImpl,com.protostar.medical.records.server.endpoint.HelloService,com.protostar.medical.records.server.endpoint.MedicineStockServiceImpl,com.protostar.medical.records.server.endpoint.PatientServiceImpl,com.protostar.medical.records.server.endpoint.RegistrationService,com.protostar.medical.records.server.endpoint.UserManagementServiceImpl</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>

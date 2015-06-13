@@ -2,6 +2,7 @@
 <html>
 <head>
 
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -29,28 +30,28 @@
 			<div class="col-sm-6">
 
 				<div ng-controller="regicontrolle">
-					<form role="form">
-						<div class="form-group">
-							<label for="fname">First Name:</label> <input type="text"
-								class="form-control" id="fname" ng-model="person.firstName">
-						</div>
+					<div id="formDiv">
+						<form role="form">
+							<div class="form-group">
+								<label for="fname">First Name:</label> <input type="text"
+									class="form-control" id="fname" ng-model="person.firstName">
+							</div>
 
-						<div class="form-group">
-							<label for="lname">Last Name:</label> <input type="text"
-								class="form-control" id="lname" ng-model="person.lastName">
-						</div>
+							<div class="form-group">
+								<label for="lname">Last Name:</label> <input type="text"
+									class="form-control" id="lname" ng-model="person.lastName">
+							</div>
 
-						<div class="form-group">
-							<label for="email">Email:</label> <input type="text"
-								class="form-control" id="email" ng-model="person.emailID">
-						</div>
+							<div class="form-group">
+								<label for="email">Email:</label> <input type="text"
+									class="form-control" id="emailid" ng-model="person.emailID">
+							</div>
 
-						<div class="form-group">
-							<label for="number">Number:</label> <input type="text"
-								class="form-control" id="number" ng-model="person.mobileNumber">
-						</div>
+							<div class="form-group">
+								<label for="number">Number:</label> <input type="text"
+									class="form-control" id="number" ng-model="person.mobileNumber">
+							</div>
 
-						<div>
 							<button type="submit" class="btn btn-primary"
 								ng-click="savedata.saveRegiUser()">Submit</button>
 
@@ -59,10 +60,9 @@
 								ng-click="savedata.fetchRegisterUser()">Get All
 								Registered User</button>
 
-						</div>
-						
+						</form>
 						<div class="row">
-							<div class="col-sm-12">
+							<div class="col-sm-8">
 								<table class="table table-bordered" id="example" class="display"
 									cellspacing="0" width="100%">
 									<thead>
@@ -91,19 +91,21 @@
 								</table>
 							</div>
 						</div>
-					</form>
+					</div>
+					<h1>Server Says--: {{items[0].firstName}}</h1>
+
 				</div>
-				
 				<PanelFooter>
 				<div class="col-sm-12">
-					<div id="actionMsgDiv" class="panel panel-success hidden">
+					<div id="actionMsgDiv" class="panel panel-success"
+						style="display: none;">
 						<div class="panel-heading">Added Successfully.</div>
 						<div class="panel-body">
 
 							<button type="submit" class="btn btn-primary"
-								onclick="clickDiv.addAnother()">Add Medicine</button>
-							<button type="submit" class="btn btn-default"
-								onclick="clickDiv.cancelBtn">Cancel</button>
+								onclick="addAnother();">Add Another</button>
+							<button type="submit" class="btn btn-success"
+								onclick="cancelBtn();">Home</button>
 						</div>
 					</div>
 				</div>
@@ -138,9 +140,11 @@
 						$scope.person).execute(function(resp) {
 							alert(resp.data);
 							$scope.serMsg = resp.data;
+							$("#formDiv").hide();
+							$("#actionMsgDiv").show();
+							/* $("#formDiv").addClass('hidden');
+							$("#actionMsgDiv").removeClass('hidden'); */
 
-							$("#formDiv").removeClass('hidden');
-							$("#actionMsgDiv").addClass('hidden');
 						});
 					}
 
@@ -161,22 +165,24 @@
 						$scope.number = i.mobileNumber; */
 						$scope.person = i;
 					}
-
-					$scope.clickDiv.addAnother = function() {
-						$scope.person.firstName = "";
-						/* $scope.qty = "";
-						$scope.baserate = "";
-						$scope.rate = "";
-						 */
-						$("#formDiv").removeClass('hidden');
-						$("#actionMsgDiv").addClass('hidden');
-					}
-
-					$scope.clickDiv.cancelBtn = function() {
-						document.location = '/index.html';
-					}
-
 				});
+
+		function addAnother() {
+		//	alert("OKkkkkkkk");
+			$("#fname").empty();
+			$("#lname").empty();
+			$("#emailid").empty();
+			$("#number").empty();
+
+			$("#formDiv").show();
+			$("#actionMsgDiv").hide();
+			/*  $("#formDiv").removeClass('hidden');
+			$("#actionMsgDiv").addClass('hidden');  */
+		}
+
+		function cancelBtn() {
+			document.location = '/index.html';
+		}
 	</script>
 
 
@@ -190,7 +196,6 @@
 
 			var callback = function() {
 				//alert("Inside callback111 : apiRoot: " + apiRoot);
-
 			};
 
 			apisToLoad = 1; // must match number of calls to gapi.client.load()
