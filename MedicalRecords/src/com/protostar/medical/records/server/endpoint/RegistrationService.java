@@ -3,6 +3,7 @@ package com.protostar.medical.records.server.endpoint;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -28,12 +29,21 @@ public class RegistrationService {
 		EntityManager en=null;
 		RegisterUserEntity registerUserEntity = new RegisterUserEntity();
 		
-		//registerUserEntity.setId(regiUser.getId());
+		if(regiUser.getId() == 0)
+		{
+			registerUserEntity.setFirstName(regiUser.getFirstName());
+			registerUserEntity.setLastName(regiUser.getLastName());
+			registerUserEntity.setMobileNumber(regiUser.getMobileNumber());
+			registerUserEntity.setEmailID(regiUser.getEmailID());
+		}
+		else
+		{
+		registerUserEntity.setId(regiUser.getId());
 		registerUserEntity.setFirstName(regiUser.getFirstName());
 		registerUserEntity.setLastName(regiUser.getLastName());
 		registerUserEntity.setMobileNumber(regiUser.getMobileNumber());
 		registerUserEntity.setEmailID(regiUser.getEmailID());
-		
+		}
 		try 
 		{
 			en=EMF.get().createEntityManager();
@@ -70,6 +80,25 @@ public class RegistrationService {
 	}
 	
 
+	@ApiMethod(name = "getUserById")
+	public RegisterUserEntity getUserById(@Named("userId") Long userId)  {
+
+		RegisterUserEntity registerUserEntity = new RegisterUserEntity();
+		EntityManager em = null;
+		
+		try {
+			em = EMF.get().createEntityManager();
+			Query q =em.createQuery("SELECT c FROM RegisterUserEntity c where c.id = "+userId, RegisterUserEntity.class); 
+			registerUserEntity = (RegisterUserEntity) q.getSingleResult();
+			
+		} finally {
+			em.close();
+		}
+		
+		return registerUserEntity;
+	}
+	
+	
 }
 
 
