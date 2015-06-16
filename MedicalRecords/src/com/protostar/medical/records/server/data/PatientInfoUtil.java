@@ -17,21 +17,20 @@ public class PatientInfoUtil {
 		patientInfo.setPhone(p.getPhone());
 
 		patientInfo.setSex(p.getSex());
-		patientInfo.setAddressLine1(p.getAddressLine1());
-		patientInfo.setAddressLine2(p.getAddressLine2());
+		patientInfo.setAddr1(p.getAddr1());
+		patientInfo.setAddr2(p.getAddr2());
 		patientInfo.setCity(p.getCity());
 		patientInfo.setPin(p.getPin());
 
-		patientInfo.setDateofvisit(p.getDateofvisit());
-		patientInfo.setClinical_note(p.getClinical_note());
-		patientInfo.setInvestigation_report(p.getInvestigation_report());
-		patientInfo.setProvisional_dignosis(p.getProvisional_dignosis());
+		patientInfo.setFirstvisit(p.getFirstvisit());
+		patientInfo.setClinicalnote(p.getClinicalnote());
+		patientInfo.setInvestigationreport(p.getInvestigationreport());
+		patientInfo.setProvdig(p.getProvdig());
 		// patientInfo.setInvestigation_report(p.getInvestigation_report());
 
-		patientInfo.setDigno_after_investigation(p
-				.getDigno_after_investigation());
+		patientInfo.setDignoafterinvestigation(p.getDignoafterinvestigation());
 		patientInfo.setAdvice(p.getAdvice());
-		patientInfo.setFollo_up(p.getFollo_up());
+		patientInfo.setFollowup(p.getFollowup());
 		patientInfo.setObservation(p.getObservation());
 		patientInfo.setDate(p.getDate());
 		return patientInfo;
@@ -48,20 +47,20 @@ public class PatientInfoUtil {
 		patient.setOccupation(p.getOccupation());
 		patient.setPhone(p.getPhone());
 		patient.setSex(p.getSex());
-		patient.setAddressLine1(p.getAddressLine1());
-		patient.setAddressLine2(p.getAddressLine2());
+		patient.setAddr1(p.getAddr1());
+		patient.setAddr2(p.getAddr2());
 		patient.setCity(p.getCity());
 		patient.setPin(p.getPin());
 
-		patient.setDateofvisit(p.getDateofvisit());
-		patient.setClinical_note(p.getClinical_note());
-		patient.setInvestigation_report(p.getInvestigation_report());
-		patient.setProvisional_dignosis(p.getProvisional_dignosis());
+		patient.setFirstvisit(p.getFirstvisit());
+		patient.setClinicalnote(p.getClinicalnote());
+		patient.setInvestigationreport(p.getInvestigationreport());
+		patient.setProvdig(p.getProvdig());
 		// patient.setInvestigation_report(p.getInvestigation_report());
 
-		patient.setDigno_after_investigation(p.getDigno_after_investigation());
+		patient.setDignoafterinvestigation(p.getDignoafterinvestigation());
 		patient.setAdvice(p.getAdvice());
-		patient.setFollo_up(p.getFollo_up());
+		patient.setFollowup(p.getFollowup());
 		patient.setObservation(p.getObservation());
 		patient.setDate(p.getDate());
 		return patient;

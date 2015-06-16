@@ -23,7 +23,6 @@ import com.protostar.medical.records.server.data.PatientInfoUtil;
 @Api(name = "patientservice", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.medical.records.server.endpoint", ownerName = "com.protostar.medical.records.server.endpoint", packagePath = ""))
 public class PatientServiceImpl {
 
-
 	@ApiMethod(name = "savePatient")
 	public MyBean savePatient(PatientInfo patient)
 			throws IllegalArgumentException {
