@@ -11,45 +11,41 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
 <script
 	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 
-	<script src="/js/medicinestockservice.controller.js"></script>
-	
-<script src="https://apis.google.com/js/client.js?onload=init"></script>
 </head>
-<body ng-app="amclinapp">
+<body ng-app="myapp">
 	<div id="header"></div>
 	<div class="container">
 		<h3>Medicine Stock</h3>
 		<div ng-controller="MyController">
 			<div id="formDiv">
 				<form role="form" visible="true">
-					
+					<!-- ng-init="loadFeeds()" -->
 					<div class="row">
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="mname">Medicine Name:</label> <input type="text"
-									class="form-control" id="mname" ng-model="medicine.medicineName">
+									class="form-control" id="mname" ng-model="mname">
 							</div>
 						</div>
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="qty">Quantity:</label> <input type="text"
-									class="form-control" id="qty" ng-model="medicine.quantity">
+									class="form-control" id="qty" ng-model="qty">
 							</div>
 						</div>
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="baserate">Base Rate:</label> <input type="text"
-									class="form-control" id="baserate" ng-model="medicine.baseRate">
+									class="form-control" id="baserate" ng-model="baserate">
 							</div>
 						</div>
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="rate">Rate:</label> <input type="text"
-									class="form-control" id="rate" ng-model="medicine.rate">
+									class="form-control" id="rate" ng-model="rate">
 							</div>
 						</div>
 					</div>
@@ -60,7 +56,12 @@
 							ng-click="clickDiv.cancelBtn()">Cancel</button>
 					</div>
 
-							<div class="table-responsive">
+					<div>
+						<button type="submit" class="btn btn-primary"
+							ng-click="clickDiv.getAllMedicine()">Show All Medicine</button>
+					</div>
+
+					<div class="table-responsive">
 						<table class="table">
 							<thead>
 								<tr>
@@ -72,8 +73,8 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="item in items" ng-click="seletctUser(item)">
-									<td><a href="#"><span>{{item.id}}</span>
+								<tr ng-repeat="item in items">
+									<td><a href="MedicineStock.html"><span>{{item.id}}</span>
 									</a> <input type="text" ng-show="editMode" ng-model="item.id" /></td>
 
 									<td><span>{{item.medicineName}}</span> <input type="text"
@@ -93,7 +94,7 @@
 					</div>
 				</form>
 			</div>
-			 <PanelFooter>
+			<PanelFooter>
 			<div class="col-sm-12">
 				<div id="actionMsgDiv" class="panel panel-success hidden">
 					<div class="panel-heading">Medicine Added Successfully.</div>
@@ -106,11 +107,11 @@
 					</div>
 				</div>
 			</div>
-			</PanelFooter> 
+			</PanelFooter>
 		</div>
 	</div>
 
-	<!-- <script>
+	<script>
 		angular.module("myapp", []).controller(
 				"MyController",
 				function($scope) {
@@ -161,9 +162,9 @@
 					}
 
 				});
-	</script> -->
-	<!-- <script>
-		function loadFeeds() {
+	</script>
+	<script>
+		/* function loadFeeds() {
 			
 			alert('loadFeeds called.111');
 			angular.module("myapp", []).controller("MyController",
@@ -179,10 +180,10 @@
 				$("#actionMsgDiv").removeClass('hidden');
 			});
 			});
-		} 
-	</script> -->
+		} */
+	</script>
 
-	<!-- <script>
+	<script>
 		function init() {
 
 			var apiRoot = '//' + window.location.host + '/_ah/api';
@@ -200,7 +201,7 @@
 
 		}
 	</script>
-	<script src="https://apis.google.com/js/client.js?onload=init"></script> -->
+	<script src="https://apis.google.com/js/client.js?onload=init"></script>
 	<script>
 		$(function() {
 			$("#header").load("header.html");

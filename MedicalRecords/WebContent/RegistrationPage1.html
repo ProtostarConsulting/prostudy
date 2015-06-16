@@ -8,15 +8,20 @@
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
 <!-- jQuery library -->
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
 <script
 	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	
+<script src="/js/RegistrationService.controller.js"></script>
+
+<script src="https://apis.google.com/js/client.js?onload=init"></script>
+
 <title>Registration</title>
 
 </head>
@@ -53,12 +58,7 @@
 							</div>
 
 							<button type="submit" class="btn btn-primary"
-								ng-click="savedata.saveRegiUser()">Submit</button>
-
-
-							<button type="submit" class="btn btn-default"
-								ng-click="savedata.fetchRegisterUser()">Get All
-								Registered User</button>
+								ng-click="clickDiv.saveRegiUser()">Submit</button>
 
 						</form>
 						<div class="row">
@@ -85,17 +85,16 @@
 											<td><span>{{item.mobileNumber}}</span> <input
 												type="text" ng-show="editMode" ng-model="item.mobileNumber" />
 											</td>
-
 										</tr>
 									</tbody>
 								</table>
 							</div>
 						</div>
 					</div>
-					<h1>Server Says--: {{items[0].firstName}}</h1>
+		<!-- 			<h1>Server Says--: {{items[0].firstName}}</h1> -->
 
-				</div>
-				<PanelFooter>
+
+<PanelFooter>
 				<div class="col-sm-12">
 					<div id="actionMsgDiv" class="panel panel-success"
 						style="display: none;">
@@ -110,99 +109,14 @@
 					</div>
 				</div>
 				</PanelFooter>
+				</div>
+				
 			</div>
 		</div>
 
 	</div>
 
-	<script>
-		angular.module("regi", []).controller(
-				"regicontrolle",
-				function($scope) {
-					//$scope.serMsg = "";
-					$scope.savedata = {};
-					$scope.items = {};
-					$scope.userid = [];
 
-					$scope.person = {};
-					$scope.person.id = "";
-					$scope.person.firstName = "";
-					$scope.person.lastName = "";
-					$scope.person.emailID = "";
-					$scope.person.mobileNumber = "";
-
-					$scope.savedata.saveRegiUser = function() {
-						gapi.client.registrationservice.saveRegiUser(
-						/* {"firstName": $scope.fname,
-						"lastName": $scope.lname,
-						"emailID": $scope.email,
-						"mobileNumber": $scope.number}*/
-						$scope.person).execute(function(resp) {
-							alert(resp.data);
-							$scope.serMsg = resp.data;
-							$("#formDiv").hide();
-							$("#actionMsgDiv").show();
-							/* $("#formDiv").addClass('hidden');
-							$("#actionMsgDiv").removeClass('hidden'); */
-
-						});
-					}
-
-					$scope.savedata.fetchRegisterUser = function() {
-						gapi.client.registrationservice.getAllRegisteredUsers()
-								.execute(function(resp) {
-									$scope.items = resp.items;
-									console.log(resp.items);
-								});
-					}
-
-					$scope.seletctUser = function(i) {
-						alert("Hi" + i.firstName);
-						/* $scope.id = i.id;
-						$scope.fname = i.firstName;
-						$scope.lname = i.lastName;
-						$scope.email = i.emailID;
-						$scope.number = i.mobileNumber; */
-						$scope.person = i;
-					}
-				});
-
-		function addAnother() {
-		//	alert("OKkkkkkkk");
-			$("#fname").empty();
-			$("#lname").empty();
-			$("#emailid").empty();
-			$("#number").empty();
-
-			$("#formDiv").show();
-			$("#actionMsgDiv").hide();
-			/*  $("#formDiv").removeClass('hidden');
-			$("#actionMsgDiv").addClass('hidden');  */
-		}
-
-		function cancelBtn() {
-			document.location = '/index.html';
-		}
-	</script>
-
-
-	<script>
-		function init() {
-			var apiRoot = '//' + window.location.host + '/_ah/api';
-
-			// Loads the OAuth and helloworld APIs asynchronously, and triggers login
-			// when they have completed.
-			var apisToLoad;
-
-			var callback = function() {
-				//alert("Inside callback111 : apiRoot: " + apiRoot);
-			};
-
-			apisToLoad = 1; // must match number of calls to gapi.client.load()
-			gapi.client.load('registrationservice', 'v0.1', callback, apiRoot);
-		}
-	</script>
-	<script src="https://apis.google.com/js/client.js?onload=init"></script>
 	<script>
 		$(function() {
 			$("#header").load("header.html");
