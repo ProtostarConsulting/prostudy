@@ -17,8 +17,8 @@
 
 </head>
 <body ng-app="myapp">
-
-	<nav class="navbar navbar-default">
+<div id="header"></div>
+	<!-- <nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#">WebSiteName</a>
@@ -32,7 +32,7 @@
 				</ul>
 			</div>
 		</div>
-	</nav>
+	</nav> -->
 
 	<div class="container">
 		<h3>Amclin EHR</h3>
@@ -218,6 +218,14 @@
 		}
 	</script>
 	<script src="https://apis.google.com/js/client.js?onload=init"></script>
-
+<script>
+		$(function() {
+			$("#header").load("header.html");
+			$("#footer").load("footer.html");
+		});
+	</script>
+	
+	<!--Remaining section-->
+	<div id="footer"></div>
 </body>
 </html>

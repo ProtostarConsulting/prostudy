@@ -1,14 +1,22 @@
 package com.protostar.billingnstock.data;
 
 public class MyBean {
-
-    private String myData;
-
-    public String getData() {
-        return myData;
-    }
-
-    public void setData(String data) {
-        myData = data;
-    }
+	
+	private String myData;
+    private String token;
+    
+    public String getMyData() {
+		return myData;
+	}
+	public void setMyData(String myData) {
+		this.myData = myData;
+	}
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
+	
+   
 }

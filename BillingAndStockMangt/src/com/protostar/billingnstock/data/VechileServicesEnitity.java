@@ -2,24 +2,25 @@ package com.protostar.billingnstock.data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class VechileServicesEnitity {
 
 	@Id
-	@GeneratedValue
-	private int id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
 	private String vechile_No;
 	private String owner_Name;
 	private String date_Time_Recevied;
 	private String notes;
 	
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getVechile_No() {

@@ -4,11 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-
-
-
-
-
 import javax.persistence.Query;
 
 import com.google.api.server.spi.config.Api;
@@ -26,18 +21,43 @@ public class vechileServices {
 	{
 	
 		MyBean mybean = new MyBean();
-		
+		VechileServicesEnitity vechileServicesEnitity2 = new VechileServicesEnitity();
+				
 		EntityManager en=null;
 		try 
 		{
+			if(vechileServicesEnitity.getId() == null)
+			{
+			vechileServicesEnitity2.setDate_Time_Recevied(vechileServicesEnitity.getDate_Time_Recevied());
+			vechileServicesEnitity2.setNotes(vechileServicesEnitity.getNotes());
+			vechileServicesEnitity2.setOwner_Name(vechileServicesEnitity.getOwner_Name());
+			vechileServicesEnitity2.setVechile_No(vechileServicesEnitity.getVechile_No());
+			mybean.setMyData("registeration successefully.."+vechileServicesEnitity.getOwner_Name());
+			mybean.setToken("R");
+			}
+			else
+			{
+				vechileServicesEnitity2.setId(vechileServicesEnitity.getId());
+				vechileServicesEnitity2.setDate_Time_Recevied(vechileServicesEnitity.getDate_Time_Recevied());
+				vechileServicesEnitity2.setNotes(vechileServicesEnitity.getNotes());
+				vechileServicesEnitity2.setOwner_Name(vechileServicesEnitity.getOwner_Name());
+				vechileServicesEnitity2.setVechile_No(vechileServicesEnitity.getVechile_No());
+				mybean.setMyData("Updation successefully.."+vechileServicesEnitity.getOwner_Name());
+				mybean.setToken("U");
+			}
 			en=EMF.get().createEntityManager();
-			en.persist(vechileServicesEnitity);
+			en.persist(vechileServicesEnitity2);
 		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
 		finally 
 		{
 			en.close();
 		}
-		mybean.setData("registeration successefully.."+vechileServicesEnitity.getOwner_Name());
+		
 		
 		return mybean;		
 	}
@@ -46,22 +66,26 @@ public class vechileServices {
 	@ApiMethod(name="getAllVechile")
 	public List<VechileServicesEnitity> getAllVechile()
 	{
-		List<VechileServicesEnitity> vechileServicesEnitity = new ArrayList<VechileServicesEnitity>();
-		EntityManager en;
+		
+		
+		List<VechileServicesEnitity> resultList = new ArrayList<VechileServicesEnitity>();
+		EntityManager em = null;
+
 		
 		try {
-			
-			en=EMF.get().createEntityManager();
-			Query query = en.createQuery("select v from VechileServicesEnitity v",VechileServicesEnitity.class);
-			vechileServicesEnitity=query.getResultList();
-			
-		} 
+			em = EMF.get().createEntityManager();
+			Query q =em.createQuery("SELECT c FROM VechileServicesEnitity c", VechileServicesEnitity.class); 
+	
+			resultList = q.getResultList();
+		}
+		
+	
 		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
 		
-	   return vechileServicesEnitity;	
+	   return resultList;	
 	}
 
 }
