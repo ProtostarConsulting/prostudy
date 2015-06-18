@@ -126,13 +126,14 @@
 								<label for="advice">Advice:</label> <input type="text"
 									class="form-control" id="advice" ng-model="patient.advice">
 							</div>
+							
 						</div>
 					</div>
-					<button type="submit" class="btn btn-primary"
+					<button type="submit" class="btn btn-success"
 						ng-click="clickDiv.savePatient()">Submit</button>
-					<button type="button" class="btn btn-default"
+					<button type="button" class="btn btn-Info"
 						ng-click="clickDiv.clearall()">Reset</button>
-					<button type="button" class="btn btn-default"
+					<button type="button" class="btn btn-primary"
 						ng-click="clickDiv.cancelBtn()">Cancel</button>
 				</form>
 			</div>
@@ -143,9 +144,9 @@
 					<div class="panel-body">
 
 						<button type="submit" class="btn btn-primary"
-							ng-click="clickDiv.addPatient()">Add Patient</button>
+							ng-click="clickDiv.addPatient()">Add New Patient</button>
 						<button type="submit" class="btn btn-primary"
-							ng-click="clickDiv.cancelBtn()">Cancel</button>
+							ng-click="clickDiv.cancelBtn()">Home</button>
 					</div>
 				</div>
 
@@ -154,104 +155,6 @@
 		</div>
 	</div>
 
-
-	<!--
- 	<script>
-		angular
-				.module("myapp", [])
-				.controller(
-						"MyController",
-						function($scope) {
-
-							//Initialize ends
-							$scope.clickDiv = {};
-
-							/* 							$scope.loadFeeds = function() {
-							 alert('loadFeeds called.');
-							 }
-							 */
-							$scope.clickDiv.savePatient = function() {
-								gapi.client.patientservice
-										.savePatient(
-												{
-													"firstName" : $scope.fname,
-													"lastName" : $scope.lname,
-													"age" : $scope.age,
-													"sex" : $scope.formdata,
-													"occupation" : $scope.occupation,
-													"addressLine1" : $scope.addr1,
-													"addressLine2" : $scope.addr2,
-													"city" : $scope.city,
-													"pin" : $scope.pin,
-													"dateofvisit" : $scope.firstvisit,
-													"clinical_note" : $scope.clinicalnote,
-													"follo_up" : $scope.followup,
-													"observation" : $scope.observations,
-													"provisional_dignosis" : $scope.provdig,
-													"investigation_report" : $scope.investigationreport,
-													"digno_after_investigation" : $scope.digeval,
-													"advice" : $scope.advice
-												}).execute(
-												function(resp) {
-													//alert(resp.data);
-													//$scope.serMsg = resp.data;
-													$("#formDiv").addClass(
-															'hidden');
-													$("#actionMsgDiv")
-															.removeClass(
-																	'hidden');
-												});
-							}
-
-							$scope.clickDiv.addPatient = function() {
-								$scope.fname = "";
-								$scope.lname = "";
-								$scope.age = "";
-								/* $scope.sex=""; */
-								$scope.occupation = "";
-								$scope.addr1 = "";
-								$scope.addr2 = "";
-								$scope.city = "";
-								$scope.pin = "";
-								$scope.firstvisit = "";
-								$scope.clinicalnote = "";
-								$scope.followup = "";
-								$scope.observations = "";
-								$scope.provdig = "";
-								$scope.investigationreport = "";
-								$scope.digeval = "";
-								$scope.advice = "";
-								$("#formDiv").removeClass('hidden');
-								$("#actionMsgDiv").addClass('hidden');
-							}
-
-							$scope.clickDiv.cancelBtn = function() {
-								document.location = '/index.html';
-							}
-
-						});
-	</script>
-
-	<script>
-		function init() {
-
-			var apiRoot = '//' + window.location.host + '/_ah/api';
-
-			// Loads the OAuth and helloworld APIs asynchronously, and triggers login
-			// when they have completed.
-			var apisToLoad;
-
-			var callback = function() {
-				//alert("Inside callback111 : apiRoot: " + apiRoot);
-			};
-
-			apisToLoad = 2; // must match number of calls to gapi.client.load()
-			gapi.client.load('myhelloservice', 'v0.1', callback, apiRoot);
-			gapi.client.load('patientservice', 'v0.1', callback, apiRoot);
-		}
-	</script>
-	<script src="https://apis.google.com/js/client.js?onload=init"></script>
- -->
 	<script>
 		$(function() {
 			$("#header").load("header.html");

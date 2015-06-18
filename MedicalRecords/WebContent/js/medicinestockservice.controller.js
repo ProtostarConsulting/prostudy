@@ -1,5 +1,5 @@
 function init() {
-	alert("Inside init");
+//	alert("Inside init");
 	window.initGAPI(); // Calls the init function defined on the window
 
 }
@@ -28,8 +28,8 @@ angular.module("amclinapp", []).controller(
 							"baseRate" : $scope.baserate,
 							"rate" : $scope.rate}*/
 						).execute(function(resp) {
-							alert(resp.data);
-							$scope.serMsg = resp.data;
+							alert(resp.token);
+//							$scope.serMsg = resp.data;
 							$("#formDiv").addClass('hidden');
 							$("#actionMsgDiv").removeClass('hidden');
 						});
@@ -39,7 +39,7 @@ angular.module("amclinapp", []).controller(
 						gapi.client.medicinestockservice.getAllMedicine()
 								.execute(function(resp) {
 								//	 alert(resp.items[0].medicineName);
-									console.log(resp.items);
+//									console.log(resp.items);
 									// $scope.serMsg = resp.items;
 									$scope.items = resp.items;
 									$scope.$apply();// This
@@ -59,7 +59,7 @@ angular.module("amclinapp", []).controller(
 					}
 
 					$scope.seletctUser = function(i) {
-						alert("Hi" + i.medicineName);
+//						alert("Hi" + i.medicineName);
 						$scope.medicine = i;
 					}
 					

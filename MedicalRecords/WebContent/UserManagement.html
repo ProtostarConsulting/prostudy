@@ -7,19 +7,23 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
 <script
 	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
+<script src="/js/UserManagementService.controller.js"></script>
+
+<script src="https://apis.google.com/js/client.js?onload=init"></script>
 
 </head>
 <body ng-app="amclinapp">
 	<div id="header"></div>
 	<div class="container">
-		<h3>Use Management</h3>
+		<h3>User Management</h3>
 		<div ng-controller="MyController">
 			<div id="formDiv">
 				<form role="form" visible="true">
@@ -27,16 +31,16 @@
 						<div class="col-sm-4">
 							<div class="form-group">
 								<label for="email">E-mail ID:</label> <input type="text"
-									class="form-control" id="email" ng-model="email">
+									class="form-control" id="email" ng-model="user.email">
 							</div>
 							<label for="role">Role:</label>
 							<div class="radio">
 								<label><input type="radio" name="role"
-									ng-model="formdata" value="Admin"> Admin </label> <label>
-									<input type="radio" name="role" ng-model="formdata"
+									ng-model="user.role" value="Admin"> Admin </label> <label>
+									<input type="radio" name="role" ng-model="user.role"
 									value="Basic"> Basic
 								</label><br />
-								<!-- 							<tt>Role = {{formdata.role | json}}</tt> -->
+								<tt>Role = {{user.role | json}}</tt>
 								<br />
 							</div>
 						</div>
@@ -44,24 +48,56 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-4">
-							<button type="button" class="btn btn-default"
-								ng-click="clickDiv.cancelBtn()">Cancel</button>
-							<button type="submit" class="btn btn-primary"
+							<button type="submit" class="btn btn-success"
 								ng-click="clickDiv.saveUserRole()">Submit</button>
+							<button type="button" class="btn btn-primary"
+								ng-click="clickDiv.cancelBtn()">Cancel</button>
 						</div>
 					</div>
+<br>
+<br>
+					<h3>User List</h3>
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>User Email ID</th>
+									<th>Role</th>
+									<th>Change</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in items" ng-click="seletctUser(item)">
+									<!-- 									<td><a href="#"><span>{{item.id}}</span> </a> <input
+										type="text" ng-show="editMode" ng-model="item.id" /></td>
+ -->
+									<td><span>{{item.email}}</span> <input type="text"
+										ng-show="editMode" ng-model="item.email" /></td>
 
+									<td><span>{{item.role}}</span> <input type="text"
+										ng-show="editMode" ng-model="item.role" /></td>
+
+									<td><a href="#"></a>
+										<button type="submit" class="btn btn-primary" icon="PENCIL">Modify</button></td>
+								</tr>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</form>
 			</div>
 			<PanelFooter>
 			<div class="col-sm-12">
-				<div id="actionMsgDiv" class="panel panel-success hidden">
-					<div class="panel-heading">User Added Successfully.</div>
+				<div id="actionMsgDiv" class="panel panel-success"
+					style="display: none;">
+					<div class="panel-heading">User Added Successfully</div>
 					<div class="panel-body">
-						<button type="button" class="btn btn-default"
-							ng-click="clickDiv.cancelBtn()">Cancel</button>
+
 						<button type="submit" class="btn btn-primary"
-							ng-click="clickDiv.saveUserRole()">Submit</button>
+							ng-click="clickDiv.addUser()">Add New User</button>
+						<button type="submit" class="btn btn-success"
+							ng-click="clickDiv.cancelBtn()">Home</button>
 					</div>
 				</div>
 			</div>
@@ -69,69 +105,6 @@
 		</div>
 	</div>
 
-
-	<script>
-		angular.module("amclinapp", []).controller("MyController",
-				function($scope) {
-					//$scope.serMsg = "";
-					//Initialize 
-					//$("#actionMsgDiv").addClass('hidden');
-
-					$scope.email = "";
-					//	$scope.formdata = {};
-					$scope.formdata = "";
-
-					//Initialize ends
-					$scope.clickDiv = {};
-
-					$scope.clickDiv.saveUserRole = function() {
-						gapi.client.usermanagementservice.saveUserRole({
-							"email" : $scope.email,
-							"role" : $scope.formdata
-
-						}).execute(function(resp) {
-							alert(resp.data);
-							console.log(resp.data);
-							$scope.serMsg = resp.data;
-						});
-					}
-
-					/* $scope.clickDiv.saveUserForm = function() {
-						$scope.email = "";
-						$scope.role.name = "";
-						$("#formDiv").removeClass('hidden');
-						$("#actionMsgDiv").addClass('hidden');
-					} */
-
-					$scope.clickDiv.cancelBtn = function() {
-						/* $scope.fname = "";
-						$scope.lname = "";
-						$scope.city = "";	 */
-						document.location = '/index.html';
-					}
-
-				});
-	</script>
-
-	<script>
-		function init() {
-
-			var apiRoot = '//' + window.location.host + '/_ah/api';
-
-			// Loads the OAuth and helloworld APIs asynchronously, and triggers login
-			// when they have completed.
-			var apisToLoad;
-
-			var callback = function() {
-				alert("Inside callback111 : apiRoot: " + apiRoot);
-			};
-
-			apisToLoad = 1; // must match number of calls to gapi.client.load()
-			gapi.client
-					.load('usermanagementservice', 'v0.1', callback, apiRoot);
-		}
-	</script>
-	<script src="https://apis.google.com/js/client.js?onload=init"></script>
 	<script>
 		$(function() {
 			$("#header").load("header.html");

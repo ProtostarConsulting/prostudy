@@ -1,5 +1,5 @@
 function init() {
-	alert("Inside init");
+//	alert("Inside init");
 	window.initGAPI(); // Calls the init function defined on the window
 
 }
@@ -36,11 +36,11 @@ angular.module("amclinapp", []).controller(
 					$scope.patient.advice = "";
 
 					$scope.clickDiv.savePatient = function() {
-						alert("In Save Patient");
+//						alert("In Save Patient");
 						gapi.client.patientservice.savePatient($scope.patient
 						).execute(function(resp) {
-							alert(resp.data);
-							$scope.serMsg = resp.data;
+							alert(resp.token);
+//							$scope.serMsg = resp.data;
 							$("#formDiv").addClass('hidden');
 							$("#actionMsgDiv").removeClass('hidden');
 						});
@@ -91,7 +91,7 @@ angular.module("amclinapp", []).controller(
 					}
 										
 					$scope.seletctUser = function(i) {
-						alert("Hi" + i.firstName);
+//						alert("Hi" + i.firstName);
 						$scope.patient = i;
 					}
 
@@ -105,12 +105,12 @@ angular.module("amclinapp", []).controller(
 					$window.initGAPI = function() {
 						// $scope.$apply($scope.initgapi);
 						$scope.$apply($scope.loadCustomServices);
-						alert("Inside window.initGAPI");
+//						alert("Inside window.initGAPI");
 
 					};
 
 					$scope.loadCustomServices = function() {
-						alert("Inside loadCustomServices");
+//						alert("Inside loadCustomServices");
 
 						var apiRoot = '//' + window.location.host + '/_ah/api';
 
@@ -124,7 +124,6 @@ angular.module("amclinapp", []).controller(
 
 						gapi.client.load('patientservice', 'v0.1', function() {
 							$scope.is_backend_ready = true;
-//							$scope.getAllPatients();
 						}, apiRoot);
 
 					};
