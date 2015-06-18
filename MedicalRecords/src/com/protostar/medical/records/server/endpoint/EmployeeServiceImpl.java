@@ -21,6 +21,14 @@ public class EmployeeServiceImpl {
 		MyBean myBean = new MyBean();
 		EntityManager em=null;
 		
+		if (employee.getId()==null) {
+			myBean.setToken("User Added Successfully");
+		}
+
+		else{
+			myBean.setToken("User Updated Successfully");
+		}
+		
 		Employee employeeEntity= EmployeeInfoUtil.toEmployee(employee);
 		try 
 		{	
@@ -37,7 +45,7 @@ public class EmployeeServiceImpl {
 			em.close();
 		}
 		
-		myBean.setData("Employee added successfully" + employeeEntity.toString() +"ID"+ employeeEntity.getId() + "Name" + employeeEntity.getFirstName());
+		myBean.setMyData("Employee added successfully" + employeeEntity.toString() +"ID"+ employeeEntity.getId() + "Name" + employeeEntity.getFirstName());
 		return myBean;
 	}
 }

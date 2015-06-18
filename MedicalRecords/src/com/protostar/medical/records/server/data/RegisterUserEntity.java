@@ -26,7 +26,7 @@ public class RegisterUserEntity implements Serializable{
 	
 	private String emailID;
 	
-	private String mobileNumber;
+	private Number mobileNumber;
 	
 
 	
@@ -66,11 +66,11 @@ public class RegisterUserEntity implements Serializable{
 		this.emailID = emailID;
 	}
 
-	public String getMobileNumber() {
+	public Number getMobileNumber() {
 		return mobileNumber;
 	}
 
-	public void setMobileNumber(String mobileNumber) {
+	public void setMobileNumber(Number mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 

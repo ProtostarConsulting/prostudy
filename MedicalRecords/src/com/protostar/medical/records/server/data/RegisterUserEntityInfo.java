@@ -13,7 +13,7 @@ public class RegisterUserEntityInfo {
 	
 	private String emailID;
 	
-	private String mobileNumber;
+	private Number mobileNumber;
 	
 	public long getId() {
 		return id;
@@ -47,11 +47,11 @@ public class RegisterUserEntityInfo {
 		this.emailID = emailID;
 	}
 
-	public String getMobileNumber() {
+	public Number getMobileNumber() {
 		return mobileNumber;
 	}
 
-	public void setMobileNumber(String mobileNumber) {
+	public void setMobileNumber(Number mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 

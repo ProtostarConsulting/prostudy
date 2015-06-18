@@ -30,6 +30,14 @@ public class PatientServiceImpl {
 		MyBean myBean = new MyBean();
 		EntityManager em = null;
 
+		if (patient.getId() == null) {
+			myBean.setToken("Patient Added Successfully");
+		}
+
+		else{
+			myBean.setToken("Patient Updated Successfully");
+		}
+		
 		Patient patientEntity = PatientInfoUtil.toPatient(patient);
 		try {
 			em = EMF.get().createEntityManager();
@@ -38,7 +46,7 @@ public class PatientServiceImpl {
 			em.close();
 		}
 
-		myBean.setData("Patient Record Added Successfully. "
+		myBean.setMyData("Patient Record Added Successfully. "
 				+ patientEntity.toString() + ", ID:" + patientEntity.getId());
 		return myBean;
 	}

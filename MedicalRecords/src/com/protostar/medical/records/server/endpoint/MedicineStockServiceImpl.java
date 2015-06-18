@@ -23,14 +23,6 @@ import com.protostar.medical.records.server.data.PatientInfoUtil;
 @Api(name = "medicinestockservice", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.medical.records.server.endpoint", ownerName = "com.protostar.medical.records.server.endpoint", packagePath = ""))
 public class MedicineStockServiceImpl {
 
-	private String escapeHtml(String html) {
-		if (html == null) {
-			return null;
-		}
-		return html.replaceAll("&", "&amp;").replaceAll("<", "&lt;")
-				.replaceAll(">", "&gt;");
-	}
-
 	@ApiMethod(name = "saveMedicineStock")
 	public MyBean saveMedicineStock(MedicineStockInfo medicine)
 			throws IllegalArgumentException {
@@ -38,6 +30,14 @@ public class MedicineStockServiceImpl {
 		MyBean mybean = new MyBean();
 
 		EntityManager em = null;
+
+		if (medicine.getId() == null) {
+			mybean.setToken("Medicine Added Successfully");
+		}
+
+		else{
+			mybean.setToken("Medicine Updated Successfully");
+		}
 
 		MedicineStock medicineEntity = MedicineStockInfoUtil
 				.toMedicineStock(medicine);
@@ -47,9 +47,8 @@ public class MedicineStockServiceImpl {
 		} finally {
 			em.close();
 		}
-		
-		
-		mybean.setData("Medicine Record Added Successfully with ID:"
+
+		mybean.setMyData("Medicine Record Added Successfully with ID:"
 				+ medicineEntity.getId() + ""
 				+ medicineEntity.getMedicineName());
 		return mybean;
@@ -57,8 +56,7 @@ public class MedicineStockServiceImpl {
 
 	@ApiMethod(name = "getAllMedicine")
 	public List<MedicineStockInfo> getAllMedicine()
-			throws IllegalArgumentException
-	{
+			throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 
 		List<MedicineStockInfo> resultList = new ArrayList<MedicineStockInfo>();
@@ -84,46 +82,40 @@ public class MedicineStockServiceImpl {
 	}
 
 	@ApiMethod(name = "getMedicineByID")
-	public MedicineStockInfo getMedicineByID(@Named("id") Long id)
-	{
+	public MedicineStockInfo getMedicineByID(@Named("id") Long id) {
 		MedicineStockInfo medicineStockInfo = new MedicineStockInfo();
-		MyBean myBean=new MyBean();
-		EntityManager em= null;
-		
-		try{
-			em=EMF.get().createEntityManager();
-			Query q=em.createQuery("Select m from MedicineStock m where m.id="+id);
-			
-			List<MedicineStock> resuList=q.getResultList();
-			MedicineStock medicineStock=resuList.get(0);
-			medicineStockInfo=MedicineStockInfoUtil.toMedicineStockInfo(medicineStock);
-		}
-		finally{
-			em.close();
-		}
-		
-		return medicineStockInfo;
-		
-	}
-	
-/*	public PatientInfo getPatientByID(@Named("id") Long id) {
-		PatientInfo patientInfo = null;
-		MyBean mybean = new MyBean();
+		MyBean myBean = new MyBean();
 		EntityManager em = null;
+
 		try {
 			em = EMF.get().createEntityManager();
-			Query q = em.createQuery("select p from Patient p where p.id ="
-					+ id);
-			List<Patient> resultList = q.getResultList();
-			if (resultList.size() > 0) {
-				Patient patient = resultList.get(0);
-				patientInfo = PatientInfoUtil.toPatientInfo(patient);
-			}
+			Query q = em
+					.createQuery("Select m from MedicineStock m where m.id="
+							+ id);
 
+			List<MedicineStock> resuList = q.getResultList();
+			MedicineStock medicineStock = resuList.get(0);
+			medicineStockInfo = MedicineStockInfoUtil
+					.toMedicineStockInfo(medicineStock);
 		} finally {
 			em.close();
 		}
 
-		return patientInfo;
-	}*/
+		return medicineStockInfo;
+
+	}
+
+	/*
+	 * public PatientInfo getPatientByID(@Named("id") Long id) { PatientInfo
+	 * patientInfo = null; MyBean mybean = new MyBean(); EntityManager em =
+	 * null; try { em = EMF.get().createEntityManager(); Query q =
+	 * em.createQuery("select p from Patient p where p.id =" + id);
+	 * List<Patient> resultList = q.getResultList(); if (resultList.size() > 0)
+	 * { Patient patient = resultList.get(0); patientInfo =
+	 * PatientInfoUtil.toPatientInfo(patient); }
+	 * 
+	 * } finally { em.close(); }
+	 * 
+	 * return patientInfo; }
+	 */
 }
