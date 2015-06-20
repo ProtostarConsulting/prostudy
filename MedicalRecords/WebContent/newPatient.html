@@ -126,7 +126,7 @@
 								<label for="advice">Advice:</label> <input type="text"
 									class="form-control" id="advice" ng-model="patient.advice">
 							</div>
-							
+
 						</div>
 					</div>
 					<button type="submit" class="btn btn-success"
@@ -137,7 +137,28 @@
 						ng-click="clickDiv.cancelBtn()">Cancel</button>
 				</form>
 			</div>
-			<PanelFooter>
+
+			<div id="main" class="hidden">
+				<PanelFooter>
+				<div class="col-sm-12">
+					<div class="panel panel-success ">
+						<div id="actionMsgDivR" class="panel-heading hidden">Patient
+							Added Successfully</div>
+						<div id="actionMsgDivU" class=" panel-heading hidden">Patient
+							Updated Successful.</div>
+						<div class="panel-body">
+
+							<button type="submit" class="btn btn-primary"
+								ng-click="clickDiv.addPatient()">Add New Medicine</button>
+							<button type="submit" class="btn btn-primary"
+								ng-click="clickDiv.cancelBtn()">Home</button>
+						</div>
+					</div>
+				</div>
+				</PanelFooter>
+			</div>
+
+			<!-- <PanelFooter>
 			<div class="col-sm-12">
 				<div id="actionMsgDiv" class="panel panel-success hidden">
 					<div class="panel-heading">Patient Added Successfully.</div>
@@ -151,7 +172,7 @@
 				</div>
 
 			</div>
-			</PanelFooter>
+			</PanelFooter> -->
 		</div>
 	</div>
 

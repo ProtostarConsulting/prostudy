@@ -41,8 +41,19 @@ angular.module("amclinapp", []).controller(
 						).execute(function(resp) {
 							alert(resp.token);
 //							$scope.serMsg = resp.data;
-							$("#formDiv").addClass('hidden');
-							$("#actionMsgDiv").removeClass('hidden');
+						
+							if (resp.token == "U") {								
+								$("#formDiv").addClass('hidden');
+								$("#actionMsgDivU").removeClass('hidden');
+								$("#main").removeClass('hidden');
+							} 
+							else {
+								$("#formDiv").addClass('hidden');
+								$("#actionMsgDivR").removeClass('hidden');
+								$("#main").removeClass('hidden');
+							}
+							/*$("#formDiv").addClass('hidden');
+							$("#actionMsgDiv").removeClass('hidden');*/
 						});
 					}	
 
@@ -67,7 +78,12 @@ angular.module("amclinapp", []).controller(
 						$scope.patient.advice = "";
 						
 						$("#formDiv").removeClass('hidden');
-						$("#actionMsgDiv").addClass('hidden');
+						$("#actionMsgDivR").addClass('hidden');
+						$("#actionMsgDivU").addClass('hidden');
+						$("#main").addClass('hidden');
+
+/*						$("#formDiv").removeClass('hidden');
+						$("#actionMsgDiv").addClass('hidden');*/
 					}
 
 					$scope.clickDiv.clearall = function() {
@@ -100,6 +116,10 @@ angular.module("amclinapp", []).controller(
 						document.location = '/index.html';
 					}
 					
+					$scope.getPatientByID = function(i){
+						alert("Hi"+i.firstName)
+						$scope.patient = i;
+					}
 					// New code in ctler
 
 					$window.initGAPI = function() {
@@ -124,6 +144,7 @@ angular.module("amclinapp", []).controller(
 
 						gapi.client.load('patientservice', 'v0.1', function() {
 							$scope.is_backend_ready = true;
+							$scope.getPatientByID(); 
 						}, apiRoot);
 
 					};

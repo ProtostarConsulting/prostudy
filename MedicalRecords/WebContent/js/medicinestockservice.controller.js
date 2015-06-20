@@ -30,8 +30,21 @@ angular.module("amclinapp", []).controller(
 						).execute(function(resp) {
 							alert(resp.token);
 //							$scope.serMsg = resp.data;
-							$("#formDiv").addClass('hidden');
-							$("#actionMsgDiv").removeClass('hidden');
+							
+							if (resp.token == "U") {
+								
+								$("#formDiv").addClass('hidden');
+								$("#actionMsgDivU").removeClass('hidden');
+								$("#main").removeClass('hidden');
+							} 
+							else {
+								$("#formDiv").addClass('hidden');
+								$("#actionMsgDivR").removeClass('hidden');
+								$("#main").removeClass('hidden');
+							}
+							
+						//	$("#formDiv").addClass('hidden');
+						//	$("#actionMsgDiv").removeClass('hidden');
 						});
 					}					
 					
@@ -70,7 +83,12 @@ angular.module("amclinapp", []).controller(
 						$scope.medicine.rate = "";
 						
 						$("#formDiv").removeClass('hidden');
-						$("#actionMsgDiv").addClass('hidden');
+						$("#actionMsgDivR").addClass('hidden');
+						$("#actionMsgDivU").addClass('hidden');
+						$("#main").addClass('hidden');
+						
+					//	$("#formDiv").removeClass('hidden');
+					//	$("#actionMsgDiv").addClass('hidden');
 						
 						$scope.getAllMedicine();
 					}

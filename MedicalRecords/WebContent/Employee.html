@@ -15,6 +15,9 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 
+<script src="/js/SaveEmployeeService.controller.js"></script>
+
+<script src="https://apis.google.com/js/client.js?onload=init"></script>
 </head>
 <body ng-app="amclinapp">
 	<div id="header"></div>
@@ -36,12 +39,14 @@
 
 							<div class="form-group">
 								<label for="addr1">Address Line1:</label> <input type="text"
-									class="form-control" id="addr1" ng-model="employee.addressLine1">
+									class="form-control" id="addr1"
+									ng-model="employee.addressLine1">
 							</div>
 
 							<div class="form-group">
 								<label for="addr2">Address Line2:</label> <input type="text"
-									class="form-control" id="addr2" ng-model="employee.addressLine2">
+									class="form-control" id="addr2"
+									ng-model="employee.addressLine2">
 							</div>
 							<div class="form-group">
 								<label for="city">City:</label> <input type="text"
@@ -54,104 +59,86 @@
 							</div>
 							<div class="form-group">
 								<label for="mobile">Mobile No.:</label> <input type="text"
-									class="form-control" id="mobile"
-									ng-model="employee.moboileNo">
+									class="form-control" id="mobile" ng-model="employee.moboileNo">
 							</div>
 						</div>
 					</div>
 
 					<button type="submit" class="btn btn-primary"
-						ng-click="clickDiv.saveEmployeeInfo()">Submit</button>
+						ng-click="clickDiv.saveEmployee()">Submit</button>
 					<button type="button" class="btn btn-default"
 						ng-click="clickDiv.cancelBtn()">Cancel</button>
+
+
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>First Name</th>
+									<th>Last Name</th>
+									<th>Adderss</th>
+									<th>City</th>
+									<th>Pin</th>
+									<th>Mobile No.</th>
+									<th>Modify</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in items" ng-click="seletctUser(item)">
+									<!-- 									<td><a href="#"><span>{{item.id}}</span> </a> <input
+										type="text" ng-show="editMode" ng-model="item.id" /></td>
+ -->
+									<td><span>{{item.firstName}}</span> <input type="text"
+										ng-show="editMode" ng-model="item.email" /></td>
+
+									<td><span>{{item.lastName}}</span> <input type="text"
+										ng-show="editMode" ng-model="item.email" /></td>
+									
+									<div ng-model="item.Address1"></div>
+									<td><span>{{item.Address1}}{{item.Address2}}</span> <input
+										type="text" ng-show="editMode" ng-model="item.Address2" /></td>
+
+									<td><span>{{item.city}}</span> <input type="text"
+										ng-show="editMode" ng-model="item.city" /></td>
+
+									<td><span>{{item.pin}}</span> <input type="text"
+										ng-show="editMode" ng-model="item.pin" /></td>
+
+									<td><span>{{item.moboileNo}}</span> <input type="text"
+										ng-show="editMode" ng-model="item.moboileNo" />
+									<td><a href="#"></a>
+												<button type="submit" class="btn btn-primary" icon="PENCIL">Modify</button>
+								</tr>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</form>
 			</div>
-			<PanelFooter>
-			<div class="col-sm-12">
-				<div id="actionMsgDiv" class="panel panel-success hidden">
-					<div class="panel-heading">Patient Added Successfully.</div>
-					<div class="panel-body">
 
-						<button type="submit" class="btn btn-primary"
-							ng-click="clickDiv.addEmployee()">Add New Employee</button>
-						<button type="submit" class="btn btn-primary"
-							ng-click="clickDiv.cancelBtn()">Home</button>
+			<div id="main" class="hidden">
+				<PanelFooter>
+				<div class="col-sm-12">
+					<div class="panel panel-success ">
+						<div id="actionMsgDivR" class="panel-heading hidden">Employee
+							Added Successfully</div>
+						<div id="actionMsgDivU" class=" panel-heading hidden">Employee
+							Updated Successfully.</div>
+						<div class="panel-body">
+
+							<button type="submit" class="btn btn-primary"
+								ng-click="clickDiv.addEmployee()">Add New Employee</button>
+							<button type="submit" class="btn btn-primary"
+								ng-click="clickDiv.cancelBtn()">Home</button>
+						</div>
 					</div>
 				</div>
-
+				</PanelFooter>
 			</div>
-			</PanelFooter>
 		</div>
 	</div>
 
-
-	<script>
- 		angular.module("amclinapp", []).controller("MyController",
-				function($scope) {
-					$scope.clickDiv = {};
-
-					$scope.employee = {};
-					$scope.employee.firstName = "";
-					$scope.employee.lastName ="";
-					$scope.employee.addr1 ="";				
-					$scope.employee.addr2 ="";
-					$scope.employee.city ="";
-					$scope.employee.pin ="";
-					$scope.employee.mobileNumber ="";
-
-					$scope.clickDiv.saveEmployeeInfo = function(){
-						gapi.client.employeeservice.saveEmployee(
-								$scope.employee).execute(function(resp){
-								
-									alert(resp.data);
-								
-								$("#formDiv").removeClass('hidden');
-								$("#actionMsgDiv").addClass('hidden');
-					});
-				}
-
-
-							$scope.clickDiv.addEmployee = function() {
-								$scope.employee.firstName = "";
-								$scope.employee.lastName ="";
-								$scope.employee.addr1 ="";				
-								$scope.employee.addr2 ="";
-								$scope.employee.city ="";
-								$scope.employee.pin ="";
-								$scope.employee.mobileNumber ="";
-								
-								$("#formDiv").hide();
-								$("#actionMsgDiv").show();
-/* 								$("#formDiv").removeClass('hidden');
-								$("#actionMsgDiv").addClass('hidden'); */
-							}
-
-							$scope.clickDiv.cancelBtn = function() {
-								document.location = '/index.html';
-							}
-
-						});
-	</script>
-
-	<script>
-		function init() {
-
-			var apiRoot = '//' + window.location.host + '/_ah/api';
-
-			// Loads the OAuth and helloworld APIs asynchronously, and triggers login
-			// when they have completed.
-			var apisToLoad;
-
-			var callback = function() {
-				//alert("Inside callback111 : apiRoot: " + apiRoot);
-			};
-
-			apisToLoad = 2; // must match number of calls to gapi.client.load()
-			gapi.client.load('employeeservice', 'v0.1', callback, apiRoot);
-
-		}
-	</script>
-	<script src="https://apis.google.com/js/client.js?onload=init"></script>
 	<script>
 		$(function() {
 			$("#header").load("header.html");

@@ -21,6 +21,7 @@ angular.module("amclinapp", []).controller(
 					$scope.person.emailID = "";
 					$scope.person.mobileNumber = "";
 
+//For Save Record 
 					$scope.clickDiv.saveRegiUser = function() {
 						gapi.client.registrationservice.saveRegiUser(
 								$scope.person).execute(function(resp) {
@@ -28,17 +29,20 @@ angular.module("amclinapp", []).controller(
 
 							if (resp.token == "U") {
 								$("#formDiv").addClass('hidden');
-								$("#update").addClass('hidden');
-								$("#actionMsgDiv").removeClass('hidden');
-							} else if (resp.token == "R") {
+							//	$("#update").addClass('hidden');
+								$("#actionMsgDivU").removeClass('hidden');
+								$("#main").removeClass('hidden');
+							} 
+							else if (resp.token == "R") {
 								// $scope.serMsg = resp.data;
 								$("#formDiv").addClass('hidden');
-								 $("#register").show();
-								$("#actionMsgDiv").removeClass('hidden');
+							//	 $("#register").addClass('hidden');
+								$("#actionMsgDivR").removeClass('hidden');
+								$("#main").removeClass('hidden');
 							}
 						});
 					}
-
+//For Fetch All Records From Database
 					$scope.fetchRegisterUser = function() {
 						gapi.client.registrationservice.getAllRegisteredUsers()
 								.execute(function(resp) {
@@ -62,11 +66,19 @@ angular.module("amclinapp", []).controller(
 								});
 					}
 
+//To Disply Record in TextBox
+					
 					$scope.seletctUser = function(i) {
 						// alert("Hi" + i.firstName);
 						$scope.person = i;
 					}
 
+					//OR
+					
+/*					$scope.removePerson = function(index) {
+						  $scope.person.splice(index, 1);
+						};
+*/						
 					$scope.clickDiv.addPatient = function() {
 						$scope.person.id = "";
 						$scope.person.firstName = "";
@@ -75,23 +87,23 @@ angular.module("amclinapp", []).controller(
 						$scope.person.mobileNumber = "";
 
 						$("#formDiv").removeClass('hidden');
-						$("#actionMsgDiv").addClass('hidden');
-
+						$("#actionMsgDivR").addClass('hidden');
+						$("#actionMsgDivU").addClass('hidden');
+						$("#main").addClass('hidden');
 						$scope.fetchRegisterUser();
-
 					}
 
 					$scope.clickDiv.cancelBtn = function() {
 						document.location = '/index.html';
 					}
-
-					// New code in ctler
+				
+						
+	// New code in ctler
 
 					$window.initGAPI = function() {
 						// $scope.$apply($scope.initgapi);
 						$scope.$apply($scope.loadCustomServices);
 						// alert("Inside window.initGAPI");
-
 					};
 
 					$scope.loadCustomServices = function() {
@@ -112,7 +124,5 @@ angular.module("amclinapp", []).controller(
 									$scope.is_backend_ready = true;
 									$scope.fetchRegisterUser();
 								}, apiRoot);
-
 					};
-
 				} ]);
