@@ -8,14 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name="Employee")
+@Entity
 public class Employee implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	
-	private long id;
+	private Long id;
 	private String firstName;
 	private String lastName;
 	private String addressLine1;
@@ -24,10 +24,10 @@ public class Employee implements Serializable {
 	private String city;
 	private String pin;
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getFirstName() {

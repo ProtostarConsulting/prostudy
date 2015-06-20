@@ -32,11 +32,11 @@ public class MedicineStockServiceImpl {
 		EntityManager em = null;
 
 		if (medicine.getId() == null) {
-			mybean.setToken("Medicine Added Successfully");
+			mybean.setToken("R");
 		}
 
 		else{
-			mybean.setToken("Medicine Updated Successfully");
+			mybean.setToken("U");
 		}
 
 		MedicineStock medicineEntity = MedicineStockInfoUtil
@@ -100,22 +100,6 @@ public class MedicineStockServiceImpl {
 		} finally {
 			em.close();
 		}
-
 		return medicineStockInfo;
-
 	}
-
-	/*
-	 * public PatientInfo getPatientByID(@Named("id") Long id) { PatientInfo
-	 * patientInfo = null; MyBean mybean = new MyBean(); EntityManager em =
-	 * null; try { em = EMF.get().createEntityManager(); Query q =
-	 * em.createQuery("select p from Patient p where p.id =" + id);
-	 * List<Patient> resultList = q.getResultList(); if (resultList.size() > 0)
-	 * { Patient patient = resultList.get(0); patientInfo =
-	 * PatientInfoUtil.toPatientInfo(patient); }
-	 * 
-	 * } finally { em.close(); }
-	 * 
-	 * return patientInfo; }
-	 */
 }

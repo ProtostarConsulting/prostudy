@@ -31,11 +31,11 @@ public class PatientServiceImpl {
 		EntityManager em = null;
 
 		if (patient.getId() == null) {
-			myBean.setToken("Patient Added Successfully");
+			myBean.setToken("R");
 		}
 
 		else{
-			myBean.setToken("Patient Updated Successfully");
+			myBean.setToken("U");
 		}
 		
 		Patient patientEntity = PatientInfoUtil.toPatient(patient);
