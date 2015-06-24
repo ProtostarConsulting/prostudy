@@ -50,7 +50,7 @@ public class MedicineStockServiceImpl {
 
 		mybean.setMyData("Medicine Record Added Successfully with ID:"
 				+ medicineEntity.getId() + ""
-				+ medicineEntity.getMedicineName());
+				+ medicineEntity.getMname());
 		return mybean;
 	}
 

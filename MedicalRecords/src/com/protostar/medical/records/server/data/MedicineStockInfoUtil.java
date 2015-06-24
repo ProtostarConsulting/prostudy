@@ -11,8 +11,8 @@ public class MedicineStockInfoUtil {
 
 		MedicineStockInfo medicineSstockinfo = new MedicineStockInfo();
 		medicineSstockinfo.setId(ms.getId());
-		medicineSstockinfo.setMedicineName(ms.getMedicineName());
-		medicineSstockinfo.setQuantity(ms.getQuantity());
+		medicineSstockinfo.setMname(ms.getMname());
+		medicineSstockinfo.setQty(ms.getQty());
 		medicineSstockinfo.setBaseRate(ms.getBaseRate());
 		medicineSstockinfo.setRate(ms.getRate());
 
@@ -24,8 +24,8 @@ public class MedicineStockInfoUtil {
 	public static MedicineStock toMedicineStock(MedicineStockInfo msi) {
 		MedicineStock medicinestock = new MedicineStock();
 		medicinestock.setId(msi.getId());
-		medicinestock.setMedicineName(msi.getMedicineName());
-		medicinestock.setQuantity(msi.getQuantity());
+		medicinestock.setMname(msi.getMname());
+		medicinestock.setQty(msi.getQty());
 		medicinestock.setBaseRate(msi.getBaseRate());
 		medicinestock.setRate(msi.getRate());
 

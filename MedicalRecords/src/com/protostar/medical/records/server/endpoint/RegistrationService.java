@@ -35,7 +35,7 @@ public class RegistrationService {
 			registerUserEntity.setLastName(regiUser.getLastName());
 			registerUserEntity.setMobileNumber(regiUser.getMobileNumber());
 			registerUserEntity.setEmailID(regiUser.getEmailID());
-			mybean.setToken("R");;
+			mybean.setToken("R");
 		}
 		else
 		{

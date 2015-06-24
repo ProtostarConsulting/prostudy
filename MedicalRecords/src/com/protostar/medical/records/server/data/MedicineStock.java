@@ -17,8 +17,8 @@ public class MedicineStock implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String medicineName;
-	private String quantity;
+	private String mname;
+	private String qty;
 	private String baseRate;
 	private String rate;
 	
@@ -31,20 +31,28 @@ public class MedicineStock implements Serializable {
 		this.id = id;
 	}
 	
-	public String getMedicineName() {
-		return medicineName;
+
+
+	public String getMname() {
+		return mname;
 	}
 
-	public void setMedicineName(String medicineName) {
-		this.medicineName = medicineName;
+	public void setMname(String mname) {
+		this.mname = mname;
 	}
 
-	public String getQuantity() {
-		return quantity;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
-	public void setQuantity(String quantity) {
-		this.quantity = quantity;
+	
+
+	public String getQty() {
+		return qty;
+	}
+
+	public void setQty(String qty) {
+		this.qty = qty;
 	}
 
 	public String getBaseRate() {

@@ -32,11 +32,11 @@ public class UserManagementServiceImpl {
 		EntityManager em = null;
 
 		if (user.getId() == null) {
-			myBean.setToken("User Added Successfully");
+			myBean.setToken("R");
 		}
 
 		else{
-			myBean.setToken("User Updated Successfully");
+			myBean.setToken("U");
 		}
 		
 		UserManagement userEntity = UserManagementInfoUtil.toUserManagement(user);
