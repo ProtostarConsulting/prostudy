@@ -13,16 +13,25 @@ angular.module("amclinapp", []).controller(
 					$scope.items = {};
 					$scope.clickDiv = {};
 					$scope.serMsg = {};
-					$scope.person = {};
+					$scope.person = {id:"",fname:"",lname:"",emailid:"",mobileNumber:""};
 
-					$scope.person.id = "";
+/*					$scope.person.id = "";
 					$scope.person.firstName = "";
 					$scope.person.lastName = "";
 					$scope.person.emailID = "";
 					$scope.person.mobileNumber = "";
+*/					
+					$scope.personList = {};
 
 //For Save Record 
 					$scope.clickDiv.saveRegiUser = function() {
+						alert("Save Registedr User");
+						$scope.person.id=document.getElementById("id").value;
+						$scope.person.fname=document.getElementById("fname").value;
+						$scope.person.lname=document.getElementById("lname").value;
+						$scope.person.emailid=document.getElementById("emailid").value;
+						$scope.person.number=document.getElementById("number").value;
+						
 						gapi.client.registrationservice.saveRegiUser(
 								$scope.person).execute(function(resp) {
 							alert(resp.token);
@@ -49,7 +58,27 @@ angular.module("amclinapp", []).controller(
 									// alert(resp.items[0].medicineName);
 									// console.log(resp.items);
 									// $scope.serMsg = resp.items;
-									$scope.items = resp.items;
+									//$scope.items = resp.items;
+									console.log(resp);
+									var table = $('#regiDataTable').DataTable();
+									alert(resp.items.length);
+									
+									$scope.personList=resp.items;
+									$('#regiDataTable').dataTable().fnClearTable();
+									for(var i=0;i<resp.items.length;i++)
+										{
+										
+										 var Id = resp.items[i].id;
+							    		  var firstName = "'"+resp.items[i].firstName+"'";
+							    		  var lastName = "'"+resp.items[i].lastName+"'";
+							    		  var emailID = "'"+resp.items[i].emailID+"'";
+							    		  var mobileNumber = "'"+resp.items[i].mobileNumber+"'";
+							    		  
+							    		  var seq = +i + +1;
+										
+									table.row.add( ['<a href="#" onclick="seletctUser('+Id+','+firstName+','+lastName+','+emailID+','+mobileNumber+')">'+resp.items[i].firstName+'</a>',
+									                resp.items[i].lastName,resp.items[i].emailID,resp.items[i].mobileNumber] ).draw();
+										}
 									$scope.$apply();// This
 									// is
 									// required
@@ -68,10 +97,10 @@ angular.module("amclinapp", []).controller(
 
 //To Disply Record in TextBox
 					
-					$scope.seletctUser = function(i) {
+				/*	$scope.seletctUser = function(i) {
 						// alert("Hi" + i.firstName);
 						$scope.person = i;
-					}
+					}*/
 
 					//OR
 					

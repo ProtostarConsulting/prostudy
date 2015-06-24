@@ -13,15 +13,24 @@ angular.module("amclinapp", []).controller(
 					$scope.items = {};
 					$scope.clickDiv = {};
 					$scope.serMsg={};
-					$scope.medicine={};
+					$scope.medicine={id:"",mname:"",qty:"",baserate:"",rate:""};
 					
-					$scope.medicine.id="";
-					$scope.medicine.medicineName="";
-					$scope.medicine.quantity="";
-					$scope.medicine.baseRate="";
+/*					$scope.medicine.id="";
+					$scope.medicine.mname="";
+					$scope.medicine.qty="";
+					$scope.medicine.baserate="";
 					$scope.medicine.rate="";				
+*/					
+					$scope.medicineList={};
 					
 					$scope.clickDiv.saveMedicine = function() {
+						$scope.medicine.id=document.getElementById("id").value;
+						$scope.medicine.mname=document.getElementById("mname").value;
+						$scope.medicine.qty=document.getElementById("qty").value;
+						$scope.medicine.baserate=document.getElementById("baserate").value;
+						$scope.medicine.rate=document.getElementById("rate").value;
+						
+					//	console.log(resp.medicine);
 						gapi.client.medicinestockservice.saveMedicineStock($scope.medicine
 							/*{"medicineName" : $scope.mname,
 							"quantity" : $scope.qty,
@@ -54,28 +63,38 @@ angular.module("amclinapp", []).controller(
 								//	 alert(resp.items[0].medicineName);
 //									console.log(resp.items);
 									// $scope.serMsg = resp.items;
-									$scope.items = resp.items;
-									$scope.$apply();// This
-													// is
-													// required
-													// for
-													// data
-													// changed
-													// in
-													// behind
-													// in
-													// controller
-													// to be
-													// applied
-													// to UI
+//									$scope.items = resp.items;
+									
+									console.log(resp);
+									var table = $('#medicineDataTable').DataTable();
+									alert(resp.items.length);
+									
+									$scope.medicineList=resp.items;
+									$('#medicineDataTable').dataTable().fnClearTable();
+									for(var i=0;i<resp.items.length;i++)
+										{
+										
+										 var Id = resp.items[i].id;
+							    		  var mname = "'"+resp.items[i].mname+"'";
+							    		  var qty = "'"+resp.items[i].qty+"'";
+							    		  var baseRate = "'"+resp.items[i].baseRate+"'";
+							    		  var rate = "'"+resp.items[i].rate+"'";
+							    		  
+							    		  var seq = +i + +1;
+										
+									table.row.add( ['<a href="#" onclick="seletctUser('+Id+','+mname+','+qty+','+baseRate+','+rate+')">'+resp.items[i].mname+'</a>',
+									                resp.items[i].qty,resp.items[i].baseRate,resp.items[i].rate] ).draw();
+										}
+
+									$scope.$apply();
 								});
 					}
-
+/*
 					$scope.seletctUser = function(i) {
 //						alert("Hi" + i.medicineName);
 						$scope.medicine = i;
 					}
-					
+*/					
 					$scope.clickDiv.addMedicine = function() {
 						$scope.medicine.medicineName = "";
 						$scope.medicine.quantity = "";

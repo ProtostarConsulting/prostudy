@@ -24,10 +24,33 @@ angular.module("amclinapp", []).controller(
 									// alert(resp.items[0].fname);
 									// console.log(resp.items);
 									// $scope.serMsg = resp.items;
-									$scope.items = resp.items;
+									// $scope.items = resp.items;
 									// console.log($scope.items);
+									
+									var table = $('#patientDataTable').DataTable();
+									alert(resp.items.length);
+									
+									$scope.personList=resp.items;
+									$('#patientDataTable').dataTable().fnClearTable();
+									for(var i=0;i<resp.items.length;i++)
+										{
+										
+										 var Id = resp.items[i].id;
+							    		  var firstName = "'"+resp.items[i].firstName+"'";
+							    		  var lastName = "'"+resp.items[i].lastName+"'";
+							    		  var city = "'"+resp.items[i].city+"'";
+							    		  var seq = +i + +1;
+										
+									table.row.add( ['<a href="#" onclick="seletctUser('+Id+','+firstName+','+lastName+','+city+')">'+resp.items[i].firstName+'</a>',
+									                resp.items[i].lastName,resp.items[i].city] ).draw();
+										}
 									$scope.$apply();
 								});
+					}
+					
+					$scope.clickDiv.addPatient = function() {
+						 alert("Go to New Patient Form");
+						 document.location = '/newPatient.html';
 					}
 					// New code in ctler
 

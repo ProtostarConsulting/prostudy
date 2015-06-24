@@ -116,10 +116,10 @@ angular.module("amclinapp", []).controller(
 						document.location = '/index.html';
 					}
 					
-					$scope.getPatientByID = function(i){
+				/*	$scope.getPatientByID = function(i){
 						alert("Hi"+i.firstName)
 						$scope.patient = i;
-					}
+					}*/
 					// New code in ctler
 
 					$window.initGAPI = function() {
@@ -144,7 +144,7 @@ angular.module("amclinapp", []).controller(
 
 						gapi.client.load('patientservice', 'v0.1', function() {
 							$scope.is_backend_ready = true;
-							$scope.getPatientByID(); 
+//							$scope.getPatientByID(); 
 						}, apiRoot);
 
 					};
