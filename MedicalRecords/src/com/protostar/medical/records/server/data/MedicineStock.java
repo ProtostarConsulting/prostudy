@@ -19,56 +19,41 @@ public class MedicineStock implements Serializable {
 	private Long id;
 	private String mname;
 	private String qty;
-	private String baseRate;
+	private String baserate;
 	private String rate;
-	
-
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-
-
 	public String getMname() {
 		return mname;
 	}
-
 	public void setMname(String mname) {
 		this.mname = mname;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	
-
 	public String getQty() {
 		return qty;
 	}
-
 	public void setQty(String qty) {
 		this.qty = qty;
 	}
-
-	public String getBaseRate() {
-		return baseRate;
+	public String getBaserate() {
+		return baserate;
 	}
-
-	public void setBaseRate(String baseRate) {
-		this.baseRate = baseRate;
+	public void setBaserate(String baserate) {
+		this.baserate = baserate;
 	}
-
 	public String getRate() {
 		return rate;
 	}
-
 	public void setRate(String rate) {
 		this.rate = rate;
 	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 }
 	

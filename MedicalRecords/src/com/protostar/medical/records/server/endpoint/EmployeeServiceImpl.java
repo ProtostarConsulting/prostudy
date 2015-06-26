@@ -22,7 +22,7 @@ public class EmployeeServiceImpl {
 
 	@ApiMethod(name = "saveEmployee")
 	public MyBean saveEmployee(EmployeeInfo employee)
-			throws IllegalArgumentException {
+	 {
 		// Store it in Google datastore
 		MyBean myBean = new MyBean();
 		EntityManager em = null;

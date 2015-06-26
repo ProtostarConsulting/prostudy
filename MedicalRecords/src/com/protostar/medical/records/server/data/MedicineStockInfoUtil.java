@@ -13,7 +13,7 @@ public class MedicineStockInfoUtil {
 		medicineSstockinfo.setId(ms.getId());
 		medicineSstockinfo.setMname(ms.getMname());
 		medicineSstockinfo.setQty(ms.getQty());
-		medicineSstockinfo.setBaseRate(ms.getBaseRate());
+		medicineSstockinfo.setBaserate(ms.getBaserate());
 		medicineSstockinfo.setRate(ms.getRate());
 
 		return medicineSstockinfo;
@@ -26,7 +26,7 @@ public class MedicineStockInfoUtil {
 		medicinestock.setId(msi.getId());
 		medicinestock.setMname(msi.getMname());
 		medicinestock.setQty(msi.getQty());
-		medicinestock.setBaseRate(msi.getBaseRate());
+		medicinestock.setBaserate(msi.getBaserate());
 		medicinestock.setRate(msi.getRate());
 
 		return medicinestock;
