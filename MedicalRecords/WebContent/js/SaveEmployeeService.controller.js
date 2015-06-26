@@ -30,36 +30,36 @@ angular.module("amclinapp", []).controller(
 					$scope.employeeList={};
 					
 					$scope.clickDiv.saveEmployee = function() {
-						gapi.client.employeeservice.saveEmployee(
-								$scope.employee).execute(
-								function(resp) {
-									alert(resp.token);
-									// $scope.serMsg = resp.data;
-									$scope.employee.id = document.getElementById("id").value;
-									$scope.employee.firstName = document.getElementById("firstName");
-									$scope.employee.lastName = document.getElementById("lastName");
-									$scope.employee.addressLine1 = document.getElementById("addressLine1");
-									$scope.employee.addressLine2 = document.getElementById("addressLine2");
-									$scope.employee.city = document.getElementById("city");
-									$scope.employee.pin = document.getElementById("pin");
-									$scope.employee.moboileNo = document.getElementById("moboileNo");
-									
-									if (resp.token == "U") {
-										$("#formDiv").addClass('hidden');
-										$("#actionMsgDivU").removeClass(
-												'hidden');
-										$("#main").removeClass('hidden');
-									} else {
-										$("#formDiv").addClass('hidden');
-										$("#actionMsgDivR").removeClass(
-												'hidden');
-										$("#main").removeClass('hidden');
-									}
-									/*
-									 * $("#formDiv").addClass('hidden');
-									 * $("#actionMsgDiv").removeClass('hidden');
-									 */
-								});
+						$scope.employee.id=document.getElementById("id").value;
+						$scope.employee.firstName=document.getElementById("firstName").value;
+						$scope.employee.lastName=document.getElementById("lastName").value;
+						$scope.employee.addressLine1=document.getElementById("addressLine1").value;
+						$scope.employee.addressLine2=document.getElementById("addressLine2").value;
+						$scope.employee.city=document.getElementById("city").value;
+						$scope.employee.pin=document.getElementById("pin").value;
+						$scope.employee.moboileNo=document.getElementById("moboileNo").value;
+						
+					//	console.log(resp.employee);
+						gapi.client.employeeservice.saveEmployee($scope.employee
+						).execute(function(resp) {
+							alert(resp.token);
+//							$scope.serMsg = resp.data;
+							
+							if (resp.token == "U") {
+								
+								$("#formDiv").addClass('hidden');
+								$("#actionMsgDivU").removeClass('hidden');
+								$("#main").removeClass('hidden');
+							} 
+							else {
+								$("#formDiv").addClass('hidden');
+								$("#actionMsgDivR").removeClass('hidden');
+								$("#main").removeClass('hidden');
+							}
+							
+						//	$("#formDiv").addClass('hidden');
+						//	$("#actionMsgDiv").removeClass('hidden');
+						});
 					}
 
 					$scope.clickDiv.fetchAllEmployee = function() {

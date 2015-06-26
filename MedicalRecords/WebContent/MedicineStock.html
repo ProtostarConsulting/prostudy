@@ -65,19 +65,19 @@
 							<div class="form-group">
 								<label for="mname">Medicine Name:</label> <input type="text"
 									class="form-control" id="mname"
-									ng-model="medicine.medicineName">
+									ng-model="medicine.mname">
 							</div>
 						</div>
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="qty">Quantity:</label> <input type="text"
-									class="form-control" id="qty" ng-model="medicine.quantity">
+									class="form-control" id="qty" ng-model="medicine.qty">
 							</div>
 						</div>
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="baserate">Base Rate:</label> <input type="text"
-									class="form-control" id="baserate" ng-model="medicine.baseRate">
+									class="form-control" id="baserate" ng-model="medicine.baserate">
 							</div>
 						</div>
 						<div class="col-sm-3">
@@ -132,7 +132,7 @@
 	</div>
 
 	<script>
-	function seletctUser(id,mname, qty, baserate, number) {
+	function seletctUser(id,mname, qty, baserate, rate) {
 		alert("Inside Select User");
 		document.getElementById("id").value = id;
 		document.getElementById("mname").value = mname;

@@ -44,23 +44,23 @@
 									class="form-control" id="id" ng-model="employee.id">
 							</div>
 							<div class="form-group">
-								<label for="fname">First Name:</label> <input type="text"
+								<label for="firstName">First Name:</label> <input type="text"
 									class="form-control" id="firstName"
 									ng-model="employee.firstName">
 							</div>
 							<div class="form-group">
-								<label for="lname">Last Name:</label> <input type="text"
+								<label for="lastName">Last Name:</label> <input type="text"
 									class="form-control" id="lastName" ng-model="employee.lastName">
 							</div>
 
 							<div class="form-group">
-								<label for="addr1">Address Line1:</label> <input type="text"
+								<label for="addressLine1">Address Line1:</label> <input type="text"
 									class="form-control" id="addressLine1"
 									ng-model="employee.addressLine1">
 							</div>
 
 							<div class="form-group">
-								<label for="addr2">Address Line2:</label> <input type="text"
+								<label for="addressLine2">Address Line2:</label> <input type="text"
 									class="form-control" id="addressLine2"
 									ng-model="employee.addressLine2">
 							</div>
@@ -74,7 +74,7 @@
 									class="form-control" id="pin" ng-model="employee.pin">
 							</div>
 							<div class="form-group">
-								<label for="mobile">Mobile No.:</label> <input type="text"
+								<label for="moboileNo">Mobile No.:</label> <input type="text"
 									class="form-control" id="moboileNo"
 									ng-model="employee.moboileNo">
 							</div>
@@ -98,7 +98,7 @@
 								<th>Address Line1</th>
 								<th>Address Line2</th>
 								<th>City</th>
-								<th>PIN</th>
+								<th>pin</th>
 								<th>Mobile No.</th>
 							</thead>
 						</table>
@@ -131,9 +131,9 @@
 	</div>
 
 	<script>
-		function seletctUser(id, firstName, lastName, addressLine1,
-				addressLine2, city, pin, moboileNo) {
-			alert("Inside Select User" + id + firstName);
+		function seletctUser(id, firstName, lastName, addressLine1,addressLine2, city, pin, moboileNo)
+		{
+			alert("Inside Select User" + id +" "+firstName);
 			document.getElementById("id").value = id;
 			document.getElementById("firstName").value = firstName;
 			document.getElementById("lastName").value = lastName;

@@ -77,13 +77,13 @@ angular.module("amclinapp", []).controller(
 										 var Id = resp.items[i].id;
 							    		  var mname = "'"+resp.items[i].mname+"'";
 							    		  var qty = "'"+resp.items[i].qty+"'";
-							    		  var baseRate = "'"+resp.items[i].baseRate+"'";
+							    		  var baserate = "'"+resp.items[i].baserate+"'";
 							    		  var rate = "'"+resp.items[i].rate+"'";
 							    		  
 							    		  var seq = +i + +1;
 										
-									table.row.add( ['<a href="#" onclick="seletctUser('+Id+','+mname+','+qty+','+baseRate+','+rate+')">'+resp.items[i].mname+'</a>',
-									                resp.items[i].qty,resp.items[i].baseRate,resp.items[i].rate] ).draw();
+									table.row.add( ['<a href="#" onclick="seletctUser('+Id+','+mname+','+qty+','+baserate+','+rate+')">'+resp.items[i].mname+'</a>',
+									                resp.items[i].qty,resp.items[i].baserate,resp.items[i].rate] ).draw();
 										}
 
 									$scope.$apply();
@@ -96,9 +96,9 @@ angular.module("amclinapp", []).controller(
 					}
 */					
 					$scope.clickDiv.addMedicine = function() {
-						$scope.medicine.medicineName = "";
-						$scope.medicine.quantity = "";
-						$scope.medicine.baseRate = "";
+						$scope.medicine.mname = "";
+						$scope.medicine.qty = "";
+						$scope.medicine.baserate = "";
 						$scope.medicine.rate = "";
 						
 						$("#formDiv").removeClass('hidden');
