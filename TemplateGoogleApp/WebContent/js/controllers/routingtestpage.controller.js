@@ -1,6 +1,7 @@
 //Define an angular module for our app
 var sampleApp = angular.module('sampleApp', [ 'ngRoute' ]);
 
+
 //Define Routing for app
 //Uri /AddNewOrder -> template add_order.html and Controller AddOrderController
 //Uri /ShowOrders -> template show_orders.html and Controller AddOrderController
@@ -27,4 +28,5 @@ sampleApp.controller('ShowOrdersController', [ '$scope', '$routeParams',
 		function($scope, $routeParams) {
 			$scope.message = 'This is view order screen';
 			$scope.orderId = $routeParams.orderId;
+			
 		} ]);

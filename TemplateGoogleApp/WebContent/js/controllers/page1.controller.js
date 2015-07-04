@@ -16,6 +16,7 @@ angular
 							$scope.serMsg = "";
 
 							alert("Inside Controller");
+							var ps = 
 
 							$scope.doClickCallSayHi = function() {
 								gapi.client.myhelloservice.say2Hi({
