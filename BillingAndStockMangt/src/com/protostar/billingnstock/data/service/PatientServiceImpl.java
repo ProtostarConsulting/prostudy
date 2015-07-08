@@ -56,7 +56,7 @@ public class PatientServiceImpl{
 			em.close();
 		}
 		
-		myBean.setData("Patient Record Added Successfully. " + patientEntity.toString() + ", ID:" + patientEntity.getId());
+		myBean.setMyData("Patient Record Added Successfully. " + patientEntity.toString() + ", ID:" + patientEntity.getId());
 		return myBean;
 	}
 
