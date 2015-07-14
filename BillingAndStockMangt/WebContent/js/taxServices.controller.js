@@ -1,5 +1,5 @@
 function init() {
-	alert("Inside init");
+	//alert("Inside init");
 	window.initGAPI(); // Calls the init function defined on the window
 
 }
@@ -37,11 +37,11 @@ angular.module("myTax", []).controller("taxController",['$scope','$window',funct
 										
 								{
 								
-									alert($scope.addTax.code_Name);
+									//alert($scope.addTax.code_Name);
 									//console.log(resp.myData);
 									console.log($scope.addTax);
 									
-									alert(resp.token);
+									//alert(resp.token);
 									if(resp.token=="R")
 									{
 										$("#actionMsgDivR").show();
@@ -64,7 +64,7 @@ angular.module("myTax", []).controller("taxController",['$scope','$window',funct
 									$("#tableTax").hide();
 									$("#taxForm").hide();
 									
-									
+									$scope.$apply();
 								
 								});
 							};//end of addTaxServices
@@ -76,11 +76,11 @@ angular.module("myTax", []).controller("taxController",['$scope','$window',funct
 										{
 									         $scope.items=resp.items;
 									          
-									           alert(resp.items);
+									          // alert(resp.items);
 									        
 									           console.log(resp);
 									           
-									            alert("Inside DATA Table"); 
+									           // alert("Inside DATA Table"); 
 											   var table = $('#taxDataTable').DataTable();
 											   
 											   $scope.taxList=resp.items;
@@ -111,7 +111,7 @@ angular.module("myTax", []).controller("taxController",['$scope','$window',funct
 							
 							$scope.taxDetails = function()
 							{
-								alert("Inside Tax details");
+								//alert("Inside Tax details");
 								
 								$("#taxForm").hide();
 								$("#tableTax").show();

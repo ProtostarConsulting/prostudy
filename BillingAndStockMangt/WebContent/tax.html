@@ -5,6 +5,7 @@
 <title>Tax</title>
 
 
+
 <!-- Datatable -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">
@@ -36,7 +37,7 @@
 		<b>Tax</b>
 		
 <div  style="display: none;" id="taxForm">
-			<form role="form">
+			<form role="form" name="myTaxForm" ng-submit="submitTax.addTaxServices()">
 			  <div class="form-group" style="display: none;">
 			        <label for="id">ID:</label> <input type="text"
 			        class="form-control" id="id" ng-model="addTax.id">
@@ -44,29 +45,31 @@
 			
 				<div class="form-group">
 					<label for="code_Name">Code Name</label> 
-					<input type="text" class="form-control" id="code_Name"
-						ng-model="addTax.code_Name">
+					<input type="text" name="code_Name" placeholder="Enter Code Name" class="form-control" id="code_Name"
+						 ng-model="addTax.code_Name"required "/>
+						<span style="color:red" ng-show="myTaxForm.code_Name.$dirty && myTaxForm.code_Name.$invalid">
+                          <span ng-show="myTaxForm.code_Name.$error.required">Code Name is required.</span>
+                          
+                        </span>
 				</div>
 				
 				<div class="form-group">
-					<label for="tax_Rate">Tax Rate</label>
-					 <input type="text"class="form-control" id="tax_Rate"
-						ng-model="addTax.tax_Rate">
+				<label for="tax_Rate">Tax Rate</label>
+					 <input type="number" name="tax_Rate" placeholder="Enter Tax Rate"class="form-control" id="tax_Rate"  
+						ng-model="addTax.tax_Rate" min="0"max="100" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" required />
+
+						 <span style="color:red" ng-show="myTaxForm.tax_Rate.$dirty && myTaxForm.tax_Rate.$invalid">
+						 <span class="error" ng-show="myTaxForm.tax_Rate.$error.required">Tax Rate is Required!</span>
+                         <span class="error" ng-show="myTaxForm.tax_Rate.$error.number">Number is required!</span>
 				</div>
-				
 
-				
-
-
-			     <button type="submit" class="btn btn-primary"ng-click="submitTax.addTaxServices()">Submit</button>
-			      <button type="submit" class="btn btn-primary"ng-click="taxDetails()">Tax Details</button>
+			     <button type="submit"  class="btn btn-primary">Submit</button>
+			     <button type="submit" class="btn btn-primary"  ng-click="taxDetails()" >Tax Details</button>
 			     
 			</form>
-
-			
-		
-
 </div>
+
+
 
 <div id="tableTax">
      <table class="table table-bordered" id ="taxDataTable">
@@ -144,7 +147,7 @@
  
        function updateTax(id,code_Name,tax_Rate) 
        {
-		alert("Inside updateTax");
+		//alert("Inside updateTax");
 		document.getElementById("id").value = id;
 		
 		document.getElementById("code_Name").value = code_Name;
