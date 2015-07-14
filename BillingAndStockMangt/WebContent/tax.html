@@ -46,9 +46,10 @@
 				<div class="form-group">
 					<label for="code_Name">Code Name</label> 
 					<input type="text" name="code_Name" placeholder="Enter Code Name" class="form-control" id="code_Name"
-						 ng-model="addTax.code_Name"required "/>
+						 ng-model="addTax.code_Name"required ng-pattern="/[a-zA-Z]/"/>
 						<span style="color:red" ng-show="myTaxForm.code_Name.$dirty && myTaxForm.code_Name.$invalid">
                           <span ng-show="myTaxForm.code_Name.$error.required">Code Name is required.</span>
+                           <span ng-show="myTaxForm.code_Name.$error.pattern">Text is required.</span>
                           
                         </span>
 				</div>
