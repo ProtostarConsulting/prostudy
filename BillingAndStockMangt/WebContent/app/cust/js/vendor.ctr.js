@@ -1,5 +1,5 @@
 function init() {
-	// alert("Inside init");
+	alert("Inside init");
 	window.initGAPI(); // Calls the init function defined on the window
 
 }
@@ -10,48 +10,43 @@ app.controller("customerCtr", [
 		'$window',
 		function($scope, $window) {
 
-			$scope.loadCustomerList = function() {
+			$scope.loadVendor = function() {
 				console.log("loadCustomerList");
-				gapi.client.customerservice.getAllCustomers().execute(
+				gapi.client.vendorservice.getAllVendors().execute(
 						function(resp) {
 							console.log(resp);
 						});
 			};
 
-			$scope.addCustomer = function() {
-				console.log("in side addCustomer");
-				gapi.client.customerservice.addCustomer($scope.cust)
+			$scope.addVendor = function() {
+				console.log("in side addVendor");
+				gapi.client.vendorservice.saveVendor($scope.vend)
 						.execute(function(resp) {
-							console.log("Add Customer Response: " + resp.msg);
+							console.log("Add Vendor Response: " + resp.msg);
 
 						})
 			};// end of call to addCustomer
 
-			$scope.newCustomer = function() {
+			$scope.newVendor = function() {
 				return {
-					firstName : '',
-					lastName : '',
+					vendorName : '',
 					mobileNo : '',
-					email : '',
-					address : {
-						line1 : '',
-						line2 : '',
-						city : '',
-						state: '',
-						pin : '',	
-					}
+					emailid : '',
+					city : '',
+					pin :'',
 				};
 			}
 
-			$scope.cust = $scope.newCustomer();
+			$scope.vend = $scope.newVendor();
 
 			$window.initGAPI = function() {
+				alert("inside initGAPI");
 				console.log("Came to initGAPI");
 				$scope.$apply($scope.loadCustomService);
 				//$scope.loadCustomService(); 
 				
 				//temp. Loading customer list here
-				//$scope.loadCustomerList();
+				//$scope.loadVendorList();
 
 			};
 
@@ -59,25 +54,23 @@ app.controller("customerCtr", [
 				console.log("Inside window.loadCustomServices");
 				var apiRoot = '//' + window.location.host + '/_ah/api';
 
-				// Loads the OAuth and helloworld APIs
-				// asynchronously, and
-				// triggers login
-				// when they have completed.
 				var apisToLoad;
 
 				apisToLoad = 1; // must match number of calls to
 				// gapi.client.load()
 
-				gapi.client.load('customerservice', 'v0.1', function() {
+				gapi.client.load('vendorservice', 'v0.1', function() {
+					alert("Inside vendorservice");
 					$scope.is_backend_ready = true;
-					$scope.loadCustomerList();
+					$scope.loadVendor();
 
 				}, apiRoot);
 
 			};
 
 			// initialize local objects
-			$scope.customer = $scope.newCustomer();
-			$scope.customerList = {};
+
+			$scope.vendor = $scope.newVendor();
+			$scope.vendorList = {};
 
 		} ]);
