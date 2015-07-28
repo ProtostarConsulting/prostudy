@@ -16,10 +16,42 @@ import com.protostar.until.data.ServerMsg;
 
 
 
-@Api(name = "customerService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.cust.services", ownerName = "com.protostar.billingnstock.cust.services", packagePath = ""))
+@Api(name = "customerservice", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.cust.services", ownerName = "com.protostar.billingnstock.cust.services", packagePath = ""))
 public class CustomerService
 {
+	
 	@ApiMethod(name="addCustomer")
+	public ServerMsg addCustomer(Customer customer)
+	{
+		ServerMsg msgBean=new ServerMsg();
+		EntityManager em=null;		
+		try 
+		{
+			Customer customer2=new Customer();
+			customer2.setFirstName(customer.getFirstName());
+			customer2.setLastName(customer.getLastName());
+			customer2.setMobileNo(customer.getMobileNo());
+			customer2.setEmail(customer.getEmail());
+			customer2.setAddress(customer.getAddress());
+			customer2.setCredits(customer.getCredits());
+			customer2.setTags(customer.getTags());
+			
+			em=EMF.get().createEntityManager();
+			em.persist(customer2);
+			msgBean.setMsg("Customer Records Added successfully"+" "+customer2.getFirstName());
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		
+		return msgBean;
+	}
+	/*@ApiMethod(name="addCustomer")
 	public ServerMsg addCustomer(Customer customer)
 	{
 		
@@ -44,7 +76,7 @@ public class CustomerService
 				
 		return msgBean;
 		
-	}//end of addCustomerServices
+	}*///end of addCustomerServices
 	
 	
 	@SuppressWarnings("unchecked")
@@ -59,7 +91,7 @@ public class CustomerService
 			
 			em = EMF.get().createEntityManager();
 			
-			Query q= em.createQuery("select c from Customer c");
+			Query q= em.createQuery("select c from Customer c",Customer.class);
 			customerList=q.getResultList();
 			System.out.println("Got List: " + customerList.size() );
 			

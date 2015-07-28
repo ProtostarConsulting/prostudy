@@ -1,26 +1,40 @@
-package com.protostar.server.endpoint;
+package com.protostar.billingnstock.cust.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import javax.persistence.Query;
 import com.google.api.server.spi.config.Api;
+import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
+import com.protostar.billingnstock.cust.entities.Vendor;
+import com.protostar.billingnstock.cust.entities.VendorInfo;
+import com.protostar.billingnstock.cust.entities.VendorInfoUtil;
+import com.protostar.billingnstock.data.EMF;
+import com.protostar.until.data.ServerMsg;
 
-@Api(name = "vendorservice1", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.crm.server.endpoint", ownerName = "com.protostar.crm.server.endpoint", packagePath = ""))
+@Api(name = "vendorservice", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.cust.services", ownerName = "com.protostar.billingnstock.cust.services", packagePath = ""))
 public class VendorServiceImpl {
 
-	/*@ApiMethod(name = "saveVendor")
-	public MyBean saveVendor(VendorInfo vendorInfo) {
-		MyBean myBean = new MyBean();
+	@ApiMethod(name = "saveVendor")
+	public ServerMsg saveVendor(VendorInfo vendorInfo) {
+
+		ServerMsg msgBean=new ServerMsg();
+		
 		EntityManager em = null;
 
 		Vendor vendorEntity = VendorInfoUtil.toVendor(vendorInfo);
 
-		if(vendorInfo.getId()==null)
+		/*if(vendorInfo.getId()==null)
 		{
 			myBean.setToken("R");
 		}
 		else
 		{
 			myBean.setToken("U");
-		}
+		}*/
 		try {
 			em = EMF.get().createEntityManager();
 			em.persist(vendorEntity);
@@ -35,8 +49,8 @@ public class VendorServiceImpl {
 		em.close();	
 		}
 		
-		myBean.setMyData("Vendor Saved Successfully" +vendorEntity.getId()+vendorEntity.getEmail());
-		return myBean;
+		msgBean.setMsg("Vendor Saved Successfully" +vendorEntity.getId()+vendorEntity.getEmail());
+		return msgBean;
 	}
 
 	@ApiMethod(name="getAllVendors")
@@ -58,5 +72,5 @@ public class VendorServiceImpl {
 			e.printStackTrace();
 		}
 		return resultList;	
-	}*/
+	}
 }

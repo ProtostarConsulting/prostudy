@@ -11,14 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "CUSTOMER")
+//@Entity
+//@Table(name = "CUSTOMER")
 public class Customer implements Serializable {
 
 	private static final Long serialVersionUID = 1L;
 
-	 @Id
-	 @GeneratedValue(strategy = GenerationType.AUTO)
+//	 @Id
+//	 @GeneratedValue(strategy = GenerationType.AUTO)
 
 //	@PrimaryKey
 //	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
@@ -32,7 +32,7 @@ public class Customer implements Serializable {
 	 * "add_id")) // its optional using for name configuration of the join table
 	 */
 
-	@OneToMany(targetEntity = Address.class)
+//	@OneToMany(targetEntity = Address.class)
 	private Set<Address> address = new HashSet<Address>();
 
 	public Set<Address> getAddress() {
