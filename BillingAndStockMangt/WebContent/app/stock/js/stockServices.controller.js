@@ -11,7 +11,7 @@ app.controller("stockCtr", [
 		'$scope',
 		'$window',
 		function($scope, $window) {
-			$scope.addTax = function() {
+			$scope.addStock = function() {
 				return {
 					id : '',
 					sr_No : '',
@@ -26,8 +26,8 @@ app.controller("stockCtr", [
 			
 				
 				$scope.addStockServices = function() {
-					console.log("in side addstockServices");
-					gapi.client.stockServices.addStockServices($scope.addstock)
+					console.log("in side addStockServices");
+					gapi.client.stockServices.addStockServices($scope.addStock)
 							.execute(function(resp) {
 								console.log("Add Stock Response: " + resp.msg);
 								
