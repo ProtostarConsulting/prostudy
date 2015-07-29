@@ -4,12 +4,8 @@ function init() {
 
 }
 
-app = angular.module("taxApp", ['ngMaterial', 'ngMessages']);
-app.run(function(editableOptions, editableThemes) {
-	editableThemes.bs3.inputClass = 'input-sm';
-	editableThemes.bs3.buttonsClass = 'btn-sm';
-	editableOptions.theme = 'bs3';
-});
+app = angular.module("stockApp", ['ngMaterial', 'ngMessages']);
+
 
 app.controller("stockCtr", [
 		'$scope',

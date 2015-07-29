@@ -17,7 +17,5 @@
 .inputdemoIcons md-input-container:not(.md-input-invalid) > md-icon.currentemail {color: dodgerblue; }
 .inputdemoIcons md-input-container:not(.md-input-invalid) > md-icon.location {color: dodgerblue; }
 
-
-
 .inputdemoIcons md-input-container.md-input-invalid > md-icon.firstName, .inputdemoIcons md-input-container.md-input-invalid > md-icon.lastName,.inputdemoIcons md-input-container.md-input-invalid > md-icon.email,.inputdemoIcons md-input-container.md-input-invalid > md-icon.password,.inputdemoIcons md-input-container.md-input-invalid > md-icon.reenterpassword,.inputdemoIcons md-input-container.md-input-invalid > md-icon.birthday,.inputdemoIcons md-input-container.md-input-invalid > md-icon.gender.inputdemoIcons md-input-container.md-input-invalid > md-icon.mobile,.inputdemoIcons md-input-container.md-input-invalid > md-icon.currentemail,.inputdemoIcons md-input-container.md-input-invalid > md-icon.location {
   color: red; } 
