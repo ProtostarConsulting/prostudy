@@ -7,6 +7,7 @@ function init() {
 app = angular.module("stockApp", ['ngMaterial', 'ngMessages']);
 
 
+
 app.controller("stockCtr", [
 		'$scope',
 		'$window',
@@ -105,3 +106,84 @@ app.controller("stockCtr", [
 
 			};
 } ]);
+
+
+
+
+
+app.controller('AngularWayChangeDataCtrl', AngularWayChangeDataCtrl, [ "xeditable", "ui.bootstrap", "datatables"]);
+
+function AngularWayChangeDataCtrl(DTOptionsBuilder, DTColumnDefBuilder) {
+	
+	app.run(function(editableOptions, editableThemes) {
+		editableThemes.bs3.inputClass = 'input-sm';
+		editableThemes.bs3.buttonsClass = 'btn-sm';
+		editableOptions.theme = 'bs3';
+	});
+    var vm = this;
+    //vm.persons = $resource('/demo/data1.json').query();
+    
+    vm.stocks =[{
+        "id": 860,
+        "sr_No": "11",
+        "item_Name": "Superman",
+        "categories": "Superman",
+        "qty": "11",
+        "price": "11",
+        "notes": "Superman"
+        
+    }, {
+        "id": 870,
+        "sr_No": "12",
+        "item_Name": "foo",
+        "categories": "foo",
+        "qty": "12",
+        "price": "12",
+        "notes": "foo"
+    }, {
+        "id": 590,
+        "sr_No": "13",
+        "item_Name": "too",
+        "categories": "too",
+        "qty": "13",
+        "price": "13",
+        "notes": "foo"
+    }];
+    
+    vm.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers');
+    vm.dtColumnDefs = [
+        DTColumnDefBuilder.newColumnDef(0),
+        DTColumnDefBuilder.newColumnDef(1),
+        DTColumnDefBuilder.newColumnDef(2),
+        DTColumnDefBuilder.newColumnDef(3).notSortable()
+    ];
+    vm.stock2Add = _buildStock2Add(1);
+    vm.addStocked = addStocked;
+    vm.modifyStock = modifyStock;
+    vm.removeStock = removeStock;
+
+    function _buildStock2Add(id) {
+        return {
+            id: id,
+            sr_No: '25' + id,
+            item_Name: 'Bar' + id,
+            categories: 'car' + id,
+            qty: '50' + id,
+            price: '100' + id,
+            notes: 'ABC' + id
+            
+        };
+    }
+    function addStocked() {
+        vm.stocks.push(angular.copy(vm.stock2Add));
+        vm.stock2Add = _buildStock2Add(vm.stock2Add.id + 1);
+    }
+    function modifyStock(index) {
+        vm.stocks.splice(index, 1, angular.copy(vm.stock2Add));
+        vm.stock2Add = _buildStock2Add(vm.stock2Add.id + 1);
+    }
+    function removeStock(index) {
+        vm.stocks.splice(index, 1);
+    }
+}
+

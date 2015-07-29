@@ -92,12 +92,116 @@
 
 		   </form>
 		</md-content>
-		
-<!-- </div> -->
+		<!-- </div> -->
 </section>
-					
+		
+		
 
-
-	
+		<div ng-controller="AngularWayChangeDataCtrl as showCase">
+				<form class="form-inline" ng-submit="showCase.addStocked()">
+					<table datatable="ng" dt-options="showCase.dtOptions"
+						dt-column-defs="showCase.dtColumnDefs" class="row-border hover">
+						<thead>
+							<tr>
+								<th>
+									<div class="form-group">
+										<label> <input class="form-control" type="number"
+											name="id" ng-model="showCase.stock2Add.id" value="">
+										</label>
+									</div>
+								</th>
+								<th>
+									<div class="form-group">
+										<label> <input type="text" class="form-control"
+											name="sr_No" ng-model="showCase.stock2Add.sr_No"
+											value="">
+										</label>
+									</div>
+								</th>
+								<th>
+									<div class="form-group">
+										<label> <input type="text" class="form-control"
+											name="item_Name" ng-model="showCase.stock2Add.item_Name"
+											value="">
+										</label>
+									</div>
+								</th>
+								<th>
+									<div class="form-group">
+										<label> <input type="text" class="form-control"
+											name="categories" ng-model="showCase.stock2Add.categories"
+											value="">
+										</label>
+									</div>
+								</th>
+								<th>
+									<div class="form-group">
+										<label> <input type="text" class="form-control"
+											name="qty" ng-model="showCase.stock2Add.qty"
+											value="">
+										</label>
+									</div>
+								</th>
+								<th>
+									<div class="form-group">
+										<label> <input type="text" class="form-control"
+											name="price" ng-model="showCase.stock2Add.price"
+											value="">
+										</label>
+									</div>
+								</th>
+								<th>
+									<div class="form-group">
+										<label> <input type="text" class="form-control"
+											name="notes" ng-model="showCase.stock2Add.notes"
+											value="">
+										</label>
+									</div>
+								</th>
+								
+								<th>
+									<div class="form-group">
+										<button type="submit" class="btn btn-success">
+											<i class="fa fa-plus"></i>
+										</button>
+									</div>
+								</th>
+							</tr>
+							<tr>
+							     <th>ID</th>
+								<th>Sr No</th>
+								<th>Item Name</th>
+								<th>Categories</th>
+								<th>Qty</th>
+								<th>Price</th>
+								<th>Notes</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="stock in showCase.stocks">
+								<td>{{ stock.id }}</td>
+								<td>{{ stock.sr_No }}</td>
+								<td>{{ stock.item_Name }}</td>
+								<td>{{ stock.categories }}</td>
+								<td>{{ stock.qty }}</td>
+								<td>{{ stock.price }}</td>
+								<td>{{ stock.notes }}</td>
+								
+								<td>
+									<button type="button" ng-click="showCase.modifyStock($index)"
+										class="btn btn-warning">
+										<i class="fa fa-edit"></i>
+									</button>
+									<button type="button" ng-click="showCase.removeStock($index)"
+										class="btn btn-danger">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+			</div>
+			
 </body>
 </html>
