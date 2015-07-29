@@ -24,10 +24,8 @@ app.controller("stockCtr", [
 					}
 				};
 			
-		
 				
-				
-				$scope.addstockServices = function() {
+				$scope.addStockServices = function() {
 					console.log("in side addstockServices");
 					gapi.client.stockServices.addStockServices($scope.addstock)
 							.execute(function(resp) {
@@ -35,11 +33,11 @@ app.controller("stockCtr", [
 								
 
 							})
-				};// end of call to addStockServices
+				};// end of addStockServices
 
 			$scope.loadGetStockList = function() {
-				console.log("In loadStockList");
-				gapi.client.stockServices.getAllstockServices().execute(
+				console.log("In loadGetStockList");
+				gapi.client.stockServices.getAllStockServices().execute(
 						function(resp) {
 							console.log(resp);
 						
@@ -49,7 +47,7 @@ app.controller("stockCtr", [
 				
 				//$("#taxForm").hide();
 				//$("#tableTax").show();
-			};// end of loadGetTaxList
+			};// end of GetStockList
 			
 			/*$scope.taxDetails = function()
 			{
