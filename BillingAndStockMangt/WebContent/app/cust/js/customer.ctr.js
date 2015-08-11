@@ -1,7 +1,7 @@
 function init() {
-	// alert("Inside init");
+	//alert("Inside init");
+	console.log("###Inside init###");
 	window.initGAPI(); // Calls the init function defined on the window
-
 }
 
 app = angular.module("customerApp", [ 'ngMaterial', 'ngMessages' ]);
@@ -9,7 +9,8 @@ app.controller("customerCtr", [
 		'$scope',
 		'$window',
 		function($scope, $window) {
-
+			console.log("Inside Ctr");
+			//alert("Inside Ctr");
 			$scope.loadCustomerList = function() {
 				console.log("loadCustomerList");
 				gapi.client.customerservice.getAllCustomers().execute(
@@ -47,6 +48,7 @@ app.controller("customerCtr", [
 
 			$window.initGAPI = function() {
 				console.log("Came to initGAPI");
+				//alert("Came to initGAPI");
 				$scope.$apply($scope.loadCustomService);
 				//$scope.loadCustomService(); 
 				

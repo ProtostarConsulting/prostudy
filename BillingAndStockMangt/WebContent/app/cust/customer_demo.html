@@ -166,18 +166,19 @@
 	</div>
 
 	<!-- Angular Material Dependencies -->
-	<script
-		src="/lib/base/angular.min.js"></script>
-	<script
-		src="/lib/base/angular-animate.min.js"></script>
-	<script
-		src="/lib/base/angular-route.min.js"></script>
-	<script
-		src="/lib/base/angular-aria.min.js"></script>
-	<script
-		src="/lib/base/angular-messages.min.js"></script>
-	<script
-		src="/lib/base/angular-material.min.js"></script>
+	<script src="/lib/base/angular.min.js"></script>
+	<script src="/lib/base/angular-animate.min.js"></script>
+	<script src="/lib/base/angular-route.min.js"></script>
+	<script src="/lib/base/angular-aria.min.js"></script>
+	<script src="/lib/base/angular-messages.min.js"></script>
+	<script src="/lib/base/angular-material.min.js"></script>
 	<script src="js/customer.demo.ctr.js"></script>
+	<script src="/lib/base/googleapi.client.js" ></script>
+	<script>
+	/* Init google endpoint API */
+		window.onload = function() {
+		  init(); 
+		};
+	</script>
 </body>
 </html>

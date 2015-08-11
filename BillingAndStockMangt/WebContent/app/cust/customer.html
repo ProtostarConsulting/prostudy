@@ -1,9 +1,7 @@
 <html lang="en" ng-app="customerApp" ng-controller="customerCtr">
 <head>
-<link rel="stylesheet"
-	href="/lib/base/angular-material.min.css">
-<link rel="stylesheet"
-	href="/lib/base/googleapi.roboto.css">
+<link rel="stylesheet" href="/lib/base/angular-material.min.css">
+<link rel="stylesheet" href="/lib/base/googleapi.roboto.css">
 <link rel="stylesheet" href="css/customer.css">
 <meta name="viewport" content="initial-scale=1" />
 </head>
@@ -11,10 +9,10 @@
 
 
 	<div layout="column">
-		
+
 		<md-content layout-padding>
 		<form name="userForm">
-		
+
 			<div layout layout-sm="column">
 				<md-input-container flex> <label>First
 					name</label> <input ng-model="cust.firstName"> </md-input-container>
@@ -58,20 +56,21 @@
 
 
 	<!-- Angular Material Dependencies -->
-	<script
-		src="/lib/base/angular.min.js"></script>
-	<script
-		src="/lib/base/angular-animate.min.js"></script>
-	<script
-		src="/lib/base/angular-route.min.js"></script>
-	<script
-		src="/lib/base/angular-aria.min.js"></script>
-	<script
-		src="/lib/base/angular-messages.min.js"></script>
-
-	<script
-		src="/lib/base/angular-material.min.js"></script>
+	<script src="/lib/base/angular.min.js"></script>
+	<script src="/lib/base/angular-animate.min.js"></script>
+	<script src="/lib/base/angular-route.min.js"></script>
+	<script src="/lib/base/angular-aria.min.js"></script>
+	<script src="/lib/base/angular-messages.min.js"></script>
+	<script src="/lib/base/angular-material.min.js"></script>
 	<script src="js/customer.ctr.js"></script>
-	<script src="/lib/base/googleapi.client.js?onload=init"></script>
+	<script src="/lib/base/googleapi.client.js" ></script>
+	<script>
+	/* Init google endpoint API */
+		window.onload = function() {
+		  init(); 
+		};
+	</script>
+
+
 </body>
 </html>

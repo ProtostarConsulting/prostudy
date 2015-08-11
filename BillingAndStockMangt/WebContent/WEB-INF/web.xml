@@ -10,7 +10,7 @@
 		<servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
 		<init-param>
 			<param-name>services</param-name>
-			<param-value>com.protostar.billingnstock.cust.services.CustomerService,com.protostar.billingnstock.cust.services.VendorServiceImpl,com.protostar.billingnstock.data.service.BillingServices,com.protostar.billingnstock.data.service.CustomerServices1,com.protostar.billingnstock.data.service.HelloService,com.protostar.billingnstock.data.service.PatientServiceImpl,com.protostar.billingnstock.data.service.StockServices,com.protostar.billingnstock.data.service.TaxServices,com.protostar.billingnstock.data.service.vechileServices,com.protostar.server.endpoint.New_CustomerServiceImpl,com.protostar.server.endpoint.VendorServiceImpl</param-value>
+			<param-value>com.protostar.billingnstock.cust.services.CustomerService,com.protostar.billingnstock.cust.services.VendorServiceImpl,com.protostar.billingnstock.stock.services.StockServices,com.protostar.billingnstock.tax.services.TaxServices,com.protostar.server.endpoint.New_CustomerServiceImpl,com.protostar.server.endpoint.VendorServiceImpl</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>
