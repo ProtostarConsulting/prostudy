@@ -410,7 +410,7 @@ app
 
 app.controller('AngularWayChangeDataCtrl', AngularWayChangeDataCtrl);
 
-function AngularWayChangeDataCtrl(DTOptionsBuilder, DTColumnDefBuilder) {
+function AngularWayChangeDataCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder) {
     var vm = this;
     //vm.persons = $resource('/demo/data1.json').query();
     
