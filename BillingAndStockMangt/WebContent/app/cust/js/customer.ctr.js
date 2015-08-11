@@ -1,3 +1,4 @@
+
 function init() {
 	//alert("Inside init");
 	console.log("###Inside init###");
@@ -9,9 +10,10 @@ app.controller("customerCtr", [
 		'$scope',
 		'$window',
 		'$mdToast',
+		
 		function($scope, $window, $mdToast) {
 			console.log("Inside Ctr");
-			
+			//console.log("Via Serice:" + customerservice.addCustomer());
 			$scope.showSimpleToast = function() {
 			    $mdToast.show(
 			      $mdToast.simple()
@@ -95,3 +97,4 @@ app.controller("customerCtr", [
 			$scope.customerList = {};
 
 		} ]);
+
