@@ -38,12 +38,13 @@
 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.min.js"></script>
-<script src="/lib/datatables-responsive/js/dataTables.responsive.js"></script>
 <script src="/lib/datatables-responsive/js/xeditable.js"></script>
 <script src="/lib/datatables-responsive/js/jquery.dataTables.js"></script>
 <script src="/lib/datatables-responsive/js/angular-datatables.js"></script>
+<script src="/lib/datatables-responsive/js/dataTables.responsive.js"></script>
 <script src="js/customer.list.ctr.js"></script>
-<script src="https://apis.google.com/js/client.js?onload=init"></script>
+<!-- <script src="https://apis.google.com/js/client.js?onload=init"></script> -->
+<script src="/lib/base/googleapi.client.js"></script>
 </head>
 <body ng-app="myapp" ng-controller="editableController">
 	<div id="header"></div>
@@ -122,7 +123,12 @@
 
 	</div>
 
-
+	<script>
+		/* Init google endpoint API */
+		window.onload = function() {
+			init();
+		};
+	</script>
 	<script>
 		$(function() {
 			$("#header").load("/header.html");

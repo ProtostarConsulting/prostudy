@@ -8,9 +8,19 @@ app = angular.module("customerApp", [ 'ngMaterial', 'ngMessages' ]);
 app.controller("customerCtr", [
 		'$scope',
 		'$window',
-		function($scope, $window) {
+		'$mdToast',
+		function($scope, $window, $mdToast) {
 			console.log("Inside Ctr");
-			//alert("Inside Ctr");
+			
+			$scope.showSimpleToast = function() {
+			    $mdToast.show(
+			      $mdToast.simple()
+			        .content('Customer Saved!')
+			        .position("top")
+			        .hideDelay(3000)
+			    );
+			  };
+			  
 			$scope.loadCustomerList = function() {
 				console.log("loadCustomerList");
 				gapi.client.customerservice.getAllCustomers().execute(
@@ -24,6 +34,8 @@ app.controller("customerCtr", [
 				gapi.client.customerservice.addCustomer($scope.cust)
 						.execute(function(resp) {
 							console.log("Add Customer Response: " + resp.msg);
+							$scope.showSimpleToast();
+							$scope.cust = $scope.newCustomer();
 
 						})
 			};// end of call to addCustomer
@@ -72,7 +84,7 @@ app.controller("customerCtr", [
 
 				gapi.client.load('customerservice', 'v0.1', function() {
 					$scope.is_backend_ready = true;
-					$scope.loadCustomerList();
+					//$scope.loadCustomerList();
 
 				}, apiRoot);
 
