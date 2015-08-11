@@ -92,11 +92,13 @@ function AngularWayChangeDataCtrl($scope, $window, DTOptionsBuilder, DTColumnDef
         vm.isModify =false;
         
     }
+    
     function modifyPerson(index) {      
     	vm.person2Add = vm.persons.splice(index, 1)[0];
     	console.log(vm.person2Add);
         vm.isModify =true;       
     }
+    
    /* function saveModifyPerson(index) {      
     	 vm.persons[index] = vm.person2Add;
     	 vm.person2Add = _buildPerson2Add();

@@ -45,8 +45,11 @@
 		<section layout="row" layout-sm="column" layout-align="left left">
 			<md-button class="md-raised">Cancel</md-button>
 			<md-button class="md-raised md-primary" ng-click="addCustomer()">Submit</md-button>
-			<md-button class="md-raised md-primary" ng-click="loadCustomerList()">Get
-			List Temp</md-button>
+			<!-- <md-button class="md-raised md-primary" ng-click="loadCustomerList()">Get
+			List Temp</md-button> -->
+			<!-- <a href="/app/cust/customer.list.html">Customer List</a> -->
+			<md-button href="/app/cust/customer.list.html">Customer
+			List </md-button>
 		</section>
 
 		</md-content>
@@ -63,11 +66,11 @@
 	<script src="/lib/base/angular-messages.min.js"></script>
 	<script src="/lib/base/angular-material.min.js"></script>
 	<script src="js/customer.ctr.js"></script>
-	<script src="/lib/base/googleapi.client.js" ></script>
+	<script src="/lib/base/googleapi.client.js"></script>
 	<script>
-	/* Init google endpoint API */
+		/* Init google endpoint API */
 		window.onload = function() {
-		  init(); 
+			init();
 		};
 	</script>
 
