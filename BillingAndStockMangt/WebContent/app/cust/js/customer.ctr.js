@@ -1,18 +1,5 @@
-
-function init() {
-	//alert("Inside init");
-	console.log("###Inside init###");
-	window.initGAPI(); // Calls the init function defined on the window
-}
-
-app = angular.module("customerApp", [ 'ngMaterial', 'ngMessages' ]);
-app.controller("customerCtr", [
-		'$scope',
-		'$window',
-		'$mdToast',
-		
-		function($scope, $window, $mdToast) {
-			console.log("Inside Ctr");
+angular.module("customerApp").controller("customerCtr", function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil, $log) {
+			console.log("Inside customerCtr");
 			//console.log("Via Serice:" + customerservice.addCustomer());
 			$scope.showSimpleToast = function() {
 			    $mdToast.show(
@@ -59,42 +46,27 @@ app.controller("customerCtr", [
 			}
 
 			$scope.cust = $scope.newCustomer();
-
-			$window.initGAPI = function() {
-				console.log("Came to initGAPI");
-				//alert("Came to initGAPI");
-				$scope.$apply($scope.loadCustomService);
-				//$scope.loadCustomService(); 
-				
-				//temp. Loading customer list here
-				//$scope.loadCustomerList();
-
+			
+			/*Setup menu*/
+			$scope.toggleRight = buildToggler('right');
+			/**
+			 * Build handler to open/close a SideNav; when animation
+			 * finishes report completion in console
+			 */
+			function buildToggler(navID) {
+				var debounceFn = $mdUtil.debounce(function() {
+					$mdSidenav(navID).toggle().then(function() {
+						$log.debug("toggle " + navID + " is done");
+					});
+				}, 200);
+				return debounceFn;
+			}
+			
+			$scope.close = function() {
+				$mdSidenav('right').close().then(function() {
+					$log.debug("close RIGHT is done");
+				});
 			};
+			
 
-			$scope.loadCustomService = function() {
-				console.log("Inside window.loadCustomServices");
-				var apiRoot = '//' + window.location.host + '/_ah/api';
-
-				// Loads the OAuth and helloworld APIs
-				// asynchronously, and
-				// triggers login
-				// when they have completed.
-				var apisToLoad;
-
-				apisToLoad = 1; // must match number of calls to
-				// gapi.client.load()
-
-				gapi.client.load('customerservice', 'v0.1', function() {
-					$scope.is_backend_ready = true;
-					//$scope.loadCustomerList();
-
-				}, apiRoot);
-
-			};
-
-			// initialize local objects
-			$scope.customer = $scope.newCustomer();
-			$scope.customerList = {};
-
-		} ]);
-
+		} );
