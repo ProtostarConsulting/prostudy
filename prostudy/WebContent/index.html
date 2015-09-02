@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="prostudyApp" ng-controller="indexCtr">
+	<head>
+		<title>ProStudy App</title>
+
+		<meta name="viewport" content="initial-scale=1" />
+		<link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
+		<link rel="stylesheet" href="/lib/base/css/googleapi.roboto.css">
+		<link rel="stylesheet"
+		href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet"
+		href="/lib/base/css/font-awesome.css">
+		<link rel="stylesheet"
+		href="/lib/base/css/xeditable.css">
+		
+				
+		<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script
+		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+		<!-- Angular Material Dependencies -->
+		<script src="/lib/base/angular.min.js"></script>
+		<script src="/lib/base/angular-animate.min.js"></script>
+		<script src="/lib/base/angular-route.min.js"></script>
+		<script src="/lib/base/angular-aria.min.js"></script>
+		<script src="/lib/base/angular-messages.min.js"></script>
+		<script src="/lib/base/angular-material.min.js"></script>
+
+		<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.min.js"></script>
+		<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+
+		<script src="/lib/base/xeditable.js"></script>
+		
+	</head>
+	<body layout="column">
+		<!-- <div layout="column" layout-fill> -->
+		<md-content>
+			<!-- Top Navigation Pane -->
+			<md-toolbar>
+				<div class="md-toolbar-tools">
+					<span>My App's Title</span>
+					<!-- fill up the space between left and right area -->
+					<span flex></span>
+					<section layout="row">
+						<md-button class="md-icon-button md-accent" aria-label="Favorite">
+							<md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+						</md-button>
+						<md-button class="md-icon-button md-accent" aria-label="Favorite">
+							<md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+						</md-button>
+						<md-button class="md-icon-button md-accent" aria-label="Favorite">
+							<md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+						</md-button>
+						<md-button class="md-icon-button" aria-label="More"
+						ng-click="toggleRight()">
+							<md-icon
+							md-svg-icon="img/icons/more_vert.svg"></md-icon>
+						</md-button>
+					</section>
+				</div>
+			</md-toolbar>
+
+			<div ng-controller="AppCtrl">
+				<section layout="row" flex>
+					<!-- Left Navigation Pane -->
+					<md-sidenav class="md-sidenav-left md-whiteframe-z2"
+					md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+						<md-toolbar class="md-theme-indigo">
+							<h1 class="md-toolbar-tools">Apps Module</h1>
+						</md-toolbar>
+						<md-content layout="column" ng-controller="LeftCtrl">
+							<md-button class="md-primary" ng-click="close()" hide-gt-md>
+								Close Sidenav
+							</md-button>
+							<md-button ui-sref="home" ng-click="close()" class="md-primary"
+							show-gt-md>
+								Home
+							</md-button>
+							<md-button ui-sref="student"
+							ng-click="close()" class="md-primary" show-gt-md>
+								student
+							</md-button>
+							<md-button href="#stock" ng-click="close()"
+							class="md-primary" show-gt-md>
+								Stock Management
+							</md-button>
+							<md-button
+							href="#tax" ng-click="close()" class="md-primary" show-gt-md>
+								Tax
+							</md-button>
+							<a ui-sref="student">student</a>
+						</md-content>
+					</md-sidenav>
+
+					<md-content flex layout-padding>
+						<div class="md-toolbar-tools" hide-gt-md>
+							<div>
+								<md-button ng-click="toggleLeft()" class="md-fab md-mini"
+								aria-label="Mini FAB" hide-gt-md>
+									<md-icon
+									md-svg-src="img/icons/menu.svg"></md-icon>
+								</md-button>
+							</div>
+						</div>
+
+						<div layout="column" layout-align="top center">
+							<!--<div ng-view></div>-->
+							<div ui-view></div>
+							<!-- We'll also add some navigation: -->
+							<a ui-sref="state1">State 1</a>
+							<a ui-sref="state2">State 2</a>
+							<a ui-sref="student">student</a>
+						</div>
+
+					</md-content>
+
+				</section>
+			</div>
+		</md-content>
+		<!-- </div> -->
+
+		<script src="/app/common/common.app.js"></script>
+		<!-- <script src="js/student.service.js"></script> -->
+		<script src="index.ctr.js"></script>
+
+		<script src="/lib/base/googleapi.client.js"></script>
+		<script>
+			/* Init google endpoint API */
+			window.onload = function() {
+				init();
+			};
+		</script>
+
+		<!-- Load other view controllers -->
+		<script src="/home.ctr.js"></script>
+		<script src="/app/student/js/student.ctr.js"></script>
+		<script src="/app/student/js/student.list.ctr.js"></script>
+
+	</body>
+</html>
