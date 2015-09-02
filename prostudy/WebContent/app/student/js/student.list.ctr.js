@@ -19,24 +19,24 @@ angular.module("prostudyApp")
 
 					
 					$scope.studList = [ {
-						firstName : 'A',
+						firstName : 'Ram',
 						lastName : 'L',
 						mobileNo : '89078923',
 						email : 'a@b'
 					}, {
-						firstName : 'A',
+						firstName : 'Sham',
 						lastName : 'L',
 						mobileNo : '89078923',
 						email : 'a@b'
 					}, {
-						firstName : 'A',
+						firstName : 'Raj',
 						lastName : 'L',
 						mobileNo : '89078923',
 						email : 'a@b'
 					} ]
 
 					/* Setup menu */
-					$scope.toggleRight = buildToggler('right');
+					$scope.toggleRight = buildToggler('rightListPage');
 					/**
 					 * Build handler to open/close a SideNav; when animation
 					 * finishes report completion in console
