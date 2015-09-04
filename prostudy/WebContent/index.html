@@ -89,7 +89,7 @@
 							<md-button
 							ui-sref="state2" ng-click="close()" class="md-primary" show-gt-md>
 								State2
-							</md-button>							
+							</md-button>
 						</md-content>
 					</md-sidenav>
 
@@ -107,17 +107,94 @@
 						<div layout="column" layout-align="top center">
 							<!--<div ng-view></div>-->
 							<div ui-view>
-								
+
 								<!--This is the center page of all main modules for the index module. -->
-								
+
 							</div>
-							
+
 						</div>
 
+						<!--This is a botton section of the app-->
+						<hr>
+						<div layout="row" layout-wrap>
+							<div>
+								<a>Tihs is link one </a>
+								<a>Tihs is link one </a>
+								<a>Tihs is link one </a>
+								<a>Tihs is link one </a>
+								<a>Tihs is link one </a>
+								<a>Tihs is link one </a>
+								<a>Tihs is link one </a>
+								<a>Tihs is link one </a>
+							</div>
+							<div>
+								<a>Tihs is link two </a>
+								<a>Tihs is link two </a>
+								<a>Tihs is link two </a>
+								<a>Tihs is link two </a>
+								<a>Tihs is link two </a>
+								<a>Tihs is link two </a>
+								<a>Tihs is link two </a>
+								<a>Tihs is link two </a>
+							</div>
+							<div>
+								<a>Tihs is link three </a>
+								<a>Tihs is link three </a>
+								<a>Tihs is link three </a>
+								<a>Tihs is link three </a>
+								<a>Tihs is link three </a>
+								<a>Tihs is link three </a>
+								<a>Tihs is link three </a>
+								<a>Tihs is link three </a>
+							</div>
+							<div>
+								<a>Tihs is link four </a>
+								<a>Tihs is link four </a>
+								<a>Tihs is link four </a>
+								<a>Tihs is link four </a>
+								<a>Tihs is link four </a>
+								<a>Tihs is link four </a>
+								<a>Tihs is link four </a>
+								<a>Tihs is link four </a>
+							</div>
+						</div>
+						<div layout="row" layout-sm="column">
+							<div flex>
+								<md-button class="md-primary">
+									Click me
+								</md-button>
+								<md-button class="md-accent">
+									or maybe me
+								</md-button>
+								<md-button class="md-warn">
+									Careful
+								</md-button>
+								I'm above on mobile, and to the left on larger devices.
+							</div>
+							<div flex>
+								I'm below on mobile, and to the right on larger devices.
+								<md-button class="md-primary">
+									Click me
+								</md-button>
+								<md-button class="md-primary md-hue-1">
+									Click me
+								</md-button>
+								<md-button class="md-primary md-hue-2">
+									Click me
+								</md-button>
+							</div>
+						</div>
+						<div>
+							<md-button ng-click="openBottomSheet()">
+								Open a Bottom Sheet!
+							</md-button>
+						</div>
+						<!--End---This is a botton section of the app-->
 					</md-content>
 
 				</section>
 			</div>
+
 		</md-content>
 		<!-- </div> -->
 

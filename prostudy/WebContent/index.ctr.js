@@ -12,8 +12,8 @@ angular
 						'$scope',
 						'$window',
 						'$mdToast',
-
-						function($scope, $window, $mdToast) {
+						'$mdBottomSheet',	
+						function($scope, $window, $mdToast, $mdBottomSheet) {
 							console.log("Inside indexCtr");
 							// console.log("Via Serice:" +
 							// customerservice.addCustomer());
@@ -65,8 +65,7 @@ angular
 							}
 
 							$scope.cust = $scope.newCustomer();
-							
-							
+
 							$window.initGAPI = function() {
 								console.log("Came to initGAPI");
 								//This will load all server side end points
@@ -97,6 +96,12 @@ angular
 
 							};
 
+							$scope.openBottomSheet = function() {
+							    $mdBottomSheet.show({
+							      template: '<md-bottom-sheet>Hello!</md-bottom-sheet>'
+							    });
+							  };
+							  
 							// initialize local objects
 							$scope.customer = $scope.newCustomer();
 							$scope.customerList = {};
