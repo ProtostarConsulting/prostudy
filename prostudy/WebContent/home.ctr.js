@@ -9,8 +9,7 @@ angular
 
 						function($scope, $window, $mdToast) {
 							console.log("Inside homeCtr");
-							// console.log("Via Serice:" +
-							// customerservice.addCustomer());
+						
 
 							$scope.showSimpleToast = function() {
 								$mdToast.show($mdToast.simple().content(
@@ -62,9 +61,7 @@ angular
 
 							$window.initGAPI = function() {
 								console.log("Came to initGAPI");
-								// alert("Came to initGAPI");
-								// $scope.$apply($scope.loadCustomService);
-								// $scope.loadCustomService();
+								// alert("Came to initGAPI");							
 
 								// temp. Loading customer list here
 								// $scope.loadCustomerList();

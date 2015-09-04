@@ -1,0 +1,30 @@
+<div layout="column" ng-controller="studentListPageCtr">
+
+	<form name="userForm">
+
+		<p>
+			List will be shown here
+		</p>
+		<div>
+			The student list is:
+			<li ng-repeat="s in studList">
+				{{ s.firstName }}
+			</li>
+			</ul>
+
+		</div>
+
+	</form>
+
+	<!--
+	<section layout="row" layout-sm="column" layout-align="left left">
+	<md-button class="md-raised">
+	Cancel
+	</md-button>
+	<md-button class="md-raised md-primary" ng-click="addStudent()">
+	Submit
+	</md-button>
+
+	</section>-->
+
+</div>

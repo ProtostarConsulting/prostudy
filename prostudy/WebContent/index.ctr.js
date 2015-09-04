@@ -69,7 +69,8 @@ angular
 							
 							$window.initGAPI = function() {
 								console.log("Came to initGAPI");
-								$scope.loadCustomService();
+								//This will load all server side end points
+								//$scope.loadCustomService();
 
 							};
 

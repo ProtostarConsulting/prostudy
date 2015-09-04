@@ -1,9 +1,12 @@
 angular.module("prostudyApp")
 		.controller(
-				"studentListPageCtr",
+				"statesPageCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log) {
-					console.log("Inside studentListPageCtr");
+					console.log("Inside statesPageCtr");
+
+					$scope.things = [ "A", "Set", "Of", "Things", "out" ];
+					$scope.items = [ "A", "List", "Of", "Items", "out" ];
 					// console.log("Via Serice:" +
 					// customerservice.addCustomer());
 					$scope.showSimpleToast = function() {
@@ -11,32 +14,10 @@ angular.module("prostudyApp")
 								'Customer Saved!').position("top").hideDelay(
 								3000));
 					};
-
-					$scope.getCustomerList = function() {
-						console.log("getCustomerList");
-
-					};
-
 					
-					$scope.studList = [ {
-						firstName : 'Ram',
-						lastName : 'L',
-						mobileNo : '89078923',
-						email : 'a@b'
-					}, {
-						firstName : 'Sham',
-						lastName : 'L',
-						mobileNo : '89078923',
-						email : 'a@b'
-					}, {
-						firstName : 'Raj',
-						lastName : 'L',
-						mobileNo : '89078923',
-						email : 'a@b'
-					} ]
 
 					/* Setup menu */
-					$scope.toggleRight = buildToggler('rightListPage');
+					$scope.toggleRight = buildToggler('right');
 					/**
 					 * Build handler to open/close a SideNav; when animation
 					 * finishes report completion in console

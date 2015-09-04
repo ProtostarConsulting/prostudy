@@ -9,16 +9,12 @@
 					<md-button class="md-icon-button md-primary" aria-label="Settings">
 						<md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
 					</md-button>
-					<md-button href="#customer.list" ng-click="close()"
+					<md-button href="#student.list" ng-click="close()"
 					class="md-primary">
-						Student Registration
-					</md-button>
-					<md-button href="#customer.list" ng-click="close()"
-					class="md-primary">
-						Teacher Registration
+						student List
 					</md-button>
 					<md-button class="md-icon-button md-accent" aria-label="Favorite">
-						<md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+						<md-icon md-svg-icon="img/icons/print.svg"></md-icon>
 					</md-button>
 					<md-button class="md-icon-button" aria-label="More"
 					ng-click="toggleRight()">
@@ -34,9 +30,17 @@
 			md-component-id="right">
 				<md-toolbar
 				class="md-theme-light">
-					<!--<h1 class="md-toolbar-tools">Sidenav Right</h1>-->
+					<h1 class="md-toolbar-tools">Student Page Sub Menu</h1>
 				</md-toolbar>
 				<md-content layout-padding>
+					<form>
+						<md-input-container>
+							<label for="testInput">Test
+								input</label>
+							<input type="text" id="testInput" ng-model="data"
+							md-sidenav-focus>
+						</md-input-container>
+					</form>
 					<md-button ng-click="close()" class="md-primary">
 						Close
 						Sidenav Right
@@ -47,17 +51,19 @@
 						links/actions.
 					</p>
 					<md-button ng-click="close()" class="md-primary">
-						State 2 action 1
+						Current
+						Module Action 1
 					</md-button>
 					<md-button ng-click="close()" class="md-primary">
-						State 2 action 2
+						Current
+						Module Action 2
 					</md-button>
-					<md-button ng-click="close()" class="md-primary">
-						State 2 action 3
+					<md-button ui-sref="student.add" ng-click="close()" class="md-primary">
+						New Student
 					</md-button>
-					<md-button href="#customer.list" ng-click="close()"
+					<md-button ui-sref="student.list" ng-click="close()"
 					class="md-primary">
-						Customer List
+						student List
 					</md-button>
 				</md-content>
 			</md-sidenav>
@@ -65,28 +71,11 @@
 		</section>
 
 	</div>
+	
+	<div ui-view> This is a default template for student module!</div>
+	<!-- We'll also add some navigation: -->
 
-	<!-- partials/state2.html -->
-	<h1>State 2</h1>
-	<hr/>
-	<a ui-sref="state1">State 1</a>
-	<a ui-sref="state2">State 2</a>
-	<a ui-sref="state2.list">Show List</a>
 	<a ui-sref="student.add">student add</a>
 	<a ui-sref="student.list">student list</a>
-	
-	<div ui-view></div>
-	<section layout="row" layout-sm="column" layout-align="left left">
-		<md-button class="md-raised">
-			Cancel
-		</md-button>
-		<md-button class="md-raised md-primary" ng-click="addCustomer()">
-			Submit
-		</md-button>
-		<!-- <md-button class="md-raised md-primary" ng-click="loadCustomerList()">Get
-		List Temp</md-button> -->
-		<!-- <a href="/app/cust/customer.list.html">Customer List</a> -->
-		
-	</section>
 
 </div>

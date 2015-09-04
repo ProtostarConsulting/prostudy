@@ -12,8 +12,7 @@
 		href="/lib/base/css/font-awesome.css">
 		<link rel="stylesheet"
 		href="/lib/base/css/xeditable.css">
-		
-				
+
 		<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script
@@ -33,7 +32,7 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
 
 		<script src="/lib/base/xeditable.js"></script>
-		
+
 	</head>
 	<body layout="column">
 		<!-- <div layout="column" layout-fill> -->
@@ -46,13 +45,13 @@
 					<span flex></span>
 					<section layout="row">
 						<md-button class="md-icon-button md-accent" aria-label="Favorite">
-							<md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+							<md-icon md-svg-icon="img/icons/ic_comment_24px.svg"></md-icon>
 						</md-button>
 						<md-button class="md-icon-button md-accent" aria-label="Favorite">
-							<md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+							<md-icon md-svg-icon="img/icons/codepen-logo.svg"></md-icon>
 						</md-button>
 						<md-button class="md-icon-button md-accent" aria-label="Favorite">
-							<md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+							<md-icon md-svg-icon="img/icons/separator.svg"></md-icon>
 						</md-button>
 						<md-button class="md-icon-button" aria-label="More"
 						ng-click="toggleRight()">
@@ -81,17 +80,16 @@
 							</md-button>
 							<md-button ui-sref="student"
 							ng-click="close()" class="md-primary" show-gt-md>
-								student
+								Student
 							</md-button>
-							<md-button href="#stock" ng-click="close()"
+							<md-button ui-sref="state1" ng-click="close()"
 							class="md-primary" show-gt-md>
-								Stock Management
+								state1
 							</md-button>
 							<md-button
-							href="#tax" ng-click="close()" class="md-primary" show-gt-md>
-								Tax
-							</md-button>
-							<a ui-sref="student">student</a>
+							ui-sref="state2" ng-click="close()" class="md-primary" show-gt-md>
+								State2
+							</md-button>							
 						</md-content>
 					</md-sidenav>
 
@@ -108,11 +106,12 @@
 
 						<div layout="column" layout-align="top center">
 							<!--<div ng-view></div>-->
-							<div ui-view></div>
-							<!-- We'll also add some navigation: -->
-							<a ui-sref="state1">State 1</a>
-							<a ui-sref="state2">State 2</a>
-							<a ui-sref="student">student</a>
+							<div ui-view>
+								
+								<!--This is the center page of all main modules for the index module. -->
+								
+							</div>
+							
 						</div>
 
 					</md-content>
@@ -136,6 +135,7 @@
 
 		<!-- Load other view controllers -->
 		<script src="/home.ctr.js"></script>
+		<script src="/app/demo/js/state.ctr.js"></script>
 		<script src="/app/student/js/student.ctr.js"></script>
 		<script src="/app/student/js/student.list.ctr.js"></script>
 

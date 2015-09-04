@@ -3,7 +3,7 @@ angular.module("prostudyApp")
 				"studentListPageCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log) {
-					console.log("Inside studentListPageCtr");
+					console.log("Inside customerCtr");
 					// console.log("Via Serice:" +
 					// customerservice.addCustomer());
 					$scope.showSimpleToast = function() {
