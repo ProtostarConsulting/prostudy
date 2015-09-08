@@ -1,16 +1,12 @@
 
 angular.module(
 		"prostudyApp",
-		[ 'ngRoute', 'ngMaterial', 'ngMessages', "xeditable", "ui.bootstrap",
+		['ngMaterial', 'ngMessages', "xeditable", "ui.bootstrap",
 				"ui.router"/* , "datatables" */]).config(
 		function($mdThemingProvider) {
 			$mdThemingProvider.theme('default').primaryPalette('light-green')
 					.accentPalette('orange');
-		}).config([ '$routeProvider', function($routeProvider) {
-
-	// Do your config1 here.
-
-} ]).config(function($stateProvider, $urlRouterProvider) {
+		}).config(function($stateProvider, $urlRouterProvider) {
 	// This adds config 2
 	// For any unmatched url, redirect to /state1
 	$urlRouterProvider.otherwise("/home");

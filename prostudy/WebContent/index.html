@@ -6,17 +6,18 @@
 		<meta name="viewport" content="initial-scale=1" />
 		<link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
 		<link rel="stylesheet" href="/lib/base/css/googleapi.roboto.css">
-		<link rel="stylesheet"
-		href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
 		<link rel="stylesheet"
 		href="/lib/base/css/font-awesome.css">
 		<link rel="stylesheet"
 		href="/lib/base/css/xeditable.css">
 
+		<link rel="stylesheet"
+		href="/lib/base/css/bootstrap.min.css">
 		<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		src="/lib/base/jquery.min.js"></script>
 		<script
-		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		src="/lib/base/bootstrap.min.js"></script>
 
 		<!-- Angular Material Dependencies -->
 		<script src="/lib/base/angular.min.js"></script>
@@ -27,9 +28,9 @@
 		<script src="/lib/base/angular-material.min.js"></script>
 
 		<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.min.js"></script>
+		src="/lib/base/ui-bootstrap-tpls.min.js"></script>
 		<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+		src="/lib/base/angular-ui-router.min.js"></script>
 
 		<script src="/lib/base/xeditable.js"></script>
 
@@ -40,10 +41,15 @@
 			<!-- Top Navigation Pane -->
 			<md-toolbar>
 				<div class="md-toolbar-tools">
-					<span>My App's Title</span>
+					<span>ProStudy - </span>
 					<!-- fill up the space between left and right area -->
 					<span flex></span>
 					<section layout="row">
+
+						<md-button class="md-icon-button md-accent" aria-label="Favorite">
+							<md-icon md-font-icon="icon-home" ng-class="font.theme" class="step" ></md-icon>
+						</md-button>
+
 						<md-button class="md-icon-button md-accent" aria-label="Favorite">
 							<md-icon md-svg-icon="img/icons/ic_comment_24px.svg"></md-icon>
 						</md-button>
@@ -116,6 +122,7 @@
 
 						<!--This is a botton section of the app-->
 						<hr>
+						<md-divider></md-divider>
 						<div layout="row" layout-wrap>
 							<div>
 								<a>Tihs is link one </a>
@@ -152,10 +159,22 @@
 								<a>Tihs is link four </a>
 								<a>Tihs is link four </a>
 								<a>Tihs is link four </a>
+								<md-button class="md-icon-button md-accent" aria-label="Favorite">
+									<md-icon md-font-icon="icon-home" ng-class="font.theme" class="step" ></md-icon>
+								</md-button>
 								<a>Tihs is link four </a>
 								<a>Tihs is link four </a>
 								<a>Tihs is link four </a>
 								<a>Tihs is link four </a>
+								<md-switch ng-model="isActive" aria-label="Finished?">
+									Finished ?
+								</md-switch>
+								<md-switch md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+									No Ink Effects
+								</md-switch>
+								<md-switch ng-disabled="true" ng-model="isDisabled" aria-label="Disabled">
+									Disabled
+								</md-switch>
 							</div>
 						</div>
 						<div layout="row" layout-sm="column">
