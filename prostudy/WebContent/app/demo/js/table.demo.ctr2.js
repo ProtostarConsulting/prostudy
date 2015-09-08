@@ -18,6 +18,7 @@ angular.module('nutritionApp', [ 'ngMaterial', 'md.data.table', 'ngResource' ])
 								function(data) {
 									$scope.items = data.items;
 									$log.debug("$scope.items:" + $scope.items);
+									$log.debug("$scope.items.length:" + $scope.items.length);
 								});
 
 						/*

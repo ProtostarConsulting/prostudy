@@ -2,37 +2,14 @@
 <html lang="en" ng-app="prostudyApp" ng-controller="indexCtr">
 	<head>
 		<title>ProStudy App</title>
-
 		<meta name="viewport" content="initial-scale=1" />
+		
 		<link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
 		<link rel="stylesheet" href="/lib/base/css/googleapi.roboto.css">
-
-		<link rel="stylesheet"
-		href="/lib/base/css/font-awesome.css">
-		<link rel="stylesheet"
-		href="/lib/base/css/xeditable.css">
-
-		<link rel="stylesheet"
-		href="/lib/base/css/bootstrap.min.css">
-		<script
-		src="/lib/base/jquery.min.js"></script>
-		<script
-		src="/lib/base/bootstrap.min.js"></script>
-
-		<!-- Angular Material Dependencies -->
-		<script src="/lib/base/angular.min.js"></script>
-		<script src="/lib/base/angular-animate.min.js"></script>
-		<script src="/lib/base/angular-route.min.js"></script>
-		<script src="/lib/base/angular-aria.min.js"></script>
-		<script src="/lib/base/angular-messages.min.js"></script>
-		<script src="/lib/base/angular-material.min.js"></script>
-
-		<script
-		src="/lib/base/ui-bootstrap-tpls.min.js"></script>
-		<script
-		src="/lib/base/angular-ui-router.min.js"></script>
-
-		<script src="/lib/base/xeditable.js"></script>
+		<link rel="stylesheet"	href="/lib/base/css/font-awesome.css">
+		<link rel="stylesheet"	href="/lib/base/css/xeditable.css">
+		<link rel="stylesheet"	href="/lib/base/css/bootstrap.min.css">
+		<link rel="stylesheet"	href="/lib/base/css/md-data-table.min.css">
 
 	</head>
 	<body layout="column">
@@ -109,7 +86,7 @@
 								</md-button>
 							</div>
 						</div>
-
+						<md-card>
 						<div layout="column" layout-align="top center">
 							<!--<div ng-view></div>-->
 							<div ui-view>
@@ -119,7 +96,7 @@
 							</div>
 
 						</div>
-
+						</md-card>
 						<!--This is a botton section of the app-->
 						<hr>
 						<md-divider></md-divider>
@@ -217,11 +194,31 @@
 		</md-content>
 		<!-- </div> -->
 
-		<script src="/app/common/common.app.js"></script>
-		<!-- <script src="js/student.service.js"></script> -->
-		<script src="index.ctr.js"></script>
+		<!-- All JS Dependencies -->
+		<script	src="/lib/base/jquery.min.js"></script>
+		<script	src="/lib/base/bootstrap.min.js"></script>
+
+		<!-- Angular Material Dependencies -->
+		<script src="/lib/base/angular.min.js"></script>
+		<script src="/lib/base/angular-animate.min.js"></script>
+		<script src="/lib/base/angular-route.min.js"></script>
+		<script src="/lib/base/angular-aria.min.js"></script>
+		<script src="/lib/base/angular-messages.min.js"></script>
+		<script src="/lib/base/angular-resource.min.js"></script>
+
+		<script src="/lib/base/angular-material.min.js"></script>
+		<script src="/lib/base/md-data-table.min.js"></script>
+
+		<script	src="/lib/base/ui-bootstrap-tpls.min.js"></script>
+		<script	src="/lib/base/angular-ui-router.min.js"></script>
+		<script src="/lib/base/xeditable.js"></script>
 
 		<script src="/lib/base/googleapi.client.js"></script>
+
+		<!-- App JS Dependencies -->
+		<script src="/app/common/common.app.js"></script>
+		<script src="index.ctr.js"></script>
+
 		<script>
 			/* Init google endpoint API */
 			window.onload = function() {
@@ -234,6 +231,8 @@
 		<script src="/app/demo/js/state.ctr.js"></script>
 		<script src="/app/student/js/student.ctr.js"></script>
 		<script src="/app/student/js/student.list.ctr.js"></script>
+		<script src="/app/demo/js/table.demo.data.service.js"></script>
+		<script src="/app/demo/js/table.demo.withservice.ctr2.js"></script>
 
 	</body>
 </html>
