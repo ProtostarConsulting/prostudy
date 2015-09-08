@@ -1,55 +1,42 @@
-angular.module("prostudyApp")
-		.controller(
-				"studentPageCtr",
-				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $log) {
-					console.log("Inside studentPageCtr");
-					$scope.showSimpleToast = function() {
-						$mdToast.show($mdToast.simple().content('XX Saved!')
-								.position("top").hideDelay(3000));
-					};
+angular.module("prostudyApp").controller(
+		"studentPageCtr",
+		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
+				$log, objectFactory) {
 
-					$scope.addStudentToDB = function() {
-						console.log("in side addStudent");
-					};// end of call to addStudent
+			$log.debug("Inside studentPageCtr");
 
-					$scope.newStudent = function() {
-						return {
-							firstName : '',
-							lastName : '',
-							mobileNo : '',
-							email : '',
-							address : {
-								line1 : '',
-								line2 : '',
-								city : '',
-								state : '',
-								pin : '',
-							}
-						};
-					}
+			$scope.showSimpleToast = function() {
+				$mdToast.show($mdToast.simple().content('Student Data Saved!').position(
+						"top").hideDelay(3000));
+			};
 
-					$scope.studentVM = $scope.newStudent();
+			$scope.addStudentToDB = function() {
+				$log.debug("in side addStudent. added..."
+						+ $scope.studentVM.firstName);
+				$scope.showSimpleToast();
+			};// end of call to addStudent
 
-					/* Setup menu */
-					$scope.toggleRight = buildToggler('right');
-					/**
-					 * Build handler to open/close a SideNav; when animation
-					 * finishes report completion in console
-					 */
-					function buildToggler(navID) {
-						var debounceFn = $mdUtil.debounce(function() {
-							$mdSidenav(navID).toggle().then(function() {
-								$log.debug("toggle " + navID + " is done");
-							});
-						}, 200);
-						return debounceFn;
-					}
+			$scope.studentVM = objectFactory.newStudent();
 
-					$scope.close = function() {
-						$mdSidenav('right').close().then(function() {
-							$log.debug("close RIGHT is done");
-						});
-					};
+			/* Setup menu */
+			$scope.toggleRight = buildToggler('right');
+			/**
+			 * Build handler to open/close a SideNav; when animation finishes
+			 * report completion in console
+			 */
+			function buildToggler(navID) {
+				var debounceFn = $mdUtil.debounce(function() {
+					$mdSidenav(navID).toggle().then(function() {
+						$log.debug("toggle " + navID + " is done");
+					});
+				}, 200);
+				return debounceFn;
+			}
 
+			$scope.close = function() {
+				$mdSidenav('right').close().then(function() {
+					$log.debug("close RIGHT is done");
 				});
+			};
+
+		});

@@ -5,7 +5,7 @@
 		{
 			"name": "Frozen yogurt",
 			"type": "Ice cream",
-			"calories2": 
+			"calories": 
 			{
 				"value": 159.0
 			},
@@ -44,7 +44,7 @@
 		{
 			"name": "Ice cream sandwich",
 			"type": "Ice cream",
-			"calories2": 
+			"calories": 
 			{
 				"value": 237.0
 			},
@@ -83,7 +83,7 @@
 		{
 			"name": "Eclair",
 			"type": "Pastry",
-			"calories2": 
+			"calories": 
 			{
 				"value": 262.0
 			},
@@ -122,7 +122,7 @@
 		{
 			"name": "Cupcake",
 			"type": "Pastry",
-			"calories2": 
+			"calories": 
 			{
 				"value": 305.0
 			},
@@ -161,7 +161,7 @@
 		{
 			"name": "Jelly bean",
 			"type": "Candy",
-			"calories2": 
+			"calories": 
 			{
 				"value": 375.0
 			},
@@ -200,7 +200,7 @@
 		{
 			"name": "Lollipop",
 			"type": "Candy",
-			"calories2": 
+			"calories": 
 			{
 				"value": 392.0
 			},
@@ -239,7 +239,7 @@
 		{
 			"name": "Honeycomb",
 			"type": "Other",
-			"calories2": 
+			"calories": 
 			{
 				"value": 408.0
 			},
@@ -278,7 +278,7 @@
 		{
 			"name": "Donut",
 			"type": "Pastry",
-			"calories2": 
+			"calories": 
 			{
 				"value": 452.0
 			},
@@ -317,7 +317,7 @@
 		{
 			"name": "KitKat",
 			"type": "Candy",
-			"calories2": 
+			"calories": 
 			{
 				"value": 518.0
 			},

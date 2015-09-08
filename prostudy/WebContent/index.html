@@ -3,7 +3,7 @@
 	<head>
 		<title>ProStudy App</title>
 		<meta name="viewport" content="initial-scale=1" />
-		
+
 		<link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
 		<link rel="stylesheet" href="/lib/base/css/googleapi.roboto.css">
 		<link rel="stylesheet"	href="/lib/base/css/font-awesome.css">
@@ -18,7 +18,7 @@
 			<!-- Top Navigation Pane -->
 			<md-toolbar>
 				<div class="md-toolbar-tools">
-					<span>ProStudy - </span>
+					<span>ProStudy - Where learning meets teaching, self study, tutorials and practice!</span>
 					<!-- fill up the space between left and right area -->
 					<span flex></span>
 					<section layout="row">
@@ -87,111 +87,114 @@
 							</div>
 						</div>
 						<md-card>
-						<div layout="column" layout-align="top center">
-							<!--<div ng-view></div>-->
-							<div ui-view>
+							<div layout="column" layout-align="top center">
+								<!--<div ng-view></div>-->
+								<div ui-view>
 
-								<!--This is the center page of all main modules for the index module. -->
+									<!--This is the center page of all main modules for the index module. -->
+
+								</div>
 
 							</div>
-
-						</div>
 						</md-card>
 						<!--This is a botton section of the app-->
-						<hr>
+
 						<md-divider></md-divider>
-						<div layout="row" layout-wrap>
-							<div>
-								<a>Tihs is link one </a>
-								<a>Tihs is link one </a>
-								<a>Tihs is link one </a>
-								<a>Tihs is link one </a>
-								<a>Tihs is link one </a>
-								<a>Tihs is link one </a>
-								<a>Tihs is link one </a>
-								<a>Tihs is link one </a>
+						<md-card>
+							<div layout="row" layout-wrap>
+								<div>
+									<a>Tihs is link one </a>
+									<a>Tihs is link one </a>
+									<a>Tihs is link one </a>
+									<a>Tihs is link one </a>
+									<a>Tihs is link one </a>
+									<a>Tihs is link one </a>
+									<a>Tihs is link one </a>
+									<a>Tihs is link one </a>
+								</div>
+								<div>
+									<a>Tihs is link two </a>
+									<a>Tihs is link two </a>
+									<a>Tihs is link two </a>
+									<a>Tihs is link two </a>
+									<a>Tihs is link two </a>
+									<a>Tihs is link two </a>
+									<a>Tihs is link two </a>
+									<a>Tihs is link two </a>
+								</div>
+								<div>
+									<a>Tihs is link three </a>
+									<a>Tihs is link three </a>
+									<a>Tihs is link three </a>
+									<a>Tihs is link three </a>
+									<a>Tihs is link three </a>
+									<a>Tihs is link three </a>
+									<a>Tihs is link three </a>
+									<a>Tihs is link three </a>
+								</div>
+								<div>
+									<a>Tihs is link four </a>
+									<a>Tihs is link four </a>
+									<a>Tihs is link four </a>
+									<a>Tihs is link four </a>
+									<md-button class="md-icon-button md-accent" aria-label="Favorite">
+										<md-icon md-font-icon="icon-home" ng-class="font.theme" class="step" ></md-icon>
+									</md-button>
+									<a>Tihs is link four </a>
+									<a>Tihs is link four </a>
+									<a>Tihs is link four </a>
+									<a>Tihs is link four </a>
+									<md-switch ng-model="isActive" aria-label="Finished?">
+										Finished ?
+									</md-switch>
+									<md-switch md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+										No Ink Effects
+									</md-switch>
+									<md-switch ng-disabled="true" ng-model="isDisabled" aria-label="Disabled">
+										Disabled
+									</md-switch>
+								</div>
+							</div>
+							<div layout="row" layout-sm="column">
+								<div flex>
+									<md-button class="md-primary">
+										Click me
+									</md-button>
+									<md-button class="md-accent">
+										or maybe me
+									</md-button>
+									<md-button class="md-warn">
+										Careful
+									</md-button>
+									I'm above on mobile, and to the left on larger devices.
+								</div>
+								<div flex>
+									I'm below on mobile, and to the right on larger devices.
+									<md-button class="md-primary">
+										Click me
+									</md-button>
+									<md-button class="md-primary md-hue-1">
+										Click me
+									</md-button>
+									<md-button class="md-primary md-hue-2">
+										Click me
+									</md-button>
+								</div>
 							</div>
 							<div>
-								<a>Tihs is link two </a>
-								<a>Tihs is link two </a>
-								<a>Tihs is link two </a>
-								<a>Tihs is link two </a>
-								<a>Tihs is link two </a>
-								<a>Tihs is link two </a>
-								<a>Tihs is link two </a>
-								<a>Tihs is link two </a>
-							</div>
-							<div>
-								<a>Tihs is link three </a>
-								<a>Tihs is link three </a>
-								<a>Tihs is link three </a>
-								<a>Tihs is link three </a>
-								<a>Tihs is link three </a>
-								<a>Tihs is link three </a>
-								<a>Tihs is link three </a>
-								<a>Tihs is link three </a>
-							</div>
-							<div>
-								<a>Tihs is link four </a>
-								<a>Tihs is link four </a>
-								<a>Tihs is link four </a>
-								<a>Tihs is link four </a>
-								<md-button class="md-icon-button md-accent" aria-label="Favorite">
-									<md-icon md-font-icon="icon-home" ng-class="font.theme" class="step" ></md-icon>
-								</md-button>
-								<a>Tihs is link four </a>
-								<a>Tihs is link four </a>
-								<a>Tihs is link four </a>
-								<a>Tihs is link four </a>
-								<md-switch ng-model="isActive" aria-label="Finished?">
-									Finished ?
-								</md-switch>
-								<md-switch md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
-									No Ink Effects
-								</md-switch>
-								<md-switch ng-disabled="true" ng-model="isDisabled" aria-label="Disabled">
-									Disabled
-								</md-switch>
-							</div>
-						</div>
-						<div layout="row" layout-sm="column">
-							<div flex>
-								<md-button class="md-primary">
-									Click me
-								</md-button>
-								<md-button class="md-accent">
-									or maybe me
-								</md-button>
-								<md-button class="md-warn">
-									Careful
-								</md-button>
-								I'm above on mobile, and to the left on larger devices.
-							</div>
-							<div flex>
-								I'm below on mobile, and to the right on larger devices.
-								<md-button class="md-primary">
-									Click me
-								</md-button>
-								<md-button class="md-primary md-hue-1">
-									Click me
-								</md-button>
-								<md-button class="md-primary md-hue-2">
-									Click me
+								<md-button ng-click="openBottomSheet()">
+									Open a Bottom Sheet!
 								</md-button>
 							</div>
-						</div>
-						<div>
-							<md-button ng-click="openBottomSheet()">
-								Open a Bottom Sheet!
-							</md-button>
-						</div>
-						<!--End---This is a botton section of the app-->
+							<!--End---This is a botton section of the app-->
+						</md-card>
 					</md-content>
 
 				</section>
 			</div>
 
 		</md-content>
+
 		<!-- </div> -->
 
 		<!-- All JS Dependencies -->
@@ -219,20 +222,21 @@
 		<script src="/app/common/common.app.js"></script>
 		<script src="index.ctr.js"></script>
 
-		<script>
-			/* Init google endpoint API */
-			window.onload = function() {
-				init();
-			};
-		</script>
-
-		<!-- Load other view controllers -->
+		<!-- Load other view/service/controllers files-->
+		<script src="/app/common/app.object.service.js"></script>
 		<script src="/home.ctr.js"></script>
 		<script src="/app/demo/js/state.ctr.js"></script>
 		<script src="/app/student/js/student.ctr.js"></script>
 		<script src="/app/student/js/student.list.ctr.js"></script>
 		<script src="/app/demo/js/table.demo.data.service.js"></script>
 		<script src="/app/demo/js/table.demo.withservice.ctr2.js"></script>
+		
+		<script>
+			/* Init google endpoint API */
+			window.onload = function() {
+				init();
+			};
+		</script>
 
 	</body>
 </html>

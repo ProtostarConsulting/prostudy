@@ -2,7 +2,7 @@ angular.module("prostudyApp")
 		.controller(
 				"studentListPageCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $log) {
+						$mdUtil, $log, tableTestDataFactory) {
 					console.log("Inside studentListPageCtr");
 					// console.log("Via Serice:" +
 					// customerservice.addCustomer());
@@ -12,7 +12,7 @@ angular.module("prostudyApp")
 								3000));
 					};
 
-					$scope.getCustomerList = function() {
+					/*$scope.getCustomerList = function() {
 						console.log("getCustomerList");
 
 					};
@@ -33,7 +33,50 @@ angular.module("prostudyApp")
 						lastName : 'L',
 						mobileNo : '89078923',
 						email : 'a@b'
-					} ]
+					} ]*/
+					
+					$log.debug("inside ctr before service get $scope.items:"
+							+ $scope.items);
+					// $scope.items =
+					// tableTestDataFactory.getStudentList();
+					$scope.items = tableTestDataFactory.getStudentList().then(
+							function(data) {
+								$scope.items = data;
+								$log.debug("inside ctr then $scope.items:"
+										+ $scope.items);
+							});
+
+					$log.debug("inside ctr after service get $scope.items:"
+							+ $scope.items);
+
+					$scope.selected = [];
+
+					$scope.query = {
+						order : 'name',
+						limit : 5,
+						page : 1
+					};
+
+
+					$scope.onpagechange = function(page, limit) {
+						var deferred = $q.defer();
+
+						$timeout(function() {
+							deferred.resolve();
+						}, 2000);
+
+						return deferred.promise;
+					};
+
+					$scope.onorderchange = function(order) {
+						var deferred = $q.defer();
+
+						$timeout(function() {
+							deferred.resolve();
+						}, 2000);
+
+						return deferred.promise;
+					};
 
 					/* Setup menu */
 					$scope.toggleRight = buildToggler('rightListPage');

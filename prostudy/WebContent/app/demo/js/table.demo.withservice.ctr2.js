@@ -12,8 +12,8 @@ angular.module('prostudyApp').controller(
 					$log.debug("inside ctr before service get $scope.items:"
 							+ $scope.items);
 					// $scope.items =
-					// tableTestDataFactory.getStudentList();
-					$scope.items = tableTestDataFactory.getStudentList().then(
+					// tableTestDataFactory.getDessertList();
+					$scope.items = tableTestDataFactory.getDessertList().then(
 							function(data) {
 								$scope.items = data;
 								$log.debug("inside ctr then $scope.items:"
