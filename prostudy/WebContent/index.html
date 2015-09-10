@@ -65,6 +65,10 @@
 							ng-click="close()" class="md-primary" show-gt-md>
 								Student
 							</md-button>
+							<md-button ui-sref="exam"
+							ng-click="close()" class="md-primary" show-gt-md>
+								Exam
+							</md-button>
 							<md-button ui-sref="state1" ng-click="close()"
 							class="md-primary" show-gt-md>
 								state1
@@ -224,12 +228,18 @@
 
 		<!-- Load other view/service/controllers files-->
 		<script src="/app/common/app.object.service.js"></script>
+		<script src="/app/common/google.endpoint.service.js"></script>
 		<script src="/home.ctr.js"></script>
 		<script src="/app/demo/js/state.ctr.js"></script>
 		<script src="/app/student/js/student.ctr.js"></script>
 		<script src="/app/student/js/student.list.ctr.js"></script>
+		<script src="/app/exam/js/exam.ctr.js"></script>
+		<script src="/app/question/js/question.ctr.js"></script>
+		<script src="/app/question/js/questionlist.ctr.js"></script>
+		
 		<script src="/app/demo/js/table.demo.data.service.js"></script>
 		<script src="/app/demo/js/table.demo.withservice.ctr2.js"></script>
+		
 		
 		<script>
 			/* Init google endpoint API */

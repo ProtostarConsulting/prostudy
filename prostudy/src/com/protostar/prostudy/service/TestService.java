@@ -15,14 +15,15 @@ public class TestService
 {
 	
 	@ApiMethod(name="addTest")
-	public ServerMsg addTest(String value)
+	public ServerMsg addTest(ServerMsg value)
 	{		
-		return new ServerMsg();
+		value.setMsg(value.getMsg() + "...Server Added this");
+		return value;
 	}
 	
 	@ApiMethod(name="getTests")
-	public List<String> getTests(){		
-		return new ArrayList<String>();		
+	public List<ServerMsg> getTests(){		
+		return new ArrayList<ServerMsg>();		
 	}
 
 }

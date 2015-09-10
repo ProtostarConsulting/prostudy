@@ -12,11 +12,10 @@ angular
 						'$scope',
 						'$window',
 						'$mdToast',
-						'$mdBottomSheet',	
-						function($scope, $window, $mdToast, $mdBottomSheet) {
+						'$mdBottomSheet',
+						/*'appEndpointSF',*/
+						function($scope, $window, $mdToast, $mdBottomSheet/*, appEndpointSF*/) {
 							console.log("Inside indexCtr");
-							// console.log("Via Serice:" +
-							// customerservice.addCustomer());
 
 							$scope.showSimpleToast = function() {
 								$mdToast.show($mdToast.simple().content(
@@ -68,40 +67,52 @@ angular
 
 							$window.initGAPI = function() {
 								console.log("Came to initGAPI");
-								//This will load all server side end points
-								//$scope.loadCustomService();
+								// This will load all server side end points
+								//$scope.loadAppGoogleServices();
 
 							};
 
-							$scope.loadCustomService = function() {
-								console.log("Inside Loading Google Endpoints");
+							$scope.loadAppGoogleServices = function() {
+								console
+										.log("###Inside loadAppGoogleServices###");
 								var apiRoot = '//' + window.location.host
 										+ '/_ah/api';
 
-								// Loads the OAuth and helloworld APIs
-								// asynchronously, and
-								// triggers login
-								// when they have completed.
 								var apisToLoad;
 
 								apisToLoad = 1; // must match number of calls to
 								// gapi.client.load()
 
-								gapi.client.load('customerservice', 'v0.1',
-										function() {
-											$scope.is_backend_ready = true;
-											// $scope.loadCustomerList();
+								gapi.client
+										.load(
+												'examService',
+												'v0.1',
+												function() {
+													console
+															.log("exameService Loaded....");
+													// $scope.addTaxToDB();
+												}, apiRoot);
 
-										}, apiRoot);
+								gapi.client
+										.load(
+												'questionService',
+												'v0.1',
+												function() {
+													console
+															.log("questionService Loaded....");
+													$scope.is_backend_ready = true;
+
+												}, apiRoot);
 
 							};
 
 							$scope.openBottomSheet = function() {
-							    $mdBottomSheet.show({
-							      template: '<md-bottom-sheet>Hello!</md-bottom-sheet>'
-							    });
-							  };
-							  
+								$mdBottomSheet
+										.show({
+											template : '<md-bottom-sheet>Hello!</md-bottom-sheet>'
+										});
+							};
+
 							// initialize local objects
 							$scope.customer = $scope.newCustomer();
 							$scope.customerList = {};
@@ -109,7 +120,7 @@ angular
 						} ]).controller('AppCtrl',
 				function($scope, $timeout, $mdSidenav, $mdUtil, $log) {
 					$scope.toggleLeft = buildToggler('left');
-					//$scope.toggleRight = buildToggler('right');
+					// $scope.toggleRight = buildToggler('right');
 					/**
 					 * Build handler to open/close a SideNav; when animation
 					 * finishes report completion in console

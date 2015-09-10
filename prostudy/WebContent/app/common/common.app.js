@@ -32,6 +32,21 @@ angular.module(
 				url : "/home",
 				templateUrl : '/home.html',
 				controller : 'homeCtr'
+			}).state('exam', {
+				url : "/exam",
+				templateUrl : '/app/exam/exam_module.html'
+			}).state('exam.view', {
+				url : "/exam/view",
+				templateUrl : '/app/exam/exam_view.html',
+				controller : 'examCtr'
+			}).state('exam.question', {
+				url : "/exam/question",
+				templateUrl : '/app/question/question_add.html',
+				controller : 'questionCtr'
+			}).state('exam.questionlist', {
+				url : "/exam/question/list",
+				templateUrl : '/app/question/question_list.html',
+				controller : 'questionListCtr'
 			}).state('student', {
 				url : "/student",
 				templateUrl : '/app/student/student_module.html',

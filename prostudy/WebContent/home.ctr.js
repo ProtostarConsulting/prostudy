@@ -59,38 +59,6 @@ angular
 
 							$scope.cust = $scope.newCustomer();
 
-							$window.initGAPI = function() {
-								console.log("Came to initGAPI");
-								// alert("Came to initGAPI");							
-
-								// temp. Loading customer list here
-								// $scope.loadCustomerList();
-
-							};
-
-							$scope.loadCustomService = function() {
-								console.log("Inside window.loadCustomServices");
-								var apiRoot = '//' + window.location.host
-										+ '/_ah/api';
-
-								// Loads the OAuth and helloworld APIs
-								// asynchronously, and
-								// triggers login
-								// when they have completed.
-								var apisToLoad;
-
-								apisToLoad = 1; // must match number of calls to
-								// gapi.client.load()
-
-								/*gapi.client.load('customerservice', 'v0.1',
-										function() {
-											$scope.is_backend_ready = true;
-											// $scope.loadCustomerList();
-
-										}, apiRoot);*/
-
-							};
-
 							// initialize local objects
 							$scope.customer = $scope.newCustomer();
 							$scope.customerList = {};
