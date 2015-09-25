@@ -2,54 +2,45 @@
 
 	<form name="userForm">
 
-		<div layout layout-sm="column">
-			<md-input-container flex>
-				<label>First
-					name</label>
-				<input ng-model="studentVM.firstName">
-			</md-input-container>
-			<md-input-container flex>
-				<label>Last
-					Name</label>
-				<input ng-model="studentVM.lastName">
-			</md-input-container>
-			<md-input-container flex>
-				<label> Mobile
-					No</label>
-				<input ng-model="studentVM.mobileNo">
-			</md-input-container>
-			<md-input-container flex>
-				<label> Email</label>
-				<input ng-model="studentVM.email">
-			</md-input-container>
-		</div>
-		<div layout layout-sm="column">
-			<md-input-container flex>
-				<label>Address
-					Line1</label>
-				<input ng-model="studentVM.address.line1">
-			</md-input-container>
-			<md-input-container md-no-float>
-				<input
-				ng-model="studentVM.address.line2" placeholder="Address Line2">
-			</md-input-container>
-		</div>
-		<div layout layout-sm="column">
-			<md-input-container flex>
-				<label>City</label>
-				<input
-				ng-model="studentVM.address.city">
-			</md-input-container>
-			<md-input-container flex>
-				<label>State</label>
-				<input
-				ng-model="studentVM.address.state">
-			</md-input-container>
-			<md-input-container flex>
-				<label>Postal
-					Code</label>
-				<input ng-model="studentVM.address.pin">
-			</md-input-container>
+		<div layout="row" layout-sm="column" layout-align="space-around start">
+			<div layout="column" flex>
+				<md-input-container flex>
+					<label>First
+						name</label>
+					<input ng-model="studentVM.firstName">
+				</md-input-container>
+				<md-input-container flex>
+					<label>Last
+						Name</label>
+					<input ng-model="studentVM.lastName">
+				</md-input-container>
+				<md-input-container flex>
+					<label> Mobile
+						No</label>
+					<input ng-model="studentVM.mobileNo">
+				</md-input-container>
+				<md-input-container flex>
+					<label> Email</label>
+					<input ng-model="studentVM.email">
+				</md-input-container>
+			</div>
+			<div layout="column" flex>
+				<md-input-container flex>
+					<label>City</label>
+					<input
+					ng-model="studentVM.address.city">
+				</md-input-container>
+				<md-input-container flex>
+					<label>State</label>
+					<input
+					ng-model="studentVM.address.state">
+				</md-input-container>
+				<md-input-container flex>
+					<label>Postal
+						Code</label>
+					<input ng-model="studentVM.address.pin">
+				</md-input-container>
+			</div>
 		</div>
 
 	</form>
@@ -60,7 +51,7 @@
 		</md-button>
 		<md-button class="md-raised md-primary" ng-click="addStudentToDB()">
 			Submit
-		</md-button>	
+		</md-button>
 
 	</section>
 </div>
