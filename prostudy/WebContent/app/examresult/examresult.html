@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>ExamResult</title>
+
+<link rel="stylesheet" href="/lib/base/angular-material.min.css">
+<link rel="stylesheet" href="/lib/base/googleapi.roboto.css">
+
+<meta name="viewport" content="initial-scale=1" />
+
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="/lib/datatables-responsive/css/xeditable.css">
+<link rel="stylesheet"
+	href="/lib/datatables-responsive/css/font-awesome.css">
+<link rel="stylesheet"
+	href="/lib/datatables-responsive/css/jquery.dataTables.css">
+<link rel="stylesheet"
+	href="/lib/datatables-responsive/css/datatables.bootstrap.css">
+<link rel="stylesheet"
+	href="/lib/datatables-responsive/css/angular-datatables-main.css">
+<link rel="stylesheet"
+	href="/lib/datatables-responsive/css/dataTables.tableTools.css">
+<link rel="stylesheet"
+	href="/lib/datatables-responsive/css/dataTables.responsive.css">
+	
+
+	<!-- Angular Material Dependencies -->
+	<script src="/lib/base/angular.min.js"></script>
+	<script src="/lib/base/angular-animate.min.js"></script>
+	<script src="/lib/base/angular-route.min.js"></script>
+	<script src="/lib/base/angular-aria.min.js"></script>
+	<script src="/lib/base/angular-messages.min.js"></script>
+	<script src="/lib/base/angular-material.min.js"></script>
+	<script src="js/examresult.ctr.js"></script>
+	<script src="/lib/base/googleapi.client.js"></script>
+</head>
+<body>
+<div ng-app="examResultApp" class="container" ng-controller="examResultCtr" class="md-padding">
+  
+  <b>Exam Result</b>
+
+		<div>
+			<div class="input-group">
+				<input class="form-control" ng-model="searchText" placeholder="Search" type="search" /> 
+				<span class="input-group-addon"> 
+				    <span class="glyphicon glyphicon-search"></span>
+				</span>
+		  </div>
+
+
+			<table class="table  table-hover data-table sort display">
+
+				<tr>
+					<th>Student Name</th>
+					<th>Resgister No.</th>
+					<th>Branch</th>
+					<th>Correct Answer.</th>
+				</tr>
+
+				<tbody>
+					<tr ng-repeat="exam in exams | filter:searchText">
+						<td>{{exam.student_name}}</td>
+						<td>{{exam.register_No}}</td>
+						<td>{{exam.branch}}</td>
+						<td>{{exam.correctAns}}</td>
+					</tr>
+				</tbody>
+			</table>
+	 </div>
+	 
+	 
+		<script>
+			/* Init google endpoint API */
+			window.onload = function() 
+			{
+				init();
+			};
+		</script>
+
+</body>
+</html>
