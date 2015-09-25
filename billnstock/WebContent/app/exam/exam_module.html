@@ -68,11 +68,13 @@
 
 	</div>
 
-	<div ui-view>
-		This is a default template for student module!
-	</div>
+	
+<div ui-view> This is a default page for stock module!</div>
 	<!-- We'll also add some navigation: -->
 
+	<a ui-sref="student.add">add stock item</a>
+	<a ui-sref="student.list">stock item list</a>
+	<a ui-sref="student.listtest">dessert list</a>
 	<md-button ui-sref="exam.question" ng-click="close()" class="md-primary">
 		Add New Question
 	</md-button>
