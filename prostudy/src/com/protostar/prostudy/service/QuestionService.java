@@ -19,6 +19,7 @@ public class QuestionService
 {
 
 
+
 	@ApiMethod(name="addQuestion")
 	public ServerMsg  addQuestion(QuestionEntity questionEntity)
 	{
@@ -29,7 +30,8 @@ public class QuestionService
 		
 	EntityManager em=null;
 		
-		try {
+		try 
+		{
 			em=EMF.get().createEntityManager();
 			em.persist(questionEntity);
 			msgBean.setMsg("Question Records Added successfully"+" "+questionEntity.getDescription());
@@ -46,6 +48,41 @@ public class QuestionService
 		return msgBean;
 		
 	}//end of addQuestion
+	
+	@ApiMethod(name="updateQuestion")
+	public ServerMsg  updateQuestion(QuestionEntity questionEntity)
+	{
+		/*
+		 if (NamespaceManager.get() == null) {
+		      NamespaceManager.set(NamespaceManager.getGoogleAppsNamespace());
+		    }*/
+		System.out.println("In side updateQuestion " );
+		System.out.println("questionEntity:" + questionEntity);
+		ServerMsg msgBean=new ServerMsg();
+		
+		
+		
+	EntityManager em=null;
+		
+		try 
+		{
+			em=EMF.get().createEntityManager();
+			em.merge(questionEntity);
+			em.persist(questionEntity);
+			msgBean.setMsg("Question Records Updated successfully"+" "+questionEntity.getDescription());
+		} 
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+				
+		return msgBean;
+		
+	}//end of updateQuestion
 	
 	@SuppressWarnings("unchecked")
 	@ApiMethod(name="getAllQuestion")
