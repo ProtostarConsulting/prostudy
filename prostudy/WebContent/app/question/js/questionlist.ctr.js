@@ -2,29 +2,45 @@ angular
 		.module("prostudyApp")
 		.controller(
 				"questionListCtr",
-				[
-						'$scope',
-						'$window',
-						'$mdToast',
-
-						function($scope, $window, $mdToast) {
-
+						function($scope, $window, $mdToast, $timeout, $mdSidenav,
+								$mdUtil, $log, $q, tableTestDataFactory) {
+							
+							$scope.questions = [];
+							$scope.loadQuestionsList = function() {							
+							
 							$scope.questions = [ {
-								description : "red icescreem",
-								note : 1,
-								option1 : 45,
-								option2 : 46,
-								option3 : 47,
-								option4 : 48,
-								correctAns : 4
+								description : "What is correct answer of 4 + 3=?",
+								note : "Only one answer is correct.",
+								option1 : 6,
+								option2 : 7,
+								option3 : 4,
+								option4 : 2,
+								correctAns : 2
 							}, {
-								description : "pink icescreem",
+								description : "What is addtion of 4 and 2?",
 								note : 3,
-								option1 : 33,
-								option2 : 11,
-								option3 : 12,
-								option4 : 13,
+								option1 : 6,
+								option2 : 7,
+								option3 : 4,
+								option4 : 2,
+								correctAns : 1
+							}, {
+								description : "What is 4 - 2=?",
+								note : 2,
+								option1 : 1,
+								option2 : 0,
+								option3 : 2,
+								option4 : 3,
 								correctAns : 3
+
+							}, {
+								description : "Yello icescreem",
+								note : 4,
+								option1 : 7,
+								option2 : 10,
+								option3 : 6,
+								option4 : 30,
+								correctAns : 1
 							}, {
 								description : "Green icescreem",
 								note : 2,
@@ -42,23 +58,32 @@ angular
 								option3 : 6,
 								option4 : 30,
 								correctAns : 1
-							} ];
+							} , {
+								description : "Green icescreem",
+								note : 2,
+								option1 : 21,
+								option2 : 20,
+								option3 : 22,
+								option4 : 23,
+								correctAns : 2
 
-							// $scope.questions = $scope.questionsActual;
-							/*
-							 * $scope.addQuestion = function() { var teacher = {
-							 * description:$scope.description, note:
-							 * $scope.note, option1: $scope.option1, option2:
-							 * $scope.option2, option3: $scope.option3, option4:
-							 * $scope.option4, correctAns: $scope.correctAns, };
-							 * $scope.questions.push(teacher); };
-							 */
+							}, {
+								description : "Yello icescreem",
+								note : 4,
+								option1 : 7,
+								option2 : 10,
+								option3 : 6,
+								option4 : 30,
+								correctAns : 1
+							}  ];
+
+							}//end of list load
 
 							$scope.editingData = [];
 
-							for (var i = 0, length = $scope.questions.length; i < length; i++) {
+							/*for (var i = 0, length = $scope.questions.length; i < length; i++) {
 								$scope.editingData[$scope.questions[i].description] = false;
-							}
+							}*/
 
 							$scope.addQuestion = function(question) {
 								$scope.questions.push(question);
@@ -78,58 +103,38 @@ angular
 								$scope.questions.splice(index, 1);
 							}; // end of removeQuestion
 
-							$scope.quest = $scope.questions.slice(1, 7);
+							
 
 							$scope.selected = [];
 
 							$scope.query = {
-								filter : '',
 								order : 'description',
-								limit : 3,
+								limit : 5,
 								page : 1
 							};
 
-							$scope.onOrderChange = function(order) {
-								console.log(order);
-								console.log($scope.query);
-								var order = order.startsWith("-");
-								// $scope.desserts = sortBy($scope.desserts,
-								// order);
-								$scope.quest = $scope.quest
-										.sort(order ? compareByColDesc
-												: compareByColAsc);
-								console.log($scope.quest);
 
+							$scope.onpagechange = function(page, limit) {
+								var deferred = $q.defer();
+
+								$timeout(function() {
+									deferred.resolve();
+								}, 2000);
+
+								return deferred.promise;
 							};
 
-							$scope.onPaginationChange = function(page, limit) {
-								var from = (page == 1) ? 0
-										: (page * limit - limit);
-								var till = page * limit;
-								$scope.quest = $scope.questions.slice(from,
-										till);
-							};
+							$scope.onorderchange = function(order) {
+								var deferred = $q.defer();
 
-							function compareByColAsc(a, b) {
-								if (a.note < b.note) {
-									return -1;
-								}
-								if (a.note > b.note) {
+								$timeout(function() {
+									deferred.resolve();
+								}, 2000);
 
-									return 1;
-								}
-								return 0;
-							}
+								return deferred.promise;
+							};						
+							
+							
+							$scope.loadQuestionsList();
 
-							function compareByColDesc(a, b) {
-								if (a.note < b.note) {
-									return 1;
-								}
-								if (a.note > b.note) {
-
-									return -1;
-								}
-								return 0;
-							}
-
-						} ]);
+						} );

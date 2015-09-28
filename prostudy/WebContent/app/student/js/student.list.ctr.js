@@ -2,7 +2,7 @@ angular.module("prostudyApp")
 		.controller(
 				"studentListPageCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $log, tableTestDataFactory) {
+						$mdUtil, $log, $q, tableTestDataFactory) {
 					console.log("Inside studentListPageCtr");
 					// console.log("Via Serice:" +
 					// customerservice.addCustomer());

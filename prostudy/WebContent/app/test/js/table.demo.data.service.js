@@ -7,7 +7,7 @@ function tableTestDataFactoryFn($log, $q, $http) {
 			// var items;
 			var deferred = $q.defer();
 
-			$http.get("/app/demo/table_demo_data2.json").success(function(data) {
+			$http.get("/app/test/student_data1.json").success(function(data) {
 				// items = data.items;
 				deferred.resolve(data.items);
 				$log.debug("inside service data.items:" + data.items);
@@ -19,7 +19,7 @@ function tableTestDataFactoryFn($log, $q, $http) {
 
 		getDessertList : function() {
 			var deferred = $q.defer();
-			$http.get("/app/demo/table_demo_data1.json").success(function(data) {
+			$http.get("/app/test/table_demo_data1.json").success(function(data) {
 				deferred.resolve(data.data);
 				$log.debug("inside service data.data:" + data.data);
 			});
