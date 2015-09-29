@@ -25,5 +25,13 @@ function tableTestDataFactoryFn($log, $q, $http) {
 			});
 			return deferred.promise;
 		},
+		getQuestionstList : function() {
+			var deferred = $q.defer();
+			$http.get("/app/test/question_science_data1.json").success(function(data) {
+				$log.debug("inside getQuestionstList data.items:" + data.items);
+				deferred.resolve(data.items);				
+			});
+			return deferred.promise;
+		}
 	}
 }

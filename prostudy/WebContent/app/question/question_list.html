@@ -1,9 +1,13 @@
 <md-content>
 
 	<div>
-		<div class="input-group">
-			<input class="form-control" ng-model="searchText" placeholder="Search" type="search" />
-			<span class="input-group-addon"> <span class="glyphicon glyphicon-search"></span> </span>
+		<div>
+
+			<md-input-container flex>
+				<label>Search</label>
+				<input ng-model="searchText">
+			</md-input-container>
+
 		</div>
 
 		<md-data-table-container>
@@ -12,11 +16,11 @@
 					<tr>
 						<th name="Question Desc"   order-by="description"></th>
 						<!--<th name="note" order-by="note"></th>-->
-						<th name="option1"  order-by="option1"></th>
-						<th name="option2"  order-by="option2"></th>
-						<th name="option3"  order-by="option3"></th>
-						<th name="option4"  order-by="option4"></th>
-						<th numeric name="correctAns"  order-by="correctAns"></th>
+						<th name="Option1"  order-by="option1"></th>
+						<th name="Option2"  order-by="option2"></th>
+						<th name="Option3"  order-by="option3"></th>
+						<th name="Option4"  order-by="option4"></th>
+						<th numeric name="Answer"  order-by="correctAns"></th>
 
 					</tr>
 				</thead>
@@ -28,30 +32,28 @@
 							{{teacher.description}}
 						</div>
 						<div ng-show="editingData[teacher.description]">
-							<input type="text" ng-model="teacher.description" />
+							<md-input-container flex>								
+								<input ng-model="teacher.description" />
+							</md-input-container>
 						</div></td>
-						<!--
-						<td>
-												<div ng-hide="editingData[teacher.description]">
-													{{teacher.note}}
-												</div>
-												<div ng-show="editingData[teacher.description]">
-													<input type="text" ng-model="teacher.note" />
-												</div></td>-->
-						
+					
 						<td>
 						<div ng-hide="editingData[teacher.description]">
 							{{teacher.option1}}
 						</div>
 						<div ng-show="editingData[teacher.description]">
-							<input type="text" ng-model="teacher.option1" />
+							<md-input-container flex>								
+								<input ng-model="teacher.option1" />
+							</md-input-container>
 						</div></td>
 						<td>
 						<div ng-hide="editingData[teacher.description]">
 							{{teacher.option2}}
 						</div>
 						<div ng-show="editingData[teacher.description]">
-							<input type="text" ng-model="teacher.option2" />
+							<md-input-container flex>								
+								<input ng-model="teacher.option2" />
+							</md-input-container>
 						</div></td>
 						<td>
 						<div ng-hide="editingData[teacher.description]">
@@ -75,19 +77,19 @@
 							<input type="text" ng-model="teacher.correctAns" />
 						</div></td>
 						<td>
-						<button ng-hide="editingData[teacher.description]" ng-click="modify(teacher)">
-							Modify
-						</button>
-						<button ng-show="editingData[teacher.description]" ng-click="update(teacher)">
-							Update
-						</button>
+						<md-button aria-label="Modify Row" ng-hide="editingData[teacher.description]" ng-click="modify(teacher)">
+							<ng-md-icon icon="edit"></ng-md-icon>
+						</md-button>
+						<md-button aria-label="Save Row" ng-show="editingData[teacher.description]" ng-click="update(teacher)">
+							<ng-md-icon icon="save"></ng-md-icon>
+						</md-button>
 					</tr>
 				</tbody>
 			</table>
-		
+
 		</md-data-table-container>
 		<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total={{questions.length}} md-trigger="onpagechange"></md-data-table-pagination>
-		
+
 		<div layout layout-sm="column">
 			<md-input-container flex>
 				<label> Question</label>

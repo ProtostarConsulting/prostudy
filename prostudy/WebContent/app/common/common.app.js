@@ -1,6 +1,6 @@
 angular.module(
 		"prostudyApp",
-		[ 'ngMaterial', 'ngMessages', "xeditable", "ui.bootstrap", "ui.router",
+		[ 'ngMaterial', 'ngMdIcons', 'ngMessages', "xeditable", "ui.bootstrap", "ui.router",
 				'md.data.table', 'ngResource' ]).config(
 		function($mdThemingProvider) {
 			$mdThemingProvider.theme('default').primaryPalette('light-green')
