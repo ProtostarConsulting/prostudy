@@ -1,0 +1,117 @@
+
+<md-content layout-padding>
+<form name="userForm">
+	<div id="addField">
+		<div layout layout-sm="column">
+			<md-input-container flex> <label>Item Id
+			</label> <input ng-model="stock.item_Id"> </md-input-container>
+			<md-input-container flex> <label>Item
+				Name </label> <input ng-model="stock.item_Name"> </md-input-container>
+		</div>
+		<div layout layout-sm="column">
+			<md-input-container flex> <label>Categories
+			</label> <input ng-model="stock.category"> </md-input-container>
+			<md-input-container flex> <label>Quantity
+			</label> <input ng-model="stock.qty"> </md-input-container>
+		</div>
+		<div layout layout-sm="column">
+			<md-input-container flex> <label>Price </label>
+			<input ng-model="stock.price"> </md-input-container>
+		</div>
+		<div>
+			<md-input-container flex> <label>Notes </label>
+			<textarea ng-model="stock.notes" rows="4" cols="1"></textarea></md-input-container>
+		</div>
+
+<!--  <md-input-container md-no-float>
+      <md-icon md-svg-src="img/icons/ic_place_24px.svg" style="display:inline-block;"></md-icon>
+      <input ng-model="user.address" type="text" placeholder="Address" >
+    </md-input-container>
+  -->   
+		<section layout="row" layout-sm="column" layout-align="left left">
+			<md-button class="md-raised md-primary" ng-click="addStock()">Submit</md-button>
+			<md-button class="md-raised md-primary"
+				ng-click="">Cancel</md-button>
+<!-- 			<md-button class="md-raised md-primary"
+				ng-click="getAllStockService()">Get List</md-button> -->
+		</section>
+	</div>
+</form>
+
+<!-- 
+<div id="stockTable">
+	<div id="anotherStock">
+		<section layout="row" layout-sm="column" layout-align="left left">
+			<md-button class="md-raised md-primary" ng-click="addAnotherStock()">Add
+			Item</md-button>
+
+		</section>
+	</div>
+	<md-data-table-container>
+	<table md-data-table md-row-select="selected" md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onOrderChange">
+			<tr>
+				<th name="Item ID" order-by="item_Id"></th>
+				<th name="Item Name" order-by="item_Name"></th>
+				<th name="Category" order-by="category"></th>
+				<th name="Quantity" order-by="qty"></th>
+				<th name="Price" order-by="price"></th>
+				<th name="Notes" order-by="notes"></th>
+
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="stocks in stockData | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
+
+				<td>{{stocks.item_Id}}</td>
+				<td>{{stocks.item_Name}}</td>
+				<td>{{stocks.category}}</td>
+				<td>{{stocks.qty}}</td>
+				<td>{{stocks.price}}</td>
+				<td>{{stocks.notes}}</td>
+				<td>
+			</tr>
+		</tbody>
+	</table>
+			<md-data-table-toolbar class="alternate" ng-show="selected.length">
+			<div>
+				{{selected.length}} {{selected.length > 1 ? 'stockData' : 'stock'}} selected
+			</div>
+			<div>
+				{{selected}}
+			</div>
+		</md-data-table-toolbar>
+ <md-data-table-pagination md-limit="query.limit"
+		md-page="query.page" md-total={{stockData.length}}
+		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
+</div>
+
+<div id="update">
+	<section layout="layout-sm=row">
+		<md-input-container flex> <label>Item Id
+		</label> <input ng-model="selected[0].item_Id"> </md-input-container>
+		<md-input-container flex> <label>Item
+			Name </label> <input ng-model="selected[0].item_Name"> </md-input-container>
+
+		<md-input-container flex> <label>Category
+		</label> <input ng-model="selected[0].category"> </md-input-container>
+		<md-input-container flex> <label>Quantity
+		</label> <input ng-model="selected[0].qty"> </md-input-container>
+
+		<md-input-container flex> <label>Price </label> <input
+			ng-model="selected[0].price"> </md-input-container>
+		<md-input-container flex> <label>Notes </label> <input
+			ng-model="selected[0].notes"> </md-input-container>
+
+	</section>
+
+	<section layout="row" layout-sm="column" layout-align="left left">
+		<md-button class="md-raised md-primary" ng-click="updateStock()">Update</md-button>
+	</section>
+
+</div> -->
+
+
+</md-content>

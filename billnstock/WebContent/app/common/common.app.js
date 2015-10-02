@@ -1,5 +1,5 @@
 angular.module(
-		"prostudyApp",
+		"stockApp",
 		[ 'ngMaterial', 'ngMessages', "xeditable", "ui.bootstrap", "ui.router",
 				'md.data.table', 'ngResource' ]).config(
 		function($mdThemingProvider) {
@@ -20,48 +20,57 @@ angular.module(
 				url : "/list",
 				templateUrl : "/app/demo/state1.list.html",
 				controller : 'statesPageCtr'
-			}).state('state2', {
-				url : "/state2",
-				templateUrl : "/app/demo/state2.html",
-				controller : 'statesPageCtr'
-			}).state('state2.list', {
-				url : "/list",
-				templateUrl : "/app/demo/state2.list.html",
-				controller : 'statesPageCtr'
 			}).state('home', {
 				url : "/home",
 				templateUrl : '/home.html',
 				controller : 'homeCtr'
-			}).state('exam', {
-				url : "/exam",
-				templateUrl : '/app/exam/exam_module.html'
-			}).state('exam.view', {
-				url : "/exam/view",
-				templateUrl : '/app/exam/exam_view.html',
-				controller : 'examCtr'
-			}).state('exam.question', {
-				url : "/exam/question",
-				templateUrl : '/app/question/question_add.html',
-				controller : 'questionCtr'
-			}).state('exam.questionlist', {
-				url : "/exam/question/list",
-				templateUrl : '/app/question/question_list.html',
-				controller : 'questionListCtr'
-			}).state('student', {
-				url : "/student",
-				templateUrl : '/app/student/student_module.html',
-				controller : 'studentPageCtr'
-			}).state('student.add', {
-				url : "/add",
-				templateUrl : '/app/student/student_add.html',
-				controller : 'studentPageCtr'
-			}).state('student.list', {
-				url : "/list",
-				templateUrl : '/app/student/student_list.html',
-				controller : 'studentListPageCtr'
 			}).state('student.listtest', {
 				url : "/listtest",
 				templateUrl : '/app/demo/table_demo3_view.html',
 				controller : 'nutritionController'
-			});
+			}).state('stock', {
+				url : "/stock",
+				templateUrl : '/app/stock/stock_module.html',
+				controller : 'addItemStockCtr'
+			}).state('stock.stockItemAdd', {
+				url : "/stockItemAdd",
+				templateUrl : '/app/stock/stockItem_add.html',
+				controller : 'addItemStockCtr'
+			}).state('stock.stockItemList', {
+				url : "/stockItemList",
+				templateUrl : '/app/stock/stockItem_list.html',
+				controller : 'addItemStockCtr'
+			}).state('invoice', {
+				url : "/invoice",
+				templateUrl : '/app/invoice/invoice_module.html',
+				controller : 'invoiceCtr'
+			}).state('invoice.add', {
+				url : "/add",
+				templateUrl : '/app/invoice/invoice_add.html',
+				controller : 'invoiceCtr'
+			}).state('invoice.list', {
+				url : "/list",
+				templateUrl : '/app/invoice/invoice_list.html',
+				controller : 'invoiceCtr'
+			}).state('customer', {
+				url : "/customer",
+				templateUrl : '/app/customer/customer_module.html',
+				controller : 'customerCtr'
+			}).state('customer.add', {
+				url : "/add",
+				templateUrl : '/app/customer/customer_add.html',
+				controller : 'customerCtr'
+			}).state('customer.list', {
+				url : "/list",
+				templateUrl : '/app/customer/customer_list.html',
+				controller : 'customerCtr'
+			})/*.state('fileupload', {
+				url : "/fileupload",
+				templateUrl : '/app/fileupload/fileupload.html',
+				controller : 'fileuploadCtr'
+			}).state('fileupload', {
+				url : "/fileupload",
+				templateUrl : '/app/fileupload/fileupload.html',
+				controller : 'fileuploadCtr'
+			})*/;
 		});

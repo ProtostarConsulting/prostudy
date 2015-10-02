@@ -1,0 +1,171 @@
+	<md-content layout-padding>
+<!-- 	<form name="userForm">
+		
+		<div id="addField">
+			<div layout layout-sm="column">
+								<md-input-container flex> <label>Customer
+					ID </label> <input ng-model="cust.cust_id"> </md-input-container>
+
+				<md-input-container flex> <label>Customer
+					Name </label> <input ng-model="cust.cust_Name"> </md-input-container>
+			</div>
+			<div layout layout-sm="column">
+				<md-input-container flex> <label>Mobile
+					No. </label> <input ng-model="cust.mobile"> </md-input-container>
+
+				<md-input-container flex> <label> Email</label>
+				<input ng-model="cust.email"> </md-input-container>
+			</div>
+			<div>
+				<md-input-container flex> <label>Address
+				</label> <textarea ng-model="cust.address" rows="4" cols="1"></textarea></md-input-container>
+			</div>
+			<div layout layout-sm="column">
+				<md-input-container flex> <label>City</label> <input
+					ng-model="cust.address.city"> </md-input-container>
+				<md-input-container flex> <label>State</label>
+				<input ng-model="cust.address.state"> </md-input-container>
+				<md-input-container flex> <label>Postal
+					Code</label> <input ng-model="cust.address.pin"> </md-input-container>
+			</div>
+			<section layout="row" layout-sm="column" layout-align="left left">
+				<md-button class="md-raised md-primary" ng-click="addCust()">Add</md-button>
+				<md-button class="md-raised md-primary" ng-click="loadCustList()">Get
+				List</md-button>
+			</section>
+		</div>
+	</form>
+ -->
+
+	<div id="custTable">
+		<div id="anotherCust">
+			<section layout="row" layout-sm="column" layout-align="left left">
+				<md-button class="md-raised md-primary" ng-click="addAnotherCust()">Add
+				Item</md-button>
+
+			</section>
+		</div>
+		<md-data-table-container>
+		<table md-data-table md-row-select="selected" md-progress="deferred">
+			<thead md-order="query.order" md-trigger="onOrderChange">
+				<tr>
+					<th name="ID" order-by="id"></th>
+					<th name="Customer Name" order-by="cust_Name"></th>
+					<th name="Mobile" order-by="mobile"></th>
+					<th name="Email" order-by="email"></th>
+					<th name="Address" order-by="address"></th>
+
+				</tr>
+			</thead>
+
+						<tbody>
+				<tr md-auto-select ng-repeat="cust in custData | orderBy: sr_No ">
+
+					<td>
+						<div ng-hide="editingData[cust.selected[0].sr_No]">{{cust.sr_No}}</div>
+						<div ng-show="editingData[cust.selected[0].sr_No]">
+							<input type="text" ng-model="cust.sr_No" />
+						</div>
+					</td>
+					<td><div ng-hide="editingData[cust.selected[0].item_Name]">{{cust.item_Name}}</div>
+						<div ng-show="editingData[cust.selected[0].item_Name]">
+							<input type="text" ng-model="cust.item_Name" />
+						</div></td>
+
+					<td><div ng-hide="editingData[cust.selected[0].category]">{{cust.category}}</div>
+						<div ng-show="editingData[cust.selected[0].category]">
+							<input type="text" ng-model="cust.category" />
+						</div></td>
+
+					<td><div ng-hide="editingData[cust.selected[0].qty]">{{cust.qty}}</div>
+						<div ng-show="editingData[cust.selected[0].qty]">
+							<input type="text" ng-model="cust.qty" />
+						</div></td>
+
+					<td><div ng-hide="editingData[cust.selected[0].price]">{{cust.price}}</div>
+						<div ng-show="editingData[cust.selected[0].price]">
+							<input type="text" ng-model="cust.price" />
+						</div></td>
+					<td>
+					<td><div ng-hide="editingData[cust.selected[0].notes]">{{cust.notes}}</div>
+						<div ng-show="editingData[cust.selected[0].notes]">
+							<input type="text" ng-model="cust.notes" />
+						</div></td>
+					<td>
+					<td><div>
+							<button ng-hide="editingData[cust.sr_No]"
+								ng-click="modify(cust)">Modify</button>
+						</div>
+						<div>
+							<button ng-show="editingData[cust.sr_No]"
+								ng-click="update(cust)">Update</button>
+						</div></td>
+					</td>
+				</tr>
+			</tbody>
+
+
+			<tbody>
+				<tr md-auto-select
+					ng-repeat="customer in customerData | orderBy: cust_Name | filter: searchText">
+
+					<td>
+						<div>{{customer.id}}</div>
+					</td>
+
+					<td><div>{{customer.cust_Name}}</div></td>
+
+					<td>
+						<div>{{customer.mobile}}</div>
+
+					</td>
+					<td>
+						<div>{{customer.email}}</div>
+
+					</td>
+					<td><div>{{customer.address}}</div></td>
+
+					<td>
+				</tr>
+			</tbody>
+		</table>
+		<tfoot>
+			<tr>
+
+				<td><strong>selected:</strong> {{selected}} <md-data-table-pagination
+						md-limit="query.limit" md-page="query.page"
+						md-total={{customerDataActual.length}}
+						md-trigger="onPaginationChange"> </md-data-table-pagination>
+			</tr>
+
+		</tfoot>
+		</md-data-table-container>
+	</div>
+
+	<div id="update">
+		<section layout="layout-sm=row">
+						<md-input-container flex> <label>Customer ID
+			</label> <input ng-model="selected[0].cust_id"> </md-input-container>
+
+			<md-input-container flex> <label>ID </label> <input
+				ng-model="selected[0].id"> </md-input-container>
+			<md-input-container flex> <label>Customer
+				Name </label> <input ng-model="selected[0].cust_Name"> </md-input-container>
+
+			<md-input-container flex> <label>Mobile
+			</label> <input ng-model="selected[0].mobile"> </md-input-container>
+			<md-input-container flex> <label>Email </label>
+			<input ng-model="selected[0].email"> </md-input-container>
+
+			<md-input-container flex> <label>Address
+			</label> <input ng-model="selected[0].address"> </md-input-container>
+		</section>
+
+		<section layout="row" layout-sm="column" layout-align="left left">
+			<md-button class="md-raised md-primary" ng-click="updateCust()">Update</md-button>
+		</section>
+
+	</div>
+
+
+	</md-content>

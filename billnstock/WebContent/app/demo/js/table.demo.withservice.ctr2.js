@@ -1,4 +1,4 @@
-angular.module('prostudyApp').controller(
+angular.module('stockApp').controller(
 		'nutritionController',
 		[
 				'$q',

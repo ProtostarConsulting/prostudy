@@ -1,4 +1,4 @@
-angular.module("prostudyApp").factory('objectFactory', objectFactoryFn);
+angular.module("stockApp").factory('objectFactory', objectFactoryFn);
 
 function objectFactoryFn($log) {
 

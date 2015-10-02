@@ -1,7 +1,7 @@
-angular.module("prostudyApp").factory('appEndpointSF', appEndpointSFFn);
+angular.module("stockApp").factory('appEndpointSF', appEndpointSFFn);
 
 function appEndpointSFFn($log) {
-	
+
 	var endpointFactory = {};
 	endpointFactory.is_service_ready = false;
 	// This will call the function to load services
@@ -19,7 +19,7 @@ function appEndpointSFFn($log) {
 
 		if (endpointFactory.is_service_ready) {
 			console.log("Already Initialized returning back...");
-			deferred.resolve();			
+			deferred.resolve();
 			return;
 		}
 
@@ -42,7 +42,57 @@ function appEndpointSFFn($log) {
 
 		}, apiRoot);
 
-	};
+		gapi.client.load('stockcustomerservice', 'v0.1', function() {
+			console.log("stockcustomerservice Loaded....");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
 
+		}, apiRoot);
+
+		gapi.client.load('addItemInBillServices', 'v0.1', function() {
+			console.log("addItemInBillServices Loaded....");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+
+		gapi.client.load('saveBillServices', 'v0.1', function() {
+			console.log("saveBillServices Loaded....");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+
+		gapi.client.load('stockServices', 'v0.1', function() {
+			console.log("stockServices Loaded....");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+
+		gapi.client.load('taxServices', 'v0.1', function() {
+			console.log("taxServices Loaded....");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+		
+		gapi.client.load('addItemInBillServices', 'v0.1', function() {
+			console.log("addItemInBillServices Loaded....");
+			endpointFactory.is_service_ready = true;
+			$scope.loadAllBillItems();
+			deferred.resolve();
+
+		}, apiRoot);
+
+		gapi.client.load('saveBillServices', 'v0.1', function() {
+			console.log("saveBillServices Loaded....");
+			endpointFactory.is_service_ready = true;
+			$scope.loadAllBills();
+			deferred.resolve();
+
+		}, apiRoot);
+
+	};	
 	return endpointFactory;
 }

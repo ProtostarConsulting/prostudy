@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="prostudyApp" ng-controller="indexCtr">
+<html lang="en" ng-app="stockApp" ng-controller="indexCtr">
 	<head>
 		<title>Pro Billing n Stock App</title>
 		<meta name="viewport" content="initial-scale=1" />
@@ -61,21 +61,38 @@
 							show-gt-md>
 								Home
 							</md-button>
-							<md-button ui-sref="student"
+							<md-button ui-sref="customer"
+							ng-click="close()" class="md-primary" show-gt-md>
+								Customer
+							</md-button> 
+<!-- 1							<md-button ui-sref="student"
 							ng-click="close()" class="md-primary" show-gt-md>
 								Invoice
-							</md-button>
-							<md-button ui-sref="exam"
+							</md-button> -->
+<!-- 2							<md-button ui-sref="exam"
 							ng-click="close()" class="md-primary" show-gt-md>
 								Stock
+							</md-button> -->
+						
+<!-- 3							<md-button
+							ui-sref="state2" ng-click="close()" class="md-primary" show-gt-md>
+								State2
+							</md-button> -->
+							<md-button
+							ui-sref="stock" ng-click="close()" class="md-primary" show-gt-md>
+								Stock
 							</md-button>
-							<md-button ui-sref="state1" ng-click="close()"
+							<md-button
+							ui-sref="invoice" ng-click="close()" class="md-primary" show-gt-md>
+								Invoice
+							</md-button>
+	<md-button ui-sref="state1" ng-click="close()"
 							class="md-primary" show-gt-md>
 								state1
 							</md-button>
 							<md-button
-							ui-sref="state2" ng-click="close()" class="md-primary" show-gt-md>
-								State2
+							ui-sref="fileupload" ng-click="close()" class="md-primary" show-gt-md>
+								File Upload
 							</md-button>
 						</md-content>
 					</md-sidenav>
@@ -230,12 +247,16 @@
 		<script src="/app/common/app.object.service.js"></script>
 		<script src="/app/common/google.endpoint.service.js"></script>
 		<script src="/home.ctr.js"></script>
+		<script src="/app/customer/js/customer.ctr.js"></script>
 		<script src="/app/demo/js/state.ctr.js"></script>
-		<script src="/app/student/js/student.ctr.js"></script>
-		<script src="/app/student/js/student.list.ctr.js"></script>
-		<script src="/app/exam/js/exam.ctr.js"></script>
-		<script src="/app/question/js/question.ctr.js"></script>
-		<script src="/app/question/js/questionlist.ctr.js"></script>
+ 	<script src="/app/student/js/student.ctr.js"></script>
+<!--1st change		<script src="/app/student/js/student.list.ctr.js"></script> -->
+<!--2nd change 		<script src="/app/exam/js/exam.ctr.js"></script> -->
+<!--3rd change 		<script src="/app/question/js/question.ctr.js"></script>
+		<script src="/app/question/js/questionlist.ctr.js"></script> -->
+		<script src="/app/stock/js/stockItem.ctr.js"></script>
+		<script src="/app/invoice/js/invoice.ctr.js"></script>
+		<script src="/app/fileupload/js/fileupload.ctr.js"></script>
 		
 		<script src="/app/demo/js/table.demo.data.service.js"></script>
 		<script src="/app/demo/js/table.demo.withservice.ctr2.js"></script>

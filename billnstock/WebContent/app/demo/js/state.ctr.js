@@ -1,4 +1,4 @@
-angular.module("prostudyApp")
+angular.module("stockApp")
 		.controller(
 				"statesPageCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,

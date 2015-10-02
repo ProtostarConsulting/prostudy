@@ -5,7 +5,7 @@ function init() {
 }
 
 angular
-		.module("prostudyApp")
+		.module("stockApp")
 		.controller(
 				"indexCtr",
 				[
@@ -13,8 +13,8 @@ angular
 						'$window',
 						'$mdToast',
 						'$mdBottomSheet',
-						/*'appEndpointSF',*/
-						function($scope, $window, $mdToast, $mdBottomSheet/*, appEndpointSF*/) {
+					
+						function($scope, $window, $mdToast, $mdBottomSheet) {
 							console.log("Inside indexCtr");
 
 							$scope.showSimpleToast = function() {

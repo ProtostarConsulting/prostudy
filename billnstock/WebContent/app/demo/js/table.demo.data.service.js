@@ -1,4 +1,4 @@
-angular.module("prostudyApp").factory('tableTestDataFactory',
+angular.module("stockApp").factory('tableTestDataFactory',
 		tableTestDataFactoryFn);
 
 function tableTestDataFactoryFn($log, $q, $http) {

@@ -1,5 +1,5 @@
 angular
-		.module("prostudyApp")
+		.module("stockApp")
 		.controller(
 				"homeCtr",
 				[
