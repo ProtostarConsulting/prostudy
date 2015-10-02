@@ -1,0 +1,96 @@
+{"items":
+                      [                 
+                          {
+							"description" : "Solve: 1*1o=________.",
+								"note" : "Hint: select only one option",
+								"questionId" : 1,
+								"option1" : 	"10",
+								"option2" : "1",
+								"option3" : "100",
+								"option4" : "2",
+								"correctAns" : 1
+							}, {
+								"description" : "Solve: 2*2=__________.",
+								"note" : "Hint: select only one option",
+								"questionId" : 2,
+								"option1" : "4",
+								"option2" : "2",
+								"option3" : "22",
+								"option4" : "0",
+								"correctAns" : 1
+							}, {
+								"description" : 1*0?",
+								"note" : "Hint: select only one option",
+								"questionId" : 3,
+								"option1" : 0,
+								"option2" : 10,
+								"option3" : 1,
+								"option4" : 01,
+								"correctAns" : 1
+
+							}, {
+								"description" : "1210101101010*0=?",
+								"note" : "Hint: select only one option",
+								"questionId" : 4,
+								"option1" : "0",
+								"option2" : "12121212000",
+								"option3" : "1",
+								"option4" : "123123200",
+								"correctAns" : 1
+							},{
+								"description" : "100 * 5=?",
+								"note" : "Hint: select only one option",
+								"questionId" : 5,
+								"option1" : "500",
+								"option2" : "5",
+								"option3" : "00",
+								"option4" : "1",
+								"correctAns" : 1
+							}, {
+								"description" : "5*5=?",
+								"note" : "Hint: select only one option",
+								"questionId" : 6,
+								"option1" : "25",
+								"option2" : "50",
+								"option3" : "55",
+								"option4" : 	"00",
+								"correctAns" : 1
+							}, {
+								"description" : "Solve: 345+643=",
+								"note" : "Hint: select only one option",
+								"questionId" : 7,
+								"option1" : "988",
+								"option2" : "888",
+								"option3" : "788",
+								"option4" : "588",
+								"correctAns" : 1
+							}, {
+								"description" : "Solve: 750+219=",
+								"note" : "Hint: select only one option",
+								"questionId" : 8,
+								"option1" : 979,
+								"option2" : "826",
+								"option3" : "772",
+								"option4" : 881,
+								"correctAns" : 1
+							} , {
+								"description" : "Solve: 9 added to 28 gives:",
+								"note" : "Hint: select only one option",
+								"questionId" : 9,
+								"option1" : "37",
+								"option2" : "47",
+								"option3" : "57",
+								"option4" : "67",
+								"correctAns" : 1
+							} , {
+								"description" : "Solve: 319+323=",
+								"note" : "Hint: select only one option",
+								"questionId" : 10,
+								"option1" : "642",
+								"option2" : "542",
+								"option3" : "342",
+								"option4" : "742",
+								"correctAns" : 1
+							}]
+					
+	}//end of json object

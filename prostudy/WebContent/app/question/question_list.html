@@ -69,6 +69,7 @@
 						<div ng-show="editingData[teacher.description]">
 							<input type="text" ng-model="teacher.option4" />
 						</div></td>
+						
 						<td>
 						<div ng-hide="editingData[teacher.description]">
 							{{teacher.correctAns}}
@@ -76,12 +77,15 @@
 						<div ng-show="editingData[teacher.description]">
 							<input type="text" ng-model="teacher.correctAns" />
 						</div></td>
+						
 						<td>
 						<md-button aria-label="Modify Row" ng-hide="editingData[teacher.description]" ng-click="modify(teacher)">
 							<ng-md-icon icon="edit"></ng-md-icon>
 						</md-button>
+						
 						<md-button aria-label="Save Row" ng-show="editingData[teacher.description]" ng-click="update(teacher)">
 							<ng-md-icon icon="save"></ng-md-icon>
+							
 						</md-button>
 					</tr>
 				</tbody>

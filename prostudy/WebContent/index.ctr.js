@@ -4,24 +4,22 @@ function init() {
 	window.initGAPI(); // Calls the init function defined on the window
 }
 
-angular
-		.module("prostudyApp")
-		.controller(
-				"indexCtr",
+angular.module("prostudyApp").controller("indexCtr",
 				[
 						'$scope',
 						'$window',
 						'$mdToast',
 						'$mdBottomSheet',
 						/*'appEndpointSF',*/
-						function($scope, $window, $mdToast, $mdBottomSheet/*, appEndpointSF*/) {
+						function($scope, $window, $mdToast, $mdBottomSheet/*, appEndpointSF*/) 
+						{
 							console.log("Inside indexCtr");
 
 							$scope.showSimpleToast = function() {
 								$mdToast.show($mdToast.simple().content(
 										'Customer Saved!').position("top")
 										.hideDelay(3000));
-							};
+						};
 
 							$scope.loadCustomerList = function() {
 								console.log("loadCustomerList");
@@ -36,7 +34,8 @@ angular
 								gapi.client.customerservice
 										.addCustomer($scope.cust)
 										.execute(
-												function(resp) {
+												function(resp) 
+												{
 													console
 															.log("Add Customer Response: "
 																	+ resp.msg);
