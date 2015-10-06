@@ -3,9 +3,10 @@ var app = angular.module('StarterApp', ['ngMaterial', 'ngMdIcons']);
 app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog', function($scope, $mdBottomSheet, $mdSidenav, $mdDialog){
   $scope.toggleSidenav = function(menuId) {
     $mdSidenav(menuId).toggle();
-  };
- 	
+  
 
+  };
+  
   $scope.alert = '';
   $scope.showListBottomSheet = function($event) {
     $scope.alert = '';
@@ -72,18 +73,15 @@ function DialogController($scope, $mdDialog) {
     $mdDialog.hide(answer);
   };
 };
-
-
-
 app.config(function($mdThemingProvider) {
-  var customBlueMap = 		$mdThemingProvider.extendPalette('light-blue', {
-    'contrastDefaultColor': 'light',
+  var customBlueMap = 		$mdThemingProvider.extendPalette('grey', {
+    'contrastDefaultColor': 'dark',
     'contrastDarkColors': ['50'],
     '50': 'ffffff'
   });
-  $mdThemingProvider.definePalette('customBlue', customBlueMap);
+  $mdThemingProvider.definePalette('grey', customBlueMap);
   $mdThemingProvider.theme('default')
-    .primaryPalette('customBlue', {
+    .primaryPalette('grey', {
       'default': '500',
       'hue-1': '50'
     })
