@@ -4,109 +4,20 @@
 	window.initGAPI(); // Calls the init function defined on the window
 }*/
 
-<<<<<<< .mine
+
 angular.module("prostudyApp").controller(
 		"indexCtr",
 		function($scope, $window, $q, $timeout, $mdToast, $mdBottomSheet, appEndpointSF) {
 			console.log("Inside indexCtr");
-=======
-angular.module("prostudyApp").controller("indexCtr",
-				[
-						'$scope',
-						'$window',
-						'$mdToast',
-						'$mdBottomSheet',
-						/*'appEndpointSF',*/
-						function($scope, $window, $mdToast, $mdBottomSheet/*, appEndpointSF*/) 
-						{
-							console.log("Inside indexCtr");
->>>>>>> .r130
 
-<<<<<<< .mine
-			$scope.showSimpleToast = function() {
-				$mdToast.show($mdToast.simple().content('Customer Saved!')
-						.position("top").hideDelay(3000));
-			};
-=======
+							console.log("Inside indexCtr");
+
 							$scope.showSimpleToast = function() {
 								$mdToast.show($mdToast.simple().content(
 										'Customer Saved!').position("top")
 										.hideDelay(3000));
 						};
->>>>>>> .r130
 
-			$scope.loadCustomerList = function() {
-				console.log("loadCustomerList");
-				gapi.client.customerservice.getAllCustomers().execute(
-						function(resp) {
-							console.log(resp);
-						});
-			};
-
-<<<<<<< .mine
-			$scope.addCustomer = function() {
-				console.log("in side addCustomer");
-				gapi.client.customerservice.addCustomer($scope.cust).execute(
-						function(resp) {
-							console.log("Add Customer Response: " + resp.msg);
-							$scope.showSimpleToast();
-=======
-							$scope.addCustomer = function() {
-								console.log("in side addCustomer");
-								gapi.client.customerservice
-										.addCustomer($scope.cust)
-										.execute(
-												function(resp) 
-												{
-													console
-															.log("Add Customer Response: "
-																	+ resp.msg);
-													$scope.showSimpleToast();
-													$scope.cust = $scope
-															.newCustomer();
-
-												})
-							};// end of call to addCustomer
-
-							$scope.newCustomer = function() {
-								return {
-									firstName : '',
-									lastName : '',
-									mobileNo : '',
-									email : '',
-									address : {
-										line1 : '',
-										line2 : '',
-										city : '',
-										state : '',
-										pin : '',
-									}
-								};
-							}
-
->>>>>>> .r130
-							$scope.cust = $scope.newCustomer();
-
-						})
-			};// end of call to addCustomer
-
-			$scope.newCustomer = function() {
-				return {
-					firstName : '',
-					lastName : '',
-					mobileNo : '',
-					email : '',
-					address : {
-						line1 : '',
-						line2 : '',
-						city : '',
-						state : '',
-						pin : '',
-					}
-				};
-			}
-
-			$scope.cust = $scope.newCustomer();
 
 			// $window.initGAPI = function() {}
 			$scope.initGAPI = function() {
@@ -150,8 +61,8 @@ angular.module("prostudyApp").controller("indexCtr",
 			};
 
 			// initialize local objects
-			$scope.customer = $scope.newCustomer();
-			$scope.customerList = {};
+		/*	$scope.customer = $scope.newCustomer();
+			$scope.customerList = {};*/
 			$scope.initGAPI();
 
 		}).controller('AppCtrl',

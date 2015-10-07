@@ -1,23 +1,26 @@
-<section layout="row" layout-sm="column" layout-align="center center">
-
-	<!-- <div  style="display: none;" id="questionForm"> -->
-	<md-content layout-padding>
-		<form name="myQuestionForm" ng-submit="myQuestionForm.$valid && addQuestionToDB()">
-			<strong> Creating Question For Exam</strong>
-			<!-- <md-input-container flex> <label>ID
-			</label> <input ng-model="question.id"> </md-input-container>-->
-
-			<md-input-container md-is-error="myQuestionForm.description.$invalid && (myQuestionForm.$submitted || myQuestionForm.description.$dirty)">
+<div layout="column" layout-padding>
+	<md-content>
+		<section>
+			<md-subheader class="md-primary">	
+				<h3 class="md-headline">New Question</h3>
+			</md-subheader>
+			<form name="userForm">
+				<div layout="row" layout-sm="column">
+					<div layout="column" flex>
+						<md-input-container md-is-error="myQuestionForm.description.$invalid && (myQuestionForm.$submitted || myQuestionForm.description.$dirty)">
 				<label>Question Description:</label>
-				<input  name="description" id="description" ng-required="true" ng-model="question.description">
+				<text-angular name="description" id="description" ng-required="true" ng-model="question.description"></text-angular>
+				<!--<input  name="description" id="description" ng-required="true" ng-model="question.description">-->
+				
 				<div ng-messages="myQuestionForm.description.$error" ng-if="myQuestionForm.description.$submitted || myQuestionForm.description.$touched">
 					<div ng-message="required">
 						Please enter question.
 					</div>
 				</div>
 			</md-input-container>
-
-			<md-input-container md-is-error="myQuestionForm.note.$invalid && (myQuestionForm.$submitted || myQuestionForm.note.$dirty)">
+					</div>
+					<div layout="column" flex>
+						<md-input-container md-is-error="myQuestionForm.note.$invalid && (myQuestionForm.$submitted || myQuestionForm.note.$dirty)">
 				<label>Note</label>
 				<input name="note" id="note" ng-required="true" ng-model="question.note">
 				<div ng-messages="myQuestionForm.note.$error" ng-if="myQuestionForm.note.$submitted || myQuestionForm.note.$touched">
@@ -79,21 +82,21 @@
 					</div>
 				</div>
 			</md-input-container>
+					</div>
+				</div>
 
-			<div>
-				<md-button  class="md-raised md-primary">
-					submit
-				</md-button>
-				<md-button class="md-raised md-primary" ng-click="loadGetQuestionList()">
-					List of Question
-				</md-button>
-				<md-button class="md-raised" ng-click="cancelButtonClick()">
-					cancel
-				</md-button>
-			</div>
+			</form>
+			
+		</section>
 
-		</form>
+		<section layout="row" layout-sm="column" layout-align="left left">
+			<md-button class="md-raised">
+				Cancel
+			</md-button>
+			<md-button class="md-raised md-primary" ng-click="">
+				Submit
+			</md-button>
+
+		</section>
 	</md-content>
-	<!-- </div> -->
-</section>
-
+</div>

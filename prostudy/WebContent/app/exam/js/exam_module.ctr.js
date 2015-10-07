@@ -1,35 +1,24 @@
 angular.module("prostudyApp").controller(
-		"studentPageCtr",
+		"examModuleCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, objectFactory, appEndpointSF) {
 
-			$log.debug("Inside studentPageCtr");
-
-			$scope.showSimpleToast = function() {
-				$mdToast.show($mdToast.simple().content('Student Data Saved!').position(
-						"top").hideDelay(3000));
-			};
+			$log.debug("Inside examModuleCtr");
 
 			$scope.testGAPICall = function() {
 				console.log("in side testGAPICall");
-				var cars = appEndpointSF.getQuestionService().getCars().execute(
-						function(resp) {
-							$log.debug("resp:" + resp);				
+				var cars = appEndpointSF.getQuestionService().getCars()
+						.execute(function(resp) {
+							$log.debug("debug resp:" + resp);
+							$log.info("info resp:" + resp);
+							$log.warn("warn resp:" + resp);
+							//$log.error("error resp:" + resp);
 							var items = resp.items;
 							$log.debug("cars:" + resp.items);
 
 						});
-				
 
 			};
-			
-			$scope.addStudentToDB = function() {
-				$log.debug("in side addStudent. added..."
-						+ $scope.studentVM.firstName);
-				$scope.showSimpleToast();
-			};// end of call to addStudent
-
-			$scope.studentVM = objectFactory.newStudent();
 
 			/* Setup menu */
 			$scope.toggleRight = buildToggler('right');

@@ -11,16 +11,17 @@ function appEndpointSFFn($log) {
 	};
 
 	endpointFactory.getQuestionService = function() {
+		$log.debug("###Inside getQuestionService");		
 		return gapi.client.questionService;
 	};
 
 	endpointFactory.loadAppGoogleServices = function(deferred) {
-		console.log("###Inside appEndpointSF.loadAppGoogleServices###");
+		$log.debug("###Inside Google appEndpointSF.loadAppGoogleServices###");
 
 		if (endpointFactory.is_service_ready) {
-			console.log("Already Initialized returning back...");
+			$log.debug("Already Initialized returning back...");
 			deferred.resolve();			
-			return;
+			return deferred.promise;
 		}
 
 		var apiRoot = '//' + window.location.host + '/_ah/api';
@@ -31,16 +32,18 @@ function appEndpointSFFn($log) {
 		// gapi.client.load()
 
 		gapi.client.load('examService', 'v0.1', function() {
-			console.log("exameService Loaded....");
+			$log.debug("exameService Loaded....");
 			// $scope.addTaxToDB();
 		}, apiRoot);
 
 		gapi.client.load('questionService', 'v0.1', function() {
-			console.log("questionService Loaded....");
+			$log.debug("questionService Loaded....");
 			endpointFactory.is_service_ready = true;
 			deferred.resolve();
 
 		}, apiRoot);
+		
+		return deferred.promise;
 
 	};
 

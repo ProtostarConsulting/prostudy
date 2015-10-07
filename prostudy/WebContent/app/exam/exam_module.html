@@ -1,4 +1,4 @@
-<div layout="column" ng-controller="studentPageCtr">
+<div layout="column">
 	<div>
 		<section layout="row">
 			<!-- View Specific Toolbar-->
@@ -6,14 +6,36 @@
 				<span flex></span>
 
 				<section layout="row">
-					<md-button class="md-icon-button md-primary" aria-label="Settings">
-						<md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+
+					<div hide-sm layout= "row" layout-align = "end start">
+						<md-button ui-sref="exam.question" ng-click="close()" class="md-primary">
+							Add New Question
+						</md-button>
+						<md-button ui-sref="exam.questionlist" ng-click="close()" class="md-primary">
+							Questions List
+						</md-button>
+						<md-button ui-sref="exam.view" ng-click="close()"
+						class="md-primary">
+							View Current Exam Live
+						</md-button>
+						<md-button ng-click="testGAPICall()"
+						class="md-primary">
+							Test Link
+						</md-button>
+						<!--
+						<a ui-sref="student.add">student add</a>
+						<a ui-sref="student.list">student list</a>-->
+
+					</div>
+
+					<!--<md-button class="md-icon-button md-primary" aria-label="Settings">
+					<md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
 					</md-button>
 					<md-button ui-sref="exam.view" ng-click="close()"
 					class="md-primary">
-						View Current Exam Live
+					View Current Exam Live
 					</md-button>
-					<!--
+
 					<md-button ui-sref="home" class="md-icon-button md-accent" aria-label="Favorite">
 					<md-icon md-svg-icon="img/icons/print.svg"></md-icon>
 					</md-button>
@@ -80,21 +102,23 @@
 	</div>
 
 	<div ui-view>
-		This is a default template for student module!
+		This is a default template for exam module!
+		<div layout= "column" layout-align = "start start">
+			<md-button ui-sref="exam.question" ng-click="close()" class="md-primary">
+				Add New Question
+			</md-button>
+			<md-button ui-sref="exam.questionlist" ng-click="close()" class="md-primary">
+				Questions List
+			</md-button>
+			<md-button ui-sref="exam.view" ng-click="close()"
+			class="md-primary">
+				View Current Exam Live
+			</md-button>
+
+			<a ui-sref="student.add">student add</a>
+			<a ui-sref="student.list">student list</a>
+		</div>
 	</div>
 	<!-- We'll also add some navigation: -->
-
-	<md-button ui-sref="exam.question" ng-click="close()" class="md-primary">
-		Add New Question
-	</md-button>
-	<md-button ui-sref="exam.questionlist" ng-click="close()" class="md-primary">
-		Questions List
-	</md-button>
-	<md-button ui-sref="exam.view" ng-click="close()"
-	class="md-primary">
-		View Current Exam Live
-	</md-button>
-	<a ui-sref="student.add">student add</a>
-	<a ui-sref="student.list">student list</a>
 
 </div>
