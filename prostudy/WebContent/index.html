@@ -10,7 +10,7 @@
 		<link rel="stylesheet"	href="/lib/base/css/xeditable.css">
 		<link rel="stylesheet"	href="/lib/base/css/bootstrap.min.css">
 		<link rel="stylesheet"	href="/lib/base/css/md-data-table.min.css">
-
+		<link rel="stylesheet"	href="/lib/base/css/textAngular.css">
 	</head>
 	<body layout="column">
 		<!-- <div layout="column" layout-fill> -->
@@ -103,11 +103,8 @@
 							<div layout="column" layout-align="top center">
 								<!--<div ng-view></div>-->
 								<div ui-view>
-
 									<!--This is the center page of all main modules for the index module. -->
-
 								</div>
-
 							</div>
 						</md-card>
 						<!--This is a botton section of the app-->
@@ -229,20 +226,27 @@
 		<script	src="/lib/base/ui-bootstrap-tpls.min.js"></script>
 		<script	src="/lib/base/angular-ui-router.min.js"></script>
 		<script src="/lib/base/xeditable.js"></script>
+		<script src="/lib/base/textAngular-rangy.min.js"></script>
+		<script src="/lib/base/textAngular-sanitize.min.js"></script>
+		<script src="/lib/base/textAngular.min.js"></script>
 
 		<script src="/lib/base/googleapi.client.js"></script>
 
 		<!-- App JS Dependencies -->
 		<script src="/app/common/common.app.js"></script>
-		<script src="index.ctr.js"></script>
+		
 
 		<!-- Load other view/service/controllers files-->
 		<script src="/app/common/app.object.service.js"></script>
 		<script src="/app/common/google.endpoint.service.js"></script>
+		
+		
 		<script src="/home.ctr.js"></script>
 		<script src="/app/demo/js/state.ctr.js"></script>
+		<script src="/app/student/js/student_module.ctr.js"></script>
 		<script src="/app/student/js/student.ctr.js"></script>
 		<script src="/app/student/js/student.list.ctr.js"></script>
+		<script src="/app/exam/js/exam_module.ctr.js"></script>
 		<script src="/app/exam/js/exam.ctr.js"></script>
 		<script src="/app/question/js/question.ctr.js"></script>
 		<script src="/app/question/js/questionlist.ctr.js"></script>
@@ -250,12 +254,7 @@
 		<script src="/app/test/js/table.demo.data.service.js"></script>
 		<script src="/app/demo/js/table.demo.withservice.ctr2.js"></script>
 
-		<script>
-			/* Init google endpoint API */
-			window.onload = function() {
-				init();
-			};
-		</script>
+		<script src="index.ctr.js"></script>	
 
 	</body>
 </html>
