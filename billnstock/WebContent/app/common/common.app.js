@@ -36,7 +36,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('stock', {
 		url : "/stock",
 		templateUrl : '/app/stock/stock_module.html',
-		controller : 'addItemStockCtr'
+		controller : 'stockModuleCtr'
 	}).state('stock.stockItemAdd', {
 		url : "/stockItemAdd",
 		templateUrl : '/app/stock/stockItem_add.html',
