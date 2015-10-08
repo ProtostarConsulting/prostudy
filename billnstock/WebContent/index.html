@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="stockApp" ng-controller="indexCtr">
 	<head>
-		<title>Pro Billing n Stock App</title>
+		<title>ProStudy App</title>
 		<meta name="viewport" content="initial-scale=1" />
 
 		<link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
@@ -10,7 +10,7 @@
 		<link rel="stylesheet"	href="/lib/base/css/xeditable.css">
 		<link rel="stylesheet"	href="/lib/base/css/bootstrap.min.css">
 		<link rel="stylesheet"	href="/lib/base/css/md-data-table.min.css">
-
+		<link rel="stylesheet"	href="/lib/base/css/textAngular.css">
 	</head>
 	<body layout="column">
 		<!-- <div layout="column" layout-fill> -->
@@ -18,7 +18,7 @@
 			<!-- Top Navigation Pane -->
 			<md-toolbar>
 				<div class="md-toolbar-tools">
-					<span>Pro Billing n Stock-do it smarter way!</span>
+					<span>ProStudy - Where learning meets teaching, self study, tutorials and practice!</span>
 					<!-- fill up the space between left and right area -->
 					<span flex></span>
 					<section layout="row">
@@ -40,6 +40,15 @@
 						ng-click="toggleRight()">
 							<md-icon
 							md-svg-icon="img/icons/more_vert.svg"></md-icon>
+						</md-button>
+						<md-button aria-label="Search" ng-click="showSearch = !showSearch">
+							<ng-md-icon icon="search"></ng-md-icon>
+						</md-button>
+
+						<md-button aria-label="Open Settings"
+						ng-click="showListBottomSheet($event)">
+							<ng-md-icon
+							icon="more_vert"></ng-md-icon>
 						</md-button>
 					</section>
 				</div>
@@ -63,21 +72,10 @@
 							</md-button>
 							<md-button ui-sref="customer"
 							ng-click="close()" class="md-primary" show-gt-md>
+
 								Customer
-							</md-button> 
-<!-- 1							<md-button ui-sref="student"
-							ng-click="close()" class="md-primary" show-gt-md>
-								Invoice
-							</md-button> -->
-<!-- 2							<md-button ui-sref="exam"
-							ng-click="close()" class="md-primary" show-gt-md>
-								Stock
-							</md-button> -->
-						
-<!-- 3							<md-button
-							ui-sref="state2" ng-click="close()" class="md-primary" show-gt-md>
-								State2
-							</md-button> -->
+							</md-button>
+
 							<md-button
 							ui-sref="stock" ng-click="close()" class="md-primary" show-gt-md>
 								Stock
@@ -86,13 +84,17 @@
 							ui-sref="invoice" ng-click="close()" class="md-primary" show-gt-md>
 								Invoice
 							</md-button>
-	<md-button ui-sref="state1" ng-click="close()"
+							<md-button ui-sref="state1" ng-click="close()"
 							class="md-primary" show-gt-md>
 								state1
 							</md-button>
 							<md-button
 							ui-sref="fileupload" ng-click="close()" class="md-primary" show-gt-md>
 								File Upload
+							</md-button>
+							<md-button ui-sref="student"
+							ng-click="close()" class="md-primary" show-gt-md>
+								Student
 							</md-button>
 						</md-content>
 					</md-sidenav>
@@ -111,11 +113,8 @@
 							<div layout="column" layout-align="top center">
 								<!--<div ng-view></div>-->
 								<div ui-view>
-
 									<!--This is the center page of all main modules for the index module. -->
-
 								</div>
-
 							</div>
 						</md-card>
 						<!--This is a botton section of the app-->
@@ -229,6 +228,7 @@
 		<script src="/lib/base/angular-aria.min.js"></script>
 		<script src="/lib/base/angular-messages.min.js"></script>
 		<script src="/lib/base/angular-resource.min.js"></script>
+		<script src="/lib/base/angular-material-icons.min.js"></script>
 
 		<script src="/lib/base/angular-material.min.js"></script>
 		<script src="/lib/base/md-data-table.min.js"></script>
@@ -236,38 +236,35 @@
 		<script	src="/lib/base/ui-bootstrap-tpls.min.js"></script>
 		<script	src="/lib/base/angular-ui-router.min.js"></script>
 		<script src="/lib/base/xeditable.js"></script>
+		<script src="/lib/base/textAngular-rangy.min.js"></script>
+		<script src="/lib/base/textAngular-sanitize.min.js"></script>
+		<script src="/lib/base/textAngular.min.js"></script>
 
 		<script src="/lib/base/googleapi.client.js"></script>
 
 		<!-- App JS Dependencies -->
 		<script src="/app/common/common.app.js"></script>
-		<script src="index.ctr.js"></script>
 
 		<!-- Load other view/service/controllers files-->
 		<script src="/app/common/app.object.service.js"></script>
 		<script src="/app/common/google.endpoint.service.js"></script>
+
 		<script src="/home.ctr.js"></script>
 		<script src="/app/customer/js/customer.ctr.js"></script>
 		<script src="/app/demo/js/state.ctr.js"></script>
- 	<script src="/app/student/js/student.ctr.js"></script>
-<!--1st change		<script src="/app/student/js/student.list.ctr.js"></script> -->
-<!--2nd change 		<script src="/app/exam/js/exam.ctr.js"></script> -->
-<!--3rd change 		<script src="/app/question/js/question.ctr.js"></script>
-		<script src="/app/question/js/questionlist.ctr.js"></script> -->
+
 		<script src="/app/stock/js/stockItem.ctr.js"></script>
-		<script src="/app/invoice/js/invoice.ctr.js"></script>
-		<script src="/app/fileupload/js/fileupload.ctr.js"></script>
-		
-		<script src="/app/demo/js/table.demo.data.service.js"></script>
+		<!--<script src="/app/invoice/js/invoice.ctr.js"></script>
+		<script src="/app/fileupload/js/fileupload.ctr.js"></script>-->
+
+		<script src="/app/test/js/table.demo.data.service.js"></script>
 		<script src="/app/demo/js/table.demo.withservice.ctr2.js"></script>
+
+		<script src="/app/student/js/student_module.ctr.js"></script>
+		<script src="/app/student/js/student.ctr.js"></script>
+		<script src="/app/student/js/student.list.ctr.js"></script>
 		
-		
-		<script>
-			/* Init google endpoint API */
-			window.onload = function() {
-				init();
-			};
-		</script>
+		<script src="index.ctr.js"></script>
 
 	</body>
 </html>

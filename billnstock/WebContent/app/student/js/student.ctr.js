@@ -1,7 +1,7 @@
 angular.module("stockApp").controller(
 		"studentPageCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, objectFactory) {
+				$log, objectFactory, appEndpointSF) {
 
 			$log.debug("Inside studentPageCtr");
 
@@ -10,6 +10,19 @@ angular.module("stockApp").controller(
 						"top").hideDelay(3000));
 			};
 
+			$scope.testGAPICall = function() {
+				console.log("in side testGAPICall");
+				var cars = appEndpointSF.getQuestionService().getCars().execute(
+						function(resp) {
+							$log.debug("resp:" + resp);				
+							var items = resp.items;
+							$log.debug("cars:" + resp.items);
+
+						});
+				
+
+			};
+			
 			$scope.addStudentToDB = function() {
 				$log.debug("in side addStudent. added..."
 						+ $scope.studentVM.firstName);

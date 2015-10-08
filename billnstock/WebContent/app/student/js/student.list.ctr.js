@@ -2,7 +2,7 @@ angular.module("stockApp")
 		.controller(
 				"studentListPageCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $log, tableTestDataFactory) {
+						$mdUtil, $log, $q, tableTestDataFactory) {
 					console.log("Inside studentListPageCtr");
 					// console.log("Via Serice:" +
 					// customerservice.addCustomer());
@@ -12,28 +12,7 @@ angular.module("stockApp")
 								3000));
 					};
 
-					/*$scope.getCustomerList = function() {
-						console.log("getCustomerList");
-
-					};
-
 					
-					$scope.studList = [ {
-						firstName : 'Ram',
-						lastName : 'L',
-						mobileNo : '89078923',
-						email : 'a@b'
-					}, {
-						firstName : 'Sham',
-						lastName : 'L',
-						mobileNo : '89078923',
-						email : 'a@b'
-					}, {
-						firstName : 'Raj',
-						lastName : 'L',
-						mobileNo : '89078923',
-						email : 'a@b'
-					} ]*/
 					
 					$log.debug("inside ctr before service get $scope.items:"
 							+ $scope.items);

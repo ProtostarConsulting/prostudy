@@ -10,11 +10,24 @@
 		<servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
 		<init-param>
 			<param-name>services</param-name>
-			<param-value>com.protostar.billingnstock.cust.services.CustomerService,com.protostar.billingnstock.stock.services.Add_Item_In_BillServices,com.protostar.billingnstock.stock.services.SaveInvoiceServices,com.protostar.billingnstock.stock.services.StockItemService,com.protostar.billingnstock.tax.services.TaxServices,com.protostar.billnstock.service.ExamService,com.protostar.billnstock.service.QuestionService,com.protostar.billnstock.service.TestService</param-value>
+			<param-value>com.protostar.billingnstock.cust.services.CustomerService,com.protostar.billnstock.service.ExamService,com.protostar.billnstock.service.QuestionService,com.protostar.billnstock.service.TestService</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>SystemServiceServlet</servlet-name>
 		<url-pattern>/_ah/spi/*</url-pattern>
 	</servlet-mapping>
+	<filter>
+		<filter-name>ObjectifyFilter</filter-name>
+		<filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>ObjectifyFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<listener>
+    <listener-class>
+        com.protostar.billnstock.until.data.AppServletContextListener
+    </listener-class>
+    </listener>
 </web-app>

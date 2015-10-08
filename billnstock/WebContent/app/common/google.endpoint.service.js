@@ -1,7 +1,7 @@
 angular.module("stockApp").factory('appEndpointSF', appEndpointSFFn);
 
 function appEndpointSFFn($log) {
-
+	
 	var endpointFactory = {};
 	endpointFactory.is_service_ready = false;
 	// This will call the function to load services
@@ -11,16 +11,17 @@ function appEndpointSFFn($log) {
 	};
 
 	endpointFactory.getQuestionService = function() {
+		$log.debug("###Inside getQuestionService");		
 		return gapi.client.questionService;
 	};
 
 	endpointFactory.loadAppGoogleServices = function(deferred) {
-		console.log("###Inside appEndpointSF.loadAppGoogleServices###");
+		$log.debug("###Inside Google appEndpointSF.loadAppGoogleServices###");
 
 		if (endpointFactory.is_service_ready) {
-			console.log("Already Initialized returning back...");
-			deferred.resolve();
-			return;
+			$log.debug("Already Initialized returning back...");
+			deferred.resolve();			
+			return deferred.promise;
 		}
 
 		var apiRoot = '//' + window.location.host + '/_ah/api';
@@ -31,68 +32,20 @@ function appEndpointSFFn($log) {
 		// gapi.client.load()
 
 		gapi.client.load('examService', 'v0.1', function() {
-			console.log("exameService Loaded....");
+			$log.debug("exameService Loaded....");
 			// $scope.addTaxToDB();
 		}, apiRoot);
 
 		gapi.client.load('questionService', 'v0.1', function() {
-			console.log("questionService Loaded....");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
-		}, apiRoot);
-
-		gapi.client.load('stockcustomerservice', 'v0.1', function() {
-			console.log("stockcustomerservice Loaded....");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
-		}, apiRoot);
-
-		gapi.client.load('addItemInBillServices', 'v0.1', function() {
-			console.log("addItemInBillServices Loaded....");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
-		}, apiRoot);
-
-		gapi.client.load('saveBillServices', 'v0.1', function() {
-			console.log("saveBillServices Loaded....");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
-		}, apiRoot);
-
-		gapi.client.load('stockServices', 'v0.1', function() {
-			console.log("stockServices Loaded....");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
-		}, apiRoot);
-
-		gapi.client.load('taxServices', 'v0.1', function() {
-			console.log("taxServices Loaded....");
+			$log.debug("questionService Loaded....");
 			endpointFactory.is_service_ready = true;
 			deferred.resolve();
 
 		}, apiRoot);
 		
-		gapi.client.load('addItemInBillServices', 'v0.1', function() {
-			console.log("addItemInBillServices Loaded....");
-			endpointFactory.is_service_ready = true;
-			$scope.loadAllBillItems();
-			deferred.resolve();
+		return deferred.promise;
 
-		}, apiRoot);
+	};
 
-		gapi.client.load('saveBillServices', 'v0.1', function() {
-			console.log("saveBillServices Loaded....");
-			endpointFactory.is_service_ready = true;
-			$scope.loadAllBills();
-			deferred.resolve();
-
-		}, apiRoot);
-
-	};	
 	return endpointFactory;
 }
