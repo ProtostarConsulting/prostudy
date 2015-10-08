@@ -18,7 +18,8 @@
 			<!-- Top Navigation Pane -->
 			<md-toolbar>
 				<div class="md-toolbar-tools">
-					<span>ProStudy - Where learning meets teaching, self study, tutorials and practice!</span>
+					<span hide-sm>ProStudy - Where learning meets teaching, self study, tutorials and practice!</span>
+					<span hide-gt-sm>ProStudy</span>
 					<!-- fill up the space between left and right area -->
 					<span flex></span>
 					<section layout="row">
@@ -36,14 +37,16 @@
 						<md-button class="md-icon-button md-accent" aria-label="Favorite">
 							<md-icon md-svg-icon="img/icons/separator.svg"></md-icon>
 						</md-button>
+						<!--
 						<md-button class="md-icon-button" aria-label="More"
-						ng-click="toggleRight()">
-							<md-icon
-							md-svg-icon="img/icons/more_vert.svg"></md-icon>
-						</md-button>
-						<md-button aria-label="Search" ng-click="showSearch = !showSearch">
-							<ng-md-icon icon="search"></ng-md-icon>
-						</md-button>
+												ng-click="toggleRight()">
+													<md-icon
+													md-svg-icon="img/icons/more_vert.svg"></md-icon>
+												</md-button>
+												<md-button aria-label="Search" ng-click="showSearch = !showSearch">
+													<ng-md-icon icon="search"></ng-md-icon>
+												</md-button>-->
+						
 
 						<md-button aria-label="Open Settings"
 						ng-click="showListBottomSheet($event)">
