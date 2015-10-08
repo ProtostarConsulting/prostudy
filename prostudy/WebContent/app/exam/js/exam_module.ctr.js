@@ -20,7 +20,7 @@ angular.module("prostudyApp").controller(
 
 			};
 
-			/* Setup menu */
+			/* Setup page menu */
 			$scope.toggleRight = buildToggler('right');
 			/**
 			 * Build handler to open/close a SideNav; when animation finishes
