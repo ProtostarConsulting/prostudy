@@ -24,64 +24,64 @@
 				</thead>
 
 				<tbody>
-					<tr md-auto-select ng-repeat="teacher in questions | orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit">
+					<tr md-auto-select ng-repeat="question in questions | orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit">
 						<td>
-						<div ng-hide="editingData[teacher.description]">
-							{{teacher.description}}
+						<div ng-hide="editingData[question.description]">
+							{{question.description}}
 						</div>
-						<div ng-show="editingData[teacher.description]">
+						<div ng-show="editingData[question.description]">
 							<md-input-container flex>								
-								<input ng-model="teacher.description" />
+								<input ng-model="question.description" />
 							</md-input-container>
 						</div></td>
 					
 						<td>
-						<div ng-hide="editingData[teacher.description]">
-							{{teacher.option1}}
+						<div ng-hide="editingData[question.description]">
+							{{question.option1}}
 						</div>
-						<div ng-show="editingData[teacher.description]">
+						<div ng-show="editingData[question.description]">
 							<md-input-container flex>								
-								<input ng-model="teacher.option1" />
+								<input ng-model="question.option1" />
 							</md-input-container>
 						</div></td>
 						<td>
-						<div ng-hide="editingData[teacher.description]">
-							{{teacher.option2}}
+						<div ng-hide="editingData[question.description]">
+							{{question.option2}}
 						</div>
-						<div ng-show="editingData[teacher.description]">
+						<div ng-show="editingData[question.description]">
 							<md-input-container flex>								
-								<input ng-model="teacher.option2" />
+								<input ng-model="question.option2" />
 							</md-input-container>
 						</div></td>
 						<td>
-						<div ng-hide="editingData[teacher.description]">
-							{{teacher.option3}}
+						<div ng-hide="editingData[question.description]">
+							{{question.option3}}
 						</div>
-						<div ng-show="editingData[teacher.description]">
-							<input type="text" ng-model="teacher.option3" />
+						<div ng-show="editingData[question.description]">
+							<input type="text" ng-model="question.option3" />
 						</div></td>
 						<td>
-						<div ng-hide="editingData[teacher.description]">
-							{{teacher.option4}}
+						<div ng-hide="editingData[question.description]">
+							{{question.option4}}
 						</div>
-						<div ng-show="editingData[teacher.description]">
-							<input type="text" ng-model="teacher.option4" />
-						</div></td>
-						
-						<td>
-						<div ng-hide="editingData[teacher.description]">
-							{{teacher.correctAns}}
-						</div>
-						<div ng-show="editingData[teacher.description]">
-							<input type="text" ng-model="teacher.correctAns" />
+						<div ng-show="editingData[question.description]">
+							<input type="text" ng-model="question.option4" />
 						</div></td>
 						
 						<td>
-						<md-button aria-label="Modify Row" ng-hide="editingData[teacher.description]" ng-click="modify(teacher)">
+						<div ng-hide="editingData[question.description]">
+							{{question.correctAns}}
+						</div>
+						<div ng-show="editingData[question.description]">
+							<input type="text" ng-model="question.correctAns" />
+						</div></td>
+						
+						<td>
+						<md-button aria-label="Modify Row" ng-hide="editingData[question.description]" ng-click="modify(question)">
 							<ng-md-icon icon="edit"></ng-md-icon>
 						</md-button>
 						
-						<md-button aria-label="Save Row" ng-show="editingData[teacher.description]" ng-click="update(teacher)">
+						<md-button aria-label="Save Row" ng-show="editingData[question.description]" ng-click="update(question)">
 							<ng-md-icon icon="save"></ng-md-icon>
 							
 						</md-button>
