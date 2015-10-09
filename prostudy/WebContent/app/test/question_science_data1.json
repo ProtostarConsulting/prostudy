@@ -127,6 +127,61 @@
 								"option3" : "Tonoplast is the membrane surrounding vacuole",
 								"option4" : "Acetabularia measures nearly 10 cm in height.",
 								"correctAns" : 1
-							} ]
+							} ,{
+                            	"description" : "Ability to do work is called",
+								"note" : "Hint: select only one option",
+								"questionId" : 1,
+								"option1" : 	"Force",
+								"option2" : "Motion",
+								"option3" : "Energy",
+								"option4" : "Power",
+								"correctAns" : 1
+							}, {
+								"description" : "Which of the following device do not require electric current for working?",
+								"note" : "Hint: select only one option",
+								"questionId" : 2,
+								"option1" : "Television",
+								"option2" : "Fan",
+								"option3" : 	"CD player",
+								"option4" : "Funnel",
+								"correctAns" : 1
+							}, {
+								"description" : "A simple machine is",
+								"note" : "Hint: select only one option",
+								"questionId" : 3,
+								"option1" : "Force of attraction",
+								"option2" : "A tool with moving parts",
+								"option3" : "Tools that makes work easier",
+								"option4" : "The measurement",
+								"correctAns" : 1
+
+							}, {
+	                         	"description" : "Which of the following is not a source of energy?",
+								"note" : "Hint: select only one option",
+								"questionId" : 4,
+								"option1" : "Wood",
+								"option2" : "Petrol",
+								"option3" : "Coal",
+								"option4" : "Stone",
+								"correctAns" : 1
+							},{
+								"description" : "S.I unit of work is",
+								"note" : "Hint: select only one option",
+								"questionId" : 5,
+								"option1" : "Newton",
+								"option2" : "Calories",
+								"option3" : "Joule",
+								"option4" : "Newton",
+								"correctAns" : 1
+							}, {
+								"description" : "A push or pull on an object is called",
+								"note" : "Hint: select only one option",
+								"questionId" : 6,
+								"option1" : "Pressure",
+								"option2" : "Gravitation",
+								"option3" : "Force",
+								"option4" : "Push-pull",
+								"correctAns" : 1
+							}]
 					
 	}
