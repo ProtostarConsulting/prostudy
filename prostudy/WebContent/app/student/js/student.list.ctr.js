@@ -12,28 +12,6 @@ angular.module("prostudyApp")
 								3000));
 					};
 
-					/*$scope.getCustomerList = function() {
-						console.log("getCustomerList");
-
-					};
-
-					
-					$scope.studList = [ {
-						firstName : 'Ram',
-						lastName : 'L',
-						mobileNo : '89078923',
-						email : 'a@b'
-					}, {
-						firstName : 'Sham',
-						lastName : 'L',
-						mobileNo : '89078923',
-						email : 'a@b'
-					}, {
-						firstName : 'Raj',
-						lastName : 'L',
-						mobileNo : '89078923',
-						email : 'a@b'
-					} ]*/
 					
 					$log.debug("inside ctr before service get $scope.items:"
 							+ $scope.items);
