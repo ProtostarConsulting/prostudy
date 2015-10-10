@@ -1,0 +1,83 @@
+<md-content>
+
+	<div>
+	
+	 <button ng-hide="editingData[institute.name]" ng-click="modify1(institute)">Modify</button>
+     <button ng-show="modifyField" ng-click="update1(institute)">Update</button>
+    <button ng-hide="editingData[institute.name]">Add</button>
+    <button ng-hide="editingData[institute.name]">Remove</button>
+		<div>
+			<md-input-container flex>
+				<label>Search</label>
+				<input ng-model="searchText">
+			</md-input-container>
+		</div>
+
+		<md-data-table-container>
+			<table md-data-table md-row-select="selected" md-progress="deferred">
+				<thead md-order="query.order" md-trigger="onorderchange">
+					<tr>
+						<th name="Institute Name"   order-by="name"></th>
+						<th name="City"  order-by="city"></th>
+						<th name="State"  order-by="state"></th>
+				   </tr>
+				</thead>
+
+				<tbody>
+					<tr md-auto-select ng-repeat="institute in institutes  | filter: searchText " >
+					
+						<td>
+						<div ng-hide="editingData[institute.name]">
+							{{institute.name}}
+						</div>
+						<div ng-show="editingData[institute.name]">
+							<md-input-container flex>								
+								<input ng-model="institute.name" />
+							</md-input-container>
+						</div>
+						</td>
+					
+						<td>
+						<div ng-hide="editingData[institute.name]">
+							{{institute.city}}
+						</div>
+						<div ng-show="editingData[institute.name]">
+							<md-input-container flex>								
+								<input ng-model="institute.city" />
+							</md-input-container>
+						</div></td>
+						
+						<td>
+						<div ng-hide="editingData[institute.name]">
+							{{institute.state}}
+						</div>
+						<div ng-show="editingData[institute.name]">
+							<md-input-container flex>								
+								<input ng-model="institute.state" />
+							</md-input-container>
+						</div></td>
+						
+					
+						<td>
+						<md-button aria-label="Modify Row" ng-hide="editingData[institute.name]" ng-click="modify(institute)">
+							<ng-md-icon icon="edit"></ng-md-icon>
+						</md-button>
+						
+						<md-button aria-label="Save Row" ng-show="editingData[institute.name]" ng-click="update(institute)">
+							<ng-md-icon icon="save"></ng-md-icon>
+							
+						</md-button>
+					</tr>
+				</tbody>
+			</table>
+
+		</md-data-table-container>
+		
+		
+
+
+		
+
+	</div>
+	</form>
+</md-content>

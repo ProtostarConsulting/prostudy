@@ -1,0 +1,58 @@
+
+
+
+<md-content>
+<form>
+	<div>
+	
+	<md-input-container flex>
+			<label>Enter state</label><input ng-model="searchText.state">
+	</md-input-container>
+	
+	 <div layout="row" layout-align="center center">	
+	 <td><md-button class="md-raised md-primary" ng-click="clicked=true">Search</md-button> </td>
+	 <td><md-button class="md-raised md-primary" ng-click="clicked=false">Cancel</md-button></td>
+	 </div>
+	 
+	<div custom-select=" institute in institutes | filter: { state: $searchTerm }" ng-model="institutes">
+    	<div class="pull-left">
+       		 <strong>{{ institute.state }}</strong><br />
+     
+    	</div>
+    	<div class="clearfix"></div>
+		</div>
+
+			<div ng-show="clicked">
+		
+		<md-data-table-container>
+			<table md-data-table md-row-select="selected" md-progress="deferred">
+					<tr>
+						<th order-by="name" name="INSTITUTE NAME" unit=""></th>
+						<th order-by="city" name="CITY"></th>
+						<th order-by="state" name="STATE"></th>
+
+					</tr>
+				
+				<tbody>
+					<tr md-auto-select
+						ng-repeat="institute in institutes | filter:searchText">
+						<td>{{institute.name}}</td>
+						<td>{{institute.city}}</td>
+						<td>{{institute.state}}</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			</md-data-table-container>
+
+		</div>
+		
+		
+     
+		
+
+		
+		
+	</div>
+	</form>
+</md-content>

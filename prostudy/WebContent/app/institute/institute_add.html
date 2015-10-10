@@ -1,0 +1,57 @@
+
+
+
+<md-content>
+<form>
+	<div>
+
+		<md-data-table-container>
+			<md-data-table-container>
+			<table md-data-table class="md-primary" md-row-select="selected" md-progress="deferred">
+				<thead>
+					<tr>
+						<th order-by="name" name="INSTITUTE NAME" unit=""></th>
+						<th order-by="city" name="CITY"></th>
+						<th order-by="state" name="STATE"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr md-auto-select ng-repeat="institute in institutes | filter: searchText ">
+						<td>{{institute.name}}</td>
+						<td>{{institute.city}}</td>
+						<td>{{institute.state}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</md-data-table-container>
+
+		</md-data-table-container>
+		
+		<div layout="row" layout-align="center center">
+		<md-input-container flex>
+          <label>Institute Name</label>
+          <input ng-model="name">
+        </md-input-container>
+        
+        <md-input-container flex>
+          <label>City</label>
+          <input ng-model="city">
+        </md-input-container>
+        
+        <md-input-container flex>
+          <label>State</label>
+          <input ng-model="state">
+        </md-input-container>
+        </div>
+     
+		 <div layout="row" layout-align="center center">
+		 <md-button class="md-raised md-primary" ng-click="addInstitute()">Add</md-button>
+		 <md-button class="md-raised md-primary" ng-click="removeInstitute($index)">Remove</md-button>
+		 </div>
+		
+
+		
+		
+	</div>
+	</form>
+</md-content>
