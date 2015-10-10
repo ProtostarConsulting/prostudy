@@ -55,7 +55,28 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/exam/question/list",
 		templateUrl : '/app/question/question_list.html',
 		controller : 'questionListCtr'
-	}).state('student', {
+	}).state('institute', {
+		url : "/institute",
+		templateUrl : '/app/institute/institute_module.html',
+		controller : 'instituteModuleCtr'
+	}).state('institute.add', {
+		url : "/institute/add",
+		templateUrl : '/app/institute/institute_add.html',
+		controller : 'instituteAddCtr'
+	}).state('institute.view', {
+		url : "/institute/view",
+		templateUrl : '/app/institute/institute_view.html',
+		controller : 'instituteViewCtr'
+	}).state('institute.edit', {
+		url : "/institute/edit",
+		templateUrl : '/app/institute/institute_edit.html',
+		controller : 'instituteEditCtr'
+	}).state('report', {
+		url : "/report",
+		templateUrl : '/app/report/report_module.html',
+		controller : 'reportModuleCtr'
+	})
+	.state('student', {
 		url : "/student",
 		templateUrl : '/app/student/student_module.html',
 		controller : 'studentModuleCtr'
