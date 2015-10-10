@@ -43,6 +43,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/exam/view",
 		templateUrl : '/app/exam/exam_view.html',
 		controller : 'examCtr'
+	}).state('examdemo', {
+		url : "/exam/examdemo",
+		templateUrl : '/app/exam/examdemo.html',
+		controller : 'examDemoCtr'
 	}).state('exam.question', {
 		url : "/exam/question",
 		templateUrl : '/app/question/question_add.html',
