@@ -13,6 +13,9 @@ public class TestDAO {
 		Car c = ofy().load().type(Car.class).id("123123").now();
 	}
 
+	public void addCar(Car c) {
+		ofy().save().entity(c).now();		
+	}
 	public List<Car> getCars() {	
 		List<Car> cars = ofy().load().type(Car.class).list();
 		return cars;

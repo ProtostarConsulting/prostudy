@@ -5,6 +5,8 @@ import javax.servlet.ServletContextListener;
 
 import com.googlecode.objectify.ObjectifyService;
 import com.protostar.prostudy.entity.Car;
+import com.protostar.prostudy.entity.CarAddress;
+import com.protostar.prostudy.entity.CarOwner;
 
 public class AppServletContextListener  implements ServletContextListener {
 
@@ -18,6 +20,8 @@ public class AppServletContextListener  implements ServletContextListener {
 		  System.out.println("###Inside AppServletContextListener###");
 		  //register all your entities here
 		  ObjectifyService.register(Car.class);
+		  ObjectifyService.register(CarAddress.class);
+		  ObjectifyService.register(CarOwner.class);
 	       // ObjectifyService.register(Motorcycle.class);
 	  }
 

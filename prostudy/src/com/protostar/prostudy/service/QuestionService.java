@@ -96,7 +96,6 @@ public class QuestionService {
 		return questionList;
 
 	}// end of getAllQuestion
-
 	@ApiMethod(name = "test1")
 	public void test1() {
 		System.out.println("In side test1 ");
@@ -110,5 +109,6 @@ public class QuestionService {
 		return new TestDAO().getCars();
 
 	}
+	
 
 }// end of QuestionService
