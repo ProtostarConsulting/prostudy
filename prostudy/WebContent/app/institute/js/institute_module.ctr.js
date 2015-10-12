@@ -12,7 +12,7 @@ angular.module("prostudyApp").controller(
 							$log.debug("debug resp:" + resp);
 							$log.info("info resp:" + resp);
 							$log.warn("warn resp:" + resp);
-							//$log.error("error resp:" + resp);
+							// $log.error("error resp:" + resp);
 							var items = resp.items;
 							$log.debug("cars:" + resp.items);
 

@@ -75,8 +75,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/report",
 		templateUrl : '/app/report/report_module.html',
 		controller : 'reportModuleCtr'
-	})
-	.state('student', {
+	}).state('report.display', {
+		url : "/report/display",
+		templateUrl : '/app/report/display_report.html',
+		controller : 'displayReportCtr'
+	}).state('student', {
 		url : "/student",
 		templateUrl : '/app/student/student_module.html',
 		controller : 'studentModuleCtr'
