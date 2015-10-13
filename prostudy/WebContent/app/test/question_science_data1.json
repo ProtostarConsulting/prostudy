@@ -8,7 +8,7 @@
 								"option2" : "Golgiapparatus",
 								"option3" : "Plastids",
 								"option4" : "Ribosomes",
-								"correctAns" : 1
+								"correctAns" : 2
 							}, {
 								"description" : "Animal cell lacking nuclei would also lack in",
 								"note" : "Hint: select only one option",
@@ -17,7 +17,7 @@
 								"option2" : "Ribosome",
 								"option3" : "Chromosome",
 								"option4" : "Endoplasmic reticulum",
-								"correctAns" : 1
+								"correctAns" : 3
 							}, {
 								"description" : "The number of lenses in compound light microscope is",
 								"note" : "Hint: select only one option",
@@ -26,7 +26,7 @@
 								"option2" : 4,
 								"option3" : 2,
 								"option4" : 1,
-								"correctAns" : 1
+								"correctAns" : 2
 
 							}, {
 								"description" : "Which organelle is called power of house of the cell-",
@@ -36,7 +36,7 @@
 								"option2" : "Golgi apparatus",
 								"option3" : "Mitochondria",
 								"option4" : "Plastids",
-								"correctAns" : 1
+								"correctAns" : 4
 							},{
 								"description" : "Amoeba acquires its food through-",
 								"note" : "Hint: select only one option",
@@ -45,7 +45,7 @@
 								"option2" : "Endocytosis",
 								"option3" : "Exocytosis",
 								"option4" : "Exocytosis & endocytosis",
-								"correctAns" : 1
+								"correctAns" : 4
 							}, {
 								"description" : "Plasmolysis means-",
 								"note" : "Hint: select only one option",
@@ -54,7 +54,7 @@
 								"option2" : "Shrinkage of cytoplasm",
 								"option3" : "Shrinkage of nucleoplasm",
 								"option4" : 	"Breakdown of plaoma membrane",
-								"correctAns" : 1
+								"correctAns" : 2
 							}, {
 								"description" : "Who proposed cell theory",
 								"note" : "Hint: select only one option",
@@ -63,7 +63,7 @@
 								"option2" : "Schleiden and Schwann",
 								"option3" : "Watson & crick",
 								"option4" : "Mendel",
-								"correctAns" : 1
+								"correctAns" : 4
 							}, {
 								"description" : "The number of chromosome present in frog is",
 								"note" : "Hint: select only one option",
@@ -72,7 +72,7 @@
 								"option2" : "26",
 								"option3" : "2",
 								"option4" : 1,
-								"correctAns" : 1
+								"correctAns" : 2
 							} , {
 								"description" : "Ribosomes are the centre for",
 								"note" : "Hint: select only one option",
@@ -81,7 +81,7 @@
 								"option2" : "Photosynthesis",
 								"option3" : "Proteins synthesis",
 								"option4" : "Fat synthesis",
-								"correctAns" : 1
+								"correctAns" : 3
 							} , {
 								"description" : "Main difference between animal cell and plant cell is",
 								"note" : "Hint: select only one option",
@@ -90,7 +90,7 @@
 								"option2" : "Movement",
 								"option3" : "Growth",
 								"option4" : "Nutrition",
-								"correctAns" : 1
+								"correctAns" : 4
 							} , {
 								"description" : "In plant cells the ___________ perform the function of centrioles.",
 								"note" : "Hint: select only one option",
@@ -99,16 +99,16 @@
 								"option2" : "Polar cap",
 								"option3" : "Spindle fibres",
 								"option4" : "Stroma",
-								"correctAns" : 1
+								"correctAns" : 2
 							} , {	
 								"description" : "Which of the following imparts colours to flower to attract insects for pollination?",
 								"note" : "Hint: select only one option",
 								"questionId" : 12,
-								"option1" : "chromoplast",
+								"option1" : "chromop",
 								"option2" : "Leucoplast",
 								"option3" : "Plastid",
 								"option4" : "Chloroplast",
-								"correctAns" : 1
+								"correctAns" : 4
 							}  , {
 								"description" : "Statement A : The secretary proteins are packed inside the secretory vesicles which are pinched off from the Golgi apparatus. Statement B : ER is absent in the red blood cells of mammals. Which of the two statement is true",
 								"note" : "Hint: select only one option",
@@ -117,7 +117,7 @@
 								"option2" : "Statement B",
 								"option3" : "Both the statement A and B",
 								"option4" : "Statement A",
-								"correctAns" : 1
+								"correctAns" : 3
 							} , {
 								"description" : "Find the incorrect statement.",
 								"note" : "Hint: select only one option",
@@ -144,7 +144,7 @@
 								"option2" : "Fan",
 								"option3" : 	"CD player",
 								"option4" : "Funnel",
-								"correctAns" : 1
+								"correctAns" : 4
 							}, {
 								"description" : "A simple machine is",
 								"note" : "Hint: select only one option",
@@ -153,7 +153,7 @@
 								"option2" : "A tool with moving parts",
 								"option3" : "Tools that makes work easier",
 								"option4" : "The measurement",
-								"correctAns" : 1
+								"correctAns" : 2
 
 							}, {
 	                         	"description" : "Which of the following is not a source of energy?",
@@ -163,7 +163,7 @@
 								"option2" : "Petrol",
 								"option3" : "Coal",
 								"option4" : "Stone",
-								"correctAns" : 1
+								"correctAns" : 4
 							},{
 								"description" : "S.I unit of work is",
 								"note" : "Hint: select only one option",
@@ -172,7 +172,7 @@
 								"option2" : "Calories",
 								"option3" : "Joule",
 								"option4" : "Newton",
-								"correctAns" : 1
+								"correctAns" : 3
 							}, {
 								"description" : "A push or pull on an object is called",
 								"note" : "Hint: select only one option",
@@ -181,7 +181,7 @@
 								"option2" : "Gravitation",
 								"option3" : "Force",
 								"option4" : "Push-pull",
-								"correctAns" : 1
+								"correctAns" : 3
 							}]
 					
 	}
