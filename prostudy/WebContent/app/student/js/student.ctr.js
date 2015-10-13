@@ -1,9 +1,24 @@
 angular.module("prostudyApp").controller(
 		"studentPageCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, objectFactory, appEndpointSF) {
+				$log, objectFactory, appEndpointSF,tableTestDataFactory) {
 
 			$log.debug("Inside studentPageCtr");
+			
+			$scope.loadInstituteList = function() {
+				console.log("inside loadInstituteList")
+				$scope.institutes = [];
+				$scope.selected = [];
+				tableTestDataFactory.getInstituteList().then(
+						function(data) {
+							$scope.institutes = data;
+							$log.debug("inside ctr then $scope.institutes"
+									+ $scope.institutes);
+							console.log("inside institute")
+						});
+
+
+			}// end of loadInstituteList load
 
 			$scope.showSimpleToast = function() {
 				$mdToast.show($mdToast.simple().content('Student Data Saved!').position(
@@ -22,6 +37,8 @@ angular.module("prostudyApp").controller(
 				
 
 			};
+			
+			
 			
 			$scope.addStudentToDB = function() {
 				$log.debug("in side addStudent. added..."
@@ -51,5 +68,9 @@ angular.module("prostudyApp").controller(
 					$log.debug("close RIGHT is done");
 				});
 			};
+			
+	
+
+			$scope.loadInstituteList();
 
 		});
