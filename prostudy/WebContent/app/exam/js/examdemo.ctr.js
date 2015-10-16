@@ -18,6 +18,7 @@ angular.module("prostudyApp").controller(
 							$scope.questions = [];
 							$scope.questions = data;
 
+							
 							$scope.buttonLimit = function(count) {
 								$scope.totalPages = Math
 										.round($scope.questions.length
@@ -29,6 +30,7 @@ angular.module("prostudyApp").controller(
 							}// end of buttonlimit
 							
 							$scope.onNext();
+							$scope.isDisabledPrevious = true;
 							
 							
 
@@ -50,12 +52,9 @@ angular.module("prostudyApp").controller(
 
 				if ($scope.currentPage == $scope.totalPages) {
 					$scope.isDisabledNext = true;
-					/*alert("No more questions. Please use previous button.");*/
-					return false;
 
 				} else {
 					$scope.isDisabledPrevious = false;
-					return true;
 				}
 				
 			}// end of onNext
@@ -76,20 +75,30 @@ angular.module("prostudyApp").controller(
 				if ($scope.currentPage == $scope.totalPages)
 				{
 					$scope.isDisabledNext = true;
-					/*alert("No more questions. Please use previous button.");*/
-					return false;
 
 				} else 
 				{
 					$scope.isDisabledPrevious = false;
-					return true;
+					$scope.isDisabledNext = false;
 				}
+				
+				if ($scope.currentPage == 1)
+				{
+					$scope.isDisabledPrevious = true;
+
+				} else 
+				{
+					$scope.isDisabledPrevious = false;
+				}
+				
+			
 
 			};// end of onPage
 
-			$scope.onPrevious = function() {
+			$scope.onPrevious = function() 
+			{
 				$scope.currentPage--;
-				console.log("PRev"+$scope.currentPage);
+				console.log("Previous"+$scope.currentPage);
 				$scope.array = $scope.questions.slice(
 						($scope.currentPage * $scope.itemsPerPage)
 								- $scope.itemsPerPage,
@@ -98,12 +107,9 @@ angular.module("prostudyApp").controller(
 
 				if ($scope.currentPage <= 1) {
 					$scope.isDisabledPrevious = true;
-					/*alert("No more questions. Please use next button.");*/
-					return false;
 
 				} else {
 					$scope.isDisabledNext = false;
-					return true;
 				}
 
 			}// end of onPrevious

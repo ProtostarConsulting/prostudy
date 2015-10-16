@@ -1,4 +1,4 @@
-<section layout="row" layout-sm="column" layout-align="center center">
+<section layout="row" layout-sm="column">
 
 	<md-content layout-padding>
 	<form name="myExamForm" ng-submit="submitButton()">
@@ -14,7 +14,7 @@
 
 		<div layout="row">
 			<span flex="50">
-			<h3>Science Exam2</h3>
+			<h3>Exam Test</h3>
 			<strong>{{currentPage}} Out Of
 					{{totalPages}}</strong></span>
 
@@ -54,7 +54,7 @@
 					<md-checkbox ng-checked="exists(question, selected)"
 						ng-click="toggle(question, selected)"> {{
 					question.option3 }} </md-checkbox>
-					<md-checkbox ng-checked="exists(question, selected)"
+					<md-checkbox ng-checked="exists(question, selected)"s
 						ng-click="toggle(question, selected)"> {{
 					question.option4 }} </md-checkbox>
 
@@ -67,14 +67,20 @@
 
 			<!-- <div>Exam Report:-{{questions}}</div> -->
 
+            <div layout-padding>
+				<div layout="row" layout-align="start end"
+					ng-init="isDisabled = false">
+					<md-button class="md-raised md-primary"
+						ng-disabled="isDisabledPrevious" ng-model="isDisabledPrevious"
+						ng-click="onPrevious()">previous</md-button>
+				</div>
 
-			<div layout layout-sm="column" ng-init="isDisabled = false">
-				<md-button class="md-raised md-primary"
-					ng-disabled="isDisabledPrevious" ng-model="isDisabledPrevious"
-					ng-click="onPrevious()">previous</md-button>
-				<md-button class="md-raised md-primary" ng-disabled="isDisabledNext"
-					ng-model="isDisabledNext" ng-click="onNext()">next</md-button>
+				<div layout="row" layout-align="end end">
+					<md-button class="md-raised md-primary"
+						ng-disabled="isDisabledNext" ng-model="isDisabledNext"
+						ng-click="onNext()">next</md-button>
 
+				</div>
 			</div>
 
 		</div>

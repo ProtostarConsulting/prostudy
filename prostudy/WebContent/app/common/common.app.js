@@ -43,8 +43,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/exam/view",
 		templateUrl : '/app/exam/exam_view.html',
 		controller : 'examCtr'
-	}).state('examdemo', {
-		url : "/exam/examdemo",
+	}).state('examtest', {
+		url : "/exam/examtest",
 		templateUrl : '/app/exam/examdemo.html',
 		controller : 'examDemoCtr'
 	}).state('exam.question', {
@@ -55,6 +55,22 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/exam/question/list",
 		templateUrl : '/app/question/question_list.html',
 		controller : 'questionListCtr'
+	}).state('examdemo', {
+		url : "/examdemo",
+		templateUrl : '/app/examdemo/examdemo_module.html',
+		controller : 'examDemoModuleCtr'
+	}).state('examdemo.science', {
+		url : "/science",
+		templateUrl : '/app/examdemo/examdemo_science.html',
+		controller : 'examDemoScienceCtr'
+	}).state('examdemo.math', {
+		url : "/math",
+		templateUrl : '/app/examdemo/examdemo_math.html',
+		controller : 'examDemoMathCtr'
+	}).state('myprofile', {
+		url : "/myprofile",
+		templateUrl : '/app/myprofile/myprofile.html',
+		controller : 'myProfileCtr'
 	}).state('institute', {
 		url : "/institute",
 		templateUrl : '/app/institute/institute_module.html',

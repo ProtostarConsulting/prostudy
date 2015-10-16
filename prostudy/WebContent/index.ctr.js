@@ -8,7 +8,6 @@
 angular.module("prostudyApp").controller(
 		"indexCtr",
 		function($scope, $window, $q, $timeout, $mdToast, $mdBottomSheet, appEndpointSF) {
-			console.log("Inside indexCtr");
 
 							console.log("Inside indexCtr");
 

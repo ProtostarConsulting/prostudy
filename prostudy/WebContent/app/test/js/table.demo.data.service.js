@@ -45,6 +45,29 @@ function tableTestDataFactoryFn($log, $q, $http) {
 				deferred.resolve(data.items);				
 			});
 			return deferred.promise;
+		},
+		getQuestionScienceList : function() {
+			var deferred = $q.defer();
+			$http.get("/app/test/question_science_data1.json").success(function(data) {
+				$log.debug("inside getQuestionScienceList data.items:" + data.items);
+				deferred.resolve(data.items);				
+			});
+			return deferred.promise;
+		},
+		getQuestionMathList : function() {
+			var deferred = $q.defer();
+			$http.get("/app/test/question_math_data2.json").success(function(data) {
+				$log.debug("inside getQuestionMathList data.items:" + data.items);
+				deferred.resolve(data.items);				
+			});
+			return deferred.promise;
+		},getMyProfileList : function() {
+			var deferred = $q.defer();
+			$http.get("/app/test/myprofile.json").success(function(data) {
+				$log.debug("inside getMyProfileList data.items:" + data.items);
+				deferred.resolve(data.items);				
+			});
+			return deferred.promise;
 		}
 	}
 }
