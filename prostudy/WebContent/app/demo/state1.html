@@ -78,6 +78,33 @@
 	<div ui-view>
 		this is deafult sub view
 	</div>
+	<h1> ngStorage Demo</h1>
+	<div>
+		<div layout="row" layout-sm="column">
+			<div layout="column" flex>
+				<md-input-container flex>
+					<label>First
+						name</label>
+					<input ng-model="tempStudent.firstName">
+				</md-input-container>
+				<md-input-container flex>
+					<label>Last
+						Name</label>
+					<input ng-model="tempStudent.lastName">
+				</md-input-container>
+			</div>
+		</div>
+		vals: {{students}}
+		<hr>
+		<md-button ng-click="addStudent()"
+		class="md-primary">
+			Add Temp Student
+		</md-button>
+		<md-button ng-click="getStudents()"
+		class="md-primary">
+			Get Students From DB
+		</md-button>
+	</div>
 	<section layout="row" layout-sm="column" layout-align="left left">
 		<md-button class="md-raised">
 			Cancel

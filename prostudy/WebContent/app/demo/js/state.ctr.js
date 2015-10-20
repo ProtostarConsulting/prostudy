@@ -2,7 +2,7 @@ angular.module("prostudyApp")
 		.controller(
 				"statesPageCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $log) {
+						$mdUtil, $log, $localStorage) {
 					console.log("Inside statesPageCtr");
 
 					$scope.things = [ "A", "Set", "Of", "Things", "out" ];
@@ -36,5 +36,18 @@ angular.module("prostudyApp")
 							$log.debug("close RIGHT is done");
 						});
 					};
+					
+					
+					$scope.tempStudent = {firstName: "", lastName: ""};
+					$scope.students = [{firstName: "Ram", lastName: "Sharma"},{firstName: "Andy", lastName: "Patil"}]; 
+					$scope.addStudent = function(){
+						$scope.students.push($scope.tempStudent);
+						$localStorage.dbStudents = angular.toJson($scope.students);
+						$scope.tempStudent = {firstName: "", lastName: ""};
+					}
+					
+					$scope.getStudents = function(){
+						$scope.students = angular.fromJson($localStorage.dbStudents);
+					}
 
 				});
