@@ -1,6 +1,6 @@
 var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
 		'ngMessages', "xeditable", "ui.bootstrap", "ui.router",
-		'md.data.table', 'ngResource', 'textAngular' ]);
+		'md.data.table', 'ngResource', 'textAngular', 'ngStorage' ]);
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('light-green')
 			.accentPalette('orange');
