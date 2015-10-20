@@ -1,14 +1,25 @@
 angular.module("prostudyApp").factory('appEndpointSF', appEndpointSFFn);
 
-function appEndpointSFFn($log) {
+function appEndpointSFFn($log, localDBServiceFactory) {
+	//When app is in test mode, it will return service from local db store. Else actual google end points.
+	var isTestMode = true;
 	
 	var endpointFactory = {};
 	endpointFactory.is_service_ready = false;
 	// This will call the function to load services
 
+	endpointFactory.getStudentService = function() {
+		if(isTestMode)
+			return localDBServiceFactory.getStudentService();
+		else	
+			return gapi.client.studentService;
+	};
+	
 	endpointFactory.getExamService = function() {
 		return gapi.client.examService;
 	};
+	
+	
 
 	endpointFactory.getQuestionService = function() {
 		$log.debug("###Inside getQuestionService");		
