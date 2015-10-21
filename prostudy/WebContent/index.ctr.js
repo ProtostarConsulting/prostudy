@@ -62,7 +62,7 @@ angular.module("prostudyApp").controller(
 			// initialize local objects
 		/*	$scope.customer = $scope.newCustomer();
 			$scope.customerList = {};*/
-			$scope.initGAPI();
+		/*	$scope.initGAPI();*/
 
 		}).controller('AppCtrl',
 		function($scope, $timeout, $mdSidenav, $mdUtil, $log) {
