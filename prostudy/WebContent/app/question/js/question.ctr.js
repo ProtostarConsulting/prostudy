@@ -6,8 +6,11 @@ angular
 						'$scope',
 						'$window',
 						'$mdToast',
+						'$state',
+						
+						
 
-						function($scope, $window, $mdToast) {
+						function($scope, $window, $mdToast,$state) {
 
 							console.log("Inside questionCtr");
 
@@ -82,10 +85,11 @@ angular
 
 							};// end of loadGetQuestionList
 
-							$scope.cancelButtonClick = function() {
-								console.log("in side cancelButtonClick");
-
-							};// end of cancelButtonClick
+							$scope.cancelButton = function()
+							{
+								//$log.debug("inside cancelButton");
+								$state.go('^', {});
+							};//end of cancelButton
 
 							$window.initGAPI = function() {
 								console.log("Came to initGAPI");

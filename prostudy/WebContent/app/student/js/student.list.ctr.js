@@ -55,6 +55,9 @@ angular.module("prostudyApp")
 
 						return deferred.promise;
 					};
+					
+					
+				
 
 					/* Setup menu */
 					$scope.toggleRight = buildToggler('rightListPage');

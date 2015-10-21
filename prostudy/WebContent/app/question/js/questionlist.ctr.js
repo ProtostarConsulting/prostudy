@@ -3,7 +3,7 @@ angular
 		.controller(
 				"questionListCtr",
 						function($scope, $window, $mdToast, $timeout, $mdSidenav,
-								$mdUtil, $log, $q, tableTestDataFactory) {
+								$mdUtil, $log, $q, tableTestDataFactory,$state) {
 							
 							$scope.questions = [];
 							$scope.loadQuestionsList = function() {
@@ -39,6 +39,13 @@ angular
 							$scope.removeQuestion = function(index) {
 								$scope.questions.splice(index, 1);
 							}; // end of removeQuestion
+							
+							$scope.clickCancelButton = function() {
+								
+								console.log("inside cancelButton");
+									$state.go('^', {});
+
+							};// end of cancelButton
 
 							
 

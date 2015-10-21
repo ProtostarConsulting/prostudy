@@ -1,7 +1,7 @@
 angular.module("prostudyApp").controller(
 		"instituteViewCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $q, tableTestDataFactory) {
+				$log, $q, tableTestDataFactory,$state) {
 
 			$scope.loadInstituteList = function() {
 				console.log("inside loadInstituteList")
@@ -16,6 +16,13 @@ angular.module("prostudyApp").controller(
 						});
 
 				$scope.editingData = [];
+				
+				
+				$scope.cancelButton = function()
+				{
+					$log.debug("inside cancelButton");
+					$state.go('^', {}); 
+				}//end of cancelButton
 
 			}// end of loadInstituteList load
 

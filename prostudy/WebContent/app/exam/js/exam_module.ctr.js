@@ -40,5 +40,12 @@ angular.module("prostudyApp").controller(
 					$log.debug("close RIGHT is done");
 				});
 			};
+			
+			
+			$scope.cancelButton = function()
+			{
+				$log.debug("inside cancelButton");
+				$state.go('^', {});
+			};//end of cancelButton
 
 		});

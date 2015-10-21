@@ -7,6 +7,7 @@ angular.module("prostudyApp").controller(
 
 			
 
+			
 			/* Setup menu */
 			$scope.toggleRight = buildToggler('right');
 			/**
@@ -27,5 +28,8 @@ angular.module("prostudyApp").controller(
 					$log.debug("close RIGHT is done");
 				});
 			};
+			
+			
+			
 
 		});

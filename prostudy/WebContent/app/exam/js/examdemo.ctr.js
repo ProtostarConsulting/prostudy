@@ -113,7 +113,9 @@ angular.module("prostudyApp").controller(
 				}
 
 			}// end of onPrevious
-
+			
+			
+		
 			$scope.selected = [];
 			$scope.toggle = function(question, list) {
 				var idx = list.indexOf(question);

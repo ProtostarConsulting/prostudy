@@ -11,10 +11,12 @@ angular
 								.position("top").hideDelay(3000));
 					};// end of showSimpleToast
 
-					$scope.cancelButtonClick = function() {
-						console.log("in side cancelButtonClick");
-
-					};
+					$scope.cancelButton = function()
+					{
+						$log.debug("inside cancelButton");
+						$state.go('^', {});
+					};//end of cancelButton
+					
 					$scope.testGAPICall = function() {
 						console.log("in side testGAPICall");
 						appEndpointSF.getQuestionService().test1();

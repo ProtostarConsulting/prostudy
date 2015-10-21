@@ -1,7 +1,7 @@
 angular.module("prostudyApp").controller(
 		"studentPageCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, objectFactory, appEndpointSF,tableTestDataFactory) {
+				$log, objectFactory, appEndpointSF,tableTestDataFactory,$state) {
 
 			$log.debug("Inside studentPageCtr");
 			
@@ -19,6 +19,14 @@ angular.module("prostudyApp").controller(
 
 
 			}// end of loadInstituteList load
+			
+			$scope.cancelButton = function()
+			{
+				$log.debug("inside cancelButton");
+				$state.go('^', {});
+					
+			};//end of cancelButton
+			
 
 			$scope.showSimpleToast = function() {
 				$mdToast.show($mdToast.simple().content('Student Data Saved!').position(
