@@ -9,7 +9,7 @@ import javax.persistence.Query;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
-import com.protostar.billingnstock.stock.entities.StockServiceEntity;
+import com.protostar.billingnstock.stock.entities.StockItemEntity;
 import com.protostar.billnstock.until.data.EMF;
 import com.protostar.billnstock.until.data.ServerMsg;
 
@@ -19,32 +19,33 @@ public class StockItemService
 {
 
 
-	@ApiMethod(name="addStockService")
-	public ServerMsg  addStockService(StockServiceEntity stockServicesEntity)
+	@ApiMethod(name="addStock")
+	public ServerMsg  addStock(StockItemEntity stockItemEntity)
 	{
-		System.out.println("stockServicesEntity:" + stockServicesEntity);
+		System.out.println("stockItemEntity:" + stockItemEntity);
 		ServerMsg msgBean=new ServerMsg();
 		
-		StockServiceEntity stockServicesEntity2=new StockServiceEntity();
+		StockItemEntity stockItemEntity2=new StockItemEntity();
 		
-		if(stockServicesEntity.getId()!=null)
+		if(stockItemEntity.getId()!=null)
 		{
-			stockServicesEntity2.setId(stockServicesEntity.getId());
+			stockItemEntity2.setId(stockItemEntity.getId());
 		}
 		
-		stockServicesEntity2.setItem_Name(stockServicesEntity.getItem_Name());
-		stockServicesEntity2.setCategory(stockServicesEntity.getCategory());
-		stockServicesEntity2.setItem_Id(stockServicesEntity.getItem_Id());
-		stockServicesEntity2.setQty(stockServicesEntity.getQty());
-		stockServicesEntity2.setPrice(stockServicesEntity.getPrice());
-		stockServicesEntity2.setNotes(stockServicesEntity.getNotes());
+		stockItemEntity2.setItem_Name(stockItemEntity.getItem_Name());
+		stockItemEntity2.setCategory(stockItemEntity.getCategory());
+		stockItemEntity2.setItem_Id(stockItemEntity.getItem_Id());
+		stockItemEntity2.setQty(stockItemEntity.getQty());
+		stockItemEntity2.setPrice(stockItemEntity.getPrice());
+		stockItemEntity2.setThreshold_value(stockItemEntity.getThreshold_value());
+		stockItemEntity2.setNotes(stockItemEntity.getNotes());
 		
 	EntityManager em=null;
 		
 		try {
 			em=EMF.get().createEntityManager();
-			em.persist(stockServicesEntity);
-			msgBean.setMsg("Stock Records Added successfully"+" "+stockServicesEntity.getItem_Name());
+			em.persist(stockItemEntity);
+			msgBean.setMsg("Stock Records Added successfully"+" "+stockItemEntity.getItem_Name());
 		} 
 		catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -60,23 +61,22 @@ public class StockItemService
 	}//end of addTaxServices
 	
 	@SuppressWarnings("unchecked")
-	@ApiMethod(name="getAllStockService")
-	public List<StockServiceEntity> getAllStockService()
+	@ApiMethod(name="getAllStock")
+	public List<StockItemEntity> getAllStock()
 	{
-		System.out.println("In side getAllStockServices " );
-		List<StockServiceEntity> stockList= new ArrayList<StockServiceEntity>();
+		System.out.println("In side getAllStock " );
+		List<StockItemEntity> stockList= new ArrayList<StockItemEntity>();
 		EntityManager em= null;
 		try 
 		{
 			
 			em = EMF.get().createEntityManager();
 			
-			Query q= em.createQuery("select c from StockServicesEntity c");
+			Query q= em.createQuery("select s from StockItemEntity s");
 			stockList=q.getResultList();
-			System.out.println("Got AllTaxList: " + stockList.size() );
+			System.out.println("Got AllList: " + stockList.size() );
 			
 		} catch (Exception e) 
-	
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -89,5 +89,34 @@ public class StockItemService
 		return stockList;
 		
 	}//end of getAllStockServices
-
-}//end of StockServices
+	
+/*	@SuppressWarnings("unchecked")
+	@ApiMethod(name="reportByThreshold")
+	public List<StockItemEntity> reportByThreshold()
+	{
+		System.out.println("In side reportByThreshold " );
+		List<StockItemEntity> stockList= new ArrayList<StockItemEntity>();
+		EntityManager em= null;
+		try 
+		{
+			
+			em = EMF.get().createEntityManager();
+			
+			Query q= em.createQuery("select s from StockItemEntity where threshold = totalstock ");
+			stockList=q.getResultList();
+			System.out.println("Got AllList: " + stockList.size() );
+			
+		} catch (Exception e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		
+		return stockList;
+		
+	}//end of getAllStockServices
+*/}//end of StockServices

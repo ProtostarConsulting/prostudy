@@ -1,16 +1,59 @@
+angular.module("stockApp").controller(
+		"addItemStockCtr",
+		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
+				$log, objectFactory, appEndpointSF) {
 
+			$log.debug("Inside customerCtr");
+			
+
+			$scope.showSimpleToast = function() {
+				$mdToast.show($mdToast.simple().content('Customer Data Saved!').position(
+						"top").hideDelay(3000));
+			};
+
+			$scope.getStock = function() {
+				$log.debug("in side getStock");
+				$scope.stockData = appEndpointSF.getStockService().getStocks();
+				$log.debug("in side getStocks : $scope.stockData:"+ $scope.stockData);
+			};
+				
+			$scope.addStock = function() {
+				$log.debug("in side addStock. added...");
+				appEndpointSF.getStockService().addStock($scope.stock);		
+				$scope.showSimpleToast();
+				$scope.stock = {};
+			};// end of call to addStudent
+
+			//$scope.cust = objectFactory.newCustomer();
+			$scope.stock = {};
+			$scope.stockData = [];
+			$scope.getStock();
+			
+//			 Setup menu 
+			$scope.toggleRight = buildToggler('right');
+		
+			function buildToggler(navID) {
+				var debounceFn = $mdUtil.debounce(function() {
+					$mdSidenav(navID).toggle().then(function() {
+						$log.debug("toggle " + navID + " is done");
+					});
+				}, 200);
+				return debounceFn;
+			}
+
+			$scope.close = function() {
+				$mdSidenav('right').close().then(function() {
+					$log.debug("close RIGHT is done");
+				});
+			};
+		});
+
+/*
 app = angular.module("stockApp");
 
-app
-		.controller(
-				"addItemStockCtr",
-				[
-						'$scope',
-						'$window',
-						'$mdToast',
-						'$resource',
-						function($scope, $window, $mdToast, $resource,
-								$mdDialog) {
+app.controller("addItemStockCtr",
+				function($scope, $window, $mdToast, $timeout, $mdSidenav,
+						$mdUtil, $log){ 
 							$scope.newStock = function() {
 								return {
 									id :'',
@@ -19,10 +62,11 @@ app
 									category : '',
 									qty : '',
 									price : '',
-									notes : '',							
+									notes : '',	
+									threshold_value :'',
 								}
 							};
-
+		        
 							$scope.selected = [];
 
 							$scope.stock = $scope.newStock();
@@ -30,15 +74,15 @@ app
 							$scope.addStock = function() {
 								console.log("in side addStock");
 								// console.log($scope.addStock);
-								gapi.client.stockServices.addStockService(
+								gapi.client.stockServices.addStock(
 										$scope.stock).execute(function(resp) {
 									console.log("Stock Added: " + resp.msg);
 
-									/*
+									
 									 * if (resp.token == "U") {
 									 * alert("Updated"); } else {
 									 * alert("Saved"); }
-									 */
+									 
 									alert("Saved");
 
 									$scope.clearAddfields();
@@ -46,10 +90,10 @@ app
 									// $scope.$apply();
 									// $scope.examque =
 									// $scope.newExamQuestion();
-								/*	$("#addField").show();
+									$("#addField").show();
 									$("#stockTable").hide();
 									$("#anotherStock").hide();
-									$("#update").hide();*/
+									$("#update").hide();
 								})
 
 							};
@@ -57,28 +101,28 @@ app
 								$scope.updateStock = function() {
 								console.log("in side updateCust");
 								// console.log($scope.addStock);
-								gapi.client.stockServices.addStockService(
+								gapi.client.stockServices.addStock(
 										$scope.selected[0]).execute(function(resp) {
 									console.log("Customer Updated: " + resp.msg);
 
 									alert("Saved");
 
 									$scope.clearAddfields();
-									 $scope.getAllStockService();
+									 $scope.getAllStock();
 									 $scope.$apply();
 									
-								/*	$("#addField").show();
+									$("#addField").show();
 									$("#custTable").hide();
 									$("#anotherCust").hide();
-									$("#update").hide();*/
+									$("#update").hide();
 								})
 
 							};
 							
-							$scope.getAllStockService = function() {
+							$scope.getAllStock = function() {
 								console.log("In loadGetStockList");
 								gapi.client.stockServices
-										.getAllStockService()
+										.getAllStock()
 										.execute(
 												function(resp) {
 													console.log(resp.items);
@@ -119,20 +163,20 @@ app
 													return deferred.promise;
 												};	
 												
-											/*		$("#addField").show();
+													$("#addField").show();
 													$("#stockTable").hide();
 													$("#anotherStock").hide();
-													$("#update").hide();*/
+													$("#update").hide();
 												});
 							};// end of GetStockList
 
-							/*
+							
 							 * $scope.totalPrice = function(){ var total = 0;
 							 * for(count=0;count<$scope.items.length;count++){
 							 * total +=
 							 * $scope.items[count].Price*$scope.items[count].Quantity; }
 							 * return total; }
-							 */
+							 
 
 							$scope.clearAddfields = function () {
 								id='',
@@ -142,7 +186,7 @@ app
 								qty = '',
 								price = '',
 								notes = ''
-							}
+							};
 							
 					
 
@@ -171,19 +215,35 @@ app
 												'stockServices',
 												'v0.1',
 												function() {
-													console
-															.log("Inside gapi.client.load");
+													console.log("Inside gapi.client.load");
 													$scope.is_backend_ready = true;
-													$scope.getAllStockService();
+													$scope.getAllStock();
 
 												}, apiRoot);
 
 							};
-						
-							$scope.addAnotherStock = function() {
-							/*	$("#addField").show();
-								$("#stockTable").hide();
-								$("#anotherStock").hide();
-								$("#update").hide();*/
+							
+							
+							 Setup menu 
+							$scope.toggleRight = buildToggler('right');
+							*//**
+							 * Build handler to open/close a SideNav; when animation
+							 * finishes report completion in console
+							 *//*
+							function buildToggler(navID) {
+								var debounceFn = $mdUtil.debounce(function() {
+									$mdSidenav(navID).toggle().then(function() {
+										$log.debug("toggle " + navID + " is done");
+									});
+								}, 200);
+								return debounceFn;
 							}
-						} ]);
+
+							$scope.close = function() {
+								$mdSidenav('right').close().then(function() {
+									$log.debug("close RIGHT is done");
+								});
+							};
+						
+						});
+*/

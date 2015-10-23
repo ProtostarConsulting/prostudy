@@ -1,21 +1,20 @@
-var app = angular.module("stockApp", [ 'ngMaterial', 'ngMdIcons',
-		'ngMessages', "xeditable", "ui.bootstrap", "ui.router",
-		'md.data.table', 'ngResource', 'textAngular' ]);
+var app = angular.module("stockApp",
+		[ 'ngMaterial', 'ngMessages', "xeditable", "ui.bootstrap", "ui.router",
+				'md.data.table', 'ngResource', 'ngStorage' ]);
+
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('light-blue')
 			.accentPalette('pink');
 });
 app.config(function($logProvider) {
 	// $logProvider.debugEnabled(false);
-	$logProvider.debugEnabled(true);// this is
-	// default
+	$logProvider.debugEnabled(true);// this is default
 });
+
 app.config(function($stateProvider, $urlRouterProvider) {
 	// This adds config 2
-	// For any unmatched url, redirect to
-	// /state1
+	// For any unmatched url, redirect to /state1
 	$urlRouterProvider.otherwise("/home");
-
 	// Now set up the states
 	$stateProvider.state('state1', {
 		url : "/state1",
@@ -36,7 +35,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('stock', {
 		url : "/stock",
 		templateUrl : '/app/stock/stock_module.html',
-		controller : 'stockModuleCtr'
+		controller : 'addItemStockCtr'
 	}).state('stock.stockItemAdd', {
 		url : "/stockItemAdd",
 		templateUrl : '/app/stock/stockItem_add.html',
@@ -45,6 +44,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/stockItemList",
 		templateUrl : '/app/stock/stockItem_list.html',
 		controller : 'addItemStockCtr'
+	}).state('stock.taxadd', {
+		url : "/tax/taxadd",
+		templateUrl : '/app/tax/tax_add.html',
+		controller : 'taxCtr'
+	}).state('stock.taxlist', {
+		url : "/tax/taxlist",
+		templateUrl : '/app/tax/tax_list.html',
+		controller : 'taxCtr'
 	}).state('invoice', {
 		url : "/invoice",
 		templateUrl : '/app/invoice/invoice_module.html',
@@ -69,18 +76,26 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/list",
 		templateUrl : '/app/customer/customer_list.html',
 		controller : 'customerCtr'
+	}).state('report', {
+		url : "/report",
+		templateUrl : '/app/report/report_module.html',
+		controller : 'reportCtr'
+	}).state('report.byThreshhold', {
+		url : "/byThreshhold",
+		templateUrl : '/app/report/report_bythreshold.html',
+		controller : 'reportCtr'
+	}).state('report.allcustomer', {
+		url : "/allcustomer",
+		templateUrl : '/app/report/customer_list.html',
+		controller : 'reportCtr'
 	}).state('student', {
 		url : "/student",
 		templateUrl : '/app/student/student_module.html',
-		controller : 'studentModuleCtr'
+		controller : 'customerCtr'
 	}).state('student.add', {
 		url : "/add",
-		templateUrl : '/app/student/student_add.html',
-		controller : 'studentPageCtr'
-	}).state('student.list', {
-		url : "/list",
-		templateUrl : '/app/student/student_list.html',
-		controller : 'studentListPageCtr'
+		templateUrl : '/app/customer/student_add.html',
+		controller : 'customerCtr'
 	})/*
 		 * .state('fileupload', { url : "/fileupload", templateUrl :
 		 * '/app/fileupload/fileupload.html', controller : 'fileuploadCtr'

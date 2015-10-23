@@ -6,6 +6,91 @@
 				<span flex></span>
 
 				<section layout="row">
+					<md-button class="md-icon-button md-primary" aria-label="Settings">
+						<md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+					</md-button>
+					<md-button ui-sref="stock.taxadd" ng-click="close()"
+					class="md-primary">
+						Add Tax
+					</md-button>
+					<md-button ui-sref="home" class="md-icon-button md-accent" aria-label="Favorite">
+						<md-icon md-svg-icon="img/icons/print.svg"></md-icon>
+					</md-button>
+					<md-button  class="md-icon-button" aria-label="More"
+					ng-click="toggleRight()">
+						<md-icon
+						md-svg-icon="img/icons/more_vert.svg"></md-icon>
+					</md-button>
+
+				</section>
+			</div>
+
+		
+
+	<!-- Right Navigation Pane --> 
+		 <md-sidenav class="md-sidenav-right md-whiteframe-z2"
+			md-component-id="right">
+				<md-toolbar
+				class="md-theme-light">
+					<!--<h1 class="md-toolbar-tools">Sidenav Right</h1>-->
+				</md-toolbar>
+				<md-content layout-padding>
+					<md-button ng-click="close()" class="md-primary">
+						Close
+						Sidenav
+					</md-button>
+
+					<p hide-md show-gt-md>
+						This shows the selected module
+						links/actions.
+					</p>
+					
+					<md-button ui-sref="stock.taxadd" ng-click="close()"
+					class="md-primary">
+						Add Tax
+					</md-button>
+					<md-button ui-sref="stock.taxlist" ng-click="close()"
+					class="md-primary">
+						Tax List
+					</md-button>
+				</md-content>
+			</md-sidenav>
+		</section>
+
+	</div>
+
+	
+<div ui-view> This is a default page for stock module!</div>
+	<!-- We'll also add some navigation: -->
+	
+	<md-content layout="column" layout-align="center start">
+	
+	<md-button ui-sref="stock.stockItemAdd" ng-click="close()" class="md-primary">
+		Add New Stock
+	</md-button>
+	<md-button ui-sref="stock.stockItemList" ng-click="close()" class="md-primary">
+		Stock List
+	</md-button>
+	<md-button ui-sref="stock.taxadd" ng-click="close()"
+	class="md-primary">
+		Add Tax
+	</md-button>
+		<md-button ui-sref="stock.taxlist" ng-click="close()"
+	class="md-primary">
+		List of Taxes
+	</md-button>
+	
+	</md-content>
+
+</div>
+<div layout="column">
+	<div>
+		<section layout="row">
+			<!-- View Specific Toolbar-->
+			<div class="md-toolbar-tools">
+				<span flex></span>
+
+				<section layout="row">
 
 					<div hide-sm layout= "row" layout-align = "end start">
 						<md-button ui-sref="stock.stockItemAdd" ng-click="close()" class="md-primary">

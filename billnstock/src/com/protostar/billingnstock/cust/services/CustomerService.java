@@ -67,7 +67,7 @@ public class CustomerService
 			
 			em = EMF.get().createEntityManager();
 			
-			Query q= em.createQuery("select c from StockCustomer c");
+			Query q= em.createQuery("select c from Customer c");
 			customerList=q.getResultList();
 			System.out.println("Got AllTaxList: " + customerList.size() );
 			
