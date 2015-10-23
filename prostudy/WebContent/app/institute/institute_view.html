@@ -11,14 +11,14 @@
 
 	</div>
 
-	<tr>
+		<div layout="row" layout-align="center center">
 		<td><md-button class="md-raised md-primary"
 				ng-click="clicked=true">Get Result</md-button></td>
 		<!-- <td><md-button class="md-raised md-primary"
 				ng-click="clicked=false">Cancel</md-button></td> -->
 				<td><md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button></td>
 				
-	</tr>
+		</div>
 
 	<div
 		custom-select="institute in institutes | filter: { state: $searchTerm }"
@@ -38,9 +38,9 @@
 		<table md-data-table md-row-select="selected" md-progress="deferred">
 			<tr>
 
-				<th  name="Institute Name" order-by="name"></th>
-				<th  name="City" order-by="city"></th>
-				<th  name="State" order-by="state"></th>
+				<th  name="INSTITUTE NAME" order-by="name"></th>
+				<th  name="CITY" order-by="city"></th>
+				<th  name="STATE" order-by="state"></th>
 				
 
 			</tr>

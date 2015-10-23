@@ -1,42 +1,69 @@
 angular.module("prostudyApp").controller(
 		"instituteAddCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $q, tableTestDataFactory,$state) {
+				$log, $q, appEndpointSF) {
 
-			$scope.loadInstituteList = function() {
-				console.log("inside loadInstituteList")
-				$scope.institutes = [];
-				$scope.selected = [];
-				tableTestDataFactory.getInstituteList().then(
-						function(data) {
-							$scope.institutes = data;
-							$log.debug("inside ctr then $scope.institutes"
-									+ $scope.institutes);
-							console.log("inside institute")
-						});
+			$scope.showSavedToast = function() {
+				$mdToast.show($mdToast.simple().content('Institute Saved!')
+						.position("top").hideDelay(3000));
+			};
 
-				$scope.editingData = [];
-
-				$scope.addInstitute = function() {
-					var institute = {
-						name : $scope.name,
-						city : $scope.city,
-						state : $scope.state,
-
-					};
-					$scope.institutes.push(institute);
+			$scope.addInstitute = function() {
+				var InstituteService = appEndpointSF.getInstituteService();
+				$scope.institutes = InstituteService
+						.addInstitute($scope.tempInstitute);
+				$scope.tempInstitute = {
+					name : "",
+					city : "",
+					state : ""
 				};
-				
-				
-				
-				$scope.cancelButton = function()
-				{
-					$log.debug("inside cancelButton");
-					$state.go('^', {}); 
-				}//end of cancelButton
+				$scope.showSavedToast();
+			}
 
-			}// end of loadInstituteList load
+			$scope.getInstitutes = function() {
+				$scope.institutes = appEndpointSF.getInstituteService()
+						.getInstitutes();
+				$log.debug("Inside getInstitutes...");
+				$log.debug("$scope.institutes:" + $scope.institutes);
+			}
 
-			$scope.loadInstituteList();
+			$scope.tempInstitute = {
+				name : "",
+				city : "",
+				state : ""
+			};
+			// $scope.institutes =[];
+
+			$scope.getInstitutes();
+
+			// Table related code
+
+			$scope.selected = [];
+
+			$scope.query = {
+				order : 'name',
+				limit : 5,
+				page : 1
+			};
+
+			$scope.onpagechange = function(page, limit) {
+				var deferred = $q.defer();
+
+				$timeout(function() {
+					deferred.resolve();
+				}, 2000);
+
+				return deferred.promise;
+			};
+
+			$scope.onorderchange = function(order) {
+				var deferred = $q.defer();
+
+				$timeout(function() {
+					deferred.resolve();
+				}, 2000);
+
+				return deferred.promise;
+			};
 
 		});

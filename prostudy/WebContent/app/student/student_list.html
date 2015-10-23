@@ -23,7 +23,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr md-auto-select md-disable-select="item.name === 'Jelly bean'" ng-repeat="item in items | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+					<tr md-auto-select md-disable-select="item.name === 'Jelly bean'" ng-repeat="item in Students | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
 						<td>{{item.name}}</td>
 						<td>{{item.phone}}</td>
 						<td>{{item.address | uppercase}}</td>

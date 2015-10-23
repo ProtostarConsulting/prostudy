@@ -1,10 +1,16 @@
 var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
 		'ngMessages', "xeditable", "ui.bootstrap", "ui.router",
-		'md.data.table', 'ngResource', 'textAngular', 'ngStorage' ]);
+
+		'md.data.table', 'ngResource', 'textAngular','ngRoute' ,'ngStorage']);
+
+
+		
+
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('light-green')
 			.accentPalette('orange');
 });
+
 app.config(function($logProvider) {
 	//$logProvider.debugEnabled(false);	
 	$logProvider.debugEnabled(true);//this is default	
@@ -95,6 +101,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/report/display",
 		templateUrl : '/app/report/display_report.html',
 		controller : 'displayReportCtr'
+	}).state('login', {
+		url : "/login",
+		templateUrl : '/app/login/login_module.html',
+		controller : 'loginModuleCtr'
 	}).state('student', {
 		url : "/student",
 		templateUrl : '/app/student/student_module.html',

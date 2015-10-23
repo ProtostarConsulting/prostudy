@@ -2,15 +2,43 @@ angular.module("prostudyApp")
 		.controller(
 				"studentListPageCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $log, $q, tableTestDataFactory) {
+						$mdUtil, $log, $q, tableTestDataFactory,appEndpointSF) {
 					console.log("Inside studentListPageCtr");
 					// console.log("Via Serice:" +
 					// customerservice.addCustomer());
-					$scope.showSimpleToast = function() {
-						$mdToast.show($mdToast.simple().content(
-								'Customer Saved!').position("top").hideDelay(
-								3000));
+					$scope.showSavedToast = function() {
+						$mdToast.show($mdToast.simple().content('Institute Saved!')
+								.position("top").hideDelay(3000));
 					};
+
+					$scope.selected = [];
+
+					$scope.addStudent = function() {
+						var StudentService = appEndpointSF.getStudentService();
+						$scope.Students = StudentService
+								.addInstitute($scope.tempStudents);
+						$scope.tempStudents = {
+							name : "",
+							address : "",
+							phone : ""
+						};
+						$scope.showSavedToast();
+					}
+
+					$scope.getStudents = function() {
+						$scope.Students = appEndpointSF.getStudentService()
+								.getStudents();
+						$log.debug("Inside getStudentService...");
+						$log.debug("$scope.Students:" + $scope.Students);
+					}
+
+					$scope.tempStudents = {
+						name : "",
+						address : "",
+						phone : ""
+					};
+					
+					$scope.getStudents();
 
 					
 					$log.debug("inside ctr before service get $scope.items:"
@@ -35,16 +63,6 @@ angular.module("prostudyApp")
 						page : 1
 					};
 
-
-					$scope.onpagechange = function(page, limit) {
-						var deferred = $q.defer();
-
-						$timeout(function() {
-							deferred.resolve();
-						}, 2000);
-
-						return deferred.promise;
-					};
 
 					$scope.onorderchange = function(order) {
 						var deferred = $q.defer();

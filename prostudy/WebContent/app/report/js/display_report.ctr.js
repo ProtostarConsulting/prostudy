@@ -1,25 +1,38 @@
 angular.module("prostudyApp").controller(
 		"displayReportCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $q, tableTestDataFactory) {
+				$log, $q, appEndpointSF) {
 
-			$scope.loadInstituteList = function() {
-				console.log("inside loadInstituteList")
-				$scope.institutes = [];
-				$scope.selected = [];
-				tableTestDataFactory.getInstituteList().then(
-						function(data) {
-							$scope.institutes = data;
-							$log.debug("inside ctr then $scope.institutes"
-									+ $scope.institutes);
-							console.log("inside institute")
-						});
+			$scope.showSavedToast = function() {
+				$mdToast.show($mdToast.simple().content('Institute Saved!')
+						.position("top").hideDelay(3000));
+			};
 
-				$scope.editingData = [];
+			$scope.addInstitute = function() {
+				var InstituteService = appEndpointSF.getInstituteService();
+				$scope.institutes = InstituteService
+						.addInstitute($scope.tempInstitute);
+				$scope.tempInstitute = {
+					name : "",
+					city : "",
+					state : ""
+				};
+				$scope.showSavedToast();
+			}
 
-				
-			}// end of loadInstituteList load
+			$scope.getInstitutes = function() {
+				$scope.institutes = appEndpointSF.getInstituteService()
+						.getInstitutes();
+				$log.debug("Inside getInstitutes...");
+				$log.debug("$scope.institutes:" + $scope.institutes);
+			}
 
-			$scope.loadInstituteList();
+			$scope.tempInstitute = {
+				name : "",
+				city : "",
+				state : ""
+			};
+
+			$scope.getInstitutes();
 
 		});

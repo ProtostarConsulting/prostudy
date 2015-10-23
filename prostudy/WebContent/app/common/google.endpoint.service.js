@@ -12,7 +12,14 @@ function appEndpointSFFn($log, localDBServiceFactory) {
 		if(isTestMode)
 			return localDBServiceFactory.getStudentService();
 		else	
-			return gapi.client.studentService;
+			return gapi.client.StudentService;
+	};
+	
+	endpointFactory.getInstituteService = function() {
+		if(isTestMode)
+			return localDBServiceFactory.getInstituteService();
+		else	
+			return gapi.client.InstituteService;
 	};
 	
 	endpointFactory.getExamService = function() {
@@ -42,7 +49,7 @@ function appEndpointSFFn($log, localDBServiceFactory) {
 		apisToLoad = 2; // must match number of calls to
 		// gapi.client.load()
 
-		gapi.client.load('examService', 'v0.1', function() {
+		/*gapi.client.load('examService', 'v0.1', function() {
 			$log.debug("exameService Loaded....");
 			// $scope.addTaxToDB();
 		}, apiRoot);
@@ -52,7 +59,7 @@ function appEndpointSFFn($log, localDBServiceFactory) {
 			endpointFactory.is_service_ready = true;
 			deferred.resolve();
 
-		}, apiRoot);
+		}, apiRoot);*/
 		
 		return deferred.promise;
 

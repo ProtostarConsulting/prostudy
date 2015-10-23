@@ -3,6 +3,7 @@
 	<head>
 		<title>ProStudy App</title>
 		<meta name="viewport" content="initial-scale=1" />
+		
 
 		<link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
 		<link rel="stylesheet" href="/lib/base/css/googleapi.roboto.css">
@@ -43,11 +44,11 @@
 								md-svg-icon="img/icons/more_vert.svg"></md-icon>
 							</md-button>
 						</div>
-						<md-button aria-label="Logout" ng-click="showSearch = !showSearch">
+						<md-button aria-label="Login" ng-click="showSearch = !showSearch">
 							<md-tooltip>
-								Logout
+								Login
 							</md-tooltip>
-							<ng-md-icon icon="logout"></ng-md-icon>
+							<ng-md-icon icon="login"></ng-md-icon>
 						</md-button>
 						<md-button aria-label="Open Settings"
 						ng-click="showListBottomSheet($event)">
@@ -69,7 +70,7 @@
 						<md-toolbar class="md-theme-indigo">
 							<h1 class="md-toolbar-tools">Apps Module</h1>
 						</md-toolbar>
-						<md-content layout="column" ng-controller="LeftCtrl">
+						<md-content layout="column" ng-controller="LeftCtrl"  >
 							<md-button class="md-primary" ng-click="close()" hide-gt-md>
 								Close Sidenav
 							</md-button>
@@ -78,33 +79,38 @@
 								Home
 							</md-button>
 							<md-button ui-sref="student"
-							ng-click="close()" class="md-primary" show-gt-md>
+							ng-click="close()" class="md-primary" show-gt-md >
 								Student
 							</md-button>
 							<md-button ui-sref="exam"
-							ng-click="close()" class="md-primary" show-gt-md>
+							ng-click="close()" class="md-primary" show-gt-md >
 								Exam
 							</md-button>
 							<md-button ui-sref="state1" ng-click="close()"
-							class="md-primary" show-gt-md>
+							class="md-primary" show-gt-md >
 								State Demo
 							</md-button>
+			       			
+
 							<md-button ui-sref="examtest" ng-click="close()" class="md-primary" show-gt-md>
 								ExamTest
 							</md-button>
 							<md-button ui-sref="examdemo" ng-click="close()" class="md-primary" show-gt-md>
-								ExamDemo
+							ExamDemo
 							</md-button>
 							<md-button ui-sref="myprofile" ng-click="close()" class="md-primary" show-gt-md>
 								My Profile
 							</md-button>
 							<md-button
-							ui-sref="institute" ng-click="close()" class="md-primary" show-gt-md>
+							ui-sref="institute" ng-click="close()" class="md-primary" show-gt-md >
 								Institute
 							</md-button>
-							<md-button ui-sref="report" ng-click="close()" class="md-primary" show-gt-md>
+							<md-button ui-sref="report" ng-click="close()" class="md-primary" show-gt-md >
 								Report
 							</md-button>
+							<!-- <md-button ui-sref="login" ng-click="close()" class="md-primary" show-gt-md>
+								LOG IN
+							</md-button> -->
 						</md-content>
 					</md-sidenav>
 
@@ -225,6 +231,8 @@
 		</md-content>
 
 		<!-- </div> -->
+		
+		
 
 		<!-- All JS Dependencies -->
 		<script	src="/lib/base/jquery.min.js"></script>
@@ -263,6 +271,7 @@
 
 		<script src="/home.ctr.js"></script>
 		<script src="/app/demo/js/state.ctr.js"></script>
+		
 		<script src="/app/student/js/student_module.ctr.js"></script>
 		<script src="/app/student/js/student.ctr.js"></script>
 		<script src="/app/student/js/student.list.ctr.js"></script>
@@ -273,11 +282,11 @@
 		<script src="/app/question/js/question.ctr.js"></script>
 		<script src="/app/question/js/questionlist.ctr.js"></script>
 		
-		<script src="/app/examdemo/js/examdemo_module.ctr.js"></script>
+		<!-- <script src="/app/examdemo/js/examdemo_module.ctr.js"></script>
 		<script src="/app/examdemo/js/examdemo_science.ctr.js"></script>
 		<script src="/app/examdemo/js/examdemo_math.ctr.js"></script>
 		
-		<script src="/app/myprofile/js/myprofile.ctr.js"></script>
+		<script src="/app/myprofile/js/myprofile.ctr.js"></script> -->
 
 		<script src="/app/institute/js/institute_module.ctr.js"></script>
 		<script src="/app/institute/js/institute_view.ctr.js"></script>
@@ -286,6 +295,8 @@
 		
 		<script src="/app/report/js/report_module.ctr.js"></script>
 		<script src="/app/report/js/display_report.ctr.js"></script>
+		
+		<script src="/app/login/js/login_module.ctr.js"></script>
 		
 		<script src="/app/test/js/table.demo.data.service.js"></script>
 		<script src="/app/demo/js/table.demo.withservice.ctr2.js"></script>

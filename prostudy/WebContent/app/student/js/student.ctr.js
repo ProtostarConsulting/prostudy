@@ -1,11 +1,11 @@
 angular.module("prostudyApp").controller(
 		"studentPageCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, objectFactory, appEndpointSF,tableTestDataFactory,$state) {
+				$log, objectFactory, appEndpointSF,tableTestDataFactory,appEndpointSF) {
 
 			$log.debug("Inside studentPageCtr");
 			
-			$scope.loadInstituteList = function() {
+			/*$scope.loadInstituteList = function() {
 				console.log("inside loadInstituteList")
 				$scope.institutes = [];
 				$scope.selected = [];
@@ -19,14 +19,34 @@ angular.module("prostudyApp").controller(
 
 
 			}// end of loadInstituteList load
-			
-			$scope.cancelButton = function()
-			{
-				$log.debug("inside cancelButton");
-				$state.go('^', {});
-					
-			};//end of cancelButton
-			
+*/			
+			$scope.addInstitute = function() {
+				var InstituteService = appEndpointSF.getInstituteService();
+				$scope.institutes = InstituteService
+						.addInstitute($scope.tempInstitute);
+				$scope.tempInstitute = {
+					name : "",
+					city : "",
+					state : ""
+				};
+				$scope.showSavedToast();
+			}
+
+			$scope.getInstitutes = function() {
+			$scope.institutes = appEndpointSF.getInstituteService()
+						.getInstitutes();
+				$log.debug("Inside getInstitutes...");
+				$log.debug("$scope.institutes:" + $scope.institutes);
+			}
+
+			$scope.tempInstitute = {
+				name : "",
+				city : "",
+				state : ""
+			};
+			// $scope.institutes =[];
+
+			$scope.getInstitutes();
 
 			$scope.showSimpleToast = function() {
 				$mdToast.show($mdToast.simple().content('Student Data Saved!').position(
@@ -79,6 +99,6 @@ angular.module("prostudyApp").controller(
 			
 	
 
-			$scope.loadInstituteList();
+			//$scope.loadInstituteList();
 
 		});

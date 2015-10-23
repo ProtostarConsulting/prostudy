@@ -1,22 +1,15 @@
-/*function init() {
-	// alert("Inside init");
-	console.log("###Inside init###");
-	window.initGAPI(); // Calls the init function defined on the window
-}*/
-
 
 angular.module("prostudyApp").controller(
 		"indexCtr",
-		function($scope, $window, $q, $timeout, $mdToast, $mdBottomSheet, appEndpointSF) {
+		function($scope, $window, $q, $timeout, $mdToast, $mdBottomSheet,
+				appEndpointSF) {
 
-							console.log("Inside indexCtr");
+			console.log("Inside indexCtr");
 
-							$scope.showSimpleToast = function() {
-								$mdToast.show($mdToast.simple().content(
-										'Customer Saved!').position("top")
-										.hideDelay(3000));
-						};
-
+			$scope.showSimpleToast = function() {
+				$mdToast.show($mdToast.simple().content('Customer Saved!')
+						.position("top").hideDelay(3000));
+			};
 
 			// $window.initGAPI = function() {}
 			$scope.initGAPI = function() {
@@ -29,7 +22,6 @@ angular.module("prostudyApp").controller(
 								console.log("Loaded All Services....");
 							});
 				}, 2000);
-				
 
 			};
 			/*
@@ -48,9 +40,7 @@ angular.module("prostudyApp").controller(
 			 * 
 			 * gapi.client.load('questionService', 'v0.1', function() {
 			 * console.log("questionService Loaded....");
-			 * $scope.is_backend_ready = true;
-			 *  }, apiRoot);
-			 *  };
+			 * $scope.is_backend_ready = true; }, apiRoot); };
 			 */
 
 			$scope.openBottomSheet = function() {
@@ -60,8 +50,9 @@ angular.module("prostudyApp").controller(
 			};
 
 			// initialize local objects
-		/*	$scope.customer = $scope.newCustomer();
-			$scope.customerList = {};*/
+			/*
+			 * $scope.customer = $scope.newCustomer(); $scope.customerList = {};
+			 */
 		/*	$scope.initGAPI();*/
 
 		}).controller('AppCtrl',

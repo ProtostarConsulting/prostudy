@@ -29,6 +29,19 @@ function tableTestDataFactoryFn($log, $q, $http) {
 			// return items;
 			return deferred.promise;
 		},
+		getusernameList : function() {
+			// var items;
+			var deferred = $q.defer();
+
+			$http.get("/app/login/app.user_data1.json").success(function(data) {
+				// items = data.items;
+				deferred.resolve(data.items);
+				$log.debug("inside service data.items:" + data.items);
+
+			});
+			// return items;
+			return deferred.promise;
+		},
 
 		getDessertList : function() {
 			var deferred = $q.defer();
