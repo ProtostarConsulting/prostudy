@@ -1,0 +1,147 @@
+<md-content layout-padding>
+<form name="userForm">
+<!-- 	<div>
+		<div layout layout-sm="column">
+			<md-input-container flex> <label>Bill No
+			</label> <input ng-model="itemTObill.bill_No" disabled> </md-input-container>
+		</div>
+
+		<div layout layout-sm="column">
+			<md-input-container flex> <label>Customer
+				Id </label> <input ng-model="itemTObill.cust_id"> </md-input-container>
+
+			<md-input-container flex> <label>Customer
+				Name </label> <input ng-model="itemTObill.cust_Name"> </md-input-container>
+		</div>
+				<div layout layout-sm="column">
+				<md-input-container flex> <md-datepicker
+					ng-model="user.submissionDate" md-placeholder="Enter date"></md-datepicker>
+				</md-input-container>
+			</div>
+	</div>
+
+	<div id="additemINTObill">
+		<div layout layout-sm="column">
+			<md-input-container flex> <label>Sr. No
+			</label> <input ng-model="itemTObill.sr_No"> </md-input-container>
+			<md-input-container flex> <label>Item
+				Name </label> <input ng-model="itemTObill.item_Name"> </md-input-container>
+
+			<md-input-container flex> <label>Rate </label> <input
+				ng-model="itemTObill.rate"> </md-input-container>
+
+			<md-input-container flex> <label>Quantity
+			</label> <input ng-model="itemTObill.qty"> </md-input-container>
+
+			<md-input-container flex> <label>Discount
+				IN % </label> <input ng-model="itemTObill.discount"> </md-input-container>
+
+			<section layout="row" layout-sm="column" layout-align="left left">
+				<md-button class="md-raised md-primary" ng-click="addItemTObill()">Add</md-button>
+				<md-button class="md-raised md-primary" ng-click="clearAll()">Cancel
+				</md-button>
+			</section>
+		</div>
+	</div>
+ -->
+
+
+
+	<div id="custTable">
+		<div id="anotherCust"></div>
+		<md-data-table-container>
+		<table md-data-table md-row-select="selected" md-progress="deferred">
+			<thead md-order="query.order" md-trigger="onOrderChange">
+				<tr>
+					<th name="Sr.No" order-by="sr_No"></th>
+					<th name="Item Name" order-by="item_Name"></th>
+					<th name="Rate" order-by="rate"></th>
+					<th name="Quantity" order-by="qty"></th>
+					<th name="Discount" order-by="discount"></th>
+					<th name="Total" order-by="total"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr md-auto-select
+					ng-repeat="items in billsItem | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+
+					<td>{{items.sr_No}}</td>
+					<td>{{items.item_Name}}</td>
+					<td>{{items.rate}}</td>
+					<td>{{items.qty}}</td>
+					<td>{{items.discount}}</td>
+					<td>{{(items.rate * items.qty)-
+						((items.discount/100)*(items.rate * items.qty))}}</td>
+				</tr>
+<!-- 				<tr md-auto-select
+					ng-repeat="items in billsItem | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><label>Discount Total</label></td>
+					<td>{{total.discount}}</td>
+				</tr>
+				<tr md-auto-select
+					ng-repeat="items in billsItem | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><label>Grand Total</label></td>
+					<td>{{bill.grandTotal}}</td>
+				</tr>
+ -->			</tbody>
+			
+			<tfoot md-order="query.order" md-trigger="onOrderChange">
+				<tr>
+					<th name="" order-by="sr_No"></th>
+					<th name="" order-by="item_Name"></th>
+					<th name="Rate" order-by="rate"></th>
+					<th name="Quantity" order-by="qty"></th>
+					<th name="Discount" order-by="discount"></th>
+					<th name="Total" order-by="total"></th>
+				</tr>
+			</tfoot>
+		</table>
+
+		<!-- 			<md-data-table-toolbar class="alternate" ng-show="selected.length">
+			<div>{{selected.length}} {{selected.length > 1 ? 'billsItem' :
+				'items'}} selected</div>
+			<div>{{selected}}</div>
+			</md-data-table-toolbar> 
+ --> <md-data-table-pagination md-limit="query.limit"
+			md-page="query.page" md-total={{billsItem.length}}
+			md-trigger="onpagechange"></md-data-table-pagination>
+		 </md-data-table-container>
+	</div>
+	</div>
+
+	
+	<div id="update">
+		<section layout="layout-sm=row">
+
+			<md-input-container flex> <label>Sr_No </label>
+			<input ng-model="selected[0].sr_No"> </md-input-container>
+			<md-input-container flex> <label>Item
+				Name </label> <input ng-model="selected[0].item_Name"> </md-input-container>
+
+			<md-input-container flex> <label>Rate </label> <input
+				ng-model="selected[0].rate"> </md-input-container>
+			<md-input-container flex> <label>Quantity
+			</label> <input ng-model="selected[0].qty"> </md-input-container>
+
+			<md-input-container flex> <label>Discount
+			</label> <input ng-model="selected[0].discount"> </md-input-container>
+		</section>
+
+		<section layout="row" layout-sm="column" layout-align="left left">
+			<md-button class="md-raised md-primary" ng-click="updateBillItem()">Update</md-button>
+		</section>
+
+	</div>
+</form>
+</md-content>

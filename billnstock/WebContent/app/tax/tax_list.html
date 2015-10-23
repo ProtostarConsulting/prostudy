@@ -1,0 +1,59 @@
+
+<md-content layout-padding>
+<div id="taxTable">
+	<div id="anothertax">
+		<section layout="row" layout-sm="column" layout-align="left left">
+			<md-button class="md-raised md-primary" ng-click="addAnotherTax()">Add
+			Tax</md-button>
+
+		</section>
+	</div>
+	<md-data-table-container>
+	<table md-data-table md-row-select="selected" md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onOrderChange">
+			<tr>
+				<th name="Name" order-by="tax_name"></th>
+				<th name="Rate" order-by="tax_rate"></th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="taxx in taxData | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
+
+				<td>{{taxx.tax_name}}</td>
+				<td>{{taxx.tax_rate}}</td>
+				<td>
+			</tr>
+		</tbody>
+	</table>
+<!-- 			<md-data-table-toolbar class="alternate" ng-show="selected.length">
+			<div>
+				{{selected.length}} {{selected.length > 1 ? 'taxData' : 'tax'}} selected
+			</div>
+			<div>
+				{{selected}}
+			</div>
+		</md-data-table-toolbar>
+ -->		
+ <md-data-table-pagination md-limit="query.limit"
+		md-page="query.page" md-total={{taxData.length}}
+		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
+</div>
+
+<div id="update">
+	<section layout="layout-sm=row">
+		<md-input-container flex> <label>Tax Name	
+		</label> <input ng-model="selected[0].tax_name"> </md-input-container>
+		<md-input-container flex> <label>Rate
+			 </label> <input ng-model="selected[0].tax_rate"> </md-input-container>
+	</section>
+
+	<section layout="row" layout-sm="column" layout-align="left left">
+		<md-button class="md-raised md-primary" ng-click="updateTax()">Update</md-button>
+	</section>
+
+</div>
+
+
+</md-content>
