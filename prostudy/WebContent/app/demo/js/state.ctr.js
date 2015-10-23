@@ -14,9 +14,10 @@ angular.module("prostudyApp")
 								'Customer Saved!').position("top").hideDelay(
 								3000));
 					};
-					
 
-					/* Setup menu */
+
+
+					/* Setup Menu */
 					$scope.toggleRight = buildToggler('right');
 					/**
 					 * Build handler to open/close a SideNav; when animation

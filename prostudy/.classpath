@@ -52,5 +52,6 @@
 	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/validation-api-1.0.0.GA.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/guava-18.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/objectify-5.1.9-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gson-2.3.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

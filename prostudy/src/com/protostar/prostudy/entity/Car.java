@@ -24,7 +24,7 @@ public class Car {
 	private Ref<CarAddress> carAddress;
 	private List<Ref<CarOwner>> previousOwners;
 
-	private Car() {
+	public Car() {
 	}
 
 	public Car(String vin, int color) {

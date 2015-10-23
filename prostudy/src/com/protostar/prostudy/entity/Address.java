@@ -16,11 +16,11 @@ public class Address implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Key key;
-	
+
 	private String addressType = "Default";
-	private String line1;
-	private String line2;
-	private String city;
+	private String line1 = "";
+	private String line2 = "";
+	private String city = "";
 	private String state;
 	private String country;
 	private String pin;

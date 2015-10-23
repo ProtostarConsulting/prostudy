@@ -12,7 +12,7 @@ public class CarAddress {
 	Long id;
 	private String addressDetails;
 
-	private CarAddress() {
+	public CarAddress() {
 	}
 
 	public Long getId() {
