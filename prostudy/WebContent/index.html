@@ -4,7 +4,6 @@
 		<title>ProStudy App</title>
 		<meta name="viewport" content="initial-scale=1" />
 		
-
 		<link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
 		<link rel="stylesheet" href="/lib/base/css/googleapi.roboto.css">
 		<link rel="stylesheet"	href="/lib/base/css/font-awesome.css">
@@ -258,15 +257,17 @@
 		<script src="/lib/base/textAngular.min.js"></script>
 		<script src="/lib/base/ngStorage.min.js"></script>
 
-		<script src="/lib/base/googleapi.client.js"></script>
+		<!--<script src="/lib/base/googleapi.client.js"></script>-->
+		<script src="https://apis.google.com/js/client.js"></script>
 
 		<!-- App JS Dependencies -->
 		<script src="/app/common/common.app.js"></script>
 
 		<!-- Load other view/service/controllers files-->
 		<script src="/app/common/app.object.service.js"></script>
-		<script src="/app/common/app.local.db.service.js"></script>
-		<script src="/app/common/google.endpoint.service.js"></script>
+		<script src="/app/common/app.localdb.endpoint.service.js"></script>
+		<script src="/app/common/app.google.endpoint.service.js"></script>
+		<script src="/app/common/app.endpoint.service.js"></script>
 		
 
 		<script src="/home.ctr.js"></script>
@@ -296,7 +297,7 @@
 		<script src="/app/report/js/report_module.ctr.js"></script>
 		<script src="/app/report/js/display_report.ctr.js"></script>
 		
-		<script src="/app/login/js/login_module.ctr.js"></script>
+		<!--<script src="/app/login/js/login_module.ctr.js"></script>-->
 		
 		<script src="/app/test/js/table.demo.data.service.js"></script>
 		<script src="/app/demo/js/table.demo.withservice.ctr2.js"></script>

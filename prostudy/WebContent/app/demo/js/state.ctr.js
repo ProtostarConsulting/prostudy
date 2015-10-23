@@ -11,7 +11,7 @@ angular.module("prostudyApp")
 					// customerservice.addCustomer());
 					$scope.showSimpleToast = function() {
 						$mdToast.show($mdToast.simple().content(
-								'Customer Saved!').position("top").hideDelay(
+								'Student Saved!').position("top").hideDelay(
 								3000));
 					};
 
@@ -40,16 +40,33 @@ angular.module("prostudyApp")
 					
 					
 					$scope.tempStudent = {firstName: "", lastName: ""};
-					$scope.students = [{firstName: "Ram", lastName: "Sharma"},{firstName: "Andy", lastName: "Patil"}]; 
+					$scope.students = []; 
 					
 					$scope.addStudent = function(){
 						var studentService = appEndpointSF.getStudentService();
-						$scope.students = studentService.addStudent($scope.tempStudent);
-						$scope.tempStudent = {firstName: "", lastName: ""};
+						//$scope.students = studentService.addStudent($scope.tempStudent);
+												
+						studentService.addStudent($scope.tempStudent)
+						.then(
+								function() {
+									$log
+											.debug("Inside Ctr addStudent");
+									$scope.showSimpleToast();
+									$scope.tempStudent = {firstName: "", lastName: ""};
+								});
 					}
 					
 					$scope.getStudents = function(){
-						$scope.students = appEndpointSF.getStudentService().getStudents();
+						//$scope.students = appEndpointSF.getStudentService().getStudents();
+						var studentService = appEndpointSF.getStudentService();					
+												
+						studentService.getStudents($scope.tempStudent)
+						.then(
+								function(studList) {
+									$log
+											.debug("Inside Ctr getStudents");
+									$scope.students = studList;
+								});
 					}
 
 				});

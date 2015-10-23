@@ -1,7 +1,7 @@
 angular.module("prostudyApp").factory('localDBServiceFactory',
 		localDBServiceFactory);
 
-function localDBServiceFactory($log, $localStorage) {
+function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 	var serviceFactory = {};
 
@@ -13,14 +13,37 @@ function localDBServiceFactory($log, $localStorage) {
 	}
 
 	StudentService.addStudent = function(stud) {
-		var existinStuds = angular.fromJson($localStorage.dbStudents);
-		existinStuds.push(stud);
-		$localStorage.dbStudents = angular.toJson(existinStuds);
-		return existinStuds;
+
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side local DB addStudent...");
+			var studList = angular.fromJson($localStorage.dbStudents);
+			if (typeof studList === 'undefined')
+				studList = [];
+			studList.push(stud);
+			$localStorage.dbStudents = angular.toJson(studList);
+			deferred.resolve({
+				"msg" : "Student Added Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
 	}
 
 	StudentService.getStudents = function() {
-		return angular.fromJson($localStorage.dbStudents);
+		var deferred = $q.defer();
+		$timeout(function() {
+			$log.debug("In side local DB getStudents...");
+			var studList = angular.fromJson($localStorage.dbStudents);
+			if (typeof studList === 'undefined')
+				studList = [];
+			deferred.resolve(studList);
+		}, 1000);
+
+		return deferred.promise;
+
 	} // End of StudentService
 
 	// Start of InstituteService
@@ -32,7 +55,7 @@ function localDBServiceFactory($log, $localStorage) {
 
 	InstituteService.addInstitute = function(inst) {
 		var existinInst = angular.fromJson($localStorage.dbInstitutes);
-		if(typeof existinInst === 'undefined')
+		if (typeof existinInst === 'undefined')
 			existinInst = [];
 		existinInst.push(inst);
 		$localStorage.dbInstitutes = angular.toJson(existinInst);
@@ -41,7 +64,7 @@ function localDBServiceFactory($log, $localStorage) {
 
 	InstituteService.getInstitutes = function() {
 		var existinInst = angular.fromJson($localStorage.dbInstitutes);
-		if(typeof existinInst === 'undefined')
+		if (typeof existinInst === 'undefined')
 			existinInst = [];
 		return existinInst;
 	} // End of InstituteService
