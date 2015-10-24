@@ -2,7 +2,7 @@ angular.module("stockApp")
 		.controller(
 				"statesPageCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $log) {
+						$mdUtil, $log, appEndpointSF) {
 					console.log("Inside statesPageCtr");
 
 					$scope.things = [ "A", "Set", "Of", "Things", "out" ];
@@ -14,9 +14,10 @@ angular.module("stockApp")
 								'Customer Saved!').position("top").hideDelay(
 								3000));
 					};
-					
 
-					/* Setup menu */
+
+
+					/* Setup Menu */
 					$scope.toggleRight = buildToggler('right');
 					/**
 					 * Build handler to open/close a SideNav; when animation
@@ -36,5 +37,36 @@ angular.module("stockApp")
 							$log.debug("close RIGHT is done");
 						});
 					};
+					
+					
+					$scope.tempCustomer = {cust_Name: "", mobile: ""};
+					$scope.customers = []; 
+					
+					$scope.addCustomer = function(){
+						var CustomerService = appEndpointSF.getCustomerService();
+						//$scope.Customers = CustomerService.addCustomer($scope.tempCustomer);
+												
+						CustomerService.addCustomer($scope.tempCustomer)
+						.then(
+								function() {
+									$log
+											.debug("Inside Ctr addCustomer");
+									$scope.showSimpleToast();
+									$scope.tempCustomer = {cust_Name: "", mobile: ""};
+								});
+					}
+					
+					$scope.getAllCustomers = function(){
+						//$scope.Customers = appEndpointSF.getCustomerService().getCustomers();
+						var CustomerService = appEndpointSF.getCustomerService();					
+												
+						CustomerService.getAllCustomers($scope.tempCustomer)
+						.then(
+								function(custList) {
+									$log
+											.debug("Inside Ctr getCustomers");
+									$scope.customers = custList;
+								});
+					}
 
 				});

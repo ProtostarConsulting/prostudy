@@ -11,7 +11,7 @@
 					</md-button>
 					<md-button href="#customer.list" ng-click="close()"
 					class="md-primary">
-						Student Registration
+						Customer Registration
 					</md-button>
 					<md-button href="#customer.list" ng-click="close()"
 					class="md-primary">
@@ -59,10 +59,6 @@
 					class="md-primary">
 						Customer List
 					</md-button>
-					<md-button href="stock.taxadd" ng-click="close()"
-					class="md-primary">
-						Add Tax
-					</md-button>
 				</md-content>
 			</md-sidenav>
 
@@ -75,12 +71,36 @@
 	<hr/>
 	<a ui-sref="state1">State 1</a>
 	<a ui-sref="state2">State 2</a>
-	<a ui-sref="state1.list">Show List</a>
-	<a ui-sref="student.add">student add</a>
-	<a ui-sref="student.list">student list</a>
+	
 
 	<div ui-view>
 		this is deafult sub view
+	</div>
+	<h1> ngStorage Demo</h1>
+	<div>
+		<div layout="row" layout-sm="column">
+			<div layout="column" flex>
+				<md-input-container flex>
+					<label>Cust
+						Name</label>
+					<input ng-model="tempCustomer.cust_Name">
+				</md-input-container>
+				<md-input-container flex>
+					<label>Mobile</label>
+					<input ng-model="tempCustomer.mobile">
+				</md-input-container>
+			</div>
+		</div>
+		vals: {{customers}}
+		<hr>
+		<md-button ng-click="addCustomer()"
+		class="md-primary">
+			Add Temp Customer
+		</md-button>
+		<md-button ng-click="getAllCustomers()"
+		class="md-primary">
+			Get Customers From DB
+		</md-button>
 	</div>
 	<section layout="row" layout-sm="column" layout-align="left left">
 		<md-button class="md-raised">

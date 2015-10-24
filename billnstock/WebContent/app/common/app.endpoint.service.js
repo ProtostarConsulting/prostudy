@@ -1,10 +1,11 @@
 angular.module("stockApp").factory('appEndpointSF', appEndpointSFFn);
 
-function appEndpointSFFn($log, localDBServiceFactory) {
+function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 	
 	// When app is in test mode, it will return service from local db store.
 	// Else actual google end points.
 	var isTestMode = true;
+//	var isTestMode = false;
 	
 	var endpointFactory = {};
 	endpointFactory.is_service_ready = false;
@@ -14,7 +15,7 @@ function appEndpointSFFn($log, localDBServiceFactory) {
 		if(isTestMode)
 			return localDBServiceFactory.getCustomerService();
 		else	
-		    return gapi.client.customerService;
+			return googleEndpointSF.getCustomerService();
 	};
 
 
@@ -22,18 +23,20 @@ function appEndpointSFFn($log, localDBServiceFactory) {
 		if(isTestMode)
 			return localDBServiceFactory.getStockService();
 		else	
-		     return gapi.client.stockService;
+			return googleEndpointSF.getStockService();
 	};
 
-	endpointFactory.getTaxService = function() {
-		if(isTestMode)
-			return localDBServiceFactory.getTaxService();
-		else	
-		     return gapi.client.taxService;
-	};
+
+	
 	endpointFactory.loadAppGoogleServices = function(deferred) {
 		$log.debug("###Inside Google appEndpointSF.loadAppGoogleServices###");
-
+		
+		if(isTestMode) {
+			$log.debug("isTestMode: " + isTestMode);
+			deferred.resolve();
+			return deferred.promise;			
+		}
+			
 		if (endpointFactory.is_service_ready) {
 			$log.debug("Already Initialized returning back...");
 			deferred.resolve();			
@@ -48,8 +51,8 @@ function appEndpointSFFn($log, localDBServiceFactory) {
 		// gapi.client.load()
 
 
-		gapi.client.load('customerservice', 'v0.1', function() {
-			console.log("customerservice Loaded....");
+		gapi.client.load('customerService', 'v0.1', function() {
+			$log.debug("customerservice Loaded....");
 
 			endpointFactory.is_service_ready = true;
 			deferred.resolve();
@@ -58,18 +61,18 @@ function appEndpointSFFn($log, localDBServiceFactory) {
 
 
 		gapi.client.load('stockService', 'v0.1', function() {
-			console.log("stockService Loaded....");
+			$log.debug("stockService Loaded....");
 			endpointFactory.is_service_ready = true;
 			deferred.resolve();
 
 		}, apiRoot);
 		
-		gapi.client.load('taxService', 'v0.1', function() {
-			console.log("taxService Loaded....");
+		/*gapi.client.load('taxService', 'v0.1', function() {
+			$log.debug("taxService Loaded....");
 			endpointFactory.is_service_ready = true;
 			deferred.resolve();
 
-		}, apiRoot);
+		}, apiRoot);*/
 
 		return deferred.promise;
 	};	

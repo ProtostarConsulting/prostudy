@@ -23,29 +23,29 @@
 					<!-- fill up the space between left and right area -->
 					<span flex></span>
 					<section layout="row">
+						<div hide-sm layout= "row" layout-align = "end start">
+							<md-button class="md-icon-button md-accent" aria-label="Favorite">
+								<md-icon md-font-icon="icon-home" ng-class="font.theme" class="step" ></md-icon>
+							</md-button>
 
-						<md-button class="md-icon-button md-accent" aria-label="Favorite">
-							<md-icon md-font-icon="icon-home" ng-class="font.theme" class="step" ></md-icon>
+							<md-button class="md-icon-button md-accent" aria-label="Favorite">
+								<md-icon md-svg-icon="img/icons/ic_comment_24px.svg"></md-icon>
+							</md-button>
+							<md-button class="md-icon-button md-accent" aria-label="Favorite">
+								<md-icon md-svg-icon="img/icons/codepen-logo.svg"></md-icon>
+							</md-button>
+							<md-button class="md-icon-button md-accent" aria-label="Favorite">
+								<md-icon md-svg-icon="img/icons/separator.svg"></md-icon>
+							</md-button>
+							<md-button class="md-icon-button" aria-label="More"
+							ng-click="toggleRight()">
+								<md-icon
+								md-svg-icon="img/icons/more_vert.svg"></md-icon>
+							</md-button>
+						</div>
+						<md-button aria-label="Logout" ng-click="showSearch = !showSearch">
+							<ng-md-icon icon="logout"></ng-md-icon>
 						</md-button>
-
-						<md-button class="md-icon-button md-accent" aria-label="Favorite">
-							<md-icon md-svg-icon="img/icons/ic_comment_24px.svg"></md-icon>
-						</md-button>
-						<md-button class="md-icon-button md-accent" aria-label="Favorite">
-							<md-icon md-svg-icon="img/icons/codepen-logo.svg"></md-icon>
-						</md-button>
-						<md-button class="md-icon-button md-accent" aria-label="Favorite">
-							<md-icon md-svg-icon="img/icons/separator.svg"></md-icon>
-						</md-button>
-						<md-button class="md-icon-button" aria-label="More"
-						ng-click="toggleRight()">
-							<md-icon
-							md-svg-icon="img/icons/more_vert.svg"></md-icon>
-						</md-button>
-						<md-button aria-label="Search" ng-click="showSearch = !showSearch">
-							<ng-md-icon icon="search"></ng-md-icon>
-						</md-button>
-
 						<md-button aria-label="Open Settings"
 						ng-click="showListBottomSheet($event)">
 							<ng-md-icon
@@ -240,15 +240,18 @@
 		<script src="/lib/base/textAngular-rangy.min.js"></script>
 		<script src="/lib/base/textAngular-sanitize.min.js"></script>
 		<script src="/lib/base/textAngular.min.js"></script>
+		<script src="/lib/base/ngStorage.min.js"></script>
 
-		<script src="/lib/base/googleapi.client.js"></script>
+		<script src="https://apis.google.com/js/client.js"></script>
 
 		<!-- App JS Dependencies -->
 		<script src="/app/common/common.app.js"></script>
 
 		<!-- Load other view/service/controllers files-->
 		<script src="/app/common/app.object.service.js"></script>
-		<script src="/app/common/google.endpoint.service.js"></script>
+		<script src="/app/common/app.localdb.endpoint.service.js"></script>
+		<script src="/app/common/app.google.endpoint.service.js"></script>
+		<script src="/app/common/app.endpoint.service.js"></script>
 
 		<script src="/home.ctr.js"></script>
 		<script src="/app/customer/js/customer.ctr.js"></script>

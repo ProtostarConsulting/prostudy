@@ -14,7 +14,7 @@ import com.protostar.billnstock.until.data.EMF;
 import com.protostar.billnstock.until.data.ServerMsg;
 
 
-@Api(name = "stockServices", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.stock.services", ownerName = "com.protostar.billingnstock.stock.services", packagePath = ""))
+@Api(name = "stockService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.stock.services", ownerName = "com.protostar.billingnstock.stock.services", packagePath = ""))
 public class StockItemService
 {
 

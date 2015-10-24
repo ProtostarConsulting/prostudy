@@ -16,7 +16,7 @@ import com.protostar.billnstock.until.data.ServerMsg;
 
 
 
-@Api(name = "stockcustomerservice", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.stock.cust.services", ownerName = "com.protostar.billingnstock.stock.cust.services", packagePath = ""))
+@Api(name = "customerService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.stock.cust.services", ownerName = "com.protostar.billingnstock.stock.cust.services", packagePath = ""))
 public class CustomerService
 {
 	
@@ -69,7 +69,7 @@ public class CustomerService
 			
 			Query q= em.createQuery("select c from Customer c");
 			customerList=q.getResultList();
-			System.out.println("Got AllTaxList: " + customerList.size() );
+			System.out.println("Got getAllCustomers: " + customerList.size() );
 			
 		} catch (Exception e) 
 	

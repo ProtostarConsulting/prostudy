@@ -1,14 +1,7 @@
-/*function init() {
-	// alert("Inside init");
-	console.log("###Inside init###");
-	window.initGAPI(); // Calls the init function defined on the window
-}*/
-
 angular.module("stockApp").controller(
 		"indexCtr",
-		function($scope, $window, $q, $timeout, $mdToast, $mdBottomSheet,
+		function($scope, $window, $log, $q, $timeout, $mdToast, $mdBottomSheet,
 				appEndpointSF) {
-			console.log("Inside indexCtr");
 
 			console.log("Inside indexCtr");
 
@@ -19,45 +12,33 @@ angular.module("stockApp").controller(
 
 			// $window.initGAPI = function() {}
 			$scope.initGAPI = function() {
-				console.log("Came to initGAPI");
+				$log.debug("Came to initGAPI");
 				// This will load all server side end points
 				// $scope.loadAppGoogleServices();
-				$timeout(function() {
-					appEndpointSF.loadAppGoogleServices($q.defer()).then(
-							function() {
-								console.log("Loaded All Services....");
-							});
-				}, 2000);
+				$timeout(
+						function() {
+							appEndpointSF
+									.loadAppGoogleServices($q.defer())
+									.then(
+											function() {
+												$log
+														.debug("##########Loaded All Google Endpoint Services....#########");
+											});
+						}, 2000);
 
 			};
-			/*
-			 * $scope.loadAppGoogleServices = function() {
-			 * console.log("###Inside loadAppGoogleServices###"); var apiRoot =
-			 * '//' + window.location.host + '/_ah/api';
-			 * 
-			 * var apisToLoad;
-			 * 
-			 * apisToLoad = 1; // must match number of calls to //
-			 * gapi.client.load()
-			 * 
-			 * gapi.client.load('examService', 'v0.1', function() {
-			 * console.log("exameService Loaded...."); // $scope.addTaxToDB(); },
-			 * apiRoot);
-			 * 
-			 * gapi.client.load('questionService', 'v0.1', function() {
-			 * console.log("questionService Loaded....");
-			 * $scope.is_backend_ready = true; }, apiRoot); };
-			 */
 
 			$scope.openBottomSheet = function() {
-				$mdBottomSheet.show({
-					template : '<md-bottom-sheet>Hello!</md-bottom-sheet>'
-				});
+				$mdBottomSheet
+						.show({
+							template : '<md-bottom-sheet>Hello!</md-bottom-sheet>'
+						});
 			};
 
 			// initialize local objects
 			/*
-			 * $scope.customer = $scope.newCustomer(); $scope.customerList = {};
+			 * $scope.customer = $scope.newCustomer();
+			 * $scope.customerList = {};
 			 */
 			$scope.initGAPI();
 
