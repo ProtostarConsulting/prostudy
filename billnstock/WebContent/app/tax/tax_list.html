@@ -19,10 +19,10 @@
 
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="taxx in taxData | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
+				ng-repeat="tax in taxData | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
 
-				<td>{{taxx.tax_name}}</td>
-				<td>{{taxx.tax_rate}}</td>
+				<td>{{tax.tax_name}}</td>
+				<td>{{tax.tax_rate}}</td>
 				<td>
 			</tr>
 		</tbody>

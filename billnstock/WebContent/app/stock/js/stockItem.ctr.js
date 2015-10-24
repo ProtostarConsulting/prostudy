@@ -11,23 +11,39 @@ angular.module("stockApp").controller(
 						"top").hideDelay(3000));
 			};
 
-			$scope.getStock = function() {
-				$log.debug("in side getStock");
-				$scope.stockData = appEndpointSF.getStockService().getStocks();
-				$log.debug("in side getStocks : $scope.stockData:"+ $scope.stockData);
-			};
-				
-			$scope.addStock = function() {
-				$log.debug("in side addStock. added...");
-				appEndpointSF.getStockService().addStock($scope.stock);		
-				$scope.showSimpleToast();
-				$scope.stock = {};
-			};// end of call to addStudent
-
-			//$scope.cust = objectFactory.newCustomer();
 			$scope.stock = {};
+			$scope.addStock = function() {
+				$log.debug("No1");
+				var stockService = appEndpointSF.getStockService();
+				// $scope.students =
+				// studentService.addStudent($scope.tempStudent);
+
+				stockService.addStock($scope.stock).then(
+						function(msgBean) {
+							$log.debug("No6");
+							$log.debug("Inside Ctr addStock");
+							$log.debug("msgBean.msg:" + msgBean.msg);
+							$scope.showSimpleToast();
+							
+						});
+				$log.debug("No4");
+			}
+
+			$scope.getAllStock = function() {
+				$log.debug("Inside Ctr $scope.getAllStock");
+				var stockService = appEndpointSF.getStockService();
+
+				stockService.getAllStock().then(
+						function(stockList) {
+							$log.debug("Inside Ctr getAllStock");
+							$scope.stockData = stockList;
+							$log.debug("Inside Ctr $scope.stockData:"
+									+ angular.toJson($scope.stockData));							
+						});
+			}
+			
 			$scope.stockData = [];
-			$scope.getStock();
+			$scope.getAllStock();
 			
 //			 Setup menu 
 			$scope.toggleRight = buildToggler('right');

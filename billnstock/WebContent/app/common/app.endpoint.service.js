@@ -26,6 +26,12 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getStockService();
 	};
 
+	endpointFactory.getTaxService = function() {
+		if(isTestMode)
+			return localDBServiceFactory.getTaxService();
+		else	
+			return googleEndpointSF.getTaxService();
+	};
 
 	
 	endpointFactory.loadAppGoogleServices = function(deferred) {
@@ -67,12 +73,12 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 
 		}, apiRoot);
 		
-		/*gapi.client.load('taxService', 'v0.1', function() {
+		gapi.client.load('taxService', 'v0.1', function() {
 			$log.debug("taxService Loaded....");
 			endpointFactory.is_service_ready = true;
 			deferred.resolve();
 
-		}, apiRoot);*/
+		}, apiRoot);
 
 		return deferred.promise;
 	};	

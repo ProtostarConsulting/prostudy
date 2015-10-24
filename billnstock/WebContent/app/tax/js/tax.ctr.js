@@ -11,23 +11,39 @@ angular.module("stockApp").controller(
 						"top").hideDelay(3000));
 			};
 
-			$scope.getTaxesList = function() {
-				$log.debug("in side getStock");
-				$scope.taxData = appEndpointSF.getTaxService().getTaxes();
-				$log.debug("in side getTaxes : $scope.taxData:"+ $scope.taxData);
-			};
-				
-			$scope.addTax = function() {
-				$log.debug("in side addTax. added...");
-				appEndpointSF.getTaxService().addTax($scope.tax);		
-				$scope.showSimpleToast();
-				$scope.tax = {};
-			};// end of call to addStudent
-
-			//$scope.cust = objectFactory.newCustomer();
 			$scope.tax = {};
+			$scope.addTax = function() {
+				$log.debug("No1");
+				var taxService = appEndpointSF.getTaxService();
+				// $scope.students =
+				// studentService.addStudent($scope.tempStudent);
+
+				taxService.addTax($scope.tax).then(
+						function(msgBean) {
+							$log.debug("No6");
+							$log.debug("Inside Ctr addTax");
+							$log.debug("msgBean.msg:" + msgBean.msg);
+							$scope.showSimpleToast();
+							
+						});
+				$log.debug("No4");
+			}
+
+			$scope.getAllTaxes = function() {
+				$log.debug("Inside Ctr $scope.getAllTaxes");
+				var taxService = appEndpointSF.getTaxService();
+
+				taxService.getAllTaxes().then(
+						function(taxList) {
+							$log.debug("Inside Ctr getAllTaxes");
+							$scope.taxData = taxList;
+							$log.debug("Inside Ctr $scope.taxData:"
+									+ angular.toJson($scope.taxData));							
+						});
+			}
+			
 			$scope.taxData = [];
-			$scope.getTaxesList();
+			$scope.getAllTaxes();
 			
 //			 Setup menu 
 			$scope.toggleRight = buildToggler('right');

@@ -38,5 +38,8 @@
 		md-page="query.page" md-total={{customers.length}}
 		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
 </div>
-
+vals: {{customers}}
+<md-button ui-sref="customer.list" ng-click="getAllCustomers()" class="md-primary">
+		Customer List in side List view
+	</md-button>
 </md-content>

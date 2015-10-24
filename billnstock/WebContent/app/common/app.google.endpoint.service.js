@@ -38,9 +38,9 @@ function googleEndpointSFFunc($log, $q) {
 		return StockService;
 	}
 
-	StockService.addStock = function(stockItem) {
+	StockService.addStock = function(stock) {
 		var deferred = $q.defer();
-		gapi.client.stockService.addStock(stockItem).execute(
+		gapi.client.stockService.addStock(stock).execute(
 				function(resp) {
 					$log.debug("addStock#resp:" + resp);
 					deferred.resolve(resp);
@@ -53,6 +53,33 @@ function googleEndpointSFFunc($log, $q) {
 		gapi.client.stockService.getAllStock().execute(
 				function(resp) {
 					$log.debug("getAllStock#resp:" + resp);
+					deferred.resolve(resp.items);
+				});
+		return deferred.promise;
+	} // End of StockService
+
+	// Start of StockService
+	var TaxService = {};
+
+	serviceFactory.getTaxService = function() {
+		return TaxService;
+	}
+
+	TaxService.addTax = function(tax) {
+		var deferred = $q.defer();
+		gapi.client.stockService.addTax(tax).execute(
+				function(resp) {
+					$log.debug("addTax#resp:" + resp);
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+	}
+
+	TaxService.getAllTaxes = function() {
+		var deferred = $q.defer();
+		gapi.client.taxService.getAllTaxes().execute(
+				function(resp) {
+					$log.debug("getAllTaxes#resp:" + resp);
 					deferred.resolve(resp.items);
 				});
 		return deferred.promise;
