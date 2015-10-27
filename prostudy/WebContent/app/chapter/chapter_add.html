@@ -1,0 +1,87 @@
+<div layout="column" layout-padding>
+	<md-content>
+		<section>
+			<md-subheader class="md-primary">	
+				<h3 class="md-headline">New Chapter</h3>
+			</md-subheader>
+	<form name="userForm">
+	  <div layout="row" layout-sm="column">
+					
+		<div layout="column" flex>
+		
+
+			<md-input-container md-is-error="chapterForm.option1.$invalid && (chapterForm.$submitted || chapterForm.id.$dirty)">
+				<label>ID :-</label>
+				<input name="id" id="id" ng-required="true" ng-model="chapter.id">
+				<div ng-messages="chapterForm.id.$error" ng-if="chapterForm.id.$submitted || chapterForm.id.$touched">
+					<div ng-message="required">Please enter ID.</div>
+				</div>
+			</md-input-container>
+
+			<md-input-container md-is-error="chapterForm.chapter_content.$invalid && (chapterForm.$submitted || chapterForm.option2.$dirty)">
+				<label>Chapter Content</label>
+				<input name="chapter_content" id="chapter_content" ng-required="true" ng-model="chapter.chapter_content">
+				<div ng-messages="chapterForm.chapter_content.$error" ng-if="chapterForm.chapter_content.$submitted || chapterForm.chapter_content.$touched">
+					<div ng-message="required">Please enter Chapter Content</div>
+				</div>
+			</md-input-container>
+
+			<md-input-container md-is-error="chapterForm.board.$invalid && (chapterForm.$submitted || chapterForm.board.$dirty)">
+				<label>Board</label>
+				<input name="board" id="board" ng-required="true" ng-model="chapter.board">
+				<div ng-messages="chapterForm.board.$error" ng-if="chapterForm.board.$submitted || chapterForm.board.$touched">
+					<div ng-message="required">
+						Please enter Option 3.
+					</div>
+				</div>
+			</md-input-container>
+
+			<md-input-container md-is-error="chapterForm.class.$invalid && (chapterForm.$submitted || chapterForm.class.$dirty)">
+				<label>Class</label>
+				<input name="class" id="class" ng-required="true" ng-model="chapter.option4">
+				<div ng-messages="chapterForm.class.$error" ng-if="chapterForm.class.$submitted || chapterForm.class.$touched">
+					<div ng-message="required">
+						Please enter Class .
+					</div>
+				</div>
+			</md-input-container>
+
+			<md-input-container md-is-error="chapterForm.subject.$invalid && (chapterForm.$submitted || chapterForm.subject.$dirty)">
+				<label>Subject</label>
+				<input  name="subject" id="subject"   ng-model="chapter.subject" required>
+				<div ng-messages="chapterForm.subject.$error" ng-if="chapterForm.subject.$submitted || chapterForm.subject.$touched">
+					<div ng-message="required">
+						Please enter Subject.
+					</div>
+				
+				</div>
+			</md-input-container>
+			
+					<md-input-container md-is-error="chapterForm.chapter_no.$invalid && (chapterForm.$submitted || chapterForm.chapter_no.$dirty)">
+				<label>Chapter No</label>
+				<input type="number" name="chapter_no" id="chapter_no" ng-minlength="1"  ng-maxlength="1"  ng-model="chapter.chapter_no" required>
+				<div ng-messages="chapterForm.chapter_no.$error" ng-if="chapterForm.chapter_no.$submitted || chapterForm.chapter_no.$touched">
+					<div ng-message="required">
+						Please enter Chapter No
+					</div>
+					<div ng-message="chapterForm.chapter_no.$invalid">
+						Invalid Chapter No.
+					</div>
+				</div>
+			</md-input-container>
+			
+			
+					</div>
+				</div>
+
+			</form>
+			
+		</section>
+
+		<section layout="row" layout-sm="column" layout-align="left left">
+			<md-button class="md-raised">Cancel</md-button>
+			<md-button class="md-raised md-primary" ng-click="">Submit</md-button>
+
+		</section>
+	</md-content>
+</div>

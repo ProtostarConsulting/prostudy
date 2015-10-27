@@ -25,6 +25,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/state1",
 		templateUrl : "/app/demo/state1.html",
 		controller : 'statesPageCtr'
+	}).state('chapter', {
+		url : "/chapter",
+		templateUrl : "/app/chapter/chapter_module.html",
+		controller : 'chapterModuleCtr'
+	}).state('chapter.add', {
+		url : "/chapter/add",
+		templateUrl : "/app/chapter/chapter_add.html",
+		controller : 'chapterAddCtr'
+	}).state('chapter.list', {
+		url : "/chapter/list",
+		templateUrl : "/app/chapter/chapter_list.html",
+		controller : 'chapterListCtr'
 	}).state('state1.list', {
 		url : "/list",
 		templateUrl : "/app/demo/state1.list.html",
