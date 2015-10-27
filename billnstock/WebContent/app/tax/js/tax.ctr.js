@@ -15,9 +15,7 @@ angular.module("stockApp").controller(
 			$scope.addTax = function() {
 				$log.debug("No1");
 				var taxService = appEndpointSF.getTaxService();
-				// $scope.students =
-				// studentService.addStudent($scope.tempStudent);
-
+				
 				taxService.addTax($scope.tax).then(
 						function(msgBean) {
 							$log.debug("No6");

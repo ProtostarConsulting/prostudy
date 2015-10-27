@@ -33,6 +33,12 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getTaxService();
 	};
 
+	endpointFactory.getInvoiceService = function() {
+		if(isTestMode)
+			return localDBServiceFactory.getInvoiceService();
+		else	
+			return googleEndpointSF.getInvoiceService();
+	};
 	
 	endpointFactory.loadAppGoogleServices = function(deferred) {
 		$log.debug("###Inside Google appEndpointSF.loadAppGoogleServices###");
@@ -75,6 +81,13 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 		
 		gapi.client.load('taxService', 'v0.1', function() {
 			$log.debug("taxService Loaded....");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+		
+		gapi.client.load('invoiceService', 'v0.1', function() {
+			$log.debug("invoiceService Loaded....");
 			endpointFactory.is_service_ready = true;
 			deferred.resolve();
 

@@ -15,9 +15,7 @@ angular.module("stockApp").controller(
 			$scope.addStock = function() {
 				$log.debug("No1");
 				var stockService = appEndpointSF.getStockService();
-				// $scope.students =
-				// studentService.addStudent($scope.tempStudent);
-
+				
 				stockService.addStock($scope.stock).then(
 						function(msgBean) {
 							$log.debug("No6");

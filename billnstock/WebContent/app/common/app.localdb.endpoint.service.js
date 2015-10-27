@@ -98,7 +98,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		$timeout(function() {
 
 			$log.debug("In side local DB addTax...");
-			var stockList = angular.fromJson($localStorage.dbTaxes);
+			var taxList = angular.fromJson($localStorage.dbTaxes);
 			if (typeof taxList === 'undefined')
 				taxList = [];
 			taxList.push(tax);
@@ -116,7 +116,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 	TaxService.getAllTaxes = function() {
 		var deferred = $q.defer();
 		$timeout(function() {
-			var stockList = angular.fromJson($localStorage.dbTaxes);
+			var taxList = angular.fromJson($localStorage.dbTaxes);
 			if (typeof taxList === 'undefined')
 				taxList = [];
 			deferred.resolve(taxList);		
@@ -125,7 +125,48 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 		return deferred.promise;
 	} // End of TaxService
+	
+	
+	// Start of StockService
+	var InvoiceService = {};
 
+	serviceFactory.getInvoiceService = function() {
+		return InvoiceService;
+	}
+
+	InvoiceService.addInvoice = function(invoice) {
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side local DB addInvoice...");
+			var invoiceList = angular.fromJson($localStorage.dbinvoice);
+			if (typeof invoiceList === 'undefined')
+				invoiceList = [];
+			invoiceList.push(tax);
+			$localStorage.dbinvoice = angular.toJson(invoiceList);
+			deferred.resolve({
+				"msg" : "Invoice Added Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+
+/*	
+	TaxService.getAllTaxes = function() {
+		var deferred = $q.defer();
+		$timeout(function() {
+			var taxList = angular.fromJson($localStorage.dbTaxes);
+			if (typeof taxList === 'undefined')
+				taxList = [];
+			deferred.resolve(taxList);		
+
+		}, 1000);
+
+		return deferred.promise;
+	} // End of TaxService
+*/
 	
 	return serviceFactory;
 }
