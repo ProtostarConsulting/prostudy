@@ -1,4 +1,4 @@
-angular
+/*angular
 		.module("prostudyApp")
 		.controller(
 				"questionCtr",
@@ -98,3 +98,53 @@ angular
 							};
 
 						} ]);
+*/
+angular.module("prostudyApp").controller(
+		"questionCtr",
+		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
+				$log, $q, appEndpointSF) {
+
+			$scope.showSavedToast = function() {
+				$mdToast.show($mdToast.simple().content('Question Saved!')
+						.position("top").hideDelay(3000));
+			};
+			
+			
+			
+			$scope.tempQuestion = {description: "", note: "", option1:"", option2:"", option3:"", option4:"", correctAns:""};
+			$scope.questions = []; 
+		
+			
+			$scope.addQuestion = function(){
+				$log.debug("No1");	
+				var QuestionAddService = appEndpointSF.getQuestionAddService();
+				
+				QuestionAddService.addQuestion($scope.tempQuestion)
+				.then(
+						function(msgBean) {
+							$log.debug("No6");	
+							$log.debug("Inside Ctr addQuestion");
+							$log.debug("msgBean.msg:" + msgBean.msg);
+							$scope.showSavedToast();
+							$scope.tempQuestion = {description: "", note: "", option1:"", option2:"", option3:"", option4:"", correctAns:""};
+						});
+				$log.debug("No4");	
+			}
+			
+			$scope.getQuestion = function(){
+			
+				var QuestionAddService = appEndpointSF.getQuestionAddService();					
+										
+				QuestionAddService.getQuestion()
+				.then(
+						function(questionList) {
+							$log
+									.debug("Inside Ctr getInstitutes");
+							$scope.questions = questionList;
+						});
+			}
+
+
+			
+		});
+

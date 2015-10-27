@@ -1,7 +1,7 @@
 angular.module("prostudyApp").controller(
 		"examDemoCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $q, tableTestDataFactory) {
+				$log, $q, tableTestDataFactory,appEndpointSF) {
 
 			console.log("Inside examDemoCtr");
 			$scope.currentPage = 0;
@@ -10,8 +10,45 @@ angular.module("prostudyApp").controller(
 			$scope.count = 0;
 			$scope.isDisabledPrevious = false;
 			$scope.isDisabledNext = false;
+			$scope.cnt = 0;
+			
+			$scope.tempQuestion = {description: "", note: "", option1:"", option2:"", option3:"", option4:"", correctAns:""};
+			$scope.questions = []; 
+		
+			
+			$scope.addQuestion = function(){
+				$log.debug("No1");	
+				var QuestionAddService = appEndpointSF.getQuestionAddService();
+				
+				QuestionAddService.addQuestion($scope.tempQuestion)
+				.then(
+						function(msgBean) {
+							$log.debug("No6");	
+							$log.debug("Inside Ctr addQuestion");
+							$log.debug("msgBean.msg:" + msgBean.msg);
+							$scope.showSavedToast();
+							$scope.tempQuestion = {description: "", note: "", option1:"", option2:"", option3:"", option4:"", correctAns:""};
+						});
+				$log.debug("No4");	
+			}
+			
+			$scope.getQuestion = function(){
+			
+				var QuestionAddService = appEndpointSF.getQuestionAddService();					
+										
+				QuestionAddService.getQuestion()
+				.then(
+						function(questionList) {
+							$log
+									.debug("Inside Ctr getInstitutes");
+							$scope.questions = questionList;
+						});
+				
+			}
+			
+			$scope.TextPattern = ('<[/a-zAZ0-9]*>','');
 
-			$scope.loadQuestionsList = function() {
+			/*$scope.loadQuestionsList = function() {
 
 				tableTestDataFactory.getQuestionstList().then(
 						function(data) {
@@ -31,12 +68,14 @@ angular.module("prostudyApp").controller(
 							
 							$scope.onNext();
 							$scope.isDisabledPrevious = true;
-							
+							$log.debug("length ="+$scope.questions.length);
 							
 
 						});// end of tableTestDataFactory
 				
 			};// end of loadQuestionsList
+			$scope.selected = [];*/
+			 //$scope.selected = 1;
 
 			$scope.onNext = function() {
 				$scope.currentPage++;
@@ -114,9 +153,23 @@ angular.module("prostudyApp").controller(
 
 			}// end of onPrevious
 			
+			$scope.correctAnsCal = function()
+			{
+				for(i=0;i<$scope.questions.length;i++)
+				{
+					if($scope.questions[i].correctAns==$scope.selected)
+					{
+						cnt++;
+					}
+					//console.log("ans :"+$scope.questions[i].correctAns);
+					
+				}
+				$log.debug("anssel :"+$scope.selected.correctAns);
+				
+			}
+			
 			
 		
-			$scope.selected = [];
 			$scope.toggle = function(question, list) {
 				var idx = list.indexOf(question);
 				if (idx > -1)
@@ -129,7 +182,62 @@ angular.module("prostudyApp").controller(
 			$scope.exists = function(question, list) {
 				return list.indexOf(question) > -1;
 			};
-			$scope.loadQuestionsList();
+			
+			$scope.getQuestion();
+		//	$scope.loadQuestionsList();
 
 		});// end of examDemoCtr
 
+
+
+
+/*angular.module("prostudyApp").controller(
+		"examDemoCtr",
+		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
+				$log, $q, appEndpointSF) {
+
+			$scope.showSavedToast = function() {
+				$mdToast.show($mdToast.simple().content('Question Saved!')
+						.position("top").hideDelay(3000));
+			};
+			
+			
+			
+			$scope.tempQuestion = {description: "", note: "", option1:"", option2:"", option3:"", option4:"", correctAns:""};
+			$scope.questions = []; 
+		
+			
+			$scope.addQuestion = function(){
+				$log.debug("No1");	
+				var QuestionAddService = appEndpointSF.getQuestionAddService();
+				
+				QuestionAddService.addQuestion($scope.tempQuestion)
+				.then(
+						function(msgBean) {
+							$log.debug("No6");	
+							$log.debug("Inside Ctr addQuestion");
+							$log.debug("msgBean.msg:" + msgBean.msg);
+							$scope.showSavedToast();
+							$scope.tempQuestion = {description: "", note: "", option1:"", option2:"", option3:"", option4:"", correctAns:""};
+						});
+				$log.debug("No4");	
+			}
+			
+			$scope.getQuestion = function(){
+			
+				var QuestionAddService = appEndpointSF.getQuestionAddService();					
+										
+				QuestionAddService.getQuestion()
+				.then(
+						function(questionList) {
+							$log
+									.debug("Inside Ctr getInstitutes");
+							$scope.questions = questionList;
+						});
+			}
+
+
+			
+		});
+
+*/

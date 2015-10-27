@@ -10,33 +10,43 @@ angular.module("prostudyApp").controller(
 
 			$scope.selected = [];
 
-			$scope.addInstitute = function() {
+			$scope.tempInstitute = {name: "", email_id: "", phone_no:"", address:""};
+			$scope.institutes = []; 
+			
+			$scope.addInstitute = function(){
+				$log
+				.debug("No1");	
 				var InstituteService = appEndpointSF.getInstituteService();
-				$scope.institutes = InstituteService
-						.addInstitute($scope.tempInstitute);
-				$scope.tempInstitute = {
-					name : "",
-					city : "",
-					state : ""
-				};
-				$scope.showSavedToast();
+				//$scope.students = studentService.addStudent($scope.tempStudent);
+										
+				InstituteService.addInstitute($scope.tempInstitute)
+				.then(
+						function(msgBean) {
+							$log
+							.debug("No6");	
+							$log
+									.debug("Inside Ctr addInstitute");
+							$log
+							.debug("msgBean.msg:" + msgBean.msg);
+							$scope.showSavedToast();
+							$scope.tempInstitute = {name: "", email_id: "", phone_no:"", address:""};
+						});
+				$log
+				.debug("No4");	
 			}
-
-			$scope.getInstitutes = function() {
-				$scope.institutes = appEndpointSF.getInstituteService()
-						.getInstitutes();
-				$log.debug("Inside getInstitutes...");
-				$log.debug("$scope.institutes:" + $scope.institutes);
+			
+			$scope.getInstitutes = function(){
+				//$scope.students = appEndpointSF.getStudentService().getStudents();
+				var InstituteService = appEndpointSF.getInstituteService();					
+										
+				InstituteService.getInstitutes()
+				.then(
+						function(instituteList) {
+							$log
+									.debug("Inside Ctr getInstitutes");
+							$scope.institutes = instituteList;
+						});
 			}
-
-			$scope.tempInstitute = {
-				name : "",
-				city : "",
-				state : ""
-			};
-			// $scope.institutes =[];
-
-			$scope.getInstitutes();
 
 			$scope.editingData = [];
 
@@ -54,5 +64,6 @@ angular.module("prostudyApp").controller(
 				 $scope.institutes.splice(index, 1);
 			}; // end of remove
 			
+			$scope.getInstitutes();
 
 		});

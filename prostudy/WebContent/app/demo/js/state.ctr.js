@@ -43,24 +43,32 @@ angular.module("prostudyApp")
 					$scope.students = []; 
 					
 					$scope.addStudent = function(){
+						$log
+						.debug("No1");	
 						var studentService = appEndpointSF.getStudentService();
 						//$scope.students = studentService.addStudent($scope.tempStudent);
 												
 						studentService.addStudent($scope.tempStudent)
 						.then(
-								function() {
+								function(msgBean) {
+									$log
+									.debug("No6");	
 									$log
 											.debug("Inside Ctr addStudent");
+									$log
+									.debug("msgBean.msg:" + msgBean.msg);
 									$scope.showSimpleToast();
 									$scope.tempStudent = {firstName: "", lastName: ""};
 								});
+						$log
+						.debug("No4");	
 					}
 					
 					$scope.getStudents = function(){
 						//$scope.students = appEndpointSF.getStudentService().getStudents();
 						var studentService = appEndpointSF.getStudentService();					
 												
-						studentService.getStudents($scope.tempStudent)
+						studentService.getStudents()
 						.then(
 								function(studList) {
 									$log

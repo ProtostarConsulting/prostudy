@@ -1,52 +1,47 @@
 <div>
-		<div layout="row" layout-sm="column">
-			<div layout="column" flex>
-				<md-input-container flex>
-					<label>Institute Name</label>
-					<input ng-model="tempInstitute.name">
-				</md-input-container>
-				<md-input-container flex>
-					<label>City</label>
-					<input ng-model="tempInstitute.city">
-				</md-input-container>
-				<md-input-container flex>
-					<label>State</label>
-					<input ng-model="tempInstitute.state">
-				</md-input-container>
-			</div>
+	<div layout="row" layout-sm="column">
+		<div layout="column" flex>
+			<md-input-container flex> <label>Name</label> <input
+				ng-model="tempInstitute.name"> </md-input-container>
+			<md-input-container flex> <label>Email-id</label>
+			<input ng-model="tempInstitute.email_id"> </md-input-container>
+			<md-input-container flex> <label>Phone
+				no.</label> <input ng-model="tempInstitute.phone_no"> </md-input-container>
+			<md-input-container flex> <label>Address</label>
+			<input ng-model="tempInstitute.address"> </md-input-container>
 		</div>
-		Selected Institute : {{selected}}
-		<hr>
-		
-		<div layout="row" layout-align="center center">
-		<md-button ng-click="addInstitute()"
-		class="md-raised md-primary">
-			Save
-		</md-button>
-		</div>
-		<md-data-table-container> <md-data-table-container>
-		<table md-data-table class="md-primary" md-row-select="selected"
-			md-progress="deferred">
-			<thead>
-				<tr>
-					<th order-by="name" name="INSTITUTE NAME" unit=""></th>
-					<th order-by="city" name="CITY"></th>
-					<th order-by="state" name="STATE"></th>
-				</tr>
-			</thead>
-			<tbody>
-		<tr md-auto-select
-					ng-repeat="institute in institutes | filter: searchText ">
-					<td>{{institute.name}}</td>
-					<td>{{institute.city}}</td>
-					<td>{{institute.state}}</td>
-				
-				</tr>
-		</tbody>
-		</table>
-		</md-data-table-container> </md-data-table-container>
 	</div>
+	vals: {{institutes}}
+	<hr>
+	<md-button ng-click="addInstitute()" class="md-primary">
+	Add </md-button>
+	<md-button ng-click="getInstitutes()" class="md-primary">
+	Get Institutes From DB </md-button>
 
+
+	<md-data-table-container> <md-data-table-container>
+	<table md-data-table class="md-primary" md-row-select="selected"
+		md-progress="deferred">
+		<thead>
+			<tr>
+				<th order-by="name" name="INSTITUTE NAME" unit=""></th>
+				<th order-by="email_id" name="EMAIL-ID"></th>
+				<th order-by="phone_no" name="PHONE NO."></th>
+				<th order-by="address" name="ADDRESS"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="institute in institutes | filter: searchText ">
+				<td>{{institute.name}}</td>
+				<td>{{institute.email_id}}</td>
+				<td>{{institute.phone_no}}</td>
+				<td>{{institute.address}}</td>
+
+			</tr>
+		</tbody>
+	</table>
+	</md-data-table-container> </md-data-table-container>
 </div>
-</form>
-</md-content>
+
+

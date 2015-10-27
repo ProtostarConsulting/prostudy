@@ -6,6 +6,7 @@ angular
 						'$scope',
 						'$window',
 						'$mdToast',
+						
 					
 
 						function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,

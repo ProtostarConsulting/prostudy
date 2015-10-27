@@ -2,56 +2,97 @@ angular.module("prostudyApp").controller(
 		"studentPageCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, objectFactory, appEndpointSF,tableTestDataFactory,appEndpointSF) {
-
-			$log.debug("Inside studentPageCtr");
 			
-			/*$scope.loadInstituteList = function() {
-				console.log("inside loadInstituteList")
-				$scope.institutes = [];
-				$scope.selected = [];
-				tableTestDataFactory.getInstituteList().then(
-						function(data) {
-							$scope.institutes = data;
-							$log.debug("inside ctr then $scope.institutes"
-									+ $scope.institutes);
-							console.log("inside institute")
-						});
-
-
-			}// end of loadInstituteList load
-*/			
-			$scope.addInstitute = function() {
-				var InstituteService = appEndpointSF.getInstituteService();
-				$scope.institutes = InstituteService
-						.addInstitute($scope.tempInstitute);
-				$scope.tempInstitute = {
-					name : "",
-					city : "",
-					state : ""
-				};
-				$scope.showSavedToast();
-			}
-
-			$scope.getInstitutes = function() {
-			$scope.institutes = appEndpointSF.getInstituteService()
-						.getInstitutes();
-				$log.debug("Inside getInstitutes...");
-				$log.debug("$scope.institutes:" + $scope.institutes);
-			}
-
-			$scope.tempInstitute = {
-				name : "",
-				city : "",
-				state : ""
-			};
-			// $scope.institutes =[];
-
-			$scope.getInstitutes();
 
 			$scope.showSimpleToast = function() {
 				$mdToast.show($mdToast.simple().content('Student Data Saved!').position(
 						"top").hideDelay(3000));
 			};
+
+
+			$log.debug("Inside studentPageCtr");
+			
+			//code for institute
+			$scope.tempInstitute = {name: "", email_id: "", phone_no:"", address:""};
+			$scope.institutes = []; 
+			
+			$scope.addInstitute = function(){
+				$log
+				.debug("No1");	
+				var InstituteService = appEndpointSF.getInstituteService();
+				InstituteService.addInstitute($scope.tempInstitute)
+				.then(
+						function(msgBean) {
+							$log
+							.debug("No6");	
+							$log
+									.debug("Inside Ctr addInstitute");
+							$log
+							.debug("msgBean.msg:" + msgBean.msg);
+							$scope.showSavedToast();
+							$scope.tempInstitute = {name: "", email_id: "", phone_no:"", address:""};
+						});
+				$log
+				.debug("No4");	
+			}
+			
+			$scope.getInstitutes = function(){
+				//$scope.students = appEndpointSF.getStudentService().getStudents();
+				var InstituteService = appEndpointSF.getInstituteService();					
+										
+				InstituteService.getInstitutes()
+				.then(
+						function(instituteList) {
+							$log
+									.debug("Inside Ctr getInstitutes");
+							$scope.institutes = instituteList;
+						});
+			}
+
+			$scope.getInstitutes();
+			//end for institute
+			
+			
+			//start of student
+			$scope.tempStudent = {firstName: "", lastName: "",phone_no:"",email:"",city:"",state:"",pin:""};
+			$scope.students = []; 
+			
+			$scope.addStudent = function(){
+				$log
+				.debug("No1");	
+				var studentService = appEndpointSF.getStudentService();
+				//$scope.students = studentService.addStudent($scope.tempStudent);
+										
+				studentService.addStudent($scope.tempStudent)
+				.then(
+						function(msgBean) {
+							$log
+							.debug("No6");	
+							$log
+									.debug("Inside Ctr addStudent");
+							$log
+							.debug("msgBean.msg:" + msgBean.msg);
+							$scope.showSimpleToast();
+							$scope.tempStudent = {firstName: "", lastName: "",phone_no:"",email:"",city:"",state:"",pin:""};
+						});
+				$log
+				.debug("No4");	
+			}
+			
+			$scope.getStudents = function(){
+				//$scope.students = appEndpointSF.getStudentService().getStudents();
+				var studentService = appEndpointSF.getStudentService();					
+										
+				studentService.getStudents()
+				.then(
+						function(studList) {
+							$log
+									.debug("Inside Ctr getStudents");
+							$scope.students = studList;
+						});
+			}
+			
+		//end of student
 
 			$scope.testGAPICall = function() {
 				console.log("in side testGAPICall");
@@ -65,9 +106,6 @@ angular.module("prostudyApp").controller(
 				
 
 			};
-			
-			
-			
 			$scope.addStudentToDB = function() {
 				$log.debug("in side addStudent. added..."
 						+ $scope.studentVM.firstName);
@@ -99,6 +137,5 @@ angular.module("prostudyApp").controller(
 			
 	
 
-			//$scope.loadInstituteList();
-
+		
 		});

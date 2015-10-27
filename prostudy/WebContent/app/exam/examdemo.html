@@ -35,29 +35,37 @@
 
 		<div>
 			<div layout="row" layout-wrap>
-				<div flex="50" ng-repeat="question in array ">
-
+				<div flex="50" ng-repeat="question in questions " >
+					
+					<div ng-pattern="TextPattern">	
 					<md-input-container flex> <b>Q.{{(itemsPerPage*(currentPage-1))
 						+($index+1)}} {{question.description}}</b> </md-input-container>
+					</div>
 
 					<p>
 						<i>{{question.note}}</i>
 					</p>
-
-
+					
+					<md-radio-group>
+					 <md-radio-button  value="1" class="md-primary">{{question.option1 }}</md-radio-button>
+					  <md-radio-button  value="2" class="md-primary">{{question.option2 }}</md-radio-button>
+					   <md-radio-button  value="3" class="md-primary">{{question.option3 }} </md-radio-button>
+					    <md-radio-button  value="4" class="md-primary">{{question.option4 }} </md-radio-button>
+					 </md-radio-group>
+					 
+					<!-- <md-checkbox ng-checked="exists(question, selected)"
+						ng-click="toggle(question, selected)"> {{question.option1 }}
+				    </md-checkbox>
 					<md-checkbox ng-checked="exists(question, selected)"
-						ng-click="toggle(question, selected)"> {{
-					question.option1 }} </md-checkbox>
+						ng-click="toggle(question, selected)"> {{question.option2 }}
+					</md-checkbox>
 					<md-checkbox ng-checked="exists(question, selected)"
-						ng-click="toggle(question, selected)"> {{
-					question.option2 }} </md-checkbox>
-					<md-checkbox ng-checked="exists(question, selected)"
-						ng-click="toggle(question, selected)"> {{
-					question.option3 }} </md-checkbox>
+						ng-click="toggle(question, selected)"> {{question.option3 }} 
+					</md-checkbox>
 					<md-checkbox ng-checked="exists(question, selected)"s
-						ng-click="toggle(question, selected)"> {{
-					question.option4 }} </md-checkbox>
-
+						ng-click="toggle(question, selected)"> {{question.option4 }} 
+					</md-checkbox> -->
+					
 
 				</div>
 			</div>
@@ -86,7 +94,10 @@
 				</div>
 			</div>
 
+		
 		</div>
+	currently selected: {{question.correctAns | json}}
+		<md-button ng-click="correctAnsCal()">HIII</md-button> 
 	</form>
 	</md-content>
 </section>

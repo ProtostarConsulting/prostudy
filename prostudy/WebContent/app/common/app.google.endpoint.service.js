@@ -12,12 +12,20 @@ function googleEndpointSFFunc($log, $q) {
 	}
 
 	StudentService.addStudent = function(stud) {
+		$log
+		.debug("No2");	
 		var deferred = $q.defer();
+		$log
+		.debug("abc");
 		gapi.client.studentService.addStudent(stud).execute(
 				function(resp) {
+					$log
+					.debug("No5");	
 					$log.debug("addStudent#resp:" + resp);
 					deferred.resolve(resp);
 				});
+		$log
+		.debug("No3");	
 		return deferred.promise;
 	}
 
@@ -31,30 +39,44 @@ function googleEndpointSFFunc($log, $q) {
 		return deferred.promise;
 	} // End of StudentService
 
-	// Start of InstituteService
+	
+	
+	// start of InstituteService
+	
+
 	var InstituteService = {};
 
 	serviceFactory.getInstituteService = function() {
 		return InstituteService;
 	}
 
-	InstituteService.addInstitute = function(inst) {
-		var existinInst = angular.fromJson($localStorage.dbInstitutes);
-		if (typeof existinInst === 'undefined')
-			existinInst = [];
-		existinInst.push(inst);
-		$localStorage.dbInstitutes = angular.toJson(existinInst);
-		return existinInst;
+	InstituteService.addInstitute = function(insti) {
+		$log
+		.debug("No2");	
+		var deferred = $q.defer();
+		$log
+		.debug("abc");
+		gapi.client.InstituteService.addInstitute(insti).execute(
+				function(resp) {
+					$log
+					.debug("No5");	
+					$log.debug("addInstitute#resp:" + resp);
+					deferred.resolve(resp);
+				});
+		$log
+		.debug("No3");	
+		return deferred.promise;
 	}
 
 	InstituteService.getInstitutes = function() {
-		var existinInst = angular.fromJson($localStorage.dbInstitutes);
-		if (typeof existinInst === 'undefined')
-			existinInst = [];
-		return existinInst;
-	} // End of InstituteService
-
-	// Add Exam Service
+		var deferred = $q.defer();
+		gapi.client.InstituteService.getInstitutes().execute(
+				function(resp) {
+					$log.debug("getInstitutes#resp:" + resp);
+					deferred.resolve(resp.items);
+				});
+		return deferred.promise;
+	}  // End of InstituteService
 
 	serviceFactory.getExamService = function() {
 		return null;

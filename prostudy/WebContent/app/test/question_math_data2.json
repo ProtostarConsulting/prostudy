@@ -4,7 +4,7 @@
 							"description" : "Solve: 11 - 31 is________.",
 								"note" : "Hint: select only one option",
 								"questionId" : 1,
-								"option1" : 	"-21",
+								"option1" : -20,
 								"option2" : 21,
 								"option3" : 40,
 								"option4" : "31",
@@ -45,7 +45,7 @@
 								"option2" : 161,
 								"option3" : 361,
 								"option4" : 261,
-								"correctAns" : 3
+								"correctAns" : 4
 							}, {
 								"description" : "Shanu found 138 pebbles. Karim found 44 pebbles. How many pebbles did they find in all?",
 								"note" : "Hint: select only one option",

@@ -71,7 +71,7 @@
 								"note" : "Hint: select only one option",
 								"questionId" : 8,
 								"option1" : 855,
-								"option2" : "979",
+								"option2" : "969",
 								"option3" : "772",
 								"option4" : 881,
 								"correctAns" : 2
@@ -92,7 +92,7 @@
 								"option2" : "Reproduction",
 								"option3" : "Evolution",
 								"option4" : "Respiration",
-								"correctAns" : 1
+								"correctAns" : 2
 							}]
 					
 	}//end of json object

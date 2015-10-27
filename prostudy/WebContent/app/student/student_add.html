@@ -8,25 +8,25 @@
 			<div layout="row" layout-sm="column">
 				<div layout="column" flex>
 					<md-input-container flex> <label>First
-						name</label> <input ng-model="studentVM.firstName"> </md-input-container>
+						name</label> <input ng-model="tempStudent.firstName"> </md-input-container>
 					<md-input-container flex> <label>Last
-						Name</label> <input ng-model="studentVM.lastName"> </md-input-container>
+						Name</label> <input ng-model="tempStudent.lastName"> </md-input-container>
 					<md-input-container flex> <label>
-						Mobile No</label> <input ng-model="studentVM.mobileNo"> </md-input-container>
+						Mobile No</label> <input ng-model="tempStudent.phone_no"> </md-input-container>
 					<md-input-container flex> <label>
-						Email</label> <input ng-model="studentVM.email"> </md-input-container>
+						Email</label> <input ng-model="tempStudent.email"> </md-input-container>
 				</div>
 				<div layout="column" flex>
 					<md-input-container flex> <label>City</label>
-					<input ng-model="studentVM.address.city"> </md-input-container>
+					<input ng-model="tempStudent.city"> </md-input-container>
 					<md-input-container flex> <label>State</label>
-					<input ng-model="studentVM.address.state"> </md-input-container>
+					<input ng-model="tempStudent.state"> </md-input-container>
 					<md-input-container flex> <label>Postal
-						Code</label> <input ng-model="studentVM.address.pin"> </md-input-container>
+						Code</label> <input ng-model="tempStudent.pin"> </md-input-container>
 
 
 					<md-input-container flex> <md-select ng-model="institutes" placeholder="Institute name">
-					<md-option ng-value="institute.name" data-ng-repeat="institute in institutes">{{institute.name }}</md-option>
+					<md-option ng-value="institute.name" ng-repeat="institute in institutes">{{institute.name }}</md-option>
 					</md-select> </md-input-container>
 				</div>
 				
@@ -34,10 +34,12 @@
 			</div>
 			
 		 <div layout="row" layout-align="center center">
-			    <md-button class="md-raised" ng-click="cancelButton()"> Cancel </md-button>
-			    <md-button class="md-raised md-primary" ng-click="addStudentToDB()">Submit </md-button>
+			    <md-button class="md-raised" ng-click="getStudents()"> Cancel </md-button>
+			    <md-button class="md-raised md-primary" ng-click="addStudent()">Submit </md-button>
 	     </div>
 
+	vals: {{students}}
+	<hr>
 		</form>
 
 	</section>

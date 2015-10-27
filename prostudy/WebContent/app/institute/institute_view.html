@@ -5,8 +5,8 @@
 	<div layout="row" layout-align="center center">
 
 		<md-input-container flex> <label>Enter
-			State</label>
-		<input ng-model="searchText.state"> </md-input-container>
+			Institute name</label>
+		<input ng-model="searchText.name"> </md-input-container>
 
 
 	</div>
@@ -22,10 +22,10 @@
 
 	<div
 		custom-select="institute in institutes | filter: { state: $searchTerm }"
-		ng-model="ExamResult">
+		ng-model="Result">
 
 		<div class="pull-left">
-			<strong>{{ institute.state}}</strong><br />
+			<strong>{{ institute.name}}</strong><br />
 
 		</div>
 		<div class="clearfix"></div>
@@ -39,8 +39,9 @@
 			<tr>
 
 				<th  name="INSTITUTE NAME" order-by="name"></th>
-				<th  name="CITY" order-by="city"></th>
-				<th  name="STATE" order-by="state"></th>
+				<th  name="EMAIL-ID" order-by="email_id"></th>
+				<th  name="PHONE NO" order-by="phone_no"></th>
+				<th  name="ADDRESS" order-by="address"></th>
 				
 
 			</tr>
@@ -48,8 +49,9 @@
 			<tbody>
 				<tr md-auto-select ng-repeat="institute in institutes | filter:searchText">
 					<td>{{institute.name}}</td>
-					<td>{{institute.city}}</td>
-					<td>{{institute.state}}</td>
+					<td>{{institute.email_id}}</td>
+					<td>{{institute.phone_no}}</td>
+					<td>{{institute.address}}</td>
 					
 				</tr>
 			</tbody>

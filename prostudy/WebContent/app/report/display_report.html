@@ -1,6 +1,3 @@
-
-
-
 <md-content>
 <form>
 	<div>
@@ -11,15 +8,17 @@
 				<thead>
 					<tr>
 						<th order-by="name" name="INSTITUTE NAME" unit=""></th>
-						<th order-by="city" name="CITY"></th>
-						<th order-by="state" name="STATE"></th>
+						<th order-by="email_id" name="EMAIL-ID"></th>
+						<th order-by="phone_no" name="PHONE NO."></th>
+						<th order-by="address" name="ADDRESS"></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr md-auto-select ng-repeat="institute in institutes | filter: searchText ">
 						<td>{{institute.name}}</td>
-						<td>{{institute.city}}</td>
-						<td>{{institute.state}}</td>
+						<td>{{institute.email_id}}</td>
+						<td>{{institute.phone_no}}</td>
+						<td>{{institute.address}}</td>
 					</tr>
 				</tbody>
 			</table>

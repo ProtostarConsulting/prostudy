@@ -12,9 +12,10 @@
 	<table md-data-table md-row-select="selected" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onorderchange">
 			<tr>
-				<th name="INSTITUTE NAME" order-by="name"></th>
-				<th name="CITY" order-by="city"></th>
-				<th name="STATE" order-by="state"></th>
+				<th name="NAME" order-by="name"></th>
+				<th name="EMAIL-ID" order-by="email_id"></th>
+				<th name="PHONE NO." order-by="phone_no"></th>
+				<th name="ADDRESS" order-by="address"></th>
 			</tr>
 		</thead>
 
@@ -33,21 +34,31 @@
 
 				<td>
 					<div ng-hide="editingData[institute.name]">
-						{{institute.city}}</div>
+						{{institute.email_id}}</div>
 					<div ng-show="editingData[institute.name]">
 						<md-input-container flex> <input
-							ng-model="institute.city" /> </md-input-container>
+							ng-model="institute.email_id" /> </md-input-container>
 					</div>
 				</td>
 
 				<td>
 					<div ng-hide="editingData[institute.name]">
-						{{institute.state}}</div>
+						{{institute.phone_no}}</div>
 					<div ng-show="editingData[institute.name]">
 						<md-input-container flex> <input
-							ng-model="institute.state" /> </md-input-container>
+							ng-model="institute.phone_no" /> </md-input-container>
 					</div>
 				</td>
+				
+				<td>
+					<div ng-hide="editingData[institute.name]">
+						{{institute.address}}</div>
+					<div ng-show="editingData[institute.name]">
+						<md-input-container flex> <input
+							ng-model="institute.address" /> </md-input-container>
+					</div>
+				</td>
+				
 
 
 				<td><md-button aria-label="Modify Row"
