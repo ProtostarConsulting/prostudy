@@ -1,7 +1,7 @@
 angular.module("prostudyApp").controller(
 		"examDemoCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $q, tableTestDataFactory,appEndpointSF) {
+				$log, $q, $sce, tableTestDataFactory,appEndpointSF) {
 
 			console.log("Inside examDemoCtr");
 			$scope.currentPage = 0;
@@ -41,7 +41,7 @@ angular.module("prostudyApp").controller(
 						function(questionList) {
 							$log.debug("Inside Ctr getInstitutes");
 							$scope.questions = questionList;
-						
+							$scope.questions.description = $sce.trustAsHtml($scope.questions.description);
 						});
 				
 			}

@@ -1,102 +1,105 @@
 <section layout="row" layout-sm="column">
-
 	<md-content layout-padding>
-	<form name="myExamForm" ng-submit="submitButton()">
-
-		<!-- <p align="center">
+		<form name="myExamForm" ng-submit="submitButton()">
+			<!-- <p align="center">
 			<strong>ProtoStar ExamReport 2015 :</strong>
-		</p>
-		<p align="center">
+			</p>
+			<p align="center">
 			<strong>{{currentPage}} Out Of {{totalPages}}</strong>
-		</p> -->
+			</p> -->
 
-
-
-		<div layout="row">
-			<span flex="50">
-			<h3>Exam Test</h3>
-			<strong>{{currentPage}} Out Of
+			<div layout="row">
+				<span flex="50"> <h3>Exam Test</h3> <strong>{{currentPage}} Out Of
 					{{totalPages}}</strong></span>
 
-			<div layout="row" layout-wrap class="colorNested">
-				<div ng-repeat="i in buttonLimit(totalPages) track by $index">
-					<md-button class="md-raised md-primary"
+				<div layout="row" layout-wrap class="colorNested">
+					<div ng-repeat="i in buttonLimit(totalPages) track by $index">
+						<md-button class="md-raised md-primary"
 						ng-class="{ testClass: $index == currentPage }"
-						ng-click="onButtonClick($index+1)">Page{{$index+1}}</md-button>
-				</div>
-
-			</div>
-
-		</div>
-
-
-		<!-- 		<div>count{{count}}</div>
-		<div>currentPage{{currentPage}}</div> -->
-
-		<div>
-			<div layout="row" layout-wrap>
-				<div flex="50" ng-repeat="question in questions " >
-					
-					<div ng-pattern="/'<[/a-zAZ0-9]*>',''/">	
-					<md-input-container flex><b>Q.{{question.quesId}}{{question.description}}</b> </md-input-container>
+						ng-click="onButtonClick($index+1)">
+							Page{{$index+1}}
+						</md-button>
 					</div>
-					<p>
-						<i>{{question.note}}</i>
-					</p>
-					
-					<md-radio-group>
-					 <md-radio-button  value="1" class="md-primary">{{question.option1 }}</md-radio-button>
-					  <md-radio-button  value="2" class="md-primary">{{question.option2 }}</md-radio-button>
-					   <md-radio-button  value="3" class="md-primary">{{question.option3 }} </md-radio-button>
-					    <md-radio-button  value="4" class="md-primary">{{question.option4 }} </md-radio-button>
-					 </md-radio-group>
-					 
-					<!-- <md-checkbox ng-checked="exists(question, selected)"
+
+				</div>
+
+			</div>
+
+			<!-- 		<div>count{{count}}</div>
+			<div>currentPage{{currentPage}}</div> -->
+
+			<div layout="column">
+				<div layout="column">
+					<div ng-repeat="question in questions " >
+						<div>
+							<md-content flex layout-padding>
+								<p>
+									<b ng-bind-html="'Q.' + ($index + 1) + ')'+ question.description"></b>
+								</p>
+							</md-content
+						</div>
+
+						<p>
+							<i>{{question.note}}</i>
+						</p>
+
+						<md-radio-group>
+							<md-radio-button  value="1" class="md-primary">
+								{{question.option1 }}
+							</md-radio-button>
+							<md-radio-button  value="2" class="md-primary">
+								{{question.option2 }}
+							</md-radio-button>
+							<md-radio-button  value="3" class="md-primary">
+								{{question.option3 }}
+							</md-radio-button>
+							<md-radio-button  value="4" class="md-primary">
+								{{question.option4 }}
+							</md-radio-button>
+						</md-radio-group>
+
+						<!-- <md-checkbox ng-checked="exists(question, selected)"
 						ng-click="toggle(question, selected)"> {{question.option1 }}
-				    </md-checkbox>
-					<md-checkbox ng-checked="exists(question, selected)"
+						</md-checkbox>
+						<md-checkbox ng-checked="exists(question, selected)"
 						ng-click="toggle(question, selected)"> {{question.option2 }}
-					</md-checkbox>
-					<md-checkbox ng-checked="exists(question, selected)"
-						ng-click="toggle(question, selected)"> {{question.option3 }} 
-					</md-checkbox>
-					<md-checkbox ng-checked="exists(question, selected)"s
-						ng-click="toggle(question, selected)"> {{question.option4 }} 
-					</md-checkbox> -->
-					
+						</md-checkbox>
+						<md-checkbox ng-checked="exists(question, selected)"
+						ng-click="toggle(question, selected)"> {{question.option3 }}
+						</md-checkbox>
+						<md-checkbox ng-checked="exists(question, selected)"s
+						ng-click="toggle(question, selected)"> {{question.option4 }}
+						</md-checkbox> -->
 
-				</div>
-			</div>
-
-
-
-
-			<!-- <div>Exam Report:-{{questions}}</div> -->
-
-            <div layout-padding>
-				<div layout="row" layout-align="start end"
-					ng-init="isDisabled = false">
-					<md-button class="md-raised md-primary"
-						ng-disabled="isDisabledPrevious" ng-model="isDisabledPrevious"
-						ng-click="onPrevious()">previous</md-button>
+					</div>
 				</div>
 
-				<div layout="row" layout-align="end end">
-					<md-button class="md-raised md-primary"
-						ng-disabled="isDisabledNext" ng-model="isDisabledNext"
-						ng-click="onNext()">next</md-button>
-
-				</div>
-				
+				<!-- <div>Exam Report:-{{questions}}</div> -->
 				<div>
+					<div layout="row" >
+						<div layout-align="start end"
+						ng-init="isDisabled = false">
+							<md-button class="md-raised md-primary"
+							ng-disabled="isDisabledPrevious" ng-model="isDisabledPrevious"
+							ng-click="onPrevious()">
+								Previous
+							</md-button>
+						</div>
+
+						<div layout-align="start end">
+							<md-button class="md-raised md-primary"
+							ng-disabled="isDisabledNext" ng-model="isDisabledNext"
+							ng-click="onNext()">
+								Next
+							</md-button>
+
+						</div>
+					</div>
 				</div>
 			</div>
-
-		
-		</div>
-	<!-- currently selected: {{question.correctAns | json}}
-		<md-button ng-click="correctAnsCal()">HIII</md-button>  -->
-	</form>
+			<!-- currently selected: {{question.correctAns | json}}
+			<md-button ng-click="correctAnsCal()">HIII</md-button>  -->
+		</form>
 	</md-content>
 </section>
 
