@@ -41,7 +41,9 @@ angular.module("prostudyApp").controller(
 						function(questionList) {
 							$log.debug("Inside Ctr getInstitutes");
 							$scope.questions = questionList;
+							$log.debug("$scope.questions.description: " + $scope.questions.description);
 							$scope.questions.description = $sce.trustAsHtml($scope.questions.description);
+							$log.debug("$scope.questions.description: " + $scope.questions.description);
 						});
 				
 			}

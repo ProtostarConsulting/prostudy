@@ -86,9 +86,9 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 
 	} // End of InstituteService
-	
-	//start of question_add service
-	
+
+	// start of question_add service
+
 	var QuestionAddService = {};
 
 	serviceFactory.getQuestionAddService = function() {
@@ -99,12 +99,39 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 		var deferred = $q.defer();
 		$timeout(function() {
+			$log.debug("In side local DB addStudent...");
+			var questionList = angular.fromJson($localStorage.dbQuestion);
+			if (typeof questionList === 'undefined')
+				questionList = [];
+			ques.quesId = questionList.length;
+			questionList.push(ques);
+			$localStorage.dbQuestion = angular.toJson(questionList);
+			deferred.resolve({
+				"msg" : "Question Added Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+	QuestionAddService.updateQuestion = function(ques) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
 
 			$log.debug("In side local DB addStudent...");
 			var questionList = angular.fromJson($localStorage.dbQuestion);
 			if (typeof questionList === 'undefined')
 				questionList = [];
-			questionList.push(ques);
+
+			var result = questionList.filter(function(obj) {
+				return obj.quesId == ques.quesId;
+			});
+
+			var index = questionList.indexOf(result[0]);
+			if (index !== -1) {
+				questionList[index] = ques;
+			}
 			$localStorage.dbQuestion = angular.toJson(questionList);
 			deferred.resolve({
 				"msg" : "Question Added Successfully."
@@ -128,8 +155,8 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 
 	}
-	//end of question_add service
-	
+	// end of question_add service
+
 	// Add Exam Service
 
 	serviceFactory.getExamService = function() {

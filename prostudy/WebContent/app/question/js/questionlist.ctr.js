@@ -82,34 +82,40 @@
 							$scope.loadQuestionsList();
 
 						} );
-*/
+ */
 
 angular.module("prostudyApp").controller(
 		"questionListCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $q, appEndpointSF,$state) {
+				$log, $q, appEndpointSF, $state) {
 
 			$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content('Question Saved!')
 						.position("top").hideDelay(3000));
 			};
+
+			$scope.tempQuestion = {
+				quesId : "",
+				description : "",
+				note : "",
+				option1 : "",
+				option2 : "",
+				option3 : "",
+				option4 : "",
+				correctAns : ""
+			};
 			
-			
-			
-			$scope.tempQuestion = {quesId:"", description: "", note: "", option1:"", option2:"", option3:"", option4:"", correctAns:""};
-			$scope.questions = []; 
-		
-			$scope.getQuestion = function(){
-			
-				var QuestionAddService = appEndpointSF.getQuestionAddService();					
-										
-				QuestionAddService.getQuestion()
-				.then(
-						function(questionList) {
-							$log
-									.debug("Inside Ctr getInstitutes");
-							$scope.questions = questionList;
-						});
+			$scope.questions = [];
+
+			$scope.getQuestion = function() {
+
+				var QuestionAddService = appEndpointSF.getQuestionAddService();
+
+				QuestionAddService.getQuestion().then(function(questionList) {
+					$log.debug("Inside Ctr getInstitutes");
+					$scope.questions = questionList;
+					$log.debug("$scope.questions.option1:" + $scope.questions.option1);
+				});
 			}
 
 			$scope.modify = function(selectedQuestion) {
@@ -117,18 +123,26 @@ angular.module("prostudyApp").controller(
 				$scope.question = selectedQuestion;
 			};
 
-			$scope.update = function(questions) {
-				$scope.editingData[questions.description] = false;
+			$scope.updateQuestion = function(toUpdateQObject) {
+
+				$log.debug("$scope.updateQuestion");
+				var QuestionAddService = appEndpointSF.getQuestionAddService();
+
+				QuestionAddService.updateQuestion(toUpdateQObject).then(
+						function(msgBean) {
+							$scope.showSavedToast();
+
+						});
 			};// end of update
 
 			$scope.removeQuestion = function(index) {
 				$scope.questions.splice(index, 1);
 			}; // end of removeQuestion
-			
+
 			$scope.clickCancelButton = function() {
-				
+
 				console.log("inside cancelButton");
-					$state.go('^', {});
+				$state.go('^', {});
 
 			};// end of cancelButton
 
@@ -139,7 +153,6 @@ angular.module("prostudyApp").controller(
 				limit : 5,
 				page : 1
 			};
-
 
 			$scope.onpagechange = function(page, limit) {
 				var deferred = $q.defer();
@@ -159,8 +172,7 @@ angular.module("prostudyApp").controller(
 				}, 2000);
 
 				return deferred.promise;
-			};						
+			};
 			$scope.getQuestion();
-			
-		});
 
+		});
