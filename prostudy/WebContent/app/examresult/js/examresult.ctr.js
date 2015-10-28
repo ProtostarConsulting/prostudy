@@ -1,77 +1,132 @@
-function init() {
-	console.log("Inside init");
-	window.initGAPI(); 
-}
+angular.module("prostudyApp")
+		.controller(
+				"examResultCtr",
+				function($scope, $window, $mdToast, $timeout, $mdSidenav,
+						$mdUtil, $log, $q, tableTestDataFactory) {
+					console.log("Inside examResultCtr");
+					
+				  $scope.isShowTable = true;
+				  $scope.isShowRecord = false;
+				 
+					$scope.showSimpleToast = function() {
+						$mdToast.show($mdToast.simple().content(
+								'Customer Saved!').position("top").hideDelay(
+								3000));
+					};
 
-app = angular.module("examResultApp", ['ngMaterial', 'ngMessages']);
-
-app.controller("examResultCtr", [
-		'$scope',
-		'$window',
-		'$mdToast',
-		
-		function($scope, $window,$mdToast) 
-		{
-
-			console.log("Inside examResultCtr");
-
-			$scope.showSimpleToast = function() 
-			{
-				$mdToast.show($mdToast.simple().content('Result Saved!')
-						.position("top").hideDelay(3000));
-			};//end of showSimpleToast
-
-			$scope.exams = {};
-
-			$scope.loadGetExamList = function()
-			{
-				console.log("In loadGetExamList");
-				gapi.client.examService.getAllExam().execute(
-						function(resp) {
-							console.log("getAllExam");
-							$scope.exams = resp.items;
-							console.log(resp);
-
-							$scope.$apply();
-						});
-
-			};// end of loadGetExamList
-
-			$scope.cancelButtonClick = function() 
-			{
-				console.log("in side cancelButtonClick");
-
-			};// end of cancelButtonClick
-
-			$window.initGAPI = function() 
-			{
-				console.log("Came to initGAPI");
+					
+					$log.debug("inside ctr before service get $scope.items:"
+							+ $scope.items);
 				
-				$scope.$apply($scope.loadCustomService);
+					$scope.examresult = [];
+					$scope.selected = [];
+					tableTestDataFactory.getExamResult().then(
+							function(data) {
+								$scope.examresult = data;
+							
+							});// end of tableTestDataFactory
+					
 
-			};
+					$log.debug("inside ctr after service get $scope.items:"
+							+ $scope.items);
 
-			
-			$scope.loadCustomService = function() 
-			{
-				console.log("Inside window.loadCustomServices");
-				var apiRoot = '//' + window.location.host + '/_ah/api';
+					$scope.selected = [];
 
-				var apisToLoad;
+					$scope.query = {
+						order : 'name',
+						limit : 5,
+						page : 1
+					};
 
-				apisToLoad = 1; // must match number of calls to
-				// gapi.client.load()
 
-				gapi.client.load('examService', 'v0.1', function() 
-				{
-					console.log("Inside gapi.client.load");
-					$scope.is_backend_ready = true;
-					$scope.loadGetExamList();
+					$scope.onpagechange = function(page, limit) {
+						var deferred = $q.defer();
 
-				}, apiRoot);
+						$timeout(function() {
+							deferred.resolve();
+						}, 2000);
 
-			};
+						return deferred.promise;
+					};
 
-		} ]);
+					$scope.onorderchange = function(order) {
+						var deferred = $q.defer();
 
+						$timeout(function() {
+							deferred.resolve();
+						}, 2000);
+
+						return deferred.promise;
+					};
+
+					/* Setup menu */
+					$scope.toggleRight = buildToggler('rightListPage');
+					/**
+					 * Build handler to open/close a SideNav; when animation
+					 * finishes report completion in console
+					 */
+					function buildToggler(navID) {
+						var debounceFn = $mdUtil.debounce(function() {
+							$mdSidenav(navID).toggle().then(function() {
+								$log.debug("toggle " + navID + " is done");
+							});
+						}, 200);
+						return debounceFn;
+					}
+
+					$scope.close = function() {
+						$mdSidenav('right').close().then(function() {
+							$log.debug("close RIGHT is done");
+						});
+					};
+					
+				//	$scope.editRecord = create copy of selected[0]; 
+					$scope.details = function() {
+						
+						 $scope.isShowTable = false;
+						  $scope.isShowRecord = true;
+						  //console.log("selected value"+$scope.selected[0].exam_title);
+						  
+						 // $scope.editRecord = create copy of selected[0]; 
+						  $scope.editRecord = angular.copy($scope.selected[0]);
+						//  $log.debug("$scope.editRecord:"+$scope.editRecord);
+						  
+					}
+					$scope.cancel = function() {
+						
+						 $scope.isShowTable = true;
+						  $scope.isShowRecord = false;
+							
+					}
+					 
+				
+					
+					$scope.save = function() {
+					//	console.log("length:"+$scope.examresult.length);
+						//find index of editRecord in examresult array. 
+						//examresult[foundIndex] = editRecord;
+						
+						for(var i=0; i<$scope.examresult.length;i++)
+						{
+						
+							if($scope.examresult[i].exam_id==$scope.editRecord.exam_id)
+								{
+								$scope.examresult[i]=$scope.editRecord;
+								$scope.selected=$scope.editRecord;
+								break;
+								}
+							
+						}
+						//$scope.editRecord=$scope.examresult[i];
+						//$scope.editRecord=$scope.editRecord;
+						$scope.isShowTable = true;
+						 $scope.isShowRecord = false;
+						 
+						 
+					
+						//replace original object with $scope.editRecord in $scope.examresult;
+						 //| orderBy: query.order
+					}
+
+				});
 
