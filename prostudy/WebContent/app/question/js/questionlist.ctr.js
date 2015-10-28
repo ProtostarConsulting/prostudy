@@ -96,7 +96,7 @@ angular.module("prostudyApp").controller(
 			
 			
 			
-			$scope.tempQuestion = {description: "", note: "", option1:"", option2:"", option3:"", option4:"", correctAns:""};
+			$scope.tempQuestion = {quesId:"", description: "", note: "", option1:"", option2:"", option3:"", option4:"", correctAns:""};
 			$scope.questions = []; 
 		
 			$scope.getQuestion = function(){

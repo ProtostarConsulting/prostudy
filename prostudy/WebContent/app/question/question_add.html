@@ -20,6 +20,19 @@
 			</md-input-container>
 					</div>
 					<div layout="column" flex>
+					<md-input-container md-is-error="myQuestionForm.note.$invalid && (myQuestionForm.$submitted || myQuestionForm.note.$dirty)">
+				<label>Question ID</label>
+				<input type="number" name="quesId" id="quesId" ng-minlength="1"  ng-maxlength="1"  ng-model="tempQuestion.quesId" required>
+				<div ng-messages="myQuestionForm.quesId.$error" ng-if="myQuestionForm.quesId.$submitted || myQuestionForm.quesId.$touched">
+					<div ng-message="required">
+						Please enter correct Question ID.
+					</div>
+					<div ng-message="myQuestionForm.quesId.$invalid">
+						Invalid Question ID.
+					</div>
+				</div>
+				</md-input-container>
+					
 						<md-input-container md-is-error="myQuestionForm.note.$invalid && (myQuestionForm.$submitted || myQuestionForm.note.$dirty)">
 				<label>Note</label>
 				<input name="note" id="note" ng-required="true" ng-model="tempQuestion.note">

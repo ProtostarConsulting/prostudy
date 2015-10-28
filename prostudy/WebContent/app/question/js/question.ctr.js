@@ -111,7 +111,7 @@ angular.module("prostudyApp").controller(
 			
 			
 			
-			$scope.tempQuestion = {description: "", note: "", option1:"", option2:"", option3:"", option4:"", correctAns:""};
+			$scope.tempQuestion = {quesId:"", description: "", note: "", option1:"", option2:"", option3:"", option4:"", correctAns:""};
 			$scope.questions = []; 
 		
 			
@@ -126,7 +126,7 @@ angular.module("prostudyApp").controller(
 							$log.debug("Inside Ctr addQuestion");
 							$log.debug("msgBean.msg:" + msgBean.msg);
 							$scope.showSavedToast();
-							$scope.tempQuestion = {description: "", note: "", option1:"", option2:"", option3:"", option4:"", correctAns:""};
+							$scope.tempQuestion = {quesId:"", description: "", note: "", option1:"", option2:"", option3:"", option4:"", correctAns:""};
 						});
 				$log.debug("No4");	
 			}
