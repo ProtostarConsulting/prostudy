@@ -12,7 +12,7 @@ angular.module("prostudyApp").controller(
 			$scope.isDisabledNext = false;
 			$scope.cnt = 0;
 			
-			$scope.tempQuestion = {description: "", note: "", option1:"", option2:"", option3:"", option4:"", correctAns:""};
+			$scope.tempQuestion = {quesId:"", description: "", note: "", option1:"", option2:"", option3:"", option4:"", correctAns:""};
 			$scope.questions = []; 
 		
 			
@@ -27,7 +27,7 @@ angular.module("prostudyApp").controller(
 							$log.debug("Inside Ctr addQuestion");
 							$log.debug("msgBean.msg:" + msgBean.msg);
 							$scope.showSavedToast();
-							$scope.tempQuestion = {description: "", note: "", option1:"", option2:"", option3:"", option4:"", correctAns:""};
+							$scope.tempQuestion = {quesId:"", description: "", note: "", option1:"", option2:"", option3:"", option4:"", correctAns:""};
 						});
 				$log.debug("No4");	
 			}
@@ -39,9 +39,9 @@ angular.module("prostudyApp").controller(
 				QuestionAddService.getQuestion()
 				.then(
 						function(questionList) {
-							$log
-									.debug("Inside Ctr getInstitutes");
+							$log.debug("Inside Ctr getInstitutes");
 							$scope.questions = questionList;
+						
 						});
 				
 			}
@@ -155,16 +155,19 @@ angular.module("prostudyApp").controller(
 			
 			$scope.correctAnsCal = function()
 			{
+				var cnt=0;
 				for(i=0;i<$scope.questions.length;i++)
 				{
 					if($scope.questions[i].correctAns==$scope.selected)
 					{
 						cnt++;
 					}
-					//console.log("ans :"+$scope.questions[i].correctAns);
+					$log.debug("ans :"+$scope.questions[i].correctAns);
+				
+					
 					
 				}
-				$log.debug("anssel :"+$scope.selected.correctAns);
+				//$log.debug("anssel :"+$scope.selected.correctAns);
 				
 			}
 			
@@ -191,53 +194,3 @@ angular.module("prostudyApp").controller(
 
 
 
-/*angular.module("prostudyApp").controller(
-		"examDemoCtr",
-		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $q, appEndpointSF) {
-
-			$scope.showSavedToast = function() {
-				$mdToast.show($mdToast.simple().content('Question Saved!')
-						.position("top").hideDelay(3000));
-			};
-			
-			
-			
-			$scope.tempQuestion = {description: "", note: "", option1:"", option2:"", option3:"", option4:"", correctAns:""};
-			$scope.questions = []; 
-		
-			
-			$scope.addQuestion = function(){
-				$log.debug("No1");	
-				var QuestionAddService = appEndpointSF.getQuestionAddService();
-				
-				QuestionAddService.addQuestion($scope.tempQuestion)
-				.then(
-						function(msgBean) {
-							$log.debug("No6");	
-							$log.debug("Inside Ctr addQuestion");
-							$log.debug("msgBean.msg:" + msgBean.msg);
-							$scope.showSavedToast();
-							$scope.tempQuestion = {description: "", note: "", option1:"", option2:"", option3:"", option4:"", correctAns:""};
-						});
-				$log.debug("No4");	
-			}
-			
-			$scope.getQuestion = function(){
-			
-				var QuestionAddService = appEndpointSF.getQuestionAddService();					
-										
-				QuestionAddService.getQuestion()
-				.then(
-						function(questionList) {
-							$log
-									.debug("Inside Ctr getInstitutes");
-							$scope.questions = questionList;
-						});
-			}
-
-
-			
-		});
-
-*/

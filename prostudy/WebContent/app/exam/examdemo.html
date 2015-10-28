@@ -37,11 +37,9 @@
 			<div layout="row" layout-wrap>
 				<div flex="50" ng-repeat="question in questions " >
 					
-					<div ng-pattern="TextPattern">	
-					<md-input-container flex> <b>Q.{{(itemsPerPage*(currentPage-1))
-						+($index+1)}} {{question.description}}</b> </md-input-container>
+					<div ng-pattern="/'<[/a-zAZ0-9]*>',''/">	
+					<md-input-container flex><b>Q.{{question.quesId}}{{question.description}}</b> </md-input-container>
 					</div>
-
 					<p>
 						<i>{{question.note}}</i>
 					</p>
