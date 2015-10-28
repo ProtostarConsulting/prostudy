@@ -10,10 +10,24 @@ app
 						invoice_id : 101,
 						sr_No : '',
 						cust_Name : '',
-						qty : '1',
-						price : '',
 						note : "If you have any query please contact on finance@protostar.co.in"
 					}
+
+					$scope.itemline1 = {
+							sr_No : 1,
+							item_Name : '',
+							qty : 1,
+							fetchedPrice:''
+						}
+					$scope.itemline2 = {
+							sr_No : 2,
+							item_Name : '',
+							qty : 1,
+							fetchedPrice:''
+						}
+										
+
+					
 
 					$scope.selected = [];
 
@@ -41,13 +55,10 @@ app
 								.getAllCustomers()
 								.then(
 										function(custList) {
-											$log
-													.debug("Inside Ctr getAllCustomers");
+											$log.debug("Inside Ctr getAllCustomers");
 											$scope.customersforinvoice = custList;
-											$log
-													.debug("Inside Ctr $scope.customers:"
-															+ angular
-																	.toJson($scope.customersforinvoice));
+											$log.debug("Inside Ctr $scope.customers:"
+															+ angular.toJson($scope.customersforinvoice));
 										});
 					}
 
@@ -62,19 +73,30 @@ app
 								.getAllStock()
 								.then(
 										function(stockList) {
-											$log
-													.debug("Inside Ctr getAllStock");
+											$log.debug("Inside Ctr getAllStock");
 											$scope.stockforinvoice = stockList;
-											$log
-													.debug("Inside Ctr $scope.stockforinvoice:"
-															+ angular
-																	.toJson($scope.stockforinvoice));
+											$log.debug("Inside Ctr $scope.stockforinvoice:"
+															+ angular.toJson($scope.stockforinvoice));
 										});
 					}
 
 					$scope.stockData = [];
 					$scope.getAllStock();
 
+					$scope.selectedItem="";
+				    $scope.fetchedPrice=[];
+				    
+					$scope.getItemPrice = function(){
+				    	 console.log("Selected Item:"+  $scope.selectedItem );
+				    	 $scope.key = $scope.stockforinvoice.indexOf[$scope.selectedItem];
+				    	 $log.debug("Key"+ $scope.stockforinvoice.fetchedPrice);
+				    	 $log.debug("Key"+ $scope.key);
+				    	// $scope.myNewOptions =  $scope.city[ $scope.key ];
+				        $scope.fetchedPrice =  $scope.stockforinvoice[$scope.key];
+				        console.log("Selected prices:"+  $scope.fetchedPrice );
+				    };
+
+				    
 					$scope.getAllTaxes = function() {
 						$log.debug("Inside Ctr $scope.getAllTaxes");
 						var taxService = appEndpointSF.getTaxService();
@@ -98,7 +120,7 @@ app
 					 * $scope.items[count].Price*$scope.items[count].Quantity; }
 					 * return total; }
 					 * 
-					 * };//end of addNewTax
+					 * };
 					 */
 
 					/* Setup menu */

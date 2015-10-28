@@ -20,74 +20,68 @@
 		</div>
 	</div>
 
-	<div id="additemINTObill">
+	<div id="itemline1">
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>Sr. No
-			</label> <input ng-model="sr_No"> </md-input-container>
+			</label> <input ng-model="itemline1.sr_No"> </md-input-container>
 
 			<md-input-container flex> <md-select
-				ng-model="invoice.item_Name" placeholder="Customer Name">
-			<md-option ng-value="invoice.item_Name"
-				ng-repeat="invoice in stockforinvoice">{{invoice.item_Name
+				ng-model="selectedItem" placeholder="Item Name"> <md-option
+				ng-value="itemline1.item_Name" ng-repeat="itemline1 in stockforinvoice" >{{itemline1.item_Name
 			}}</md-option> </md-select> </md-input-container>
 
 			<md-input-container flex> <label>Quantity
-			</label> <input ng-model="qty" type="number"> </md-input-container>
+			</label> <input ng-model="itemline1.qty" type="number"> </md-input-container>
 			<md-input-container flex> <label>Price </label>
-			<input ng-model="price"> </md-input-container>
-			<md-input-container flex> <label>Total </label>
-			<input ng-model="total" disabled> </md-input-container>
-
-			<!-- <section layout="row" layout-sm="column" layout-align="left left">
-				<md-button class="md-raised md-primary" ng-click="addItemTObill()">Add</md-button>
-				<md-button class="md-raised md-primary" ng-click="clearAll()">Cancel
-				</md-button>
-			</section> -->
+			<input ng-model="fetchedPrice1" ng-change="getItemPrice()"></md-input-container>
+			<md-input-container flex>
+			<input ng-model="itemline1.total">{{fetchedPrice1*itemline1.qty}} </md-input-container>
 		</div>
-
+	</div>
+	<div id="itemline2">
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>Sr. No
-			</label> <input ng-model="sr_No"> </md-input-container>
+			</label> <input ng-model="itemline2.sr_No"> </md-input-container>
 
 			<md-input-container flex> <md-select
-				ng-model="invoice" placeholder="Customer Name"> <md-option
-				ng-value="invoice.item_Name" ng-repeat="invoice in stockforinvoice">{{invoice.item_Name
+				ng-model="selectedItem1" placeholder="Item Name"> <md-option
+				ng-value="itemline2.item_Name" ng-repeat="itemline2 in stockforinvoice" >{{itemline2.item_Name
 			}}</md-option> </md-select> </md-input-container>
 
 			<md-input-container flex> <label>Quantity
-			</label> <input ng-model="qty"> </md-input-container>
+			</label> <input ng-model="itemline2.qty" type="number"> </md-input-container>
 			<md-input-container flex> <label>Price </label>
-			<input ng-model="price"> </md-input-container>
+			<input ng-model="fetchedPrice2"></md-input-container>
 			<md-input-container flex> <label>Total </label>
-			<input ng-model="total" disabled> </md-input-container>
+			<input ng-model="itemline2.total" disabled>{{fetchedPrice2*itemline2.qty}} </md-input-container>
 		</div>
+	</div>
+	<div layout layout-sm="column">
+		<md-input-container flex> <label>Sub
+			Total </label> <input ng-model="sub_total" disabled>{{itemline1.total+itemline2.total}} </md-input-container>
+	</div>
 
-		<div layout layout-sm="column">
-			<md-input-container flex> <label>Sub
-				Total </label> <input ng-model="sub_total" disabled> </md-input-container>
-		</div>
+	<div layout layout-sm="column">
 
-		<div layout layout-sm="column">
+		<md-input-container flex> <md-select
+			ng-model="invoice" placeholder="Tax Type"> <md-option
+			ng-value="invoice.item_Name" ng-repeat="invoice in taxforinvoice">{{invoice.tax_name
+		}}</md-option> </md-select> </md-input-container>
 
-			<md-input-container flex> <md-select
-				ng-model="invoice" placeholder="Tax Type"> <md-option
-				ng-value="invoice.item_Name" ng-repeat="invoice in taxforinvoice">{{invoice.tax_name
-			}}</md-option> </md-select> </md-input-container>
+		<md-input-container flex> <label>Tax </label> <input
+			ng-model="tax"> </md-input-container>
 
-			<md-input-container flex> <label>Tax </label> <input
-				ng-model="tax"> </md-input-container>
+		<md-input-container flex> <label>Tax
+			Amount </label> <input ng-model="taxtotal" disabled> </md-input-container>
+	</div>
 
-			<md-input-container flex> <label>Tax
-				Amount </label> <input ng-model="taxtotal" disabled> </md-input-container>
-		</div>
-
-		<div layout layout-sm="column">
-			<md-input-container flex> <label>Grand
-				Total </label> <input ng-model="grand_total" disabled> </md-input-container>
-		</div>
+	<div layout layout-sm="column">
+		<md-input-container flex> <label>Grand
+			Total </label> <input ng-model="grand_total" disabled> </md-input-container>
 	</div>
 	</div>
 
+	===================================================================================
 	<table md-data-table md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onOrderChange">
 			<tr>
@@ -100,7 +94,7 @@
 		</thead>
 
 		<tbody>
-			<tr md-auto-select orderBy: query.order | limitTo:query.limit: (query.page - 1) * query.limit"">
+			<tr md-auto-select orderBy:query.order | limitTo:query.limit: (query.page - 1) * query.limit"">
 
 				<td><md-input-container flex> <label>Sr.
 						No </label> <input ng-model="sr_No"> </md-input-container></td>
@@ -112,59 +106,22 @@
 				<td><md-input-container flex> <label>Quantity
 					</label> <input ng-model="qty"> </md-input-container></td>
 				<td><md-input-container flex> <label>Price
-					</label> <input ng-model="invoice.price"> </md-input-container></td>
+					</label> <input ng-model="price"> </md-input-container></td>
 				<td>{{qty*invoice.price}}</td>
 
 			</tr>
 			<tr>
-				<td>
+				<!-- 				<td>
 					<section layout="row" layout-sm="column" layout-align="left left">
 						<md-button class="md-raised md-primary" ng-click="addItem()">Add</md-button>
-						<!-- 				<md-button class="md-raised md-primary" ng-click="loadCustList()">Get
-				List</md-button> -->
+						
 					</section>
 				</td>
+ -->
 			</tr>
 		</tbody>
 	</table>
-	<!-- 
-	<h2>Shopping Card Example</h2>
-	<div>
-		<table class="table">
-			<tr>
 
-				<th>Description</th>
-				<th>Qty</th>
-				<th>Cost</th>
-				<th>Total</th>
-				<th></th>
-			</tr>
-		
-			
-			<tr ng:repeat="invoice in stockforinvoice">
-			<td><input type="text" ng:model="item.description"
-					class="input-small"></td>
-			
-				<td><input type="text" ng:model="item.description"
-					class="input-small"></td>
-				<td><input type="number" ng:model="item.qty" 
-					class="input-mini"></td>
-				<td><input type="number" ng:model="item.cost" 
-					class="input-mini"></td>
-				<td>{{item.qty * item.cost | currency}}</td>
-				<td>[<a href ng:click="removeItem($index)">X</a>]
-				</td>
-			</tr>
-			<tr>
-				<td><a href ng-click="addItem()">add
-						item</a></td>
-				<td></td>
-				<td>Total:</td>
-				<td>{{total() | currency}}</td>
-			</tr>
-		</table>
-	</div> -->
-	
 
 </form>
 </md-content>
