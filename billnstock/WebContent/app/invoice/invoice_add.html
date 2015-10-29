@@ -23,65 +23,117 @@
 	<div id="itemline1">
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>Sr. No
-			</label> <input ng-model="itemline1.sr_No"> </md-input-container>
+				1 </label> 1</md-input-container>
 
 			<md-input-container flex> <md-select
-				ng-model="selectedItem" placeholder="Item Name"> <md-option
-				ng-value="itemline1.item_Name" ng-repeat="itemline1 in stockforinvoice" >{{itemline1.item_Name
+				ng-model="selectedItem1" placeholder="Item Name"> <md-option
+				ng-value="item" ng-repeat="item in stockforinvoice">{{item.item_Name
 			}}</md-option> </md-select> </md-input-container>
 
 			<md-input-container flex> <label>Quantity
-			</label> <input ng-model="itemline1.qty" type="number"> </md-input-container>
+			</label> <input ng-model="itemline1Qty" type="number"> </md-input-container>
 			<md-input-container flex> <label>Price </label>
-			<input ng-model="fetchedPrice1" ng-change="getItemPrice()"></md-input-container>
-			<md-input-container flex>
-			<input ng-model="itemline1.total">{{fetchedPrice1*itemline1.qty}} </md-input-container>
+			<input ng-model="selectedItem1.price"></md-input-container>
+			<md-input-container flex> {{selectedItem1.price*
+			itemline1Qty}} </md-input-container>
+
+
 		</div>
+	</div>
 	</div>
 	<div id="itemline2">
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>Sr. No
-			</label> <input ng-model="itemline2.sr_No"> </md-input-container>
+				1 </label> <input ng-model="itemline2.sr_No">2 </md-input-container>
 
 			<md-input-container flex> <md-select
-				ng-model="selectedItem1" placeholder="Item Name"> <md-option
-				ng-value="itemline2.item_Name" ng-repeat="itemline2 in stockforinvoice" >{{itemline2.item_Name
+				ng-model="selectedItem2" placeholder="Item Name"> <md-option
+				ng-value="item" ng-repeat="item in stockforinvoice">{{item.item_Name
 			}}</md-option> </md-select> </md-input-container>
 
 			<md-input-container flex> <label>Quantity
-			</label> <input ng-model="itemline2.qty" type="number"> </md-input-container>
+			</label> <input ng-model="itemline2Qty" type="number"> </md-input-container>
 			<md-input-container flex> <label>Price </label>
-			<input ng-model="fetchedPrice2"></md-input-container>
-			<md-input-container flex> <label>Total </label>
-			<input ng-model="itemline2.total" disabled>{{fetchedPrice2*itemline2.qty}} </md-input-container>
+			<input ng-model="selectedItem2.price"></md-input-container>
+			<md-input-container flex> {{selectedItem2.price*
+			itemline2Qty}} </md-input-container>
 		</div>
 	</div>
 	<div layout layout-sm="column">
 		<md-input-container flex> <label>Sub
-			Total </label> <input ng-model="sub_total" disabled>{{itemline1.total+itemline2.total}} </md-input-container>
+			Total </label> <input ng-model="sub_total" disabled>{{(selectedItem1.price*
+		itemline1Qty)+(selectedItem2.price* itemline2Qty)}} </md-input-container>
 	</div>
 
 	<div layout layout-sm="column">
 
 		<md-input-container flex> <md-select
-			ng-model="invoice" placeholder="Tax Type"> <md-option
-			ng-value="invoice.item_Name" ng-repeat="invoice in taxforinvoice">{{invoice.tax_name
+			ng-model="selectedTax" placeholder="Tax Type"> <md-option
+			ng-value="taxValue" ng-repeat="taxValue in taxforinvoice">{{taxValue.tax_name
 		}}</md-option> </md-select> </md-input-container>
 
 		<md-input-container flex> <label>Tax </label> <input
-			ng-model="tax"> </md-input-container>
+			ng-model="selectedTax.tax_rate" disabled> </md-input-container>
 
-		<md-input-container flex> <label>Tax
-			Amount </label> <input ng-model="taxtotal" disabled> </md-input-container>
+		<md-input-container flex>
+		{{(selectedTax.tax_rate/100)*((selectedItem1.price*
+		itemline1Qty)+(selectedItem2.price* itemline2Qty))}} </md-input-container>
 	</div>
 
 	<div layout layout-sm="column">
 		<md-input-container flex> <label>Grand
-			Total </label> <input ng-model="grand_total" disabled> </md-input-container>
+			Total </label> <input ng-model="grand_total" disabled>{{((selectedItem1.price*
+		itemline1Qty)+(selectedItem2.price*
+		itemline2Qty))+((selectedTax.tax_rate/100)*((selectedItem1.price*
+		itemline1Qty)+(selectedItem2.price* itemline2Qty)))}} </md-input-container>
 	</div>
 	</div>
 
-	===================================================================================
+	==========================================================================================================================
+	==========================================================================================================================
+
+	<h1>Table Format</h1>
+
+	<div layout layout-sm="column">
+		<!-- 			<md-input-container flex> <label>Sr.No </label>
+			<input ng-model="sr_No"> </md-input-container>
+
+			<md-input-container flex> <label>Item
+				Name </label> <input ng-model="item_Name"> </md-input-container>
+
+			<md-input-container flex> <label>Quantity
+			</label> <input ng-model="qty"> </md-input-container>
+
+			<md-input-container flex> <label>Price </label>
+			<input ng-model="price"> </md-input-container>
+
+			<md-input-container flex> <label>Total </label>
+			<input ng-model="total"> </md-input-container>
+ -->
+ 
+		<md-input-container flex> <label>Sr. No
+		</label><input ng-model="sr_No" disabled></md-input-container>
+
+		<md-input-container flex> <md-select
+			ng-model="selectedItem" placeholder="Item Name"> <md-option
+			ng-value="item" ng-repeat="item in stockforinvoice">{{item.item_Name
+		}}</md-option> </md-select> </md-input-container>
+
+		<md-input-container flex> <label>Quantity
+		</label> <input ng-model="qty" type="number"> </md-input-container>
+		<md-input-container flex> <label>Price </label> <input
+			ng-model="selectedItem.price"></md-input-container>
+		<md-input-container flex><input
+			ng-model="total">{{selectedItem.price*
+		qty}}</md-input-container> 
+	</div>
+
+	<section layout="row" layout-sm="column" layout-align="left left">
+		<md-button class="md-raised md-primary" ng-click="addItem()">Add</md-button>
+
+	</section>
+
+
 	<table md-data-table md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onOrderChange">
 			<tr>
@@ -90,38 +142,173 @@
 				<th name="Quantity" order-by="qty"></th>
 				<th name="Price" order-by="price"></th>
 				<th name="Total" order-by="total"></th>
+				<th name="Total" order-by="total"></th>
 			</tr>
 		</thead>
 
 		<tbody>
-			<tr md-auto-select orderBy:query.order | limitTo:query.limit: (query.page - 1) * query.limit"">
+			<tr ng-repeat="item in stockData1"md-auto-selectorderBy:query.order| limitTo:query.limit: (query.page - 1) * query.limit"">
 
-				<td><md-input-container flex> <label>Sr.
-						No </label> <input ng-model="sr_No"> </md-input-container></td>
-				<td><md-input-container flex> <md-select
-						ng-model="invoice" placeholder="Select Item"> <md-option
-						ng-value="invoice.item_Name"
-						ng-repeat="invoice in stockforinvoice">{{invoice.item_Name
-					}}</md-option> </md-select> </md-input-container></td>
-				<td><md-input-container flex> <label>Quantity
-					</label> <input ng-model="qty"> </md-input-container></td>
-				<td><md-input-container flex> <label>Price
-					</label> <input ng-model="price"> </md-input-container></td>
-				<td>{{qty*invoice.price}}</td>
+				<td>{{ item.sr_No }}</td>
+				<td>{{ item.item_Name }}</td>
+				<td>{{ item.qty }}</td>
+				<td>{{ item.price }}</td>
+				<td>{{ item.total }}</td>
+				<td>
+					<section layout="row" layout-sm="column">
+						<md-button class="md-raised md-primary"
+							ng-click="removeItem($index)">Remove Item</md-button>
+
+					</section>
+
+				</td>
 
 			</tr>
-			<tr>
-				<!-- 				<td>
+			<!-- 				<tr>
+					<td><md-input-container flex> <label>Sub
+							Total </label> <input ng-model="sub_total" disabled>{{}} </md-input-container></td>
+				</tr>
+				<tr>
+					<td><md-input-container flex> <md-select
+							ng-model="selectedTax" placeholder="Tax Type"> <md-option
+							ng-value="taxValue" ng-repeat="taxValue in taxforinvoice">{{}}</md-option> </md-select> </md-input-container></td>
+					<td><md-input-container flex> <label>Tax
+						</label> <input ng-model="selectedTax.tax_rate" disabled> </md-input-container></td>
+					<td><md-input-container flex> {{}} </md-input-container></td>
+				</tr>
+ -->
+			<!-- 			<tr>
+				<td>
 					<section layout="row" layout-sm="column" layout-align="left left">
-						<md-button class="md-raised md-primary" ng-click="addItem()">Add</md-button>
-						
+						<md-button class="md-raised md-primary" ng-click="addRow()">Add</md-button>
+
 					</section>
 				</td>
- -->
+
 			</tr>
+ -->
 		</tbody>
 	</table>
-
-
+	
+	==================================================================================================================================
+	==================================================================================================================================
+		<h1>Table Format</h1>
+		 <div class="container ng-hide" ng-show="contentLoaded">
+        <div class="row">
+            <div class="col-xs-12 page-header">
+                <div class="col-xs-6">
+                    <h1><span editable-text="invoice.from_company">{{invoice.from_company || 'Company Name'}}</span><br>
+                    <small><span editable-text="invoice.bill_type">{{invoice.bill_type || 'Bill Type'}}</span></small></h1>
+                </div>
+                <div class="col-xs-6">
+                <address>
+                    <span editable-text="invoice.from_address">{{invoice.from_address || 'Address'}}</span><br>
+                    <span editable-text="invoice.from_city">{{invoice.from_city || 'City'}}</span>, <span editable-text="invoice.from_state">{{invoice.from_state || 'State'}}</span> <span editable-text="invoice.from_zip">{{invoice.from_zip || 'Zip'}}</span><br>
+                    <strong>P</strong>: <span editable-text="invoice.from_phone">{{invoice.from_phone || 'Phone'}}</span><br>
+                    <span editable-text="invoice.from_email">{{invoice.from_email || 'some@email.com'}}</span>
+                </address>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <h4>Client:</h4>
+                <address>
+                    <strong><span editable-text="invoice.to_company">{{invoice.to_company || 'Client'}}</span></strong><br>
+                    <span editable-text="invoice.to_address">{{invoice.to_address || 'Address'}}</span><br>
+                    <span editable-text="invoice.to_city">{{invoice.to_city || 'City'}}</span>, <span editable-text="invoice.to_state">{{invoice.to_state || 'State'}}</span> <span editable-text="invoice.to_zip">{{invoice.to_zip || 'Zip'}}</span><br>
+                    <strong>P</strong>: <span editable-text="invoice.to_phone">{{invoice.to_phone || 'Phone'}}</span><br>
+                    <span editable-text="invoice.to_email">{{invoice.to_email || 'some@email.com'}}</span>
+                </address>
+            </div>
+            <div class="col-xs-6">
+                <table class="table-reduce-padding">
+                    <tbody>
+                        <tr>
+                            <td><p class="h4">Invoice #: </p></td>
+                            <td><p class="h5"><strong><span editable-text="invoice.number">{{invoice.number || '####'}}</span></strong></p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="h5">Date: </p></td>
+                            <td><p class="h5"><strong><span editable-text="invoice.send_date">{{invoice.send_date || 'January 01, 2014'}}</span></strong></p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="h5">Due Date: </p></td>
+                            <td><p class="h5"><strong><span editable-text="invoice.due_date">{{invoice.due_date || 'January 15, 2014'}}</span></strong></p></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> 
+        <div class="row">
+            <div class="col-xs-12 box">
+                <table class="table table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Task</th>
+                            <th>Hours</th>
+                            <th>Rate</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in invoice.line_items">
+                            <td>{{$index+1}}</td>
+                            <td>
+                                <dl>
+                                    <dt><span editable-text="invoice.line_items[$index].title">{{item.title || 'Task Title'}}</span></dt>
+                                    <dd><span editable-text="invoice.line_items[$index].desc">{{item.desc || "Description goes here"}}</span></dd>
+                                </dl>
+                            </td>
+                            <td><span editable-text="invoice.line_items[$index].hours" e-style="width: 50px">{{item.hours || '0'}}</span></td>
+                            <td>$<span editable-text="invoice.line_items[$index].unit_price" e-style="width: 50px">{{item.unit_price || '100'}}</span></td>
+                            <td>${{item.hours*item.unit_price}}</td>
+                        </tr>
+                        <tr id="dynamicInsert" class="warning" ng-show="invoice.temp.title">
+                            <td>{{invoice.line_items.length + 1}}</td>
+                            <td>
+                                <dl>
+                                    <dt>{{invoice.temp.title}}</dt>
+                                    <dd>{{invoice.temp.desc}}</dd>
+                                </dl>
+                            </td>
+                            <td>{{invoice.temp.hours}}</td>
+                            <td>${{invoice.temp.unit_price}}</td>
+                            <td>${{invoice.temp.hours * invoice.temp.unit_price}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot class="subtotal">
+                        <tr>
+                            <td colspan=3></td>
+                            <td><p class="h5">Subtotal: </p></td>
+                            <td><p class="h5"><strong>${{ getSubTotal() }}</strong></p></td>
+                        </tr>
+                        <tr>
+                            <td colspan=3></td>
+                            <td><p class="h5">Deposit: </p></td>
+                            <td><p class="h5"><strong><span editable-text="invoice.client_deposit" e-style="width: 50px">${{invoice.client_deposit || '0'}}</span></strong></p></td>
+                        </tr>
+                        <tr>
+                            <td colspan=3></td>
+                            <td><p class="h5">Total: </p></td>
+                            <td><p class="h5"><strong>${{ getSubTotal() - invoice.client_deposit }}</strong></p></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <p>Your business is greatly appreciated!</p>
+        </div>
+        <div class="col-xs-6">
+            <p class="h3 text-right">
+                Balance Due: ${{ getSubTotal() - invoice.client_deposit }}
+            </p>
+        </div>
+ <!--        <div class="editContainer" ng-mouseenter="showEditor=true" ng-mouseleave="showEditor=false">
+            <div ng-show="showEditor" ng-include src="'editor.html'"></div>
+        </div>
+  -->   </div>
 </form>
 </md-content>
