@@ -113,11 +113,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/report/display",
 		templateUrl : '/app/report/display_report.html',
 		controller : 'displayReportCtr'
-	}).state('login', {
+	})/*.state('login', {
 		url : "/login",
 		templateUrl : '/app/login/login_module.html',
 		controller : 'loginModuleCtr'
-	}).state('student', {
+	})*/.state('student', {
 		url : "/student",
 		templateUrl : '/app/student/student_module.html',
 		controller : 'studentModuleCtr'
@@ -137,6 +137,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/syllabus",
 		templateUrl : '/app/syllabus/syllabus_module.html',
 		controller : 'syllabusCtr'
+	}).state('examresult', {
+		url : "/examresult",
+		templateUrl : '/app/examresult/examresult.html',
+		controller : 'examResultCtr'
 	})
 	
 	.state('syllabus.cbse8thenglish', {
@@ -260,9 +264,32 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/icse8thscience",
 		templateUrl : '/app/syllabus/syllabus_icse_8th_science_phisics.html',
 		controller : 'syllabusCtr'
-	}).state('syllabus.addsyllabus', {
+	})
+	.state('syllabus.addsyllabus', {
 		url : "/addsyllabus",
 		templateUrl : '/app/syllabus/syllabus_addsyllabus.html',
 		controller : 'syllabusCtr'
-	});
+	})
+	
+	.state('syllabus.viewsyllabus', {
+		url : "/viewsyllabus",
+		templateUrl : '/app/syllabus/syllabus_viewsyllabus.html',
+		controller : 'syllabusCtr'
+	})
+	
+	;
+});
+
+app.filter('unique', function() {
+    return function(input, key) {
+        var unique = {};
+        var uniqueList = [];
+        for(var i = 0; i < input.length; i++){
+            if(typeof unique[input[i][key]] == "undefined"){
+                unique[input[i][key]] = "";
+                uniqueList.push(input[i]);
+            }
+        }
+        return uniqueList;
+    };
 });
