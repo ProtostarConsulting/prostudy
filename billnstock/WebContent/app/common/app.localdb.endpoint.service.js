@@ -142,7 +142,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			var invoiceList = angular.fromJson($localStorage.dbinvoice);
 			if (typeof invoiceList === 'undefined')
 				invoiceList = [];
-			invoiceList.push(tax);
+			invoiceList.push(invoice);
 			$localStorage.dbinvoice = angular.toJson(invoiceList);
 			deferred.resolve({
 				"msg" : "Invoice Added Successfully."

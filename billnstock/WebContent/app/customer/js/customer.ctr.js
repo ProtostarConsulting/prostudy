@@ -13,12 +13,11 @@ angular.module("stockApp").controller(
 			// $scope.cust = objectFactory.newCustomer();
 
 			$scope.cust = {
-				cust_Name : "",
+				customerName : "",
 				mobile : "",
 				email : "",
-				address : ""
+				customerAddress : ""
 			};
-			
 
 			$scope.addCustomer = function() {
 				$log.debug("No1");
@@ -49,13 +48,13 @@ angular.module("stockApp").controller(
 							$log.debug("Inside Ctr getAllCustomers");
 							$scope.customers = custList;
 							$log.debug("Inside Ctr $scope.customers:"
-									+ angular.toJson($scope.customers));							
+									+ angular.toJson($scope.customers));
 						});
 			}
-			
+
 			$scope.customers = [];
 			$scope.getAllCustomers();
-			
+
 			$scope.toggleRight = buildToggler('right');
 
 			function buildToggler(navID) {

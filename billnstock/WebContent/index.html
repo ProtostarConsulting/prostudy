@@ -1,276 +1,203 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="stockApp" ng-controller="indexCtr">
-	<head>
-		<title>ProStudy App</title>
-		<meta name="viewport" content="initial-scale=1" />
+<head>
+<title>ProStudy App</title>
+<meta name="viewport" content="initial-scale=1" />
 
-		<link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
-		<link rel="stylesheet" href="/lib/base/css/googleapi.roboto.css">
-		<link rel="stylesheet"	href="/lib/base/css/font-awesome.css">
-		<link rel="stylesheet"	href="/lib/base/css/xeditable.css">
-		<link rel="stylesheet"	href="/lib/base/css/bootstrap.min.css">
-		<link rel="stylesheet"	href="/lib/base/css/md-data-table.min.css">
-		<link rel="stylesheet"	href="/lib/base/css/textAngular.css">
-	</head>
-	<body layout="column">
-		<!-- <div layout="column" layout-fill> -->
-		<md-content>
-			<!-- Top Navigation Pane -->
-			<md-toolbar>
-				<div class="md-toolbar-tools">
-					<span hide-sm>ProERP - Manage your business paperless, anytime, & anywhere!</span>
-					<span hide-gt-sm>ProERP</span>
-					<!-- fill up the space between left and right area -->
-					<span flex></span>
-					<section layout="row">
-						<div hide-sm layout= "row" layout-align = "end start">
-							<md-button class="md-icon-button md-accent" aria-label="Favorite">
-								<md-icon md-font-icon="icon-home" ng-class="font.theme" class="step" ></md-icon>
-							</md-button>
+<link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
+<link rel="stylesheet" href="/lib/base/css/googleapi.roboto.css">
+<link rel="stylesheet" href="/lib/base/css/font-awesome.css">
+<link rel="stylesheet" href="/lib/base/css/xeditable.css">
+<link rel="stylesheet" href="/lib/base/css/bootstrap.min.css">
+<link rel="stylesheet" href="/lib/base/css/md-data-table.min.css">
+<link rel="stylesheet" href="/lib/base/css/textAngular.css">
+</head>
+<body layout="column">
+	<!-- <div layout="column" layout-fill> -->
+	<md-content> <!-- Top Navigation Pane --> <md-toolbar>
+	<div class="md-toolbar-tools">
+		<span hide-sm>ProERP - Manage your business paperless, anytime,
+			& anywhere!</span> <span hide-gt-sm>ProERP</span>
+		<!-- fill up the space between left and right area -->
+		<span flex></span>
+		<section layout="row">
+			<div hide-sm layout="row" layout-align="end start">
+				<md-button class="md-icon-button md-accent" aria-label="Favorite">
+				<md-icon md-font-icon="icon-home" ng-class="font.theme" class="step"></md-icon>
+				</md-button>
 
-							<md-button class="md-icon-button md-accent" aria-label="Favorite">
-								<md-icon md-svg-icon="img/icons/ic_comment_24px.svg"></md-icon>
-							</md-button>
-							<md-button class="md-icon-button md-accent" aria-label="Favorite">
-								<md-icon md-svg-icon="img/icons/codepen-logo.svg"></md-icon>
-							</md-button>
-							<md-button class="md-icon-button md-accent" aria-label="Favorite">
-								<md-icon md-svg-icon="img/icons/separator.svg"></md-icon>
-							</md-button>
-							<md-button class="md-icon-button" aria-label="More"
-							ng-click="toggleRight()">
-								<md-icon
-								md-svg-icon="img/icons/more_vert.svg"></md-icon>
-							</md-button>
-						</div>
-						<md-button aria-label="Logout" ng-click="showSearch = !showSearch">
-							<ng-md-icon icon="logout"></ng-md-icon>
-						</md-button>
-						<md-button aria-label="Open Settings"
-						ng-click="showListBottomSheet($event)">
-							<ng-md-icon
-							icon="more_vert"></ng-md-icon>
-						</md-button>
-					</section>
-				</div>
-			</md-toolbar>
-
-			<div ng-controller="AppCtrl">
-				<section layout="row" flex>
-					<!-- Left Navigation Pane -->
-					<md-sidenav class="md-sidenav-left md-whiteframe-z2"
-					md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-						<md-toolbar class="md-theme-indigo">
-							<h1 class="md-toolbar-tools">Apps Module</h1>
-						</md-toolbar>
-						<md-content layout="column" ng-controller="LeftCtrl">
-							<md-button class="md-primary" ng-click="close()" hide-gt-md>
-								Close Sidenav
-							</md-button>
-							<md-button ui-sref="home" ng-click="close()" class="md-primary"
-							show-gt-md>
-								Home
-							</md-button>
-							<md-button ui-sref="customer"
-							ng-click="close()" class="md-primary" show-gt-md>
-
-								Customer
-							</md-button>
-
-							<md-button
-							ui-sref="stock" ng-click="close()" class="md-primary" show-gt-md>
-								Stock
-							</md-button>
-							<md-button
-							ui-sref="invoice" ng-click="close()" class="md-primary" show-gt-md>
-								Invoice
-							</md-button>
-							<md-button ui-sref="state1" ng-click="close()"
-							class="md-primary" show-gt-md>
-								state1
-							</md-button>
-							<md-button
-							ui-sref="fileupload" ng-click="close()" class="md-primary" show-gt-md>
-								File Upload
-							</md-button>
-							<md-button ui-sref="student"
-							ng-click="close()" class="md-primary" show-gt-md>
-								Student
-							</md-button>
-						</md-content>
-					</md-sidenav>
-
-					<md-content flex layout-padding>
-						<div class="md-toolbar-tools" hide-gt-md>
-							<div>
-								<md-button ng-click="toggleLeft()" class="md-fab md-mini"
-								aria-label="Mini FAB" hide-gt-md>
-									<md-icon
-									md-svg-src="img/icons/menu.svg"></md-icon>
-								</md-button>
-							</div>
-						</div>
-						<md-card>
-							<div layout="column" layout-align="top center">
-								<!--<div ng-view></div>-->
-								<div ui-view>
-									<!--This is the center page of all main modules for the index module. -->
-								</div>
-							</div>
-						</md-card>
-						<!--This is a botton section of the app-->
-
-						<md-divider></md-divider>
-						<md-card>
-							<div layout="row" layout-wrap>
-								<div>
-									<a>Tihs is link one </a>
-									<a>Tihs is link one </a>
-									<a>Tihs is link one </a>
-									<a>Tihs is link one </a>
-									<a>Tihs is link one </a>
-									<a>Tihs is link one </a>
-									<a>Tihs is link one </a>
-									<a>Tihs is link one </a>
-								</div>
-								<div>
-									<a>Tihs is link two </a>
-									<a>Tihs is link two </a>
-									<a>Tihs is link two </a>
-									<a>Tihs is link two </a>
-									<a>Tihs is link two </a>
-									<a>Tihs is link two </a>
-									<a>Tihs is link two </a>
-									<a>Tihs is link two </a>
-								</div>
-								<div>
-									<a>Tihs is link three </a>
-									<a>Tihs is link three </a>
-									<a>Tihs is link three </a>
-									<a>Tihs is link three </a>
-									<a>Tihs is link three </a>
-									<a>Tihs is link three </a>
-									<a>Tihs is link three </a>
-									<a>Tihs is link three </a>
-								</div>
-								<div>
-									<a>Tihs is link four </a>
-									<a>Tihs is link four </a>
-									<a>Tihs is link four </a>
-									<a>Tihs is link four </a>
-									<md-button class="md-icon-button md-accent" aria-label="Favorite">
-										<md-icon md-font-icon="icon-home" ng-class="font.theme" class="step" ></md-icon>
-									</md-button>
-									<a>Tihs is link four </a>
-									<a>Tihs is link four </a>
-									<a>Tihs is link four </a>
-									<a>Tihs is link four </a>
-									<md-switch ng-model="isActive" aria-label="Finished?">
-										Finished ?
-									</md-switch>
-									<md-switch md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
-										No Ink Effects
-									</md-switch>
-									<md-switch ng-disabled="true" ng-model="isDisabled" aria-label="Disabled">
-										Disabled
-									</md-switch>
-								</div>
-							</div>
-							<div layout="row" layout-sm="column">
-								<div flex>
-									<md-button class="md-primary">
-										Click me
-									</md-button>
-									<md-button class="md-accent">
-										or maybe me
-									</md-button>
-									<md-button class="md-warn">
-										Careful
-									</md-button>
-									I'm above on mobile, and to the left on larger devices.
-								</div>
-								<div flex>
-									I'm below on mobile, and to the right on larger devices.
-									<md-button class="md-primary">
-										Click me
-									</md-button>
-									<md-button class="md-primary md-hue-1">
-										Click me
-									</md-button>
-									<md-button class="md-primary md-hue-2">
-										Click me
-									</md-button>
-								</div>
-							</div>
-							<div>
-								<md-button ng-click="openBottomSheet()">
-									Open a Bottom Sheet!
-								</md-button>
-							</div>
-							<!--End---This is a botton section of the app-->
-						</md-card>
-					</md-content>
-
-				</section>
+				<md-button class="md-icon-button md-accent" aria-label="Favorite">
+				<md-icon md-svg-icon="img/icons/ic_comment_24px.svg"></md-icon> </md-button>
+				<md-button class="md-icon-button md-accent" aria-label="Favorite">
+				<md-icon md-svg-icon="img/icons/codepen-logo.svg"></md-icon> </md-button>
+				<md-button class="md-icon-button md-accent" aria-label="Favorite">
+				<md-icon md-svg-icon="img/icons/separator.svg"></md-icon> </md-button>
+				<md-button class="md-icon-button" aria-label="More"
+					ng-click="toggleRight()"> <md-icon
+					md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
 			</div>
+			<md-button aria-label="Logout" ng-click="showSearch = !showSearch">
+			<ng-md-icon icon="logout"></ng-md-icon> </md-button>
+			<md-button aria-label="Open Settings"
+				ng-click="showListBottomSheet($event)"> <ng-md-icon
+				icon="more_vert"></ng-md-icon> </md-button>
+		</section>
+	</div>
+	</md-toolbar>
 
-		</md-content>
+	<div ng-controller="AppCtrl">
+		<section layout="row" flex>
+			<!-- Left Navigation Pane -->
+			<md-sidenav class="md-sidenav-left md-whiteframe-z2"
+				md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+			<md-toolbar class="md-theme-indigo">
+			<h1 class="md-toolbar-tools">Apps Module</h1>
+			</md-toolbar> <md-content layout="column" ng-controller="LeftCtrl"> <md-button
+				class="md-primary" ng-click="close()" hide-gt-md> Close
+			Sidenav </md-button> <md-button ui-sref="home" ng-click="close()"
+				class="md-primary" show-gt-md> Home </md-button> <md-button
+				ui-sref="customer" ng-click="close()" class="md-primary" show-gt-md>
 
-		<!-- </div> -->
+			Customer </md-button> <md-button ui-sref="stock" ng-click="close()"
+				class="md-primary" show-gt-md> Stock </md-button> <md-button
+				ui-sref="invoice" ng-click="close()" class="md-primary" show-gt-md>
+			Invoice </md-button> <md-button ui-sref="state1" ng-click="close()"
+				class="md-primary" show-gt-md> state1 </md-button> <md-button
+				ui-sref="fileupload" ng-click="close()" class="md-primary"
+				show-gt-md> File Upload </md-button> <md-button ui-sref="student"
+				ng-click="close()" class="md-primary" show-gt-md>
+			Student </md-button> </md-content> </md-sidenav>
 
-		<!-- All JS Dependencies -->
-		<script	src="/lib/base/jquery.min.js"></script>
-		<script	src="/lib/base/bootstrap.min.js"></script>
+			<md-content flex layout-padding>
+			<div class="md-toolbar-tools" hide-gt-md>
+				<div>
+					<md-button ng-click="toggleLeft()" class="md-fab md-mini"
+						aria-label="Mini FAB" hide-gt-md> <md-icon
+						md-svg-src="img/icons/menu.svg"></md-icon> </md-button>
+				</div>
+			</div>
+			<md-card>
+			<div layout="column" layout-align="top center">
+				<!--<div ng-view></div>-->
+				<div ui-view>
+					<!--This is the center page of all main modules for the index module. -->
+				</div>
+			</div>
+			</md-card> <!--This is a botton section of the app--> <md-divider></md-divider>
+			<md-card>
+			<div layout="row" layout-wrap>
+				<div>
+					<a>Tihs is link one </a> <a>Tihs is link one </a> <a>Tihs is
+						link one </a> <a>Tihs is link one </a> <a>Tihs is link one </a> <a>Tihs
+						is link one </a> <a>Tihs is link one </a> <a>Tihs is link one </a>
+				</div>
+				<div>
+					<a>Tihs is link two </a> <a>Tihs is link two </a> <a>Tihs is
+						link two </a> <a>Tihs is link two </a> <a>Tihs is link two </a> <a>Tihs
+						is link two </a> <a>Tihs is link two </a> <a>Tihs is link two </a>
+				</div>
+				<div>
+					<a>Tihs is link three </a> <a>Tihs is link three </a> <a>Tihs
+						is link three </a> <a>Tihs is link three </a> <a>Tihs is link
+						three </a> <a>Tihs is link three </a> <a>Tihs is link three </a> <a>Tihs
+						is link three </a>
+				</div>
+				<div>
+					<a>Tihs is link four </a> <a>Tihs is link four </a> <a>Tihs is
+						link four </a> <a>Tihs is link four </a>
+					<md-button class="md-icon-button md-accent" aria-label="Favorite">
+					<md-icon md-font-icon="icon-home" ng-class="font.theme"
+						class="step"></md-icon> </md-button>
+					<a>Tihs is link four </a> <a>Tihs is link four </a> <a>Tihs is
+						link four </a> <a>Tihs is link four </a>
+					<md-switch ng-model="isActive" aria-label="Finished?">
+					Finished ? </md-switch>
+					<md-switch md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+					No Ink Effects </md-switch>
+					<md-switch ng-disabled="true" ng-model="isDisabled"
+						aria-label="Disabled"> Disabled </md-switch>
+				</div>
+			</div>
+			<div layout="row" layout-sm="column">
+				<div flex>
+					<md-button class="md-primary"> Click me </md-button>
+					<md-button class="md-accent"> or maybe me </md-button>
+					<md-button class="md-warn"> Careful </md-button>
+					I'm above on mobile, and to the left on larger devices.
+				</div>
+				<div flex>
+					I'm below on mobile, and to the right on larger devices.
+					<md-button class="md-primary"> Click me </md-button>
+					<md-button class="md-primary md-hue-1"> Click me </md-button>
+					<md-button class="md-primary md-hue-2"> Click me </md-button>
+				</div>
+			</div>
+			<div>
+				<md-button ng-click="openBottomSheet()"> Open a Bottom
+				Sheet! </md-button>
+			</div>
+			<!--End---This is a botton section of the app--> </md-card> </md-content>
 
-		<!-- Angular Material Dependencies -->
-		<script src="/lib/base/angular.min.js"></script>
-		<script src="/lib/base/angular-animate.min.js"></script>
-		<script src="/lib/base/angular-route.min.js"></script>
-		<script src="/lib/base/angular-aria.min.js"></script>
-		<script src="/lib/base/angular-messages.min.js"></script>
-		<script src="/lib/base/angular-resource.min.js"></script>
-		<script src="/lib/base/angular-material-icons.min.js"></script>
+		</section>
+	</div>
 
-		<script src="/lib/base/angular-material.min.js"></script>
-		<script src="/lib/base/md-data-table.min.js"></script>
+	</md-content>
 
-		<script	src="/lib/base/ui-bootstrap-tpls.min.js"></script>
-		<script	src="/lib/base/angular-ui-router.min.js"></script>
-		<script src="/lib/base/xeditable.js"></script>
-		<script src="/lib/base/textAngular-rangy.min.js"></script>
-		<script src="/lib/base/textAngular-sanitize.min.js"></script>
-		<script src="/lib/base/textAngular.min.js"></script>
-		<script src="/lib/base/ngStorage.min.js"></script>
+	<!-- </div> -->
 
-		<script src="https://apis.google.com/js/client.js"></script>
+	<!-- All JS Dependencies -->
+	<script src="/lib/base/jquery.min.js"></script>
+	<script src="/lib/base/bootstrap.min.js"></script>
 
-		<!-- App JS Dependencies -->
-		<script src="/app/common/common.app.js"></script>
+	<!-- Angular Material Dependencies -->
+	<script src="/lib/base/angular.min.js"></script>
+	<script src="/lib/base/angular-animate.min.js"></script>
+	<script src="/lib/base/angular-route.min.js"></script>
+	<script src="/lib/base/angular-aria.min.js"></script>
+	<script src="/lib/base/angular-messages.min.js"></script>
+	<script src="/lib/base/angular-resource.min.js"></script>
+	<script src="/lib/base/angular-material-icons.min.js"></script>
 
-		<!-- Load other view/service/controllers files-->
-		<script src="/app/common/app.object.service.js"></script>
-		<script src="/app/common/app.localdb.endpoint.service.js"></script>
-		<script src="/app/common/app.google.endpoint.service.js"></script>
-		<script src="/app/common/app.endpoint.service.js"></script>
+	<script src="/lib/base/angular-material.min.js"></script>
+	<script src="/lib/base/md-data-table.min.js"></script>
 
-		<script src="/home.ctr.js"></script>
-		<script src="/app/customer/js/customer.ctr.js"></script>
-		<script src="/app/demo/js/state.ctr.js"></script>
+	<script src="/lib/base/ui-bootstrap-tpls.min.js"></script>
+	<script src="/lib/base/angular-ui-router.min.js"></script>
+	<script src="/lib/base/xeditable.js"></script>
+	<script src="/lib/base/textAngular-rangy.min.js"></script>
+	<script src="/lib/base/textAngular-sanitize.min.js"></script>
+	<script src="/lib/base/textAngular.min.js"></script>
+	<script src="/lib/base/ngStorage.min.js"></script>
 
-		<script src="/app/stock/js/stock_module.ctr.js"></script>
-		<script src="/app/stock/js/stockItem.ctr.js"></script>
-		<!--<script src="/app/invoice/js/invoice.ctr.js"></script>
+	<script src="https://apis.google.com/js/client.js"></script>
+
+	<!-- App JS Dependencies -->
+	<script src="/app/common/common.app.js"></script>
+
+	<!-- Load other view/service/controllers files-->
+	<script src="/app/common/app.object.service.js"></script>
+	<script src="/app/common/app.localdb.endpoint.service.js"></script>
+	<script src="/app/common/app.google.endpoint.service.js"></script>
+	<script src="/app/common/app.endpoint.service.js"></script>
+
+	<script src="/home.ctr.js"></script>
+	<script src="/app/customer/js/customer.ctr.js"></script>
+	<script src="/app/demo/js/state.ctr.js"></script>
+
+	<script src="/app/stock/js/stock_module.ctr.js"></script>
+	<script src="/app/stock/js/stockItem.ctr.js"></script>
+	<!--<script src="/app/invoice/js/invoice.ctr.js"></script>
 		<script src="/app/fileupload/js/fileupload.ctr.js"></script>-->
 
-		<script src="/app/test/js/table.demo.data.service.js"></script>
-		<script src="/app/demo/js/table.demo.withservice.ctr2.js"></script>
+	<script src="/app/test/js/table.demo.data.service.js"></script>
+	<script src="/app/demo/js/table.demo.withservice.ctr2.js"></script>
 
-		<script src="/app/student/js/student_module.ctr.js"></script>
-		<script src="/app/student/js/student.ctr.js"></script>
-		<script src="/app/student/js/student.list.ctr.js"></script>
-		<script src="/app/tax/js/tax.ctr.js"></script>
-<script src="/app/invoice/js/invoice.ctr.js"></script>
-		<script src="index.ctr.js"></script>
+	<script src="/app/student/js/student_module.ctr.js"></script>
+	<script src="/app/student/js/student.ctr.js"></script>
+	<script src="/app/student/js/student.list.ctr.js"></script>
+	<script src="/app/tax/js/tax.ctr.js"></script>
+	<script src="/app/invoice/js/invoice.ctr.js"></script>
+	<script src="index.ctr.js"></script>
 
-	</body>
+</body>
 </html>

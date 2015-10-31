@@ -1,139 +1,52 @@
 <md-content layout-padding>
 <form name="userForm">
-	<div>
+<div >
+	<div  nested-readonly="checkedOut">
 		<div layout layout-sm="column">
-			<md-input-container flex> <label>Invoice
-				ID </label> <input ng-model="invoice.invoice_id" disabled> </md-input-container>
+			<md-input-container flex> <label><h1>Protostar
+					Consulting Services</h1> </label> <input ng-model="invoice_id" disabled>
+			</md-input-container>
+
+			<md-input-container flex> <label><u>Address</u><br>E-101,
+				Manimangar Appartment<br>Kasarwadi-414141.<br>Ph.(020)4141414.<br>info@protostar.co.in
+			</label> <input ng-model="invoice_id" disabled> </md-input-container>
+
+		</div>
+		----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+		<div layout layout-sm="column">		
+				<md-input-container flex> <md-select
+					ng-model="customerName" placeholder="Customer Name"
+					ng-change="CustomerddlChange($index, customerName)"> <md-option
+					ng-value="cust" ng-repeat="cust in customersforinvoice">{{cust.cust_Name
+				}}</md-option> </md-select> </md-input-container>
+		
+			<div layout="row">
+				<md-input-container flex> <label>Invoice
+					ID </label> <input ng-model="invoice.invoiceId" disabled> </md-input-container>
+				<md-input-container flex> <label>Date </label>
+				<input ng-model="invoice_date" disabled> </md-input-container>
+			</div>
 		</div>
 
 		<div layout layout-sm="column">
-			<md-input-container flex> <md-select
-				ng-model="invoice.cust_Name" placeholder="Customer Name">
-			<md-option ng-value="invoice.cust_Name"
-				ng-repeat="invoice in customersforinvoice">{{invoice.cust_Name
-			}}</md-option> </md-select> </md-input-container>
+			<md-input-container flex> <label>Address
+			</label> <textarea ng-model="cust.customerAddress" rows="2" cols="1" disabled></textarea>
+			</md-input-container>
+
 
 		</div>
+
 		<div layout layout-sm="column">
+
 			<md-input-container flex> <label>Note </label> <textarea
-				ng-model="invoice.note" rows="4" cols="1" disabled></textarea> </md-input-container>
+				ng-model="invoice.note" rows="2" cols="1" disabled></textarea> </md-input-container>
 		</div>
+
 	</div>
+	----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-	<div id="itemline1">
-		<div layout layout-sm="column">
-			<md-input-container flex> <label>Sr. No
-				1 </label> 1</md-input-container>
-
-			<md-input-container flex> <md-select
-				ng-model="selectedItem1" placeholder="Item Name"> <md-option
-				ng-value="item" ng-repeat="item in stockforinvoice">{{item.item_Name
-			}}</md-option> </md-select> </md-input-container>
-
-			<md-input-container flex> <label>Quantity
-			</label> <input ng-model="itemline1Qty" type="number"> </md-input-container>
-			<md-input-container flex> <label>Price </label>
-			<input ng-model="selectedItem1.price"></md-input-container>
-			<md-input-container flex> {{selectedItem1.price*
-			itemline1Qty}} </md-input-container>
-
-
-		</div>
-	</div>
-	</div>
-	<div id="itemline2">
-		<div layout layout-sm="column">
-			<md-input-container flex> <label>Sr. No
-				1 </label> <input ng-model="itemline2.sr_No">2 </md-input-container>
-
-			<md-input-container flex> <md-select
-				ng-model="selectedItem2" placeholder="Item Name"> <md-option
-				ng-value="item" ng-repeat="item in stockforinvoice">{{item.item_Name
-			}}</md-option> </md-select> </md-input-container>
-
-			<md-input-container flex> <label>Quantity
-			</label> <input ng-model="itemline2Qty" type="number"> </md-input-container>
-			<md-input-container flex> <label>Price </label>
-			<input ng-model="selectedItem2.price"></md-input-container>
-			<md-input-container flex> {{selectedItem2.price*
-			itemline2Qty}} </md-input-container>
-		</div>
-	</div>
-	<div layout layout-sm="column">
-		<md-input-container flex> <label>Sub
-			Total </label> <input ng-model="sub_total" disabled>{{(selectedItem1.price*
-		itemline1Qty)+(selectedItem2.price* itemline2Qty)}} </md-input-container>
-	</div>
-
-	<div layout layout-sm="column">
-
-		<md-input-container flex> <md-select
-			ng-model="selectedTax" placeholder="Tax Type"> <md-option
-			ng-value="taxValue" ng-repeat="taxValue in taxforinvoice">{{taxValue.tax_name
-		}}</md-option> </md-select> </md-input-container>
-
-		<md-input-container flex> <label>Tax </label> <input
-			ng-model="selectedTax.tax_rate" disabled> </md-input-container>
-
-		<md-input-container flex>
-		{{(selectedTax.tax_rate/100)*((selectedItem1.price*
-		itemline1Qty)+(selectedItem2.price* itemline2Qty))}} </md-input-container>
-	</div>
-
-	<div layout layout-sm="column">
-		<md-input-container flex> <label>Grand
-			Total </label> <input ng-model="grand_total" disabled>{{((selectedItem1.price*
-		itemline1Qty)+(selectedItem2.price*
-		itemline2Qty))+((selectedTax.tax_rate/100)*((selectedItem1.price*
-		itemline1Qty)+(selectedItem2.price* itemline2Qty)))}} </md-input-container>
-	</div>
-	</div>
-
-	==========================================================================================================================
-	==========================================================================================================================
-
-	<h1>Table Format</h1>
-
-	<div layout layout-sm="column">
-		<!-- 			<md-input-container flex> <label>Sr.No </label>
-			<input ng-model="sr_No"> </md-input-container>
-
-			<md-input-container flex> <label>Item
-				Name </label> <input ng-model="item_Name"> </md-input-container>
-
-			<md-input-container flex> <label>Quantity
-			</label> <input ng-model="qty"> </md-input-container>
-
-			<md-input-container flex> <label>Price </label>
-			<input ng-model="price"> </md-input-container>
-
-			<md-input-container flex> <label>Total </label>
-			<input ng-model="total"> </md-input-container>
- -->
- 
-		<md-input-container flex> <label>Sr. No
-		</label><input ng-model="sr_No" disabled></md-input-container>
-
-		<md-input-container flex> <md-select
-			ng-model="selectedItem" placeholder="Item Name"> <md-option
-			ng-value="item" ng-repeat="item in stockforinvoice">{{item.item_Name
-		}}</md-option> </md-select> </md-input-container>
-
-		<md-input-container flex> <label>Quantity
-		</label> <input ng-model="qty" type="number"> </md-input-container>
-		<md-input-container flex> <label>Price </label> <input
-			ng-model="selectedItem.price"></md-input-container>
-		<md-input-container flex><input
-			ng-model="total">{{selectedItem.price*
-		qty}}</md-input-container> 
-	</div>
-
-	<section layout="row" layout-sm="column" layout-align="left left">
-		<md-button class="md-raised md-primary" ng-click="addItem()">Add</md-button>
-
-	</section>
-
-
+	<h1>Invoice</h1>
 	<table md-data-table md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onOrderChange">
 			<tr>
@@ -142,18 +55,26 @@
 				<th name="Quantity" order-by="qty"></th>
 				<th name="Price" order-by="price"></th>
 				<th name="Total" order-by="total"></th>
-				<th name="Total" order-by="total"></th>
+				<th name="Actions"></th>
 			</tr>
 		</thead>
 
 		<tbody>
-			<tr ng-repeat="item in stockData1"md-auto-selectorderBy:query.order| limitTo:query.limit: (query.page - 1) * query.limit"">
+			<tr ng-repeat="item in invoiceObj.invoiceLineItemList" md-auto-selectorderBy:query.order| limitTo:query.limit: (query.page - 1) * query.limit"">
 
-				<td>{{ item.sr_No }}</td>
-				<td>{{ item.item_Name }}</td>
-				<td>{{ item.qty }}</td>
-				<td>{{ item.price }}</td>
-				<td></td>
+				<td>{{ item.srNo }}</td>
+				<td><md-input-container flex> <md-select
+						ng-model="selectedStockItem" placeholder="Item Name"
+						ng-change="lineItemStockChange($index, selectedStockItem)">
+					<md-option ng-value="item" ng-repeat="item in stockforinvoice">{{item.item_Name
+					}}</md-option> </md-select> </md-input-container></td>
+				<td><md-input-container flex> <label>Quantity
+					</label> <input ng-model="item.qty" type="number" ng-change="calSubTotal()">
+					</md-input-container></td>
+				<td><md-input-container flex> <label>Price
+					</label> <input ng-model="item.price" ng-change="calSubTotal()"></md-input-container></td>
+				<td><md-input-container flex> <label>Price
+					</label> <b>{{item.qty * item.price}} </b></td>
 				<td>
 					<section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary"
@@ -164,30 +85,59 @@
 				</td>
 
 			</tr>
-			<!-- 				<tr>
-					<td><md-input-container flex> <label>Sub
-							Total </label> <input ng-model="sub_total" disabled>{{}} </md-input-container></td>
-				</tr>
-				<tr>
-					<td><md-input-container flex> <md-select
-							ng-model="selectedTax" placeholder="Tax Type"> <md-option
-							ng-value="taxValue" ng-repeat="taxValue in taxforinvoice">{{}}</md-option> </md-select> </md-input-container></td>
-					<td><md-input-container flex> <label>Tax
-						</label> <input ng-model="selectedTax.tax_rate" disabled> </md-input-container></td>
-					<td><md-input-container flex> {{}} </md-input-container></td>
-				</tr>
- -->
-			<!-- 			<tr>
-				<td>
-					<section layout="row" layout-sm="column" layout-align="left left">
-						<md-button class="md-raised md-primary" ng-click="addRow()">Add</md-button>
+			<tr>
+				<td><section layout="row" layout-sm="column"
+						layout-align="left left">
+						<md-button class="md-raised md-primary" ng-click="addItem()">Add
+						Item</md-button>
 
-					</section>
-				</td>
+					</section></td>
+				<td></td>
+				<td></td>
+				<td><label><u>Sub Total</u> </label></td>
+				<td><md-input-container flex> <b>{{invoiceObj.subTotal}}</b>
+					</md-input-container></td>
+			</tr>
+			<tr>
+				<td><label><u>Tax Details</u> </label></td>
+				<td></td>
+				<td><md-input-container flex> <md-select
+						ng-model="selectedTaxItem" placeholder="Tax Type"
+						ng-change="lineItemTaxChange($index, selectedTaxItem)">
+					<md-option ng-value="taxValue"
+						ng-repeat="taxValue in taxforinvoice">{{taxValue.taxCodeName}}</md-option>
+					</md-select> </md-input-container></td>
+				<td><md-input-container flex> <label>Tax
+					</label> <b> <input ng-model="selectedTaxItem.taxPercenatge" disabled>%
+					</b> </md-input-container></td>
+				<td><md-input-container flex> <b>{{invoiceObj.taxTotal}}</b>
+					</md-input-container></td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><label><u>Final Total</u> </label></td>
+				<td><md-input-container flex> <b>
+						{{invoiceObj.finalTotal}}</b> </md-input-container></td>
+			</tr>
+			<tr>
+				<td></td>
 
 			</tr>
- -->
 		</tbody>
 	</table>
+	<section layout="row" layout-sm="column">
+		<md-button class="md-raised md-primary" ng-click="addInvoice()">Save
+		Invoice</md-button>
+	</section>
+	
+	<section layout="row" layout-sm="column">
+		<md-button class="md-raised md-primary" ng-click="checkedOut = !checkedOut">Print
+		</md-button>
+
+	</section>
+</div>
 </form>
 </md-content>

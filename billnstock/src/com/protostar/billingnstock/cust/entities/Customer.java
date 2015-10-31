@@ -12,10 +12,10 @@ public class Customer {
 	private Long id;
 
 //	private String cust_id;
-	private String cust_Name;
+	private String customerName;
 	private String mobile;
 	private String email;
-	private String address;
+	private String customerAddress;
 	
 	public Long getId() {
 		return id;
@@ -24,12 +24,7 @@ public class Customer {
 		this.id = id;
 	}
 	
-	public String getCust_Name() {
-		return cust_Name;
-	}
-	public void setCust_Name(String cust_Name) {
-		this.cust_Name = cust_Name;
-	}
+	
 
 /*	public String getCust_id() {
 		return cust_id;
@@ -49,12 +44,19 @@ public class Customer {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getAddress() {
-		return address;
+	public String getCustomerName() {
+		return customerName;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
+	public String getCustomerAddress() {
+		return customerAddress;
+	}
+	public void setCustomerAddress(String customerAddress) {
+		this.customerAddress = customerAddress;
+	}
+	
 
 /*
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

@@ -34,15 +34,15 @@ public class CustomerService
 			
 			}
 			
-			stockCustomer2.setCust_Name(stockCustomer.getCust_Name());
+			stockCustomer2.setCustomerName(stockCustomer.getCustomerName());
 			stockCustomer2.setMobile(stockCustomer.getMobile());
 			stockCustomer2.setEmail(stockCustomer.getEmail());
-			stockCustomer2.setAddress(stockCustomer.getAddress());
+			stockCustomer2.setCustomerAddress(stockCustomer.getCustomerAddress());
 		//	msgBean.setToken("S");
 			
 			em=EMF.get().createEntityManager();
 			em.persist(stockCustomer2);
-			msgBean.setMsg("Customer Records Added successfully"+" "+stockCustomer2.getCust_Name());
+			msgBean.setMsg("Customer Records Added successfully"+" "+stockCustomer2.getCustomerName());
 		} 
 		catch (Exception e) 
 		{

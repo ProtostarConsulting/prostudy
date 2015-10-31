@@ -12,8 +12,8 @@
 	<table md-data-table md-row-select="selected" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onOrderChange">
 			<tr>
-				<th name="Name" order-by="tax_name"></th>
-				<th name="Rate" order-by="tax_rate"></th>
+				<th name="Name" order-by="taxCodeName"></th>
+				<th name="Rate" order-by="taxPercenatge"></th>
 			</tr>
 		</thead>
 
@@ -21,8 +21,8 @@
 			<tr md-auto-select
 				ng-repeat="tax in taxData | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
 
-				<td>{{tax.tax_name}}</td>
-				<td>{{tax.tax_rate}}</td>
+				<td>{{tax.taxCodeName}}</td>
+				<td>{{tax.taxPercenatge}}</td>
 				<td>
 			</tr>
 		</tbody>
@@ -44,9 +44,9 @@
 <div id="update">
 	<section layout="layout-sm=row">
 		<md-input-container flex> <label>Tax Name	
-		</label> <input ng-model="selected[0].tax_name"> </md-input-container>
+		</label> <input ng-model="selected[0].taxCodeName"> </md-input-container>
 		<md-input-container flex> <label>Rate
-			 </label> <input ng-model="selected[0].tax_rate"> </md-input-container>
+			 </label> <input ng-model="selected[0].taxPercenatge"> </md-input-container>
 	</section>
 
 	<section layout="row" layout-sm="column" layout-align="left left">

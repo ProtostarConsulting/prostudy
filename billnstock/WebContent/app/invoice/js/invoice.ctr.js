@@ -8,40 +8,31 @@ app
 
 					$scope.invoice = {
 						id : '',
-						invoice_id : 101,
+						invoiceId : 101,
 						sr_No : '',
-						cust_Name : '',
+						customerName : '',
+						customerAddress : '',
 						note : "If you have any query please contact on finance@protostar.co.in"
 					}
-/*
-					$scope.itemline1 = {
-						sr_No : 1,
-						item_Name : '',
-						qty : 1,
-						fetchedPrice : ''
-					}
-					$scope.itemline2 = {
-						sr_No : 2,
-						item_Name : '',
-						qty : 1,
-						fetchedPrice : ''
-					}
-*/
-					$scope.rows = [{
-						sr_No : 1,
-						item_Name : '',
-						qty : 1,
-						price : '',
-						total : 0
-					}]
 
+					$scope.invoiceObj = {
+						invoiceId : '',
+						customerName : '',
+						customerAddress : '',
+						invoiceLineItemList : [],
+						subTotal : '',
+						taxCodeName : '',
+						taxPercenatge : '',
+						taxTotal : 0,
+						finalTotal : ''
+					};
 					$scope.selected = [];
 
 					$scope.addInvoice = function() {
 						$log.debug("No1");
-						var invoiceService = appEndpointSF.getInvoiceService();
+						var InvoiceService = appEndpointSF.getInvoiceService();
 
-						invoiceService.addInvoice($scope.tax).then(
+						InvoiceService.addInvoice($scope.invoiceObj).then(
 								function(msgBean) {
 									$log.debug("No6");
 									$log.debug("Inside Ctr addInvoice");
@@ -95,41 +86,6 @@ app
 					$scope.stockData = [];
 					$scope.getAllStock();
 
-					$scope.itemline1Qty = 1;
-					$scope.selectedItem1 = {};
-					$scope.selectedItem = {};
-					$scope.qty = 1;
-					
-					$scope.itemline2Qty = 1;
-					$scope.selectedItem2 = {};
-
-					// $scope.tax_Rate = 0;
-					$scope.selectedTax = {};
-
-					/*
-					 * $scope.getItemPrice = function(){ console.log("Selected
-					 * Item:"+ $scope.selectedItem ); $scope.key =
-					 * $scope.stockforinvoice.indexOf[$scope.selectedItem];
-					 * $log.debug("Key"+ $scope.stockforinvoice.fetchedPrice);
-					 * $log.debug("Key"+ $scope.key); // $scope.myNewOptions =
-					 * $scope.city[ $scope.key ]; $scope.fetchedPrice =
-					 * $scope.stockforinvoice[$scope.key]; console.log("Selected
-					 * prices:"+ $scope.fetchedPrice ); };
-					 */
-
-					$scope.getItemPrice = function(item) {
-						var seleItem = $scope.selectedItem;
-
-						var key = $.grep($scope.stockforinvoice,
-								function(item) {
-
-									return item_Id == seleItem;
-
-								})
-						$window.alert("Selected Value: " + seleItem
-								+ "\nSelected Text: " + key);
-					}
-
 					$scope.getAllTaxes = function() {
 						$log.debug("Inside Ctr $scope.getAllTaxes");
 						var taxService = appEndpointSF.getTaxService();
@@ -148,24 +104,88 @@ app
 										});
 					}
 
+					$scope.selectedTax = {};
 					$scope.taxData = [];
 					$scope.getAllTaxes();
 
-					$scope.addRow = function() {
+					$scope.itemline1Qty = 1;
+					$scope.selectedItem1 = {};
+					$scope.selectedItem = {};
+					$scope.qty = 1;
 
-						$scope.rows.push({
-							'sr_No' : 1,
-							'selectedItem' : '',
-							'qty' : 1,
-							'selectedItem.price' : '',
-							'total' :0
-						});
-					/*
-					 * $scope.totalPrice = function(){ var total = 0;
-					 * for(count=0;count<$scope.items.length;count++){ total +=
-					 * $scope.items[count].Price*$scope.items[count].Quantity; }
-					 * return total; } };
-					 */
+					$scope.itemline2Qty = 1;
+					$scope.selectedItem2 = {};
+
+					$scope.invoiceCustomerList = [],
+							$scope.selectedStockItem = {};
+					// $scope.customerName = {};
+
+					$scope.addItem = function() {
+						var item = {
+							srNo : $scope.invoiceObj.invoiceLineItemList.length + 1,
+							itemName : "",
+							qty : 1,
+							price : "",
+							subTotal : ""
+						};
+
+						$scope.invoiceObj.invoiceLineItemList.push(item);
+					};
+
+					$scope.lineItemStockChange = function(index, stockItem) {
+						$log.debug("##Came to lineItemStockChange...");
+						var lineSelectedItem = $scope.invoiceObj.invoiceLineItemList[index];
+						lineSelectedItem.price = stockItem.price;
+
+						$scope.calSubTotal();
+						$scope.calfinalTotal();
+					};
+
+					$scope.calSubTotal = function() {
+						$log.debug("##Came to calSubTotal...");
+						$scope.invoiceObj.subTotal = 0;
+
+						for (var i = 0; i < $scope.invoiceObj.invoiceLineItemList.length; i++) {
+							var line = $scope.invoiceObj.invoiceLineItemList[i];
+							$scope.invoiceObj.subTotal += (line.qty * line.price);
+
+							$log.debug("subTotal :"
+									+ $scope.invoiceObj.subTotal);
+						}
+						$log.debug("$scope.invoiceObj 1 :"
+								+ $scope.invoiceObj.subTotal);
+						return $scope.invoiceObj.subTotal;
+					}
+
+					$scope.calfinalTotal = function() {
+						$log.debug("##Came to calSubTotal...");
+
+						$scope.invoiceObj.finalTotal = $scope.invoiceObj.subTotal
+								+ $scope.invoiceObj.taxTotal;
+					}
+
+					$scope.lineItemTaxChange = function(index, selectedTaxItem) {
+						$log.debug("##Came to lineItemTaxChange...");
+
+						$scope.invoiceObj.taxTotal = (selectedTaxItem.taxPercenatge / 100)
+								* ($scope.invoiceObj.subTotal)
+
+						$scope.calfinalTotal();
+					};
+
+					$scope.CustomerddlChange = function(index, customerName) {
+						$log.debug("##Came to CustomerddlChange...");
+
+						var SelectedCust = $scope.invoiceCustomerList[index];
+						SelectedCust.customerName = customerName.customerName;
+						SelectedCust.customerAddress = customerName.customerAddress;
+					};
+
+					$scope.removeItem = function(index) {
+						$scope.invoiceObj.invoiceLineItemList.splice(index, 1);
+						$scope.calSubTotal();
+						$scope.calfinalTotal();
+					};
 
 					/* Setup menu */
 					$scope.toggleRight = buildToggler('right');
@@ -188,54 +208,30 @@ app
 						});
 					};
 
-					}
-					/*
-					 * $scope.invoice = { items: [{ item_name:'', qty: 10,
-					 * description: 'item', cost: 9.95}] };
-					 * 
-					 * $scope.addItem = function() { $scope.invoice.items.push({
-					 * qty: 1, description: '', cost: 0 }); },
-					 * 
-					 * $scope.removeItem = function(index) {
-					 * $scope.invoice.items.splice(index, 1); },
-					 * 
-					 * $scope.total = function() { var total = 0;
-					 * angular.forEach($scope.invoice.items, function(item) {
-					 * total += item.qty * item.cost; })
-					 * 
-					 * return total; }
-					 * 
-					 */
-		/*			$scope.total = function() { var total = 0;
-					 angular.forEach($scope.stockData1.item, function(item) {
-					 total += item.qty * item.cost; })
-					}
-			*/
-					
-					 $scope.total = function(type) {
-					        var total = 0;
-					        angular.forEach($scope.stockData1, function(el) {
-					            total += el[type];
-					        });
-					        return total;
-					    };
-					    
-					$scope.stockData1 = [];
-					                 
-					               $scope.addItem = function(){
-					                 var item = {
-					                		 sr_No: $scope.sr_No,
-					                		 item_Name: $scope.item_Name,
-					                		 qty: $scope.qty,
-					                		 price: $scope.price,
-					                		 total: $scope.total
-					                 };
-					                 
-					                 $scope.stockData1.push(item);
-					               };
-					                
-					                $scope.removeItem = function(index){
-					                 $scope.stockData1.splice(index, 1);
-					                }; 
-					                
+					$scope.checkedOut = false;
+
+					app.directive('nestedReadonly',
+							function() {
+								return {
+									scope : {
+										readonly : '=nestedReadonly'
+									},
+									link : function(scope, el) {
+										function toggle(readonly) {
+											el.find('input').attr('readonly',
+													readonly);
+											el.find('textarea').attr(
+													'readonly', readonly);
+											el.find('select').attr('disabled',
+													readonly);
+											// ...
+										}
+										scope.$watch('readonly', function(val) {
+											if (angular.isDefined(val)) {
+												toggle(val);
+											}
+										});
+									}
+								};
+							});
 				});

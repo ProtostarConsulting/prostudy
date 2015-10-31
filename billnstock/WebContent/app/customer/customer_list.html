@@ -6,10 +6,10 @@
 	<table md-data-table md-row-select="selected" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onOrderChange">
 			<tr>
-				<th name="Customer Name" order-by="cust_Name"></th>
+				<th name="Customer Name" order-by="customerName"></th>
 				<th name="Mobile" order-by="mobile"></th>
 				<th name="Email" order-by="email"></th>
-				<th name="Address" order-by="address"></th>
+				<th name="Address" order-by="customerAddress"></th>
 			</tr>
 		</thead>
 
@@ -17,10 +17,10 @@
 			<tr md-auto-select
 				ng-repeat="customer in customers | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
 
-				<td>{{customer.cust_Name}}</td>
+				<td>{{customer.customerName}}</td>
 				<td>{{customer.mobile}}</td>
 				<td>{{customer.email}}</td>
-				<td>{{customer.address}}</td>
+				<td>{{customer.customerAddress}}</td>
 				
 				<td>
 			</tr>
@@ -34,7 +34,8 @@
 				{{selected}}
 			</div>
 		</md-data-table-toolbar>
- --> <md-data-table-pagination md-limit="query.limit"
+ --> 
+ <md-data-table-pagination md-limit="query.limit"
 		md-page="query.page" md-total={{customers.length}}
 		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
 </div>
