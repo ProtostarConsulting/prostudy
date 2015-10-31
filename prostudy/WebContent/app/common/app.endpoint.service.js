@@ -8,6 +8,15 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 	var endpointFactory = {};
 	endpointFactory.is_service_ready = false;
 	// This will call the function to load services
+	
+	
+	endpointFactory.getChapterService = function() 
+	{
+		if(isTestMode)
+			return localDBServiceFactory.getChapterService();
+		else	
+			return googleEndpointSF.getChapterService();
+	};//end of getChapterService
 
 	endpointFactory.getStudentService = function() {
 		if(isTestMode)

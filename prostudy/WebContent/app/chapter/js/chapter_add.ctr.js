@@ -1,95 +1,39 @@
 angular.module("prostudyApp").controller(
 		"chapterAddCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $q,tableTestDataFactory,$state) {
+				$log, $q,tableTestDataFactory,$state,appEndpointSF) 
+		{
 
 			console.log("Inside chapterAddCtr");
 					  
-		   //$scope.student = [];
+			$scope.tempChapter = {id: "", chapter_content: "", board:"", student_class:"",subject:"",chapter_no:""};
+			$scope.chapters = []; 
 			
-	/*		$("#isCancelMyProfile").hide();
-			$("#iseditMyProfile").show();*/
-			$scope.isCancelMyProfile = false;
-			  $scope.iseditMyProfile = true;
-		   
-			
-			$scope.loadStudentList = function() 
-			{	
-				$("#isCancelMyProfile").hide();
-				
-				 console.log("loadStudentList");
-				 
-					tableTestDataFactory.getMyProfileList().then(
-							function(data) {
-								$scope.student = data;
-								$scope.stud = $scope.student[0];
-								
+			$scope.addChapter = function()
+			{
+				$log.debug("No1");	
+				var ChapterService = appEndpointSF.getChapterService();
+										
+				ChapterService.addChapter($scope.tempChapter)
+				.then(function(msgBean) {
+							$log.debug("No6");	
+							$log.debug("Inside Ctr addChapter");
+							$log.debug("msgBean.msg:" + msgBean.msg);
 							
-								$log.debug("inside ctr then $scope.student "+ $scope.stud.firstName);
-							});//end of tableTestDataFactory
-
+							$scope.tempChapter = {id: "", chapter_content: "", board:"", student_class:"",subject:"",chapter_no:""};
+							$log.debug("addChapter"+ $scope.tempChapter);
+						});
+				$log.debug("No4");	
+			}//end of addChapter
 			
-				 
-				    
-									$scope.modify = function(selectedStudent) {
-										$scope.edit = true;
-										
-										 $scope.iseditMyProfile = true;
-										  $scope.isCancelMyProfile = false;
-							
-										$scope.editRecord= angular.copy($scope.student[0]);
-										console.log("EditRecord"+  $scope.editRecord.firstName);
-										
-										
-									     
-										$log.debug("Student" + $scope.student[0].firstName);  
-										$scope.stud = selectedStudent;
-										
-										$log.debug("Stud" + $scope.stud.firstName); 
-									
-								
-										
-								
-										
-									};
-
-									$scope.update = function() {
-										$scope.edit  = false;
-									
-										  
-									};// end of update
-									
-									
-									$scope.cancelButton = function()
-									{
-										
-										$scope.edit  = false;
-										
-										$log.debug("inside cancelButton");	
-								/*		console.log("EditRecord cancelButton"+  $scope.editRecord.firstName);
-										$log.debug("Stud cancelButton" + $scope.stud.firstName); 
-										$log.debug("Student cancelButton" + $scope.student[0].firstName);  */
-										
-										angular.copy($scope.editRecord,$scope.stud);
-										$log.debug("editRecordStud cancelButton" + $scope.stud.firstName); 
-										
-										angular.copy($scope.stud,$scope.editRecord);
-						/*				$log.debug("editRecordonly cancelButton" + $scope.editRecord.firstName); */
-									
-								
-										
-										$scope.iseditMyProfile = false;
-										  $scope.isCancelMyProfile = true;
-									};//end of cancelButton
-									
-						
-
 			
-			};// end of loadStudentList
+			$scope.cancelButton = function()
+			{
+				//$log.debug("inside cancelButton");
+				$state.go('^', {});
+			};//end of cancelButton
 			
-		
-			 
-			$scope.loadStudentList();
+			
 
-		});// end of myprofile ctr
+		});// end of chapterAddCtr 
 

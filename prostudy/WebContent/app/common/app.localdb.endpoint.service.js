@@ -4,6 +4,50 @@ angular.module("prostudyApp").factory('localDBServiceFactory',
 function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 	var serviceFactory = {};
+	
+	// start of ChapterService
+	var ChapterService = {};
+
+	serviceFactory.getChapterService = function()
+	{
+		return ChapterService;
+	}
+
+	ChapterService.addChapter = function(chapter) 
+	{
+
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side local DB addChapter...");
+			var chapterList = angular.fromJson($localStorage.dbAddChapter);
+			if (typeof chapterList === 'undefined')
+				chapterList = [];
+			chapterList.push(chapter);
+			$localStorage.dbAddChapter = angular.toJson(chapterList);
+			deferred.resolve({
+				"msg" : "Chapter Added Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+
+	ChapterService.getChapters= function() 
+	{
+		var deferred = $q.defer();
+		$timeout(function() {
+			$log.debug("In side local DB getChapters...");
+			var chapterList = angular.fromJson($localStorage.dbAddChapter);
+			if (typeof chapterList === 'undefined')
+				chapterList = [];
+			deferred.resolve(chapterList);
+		}, 1000);
+
+		return deferred.promise;
+
+	} // End of getChapters-ChapterService
 
 	// Add Student Service
 	var StudentService = {};

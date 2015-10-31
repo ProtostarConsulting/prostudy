@@ -30,13 +30,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : "/app/chapter/chapter_module.html",
 		controller : 'chapterModuleCtr'
 	}).state('chapter.add', {
-		url : "/chapter/add",
+		url : "/add",
 		templateUrl : "/app/chapter/chapter_add.html",
 		controller : 'chapterAddCtr'
-	}).state('chapter.list', {
-		url : "/chapter/list",
-		templateUrl : "/app/chapter/chapter_list.html",
-		controller : 'chapterListCtr'
+	}).state('chapter.view', {
+		url : "/view",
+		templateUrl : "/app/chapter/chapter_view.html",
+		controller : 'chapterViewCtr'
 	}).state('state1.list', {
 		url : "/list",
 		templateUrl : "/app/demo/state1.list.html",

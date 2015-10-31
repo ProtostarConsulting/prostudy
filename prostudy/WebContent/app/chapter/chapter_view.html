@@ -1,0 +1,86 @@
+<md-content layout-padding>
+<form>
+
+
+	<div layout="row" layout-align="center center">
+
+		<md-input-container flex> <label>Enter
+			Chapter ID</label> <input ng-model="searchText.id"> </md-input-container>
+
+
+	</div>
+
+	<div layout="row" layout-align="center center">
+		<td><md-button class="md-raised md-primary"
+				ng-click="clicked=true">Get Chapter Details From Local
+			DB</md-button></td>
+		<td><md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button></td>
+
+	</div>
+
+	<div custom-select="chapter in chapters | filter: { state: $searchTerm }">
+
+		<div class="pull-left">
+			<strong>{{ chapter.id}}</strong><br /></div>
+		<div class="clearfix"></div>
+	</div>
+
+
+	<div ng-show="clicked">
+
+		Hellooooooooo...!!!!!
+
+		<div layout="row" layout-sm="column">
+
+			<div layout="column" flex ng-repeat="chapter in chapters | filter:searchText">
+
+
+				<md-input-container>
+				          <label>ID :-</label> <input name="id" id="id" ng-model="chapter.id" disabled>
+                </md-input-container>
+
+				<!-- 	<md-input-container md-is-error="chapterForm.chapter_content.$invalid && (chapterForm.$submitted || chapterForm.option2.$dirty)">
+				<label>Chapter Content</label>
+				 <div text-angular="" ng-model="chapter.chapter_content"></div>
+				 <div>{{chapter.chapter_content}} </div>
+			
+			</md-input-container> -->
+
+				<md-content flex layout-padding>  
+				     <p ng-bind-html="chapter.chapter_content"></p>
+				</md-content>
+
+
+				<md-input-container>
+				        <label>Board</label>
+				        <input name="board" id="board" ng-required="true" ng-model="chapter.board" disabled>
+				</md-input-container>
+
+				<md-input-container>
+				     <label>Student Class</label> 
+				     <input name="student_class" id="student_class" ng-required="true" ng-model="chapter.student_class" disabled>
+				</md-input-container>
+
+				<md-input-container>
+				    <label>Subject</label> <input name="subject" id="subject" ng-model="chapter.subject" disabled>
+				</md-input-container>
+
+				<md-input-container>
+				<label>Chapter No</label> 
+				<input type="number" name="chapter_no" id="chapter_no" ng-minlength="1" ng-maxlength="1" ng-model="chapter.chapter_no" disabled>
+				</md-input-container>
+
+			</div>
+		</div>
+	</div>
+
+
+	<!-- <hr>
+	<b>Chapters Value :-</b>{{chapters}}
+	<hr> -->
+
+</form>
+</md-content>
+
+
+
