@@ -9,7 +9,15 @@
 
 					<div layout="row" layout-align="end start"  >
 					
-				    <md-button aria-label="Search" ng-click="showSearch = !showSearch">
+						<div layout-sm="column">
+						<md-button ui-sref="syllabus.add" ng-click="close()"
+							class="md-primary"> Add Syllabus </md-button>
+				<md-button ui-sref="syllabus.view" ng-click="close()"
+							class="md-primary"> View Syllabus </md-button>
+						
+						</div>
+
+					<md-button aria-label="Search" ng-click="showSearch = !showSearch">
 					<ng-md-icon icon="search"></ng-md-icon> </md-button>
 
 					<md-button aria-label="Open Settings" ng-click="toggleRight()">
@@ -41,34 +49,18 @@
 
 	</div>
 
-					<h3 class="md-headline">Syllabus</h3>
-			</md-subheader>
+	<div ui-view>
+	
+		<div layout="column" layout-align="start start">
+			<md-button ui-sref="syllabus.add" ng-click="close()"
+				class="md-primary"> Add Syllabus </md-button>
+			<md-button ui-sref="syllabus.view" ng-click="close()"
+				class="md-primary"> View Syllabus </md-button>
 			
-<div>
 
-	<label> Board</label>
-	<md-select style="width: 20%" ng-model="board" placeholder="Select">
-	<md-option value="1"> CBSE </md-option> <md-option value="2">Maharashtra
-	Board </md-option> <md-option value="3"> ICSE </md-option> </md-select>
-
-	<label>Standard</label>
-	<md-select style="width: 20%" ng-model="std" placeholder="Select">
-	<md-option value="1"> 8 TH </md-option> <md-option value="2">9
-	TH</md-option> <md-option value="3">10 TH </md-option> </md-select>
-
-
-	<label>Subject</label>
-	<md-select style="width: 20%" ng-model="sbj" placeholder="Select">
-	<md-option value="1"> English </md-option> <md-option value="2">Maths</md-option>
-	<md-option value="3">Science</md-option> </md-select>
-	<md-button class="md-raised md-primary" ng-click="view()">View</md-button>
-	<br>
-	<md-button class="md-raised md-primary" ng-click="addSyllabus()">Add
-	Syllabus</md-button>
-	<md-button class="md-raised md-primary" >List of Syllabus</md-button>
-	<div ui-view></div>
-</div>
+			
+		</div>
+	</div>
 	
 
 </div>
-
