@@ -177,8 +177,8 @@ app
 						$log.debug("##Came to CustomerddlChange...");
 
 						var SelectedCust = $scope.invoiceCustomerList[index];
-						SelectedCust.customerName = customerName.customerName;
-						SelectedCust.customerAddress = customerName.customerAddress;
+					//	SelectedCust.customerName = customerName.customerName;
+					//	SelectedCust.customerAddress = customerName.customerAddress;
 					};
 
 					$scope.removeItem = function(index) {
