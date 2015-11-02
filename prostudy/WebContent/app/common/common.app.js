@@ -7,8 +7,10 @@ var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
 		
 
 app.config(function($mdThemingProvider) {
-	$mdThemingProvider.theme('default').primaryPalette('light-green')
-			.accentPalette('orange');
+	$mdThemingProvider.theme('default').primaryPalette('indigo')
+			.accentPalette('red')
+			  .warnPalette('pink')
+              .backgroundPalette('grey');
 });
 
 app.config(function($logProvider) {
