@@ -10,62 +10,34 @@
 		<div layout="column" flex>
 		
 
-			<md-input-container md-is-error="chapterForm.option1.$invalid && (chapterForm.$submitted || chapterForm.id.$dirty)">
+			<md-input-container>
 				<label>ID :-</label>
 				<input name="id" id="id" ng-required="true" ng-model="tempChapter.id">
-				<div ng-messages="chapterForm.id.$error" ng-if="chapterForm.id.$submitted || chapterForm.id.$touched">
-					<div ng-message="required">Please enter ID.</div>
-				</div>
 			</md-input-container>
 
-			<md-input-container md-is-error="chapterForm.chapter_content.$invalid && (chapterForm.$submitted || chapterForm.option2.$dirty)">
+			<md-input-container>
 				<label>Chapter Content</label>
 				<text-angular name="chapter_content" id="chapter_content" ng-required="true" ng-model="tempChapter.chapter_content"></text-angular>
-				
 			</md-input-container>
 
-			<md-input-container md-is-error="chapterForm.board.$invalid && (chapterForm.$submitted || chapterForm.board.$dirty)">
+			<md-input-container>
 				<label>Board</label>
 				<input name="board" id="board" ng-required="true" ng-model="tempChapter.board">
-				<div ng-messages="chapterForm.board.$error" ng-if="chapterForm.board.$submitted || chapterForm.board.$touched">
-					<div ng-message="required">
-						Please enter Board.
-					</div>
-				</div>
 			</md-input-container>
 
-			<md-input-container md-is-error="chapterForm.student_class.$invalid && (chapterForm.$submitted || chapterForm.student_class.$dirty)">
+			<md-input-container>
 				<label>Student Class</label>
 				<input name="student_class" id="student_class" ng-required="true" ng-model="tempChapter.student_class">
-				<div ng-messages="chapterForm.student_class.$error" ng-if="chapterForm.student_class.$submitted || chapterForm.student_class.$touched">
-					<div ng-message="required">
-						Please enter Student Class .
-					</div>
-				</div>
 			</md-input-container>
 
-			<md-input-container md-is-error="chapterForm.subject.$invalid && (chapterForm.$submitted || chapterForm.subject.$dirty)">
+			<md-input-container>
 				<label>Subject</label>
-				<input  name="subject" id="subject"   ng-model="tempChapter.subject" required>
-				<div ng-messages="chapterForm.subject.$error" ng-if="chapterForm.subject.$submitted || chapterForm.subject.$touched">
-					<div ng-message="required">
-						Please enter Subject.
-					</div>
-				
-				</div>
+				<input  name="subject" id="subject"   ng-model="tempChapter.subject">
 			</md-input-container>
 			
-					<md-input-container md-is-error="chapterForm.chapter_no.$invalid && (chapterForm.$submitted || chapterForm.chapter_no.$dirty)">
+			<md-input-container>
 				<label>Chapter No</label>
-				<input type="number" name="chapter_no" id="chapter_no" ng-minlength="1"  ng-maxlength="1"  ng-model="tempChapter.chapter_no" required>
-				<div ng-messages="chapterForm.chapter_no.$error" ng-if="chapterForm.chapter_no.$submitted || chapterForm.chapter_no.$touched">
-					<div ng-message="required">
-						Please enter Chapter No
-					</div>
-					<div ng-message="chapterForm.chapter_no.$invalid">
-						Invalid Chapter No.
-					</div>
-				</div>
+				<input type="number" name="chapter_no" id="chapter_no" ng-minlength="1"  ng-maxlength="1"  ng-model="tempChapter.chapter_no">
 			</md-input-container>
 			
 			

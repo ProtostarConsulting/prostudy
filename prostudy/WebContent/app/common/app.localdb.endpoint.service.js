@@ -23,12 +23,21 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			var chapterList = angular.fromJson($localStorage.dbAddChapter);
 			if (typeof chapterList === 'undefined')
 				chapterList = [];
+/*				if(chapterList.id !=null)
+				{
+				chapter.id=chapterList.id;
+
+				}
+
+		chapter.chapter_content=chapterList.chapter_content;
+			chapter.board=chapterList.board;
+			chapter.student_class=chapterList.student_class;
+			chapter.subject=chapterList.subject;
+			chapter.chapter_no=chapterList.chapter_no;
+*/			
 			chapterList.push(chapter);
 			$localStorage.dbAddChapter = angular.toJson(chapterList);
-			deferred.resolve({
-				"msg" : "Chapter Added Successfully."
-			});
-
+			deferred.resolve({"msg" : "Chapter Added Successfully."});
 		}, 1000);
 
 		return deferred.promise;

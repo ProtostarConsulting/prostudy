@@ -39,6 +39,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/view",
 		templateUrl : "/app/chapter/chapter_view.html",
 		controller : 'chapterViewCtr'
+	}).state('chapter.edit', {
+		url : "/edit",
+		templateUrl : "/app/chapter/chapter_edit.html",
+		controller : 'chapterEditCtr'
 	}).state('state1.list', {
 		url : "/list",
 		templateUrl : "/app/demo/state1.list.html",
