@@ -64,6 +64,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/list",
 		templateUrl : '/app/invoice/invoice_list.html',
 		controller : 'invoiceCtr'
+	}).state('invoice.print', {
+		url : "/print",
+		templateUrl : '/app/invoice/invoice_print.html',
+		controller : 'invoiceCtr'
 	}).state('customer', {
 		url : "/customer",
 		templateUrl : '/app/customer/customer_module.html',

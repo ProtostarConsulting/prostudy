@@ -153,20 +153,20 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 	}
 
-/*	
-	TaxService.getAllTaxes = function() {
+	
+	InvoiceService.getAllInvoice = function() {
 		var deferred = $q.defer();
 		$timeout(function() {
-			var taxList = angular.fromJson($localStorage.dbTaxes);
-			if (typeof taxList === 'undefined')
-				taxList = [];
-			deferred.resolve(taxList);		
+			var invoiceList = angular.fromJson($localStorage.dbinvoice);
+			if (typeof invoiceList === 'undefined')
+				invoiceList = [];
+			deferred.resolve(invoiceList);		
 
 		}, 1000);
 
 		return deferred.promise;
 	} // End of TaxService
-*/
+
 	
 	return serviceFactory;
 }

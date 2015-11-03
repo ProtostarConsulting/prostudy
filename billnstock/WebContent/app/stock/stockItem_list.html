@@ -14,12 +14,12 @@
 	<table md-data-table md-row-select="selected" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onOrderChange">
 			<tr>
-				<th name="Item ID" order-by="item_Id"></th>
-				<th name="Item Name" order-by="item_Name"></th>
+				<th name="Item ID" order-by="itemId"></th>
+				<th name="Item Name" order-by="itemName"></th>
 				<th name="Category" order-by="category"></th>
 				<th name="Quantity" order-by="qty"></th>
 				<th name="Price" order-by="price"></th>
-				<th name="Threshold" order-by="threshold_value"></th>
+				<th name="Threshold" order-by="thresholdValue"></th>
 				<th name="Notes" order-by="notes"></th>
 
 			</tr>
@@ -29,12 +29,12 @@
 			<tr md-auto-select
 				ng-repeat="stocks in stockData | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
 
-				<td>{{stocks.item_Id}}</td>
-				<td>{{stocks.item_Name}}</td>
+				<td>{{stocks.itemId}}</td>
+				<td>{{stocks.itemName}}</td>
 				<td>{{stocks.category}}</td>
 				<td>{{stocks.qty}}</td>
 				<td>{{stocks.price}}</td>
-				<td>{{stocks.threshold_value}}</td>
+				<td>{{stocks.thresholdValue}}</td>
 				<td>{{stocks.notes}}</td>
 				<td>
 			</tr>

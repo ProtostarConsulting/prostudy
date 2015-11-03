@@ -25,6 +25,7 @@ angular.module("stockApp").controller(
 							
 						});
 				$log.debug("No4");
+				$scope.stock = {};
 			}
 
 			$scope.getAllStock = function() {

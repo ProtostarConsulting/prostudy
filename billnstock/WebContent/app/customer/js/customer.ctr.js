@@ -31,12 +31,10 @@ angular.module("stockApp").controller(
 							$log.debug("Inside Ctr addCustomer");
 							$log.debug("msgBean.msg:" + msgBean.msg);
 							$scope.showSimpleToast();
-							$scope.tempStudent = {
-								firstName : "",
-								lastName : ""
-							};
+						
 						});
 				$log.debug("No4");
+				$scope.cust = {};
 			}
 
 			$scope.getAllCustomers = function() {

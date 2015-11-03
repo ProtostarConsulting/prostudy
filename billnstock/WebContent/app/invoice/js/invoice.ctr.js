@@ -6,19 +6,22 @@ app
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, objectFactory, appEndpointSF) {
 
-					$scope.invoice = {
-						id : '',
-						invoiceId : 101,
-						sr_No : '',
-						customerName : '',
-						customerAddress : '',
-						note : "If you have any query please contact on finance@protostar.co.in"
+			
+
+					$("#mainForm").show();
+					$("#printForm").hide();
+
+					$scope.gotoPrint = function() {
+						$("#mainForm").hide();
+						$("#printForm").show();
 					}
 
 					$scope.invoiceObj = {
-						invoiceId : '',
+
+						invoiceId : 101,
 						customerName : '',
 						customerAddress : '',
+						invoiceDate : '',
 						invoiceLineItemList : [],
 						subTotal : '',
 						taxCodeName : '',
@@ -43,82 +46,26 @@ app
 						$log.debug("No4");
 					}
 
-					$scope.getAllCustomers = function() {
-						$log.debug("Inside Ctr $scope.getAllCustomers");
-						var customerService = appEndpointSF
-								.getCustomerService();
+					$scope.getAllInvoice = function() {
+						$log.debug("Inside Ctr $scope.getAllInvoice");
+						var invoiceService = appEndpointSF.getInvoiceService();
 
-						customerService
-								.getAllCustomers()
+						invoiceService
+								.getAllInvoice()
 								.then(
-										function(custList) {
+										function(invoiceList) {
 											$log
-													.debug("Inside Ctr getAllCustomers");
-											$scope.customersforinvoice = custList;
+													.debug("Inside Ctr getAllInvoice");
+											$scope.invoiceData = invoiceList;
 											$log
-													.debug("Inside Ctr $scope.customers:"
+													.debug("Inside Ctr $scope.invoiceData:"
 															+ angular
-																	.toJson($scope.customersforinvoice));
+																	.toJson($scope.invoiceData));
 										});
 					}
 
-					$scope.customers = [];
-					$scope.getAllCustomers();
-
-					$scope.getAllStock = function() {
-						$log.debug("Inside Ctr $scope.getAllStock");
-						var stockService = appEndpointSF.getStockService();
-
-						stockService
-								.getAllStock()
-								.then(
-										function(stockList) {
-											$log
-													.debug("Inside Ctr getAllStock");
-											$scope.stockforinvoice = stockList;
-											$log
-													.debug("Inside Ctr $scope.stockforinvoice:"
-															+ angular
-																	.toJson($scope.stockforinvoice));
-										});
-					}
-
-					$scope.stockData = [];
-					$scope.getAllStock();
-
-					$scope.getAllTaxes = function() {
-						$log.debug("Inside Ctr $scope.getAllTaxes");
-						var taxService = appEndpointSF.getTaxService();
-
-						taxService
-								.getAllTaxes()
-								.then(
-										function(taxList) {
-											$log
-													.debug("Inside Ctr getAllTaxes");
-											$scope.taxforinvoice = taxList;
-											$log
-													.debug("Inside Ctr $scope.taxforinvoice:"
-															+ angular
-																	.toJson($scope.taxforinvoice));
-										});
-					}
-
-					$scope.selectedTax = {};
-					$scope.taxData = [];
-					$scope.getAllTaxes();
-
-					$scope.itemline1Qty = 1;
-					$scope.selectedItem1 = {};
-					$scope.selectedItem = {};
-					$scope.qty = 1;
-
-					$scope.itemline2Qty = 1;
-					$scope.selectedItem2 = {};
-
-					$scope.invoiceCustomerList = [],
-							$scope.selectedStockItem = {};
-					// $scope.customerName = {};
+					$scope.invoiceData = [];
+					$scope.getAllInvoice();
 
 					$scope.addItem = function() {
 						var item = {
@@ -136,6 +83,8 @@ app
 						$log.debug("##Came to lineItemStockChange...");
 						var lineSelectedItem = $scope.invoiceObj.invoiceLineItemList[index];
 						lineSelectedItem.price = stockItem.price;
+						lineSelectedItem.itemName = stockItem.itemName;
+						lineSelectedItem.subTotal = stockItem.subTotal;
 
 						$scope.calSubTotal();
 						$scope.calfinalTotal();
@@ -167,7 +116,13 @@ app
 					$scope.lineItemTaxChange = function(index, selectedTaxItem) {
 						$log.debug("##Came to lineItemTaxChange...");
 
-						$scope.invoiceObj.taxTotal = (selectedTaxItem.taxPercenatge / 100)
+						/*
+						 * var lineSelectedTax =
+						 * $scope.invoiceObj.invoiceLineItemList[index];
+						 * lineSelectedTax.price = stockItem.price;
+						 * lineSelectedTax.itemName = stockItem.item_Name;
+						 */
+						$scope.invoiceObj.taxTotal = ($scope.invoiceObj.selectedTaxItem.taxPercenatge / 100)
 								* ($scope.invoiceObj.subTotal)
 
 						$scope.calfinalTotal();
@@ -176,10 +131,14 @@ app
 					$scope.CustomerddlChange = function(index, customerName) {
 						$log.debug("##Came to CustomerddlChange...");
 
-						var SelectedCust = $scope.invoiceCustomerList[index];
-					//	SelectedCust.customerName = customerName.customerName;
-					//	SelectedCust.customerAddress = customerName.customerAddress;
-					};
+						/*
+						 * var SelectedCust =
+						 * $scope.invoiceObj.invoiceCustomerList[index];
+						 * SelectedCust.customerName =
+						 * customerName.customerName;
+						 * SelectedCust.customerAddress =
+						 * customerName.customerAddress;
+						 */};
 
 					$scope.removeItem = function(index) {
 						$scope.invoiceObj.invoiceLineItemList.splice(index, 1);
@@ -208,30 +167,44 @@ app
 						});
 					};
 
-					$scope.checkedOut = false;
+					$scope.getAllCustomers = function() {
+						$log.debug("Inside Ctr $scope.getAllCustomers");
+						var customerService = appEndpointSF
+								.getCustomerService();
 
-					app.directive('nestedReadonly',
-							function() {
-								return {
-									scope : {
-										readonly : '=nestedReadonly'
-									},
-									link : function(scope, el) {
-										function toggle(readonly) {
-											el.find('input').attr('readonly',
-													readonly);
-											el.find('textarea').attr(
-													'readonly', readonly);
-											el.find('select').attr('disabled',
-													readonly);
-											// ...
-										}
-										scope.$watch('readonly', function(val) {
-											if (angular.isDefined(val)) {
-												toggle(val);
-											}
-										});
-									}
-								};
-							});
+						customerService.getAllCustomers().then(
+								function(custList) {
+									$log.debug("Inside Ctr getAllCustomers");
+									$scope.customersforinvoice = custList;
+								});
+					}
+
+					$scope.customers = [];
+					$scope.getAllCustomers();
+
+					$scope.getAllStock = function() {
+						$log.debug("Inside Ctr $scope.getAllStock");
+						var stockService = appEndpointSF.getStockService();
+
+						stockService.getAllStock().then(function(stockList) {
+							$log.debug("Inside Ctr getAllStock");
+							$scope.stockforinvoice = stockList;
+						});
+					}
+
+					$scope.stockData = [];
+					$scope.getAllStock();
+
+					$scope.getAllTaxes = function() {
+						$log.debug("Inside Ctr $scope.getAllTaxes");
+						var taxService = appEndpointSF.getTaxService();
+
+						taxService.getAllTaxes().then(function(taxList) {
+							$log.debug("Inside Ctr getAllTaxes");
+							$scope.taxforinvoice = taxList;
+						});
+					}
+					$scope.taxData = [];
+					$scope.getAllTaxes();
+
 				});
