@@ -1,197 +1,123 @@
 angular.module("prostudyApp").controller(
 		"syllabusCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $q, tableTestDataFactory, $state) {
+				$log, $q, tableTestDataFactory, $state, appEndpointSF, $filter,
+				$log) {
 
+			$scope.showSavedToast = function() {
+				$mdToast.show($mdToast.simple().content('Syllabus Saved!')
+						.position("top").hideDelay(3000));
+			};
+			/*
+			 * $scope.addSyllabus = function() {
+			 * $state.go("syllabus.addsyllabus", {}); }
+			 */
+			$scope.syllabus = "";
+
+			$scope.tempSyllabus = {
+				board : "",
+				standard : "",
+				subject : "",
+				chapterName : "",
+				chapterContent : ""
+			};
+			$scope.syllabus = [];
+			$scope.syllabus1 = {};
+			$scope.syllabus2 = {};
+			$scope.syllabus3 = {};
 			$scope.addSyllabus = function() {
-				$state.go("syllabus.addsyllabus", {});
-			}
-			$scope.syllabus="";
-		
-			$scope.addContent=function(){
-				$log.debug("value: "+ $scope.syllabus);
-			}
-			
-			
-			
-			$scope.view = function() {
-				if ($scope.board == 1 && $scope.std == 1 && $scope.sbj == 1) {
-
-					$state.go("syllabus.cbse8thenglish", {});
-
-				} else if ($scope.board == 1 && $scope.std == 1
-						&& $scope.sbj == 2) {
-
-					$state.go("syllabus.cbse8thmath", {});
-
-				} else if ($scope.board == 1 && $scope.std == 1
-						&& $scope.sbj == 3) {
-
-					$state.go("syllabus.cbse8thscience", {});
-				}
-
-				else if ($scope.board == 1 && $scope.std == 2
-						&& $scope.sbj == 1) {
-
-					$state.go("syllabus.cbse9thenglish", {});
-
-				} else if ($scope.board == 1 && $scope.std == 2
-						&& $scope.sbj == 2) {
-
-					$state.go("syllabus.cbse9thmath", {});
-
-				} else if ($scope.board == 1 && $scope.std == 2
-						&& $scope.sbj == 3) {
-
-					$state.go("syllabus.cbse9thscience", {});
-				}
-
-				else if ($scope.board == 1 && $scope.std == 3
-						&& $scope.sbj == 1) {
-
-					$state.go("syllabus.cbse10thenglish", {});
-
-				} else if ($scope.board == 1 && $scope.std == 3
-						&& $scope.sbj == 2) {
-
-					$state.go("syllabus.cbse10thmath", {});
-
-				} else if ($scope.board == 1 && $scope.std == 3
-						&& $scope.sbj == 3) {
-
-					$state.go("syllabus.cbse10thscience", {});
-				}
-
-				else if ($scope.board == 2 && $scope.std == 1
-						&& $scope.sbj == 1) {
-
-					$state.go("syllabus.sb8thenglish", {});
-
-				} else if ($scope.board == 2 && $scope.std == 1
-						&& $scope.sbj == 2) {
-
-					$state.go("syllabus.sb8thmath", {});
-
-				} else if ($scope.board == 2 && $scope.std == 1
-						&& $scope.sbj == 3) {
-
-					$state.go("syllabus.sb8thscience", {});
-				}
-
-				else if ($scope.board == 2 && $scope.std == 2
-						&& $scope.sbj == 1) {
-
-					$state.go("syllabus.sb9thenglish", {});
-
-				} else if ($scope.board == 2 && $scope.std == 2
-						&& $scope.sbj == 2) {
-
-					$state.go("syllabus.sb9thmath", {});
-
-				}else if ($scope.board == 2 && $scope.std == 2
-						&& $scope.sbj == 3) {
-
-					$state.go("syllabus.sb9thscience", {});
-				}
-
-				else if ($scope.board == 2 && $scope.std == 3
-						&& $scope.sbj == 1) {
-
-					$state.go("syllabus.sb10thenglish", {});
-
-				} else if ($scope.board == 2 && $scope.std == 3
-						&& $scope.sbj == 2) {
-
-					$state.go("syllabus.sb10thmath", {});
-
-				} else if ($scope.board == 2 && $scope.std == 3
-						&& $scope.sbj == 3) {
-
-					$state.go("syllabus.sb10thscience", {});
-				}
-
-				else if ($scope.board == 3 && $scope.std == 1
-						&& $scope.sbj == 1) {
-
-					$state.go("syllabus.icse8thenglish", {});
-
-				} else if ($scope.board == 3 && $scope.std == 1
-						&& $scope.sbj == 2) {
-
-					$state.go("syllabus.icse8thmath", {});
-
-				} else if ($scope.board == 3 && $scope.std == 1
-						&& $scope.sbj == 3) {
-
-					$state.go("syllabus.icse8thscience", {});
-				} else if ($scope.board == 3 && $scope.std == 2
-						&& $scope.sbj == 1) {
-
-					$state.go("syllabus.icse9thenglish", {});
-
-				} else if ($scope.board == 3 && $scope.std == 2
-						&& $scope.sbj == 2) {
-
-					$state.go("syllabus.icse9thmath", {});
-
-				} else if ($scope.board == 3 && $scope.std == 2
-						&& $scope.sbj == 3) {
-
-					$state.go("syllabus.icse9thscience", {});
-				} else if ($scope.board == 3 && $scope.std == 3
-						&& $scope.sbj == 1) {
-
-					$state.go("syllabus.icse10thenglish", {});
-
-				} else if ($scope.board == 3 && $scope.std == 3
-						&& $scope.sbj == 2) {
-
-					$state.go("syllabus.icse10thmath", {});
-
-				} else if ($scope.board == 3 && $scope.std == 3
-						&& $scope.sbj == 3) {
-
-					$state.go("syllabus.icse10thscience", {});
-				}
-
-			}
-			
-			$scope.tempStudent = {firstName: "", lastName: "",phone_no:"",email:"",city:"",state:"",pin:""};
-			$scope.students = []; 
-			
-			$scope.addStudent = function(){
-				$log
-				.debug("No1");	
-				var studentService = appEndpointSF.getStudentService();
-				//$scope.students = studentService.addStudent($scope.tempStudent);
-										
-				studentService.addStudent($scope.tempStudent)
-				.then(
+				$log.debug("No1");
+				var SyllabusService = appEndpointSF.getSyllabusService();
+				SyllabusService.addSyllabus($scope.tempSyllabus).then(
 						function(msgBean) {
-							$log
-							.debug("No6");	
-							$log
-									.debug("Inside Ctr addStudent");
-							$log
-							.debug("msgBean.msg:" + msgBean.msg);
-							$scope.showSimpleToast();
-							$scope.tempStudent = {firstName: "", lastName: "",phone_no:"",email:"",city:"",state:"",pin:""};
+							$log.debug("No6");
+							$log.debug("Inside Ctr addSyllabus");
+							$log.debug("msgBean.msg:" + msgBean.msg);
+							$scope.showSavedToast();
+							$scope.tempSyllabus = {
+								board : "",
+								standard : "",
+								subject : "",
+								chapterName : "",
+								chapterContent : ""
+							};
 						});
-				$log
-				.debug("No4");	
+				$log.debug("No4");
 			}
+
+			$scope.getSyllabus = function() {
+				var SyllabusService = appEndpointSF.getSyllabusService();
+
+				SyllabusService.getSyllabus().then(function(syllabusList) {
+					$log.debug("Inside Ctr getSyllabus");
+					$scope.syllabus = syllabusList;
+				});
+			}
+
+			$scope.getSyllabus();
+			//Function for getting Board depending on selection of board
+			$scope.getBoard = function(board) {
+				var bb = [];
+				for (var i = 0; i < $scope.syllabus.length; i++) {
+					if (board == $scope.syllabus[i].board)
+						bb.push($scope.syllabus[i].standard);
+
+				}
+				$scope.stdsList = bb;
+				$log.debug("stdsList Value:" + $scope.stdsList);
+				// $log.debug(bb);
+
+			};
+			//Function for getting Standard depending on selection of board
+			$scope.getStandard = function(board, standard) {
+
+				console.log(board, standard);
+				var bb = [];
+				for (var i = 0; i < $scope.syllabus.length; i++) {
+					if (board == $scope.syllabus[i].board
+							&& standard == $scope.syllabus[i].standard)
+						bb.push($scope.syllabus[i].subject);
+
+				}
+				$scope.subList = bb;
+				$log.debug(" subList Value:" + $scope.subList);
+				// $log.debug(bb);
+
+			};
+			//Function for getting Subject depending on selection of board, standard
+			$scope.getSubject = function(board, standard, subject) {
+
+				console.log(board, standard, subject);
+				var bb = [];
+				for (var i = 0; i < $scope.syllabus.length; i++) {
+					if (board == $scope.syllabus[i].board
+							&& standard == $scope.syllabus[i].standard
+							&& subject == $scope.syllabus[i].subject)
+						bb.push($scope.syllabus[i].chapterName);
+
+				}
+				$log.debug(bb);
+				$scope.chapterList = bb;
+				$log.debug("chapterList Value:" + $scope.chapterList);
+
+			};
 			
-			$scope.getStudents = function(){
-				//$scope.students = appEndpointSF.getStudentService().getStudents();
-				var studentService = appEndpointSF.getStudentService();					
-										
-				studentService.getStudents()
-				.then(
-						function(studList) {
-							$log
-									.debug("Inside Ctr getStudents");
-							$scope.students = studList;
-						});
-			}
+			//Function for getting chapter depending on selection of board, standard, subject
+			$scope.getChapter = function(board, standard, subject, chapter) {
+
+				console.log(board, standard, subject, chapter);
+				var bb = [];
+				for (var i = 0; i < $scope.syllabus.length; i++) {
+					if (board == $scope.syllabus[i].board
+							&& standard == $scope.syllabus[i].standard
+							&& subject == $scope.syllabus[i].subject
+							&& chapter == $scope.syllabus[i].chapterName)
+						bb.push($scope.syllabus[i].chapterContent);
+
+				}
+				$scope.chapterContentList = bb;
+				$log.debug("ContentList Value:"+ $scope.chapterContentList);
+
+			};
 
 		});
