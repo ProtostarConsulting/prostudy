@@ -72,7 +72,7 @@ angular.module("prostudyApp").controller(
 			$scope.checkAnswer = function() {
 				for (i = 0; i < $scope.questions.length; i++) 
 				{
-					var idx = $scope.selection[i].optionId;
+					var idx = $scope.selection[i];
 					
 					if (idx == $scope.questions[i].correctAns) {
 						$scope.score++;
