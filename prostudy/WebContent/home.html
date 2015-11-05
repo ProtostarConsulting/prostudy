@@ -1,6 +1,4 @@
-<div layout="row" layout-align="end start">
-	<a ui-sref="login">Login</a>
-</div>
+
 
 <div layout="column">
 	<div>
@@ -14,13 +12,18 @@
 
 					<md-button class="md-icon-button md-primary" aria-label="Settings">
 					<md-icon md-svg-icon="img/icons/menu.svg"></md-icon> </md-button>
-					
+
 					<md-button class="md-icon-button" aria-label="More"
 						ng-click="toggleRight()"> <md-icon
 						md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
 
 				</section>
 			</div>
+
+				<div layout="row" layout-align="center end">
+					<a ui-sref="newUser">New user</a>
+					<a ui-sref="login">Existing user</a>
+				</div>
 
 			<!-- Right Navigation Pane -->
 			<md-sidenav class="md-sidenav-right md-whiteframe-z2"
