@@ -15,6 +15,7 @@ angular.module("prostudyApp").controller(
 			//code for institute
 			$scope.tempInstitute = {name: "", email_id: "", phone_no:"", address:""};
 			$scope.institutes = []; 
+			$scope.institute1 = {}; 
 			
 			$scope.addInstitute = function(){
 				$log
@@ -58,29 +59,22 @@ angular.module("prostudyApp").controller(
 			$scope.students = []; 
 			
 			$scope.addStudent = function(){
-				$log
-				.debug("No1");	
+				$log.debug("No1");	
 				var studentService = appEndpointSF.getStudentService();
-				//$scope.students = studentService.addStudent($scope.tempStudent);
-										
+				
 				studentService.addStudent($scope.tempStudent)
 				.then(
 						function(msgBean) {
-							$log
-							.debug("No6");	
-							$log
-									.debug("Inside Ctr addStudent");
-							$log
-							.debug("msgBean.msg:" + msgBean.msg);
+							$log.debug("No6");	
+							$log.debug("Inside Ctr addStudent");
+							$log.debug("msgBean.msg:" + msgBean.msg);
 							$scope.showSimpleToast();
 							$scope.tempStudent = {firstName: "", lastName: "",phone_no:"",email:"",city:"",state:"",pin:""};
 						});
-				$log
-				.debug("No4");	
+				$log.debug("No4");	
 			}
 			
 			$scope.getStudents = function(){
-				//$scope.students = appEndpointSF.getStudentService().getStudents();
 				var studentService = appEndpointSF.getStudentService();					
 										
 				studentService.getStudents()
