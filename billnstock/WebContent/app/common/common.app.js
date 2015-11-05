@@ -1,6 +1,6 @@
 var app = angular.module("stockApp",
 		[ 'ngMaterial', 'ngMessages', "xeditable", "ui.bootstrap", "ui.router",
-				'md.data.table', 'ngResource', 'ngStorage' ]);
+				'md.data.table', 'ngResource', 'ngStorage', 'ngRoute' ]);
 
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('light-blue')
@@ -61,14 +61,28 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/invoice/invoice_add.html',
 		controller : 'invoiceCtr'
 	}).state('invoice.list', {
+	//	abstract: true,
 		url : "/list",
 		templateUrl : '/app/invoice/invoice_list.html',
-		controller : 'invoiceCtr'
-	}).state('invoice.print', {
-		url : "/print",
-		templateUrl : '/app/invoice/invoice_print.html',
-		controller : 'invoiceCtr'
-	}).state('customer', {
+		controller : 'invoiceCtr',
+/*		controller: function($scope){
+            $scope.selectedBill;
+        },
+        onEnter: function(){
+          console.log("enter invoice.list");
+        }
+*/	}).state('invoice.view', {
+		url : "/view/:invoiceId",
+//		parent:  "/list",
+		templateUrl : '/app/invoice/invoice_view.html',
+		controller : 'invoiceCtr',
+/*		controller: function($scope, $stateParams){
+            $scope.selectedBill1 = $scope.selectedBill[$stateParams.invoiceId];
+          },
+          onEnter: function(){
+            console.log("enter invoice.view");
+          }
+*/	}).state('customer', {
 		url : "/customer",
 		templateUrl : '/app/customer/customer_module.html',
 		controller : 'customerCtr'

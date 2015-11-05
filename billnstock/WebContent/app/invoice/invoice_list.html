@@ -16,14 +16,14 @@
 		<tbody>
 			<tr md-auto-select
 				ng-repeat="invoice in invoiceData | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
-
+ <a ng-href="#/invoice.list/{{invoiceId.id}}">{{invoice.finalTotal}}</a>
 				<td>{{$index+1}}</td>
 				<td>{{invoice.invoiceId}}</td>
 				<td>{{invoice.customerName.customerName}}</td>
 				<td>{{invoice.finalTotal}}</td>
 				<td><section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary"
-							ng-click="viewInvoice($index)">View Invoice</md-button>
+							ng-click="viewInvoice(invoice)">View Invoice</md-button>
 					</section></td>
 			</tr>
 		</tbody>
@@ -38,169 +38,4 @@
 		md-page="query.page" md-total={{invoiceData.length}}
 		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
 </div>
-
-
-<div id="">
-	<form>
-		<div>
-			<div layout layout-sm="column">
-				<md-input-container flex> <label><h1>Protostar
-						Consulting Services</h1> </label> </md-input-container>
-
-				<md-input-container flex> <label><u>Address</u><br>E-101,
-					Manimangar Appartment<br>Kasarwadi-414141.<br>Ph.(020)4141414.<br>info@protostar.co.in
-				</label> </md-input-container>
-
-			</div>
-
-			----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-			<table md-data-table>
-
-				<tbody>
-					<tr>
-						<td><md-input-container flex> <label>Customer
-								Name </label> <input ng-model="selected[0].customerName.customerName">
-							</md-input-container></td>
-						<td><md-input-container flex> <label>Invoice
-								ID </label> <input ng-model="selected[0].invoiceId"></md-input-container></td>
-						<td><md-input-container flex> <label>Date
-							</label> <input ng-model="selected[0].date"> </md-input-container></td>
-					</tr>
-					<tr>
-						<td><md-input-container flex> <label>Customer
-								Address </label> <input
-								ng-model="selected[0].customerName.customerAddress"> </md-input-container></td>
-
-						<td><md-input-container flex> <label>Note
-							</label> <input ng-model="selected[0].note"> </md-input-container></td>
-					</tr>
-				</tbody>
-				<table md-data-table md-progress="deferred">
-			<thead md-order="query.order" md-trigger="onOrderChange">
-				<tr>
-					<th name="Sr_No" order-by="srNo"></th>
-					<th name="Item Name" order-by="itemName"></th>
-					<th name="Quantity" order-by="qty"></th>
-					<th name="Price" order-by="price"></th>
-					<th name="Total" order-by="total"></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr md-auto-selectorderBy:query.order| limitTo:query.limit: (query.page - 1) * query.limit"">
-
-					<td>{{ selected[0].srNo }}</td>
-					<td><md-input-container flex>
-						<input ng-model="selected[0].itemName">
-						</md-input-container></td>
-					<td><md-input-container flex> <label>Quantity
-						</label> <input ng-model="selected[0].qty"> </md-input-container></td>
-					<td><md-input-container flex> <label>Price
-						</label> <input ng-model="selected[0].price"></md-input-container></td>
-					<td><md-input-container flex> <input
-							ng-model="selected[0].price"></md-input-container></td>
-					<td></td>
-
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td><label><u>Sub Total</u> </label></td>
-						<td><md-input-container flex><input ng-model="selected[0].invoiceObj.subTotal"> 
-							</md-input-container></td>
-					</tr>
-					<tr>
-						<td><label><u>Tax Details</u> </label></td>
-						<td></td>
-						<td><md-input-container flex> <label>Tax
-								Type </label> </md-input-container>{{invoiceObj.selectedTaxItem.taxCodeName}}</td>
-						<td><md-input-container flex> <label>Tax
-							</label> <input ng-model="selected[0].invoiceObj.selectedTaxItem.taxPercenatge"%> </md-input-container></td>
-						<td><md-input-container flex> <label>Tax
-								Total </label><input ng-model="selected[0].invoiceObj.taxTotal">  </md-input-container></td>
-					</tr>
-
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td><label><u>Final Total</u> </label></td>
-						<td><md-input-container flex> <input ng-model="selected[0].invoiceObj.finalTotal"></md-input-container></td>
-					</tr>
-					<tr>
-						<td></td>
-
-					</tr>
-			</tbody>
-			</table>
-		</div>
-		----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-		<h1>Invoice</h1>
-		<table md-data-table md-progress="deferred">
-			<thead md-order="query.order" md-trigger="onOrderChange">
-				<tr>
-					<th name="Sr_No" order-by="srNo"></th>
-					<th name="Item Name" order-by="itemName"></th>
-					<th name="Quantity" order-by="qty"></th>
-					<th name="Price" order-by="price"></th>
-					<th name="Total" order-by="total"></th>
-				</tr>
-			</thead>
-
-			<tbody>
-				<tr md-auto-selectorderBy:query.order| limitTo:query.limit: (query.page - 1) * query.limit"">
-
-					<td>{{ selected[0].srNo }}</td>
-					<td><md-input-container flex>
-						<input ng-model="selected[0].invoiceLineItemList.itemName">
-						</md-input-container></td>
-					<td><md-input-container flex> <label>Quantity
-						</label> <input ng-model="selected[0].qty"> </md-input-container></td>
-					<td><md-input-container flex> <label>Price
-						</label> <input ng-model="selected[0].price"></md-input-container></td>
-					<td><md-input-container flex> <input
-							ng-model="selected[0].price"></md-input-container></td>
-					<td></td>
-
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td><label><u>Sub Total</u> </label></td>
-						<td><md-input-container flex><input ng-model="selected[0].invoiceObj.subTotal"> 
-							</md-input-container></td>
-					</tr>
-					<tr>
-						<td><label><u>Tax Details</u> </label></td>
-						<td></td>
-						<td><md-input-container flex> <label>Tax
-								Type </label> </md-input-container>{{invoiceObj.selectedTaxItem.taxCodeName}}</td>
-						<td><md-input-container flex> <label>Tax
-							</label> <input ng-model="selected[0].invoiceObj.selectedTaxItem.taxPercenatge"%> </md-input-container></td>
-						<td><md-input-container flex> <label>Tax
-								Total </label><input ng-model="selected[0].invoiceObj.taxTotal">  </md-input-container></td>
-					</tr>
-
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td><label><u>Final Total</u> </label></td>
-						<td><md-input-container flex> <input ng-model="selected[0].invoiceObj.finalTotal"></md-input-container></td>
-					</tr>
-					<tr>
-						<td></td>
-
-					</tr>
-			</tbody>
-		</table>
-		<section layout="row" layout-sm="column" layout-align="left left">
-			<md-button class="md-raised md-primary" ng-click="updateStock()">Update</md-button>
-		</section>
-
-	</form>
-</div>
-
 </md-content>

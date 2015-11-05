@@ -1,12 +1,21 @@
 app = angular.module("stockApp");
 
+app.service('MyService', function() {
+
+	var selectedBill = "";
+	this.setText = function(invoice) {
+		selectedBill = invoice
+	}
+	this.getText = function() {
+		return selectedBill;
+	}
+});
 app
 		.controller(
 				"invoiceCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $log, objectFactory, appEndpointSF) {
-
-			
+						$mdUtil, $log, $state, $http, $stateParams,
+						$routeParams, objectFactory, appEndpointSF, MyService) {
 
 					$("#mainForm").show();
 					$("#printForm").hide();
@@ -14,6 +23,17 @@ app
 					$scope.gotoPrint = function() {
 						$("#mainForm").hide();
 						$("#printForm").show();
+					}
+
+
+					$scope.viewInvoice = function(invoice) {
+						$log.debug("inside viewInvoice :" + invoice);
+						$scope.selectedBill = invoice;
+						$log.debug("inside viewInvoice a :"
+								+ $scope.selectedBill);
+
+						$state.go("invoice.view", invoice);
+
 					}
 
 					$scope.invoiceObj = {

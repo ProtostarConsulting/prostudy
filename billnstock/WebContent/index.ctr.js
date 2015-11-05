@@ -1,6 +1,6 @@
 angular.module("stockApp").controller(
 		"indexCtr",
-		function($scope, $window, $log, $q, $timeout, $mdToast, $mdBottomSheet,
+		function($scope, $window, $log, $q, $timeout, $mdToast, $mdBottomSheet,$state, $http, $stateParams,
 				appEndpointSF) {
 
 			console.log("Inside indexCtr");
