@@ -50,7 +50,8 @@ angular.module("prostudyApp").controller(
 
 			$scope.editingData = [];
 
-			$scope.modify = function(selectedInstitute) {
+			$scope.modify = function(selectedInstitute) 
+			{
 				$scope.editingData[selectedInstitute.name] = true;
 				$scope.institute = selectedInstitute;
 			};
@@ -61,7 +62,7 @@ angular.module("prostudyApp").controller(
 
 			$scope.removeInstitute = function(index) {
 			
-				 $scope.institutes.splice(index, 1);
+				delete $scope.selected;
 			}; // end of remove
 			
 			$scope.getInstitutes();
