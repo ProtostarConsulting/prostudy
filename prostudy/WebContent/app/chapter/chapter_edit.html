@@ -22,7 +22,7 @@
 		</thead>
 
 		<tbody>
-			<tr md-auto-select ng-repeat="chapter in chapters   | filter: searchText ">
+			<tr md-auto-select ng-repeat="chapter in chapters  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText ">
 
 				<td>
 					<div ng-hide="editingData[chapter.id]">
@@ -83,7 +83,11 @@
 				</td>
 			</tr>
 		</tbody>
+		
 	</table>
+	<md-data-table-pagination md-limit="query.limit"
+  md-page="query.page" md-total={{chapters.length}}
+  md-trigger="onpagechange"></md-data-table-pagination>
 
 	</md-data-table-container>
 </div>
@@ -149,38 +153,38 @@
 
 
 				<md-input-container>
-				          <label>ID :-{{selected[0].id}}</label> <!-- <input name="id" id="id" ng-model="selected[0].id" disabled> -->
+				          <label>ID :-{{chapter.id}}</label> <!-- <input name="id" id="id" ng-model="chapter.id" disabled> -->
                 </md-input-container>
 
 				<md-input-container>
 				<label>Chapter Content :-</label> 
-				    <p ng-bind-html="selected[0].chapter_content"></p>
+				    <p ng-bind-html="chapter.chapter_content"></p>
 <!-- 				<div text-angular="" ng-model="chapter.chapter_content" disabled></div> -->
 			
 			    </md-input-container>
 
 			<!-- 	<md-content flex layout-padding>  
 				<label>Chapter Content</label>
-				     <p ng-bind-html="selected[0].chapter_content" disabled></p>
+				     <p ng-bind-html="chapter.chapter_content" disabled></p>
 				</md-content> -->
 
 
 				<md-input-container>
-				        <label>Board :-{{selected[0].board}}</label>
-				        <!-- <input name="board" id="board" ng-required="true" ng-model="selected[0].board" disabled> -->
+				        <label>Board :-{{chapter.board}}</label>
+				        <!-- <input name="board" id="board" ng-required="true" ng-model="chapter.board" disabled> -->
 				</md-input-container>
 
 				<md-input-container>
-				     <label>Student Class :-{{selected[0].student_class}}</label>
-				     <!-- <input name="student_class" id="student_class" ng-required="true" ng-model="selected[0].student_class" disabled> -->
+				     <label>Student Class :-{{chapter.student_class}}</label>
+				     <!-- <input name="student_class" id="student_class" ng-required="true" ng-model="chapter.student_class" disabled> -->
 				</md-input-container>
 
 				<md-input-container>
-				    <label>Subject :-{{selected[0].subject}}</label> <!-- <input name="subject" id="subject" ng-model="selected[0].subject" disabled> -->
+				    <label>Subject :-{{chapter.subject}}</label> <!-- <input name="subject" id="subject" ng-model="chapter.subject" disabled> -->
 				</md-input-container>
 
 				<md-input-container>
-				<label>Chapter No :-{{selected[0].chapter_no}} </label>
+				<label>Chapter No :-{{chapter.chapter_no}} </label>
 				<!-- <input type="number" name="chapter_no" id="chapter_no"  ng-model="chapter.chapter_no" disabled> -->
 				</md-input-container>
 

@@ -50,17 +50,25 @@ angular.module("prostudyApp").controller(
 
 			};
 
-			$scope.update = function(chapters) {
+			$scope.update = function(chapter) 
+			{
 				$scope.editingData[chapters.id] = false;
 				$scope.chapter = $scope.selected[0];
+				$log.debug("Object value of  update : " +	 angular.toJson($scope.chapter));
 				
 				$("#updateChapter").hide();
 				$("#viewChapter").hide();
 				$("#chapterList").show();
 			};// end of update
 			
-			$scope.view = function(chapter) {
-				$scope.chapter = $scope.selected[0];
+			
+			
+			$scope.view = function(chapter)
+			{
+				$scope.viewChapter = $scope.chapter;
+				$log.debug("Chapter View :"+	$scope.chapter);
+				$log.debug("Object value of  View : " +	 angular.toJson($scope.viewChapter));
+				
 				 
 				$("#viewChapter").show();
 				$("#updateChapter").hide();
