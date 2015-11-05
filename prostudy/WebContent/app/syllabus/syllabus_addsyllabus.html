@@ -1,22 +1,4 @@
-<!-- <div layout="column" layout-padding>
-	<md-content>
-		<section>
-			<md-subheader class="md-primary">	
-				<h3 class="md-headline">New Syllabus</h3>
-			</md-subheader>
-			
-				<div layout="row"  flex>
-							<label>Syllabus Description:</label>
-				<text-angular  id="1" ng-required="true" ng-model="syllabus"></text-angular>
-					<md-button class="md-raised md-primary" ng-click="addContent()">Add</md-button>	
-			
-				</div>
 
-			
-		</section>
-	</md-content>
-</div>
- -->
 <div layout="row" layout-padding>
 	<md-content>
 	<section>
@@ -24,10 +6,9 @@
 		<h3 class="md-headline">New Syllabus</h3>
 		</md-subheader>
 
-		<!-- <div layout="row" layout-align="center end"> -->
 		<div layout="column">
 
-				<md-input-container flex> <label>Board
+			<md-input-container flex> <label>Board
 				Name</label> <input name="board" id="board" ng-model="tempSyllabus.board">
 			</md-input-container>
 
@@ -41,7 +22,7 @@
 
 			<md-input-container flex> <label>Chapter
 				Name</label> <input name="chaptername" id="chapter"
-				ng-model="tempSyllabus.chapterName"> </md-input-container>
+				ng-model="tempSyllabus.chapterName "> </md-input-container>
 		</div>
 
 		<text-angular name="chaptercontent" id="chaptercontent"
