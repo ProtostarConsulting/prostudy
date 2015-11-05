@@ -21,9 +21,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : "/app/demo/state1.html",
 		controller : 'statesPageCtr'
 	}).state('state1.list', {
-		url : "/list",
+		url : "/list/:someVal",
 		templateUrl : "/app/demo/state1.list.html",
-		controller : 'statesPageCtr'
+		controller : 'statesPageCtr'		
 	}).state('home', {
 		url : "/home",
 		templateUrl : '/home.html',

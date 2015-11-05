@@ -68,11 +68,18 @@
 
 	<!-- partials/state1.html -->
 	<h1>State 1</h1>
-	<hr/>
+
+	<md-input-container flex>
+		<label>What is your string value?</label>
+		<input ng-model="testCtrVariable">
+	</md-input-container>
+	<span layout="row"><hr flex/>Actions List<hr flex/></span>
+
 	<a ui-sref="state1">State 1</a>
 	<a ui-sref="state2">State 2</a>
+	<a ui-sref="state1.list({someVal: testCtrVariable})">State1 List</a>
+	<span layout="row"><hr flex/>Actions List Ends<hr flex/></span>
 	
-
 	<div ui-view>
 		this is deafult sub view
 	</div>

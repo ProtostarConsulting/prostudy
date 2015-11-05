@@ -2,9 +2,14 @@ angular.module("stockApp")
 		.controller(
 				"statesPageCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $log, appEndpointSF) {
+						$mdUtil, $log, $stateParams, appEndpointSF) {
 					console.log("Inside statesPageCtr");
-
+					
+					$log.debug("$stateParams:", $stateParams);
+					$log.debug("$stateParams.someVal:", $stateParams.someVal);
+					
+					$scope.testCtrVariable = "Change me and click State1 List, and See debug logs ";
+					
 					$scope.things = [ "A", "Set", "Of", "Things", "out" ];
 					$scope.items = [ "A", "List", "Of", "Items", "out" ];
 					// console.log("Via Serice:" +
