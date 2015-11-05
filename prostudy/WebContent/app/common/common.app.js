@@ -119,11 +119,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/report/display",
 		templateUrl : '/app/report/display_report.html',
 		controller : 'displayReportCtr'
-	})/*.state('login', {
+	}).state('login', {
 		url : "/login",
 		templateUrl : '/app/login/login_module.html',
 		controller : 'loginModuleCtr'
-	})*/.state('student', {
+	}).state('newUser', {
+		url : "/newUser",
+		templateUrl : '/app/login/newUser.html',
+		controller : 'newUserCtr'
+	}).state('student', {
 		url : "/student",
 		templateUrl : '/app/student/student_module.html',
 		controller : 'studentModuleCtr'
@@ -142,6 +146,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('syllabus', {
 		url : "/syllabus",
 		templateUrl : '/app/syllabus/syllabus_module.html',
+
+		controller : 'syllabusModuleCtr'
+	}).state('syllabus.add', {
+		url : "/add",
+		templateUrl : '/app/syllabus/syllabus_add.html',
+		controller : 'syllabusAddCtr'
+	}).state('syllabus.view', {
+		url : "/view",
+		templateUrl : '/app/syllabus/syllabus_view.html',
 		controller : 'syllabusCtr'
 	}).state('examresult', {
 		url : "/examresult",
@@ -275,6 +288,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/addsyllabus",
 		templateUrl : '/app/syllabus/syllabus_addsyllabus.html',
 		controller : 'syllabusCtr'
+
 	})
 	
 	.state('syllabus.viewsyllabus', {

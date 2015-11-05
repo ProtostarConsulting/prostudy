@@ -140,15 +140,15 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 	} // End of InstituteService
 
-	// start of question_add service
+	// start of questionservice
 
-	var QuestionAddService = {};
+	var QuestionService = {};
 
-	serviceFactory.getQuestionAddService = function() {
-		return QuestionAddService;
+	serviceFactory.getQuestionService = function() {
+		return QuestionService;
 	}
 
-	QuestionAddService.addQuestion = function(ques) {
+	QuestionService.addQuestion = function(ques) {
 
 		var deferred = $q.defer();
 		$timeout(function() {
@@ -167,7 +167,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 		return deferred.promise;
 	}
-	QuestionAddService.updateQuestion = function(ques) {
+	QuestionService.updateQuestion = function(ques) {
 
 		var deferred = $q.defer();
 		$timeout(function() {
@@ -195,7 +195,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 	}
 
-	QuestionAddService.getQuestion = function() {
+	QuestionService.getQuestion = function() {
 		var deferred = $q.defer();
 		$timeout(function() {
 			$log.debug("In side local DB getStudents...");
@@ -208,8 +208,136 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 
 	}
-	// end of question_add service
+	// end of questionservice
 
+//start of SyllabusService
+	
+	var SyllabusService = {};
+
+	serviceFactory.getSyllabusService = function() {
+		return SyllabusService;
+	}
+
+	SyllabusService.addSyllabus = function(syllabi) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side local DB addSyllabus...");
+			var syllabusList = angular.fromJson($localStorage.dbSyllabus);
+			if (typeof syllabusList === 'undefined')
+				syllabusList = [];
+			syllabusList.push(syllabi);
+			$localStorage.dbSyllabus = angular.toJson(syllabusList);
+			deferred.resolve({
+				"msg" : "Syllabus Added Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+
+	SyllabusService.getSyllabus = function() {
+		var deferred = $q.defer();
+		$timeout(function() {
+			$log.debug("In side local DB getSyllabus...");
+			var syllabusList = angular.fromJson($localStorage.dbSyllabus);
+			if (typeof syllabusList === 'undefined')
+				syllabusList = [];
+			deferred.resolve(syllabusList);
+		}, 1000);
+
+		return deferred.promise;
+
+	}
+	//end of SyllabusService
+	
+	// start of LoginService
+	var LoginService = {};
+
+	serviceFactory.getLoginService = function() {
+		return LoginService;
+	}
+
+	LoginService.addLogin = function(login) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side local DB addLogin...");
+			var loginList = angular.fromJson($localStorage.dbLogin);
+			if (typeof loginList === 'undefined')
+				loginList = [];
+			loginList.push(login);
+			$localStorage.dbLogin = angular.toJson(loginList);
+			deferred.resolve({
+				"msg" : "User added Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+
+	LoginService.getLogin = function() {
+		var deferred = $q.defer();
+		$timeout(function() {
+			$log.debug("In side local DB getLogin...");
+			var loginList = angular.fromJson($localStorage.dbLogin);
+			if (typeof loginList === 'undefined')
+				loginList = [];
+			deferred.resolve(loginList);
+		}, 1000);
+
+		return deferred.promise;
+
+	} // End of LoginService
+	
+
+//start of profile service
+	
+	var ProfileService = {};
+
+	serviceFactory.getProfileService = function() {
+		return ProfileService;
+	}
+
+	ProfileService.addProfile = function(profile) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side local DB addStudent...");
+			var profileList = angular.fromJson($localStorage.dbProfile);
+			if (typeof profileList === 'undefined')
+				profileList = [];
+			profileList.push(profile);
+			$localStorage.dbProfile = angular.toJson(profileList);
+			deferred.resolve({
+				"msg" : "Question Added Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+
+	ProfileService.getprofile = function() {
+		var deferred = $q.defer();
+		$timeout(function() {
+			$log.debug("In side local DB getprofile...");
+			var profileList = angular.fromJson($localStorage.dbProfile);
+			if (typeof profileList === 'undefined')
+				profileList   = [];
+			deferred.resolve(profileList);
+		}, 1000);
+
+		return deferred.promise;
+
+	}
+	//end of profile service
+	
 	// Add Exam Service
 
 	serviceFactory.getExamService = function() {

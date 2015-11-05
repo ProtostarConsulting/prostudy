@@ -32,11 +32,33 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getInstituteService();
 	};
 	
-	endpointFactory.getQuestionAddService = function() {
+	endpointFactory.getQuestionService = function() {
 		if(isTestMode)
-			return localDBServiceFactory.getQuestionAddService();
+			return localDBServiceFactory.getQuestionService();
 		else	
-			return googleEndpointSF.getQuestionAddService();
+			return googleEndpointSF.getQuestionService();
+	};
+	
+	
+	endpointFactory.getSyllabusService = function() {
+		if(isTestMode)
+			return localDBServiceFactory.getSyllabusService();
+		else	
+			return googleEndpointSF.getSyllabusService();
+	};
+	
+	endpointFactory.getLoginService = function() {
+		if(isTestMode)
+			return localDBServiceFactory.getLoginService();
+		else	
+			return googleEndpointSF.getLoginService();
+	};
+	
+	endpointFactory.getProfileService = function() {
+		if(isTestMode)
+			return localDBServiceFactory.getProfileService();
+		else	
+			return googleEndpointSF.getProfileService();
 	};
 	
 	
@@ -44,13 +66,6 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 		return gapi.client.examService;
 	};
 	
-	
-
-	endpointFactory.getQuestionService = function() {
-		$log.debug("###Inside getQuestionService");		
-		return gapi.client.questionService;
-	};
-
 	endpointFactory.loadAppGoogleServices = function(deferred) {
 		$log.debug("###Inside Google appEndpointSF.loadAppGoogleServices###");
 		
