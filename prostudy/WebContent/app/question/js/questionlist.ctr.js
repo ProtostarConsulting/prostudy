@@ -109,9 +109,9 @@ angular.module("prostudyApp").controller(
 
 			$scope.getQuestion = function() {
 
-				var QuestionAddService = appEndpointSF.getQuestionAddService();
+				var QuestionService = appEndpointSF.getQuestionService();
 
-				QuestionAddService.getQuestion().then(function(questionList) {
+				QuestionService.getQuestion().then(function(questionList) {
 					$log.debug("Inside Ctr getInstitutes");
 					$scope.questions = questionList;
 					$log.debug("$scope.questions.option1:" + $scope.questions.option1);
@@ -126,9 +126,9 @@ angular.module("prostudyApp").controller(
 			$scope.updateQuestion = function(toUpdateQObject) {
 
 				$log.debug("$scope.updateQuestion");
-				var QuestionAddService = appEndpointSF.getQuestionAddService();
+				var QuestionService = appEndpointSF.getQuestionService();
 
-				QuestionAddService.updateQuestion(toUpdateQObject).then(
+				QuestionService.updateQuestion(toUpdateQObject).then(
 						function(msgBean) {
 							$scope.showSavedToast();
 

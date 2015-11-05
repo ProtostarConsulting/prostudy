@@ -109,21 +109,19 @@ angular.module("prostudyApp").controller(
 						.position("top").hideDelay(3000));
 			};
 			
-			
-			
 			$scope.tempQuestion = {quesId:"", description: "", note: "", option1:"", option2:"", option3:"", option4:"", correctAns:""};
-			$scope.questions = []; 
-		
+			$scope.question = []; 
 			
 			$scope.addQuestion = function(){
 				$log.debug("No1");	
-				var QuestionAddService = appEndpointSF.getQuestionAddService();
-				
-				QuestionAddService.addQuestion($scope.tempQuestion)
+				var QuestionService = appEndpointSF.getQuestionService();
+				//$scope.students = studentService.addStudent($scope.tempStudent);
+										
+				QuestionService.addQuestion($scope.tempQuestion)
 				.then(
 						function(msgBean) {
 							$log.debug("No6");	
-							$log.debug("Inside Ctr addQuestion");
+							$log.debug("Inside Ctr addStudent");
 							$log.debug("msgBean.msg:" + msgBean.msg);
 							$scope.showSavedToast();
 							$scope.tempQuestion = {quesId:"", description: "", note: "", option1:"", option2:"", option3:"", option4:"", correctAns:""};
@@ -132,18 +130,17 @@ angular.module("prostudyApp").controller(
 			}
 			
 			$scope.getQuestion = function(){
-			
-				var QuestionAddService = appEndpointSF.getQuestionAddService();					
+				//$scope.students = appEndpointSF.getStudentService().getStudents();
+				var QuestionService = appEndpointSF.getQuestionService();					
 										
-				QuestionAddService.getQuestion()
+				QuestionService.getQuestion()
 				.then(
 						function(questionList) {
-							$log
-									.debug("Inside Ctr getInstitutes");
-							$scope.questions = questionList;
+							$log.debug("Inside Ctr getQuestion");
+							$scope.question = questionList;
 						});
 			}
-
+			
 
 			
 		});
