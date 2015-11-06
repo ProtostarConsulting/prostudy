@@ -61,28 +61,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/invoice/invoice_add.html',
 		controller : 'invoiceCtr'
 	}).state('invoice.list', {
-	//	abstract: true,
 		url : "/list",
 		templateUrl : '/app/invoice/invoice_list.html',
 		controller : 'invoiceCtr',
-/*		controller: function($scope){
-            $scope.selectedBill;
-        },
-        onEnter: function(){
-          console.log("enter invoice.list");
-        }
-*/	}).state('invoice.view', {
-		url : "/view/:invoiceId",
-//		parent:  "/list",
+	}).state('invoice.view', {
+		url : "/view/:selectedInvoiceNo",
 		templateUrl : '/app/invoice/invoice_view.html',
 		controller : 'invoiceCtr',
-/*		controller: function($scope, $stateParams){
-            $scope.selectedBill1 = $scope.selectedBill[$stateParams.invoiceId];
-          },
-          onEnter: function(){
-            console.log("enter invoice.view");
-          }
-*/	}).state('customer', {
+	}).state('customer', {
 		url : "/customer",
 		templateUrl : '/app/customer/customer_module.html',
 		controller : 'customerCtr'

@@ -22,16 +22,13 @@ angular.module("stockApp").controller(
 			$scope.addCustomer = function() {
 				$log.debug("No1");
 				var customerService = appEndpointSF.getCustomerService();
-				// $scope.students =
-				// studentService.addStudent($scope.tempStudent);
-
 				customerService.addCustomer($scope.cust).then(
 						function(msgBean) {
 							$log.debug("No6");
 							$log.debug("Inside Ctr addCustomer");
 							$log.debug("msgBean.msg:" + msgBean.msg);
 							$scope.showSimpleToast();
-						
+
 						});
 				$log.debug("No4");
 				$scope.cust = {};

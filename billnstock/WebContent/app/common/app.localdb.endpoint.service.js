@@ -78,14 +78,13 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			var stockList = angular.fromJson($localStorage.dbStocks);
 			if (typeof stockList === 'undefined')
 				stockList = [];
-			deferred.resolve(stockList);		
+			deferred.resolve(stockList);
 
 		}, 1000);
 
 		return deferred.promise;
 	} // End of StockService
 
-	
 	// Start of StockService
 	var TaxService = {};
 
@@ -112,21 +111,19 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 	}
 
-	
 	TaxService.getAllTaxes = function() {
 		var deferred = $q.defer();
 		$timeout(function() {
 			var taxList = angular.fromJson($localStorage.dbTaxes);
 			if (typeof taxList === 'undefined')
 				taxList = [];
-			deferred.resolve(taxList);		
+			deferred.resolve(taxList);
 
 		}, 1000);
 
 		return deferred.promise;
 	} // End of TaxService
-	
-	
+
 	// Start of StockService
 	var InvoiceService = {};
 
@@ -153,20 +150,46 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 	}
 
-	
-	InvoiceService.getAllInvoice = function() {
+	InvoiceService.getAllInvoice = function(invoiceId) {
 		var deferred = $q.defer();
 		$timeout(function() {
 			var invoiceList = angular.fromJson($localStorage.dbinvoice);
 			if (typeof invoiceList === 'undefined')
 				invoiceList = [];
-			deferred.resolve(invoiceList);		
+			deferred.resolve(invoiceList);
 
 		}, 1000);
 
 		return deferred.promise;
 	} // End of TaxService
 
-	
+	InvoiceService.getinvoiceByID = function(selectedBillNo) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+			var tempItem = [];
+			var invoiceList = angular.fromJson($localStorage.dbinvoice);
+
+			if (typeof invoiceList === 'undefined')
+				invoiceList = [];
+
+			for (i = 0; i < invoiceList.length; i++) {
+				if (selectedBillNo == invoiceList[i].invoiceId) {
+
+					// selectedBillNo = invoiceList[i];
+					tempItem.push(invoiceList[i]);
+
+					//$log.debug("TEMP===" + tempItem[i]);
+				}
+			}
+			deferred.resolve(tempItem);
+
+		}, 1000);
+
+		return deferred.promise;
+
+	}
+
+	// End of PushpakService
 	return serviceFactory;
 }

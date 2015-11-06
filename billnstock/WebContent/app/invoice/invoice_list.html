@@ -16,15 +16,19 @@
 		<tbody>
 			<tr md-auto-select
 				ng-repeat="invoice in invoiceData | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
- <a ng-href="#/invoice.list/{{invoiceId.id}}">{{invoice.finalTotal}}</a>
+				<!-- <a ng-href="#/invoice.list/{{invoiceId.id}}">{{invoice.finalTotal}}</a> -->
 				<td>{{$index+1}}</td>
 				<td>{{invoice.invoiceId}}</td>
 				<td>{{invoice.customerName.customerName}}</td>
 				<td>{{invoice.finalTotal}}</td>
-				<td><section layout="row" layout-sm="column">
+				<td>
+					<section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary"
-							ng-click="viewInvoice(invoice)">View Invoice</md-button>
-					</section></td>
+							ui-sref="invoice.view({selectedInvoiceNo: invoice.invoiceId})">View Invoice</md-button>
+					</section>
+					<!--  <a ui-sref="invoice.view({selectedInvoiceNo: invoice.invoiceId})">View Invoice
+						</a> -->
+				</td>
 			</tr>
 		</tbody>
 	</table>

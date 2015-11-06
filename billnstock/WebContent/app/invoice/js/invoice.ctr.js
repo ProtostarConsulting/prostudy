@@ -1,21 +1,34 @@
 app = angular.module("stockApp");
-
-app.service('MyService', function() {
-
-	var selectedBill = "";
-	this.setText = function(invoice) {
-		selectedBill = invoice
-	}
-	this.getText = function() {
-		return selectedBill;
-	}
-});
 app
 		.controller(
 				"invoiceCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $state, $http, $stateParams,
-						$routeParams, objectFactory, appEndpointSF, MyService) {
+						$routeParams, objectFactory, appEndpointSF) {
+
+					$log.debug("$stateParams:", $stateParams);
+					$log.debug("$stateParams.selectedInvoiceNo:",
+							$stateParams.selectedInvoiceNo);
+
+					$scope.selectedBillNo = $stateParams.selectedInvoiceNo;
+
+					$scope.showBill = function() {
+						var invoiceService = appEndpointSF.getInvoiceService();
+
+						invoiceService
+								.getinvoiceByID($scope.selectedBillNo)
+								.then(
+										function(invoiceList) {
+											$scope.invoiceDetail = invoiceList[0];
+											$log
+													.debug("$scope.showBill:invoiceDetail ===="
+															+ angular
+																	.toJson($scope.invoiceDetail));
+										});
+
+					}
+					$scope.invoiceDetail = [];
+					$scope.showBill();
 
 					$("#mainForm").show();
 					$("#printForm").hide();
@@ -23,17 +36,6 @@ app
 					$scope.gotoPrint = function() {
 						$("#mainForm").hide();
 						$("#printForm").show();
-					}
-
-
-					$scope.viewInvoice = function(invoice) {
-						$log.debug("inside viewInvoice :" + invoice);
-						$scope.selectedBill = invoice;
-						$log.debug("inside viewInvoice a :"
-								+ $scope.selectedBill);
-
-						$state.go("invoice.view", invoice);
-
 					}
 
 					$scope.invoiceObj = {
@@ -136,12 +138,6 @@ app
 					$scope.lineItemTaxChange = function(index, selectedTaxItem) {
 						$log.debug("##Came to lineItemTaxChange...");
 
-						/*
-						 * var lineSelectedTax =
-						 * $scope.invoiceObj.invoiceLineItemList[index];
-						 * lineSelectedTax.price = stockItem.price;
-						 * lineSelectedTax.itemName = stockItem.item_Name;
-						 */
 						$scope.invoiceObj.taxTotal = ($scope.invoiceObj.selectedTaxItem.taxPercenatge / 100)
 								* ($scope.invoiceObj.subTotal)
 
@@ -150,15 +146,7 @@ app
 
 					$scope.CustomerddlChange = function(index, customerName) {
 						$log.debug("##Came to CustomerddlChange...");
-
-						/*
-						 * var SelectedCust =
-						 * $scope.invoiceObj.invoiceCustomerList[index];
-						 * SelectedCust.customerName =
-						 * customerName.customerName;
-						 * SelectedCust.customerAddress =
-						 * customerName.customerAddress;
-						 */};
+					};
 
 					$scope.removeItem = function(index) {
 						$scope.invoiceObj.invoiceLineItemList.splice(index, 1);
