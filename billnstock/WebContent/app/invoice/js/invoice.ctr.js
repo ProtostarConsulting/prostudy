@@ -38,7 +38,7 @@ app
 
 					$scope.invoiceObj = {
 
-						invoiceId : 101,
+						invoiceId : '',
 						customerName : '',
 						customerAddress : '',
 						invoiceDate : '',

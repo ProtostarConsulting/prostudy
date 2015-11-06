@@ -139,6 +139,9 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			var invoiceList = angular.fromJson($localStorage.dbinvoice);
 			if (typeof invoiceList === 'undefined')
 				invoiceList = [];
+			
+			invoice.invoiceId = invoiceList.length +100;
+			
 			invoiceList.push(invoice);
 			$localStorage.dbinvoice = angular.toJson(invoiceList);
 			deferred.resolve({
@@ -185,11 +188,8 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			deferred.resolve(tempItem);
 
 		}, 1000);
-
 		return deferred.promise;
-
 	}
-
 	// End of PushpakService
 	return serviceFactory;
 }
