@@ -20,10 +20,8 @@ app
 								.then(
 										function(invoiceList) {
 											$scope.invoiceDetail = invoiceList[0];
-											$log
-													.debug("$scope.showBill:invoiceDetail ===="
-															+ angular
-																	.toJson($scope.invoiceDetail));
+											$log.debug("$scope.showBill:invoiceDetail ===="
+															+ angular.toJson($scope.invoiceDetail));
 										});
 
 					}
