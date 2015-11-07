@@ -7,7 +7,7 @@
 
 
 		<div layout="column">
-			<div layout="row">
+			<div layout="row" >
 			
 			
 				<label> Board</label>
@@ -22,14 +22,14 @@
 				<md-input-container flex> <md-select 
 					ng-model="syllabus2" placeholder="Select" ng-change="getStandard(syllabus1,syllabus2)"   > <md-option
 					ng-value="item"
-					ng-repeat="item in stdsList track by $index ">
+					ng-repeat="item in standardsList track by $index ">
 				{{item}} </md-option> </md-select> </md-input-container>
 
 				<label> Subject</label>
 				<md-input-container flex> <md-select
 					ng-model="syllabus3" placeholder="Select" ng-change="getSubject(syllabus1,syllabus2,syllabus3)" > <md-option
 					ng-value="item"
-					ng-repeat="item in subList track by $index ">{{item}}
+					ng-repeat="item in subjectList track by $index ">{{item}}
 				</md-option> </md-select> </md-input-container>
 
 				<label> Chapter</label>

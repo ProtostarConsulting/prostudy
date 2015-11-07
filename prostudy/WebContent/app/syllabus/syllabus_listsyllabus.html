@@ -38,25 +38,20 @@
 <md-card ng-show="isShowRecord">
 <div layout="column" flex>
 	<md-input-container flex> <label>Board</label> <input
-		ng-model="editRecord.board" readonly> </md-input-container>
+		ng-model="editRecord.board" > </md-input-container>
 
 	<md-input-container flex> <label>standard</label>
 	<input ng-model="editRecord.standard"> </md-input-container>
-	
-	<md-input-container flex> <label>Subject</label> <input
+		<md-input-container flex> <label>Subject</label> <input
 		ng-model="editRecord.subject"> </md-input-container>
-		
 	<md-input-container flex> <label>Chapter
 		Name</label> <input ng-model="editRecord.chapterName"> </md-input-container>
-		
 	<text-angular name="chaptercontent" id="chaptercontent"
 		ng-model="editRecord.chapterContent"></text-angular>
-		
 	<md-button class="md-raised md-primary" ng-show="selected.length > 0"
 		ng-disable="isShowTable" ng-click="cancel()">Cancel</md-button>
-		
 	<md-button class="md-raised md-primary" ng-show="selected.length > 0"
-		ng-disable="isShowTable" ng-click="save()">Save</md-button>
+		ng-disable="isShowTable" ng-click="update()">Save</md-button>
 </md-card>
 
 
