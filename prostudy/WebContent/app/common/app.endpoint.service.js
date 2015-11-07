@@ -39,14 +39,13 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getQuestionService();
 	};
 	
-	
 	endpointFactory.getSyllabusService = function() {
 		if(isTestMode)
 			return localDBServiceFactory.getSyllabusService();
 		else	
 			return googleEndpointSF.getSyllabusService();
 	};
-	
+		
 	endpointFactory.getLoginService = function() {
 		if(isTestMode)
 			return localDBServiceFactory.getLoginService();

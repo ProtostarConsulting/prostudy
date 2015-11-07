@@ -10,7 +10,7 @@ angular.module("prostudyApp")
 				 
 					$scope.showSimpleToast = function() {
 						$mdToast.show($mdToast.simple().content(
-								'Customer Saved!').position("top").hideDelay(
+								'Result Saved!').position("top").hideDelay(
 								3000));
 					};
 
@@ -85,12 +85,7 @@ angular.module("prostudyApp")
 						
 						 $scope.isShowTable = false;
 						  $scope.isShowRecord = true;
-						  //console.log("selected value"+$scope.selected[0].exam_title);
-						  
-						 // $scope.editRecord = create copy of selected[0]; 
-						  $scope.editRecord = angular.copy($scope.selected[0]);
-						//  $log.debug("$scope.editRecord:"+$scope.editRecord);
-						  
+						  $scope.editRecord = angular.copy($scope.selected[0]);			  
 					}
 					$scope.cancel = function() {
 						
@@ -101,11 +96,8 @@ angular.module("prostudyApp")
 					 
 				
 					
-					$scope.save = function() {
-					//	console.log("length:"+$scope.examresult.length);
-						//find index of editRecord in examresult array. 
-						//examresult[foundIndex] = editRecord;
-						
+					$scope.save = function()
+					{
 						for(var i=0; i<$scope.examresult.length;i++)
 						{
 						
@@ -117,15 +109,10 @@ angular.module("prostudyApp")
 								}
 							
 						}
-						//$scope.editRecord=$scope.examresult[i];
-						//$scope.editRecord=$scope.editRecord;
+					
 						$scope.isShowTable = true;
 						 $scope.isShowRecord = false;
-						 
-						 
-					
-						//replace original object with $scope.editRecord in $scope.examresult;
-						 //| orderBy: query.order
+						
 					}
 
 				});

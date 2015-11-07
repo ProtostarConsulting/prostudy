@@ -41,6 +41,48 @@ function googleEndpointSFFunc($log, $q) {
 
 	
 	
+	
+	
+	// Add Syllabus Service
+	var SyllabusService = {};
+
+	serviceFactory.getSyllabusService = function() {
+		return SyllabusService;
+	}
+
+	SyllabusService.addSyllabus = function(syllabi) {
+		$log
+		.debug("No2");	
+		var deferred = $q.defer();
+		$log
+		.debug("abc");
+		gapi.client.SyllabusService.addSyllabus(syllabi).execute(
+				function(resp) {
+					$log
+					.debug("No5");	
+					$log.debug("addSyllabus#resp:" + resp);
+					deferred.resolve(resp);
+				});
+		$log
+		.debug("No3");	
+		return deferred.promise;
+	}
+
+
+	SyllabusService.getSyllabus = function() {
+		var deferred = $q.defer();
+		gapi.client.SyllabusService.getSyllabus().execute(
+				function(resp) {
+					$log.debug("addSyllabus#resp:" + resp);
+					deferred.resolve(resp.items);
+				});
+		return deferred.promise;
+	} // End of SyllabusService
+
+	
+
+	
+	
 	// start of InstituteService
 	
 

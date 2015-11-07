@@ -98,6 +98,78 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 
 	} // End of StudentService
+	
+	
+	// Add Syllabus Service
+	var SyllabusService = {};
+
+	serviceFactory.getSyllabusService = function() {
+		return SyllabusService;
+	}
+
+	SyllabusService.addSyllabus = function(syll) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side local DB addSyllabus...");
+			var syllabusList = angular.fromJson($localStorage.dbSyllabus);
+			if (typeof syllabusList === 'undefined')
+				syllabusList = [];
+			
+			syll.syllabusId = syllabusList.length +1;
+			syllabusList.push(syll);
+			$localStorage.dbSyllabus = angular.toJson(syllabusList);
+			deferred.resolve({
+				"msg" : "Syllabus Added Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+	// syllabus.syllabusId = syllabusList.length +100;
+	// Update of Local Storage Syllabus
+	SyllabusService.updateSyllabus = function(editRecord) {
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side updated local DB updateSyllabus...");
+			var syllabusList = angular.fromJson($localStorage.dbSyllabus);
+			if (typeof syllabusList === 'undefined')
+				syllabusList = [];
+			
+			//find index of editRecord in syllabusList
+			for(var i=0;i<syllabusList.length;i++)
+			{	
+				if(editRecord.syllabusId==syllabusList[i].syllabusId)
+					syllabusList[i] = editRecord;
+			}
+			
+			$localStorage.dbSyllabus = angular.toJson(syllabusList);
+			deferred.resolve({
+				"msg" : "Syllabus Updated Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+	SyllabusService.getSyllabus = function() {
+		var deferred = $q.defer();
+		$timeout(function() {
+			$log.debug("In side local DB getSyllabus...");
+			var syllabusList = angular.fromJson($localStorage.dbSyllabus);
+			if (typeof syllabusList === 'undefined')
+				syllabusList = [];
+			deferred.resolve(syllabusList);
+		}, 1000);
+
+		return deferred.promise;
+
+	} // End of SyllabusService
+	
+	
 
 	// start of InstituteService
 	var InstituteService = {};
@@ -212,13 +284,13 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 //start of SyllabusService
 	
-	var SyllabusService = {};
+	//var SyllabusService = {};
 
 	serviceFactory.getSyllabusService = function() {
 		return SyllabusService;
 	}
 
-	SyllabusService.addSyllabus = function(syllabi) {
+	SyllabusService.addSyllabus = function(syll) {
 
 		var deferred = $q.defer();
 		$timeout(function() {
@@ -227,7 +299,9 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			var syllabusList = angular.fromJson($localStorage.dbSyllabus);
 			if (typeof syllabusList === 'undefined')
 				syllabusList = [];
-			syllabusList.push(syllabi);
+			
+			syll.syllabusId=syllabusList.length+1;
+			syllabusList.push(syll);
 			$localStorage.dbSyllabus = angular.toJson(syllabusList);
 			deferred.resolve({
 				"msg" : "Syllabus Added Successfully."
@@ -237,6 +311,8 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 		return deferred.promise;
 	}
+	
+	
 
 	SyllabusService.getSyllabus = function() {
 		var deferred = $q.defer();
