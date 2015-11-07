@@ -190,6 +190,6 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		}, 1000);
 		return deferred.promise;
 	}
-	// End of PushpakService
+
 	return serviceFactory;
 }

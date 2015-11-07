@@ -1,5 +1,25 @@
+ <md-content>
+<div layout="row" layout-align="center start"
+	style="margin-top: 20px; margin-bottom: 20px;">
+	<md-divider flex></md-divider>
+</div>
+
+<div class="md-toolbar-tools">
+	<span flex></span>
+	<!--<md-card>-->
+	<section layout="row">
+
+		<md-button class="md-icon-button md-accent"
+			ng-click="printDiv('invoiceDiv')" aria-label="Favorite">
+		<md-icon md-svg-icon="img/icons/print.svg"></md-icon> </md-button>
+
+	</section>
+	<!--</md-card>-->
+</div>
+</md-content>
+
 <md-content layout-padding>
-<div id="mainForm">
+<div id="invoiceDiv">
 	<form>
 		<div>
 			<div layout layout-sm="column">
@@ -26,7 +46,7 @@
 					<md-input-container flex> <label>Invoice
 						ID </label> <input ng-model="invoiceObj.invoiceId" disabled> </md-input-container>
 					<md-input-container flex> <label>Date
-					</label> <input ng-model="invoiceObj.invoice_date" disabled> </md-input-container>
+					</label>  <input ng-model="invoiceDate" id="invoiceDate" disabled></md-input-container>
 				</div>
 			</div>
 
@@ -142,6 +162,7 @@
 					ng-click="gotoPrint(invoiceObj)">Go To Print </md-button>
 			</section>
 		</div>
+		
 	</form>
 </div>
 
@@ -162,7 +183,7 @@
 			</div>
 
 			----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-			<table md-data-table>
+			<table>
 
 				<tbody>
 					<tr>
@@ -247,4 +268,8 @@
 
 	</form>
 </div>
+<b><u>Note</u>:</b>This is electronically generated invoice. <br>
+	
+	<iframe name="print_frame" width="0" height="0" frameborder="0"
+		src="about:blank"></iframe>
 </md-content>

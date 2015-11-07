@@ -100,10 +100,5 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/add",
 		templateUrl : '/app/customer/student_add.html',
 		controller : 'customerCtr'
-	})/*
-		 * .state('fileupload', { url : "/fileupload", templateUrl :
-		 * '/app/fileupload/fileupload.html', controller : 'fileuploadCtr'
-		 * }).state('fileupload', { url : "/fileupload", templateUrl :
-		 * '/app/fileupload/fileupload.html', controller : 'fileuploadCtr' })
-		 */;
+	});
 });

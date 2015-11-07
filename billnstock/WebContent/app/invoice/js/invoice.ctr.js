@@ -4,7 +4,7 @@ app
 				"invoiceCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $state, $http, $stateParams,
-						$routeParams, objectFactory, appEndpointSF) {
+						$routeParams,$filter, objectFactory, appEndpointSF) {
 
 					$log.debug("$stateParams:", $stateParams);
 					$log.debug("$stateParams.selectedInvoiceNo:",
@@ -17,11 +17,12 @@ app
 
 						invoiceService
 								.getinvoiceByID($scope.selectedBillNo)
-								.then(
-										function(invoiceList) {
+								.then(function(invoiceList) {
 											$scope.invoiceDetail = invoiceList[0];
-											$log.debug("$scope.showBill:invoiceDetail ===="
-															+ angular.toJson($scope.invoiceDetail));
+											$log
+													.debug("$scope.showBill:invoiceDetail ===="
+															+ angular
+																	.toJson($scope.invoiceDetail));
 										});
 
 					}
@@ -35,13 +36,13 @@ app
 						$("#mainForm").hide();
 						$("#printForm").show();
 					}
-
+				//	$scope.invoiceDate = $filter("date")(Date.now(), 'yyyy-MM-dd');
 					$scope.invoiceObj = {
 
 						invoiceId : '',
 						customerName : '',
 						customerAddress : '',
-						invoiceDate : '',
+						invoiceDate : $filter("date")(Date.now(), 'dd-MM-yyyy'),
 						invoiceLineItemList : [],
 						subTotal : '',
 						taxCodeName : '',
@@ -213,4 +214,15 @@ app
 					$scope.taxData = [];
 					$scope.getAllTaxes();
 
+					var printDivCSS = new String(
+							'<link href="/lib/base/css/angular-material.min.css"" rel="stylesheet" type="text/css">'
+									+ '<link href="/lib/base/css/bootstrap.min.css"" rel="stylesheet" type="text/css">')
+					$scope.printDiv = function(divId) {
+//						window.frames["print_frame"].document.body.innerHTML = printDivCSS
+//								+ document.getElementById(divId).innerHTML;
+						 window.frames["print_frame"].document.body.innerHTML
+						 = document.getElementById(divId).innerHTML;
+						window.frames["print_frame"].window.focus();
+						window.frames["print_frame"].window.print();
+					}
 				});
