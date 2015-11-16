@@ -1,26 +1,34 @@
-	<md-content layout-padding>
-	<form name="userForm">
-		
-		<div id="addField">
-			<div layout layout-sm="column">
-				<!-- 				<md-input-container flex> <label>Customer
-					ID </label> <input ng-model="cust.cust_id"> </md-input-container>
- -->
-				<md-input-container flex> <label>Customer
-					Name </label> <input ng-model="cust.customerName"> </md-input-container>
-			</div>
-			<div layout layout-sm="column">
-				<md-input-container flex> <label>Mobile
-					No. </label> <input ng-model="cust.mobile"> </md-input-container>
 
-				<md-input-container flex> <label> Email</label>
-				<input ng-model="cust.email"> </md-input-container>
-			</div>
-			<div>
-				<md-input-container flex> <label>Address
-				</label> <textarea ng-model="cust.customerAddress" rows="4" cols="1"></textarea></md-input-container>
-			</div>
-			<!-- <div layout layout-sm="column">
+<md-content layout-padding> <md-input-container
+	class="md-icon-float md-block">
+<div id="addField">
+	<div layout layout-sm="column">
+
+		<md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+		<md-input-container flex> <label>Customer
+			Name </label> <input ng-model="cust.customerName"  placeholder="Customre Name (required)"
+			ng-required="true"> </md-input-container>
+	</div>
+	<div layout layout-sm="column">
+		<md-icon md-svg-src="img/icons/ic_phone_24px.svg"></md-icon>
+		<md-input-container flex> <label>Mobile
+			No. </label> <input ng-model="cust.mobile"  placeholder="Mobile (required)"
+			ng-required="true"> </md-input-container>
+	</div>
+	<div layout layout-sm="column">
+		<md-icon md-svg-src="img/icons/ic_email_24px.svg" class="email"></md-icon>
+		<md-input-container flex> <label> Email</label> <input
+			ng-model="cust.email" placeholder="Email (required)"
+			ng-required="true"> </md-input-container>
+	</div>
+	<div>
+		<md-icon md-svg-src="img/icons/ic_place_24px.svg"
+			style="display:inline-block;"></md-icon>
+		<md-input-container flex> <label>Address
+		</label> <textarea ng-model="cust.customerAddress" rows="4" cols="1"  placeholder="Address (required)"
+			ng-required="true"></textarea></md-input-container>
+	</div>
+	<!-- <div layout layout-sm="column">
 				<md-input-container flex> <label>City</label> <input
 					ng-model="cust.address.city"> </md-input-container>
 				<md-input-container flex> <label>State</label>
@@ -28,11 +36,10 @@
 				<md-input-container flex> <label>Postal
 					Code</label> <input ng-model="cust.address.pin"> </md-input-container>
 			</div> -->
-			<section layout="row" layout-sm="column" layout-align="left left">
-				<md-button class="md-raised md-primary" ng-click="addCustomer()">Add</md-button>
-<!-- 				<md-button class="md-raised md-primary" ng-click="loadCustList()">Get
+	<section layout="row" layout-sm="column" layout-align="left left">
+		<md-button class="md-raised md-primary" ng-click="addCustomer()">Add</md-button>
+		<!-- 				<md-button class="md-raised md-primary" ng-click="loadCustList()">Get
 				List</md-button> -->
-			</section>
-		</div>
-	</form>
-	</md-content>
+	</section>
+</div>
+</md-input-container> </md-content>

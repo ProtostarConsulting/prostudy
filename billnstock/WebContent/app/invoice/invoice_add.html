@@ -1,4 +1,5 @@
- <md-content>
+<!-- 
+<md-content>
 <div layout="row" layout-align="center start"
 	style="margin-top: 20px; margin-bottom: 20px;">
 	<md-divider flex></md-divider>
@@ -6,7 +7,7 @@
 
 <div class="md-toolbar-tools">
 	<span flex></span>
-	<!--<md-card>-->
+	<md-card>
 	<section layout="row">
 
 		<md-button class="md-icon-button md-accent"
@@ -14,26 +15,29 @@
 		<md-icon md-svg-icon="img/icons/print.svg"></md-icon> </md-button>
 
 	</section>
-	<!--</md-card>-->
+	</md-card>
 </div>
 </md-content>
-
+ -->
 <md-content layout-padding>
 <div id="invoiceDiv">
 	<form>
 		<div>
 			<div layout layout-sm="column">
+				<md-input-container flex> <img
+					src="img/images/protostar_logo_pix_313_132.jpg" /> </md-input-container>
 				<md-input-container flex> <label><h1>Protostar
-						Consulting Services</h1> </label> <input ng-model="invoice_id" disabled>
-				</md-input-container>
+						Consulting Services</h1> </label> </md-input-container>
 
 				<md-input-container flex> <label><u>Address</u><br>E-101,
 					Manimangar Appartment<br>Kasarwadi-414141.<br>Ph.(020)4141414.<br>info@protostar.co.in
 				</label> <input ng-model="invoice_id" disabled> </md-input-container>
 
 			</div>
-
-			----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			<div layout="row" layout-align="center start"
+				style="margin-top: 20px; margin-bottom: 20px;">
+				<md-divider flex></md-divider>
+			</div>
 
 			<div layout layout-sm="column">
 				<md-input-container flex> <md-select
@@ -46,13 +50,14 @@
 					<md-input-container flex> <label>Invoice
 						ID </label> <input ng-model="invoiceObj.invoiceId" disabled> </md-input-container>
 					<md-input-container flex> <label>Date
-					</label>  <input ng-model="invoiceDate" id="invoiceDate" disabled></md-input-container>
+					</label> <input ng-model="invoiceDate" id="invoiceDate" disabled></md-input-container>
+					
 				</div>
 			</div>
 
 			<div layout layout-sm="column">
 				<md-input-container flex> <label>Address
-				</label> <textarea ng-model="cust.customerAddress" rows="2" cols="1"
+				</label> <textarea ng-model="cust.customerName.customerAddress" rows="2" cols="1"
 					disabled></textarea> </md-input-container>
 
 
@@ -153,22 +158,23 @@
 
 		<div layout layout-sm="column">
 			<section layout="row" layout-sm="column">
-				<md-button class="md-raised md-primary" ng-click="addInvoice()">Save
+				<md-button class="md-raised md-primary" id="addInvoice" ng-click="addInvoice()">Save
 				Invoice</md-button>
 			</section>
 
 			<section layout="row" layout-sm="column">
 				<md-button class="md-raised md-primary"
-					ng-click="gotoPrint(invoiceObj)">Go To Print </md-button>
+					ui-sref="invoice.view({selectedInvoiceNo: invoiceObj.invoiceId})">Go
+				to Print </md-button>
 			</section>
 		</div>
-		
+
 	</form>
 </div>
 
 
 
-
+<!-- 
 <div id="printForm">
 	<form>
 		<div>
@@ -268,8 +274,7 @@
 
 	</form>
 </div>
-<b><u>Note</u>:</b>This is electronically generated invoice. <br>
-	
-	<iframe name="print_frame" width="0" height="0" frameborder="0"
-		src="about:blank"></iframe>
-</md-content>
+ --> <b><u>Note</u>:</b>This is electronically generated invoice. <br>
+
+<iframe name="print_frame" width="0" height="0" frameborder="0"
+	src="about:blank"></iframe> </md-content>

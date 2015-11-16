@@ -6,6 +6,8 @@ app
 						$mdUtil, $log, $state, $http, $stateParams,
 						$routeParams,$filter, objectFactory, appEndpointSF) {
 
+					 $('#addInvoice').attr("disabled", true);
+					 
 					$log.debug("$stateParams:", $stateParams);
 					$log.debug("$stateParams.selectedInvoiceNo:",
 							$stateParams.selectedInvoiceNo);
