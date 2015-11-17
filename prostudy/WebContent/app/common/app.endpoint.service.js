@@ -54,11 +54,11 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getSyllabusService();
 	};
 		
-	endpointFactory.getLoginService = function() {
+	endpointFactory.getUserService = function() {
 		if(isTestMode)
-			return localDBServiceFactory.getLoginService();
+			return localDBServiceFactory.getUserService();
 		else	
-			return googleEndpointSF.getLoginService();
+			return googleEndpointSF.getUserService();
 	};
 	
 	endpointFactory.getProfileService = function() {

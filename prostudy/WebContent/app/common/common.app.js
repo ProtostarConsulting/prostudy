@@ -27,22 +27,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/state1",
 		templateUrl : "/app/demo/state1.html",
 		controller : 'statesPageCtr'
-	}).state('chapter', {
-		url : "/chapter",
-		templateUrl : "/app/chapter/chapter_module.html",
-		controller : 'chapterModuleCtr'
-	}).state('chapter.add', {
-		url : "/add",
-		templateUrl : "/app/chapter/chapter_add.html",
-		controller : 'chapterAddCtr'
-	}).state('chapter.view', {
-		url : "/view",
-		templateUrl : "/app/chapter/chapter_view.html",
-		controller : 'chapterViewCtr'
-	}).state('chapter.edit', {
-		url : "/edit",
-		templateUrl : "/app/chapter/chapter_edit.html",
-		controller : 'chapterEditCtr'
 	}).state('state1.list', {
 		url : "/list",
 		templateUrl : "/app/demo/state1.list.html",
@@ -119,6 +103,35 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/report/display",
 		templateUrl : '/app/report/display_report.html',
 		controller : 'displayReportCtr'
+	}).state('chapter', {
+		url : "/chapter",
+		templateUrl : "/app/chapter/chapter_module.html",
+		controller : 'chapterModuleCtr'
+	}).state('chapter.add', {
+		url : "/add",
+		templateUrl : "/app/chapter/chapter_add.html",
+		controller : 'chapterAddCtr'
+	}).state('chapter.view', {
+		url : "/view",
+		templateUrl : "/app/chapter/chapter_view.html",
+		controller : 'chapterViewCtr'
+	}).state('chapter.edit', {
+		url : "/edit",
+		templateUrl : "/app/chapter/chapter_edit.html",
+		controller : 'chapterEditCtr'
+	}).state('book', {
+		url : "/book",
+		templateUrl : "/app/book/book_module.html",
+		controller : 'bookModuleCtr'
+	}).state('book.add', {
+		url : "/add",
+		templateUrl : "/app/book/book_add.html",
+		controller : 'bookAddCtr'
+	}).state('book.list', {
+		url : "/list",
+		templateUrl : "/app/book/book_list.html",
+		controller : 'bookListCtr'
+	
 	}).state('login', {
 		url : "/login",
 		templateUrl : '/app/login/login_module.html',
@@ -126,7 +139,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('newUser', {
 		url : "/newUser",
 		templateUrl : '/app/login/newUser.html',
-		controller : 'newUserCtr'
+		controller : 'loginModuleCtr'
 	}).state('student', {
 		url : "/student",
 		templateUrl : '/app/student/student_module.html',
@@ -143,6 +156,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/listtest",
 		templateUrl : '/app/demo/table_demo3_view.html',
 		controller : 'nutritionController'
+	}).state('examresult', {
+		url : "/examresult",
+		templateUrl : '/app/examresult/examresult.html',
+		controller : 'examResultCtr'
 	}).state('syllabus', {
 		url : "/syllabus",
 		templateUrl : '/app/syllabus/syllabus_module.html',
@@ -156,13 +173,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/view",
 		templateUrl : '/app/syllabus/syllabus_view.html',
 		controller : 'syllabusCtr'
-	}).state('examresult', {
-		url : "/examresult",
-		templateUrl : '/app/examresult/examresult.html',
-		controller : 'examResultCtr'
-	})
-	
-	.state('syllabus.cbse8thenglish', {
+	}).state('syllabus.cbse8thenglish', {
 		url : "/cbse8thenglish",
 		templateUrl : '/app/syllabus/syllabus_cbse_8th_english.html',
 		controller : 'syllabusCtr'

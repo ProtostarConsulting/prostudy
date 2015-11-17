@@ -365,24 +365,25 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 	}
 	//end of SyllabusService
 	
-	// start of LoginService
-	var LoginService = {};
+	// start of UserService
+	var UserService = {};
 
-	serviceFactory.getLoginService = function() {
-		return LoginService;
+	serviceFactory.getUserService = function() {
+		return UserService;
 	}
 
-	LoginService.addLogin = function(login) {
+	UserService.addUser = function(user) {
 
 		var deferred = $q.defer();
 		$timeout(function() {
 
 			$log.debug("In side local DB addLogin...");
-			var loginList = angular.fromJson($localStorage.dbLogin);
-			if (typeof loginList === 'undefined')
-				loginList = [];
-			loginList.push(login);
-			$localStorage.dbLogin = angular.toJson(loginList);
+			var userList = angular.fromJson($localStorage.dbUser);
+			if (typeof userList === 'undefined')
+				userList = [];
+			user.userId = userList.length +1;
+			userList.push(user);
+			$localStorage.dbUser = angular.toJson(userList);
 			deferred.resolve({
 				"msg" : "User added Successfully."
 			});
@@ -392,19 +393,81 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 	}
 
-	LoginService.getLogin = function() {
+	UserService.getUsers = function() {
 		var deferred = $q.defer();
 		$timeout(function() {
 			$log.debug("In side local DB getLogin...");
-			var loginList = angular.fromJson($localStorage.dbLogin);
-			if (typeof loginList === 'undefined')
-				loginList = [];
-			deferred.resolve(loginList);
+			var userList = angular.fromJson($localStorage.dbUser);
+			if (typeof userList === 'undefined')
+				userList = [];
+			deferred.resolve(userList);
 		}, 1000);
 
 		return deferred.promise;
 
-	} // End of LoginService
+	}
+
+	UserService.login = function(userName, pwd) {
+		var deferred = $q.defer();
+		$timeout(function() {
+					var loggedin = false;
+					var userList = angular.fromJson($localStorage.dbUser);
+					if (typeof userList === 'undefined')
+						userList = [];
+					
+					for (i = 0; i < userList.length; i++) {
+						if (userList[i].userName === userName
+								&& userList[i].pwd === pwd) {
+							$localStorage.loggedinUser = userList[i];
+							deferred.resolve(true);
+						}
+					}
+
+					deferred.resolve(false);
+				}, 1000);
+
+		return deferred.promise;
+
+	}
+
+	UserService.logout = function() {
+		$localStorage.loggedinUser = null;
+	}
+
+	UserService.getLoggedinUser = function() {
+		var user = $localStorage.loggedinUser;
+		if (user == 'undefined' || user == null)
+			return null;
+		else
+			return $localStorage.loggedinUser;
+	}
+	
+	UserService.updateProfile = function(editProfile) {
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side updated local DB updateuser...");
+			var userList = angular.fromJson($localStorage.dbUser);
+			if (typeof userList === 'undefined')
+				userList = [];
+			
+		
+			for(var i=0;i<userList.length;i++)
+			{	
+				if(editProfile.userId==userList[i].userId)
+					userList[i] = editProfile;
+			}
+			
+			$localStorage.dbUser = angular.toJson(userList);
+			deferred.resolve({
+				"msg" : "User data Updated Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+	 // End of UserService
 	
 
 //start of profile service
