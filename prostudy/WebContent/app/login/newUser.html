@@ -40,6 +40,12 @@
       				<label>Confirm Password</label>
      				<input ng-model="tempUser.pwd" type="password">
     				</md-input-container>
+    				
+    				<md-input-container flex> <md-select ng-model="tempUser.role" placeholder="User role">
+					<md-option >Admin</md-option>
+					<md-option >Student</md-option>
+					<md-option >Teacher</md-option>
+					</md-select> </md-input-container>
 					
 		 			 <div layout="row" layout-align="center end">
 			 		 <md-button class="md-raised md-primary" ng-click="addUser()">LOGIN</md-button> 

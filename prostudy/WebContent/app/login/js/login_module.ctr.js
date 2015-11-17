@@ -8,6 +8,8 @@ angular.module("prostudyApp").controller(
 				$mdToast.show($mdToast.simple().content('login Saved!')
 						.position("top").hideDelay(3000));
 			};
+			
+			//$scope.userRole = [admin,student,teacher]
 
 			$scope.tempUser = {
 				userId : "",
@@ -16,8 +18,8 @@ angular.module("prostudyApp").controller(
 				email_id : "",
 				address : "",
 				contact : "",
-				pwd : "",				
-				
+				pwd : "",
+				role : ""				
 			};
 			$scope.loginMsg  = "";
 			$scope.users = [];
@@ -37,7 +39,8 @@ angular.module("prostudyApp").controller(
 							email_id : "",
 							address : "",
 							contact : "",
-							pwd : "",				
+							pwd : "",
+							role : ""
 							
 						};
 				});
