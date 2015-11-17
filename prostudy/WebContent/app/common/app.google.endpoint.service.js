@@ -12,11 +12,9 @@ function googleEndpointSFFunc($log, $q) {
 	}
 
 	StudentService.addStudent = function(stud) {
-		$log
-		.debug("No2");	
+		$log.debug("No2");	
 		var deferred = $q.defer();
-		$log
-		.debug("abc");
+		$log.debug("abc");
 		gapi.client.studentService.addStudent(stud).execute(
 				function(resp) {
 					$log
@@ -24,8 +22,7 @@ function googleEndpointSFFunc($log, $q) {
 					$log.debug("addStudent#resp:" + resp);
 					deferred.resolve(resp);
 				});
-		$log
-		.debug("No3");	
+		$log.debug("No3");	
 		return deferred.promise;
 	}
 
@@ -93,11 +90,9 @@ function googleEndpointSFFunc($log, $q) {
 	}
 
 	InstituteService.addInstitute = function(insti) {
-		$log
-		.debug("No2");	
+		$log.debug("No2");	
 		var deferred = $q.defer();
-		$log
-		.debug("abc");
+		$log.debug("abc");
 		gapi.client.InstituteService.addInstitute(insti).execute(
 				function(resp) {
 					$log
@@ -105,8 +100,7 @@ function googleEndpointSFFunc($log, $q) {
 					$log.debug("addInstitute#resp:" + resp);
 					deferred.resolve(resp);
 				});
-		$log
-		.debug("No3");	
+		$log.debug("No3");	
 		return deferred.promise;
 	}
 

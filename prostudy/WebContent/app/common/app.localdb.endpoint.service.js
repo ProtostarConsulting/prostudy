@@ -4,17 +4,15 @@ angular.module("prostudyApp").factory('localDBServiceFactory',
 function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 	var serviceFactory = {};
-	
+
 	// start of ChapterService
 	var ChapterService = {};
 
-	serviceFactory.getChapterService = function()
-	{
+	serviceFactory.getChapterService = function() {
 		return ChapterService;
 	}
 
-	ChapterService.addChapter = function(chapter) 
-	{
+	ChapterService.addChapter = function(chapter) {
 
 		var deferred = $q.defer();
 		$timeout(function() {
@@ -23,18 +21,25 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			var chapterList = angular.fromJson($localStorage.dbAddChapter);
 			if (typeof chapterList === 'undefined')
 				chapterList = [];
-		
+
+
+
 			chapterList.push(chapter);
 			$localStorage.dbAddChapter = angular.toJson(chapterList);
+
+			deferred.resolve({
+				"msg" : "Chapter Added Successfully."
+			});
+
 			$log.debug("$localStorage.dbAddChapter: " +	 $localStorage.dbAddChapter);
 			deferred.resolve({"msg" : "Chapter Added Successfully."});
+
 		}, 1000);
 
 		return deferred.promise;
 	}
 
-	ChapterService.getChapters= function() 
-	{
+	ChapterService.getChapters = function() {
 		var deferred = $q.defer();
 		$timeout(function() {
 			$log.debug("In side local DB getChapters...");
@@ -175,7 +180,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			if (typeof syllabusList === 'undefined')
 				syllabusList = [];
 			
-			//find index of editRecord in syllabusList
+			// find index of editRecord in syllabusList
 			for(var i=0;i<syllabusList.length;i++)
 			{	
 				if(editRecord.syllabusId==syllabusList[i].syllabusId)
@@ -318,9 +323,9 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 	}
 	// end of questionservice
 
-//start of SyllabusService
-	
-	//var SyllabusService = {};
+	// start of SyllabusService
+
+	// var SyllabusService = {};
 
 	serviceFactory.getSyllabusService = function() {
 		return SyllabusService;
@@ -363,13 +368,24 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 
 	}
-	//end of SyllabusService
+
+	// end of SyllabusService
+
+	// end of SyllabusService
 	
 	// start of UserService
 	var UserService = {};
 
+
+
+	// start of UserService
+	var UserService = {};
+
+
+
 	serviceFactory.getUserService = function() {
 		return UserService;
+
 	}
 
 	UserService.addUser = function(user) {
@@ -404,8 +420,9 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		}, 1000);
 
 		return deferred.promise;
-
 	}
+
+
 
 	UserService.login = function(userName, pwd) {
 		var deferred = $q.defer();
@@ -422,6 +439,76 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 							deferred.resolve(true);
 						}
 					}
+
+					deferred.resolve(false);
+				}, 1000);
+
+		return deferred.promise;
+
+	}
+
+	UserService.logout = function() {
+		$localStorage.loggedinUser = null;
+	}
+
+	UserService.getLoggedinUser = function() {
+		var user = $localStorage.loggedinUser;
+		if (user == 'undefined' || user == null)
+			return null;
+		else
+			return $localStorage.loggedinUser;
+	}
+	
+
+	UserService.updateProfile = function(editProfile) {
+		var deferred = $q.defer();
+		$timeout(function() {
+
+
+	UserService.login = function(userName, pwd) {
+		var deferred = $q.defer();
+		$timeout(function() {
+					var loggedin = false;
+					var userList = angular.fromJson($localStorage.dbUser);
+					if (typeof userList === 'undefined')
+						userList = [];
+					
+					for (i = 0; i < userList.length; i++) {
+						if (userList[i].userName === userName
+								&& userList[i].pwd === pwd) {
+							$localStorage.loggedinUser = userList[i];
+							deferred.resolve(true);
+						}
+					}
+
+			$log.debug("In side updated local DB updateuser...");
+			var userList = angular.fromJson($localStorage.dbUser);
+			if (typeof userList === 'undefined')
+				userList = [];
+			
+		
+			for(var i=0;i<userList.length;i++)
+			{	
+				if(editProfile.userId==userList[i].userId)
+					userList[i] = editProfile;
+			}
+			
+			$localStorage.dbUser = angular.toJson(userList);
+			deferred.resolve({
+				"msg" : "User data Updated Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+	 // End of UserService
+	
+
+// start of profile service
+	
+	var ProfileService = {};
+
 
 					deferred.resolve(false);
 				}, 1000);
@@ -468,56 +555,9 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 	}
 	 // End of UserService
+
 	
-
-//start of profile service
 	
-	var ProfileService = {};
-
-	serviceFactory.getProfileService = function() {
-		return ProfileService;
-	}
-
-	ProfileService.addProfile = function(profile) {
-
-		var deferred = $q.defer();
-		$timeout(function() {
-
-			$log.debug("In side local DB addStudent...");
-			var profileList = angular.fromJson($localStorage.dbProfile);
-			if (typeof profileList === 'undefined')
-				profileList = [];
-			profileList.push(profile);
-			$localStorage.dbProfile = angular.toJson(profileList);
-			deferred.resolve({
-				"msg" : "Question Added Successfully."
-			});
-
-		}, 1000);
-
-		return deferred.promise;
-	}
-
-	ProfileService.getprofile = function() {
-		var deferred = $q.defer();
-		$timeout(function() {
-			$log.debug("In side local DB getprofile...");
-			var profileList = angular.fromJson($localStorage.dbProfile);
-			if (typeof profileList === 'undefined')
-				profileList   = [];
-			deferred.resolve(profileList);
-		}, 1000);
-
-		return deferred.promise;
-
-	}
-	//end of profile service
-	
-	// Add Exam Service
-
-	serviceFactory.getExamService = function() {
-		return null;
-	}
 
 	return serviceFactory;
 }

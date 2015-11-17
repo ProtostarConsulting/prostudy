@@ -53,21 +53,15 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 		else	
 			return googleEndpointSF.getSyllabusService();
 	};
-		
+
+	
 	endpointFactory.getUserService = function() {
+
 		if(isTestMode)
 			return localDBServiceFactory.getUserService();
 		else	
 			return googleEndpointSF.getUserService();
 	};
-	
-	endpointFactory.getProfileService = function() {
-		if(isTestMode)
-			return localDBServiceFactory.getProfileService();
-		else	
-			return googleEndpointSF.getProfileService();
-	};
-	
 	
 	endpointFactory.getExamService = function() {
 		return gapi.client.examService;
