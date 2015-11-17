@@ -6,48 +6,39 @@
 		</md-subheader>
 
 
-<form name="myProfileForm" ng-show="iseditMyProfile">
+<form name="myProfileForm" >
     	<div layout="row" layout-sm="column">
-    	<div align-center>EditButon</div>
+    	
 
 <div layout="column">
-			<div ng-hide="edit" >First Name : <b>{{stud.firstName}}</b><hr></div> 
-			<div ng-show="edit">
+			
+			<div >
 				<md-input-container flex>
-				<label>First Name :</label><input type="text" ng-model="stud.firstName" /></md-input-container>
+				<label>Name </label><input type="text" ng-model="curUser.name" /></md-input-container>
 			</div>
 
-			<div ng-hide="edit">Last Name : <b>{{stud.lastName}}</b><hr></div>
-			<div ng-show="edit">
+			<div >
 				<md-input-container flex>
-				<label>Last Name :</label><input type="text" ng-model="stud.lastName" /></md-input-container>
+				<label>Email-id </label><input type="text" ng-model="curUser.email_id" /></md-input-container>
 			</div>
-
-			<div ng-hide="edit">Mobile No : <b>{{stud.mobileNo}}</b><hr></div>
-			<div ng-show="edit">
+			
+			<div >
 				<md-input-container flex>
-				<label>Mobile No:</label><input type="number" ng-model="stud.mobileNo" /></md-input-container>
+				<label>Address </label><input type="text" ng-model="curUser.address" /></md-input-container>
 			</div>
-
-			<div ng-hide="edit">Address : <b>{{stud.address}}</b><hr></div> 
-			<div ng-show="edit">
+			
+			<div >
 				<md-input-container flex>
-				<label>Address:</label><input type="text" ng-model="stud.address" /></md-input-container>
-			</div>
-
-			<div ng-hide="edit">Email : <b>{{stud.email}}</b><hr></div>
-			<div ng-show="edit">
-				<md-input-container flex>
-				<label>Email:</label><input type="text" ng-model="stud.email" /></md-input-container>
+				<label>Contact </label><input type="text" ng-model="curUser.contact" /></md-input-container>
 			</div>
 
 			<md-input-container flex><md-button class="md-raised md-primary" ng-hide="edit"
-				ng-click="modify(stud)">EDIT </md-button></md-input-container>
+				ng-click="update()">Save</md-button></md-input-container>
 
-			<div>
+			<!-- <div>
 			     <md-button class="md-raised"  ng-show="edit" ng-click="cancelButton()">Cancel</md-button>
 			    <md-button class="md-raised md-primary" ng-show="edit" ng-click="update(stud)"> SAVE</md-button>
-			</div>
+			</div> -->
 				
 				
 			</div>	
@@ -63,58 +54,7 @@
 	</form>
 	
 	
-    	<div layout="row" layout-sm="column" ng-show="isCancelMyProfile">
-           <div align-center>CancelButton</div>
-        <div layout="column">
-			<div ng-hide="edit" >First Name : <b>{{editRecord.firstName}}</b><hr></div> 
-			<div ng-show="edit">
-				<md-input-container flex>
-				<label>First Name :</label><input type="text" ng-model="editRecord.firstName" /></md-input-container>
-			</div>
-
-			<div ng-hide="edit">Last Name : <b>{{editRecord.lastName}}</b><hr></div>
-			<div ng-show="edit">
-				<md-input-container flex>
-				<label>Last Name :</label><input type="text" ng-model="editRecord.lastName" /></md-input-container>
-			</div>
-
-			<div ng-hide="edit">Mobile No : <b>{{editRecord.mobileNo}}</b><hr></div>
-			<div ng-show="edit">
-				<md-input-container flex>
-				<label>Mobile No:</label><input type="number" ng-model="editRecord.mobileNo" /></md-input-container>
-			</div>
-
-			<div ng-hide="edit">Address : <b>{{editRecord.address}}</b><hr></div> 
-			<div ng-show="edit">
-				<md-input-container flex>
-				<label>Address:</label><input type="text" ng-model="editRecord.address" /></md-input-container>
-			</div>
-
-			<div ng-hide="edit">Email : <b>{{editRecord.email}}</b><hr></div>
-			<div ng-show="edit">
-				<md-input-container flex>
-				<label>Email:</label><input type="text" ng-model="editRecord.email" /></md-input-container>
-			</div>
-
-			<md-input-container flex><md-button aria-label="Modify Row" ng-disable="iseditMyProfile" ng-hide="edit"
-				ng-click="modify(editRecord)">EDIT</md-button></md-input-container>
-
-			<div>
-			     <md-button class="md-raised"  ng-show="edit"  ng-disable="iseditMyProfile" ng-click="cancelButton(editRecord)">Cancel</md-button>
-			    <md-button class="md-raised md-primary" ng-show="edit" ng-disable="iseditMyProfile" ng-click="update(editRecord)"> SAVE</md-button>
-			</div>
-				
-				
-			</div>	
-			
-			<div layout="column" flex>
-			       <span></span>
-			       <span></span>
-			       <span></span>
-			       <span></span>
-			       <span></span>
-		     </div>
-	  </div>
+  
   </md-content>
 </div>
 				
