@@ -85,7 +85,8 @@ angular.module("prostudyApp").controller(
 					email_id : "",
 					address : "",
 					contact : "",
-					pwd : "",				
+					pwd : "",	
+					role : ""
 					
 				};
 			
@@ -104,7 +105,8 @@ angular.module("prostudyApp").controller(
 							email_id : "",
 							address : "",
 							contact : "",
-							pwd : "",				
+							pwd : "",
+							role : ""
 							
 						};
 				});
@@ -134,7 +136,7 @@ angular.module("prostudyApp").controller(
 					});
 				$log.debug("Select profile updated");
 				
-				$log.debug("updated value :"+$scope.tempUser.name);
+				$log.debug("updated value :"+$scope.tempUser.role);
 				//$scope.isShowTable = true;
 				//$scope.isShowRecord = false;
 				
