@@ -3,10 +3,25 @@ angular
 		.controller(
 				"indexCtr",
 				function($scope, $window, $log, $q, $timeout, $mdToast,
-						$mdBottomSheet, appEndpointSF) {
-
+						$mdBottomSheet, $state, appEndpointSF) {
+					
 					$log.debug("Inside indexCtr");
-
+					
+					$scope.curUser = appEndpointSF.getUserService().getLoggedinUser();
+									
+					
+					$scope.loginClick = function() {
+						$state.go("login");
+					};
+										
+					
+					$scope.logoutClick = function() {
+						appEndpointSF.getUserService().logout();
+						$state.go("home");
+						$log.debug("User logged out:" + $scope.curUser.name);
+						$scope.curUser = null;
+					};
+					
 					$scope.showSimpleToast = function() {
 						$mdToast.show($mdToast.simple().content(
 								'Customer Saved!').position("top").hideDelay(
