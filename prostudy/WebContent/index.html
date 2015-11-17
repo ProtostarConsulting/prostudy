@@ -43,13 +43,16 @@
 								md-svg-icon="img/icons/more_vert.svg"></md-icon>
 							</md-button>
 						</div>
-						<md-button aria-label="Login" ng-click="showSearch = !showSearch">
-							<md-tooltip>
-								Login
-							</md-tooltip>
-							<ng-md-icon icon="login"></ng-md-icon>
-						</md-button>
-						<md-button aria-label="Open Settings"
+			<md-button aria-label="Login" ng-hide="curUser !== null"
+				ng-click="loginClick()">Login <md-tooltip>
+			Login </md-tooltip> </md-button>
+			<md-button aria-label="Login" ng-hide="curUser == null"
+				ng-click="logoutClick()">{{curUser.name}}> Logout<md-tooltip>
+			Logout </md-tooltip> </md-button>
+			<md-button aria-label="Login" ng-hide="curUser == null"
+				ng-click="loginClick()">
+			<a ui-sref="myprofile">My profile </a> </md-button>
+			<md-button aria-label="Open Settings"
 						ng-click="showListBottomSheet($event)">
 						<md-tooltip>
 								Settings
@@ -319,7 +322,7 @@
 		<script src="/app/report/js/report_module.ctr.js"></script>
 		<script src="/app/report/js/display_report.ctr.js"></script>
 		
-		<!-- <script src="/app/login/js/login_module.ctr.js"></script> -->
+		<script src="/app/login/js/login_module.ctr.js"></script>
 		
 		<script src="/app/test/js/table.demo.data.service.js"></script>
 		<script src="/app/demo/js/table.demo.withservice.ctr2.js"></script>
