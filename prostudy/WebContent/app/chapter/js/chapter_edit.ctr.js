@@ -19,6 +19,11 @@ angular.module("prostudyApp").controller(
 			$("#chapterList").show();
 
 			$scope.selected = [];
+			
+			$scope.showSavedToast = function() {
+				$mdToast.show($mdToast.simple().content('Book Saved!')
+						.position("top").hideDelay(3000));
+			};//end of showSavedToast
 
 			$scope.getChapters = function() {
 
@@ -30,6 +35,8 @@ angular.module("prostudyApp").controller(
 
 							$scope.chapters = chapterList;
 							$log.debug("getChapters :"+$scope.chapters);
+							$scope.showSavedToast();
+							
 							$scope.chapters.chapter_content = $sce.trustAsHtml($scope.chapters.chapter_content);
 							$log.debug("$scope.chapters.chapter_content: " + $scope.chapters.chapter_content);
 						});
@@ -52,7 +59,7 @@ angular.module("prostudyApp").controller(
 
 			$scope.update = function(chapter) 
 			{
-				$scope.editingData[chapters.id] = false;
+				$scope.editingData[$scope.chapters.id] = false;
 				$scope.chapter = $scope.selected[0];
 				$log.debug("Object value of  update : " +	 angular.toJson($scope.chapter));
 				
@@ -76,29 +83,7 @@ angular.module("prostudyApp").controller(
 			};// end of update
 			
 			
-			
-
-	/*		$scope.updateChapterList = function() {
-				$log.debug("updateChapter");
-				var ChapterService = appEndpointSF.getChapterService();
-
-				ChapterService.addChapter($scope.selected[0]).then(
-						function(msgBean) {
-							$scope.chapters = $scope.selected[0];
-							$log.debug("No6");
-							$log.debug("Inside Ctr updateChapterList");
-							$log.debug("msgBean.msg:" + msgBean.msg);
-
-						
-							$log.debug("updateChapterListaddChapter" + $scope.selected[0]);
-						});
-
-				 $scope.selected[0]='';
-
-				$("#updateChapter").hide();
-				$("#chapterList").show();
-			}// end of updateChapter
-*/
+	
 			$scope.removeChapter = function(index) {
 
 				$scope.chapters.splice(index, 1);

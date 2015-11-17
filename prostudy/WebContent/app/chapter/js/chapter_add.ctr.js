@@ -9,6 +9,11 @@ angular.module("prostudyApp").controller(
 			$scope.tempChapter = {id: "", chapter_content: "", board:"", student_class:"",subject:"",chapter_no:""};
 			$scope.chapters = []; 
 			
+			$scope.showSavedToast = function() {
+				$mdToast.show($mdToast.simple().content('Book Saved!')
+						.position("top").hideDelay(3000));
+			};//end of showSavedToast
+			
 			$scope.addChapter = function()
 			{
 				$log.debug("No1");	
@@ -20,7 +25,8 @@ angular.module("prostudyApp").controller(
 							$log.debug("Inside Ctr addChapter");
 							$log.debug("msgBean.msg:" + msgBean.msg);
 							
-							$scope.tempChapter = {id: "", chapter_content: "", board:"", student_class:"",subject:"",chapter_no:""};
+							$scope.showSavedToast();
+							
 							$log.debug("addChapter"+ $scope.tempChapter);
 						});
 				$log.debug("No4");	
