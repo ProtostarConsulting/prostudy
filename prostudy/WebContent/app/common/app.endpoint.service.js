@@ -17,6 +17,14 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 		else	
 			return googleEndpointSF.getChapterService();
 	};//end of getChapterService
+	
+	endpointFactory.getBookService = function() 
+	{
+		if(isTestMode)
+			return localDBServiceFactory.getBookService();
+		else	
+			return googleEndpointSF.getBookService();
+	};//end of getBookService
 
 	endpointFactory.getStudentService = function() {
 		if(isTestMode)

@@ -23,20 +23,10 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			var chapterList = angular.fromJson($localStorage.dbAddChapter);
 			if (typeof chapterList === 'undefined')
 				chapterList = [];
-/*				if(chapterList.id !=null)
-				{
-				chapter.id=chapterList.id;
-
-				}
-
-		chapter.chapter_content=chapterList.chapter_content;
-			chapter.board=chapterList.board;
-			chapter.student_class=chapterList.student_class;
-			chapter.subject=chapterList.subject;
-			chapter.chapter_no=chapterList.chapter_no;
-*/			
+		
 			chapterList.push(chapter);
 			$localStorage.dbAddChapter = angular.toJson(chapterList);
+			$log.debug("$localStorage.dbAddChapter: " +	 $localStorage.dbAddChapter);
 			deferred.resolve({"msg" : "Chapter Added Successfully."});
 		}, 1000);
 
@@ -49,6 +39,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		$timeout(function() {
 			$log.debug("In side local DB getChapters...");
 			var chapterList = angular.fromJson($localStorage.dbAddChapter);
+			$log.debug("getChapters :- $localStorage.dbAddChapter " + $localStorage.dbAddChapter);
 			if (typeof chapterList === 'undefined')
 				chapterList = [];
 			deferred.resolve(chapterList);
@@ -57,6 +48,51 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 
 	} // End of getChapters-ChapterService
+	
+	
+	// start of BookService
+	var BookService = {};
+
+	serviceFactory.getBookService = function()
+	{
+		return BookService;
+	}
+
+	BookService.addBook = function(book) 
+	{
+
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side local DB addBook...");
+			var bookList = angular.fromJson($localStorage.dbAddBook);
+			if (typeof bookList === 'undefined')
+				bookList = [];
+			book.bookId = bookList.length + 1;
+		
+			bookList.push(book);
+			$localStorage.dbAddBook = angular.toJson(bookList);
+			$log.debug("$localStorage.dbAddChapter: " +	 $localStorage.dbAddBook);
+			deferred.resolve({"msg" : "Book Added Successfully in Local Storage-dbAddBook."});
+		}, 1000);
+
+		return deferred.promise;
+	}
+
+	BookService.getBooks= function() 
+	{
+		var deferred = $q.defer();
+		$timeout(function() {
+			$log.debug("In side local DB getBooks...");
+			var bookList = angular.fromJson($localStorage.dbAddBook);
+			if (typeof bookList === 'undefined')
+				bookList = [];
+			deferred.resolve(bookList);
+		}, 1000);
+
+		return deferred.promise;
+
+	} // End of getBooks-BookService
 
 	// Add Student Service
 	var StudentService = {};
