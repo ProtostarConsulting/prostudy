@@ -2,17 +2,23 @@
 <md-content layout-padding> <md-input-container
 	class="md-icon-float md-block">
 <div id="addField">
-	<div layout layout-sm="column">
 
+<!-- 	<div layout layout-sm="column">
+		<md-input-container flex> <label>Customer
+			Name </label> <input ng-model="cust.customerName"
+			placeholder="Customre Name (required)" ng-required="true"> </md-input-container>
+	</div>
+ -->
+	<div layout layout-sm="column">
 		<md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
 		<md-input-container flex> <label>Customer
-			Name </label> <input ng-model="cust.customerName"  placeholder="Customre Name (required)"
-			ng-required="true"> </md-input-container>
+			Name </label> <input ng-model="cust.customerName"
+			placeholder="Customre Name (required)" ng-required="true"> </md-input-container>
 	</div>
 	<div layout layout-sm="column">
 		<md-icon md-svg-src="img/icons/ic_phone_24px.svg"></md-icon>
 		<md-input-container flex> <label>Mobile
-			No. </label> <input ng-model="cust.mobile"  placeholder="Mobile (required)"
+			No. </label> <input ng-model="cust.mobile" placeholder="Mobile (required)"
 			ng-required="true"> </md-input-container>
 	</div>
 	<div layout layout-sm="column">
@@ -25,8 +31,8 @@
 		<md-icon md-svg-src="img/icons/ic_place_24px.svg"
 			style="display:inline-block;"></md-icon>
 		<md-input-container flex> <label>Address
-		</label> <textarea ng-model="cust.customerAddress" rows="4" cols="1"  placeholder="Address (required)"
-			ng-required="true"></textarea></md-input-container>
+		</label> <textarea ng-model="cust.customerAddress" rows="4" cols="1"
+			placeholder="Address (required)" ng-required="true"></textarea></md-input-container>
 	</div>
 	<!-- <div layout layout-sm="column">
 				<md-input-container flex> <label>City</label> <input

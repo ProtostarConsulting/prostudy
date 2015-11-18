@@ -6,6 +6,7 @@
 	<table md-data-table md-row-select="selected" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onOrderChange">
 			<tr>
+				<th name="Customer Id" order-by="customerId"></th>
 				<th name="Customer Name" order-by="customerName"></th>
 				<th name="Mobile" order-by="mobile"></th>
 				<th name="Email" order-by="email"></th>
@@ -17,11 +18,16 @@
 			<tr md-auto-select
 				ng-repeat="customer in customers | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
 
+				<td>{{customer.customerId}}</td>
 				<td>{{customer.customerName}}</td>
 				<td>{{customer.mobile}}</td>
 				<td>{{customer.email}}</td>
 				<td>{{customer.customerAddress}}</td>
-				
+				<td><section layout="row" layout-sm="column">
+						<md-button class="md-raised md-primary"
+							ui-sref="customer.view({selectedCustomerId: customer.customerId})">
+						Customer Details</md-button>
+					</section></td>
 				<td>
 			</tr>
 		</tbody>
@@ -34,13 +40,10 @@
 				{{selected}}
 			</div>
 		</md-data-table-toolbar>
- --> 
- <md-data-table-pagination md-limit="query.limit"
+ --> <md-data-table-pagination md-limit="query.limit"
 		md-page="query.page" md-total={{customers.length}}
 		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
 </div>
 <!-- vals: {{customers}}
 <md-button ui-sref="customer.list" ng-click="getAllCustomers()" class="md-primary">
-		Customer List in side List view -->
-	</md-button>
-</md-content>
+		Customer List in side List view --> </md-button> </md-content>

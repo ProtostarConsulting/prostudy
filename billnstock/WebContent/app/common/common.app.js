@@ -1,6 +1,6 @@
-var app = angular.module("stockApp",
-		[ 'ngMaterial', 'ngMessages', "xeditable", "ui.bootstrap", "ui.router",
-				'md.data.table', 'ngResource', 'ngStorage', 'ngRoute' ]);
+var app = angular.module("stockApp", [ 'ngMaterial', 'ngMessages', "xeditable",
+		"ui.bootstrap", "ui.router", 'md.data.table', 'ngResource',
+		'ngStorage', 'ngRoute' ]);
 
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('light-blue')
@@ -23,7 +23,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('state1.list', {
 		url : "/list/:someVal",
 		templateUrl : "/app/demo/state1.list.html",
-		controller : 'statesPageCtr'		
+		controller : 'statesPageCtr'
 	}).state('home', {
 		url : "/home",
 		templateUrl : '/home.html',
@@ -75,6 +75,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('customer.add', {
 		url : "/add",
 		templateUrl : '/app/customer/customer_add.html',
+		controller : 'customerCtr'
+	}).state('customer.view', {
+		url : "/view/:selectedCustomerId",
+		templateUrl : '/app/customer/customer_view.html',
 		controller : 'customerCtr'
 	}).state('customer.list', {
 		url : "/list",

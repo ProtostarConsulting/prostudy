@@ -1,7 +1,7 @@
 angular.module("stockApp").controller(
 		"customerCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, objectFactory, appEndpointSF) {
+				$log,$stateParams, objectFactory, appEndpointSF) {
 
 			$log.debug("Inside customerCtr");
 
@@ -12,7 +12,54 @@ angular.module("stockApp").controller(
 
 			// $scope.cust = objectFactory.newCustomer();
 
+			
+			$log.debug("$stateParams:", $stateParams);
+			$log.debug("$stateParams.selectedCustomerId:",
+					$stateParams.selectedCustomerId);
+
+			$scope.selectedCustomerId = $stateParams.selectedCustomerId;
+
+			$scope.showCustomerDetails = function() {
+				var customerService = appEndpointSF.getCustomerService();
+
+				customerService
+						.getCustomerByID($scope.selectedCustomerId)
+						.then(function(customerList) {
+									$scope.customerDetails = customerList[0];
+									$log
+											.debug("$scope.showCustomerDetails:customerList ===="
+													+ angular
+															.toJson($scope.customerDetails));
+								});
+
+			}
+			$scope.customerDetails = [];
+			$scope.showCustomerDetails();
+			
+			$scope.getAllInvoiceByCustId = function() {
+				$log.debug("Inside Ctr $scope.getAllInvoiceByCustId");
+				var invoiceService = appEndpointSF.getInvoiceService();
+
+				invoiceService
+						.getAllInvoiceByCustId($scope.selectedCustomerId)
+						.then(
+								function(custInvoiveList) {
+									$log
+											.debug("Inside Ctr getAllInvoiceByCustId");
+									$scope.custInvoiceData = custInvoiveList;
+									$log
+											.debug("Inside Ctr $scope.custInvoiceData:"
+													+ angular
+															.toJson($scope.custInvoiceData));
+								});
+			}
+
+			$scope.custInvoiceData = [];
+			$scope.getAllInvoiceByCustId();
+			
+			
 			$scope.cust = {
+				customerId : "",
 				customerName : "",
 				mobile : "",
 				email : "",

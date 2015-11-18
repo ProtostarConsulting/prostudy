@@ -21,6 +21,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			var custList = angular.fromJson($localStorage.dbCustomers);
 			if (typeof custList === 'undefined')
 				custList = [];
+			cust.customerId = custList.length + 1;
 			custList.push(cust);
 			$localStorage.dbCustomers = angular.toJson(custList);
 			deferred.resolve({
@@ -32,6 +33,47 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 	}
 
+	CustomerService.getCustomerByID = function(selectedCustomerId) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+			var tempItem = [];
+		
+			var custList = angular.fromJson($localStorage.dbCustomers);
+
+			if (typeof custList === 'undefined')
+				custList = [];
+
+			for (i = 0; i < custList.length; i++) {
+				if (selectedCustomerId == custList[i].customerId) {
+
+					// selectedBillNo = invoiceList[i];
+					tempItem.push(custList[i]);
+
+					// $log.debug("TEMP===" + tempItem[i]);
+				}
+			}
+			
+/*			var tempInvoice = [];
+			var custInvoiveList = angular.fromJson($localStorage.dbinvoice);
+			custInvoiveList = [];
+			
+			for (i = 0; i < custInvoiveList.length; i++) {
+				if (selectedCustomerId == custInvoiveList[i].customerId) {
+
+					// selectedBillNo = invoiceList[i];
+					tempInvoice.push(custInvoiveList[i]);
+
+					// $log.debug("TEMP===" + tempItem[i]);
+				}
+			}
+		*/	
+			deferred.resolve(tempItem);
+
+		}, 1000);
+		return deferred.promise;
+	}
+	
 	CustomerService.getAllCustomers = function() {
 		var deferred = $q.defer();
 		$timeout(function() {
@@ -62,6 +104,32 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			if (typeof stockList === 'undefined')
 				stockList = [];
 			stockList.push(stock);
+			$localStorage.dbStocks = angular.toJson(stockList);
+			deferred.resolve({
+				"msg" : "StockItem Added Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+
+	StockService.updateStock = function(invoiceObj) {
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side local DB updateStock...");
+			var stockList = angular.fromJson($localStorage.dbStocks);
+
+			if (typeof stockList === 'undefined')
+				stockList = [];
+
+			 for(var i=0;i<stockList.length;i++)
+			   { 
+			    if(invoiceObj.invoiceLineItemList.itemName==stockList[i].itemName)
+			    	stockList[i] = invoiceObj;
+			   }
+			 
 			$localStorage.dbStocks = angular.toJson(stockList);
 			deferred.resolve({
 				"msg" : "StockItem Added Successfully."
@@ -137,15 +205,39 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 			$log.debug("In side local DB addInvoice...");
 			var invoiceList = angular.fromJson($localStorage.dbinvoice);
+
 			if (typeof invoiceList === 'undefined')
 				invoiceList = [];
-			
-			invoice.invoiceId = invoiceList.length +100;
-			
+
+			invoice.invoiceId = invoiceList.length + 100;
+
 			invoiceList.push(invoice);
 			$localStorage.dbinvoice = angular.toJson(invoiceList);
+
+
+/*			var stockList = angular.fromJson($localStorage.dbStocks);		
+			for(i=0;i<=invoice.invoiceLineItemList.length;i++)
+				{
+				if (invoice.invoiceLineItemList[i].itemName == stockList.itemName) {
+					stockList.qty = stockList.qty - invoice.invoiceLineItemList[i].qty;
+				}
+				}
+			
+*/
+/*			 for(var i=0;i<stockList.length;i++)
+			   { 
+			    if(invoice.invoiceLineItemList.itemName==stockList[i].itemName)
+			    	stockList[i] = invoice;
+			   }
+*/			 
+//			$localStorage.dbStocks = angular.toJson(stockList);
+			deferred.resolve({
+				"msg" : "StockItem Updated Successfully."
+			});
+
 			deferred.resolve({
 				"msg" : "Invoice Added Successfully."
+
 			});
 
 		}, 1000);
@@ -182,7 +274,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 					// selectedBillNo = invoiceList[i];
 					tempItem.push(invoiceList[i]);
 
-					//$log.debug("TEMP===" + tempItem[i]);
+					// $log.debug("TEMP===" + tempItem[i]);
 				}
 			}
 			deferred.resolve(tempItem);
@@ -191,5 +283,31 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 	}
 
+	
+	InvoiceService.getAllInvoiceByCustId = function(selectedCustomerId) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+			var tempInvoice = [];
+			var custInvoiveList = angular.fromJson($localStorage.dbinvoice);
+
+			if (typeof custInvoiveList === 'undefined')
+				custInvoiveList = [];
+
+			for (i = 0; i < custInvoiveList.length; i++) {
+				if (selectedCustomerId == custInvoiveList[i].customerName.customerId) {
+
+					// selectedBillNo = invoiceList[i];
+					tempInvoice.push(custInvoiveList[i]);
+
+					// $log.debug("TEMP===" + tempItem[i]);
+				}
+			}
+			deferred.resolve(tempInvoice);
+
+		}, 1000);
+		return deferred.promise;
+	}
+	
 	return serviceFactory;
 }

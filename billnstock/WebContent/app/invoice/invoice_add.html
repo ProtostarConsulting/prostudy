@@ -51,14 +51,14 @@
 						ID </label> <input ng-model="invoiceObj.invoiceId" disabled> </md-input-container>
 					<md-input-container flex> <label>Date
 					</label> <input ng-model="invoiceDate" id="invoiceDate" disabled></md-input-container>
-					
+
 				</div>
 			</div>
 
 			<div layout layout-sm="column">
 				<md-input-container flex> <label>Address
-				</label> <textarea ng-model="cust.customerName.customerAddress" rows="2" cols="1"
-					disabled></textarea> </md-input-container>
+				</label> <textarea ng-model="cust.customerName.customerAddress" rows="2"
+					cols="1" disabled></textarea> </md-input-container>
 
 
 			</div>
@@ -70,7 +70,10 @@
 			</div>
 
 		</div>
-		----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		<div layout="row" layout-align="center start"
+			style="margin-top: 20px; margin-bottom: 20px;">
+			<md-divider flex></md-divider>
+		</div>
 
 		<h1>Invoice</h1>
 		<table md-data-table md-progress="deferred">
@@ -158,8 +161,8 @@
 
 		<div layout layout-sm="column">
 			<section layout="row" layout-sm="column">
-				<md-button class="md-raised md-primary" id="addInvoice" ng-click="addInvoice()">Save
-				Invoice</md-button>
+				<md-button class="md-raised md-primary" id="addInvoice"
+					ng-click="addInvoice()">Save Invoice</md-button>
 			</section>
 
 			<section layout="row" layout-sm="column">

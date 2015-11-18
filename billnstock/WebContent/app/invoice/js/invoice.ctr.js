@@ -6,7 +6,7 @@ app
 						$mdUtil, $log, $state, $http, $stateParams,
 						$routeParams,$filter, objectFactory, appEndpointSF) {
 
-					 $('#addInvoice').attr("disabled", true);
+				//	 $('#addInvoice').attr("disabled", true);
 					 
 					$log.debug("$stateParams:", $stateParams);
 					$log.debug("$stateParams.selectedInvoiceNo:",
@@ -67,6 +67,18 @@ app
 
 								});
 						$log.debug("No4");
+						
+						
+					/*	var StockService = appEndpointSF.getInvoiceService();
+
+						StockService.updateStock($scope.invoiceObj).then(
+								function(msgBean) {
+									$log.debug("No6");
+									$log.debug("Inside Ctr updateStock");
+									$log.debug("msgBean.msg:" + msgBean.msg);
+									$scope.showSimpleToast();
+
+								});*/
 					}
 
 					$scope.getAllInvoice = function() {
