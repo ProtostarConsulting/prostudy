@@ -53,21 +53,6 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 					// $log.debug("TEMP===" + tempItem[i]);
 				}
 			}
-			
-/*			var tempInvoice = [];
-			var custInvoiveList = angular.fromJson($localStorage.dbinvoice);
-			custInvoiveList = [];
-			
-			for (i = 0; i < custInvoiveList.length; i++) {
-				if (selectedCustomerId == custInvoiveList[i].customerId) {
-
-					// selectedBillNo = invoiceList[i];
-					tempInvoice.push(custInvoiveList[i]);
-
-					// $log.debug("TEMP===" + tempItem[i]);
-				}
-			}
-		*/	
 			deferred.resolve(tempItem);
 
 		}, 1000);
@@ -340,7 +325,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			 
 			$localStorage.dbStocks = angular.toJson(stockList);
 			deferred.resolve({
-				"msg" : "StockItem Added Successfully."
+				"msg" : "StockItem Updated Successfully."
 			});
 
 		}, 1000);
@@ -361,6 +346,32 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 	} // End of StockService
 
+	StockService.getstockByThreshold = function() {
+		var deferred = $q.defer();
+		$timeout(function() {
+			var stockByThreshold = [];
+			
+			var stockList = angular.fromJson($localStorage.dbStocks);
+		//	if (typeof stockList === 'undefined')
+		//		stockList = [];
+			
+			for (i = 0; i < stockList.length; i++) {
+				if (stockList[i].qty <= stockList[i].thresholdValue) {
+
+					stockByThreshold.push(stockList[i]);
+
+					 $log.debug("TEMP===" + stockByThreshold);
+				}
+			}
+			
+			
+			deferred.resolve(stockList);
+
+		}, 1000);
+
+		return deferred.promise;
+	} // End of StockService
+	
 	// Start of StockService
 	var TaxService = {};
 
@@ -516,6 +527,96 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		}, 1000);
 		return deferred.promise;
 	}
+//*************************************************************************************************************************	
 	
+// Add hr Service
+	var SalesService = {};
+
+	serviceFactory.getSalesService = function() {
+		return SalesService;
+	}
+
+	SalesService.addSalesOrder = function(salesOrder) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side local DB addSalesOrder...");
+			var salesOrderList = angular.fromJson($localStorage.dbSalesOrder);
+			if (typeof salesOrderList === 'undefined')
+				salesOrderList = [];
+			salesOrderList.push(salesOrder);
+			$localStorage.dbSalesOrder = angular.toJson(salesOrderList);
+			deferred.resolve({
+				"msg" : "Sales Orde Added Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+
+	SalesService.getAllSalesOrder = function() {
+		var deferred = $q.defer();
+		$timeout(function() {
+			$log.debug("In side local DB getAllSalesOrder...");
+			var salesOrderList = angular.fromJson($localStorage.dbSalesOrder);
+			if (typeof salesOrderList === 'undefined')
+				salesOrderList = [];
+			deferred.resolve(salesOrderList);
+		}, 1000);
+
+		return deferred.promise;
+
+	}
+/*
+	SalesService.updateemp = function(editProfile) {
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side updated local DB updateuser...");
+			var empList = angular.fromJson($localStorage.dbemp);
+			if (typeof empList === 'undefined')
+				empList = [];
+
+			for (var i = 0; i < empList.length; i++) {
+				if (editProfile.empid == empList[i].empid)
+					empList[i] = editProfile;
+			}
+
+			$localStorage.dbemp = angular.toJson(empList);
+			deferred.resolve({
+				"msg" : "User data Updated Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+
+	SalesService.getempByID = function(selectedempNo) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+			var tempItem = [];
+			var empList = angular.fromJson($localStorage.dbemp);
+
+			if (typeof empList === 'undefined')
+				empList = [];
+
+			for (i = 0; i < empList.length; i++) {
+				if (selectedempNo == empList[i].empid) {
+
+					$log.debug("************TEMP===" + empList[i].empid);
+					tempItem.push(empList[i]);
+
+				}
+			}
+			deferred.resolve(tempItem);
+
+		}, 1000);
+		return deferred.promise;
+	}
+*/
 	return serviceFactory;
 }

@@ -1,6 +1,6 @@
 var app = angular.module("stockApp", [ 'ngMaterial', 'ngMessages', "xeditable",
 		"ui.bootstrap", "ui.router", 'md.data.table', 'ngResource',
-		'ngStorage', 'ngRoute' ]);
+		'ngStorage', 'ngRoute']);
 
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('light-blue')
@@ -28,6 +28,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/home",
 		templateUrl : '/home.html',
 		controller : 'homeCtr'
+	}).state('student', {
+		url : "/student",
+		templateUrl : '/app/student/student_module.html',
+		controller : 'customerCtr'
 	}).state('student.listtest', {
 		url : "/listtest",
 		templateUrl : '/app/demo/table_demo3_view.html',
@@ -43,6 +47,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('stock.stockItemList', {
 		url : "/stockItemList",
 		templateUrl : '/app/stock/stockItem_list.html',
+		controller : 'addItemStockCtr'
+	}).state('stock.reportByThreshold', {
+		url : "/reportByThreshold",
+		templateUrl : '/app/stock/stock_reportByThreshold.html',
 		controller : 'addItemStockCtr'
 	}).state('stock.taxadd', {
 		url : "/tax/taxadd",
@@ -96,14 +104,26 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/allcustomer",
 		templateUrl : '/app/report/customer_list.html',
 		controller : 'reportCtr'
-	}).state('student', {
-		url : "/student",
-		templateUrl : '/app/student/student_module.html',
-		controller : 'customerCtr'
-	}).state('student.add', {
+	}).state('sales', {
+		url : "/sales",
+		templateUrl : '/app/sales/sales_module.html',
+		controller : 'salesCtr'
+	}).state('sales.add', {
 		url : "/add",
-		templateUrl : '/app/customer/student_add.html',
-		controller : 'customerCtr'
+		templateUrl : '/app/sales/salesOrder_add.html',
+		controller : 'salesCtr'
+	}).state('sales.list', {
+		url : "/list",
+		templateUrl : '/app/sales/salesOrder_list.html',
+		controller : 'salesCtr'
+	}).state('purchaseOrder.add', {
+		url : "/add",
+		templateUrl : '/app/sales/purchaseOrder_add.html',
+		controller : 'salesCtr'
+	}).state('purchaseOrder.list', {
+		url : "/list",
+		templateUrl : '/app/sales/purchaseOrder_list.html',
+		controller : 'salesCtr'
 	}).state('hr', {
 		url : "/hr",
 		templateUrl : '/app/hr/hr_module.html',

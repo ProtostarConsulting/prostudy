@@ -5,9 +5,23 @@ app
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $state, $http, $stateParams,
 						$routeParams,$filter, objectFactory, appEndpointSF) {
-
-				//	 $('#addInvoice').attr("disabled", true);
 					 
+					$scope.invoiceObj = {
+
+						invoiceId : '',
+						customerName : '',
+						customerAddress : '',
+						invoiceDate : $filter("date")(Date.now(), 'dd-MM-yyyy'),
+						invoiceLineItemList : [],
+						subTotal : '',
+						taxCodeName : '',
+						taxPercenatge : '',
+						taxTotal : 0,
+						finalTotal : ''
+					};
+					$scope.selected = [];
+
+					
 					$log.debug("$stateParams:", $stateParams);
 					$log.debug("$stateParams.selectedInvoiceNo:",
 							$stateParams.selectedInvoiceNo);
@@ -30,30 +44,8 @@ app
 					}
 					$scope.invoiceDetail = [];
 					$scope.showBill();
-
-					$("#mainForm").show();
-					$("#printForm").hide();
-
-					$scope.gotoPrint = function() {
-						$("#mainForm").hide();
-						$("#printForm").show();
-					}
-				//	$scope.invoiceDate = $filter("date")(Date.now(), 'yyyy-MM-dd');
-					$scope.invoiceObj = {
-
-						invoiceId : '',
-						customerName : '',
-						customerAddress : '',
-						invoiceDate : $filter("date")(Date.now(), 'dd-MM-yyyy'),
-						invoiceLineItemList : [],
-						subTotal : '',
-						taxCodeName : '',
-						taxPercenatge : '',
-						taxTotal : 0,
-						finalTotal : ''
-					};
-					$scope.selected = [];
-
+					
+					
 					$scope.addInvoice = function() {
 						$log.debug("No1");
 						var InvoiceService = appEndpointSF.getInvoiceService();

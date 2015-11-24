@@ -2,32 +2,32 @@
 	<div>
 		<section layout="row">
 			<!-- View Specific Toolbar-->
+			
 			<div class="md-toolbar-tools">
 				<span flex></span>
-
-				<!-- <section layout="row">
-					<md-button class="md-icon-button md-primary" aria-label="Settings">
+				<!--<md-card>-->
+				<section layout="row">
+				<!-- 	<md-button class="md-icon-button md-primary" aria-label="Settings">
 						<md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
 					</md-button> -->
-					<!-- <md-button ui-sref="stock.taxadd" ng-click="close()"
+					<!-- <md-button href="#student.list" ng-click="close()"
 					class="md-primary">
-						Add Tax
+						student List
 					</md-button> -->
-				<!-- 	<md-button ui-sref="home" class="md-icon-button md-accent" aria-label="Favorite">
+					<!-- <md-button class="md-icon-button md-accent" aria-label="Favorite">
 						<md-icon md-svg-icon="img/icons/print.svg"></md-icon>
 					</md-button> -->
-					<md-button  class="md-icon-button" aria-label="More"
+					<md-button class="md-icon-button" aria-label="More"
 					ng-click="toggleRight()">
 						<md-icon
 						md-svg-icon="img/icons/more_vert.svg"></md-icon>
 					</md-button>
 
 				</section>
+				<!--</md-card>-->
 			</div>
-
-		
-
-	<!-- Right Navigation Pane --> 
+			
+<!-- Right Navigation Pane --> 
 		 <md-sidenav class="md-sidenav-right md-whiteframe-z2"
 			md-component-id="right">
 				<md-toolbar
@@ -45,18 +45,13 @@
 						links/actions.
 					</p>
 					
-					<md-button ui-sref="stock.taxadd" ng-click="close()"
+					<md-button href="invoice.add" ng-click="close()"
 					class="md-primary">
-						Add Tax
+						Add Invoice
 					</md-button>
-					<md-button ui-sref="stock.taxlist" ng-click="close()"
+					<md-button href="invoice.list" ng-click="close()"
 					class="md-primary">
-						Tax List
-					</md-button>
-					<h3>Report</h3>
-						<md-button ui-sref="stock.reportByThreshold" ng-click="close()"
-					class="md-primary">
-						Stock By Threshold
+						Invoice List
 					</md-button>
 				</md-content>
 			</md-sidenav>
@@ -65,26 +60,23 @@
 	</div>
 
 	
-<div ui-view> This is a default page for stock module!</div>
+	<div ui-view> This is a default page for stock module!</div>
 	<!-- We'll also add some navigation: -->
 	
 	<md-content layout="column" layout-align="center start">
 	
-	<md-button ui-sref="stock.stockItemAdd" ng-click="close()" class="md-primary">
-		Add New Stock
+	<md-button ui-sref="sales.add" ng-click="close()" class="md-primary">
+		Create Sales Order
 	</md-button>
-	<md-button ui-sref="stock.stockItemList" ng-click="close()" class="md-primary">
-		Stock List
+	<md-button ui-sref="purchaseOrder.add" ng-click="close()" class="md-primary">
+		Create Purchase Order
 	</md-button>
-<!-- 	<md-button ui-sref="stock.taxadd" ng-click="close()"
-	class="md-primary">
-		Add Tax
+		<md-button ui-sref="sales.list" ng-click="getAllSalesOrder()" class="md-primary">
+		Sales Order List
 	</md-button>
-		<md-button ui-sref="stock.taxlist" ng-click="close()"
-	class="md-primary">
-		List of Taxes
+	<md-button ui-sref="purchaseOrder.list" ng-click="close()" class="md-primary">
+		Create Purchase List
 	</md-button>
- -->	
 	</md-content>
 
 </div>

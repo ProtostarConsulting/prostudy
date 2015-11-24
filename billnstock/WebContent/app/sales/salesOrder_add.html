@@ -1,0 +1,161 @@
+
+<md-content layout-padding>
+<div id="invoiceDiv">
+	<form>
+		<div>
+			<div layout layout-sm="column">
+				<md-input-container flex> <label>Sales
+					Order </label> <input ng-model="salesOrder.salesOrderId" disabled> </md-input-container>
+				<md-input-container flex> <label>Customer
+					 </label> <input ng-model="salesOrder.customerName"> </md-input-container>
+				<md-input-container flex> <label>Customer
+					Referance ID </label> <input ng-model="salesOrder.customerRefId"> </md-input-container>
+			</div>
+
+			<div layout layout-sm="column">
+
+				<md-input-container flex> <label>Quotation
+					Date ID </label> <input ng-model="salesOrder.quotationDate"> </md-input-container>
+				<md-input-container flex> <label>Sales
+					Order Date </label> <input ng-model="salesOrder.salesOrderDate"></md-input-container>
+			</div>
+
+			<div layout layout-sm="column">
+				<md-input-container flex> <label>Payment
+					Days </label> <input ng-model="salesOrder.paymentDays"></md-input-container>
+				<md-input-container flex> <label>Quick
+					Pay </label> <input ng-model="salesOrder.quickPay"> </md-input-container>
+				<md-input-container flex> <label>Quick
+					Pay Days </label> <input ng-model="salesOrder.quickPayDays"></md-input-container>
+
+			</div>
+			<div layout layout-sm="column">
+				<md-input-container flex> <label>Payment
+					Terms </label> <textarea ng-model="salesOrder.paymentTerms" rows="2" cols="1"></textarea>
+				</md-input-container>
+
+				<md-input-container flex> <label>Dispatch
+					Details </label> <textarea ng-model="salesOrder.dispatchDetails" rows="2" cols="1"></textarea>
+				</md-input-container>
+
+
+			</div>
+
+		</div>
+
+		<div layout layout-sm="column">
+			<section layout="row" layout-sm="column">
+				<md-button class="md-raised md-primary" id="addSalesOrder"
+					ng-click="addSalesOrder()">Create sales Order</md-button>
+			</section>
+		</div>
+
+	</form>
+</div>
+
+
+
+<!-- 
+<div id="printForm">
+	<form>
+		<div>
+			<div layout layout-sm="column">
+				<md-input-container flex> <label><h1>Protostar
+						Consulting Services</h1> </label> </md-input-container>
+
+				<md-input-container flex> <label><u>Address</u><br>E-101,
+					Manimangar Appartment<br>Kasarwadi-414141.<br>Ph.(020)4141414.<br>info@protostar.co.in
+				</label> </md-input-container>
+
+			</div>
+
+			----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			<table>
+
+				<tbody>
+					<tr>
+						<td><md-input-container flex> <label>Customer
+								Name </label> </md-input-container>{{ invoiceObj.customerName.customerName }}</td>
+						<td><md-input-container flex> <label>Invoice
+								ID </label> </md-input-container>{{ invoiceObj.invoiceId }}</td>
+						<td><md-input-container flex> <label>Date
+							</label> </md-input-container>{{ invoiceObj.date }}</td>
+					</tr>
+					<tr>
+						<td><md-input-container flex> <label>Customer
+								Address </label> </md-input-container>{{invoiceObj.customerName.customerAddress}}</td>
+
+						<td><md-input-container flex> <label>Note
+							</label> </md-input-container>{{invoiceObj.note}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+		<h1>Invoice</h1>
+		<table md-data-table md-progress="deferred">
+			<thead md-order="query.order" md-trigger="onOrderChange">
+				<tr>
+					<th name="Sr_No" order-by="srNo"></th>
+					<th name="Item Name" order-by="itemName"></th>
+					<th name="Quantity" order-by="qty"></th>
+					<th name="Price" order-by="price"></th>
+					<th name="Total" order-by="total"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr ng-repeat="item in invoiceObj.invoiceLineItemList "md-auto-selectorderBy:query.order| limitTo:query.limit: (query.page - 1) * query.limit"">
+
+					<td>{{ item.srNo }}</td>
+					<td>{{ item.itemName }}</td>
+					<td>{{item.qty}}</td>
+					<td>{{item.price}}</td>
+					<td><b>{{item.qty * item.price}} </b></td>
+					<td></td>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><label><u>Sub Total</u> </label></td>
+					<td><md-input-container flex> <b>{{invoiceObj.subTotal}}</b>
+						</md-input-container></td>
+				</tr>
+				<tr>
+					<td><label><u>Tax Details</u> </label></td>
+					<td></td>
+					<td><md-input-container flex> <label>Tax
+							Type </label> </md-input-container>{{invoiceObj.selectedTaxItem.taxCodeName}}</td>
+					<td><md-input-container flex> <label>Tax
+						</label> </md-input-container>{{invoiceObj.selectedTaxItem.taxPercenatge}}%</td>
+					<td><md-input-container flex> <label>Tax
+							Total </label> </md-input-container>{{invoiceObj.taxTotal}}</td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><label><u>Final Total</u> </label></td>
+					<td><md-input-container flex> </md-input-container>{{invoiceObj.finalTotal}}</td>
+				</tr>
+				<tr>
+					<td></td>
+
+				</tr>
+			</tbody>
+		</table>
+		<section layout="row" layout-sm="column">
+			<md-button class="md-raised md-primary" onClick="window.print()">Print
+			Invoice</md-button>
+		</section>
+
+	</form>
+</div>
+ --> <b><u>Note</u>:</b>This is electronically generated invoice. <br>
+
+<iframe name="print_frame" width="0" height="0" frameborder="0"
+	src="about:blank"></iframe> </md-content>
