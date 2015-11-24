@@ -17,8 +17,14 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 		else	
 			return googleEndpointSF.getCustomerService();
 	};
-
-
+//----------------------------------------------------
+	endpointFactory.gethrService = function() {
+		if(isTestMode)
+			return localDBServiceFactory.gethrService();
+		else	
+			return googleEndpointSF.gethrService();
+	};
+//----------------------------------------------------
 	endpointFactory.getStockService = function() {
 		if(isTestMode)
 			return localDBServiceFactory.getStockService();

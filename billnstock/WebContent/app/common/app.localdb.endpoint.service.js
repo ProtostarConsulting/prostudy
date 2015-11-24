@@ -88,6 +88,214 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 	} // End of CustomerService
 
+	// Add hr Service
+	var hrService = {};
+
+	serviceFactory.gethrService = function() {
+		return hrService;
+	}
+
+	hrService.addemp = function(emp) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side local DB addemp...");
+			var empList = angular.fromJson($localStorage.dbemp);
+			if (typeof empList === 'undefined')
+				empList = [];
+			empList.push(emp);
+			$localStorage.dbemp = angular.toJson(empList);
+			deferred.resolve({
+				"msg" : "employee Added Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+
+	hrService.getAllemp = function() {
+		var deferred = $q.defer();
+		$timeout(function() {
+			$log.debug("In side local DB getemp...");
+			var empList = angular.fromJson($localStorage.dbemp);
+			if (typeof empList === 'undefined')
+				empList = [];
+			deferred.resolve(empList);
+		}, 1000);
+
+		return deferred.promise;
+
+	}
+
+	hrService.updateemp = function(editProfile) {
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side updated local DB updateuser...");
+			var empList = angular.fromJson($localStorage.dbemp);
+			if (typeof empList === 'undefined')
+				empList = [];
+
+			for (var i = 0; i < empList.length; i++) {
+				if (editProfile.empid == empList[i].empid)
+					empList[i] = editProfile;
+			}
+
+			$localStorage.dbemp = angular.toJson(empList);
+			deferred.resolve({
+				"msg" : "User data Updated Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+
+	hrService.getempByID = function(selectedempNo) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+			var tempItem = [];
+			var empList = angular.fromJson($localStorage.dbemp);
+
+			if (typeof empList === 'undefined')
+				empList = [];
+
+			for (i = 0; i < empList.length; i++) {
+				if (selectedempNo == empList[i].empid) {
+
+					$log.debug("************TEMP===" + empList[i].empid);
+					tempItem.push(empList[i]);
+
+				}
+			}
+			deferred.resolve(tempItem);
+
+		}, 1000);
+		return deferred.promise;
+	}
+
+	hrService.addsalstruct = function(salstruct) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side local DB addemp...");
+			var salstructList = angular.fromJson($localStorage.dbsalstruct);
+			if (typeof salstructList === 'undefined')
+				salstructList = [];
+			salstructList.push(salstruct);
+			$localStorage.dbsalstruct = angular.toJson(salstructList);
+			deferred.resolve({
+				"msg" : "employee Salary Structure Added Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+
+	hrService.findsalstruct = function(empid) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+			var tempItem = [];
+			var structList = angular.fromJson($localStorage.dbsalstruct);
+
+			if (typeof structList === 'undefined')
+				structList = [];
+
+			for (i = 0; i < structList.length; i++) {
+				if (empid == structList[i].empid) {
+
+					$log.debug("************TEMP===" + structList[i].empName);
+					tempItem.push(structList[i]);
+
+				}
+			}
+			deferred.resolve(tempItem);
+
+		}, 1000);
+		return deferred.promise;
+	}
+	
+	hrService.updatesalinfo = function(editsalstruct) {
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side updated local DB updateuser...");
+			var salstructList = angular.fromJson($localStorage.dbsalstruct);
+			if (typeof salstructList === 'undefined')
+				salstructList = [];
+
+			for (var i = 0; i < salstructList.length; i++) {
+				if (editsalstruct.empid == salstructList[i].empid)
+					salstructList[i] = editsalstruct;
+			}
+
+			$localStorage.dbsalstruct = angular.toJson(salstructList);
+			deferred.resolve({
+				"msg" : "User salary structure List Updated Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+	
+	
+	
+	hrService.adddoc = function(document) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side local DB adddocumentr...");
+			var documentList = angular.fromJson($localStorage.dbdocument);
+			if (typeof documentList === 'undefined')
+				documentList = [];
+			documentList.push(document);
+			$localStorage.dbdocument = angular.toJson(documentList);
+			deferred.resolve({
+				"msg" : "document Added Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+	
+	
+	hrService.getstructByID = function(selectedempNo) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+			var tempItem = [];
+			var empstructList = angular.fromJson($localStorage.dbsalstruct);
+
+			if (typeof empstructList === 'undefined')
+				empstructList = [];
+
+			for (i = 0; i < empstructList.length; i++) {
+				if (selectedempNo == empstructList[i].empid) {
+
+					$log.debug("************TEMP===" + empstructList[i].empid);
+					tempItem.push(empstructList[i]);
+
+				}
+			}
+			deferred.resolve(tempItem);
+
+		}, 1000);
+		return deferred.promise;
+	}
+	
+	
+	
+	// End of hrService
+
 	// Start of StockService
 	var StockService = {};
 

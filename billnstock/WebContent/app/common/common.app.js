@@ -104,5 +104,37 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/add",
 		templateUrl : '/app/customer/student_add.html',
 		controller : 'customerCtr'
+	}).state('hr', {
+		url : "/hr",
+		templateUrl : '/app/hr/hr_module.html',
+		controller : 'customerCtr'
+	}).state('hr.employeeadd', {
+		url : "/empadd",
+		templateUrl : '/app/hr/employee_add.html',
+		controller : 'hrCtr'
+	}).state('hr.employeelist', {
+		url : "/emplist",
+		templateUrl : '/app/hr/employee_list.html',
+		controller : 'hrCtr'
+	}).state('hr.empview', {
+		url : "/view/:selectedempNo",
+		templateUrl : '/app/hr/employee_view.html',
+		controller : 'hrCtr',
+	}).state('hr.docuplode', {
+		url : "/document",
+		templateUrl : '/app/hr/employee_doc.html',
+		controller : 'hrCtr',
+	}).state('hr.salarystru', {
+		url : "/SalaryStructure",
+		templateUrl : '/app/hr/employee_salstruct.html',
+		controller : 'hrCtr',
+	}).state('hr.salslip', {
+		url : "/Salaryslip",
+		templateUrl : '/app/hr/employee_salslip.html',
+		controller : 'hrCtr',
+	}).state('hr.gSalSlip', {
+		url : "/gSalSlip/:selectedempstructno",
+		templateUrl : '/app/hr/ganerate_salaryslip.html',
+		controller : 'hrCtr',
 	});
 });
