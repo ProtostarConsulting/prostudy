@@ -1,42 +1,200 @@
 
 <md-content layout-padding>
+<form name="empForm">
 
-<div>
-	<md-data-table-container>
-	<table md-data-table md-row-select="selected" md-progress="deferred">
-		<thead md-order="query.order" md-trigger="onOrderChange">
-			<tr>
-		    	<th name="Employee id" order-by="empid"></th>
-				<th name="Employee Name" order-by="empName"></th>
-				<th name="gross" order-by="gross"></th>
-			   <!--  <th name="Edit" order-by="Edit"></th> -->
-			</tr>
-		</thead>
+	<div id="addField">
+		<div layout layout-sm="column">
+			<md-input-container flex> <label>Employee
+				id </label> <input type="text" ng-model="viewsalstruct.empid" disabled
+				> </md-input-container>
+			<md-input-container flex> <label>Employee
+				Name </label> <input type="text" ng-model="viewsalstruct.empName" disabled> </md-input-container>
+		</div>
+		
+		<div>
 
-		<tbody>
-		<!-- 	<tr md-auto-select
-				ng-repeat="sallist in selectedSalSlipList | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
-				<td>{{sallist.empid}}</td>
-				<td>{{sallist.empName}}</td>
-				<td>{{sallist.grosssal}}</td> -->
-				<!-- <td>
-					<section layout="row" layout-sm="column">
-						<md-button class="md-raised md-primary"
-							ui-sref="hr.empview({selectedempNo: sallist.empid})">View salaryslip</md-button>
-					</section>
-	     		</td> -->
-			<!-- </tr> -->
-		</tbody>
-	</table>
- 
- <md-data-table-pagination md-limit="query.limit"
-		md-page="query.page" md-total={{sallist.length}}
-		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
-</div>
-<!-- vals: {{customers}}
-<md-button ui-sref="customer.list" ng-click="getAllemp()" class="md-primary">
-		Customer List in side List view 
-	</md-button>-->
+			<label>Basic &ensp;&ensp;&ensp;&ensp;&ensp;
+				&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+				&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; 30% </label> <br> <label>HRA
+				&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+				&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+				&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; 20% </label> <br> <label>City
+				Compensatory All.&ensp;&ensp; 30%</label><br> <label>Conveyance
+				Rs. &ensp;&ensp;&ensp;&ensp; &ensp;&ensp;&ensp; 800 per month</label> <br>
+			<label> Special Allowance Balance</label>
+		</div>
 
+	</div>
+	<div layout layout-sm="column">
+
+		<table md-data-table md-progress="deferred">
+			<thead md-order="query.order" md-trigger="onOrderChange">
+				<tr>
+					<th name="" order-by=""></th>
+					<th name="Yearly" order-by="Yearly"></th>
+					<th name="Grand Totals" order-by="Grand Totals"></th>
+					<th name="" order-by=""></th>
+					<th name="Monthly" order-by="Monthly"></th>
+					<th name="" order-by=""></th>
+				</tr>
+			</thead>
+
+			<tbody style="border: 1px solid red">
+				<tr>
+					<td>Gross Salary</td>
+					<td><md-input-container flex> <label>
+							enter salary </label> {{viewsalstruct.grosssal}}
+							 </md-input-container></td>
+					<td></td>
+					<td></td>
+					<td><md-input-container flex> <b>{{viewsalstruct.monthly}}</b>
+						</md-input-container></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Basic</td>
+					<td><md-input-container flex> <b>{{viewsalstruct.Byearly}}</b>
+						</md-input-container></td>
+					<td></td>
+					<td></td>
+					<td><md-input-container flex> <b>{{viewsalstruct.bmonthly}}</b>
+						</md-input-container></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>HRA</td>
+					<td><md-input-container flex> <b>{{viewsalstruct.HRAyearly}}</b>
+						</md-input-container></td>
+					<td></td>
+					<td></td>
+					<td><md-input-container flex> <b>{{viewsalstruct.HRAmonthly}}</b>
+						</md-input-container></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>City Compensatory All</td>
+					<td><md-input-container flex> <b>{{viewsalstruct.CCAyearly}}</b>
+						</md-input-container></td>
+					<td></td>
+					<td></td>
+					<td><md-input-container flex> <b>{{viewsalstruct.CCAmonthly}}</b>
+						</md-input-container></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Employers Contribution 12% of basic or Rs. 780/- whichever
+						is less</td>
+					<td><md-input-container flex> <b>{{viewsalstruct.EC12Byearly}}</b>
+						</md-input-container></td>
+					<td></td>
+					<td></td>
+					<td>_</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Conveyance</td>
+					<td><md-input-container flex> <b>{{viewsalstruct.Convyearly}}</b>
+						</md-input-container></td>
+					<td></td>
+					<td></td>
+					<td><md-input-container flex> <b>{{viewsalstruct.Convmonthly}}</b>
+						</md-input-container></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Special Allowance</td>
+					<td><md-input-container flex> <b>{{viewsalstruct.SAyearly}}</b>
+						</md-input-container></td>
+					<td><md-input-container flex> <b>{{viewsalstruct.grandtotal}}</b>
+						</md-input-container></td>
+					<td></td>
+					<td><md-input-container flex> <b>{{viewsalstruct.SAmonthly}}</b>
+						</md-input-container></td>
+					<td><md-input-container flex> <b>{{viewsalstruct.bgrandtotal}}</b>
+						</md-input-container></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Less : Deduction</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>P.F. ( Employees Contribution 12% of Basic or Rs 780/-
+						whichever is less</td>
+					<td>{{viewsalstruct.pf1}}</td>
+					<td></td>
+					<td></td>
+					<td>_</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>P.F. ( Employers Contribution 12% of Basic or Rs 780/-
+						whichever is less</td>
+					<td>{{viewsalstruct.pf2}}</td>
+					<td></td>
+					<td></td>
+					<td>_</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Professional Tax</td>
+					<td><md-input-container flex> <b>{{viewsalstruct.ptaxyearly}}</b>
+						</md-input-container></td>
+					<td><md-input-container flex> <b>{{viewsalstruct.Ptaxgrandtotal}}</b>
+						</md-input-container></td>
+					<td></td>
+					<td></td>
+					<td>_</td>
+				</tr>
+				<tr>
+					<td>Net Salary Payable</td>
+					<td></td>
+					<td><md-input-container flex> <b>{{viewsalstruct.Netsalgrandtotal}}</b>
+						</md-input-container></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>*Additional Performance Bonus</td>
+					<td></td>
+					<td>{{viewsalstruct.addprobonus}}</md-input-container></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Total Cost to Company (CTC)</td>
+					<td></td>
+					<td><md-input-container flex> <b>{{viewsalstruct.CTC}}</b>
+						</md-input-container></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
 	
+</form>
 </md-content>

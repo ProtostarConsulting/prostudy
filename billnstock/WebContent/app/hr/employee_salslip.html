@@ -8,21 +8,24 @@
 			<tr>
 		    	<th name="Employee id" order-by="empid"></th>
 				<th name="Employee Name" order-by="empName"></th>
-				<th name="Email" order-by="email"></th>
-				<th name="Salary" order-by="Salary"></th>
+				<th name="gross Salary" order-by="grossSal"></th>
+				<th name="view" order-by="view"></th>
 			</tr>
 		</thead>
 
 		<tbody>
 			<tr md-auto-select 
-				ng-repeat="emp in emps | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"
+				ng-repeat="emp in empSalStruct | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"
 				 >
 				<td>{{emp.empid}}</td>
 				<td>{{emp.empName}}</td>
-				<td>{{emp.email}}</td>
-				<td>	<md-button ui-sref="hr.gSalSlip({selectedempNo: emp.empid})" 
-				class="md-primary"> Salary Slip </md-button></td>
-				
+				<td>{{emp.grosssal}}</td>
+				<td>
+					<section layout="row" layout-sm="column">
+						<md-button class="md-raised md-primary"
+							ui-sref="hr.gSalSlip({selectedempstructno: emp.empid})">View Salary Structure</md-button>
+					</section>
+	     		</td>
 			</tr>
 		</tbody>
 	</table>
@@ -32,9 +35,11 @@
 		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
 </div>
 <!-- <div layout layout-sm="column">
-		<md-button ui-sref="hr.gSalSlip({selectedempNo: emp.empid})" 
+		<md-button ui-sref="hr.gSalSlip({selectedempstructno:selected})" 
 				class="md-primary"> Salary Slip </md-button>
 
+	</div> <div>
+	{{selected}}
 	</div> -->
 
 	
