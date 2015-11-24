@@ -1,0 +1,42 @@
+
+<md-content layout-padding>
+
+<div>
+	<md-data-table-container>
+	<table md-data-table md-row-select="selected" md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onOrderChange">
+			<tr>
+		    	<th name="Employee id" order-by="empid"></th>
+				<th name="Employee Name" order-by="empName"></th>
+				<th name="gross" order-by="gross"></th>
+			   <!--  <th name="Edit" order-by="Edit"></th> -->
+			</tr>
+		</thead>
+
+		<tbody>
+		<!-- 	<tr md-auto-select
+				ng-repeat="sallist in selectedSalSlipList | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
+				<td>{{sallist.empid}}</td>
+				<td>{{sallist.empName}}</td>
+				<td>{{sallist.grosssal}}</td> -->
+				<!-- <td>
+					<section layout="row" layout-sm="column">
+						<md-button class="md-raised md-primary"
+							ui-sref="hr.empview({selectedempNo: sallist.empid})">View salaryslip</md-button>
+					</section>
+	     		</td> -->
+			<!-- </tr> -->
+		</tbody>
+	</table>
+ 
+ <md-data-table-pagination md-limit="query.limit"
+		md-page="query.page" md-total={{sallist.length}}
+		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
+</div>
+<!-- vals: {{customers}}
+<md-button ui-sref="customer.list" ng-click="getAllemp()" class="md-primary">
+		Customer List in side List view 
+	</md-button>-->
+
+	
+</md-content>

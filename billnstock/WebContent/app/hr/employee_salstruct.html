@@ -1,0 +1,217 @@
+
+<md-content layout-padding>
+<form name="empForm">
+
+	<div id="addField">
+		<div layout layout-sm="column">
+			<md-input-container flex> <label>Employee
+				id </label> <input type="text" ng-model="salstruct.empid"
+				ng-change="updateempname(salstruct.empid)"> </md-input-container>
+			<md-input-container flex> <label>Employee
+				Name </label> <input type="text" ng-model="salstruct.empName" disabled> </md-input-container>
+		</div>
+		<div align="center" width=100%>
+		<section layout="row" layout-sm="column" layout-align="left left">
+			<md-button class="md-raised md-primary" ng-click="findsalstruct(salstruct.empid)">Find</md-button>
+
+		</section>
+	</div>
+		<div>
+
+			<label>Basic &ensp;&ensp;&ensp;&ensp;&ensp;
+				&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+				&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; 30% </label> <br> <label>HRA
+				&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+				&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+				&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; 20% </label> <br> <label>City
+				Compensatory All.&ensp;&ensp; 30%</label><br> <label>Conveyance
+				Rs. &ensp;&ensp;&ensp;&ensp; &ensp;&ensp;&ensp; 800 per month</label> <br>
+			<label> Special Allowance Balance</label>
+		</div>
+
+	</div>
+	<div layout layout-sm="column">
+
+		<table md-data-table md-progress="deferred">
+			<thead md-order="query.order" md-trigger="onOrderChange">
+				<tr>
+					<th name="" order-by=""></th>
+					<th name="Yearly" order-by="Yearly"></th>
+					<th name="Grand Totals" order-by="Grand Totals"></th>
+					<th name="" order-by=""></th>
+					<th name="Monthly" order-by="Monthly"></th>
+					<th name="" order-by=""></th>
+				</tr>
+			</thead>
+
+			<tbody style="border: 1px solid red">
+				<tr>
+					<td>Gross Salary</td>
+					<td><md-input-container flex> <label>
+							enter salary </label> <input type="text" ng-model="salstruct.grosssal"
+							ng-change="updatesalstruct(salstruct.grosssal)"> </md-input-container></td>
+					<td></td>
+					<td></td>
+					<td><md-input-container flex> <b>{{salstruct.monthly}}</b>
+						</md-input-container></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Basic</td>
+					<td><md-input-container flex> <b>{{salstruct.Byearly}}</b>
+						</md-input-container></td>
+					<td></td>
+					<td></td>
+					<td><md-input-container flex> <b>{{salstruct.bmonthly}}</b>
+						</md-input-container></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>HRA</td>
+					<td><md-input-container flex> <b>{{salstruct.HRAyearly}}</b>
+						</md-input-container></td>
+					<td></td>
+					<td></td>
+					<td><md-input-container flex> <b>{{salstruct.HRAmonthly}}</b>
+						</md-input-container></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>City Compensatory All</td>
+					<td><md-input-container flex> <b>{{salstruct.CCAyearly}}</b>
+						</md-input-container></td>
+					<td></td>
+					<td></td>
+					<td><md-input-container flex> <b>{{salstruct.CCAmonthly}}</b>
+						</md-input-container></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Employers Contribution 12% of basic or Rs. 780/- whichever
+						is less</td>
+					<td><md-input-container flex> <b>{{salstruct.EC12Byearly}}</b>
+						</md-input-container></td>
+					<td></td>
+					<td></td>
+					<td>_</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Conveyance</td>
+					<td><md-input-container flex> <b>{{salstruct.Convyearly}}</b>
+						</md-input-container></td>
+					<td></td>
+					<td></td>
+					<td><md-input-container flex> <b>{{salstruct.Convmonthly}}</b>
+						</md-input-container></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Special Allowance</td>
+					<td><md-input-container flex> <b>{{salstruct.SAyearly}}</b>
+						</md-input-container></td>
+					<td><md-input-container flex> <b>{{salstruct.grandtotal}}</b>
+						</md-input-container></td>
+					<td></td>
+					<td><md-input-container flex> <b>{{salstruct.SAmonthly}}</b>
+						</md-input-container></td>
+					<td><md-input-container flex> <b>{{salstruct.bgrandtotal}}</b>
+						</md-input-container></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Less : Deduction</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>P.F. ( Employees Contribution 12% of Basic or Rs 780/-
+						whichever is less</td>
+					<td><input type="number" ng-model="salstruct.pf1"
+						ng-change="updateptaxgrandtotal(salstruct.pf1)"></td>
+					<td></td>
+					<td></td>
+					<td>_</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>P.F. ( Employers Contribution 12% of Basic or Rs 780/-
+						whichever is less</td>
+					<td><input type="number" ng-model="salstruct.pf2"
+						ng-change="updateptaxgrandtotal(salstruct.pf2)"></td>
+					<td></td>
+					<td></td>
+					<td>_</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Professional Tax</td>
+					<td><md-input-container flex> <b>{{salstruct.ptaxyearly}}</b>
+						</md-input-container></td>
+					<td><md-input-container flex> <b>{{salstruct.Ptaxgrandtotal}}</b>
+						</md-input-container></td>
+					<td></td>
+					<td></td>
+					<td>_</td>
+				</tr>
+				<tr>
+					<td>Net Salary Payable</td>
+					<td></td>
+					<td><md-input-container flex> <b>{{salstruct.Netsalgrandtotal}}</b>
+						</md-input-container></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>*Additional Performance Bonus</td>
+					<td></td>
+					<td><input type="number" ng-model="salstruct.addprobonus"
+						ng-change="updateCTC(salstruct.addprobonus)"> </md-input-container></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Total Cost to Company (CTC)</td>
+					<td></td>
+					<td><md-input-container flex> <b>{{salstruct.CTC}}</b>
+						</md-input-container></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+	<div layout layout-sm="column">
+		<section layout="row" layout-sm="column" layout-align="left left">
+			<md-button id="addsal" class="md-raised md-primary" ng-click="addsalstruct()">Add</md-button>
+
+		</section>
+		<section layout="row" layout-sm="column" layout-align="left left">
+			<md-button id="updatesal" class="md-raised md-primary" ng-click="updatesalinfo()">Update</md-button>
+
+		</section>
+	</div>
+</form>
+</md-content>
