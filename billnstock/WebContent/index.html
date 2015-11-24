@@ -65,9 +65,18 @@
 			Invoice </md-button> <md-button ui-sref="state1" ng-click="close()"
 				class="md-primary" show-gt-md> state1 </md-button> <md-button
 				ui-sref="fileupload" ng-click="close()" class="md-primary"
-				show-gt-md> File Upload </md-button> <md-button ui-sref="student"
+				show-gt-md> File Upload </md-button>
+				
+			 <md-button ui-sref="student"
 				ng-click="close()" class="md-primary" show-gt-md>
-			Student </md-button> </md-content> </md-sidenav>
+			Student </md-button>
+			
+			<md-button ui-sref="hr"
+				ng-click="close()" class="md-primary" show-gt-md>
+			HR </md-button>
+			
+			
+			 </md-content> </md-sidenav>
 
 			<md-content flex layout-padding>
 			<div class="md-toolbar-tools" hide-gt-md>
@@ -171,6 +180,9 @@
 	<script src="/lib/base/textAngular-sanitize.min.js"></script>
 	<script src="/lib/base/textAngular.min.js"></script>
 	<script src="/lib/base/ngStorage.min.js"></script>
+<!-- file uplode library-->
+<script src="/lib/base/ng-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->
+<script src="/lib/base/ng-file-upload.min.js"></script>
 
 	<script src="https://apis.google.com/js/client.js"></script>
 
@@ -200,6 +212,7 @@
 	<script src="/app/student/js/student.list.ctr.js"></script>
 	<script src="/app/tax/js/tax.ctr.js"></script>
 	<script src="/app/invoice/js/invoice.ctr.js"></script>
+		<script src="/app/hr/js/hr.ctr.js"></script>
 	<script src="index.ctr.js"></script>
 
 </body>
