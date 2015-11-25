@@ -8,7 +8,10 @@ angular.module("stockApp")
 					$log.debug("$stateParams:", $stateParams);
 					$log.debug("$stateParams.someVal:", $stateParams.someVal);
 					
-					$scope.testCtrVariable = "Change me and click State1 List, and See debug logs ";
+					$scope.objectFromStateParam = [];
+					$scope.objectFromStateParam = angular.fromJson($stateParams.someVal);
+					
+					$scope.testCtrVariable = [{name:'ganesh'}, {name:'ravi'}];
 					
 					$scope.things = [ "A", "Set", "Of", "Things", "out" ];
 					$scope.items = [ "A", "List", "Of", "Items", "out" ];
@@ -41,6 +44,10 @@ angular.module("stockApp")
 						$mdSidenav('right').close().then(function() {
 							$log.debug("close RIGHT is done");
 						});
+					};
+					
+					$scope.getJson = function(object) {
+						return angular.toJson(object);
 					};
 					
 					
