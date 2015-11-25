@@ -104,26 +104,30 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/allcustomer",
 		templateUrl : '/app/report/customer_list.html',
 		controller : 'reportCtr'
-	}).state('sales', {
-		url : "/sales",
+	}).state('salesOrder', {
+		url : "/salesOrder",
 		templateUrl : '/app/sales/sales_module.html',
 		controller : 'salesCtr'
-	}).state('sales.add', {
-		url : "/add",
+	}).state('salesOrder.SalesOrderAdd', {
+		url : "/SalesOrderAdd",
 		templateUrl : '/app/sales/salesOrder_add.html',
 		controller : 'salesCtr'
-	}).state('sales.list', {
-		url : "/list",
+	}).state('salesOrder.SalesOrderList', {
+		url : "/SalesOrderList",
 		templateUrl : '/app/sales/salesOrder_list.html',
 		controller : 'salesCtr'
-	}).state('purchaseOrder.add', {
-		url : "/add",
-		templateUrl : '/app/sales/purchaseOrder_add.html',
-		controller : 'salesCtr'
-	}).state('purchaseOrder.list', {
-		url : "/list",
-		templateUrl : '/app/sales/purchaseOrder_list.html',
-		controller : 'salesCtr'
+	}).state('salesOrder.PurchaseOrderadd', {
+		url : "/PurchaseOrderadd",
+		templateUrl : '/app/purchase/purchaseOrder_add.html',
+		controller : 'purchaseCtr'
+	}).state('salesOrder.PurchaseOrderList', {
+		url : "/PurchaseOrderList",
+		templateUrl : '/app/purchase/purchaseOrder_list.html',
+		controller : 'purchaseCtr'
+	}).state('salesOrder.POview', {
+		url : "/POview/:selectedPONo",
+		templateUrl : '/app/purchase/purchaseOrder_view.html',
+		controller : 'purchaseCtr'
 	}).state('hr', {
 		url : "/hr",
 		templateUrl : '/app/hr/hr_module.html',

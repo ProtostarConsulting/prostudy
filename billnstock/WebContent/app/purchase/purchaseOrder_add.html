@@ -1,0 +1,166 @@
+
+<md-content layout-padding>
+<div id="invoiceDiv">
+	<form>
+		<div>
+
+			<div layout layout-sm="column">
+				<md-input-container flex> <img
+					src="img/images/protostar_logo_pix_313_132.jpg" /> </md-input-container>
+				<md-input-container flex> <label><h1>Protostar
+						Consulting Services</h1> </label> </md-input-container>
+
+				<md-input-container flex> <label><u>Address</u><br>E-101,
+					Manimangar Appartment<br>Kasarwadi-414141.<br>Ph.(020)4141414.<br>info@protostar.co.in
+				</label> <input ng-model="invoice_id" disabled> </md-input-container>
+
+			</div>
+			<div layout="row" layout-align="center start"
+				style="margin-top: 20px; margin-bottom: 20px;">
+				<md-divider flex></md-divider>
+			</div>
+			<h3>
+				<u>Purchase Order</u>
+			</h3>
+			<div layout="row" layout-align="center start"
+				style="margin-top: 20px; margin-bottom: 20px;">
+				<md-divider flex></md-divider>
+			</div>
+
+			<div layout layout-sm="column">
+				<md-input-container flex> <label>P.O.No
+				</label> <input ng-model="purchaseOrderObj.purchaseOrderNo"> </md-input-container>
+			</div>
+
+			<div layout layout-sm="column">
+				<md-input-container flex> <label>To </label> 
+				<textarea ng-model="purchaseOrderObj.to" rows="4" cols="1"></textarea> </md-input-container>
+
+				<md-input-container flex> <label>Ship To </label> <textarea
+					ng-model="purchaseOrderObj.ShipTo" rows="4" cols="1"></textarea> </md-input-container>
+			</div>
+
+			<div layout layout-sm="column">
+				<md-input-container flex> <label>P.O.Date
+				</label> <input ng-model="purchaseOrderObj.PODate"> </md-input-container>
+				
+				<md-input-container flex> <label>Requisitioner
+				</label> <input ng-model="purchaseOrderObj.requisitioner"> </md-input-container>
+				
+				<md-input-container flex> <label>Shipped Via
+				</label> <input ng-model="purchaseOrderObj.shippedVia"> </md-input-container>
+				
+				<md-input-container flex> <label>F.O.B.Point	
+				</label> <input ng-model="purchaseOrderObj.fOBPoint"> </md-input-container>
+				
+				<md-input-container flex> <label>Terms
+				</label> <input ng-model="purchaseOrderObj.terms"> </md-input-container>
+			</div>
+
+		</div>
+		<div layout="row" layout-align="center start"
+			style="margin-top: 20px; margin-bottom: 20px;">
+			<md-divider flex></md-divider>
+		</div>
+
+		<table md-data-table md-progress="deferred">
+			<thead md-order="query.order" md-trigger="onOrderChange">
+				<tr>
+					<th name="Sr_No" order-by="srNo"></th>
+					<th name="Item Name" order-by="itemName"></th>
+					<th name="Quantity" order-by="qty"></th>
+					<th name="Price" order-by="price"></th>
+					<th name="Total" order-by="total"></th>
+					<th name="Actions"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr ng-repeat="item in purchaseOrderObj.pOLineItemList"md-auto-selectorderBy:query.order| limitTo:query.limit: (query.page - 1) * query.limit"">
+
+					<td>{{ item.srNo }}</td>
+					<!-- <td><md-input-container flex> <md-select
+							ng-model="selectedStockItem" placeholder="Item Name"
+							ng-change="lineItemStockChange($index, selectedStockItem)">
+						<md-option ng-value="item" ng-repeat="item in stockforinvoice">{{item.itemName
+						}}</md-option> </md-select> </md-input-container></td> -->
+					<td><md-input-container flex> <label>Item Name
+						</label> <input ng-model="item.itemName" 
+							ng-change="calSubTotal()"> </md-input-container></td>	
+					<td><md-input-container flex> <label>Quantity
+						</label> <input ng-model="item.qty" type="number"
+							ng-change="calSubTotal()"> </md-input-container></td>
+					<td><md-input-container flex> <label>Price
+						</label> <input ng-model="item.price" ng-change="calSubTotal()" ></md-input-container></td>
+					<td><md-input-container flex> <label>Price
+						</label> <b>{{item.qty * item.price}} </b></td>
+					<td>
+						<section layout="row" layout-sm="column">
+							<md-button class="md-raised md-primary"
+								ng-click="removeItem($index)">Remove Item</md-button>
+
+						</section>
+
+					</td>
+
+				</tr>
+				<tr>
+					<td><section layout="row" layout-sm="column"
+							layout-align="left left">
+							<md-button class="md-raised md-primary" ng-click="addItem()">Add
+							Item</md-button>
+
+						</section></td>
+					<td></td>
+					<td></td>
+					<td><label><u>Sub Total</u> </label></td>
+					<td><md-input-container flex> <b>{{purchaseOrderObj.subTotal}}</b>
+						</md-input-container></td>
+				</tr>
+				<tr>
+					<td><label><u>Tax Details</u> </label></td>
+					<td></td>
+					<!-- <td><md-input-container flex> <md-select
+							ng-model="purchaseOrderObj.selectedTaxItem" placeholder="Tax Type"
+							ng-change="lineItemTaxChange($index, selectedTaxItem)">
+						<md-option ng-value="taxValue"
+							ng-repeat="taxValue in taxforinvoice">{{taxValue.taxCodeName}}</md-option>
+						</md-select> </md-input-container></td> -->
+						
+						<td><md-input-container flex> <label>Item Name
+						</label> <input ng-model="item.taxCodeName" 
+							ng-change="calSubTotal()"> </md-input-container></td>	
+					<td><md-input-container flex> <label>Tax
+						</label> <b> <input
+							ng-model="purchaseOrderObj.selectedTaxItem.taxPercenatge" >%
+						</b> </md-input-container></td>
+					<td><md-input-container flex> <b>{{purchaseOrderObj.taxTotal}}</b>
+						</md-input-container></td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><label><u>Final Total</u> </label></td>
+					<td><md-input-container flex> <b>
+							{{purchaseOrderObj.finalTotal}}</b> </md-input-container></td>
+				</tr>
+				<tr>
+					<td></td>
+
+				</tr>
+			</tbody>
+		</table>
+
+		<div layout layout-sm="column">
+			<section layout="row" layout-sm="column">
+				<md-button class="md-raised md-primary" id="addPurchaseOrder"
+					ng-click="addPurchaseOrder()">Save Sales Order</md-button>
+			</section>
+		</div>
+	</form>
+</div>
+
+<iframe name="print_frame" width="0" height="0" frameborder="0"
+	src="about:blank"></iframe> </md-content>

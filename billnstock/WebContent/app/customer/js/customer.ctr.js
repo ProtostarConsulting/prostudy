@@ -11,7 +11,47 @@ angular.module("stockApp").controller(
 			};
 
 			// $scope.cust = objectFactory.newCustomer();
+			
+			$scope.cust = {
+				customerId : "",
+				customerName : "",
+				mobile : "",
+				email : "",
+				customerAddress : ""
+			};
 
+			$scope.addCustomer = function() {
+				$log.debug("No1");
+				var customerService = appEndpointSF.getCustomerService();
+				customerService.addCustomer($scope.cust).then(
+						function(msgBean) {
+							$log.debug("No6");
+							$log.debug("Inside Ctr addCustomer");
+							$log.debug("msgBean.msg:" + msgBean.msg);
+							$scope.showSimpleToast();
+
+						});
+				$log.debug("No4");
+				$scope.cust = {};
+			}
+
+			$scope.getAllCustomers = function() {
+				$log.debug("Inside Ctr $scope.getAllCustomers");
+				var customerService = appEndpointSF.getCustomerService();
+
+				customerService.getAllCustomers().then(
+						function(custList) {
+							$log.debug("Inside Ctr getAllCustomers");
+							$scope.customers = custList;
+							$log.debug("Inside Ctr $scope.customers:"
+									+ angular.toJson($scope.customers));
+						});
+			}
+
+			$scope.customers = [];
+			$scope.getAllCustomers();
+
+			
 			
 			$log.debug("$stateParams:", $stateParams);
 			$log.debug("$stateParams.selectedCustomerId:",
@@ -58,45 +98,7 @@ angular.module("stockApp").controller(
 			$scope.getAllInvoiceByCustId();
 			
 			
-			$scope.cust = {
-				customerId : "",
-				customerName : "",
-				mobile : "",
-				email : "",
-				customerAddress : ""
-			};
-
-			$scope.addCustomer = function() {
-				$log.debug("No1");
-				var customerService = appEndpointSF.getCustomerService();
-				customerService.addCustomer($scope.cust).then(
-						function(msgBean) {
-							$log.debug("No6");
-							$log.debug("Inside Ctr addCustomer");
-							$log.debug("msgBean.msg:" + msgBean.msg);
-							$scope.showSimpleToast();
-
-						});
-				$log.debug("No4");
-				$scope.cust = {};
-			}
-
-			$scope.getAllCustomers = function() {
-				$log.debug("Inside Ctr $scope.getAllCustomers");
-				var customerService = appEndpointSF.getCustomerService();
-
-				customerService.getAllCustomers().then(
-						function(custList) {
-							$log.debug("Inside Ctr getAllCustomers");
-							$scope.customers = custList;
-							$log.debug("Inside Ctr $scope.customers:"
-									+ angular.toJson($scope.customers));
-						});
-			}
-
-			$scope.customers = [];
-			$scope.getAllCustomers();
-
+			
 			$scope.toggleRight = buildToggler('right');
 
 			function buildToggler(navID) {

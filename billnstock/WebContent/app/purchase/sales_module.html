@@ -65,18 +65,17 @@
 	
 	<md-content layout="column" layout-align="center start">
 	
-	<md-button ui-sref="salesOrder.SalesOrderAdd" ng-click="close()" class="md-primary">
+	<md-button ui-sref="sales.add" ng-click="close()" class="md-primary">
 		Create Sales Order
 	</md-button>
-	<md-button ui-sref="salesOrder.SalesOrderList" ng-click="getAllSalesOrder()" class="md-primary">
+	<md-button ui-sref="purchase.add" ng-click="close()" class="md-primary">
+		Create Purchase Order
+	</md-button>
+		<md-button ui-sref="sales.list" ng-click="getAllSalesOrder()" class="md-primary">
 		Sales Order List
 	</md-button>
-	
-	<md-button ui-sref="salesOrder.PurchaseOrderadd" ng-click="close()" class="md-primary">
-		 Purchase Order
-	</md-button>	
-	<md-button ui-sref="salesOrder.PurchaseOrderList" ng-click="getAllSalesOrder()" class="md-primary">
-		 Purchase List
+	<md-button ui-sref="purchase.list" ng-click="close()" class="md-primary">
+		Create Purchase List
 	</md-button>
 	</md-content>
 

@@ -54,6 +54,13 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getSalesService();
 	};
 	// ----------------------------------------------------
+	endpointFactory.getPurchaseService = function() {
+		if (isTestMode)
+			return localDBServiceFactory.getPurchaseService();
+		else
+			return googleEndpointSF.getPurchaseService();
+	};
+	// ----------------------------------------------------
 	endpointFactory.loadAppGoogleServices = function(deferred) {
 		$log.debug("###Inside Google appEndpointSF.loadAppGoogleServices###");
 

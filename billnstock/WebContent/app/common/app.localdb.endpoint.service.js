@@ -73,6 +73,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 	} // End of CustomerService
 
+//*************************************************************************************************************************		
 	// Add hr Service
 	var hrService = {};
 
@@ -314,12 +315,9 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		}, 1000);
 		return deferred.promise;
 	}
-	
-	
-	
-	
 	// End of hrService
 
+//*************************************************************************************************************************		
 	// Start of StockService
 	var StockService = {};
 
@@ -410,8 +408,9 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 		return deferred.promise;
 	} // End of StockService
-	
-	// Start of StockService
+
+//*************************************************************************************************************************		
+	// Start of TaxService
 	var TaxService = {};
 
 	serviceFactory.getTaxService = function() {
@@ -450,7 +449,8 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 	} // End of TaxService
 
-	// Start of StockService
+//*************************************************************************************************************************	
+	// Start of InvoiceService
 	var InvoiceService = {};
 
 	serviceFactory.getInvoiceService = function() {
@@ -568,7 +568,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 	}
 //*************************************************************************************************************************	
 	
-// Add hr Service
+// Add Sales Service
 	var SalesService = {};
 
 	serviceFactory.getSalesService = function() {
@@ -657,5 +657,75 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 	}
 */
-	return serviceFactory;
+	
+//*************************************************************************************************************************	
+	
+	// Add Purchase Service
+		var PurchaseService = {};
+
+		serviceFactory.getPurchaseService = function() {
+			return PurchaseService;
+		}
+
+		PurchaseService.addPurchaseOrder = function(purchaseOrderObj) {
+
+			var deferred = $q.defer();
+			$timeout(function() {
+
+				$log.debug("In side local DB addPurchaseOrder...");
+				var purchaseOrderList = angular.fromJson($localStorage.dbPurchaseOrder);
+				if (typeof purchaseOrderList === 'undefined')
+					purchaseOrderList = [];
+				purchaseOrderList.push(purchaseOrderObj);
+				$localStorage.dbPurchaseOrder = angular.toJson(purchaseOrderList);
+				deferred.resolve({
+					"msg" : "Purchase Orde Added Successfully."
+				});
+
+			}, 1000);
+
+			return deferred.promise;
+		}
+
+		PurchaseService.getAllPurchaseOrder = function() {
+			var deferred = $q.defer();
+			$timeout(function() {
+				$log.debug("In side local DB getAllPurchaseOrder...");
+				var purchaseOrderList = angular.fromJson($localStorage.dbPurchaseOrder);
+				if (typeof purchaseOrderList === 'undefined')
+					purchaseOrderList = [];
+				deferred.resolve(purchaseOrderList);
+			}, 1000);
+
+			return deferred.promise;
+
+		}
+		
+		PurchaseService.getPOByID = function(selectedPurchaseOrderNo) {
+
+			var deferred = $q.defer();
+			$timeout(function() {
+				var tempPOItem = [];
+				var pOList = angular.fromJson($localStorage.dbPurchaseOrder);
+
+				if (typeof pOList === 'undefined')
+					pOList = [];
+
+				for (i = 0; i < pOList.length; i++) {
+					if (selectedPurchaseOrderNo == pOList[i].invoiceId) {
+
+						// selectedBillNo = invoiceList[i];
+						tempPOItem.push(pOList[i]);
+
+						// $log.debug("TEMP===" + tempItem[i]);
+					}
+				}
+				deferred.resolve(tempPOItem);
+
+			}, 1000);
+			return deferred.promise;
+		}
+//*************************************************************************************************************************				
+
+		return serviceFactory;
 }
