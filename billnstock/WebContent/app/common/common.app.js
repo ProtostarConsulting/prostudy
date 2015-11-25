@@ -156,5 +156,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/gSalSlip/:selectedempstructno",
 		templateUrl : '/app/hr/ganerate_salaryslip.html',
 		controller : 'hrCtr',
+	}).state('hr.generatesalslip', {
+		url : "/generatesalslip",
+		templateUrl : '/app/hr/ganerate_multiple_salaryslip.html',
+		controller : 'hrCtr',
+	}).state('hr.printgeneratesalslip', {
+		url : "/print/:selectedsalslip",
+		templateUrl : '/app/hr/print_salaryslip.html',
+		controller : 'hrCtr',
 	});
 });

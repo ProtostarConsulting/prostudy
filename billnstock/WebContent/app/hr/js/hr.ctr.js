@@ -10,10 +10,25 @@ angular
 					$log.debug("$stateParams:", $stateParams);
 					$log.debug("$stateParams.selectedempNo:",
 							$stateParams.selectedempNo);
-					$log.debug("********$stateParams.selectedempstructno:",$stateParams.selectedempstructno);
+					$log.debug("$stateParams.selectedempstructno:",
+							$stateParams.selectedempstructno);
+					$log.debug("$stateParams.selectedsallist=====:",
+							$stateParams.selectedsalslip);
+					
+					
+					
+					
+					
+					
+					
 					
 					$scope.selectedempNo = $stateParams.selectedempNo;
-					$scope.selectedempstructno=$stateParams.selectedempstructno;
+					$scope.selectedempstructno = $stateParams.selectedempstructno;
+
+					
+					$scope.AA=[]
+					$scope.AA=angular.fromJson($stateParams.selectedsalslip);
+					$log.debug("salsliplist======="+$scope.AA);
 					
 					
 					$scope.showSimpleToast = function(msgBean) {
@@ -21,6 +36,11 @@ angular
 								.position("top").hideDelay(3000));
 					};
 
+					$scope.selected=[];
+					
+				
+					
+					
 					$scope.emp = {
 						empid : "",
 						empName : "",
@@ -28,6 +48,8 @@ angular
 						compemail : "",
 						empAddress : ""
 					};
+					
+					
 
 					$scope.salstruct = {
 						empid : "",
@@ -56,7 +78,8 @@ angular
 						CTC : ""
 					};
 
-					$scope.viewsalstruct=$scope.salstruct;	
+					$scope.viewsalstruct = $scope.salstruct;
+					
 					
 					
 					$scope.document = {
@@ -67,6 +90,16 @@ angular
 						docdiscription : ""
 					};
 					
+					$scope.salslip={
+							salslip_id:"",
+							empdetail:$scope.emp,
+							salarystruct:$scope.salstruct,
+							month:"",
+							generateddate:"",
+							bank_name:"",
+							acno:""
+					};
+
 					$scope.addemp = function() {
 
 						var hrService = appEndpointSF.gethrService();
@@ -90,7 +123,7 @@ angular
 							$scope.emps = empList;
 							$scope.cempid = $scope.emps.length + 1;
 							$scope.emp.empid = $scope.cempid;
-							
+
 						});
 					}
 
@@ -366,25 +399,26 @@ angular
 					
 					 */
 
-					
 					$scope.getAllempsSalStruct = function() {
 						$log.debug("Inside Ctr $scope.getAllempsSalStruct");
 						var hrService = appEndpointSF.gethrService();
 
-						hrService.getAllempsSalStruct().then(function(empSalstructList) {
-							$log.debug("Inside Ctr getAllemps");
-							$scope.empSalStruct = empSalstructList;
-													
-						});
-					}
-					$scope.empSalStruct=[];
-					$scope.getAllempsSalStruct();
-					
-					
-					$scope.viewfindsalstruct = function() {
-						$log.debug("********selectedempstructno=" + $scope.selectedempstructno);
+						hrService.getAllempsSalStruct().then(
+								function(empSalstructList) {
+									$log.debug("Inside Ctr getAllemps");
+									$scope.empSalStruct = empSalstructList;
 
-						$log.debug("Inside Ctr $scope.getAllselectedempstructno");
+								});
+					}
+					$scope.empSalStruct = [];
+					$scope.getAllempsSalStruct();
+
+					$scope.viewfindsalstruct = function() {
+						$log.debug("********selectedempstructno="
+								+ $scope.selectedempstructno);
+
+						$log
+								.debug("Inside Ctr $scope.getAllselectedempstructno");
 						var hrService = appEndpointSF.gethrService();
 
 						hrService
@@ -395,7 +429,7 @@ angular
 													.debug("Inside Ctr getsalstruct");
 											$scope.viewslist = structList;
 											$scope.viewsalstruct = $scope.viewslist[0];
-							
+
 											$log
 													.debug("Inside Ctr viewslist:"
 															+ angular
@@ -406,9 +440,12 @@ angular
 
 					$scope.viewslist = [];
 					$scope.viewfindsalstruct();
-					
-					
-					
+
+							
+					/*$scope.slip= function(list) {
+						$log.debug("list________"+list);
+						
+					}*/
 					
 					
 					$scope.toggleRight = buildToggler('right');

@@ -277,6 +277,45 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 	}
 	
+	hrService.getAllempsSalStruct = function() {
+		var deferred = $q.defer();
+		$timeout(function() {
+			$log.debug("In side get local DB dbsalstruct...");
+			var empstructList = angular.fromJson($localStorage.dbsalstruct);
+			if (typeof empstructList === 'undefined')
+				empstructList = [];
+			deferred.resolve(empstructList);
+		}, 1000);
+
+		return deferred.promise;
+
+	}
+	
+	hrService.viewfindsalstruct = function(empid) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+			var tempItem = [];
+			var structList = angular.fromJson($localStorage.dbsalstruct);
+
+			if (typeof structList === 'undefined')
+				structList = [];
+
+			for (i = 0; i < structList.length; i++) {
+				if (empid == structList[i].empid) {
+
+					$log.debug("************TEMP===" + structList[i].empName);
+					tempItem.push(structList[i]);
+
+				}
+			}
+			deferred.resolve(tempItem);
+
+		}, 1000);
+		return deferred.promise;
+	}
+	
+	
 	
 	
 	// End of hrService
