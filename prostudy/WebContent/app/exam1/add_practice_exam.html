@@ -7,51 +7,44 @@
 
 
 		<div layout="column">
+					<md-input-container
+						md-is-error="myQuestionForm.examtitle.$invalid && (myQuestionForm.$submitted || myQuestionForm.examtitle.$dirty)">
+					<label>Practice Exam Title</label> <input name="examtitle" id="examtitle" ng-required="true"
+						ng-model="examtitle">
+					<div ng-messages="myQuestionForm.examtitle.$error"
+						ng-if="myQuestionForm.examtitle.$submitted || myQuestionForm.examtitle.$touched">
+						<div ng-message="required">Please Enter Exam Title.</div>
+					</div>
+					</md-input-container>
 					
-				
-				<label>Practice Exam Title</label>	
-						<md-input-container>
-				<md-input-container flex>
-				<input type="text" name="examtitle" id="examtitle" ng-model="examtitle" required="true"></md-input-container>
-				</md-input-container>
-				<label>Board</label>	
-						<md-input-container>
-				<md-input-container flex>
-				<input type="text" name="board" id="board" ng-model="board"   ng-change="getSelected()" ></md-input-container>
-				</md-input-container>
-	
-			<label>standard</label>	
-						<md-input-container>
-				<md-input-container flex>
-				<input type="text" name="standard" id="standard" ng-model="standard" ng-change="getSelected()"></md-input-container>
-				</md-input-container>
-	
-			<label>Subject</label>	
-						<md-input-container>
-				<md-input-container flex>
-				<input type="text" name="subject" id="subject" ng-model="subject" ng-change="getSelected()"></md-input-container>
-				</md-input-container>
-	
-	
-				<!-- <label> Board</label>
-				<md-input-container flex> <md-select
-					ng-model="board" placeholder="Select" ng-change="getSelected()"  > <md-option
-					ng-value="item.board" ng-repeat="item in questions ">{{item.board}}
-				</md-option> </md-select> </md-input-container>
-				<label> Standard</label>
-
-				<md-input-container flex> <md-select 
-					ng-model="standard" placeholder="Select" ng-change="getSelected()"   > <md-option
-					ng-value="item.standard"
-					ng-repeat="item in questions  ">
-				{{item.standard}} </md-option> </md-select> </md-input-container>
-
-				<label> Subject</label>
-				<md-input-container flex> <md-select
-					ng-model="subject" placeholder="Select" ng-change="getSelected()"  > <md-option
-					ng-value="item.subject"
-					ng-repeat="item in questions ">{{item.subject}}
-				</md-option> </md-select> </md-input-container> -->
+					<md-input-container
+						md-is-error="myQuestionForm.board.$invalid && (myQuestionForm.$submitted || myQuestionForm.board.$dirty)">
+					<label>Board</label> <input name="board" id="board" ng-required="true"
+						ng-model="board">
+					<div ng-messages="myQuestionForm.board.$error"
+						ng-if="myQuestionForm.board.$submitted || myQuestionForm.board.$touched">
+						<div ng-message="required">Please Enter Board.</div>
+					</div>
+					</md-input-container>
+						<md-input-container
+						md-is-error="myQuestionForm.standard.$invalid && (myQuestionForm.$submitted || myQuestionForm.standard.$dirty)">
+					<label>Standard</label> <input name="standard" id="standard" ng-required="true"
+						ng-model="standard">
+					<div ng-messages="myQuestionForm.standard.$error"
+						ng-if="myQuestionForm.standard.$submitted || myQuestionForm.standard.$touched">
+						<div ng-message="required">Please Enter Standard.</div>
+					</div>
+					</md-input-container>
+					
+					<md-input-container
+						md-is-error="myQuestionForm.subject.$invalid && (myQuestionForm.$submitted || myQuestionForm.subject.$dirty)">
+					<label>Subject</label> <input name="subject" id="subject" ng-required="true"
+						ng-model="subject">
+					<div ng-messages="myQuestionForm.subject.$error"
+						ng-if="myQuestionForm.subject.$submitted || myQuestionForm.subject.$touched">
+						<div ng-message="required">Please enter Subject.</div>
+					</div>
+					</md-input-container>
 		
 					<md-data-table-container>
 				<table md-data-table md-row-select="selected" md-progress="deferred">
