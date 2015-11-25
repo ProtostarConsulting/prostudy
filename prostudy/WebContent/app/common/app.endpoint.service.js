@@ -18,6 +18,15 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getChapterService();
 	};//end of getChapterService
 	
+	endpointFactory.getPracticeExamService = function() 
+	{
+		if(isTestMode)
+			return localDBServiceFactory.getPracticeExamService();
+		else	
+			return googleEndpointSF.getPracticeExamService();
+	};//end of getPracticeExamService
+	
+	
 	endpointFactory.getBookService = function() 
 	{
 		if(isTestMode)

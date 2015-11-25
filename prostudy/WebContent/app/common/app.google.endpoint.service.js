@@ -35,7 +35,40 @@ function googleEndpointSFFunc($log, $q) {
 				});
 		return deferred.promise;
 	} // End of StudentService
+	
+	
+	// Add PracticeExam Service
+	var PracticeExamService = {};
 
+	serviceFactory.getPracticeExamService = function() {
+		return PracticeExamService;
+	}
+
+	PracticeExamService.addPracticeExam = function(test) {
+		$log.debug("No2");	
+		var deferred = $q.defer();
+		$log.debug("abc");
+		gapi.client.PracticeExamService.addPracticeExam(test).execute(
+				function(resp) {
+					$log
+					.debug("No5");	
+					$log.debug("addPracticeExam#resp:" + resp);
+					deferred.resolve(resp);
+				});
+		$log.debug("No3");	
+		return deferred.promise;
+	}
+
+	PracticeExamService.getPracticeExams = function() {
+		var deferred = $q.defer();
+		gapi.client.PracticeExamService.getPracticeExams().execute(
+				function(resp) {
+					$log.debug("addPracticeExam#resp:" + resp);
+					deferred.resolve(resp.items);
+				});
+		return deferred.promise;
+	} // End of PracticeExamService
+	
 	
 	
 	

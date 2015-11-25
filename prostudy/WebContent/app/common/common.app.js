@@ -45,9 +45,44 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'homeCtr'
 	}).state('exam', {
 		url : "/exam",
-		templateUrl : '/app/exam/exam_module.html',
+		templateUrl : '/app/exam1/exam_module.html',
 		controller : 'examModuleCtr'
-	}).state('exam.view', {
+	})
+	
+	.state('exam.addnewquestion', {
+		url : "/addnewquestion",
+		templateUrl : '/app/exam1/add_new_question.html',
+		controller : 'addNewQuestionCtr'
+	})
+	.state('exam.questionlist', {
+		url : "/exam1/question_list",
+		templateUrl : '/app/exam1/question_list.html',
+		controller : 'questionListCtr'
+	})
+	.state('exam.addpracticeexam', {
+		url : "/addpracticeexam",
+		templateUrl : '/app/exam1/add_practice_exam.html',
+		controller : 'addPracticeExamCtr'
+	})
+	
+	.state('exam.listpracticeexam', {
+		url : "/listpracticeexam",
+		templateUrl : '/app/exam1/list_practice_exam.html',
+		controller : 'addPracticeExamCtr'
+	})
+	
+	.state('exam.viewpracticeexam', {
+		url : "/viewpracticeexam",
+		templateUrl : '/app/exam1/view_practice_exam.html',
+		controller : 'addPracticeExamCtr'
+	})
+	.state('exam.practiceexam1', {
+		url : "/practiceexam1/:selectedExamId",
+		templateUrl : '/app/exam1/practice_exam1.html',
+		controller : 'addPracticeExamCtr'
+	})
+	
+	.state('exam.view', {
 		url : "/exam/view",
 		templateUrl : '/app/exam/exam_view.html',
 		controller : 'examCtr'
@@ -59,11 +94,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/exam/question",
 		templateUrl : '/app/question/question_add.html',
 		controller : 'questionCtr'
-	}).state('exam.questionlist', {
+	})/*.state('exam.questionlist', {
 		url : "/exam/question/list",
 		templateUrl : '/app/question/question_list.html',
 		controller : 'questionListCtr'
-	}).state('examdemo', {
+	})*/.state('examdemo', {
 		url : "/examdemo",
 		templateUrl : '/app/examdemo/examdemo_module.html',
 		controller : 'examDemoModuleCtr'
@@ -163,136 +198,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('syllabus', {
 		url : "/syllabus",
 		templateUrl : '/app/syllabus/syllabus_module.html',
-
-		controller : 'syllabusModuleCtr'
-	}).state('syllabus.add', {
-		url : "/add",
-		templateUrl : '/app/syllabus/syllabus_add.html',
-		controller : 'syllabusAddCtr'
-	}).state('syllabus.view', {
-		url : "/view",
-		templateUrl : '/app/syllabus/syllabus_view.html',
-		controller : 'syllabusCtr'
-	}).state('syllabus.cbse8thenglish', {
-		url : "/cbse8thenglish",
-		templateUrl : '/app/syllabus/syllabus_cbse_8th_english.html',
-		controller : 'syllabusCtr'
-	})
-	.state('syllabus.cbse9thenglish', {
-		url : "/cbse9thenglish",
-		templateUrl : '/app/syllabus/syllabus_cbse_9th_english.html',
-		controller : 'syllabusCtr'
-	})
-	.state('syllabus.cbse10thenglish', {
-		url : "/cbse10thenglish",
-		templateUrl : '/app/syllabus/syllabus_cbse_10th_english.html',
-		controller : 'syllabusCtr'
-	})
-	.state('syllabus.cbse8thmath', {
-		url : "/cbse8thmath",
-		templateUrl : '/app/syllabus/syllabus_cbse_8th_math.html',
-		controller : 'syllabusCtr'
-	})
-	.state('syllabus.cbse9thmath', {
-		url : "/cbse9thmath",
-		templateUrl : '/app/syllabus/syllabus_cbse_9th_math.html',
-		controller : 'syllabusCtr'
-	}).state('syllabus.cbse10thmath', {
-		url : "/cbse10thmath",
-		templateUrl : '/app/syllabus/syllabus_cbse_10th_math.html',
-		controller : 'syllabusCtr'
-	})
-	.state('syllabus.cbse8thscience', {
-		url : "/cbse8thscience",
-		templateUrl : '/app/syllabus/syllabus_cbse_8th_science.html',
-		controller : 'syllabusCtr'
-	})
-	.state('syllabus.cbse9thscience', {
-		url : "/cbse9thscience",
-		templateUrl : '/app/syllabus/syllabus_cbse_9th_science.html',
-		controller : 'syllabusCtr'
-	})
-	.state('syllabus.cbse10thscience', {
-		url : "/cbse10thscience",
-		templateUrl : '/app/syllabus/syllabus_cbse_10th_science.html',
-		controller : 'syllabusCtr'
-	})
-	
-	.state('syllabus.sb8thenglish', {
-		url : "/sb8thenglish",
-		templateUrl : '/app/syllabus/syllabus_sb_8th_english.html',
-		controller : 'syllabusCtr'
-	})
-	.state('syllabus.sb9thenglish', {
-		url : "/sb9thenglish",
-		templateUrl : '/app/syllabus/syllabus_sb_9th_english.html',
-		controller : 'syllabusCtr'
-	}).state('syllabus.sb10thenglish', {
-		url : "/sb10thenglish",
-		templateUrl : '/app/syllabus/syllabus_sb_10th_english.html',
-		controller : 'syllabusCtr'
-	})
-	
-	.state('syllabus.sb8thmath', {
-		url : "/sb8thmath",
-		templateUrl : '/app/syllabus/syllabus_sb_8th_math.html',
-		controller : 'syllabusCtr'
-	})
-	.state('syllabus.sb9thmath', {
-		url : "/sb9thmath",
-		templateUrl : '/app/syllabus/syllabus_sb_9th_math.html',
-		controller : 'syllabusCtr'
-	}).state('syllabus.sb10thmath', {
-		url : "/sb10thmath",
-		templateUrl : '/app/syllabus/syllabus_sb_10th_math.html',
-		controller : 'syllabusCtr'
-	})
-	.state('syllabus.sb8thscience', {
-		url : "/sb8thscience",
-		templateUrl : '/app/syllabus/syllabus_sb_8th_science.html',
-		controller : 'syllabusCtr'
-	})
-	.state('syllabus.sb9thscience', {
-		url : "/sb9thscience",
-		templateUrl : '/app/syllabus/syllabus_sb_9th_science.html',
-		controller : 'syllabusCtr'
-	})
-	.state('syllabus.sb10thscience', {
-		url : "/sb10thscience",
-		templateUrl : '/app/syllabus/syllabus_sb_10th_science.html',
-		controller : 'syllabusCtr'
-	})
-	.state('syllabus.icse8thenglish', {
-		url : "/icse8thenglish",
-		templateUrl : '/app/syllabus/syllabus_icse_8th_english.html',
-		controller : 'syllabusCtr'
-	}).state('syllabus.icse9thenglish', {
-		url : "/icse9thenglish",
-		templateUrl : '/app/syllabus/syllabus_icse_9th_english.html',
-		controller : 'syllabusCtr'
-	})
-	.state('syllabus.icse10thenglish', {
-		url : "/icse10thenglish",
-		templateUrl : '/app/syllabus/syllabus_icse_10th_english.html',
-		controller : 'syllabusCtr'
-	})
-	.state('syllabus.icse8thmath', {
-		url : "/icse8thmath",
-		templateUrl : '/app/syllabus/syllabus_icse_8th_math.html',
-		controller : 'syllabusCtr'
-	})
-	.state('syllabus.icse9thmath', {
-		url : "/icse9thmath",
-		templateUrl : '/app/syllabus/syllabus_icse_9th_math.html',
-		controller : 'syllabusCtr'
-	}).state('syllabus.icse10thmath', {
-		url : "/icse10thmath",
-		templateUrl : '/app/syllabus/syllabus_icse_10th_math.html',
-		controller : 'syllabusCtr'
-	})
-	.state('syllabus.icse8thscience', {
-		url : "/icse8thscience",
-		templateUrl : '/app/syllabus/syllabus_icse_8th_science_phisics.html',
 		controller : 'syllabusCtr'
 	})
 	.state('syllabus.addsyllabus', {
@@ -300,11 +205,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/syllabus/syllabus_addsyllabus.html',
 		controller : 'syllabusCtr'
 
-	})
-	
-	.state('syllabus.viewsyllabus', {
+	})	.state('syllabus.viewsyllabus', {
 		url : "/viewsyllabus",
 		templateUrl : '/app/syllabus/syllabus_viewsyllabus.html',
+		controller : 'syllabusCtr'
+	})
+	.state('syllabus.listsyllabus', {
+		url : "/listsyllabus",
+		templateUrl : '/app/syllabus/syllabus_listsyllabus.html',
 		controller : 'syllabusCtr'
 	})
 	
