@@ -7,14 +7,14 @@ angular.module("prostudyApp").controller(
 
 			$scope.testGAPICall = function() {
 				console.log("in side testGAPICall");
-				var cars = appEndpointSF.getQuestionService().getCars()
+				var q = appEndpointSF.getQuestionService().getQuestions()
 						.execute(function(resp) {
 							$log.debug("debug resp:" + resp);
 							$log.info("info resp:" + resp);
 							$log.warn("warn resp:" + resp);
-							//$log.error("error resp:" + resp);
+							
 							var items = resp.items;
-							$log.debug("cars:" + resp.items);
+							$log.debug("q:" + resp.items);
 
 						});
 
@@ -36,16 +36,16 @@ angular.module("prostudyApp").controller(
 			}
 
 			$scope.close = function() {
-				$mdSidenav('right').close().then(function() {
+				/*$mdSidenav('right').close().then(function() {
 					$log.debug("close RIGHT is done");
-				});
+				});*/
 			};
 			
 			
-			$scope.cancelButton = function()
+			/*$scope.cancelButton = function()
 			{
 				$log.debug("inside cancelButton");
-				$state.go('^', {});
+				$state.go('exam', {});
 			};//end of cancelButton
-
+*/
 		});
