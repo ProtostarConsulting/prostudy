@@ -45,40 +45,40 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'homeCtr'
 	}).state('exam', {
 		url : "/exam",
-		templateUrl : '/app/exam1/exam_module.html',
+		templateUrl : '/app/exam/exam_module.html',
 		controller : 'examModuleCtr'
 	})
 	
 	.state('exam.addnewquestion', {
 		url : "/addnewquestion",
-		templateUrl : '/app/exam1/add_new_question.html',
+		templateUrl : '/app/exam/add_new_question.html',
 		controller : 'addNewQuestionCtr'
 	})
 	.state('exam.questionlist', {
 		url : "/exam1/question_list",
-		templateUrl : '/app/exam1/question_list.html',
+		templateUrl : '/app/exam/question_list.html',
 		controller : 'questionListCtr'
 	})
 	.state('exam.addpracticeexam', {
 		url : "/addpracticeexam",
-		templateUrl : '/app/exam1/add_practice_exam.html',
+		templateUrl : '/app/exam/add_practice_exam.html',
 		controller : 'addPracticeExamCtr'
 	})
 	
 	.state('exam.listpracticeexam', {
 		url : "/listpracticeexam",
-		templateUrl : '/app/exam1/list_practice_exam.html',
+		templateUrl : '/app/exam/list_practice_exam.html',
 		controller : 'addPracticeExamCtr'
 	})
 	
 	.state('exam.viewpracticeexam', {
 		url : "/viewpracticeexam",
-		templateUrl : '/app/exam1/view_practice_exam.html',
+		templateUrl : '/app/exam/view_practice_exam.html',
 		controller : 'addPracticeExamCtr'
 	})
-	.state('exam.practiceexam1', {
-		url : "/practiceexam1/:selectedExamId",
-		templateUrl : '/app/exam1/practice_exam1.html',
+	.state('exam.practiceexamtest', {
+		url : "/practiceexam/:selectedExamId",
+		templateUrl : '/app/exam/practice_exam_test.html',
 		controller : 'addPracticeExamCtr'
 	})
 	
