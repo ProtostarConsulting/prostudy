@@ -1,0 +1,93 @@
+<div layout="row" layout-padding>
+	<md-content>
+	<section>
+		<md-subheader class="md-primary">
+		<h4 class="md-headline">Add Practice Exam</h4>
+		</md-subheader>
+
+
+		<div layout="column">
+					
+				
+				<label>Practice Exam Title</label>	
+						<md-input-container>
+				<md-input-container flex>
+				<input type="text" name="examtitle" id="examtitle" ng-model="examtitle" required="true"></md-input-container>
+				</md-input-container>
+				<label>Board</label>	
+						<md-input-container>
+				<md-input-container flex>
+				<input type="text" name="board" id="board" ng-model="board"   ng-change="getSelected()" ></md-input-container>
+				</md-input-container>
+	
+			<label>standard</label>	
+						<md-input-container>
+				<md-input-container flex>
+				<input type="text" name="standard" id="standard" ng-model="standard" ng-change="getSelected()"></md-input-container>
+				</md-input-container>
+	
+			<label>Subject</label>	
+						<md-input-container>
+				<md-input-container flex>
+				<input type="text" name="subject" id="subject" ng-model="subject" ng-change="getSelected()"></md-input-container>
+				</md-input-container>
+	
+	
+				<!-- <label> Board</label>
+				<md-input-container flex> <md-select
+					ng-model="board" placeholder="Select" ng-change="getSelected()"  > <md-option
+					ng-value="item.board" ng-repeat="item in questions ">{{item.board}}
+				</md-option> </md-select> </md-input-container>
+				<label> Standard</label>
+
+				<md-input-container flex> <md-select 
+					ng-model="standard" placeholder="Select" ng-change="getSelected()"   > <md-option
+					ng-value="item.standard"
+					ng-repeat="item in questions  ">
+				{{item.standard}} </md-option> </md-select> </md-input-container>
+
+				<label> Subject</label>
+				<md-input-container flex> <md-select
+					ng-model="subject" placeholder="Select" ng-change="getSelected()"  > <md-option
+					ng-value="item.subject"
+					ng-repeat="item in questions ">{{item.subject}}
+				</md-option> </md-select> </md-input-container> -->
+		
+					<md-data-table-container>
+				<table md-data-table md-row-select="selected" md-progress="deferred">
+					<thead md-order="query.order" md-trigger="onorderchange">
+					<tr>
+						<th name="Question Desc"   order-by="description"></th>
+						<!--<th name="note" order-by="note"></th>-->
+						<th name="Option1"  order-by="option1"></th>
+						<th name="Option2"  order-by="option2"></th>
+						<th name="Option3"  order-by="option3"></th>
+						<th name="Option4"  order-by="option4"></th>
+						<th numeric name="Answer"  order-by="correctAns"></th>
+
+						</tr>
+					</thead>
+
+				<tbody>
+					<tr md-auto-select ng-repeat="question in questions | orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit">
+						<td ng-bind-html="question.description">{{question.description}}</td>
+
+						<td>{{question.option1}}</td>
+						<td>{{question.option2}}</td>
+						<td>{{question.option3}}</td>
+						<td>{{question.option4}}</td>
+						<td>{{question.correctAns}}</td>
+
+					</tr>
+				</tbody>
+			</table>
+
+		</md-data-table-container>
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total={{questions.length}} md-trigger="onpagechange"></md-data-table-pagination>
+			<md-input-container flex><md-button class="md-raised md-primary" ng-click="addPracticeExam()" >Create Practice Exam </md-button></md-input-container>	
+					</div>
+
+
+	</section>
+	</md-content>
+</div>
