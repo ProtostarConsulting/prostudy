@@ -51,6 +51,8 @@ angular.module("stockApp")
 					};
 					
 					
+					
+					
 					$scope.tempCustomer = {cust_Name: "", mobile: ""};
 					$scope.customers = []; 
 					

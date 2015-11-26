@@ -8,39 +8,22 @@ angular
 
 					$log.debug("Inside hrCtr");
 					$log.debug("$stateParams:", $stateParams);
-					$log.debug("$stateParams.selectedempNo:",
-							$stateParams.selectedempNo);
+					$log.debug("$stateParams.selectedempNo:",$stateParams.selectedempNo);
 					$log.debug("$stateParams.selectedempstructno:",
 							$stateParams.selectedempstructno);
-					$log.debug("$stateParams.selectedsallist=====:",
-							$stateParams.selectedsalslip);
-					
-					
-					
-					
-					
-					
-					
-					
 					$scope.selectedempNo = $stateParams.selectedempNo;
 					$scope.selectedempstructno = $stateParams.selectedempstructno;
 
+
 					
-					$scope.AA=[]
-					$scope.AA=angular.fromJson($stateParams.selectedsalslip);
-					$log.debug("salsliplist======="+$scope.AA);
+					$log.debug("$stateParams.selectedsallist=====:"+ angular.fromJson($stateParams.selectedsalslip));
 					
-					
+
 					$scope.showSimpleToast = function(msgBean) {
 						$mdToast.show($mdToast.simple().content(msgBean)
 								.position("top").hideDelay(3000));
 					};
 
-					$scope.selected=[];
-					
-				
-					
-					
 					$scope.emp = {
 						empid : "",
 						empName : "",
@@ -48,8 +31,6 @@ angular
 						compemail : "",
 						empAddress : ""
 					};
-					
-					
 
 					$scope.salstruct = {
 						empid : "",
@@ -79,9 +60,7 @@ angular
 					};
 
 					$scope.viewsalstruct = $scope.salstruct;
-					
-					
-					
+					$scope.printsalstruct = $scope.salstruct;
 					$scope.document = {
 						empid : "",
 						empName : "",
@@ -89,15 +68,15 @@ angular
 						docfile : "",
 						docdiscription : ""
 					};
-					
-					$scope.salslip={
-							salslip_id:"",
-							empdetail:$scope.emp,
-							salarystruct:$scope.salstruct,
-							month:"",
-							generateddate:"",
-							bank_name:"",
-							acno:""
+
+					$scope.salslip = {
+						salslip_id : "",
+						// empdetail : $scope.emp,
+						salarystruct : $scope.salstruct,
+						month : "-",
+						generateddate : "-",
+						bank_name : "-",
+						acno : "-"
 					};
 
 					$scope.addemp = function() {
@@ -339,29 +318,27 @@ angular
 
 					$scope.adddoc = function() {
 
-						//var path = document.getElementById("filenm").value;
-						//$log.debug("path="+path);
-						//File file = new File(path);
-						//InputStream inputStream = new FileInputStream(""+path);
-						/* if ( $scope.document.docfile) {
-							 $log.debug("Inside Ctr adddoc############################");
-						        $scope.upload($scope.document.docfile);
-						      }
-						    // upload on file select or drop
-						    $scope.upload = function (file) {
-						        Upload.upload({
-						            url: 'upload/url',
-						            data: {file: file, 'username': $scope.username}
-						        }).then(function (resp) {
-						            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-						        }, function (resp) {
-						            console.log('Error status: ' + resp.status);
-						        }, function (evt) {
-						            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-						            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-						        });
-						    };
-						
+						// var path = document.getElementById("filenm").value;
+						// $log.debug("path="+path);
+						// File file = new File(path);
+						// InputStream inputStream = new
+						// FileInputStream(""+path);
+						/*
+						 * if ( $scope.document.docfile) { $log.debug("Inside
+						 * Ctr adddoc############################");
+						 * $scope.upload($scope.document.docfile); } // upload
+						 * on file select or drop $scope.upload = function
+						 * (file) { Upload.upload({ url: 'upload/url', data:
+						 * {file: file, 'username': $scope.username}
+						 * }).then(function (resp) { console.log('Success ' +
+						 * resp.config.data.file.name + 'uploaded. Response: ' +
+						 * resp.data); }, function (resp) { console.log('Error
+						 * status: ' + resp.status); }, function (evt) { var
+						 * progressPercentage = parseInt(100.0 * evt.loaded /
+						 * evt.total); console.log('progress: ' +
+						 * progressPercentage + '% ' +
+						 * evt.config.data.file.name); }); };
+						 * 
 						 */
 						var hrService = appEndpointSF.gethrService();
 
@@ -371,33 +348,39 @@ angular
 									$log.debug("Inside Ctr adddoc");
 									$log.debug("msgBean.msg:" + msgBean.msg);
 									$scope.showSimpleToast(msgBean.msg);
-									//$scope.getAllemps();
+									// $scope.getAllemps();
 								});
 
 						$scope.document = {};
 					}
 
-					/*$scope.ganeratesalslip=function() {
-						
-					var hrService = appEndpointSF.gethrService();
-					
-					for(i=0;i<$scope.selected.length;i++){
-					//			$scope.selectedSalSlipList[i]=$scope.selected[i].empid;
-					//		$log.debug("$$$$$$$$$$$$$$$$$$$"+$scope.selectedSalSlipList);
-						hrService.getstructByID($scope.selected[i].empid).then(
-									function(structlist) {
+					$scope.ganeratesalslip = function() {
+
+						var hrService = appEndpointSF.gethrService();
+
+						for (i = 0; i < $scope.selected.length; i++) {
+							hrService
+									.getstructByID($scope.selected[i].empid)
+									.then(
+											function(structlist) {
 												$scope.selectedSalSlip = structlist[0];
-												$log.debug("$scope.Salstruct:empDetail ===="+ angular.toJson($scope.selectedSalSlip));
+												// --------insert element in salslip database 
+											
+												$scope.salslip.salarystruct = $scope.selectedSalSlip;
+												
+												hrService.addgsalslip($scope.salslip);
+											
+												// ----------
+												$log
+														.debug("$scope.Salstruct:empDetail ===="
+																+ angular
+																		.toJson($scope.salslip.salarystruct));
 											});
-						//$scope.selectedSalSlipList[i].empid=$scope.selectedSalSlip[0].empid;
-						//$scope.selectedSalSlipList[i].empName=$scope.selectedSalSlip[0].empName;
-						//$scope.selectedSalSlipList[i].grosssal=$scope.selectedSalSlip[0].grosssal;
+
+						}
+
 					}
-					
-					}
-					$scope.selectedSalSlip=[]; 
-					
-					 */
+					$scope.selectedSalSlip = [];
 
 					$scope.getAllempsSalStruct = function() {
 						$log.debug("Inside Ctr $scope.getAllempsSalStruct");
@@ -414,7 +397,7 @@ angular
 					$scope.getAllempsSalStruct();
 
 					$scope.viewfindsalstruct = function() {
-						$log.debug("********selectedempstructno="
+						$log.debug("selectedempstructno="
 								+ $scope.selectedempstructno);
 
 						$log
@@ -440,14 +423,11 @@ angular
 
 					$scope.viewslist = [];
 					$scope.viewfindsalstruct();
+					
+					$scope.getJson = function(object) {
+						return angular.toJson(object);
+					};
 
-							
-					/*$scope.slip= function(list) {
-						$log.debug("list________"+list);
-						
-					}*/
-					
-					
 					$scope.toggleRight = buildToggler('right');
 
 					function buildToggler(navID) {
@@ -464,4 +444,5 @@ angular
 							$log.debug("close RIGHT is done");
 						});
 					};
+					
 				});
