@@ -18,12 +18,14 @@
 				style="margin-top: 20px; margin-bottom: 20px;">
 				<md-divider flex></md-divider>
 			</div>
-
+			<h3>
+				<u>Create Invoice</u>
+			</h3>
 			<div layout layout-sm="column">
 				<md-input-container flex> <md-select
 					ng-model="invoiceObj.customerName" placeholder="Customer Name"
-					ng-change="CustomerddlChange($index, customerName)"> <md-option
-					ng-value="cust" ng-repeat="cust in customersforinvoice">{{cust.customerName
+					ng-change="CustomerddlChange($index, selectedcustomerName)">
+				<md-option ng-value="cust" ng-repeat="cust in customersforinvoice">{{cust.customerName
 				}}</md-option> </md-select> </md-input-container>
 
 				<div layout="row">
@@ -34,7 +36,19 @@
 
 				</div>
 			</div>
-
+			<div layout layout-sm="column">
+				<md-input-container flex> <md-select
+					ng-model="invoiceObj.salesOrderId" placeholder="Sales Order No"
+					ng-change="SOddlChange($index, selectedSOId)">
+				<md-option ng-value="SO" ng-repeat="SO in SOforinvoice">{{SO.salesOrderId
+				}}</md-option> </md-select> </md-input-container>
+				
+				<md-input-container flex> <md-select
+					ng-model="invoiceObj.purchaseOrderNo" placeholder="Purchase Order No"
+					ng-change="POddlChange($index, selectedPOId)">
+				<md-option ng-value="PO" ng-repeat="PO in POforinvoice">{{PO.purchaseOrderNo
+				}}</md-option> </md-select> </md-input-container>
+			</div>
 			<div layout layout-sm="column">
 				<md-input-container flex> <label>Address
 				</label> <textarea ng-model="cust.customerName.customerAddress" rows="2"

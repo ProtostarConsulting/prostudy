@@ -1,0 +1,129 @@
+<md-content>
+<div id="invoiceDiv">
+	<h3>Sales Order View</h3>
+	<div layout="row" layout-align="center start"
+		style="margin-top: 20px; margin-bottom: 20px;">
+		<md-divider flex></md-divider>
+	</div>
+
+	<div>
+		<table style="line-height: 20px;">
+
+			<tbody>
+				<tr>
+					<td style="width: 20%"><b>S.O.No :</b>
+						{{sODetail.salesOrderId}}</td>
+					<td style="width: 20%"><b>Customer Name :</b>
+						{{sODetail.customerName.customerName}}</td>
+						<td style="width: 20%"><b>Referance By :</b>
+						{{sODetail.customerRefId}}</td>
+				</tr>
+				<tr>
+					<td style="width: 20%"><b>Quotation Date :</b>
+						{{sODetail.quotationDate}}</td>
+					<td style="width: 20%"><b>Sales Order Date :</b>
+						{{sODetail.salesOrderDate}}</td>
+				</tr>
+				<tr>
+					<td style="width: 50%" colspan="2"><label>To :</label><br>
+						{{sODetail.to}}</td>
+					<td style="width: 50%" colspan="3"><label>Ship To :</label><br>
+						{{sODetail.shipTo}}</td>
+				</tr>
+				<tr>
+					<td style="width: 20%"><label>Sales Person :</label><br>
+						{{sODetail.salesPerson}}</td>
+					<td style="width: 20%"><label>Job :</label><br>
+						{{sODetail.requisitioner}}</td>
+					<td style="width: 20%"><label>Shipped Via :</label><br>
+						{{sODetail.shippedVia}}</td>
+					<td style="width: 20%"><label>Shipping Terms :</label><br>
+						{{sODetail.shippingTerms}}</td>
+					<td style="width: 20%"><label>Delivery Date :</label><br>
+						{{sODetail.deliveryDate}}</td>
+					<td style="width: 20%"><label>Payment Terms :</label><br>
+						{{sODetail.paymentTerms}}</td>
+					<td style="width: 20%"><label>Due Date :</label><br>
+						{{sODetail.dueDate}}</td>
+				</tr>
+
+			</tbody>
+		</table>
+		<div layout="row" layout-align="center start"
+			style="margin-top: 20px; margin-bottom: 20px;">
+			<md-divider flex></md-divider>
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<th style="width: 3%">Sr.No.</th>
+					<th style="width: 50%">Item Name</th>
+					<th style="width: 10%">Quantity</th>
+					<th style="width: 20%">Price</th>
+					<th style="width: 17%">Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="sOLineItem in sODetail.sOLineItemList">
+
+					<td>{{ sOLineItem.srNo }}</td>
+					<td>{{sOLineItem.itemName}}</td>
+					<td>{{sOLineItem.qty}}</td>
+					<td>{{sOLineItem.price}}</td>
+					<td>{{sOLineItem.qty * sOLineItem.price}}</td>
+
+
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><label><u>Sub Total</u> </label></td>
+					<td>{{sODetail.subTotal}}</td>
+				</tr>
+
+				<tr>
+					<td>-</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><label><u>Tax Details</u> </label></td>
+					<td><md-input-container flex> <label>Tax
+							Type </label> </md-input-container>{{sODetail.selectedTaxItem.taxCodeName}}</td>
+					<td><md-input-container flex> <label>Tax
+						</label> </md-input-container> {{sODetail.selectedTaxItem.taxPercenatge}}%</td>
+					<td><md-input-container flex> <label>Tax
+							Total </label> </md-input-container>{{sODetail.taxTotal}}</td>
+				</tr>
+				<tr>
+					<td>-</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><label><u>Final Total</u> </label></td>
+					<td><md-input-container flex>
+						{{sODetail.finalTotal}}</md-input-container></td>
+				</tr>
+				<tr>
+					<td></td>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<b><u>Note</u>:</b>This is electronically generated invoice. <br>
+
+	<iframe name="print_frame" width="0" height="0" frameborder="0"
+		src="about:blank"></iframe>
+</div>

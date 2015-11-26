@@ -4,11 +4,13 @@ app
 				"invoiceCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $state, $http, $stateParams,
-						$routeParams,$filter, objectFactory, appEndpointSF) {
-					 
+						$routeParams, $filter, objectFactory, appEndpointSF) {
+
 					$scope.invoiceObj = {
 
 						invoiceId : '',
+						purchaseOrderNo : '',
+						salesOrderId : '',
 						customerName : '',
 						customerAddress : '',
 						invoiceDate : $filter("date")(Date.now(), 'dd-MM-yyyy'),
@@ -21,7 +23,6 @@ app
 					};
 					$scope.selected = [];
 
-					
 					$log.debug("$stateParams:", $stateParams);
 					$log.debug("$stateParams.selectedInvoiceNo:",
 							$stateParams.selectedInvoiceNo);
@@ -33,7 +34,8 @@ app
 
 						invoiceService
 								.getinvoiceByID($scope.selectedBillNo)
-								.then(function(invoiceList) {
+								.then(
+										function(invoiceList) {
 											$scope.invoiceDetail = invoiceList[0];
 											$log
 													.debug("$scope.showBill:invoiceDetail ===="
@@ -44,8 +46,7 @@ app
 					}
 					$scope.invoiceDetail = [];
 					$scope.showBill();
-					
-					
+
 					$scope.addInvoice = function() {
 						$log.debug("No1");
 						var InvoiceService = appEndpointSF.getInvoiceService();
@@ -59,18 +60,8 @@ app
 
 								});
 						$log.debug("No4");
-						
-						
-					/*	var StockService = appEndpointSF.getInvoiceService();
 
-						StockService.updateStock($scope.invoiceObj).then(
-								function(msgBean) {
-									$log.debug("No6");
-									$log.debug("Inside Ctr updateStock");
-									$log.debug("msgBean.msg:" + msgBean.msg);
-									$scope.showSimpleToast();
-
-								});*/
+						$scope.invoiceObj = {};
 					}
 
 					$scope.getAllInvoice = function() {
@@ -84,6 +75,9 @@ app
 											$log
 													.debug("Inside Ctr getAllInvoice");
 											$scope.invoiceData = invoiceList;
+
+											$scope.tempInvoiceId = $scope.invoiceData.length + 1;
+											$scope.invoiceObj.invoiceId = $scope.tempInvoiceId;
 											$log
 													.debug("Inside Ctr $scope.invoiceData:"
 															+ angular
@@ -92,6 +86,7 @@ app
 					}
 
 					$scope.invoiceData = [];
+					$scope.tempInvoiceId;
 					$scope.getAllInvoice();
 
 					$scope.addItem = function() {
@@ -149,8 +144,20 @@ app
 						$scope.calfinalTotal();
 					};
 
-					$scope.CustomerddlChange = function(index, customerName) {
+					$scope.CustomerddlChange = function(index,
+							selectedcustomerName) {
 						$log.debug("##Came to CustomerddlChange...");
+
+					};
+
+					$scope.SOddlChange = function(index, selectedSOId) {
+						$log.debug("##Came to SOddlChange...");
+
+					};
+
+					$scope.POddlChange = function(index, selectedPOId) {
+						$log.debug("##Came to POddlChange...");
+
 					};
 
 					$scope.removeItem = function(index) {
@@ -192,7 +199,7 @@ app
 								});
 					}
 
-					$scope.customers = [];
+					// $scope.customers = [];
 					$scope.getAllCustomers();
 
 					$scope.getAllStock = function() {
@@ -205,7 +212,7 @@ app
 						});
 					}
 
-					$scope.stockData = [];
+					// $scope.stockData = [];
 					$scope.getAllStock();
 
 					$scope.getAllTaxes = function() {
@@ -217,17 +224,62 @@ app
 							$scope.taxforinvoice = taxList;
 						});
 					}
-					$scope.taxData = [];
+					// $scope.taxData = [];
 					$scope.getAllTaxes();
+
+					$scope.getAllSalesOrder = function() {
+						$log.debug("Inside Ctr $scope.getAllSalesOrder");
+						var salesService = appEndpointSF.getSalesService();
+
+						salesService
+								.getAllSalesOrder()
+								.then(
+										function(salesOrderList) {
+											$log
+													.debug("Inside Ctr getAllSalesOrder");
+											$scope.SOforinvoice = salesOrderList;
+											$log
+													.debug("@@@@@@@getAllSalesOrder"
+															+ angular
+																	.toJson($scope.SOforinvoice));
+
+										});
+					}
+
+					// $scope.SOforinvoice = [];
+					$scope.getAllSalesOrder();
+
+					$scope.getAllPurchaseOrder = function() {
+						$log.debug("Inside Ctr $scope.getAllPurchaseOrder");
+						var purchaseService = appEndpointSF
+								.getPurchaseService();
+
+						purchaseService
+								.getAllPurchaseOrder()
+								.then(
+										function(purchaseOrderList) {
+											$log
+													.debug("Inside Ctr getAllPurchaseOrder");
+											$scope.POforinvoice = purchaseOrderList;
+											$log
+													.debug("@@@@@@@getAllPurchaseOrder"
+															+ angular
+																	.toJson($scope.POforinvoice));
+										});
+					}
+
+					// $scope.purchaseOrderList = [];
+					$scope.getAllPurchaseOrder();
 
 					var printDivCSS = new String(
 							'<link href="/lib/base/css/angular-material.min.css"" rel="stylesheet" type="text/css">'
 									+ '<link href="/lib/base/css/bootstrap.min.css"" rel="stylesheet" type="text/css">')
 					$scope.printDiv = function(divId) {
-//						window.frames["print_frame"].document.body.innerHTML = printDivCSS
-//								+ document.getElementById(divId).innerHTML;
-						 window.frames["print_frame"].document.body.innerHTML
-						 = document.getElementById(divId).innerHTML;
+						// window.frames["print_frame"].document.body.innerHTML
+						// = printDivCSS
+						// + document.getElementById(divId).innerHTML;
+						window.frames["print_frame"].document.body.innerHTML = document
+								.getElementById(divId).innerHTML;
 						window.frames["print_frame"].window.focus();
 						window.frames["print_frame"].window.print();
 					}

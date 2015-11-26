@@ -467,7 +467,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			if (typeof invoiceList === 'undefined')
 				invoiceList = [];
 
-			invoice.invoiceId = invoiceList.length + 100;
+	//		invoice.invoiceId = invoiceList.length + 100;
 
 			invoiceList.push(invoice);
 			$localStorage.dbinvoice = angular.toJson(invoiceList);
@@ -608,6 +608,32 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 
 	}
+	
+	SalesService.getSOByID = function(selectedSOId) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+			var tempSOItem = [];
+			
+			var sOList = angular.fromJson($localStorage.dbSalesOrder);
+
+			if (typeof sOList === 'undefined')
+				sOList = [];
+
+			for (i = 0; i < sOList.length; i++) {
+				if (selectedSOId == sOList[i].salesOrderId) {
+
+					// selectedBillNo = invoiceList[i];
+					tempSOItem.push(sOList[i]);
+
+					 $log.debug("TEMP===" + tempSOItem[i]);
+				}
+			}
+			deferred.resolve(tempSOItem);
+
+		}, 1000);
+		return deferred.promise;
+	}
 /*
 	SalesService.updateemp = function(editProfile) {
 		var deferred = $q.defer();
@@ -706,13 +732,14 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			var deferred = $q.defer();
 			$timeout(function() {
 				var tempPOItem = [];
+				
 				var pOList = angular.fromJson($localStorage.dbPurchaseOrder);
 
 				if (typeof pOList === 'undefined')
 					pOList = [];
 
 				for (i = 0; i < pOList.length; i++) {
-					if (selectedPurchaseOrderNo == pOList[i].invoiceId) {
+					if (selectedPurchaseOrderNo == pOList[i].purchaseOrderNo) {
 
 						// selectedBillNo = invoiceList[i];
 						tempPOItem.push(pOList[i]);

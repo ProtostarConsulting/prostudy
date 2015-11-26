@@ -7,8 +7,9 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 	$scope.purchaseOrderObj = {
 			
 			purchaseOrderNo: '',
+			customerName:'',
 			to: '',
-			ShipTo: '',
+			shipTo: '',
 			PODate:'',
 			requisitioner: '',
 			shippedVia: '',
@@ -20,12 +21,6 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 			taxPercenatge : '',
 			taxTotal : 0,
 			finalTotal : ''
-	};
-	
-	$scope.showSimpleToast = function() {
-		$mdToast.show($mdToast.simple().content(
-				'Purchase Order Saved!').position("top")
-				.hideDelay(3000));
 	};
 	
 	$scope.addPurchaseOrder = function() {
@@ -65,7 +60,7 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 
 	$scope.selectedPurchaseOrderNo = $stateParams.selectedPONo;
 	
-	$scope.showPO = function() {
+	$scope.getPOByID = function() {
 		var purchaseService = appEndpointSF.getPurchaseService();
 
 		purchaseService
@@ -80,7 +75,7 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 
 	}
 	$scope.pODetail = [];
-	$scope.showPO();
+	$scope.getPOByID();
 	
 	
 	$scope.addItem = function() {
@@ -135,6 +130,10 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 		$scope.calfinalTotal();
 	};
 
+	$scope.CustomerddlChange = function(index, customerName) {
+		$log.debug("##Came to CustomerddlChange...");
+	};
+	
 	$scope.lineItemTaxChange = function(index, selectedTaxItem) {
 		$log.debug("##Came to lineItemTaxChange...");
 
@@ -165,17 +164,39 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 		});
 	};
 	
+	$scope.showSimpleToast = function() {
+		$mdToast.show($mdToast.simple().content(
+				'Purchase Order Saved!').position("top")
+				.hideDelay(3000));
+	};
+	
+	$scope.getAllCustomers = function() {
+		$log.debug("Inside Ctr $scope.getAllCustomers");
+		var customerService = appEndpointSF
+				.getCustomerService();
+
+		customerService.getAllCustomers().then(
+				function(custList) {
+					$log.debug("Inside Ctr getAllCustomers");
+					$scope.customersforinvoice = custList;
+				});
+	}
+
+//	$scope.customers = [];
+	$scope.getAllCustomers();
+	
 	$scope.getAllStock = function() {
 		$log.debug("Inside Ctr $scope.getAllStock");
 		var stockService = appEndpointSF.getStockService();
 
 		stockService.getAllStock().then(function(stockList) {
 			$log.debug("Inside Ctr getAllStock");
-			$scope.stockforinvoice = stockList;
+			$scope.stockforPO = stockList;
+			$log.debug("@@@ $scope.stockforPO==="+$scope.stockforPO);
 		});
 	}
 
-	$scope.stockData = [];
+//	$scope.stockData = [];
 	$scope.getAllStock();
 
 	$scope.getAllTaxes = function() {
@@ -184,9 +205,10 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 
 		taxService.getAllTaxes().then(function(taxList) {
 			$log.debug("Inside Ctr getAllTaxes");
-			$scope.taxforinvoice = taxList;
+			$scope.taxforPO = taxList;
+			$log.debug("@@@ $scope.taxforPO==="+$scope.taxforPO);
 		});
 	}
-	$scope.taxData = [];
+//	$scope.taxData = [];
 	$scope.getAllTaxes();
 });

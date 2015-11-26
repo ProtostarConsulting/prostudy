@@ -1,10 +1,3 @@
-
- <md-content>
-<div layout="row" layout-align="center start"
-	style="margin-top: 20px; margin-bottom: 20px;">
-	<md-divider flex></md-divider>
-</div>
-
 <div class="md-toolbar-tools">
 	<span flex></span>
 	<!--<md-card>-->
@@ -18,47 +11,42 @@
 	<!--</md-card>-->
 </div>
 </md-content>
- <md-content>
+<md-content>
 <div id="invoiceDiv">
 
+	<div layout="row" layout-align="center start"
+		style="margin-top: 20px; margin-bottom: 20px;">
+		<md-divider flex></md-divider>
+	</div>
+
 	<div>
-
-
-		<table>
-			<tbody>
-				<tr><td style="width: 20%"><img alt="Logo" src="img/images/protostar_logo_pix_313_132.jpg"></td>
-					<td style="width: 60%">
-						<h2 style= "color:green">Protostar Consulting Services</h2>						
-					</td>
-					<td style="width: 20%"><label style= "color:blue"><u>Address</u><br>E-101,
-							Manimangar Appartment<br>Kasarwadi-414141.<br>Ph.(020)4141414.<br>info@protostar.co.in
-					</label></td>
-				</tr>
-			</tbody>
-		</table>
-
-
-		<div layout="row" layout-align="center start"
-			style="margin-top: 20px; margin-bottom: 20px;">
-			<md-divider flex></md-divider>
-		</div>
-
 		<table style="line-height: 20px;">
 
 			<tbody>
 				<tr>
-					<td style="width: 20%"><b>Customer Name :</b>
-						{{invoiceDetail.customerName.customerName}}</td>
-					<td style="width: 20%"><label>Invoice ID :</label>
-						{{invoiceDetail.invoiceId}}</td>
-					<td style="width: 20%"><label>Date :</label>
-						{{invoiceDetail.invoiceDate}}</td>
+					<td style="width: 20%"><b>P.O.No :</b>
+						{{pODetail.purchaseOrderNo}}</td>
 				</tr>
 				<tr>
-					<td><label>Customer Address :</label>
-						{{invoiceDetail.customerName.customerAddress}}</td>
+					<td style="width: 50%"  colspan="2"><label>To :</label><br>
+						{{pODetail.to}}</td>
+					<td style="width: 50%" colspan="3"><label>Ship To :</label><br>
+						{{pODetail.shipTo}}</td>
+				</tr>
+				<tr>
+					<td style="width: 20%"><label>P.O.Date :</label><br> {{pODetail.PODate}}</td>
 
-					<td><label>Note :</label> {{invoiceDetail.note}}</td>
+					<td style="width: 20%"><label>Requisitioner :</label><br>
+						{{pODetail.requisitioner}}</td>
+
+					<td style="width: 20%"><label>Shipped Via :</label><br>
+						{{pODetail.shippedVia}}</td>
+
+					<td style="width: 20%"><label>F.O.B.Point :</label><br> {{pODetail.fOBPoint}}</td>
+
+					<td style="width: 20%"><label>Terms :</label><br> {{pODetail.terms}}</td>
+
+
 				</tr>
 
 			</tbody>
@@ -78,7 +66,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="invoiceLineItem in invoiceDetail.invoiceLineItemList">
+				<tr ng-repeat="invoiceLineItem in pODetail.pOLineItemList">
 
 					<td>{{ invoiceLineItem.srNo }}</td>
 					<td>{{invoiceLineItem.itemName}}</td>
@@ -93,7 +81,7 @@
 					<td></td>
 					<td></td>
 					<td><label><u>Sub Total</u> </label></td>
-					<td>{{selectedItem.invoiceObj.subTotal}}</td>
+					<td>{{pODetail.subTotal}}</td>
 				</tr>
 
 				<tr>
@@ -107,11 +95,11 @@
 					<td></td>
 					<td><label><u>Tax Details</u> </label></td>
 					<td><md-input-container flex> <label>Tax
-							Type </label> </md-input-container>{{invoiceDetail.selectedTaxItem.taxCodeName}}</td>
+							Type </label> </md-input-container>{{pODetail.selectedTaxItem.taxCodeName}}</td>
 					<td><md-input-container flex> <label>Tax
-						</label> </md-input-container> {{invoiceDetail.selectedTaxItem.taxPercenatge}}%</td>
+						</label> </md-input-container> {{pODetail.selectedTaxItem.taxPercenatge}}%</td>
 					<td><md-input-container flex> <label>Tax
-							Total </label> </md-input-container>{{invoiceDetail.taxTotal}}</td>
+							Total </label> </md-input-container>{{pODetail.taxTotal}}</td>
 				</tr>
 				<tr>
 					<td>-</td>
@@ -126,7 +114,7 @@
 					<td></td>
 					<td><label><u>Final Total</u> </label></td>
 					<td><md-input-container flex>
-						{{invoiceDetail.finalTotal}}</md-input-container></td>
+						{{pODetail.finalTotal}}</md-input-container></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -137,7 +125,7 @@
 	</div>
 
 	<b><u>Note</u>:</b>This is electronically generated invoice. <br>
-	
+
 	<iframe name="print_frame" width="0" height="0" frameborder="0"
 		src="about:blank"></iframe>
 </div>

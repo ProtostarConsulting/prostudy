@@ -116,6 +116,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/SalesOrderList",
 		templateUrl : '/app/sales/salesOrder_list.html',
 		controller : 'salesCtr'
+	}).state('salesOrder.view', {
+		url : "/SalesOrderview/:selectedSOId",
+		templateUrl : '/app/sales/salesOder_view.html',
+		controller : 'salesCtr'
 	}).state('salesOrder.PurchaseOrderadd', {
 		url : "/PurchaseOrderadd",
 		templateUrl : '/app/purchase/purchaseOrder_add.html',

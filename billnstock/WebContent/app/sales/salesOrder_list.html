@@ -10,24 +10,24 @@
 				<th name="Customer Name" order-by="customerName"></th>
 				<th name="Quotation Date" order-by="quotationDate"></th>
 				<th name="Sales Order Date" order-by="salesOrderDate"></th>
-				<th name="Quick Pay" order-by="quickPay"></th>
+				<th name="Amount" order-by="finalTotal"></th>
 			</tr>
 		</thead>
 
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="salesOrder in salesOrderList | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
+				ng-repeat="sOList in salesOrderList | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
 
-				<td>{{salesOrder.salesOrderId}}</td>
-				<td>{{salesOrder.customerName}}</td>
-				<td>{{salesOrder.quotationDate}}</td>
-				<td>{{salesOrder.salesOrderDate}}</td>
-				<td>{{salesOrder.quickPay}}</td>
-				<!-- <td><section layout="row" layout-sm="column">
+				<td>{{sOList.salesOrderId}}</td>
+				<td>{{sOList.customerName.customerName}}</td>
+				<td>{{sOList.quotationDate}}</td>
+				<td>{{sOList.salesOrderDate}}</td>
+				<td>{{sOList.finalTotal}}</td>
+				<td><section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary"
-							ui-sref="customer.view({selectedCustomerId: customer.customerId})">
-						Customer Details</md-button>
-					</section></td> -->
+							ui-sref="salesOrder.view({selectedSOId: sOList.salesOrderId})">
+						View SO</md-button>
+					</section></td>
 				<td>
 			</tr>
 		</tbody>

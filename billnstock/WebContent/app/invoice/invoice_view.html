@@ -22,8 +22,6 @@
 <div id="invoiceDiv">
 
 	<div>
-
-
 		<table>
 			<tbody>
 				<tr><td style="width: 20%"><img alt="Logo" src="img/images/protostar_logo_pix_313_132.jpg"></td>
@@ -54,6 +52,14 @@
 					<td style="width: 20%"><label>Date :</label>
 						{{invoiceDetail.invoiceDate}}</td>
 				</tr>
+				
+				<tr>
+					<td style="width: 20%"><b>Sales Order No. :</b>
+						{{invoiceDetail.salesOrderId}}</td>
+					<td style="width: 20%"><label>Purchase Order No. :</label>
+						{{invoiceDetail.purchaseOrderNo}}</td>
+				</tr>
+				
 				<tr>
 					<td><label>Customer Address :</label>
 						{{invoiceDetail.customerName.customerAddress}}</td>
