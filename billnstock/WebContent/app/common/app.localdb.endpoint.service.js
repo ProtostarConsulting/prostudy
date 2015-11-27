@@ -315,6 +315,28 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		}, 1000);
 		return deferred.promise;
 	}
+	
+	hrService.addgsalslip = function(salslip) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side local DB addgsalslip...");
+			var salslipList = angular.fromJson($localStorage.dbsalslip);
+			if (typeof salslipList === 'undefined')
+				salslipList = [];
+					
+			salslipList.salslip_id = salslipList.length+100;	
+			salslipList.push(salslip);
+			$localStorage.dbsalslip = angular.toJson(salslipList);
+			deferred.resolve({
+				"msg" : "employee Added Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}	
 	// End of hrService
 
 //*************************************************************************************************************************		

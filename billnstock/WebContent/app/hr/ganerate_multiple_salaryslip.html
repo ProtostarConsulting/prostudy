@@ -1,0 +1,43 @@
+
+<md-content layout-padding>
+<!-- <div>{{salslip.salarystruct}}</div> -->
+<div>
+	<md-data-table-container>
+	<table md-data-table md-row-select="selected" md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onOrderChange">
+			<tr>
+		    	<th name="Employee id" order-by="empid"></th>
+				<th name="Employee Name" order-by="empName"></th>
+				<th name="gross" order-by="gross"></th>
+				<th name="netSal" order-by="netsal"></th>
+			   
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="emp in empSalStruct | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
+				<td>{{emp.empid}}</td>
+				<td>{{emp.empName}}</td>
+				<td>{{emp.grosssal}}</td>
+				<td>{{emp.Netsalgrandtotal}}</td>
+		</tr>
+		</tbody>
+	</table>
+ 
+ <md-data-table-pagination md-limit="query.limit"
+		md-page="query.page" md-total={{emps.length}}
+		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
+</div>
+
+<div layout layout-sm="column">
+<!-- <input ng-model="testCtrVariable"> -->
+		<md-button ng-click="ganeratesalslip()"
+				class="md-primary"> Get Selected Data </md-button>
+		<md-button ui-sref="hr.printgeneratesalslip({selectedsalslip:getJson(salslip.salarystruct)})"  	class="md-primary"> Salary Slip </md-button>	
+
+	</div> <div>
+	{{selected}}
+	</div>
+	
+</md-content>
