@@ -17,8 +17,7 @@ function googleEndpointSFFunc($log, $q) {
 		$log.debug("abc");
 		gapi.client.studentService.addStudent(stud).execute(
 				function(resp) {
-					$log
-					.debug("No5");	
+					$log.debug("No5");	
 					$log.debug("addStudent#resp:" + resp);
 					deferred.resolve(resp);
 				});

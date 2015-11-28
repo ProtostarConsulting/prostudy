@@ -1,21 +1,16 @@
 var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
 		'ngMessages', "xeditable", "ui.bootstrap", "ui.router",
 
-		'md.data.table', 'ngResource', 'textAngular','ngRoute' ,'ngStorage']);
-
-
-		
+		'md.data.table', 'ngResource', 'textAngular', 'ngRoute', 'ngStorage' ]);
 
 app.config(function($mdThemingProvider) {
-	$mdThemingProvider.theme('default').primaryPalette('indigo')
-			.accentPalette('red')
-			  .warnPalette('pink')
-              .backgroundPalette('grey');
+	$mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette(
+			'red').warnPalette('pink').backgroundPalette('grey');
 });
 
 app.config(function($logProvider) {
-	//$logProvider.debugEnabled(false);	
-	$logProvider.debugEnabled(true);//this is default	
+	// $logProvider.debugEnabled(false);
+	$logProvider.debugEnabled(true);// this is default
 });
 app.config(function($stateProvider, $urlRouterProvider) {
 	// This adds config 2
@@ -47,58 +42,43 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/exam",
 		templateUrl : '/app/exam/exam_module.html',
 		controller : 'examModuleCtr'
-	})
-	
-	.state('exam.addnewquestion', {
+	}).state('exam.practiceExamResultView', {
+		url : "/practiceExamResultView",
+		templateUrl : '/app/exam/practiceExamResult_view.html',
+		controller : 'practiceExamResultCtr'
+	}).state('exam.addnewquestion', {
 		url : "/addnewquestion",
-		templateUrl : '/app/exam/add_new_question.html',
+		templateUrl : '/app/exam/newQuestion_add.html',
 		controller : 'addNewQuestionCtr'
-	})
-	.state('exam.questionlist', {
-		url : "/exam1/question_list",
+	}).state('exam.questionlist', {
+		url : "/question_list",
 		templateUrl : '/app/exam/question_list.html',
 		controller : 'questionListCtr'
-	})
-	.state('exam.addpracticeexam', {
+	}).state('exam.addpracticeexam', {
 		url : "/addpracticeexam",
-		templateUrl : '/app/exam/add_practice_exam.html',
+		templateUrl : '/app/exam/practiceExam_add.html',
 		controller : 'addPracticeExamCtr'
-	})
-	
-	.state('exam.listpracticeexam', {
+	}).state('exam.listpracticeexam', {
 		url : "/listpracticeexam",
-		templateUrl : '/app/exam/list_practice_exam.html',
-		controller : 'addPracticeExamCtr'
-	})
-	
-	.state('exam.viewpracticeexam', {
+		templateUrl : '/app/exam/practiceExam_list.html',
+		controller : 'practiceExamTestCtr'
+	}).state('exam.viewpracticeexam', {
 		url : "/viewpracticeexam",
-		templateUrl : '/app/exam/view_practice_exam.html',
+		templateUrl : '/app/exam/practiceExam_view.html',
 		controller : 'addPracticeExamCtr'
-	})
-	.state('exam.practiceexamtest', {
-		url : "/practiceexam/:selectedExamId",
-		templateUrl : '/app/exam/practice_exam_test.html',
-		controller : 'addPracticeExamCtr'
-	})
-	
-	.state('exam.view', {
-		url : "/exam/view",
-		templateUrl : '/app/exam/exam_view.html',
-		controller : 'examCtr'
-	}).state('examtest', {
-		url : "/exam/examtest",
-		templateUrl : '/app/exam/examdemo.html',
-		controller : 'examDemoCtr'
+	}).state('exam.practiceexamtest', {
+		url : "/practiceexam1/:selectedExamId",
+		templateUrl : '/app/exam/practiceExamTest.html',
+		controller : 'practiceExamTestCtr'
+	}).state('examscore', {
+		url : "/examresult/score",
+		templateUrl : '/app/exam/exam_score.html',
+		controller : 'practiceExamTestCtr'
 	}).state('exam.question', {
-		url : "/exam/question",
+		url : "/question",
 		templateUrl : '/app/question/question_add.html',
 		controller : 'questionCtr'
-	})/*.state('exam.questionlist', {
-		url : "/exam/question/list",
-		templateUrl : '/app/question/question_list.html',
-		controller : 'questionListCtr'
-	})*/.state('examdemo', {
+	}).state('examdemo', {
 		url : "/examdemo",
 		templateUrl : '/app/examdemo/examdemo_module.html',
 		controller : 'examDemoModuleCtr'
@@ -166,7 +146,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/list",
 		templateUrl : "/app/book/book_list.html",
 		controller : 'bookListCtr'
-	
 	}).state('login', {
 		url : "/login",
 		templateUrl : '/app/login/login_module.html',
@@ -191,44 +170,43 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/listtest",
 		templateUrl : '/app/demo/table_demo3_view.html',
 		controller : 'nutritionController'
-	}).state('examresult', {
-		url : "/examresult",
-		templateUrl : '/app/examresult/examresult.html',
-		controller : 'examResultCtr'
 	}).state('syllabus', {
 		url : "/syllabus",
 		templateUrl : '/app/syllabus/syllabus_module.html',
+		controller : 'syllabusModuleCtr'
+	}).state('syllabus.add', {
+		url : "/add",
+		templateUrl : '/app/syllabus/syllabus_add.html',
+		controller : 'syllabusAddCtr'
+	}).state('syllabus.view', {
+		url : "/view",
+		templateUrl : '/app/syllabus/syllabus_view.html',
 		controller : 'syllabusCtr'
-	})
-	.state('syllabus.addsyllabus', {
+	}).state('syllabus.addsyllabus', {
 		url : "/addsyllabus",
 		templateUrl : '/app/syllabus/syllabus_addsyllabus.html',
 		controller : 'syllabusCtr'
-
-	})	.state('syllabus.viewsyllabus', {
+	}).state('syllabus.viewsyllabus', {
 		url : "/viewsyllabus",
 		templateUrl : '/app/syllabus/syllabus_viewsyllabus.html',
 		controller : 'syllabusCtr'
-	})
-	.state('syllabus.listsyllabus', {
+	}).state('syllabus.listsyllabus', {
 		url : "/listsyllabus",
 		templateUrl : '/app/syllabus/syllabus_listsyllabus.html',
 		controller : 'syllabusCtr'
-	})
-	
-	;
+	});
 });
 
 app.filter('unique', function() {
-    return function(input, key) {
-        var unique = {};
-        var uniqueList = [];
-        for(var i = 0; i < input.length; i++){
-            if(typeof unique[input[i][key]] == "undefined"){
-                unique[input[i][key]] = "";
-                uniqueList.push(input[i]);
-            }
-        }
-        return uniqueList;
-    };
+	return function(input, key) {
+		var unique = {};
+		var uniqueList = [];
+		for (var i = 0; i < input.length; i++) {
+			if (typeof unique[input[i][key]] == "undefined") {
+				unique[input[i][key]] = "";
+				uniqueList.push(input[i]);
+			}
+		}
+		return uniqueList;
+	};
 });
