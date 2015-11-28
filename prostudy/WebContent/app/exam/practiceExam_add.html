@@ -2,14 +2,14 @@
 	<md-content>
 	<section>
 		<md-subheader class="md-primary">
-		<h4 class="md-headline">Add Practice Exam</h4>
+		<h4 class="md-headline">Create New Practice Exam</h4>
 		</md-subheader>
 
 
 		<div layout="column">
 					<md-input-container
 						md-is-error="myQuestionForm.examtitle.$invalid && (myQuestionForm.$submitted || myQuestionForm.examtitle.$dirty)">
-					<label>Practice Exam Title</label> <input name="examtitle" id="examtitle" ng-required="true"
+					<label>Exam Title</label> <input name="examtitle" id="examtitle" ng-required="true"
 						ng-model="examtitle"  ng-change="getSelected()">
 					<div ng-messages="myQuestionForm.examtitle.$error"
 						ng-if="myQuestionForm.examtitle.$submitted || myQuestionForm.examtitle.$touched">
@@ -82,7 +82,7 @@
 		
 		<div layout="row" layout-align="center end">
 		
-			<md-button class="md-raised md-primary" ng-click="addPracticeExam()">Create Practice Exam</md-button>
+			<md-button class="md-raised md-primary" ng-click="addPracticeExam()">Save Practice Exam</md-button>
 		</div>
 	</section>
 	</md-content>
