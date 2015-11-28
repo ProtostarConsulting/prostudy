@@ -12,7 +12,7 @@ angular.module("prostudyApp").controller(
 							$log.debug("debug resp:" + resp);
 							$log.info("info resp:" + resp);
 							$log.warn("warn resp:" + resp);
-							
+
 							var items = resp.items;
 							$log.debug("q:" + resp.items);
 
@@ -22,10 +22,7 @@ angular.module("prostudyApp").controller(
 
 			/* Setup page menu */
 			$scope.toggleRight = buildToggler('right');
-			/**
-			 * Build handler to open/close a SideNav; when animation finishes
-			 * report completion in console
-			 */
+
 			function buildToggler(navID) {
 				var debounceFn = $mdUtil.debounce(function() {
 					$mdSidenav(navID).toggle().then(function() {
@@ -36,16 +33,10 @@ angular.module("prostudyApp").controller(
 			}
 
 			$scope.close = function() {
-				/*$mdSidenav('right').close().then(function() {
-					$log.debug("close RIGHT is done");
-				});*/
+				/*
+				 * $mdSidenav('right').close().then(function() {
+				 * $log.debug("close RIGHT is done"); });
+				 */
 			};
-			
-			
-			/*$scope.cancelButton = function()
-			{
-				$log.debug("inside cancelButton");
-				$state.go('exam', {});
-			};//end of cancelButton
-*/
+
 		});
