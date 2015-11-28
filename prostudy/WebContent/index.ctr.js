@@ -12,6 +12,7 @@ angular
 					
 					$scope.loginClick = function() {
 						$state.go("login");
+						
 					};
 										
 					
