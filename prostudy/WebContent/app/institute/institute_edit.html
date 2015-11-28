@@ -21,7 +21,7 @@
 
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="institute in institutes  | filter: searchText ">
+				ng-repeat="institute in institutes  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText">
 
 				<td>
 					<div ng-hide="editingData[institute.name]">
@@ -49,7 +49,7 @@
 							ng-model="institute.phone_no" /> </md-input-container>
 					</div>
 				</td>
-				
+
 				<td>
 					<div ng-hide="editingData[institute.name]">
 						{{institute.address}}</div>
@@ -58,7 +58,7 @@
 							ng-model="institute.address" /> </md-input-container>
 					</div>
 				</td>
-				
+
 
 
 				<td><md-button aria-label="Modify Row"
@@ -73,6 +73,9 @@
 			</tr>
 		</tbody>
 	</table>
+	
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+			md-total={{examResults.length}} md-trigger="onpagechange"></md-data-table-pagination>
 
 	</md-data-table-container>
 

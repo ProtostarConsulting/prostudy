@@ -5,20 +5,17 @@
 	<div layout="row" layout-align="center center">
 
 		<md-input-container flex> <label>Enter
-			Institute name</label>
-		<input ng-model="searchText.name"> </md-input-container>
-
-
+			Institute name</label> <input ng-model="searchText.name"> </md-input-container>
 	</div>
 
-		<div layout="row" layout-align="center center">
+	<div layout="row" layout-align="center center">
 		<td><md-button class="md-raised md-primary"
 				ng-click="clicked=true">Get Result</md-button></td>
 		<!-- <td><md-button class="md-raised md-primary"
 				ng-click="clicked=false">Cancel</md-button></td> -->
-				<td><md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button></td>
-				
-		</div>
+		<td><md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button></td>
+
+	</div>
 
 	<div
 		custom-select="institute in institutes | filter: { state: $searchTerm }">
@@ -35,27 +32,33 @@
 
 		<md-data-table-container>
 		<table md-data-table md-row-select="selected" md-progress="deferred">
-			<tr>
+			<thead md-order="query.order" md-trigger="onorderchange">
 
-				<th  name="INSTITUTE NAME" order-by="name"></th>
-				<th  name="EMAIL-ID" order-by="email_id"></th>
-				<th  name="PHONE NO" order-by="phone_no"></th>
-				<th  name="ADDRESS" order-by="address"></th>
-				
+				<tr>
+					<th name="INSTITUTE NAME" order-by="name"></th>
+					<th name="EMAIL-ID" order-by="email_id"></th>
+					<th name="PHONE NO" order-by="phone_no"></th>
+					<th name="ADDRESS" order-by="address"></th>
 
-			</tr>
+
+				</tr>
+
+			</thead>
 
 			<tbody>
-				<tr md-auto-select ng-repeat="institute in institutes | filter:searchText">
+				<tr md-auto-select
+					ng-repeat="institute in institutes  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText">
 					<td>{{institute.name}}</td>
 					<td>{{institute.email_id}}</td>
 					<td>{{institute.phone_no}}</td>
 					<td>{{institute.address}}</td>
-					
+
 				</tr>
 			</tbody>
 		</table>
 
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+			md-total={{examResults.length}} md-trigger="onpagechange"></md-data-table-pagination>
 		</md-data-table-container>
 
 	</div>
