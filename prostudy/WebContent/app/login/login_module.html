@@ -45,29 +45,22 @@
 
 
 
-	<div layout="column" layout-align="centre centre">
+	<div layout="column" layout-align="center center">
 
-		<md-whiteframe class="md-whiteframe-9dp" flex="30" layout
-			layout-align="center center"> <span> <spanstyle: "color:red">{{loginMsg}}</span>
+				 <span> <spanstyle: "color:red">{{loginMsg}}</span>
 				
-					<md-input-container>
+				
+					<md-input-container flex>
       				<label>User Name</label>
       				<input ng-model="tempUser.userName">
     				</md-input-container>
-    				
-    				<md-input-container>
+    	
+    				<md-input-container flex>
       				<label>Password</label>
      				<input ng-model="tempUser.pwd" type="password">
     				</md-input-container>
-					
-		 			 <div layout="row" layout-align="center end">
-			 		 <md-button class="md-raised md-primary" ng-click="login()">LOGIN</md-button> 
-			 		 </div>
-			 		 
-			 		 </md-card-content>
-			 </span>
-		</md-whiteframe>
-
+    				
+					<md-button class="md-raised md-primary" ng-click="login()">LOGIN</md-button> 
 	</div>
 
 </div>
