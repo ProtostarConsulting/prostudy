@@ -1,23 +1,25 @@
 <div layout="column">
 	<md-content>
 	
+		<div layout="column" layout-align="center center">
 		<md-subheader class="md-primary">
-		<h3 class="md-headline">My-Profile : </h3>
+		<h3 class="md-headline">My Profile  </h3>
 		</md-subheader>
+		</div>
 
 
 <form name="myProfileForm" >
-    	<div layout="row" layout-sm="column">
+    	
     	
 
-<div layout="column">
+<div layout="column" layout-align="center center">
 			
-			<div >
+			<div>
 				<md-input-container flex>
 				<label>Name </label><input type="text" ng-model="curUser.name" /></md-input-container>
 			</div>
 
-			<div >
+			<div>
 				<md-input-container flex>
 				<label>Email-id </label><input type="text" ng-model="curUser.email_id" /></md-input-container>
 			</div>
@@ -35,13 +37,8 @@
 			<md-input-container flex><md-button class="md-raised md-primary" ng-hide="edit"
 				ng-click="update()">Save</md-button></md-input-container>
 
-			<!-- <div>
-			     <md-button class="md-raised"  ng-show="edit" ng-click="cancelButton()">Cancel</md-button>
-			    <md-button class="md-raised md-primary" ng-show="edit" ng-click="update(stud)"> SAVE</md-button>
-			</div> -->
-				
-				
-			</div>	
+			
+		
 			
 			<div layout="column" flex>
 			       <span></span>
@@ -51,6 +48,8 @@
 			       <span></span>
 		     </div>
 	  </div>
+	  		
+		
 	</form>
 	
 	
