@@ -1,24 +1,52 @@
 angular.module("prostudyApp").controller(
 		"bookListCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, appEndpointSF, $state, $sce) {
+				$log,$stateParams,appEndpointSF, $state, $sce) {
 			console.log("Inside bookListCtr");
 
+			$scope.book = {  bookid: "",book_name : "",author: "", board: "", 
+		             standard:"",chapters:[] 
+                 };//end of tempBook object
 			
-			$scope.tempBook = {bookid:"",author: "", title: "",chapters:[] };//end of tempBook object 
-
-			$("#updatebook").hide();
-			$("#viewbook").hide();
-			$("#bookList").show();
-
+		
 			
-			$scope.showSavedToast = function() {
-				$mdToast.show($mdToast.simple().content('Book Saved!')
+			//Because chapterlist data is in another page. so pass  selectedBookId for chapterlist
+			
+			
+			$scope.showSavedChapterListToast = function() {
+				$mdToast.show($mdToast.simple().content('ChapterList Saved!')
 						.position("top").hideDelay(3000));
 			};//end of showSavedToast
 			
-			$scope.selected = [];
-			$scope.books = [];
+
+			$scope.selectedBookId = $stateParams.selectedBookId;
+			
+			$scope.selectedChapter = {id: "", chapter_name: "",chapter_content: "", board:"", student_class:"",subject:"",chapter_no:""};
+			
+			
+			
+			$scope.showBookContents = function() {
+				var BookService = appEndpointSF.getBookService();
+				$log.debug("$scope.selectedBookId:" + $scope.selectedBookId)
+				BookService.getBooksByID($scope.selectedBookId)
+						.then(function(bookList) {
+							
+					
+							$scope.book_ChapterDetails = bookList;
+							$log.debug("bookList ===="+ angular.toJson(bookList));
+							$scope.selectedChapter = $scope.book_ChapterDetails[0];
+							
+									
+									$log.debug("$scope.selectedChapter ===="+ angular.toJson($scope.selectedChapter));
+									
+									$scope.showSavedChapterListToast();
+								});
+		
+
+			};//end of $scope.showBookDetails
+			
+			$scope.book_ChapterDetails = [];
+			$scope.showBookContents();
 			
 			$scope.getBooks = function() {
 
@@ -29,65 +57,26 @@ angular.module("prostudyApp").controller(
 							$log.debug("Inside Ctr getBooks");
 
 							$scope.books = bookList;
-							$log.debug("getBooks :"+ $scope.books);
-							$scope.showSavedToast();
+							$scope.currentBook =$scope.books[0];
+							$log.debug("getBooks :" + angular.toJson($scope.books));
 							
-							/*$scope.books.chapters.chapter_content = $sce.trustAsHtml($scope.books.chapters.chapter_content);*/
-							/*$log.debug("$scope.books.chapters.chapter_content: " + $scope.books.chapters.chapter_content);*/
+							
+							$scope.showSavedToast();
+						
 						});
 			}// end of getBooks
 			
-			
+			$scope.showSavedToast = function() {
+				$mdToast.show($mdToast.simple().content('BookList Saved!')
+						.position("top").hideDelay(3000));
+			};//end of showSavedToast
 		
 			
-		
-			$scope.editingData = [];
-			for (var i = 0, length = $scope.books.length; i < length; i++) {
-				$scope.editingData[$scope.books[i].id] = false;
-			}
-
-			$scope.modify = function(selectedBooks) {
-				$scope.editingData[selectedBooks.id] = true;
-				$scope.book = selectedBooks;
-
-				$("#updatebook").show();
-				$("#bookList").hide();
-				$("#viewbook").hide();
-
-			};
-
-			$scope.update = function(book) 
-			{
-				$scope.editingData[books.id] = false;
-				$scope.book = $scope.selected[0];
-				$log.debug("Object value of  update : " +	 angular.toJson($scope.book));
-				
-				$("#updatebook").hide();
-				$("#bookList").show();
-				$("#viewbook").hide();
-			
-			};// end of update
-			
-			
-			
-			$scope.view = function(book)
-			{
-				$scope.viewBook = $scope.book;
-				$log.debug("Book View :"+	$scope.book);
-				$log.debug("Object value of  View : " +	 angular.toJson($scope.viewBook));
-				
-				$("#updatebook").hide();
-				$("#bookList").hide();
-				$("#viewbook").show();
-				
-				
-			};// end of update
-			
-			
+			$scope.books =[];
+			$scope.getBooks();
 			
 
-
-			$scope.removeChapter = function(index) {
+			$scope.removeBook = function(index) {
 
 				$scope.books.splice(index, 1);
 			}; // end of remove
@@ -97,6 +86,7 @@ angular.module("prostudyApp").controller(
 				$state.go('^', {});
 			};// end of cancelButton
 
-			$scope.getBooks ();
+			
 
 		});// end of bookListCtr
+

@@ -6,14 +6,13 @@ angular.module("prostudyApp").controller(
 
 			console.log("Inside bookAddCtr");
 					  
-			$scope.tempBook = {  bookId: "",author: "", board: "", 
+			$scope.tempBook = {  bookid: "",book_name : "",author: "", board: "", 
 					             standard:"",chapters:[] 
-			 };//end of tempBook object
+			                  };//end of tempBook object
 			
-	
 			
-
-			$scope.showSavedToast = function() {
+			$scope.showSavedToast = function() 
+			{
 				$mdToast.show($mdToast.simple().content('Book Saved!')
 						.position("top").hideDelay(3000));
 			};//end of showSavedToast
@@ -38,9 +37,10 @@ angular.module("prostudyApp").controller(
 	
 	//Here we calling getChapters service because $scope.tempBook object contain chapters[] object
 		
-		
 			$scope.chapters=[];
-			$scope.getChapters = function() {
+			$scope.getChapters = function() 
+			{
+				
 
 				var ChapterService = appEndpointSF.getChapterService();
 
@@ -49,40 +49,36 @@ angular.module("prostudyApp").controller(
 							$log.debug("Inside Ctr getChapters");
 
 							$scope.chapters = chapterList;
+							
 							$log.debug("getChapters :"+$scope.chapters);
-							$scope.showSavedToast();
+							
 							
 							$scope.chapters.chapter_content = $sce.trustAsHtml($scope.chapters.chapter_content);
 							$log.debug("$scope.chapters.chapter_content: " + $scope.chapters.chapter_content);
 							
+					
+						/*	$scope.availableChapters = $scope.chapters;*/
+							
 							
 							/*$scope.tempBook.chapters.push($scope.chapters);*/
-							$log.debug("$scope.tempBook.chapters: " + $scope.chapters);
+							$log.debug("$scope.getChapters.chapters: " + $scope.chapters);
+							
+							
 						});
 				
 				
 			}// end of getChapters
 			
 			
-		        $scope.toppings = [
-		                                  {id: 1, name: 'Pepperoni'}, 
-		                                  {id: 2, name: 'Sausage'},
-		                                  {id: 3,name: 'Black Olives'},
-		                                  { id: 4,name: 'Green Peppers'}  
-		                           ];
-			      
+		  
+			$scope.selectedChapters = []; 
+			
 
-			    $scope.availableChapters = [
-			                                  {id: 1, name: 'Pepperoni'}, 
-			                                  {id: 2, name: 'Sausage'},
-			                                  {id: 3,name: 'Black Olives'},
-			                                  { id: 4,name: 'Green Peppers'}  
-			                               ];
-			    
-			    $scope.selectedChapters = []; 
+			$scope.tempBook.chapters.push($scope.selectedChapters);
+				
 			
-			
-				  $scope.moveItem = function(item, from, to) 
+ 		      
+			 $scope.moveItem = function(item, from, to) 
 				  {
 
 				        console.log('Move item   Item: '+item+' From:: '+from+' To:: '+to);
@@ -95,7 +91,7 @@ angular.module("prostudyApp").controller(
 				        }
 				    };//end of moveItem
 				    
-				    $scope.moveAll = function(from, to) 
+			$scope.moveAll = function(from, to) 
 				    {
 
 				        console.log('Move all  From:: '+from+' To:: '+to);

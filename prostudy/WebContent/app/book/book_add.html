@@ -13,6 +13,11 @@
 				<label>Book Id :-</label>
 				<input name="bookid" id="bookid"  ng-model="tempBook.bookid">
 			</md-input-container>
+			
+			<md-input-container>
+				<label>Book Name :-</label>
+				<input name="book_name" id="book_name"  ng-model="tempBook.book_name">
+			</md-input-container>
 		
 
 			<md-input-container>
@@ -38,26 +43,26 @@
 					 <td>
 						<label for="aChapters">Available Chapters</label>
 						<select size="5" multiple ng-model="available"
-							ng-options="availablechapter as availablechapter.name for availablechapter in availableChapters"
+							ng-options="chapter as chapter.chapter_name for chapter in chapters"
 							style="width: 400px"></select>
 					 </td>
 				  
                      <td>
 						<input id="moveright" type="button" value=">>"
-							ng-click="moveItem(available[0], availableChapters,selectedChapters)" />
+							ng-click="moveItem(available[0], chapters,selectedChapters)" />
 						<input id="moverightall" type="button" value="Add All Chapters"
-							ng-click="moveAll(availableChapters,selectedChapters)" />
+							ng-click="moveAll(chapters,selectedChapters)" />
 							
 						<input id="move left" type="button" value="<<"
-							ng-click="moveItem(selected[0], selectedChapters,availableChapters)" />
+							ng-click="moveItem(selected[0], selectedChapters,chapters)" />
 						<input id="moveleftall" type="button" value="Remove All Chapters"
-							ng-click="moveAll(selectedChapters,availableChapters)" />
+							ng-click="moveAll(selectedChapters,chapters)" />
 					 </td>
 
 					<td>
 						<label for="sChapters">Selected Chapters</label>
 						<select size="5" multiple ng-model="selected"
-							ng-options="availablechapter as availablechapter.name for availablechapter in selectedChapters"
+							ng-options="chapter as chapter.chapter_name for chapter in selectedChapters"
 							style="width: 400px"></select>
 					</td>
 						</tr>
@@ -65,13 +70,13 @@
 					</table>
 					
 						<div>Selected Chapters: {{selectedChapters}}</div>
-						<div>Available Chapters: {{availableChapters}}</div>
+						<div>Available Chapters: {{chapters}}</div>
 						<div>Selected: {{selected}}</div>
 						<div>Available: {{available}}</div>
 
 
 
-					<md-list ng-cloak>
+		<!-- 			<md-list ng-cloak>
 					<table>
 						<tr>
 							<td><md-subheader class="md-no-sticky">LeftList
@@ -88,64 +93,10 @@
 						</tr>
 					</table>
 
-					<md-divider></md-divider> </md-list>
-
-
-
-
-					<!-- <table border="1" align="center" style="border-collapse: collapse;">
-						<tr>
-							<td colspan="5" align="center">
-							<font size="+2"><b>Add Chapter-Listbox </b></font></td>
-						</tr>
-						<tr valign="top">
-						
-						<th><a href="#"
-								onclick="listbox_moveacross('s', 'd')">Move Right </a> <br /> </th>
-							<td></td>
-							<th colspan="3"><a href="#"
-								onclick="listbox_moveacross('d', 's')">Move Left</a></th>
-						</tr>
-						<tr valign="top">
-							<td><SELECT id="a" size="10" multiple>
-									<OPTION value="a">Afghanistan</OPTION>
-									<OPTION value="b">Bahamas</OPTION>
-									<OPTION value="c">Barbados</OPTION>
-									<OPTION value="d">Belgium</OPTION>
-									<OPTION value="e">Bhutan</OPTION>
-									<OPTION value="f">China</OPTION>
-									<OPTION value="g">Croatia</OPTION>
-									<OPTION value="h">Denmark</OPTION>
-									<OPTION value="i">France</OPTION>
-									<OPTION value="j">Canada</OPTION>
-							</SELECT></td>
-							<td>&nbsp;&nbsp;&nbsp;</td>
-							<td><SELECT id="s" size="10" multiple>
-									<OPTION value="a">Afghanistan</OPTION>
-									<OPTION value="b">Bahamas</OPTION>
-									<OPTION value="c">Barbados</OPTION>
-									<OPTION value="d">Belgium</OPTION>
-									<OPTION value="e">Bhutan</OPTION>
-									<OPTION value="f">China</OPTION>
-									<OPTION value="g">Croatia</OPTION>
-									<OPTION value="h">Denmark</OPTION>
-									<OPTION value="i">France</OPTION>
-									<OPTION value="j">Canada</OPTION>
-							</SELECT></td>
-							<td valign="middle"><a href="#"
-								onclick="listbox_moveacross('s', 'd')">Move Right </a> <br /> <a href="#"
-								onclick="listbox_moveacross('d', 's')">Move Left</a></td>
-								
-								</tr>
-								</table> -->
+					<md-divider></md-divider> </md-list> -->
+	
 								
 				</div>
-
-			
-		
-			
-
-
 			</div>
 
 			</form>
