@@ -6,28 +6,10 @@ angular.module("prostudyApp")
 					console.log("Inside chapterViewCtr");
 				
 					$scope.tempChapter = {id: "", chapter_content: "", board:"", student_class:"",subject:"",chapter_no:""};
-					$scope.chapters = [];
-					 
-		/*			$scope.addChapter = function()
-					{
-						$log.debug("No1");	
-						var ChapterService = appEndpointSF.getChapterService();
-												
-						ChapterService.addChapter($scope.tempChapter)
-						.then(function(msgBean) {
-									$log.debug("No6");	
-									$log.debug("Inside Ctr addChapter");
-									$log.debug("msgBean.msg:" + msgBean.msg);
-									
-									$scope.tempChapter = {id: "", chapter_content: "", board:"", student_class:"",subject:"",chapter_no:""};
-									$log.debug("addChapter"+ $scope.tempChapter);
-								});
-						$log.debug("No4");	
-					}//end of addChapter
-*/				
+				
+			
 					$scope.getChapters = function()
 					{
-						
 						
 						var ChapterService = appEndpointSF.getChapterService();					
 												
@@ -41,6 +23,8 @@ angular.module("prostudyApp")
 									$log.debug("$scope.chapters.chapter_content: " + $scope.chapters.chapter_content);
 								});
 					}//end of getChapters
+					
+					$scope.chapters = [];
 					
 					$scope.cancelButton = function()
 					{

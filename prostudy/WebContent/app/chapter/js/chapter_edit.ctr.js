@@ -6,6 +6,7 @@ angular.module("prostudyApp").controller(
 
 			$scope.Chapter = {
 				id : "",
+				chapter_name : "",
 				chapter_content : "",
 				board : "",
 				student_class : "",

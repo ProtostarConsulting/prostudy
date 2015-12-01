@@ -6,11 +6,11 @@ angular.module("prostudyApp").controller(
 
 			console.log("Inside chapterAddCtr");
 					  
-			$scope.tempChapter = {id: "", chapter_content: "", board:"", student_class:"",subject:"",chapter_no:""};
+			$scope.tempChapter = {id: "", chapter_name: "",chapter_content: "", board:"", student_class:"",subject:"",chapter_no:""};
 			$scope.chapters = []; 
 			
 			$scope.showSavedToast = function() {
-				$mdToast.show($mdToast.simple().content('Book Saved!')
+				$mdToast.show($mdToast.simple().content('Chapter Saved!')
 						.position("top").hideDelay(3000));
 			};//end of showSavedToast
 			
