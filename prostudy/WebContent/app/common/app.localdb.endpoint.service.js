@@ -56,6 +56,34 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 	} // End of getChapters-ChapterService
 
+	
+	ChapterService.getChaptersByID = function(selectedChapterId) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+			var tempBookItem = [];
+		
+			var chapterList = angular.fromJson($localStorage.dbAddChapter);
+
+			if (typeof chapterList === 'undefined')
+				chapterList = [];
+
+			for (i = 0; i < chapterList.length; i++) {
+				if (selectedChapterId == chapterList[i].id) {
+
+					tempBookItem.push(chapterList[i]);
+
+					$log.debug("TEMP=getChaptersByID==" + tempBookItem);
+				}
+			}
+				
+			deferred.resolve(tempBookItem);
+
+		}, 1000);
+		return deferred.promise;
+	}//end of getChaptersByID-ChapterService
+	
+	
 	// start of BookService
 	var BookService = {};
 
@@ -72,7 +100,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			var bookList = angular.fromJson($localStorage.dbAddBook);
 			if (typeof bookList === 'undefined')
 				bookList = [];
-			book.bookId = bookList.length + 1;
+		/*	book.bookId = bookList.length + 1;*/
 
 			bookList.push(book);
 			$localStorage.dbAddBook = angular.toJson(bookList);
@@ -94,12 +122,70 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			var bookList = angular.fromJson($localStorage.dbAddBook);
 			if (typeof bookList === 'undefined')
 				bookList = [];
-			deferred.resolve(bookList);
+			
+	
+			deferred.resolve(bookList);  
 		}, 1000);
 
 		return deferred.promise;
 
 	} // End of getBooks-BookService
+	
+	BookService.getBooksByID = function(selectedBookId) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+			var tempBookItem = [];
+		
+			var bookList = angular.fromJson($localStorage.dbAddBook);
+
+			if (typeof bookList === 'undefined')
+				bookList = [];
+
+			for (i = 0; i < bookList.length; i++) {
+				if (selectedBookId == bookList[i].bookid) {
+
+					$log.debug("TEMP==" + bookList[i].bookid);
+				
+
+					tempBookItem.push(bookList[i].chapters[0]);
+			
+					
+					 $log.debug("TEMP=getBooksByID==" + tempBookItem);
+					
+
+					// $log.debug("TEMP=getBooksByID==" + tempBookItem[i].chapters);
+				}
+			}
+				
+			deferred.resolve(tempBookItem);
+
+		}, 1000);
+		return deferred.promise;
+	}//end of getBooksByID-BookService
+	
+/*	BookService.getChaptersFromBook= function() 
+	{
+		var deferred = $q.defer();
+		$timeout(function() {
+			var tempBookItem = [];
+			$log.debug("In side local DB getBooks...");
+			var bookList = angular.fromJson($localStorage.dbAddBook);
+			if (typeof bookList === 'undefined')
+				bookList = [];
+			
+			for (i = 0; i < bookList.length; i++)
+				{
+				tempBookItem.push(bookList[i].chapters);
+				}
+			
+			deferred.resolve(tempBookItem);  
+		}, 1000);
+
+		return deferred.promise;
+
+	} // End of getBooks-BookService
+*/	
 
 	// Add Student Service
 	var StudentService = {};
