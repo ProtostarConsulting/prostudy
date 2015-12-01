@@ -18,6 +18,7 @@
 				<tbody>
 					<tr md-auto-select  ng-repeat="exam in examresult  | limitTo: query.limit: (query.page - 1) * query.limit">
 						<td>{{exam.exam_id}}</td>
+						
 				<td>{{exam.exam_title}}</td>
 				<td>{{exam.exam_date}}</td>
 				<td>{{exam.result_date}}</td>
