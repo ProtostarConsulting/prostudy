@@ -2,18 +2,16 @@
 
 <h1>viewChapterContent:-</h1>
 
-
+<!-- 
 selectedChapter:-{{selectedChapter}} <hr>
- <!--books:-{{books}}
 <hr>
--->
+
 selectedBookId:-{{selectedBookId}}<br>
-<!-- Chapters:-{{chapters}}  -->
 
 <hr>
 
-Totalpage :-{{totalPages}}
-<hr>
+Totalpage :-{{totalPages}} 
+<hr> -->
 
 <div id="viewChapterContent">
 	<div layout="column" flex
@@ -38,29 +36,28 @@ Totalpage :-{{totalPages}}
 
 			<md-button class="md-raised md-primary" ui-sref="book.list">Back
 			To Book</md-button>
-			
-			<md-button class="md-raised md-primary" ui-sref="book.chapterList({selectedBookId : selectedBookId})">Back
-			To Chapter</md-button>
-			
+
+			<md-button class="md-raised md-primary"
+				ui-sref="book.chapterList({selectedBookId : selectedBookId})">Back
+			To Chapter-Index</md-button>
+
 		</div>
 
 	</div>
 </div>
 
-   <md-button class="md-primary" ng-disabled="isDisabledPrevious"
-       ng-model="isDisabledPrevious" ng-click="onPreviousChapter($index)">Previous</md-button> 
-   <md-button class="md-primary" ng-disabled="isDisabledNext"
-	ng-model="isDisabledNext" ng-click="onNextChapter($index)">Next</md-button>
+
+
 <!--  {{selectedChapter[onNextChapter($index)].id} -->
+
 <div id="TotalChapters">
 
 
-	hellooooooo,TotalChapters:-
-	{{$index + 1}}
+	<!--{{$index + 1}} -->
 	<div layout="column" flex
-		ng-repeat="chapter in totalChapters | filter:searchText">
+		ng-repeat="chapter in chaptersOnButton | filter:searchText">
 
-	
+
 
 		<md-input-container> <label>Chapter Name
 			:-</label> <input name="chapter_name" id="chapter_name"
@@ -79,12 +76,18 @@ Totalpage :-{{totalPages}}
 
 </div>
 
-<hr>
+
+<div>
+	<md-button class="md-primary" ng-disabled="isDisabledPrevious"
+		ng-model="isDisabledPrevious" ng-click="onPreviousChapter($index)">Previous</md-button>
+	<md-button class="md-primary" ng-disabled="isDisabledNext"
+		ng-model="isDisabledNext" ng-click="getChapters($index)">Next</md-button>
+</div>
+
+<!-- <hr>
 totalChapters :-{{totalChapters}}
 <hr>
-
-
-</md-content>
+ --> </md-content>
 
 
 

@@ -33,80 +33,12 @@
       </tbody>
     </table>
   </div>
+  
+  <div>
+      <md-button class="md-raised md-primary" ng-click="addToMyBook()">Add To My Books</md-button>
+  </div>
+  
 </div>
-		
-		
-		
-		
-		
-	<!-- <div id="viewChapterList">
-
-		
-		<b>View Chapter List :-</b>
-		
-		<div>
-		    <md-input-container flex> 
-		       <label>Search</label> 
-		       <input ng-model="searchText"> </md-input-container>
-	  </div>
-		
-	<div class="table-responsive-vertical shadow-z-1">
-	<table id="chapterTable" class="table table-hover table-mc-light-blue">
-		<thead>
-			<tr>
-				<th>Chapter Id</th>
-				<th>Chapter</th>
-	
-			</tr>
-		</thead>
-
-		<tbody ng-repeat ="item in book_ChapterDetails">
-			<tr ng-repeat="chapter in item.chapters" >
-
-                <td>
-					 <div>{{chapter.id}}</div>
 			
-				</td>
-				<td>
-				<div>{{chapter.chapter_name}}</div>
-					  <a href="#" ng-click="viewChapterContent(chapter)"><b>{{chapter.chapter_name}}</b></a>
-				</td>
-				
-           
-				    
-			 </tr>
-			</tbody>
-		 </table>	
-		 </div>   
-	</div> -->
 	
-	
-	
-<!-- 	<div id="viewChapterContent">
-
-		
-		<b>View Chapter Content:-</b>
-		
-	<md-data-table-container>
-	
-	           <md-input-container>
-				        <label>Chapter Name :-{{chapter.chapter_name}}</label>
-				</md-input-container>
-				<hr>
-
-				<md-input-container>
-				<label>Chapter Content :-</label> 
-				    <p ng-bind-html="chapter.chapter_content"></p>
- 				<div text-angular="" ng-model="chapter.chapter_content" disabled></div>
-			
-			    </md-input-container>				    
-	 </md-data-table-container>
-
-			<section layout="row" layout-sm="column" layout-align="left left">
-			         <md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
-           </section>
-	</div>
-		 -->
-		
-		
 </md-content>

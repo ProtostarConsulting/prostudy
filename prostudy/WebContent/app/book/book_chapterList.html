@@ -10,8 +10,9 @@
 	</div>
 	
 	
-	SelectedChapter:-{{selectedChapter}}
-	<hr>
+	<!-- SelectedChapter:-{{selectedChapter}}
+	<hr> -->
+	
        <!--   <div  ng-repeat="book in books">
 	        <md-input-container> <label>Book Name :-</label> <input
 		       name="book_name" id="book_name" ng-model="book.book_name" disabled>
@@ -21,7 +22,7 @@
 	      	name="Author" id="Author" ng-model="book.author" disabled> </md-input-container>
 	      </div> -->
 
-
+<!-- {{selectedBookId}} -->
 	<div class="table-responsive-vertical shadow-z-1">
 	<table id="chapterTable" class="table table-hover table-mc-light-blue">
 		<thead>
@@ -33,17 +34,13 @@
 		</thead>
 
 		<tbody>
-		<tr>
-		{{selectedBookId}}
-		</tr>
+
 			<tr ng-repeat="chapter in selectedChapter" >
 
                 <td>
 					 <div>{{chapter.id}}</div>
 			
 				</td>
-				
-				
 				
 				<td  ng-click="showChapterContent()"> <a href="#" ui-sref="book.view({selectedBookId : selectedBookId, selectedChapterId : chapter.id})"><b>{{chapter.chapter_name}}</b></a>
 				</td>

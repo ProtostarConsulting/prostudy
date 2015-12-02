@@ -8,45 +8,11 @@ angular.module("prostudyApp").controller(
 		             standard:"",chapters:[] 
                  };//end of tempBook object
 			
-		
-			
-			//Because chapterlist data is in another page. so pass  selectedBookId for chapterlist
-			
-			
-			$scope.showSavedChapterListToast = function() {
-				$mdToast.show($mdToast.simple().content('ChapterList Saved!')
-						.position("top").hideDelay(3000));
-			};//end of showSavedToast
-			
-
-			$scope.selectedBookId = $stateParams.selectedBookId;
-			
-			$scope.selectedChapter = {id: "", chapter_name: "",chapter_content: "", board:"", student_class:"",subject:"",chapter_no:""};
-			
-			
-			
-			$scope.showBookContents = function() {
-				var BookService = appEndpointSF.getBookService();
-				$log.debug("$scope.selectedBookId:" + $scope.selectedBookId)
-				BookService.getBooksByID($scope.selectedBookId)
-						.then(function(bookList) {
-							
-					
-							$scope.book_ChapterDetails = bookList;
-							$log.debug("bookList ===="+ angular.toJson(bookList));
-							$scope.selectedChapter = $scope.book_ChapterDetails[0];
-							
-									
-									$log.debug("$scope.selectedChapter ===="+ angular.toJson($scope.selectedChapter));
-									
-									$scope.showSavedChapterListToast();
-								});
-		
-
-			};//end of $scope.showBookDetails
-			
-			$scope.book_ChapterDetails = [];
-			$scope.showBookContents();
+				
+			$scope.addToMyBook =function()
+			{
+				
+			};//end of $scope.addToMyBook
 			
 			$scope.getBooks = function() {
 
@@ -76,11 +42,7 @@ angular.module("prostudyApp").controller(
 			$scope.getBooks();
 			
 
-			$scope.removeBook = function(index) {
-
-				$scope.books.splice(index, 1);
-			}; // end of remove
-
+	
 			$scope.cancelButton = function() {
 				$log.debug("inside cancelButton");
 				$state.go('^', {});
