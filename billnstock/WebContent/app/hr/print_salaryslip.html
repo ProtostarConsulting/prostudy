@@ -1,1 +1,130 @@
 
+<md-content>
+<div layout="row" layout-align="center start"
+	style="margin-top: 20px; margin-bottom: 20px;">
+	<md-divider flex></md-divider>
+</div>
+
+<div class="md-toolbar-tools">
+	<span flex></span>
+	<!--<md-card>-->
+	<section layout="row">
+
+		<md-button class="md-icon-button md-accent"
+			ng-click="printSalSlipDiv('salSlipDiv')" aria-label="Favorite">
+		<md-icon md-svg-icon="img/icons/print.svg"></md-icon> </md-button>
+
+	</section>
+	<!--</md-card>-->
+</div>
+</md-content>
+<md-content layout-padding>
+
+<div id="salSlipDiv" >
+	<md-data-table-container>
+	<table md-data-table md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onOrderChange">
+			<tr>
+				<th name="Employee salslip" order-by="salslip "></th>
+
+
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="emp in printslectedslip | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+				<td>
+					<div>
+					<br>
+					<b>ganerated no={{emp.ganeratedcode}}</b><br>
+						<b>Employee Name =</b>{{emp.salarystruct.empName}}<br> <b>Designation
+							=Employee</b><br> <b>Month and Year ={{emp.month}}</b><br>
+						<br>
+
+						<table border="1" width="100%">
+							<tr>
+								<td width="25%"><b>Earnings</b></td>
+								<td width="25%"></td>
+								<td width="25%"><b>Deduction</b></td>
+								<td width="25%"></td>
+							</tr>
+							<tr>
+								<td width="25%">Basic & DA</td>
+								<td width="25%">{{emp.salarystruct.monthly}}</td>
+								<td width="25%">Provident Fund</td>
+								<td width="25%">{{emp.salarystruct.pf1}}</td>
+							</tr>
+							<tr>
+								<td width="25%">HRA</td>
+								<td width="25%">{{emp.salarystruct.HRAmonthly}}</td>
+								<td width="25%">ESI</td>
+								<td width="25%"></td>
+							</tr>
+							<tr>
+								<td width="25%">Conveyance</td>
+								<td width="25%">{{emp.salarystruct.Convmonthly}}</td>
+								<td width="25%">Loan</td>
+								<td width="25%"></td>
+							</tr>
+							<tr>
+								<td width="25%"></td>
+								<td width="25%"></td>
+								<td width="25%">Profession Tax</td>
+								<td width="25%"></td>
+							</tr>
+							<tr>
+								<td width="25%"></td>
+								<td width="25%"></td>
+								<td width="25%">TSD/IT</td>
+								<td width="25%"></td>
+							</tr>
+							<tr>
+								<td width="25%"></td>
+								<td width="25%"></td>
+								<td width="25%"></td>
+								<td width="25%">-</td>
+							</tr>
+							<tr>
+								<td width="25%">Total Addition</td>
+								<td width="25%">{{emp.salarystruct.SAmonthly}}</td>
+								<td width="25%">Total Deduction</td>
+								<td width="25%"></td>
+							</tr>
+							<tr>
+								<td width="25%"></td>
+								<td width="25%"></td>
+								<td width="25%"><b>NET Salary</b></td>
+								<td width="25%">{{emp.salarystruct.Netsalgrandtotalmonthly}}</td>
+							</tr>
+							<tr>
+								<td width="25%"></td>
+								<td width="25%"></td>
+								<td width="25%"></td>
+								<td width="25%"></td>
+							</tr>
+
+
+						</table>
+						<br> <b>Salary in Word :</b><br> <b>Name Of Bank :</b><br>
+						<b>Signature of Employee :</b>
+						<p align="Center">
+							<b>this signature is electronically generated </b>
+						</p>
+						<br>
+
+					</div>
+				</td>
+
+
+			</tr>
+		</tbody>
+	</table>
+
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{printslectedslip.length}} md-trigger="onpagechange"></md-data-table-pagination>
+	</md-data-table-container>
+</div>
+
+
+</md-content>

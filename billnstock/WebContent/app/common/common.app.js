@@ -169,7 +169,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/hr/ganerate_multiple_salaryslip.html',
 		controller : 'hrCtr',
 	}).state('hr.printgeneratesalslip', {
-		url : "/print/:selectedsalslip",
+		url : "/selectedlist",
+		templateUrl : '/app/hr/slected_Employeesalaryslip.html',
+		controller : 'hrCtr',
+	}).state('hr.print', {
+		url : "/print/:printempidsalslip",
 		templateUrl : '/app/hr/print_salaryslip.html',
 		controller : 'hrCtr',
 	});
