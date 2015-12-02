@@ -173,7 +173,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('book.chapterList', {
 		url : "/chapterList/:selectedBookId",
 		templateUrl : "/app/book/book_chapterList.html",
-		controller : 'bookListCtr'
+		controller : 'book_chapterListCtr'
 	}).state('book.view', {
 		url : "/view/:selectedBookId/:selectedChapterId",
 		templateUrl : "/app/book/book_viewChapterContent.html",
