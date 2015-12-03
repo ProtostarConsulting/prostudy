@@ -1,7 +1,8 @@
-angular.module("stockApp").controller(
+var app= angular.module("stockApp");
+app.controller(
 		"customerCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log,$stateParams, objectFactory, appEndpointSF) {
+				$log,$stateParams, objectFactory, appEndpointSF,$http) {
 
 			$log.debug("Inside customerCtr");
 
@@ -12,6 +13,58 @@ angular.module("stockApp").controller(
 
 			// $scope.cust = objectFactory.newCustomer();
 			
+	/*		
+			 $scope.data = 'none';
+			    $scope.add = function(){
+			      var f = document.getElementById('file').files[0],
+			          r = new FileReader();
+			      r.onloadend = function(e){
+			        $scope.data = e.target.result;
+			      }
+			      r.readAsBinaryString(f);
+			    }
+		*/	    
+			    app.directive('ngFiles', ['$parse', function ($parse) {
+
+		            function fn_link(scope, element, attrs) {
+		                var onChange = $parse(attrs.ngFiles);
+		                element.on('change', function (event) {
+		                    onChange(scope, { $files: event.target.files });
+		                });
+		            };
+
+		            return {
+		                link: fn_link
+		            }
+		        } ])
+		        
+		         var formdata = new FormData();
+            $scope.getTheFiles = function ($files) {
+                angular.forEach($files, function (value, key) {
+                    formdata.append(key, value);
+                });
+            };
+
+            // NOW UPLOAD THE FILES.
+            $scope.uploadFiles = function () {
+
+                var request = {
+                    method: 'POST',
+                    url: '/api/fileupload/',
+                    data: formdata,
+                    headers: {
+                        'Content-Type': undefined
+                    }}
+            }
+		     
+            $http(request)
+            .success(function (d) {
+                alert(d);
+            })
+            .error(function () {
+            });
+    
+
 			$scope.cust = {
 				customerId : "",
 				customerName : "",
