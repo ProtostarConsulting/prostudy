@@ -337,7 +337,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 	}
 	hrService.displyOnlySelected= function(currmionth) {
-		$log.debug("currmionth=-======================"+currmionth);
+		
 		var deferred = $q.defer();
 	//	$timeout(function() {
 			var tempItem = [];

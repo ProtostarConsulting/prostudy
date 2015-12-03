@@ -7,7 +7,7 @@ angular
 						appEndpointSF) {
 					var date = new Date();
 					var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May",
-										"Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+							"Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
 					$log.debug("Inside hrCtr");
 					$log.debug("$stateParams:", $stateParams);
 					$log.debug("$stateParams.selectedempNo:",
@@ -16,11 +16,9 @@ angular
 							$stateParams.selectedempstructno);
 					$scope.selectedempNo = $stateParams.selectedempNo;
 					$scope.selectedempstructno = $stateParams.selectedempstructno;
-					$scope.printempidsalslip= $stateParams.printempidsalslip;
-					
-					
+					$scope.printempidsalslip = $stateParams.printempidsalslip;
 
-								$scope.showSimpleToast = function(msgBean) {
+					$scope.showSimpleToast = function(msgBean) {
 						$mdToast.show($mdToast.simple().content(msgBean)
 								.position("top").hideDelay(3000));
 					};
@@ -82,7 +80,7 @@ angular
 						bank_name : "-",
 						acno : "-"
 					};
-			
+
 					$scope.addemp = function() {
 
 						var hrService = appEndpointSF.gethrService();
@@ -198,31 +196,28 @@ angular
 								+ $scope.salstruct.ptaxyearly;
 						$scope.salstruct.Netsalgrandtotal = $scope.salstruct.grandtotal
 								- $scope.salstruct.Ptaxgrandtotal;
-						
-						$scope.salstruct.Netsalgrandtotalmonthly=$scope.salstruct.Netsalgrandtotal/12;
-						
+
+						$scope.salstruct.Netsalgrandtotalmonthly = $scope.salstruct.Netsalgrandtotal / 12;
+
 						$scope.salstruct.CTC = $scope.salstruct.addprobonus
 								+ $scope.salstruct.grandtotal;
-						
-						$scope.salstruct.MCTC=$scope.salstruct.CTC/12;
-						
+
+						$scope.salstruct.MCTC = $scope.salstruct.CTC / 12;
+
 					}
 
 					$scope.updateCTC = function(CTC) {
 						$scope.salstruct.CTC = $scope.salstruct.addprobonus
 								+ $scope.salstruct.grandtotal;
-						$scope.salstruct.MCTC=$scope.salstruct.CTC/12;
+						$scope.salstruct.MCTC = $scope.salstruct.CTC / 12;
 					}
 					$scope.updateptaxgrandtotal = function(ptaxgtot) {
 
 						$scope.salstruct.Ptaxgrandtotal = ($scope.salstruct.pf2 + $scope.salstruct.ptaxyearly)
 								+ $scope.salstruct.pf1;
-						$scope.salstruct.MCTC=$scope.salstruct.CTC/12;
+						$scope.salstruct.MCTC = $scope.salstruct.CTC / 12;
 					}
 
-					
-					
-					
 					$scope.addsalstruct = function() {
 
 						var hrService = appEndpointSF.gethrService();
@@ -294,7 +289,7 @@ angular
 											$scope.salstruct.addprobonus = $scope.slist[0].addprobonus;
 											$scope.salstruct.CTC = $scope.slist[0].CTC;
 											$scope.salstruct.MCTC = $scope.slist[0].MCTC;
-											$scope.salstruct.Netsalgrandtotalmonthly=$scope.slist[0].Netsalgrandtotalmonthly;
+											$scope.salstruct.Netsalgrandtotalmonthly = $scope.slist[0].Netsalgrandtotalmonthly;
 											$log
 													.debug("Inside Ctr salstruct:"
 															+ angular
@@ -385,7 +380,7 @@ angular
 												// salslip database
 
 												$scope.salslip.salarystruct = $scope.selectedSalSlip[0];
-											
+
 												hrService
 														.addgsalslip($scope.salslip);
 
@@ -407,44 +402,59 @@ angular
 											$scope.printGSalStruct = printSalSelectedSlipList;
 
 											$scope.salslip.ganeratedcode = $scope.printGSalStruct.length + 100;
-											$scope.salslip.month=$scope.selectmonth;
-																				
+											$scope.salslip.month = $scope.selectmonth;
+
 										});
 					}
 					$scope.printGSalStruct = [];
 					$scope.printganeratesalslip();
-		
-					$scope.displyOnlySelected = function() {
+
+					$scope.displyOnlySelected = function(abc) {
 						var hrService = appEndpointSF.gethrService();
-						$scope.currmonth=""+monthNames[date.getMonth()]+ ' ' + date.getFullYear();
-						hrService.displyOnlySelected($scope.currmonth)
+						$scope.currmonth = "" + monthNames[date.getMonth()]
+								+ ' ' + date.getFullYear();
+						if (typeof abc != 'undefined') {
+							$scope.currmonth = abc
+							$log.debug("*******************" + abc);
+						}
+
+						hrService
+								.displyOnlySelected($scope.currmonth)
 								.then(
 										function(getDisplyOnlySelected) {
 											$scope.displyselected = getDisplyOnlySelected;
-											$log.debug("$scope.displyselected=========="+$scope.displyselected);
+											//$log.debug("$scope.displyselected=========="+$scope.displyselected);
 										});
 					}
-					$scope.displyselected=[];			
+					$scope.displyselected = [];
 					$scope.displyOnlySelected();
-					
 
 					$scope.printslip = function() {
 						var hrService = appEndpointSF.gethrService();
-						
-						hrService.printslip($scope.printempidsalslip)
+
+						hrService
+								.printslip($scope.printempidsalslip)
 								.then(
 										function(getslip) {
 											$scope.printslectedslip = getslip;
-											$log.debug("$scope.displyselected=========="+$scope.printslectedslip);
+											$log
+													.debug("$scope.displyselected=========="
+															+ $scope.printslectedslip);
 										});
 					}
-					$scope.printslectedslip=[];			
+					$scope.printslectedslip = [];
 					$scope.printslip();
-					
-					
-					
-					
-					
+
+					$scope.printSalSlipDiv = function(salSlipDiv) {
+						// window.frames["print_frame"].document.body.innerHTML
+						// = printDivCSS
+						// + document.getElementById(divId).innerHTML;
+						window.frames["print_frame"].document.body.innerHTML = document
+								.getElementById(salSlipDiv).innerHTML;
+						window.frames["print_frame"].window.focus();
+						window.frames["print_frame"].window.print();
+					}
+
 					// ---------------------------------------------------------------------------------------------------------------
 					$scope.getAllempsSalStruct = function() {
 						$log.debug("Inside Ctr $scope.getAllempsSalStruct");
@@ -492,7 +502,7 @@ angular
 						return angular.toJson(object);
 					};
 					// --------------------------------------------------------------------------------------
-				
+
 					$scope.getlastmonth = function() {
 
 						for (var i = 0; i < 3; i++) {
@@ -503,10 +513,16 @@ angular
 							date.setMonth(date.getMonth() - 1);
 						}
 					}
-					
+
 					$scope.months = [];
-					
+
 					$scope.getlastmonth();
+
+					/*$scope.loadOptions= function(){
+						$scope.getlastmonth();
+						$scope.selectmonth=months[0];
+						
+					}*/
 					// ------------------------------------------------------------------------------------
 					$scope.toggleRight = buildToggler('right');
 
