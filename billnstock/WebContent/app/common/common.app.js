@@ -139,42 +139,42 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('hr.employeeadd', {
 		url : "/empadd",
 		templateUrl : '/app/hr/employee_add.html',
-		controller : 'hrCtr'
+		controller : 'hrCtr.add'
 	}).state('hr.employeelist', {
 		url : "/emplist",
 		templateUrl : '/app/hr/employee_list.html',
-		controller : 'hrCtr'
+		controller : 'hrCtr.emplist'
 	}).state('hr.empview', {
 		url : "/view/:selectedempNo",
 		templateUrl : '/app/hr/employee_view.html',
-		controller : 'hrCtr',
+		controller : 'hrCtr.empview',
 	}).state('hr.docuplode', {
 		url : "/document",
 		templateUrl : '/app/hr/employee_doc.html',
-		controller : 'hrCtr',
+		controller : 'hrCtr.empdoc',
 	}).state('hr.salarystru', {
 		url : "/SalaryStructure",
 		templateUrl : '/app/hr/employee_salstruct.html',
-		controller : 'hrCtr',
+		controller : 'hrCtr.addupdatesalstruct',
 	}).state('hr.salslip', {
 		url : "/Salaryslip",
 		templateUrl : '/app/hr/employee_salslip.html',
-		controller : 'hrCtr',
+		controller : 'hrCtr.empsalslipstruct',
 	}).state('hr.gSalSlip', {
 		url : "/gSalSlip/:selectedempstructno",
 		templateUrl : '/app/hr/ganerate_salaryslip.html',
-		controller : 'hrCtr',
+		controller : 'hrCtr.empsalslipstruct',
 	}).state('hr.generatesalslip', {
 		url : "/generatesalslip",
 		templateUrl : '/app/hr/ganerate_multiple_salaryslip.html',
-		controller : 'hrCtr',
+		controller : 'hrCtr.emplist_to_ganeratesalslip',
 	}).state('hr.printgeneratesalslip', {
 		url : "/selectedlist",
 		templateUrl : '/app/hr/slected_Employeesalaryslip.html',
-		controller : 'hrCtr',
+		controller : 'hrCtr.emplist_to_ganeratesalslip',
 	}).state('hr.print', {
 		url : "/print/:printempidsalslip",
 		templateUrl : '/app/hr/print_salaryslip.html',
-		controller : 'hrCtr',
+		controller : 'hrCtr.emplist_to_ganeratesalslip',
 	});
 });

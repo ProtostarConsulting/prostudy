@@ -8,7 +8,10 @@ angular
 					var date = new Date();
 					var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May",
 							"Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+					
 					$log.debug("Inside hrCtr");
+					
+					
 					$log.debug("$stateParams:", $stateParams);
 					$log.debug("$stateParams.selectedempNo:",
 							$stateParams.selectedempNo);
@@ -81,7 +84,7 @@ angular
 						acno : "-"
 					};
 
-					$scope.addemp = function() {
+			/*		$scope.addemp = function() {
 
 						var hrService = appEndpointSF.gethrService();
 						hrService.addemp($scope.emp).then(function(msgBean) {
@@ -111,8 +114,8 @@ angular
 					$scope.emps = [];
 					$scope.cempid;
 					$scope.getAllemps();
-
-					$scope.showEmp = function() {
+*/
+/*					$scope.showEmp = function() {
 						var hrService = appEndpointSF.gethrService();
 
 						hrService
@@ -128,9 +131,9 @@ angular
 
 					}
 					$scope.empDetail = [];
-					$scope.showEmp();
+					$scope.showEmp();*/
 
-					$scope.updateemp = function() {
+			/*		$scope.updateemp = function() {
 
 						var hrService = appEndpointSF.gethrService();
 						hrService.updateemp($scope.empDetail).then(
@@ -139,9 +142,9 @@ angular
 									$log.debug("msgBean.msg:" + msgBean.msg);
 									$scope.showSimpleToast(msgBean.msg);
 								});
-					}
+					}*/
 
-					$scope.updateempname = function(empid) {
+				/*	$scope.updateempname = function(empid) {
 
 						for (i = 0; i < $scope.emps.length; i++) {
 							if (empid == $scope.emps[i].empid) {
@@ -150,9 +153,9 @@ angular
 
 						}
 
-					}
+					}*/
 
-					$scope.updatesalstruct = function(grossal) {
+					/*$scope.updatesalstruct = function(grossal) {
 						// $log.debug("grossal =" + grossal);
 						$scope.salstruct.monthly = grossal / 12;
 						$scope.salstruct.Byearly = grossal * 0.30;
@@ -218,7 +221,7 @@ angular
 						$scope.salstruct.MCTC = $scope.salstruct.CTC / 12;
 					}
 
-					$scope.addsalstruct = function() {
+*/					/*$scope.addsalstruct = function() {
 
 						var hrService = appEndpointSF.gethrService();
 						hrService.addsalstruct($scope.salstruct).then(
@@ -231,9 +234,9 @@ angular
 								});
 
 						$scope.salstruct = {};
-					}
+					}*/
 
-					$scope.findsalstruct = function(empid) {
+				/*	$scope.findsalstruct = function(empid) {
 						$log.debug("empid=" + empid);
 
 						$log.debug("Inside Ctr $scope.getAllemps");
@@ -298,9 +301,9 @@ angular
 										});
 					}
 
-					$scope.slist = [];
+					$scope.slist = [];*/
 
-					$scope.updatesalinfo = function() {
+					/*$scope.updatesalinfo = function() {
 
 						var hrService = appEndpointSF.gethrService();
 						hrService
@@ -314,9 +317,9 @@ angular
 											$scope.showSimpleToast(msgBean.msg);
 											$scope.salstruct = [];
 										});
-					}
+					}*/
 
-					$scope.documentempname = function(empid) {
+	/*				$scope.documentempname = function(empid) {
 
 						for (i = 0; i < $scope.emps.length; i++) {
 							if (empid == $scope.emps[i].empid) {
@@ -326,8 +329,8 @@ angular
 
 						}
 
-					}
-
+					}*/
+/*
 					$scope.adddoc = function() {
 
 						// var path = document.getElementById("filenm").value;
@@ -335,7 +338,7 @@ angular
 						// File file = new File(path);
 						// InputStream inputStream = new
 						// FileInputStream(""+path);
-						/*
+						
 						 * if ( $scope.document.docfile) { $log.debug("Inside
 						 * Ctr adddoc############################");
 						 * $scope.upload($scope.document.docfile); } // upload
@@ -351,7 +354,7 @@ angular
 						 * progressPercentage + '% ' +
 						 * evt.config.data.file.name); }); };
 						 * 
-						 */
+						 
 						var hrService = appEndpointSF.gethrService();
 
 						hrService.adddoc($scope.document).then(
@@ -364,9 +367,9 @@ angular
 								});
 
 						$scope.document = {};
-					}
+					}*/
 					// ------------------------------------------------------------------------------------------------------
-					$scope.ganeratesalslip = function() {
+			/*		$scope.ganeratesalslip = function() {
 						$scope.printganeratesalslip();
 						var hrService = appEndpointSF.gethrService();
 
@@ -407,9 +410,9 @@ angular
 										});
 					}
 					$scope.printGSalStruct = [];
-					$scope.printganeratesalslip();
+					$scope.printganeratesalslip();*/
 
-					$scope.displyOnlySelected = function(abc) {
+		/*			$scope.displyOnlySelected = function(abc) {
 						var hrService = appEndpointSF.gethrService();
 						$scope.currmonth = "" + monthNames[date.getMonth()]
 								+ ' ' + date.getFullYear();
@@ -427,9 +430,9 @@ angular
 										});
 					}
 					$scope.displyselected = [];
-					$scope.displyOnlySelected();
+					$scope.displyOnlySelected();*/
 
-					$scope.printslip = function() {
+		/*			$scope.printslip = function() {
 						var hrService = appEndpointSF.gethrService();
 
 						hrService
@@ -443,9 +446,9 @@ angular
 										});
 					}
 					$scope.printslectedslip = [];
-					$scope.printslip();
+					$scope.printslip();*/
 
-					$scope.printSalSlipDiv = function(salSlipDiv) {
+			/*		$scope.printSalSlipDiv = function(salSlipDiv) {
 						// window.frames["print_frame"].document.body.innerHTML
 						// = printDivCSS
 						// + document.getElementById(divId).innerHTML;
@@ -453,10 +456,10 @@ angular
 								.getElementById(salSlipDiv).innerHTML;
 						window.frames["print_frame"].window.focus();
 						window.frames["print_frame"].window.print();
-					}
+					}*/
 
 					// ---------------------------------------------------------------------------------------------------------------
-					$scope.getAllempsSalStruct = function() {
+			/*		$scope.getAllempsSalStruct = function() {
 						$log.debug("Inside Ctr $scope.getAllempsSalStruct");
 						var hrService = appEndpointSF.gethrService();
 
@@ -496,14 +499,14 @@ angular
 					}
 
 					$scope.viewslist = [];
-					$scope.viewfindsalstruct();
+					$scope.viewfindsalstruct();*/
 
 					$scope.getJson = function(object) {
 						return angular.toJson(object);
 					};
 					// --------------------------------------------------------------------------------------
 
-					$scope.getlastmonth = function() {
+					/*$scope.getlastmonth = function() {
 
 						for (var i = 0; i < 3; i++) {
 							$scope.months.push(monthNames[date.getMonth()]
@@ -517,7 +520,7 @@ angular
 					$scope.months = [];
 
 					$scope.getlastmonth();
-
+*/
 					/*$scope.loadOptions= function(){
 						$scope.getlastmonth();
 						$scope.selectmonth=months[0];

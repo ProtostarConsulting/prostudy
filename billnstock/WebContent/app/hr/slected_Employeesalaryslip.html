@@ -22,9 +22,7 @@
 		</thead>
 
 		<tbody>
-			<tr md-auto-select 
-				ng-repeat="emps in displyselected | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"
-				 >
+			<tr md-auto-select ng-repeat="emps in displyselected | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
 				<td>{{emps.salarystruct.empid}}</td>
 				<td>{{emps.salarystruct.empName}}</td>
 				<td>{{emps.salarystruct.grosssal}}</td>
