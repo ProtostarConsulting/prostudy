@@ -24,7 +24,7 @@ app.controller(
 			      r.readAsBinaryString(f);
 			    }
 		*/	    
-			    app.directive('ngFiles', ['$parse', function ($parse) {
+/*			    app.directive('ngFiles', ['$parse', function ($parse) {
 
 		            function fn_link(scope, element, attrs) {
 		                var onChange = $parse(attrs.ngFiles);
@@ -63,7 +63,7 @@ app.controller(
             })
             .error(function () {
             });
-    
+ */   
 
 			$scope.cust = {
 				customerId : "",
