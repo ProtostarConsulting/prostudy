@@ -56,7 +56,7 @@ angular.module("stockApp").controller(
 
 			
 			
-			var date = new Date();
+			
 			var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
 					"Aug", "Sep", "Oct", "Nov", "Dec" ];
 
@@ -75,7 +75,7 @@ angular.module("stockApp").controller(
 			$scope.getAllempsSalStruct();
 
 			$scope.getlastmonth = function() {
-
+				var date = new Date();
 				for (var i = 0; i < 3; i++) {
 					$scope.months.push(monthNames[date.getMonth()] + ' '
 							+ date.getFullYear());
@@ -134,7 +134,7 @@ angular.module("stockApp").controller(
 			
 			$scope.displyOnlySelected = function(abc) {
 				
-				
+				var date = new Date();
 				var hrService = appEndpointSF.gethrService();
 				$scope.currmonth = "" + monthNames[date.getMonth()]	+ ' ' + date.getFullYear();
 				
@@ -186,5 +186,20 @@ angular.module("stockApp").controller(
 			$scope.printslectedslip = [];
 			$scope.printslip();
 
+			$scope.toggleRight = buildToggler('right');
 
+			function buildToggler(navID) {
+				var debounceFn = $mdUtil.debounce(function() {
+					$mdSidenav(navID).toggle().then(function() {
+						$log.debug("toggle " + navID + " is done");
+					});
+				}, 200);
+				return debounceFn;
+			}
+
+			$scope.close = function() {
+				$mdSidenav('right').close().then(function() {
+					$log.debug("close RIGHT is done");
+				});
+			};
 		});
