@@ -14,6 +14,8 @@
 					<th name="Exam Id" ></th> 
 						<th name="Exam Title"  ></th>
 						<th name="Created on Date"  ></th>
+						<th name="Edit Exam"  ></th>
+						<th name="Start Exam"  ></th>
 						
 						</tr>
 					</thead>
@@ -23,16 +25,20 @@
 						<td>{{test.examId}}</td>
 						<td>{{test.examtitle}}</td>
 						<td>{{test.date}}</td>
+						<td><a ui-sref="exam.editpracticeexam({selectedExamId: test.examId})"><md-button
+									class="md-raised md-primary" ng-click="">Edit</md-button> </a></td>
+						
 						<td><a ui-sref="exam.practiceexamtest({selectedExamId: test.examId})"><md-button
 									class="md-raised md-primary" ng-click="">Start</md-button> </a></td>
+									
+						
 					</tr>
 				</tbody>
 			</table>
 
 		</md-data-table-container>
 				</div>
-
-
+				
 	</section>
 	</md-content>
 </div>

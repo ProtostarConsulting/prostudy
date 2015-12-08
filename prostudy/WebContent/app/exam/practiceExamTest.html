@@ -22,7 +22,7 @@
 	<div layout="row" layout-wrap>
 		<div flex="50" ng-repeat="item in array ">
 			<div>
-				<md-content flex layout-padding> <b ng-bind-html="+ (item.quesId+1) +')'+ item.description"></b>
+				<md-content flex layout-padding> <b ng-bind-html="+ (item.quesId) +')'+ item.description"></b>
 				</md-content>
 			</div>
 
@@ -75,11 +75,11 @@
 	<md-button class="md-raised md-primary" ng-click="checkAnswer()">submit</md-button>
 	
 	</div>
-	<!--  <p>Correct Ans: {{userAnsList}} </p>
+ <!-- <p>Correct Ans: {{userAnsList}} </p>
 	<p>User Ans: {{Test.questions[0].correctAns}} </p>
 	<p>selected Ans :{{selection}} </p>
 	
-	<p>object to be saved: {{tempPracticeExamResult}} </p> -->
+	<p>object to be saved: {{tempPracticeExamResult}} </p>  -->
 
 	</md-content>
 </section>

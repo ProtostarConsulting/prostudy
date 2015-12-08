@@ -7,9 +7,10 @@ angular.module("prostudyApp").controller(
 			$scope.curUser = appEndpointSF.getUserService().getLoggedinUser();
 
 			$scope.showSavedToast = function() {
-				$mdToast.show($mdToast.simple().content('Question Saved!')
+				$mdToast.show($mdToast.simple().content('Result Saved!')
 						.position("top").hideDelay(3000));
 			};
+			//$scope.selecetd=[];
 
 			$scope.getPracticeExamResultbyID = function() {
 
