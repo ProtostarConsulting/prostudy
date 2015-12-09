@@ -1,4 +1,5 @@
-angular.module("prostudyApp")
+angular
+		.module("prostudyApp")
 		.controller(
 				"book_chapterListCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
@@ -6,30 +7,59 @@ angular.module("prostudyApp")
 						$sce) {
 					console.log("Inside bookListCtr");
 
-					$scope.book = {
+					$scope.curUser = appEndpointSF.getUserService()
+							.getLoggedinUser();
+
+					$scope.showSavedToast = function() {
+						$mdToast.show($mdToast.simple().content(
+								'Added Succefully!').position("top").hideDelay(
+								3000));
+					};// end of showSavedToast
+
+					$log.debug("$stateParams:", $stateParams);
+					$log.debug("$stateParams.selectedBookId:",
+							$stateParams.selectedBookId);
+					$scope.selectedBookId = $stateParams.selectedBookId;
+
+					/*$scope.book = {
 						bookid : "",
-						book_name : "",
+						book : $scope.books,
 						author : "",
 						board : "",
 						standard : "",
 						chapters : []
 					};// end of tempBook object
 
-					// Because chapterlist data is in another page. so pass
-					// selectedBookId for chapterlist
 					
-					$log.debug("$stateParams:", $stateParams);
-					$log.debug("$stateParams.selectedBookId:",
-							$stateParams.selectedBookId);
-					$scope.selectedBookId = $stateParams.selectedBookId;
+					$scope.myBooks = [];*/
 
-					$scope.showSavedChapterListToast = function() {
-						$mdToast.show($mdToast.simple().content(
-								'ChapterList Saved!').position("top")
-								.hideDelay(3000));
-					};// end of showSavedToast
+					$scope.addMyBook = function() {
+						$log.debug("No1");
+						var UserService = appEndpointSF.getUserService();
+						UserService.addMyBook(
+								UserService.getBookId($scope.selectedBookId))
+								.then(function() {
+									$log.debug("No6");
+									$log.debug("Inside Ctr addMyBook");
 
-				
+									$scope.showSavedToast();
+
+								});
+						$log.debug("No4");
+					}
+
+					/*$scope.getMyBookList = function() {
+
+						var UserService = appEndpointSF.getUserService();
+
+						UserService.getMyBookList($scope.curUser.userId).then(
+								function(bookList) {
+
+									$scope.myBooks = bookList;
+									$scope.books = $scope.myBooks[0];
+
+								});
+					}*/
 
 					$scope.selectedChapter = {
 						id : "",
@@ -60,7 +90,7 @@ angular.module("prostudyApp")
 															+ angular
 																	.toJson($scope.selectedChapter));
 
-											$scope.showSavedChapterListToast();
+											// $scope.showSavedChapterListToast();
 										});
 
 					};// end of $scope.showBookDetails
@@ -73,5 +103,6 @@ angular.module("prostudyApp")
 						$state.go('^', {});
 					};// end of cancelButton
 
+					//$scope.getMyBookList();
 				});// end of book_chapterListCtr
 

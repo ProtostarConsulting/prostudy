@@ -26,6 +26,10 @@
             <td>{{book.bookid}}</td>
             <td  ng-click="showBookContents()"><a ui-sref="book.chapterList({selectedBookId : book.bookid})"><b>{{book.book_name}}</b></a></td>
             <td>{{book.author}}</td>
+            <td>
+            <md-button class="md-raised md-primary" ng-click="addMyBook()" ui-sref="book.addselectedbook({addselectedBookId : book.bookid})">
+            Add To My Books</md-button></a></td>
+           
         </tr>
         
         
@@ -35,7 +39,7 @@
   </div>
   
   <div>
-      <md-button class="md-raised md-primary" ng-click="addToMyBook()">Add To My Books</md-button>
+      
   </div>
   
 </div>

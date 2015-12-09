@@ -16,12 +16,6 @@ angular.module("prostudyApp")
 						chapter_no : ""
 					};
 
-					$scope.showSavedToast = function() {
-						$mdToast.show($mdToast.simple().content(
-								'Chapter_Content Displayed !!!!').position(
-								"top").hideDelay(3000));
-					};// end of showSavedToast
-
 					// For chapter_content, we pass its chapter.id as
 					// selectedChapterId
 
@@ -46,7 +40,7 @@ angular.module("prostudyApp")
 											$log.debug("$scope.chapters  ===="
 															+ angular.toJson($scope.chapters));
 
-											$scope.showSavedToast();
+											
 										});
 
 					};// end of $scope.showChapterContent
