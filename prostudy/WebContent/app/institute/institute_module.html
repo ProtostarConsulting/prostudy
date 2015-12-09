@@ -7,9 +7,9 @@
 
 				<section layout="column">
 
-					<div layout="row" layout-align="end start"  >
+					<div layout="row" layout-align="end start" layout-sm="column" >
 					
-						<div layout-sm="column">
+						<div layout-sm="column" hide-sm>
 						<md-button ui-sref="institute.add" ng-click="close()"
 							class="md-primary"> Add Institute </md-button>
 						<md-button ui-sref="institute.view" ng-click="close()"
@@ -29,24 +29,27 @@
 			</div>
 
 			<!-- Right Navigation Pane -->
+			
 			<md-sidenav class="md-sidenav-right md-whiteframe-z2"
-				md-component-id="right"> <md-toolbar
+				md-component-id="right" layout="column"> <md-toolbar
 				class="md-theme-light">
 			<h1 class="md-toolbar-tools">Student Page Sub Menu</h1>
 			</md-toolbar> <md-content layout-padding> <md-button
 				ng-click="close()" class="md-primary"> Close Sidenav
 			Right </md-button>
 
-			<p hide-md show-gt-md>This shows the selected module
-				links/actions.</p>
-			<md-button ng-click="close()" class="md-primary"> Current
-			Module Action 1 </md-button> <md-button ng-click="close()" class="md-primary">
-			Current Module Action 2 </md-button> <md-button ui-sref="institute.add"
+			<md-button ui-sref="institute.add"
 				ng-click="close()" class="md-primary"> Add New Institute
-			</md-button> <md-button ui-sref="institute.view" ng-click="close()"
-				class="md-primary"> View Institute </md-button> </md-content> </md-sidenav>
+			</md-button> 
+			<md-button ui-sref="institute.view" ng-click="close()"
+				class="md-primary"> View Institute </md-button> 
+			<md-button ui-sref="institute.edit"
+				ng-click="close()" class="md-primary"> Edit Institute
+			</md-button>
+				
+			</md-content> </md-sidenav>
 
-		</section>
+		
 
 	</div>
 
@@ -63,6 +66,6 @@
 			
 		</div>
 	</div>
-	
+	</section>
 
 </div>

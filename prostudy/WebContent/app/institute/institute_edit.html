@@ -63,8 +63,8 @@
 
 				<td><md-button aria-label="Modify Row"
 						ng-hide="editingData[institute.name]" ng-click="modify(institute)">
-					<ng-md-icon icon="edit"></ng-md-icon> </md-button> <md-button
-						aria-label="Save Row" ng-show="editingData[institute.name]"
+					<ng-md-icon icon="edit"></ng-md-icon> </md-button> 
+					<md-button aria-label="Save Row" ng-show="editingData[institute.name]"
 						ng-click="update(institute)"> <ng-md-icon icon="save"></ng-md-icon>
 					</md-button></td>
 
@@ -75,7 +75,7 @@
 	</table>
 	
 	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
-			md-total={{examResults.length}} md-trigger="onpagechange"></md-data-table-pagination>
+			md-total={{institutes.length}} md-trigger="onpagechange"></md-data-table-pagination>
 
 	</md-data-table-container>
 

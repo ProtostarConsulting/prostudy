@@ -1,4 +1,4 @@
-<div>
+
 	<div layout="row" layout-sm="column">
 		<div layout="column" flex>
 			<md-input-container flex> <label>Name</label> <input
@@ -13,13 +13,15 @@
 	</div>
 	vals: {{institutes}}
 	<hr>
-	<md-button ng-click="addInstitute()" class="md-primary">
+	
+	<div layout="row" layout-align="centre centre" layout-sm="column">
+	<md-button class="md-raised md-primary" ng-click="addInstitute()" >
 	Add </md-button>
-	<md-button ng-click="getInstitutes()" class="md-primary">
+	<md-button class="md-raised md-primary" ng-click="getInstitutes()">
 	Get Institutes From DB </md-button>
+	</div>
 
-
-	<md-data-table-container> <md-data-table-container>
+	 <md-data-table-container>
 	<table md-data-table class="md-primary" md-row-select="selected"
 		md-progress="deferred">
 		<thead>
@@ -32,7 +34,7 @@
 		</thead>
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="institute in institutes | filter: searchText ">
+				ng-repeat="institute in institutes | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText" ">
 				<td>{{institute.name}}</td>
 				<td>{{institute.email_id}}</td>
 				<td>{{institute.phone_no}}</td>
@@ -41,7 +43,9 @@
 			</tr>
 		</tbody>
 	</table>
-	</md-data-table-container> </md-data-table-container>
-</div>
+	
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+			md-total={{institutes.length}} md-trigger="onpagechange"></md-data-table-pagination>
+	</md-data-table-container> 
 
 
