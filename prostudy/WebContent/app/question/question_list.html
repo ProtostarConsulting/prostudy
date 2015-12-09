@@ -25,63 +25,50 @@
 
 				<tbody>
 					<tr md-auto-select ng-repeat="question in questions | orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit">
+<<<<<<< .mine
+						<td ng-bind-html="question.description">
+						<div>
+=======
 						<td ng-bind-html="question.description">
 						<div ng-hide="editingData[question.description]">
+>>>>>>> .r254
 							{{question.description}}
 						</div>
-						<div ng-show="editingData[question.description]">
-							<md-input-container flex>
-								<input ng-model="question.description" />
-							</md-input-container>
-						</div></td>
+						</td>
 
 						<td>
-						<div ng-hide="editingData[question.description]">
+						<div>
 							{{question.option1}}
 						</div>
-						<div ng-show="editingData[question.description]">
-							<md-input-container flex>
-								<input ng-model="question.option1" />
-							</md-input-container>
-						</div></td>
+						</td>
+						
 						<td>
-						<div ng-hide="editingData[question.description]">
+						<div >
 							{{question.option2}}
 						</div>
-						<div ng-show="editingData[question.description]">
-							<md-input-container flex>
-								<input ng-model="question.option2" />
-							</md-input-container>
-						</div></td>
+						</td>
+						
 						<td>
-						<div ng-hide="editingData[question.description]">
+						<div>
 							{{question.option3}}
 						</div>
-						<div ng-show="editingData[question.description]">
-							<input type="text" ng-model="question.option3" />
-						</div></td>
+						</td>
+						
 						<td>
-						<div ng-hide="editingData[question.description]">
+						<div>
 							{{question.option4}}
 						</div>
-						<div ng-show="editingData[question.description]">
-							<input type="text" ng-model="question.option4" />
-						</div></td>
+						</td>
 
 						<td>
-						<div ng-hide="editingData[question.description]">
+						<div >
 							{{question.correctAns}}
 						</div>
-						<div ng-show="editingData[question.description]">
-							<input type="text" ng-model="question.correctAns" />
-						</div></td>
+						</td>
 
 						<td>
-						<md-button aria-label="Modify Row" ng-hide="editingData[question.description]" ng-click="modify(question)">
-							<ng-md-icon icon="edit"></ng-md-icon>
-						</md-button>
-						<md-button aria-label="Save Row" ng-show="editingData[question.description]" ng-click="update(question)">
-							<ng-md-icon icon="save"></ng-md-icon>
+						
+						
 
 						</md-button>
 					</tr>
@@ -90,51 +77,6 @@
 
 		</md-data-table-container>
 		<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total={{questions.length}} md-trigger="onpagechange"></md-data-table-pagination>
-
-		<!--
-		<div layout layout-sm="column">
-		<md-input-container flex>
-		<label> Question</label>
-		<input ng-model="question.description">
-		</md-input-container>
-
-		<md-input-container flex>
-		<label>Note</label>
-		<input ng-model="question.note">
-		</md-input-container>
-
-		<md-input-container flex>
-		<label>Option1</label>
-		<input ng-model="question.option1">
-		</md-input-container>
-
-		<md-input-container flex>
-		<label>Option2</label>
-		<input ng-model="question.option2">
-		</md-input-container>
-
-		<md-input-container flex>
-		<label>Option3</label>
-		<input ng-model="question.option3">
-		</md-input-container>
-
-		<md-input-container flex>
-		<label>Option4</label>
-		<input ng-model="question.option4">
-		</md-input-container>
-
-		<md-input-container flex>
-		<label>Correct Ans.</label>
-		<input ng-model="question.correctAns">
-		</md-input-container>
-
-		<md-input-container flex>
-		<md-button class="md-raised md-primary">
-		Update
-		</md-button>
-		</md-input-container>
-
-		</div>-->
 
 		<md-content layout-padding>
 			<div id="updateQuestion">
@@ -150,10 +92,7 @@
 						<input ng-model="selected[0].note">
 					</md-input-container>
 
-					<md-input-container flex>
-						<label>QuestionId</label>
-						<input ng-model="selected[0].questionId">
-					</md-input-container>
+					
 				</div>
 
 				<div layout layout-sm="column">
@@ -188,26 +127,16 @@
 				</div>
 
 				<section layout="row" layout-sm="column" layout-align="center center">
-					<md-button class="md-raised md-primary" 
-					ng-click="updateQuestion(selected[0])">
+					<md-button class="md-raised md-primary" ng-click="updateQuestion(selected[0])">
 						Submit
 					</md-button>
-					<md-button class="md-raised md-primary"
-					ng-click="clickCancelButton(selected[0])">
+					<md-button class="md-raised md-primary"ng-click="clickCancelButton(selected[0])">
 						cancel
 					</md-button>
 				</section>
 			</div>
 
 		</md-content>
-
-		<md-button class="md-raised md-primary" value="Add" ng-click="addQuestion(question)">
-			Add
-		</md-button>
-		<md-button class="md-raised" ng-click="removeQuestion($index)">
-			Remove
-		</md-button>
-
 	</div>
 	</form>
 </md-content>
