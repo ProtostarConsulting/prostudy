@@ -21,11 +21,11 @@ angular.module("prostudyApp").controller(
 
 			$scope.selected = [];
 			
-			$scope.showSavedToast = function() {
+			/*$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content('Book Saved!')
 						.position("top").hideDelay(3000));
 			};//end of showSavedToast
-
+*/
 			$scope.getChapters = function() {
 
 				var ChapterService = appEndpointSF.getChapterService();
@@ -36,7 +36,7 @@ angular.module("prostudyApp").controller(
 
 							$scope.chapters = chapterList;
 							$log.debug("getChapters :"+$scope.chapters);
-							$scope.showSavedToast();
+							
 							
 							$scope.chapters.chapter_content = $sce.trustAsHtml($scope.chapters.chapter_content);
 							$log.debug("$scope.chapters.chapter_content: " + $scope.chapters.chapter_content);

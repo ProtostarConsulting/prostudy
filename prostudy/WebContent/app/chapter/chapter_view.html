@@ -10,7 +10,7 @@
 
 	</div>
 
-	<div layout="row" layout-align="center center">
+	<div layout="row" layout-align="center center" layout-sm="column">
 		<td><md-button class="md-raised md-primary"
 				ng-click="clicked=true">Get Chapter Details From Local
 			DB</md-button></td>
@@ -39,12 +39,7 @@
 				          <label>ID :-</label> <input name="id" id="id" ng-model="chapter.id" disabled>
                 </md-input-container>
 
-				<!-- 	<md-input-container md-is-error="chapterForm.chapter_content.$invalid && (chapterForm.$submitted || chapterForm.option2.$dirty)">
-				<label>Chapter Content</label>
-				 <div text-angular="" ng-model="chapter.chapter_content"></div>
-				 <div>{{chapter.chapter_content}} </div>
 			
-			</md-input-container> -->
 
 				<md-content flex layout-padding>  
 				     <p ng-bind-html="chapter.chapter_content"></p>
@@ -75,10 +70,6 @@
 	</div>
 
 
-	<!-- <hr>
-	<b>Chapters Value :-
-	</b>{{chapters}}
-	<hr> -->
 
 </form>
 </md-content>
