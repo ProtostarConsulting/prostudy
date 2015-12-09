@@ -16,14 +16,19 @@
 					</label> <input ng-model="empDetail.compemail"> </md-input-container>
 			</div>
 			<div>
+				<md-input-container flex> <label>Designation
+					</label> <input ng-model="empDetail.Designation"> </md-input-container>
 				<md-input-container flex> <label>Address
 				</label> <textarea ng-model="empDetail.empAddress" rows="4" cols="1"></textarea></md-input-container>
 			</div>
-		
+		<div layout layout-sm="column">
 			<section layout="row" layout-sm="column" layout-align="left left">
 				<md-button class="md-raised md-primary" ng-click="updateemp()">Update</md-button>
-
 			</section>
+			<section layout="row" layout-sm="column" layout-align="left left">
+				<md-button class="md-raised md-primary" ui-sref="hr.getAllSlip({viewsalslips: empDetail.empid})">View Salary Slips</md-button>
+			</section>
+			</div>
 		</div>
 	</form>
 	</md-content>

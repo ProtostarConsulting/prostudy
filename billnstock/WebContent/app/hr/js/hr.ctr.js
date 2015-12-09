@@ -31,7 +31,8 @@ angular
 						empName : "",
 						email : "",
 						compemail : "",
-						empAddress : ""
+						empAddress : "",
+							Designation:""
 					};
 
 					$scope.salstruct = {

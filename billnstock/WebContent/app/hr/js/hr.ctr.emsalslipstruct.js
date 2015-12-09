@@ -34,7 +34,11 @@ angular
 							Netsalgrandtotal : "",
 							addprobonus : "",
 							CTC : "",
-							MCTC : ""
+							MCTC : "",
+							LDOther1dis:"",
+							LDOther2dis:"",
+							LDOther1amt:"",
+							LDOther2amt:""
 						};
 
 						$scope.viewsalstruct = $scope.salstruct;

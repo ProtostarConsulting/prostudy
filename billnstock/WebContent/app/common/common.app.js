@@ -176,5 +176,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/print/:printempidsalslip",
 		templateUrl : '/app/hr/print_salaryslip.html',
 		controller : 'hrCtr.emplist_to_ganeratesalslip',
+	}).state('hr.getAllSlip', {
+		url : "/getAllSlip/:viewsalslips",
+		templateUrl : '/app/hr/getAllSalSlip.html',
+		controller : 'hrCtr.empview',
 	});
 });

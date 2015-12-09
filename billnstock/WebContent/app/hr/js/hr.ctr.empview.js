@@ -7,7 +7,7 @@ angular
 						appEndpointSF) {
 					
 					$scope.selectedempNo = $stateParams.selectedempNo;
-					
+					$scope.viewsalslips = $stateParams.viewsalslips;
 		
 
 					$scope.showEmp = function() {
@@ -38,9 +38,40 @@ angular
 											$log.debug("Inside Ctr updateemp");
 											$log.debug("msgBean.msg:" + msgBean.msg);
 											$scope.showSimpleToast(msgBean.msg);
+										//	$scope.empDetail = [];
 										});
 							}
 						
+						
+						
+						
+						$scope.getallsalslip = function() {
+							var hrService = appEndpointSF.gethrService();
+
+							hrService
+									.getallsalslip($scope.viewsalslips)
+									.then(
+											function(empsalslips) {
+												$scope.empSalSlip = empsalslips;
+												$log
+														.debug("$scope.empSalSlip:empSalSlip ===="
+																+ angular
+																		.toJson($scope.empSalSlip));
+											});
+
+						}
+						$scope.empSalSlip = [];
+						$scope.getallsalslip();
+						
+						$scope.printSalSlipDiv = function(salSlipDiv) {
+							// window.frames["print_frame"].document.body.innerHTML
+							// = printDivCSS
+							// + document.getElementById(divId).innerHTML;
+							window.frames["print_frame"].document.body.innerHTML = document
+									.getElementById(salSlipDiv).innerHTML;
+							window.frames["print_frame"].window.focus();
+							window.frames["print_frame"].window.print();
+						}	
 						
 						$scope.toggleRight = buildToggler('right');
 

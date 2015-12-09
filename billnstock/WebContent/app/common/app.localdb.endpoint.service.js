@@ -252,10 +252,13 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		var deferred = $q.defer();
 		$timeout(function() {
 			var tempItem = [];
+	
 			var empstructList = angular.fromJson($localStorage.dbsalstruct);
+		
 
 			if (typeof empstructList === 'undefined')
 				empstructList = [];
+		
 
 			for (i = 0; i < empstructList.length; i++) {
 				if (selectedempNo == empstructList[i].empid) {
@@ -263,7 +266,9 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 				}
 			}
+			
 			deferred.resolve(tempItem);
+			
 
 		}, 1000);
 		return deferred.promise;
@@ -378,6 +383,30 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		}, 1000);
 		return deferred.promise;
 	}
+	
+	
+	
+	hrService.getallsalslip = function(empid) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+			var tempItem = [];
+			var salslipList = angular.fromJson($localStorage.dbsalslip);
+
+			if (typeof salslipList === 'undefined')
+				salslipList = [];
+
+			for (i = 0; i < salslipList.length; i++) {
+				if (empid == salslipList[i].salarystruct.empid) {
+					tempItem.push(salslipList[i]);
+				}
+			}
+			deferred.resolve(tempItem);
+
+		}, 1000);
+		return deferred.promise;
+	}
+
 	
 	// End of hrService
 

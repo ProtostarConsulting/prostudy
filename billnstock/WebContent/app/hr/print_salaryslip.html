@@ -20,7 +20,7 @@
 </md-content>
 <md-content layout-padding>
 
-<div id="salSlipDiv">
+<div  id="salSlipDiv" >
 	<table>
 		<tbody>
 			<tr>
@@ -53,14 +53,18 @@
 						<div>
 							<br>
 							<table width="100%">
-								<tr height="50px">
+								<tr height="10px">
 									<td width="50%"><b>ganerated no= </b>{{emp.ganeratedcode}}</td>
-									<td width="50%"><b>Employee Name = </b>{{emp.salarystruct.empName}}</td>
+									<td width="50%"><b>Employee Name = </b>{{emp.empdetail.empName}}</td>
 								</tr>
 
-								<tr>
-									<td width="50%"><b>Designation = </b>Employee</td>
+								<tr height="10px">
+									<td width="50%"><b>Designation = </b>{{emp.empdetail.Designation}}</td>
 									<td width="50%"><b>Month and Year = </b>{{emp.month}}</td>
+								</tr>
+								<tr height="10px">
+									<td width="50%"><b>Employee id = </b>{{emp.empdetail.empid}}</td>
+									<td width="50%"><b></b></td>
 								</tr>
 
 							</table>
@@ -79,7 +83,7 @@
 						<td width="25%">Basic & DA</td>
 						<td width="25%">{{emp.salarystruct.monthly}}</td>
 						<td width="25%">Provident Fund</td>
-						<td width="25%">{{emp.salarystruct.pf1}}</td>
+						<td width="25%"></td>
 					</tr>
 					<tr>
 						<td width="25%">HRA</td>
@@ -97,7 +101,7 @@
 						<td width="25%"></td>
 						<td width="25%"></td>
 						<td width="25%">Profession Tax</td>
-						<td width="25%"></td>
+						<td width="25%">{{emp.salarystruct.pf1+emp.salarystruct.pf1}}</td>
 					</tr>
 					<tr>
 						<td width="25%"></td>
@@ -106,6 +110,18 @@
 						<td width="25%"></td>
 					</tr>
 					<tr>
+								<td width="25%"></td>
+								<td width="25%"></td>
+								<td width="25%">Other 1</td>
+								<td width="25%">{{emp.salarystruct.LDOther1amt}}</td>
+							</tr>
+							<tr>
+								<td width="25%"></td>
+								<td width="25%"></td>
+								<td width="25%">Other 2</td>
+								<td width="25%">{{emp.salarystruct.LDOther2amt}}</td>
+							</tr>
+					<tr>
 						<td width="25%"></td>
 						<td width="25%"></td>
 						<td width="25%"></td>
@@ -113,7 +129,7 @@
 					</tr>
 					<tr>
 						<td width="25%">Total Addition</td>
-						<td width="25%">{{emp.salarystruct.SAmonthly}}</td>
+						<td width="25%">{{emp.salarystruct.monthly+emp.salarystruct.HRAmonthly+emp.salarystruct.Convmonthly}}</td>
 						<td width="25%">Total Deduction</td>
 						<td width="25%"></td>
 					</tr>
@@ -121,15 +137,9 @@
 						<td width="25%"></td>
 						<td width="25%"></td>
 						<td width="25%"><b>NET Salary</b></td>
-						<td width="25%">{{emp.salarystruct.Netsalgrandtotalmonthly}}</td>
+						<td width="25%"><!-- {{emp.salarystruct.Netsalgrandtotalmonthly}} --></td>
 					</tr>
-					<tr>
-						<td width="25%"></td>
-						<td width="25%"></td>
-						<td width="25%"></td>
-						<td width="25%"></td>
-					</tr>
-
+				
 
 				</table>
 				<br>
@@ -150,14 +160,17 @@
 				</tr>
 			</tbody>
 		</table>
-		<table>
-		<tbody>
-			<tr>
-				<td style="width: 100%"><img alt="Logo"
-					src="img/images/erpag_document_footer.JPG"></td>
-							</tr>
-		</tbody>
+		
+</table>
+<!-- 	<div style="bottom:0;  postion :absolute"> -->
+<footer>
+ <div layout="row" layout-align="center end">
+					<img alt="Logo"
+					src="img/images/erpag_document_footer.JPG">
+		</div>
+		</footer>
 </div>
+
 
 
 

@@ -40,7 +40,11 @@ angular
 							Netsalgrandtotal : "",
 							addprobonus : "",
 							CTC : "",
-							MCTC : ""
+							MCTC : "",
+							LDOther1dis:"",
+							LDOther2dis:"",
+							LDOther1amt:"",
+							LDOther2amt:""
 						};
 					
 					
@@ -163,6 +167,10 @@ angular
 											$scope.salstruct.CTC = $scope.slist[0].CTC;
 											$scope.salstruct.MCTC = $scope.slist[0].MCTC;
 											$scope.salstruct.Netsalgrandtotalmonthly = $scope.slist[0].Netsalgrandtotalmonthly;
+											$scope.salstruct.LDOther1dis = $scope.slist[0].LDOther1dis;
+											$scope.salstruct.LDOther2dis = $scope.slist[0].LDOther2dis;
+											$scope.salstruct.LDOther1amt = $scope.slist[0].LDOther1amt;
+											$scope.salstruct.LDOther2amt = $scope.slist[0].LDOther2amt;
 											$log
 													.debug("Inside Ctr salstruct:"
 															+ angular
