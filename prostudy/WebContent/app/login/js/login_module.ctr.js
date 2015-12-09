@@ -10,7 +10,15 @@ angular.module("prostudyApp").controller(
 			};
 			
 			//$scope.userRole = [admin,student,teacher]
-
+			$scope.book = {
+					bookid : "",
+					book_name : "",
+					author : "",
+					board : "",
+					standard : "",
+					chapters : []
+				};// end of tempBook object
+				
 			$scope.tempUser = {
 				userId : "",
 				name : "",
@@ -19,7 +27,9 @@ angular.module("prostudyApp").controller(
 				address : "",
 				contact : "",
 				pwd : "",
-				role : ""				
+				role : "Teacher",
+				book :$scope.book,
+				exam :[]
 			};
 			$scope.loginMsg  = "";
 			$scope.users = [];
@@ -32,17 +42,7 @@ angular.module("prostudyApp").controller(
 					$log.debug("Inside Ctr addLogin");
 					$log.debug("msgBean.msg:" + msgBean.msg);
 					$scope.showSavedToast();
-					$scope.tempUser = {
-							userId : "",
-							name : "",
-							userName : "",
-							email_id : "",
-							address : "",
-							contact : "",
-							pwd : "",
-							role : ""
-							
-						};
+					
 				});
 				$log.debug("No4");
 				
