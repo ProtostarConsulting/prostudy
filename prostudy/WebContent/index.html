@@ -43,7 +43,7 @@
 				ng-click="logoutClick()">{{curUser.name}}> Logout<md-tooltip>
 			Logout </md-tooltip> </md-button>
 			<md-button aria-label="Login" ng-hide="curUser == null"
-				ng-click="loginClick()"> <a ui-sref="myprofile">My
+				ng-click="loginClick()"> <a ui-sref="myprofile">Edit
 				profile </a> </md-button>
 
 			<md-button aria-label="Open Settings"
@@ -80,7 +80,7 @@
 				ui-sref="report" ng-show="curUser.role == 'Admin'"
 				ng-click="close()" class="md-primary" show-gt-md>
 			Report </md-button> <md-button ui-sref="chapter"
-				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
+				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher'"
 				ng-click="close()" class="md-primary" show-gt-md>
 			Chapter </md-button> <md-button ui-sref="book"
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
@@ -88,7 +88,12 @@
 			<md-button ui-sref="syllabus"
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
 				ng-click="close()" class="md-primary" show-gt-md>
-			Syllabus </md-button> </md-content> </md-sidenav>
+			Syllabus </md-button>
+			<md-button ui-sref="myBooks" ng-show="curUser.role == 'Student'"
+				ng-click="close()" class="md-primary" show-gt-md>
+			My Books </md-button><md-button ui-sref="myPracticeExams" ng-show="curUser.role == 'Student'"
+				ng-click="close()" class="md-primary" show-gt-md>
+			My Practice Exams </md-button>  </md-content> </md-sidenav>
 
 			<md-content flex layout-padding>
 			<div class="md-toolbar-tools" hide-gt-md>
@@ -226,6 +231,13 @@
    	<script src="/app/exam/js/practiceExamTest.ctr.js"></script>
 	<script src="/app/exam/js/practiceExam_edit.ctr.js"></script> 
  <!--  <script src="/app/exam/js/myPracticeExam_add.ctr.js"></script>  -->
+  	<script src="/app/exam/js/myPracticeExam_add.ctr.js"></script>
+  	<script src="/app/exam/js/practiceExamList.ctr.js"></script>
+  	<script src="/app/exam/js/userQuesAnsView.ctr.js"></script>
+	<script src="/app/exam/js/examScore.ctr.js"></script>
+
+	<script src="/app/exam/js/examdemo.ctr.js"></script>
+
 
 
 		<script src="/app/chapter/js/chapter_module.ctr.js"></script>
@@ -248,6 +260,7 @@
 		<script src="/app/examdemo/js/examdemo_math.ctr.js"></script>
 		
 		<script src="/app/myprofile/js/myprofile.ctr.js"></script>
+
 
 	<script src="/app/chapter/js/chapter_module.ctr.js"></script>
 	<script src="/app/chapter/js/chapter_add.ctr.js"></script>
@@ -274,6 +287,9 @@
 	<script src="/app/report/js/display_report.ctr.js"></script>
 
 	<script src="/app/login/js/login_module.ctr.js"></script>
+	<script src="/app/login/js/newUser_student.ctr.js"></script>
+	<script src="/app/myBooks/js/myBooks_module.ctr.js"></script>
+	<script src="/app/myPracticeExams/js/myPracticeExams_module.ctr.js"></script>
 
 	<script src="/app/test/js/table.demo.data.service.js"></script>
 	<script src="/app/demo/js/table.demo.withservice.ctr2.js"></script>
