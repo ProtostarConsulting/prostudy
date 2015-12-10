@@ -34,7 +34,7 @@ angular.module("prostudyApp")
 						if ($scope.counter === 0) {
 							$scope.$broadcast('timer-stopped', 0);
 							$timeout.cancel(mytimeout);
-							$state.go("examscore");
+							//$state.go("examscore");
 							return;
 
 						}
