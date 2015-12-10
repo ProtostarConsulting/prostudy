@@ -153,8 +153,6 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 					
 					 $log.debug("TEMP=getBooksByID==" + tempBookItem);
 					
-
-					// $log.debug("TEMP=getBooksByID==" + tempBookItem[i].chapters);
 				}
 			}
 				
@@ -164,16 +162,10 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	//end of getBooksByID-BookService
 	
+
 	// Add Student Service
 	var StudentService = {};
 
@@ -343,9 +335,59 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		}, 1000);
 		return deferred.promise;
 	}
+	PracticeExamService.updatePracticeExam = function(editTest,selected) {
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side updated local DB ...");
+			var TestList = angular.fromJson($localStorage.dbPracticeExams);
+			if (typeof TestList === 'undefined')
+				TestList = [];
+			
+			for (var i = 0; i < TestList.length; i++) {
+				if (editTest.examId == TestList[i].examId)
+					TestList[i] = editTest;
+			}
+			
+			if( selected.length>0)
+			{
+				TestList[0].questions=[];
+				for (var i = 0; i <1; i++) 
+				{
+				var k=0;
+					for (var j = 0; j < selected.length; j++)
+					{
+					TestList[i].questions[k]=selected[j];
+					k++;
+					}
+				}
+			}
+			else
+				{	
+				while(TestList[0].questions.length > 0)
+					{
+					TestList[0].questions.pop();
+					}
+				
+				}
+		
+			$localStorage.dbPracticeExams = angular.toJson(TestList);
+			deferred.resolve({
+				"msg" : "TestList Updated Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+
+	
+	// Add Syllabus Service
+
 	// End of PracticeExamService
 	
 	      // Add Syllabus Service
+
 	var SyllabusService = {};
 
 	serviceFactory.getSyllabusService = function() {
@@ -373,8 +415,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 		return deferred.promise;
 	}
-	// syllabus.syllabusId = syllabusList.length +100;
-	// Update of Local Storage Syllabus
+	
 	SyllabusService.updateSyllabus = function(editRecord) {
 		var deferred = $q.defer();
 		$timeout(function() {
@@ -384,7 +425,6 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			if (typeof syllabusList === 'undefined')
 				syllabusList = [];
 
-			// find index of editRecord in syllabusList
 			for (var i = 0; i < syllabusList.length; i++) {
 				if (editRecord.syllabusId == syllabusList[i].syllabusId)
 					syllabusList[i] = editRecord;
