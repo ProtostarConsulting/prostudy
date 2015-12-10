@@ -8,3 +8,4 @@ gaeLaunchAppInBrowser=true
 gaeRetainStagingDirectory=false
 googleCloudSqlEnabled=false
 localDevMySqlEnabled=true
+validationExclusions=src/HtmlToPdf.java|src/com/protostar/billingnstock/cust/entities/pdf.java

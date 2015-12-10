@@ -183,10 +183,14 @@ angular
 						// window.frames["print_frame"].document.body.innerHTML
 						// = printDivCSS
 						// + document.getElementById(divId).innerHTML;
-						window.frames["print_frame"].document.body.innerHTML = document
+						
+								window.frames["print_frame"].document.body.innerHTML = document
 								.getElementById(salSlipDiv).innerHTML;
 						window.frames["print_frame"].window.focus();
 						window.frames["print_frame"].window.print();
+						
+						
+						
 					}
 
 					$scope.printslip = function() {	

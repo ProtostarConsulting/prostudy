@@ -8,8 +8,9 @@ angular
 					
 					$scope.selectedempNo = $stateParams.selectedempNo;
 					$scope.viewsalslips = $stateParams.viewsalslips;
-		
-
+				
+					$scope.x = location.href;
+					
 					$scope.showEmp = function() {
 						var hrService = appEndpointSF.gethrService();
 
@@ -72,6 +73,17 @@ angular
 							window.frames["print_frame"].window.focus();
 							window.frames["print_frame"].window.print();
 						}	
+						
+						
+						
+						$scope.viewpdf=function(){
+							
+							//ExportToPDF('salSlipDiv');//,[], '??????? ???????', PDFPageType.Portrait);
+						
+						
+						}
+						
+						
 						
 						$scope.toggleRight = buildToggler('right');
 
