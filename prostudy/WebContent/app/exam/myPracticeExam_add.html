@@ -1,0 +1,40 @@
+<div layout="row" layout-padding>
+	<md-content>
+	<section>
+		<md-subheader class="md-primary">
+		<h4 class="md-headline">List of  My Practice Exams</h4>
+		</md-subheader>
+<div>
+<md-button	class="md-raised md-primary" ng-click="addMyPracticeExam()">Add {{TestSelected.examtitle}} To MyPractice Exam </md-button></div>
+
+	<div layout="column">
+	
+			<md-data-table-container>
+				<table md-data-table >
+					<thead >
+					<tr>
+					<th name="Exam Id" ></th> 
+						<th name="Exam Title"  ></th>
+						<th name="Created on Date"  ></th>
+						
+						
+						</tr>
+					</thead>
+
+				<tbody>
+					<tr md-auto-select ng-repeat="test in myPracticeTest ">
+						<td>{{test.examId}}</td>
+						<td>{{test.examtitle}}</td>
+						<td>{{test.date}}</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</md-data-table-container> 
+
+</div>
+<div><a ui-sref="exam.listpracticeexam">Back to PracticeExamList</a></div>
+
+	</section>
+	</md-content>
+</div>
