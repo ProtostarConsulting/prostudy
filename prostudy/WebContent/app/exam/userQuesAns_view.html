@@ -1,0 +1,67 @@
+
+	<div layout="row" layout-wrap>
+		<div flex="50" ng-repeat="item in Test.questions ">
+			<div>
+				<md-content flex layout-padding> <b ng-bind-html="+ (item.quesId+1) +')'+ item.description"></b>
+				</md-content>
+			</div>
+
+			<p>
+				<i>{{item.note}}</i>
+			</p>
+
+			<div>
+				<md-checkbox name="answer"
+					ng-model="selected[item.quesId + item.option1]"
+					ng-click="toggleSelection(item.quesId,1)">
+				{{item.option1 }}</md-checkbox>
+				<md-checkbox name="answer"
+					ng-model="selected[item.quesId + item.option2]"
+					ng-click="toggleSelection(item.quesId,2)">
+				{{item.option2 }}</md-checkbox>
+				<md-checkbox name="answer"
+					ng-model="selected[item.quesId + item.option3]"
+					ng-click="toggleSelection(item.quesId,3)">
+				{{item.option3 }}</md-checkbox>
+				<md-checkbox name="answer"
+					ng-model="selected[item.quesId + item.option4]"
+					ng-click="toggleSelection(item.quesId,4)">
+				{{item.option4 }}</md-checkbox>
+
+				<td>Correct Answer :{{item.correctAns }}</td>
+			</div>
+		</div>
+	</div>
+ 
+ 
+ 
+ 
+
+ 
+<hr>
+<hr>
+ <div  ng-repeat="x in Test.questions" >
+ 			
+ 			<td><b ng-bind-html="+ (x.quesId+1) +')'+x.description"></b><p>Correct Answer : {{x.correctAns}}</p></td>
+ 			
+ 			<tr ng-repeat="result in examResults.userAns ">
+ 			<td>User Answer : {{option.userOption}}</td><br>
+ 			</tr>
+ 			
+ 			<hr>
+ </div>
+ 		
+  <div  ng-repeat="result in examResults.userAns "> 
+ 	
+	 {{result.userOption}}
+ 		
+
+ 	 
+ 	
+ </div>
+ 
+ 		
+<p>Selected Test : {{Test.questions}} </p>
+<p>Selected Test ID: {{selectedExamId}} </p>
+<p>Correct Ans: {{examResults}} </p>
+<p>New result: {{results}}</p>
