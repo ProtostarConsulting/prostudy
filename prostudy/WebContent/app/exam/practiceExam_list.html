@@ -7,38 +7,37 @@
 
 
 		<div layout="column">
-				<md-data-table-container>
-				<table md-data-table >
-					<thead >
+			<md-data-table-container>
+			<table md-data-table>
+				<thead>
 					<tr>
-					<th name="Exam Id" ></th> 
-						<th name="Exam Title"  ></th>
-						<th name="Created on Date"  ></th>
-						<th name="Edit Exam"  ></th>
-						<th name="Start Exam"  ></th>
-						
-						</tr>
-					</thead>
+						<th name="Exam Id"></th>
+						<th name="Exam Title"></th>
+						<th name="Created on Date"></th>
+
+					</tr>
+				</thead>
 
 				<tbody>
 					<tr md-auto-select ng-repeat="test in practiceTest ">
 						<td>{{test.examId}}</td>
 						<td>{{test.examtitle}}</td>
 						<td>{{test.date}}</td>
-						<td><a ui-sref="exam.editpracticeexam({selectedExamId: test.examId})"><md-button
-									class="md-raised md-primary" ng-click="">Edit</md-button> </a></td>
-						
-						<td><a ui-sref="exam.practiceexamtest({selectedExamId: test.examId})"><md-button
+						<td><a
+							ui-sref="exam.practiceexamtest({selectedExamId: test.examId})"><md-button
 									class="md-raised md-primary" ng-click="">Start</md-button> </a></td>
-									
-						
+						<td><a
+							ui-sref="exam.addmypracticeexam({selectedMyExamId: test.examId})"><md-button
+									class="md-raised md-primary" ng-click="">Add To
+								MyPractice Exam </md-button> </a></td>
 					</tr>
 				</tbody>
 			</table>
 
-		</md-data-table-container>
-				</div>
-				
+			</md-data-table-container>
+		</div>
+
+
 	</section>
 	</md-content>
 </div>
