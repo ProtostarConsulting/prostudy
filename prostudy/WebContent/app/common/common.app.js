@@ -88,13 +88,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		  url : "/addmypracticeexam/:selectedMyExamId",
 		  templateUrl : '/app/exam/myPracticeExam_add.html',
 		  controller : 'addMyPracticeExamCtr'
-	})
-	
-	.state('examscore', {
+
+	})/*.state('examscore', {
 		url : "/examresult/score",
 		templateUrl : '/app/exam/exam_score.html',
 		controller : 'examScoreCtr'
-	}).state('userQuesAnsView', {
+	})*/.state('userQuesAnsView', {
 		url : "/userQuesAnsView/:selectedExamId",
 		templateUrl : '/app/exam/userQuesAns_view.html',
 		controller : 'userQuesAnsViewCtr'
@@ -229,7 +228,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/syllabus/syllabus_addsyllabus.html',
 		controller : 'syllabusCtr'
 
-  }).state('syllabus.viewsyllabus', {
+	}).state('syllabus.viewsyllabus', {
 
 		url : "/viewsyllabus",
 		templateUrl : '/app/syllabus/syllabus_viewsyllabus.html',
