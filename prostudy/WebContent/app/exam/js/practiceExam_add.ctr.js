@@ -46,6 +46,8 @@ angular.module("prostudyApp").controller(
 						.getPracticeExamService();
 				for (var i = 0; i < $scope.selected.length; i++) {
 					$scope.tempPracticeExam.questions.push($scope.selected[i]);
+					
+					$log.debug("$scope.tempPracticeExam",$scope.tempPracticeExam);
 				}
 
 				practiceExamService.addPracticeExam($scope.tempPracticeExam)

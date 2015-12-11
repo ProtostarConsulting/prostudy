@@ -23,17 +23,15 @@
 						<td>{{test.examId}}</td>
 						<td>{{test.examtitle}}</td>
 						<td>{{test.date}}</td>
-						<td><a
-							ui-sref="exam.practiceexamtest({selectedExamId: test.examId})"><md-button
+						<td><a ui-sref="exam.editpracticeexam({selectedExamId: test.examId})"><md-button
+									class="md-raised md-primary" ng-click="">Edit </md-button> </a></td>
+									
+						<td><a ui-sref="exam.practiceexamtest({selectedExamId: test.examId})"><md-button
 									class="md-raised md-primary" ng-click="">Start</md-button> </a></td>
 
-						<!-- <td><a
-							ui-sref="exam.addmypracticeexam({selectedMyExamId: test.examId})"><md-button
-									class="md-raised md-primary" ng-click="">Add To
-								MyPractice Exam </md-button> </a></td> -->
+						
 
-						<td><md-button
-									class="md-raised md-primary" ng-click="addTestToMyList(test.examId)">Add To
+						<td><md-button class="md-raised md-primary" ng-click="addTestToMyList(test.examId)">Add To
 								MyPractice Exam </md-button></td>
 								
 								
