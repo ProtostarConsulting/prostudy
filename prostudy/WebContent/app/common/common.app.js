@@ -84,11 +84,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/exam/view",
 		templateUrl : '/app/exam/exam_view.html',
 		controller : 'examCtr'
-	}).state('exam.addmypracticeexam', {
-		  url : "/addmypracticeexam/:selectedMyExamId",
-		  templateUrl : '/app/exam/myPracticeExam_add.html',
-		  controller : 'addMyPracticeExamCtr'
-
 	})/*.state('examscore', {
 		url : "/examresult/score",
 		templateUrl : '/app/exam/exam_score.html',
