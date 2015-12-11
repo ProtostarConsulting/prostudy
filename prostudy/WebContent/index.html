@@ -81,7 +81,7 @@
 				ui-sref="report" ng-show="curUser.role == 'Admin'"
 				ng-click="close()" class="md-primary" show-gt-md>
 			Report </md-button> <md-button ui-sref="chapter"
-				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher'"
+				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
 				ng-click="close()" class="md-primary" show-gt-md>
 			Chapter </md-button> <md-button ui-sref="book"
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
@@ -89,10 +89,6 @@
 			<md-button ui-sref="syllabus"
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
 				ng-click="close()" class="md-primary" show-gt-md>Syllabus </md-button>
-			
-			
-
-			
 			<md-button ui-sref="myBooks" ng-show="curUser.role == 'Student'"
 				ng-click="close()" class="md-primary" show-gt-md>
 			My Books </md-button><md-button ui-sref="myPracticeExams" ng-show="curUser.role == 'Student'"
@@ -114,9 +110,19 @@
 				<div ui-view>
 					<!--This is the center page of all main modules for the index module. -->
 				</div>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>				
 			</div>
 			</md-card> <!--This is a botton section of the app--> <md-divider></md-divider>
 			<md-card>
+			
 			<div layout="row" layout-wrap>
 				<div>
 					<a>Tihs is link one </a> <a>Tihs is link one </a> <a>Tihs is
@@ -224,7 +230,6 @@
 	<script src="/app/student/js/student.list.ctr.js"></script>
 
 	<script src="/app/exam/js/exam_module.ctr.js"></script>
-	 <script src="/app/exam/js/practiceExamResult.ctr.js"></script> 
 	
 	<script src="/app/question/js/question.ctr.js"></script>
 	<script src="/app/question/js/questionlist.ctr.js"></script>
@@ -234,12 +239,11 @@
   	<script src="/app/exam/js/exam_module.ctr.js"></script>
   	<script src="/app/exam/js/practiceExamList.ctr.js"></script>
    	<script src="/app/exam/js/practiceExamTest.ctr.js"></script>
-	<script src="/app/exam/js/practiceExam_edit.ctr.js"></script> 
- <!--  <script src="/app/exam/js/myPracticeExam_add.ctr.js"></script>  -->
-  	<script src="/app/exam/js/myPracticeExam_add.ctr.js"></script>
+	<script src="/app/exam/js/practiceExam_edit.ctr.js"></script> 	   
   	<script src="/app/exam/js/practiceExamList.ctr.js"></script>
   	<script src="/app/exam/js/userQuesAnsView.ctr.js"></script>
-	<script src="/app/exam/js/examScore.ctr.js"></script>
+  	<script src="/app/exam/js/practiceExamResult.ctr.js"></script>
+	<!-- <script src="/app/exam/js/examScore.ctr.js"></script> -->
 
 	<script src="/app/exam/js/examdemo.ctr.js"></script>
 
