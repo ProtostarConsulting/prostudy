@@ -1,28 +1,25 @@
 <div layout="column" layout-padding>
 	<md-content>
-		<section>
-			<md-subheader class="md-primary">	
-				<h3 class="md-headline">New Chapter</h3>
-			</md-subheader>
-	<form name="userForm">
+		
+	<form name="chapterForm">
 	  <div layout="row" layout-sm="column">
 					
 		<div layout="column" flex>
 		
 
 			<md-input-container>
-				<label>ID :-</label>
-				<input name="id" id="id" ng-required="true" ng-model="tempChapter.id">
+				<label>Chapter No :-</label>
+				<input type="number" name="id" id="id"  ng-model="tempChapter.id">
 			</md-input-container>
 			
 			<md-input-container>
 				<label>Chapter :-</label>
-				<input name="chapter_name" id="chapter_name" ng-required="true" ng-model="tempChapter.chapter_name">
+				<input name="chapter_name" id="chapter_name"  ng-model="tempChapter.chapter_name">
 			</md-input-container>
 
 			<md-input-container>
 				<label>Chapter Content</label>
-				<text-angular name="chapter_content" id="chapter_content" ng-required="true" ng-model="tempChapter.chapter_content"></text-angular>
+				<text-angular name="chapter_content" id="chapter_content"  ng-model="tempChapter.chapter_content"></text-angular>
 			</md-input-container>
 
 			<md-input-container>
@@ -32,7 +29,7 @@
 
 			<md-input-container>
 				<label>Student Class</label>
-				<input name="student_class" id="student_class" ng-required="true" ng-model="tempChapter.student_class">
+				<input name="student_class" id="student_class" ng-model="tempChapter.student_class">
 			</md-input-container>
 
 			<md-input-container>
@@ -40,12 +37,7 @@
 				<input  name="subject" id="subject"   ng-model="tempChapter.subject">
 			</md-input-container>
 			
-			<md-input-container>
-				<label>Chapter No</label>
-				<input type="number" name="chapter_no" id="chapter_no" ng-minlength="1"  ng-maxlength="1"  ng-model="tempChapter.chapter_no">
-			</md-input-container>
-			
-			
+		
 					</div>
 				</div>
 

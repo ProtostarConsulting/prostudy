@@ -5,15 +5,14 @@
 	<div layout="row" layout-align="center center">
 
 		<md-input-container flex> <label>Enter
-			Chapter ID</label> <input ng-model="searchText.id"> </md-input-container>
+			Chapter No :</label> <input ng-model="searchText.id"> </md-input-container>
 
 
 	</div>
 
 	<div layout="row" layout-align="center center" layout-sm="column">
 		<td><md-button class="md-raised md-primary"
-				ng-click="clicked=true">Get Chapter Details From Local
-			DB</md-button></td>
+				ng-click="clicked=true">View Chapter Details</md-button></td>
 		<td><md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button></td>
 
 	</div>
@@ -28,7 +27,6 @@
 
 	<div ng-show="clicked">
 
-		Hellooooooooo...!!!!!
 
 		<div layout="row" layout-sm="column">
 
@@ -36,14 +34,19 @@
 
 
 				<md-input-container>
-				          <label>ID :-</label> <input name="id" id="id" ng-model="chapter.id" disabled>
+				          <label>Chapter No :-</label> <input name="id" id="id" ng-model="chapter.id" disabled>
+                </md-input-container>
+                
+                	<md-input-container>
+				          <label>Chapter Name :-</label> <input name="chapter_name" id="chapter_name" ng-model="chapter.chapter_name" disabled>
                 </md-input-container>
 
 			
 
-				<md-content flex layout-padding>  
-				     <p ng-bind-html="chapter.chapter_content"></p>
-				</md-content>
+				<md-input-container> 
+				     <label>Chapter Content
+				     <p ng-bind-html="chapter.chapter_content"></p> </label>
+				</md-input-container>
 
 
 				<md-input-container>
@@ -60,10 +63,7 @@
 				    <label>Subject</label> <input name="subject" id="subject" ng-model="chapter.subject" disabled>
 				</md-input-container>
 
-				<md-input-container>
-				<label>Chapter No</label> 
-				<input type="number" name="chapter_no" id="chapter_no" ng-model="chapter.chapter_no" disabled>
-				</md-input-container>
+			
 
 			</div>
 		</div>
