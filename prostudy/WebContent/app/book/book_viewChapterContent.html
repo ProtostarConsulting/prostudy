@@ -1,42 +1,21 @@
 <md-content layout-padding>
 
-
-
 <div id="viewChapterContent">
 	<div layout="column" flex
 		ng-repeat="chapter in chapters | filter:searchText">
 
 
-     <!--<md-input-container> 
-		<label>Chapter Name:-</label> 
-			<input name="chapter_name" id="chapter_name"
-			ng-model="chapter.chapter_name" disabled> </md-input-container> -->
+ 
         
          <b align="center">{{chapter.chapter_name}}</b>
 
 
 		<md-content flex layout-padding> 
-		<!-- <label>Chapter Content :-</label> -->
 		<p ng-bind-html="chapter.chapter_content" disabled></p>
 		</md-content>
 
-
-
-		<div layout layout-sm="column" ng-init="isDisabled = false">
-			<md-button class="md-raised md-primary" ui-sref="book.list">Back
-			To Book</md-button>
-
-			<md-button class="md-raised md-primary"
-				ui-sref="book.chapterList({selectedBookId : selectedBookId})">Back
-			To Chapter-Index</md-button>
-
-		</div>
-
 	</div>
 </div>
-
-
-
 
 <div id="TotalChapters">
 
@@ -47,7 +26,6 @@
 		<h3 align="center">{{chapter.chapter_name}}</h3>
 
 		<md-content flex layout-padding> 
-		<!-- <label>Chaptet Content :-</label> -->
 		<p ng-bind-html="chapter.chapter_content"></p>
 		</md-content>
 
@@ -55,8 +33,12 @@
 </div>
 
 <div>
+      <md-button class="md-raised md-primary"
+				ui-sref="book.chapterList({selectedBookId : selectedBookId})">Back To Chapter-Index</md-button>
+
 	<md-button class="md-primary" ng-disabled="isDisabledPrevious"
 		ng-model="isDisabledPrevious" ng-click="onPreviousChapter()">Previous</md-button>
+	
 	<md-button class="md-primary" ng-disabled="isDisabledNext"
 		ng-model="isDisabledNext" ng-click="getChapters()">Next</md-button>
 </div>

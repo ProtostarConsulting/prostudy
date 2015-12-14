@@ -28,24 +28,7 @@ angular.module("prostudyApp").controller(
 			};
 			$scope.myBooks = [];
 
-			$scope.addMyBook = function() {
-				$log.debug("No1");
-				var UserService = appEndpointSF.getUserService();
-				UserService.addMyBook($scope.curUser,$scope.addselectedBookId).then(
-						function() {
-							$log.debug("No6");
-							$log.debug("Inside Ctr addMyBook");
-						
-							$scope.showSavedToast();
-							
-						});
-				$log.debug("No4");
-			};//end of addMyBook
-			
-			$scope.showSavedToast = function() {
-				$mdToast.show($mdToast.simple().content('Book added in My Books!')
-						.position("top").hideDelay(3000));
-			};// end of showSavedToast
+
 			
 			$scope.getBooks = function() {
 

@@ -22,17 +22,20 @@
 				<td ng-click="showChapterContent()"><a href="#"
 					ui-sref="book.view({selectedBookId : selectedBookId, selectedChapterId : chapter.id})"><b>{{chapter.chapter_name}}</b></a>
 				</td>
-
-
+				
 
 			</tr>
 		</tbody>
 	</table>
 
-	<div layout="row" layout-align="center end">
-		<td><md-button class="md-raised md-primary"
-				ng-click="addMyBook()">Add To My Books</a></md-button></td>
-	</div>
+		<div>
+			<md-button class="md-raised md-primary" ui-sref="book.list">Back
+			To Book</md-button>
+			<md-button class="md-raised md-primary"
+				ng-click="addMyBook()">Add To My Books</a></md-button>
+
+
+		</div>
 </div>
 
 

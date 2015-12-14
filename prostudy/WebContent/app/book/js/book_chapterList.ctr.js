@@ -12,7 +12,7 @@ angular
 
 					$scope.showSavedToast = function() {
 						$mdToast.show($mdToast.simple().content(
-								'Added Succefully!').position("top").hideDelay(
+								'Book added in My Books!').position("top").hideDelay(
 								3000));
 					};// end of showSavedToast
 
@@ -21,18 +21,7 @@ angular
 							$stateParams.selectedBookId);
 					$scope.selectedBookId = $stateParams.selectedBookId;
 
-					/*$scope.book = {
-						bookid : "",
-						book : $scope.books,
-						author : "",
-						board : "",
-						standard : "",
-						chapters : []
-					};// end of tempBook object
-
-					
-					$scope.myBooks = [];*/
-
+	
 					$scope.addMyBook = function() {
 						$log.debug("No1");
 						var UserService = appEndpointSF.getUserService();
@@ -48,19 +37,6 @@ angular
 						$log.debug("No4");
 					}
 
-					/*$scope.getMyBookList = function() {
-
-						var UserService = appEndpointSF.getUserService();
-
-						UserService.getMyBookList($scope.curUser.userId).then(
-								function(bookList) {
-
-									$scope.myBooks = bookList;
-									$scope.books = $scope.myBooks[0];
-
-								});
-					}*/
-
 					$scope.selectedChapter = {
 						id : "",
 						chapter_name : "",
@@ -68,7 +44,6 @@ angular
 						board : "",
 						student_class : "",
 						subject : "",
-						chapter_no : ""
 					};
 
 					$scope.showBookContents = function() {
@@ -103,6 +78,5 @@ angular
 						$state.go('^', {});
 					};// end of cancelButton
 
-					//$scope.getMyBookList();
 				});// end of book_chapterListCtr
 
