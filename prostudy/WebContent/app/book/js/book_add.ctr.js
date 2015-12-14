@@ -33,7 +33,15 @@ angular
 									$log.debug("msgBean.msg:" + msgBean.msg);
 									$scope.showSavedToast();
 
-									$log.debug("addBook" + $scope.tempBook);
+									$log.debug("tempBook" + $scope.tempBook);
+									$scope.tempBook = {
+											bookid : "",
+											book_name : "",
+											author : "",
+											board : "",
+											standard : "",
+											chapters : []
+										};//After click on submit button,htmlform to be set as a blank
 								});
 						$log.debug("No4");
 					}// end of addBook
@@ -52,18 +60,14 @@ angular
 
 											$scope.chapters = chapterList;
 
-											$log.debug("getChapters :"
+											$log.debug("chapters :"
 													+ $scope.chapters);
 
 											$scope.chapters.chapter_content = $sce
 													.trustAsHtml($scope.chapters.chapter_content);
-											$log
-													.debug("$scope.chapters.chapter_content: "
+											$log.debug("$scope.chapters.chapter_content: "
 															+ $scope.chapters.chapter_content);
 
-											$log
-													.debug("$scope.getChapters.chapters: "
-															+ $scope.chapters);
 
 										});
 

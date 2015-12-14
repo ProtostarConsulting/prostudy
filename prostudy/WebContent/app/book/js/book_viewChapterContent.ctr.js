@@ -13,7 +13,6 @@ angular.module("prostudyApp")
 						board : "",
 						student_class : "",
 						subject : "",
-						chapter_no : ""
 					};
 
 					// For chapter_content, we pass its chapter.id as
@@ -35,8 +34,6 @@ angular.module("prostudyApp")
 										function(chapterList) {
 
 											$scope.chapters = chapterList;
-											$log.debug("chapterList :"
-													+ chapterList);
 											$log.debug("$scope.chapters  ===="
 															+ angular.toJson($scope.chapters));
 
@@ -107,7 +104,7 @@ angular.module("prostudyApp")
 											($scope.currentPage * $scope.itemsPerPage)
 													- $scope.itemsPerPage,
 											($scope.currentPage * $scope.itemsPerPage));
-							$log.debug(" totalChapters in onNextChapter "
+							$log.debug(" $scope.chaptersOnButton "
 									+ angular.toJson($scope.chaptersOnButton));
 
 						}
@@ -135,7 +132,7 @@ angular.module("prostudyApp")
 											($scope.currentPage * $scope.itemsPerPage)
 													- $scope.itemsPerPage,
 											($scope.currentPage * $scope.itemsPerPage));
-							$log.debug(" totalChapters in onPreviousChapter "
+							$log.debug(" $scope.chaptersOnButton "
 									+ angular.toJson($scope.chaptersOnButton));
 						}
 						console.log("$scope.currentPage=" + $scope.currentPage);

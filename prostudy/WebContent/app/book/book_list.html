@@ -1,48 +1,39 @@
 <md-content>
 
-<div  id="viewBookList">
- <h1>List of Book:-</h1>
+<div id="bookList">
 
 
-	<div>
-		<md-input-container flex> <label>Search</label> <input
-			ng-model="searchText"> </md-input-container>
+	<div class="table-responsive-vertical shadow-z-1">
+		<table class="table table-hover table-mc-light-blue">
+			<thead>
+				<tr>
+					<th>Book ID</th>
+					<th>Book</th>
+					<th>Author</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="book in books | filter: searchText">
+					<td>{{book.bookid}}</td>
+					<td ng-click="showBookContents()"><a
+						ui-sref="book.chapterList({selectedBookId : book.bookid})"><b>{{book.book_name}}</b></a></td>
+					<td>{{book.author}}</td>
+					<td><md-button class="md-raised md-primary"
+							ng-click="addMyBook()"
+							ui-sref="book.addselectedbook({addselectedBookId : book.bookid})">
+						Add To My Books</md-button></a></td>
+
+				</tr>
+
+
+
+			</tbody>
+		</table>
 	</div>
 
+	<div></div>
 
-  <!-- Responsive table starts here -->
-  <div id="bookDemo"class="table-responsive-vertical shadow-z-1">
-  <!-- Table starts here -->
-  <table id="bookTable" class="table table-hover table-mc-light-blue">
-      <thead>
-        <tr>
-          <th>Book ID</th>
-          <th>Book</th>
-          <th>Author</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr  ng-repeat="book in books | filter: searchText">
-            <td>{{book.bookid}}</td>
-            <td  ng-click="showBookContents()"><a ui-sref="book.chapterList({selectedBookId : book.bookid})"><b>{{book.book_name}}</b></a></td>
-            <td>{{book.author}}</td>
-            <td>
-            <md-button class="md-raised md-primary" ng-click="addMyBook()" ui-sref="book.addselectedbook({addselectedBookId : book.bookid})">
-            Add To My Books</md-button></a></td>
-           
-        </tr>
-        
-        
-        
-      </tbody>
-    </table>
-  </div>
-  
-  <div>
-      
-  </div>
-  
 </div>
-			
-	
+
+
 </md-content>

@@ -5,11 +5,6 @@ angular.module("prostudyApp").controller(
 
 			console.log("Inside bookListCtr");
 			
-			$scope.showSavedToast = function() {
-				$mdToast.show($mdToast.simple().content(
-						'Added Succefully!').position("top")
-						.hideDelay(3000));
-			};// end of showSavedToast
 
 			$scope.curUser = appEndpointSF.getUserService().getLoggedinUser();
 			
@@ -45,7 +40,12 @@ angular.module("prostudyApp").controller(
 							
 						});
 				$log.debug("No4");
-			}
+			};//end of addMyBook
+			
+			$scope.showSavedToast = function() {
+				$mdToast.show($mdToast.simple().content('Book added in My Books!')
+						.position("top").hideDelay(3000));
+			};// end of showSavedToast
 			
 			$scope.getBooks = function() {
 
@@ -57,16 +57,10 @@ angular.module("prostudyApp").controller(
 
 							$scope.books = bookList;
 							$scope.currentBook = $scope.books[0];
-							$log.debug("current book :"
+							$log.debug("$scope.currentBook :"
 									+ angular.toJson($scope.currentBook));
 						});
 			}// end of getBooks
-			
-			
-			
-			//----------------------------------------
-			
-			
 			
 			$scope.getBookbyID = function() {
 
@@ -80,54 +74,14 @@ angular.module("prostudyApp").controller(
 
 							$scope.myBook = MyBooksList[0];
 						
-							$log.debug(" ********************"+angular.toJson($scope.myBook));
-							/*$scope.books1 = $scope.books[0];*/
+							$log.debug("$scope.myBook"+angular.toJson($scope.myBook));
 						});
 					}
-			}
+			};//end of getBookbyID
 
 			$scope.myBook=[];
 			$scope.getBookbyID();
 			
-			
-			
-			//------------------------------------------
-			
-			
-			
-
-			/*$scope.tempMyBook = {
-					user_name :$scope.curUser.name,
-					bookid : "",
-					book_name : "",
-					author : "",
-					board : "",
-					standard : "",
-					chapters : []
-			};
-			$scope.myBooks = [];
-
-			$scope.addMyBook = function() {
-				$log.debug("No1");
-				var UserService = appEndpointSF.getUserService();
-				UserService.addMyBook($scope.tempMyBook).then(
-						function(msgBean) {
-							$log.debug("No6");
-							$log.debug("Inside Ctr addMyBook");
-							$log.debug("msgBean.msg:" + msgBean.msg);
-							$scope.showSavedToast();
-							$scope.tempMyBook = {
-									user_name :$scope.curUser.name,
-									bookid : "",
-									book_name : "",
-									author : "",
-									board : "",
-									standard : "",
-									chapters : []
-							};
-						});
-				$log.debug("No4");
-			}*/
 
 			$scope.books = [];
 			
