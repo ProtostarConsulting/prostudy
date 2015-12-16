@@ -96,6 +96,7 @@ public class QuestionService {
 		return questionList;
 
 	}// end of getAllQuestion
+	
 	@ApiMethod(name = "test1")
 	public void test1() {
 		System.out.println("In side test1 ");
