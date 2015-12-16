@@ -1,0 +1,48 @@
+<div layout="row" layout-align="centre centre" layout-sm="column" flex>
+<md-input-container flex> <label><h3>Institute Id  :  {{institutes[institutes.length-1].id}}</h3></label> </md-input-container>
+</div>
+<div layout="row" layout-align="centre centre" layout-sm="column" flex>
+	<md-input-container flex> <label><h3>Institute Name  :  {{institutes[institutes.length-1].name}}</h3></label> </md-input-container>
+	</div>
+
+<div layout="row" layout-align="centre centre" layout-sm="column" flex>
+	<md-input-container flex> <label>Teacher Name</label> <input ng-model="teacher_name"> </md-input-container>
+
+	<md-input-container flex> <label>Teacher Email-Id</label>
+	<input ng-model="teacher_email_id"> </md-input-container>
+
+	<md-input-container flex> <label>Teacher Contact No</label> <input ng-model="teacher_contact_no"> </md-input-container>
+	<md-button class="md-raised md-primary" ng-click="addTeachers()">Add Teachers </md-button> 
+</div>
+<div>
+
+	 <md-data-table-container>
+	<table md-data-table class="md-primary" md-row-select="selectedTeachers"
+		md-progress="deferred">
+		<thead>
+			<tr>
+				<th order-by="teacher_name" name="Teacher Name" unit=""></th>
+				<th order-by="teacher_email_id" name="Teacher EMAIL-ID"></th>
+				<th order-by="teacher_contact_no" name="Teacher Contact No."></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="a in teachers | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText" ">
+				<td>{{a.teacher_name}}</td>
+				<td>{{a.teacher_email_id}}</td>
+				<td>{{a.teacher_contact_no}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+			md-total={{teachers.length}} md-trigger="onpagechange"></md-data-table-pagination>
+	</md-data-table-container> 
+</div> 
+	
+
+	<div layout="row" layout-align="end end" layout-sm="column" flex> 
+	<md-button  class="md-raised md-primary" ng-disabled="isDisabled" ng-click="addInstituteTeachers()">Add Teachers </md-button>
+		<a ui-sref="institute.addStudents"><md-button  class="md-raised md-primary" ng-click="">Skip</md-button> </a>
+			</div>
+	

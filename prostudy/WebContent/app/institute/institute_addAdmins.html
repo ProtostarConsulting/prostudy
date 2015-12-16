@@ -1,0 +1,49 @@
+
+<div layout="row" layout-align="centre centre" layout-sm="column" flex>
+<md-input-container flex> <label><h3>Institute Id  :  {{institutes[institutes.length-1].id}}</h3></label> </md-input-container>
+</div>
+<div layout="row" layout-align="centre centre" layout-sm="column" flex>
+	<md-input-container flex> <label><h3>Institute Name  :  {{institutes[institutes.length-1].name}}</h3></label> </md-input-container>
+	</div>
+	<div layout="row" layout-align="centre centre" layout-sm="column" flex>
+	<md-input-container flex> <label>Admin Name</label> <input ng-model="admin_name"> </md-input-container>
+
+	<md-input-container flex> <label>Admin Email-Id</label>
+	<input ng-model="admin_email_id"> </md-input-container>
+
+	<md-input-container flex> <label>Contact No</label> <input ng-model="admin_contact_no"> </md-input-container>
+	<md-button class="md-raised md-primary" ng-click="addToAdminsList()">Add To AdminList </md-button>
+</div>
+<div>
+<md-input-container flex> <label><h5>Select Admins before Adding.</h5></label> </md-input-container>
+	 <md-data-table-container>
+	<table md-data-table class="md-primary" md-row-select="selectedAdmins" ng-model="admintable"
+		md-progress="deferred">
+		<thead>
+			<tr>
+				<th order-by="admin_name" name="Admin Name" unit=""></th>
+				<th order-by="admin_email_id" name="EMAIL-ID"></th>
+				<th order-by="admin_contact_no" name="Contact No."></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="a in admins | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText" ">
+				<td>{{a.admin_name}}</td>
+				<td>{{a.admin_email_id}}</td>
+				<td>{{a.admin_contact_no}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+			md-total={{admins.length}} md-trigger="onpagechange"></md-data-table-pagination>
+	</md-data-table-container> 
+</div> 
+	<div layout="row" layout-align="end end" layout-sm="column" flex> 
+	<md-button  class="md-raised md-primary" ng-disabled="isDisabled" ng-click="addInstituteAdmins()">Add Admins to Institute </md-button>
+	
+	</div>
+	
+
+</div>
+

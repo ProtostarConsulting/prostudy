@@ -1,66 +1,52 @@
-<md-content layout-padding>
-<form>
-
-
-	<div layout="row" layout-align="center center">
-
-		<md-input-container flex> <label>Enter
-			Institute name</label> <input ng-model="searchText.name"> </md-input-container>
+<div layout="column">
+	<md-content layout-padding> <md-input-container flex>
+	<label>Institute Details </label> </md-input-container> <md-input-container flex>
+	<table md-data-table" cellpadding="10" cellspacing="2">
+		<tbody>
+			<tr>
+				<th style="font-weight: bold;">Institute Name:</th>
+				<td>{{Institute.name}}</td>
+			</tr>
+			<tr>
+				<th style="font-weight: bold;">Description:</th>
+				<td>{{Institute.desc}}</td>
+			</tr>
+			<tr>
+				<th style="font-weight: bold;">Address:</th>
+				<td>{{Institute.address}}</td>
+			</tr>
+			<tr>
+				<th style="font-weight: bold;">Phone No:</th>
+				<td>{{Institute.phone_no}}</td>
+			</tr>
+			<tr>
+				<th style="font-weight: bold;">User First Name:</th>
+				<td>{{Institute.user_lname}}</td>
+			</tr>
+			<tr>
+				<th style="font-weight: bold;">User Last Name:</th>
+				<td>{{Institute.user_lname}}</td>
+			</tr>
+			<tr>
+				<th style="font-weight: bold;">User Email-Id</th>
+				<td>{{Institute.user_email_id}}</td>
+			</tr>
+			<tr>
+				<th style="font-weight: bold;">User Contact No:</th>
+				<td>{{Institute.user_contact_no}}</td>
+			</tr>
+		</tbody>
+	</table>
+	</md-input-container> </md-content>
+	<div layout="row" layout-align="centre centre" layout-sm="column" flex>
+		<md-button ui-sref="institute.view.view_admins" class="md-raised md-primary">ViewAdmins </md-button>
+		<md-button ui-sref="institute.view.view_teachers"  class="md-raised md-primary">View Teachers </md-button>
+		<md-button ui-sref="institute.view.view_students" class="md-raised md-primary">View Students </md-button>
 	</div>
-
-	<div layout="row" layout-align="center center">
-		<td><md-button class="md-raised md-primary"
-				ng-click="clicked=true">Get Result</md-button></td>
-		<!-- <td><md-button class="md-raised md-primary"
-				ng-click="clicked=false">Cancel</md-button></td> -->
-		<td><md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button></td>
-
-	</div>
-
-	<div
-		custom-select="institute in institutes | filter: { state: $searchTerm }">
-
-		<div class="pull-left">
-			<strong>{{ institute.name}}</strong><br />
-
-		</div>
-		<div class="clearfix"></div>
-	</div>
-
-
-	<div ng-show="clicked">
-
-		<md-data-table-container>
-		<table md-data-table md-row-select="selected" md-progress="deferred">
-			<thead md-order="query.order" md-trigger="onorderchange">
-
-				<tr>
-					<th name="INSTITUTE NAME" order-by="name"></th>
-					<th name="EMAIL-ID" order-by="email_id"></th>
-					<th name="PHONE NO" order-by="phone_no"></th>
-					<th name="ADDRESS" order-by="address"></th>
-
-
-				</tr>
-
-			</thead>
-
-			<tbody>
-				<tr md-auto-select
-					ng-repeat="institute in institutes  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText">
-					<td>{{institute.name}}</td>
-					<td>{{institute.email_id}}</td>
-					<td>{{institute.phone_no}}</td>
-					<td>{{institute.address}}</td>
-
-				</tr>
-			</tbody>
-		</table>
-
-		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
-			md-total={{examResults.length}} md-trigger="onpagechange"></md-data-table-pagination>
-		</md-data-table-container>
-
-	</div>
-</form>
-</md-content>
+	 <div ui-view></div> 
+	 <footer>
+<div layout="row" layout-align="centre centre" layout-sm="column" flex> 
+				<a ui-sref="institute.list"><md-button  class="md-raised md-primary" >Back </md-button> </a>
+				</div>
+				</footer>
+</div>

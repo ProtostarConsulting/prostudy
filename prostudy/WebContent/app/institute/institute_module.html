@@ -8,16 +8,14 @@
 				<section layout="column">
 
 					<div layout="row" layout-align="end start" layout-sm="column" >
-					
 						<div layout-sm="column" hide-sm>
-						<md-button ui-sref="institute.add" ng-click="close()"
+						<md-button ui-sref="institute.addInfo" ng-click="close()"
 							class="md-primary"> Add Institute </md-button>
-						<md-button ui-sref="institute.view" ng-click="close()"
-							class="md-primary"> View Institute </md-button>
+						<md-button ui-sref="institute.list" ng-click="close()"
+							class="md-primary">Institute List</md-button>
 						<md-button ui-sref="institute.edit" ng-click="close()"
-							class="md-primary"> Edit Institute </md-button>
+							class="md-primary"> Edit Institute</md-button>
 						</div>
-
 					<md-button aria-label="Search" ng-click="showSearch = !showSearch">
 					<ng-md-icon icon="search"></ng-md-icon> </md-button>
 
@@ -38,15 +36,14 @@
 				ng-click="close()" class="md-primary"> Close Sidenav
 			Right </md-button>
 
-			<md-button ui-sref="institute.add"
+			<md-button ui-sref="institute.addInfo"
 				ng-click="close()" class="md-primary"> Add New Institute
 			</md-button> 
-			<md-button ui-sref="institute.view" ng-click="close()"
-				class="md-primary"> View Institute </md-button> 
+			<md-button ui-sref="institute.list" ng-click="close()"
+				class="md-primary">Institute List</md-button> 
 			<md-button ui-sref="institute.edit"
 				ng-click="close()" class="md-primary"> Edit Institute
 			</md-button>
-				
 			</md-content> </md-sidenav>
 
 		
@@ -56,12 +53,12 @@
 	<div ui-view>
 	
 		<div layout="column" layout-align="start start">
-			<md-button ui-sref="institute.add" ng-click="close()"
+			<md-button ui-sref="institute.addInfo" ng-click="close()"
 				class="md-primary"> Add Institute </md-button>
-			<md-button ui-sref="institute.view" ng-click="close()"
-				class="md-primary"> View Institute </md-button>
+			<md-button ui-sref="institute.list" ng-click="close()"
+							class="md-primary">Institute List</md-button>
 			<md-button ui-sref="institute.edit" ng-click="close()"
-				class="md-primary"> Edit Institute </md-button>
+				class="md-primary"> Edit Institute</md-button>
 
 			
 		</div>

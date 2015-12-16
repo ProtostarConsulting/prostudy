@@ -1,0 +1,25 @@
+<div >
+<md-content layout-padding>
+		<md-data-table-container>
+		<table md-data-table md-row-select="selected" md-progress="deferred">
+			<thead md-order="query.order" md-trigger="onorderchange">
+				<tr>
+					<th name="ADMIN NAME" order-by="admin_name"></th>
+					<th name="ADMIN EMAIL-ID" order-by="admin_email_id"></th>
+					<th name="ADMIN CONTACT NO" order-by="admin_contact_no"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr md-auto-select	ng-repeat="a in Institute.admins  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText">
+					<td>{{a.admin_name}}</td>
+					<td>{{a.admin_email_id}}</td>
+					<td>{{a.admin_contact_no}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+			md-total={{Institute.admins.length}} md-trigger="onpagechange"></md-data-table-pagination>
+		</md-data-table-container>
+	</md-content>
+	</div>
+	
