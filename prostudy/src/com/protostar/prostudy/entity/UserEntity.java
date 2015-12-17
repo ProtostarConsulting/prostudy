@@ -13,7 +13,7 @@ public class UserEntity
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Key userId;
+	private Key id;
 	private String firstName;
 	private String lastName;
 	private String userName ;
@@ -26,11 +26,11 @@ public class UserEntity
 	//book : [],
 	//exam : []
 	
-	public Key getUserId() {
-		return userId;
+	public Key getid() {
+		return id;
 	}
-	public void setUserId(Key userId) {
-		this.userId = userId;
+	public void setid(Key id) {
+		this.id = id;
 	}
 	public String getFirstName() {
 		return firstName;

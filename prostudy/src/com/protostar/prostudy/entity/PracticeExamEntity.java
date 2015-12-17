@@ -13,7 +13,7 @@ public class PracticeExamEntity
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Key examId;
+	private Key id;
 	
 	private String examtitle;
 	private String  board;
@@ -22,11 +22,11 @@ public class PracticeExamEntity
 	private String  date;
 	//questions  [];
 	
-	public Key getExamId() {
-		return examId;
+	public Key getid() {
+		return id;
 	}
-	public void setExamId(Key examId) {
-		this.examId = examId;
+	public void setid(Key id) {
+		this.id = id;
 	}
 	public String getExamtitle() {
 		return examtitle;

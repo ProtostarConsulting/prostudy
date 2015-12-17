@@ -13,21 +13,20 @@ public class BookEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Key bookid;
+	private Key id;
 
 	private String book_name;
 	private String author;
 	private String board;
 	private String standard;
-	private String student_class;
 
 
-	public Key getBookid() {
-		return bookid;
+	public Key getid() {
+		return id;
 	}
 
-	public void setBookid(Key bookid) {
-		this.bookid = bookid;
+	public void setid(Key id) {
+		this.id = id;
 	}
 
 	public String getBook_name() {
@@ -62,13 +61,6 @@ public class BookEntity {
 		this.standard = standard;
 	}
 	
-	public String getStudent_class() {
-		return student_class;
-	}
-
-	public void setStudent_class(String student_class) {
-		this.student_class = student_class;
-	}
 
 
 
