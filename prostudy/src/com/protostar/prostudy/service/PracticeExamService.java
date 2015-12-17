@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
+import com.google.api.server.spi.config.Named;
 import com.protostar.prostudy.entity.PracticeExamEntity;
 import com.protostar.prostudy.until.data.EMF;
 import com.protostar.prostudy.until.data.ServerMsg;
@@ -17,7 +18,7 @@ import com.protostar.prostudy.until.data.ServerMsg;
 public class PracticeExamService {
 
 	@ApiMethod(name = "addPracticeExam")
-	public ServerMsg addChapter(PracticeExamEntity practiceExamEntity) {
+	public ServerMsg addPracticeExam(PracticeExamEntity practiceExamEntity) {
 		System.out.println("practiceExamEntity:" + practiceExamEntity);
 		ServerMsg msgBean = new ServerMsg();
 
@@ -62,12 +63,49 @@ public class PracticeExamService {
 			em.close();
 		}
 
-		return practiceExamList;
+		if(practiceExamList.size() > 0)		
+			  return practiceExamList;
+			else
+				return null;	
 
 	}// end of getAllChapter
+	
+	
+	@SuppressWarnings("unchecked")
+	@ApiMethod(name="getPracticeExamById")
+	public PracticeExamEntity  getPracticeExamById(@Named("Id") String Id)
+	{
+		System.out.println("In side getPracticeExamById ");
+		@SuppressWarnings("unused")
+		ServerMsg msgBean=new ServerMsg();
+		List<PracticeExamEntity> practiceExamList = new ArrayList<PracticeExamEntity>();
+		EntityManager em=null;
+		
+		try 
+		{
+			em = EMF.get().createEntityManager();
+			Query q = em.createQuery("select c from PracticeExamEntity c where c.id =" + Id);
+			practiceExamList = q.getResultList();
+			System.out.println("Got AllBookList: " + practiceExamList.size());		
+			
+		} 
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		if(practiceExamList.size() > 0)		
+		  return practiceExamList.get(0);
+		else
+			return null;	
+		
+	}//end of getPracticeExamById
 
 
-	@ApiMethod(name = "updatePracticeExam")
+/*	@ApiMethod(name = "updatePracticeExam")
 	public ServerMsg updatePracticeExam(PracticeExamEntity practiceExamEntity)
 	{
 		
@@ -101,5 +139,5 @@ public class PracticeExamService {
 		return msgBean;
 
 	}// end of updatePracticeExam
-
+*/
 }// end of PracticeExamService

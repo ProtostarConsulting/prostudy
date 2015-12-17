@@ -9,8 +9,8 @@ import javax.persistence.Query;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
+import com.google.api.server.spi.config.Named;
 import com.protostar.prostudy.entity.BookEntity;
-import com.protostar.prostudy.entity.ChapterEntity;
 import com.protostar.prostudy.until.data.EMF;
 import com.protostar.prostudy.until.data.ServerMsg;
 
@@ -66,8 +66,42 @@ public class BookService {
 		return bookList;
 
 	}// end of getAllChapter
+	
+	@SuppressWarnings("unchecked")
+	@ApiMethod(name="getBookById")
+	public BookEntity  getBookById(@Named("Id") String Id)
+	{
+		System.out.println("In side getBookById ");
+		@SuppressWarnings("unused")
+		ServerMsg msgBean=new ServerMsg();
+		List<BookEntity> bookList = new ArrayList<BookEntity>();
+		EntityManager em=null;
+		
+		try 
+		{
+			em = EMF.get().createEntityManager();
+			Query q = em.createQuery("select c from BookEntity c where c.id =" + Id);
+			bookList = q.getResultList();
+			System.out.println("Got AllBookList: " + bookList.size());		
+			
+		} 
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		if(bookList.size() > 0)		
+		  return bookList.get(0);
+		else
+			return null;	
+		
+	}//end of getBookById
+	
 
-	@ApiMethod(name = "updateBook")
+/*	@ApiMethod(name = "updateBook")
 	public ServerMsg updateChapter(BookEntity bookEntity)
 	{
 		
@@ -84,7 +118,6 @@ public class BookService {
 			bookEntity2.setBook_name(bookEntity.getBook_name());
 			bookEntity2.setAuthor(bookEntity.getAuthor());
             bookEntity2.setBoard(bookEntity.getBoard());
-            bookEntity2.setStudent_class(bookEntity.getStudent_class());
             bookEntity2.setStandard(bookEntity.getStandard());
 			
 			em = EMF.get().createEntityManager();
@@ -101,5 +134,5 @@ public class BookService {
 		return msgBean;
 
 	}// end of updateBook
-
+*/
 }// end of BookService

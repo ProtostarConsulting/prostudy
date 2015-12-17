@@ -9,7 +9,7 @@ import javax.persistence.Query;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
-import com.protostar.prostudy.entity.ChapterEntity;
+import com.google.api.server.spi.config.Named;
 import com.protostar.prostudy.entity.UserEntity;
 import com.protostar.prostudy.until.data.EMF;
 import com.protostar.prostudy.until.data.ServerMsg;
@@ -66,8 +66,42 @@ public class UserService {
 		return userList;
 
 	}// end of getAllUser
+	
+	
+	@SuppressWarnings("unchecked")
+	@ApiMethod(name="getUserById")
+	public UserEntity  getUserById(@Named("Id") String Id)
+	{
+		System.out.println("In side getUserById ");
+		@SuppressWarnings("unused")
+		ServerMsg msgBean=new ServerMsg();
+		List<UserEntity> userList = new ArrayList<UserEntity>();
+		EntityManager em=null;
+		
+		try 
+		{
+			em = EMF.get().createEntityManager();
+			Query q = em.createQuery("select c from UserEntity c where c.id =" + Id);
+			userList = q.getResultList();
+			System.out.println("Got AllBookList: " + userList.size());		
+			
+		} 
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		if(userList.size() > 0)		
+		  return userList.get(0);
+		else
+			return null;	
+		
+	}//end of getUserById
 
-	@ApiMethod(name = "updateUser")
+/*	@ApiMethod(name = "updateUser")
 	public ServerMsg updateUser(UserEntity userEntity)
 	{
 		
@@ -104,5 +138,5 @@ public class UserService {
 		return msgBean;
 
 	}// end of updateUser
-
+*/
 }// end of UserService
