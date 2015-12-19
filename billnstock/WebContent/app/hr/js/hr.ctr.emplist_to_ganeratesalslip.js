@@ -59,12 +59,15 @@ angular
 						month : "-",
 						generateddate : "-",
 						bank_name : "-",
-						acno : "-"
+						acno : "-",
+						year:""
+							
 					};
 
 					var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May",
 							"Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
-
+			
+					var date = new Date();
 					$scope.getAllempsSalStruct = function() {
 						$log.debug("Inside Ctr $scope.getAllempsSalStruct");
 						var hrService = appEndpointSF.gethrService();
@@ -137,16 +140,18 @@ angular
 					$scope.selectedemp = [];
 
 					$scope.printganeratesalslip = function() {
+						var date = new Date();
+						
 						var hrService = appEndpointSF.gethrService();
 						hrService
 								.countOfRecordsiInganeratedslip()
 								.then(
 										function(printSalSelectedSlipList) {
 											$scope.printGSalStruct = printSalSelectedSlipList;
-
 											$scope.salslip.ganeratedcode = $scope.printGSalStruct.length + 100;
 											$scope.salslip.month = $scope.selectmonth;
-
+											$scope.salslip.year ="Year"+ ' ' + date.getFullYear();
+											
 										});
 					}
 					$scope.printGSalStruct = [];
@@ -178,15 +183,23 @@ angular
 					}
 					$scope.displyselected = [];
 					$scope.displyOnlySelected();
+					
+					
+					var printDivCSS = new String(
+							'<link href="/lib/base/css/angular-material.min.css"" rel="stylesheet" type="text/css">'
+									+ '<link href="/lib/base/css/bootstrap.min.css"" rel="stylesheet" type="text/css">'
+									+ '<link href="/lib/base/css/bootstrap.min.css"" rel="stylesheet" type="text/css">')
 
 					$scope.printSalSlipDiv = function(salSlipDiv) {
 						// window.frames["print_frame"].document.body.innerHTML
 						// = printDivCSS
 						// + document.getElementById(divId).innerHTML;
 						
-								window.frames["print_frame"].document.body.innerHTML = document
+						document.getElementById('hidetr').style.display = 'block';
+						window.frames["print_frame"].document.body.innerHTML =printDivCSS+ document
 								.getElementById(salSlipDiv).innerHTML;
 						window.frames["print_frame"].window.focus();
+						document.getElementById('hidetr').style.display = 'none';
 						window.frames["print_frame"].window.print();
 						
 						

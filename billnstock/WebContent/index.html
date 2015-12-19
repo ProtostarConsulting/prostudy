@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="stockApp" ng-controller="indexCtr">
 <head>
-<title>BillingAndStock App</title>
+<title>ProERP</title>
 <meta name="viewport" content="initial-scale=1" />
 
 <link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
@@ -70,6 +70,9 @@
 			<md-button ui-sref="hr"
 				ng-click="close()" class="md-primary" show-gt-md>
 			HR </md-button>
+			<md-button ui-sref="crm"
+				ng-click="close()" class="md-primary" show-gt-md>
+			CRM </md-button>
 			
 			
 			 </md-content> </md-sidenav>
@@ -237,7 +240,18 @@
          <script src="/app/hr/js/hr.ctr.emsalslipstruct.js"></script>
           <script src="/app/hr/js/hr.ctr.emplist_to_ganeratesalslip.js"></script>
    <!-- complete	hr js  -->
-         
+   
+    <script src="/app/crm/js/crm_lead.js"></script>
+   <script src="/app/crm/js/crm_lead_view.js"></script>
+  <!--  lead js -->
+ 
+ 
+ 
+ 
+   <!-- use for ganerating pdf -->
+<!--    <script type="text/javascript" src="/app/hr/js/jspdf.min.js"></script>
+        <script src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>  -->
+        
 	<script src="index.ctr.js"></script>
 
 </body>

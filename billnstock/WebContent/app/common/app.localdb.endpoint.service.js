@@ -386,7 +386,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 	
 	
 	
-	hrService.getallsalslip = function(empid) {
+	hrService.getallsalslip = function(empid,curryear) {
 
 		var deferred = $q.defer();
 		$timeout(function() {
@@ -397,7 +397,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 				salslipList = [];
 
 			for (i = 0; i < salslipList.length; i++) {
-				if (empid == salslipList[i].salarystruct.empid) {
+				if (empid == salslipList[i].salarystruct.empid && curryear == salslipList[i].year) {
 					tempItem.push(salslipList[i]);
 				}
 			}
@@ -411,6 +411,136 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 	// End of hrService
 
 	//*************************************************************************************************************************		
+	//start leadService
+	var leadService = {};
+
+	serviceFactory.getleadService = function() {
+		return leadService;
+	}
+
+	leadService.addlead = function(lead) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side local DB leademp...");
+			var leadList = angular.fromJson($localStorage.dblead);
+			if (typeof leadList === 'undefined')
+				leadList = [];
+			leadList.push(lead);
+			$localStorage.dblead = angular.toJson(leadList);
+			deferred.resolve({
+				"msg" : "lead Added Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+	
+	leadService.getAllleads = function() {
+		var deferred = $q.defer();
+		$timeout(function() {
+			$log.debug("In side local DB getlead...");
+			var leadList = angular.fromJson($localStorage.dblead);
+			if (typeof leadList === 'undefined')
+				leadList = [];
+			deferred.resolve(leadList);
+		}, 1000);
+
+		return deferred.promise;
+
+	}
+	
+	
+	leadService.getLeadById= function(selectedleadNo) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+			var tempItem = [];
+	
+			var leadList = angular.fromJson($localStorage.dblead);
+		
+
+			if (typeof leadList === 'undefined')
+				leadList = [];
+		
+
+			for (i = 0; i < leadList.length; i++) {
+				if (selectedleadNo == leadList[i].id) {
+					tempItem.push(leadList[i]);
+
+				}
+			}
+			
+			deferred.resolve(tempItem);
+			
+
+		}, 1000);
+		return deferred.promise;
+	}
+	
+	
+	
+	leadService.addupdatetask = function(taskobj,leadid) {
+		var deferred = $q.defer();
+		$timeout(
+				function() {
+
+					$log.debug("In side local DB updateStock...");
+					var leadList = angular.fromJson($localStorage.dblead);
+
+					if (typeof leadList === 'undefined')
+						stockList = [];
+
+					for (var i = 0; i < leadList.length; i++) {
+						if (leadid == leadList[i].id)
+							leadList[i].tasks.push(taskobj);
+				
+					}
+
+					$localStorage.dblead = angular.toJson(leadList);
+					deferred.resolve({
+						"msg" : "LeadItem Updated Successfully."
+					});
+
+				}, 1000);
+
+		return deferred.promise;
+	}
+	
+	leadService.deletelead = function(leadid) {
+		var deferred = $q.defer();
+		$timeout(
+				function() {
+
+					$log.debug("In side local DB updateStock...");
+					var leadList = angular.fromJson($localStorage.dblead);
+
+					if (typeof leadList === 'undefined')
+						stockList = [];
+
+					for (var i = 0; i < leadList.length; i++) {
+						if (leadid == leadList[i].id)
+							//delete leadList[i];
+							leadList.splice(i, 1);
+				
+					}
+
+					$localStorage.dblead = angular.toJson(leadList);
+					deferred.resolve({
+						"msg" : "LeadItem Converted Successfully."
+					});
+
+				}, 1000);
+
+		return deferred.promise;
+	}
+	// End of leadService
+
+	//*************************************************************************************************************************		
+
+	
 	// Start of StockService
 	var StockService = {};
 

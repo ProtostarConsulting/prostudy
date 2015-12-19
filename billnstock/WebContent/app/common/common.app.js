@@ -180,5 +180,25 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/getAllSlip/:viewsalslips",
 		templateUrl : '/app/hr/getAllSalSlip.html',
 		controller : 'hrCtr.empview',
+	}).state('crm', {
+		url : "/crm",
+		templateUrl : '/app/crm/crm_module.html',
+		controller : 'hrCtr.empview',
+	}).state('crm.customer', {
+		url : "/customer",
+		templateUrl : '/app/customer/customer_module.html',
+		controller : 'customerCtr',
+	}).state('crm.lead', {
+		url : "/lead",
+		templateUrl : '/app/crm/lead_list.html',
+		controller : 'lead',
+	}).state('crm.lead_add', {
+		url : "/add",
+		templateUrl : '/app/crm/crm_lead.html',
+		controller : 'lead',
+	}).state('crm.personview', {
+		url : "/view/:selectedleadNo",
+		templateUrl : '/app/crm/crm_lead_view.html',
+		controller : 'lead_view',
 	});
 });

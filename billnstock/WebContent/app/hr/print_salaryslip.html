@@ -1,4 +1,13 @@
 
+
+<head>
+<style>
+#hidetr{
+display:none;
+}
+
+</style>
+</head>
 <md-content>
 <div layout="row" layout-align="center start"
 	style="margin-top: 20px; margin-bottom: 20px;">
@@ -20,8 +29,8 @@
 </md-content>
 <md-content layout-padding>
 
-<div  id="salSlipDiv" >
-	<table>
+<div  id="salSlipDiv"  >
+	<table id="hidetr">
 		<tbody>
 			<tr>
 				<td style="width: 20%"><img alt="Logo"
@@ -148,10 +157,14 @@
 				<b>Name Of Bank :</b>
 				<br>
 				<b>Signature of Employee :</b>
-				<p align="Center">
-					<b>this signature is electronically generated </b>
+				<p align="Center"><br><br><br>
+					<b>this Document is Electronically Generated. Hence need no Signature or Stamp.</b>
 				</p>
 				<br>
+				<p align="left">
+					<b>Generated on : {{date}}</b><br>
+					<b>Verified by : Pushpak Pimpale (Finance Manager)</b>
+				</p>
 
 				</div>
 				</td>
@@ -163,12 +176,14 @@
 		
 </table>
 <!-- 	<div style="bottom:0;  postion :absolute"> -->
+
 <footer>
- <div layout="row" layout-align="center end">
+ <div layout="row" layout-align="center center" id="hidetr">
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
 					<img alt="Logo"
 					src="img/images/erpag_document_footer.JPG">
 		</div>
-		</footer>
+		</footer>	
 </div>
 
 
