@@ -1,0 +1,36 @@
+
+<md-content layout-padding>
+<form name="leadform">
+
+	<div id="addField">
+		<div layout layout-sm="column">
+			<md-input-container flex> <label>Lead id </label> <input
+				ng-model="lead.id" disabled> </md-input-container>
+
+			<md-input-container flex> <label>Person
+				Name </label> <input ng-model="lead.name"> </md-input-container>
+		</div>
+		<div layout layout-sm="column">
+			<md-input-container flex> <label>Company
+			</label> <input ng-model="lead.company"> </md-input-container>
+			<md-input-container flex> <label>Phone </label>
+			<input ng-model="lead.phone"> </md-input-container>
+		</div>
+		<div layout layout-sm="column">
+			<md-input-container flex> <label>Email </label>
+			<input ng-model="lead.email"> </md-input-container>
+			<md-input-container flex> <label>Designation</label>
+			<input ng-model="lead.designation"> </md-input-container>
+		</div>
+		<div>
+			<md-input-container flex> <label>Address
+			</label> <textarea ng-model="lead.address" rows="4" cols="1"></textarea></md-input-container>
+		</div>
+
+		<section layout="row" layout-sm="column" layout-align="left left">
+			<md-button class="md-raised md-primary" ng-click="addlead()">Add</md-button>
+
+		</section>
+	</div>
+</form>
+</md-content>
