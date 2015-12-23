@@ -33,7 +33,7 @@ function googleEndpointSF($log, $q,$localStorage) {
 		var deferred = $q.defer();
 		gapi.client.chapterService.getAllChapter().execute(
 				function(resp) {
-					$log.debug("getChapters#resp:" + resp);
+					$log.debug("getChapters#resp :" + resp);
 					deferred.resolve(resp.items);
 				});
 		return deferred.promise;
@@ -52,7 +52,7 @@ function googleEndpointSF($log, $q,$localStorage) {
 		$log.debug("No2");	
 		var deferred = $q.defer();
 		$log.debug("abc");
-		gapi.client.BookService.addBook(book).execute(
+		gapi.client.bookService.addBook(book).execute(
 				function(resp) {
 					$log
 					.debug("No5");	
@@ -65,7 +65,7 @@ function googleEndpointSF($log, $q,$localStorage) {
 	
 	BookService.getBooks = function() {
 		var deferred = $q.defer();
-		gapi.client.BookService.getBooks().execute(
+		gapi.client.bookService.getAllBook().execute(
 				function(resp) {
 					$log.debug("getBooks#resp:" + resp);
 					deferred.resolve(resp.items);
@@ -85,7 +85,7 @@ function googleEndpointSF($log, $q,$localStorage) {
 		$log.debug("No2");	
 		var deferred = $q.defer();
 		$log.debug("abc");
-		gapi.client.UserService.addUser(user).execute(
+		gapi.client.userService.addUser(user).execute(
 				function(resp) {
 					$log
 					.debug("No5");	
@@ -96,9 +96,9 @@ function googleEndpointSF($log, $q,$localStorage) {
 		return deferred.promise;
 	}//end of addUser
 	
-	UserService.getUsers = function() {
+	UserService.getUser = function() {
 		var deferred = $q.defer();
-		gapi.client.UserService.getUsers().execute(
+		gapi.client.userService.getAllUser().execute(
 				function(resp) {
 					$log.debug("getUsers#resp:" + resp);
 					deferred.resolve(resp.items);
@@ -157,7 +157,7 @@ function googleEndpointSF($log, $q,$localStorage) {
 		$log.debug("No2");	
 		var deferred = $q.defer();
 		$log.debug("abc");
-		gapi.client.PracticeExamService.addPracticeExam(test).execute(
+		gapi.client.practiceExamService.addPracticeExam(test).execute(
 				function(resp) {
 					$log
 					.debug("No5");	
@@ -170,7 +170,7 @@ function googleEndpointSF($log, $q,$localStorage) {
 
 	PracticeExamService.getPracticeExams = function() {
 		var deferred = $q.defer();
-		gapi.client.PracticeExamService.getPracticeExams().execute(
+		gapi.client.practiceExamService.getAllPracticeExam().execute(
 				function(resp) {
 					$log.debug("addPracticeExam#resp:" + resp);
 					deferred.resolve(resp.items);
@@ -191,7 +191,7 @@ function googleEndpointSF($log, $q,$localStorage) {
 		var deferred = $q.defer();
 		$log
 		.debug("abc");
-		gapi.client.SyllabusService.addSyllabus(syllabi).execute(
+		gapi.client.syllabusService.addSyllabus(syllabi).execute(
 				function(resp) {
 					$log
 					.debug("No5");	
@@ -206,7 +206,7 @@ function googleEndpointSF($log, $q,$localStorage) {
 
 	SyllabusService.getSyllabus = function() {
 		var deferred = $q.defer();
-		gapi.client.SyllabusService.getSyllabus().execute(
+		gapi.client.syllabusService.getSyllabus().execute(
 				function(resp) {
 					$log.debug("addSyllabus#resp:" + resp);
 					deferred.resolve(resp.items);
@@ -228,7 +228,7 @@ function googleEndpointSF($log, $q,$localStorage) {
 		$log.debug("No2");	
 		var deferred = $q.defer();
 		$log.debug("abc");
-		gapi.client.InstituteService.addInstitute(insti).execute(
+		gapi.client.instituteService.addInstitute(insti).execute(
 				function(resp) {
 					$log
 					.debug("No5");	
@@ -241,7 +241,7 @@ function googleEndpointSF($log, $q,$localStorage) {
 
 	InstituteService.getInstitutes = function() {
 		var deferred = $q.defer();
-		gapi.client.InstituteService.getInstitutes().execute(
+		gapi.client.instituteService.getInstitutes().execute(
 				function(resp) {
 					$log.debug("getInstitutes#resp:" + resp);
 					deferred.resolve(resp.items);

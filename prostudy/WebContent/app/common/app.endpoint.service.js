@@ -27,6 +27,14 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getBookService();
 	};//end of getBookService
 	
+	endpointFactory.getUserService = function() {
+
+		if(isTestMode)
+			return localDBServiceFactory.getUserService();
+		else	
+			return googleEndpointSF.getUserService();
+	};//end of getUserService
+	
 	endpointFactory.getPracticeExamService = function() 
 	{
 		if(isTestMode)
@@ -35,13 +43,7 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getPracticeExamService();
 	};//end of getPracticeExamService
 	
-	endpointFactory.getUserService = function() {
 
-		if(isTestMode)
-			return localDBServiceFactory.getUserService();
-		else	
-			return googleEndpointSF.getUserService();
-	};
 
 	endpointFactory.getStudentService = function() {
 		if(isTestMode)
@@ -90,10 +92,17 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 
 		var apisToLoad;
 
-		apisToLoad = 1; // must match number of calls to
+		apisToLoad = 2; // must match number of calls to
 
 		gapi.client.load('chapterService', 'v0.1', function() {
 			$log.debug("chapterService Loaded....");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+		
+		gapi.client.load('bookService', 'v0.1', function() {
+			$log.debug("bookService Loaded....");
 			endpointFactory.is_service_ready = true;
 			deferred.resolve();
 
