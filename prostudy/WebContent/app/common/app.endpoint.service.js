@@ -1,9 +1,10 @@
-angular.module("prostudyApp").factory('appEndpointSF', appEndpointSFFn);
+angular.module("prostudyApp").factory('appEndpointSF', appEndpointSF);
 
-function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
+function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 	//When app is in test mode, it will return service from local db store. Else actual google end points.
-    var isTestMode = true;
-	//var isTestMode = false;
+  
+	 //var isTestMode = true;
+	var isTestMode = false;
 	
 	var endpointFactory = {};
 	endpointFactory.is_service_ready = false;
@@ -18,6 +19,14 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getChapterService();
 	};//end of getChapterService
 	
+	endpointFactory.getBookService = function() 
+	{
+		if(isTestMode)
+			return localDBServiceFactory.getBookService();
+		else	
+			return googleEndpointSF.getBookService();
+	};//end of getBookService
+	
 	endpointFactory.getPracticeExamService = function() 
 	{
 		if(isTestMode)
@@ -26,14 +35,13 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getPracticeExamService();
 	};//end of getPracticeExamService
 	
-	
-	endpointFactory.getBookService = function() 
-	{
+	endpointFactory.getUserService = function() {
+
 		if(isTestMode)
-			return localDBServiceFactory.getBookService();
+			return localDBServiceFactory.getUserService();
 		else	
-			return googleEndpointSF.getBookService();
-	};//end of getBookService
+			return googleEndpointSF.getUserService();
+	};
 
 	endpointFactory.getStudentService = function() {
 		if(isTestMode)
@@ -63,19 +71,6 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getSyllabusService();
 	};
 
-	
-	endpointFactory.getUserService = function() {
-
-		if(isTestMode)
-			return localDBServiceFactory.getUserService();
-		else	
-			return googleEndpointSF.getUserService();
-	};
-	
-	endpointFactory.getExamService = function() {
-		return gapi.client.examService;
-	};
-	
 	endpointFactory.loadAppGoogleServices = function(deferred) {
 		$log.debug("###Inside Google appEndpointSF.loadAppGoogleServices###");
 		
@@ -95,16 +90,10 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 
 		var apisToLoad;
 
-		apisToLoad = 2; // must match number of calls to
-		// gapi.client.load()
+		apisToLoad = 1; // must match number of calls to
 
-		gapi.client.load('studentService', 'v0.1', function() {
-			$log.debug("studentService Loaded....");
-			// $scope.addTaxToDB();
-		}, apiRoot);
-
-		gapi.client.load('questionService', 'v0.1', function() {
-			$log.debug("questionService Loaded....");
+		gapi.client.load('chapterService', 'v0.1', function() {
+			$log.debug("chapterService Loaded....");
 			endpointFactory.is_service_ready = true;
 			deferred.resolve();
 
