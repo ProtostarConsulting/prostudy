@@ -47,8 +47,7 @@ angular.module("prostudyApp").controller(
 			
 			$scope.getBookbyID = function() {
 
-				var UserService = appEndpointSF
-						.getUserService();
+				var UserService = appEndpointSF.getUserService();
 				
 				if (typeof $scope.addselectedBookId != 'undefined')
 					{

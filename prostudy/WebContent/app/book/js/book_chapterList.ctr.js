@@ -17,16 +17,14 @@ angular
 					};// end of showSavedToast
 
 					$log.debug("$stateParams:", $stateParams);
-					$log.debug("$stateParams.selectedBookId:",
-							$stateParams.selectedBookId);
+					$log.debug("$stateParams.selectedBookId:",$stateParams.selectedBookId);
 					$scope.selectedBookId = $stateParams.selectedBookId;
 
 	
 					$scope.addMyBook = function() {
 						$log.debug("No1");
 						var UserService = appEndpointSF.getUserService();
-						UserService.addMyBook(
-								UserService.getBookId($scope.selectedBookId))
+						UserService.addMyBook(UserService.getBookId($scope.selectedBookId))
 								.then(function() {
 									$log.debug("No6");
 									$log.debug("Inside Ctr addMyBook");

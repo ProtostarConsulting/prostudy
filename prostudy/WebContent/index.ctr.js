@@ -1,18 +1,15 @@
-angular
-		.module("prostudyApp")
-		.controller(
-				"indexCtr",
-				function($scope, $window, $log, $q, $timeout, $mdToast,
-						$mdBottomSheet, $state, appEndpointSF) {
-					
+angular.module("prostudyApp").controller("indexCtr",function($scope, $window, $log, $q, $timeout, $mdToast,
+						$mdBottomSheet, $state, appEndpointSF)
+						{
+
 					$log.debug("Inside indexCtr");
-					
-					$scope.curUser = appEndpointSF.getUserService().getLoggedinUser();
-									
-					
+
+					$scope.curUser = appEndpointSF.getUserService()
+							.getLoggedinUser();
+
 					$scope.loginClick = function() {
 						$state.go("login");
-						
+
 					};
 										
 					
@@ -34,14 +31,10 @@ angular
 						$log.debug("Came to initGAPI");
 						// This will load all server side end points
 						// $scope.loadAppGoogleServices();
-						$timeout(
-								function() {
-									appEndpointSF
-											.loadAppGoogleServices($q.defer())
-											.then(
-													function() {
-														$log
-																.debug("##########Loaded All Google Endpoint Services....#########");
+						$timeout(function() {
+									appEndpointSF.loadAppGoogleServices($q.defer())
+											.then(function() {
+														$log.debug("##########Loaded All Google Endpoint Services....#########");
 													});
 								}, 2000);
 

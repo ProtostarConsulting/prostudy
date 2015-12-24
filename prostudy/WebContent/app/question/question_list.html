@@ -25,13 +25,11 @@
 
 				<tbody>
 					<tr md-auto-select ng-repeat="question in questions | orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit">
-<<<<<<< .mine
 						<td ng-bind-html="question.description">
 						<div>
-=======
 						<td ng-bind-html="question.description">
 						<div ng-hide="editingData[question.description]">
->>>>>>> .r254
+
 							{{question.description}}
 						</div>
 						</td>

@@ -69,12 +69,11 @@ public class UserService {
 	
 	
 	@SuppressWarnings("unchecked")
-	@ApiMethod(name="getUserById")
-	public UserEntity  getUserById(@Named("Id") String Id)
+	@ApiMethod(name="getByUserId")
+	public UserEntity  getByUserId(@Named("Id") String Id)
 	{
-		System.out.println("In side getUserById ");
-		@SuppressWarnings("unused")
-		ServerMsg msgBean=new ServerMsg();
+		System.out.println("In side getByUserId ");
+		
 		List<UserEntity> userList = new ArrayList<UserEntity>();
 		EntityManager em=null;
 		
@@ -99,9 +98,44 @@ public class UserService {
 		else
 			return null;	
 		
-	}//end of getUserById
+	}//end of getByUserId
+	
+	
+	@ApiMethod(name="getLoggedinUser")
+	public UserEntity  getLoggedinUser(UserEntity userEntity)
+	{
+		System.out.println("Inside getLoggedinUser ");
+		
+		EntityManager em=null;
+				
+		try
+		{
+			em = EMF.get().createEntityManager();
+		
+			
+			if(userEntity !=null)
+			{
+				em.persist(userEntity);
+				UserEntity loggedinUser=em.merge(userEntity);
+				System.out.println("userEntity.getFirstName " + userEntity.getFirstName());
+				
+				return loggedinUser;
+				
+			}
+			
+		}
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return null;
+	}//getLoggedinUser
 
-/*	@ApiMethod(name = "updateUser")
+	@ApiMethod(name = "updateUser")
 	public ServerMsg updateUser(UserEntity userEntity)
 	{
 		
@@ -138,5 +172,5 @@ public class UserService {
 		return msgBean;
 
 	}// end of updateUser
-*/
+
 }// end of UserService

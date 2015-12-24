@@ -10,6 +10,7 @@ angular.module("prostudyApp").controller(
 			};
 			
 			//$scope.userRole = [admin,student,teacher]
+			
 			$scope.book = {
 					bookid : "",
 					book_name : "",

@@ -102,12 +102,13 @@ public class ChapterService
 	
 	
 /*	@ApiMethod(name="updateChapter")
-	 public ChapterEntity updateChapter(String chapter_name, String chapter_content, String board, String student_class, String subject)
+	 public ServerMsg updateChapter(ChapterEntity chapterEntity,@Named String chapter_name,@Named String chapter_content,@Named String board,@Named String student_class,@Named String subject)
 	{
 		 
 		   System.out.println("Inside updateChapter");
 			EntityManager em = null;
-			ChapterEntity chapterEntity =new ChapterEntity();
+			ServerMsg msgBean = new ServerMsg();
+			//ChapterEntity chapterEntity =new ChapterEntity();
 
 			try {
 				em = EMF.get().createEntityManager();
@@ -124,9 +125,12 @@ public class ChapterService
 					chapter.setBoard(board);
 					chapter.setStudent_class(student_class );
 					chapter.setSubject(subject);
+					em.persist(chapter);
 					
 				
 					System.out.println("chapterEntity :-"+chapter.getChapter_name());
+					msgBean.setMsg("Chapter Records Updated successfully" + " "
+							+ chapter);
 				}
 
 

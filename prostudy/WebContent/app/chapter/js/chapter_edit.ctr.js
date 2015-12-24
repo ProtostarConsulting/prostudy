@@ -26,12 +26,9 @@ angular
 
 						var ChapterService = appEndpointSF.getChapterService();
 
-						ChapterService
-								.getChapters()
-								.then(
-										function(chapterList) {
-											$log
-													.debug("Inside Ctr getChapters");
+						ChapterService.getChapters().then(function(chapterList)
+								{
+											$log.debug("Inside Ctr getChapters");
 
 											$scope.chapters = chapterList;
 											$log.debug("chapters :"
