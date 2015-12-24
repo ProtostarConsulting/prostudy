@@ -33,6 +33,24 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 	}
 
 	//-----------------------------------------------------
+
+	endpointFactory.getopportunityService=function(){
+		if (isTestMode)
+			return localDBServiceFactory.getopportunityService();
+		else
+			return googleEndpointSF.getopportunityService();
+	}
+
+	//-----------------------------------------------------
+	endpointFactory.getsetupService=function(){
+		if (isTestMode)
+			return localDBServiceFactory.getsetupService();
+		else
+			return googleEndpointSF.getsetupService();
+	}
+
+	//-----------------------------------------------------
+
 	endpointFactory.getStockService = function() {
 		if (isTestMode)
 			return localDBServiceFactory.getStockService();

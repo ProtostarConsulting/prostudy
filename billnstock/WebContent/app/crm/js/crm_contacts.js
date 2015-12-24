@@ -41,9 +41,7 @@ angular.module("stockApp").controller(
 			
 			
 			$scope.getAllcontact = function() {
-				$log.debug("Inside Ctr $scope.getAllcontact");
 				var leadService = appEndpointSF.getleadService();
-
 				leadService.getAllcontact().then(function(contactList) {
 					$log.debug("Inside Ctr getAllleads");
 					$scope.contacts = contactList;

@@ -179,7 +179,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('hr.getAllSlip', {
 		url : "/getAllSlip/:viewsalslips",
 		templateUrl : '/app/hr/getAllSalSlip.html',
-		controller : 'hrCtr.empview',
+		controller : 'hrCtr.empview'
 	}).state('crm', {
 		url : "/crm",
 		templateUrl : '/app/crm/crm_module.html',
@@ -200,5 +200,58 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/view/:selectedleadNo",
 		templateUrl : '/app/crm/crm_lead_view.html',
 		controller : 'lead_view',
+	}).state('crm.contacts', {
+		url : "/contact",
+		templateUrl : '/app/crm/contact_list.html',
+		controller : 'contacts',
+	}).state('crm.addcontact', {
+		url : "/addContact",
+		templateUrl : '/app/crm/crm_contacts.html',
+		controller : 'contacts',
+	}).state('crm.viewContact', {
+		url : "/viewContact/:selectedcontactNo",
+		templateUrl : '/app/crm/crm_contacts_view.html',
+		controller : 'contacts',
+
+	}).state('crm.opportunity', {
+		url : "/opportunity",
+		templateUrl : '/app/crm/opportunity_list.html',
+		controller : 'opportunity',
+
+	}).state('crm.addopprtunity', {
+		url : "/addopportunity",
+		templateUrl : '/app/crm/crm_opportunity.html',
+		controller : 'opportunity',
+
+	}).state('crm.opportunityView', {
+		url : "/opportunityView/:selectedopportunityNo",
+		templateUrl : '/app/crm/crm_opportunity_view.html',
+		controller : 'opportunity',
+
+	}).state('setup', {
+		url : "/setup",
+		templateUrl : '/app/setup/setup_module.html',
+		controller : 'setup',
+
+	}).state('setup.user', {
+		url : "/user",
+		templateUrl : '/app/setup/setup_userlist.html',
+		controller : 'setup',
+
+	}).state('setup.useradd', {
+		url : "/useradd",
+		templateUrl : '/app/setup/setup_adduser.html',
+		controller : 'setup',
+
+	}).state('setup.userview', {
+		url : "/userview/:selecteduserNo",
+		templateUrl : '/app/setup/setup_viewuser.html',
+		controller : 'setup',
+
+	}).state('setup.printheaderfooter', {
+		url : "/printheaderfooter",
+		templateUrl : '/app/setup/setup_headerfooter.html',
+		controller : 'setup_headerfooter',
+
 	});
 });

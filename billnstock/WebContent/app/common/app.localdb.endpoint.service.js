@@ -411,6 +411,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 	// End of hrService
 
 	//*************************************************************************************************************************		
+
 	//start leadService
 	var leadService = {};
 
@@ -536,11 +537,314 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 		return deferred.promise;
 	}
+	//contact services
+	leadService.addcontact = function(contact) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side local DB leademp...");
+			var contactList = angular.fromJson($localStorage.dbcontact);
+			if (typeof contactList === 'undefined')
+				contactList = [];
+			contactList.push(contact);
+			$localStorage.dbcontact = angular.toJson(contactList);
+			deferred.resolve({
+				"msg" : "contact Added Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+	
+	leadService.getAllcontact = function() {
+		var deferred = $q.defer();
+		$timeout(function() {
+			$log.debug("In side local DB getlead...");
+			var contactList = angular.fromJson($localStorage.dbcontact);
+			if (typeof contactList === 'undefined')
+				contactList = [];
+			deferred.resolve(contactList);
+		}, 1000);
+
+		return deferred.promise;
+
+	}
+
+	
+	leadService.getContactById= function(selectedleadNo) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+			var tempItem = [];
+	
+			var contactList = angular.fromJson($localStorage.dbcontact);
+		
+
+			if (typeof contactList === 'undefined')
+				contactList = [];
+		
+
+			for (i = 0; i < contactList.length; i++) {
+				if (selectedleadNo == contactList[i].cid) {
+					tempItem.push(contactList[i]);
+
+				}
+			}
+			
+			deferred.resolve(tempItem);
+			
+
+		}, 1000);
+		return deferred.promise;
+	}
+	
+	
+	
+	leadService.updatecontact = function(contactobj) {
+		var deferred = $q.defer();
+		$timeout(
+				function() {
+
+					$log.debug("In side local DB updateStock...");
+					var contactList = angular.fromJson($localStorage.dbcontact);
+
+					if (typeof contactList === 'undefined')
+						contactList = [];
+
+					for (var i = 0; i < contactList.length; i++) {
+						if (contactobj.cid == contactList[i].cid)
+							contactList[i]=(contactobj);
+				
+					}
+
+					$localStorage.dbcontact = angular.toJson(contactList);
+					deferred.resolve({
+						"msg" : "Contact Updated Successfully."
+					});
+
+				}, 1000);
+
+		return deferred.promise;
+	}
+	
+	
+	//end of contact
+	
 	// End of leadService
 
 	//*************************************************************************************************************************		
+//start opportunity services
+	
+	var opportunityService = {};
+
+	serviceFactory.getopportunityService = function() {
+		return opportunityService;
+	}
+	
+	opportunityService.addopportunity = function(opportunity) {
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side local DB addStock...");
+			var opportunityList = angular.fromJson($localStorage.dbopportunity);
+			if (typeof opportunityList === 'undefined')
+				opportunityList = [];
+			opportunityList.push(opportunity);
+			$localStorage.dbopportunity = angular.toJson(opportunityList);
+			deferred.resolve({
+				"msg" : "opportunityItem Added Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+
+	opportunityService.getAllopportunity = function() {
+		var deferred = $q.defer();
+		$timeout(function() {
+			$log.debug("In side local DB getAllopportunity...");
+			var opportunityList = angular.fromJson($localStorage.dbopportunity);
+			if (typeof opportunityList === 'undefined')
+				opportunityList = [];
+			deferred.resolve(opportunityList);
+		}, 1000);
+
+		return deferred.promise;
+
+	}
+
+	opportunityService.getopportunityById= function(selectedleadNo) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+			var tempItem = [];
+				var opportunityList = angular.fromJson($localStorage.dbopportunity);
+					if (typeof opportunityList === 'undefined')
+				opportunityList = [];
+				for (i = 0; i < opportunityList.length; i++) {
+				if (selectedleadNo == opportunityList[i].id) {
+					tempItem.push(opportunityList[i]);
+				}
+			}
+			deferred.resolve(tempItem);
+			}, 1000);
+		return deferred.promise;
+	}
+	
+	
+	opportunityService.updateopportunity = function(opportunityobj) {
+		var deferred = $q.defer();
+		$timeout(
+				function() {
+
+					$log.debug("In side local DB updateStock...");
+					var opportunityList = angular.fromJson($localStorage.dbopportunity);
+
+					if (typeof opportunityList === 'undefined')
+						opportunityList = [];
+
+					for (var i = 0; i < opportunityList.length; i++) {
+						if (opportunityobj.id == opportunityList[i].id)
+							opportunityList[i]=(opportunityobj);
+				
+					}
+
+					$localStorage.dbopportunity = angular.toJson(opportunityList);
+					deferred.resolve({
+						"msg" : "opportunity Updated Successfully."
+					});
+
+				}, 1000);
+
+		return deferred.promise;
+	}
+	
+
+	opportunityService.addupdatetask = function(oppobj,oppid) {
+		var deferred = $q.defer();
+		$timeout(
+				function() {
+
+					$log.debug("In side local DB updateStock...");
+					var opportunityList = angular.fromJson($localStorage.dbopportunity);
+
+					if (typeof opportunityList === 'undefined')
+						stockList = [];
+
+					for (var i = 0; i < opportunityList.length; i++) {
+						if (oppid == opportunityList[i].id)
+							opportunityList[i].tasks.push(oppobj);
+				
+					}
+
+					$localStorage.dbopportunity = angular.toJson(opportunityList);
+					deferred.resolve({
+						"msg" : "opportunityList Updated Successfully."
+					});
+
+				}, 1000);
+
+		return deferred.promise;
+	}
+	
+	
+	//end apportunity service
+	//*************************************************************************************************************************		
+	//start setup services
+	
+	var setupService = {};
+
+	serviceFactory.getsetupService = function() {
+		return setupService;
+	}
+	
+	setupService.adduser = function(user) {
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side local DB adduser...");
+			var userList = angular.fromJson($localStorage.dbuser);
+			if (typeof userList === 'undefined')
+				userList = [];
+			userList.push(user);
+			$localStorage.dbuser = angular.toJson(userList);
+			deferred.resolve({
+				"msg" : "user Added Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
 
 	
+	setupService.getAlluser = function() {
+		var deferred = $q.defer();
+		$timeout(function() {
+			$log.debug("In side local DB getAlluser...");
+			var userList = angular.fromJson($localStorage.dbuser);
+			if (typeof userList === 'undefined')
+				userList = [];
+			deferred.resolve(userList);
+		}, 1000);
+
+		return deferred.promise;
+
+	}
+	
+	
+	setupService.getuserById= function(selecteduserNo) {
+		
+		var deferred = $q.defer();
+		$timeout(function() {
+			var tempItem = [];
+				var userList = angular.fromJson($localStorage.dbuser);
+					if (typeof userList === 'undefined')
+						userList = [];
+				for (i = 0; i < userList.length; i++) {
+				if (selecteduserNo == userList[i].id) {
+					tempItem.push(userList[i]);
+				}
+			}
+			deferred.resolve(tempItem);
+			}, 1000);
+		return deferred.promise;
+	}
+	
+	
+	setupService.updateuser = function(userobj) {
+		var deferred = $q.defer();
+		$timeout(
+				function() {
+
+					$log.debug("In side local DB updateStock...");
+					var userList = angular.fromJson($localStorage.dbuser);
+
+					if (typeof userList === 'undefined')
+						userList = [];
+
+					for (var i = 0; i < userList.length; i++) {
+						if (userobj.id == userList[i].id)
+							userList[i]=(userobj);
+				
+					}
+
+					$localStorage.dbuser = angular.toJson(userList);
+					deferred.resolve({
+						"msg" : "user Updated Successfully."
+					});
+
+				}, 1000);
+
+		return deferred.promise;
+	}
+	
+	
+	
+	//*************************************************************************************************************************		
 	// Start of StockService
 	var StockService = {};
 
