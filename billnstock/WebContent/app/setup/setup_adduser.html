@@ -1,0 +1,39 @@
+
+<md-content layout-padding>
+<form name="leadform">
+
+	<div id="addField">
+		<div layout layout-sm="column">
+			<md-input-container flex> <label>User Id
+			</label> <input ng-model="user.id" disabled> </md-input-container>
+
+			<md-input-container flex> <label>Enter
+				Email id </label> <input ng-model="user.email"> </md-input-container>
+		</div>
+		<div layout layout-sm="column">
+			<md-input-container flex> <label>First
+				Name </label> <input ng-model="user.fName"> </md-input-container>
+			<md-input-container flex> <label>Last
+				Name </label> <input ng-model="user.lName"> </md-input-container>
+		</div>
+		<b>Authority</b><br><br>
+		<div layout layout-sm="column">
+			
+			<div ng-repeat="item in items">
+				<div class="action-checkbox">
+					<input id="{{item}}" type="checkbox" value="{{item}}"
+						ng-checked="selection.indexOf(item) > -1"
+						ng-click="toggleSelection(item)" /> <label for="{{item}}"></label>
+					{{item}}
+				</div>
+
+			</div>
+<br><br>
+		</div>
+		<section layout="row" layout-sm="column" layout-align="left left">
+			<md-button class="md-raised md-primary" ng-click="adduser()">Add</md-button>
+
+		</section>
+	</div>
+</form>
+</md-content>

@@ -1,0 +1,34 @@
+
+<md-content layout-padding>
+<form name="contactform">
+
+	<div id="addField">
+	<div layout layout-sm="column">
+	<md-input-container flex> <label>Opportunity Id</label> <input
+				ng-model="opportunity.id" disabled> </md-input-container>
+					<md-input-container flex> <label>Date </label> <input
+				ng-model="opportunity.date" disabled> </md-input-container>
+	</div>
+	
+	<div layout layout-sm="column">
+	<md-input-container flex> <md-select
+				placeholder="Select Lead/Customer" id="selectedfrom" ng-model="f" ng-change="getleadcust(f)" >
+			<md-option ng-repeat="f in from" > {{f}} </md-option> </md-select></md-input-container>
+		
+	<md-input-container flex> <md-select
+				placeholder="Lead/Customer" id="selectedfrom" ng-model="opportunity.name"  >
+			<md-option ng-repeat="list in leadorcustlist" > {{list.customerName}}{{list.name}} </md-option> </md-select></md-input-container>
+			</div>
+	<div layout layout-sm="column">
+<md-input-container flex> <label>description
+				 </label> <textarea ng-model="opportunity.description" rows="2" cols="1"> </textarea></md-input-container>
+	</div>
+	
+	<section layout="row" layout-sm="column" layout-align="left left">
+			<md-button class="md-raised md-primary" ng-click="addopportunity()">Add</md-button>
+
+		</section>
+	</div>
+	</div>
+</form>
+</md-content>
