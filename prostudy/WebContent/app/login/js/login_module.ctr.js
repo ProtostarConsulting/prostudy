@@ -10,7 +10,6 @@ angular.module("prostudyApp").controller(
 			};
 			
 			//$scope.userRole = [admin,student,teacher]
-			
 			$scope.book = {
 					bookid : "",
 					book_name : "",
@@ -22,11 +21,13 @@ angular.module("prostudyApp").controller(
 				
 			$scope.tempUser = {
 				userId : "",
-				name : "",
+				firstName : "",
+				lastName : "",
 				userName : "",
 				email_id : "",
 				address : "",
 				contact : "",
+				gender : "",
 				pwd : "",
 				role : "Teacher",
 				book :$scope.book,
