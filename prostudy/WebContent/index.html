@@ -40,7 +40,7 @@
 				ng-click="loginClick()">Login <md-tooltip>
 			Login </md-tooltip> </md-button>
 			<md-button aria-label="Login" ng-hide="curUser == null"
-				ng-click="logoutClick()">{{curUser.name}}> Logout<md-tooltip>
+				ng-click="logoutClick()">{{curUser.firstName}} {{curUser.lastName}}> Logout<md-tooltip>
 			Logout </md-tooltip> </md-button>
 			<md-button aria-label="Login" ng-hide="curUser == null"
 				ng-click="loginClick()"> <a ui-sref="myprofile">Edit
@@ -65,7 +65,7 @@
 			Close Sidenav </md-button> <md-button ui-sref="home" ng-click="close()"
 				class="md-primary" show-gt-md> Home </md-button> <md-button
 				ui-sref="student"
-				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' "
+				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student' "
 				ng-click="close()" class="md-primary" show-gt-md>
 			Student </md-button> <md-button ui-sref="exam"
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
@@ -209,7 +209,7 @@
 	<script src="/lib/base/textAngular.min.js"></script>
 	<script src="/lib/base/ngStorage.min.js"></script>
 
-	<!-- <script src="/lib/base/googleapi.client.js"></script> -->
+	<!--<script src="/lib/base/googleapi.client.js"></script>-->
 	<script src="https://apis.google.com/js/client.js"></script>
 
 	<!-- App JS Dependencies -->
@@ -241,8 +241,11 @@
    	<script src="/app/exam/js/practiceExamTest.ctr.js"></script>
 	<script src="/app/exam/js/practiceExam_edit.ctr.js"></script> 	   
   	<script src="/app/exam/js/practiceExamList.ctr.js"></script>
+  	<script src="/app/exam/js/userQuesAnsView.ctr.js"></script>
   	<script src="/app/exam/js/practiceExamResult.ctr.js"></script>
+	<!-- <script src="/app/exam/js/examScore.ctr.js"></script> -->
 
+	
 
 
 
