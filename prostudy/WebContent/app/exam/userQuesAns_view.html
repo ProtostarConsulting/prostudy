@@ -1,6 +1,6 @@
 
 <div layout="row" layout-sm="column" layout-wrap>
-	<div flex="50" ng-repeat="item in Test.questions ">
+	<div flex="50" ng-repeat="item in Test.questions">
 		<div>
 			<md-content flex layout-padding> <b
 				ng-bind-html="+ (item.quesId+1) +')'+ item.description"></b> </md-content>
@@ -11,14 +11,14 @@
 		</p>
 
 		<div >
-			<md-checkbox  ng-checked="true">
-			{{item.option1}}</md-checkbox>
-			<md-checkbox  ng-checked="isAnsCorrect()">
-			{{item.option2}}</md-checkbox>
-			<md-checkbox  ng-checked="isAnsCorrect()">
-			{{item.option3}}</md-checkbox>
-			<md-checkbox  ng-checked="isAnsCorrect()">
-			{{item.option4}}</md-checkbox>
+			<md-checkbox  ng-checked="isUserSelection($index, 1)">
+			{{item.option1}} {{isAnsCorrect($index, 1)?"Correct":""}}</md-checkbox>
+			<md-checkbox  ng-checked="isUserSelection($index, 2)">
+			{{item.option2}} {{isAnsCorrect($index, 2)?"Correct":""}}</md-checkbox>
+			<md-checkbox  ng-checked="isUserSelection($index, 3)">
+			{{item.option3}} {{isAnsCorrect($index, 3)?"Correct":""}}</md-checkbox>
+			<md-checkbox  ng-checked="isUserSelection($index, 4)">
+			{{item.option4}} {{isAnsCorrect($index, 4)?"Correct":""}}</md-checkbox>
 
 			<td>Correct Answer :{{item.correctAns }}</td>
 		</div>

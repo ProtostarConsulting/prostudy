@@ -58,51 +58,38 @@ angular
 
 										});
 					}
-				
-				/*$scope.isAnsCorrect = function(index,currOption)
-				{
-					$log.debug("answers :" + angular.toJson($scope.examResults[0].userAns));
 					
-					for(var i=0;i<$scope.examResults.length;i++)
-						{
-								$scope.userAnsList = $scope.examResults[i].userAns;
-						}
 					
-					$log.debug("$scope.userAnsList :" + angular.toJson($scope.userAnsList));
-				    return currOption == $scope.userAnsList[index].userOption;
+		
 					
-					//return currOption == $scope.examResults.userAns[index].userOption;
 					
-					for(var i=0;i<$scope.examResults.length;i++)
-				    	{
-				    		
-				    		if($scope.examResults[i].test.quesId == $scope.examResults[i].userAns.qID)
-				    		{
-			   	    			
-				    				
-				    				return currOption = true;
-				    			
-				    		}	
-				    	
-				    	}
-				}
-				*/
-					
-					 $scope.isAnsCorrect = function () {
+					 $scope.isUserSelection = function (index, currOption) {
 						 
-						//$log.debug("results :"+index);
-					       // return currOption == $scope.examResults.userAns[index].userOption;
-						 	//$log.debug("results :"+ angular.toJson($scope.Test));
-						 	for(var i=0;i<$scope.Test.length;i++)
-						 	{
-						 		if($scope.Test.questions[i].quesId == $scope.examResults.userAns[i].qID)
-						 			{
-						 			return currOption = $scope.examResults.userAns[i].userOption;
-						 			}
-						 	}
-						 	
+						$log.debug("results :"+index);
+						$log.debug("currOption :"+currOption);
 						
-					        
+						var currentQ = $scope.Test.questions[index];
+						var currentExamResult = $scope.examResults[1];// write logic got get correct exma result obj
+						var userOption = currentExamResult.userAns[index].userOption // write a method to get user select option for Q currentQ.id and currentExamResult.id 
+						if(userOption == currOption)
+							return true;
+						else
+							return false;
+						
+					}
+					 
+					 $scope.isAnsCorrect = function (index, currOption) {
+						 
+						$log.debug("results :"+index);
+						$log.debug("currOption :"+currOption);
+						
+						var currentQ = $scope.Test.questions[index];
+						
+						if(currentQ.correctAns == currOption)
+							return true;
+						else
+							return false;
+										        
 					      }
 					 
 					 

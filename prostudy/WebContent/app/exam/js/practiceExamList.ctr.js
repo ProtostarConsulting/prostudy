@@ -5,7 +5,7 @@ angular
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $q, $sce, tableTestDataFactory,
 						appEndpointSF, $state, $filter) {
-					
+
 					$scope.count = 0;
 
 					$log.debug("Inside practiceExamListCtr");
@@ -33,23 +33,63 @@ angular
 					}// End of getPracticeExams
 
 					$scope.addTestToMyList = function(selectedMyExamId) {
-						
+
 						$log.debug("selectedMyExamId:" + selectedMyExamId);
-						
+
 						var UserService = appEndpointSF.getUserService();
 						UserService.addMyPracticeExam(
 								UserService.getExamId(selectedMyExamId)).then(
 								function() {
 									$scope.showSavedToast();
 								});
-						
+
 					};
-					
-					$scope.like = function()
-					{
-						$scope.count = $scope.count + 1 ;
-						
+
+					$scope.like = function(selectedMyExamId) {
+
+						var PracticeExamService = appEndpointSF
+								.getPracticeExamService();
+						PracticeExamService.likeCount(selectedMyExamId).then(
+								function(practiceExamList) {
+									
+									$log.debug("Inside Ctr like");
+									
+									for(i=0 ;i< $scope.practiceTest.length;i++)
+									{
+										if($scope.practiceTest[i].examId == selectedMyExamId)
+											{
+											 $scope.practiceTest[i].likes++;
+											 break;
+											}
+										
+									}
+
+								});
+
 					}
+
+					$scope.dislike = function(selectedMyExamId) {
+
+						var PracticeExamService = appEndpointSF
+								.getPracticeExamService();
+						PracticeExamService.dislikeCount(selectedMyExamId).then(
+								function(practiceExamList) {
+									$log.debug("Inside Ctr dislike");
+									
+									for(i=0 ;i< $scope.practiceTest.length;i++)
+									{
+										if($scope.practiceTest[i].examId == selectedMyExamId)
+											{
+											 $scope.practiceTest[i].dislikes++;
+											 break;
+											}
+										
+									}
+
+								});
+
+					}
+
 					$scope.getPracticeExams();
 
 				});// end of examDemoCtr

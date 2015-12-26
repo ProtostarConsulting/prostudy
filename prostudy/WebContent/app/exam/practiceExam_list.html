@@ -35,11 +35,11 @@
 								ng-click="addTestToMyList(test.examId)">Add To
 							MyPractice Exam </md-button></td>
 
-						<td><md-button ng-click="like()"> <ng-md-icon
-								icon="thumb_up"></ng-md-icon>{{count}}</md-button></td>
+						<td><md-button ng-click="like(test.examId)"> <ng-md-icon
+								icon="thumb_up"></ng-md-icon>{{practiceTest[test.examId-1].likes}}</md-button></td>
 
-						<td><md-button ng-click="dislike()"> <ng-md-icon
-								icon="thumb_down"></ng-md-icon></md-button></td>
+						<td><md-button ng-click="dislike(test.examId)"> <ng-md-icon
+								icon="thumb_down"></ng-md-icon>{{practiceTest[test.examId-1].dislikes}}</md-button></td>
 
 					</tr>
 				</tbody>
@@ -47,6 +47,8 @@
 
 			</md-data-table-container>
 		</div>
+		
+		
 
 
 	</section>

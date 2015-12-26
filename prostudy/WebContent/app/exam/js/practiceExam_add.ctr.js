@@ -7,15 +7,18 @@ angular.module("prostudyApp").controller(
 				$mdToast.show($mdToast.simple().content('Practice Exam Saved!')
 						.position("top").hideDelay(3000));
 			};
-
+			
 			$scope.tempPracticeExam = {
 				examId : "",
 				examtitle : "",
+				likes :0,
+				dislikes :0,
 				board : "",
 				standard : "",
 				subject : "",
 				questions : [],
 				date : ""
+			
 					
 			};
 			$scope.questions = [];
@@ -57,6 +60,8 @@ angular.module("prostudyApp").controller(
 							$scope.tempPracticeExam = {
 								examId : "",
 								examtitle : "",
+								likes :"",
+								dislikes :"",
 								board : "",
 								standard : "",
 								subject : "",
