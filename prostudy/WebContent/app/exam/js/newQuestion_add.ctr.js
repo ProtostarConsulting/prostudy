@@ -15,7 +15,8 @@ angular.module("prostudyApp").controller(
 				option2 : "",
 				option3 : "",
 				option4 : "",
-				correctAns : ""
+				correctAns : "",
+				
 			};
 			$scope.question = [];
 
@@ -35,7 +36,8 @@ angular.module("prostudyApp").controller(
 								option2 : "",
 								option3 : "",
 								option4 : "",
-								correctAns : ""
+								correctAns : "",
+								
 							};
 						});
 				$log.debug("No4");

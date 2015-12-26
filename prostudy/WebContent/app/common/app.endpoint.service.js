@@ -3,8 +3,8 @@ angular.module("prostudyApp").factory('appEndpointSF', appEndpointSF);
 function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 	//When app is in test mode, it will return service from local db store. Else actual google end points.
   
-	// var isTestMode = true;
-	var isTestMode = false;
+	 var isTestMode = true;
+	 //var isTestMode = false;
 	
 	var endpointFactory = {};
 	endpointFactory.is_service_ready = false;

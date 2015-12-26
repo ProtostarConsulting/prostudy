@@ -5,6 +5,8 @@ angular
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $q, $sce, tableTestDataFactory,
 						appEndpointSF, $state, $filter) {
+					
+					$scope.count = 0;
 
 					$log.debug("Inside practiceExamListCtr");
 					$scope.showSavedToast = function() {
@@ -43,6 +45,11 @@ angular
 						
 					};
 					
+					$scope.like = function()
+					{
+						$scope.count = $scope.count + 1 ;
+						
+					}
 					$scope.getPracticeExams();
 
 				});// end of examDemoCtr

@@ -1,7 +1,7 @@
 angular.module("prostudyApp").controller(
 		"examModuleCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, objectFactory, appEndpointSF) {
+				$log, objectFactory, appEndpointSF, $sce) {
 
 			$log.debug("Inside examModuleCtr");
 
@@ -20,9 +20,29 @@ angular.module("prostudyApp").controller(
 
 			};
 
+			$scope.getPracticeExams = function() {
+
+				var PracticeExamService = appEndpointSF
+						.getPracticeExamService();
+				PracticeExamService
+						.getPracticeExams()
+						.then(
+								function(practiceExamList) {
+									$log
+											.debug("Inside Ctr getPracticeExam");
+									$scope.practiceTest = practiceExamList;
+									$scope.practiceTest.description = $sce
+											.trustAsHtml($scope.practiceTest.description);
+
+								});
+			}
+			
 			/* Setup page menu */
 			$scope.toggleRight = buildToggler('right');
-
+			/**
+			 * Build handler to open/close a SideNav; when animation finishes
+			 * report completion in console
+			 */
 			function buildToggler(navID) {
 				var debounceFn = $mdUtil.debounce(function() {
 					$mdSidenav(navID).toggle().then(function() {
@@ -33,10 +53,11 @@ angular.module("prostudyApp").controller(
 			}
 
 			$scope.close = function() {
-				/*
-				 * $mdSidenav('right').close().then(function() {
-				 * $log.debug("close RIGHT is done"); });
-				 */
+				$mdSidenav('right').close().then(function() {
+					$log.debug("close RIGHT is done");
+				});
 			};
+			
+			$scope.getPracticeExams();
 
 		});

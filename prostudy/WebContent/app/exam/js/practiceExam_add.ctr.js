@@ -16,9 +16,9 @@ angular.module("prostudyApp").controller(
 				subject : "",
 				questions : [],
 				date : ""
+					
 			};
 			$scope.questions = [];
-			$scope.selected = [];
 
 			$scope.getQuestion = function() {
 
@@ -46,8 +46,6 @@ angular.module("prostudyApp").controller(
 						.getPracticeExamService();
 				for (var i = 0; i < $scope.selected.length; i++) {
 					$scope.tempPracticeExam.questions.push($scope.selected[i]);
-					
-					$log.debug("$scope.tempPracticeExam",$scope.tempPracticeExam);
 				}
 
 				practiceExamService.addPracticeExam($scope.tempPracticeExam)
@@ -69,35 +67,6 @@ angular.module("prostudyApp").controller(
 				$log.debug("No4");
 				$state.go('exam.listpracticeexam', {});
 			}
-			
-		$scope.query = {
-				order : 'description',
-				limit : 5,
-				page : 1
-			};
-
-			$scope.onpagechange = function(page, limit) {
-				var deferred = $q.defer();
-
-				$timeout(function() {
-					deferred.resolve();
-				}, 2000);
-
-				return deferred.promise;
-			};
-
-			$scope.onorderchange = function(order) {
-				var deferred = $q.defer();
-
-				$timeout(function() {
-					deferred.resolve();
-				}, 2000);
-
-				return deferred.promise;
-			};
-			
-			
-			
 			// $scope.getPracticeExams();
 			// $scope.showselectedExam();
 
