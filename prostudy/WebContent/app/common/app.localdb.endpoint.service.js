@@ -50,8 +50,8 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 	}
 
-	ChapterService.getChaptersByID = function(selectedChapterId) {
-
+	ChapterService.getChapterById = function(selectedChapterId) {
+		
 		var deferred = $q.defer();
 		$timeout(function() {
 			var tempBookItem = [];
@@ -69,7 +69,8 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 		}, 1000);
 		return deferred.promise;
-	}
+	}//end of getChapterById
+	
 	var BookService = {};
 
 	serviceFactory.getBookService = function() {
@@ -111,8 +112,8 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 	}
 
-	BookService.getBooksByID = function(selectedBookId) {
-
+	BookService.getBookbyID = function(selectedBookId) {
+		
 		var deferred = $q.defer();
 		$timeout(function() {
 			var tempBookItem = [];
@@ -134,7 +135,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 		}, 1000);
 		return deferred.promise;
-	}
+	}//end of getBooksByID
 
 	var StudentService = {};
 

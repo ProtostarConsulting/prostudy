@@ -1,6 +1,6 @@
 angular.module("prostudyApp").factory('googleEndpointSF', googleEndpointSF);
 
-function googleEndpointSF($log, $q,$localStorage) {
+function googleEndpointSF($log, $q,$localStorage,$timeout) {
 
 	var serviceFactory = {};
 	
@@ -37,7 +37,28 @@ function googleEndpointSF($log, $q,$localStorage) {
 					deferred.resolve(resp.items);
 				});
 		return deferred.promise;
-	}  // End of ChapterService
+	}  // End of getChapters
+	
+	ChapterService.getChapterById = function(selectedChapterId) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+			var tempBookItem = [];
+			var chapterList = angular.fromJson($localStorage.dbAddChapter);
+			if (typeof chapterList === 'undefined')
+				chapterList = [];
+
+			for (i = 0; i < chapterList.length; i++) {
+				if (selectedChapterId == chapterList[i].id) {
+					tempBookItem.push(chapterList[i]);
+					$log.debug("TEMP=getChaptersByID==" + tempBookItem);
+				}
+			}
+			deferred.resolve(tempBookItem);
+
+		}, 1000);
+		return deferred.promise;
+	}//end of getChapterById
 	
 	
 	// start of BookService
@@ -71,7 +92,32 @@ function googleEndpointSF($log, $q,$localStorage) {
 					deferred.resolve(resp.items);
 				});
 		return deferred.promise;
-	}  // End of BookService
+	}  // End of getBooks
+	
+	BookService.getBookbyID = function(selectedBookId) {
+
+		var deferred = $q.defer();
+		$timeout(function() {
+			var tempBookItem = [];
+		
+			var bookList = angular.fromJson($localStorage.dbAddBook);
+
+			if (typeof bookList === 'undefined')
+				bookList = [];
+
+			for (i = 0; i < bookList.length; i++) {
+				if (selectedBookId == bookList[i].bookid) {
+					$log.debug("TEMP==" + bookList[i].bookid);
+					tempBookItem.push(bookList[i].chapters[0]);
+					 $log.debug("TEMP=getBooksByID==" + tempBookItem);
+					}
+			}
+				
+			deferred.resolve(tempBookItem);
+
+		}, 1000);
+		return deferred.promise;
+	}//end of getBookbyID
 	
 // start of UserService
 	

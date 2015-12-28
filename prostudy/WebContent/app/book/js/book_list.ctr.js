@@ -13,7 +13,7 @@ angular.module("prostudyApp").controller(
 			$log.debug("$scope.addselectedBookId===="+$stateParams.addselectedBookId); 
 
 			$scope.book = {
-				bookid : "",
+				id : "",
 				book_name : "",
 				author : "",
 				board : "",
@@ -44,6 +44,7 @@ angular.module("prostudyApp").controller(
 									+ angular.toJson($scope.currentBook));
 						});
 			}// end of getBooks
+			//$scope.books = [];
 			
 			$scope.getBookbyID = function() {
 
@@ -65,7 +66,7 @@ angular.module("prostudyApp").controller(
 			$scope.getBookbyID();
 			
 
-			$scope.books = [];
+		
 			
 			$scope.cancelButton = function() {
 				$log.debug("inside cancelButton");

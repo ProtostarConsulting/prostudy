@@ -9,7 +9,7 @@ angular
 					console.log("Inside bookAddCtr");
 
 					$scope.tempBook = {
-						bookid : "",
+						id : "",
 						book_name : "",
 						author : "",
 						board : "",
@@ -33,9 +33,9 @@ angular
 									$log.debug("msgBean.msg:" + msgBean.msg);
 									$scope.showSavedToast();
 
-									$log.debug("tempBook" + $scope.tempBook);
+									$log.debug("tempBook" + angular.toJson($scope.tempBook));
 									$scope.tempBook = {
-											bookid : "",
+											id : "",
 											book_name : "",
 											author : "",
 											board : "",

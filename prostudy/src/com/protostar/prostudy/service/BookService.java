@@ -27,6 +27,7 @@ public class BookService {
 		try {
 			em = EMF.get().createEntityManager();
 			em.persist(bookEntity);
+			
 			msgBean.setMsg("Book Records Added successfully" + " "
 					+ bookEntity.getBook_name());
 		} catch (Exception e) {
@@ -68,10 +69,10 @@ public class BookService {
 	}// end of getAllChapter
 	
 	@SuppressWarnings("unchecked")
-	@ApiMethod(name="getBookById")
-	public BookEntity  getBookById(@Named("Id") String Id)
+	@ApiMethod(name="getBookbyID")
+	public BookEntity  getBookbyID(@Named("Id") String Id)
 	{
-		System.out.println("In side getBookById ");
+		System.out.println("In side getBooksByID ");
 		@SuppressWarnings("unused")
 		ServerMsg msgBean=new ServerMsg();
 		List<BookEntity> bookList = new ArrayList<BookEntity>();
@@ -98,7 +99,7 @@ public class BookService {
 		else
 			return null;	
 		
-	}//end of getBookById
+	}//end of getBookbyID
 	
 
 /*	@ApiMethod(name = "updateBook")
