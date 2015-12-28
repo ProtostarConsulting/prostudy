@@ -66,7 +66,7 @@ public class BookService {
 
 		return bookList;
 
-	}// end of getAllChapter
+	}// end of getAllBook
 	
 	@SuppressWarnings("unchecked")
 	@ApiMethod(name="getBookbyID")

@@ -21,12 +21,8 @@ angular.module("prostudyApp").controller(
 				chapters : []
 			};// end of tempBook object
 			
-			$scope.tempMyBook = {
-					user_name : $scope.curUser,
-					book : $scope.currentBook
-					
-			};
-			$scope.myBooks = [];
+		
+		//	$scope.myBooks = [];
 
 
 			
@@ -39,12 +35,16 @@ angular.module("prostudyApp").controller(
 							$log.debug("Inside Ctr getBooks");
 
 							$scope.books = bookList;
+							$log.debug("$scope.books :"
+									+ angular.toJson($scope.books));
 							$scope.currentBook = $scope.books[0];
 							$log.debug("$scope.currentBook :"
 									+ angular.toJson($scope.currentBook));
 						});
 			}// end of getBooks
 			//$scope.books = [];
+			
+			
 			
 			$scope.getBookbyID = function() {
 
@@ -64,6 +64,14 @@ angular.module("prostudyApp").controller(
 
 			$scope.myBook=[];
 			$scope.getBookbyID();
+			
+			$scope.tempMyBook = {
+					user_name : $scope.curUser,
+					book : $scope.currentBook
+					
+			};
+			$log.debug("$scope.tempMyBook :"
+					+ angular.toJson($scope.tempMyBook));
 			
 
 		

@@ -49,7 +49,7 @@ angular
 						$log.debug("$scope.selectedBookId:"
 								+ $scope.selectedBookId)
 						BookService
-								.getBooksByID($scope.selectedBookId)
+								.getBookbyID($scope.selectedBookId)
 								.then(
 										function(bookList) {
 
