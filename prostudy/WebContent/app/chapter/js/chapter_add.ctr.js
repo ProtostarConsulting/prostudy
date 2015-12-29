@@ -4,6 +4,11 @@ angular.module("prostudyApp").controller(
 				$log, $q, tableTestDataFactory, $state, appEndpointSF) {
 
 			console.log("Inside chapterAddCtr");
+	  
+			$scope.tempChapter = {id: "", chapter_name: "",chapter_content: "", board:"", student_class:"",subject:""};
+			$scope.chapters = []; 
+			
+
 
 			$scope.tempChapter = {
 				id : "",
@@ -15,13 +20,22 @@ angular.module("prostudyApp").controller(
 			};
 			$scope.chapters = [];
 
+
 			$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content('Chapter Saved!')
 						.position("top").hideDelay(3000));
+
+			};
+			
+			$scope.addChapter = function()
+			{
+				$log.debug("No1");	
+
 			};// end of showSavedToast
 
 			$scope.addChapter = function() {
 				$log.debug("No1");
+
 				var ChapterService = appEndpointSF.getChapterService();
 
 				ChapterService.addChapter($scope.tempChapter).then(

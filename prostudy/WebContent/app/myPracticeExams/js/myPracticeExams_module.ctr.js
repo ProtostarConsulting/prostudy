@@ -21,7 +21,7 @@ angular.module("prostudyApp").controller(
 			$scope.exams = [];
 			$scope.getMyExamList();
 
-			/* Setup page menu */
+	
 			$scope.toggleRight = buildToggler('right');
 
 			function buildToggler(navID) {

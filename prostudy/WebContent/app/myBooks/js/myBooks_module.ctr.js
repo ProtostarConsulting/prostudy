@@ -6,11 +6,7 @@ angular.module("prostudyApp").controller(
 
 			$scope.curUser = appEndpointSF.getUserService().getLoggedinUser();
 
-			$scope.showSavedToast = function() {
-				$mdToast.show($mdToast.simple().content('Question Saved!')
-						.position("top").hideDelay(3000));
-			};
-
+	
 			$scope.getMyBookList = function() {
 
 				var UserService = appEndpointSF.getUserService();

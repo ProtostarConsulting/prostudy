@@ -8,13 +8,18 @@ angular
 
 					console.log("Inside bookAddCtr");
 
+					$scope.comments={
+							userId:"",
+							desc:""
+					}
 					$scope.tempBook = {
 						id : "",
 						book_name : "",
 						author : "",
 						board : "",
 						standard : "",
-						chapters : []
+						chapters : [],
+						comments:[]
 					};// end of tempBook object
 
 					$scope.showSavedToast = function() {
@@ -40,7 +45,8 @@ angular
 											author : "",
 											board : "",
 											standard : "",
-											chapters : []
+											chapters : [],
+											comments:[]
 										};//After click on submit button,htmlform to be set as a blank
 								});
 						$log.debug("No4");
@@ -51,25 +57,16 @@ angular
 
 						var ChapterService = appEndpointSF.getChapterService();
 
-						ChapterService
-								.getChapters()
+						ChapterService.getChapters()
 								.then(
 										function(chapterList) {
-											$log
-													.debug("Inside Ctr getChapters");
+											$log.debug("Inside Ctr getChapters");
 
 											$scope.chapters = chapterList;
-
-											$log.debug("chapters :"
-													+ $scope.chapters);
-
-											$scope.chapters.chapter_content = $sce
-													.trustAsHtml($scope.chapters.chapter_content);
-											$log.debug("$scope.chapters.chapter_content: "
-															+ $scope.chapters.chapter_content);
-
-
-										});
+								$log.debug("chapters :"	+ $scope.chapters);
+								$scope.chapters.chapter_content = $sce.trustAsHtml($scope.chapters.chapter_content);
+								$log.debug("$scope.chapters.chapter_content: "+ $scope.chapters.chapter_content);
+				});
 
 					}// end of getChapters
 
@@ -101,7 +98,6 @@ angular
 					};// end of moveAll
 
 					$scope.cancelButton = function() {
-						// $log.debug("inside cancelButton");
 						$state.go('^', {});
 					};// end of cancelButton
 

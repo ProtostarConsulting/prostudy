@@ -30,7 +30,7 @@ angular
 													.trustAsHtml($scope.practiceTest.description);
 
 										});
-					}// End of getPracticeExams
+					}
 
 					$scope.addTestToMyList = function(selectedMyExamId) {
 

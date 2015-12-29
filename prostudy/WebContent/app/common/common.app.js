@@ -1,7 +1,5 @@
 var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
-		'ngMessages', "xeditable", "ui.bootstrap", "ui.router",
-
-		'md.data.table', 'ngResource', 'textAngular', 'ngRoute', 'ngStorage' ]);
+		'ngMessages', "xeditable", "ui.bootstrap", "ui.router",	'md.data.table', 'ngResource', 'textAngular', 'ngRoute', 'ngStorage' ]);
 
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette(
@@ -114,15 +112,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/institute/institute_addInfo.html',
 		controller : 'instituteAddInfoCtr'
 	}).state('institute.addAdmins', {
-		url : "/institute/addAdmins",
+		url : "/institute/addAdmins/:currentInstID",
 		templateUrl : '/app/institute/institute_addAdmins.html',
 		controller : 'instituteAddInfoCtr'
 	})	.state('institute.addTeachers', {
-		url : "/institute/addTeachers",
+		url : "/institute/addTeachers/:currentInstID",
 		templateUrl : '/app/institute/institute_addTeachers.html',
 		controller : 'instituteAddInfoCtr'
 	}).state('institute.addStudents', {
-		url : "/institute/addStudents",
+		url : "/institute/addStudents/:currentInstID",
 		templateUrl : '/app/institute/institute_addStudents.html',
 		controller : 'instituteAddInfoCtr'
 	}).state('institute.list', {
@@ -139,9 +137,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/institute/institute_view_admins.html',
 		controller : 'instituteViewCtr'
 	})
+		.state('institute.view.view_admins.addadmins', {
+		url : "/addadmins",
+		templateUrl : '/app/institute/institute_addAdmins.html',
+		controller : 'instituteViewCtr'
+	})
 	.state('institute.view.view_teachers', {
 		url : "/view_teachers",
 		templateUrl : '/app/institute/institute_view_teachers.html',
+		controller : 'instituteViewCtr'
+	})
+	.state('institute.view.view_teachers.addteachers', {
+		url : "/addteachers",
+		templateUrl : '/app/institute/institute_addTeachers.html',
 		controller : 'instituteViewCtr'
 	})
 	.state('institute.view.view_students', {
@@ -149,11 +157,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/institute/institute_view_students.html',
 		controller : 'instituteViewCtr'
 	})	
-	.state('institute.edit', {
-		url : "/institute/edit",
-		templateUrl : '/app/institute/institute_edit.html',
-		controller : 'instituteEditCtr'
-	}).state('report', {
+		.state('institute.view.view_students.addstudents', {
+		url : "/addstudents",
+		templateUrl : '/app/institute/institute_addStudents.html',
+		controller : 'instituteViewCtr'
+	})
+	.state('institute.view.editInstitute', {
+		url : "/editInstitute",
+		templateUrl : '/app/institute/institute_editInstitute.html',
+		controller : 'instituteViewCtr'
+	})
+	.state('report', {
 		url : "/report",
 		templateUrl : '/app/report/report_module.html',
 		controller : 'reportModuleCtr'
@@ -193,7 +207,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/chapterList/:selectedBookId",
 		templateUrl : "/app/book/book_chapterList.html",
 		controller : 'book_chapterListCtr'
-	}).state('book.view', {
+	})
+	.state('book.chapterList.addcomment', {
+		url : "/addcomment/:selectedBookId",
+		templateUrl : "/app/book/book_addComments.html",
+		controller : 'bookCommentAddCtr'
+	})	.state('book.view', {
 		url : "/view/:selectedBookId/:selectedChapterId",
 		templateUrl : "/app/book/book_viewChapterContent.html",
 		controller : 'book_viewChapterContentCtr'
