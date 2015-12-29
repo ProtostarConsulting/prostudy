@@ -1,8 +1,8 @@
-angular.module("prostudyApp").controller("indexCtr",function($scope, $window, $log, $q, $timeout, $mdToast,
-						$mdBottomSheet, $state, appEndpointSF)
-						{
+angular.module("prostudyApp").controller(	"indexCtr",
+				function($scope, $window, $log, $q, $timeout, $mdToast,
+						$mdBottomSheet, $state, appEndpointSF) {
 
-					$log.debug("Inside indexCtr");
+	$log.debug("Inside indexCtr");
 
 					$scope.curUser = appEndpointSF.getUserService()
 							.getLoggedinUser();
@@ -77,4 +77,4 @@ angular.module("prostudyApp").controller("indexCtr",function($scope, $window, $l
 							$log.debug("close LEFT is done");
 						});
 					};
-				});
+				});		
