@@ -17,9 +17,10 @@
 				</tr>
 			</tbody>
 		</table>
-		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
-			md-total={{Institute.admins.length}} md-trigger="onpagechange"></md-data-table-pagination>
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total={{Institute.admins.length}} md-trigger="onpagechange"></md-data-table-pagination>
 		</md-data-table-container>
-	</md-content>
+		<md-button ui-sref="institute.view.view_admins.addadmins" class="md-raised md-primary">Add Admins</md-button>
+		<div ui-view> </div>
+			</md-content>
 	</div>
 	

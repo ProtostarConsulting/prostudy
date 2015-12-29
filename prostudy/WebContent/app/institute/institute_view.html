@@ -4,6 +4,10 @@
 	<table md-data-table" cellpadding="10" cellspacing="2">
 		<tbody>
 			<tr>
+				<th style="font-weight: bold;">Institute ID:</th>
+				<td>{{Institute.id}}</td>
+			</tr>
+			<tr>
 				<th style="font-weight: bold;">Institute Name:</th>
 				<td>{{Institute.name}}</td>
 			</tr>
@@ -21,7 +25,7 @@
 			</tr>
 			<tr>
 				<th style="font-weight: bold;">User First Name:</th>
-				<td>{{Institute.user_lname}}</td>
+				<td>{{Institute.user_fname}}</td>
 			</tr>
 			<tr>
 				<th style="font-weight: bold;">User Last Name:</th>
@@ -38,14 +42,16 @@
 		</tbody>
 	</table>
 	</md-input-container> </md-content>
+
 	<div layout="row" layout-align="centre centre" layout-sm="column" flex>
+		<md-button ui-sref="institute.view.editInstitute" class="md-raised md-primary">Edit Institute</md-button>
 		<md-button ui-sref="institute.view.view_admins" class="md-raised md-primary">ViewAdmins </md-button>
 		<md-button ui-sref="institute.view.view_teachers"  class="md-raised md-primary">View Teachers </md-button>
 		<md-button ui-sref="institute.view.view_students" class="md-raised md-primary">View Students </md-button>
 	</div>
 	 <div ui-view></div> 
 	 <footer>
-<div layout="row" layout-align="centre centre" layout-sm="column" flex> 
+				<div layout="row" layout-align="centre centre" layout-sm="column" flex> 
 				<a ui-sref="institute.list"><md-button  class="md-raised md-primary" >Back </md-button> </a>
 				</div>
 				</footer>
