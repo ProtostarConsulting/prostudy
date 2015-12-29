@@ -45,6 +45,19 @@
 						<div ng-message="required">Please enter Subject.</div>
 					</div>
 					</md-input-container>
+					
+					<md-input-container
+						md-is-error="myQuestionForm.instructions.$invalid && (myQuestionForm.$submitted || myQuestionForm.instructions.$dirty)">
+					<label>Test Instructions:</label> <text-angular
+						name="instructions" id="instructions" ng-required="true"
+						ng-model="instructions" ng-change="getSelected()"></text-angular>
+
+					<div ng-messages="myQuestionForm.instructions.$error"
+						ng-if="myQuestionForm.instructions.$submitted || myQuestionForm.instructions.$touched">
+						<div ng-message="required">Please enter instructions.</div>
+					</div>
+					</md-input-container>
+					
 		
 					<md-data-table-container>
 				<table md-data-table md-row-select="selected" md-progress="deferred">

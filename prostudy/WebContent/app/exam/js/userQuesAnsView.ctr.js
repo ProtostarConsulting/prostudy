@@ -59,10 +59,6 @@ angular
 										});
 					}
 					
-					
-		
-					
-					
 					 $scope.isUserSelection = function (index, currOption) {
 						 
 						$log.debug("results :"+index);

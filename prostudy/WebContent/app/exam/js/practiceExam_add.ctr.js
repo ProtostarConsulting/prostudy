@@ -11,15 +11,14 @@ angular.module("prostudyApp").controller(
 			$scope.tempPracticeExam = {
 				examId : "",
 				examtitle : "",
-				likes :0,
-				dislikes :0,
 				board : "",
 				standard : "",
 				subject : "",
+				instructions : "",
 				questions : [],
-				date : ""
-			
-					
+				date : "",
+				likes :0,
+				dislikes :0
 			};
 			$scope.questions = [];
 
@@ -39,6 +38,7 @@ angular.module("prostudyApp").controller(
 				$scope.tempPracticeExam.board = $scope.board;
 				$scope.tempPracticeExam.standard = $scope.standard;
 				$scope.tempPracticeExam.subject = $scope.subject;
+				$scope.tempPracticeExam.instructions = $scope.instructions;
 				$scope.tempPracticeExam.date = new Date();
 
 			}
@@ -60,13 +60,14 @@ angular.module("prostudyApp").controller(
 							$scope.tempPracticeExam = {
 								examId : "",
 								examtitle : "",
-								likes :"",
-								dislikes :"",
 								board : "",
 								standard : "",
 								subject : "",
+								instructions : "",
 								questions : [],
-								date : ""
+								date : "",
+								likes :"",
+								dislikes :"",
 							};
 						});
 				$log.debug("No4");
