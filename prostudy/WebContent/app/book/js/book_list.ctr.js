@@ -4,28 +4,29 @@ angular.module("prostudyApp").controller(
 				$log, $stateParams, appEndpointSF, $state, $sce) {
 
 			console.log("Inside bookListCtr");
-			
 
 			$scope.curUser = appEndpointSF.getUserService().getLoggedinUser();
-			
+
 			$scope.addselectedBookId = $stateParams.addselectedBookId;
+
 			
-			$log.debug("$scope.addselectedBookId===="+$stateParams.addselectedBookId); 
 
 			$scope.book = {
-				id : "",
+				bookid : "",
 				book_name : "",
 				author : "",
 				board : "",
 				standard : "",
 				chapters : []
 			};// end of tempBook object
-			
-		
-		//	$scope.myBooks = [];
 
+			$scope.tempMyBook = {
+				user_name : $scope.curUser,
+				book : $scope.currentBook
 
-			
+			};
+			$scope.myBooks = [];
+
 			$scope.getBooks = function() {
 
 				var BookService = appEndpointSF.getBookService();
@@ -35,52 +36,83 @@ angular.module("prostudyApp").controller(
 							$log.debug("Inside Ctr getBooks");
 
 							$scope.books = bookList;
-							$log.debug("$scope.books :"
-									+ angular.toJson($scope.books));
 							$scope.currentBook = $scope.books[0];
 							$log.debug("$scope.currentBook :"
 									+ angular.toJson($scope.currentBook));
 						});
 			}// end of getBooks
-			//$scope.books = [];
-			
-			
-			
+
 			$scope.getBookbyID = function() {
 
 				var UserService = appEndpointSF.getUserService();
-				
-				if (typeof $scope.addselectedBookId != 'undefined')
-					{
-				UserService.getBookbyID($scope.addselectedBookId).then(
-						function(MyBooksList) {
 
-							$scope.myBook = MyBooksList[0];
-						
-							$log.debug("$scope.myBook"+angular.toJson($scope.myBook));
-						});
-					}
-			};//end of getBookbyID
+				if (typeof $scope.addselectedBookId != 'undefined') {
+					UserService.getBookbyID($scope.addselectedBookId).then(
+							function(MyBooksList) {
 
-			$scope.myBook=[];
+								$scope.myBook = MyBooksList[0];
+
+								$log.debug("$scope.myBook"
+										+ angular.toJson($scope.myBook));
+							});
+				}
+			};// end of getBookbyID
+
+			$scope.myBook = [];
 			$scope.getBookbyID();
-			
-			$scope.tempMyBook = {
-					user_name : $scope.curUser,
-					book : $scope.currentBook
-					
-			};
-			$log.debug("$scope.tempMyBook :"
-					+ angular.toJson($scope.tempMyBook));
-			
 
-		
+			$scope.books = [];                           
 			
+			$scope.like = function(selectedBookId) {
+
+				var BookService = appEndpointSF
+						.getBookService();
+				BookService.bookLikeCount(selectedBookId).then(
+						function(bookList) {
+							
+							$log.debug("Inside Ctr like");
+							
+							for(i=0 ;i< $scope.books.length;i++)
+							{
+								if($scope.books[i].bookid == selectedBookId)
+									{
+									 $scope.books[i].likes++;
+									 break;
+									}
+								
+							}
+
+						});
+
+			}
+			
+			$scope.dislike = function(selectedBookId) {
+
+				var BookService = appEndpointSF
+						.getBookService();
+				BookService.bookDislikeCount(selectedBookId).then(
+						function(bookList) {
+							$log.debug("Inside Ctr dislike");
+							
+							for(i=0 ;i< $scope.books.length;i++)
+							{
+								if($scope.books[i].bookid == selectedBookId)
+									{
+									 $scope.books[i].dislikes++;
+									 break;
+									}
+								
+							}
+
+						});
+
+			}
+
 			$scope.cancelButton = function() {
 				$log.debug("inside cancelButton");
 				$state.go('^', {});
 			};// end of cancelButton
-			
+
 			$scope.getBooks();
 
 		});// end of bookListCtr
