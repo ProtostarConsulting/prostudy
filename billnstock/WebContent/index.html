@@ -11,6 +11,12 @@
 <link rel="stylesheet" href="/lib/base/css/bootstrap.min.css">
 <link rel="stylesheet" href="/lib/base/css/md-data-table.min.css">
 <link rel="stylesheet" href="/lib/base/css/textAngular.css">
+
+<link rel="stylesheet" href="/lib/base/css/ui-grid.css">
+<link rel="stylesheet" href="http://ui-grid.info/release/ui-grid.css"
+	type="text/css">
+<!-- <link rel="stylesheet" href="main.css" type="text/css">
+ -->
 <link href="app/invoice/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body layout="column">
@@ -62,6 +68,15 @@
 			Customer </md-button> --> <md-button ui-sref="stock" ng-click="close()"
 				class="md-primary" show-gt-md> Stock </md-button> <md-button
 				ui-sref="invoice" ng-click="close()" class="md-primary" show-gt-md>
+
+			Invoice </md-button> <md-button ui-sref="salesOrder" ng-click="close()"
+				class="md-primary" show-gt-md> Sales </md-button>
+				<md-button ui-sref="purchaseOrder" ng-click="close()"
+				class="md-primary" show-gt-md> Purchase </md-button>
+				 <md-button
+				ui-sref="hr" ng-click="close()" class="md-primary" show-gt-md>
+			HR </md-button> </md-content> </md-sidenav>
+
 			Invoice </md-button>
 				<md-button
 				ui-sref="salesOrder" ng-click="close()" class="md-primary" show-gt-md>
@@ -96,7 +111,7 @@
 				</div>
 			</div>
 			</md-card> <!--This is a botton section of the app--> <md-divider></md-divider>
-<!-- 			<md-card>
+			<!-- 			<md-card>
 			<div layout="row" layout-wrap>
 				<div>
 					<a>Tihs is link one </a> <a>Tihs is link one </a> <a>Tihs is
@@ -149,8 +164,7 @@
 				Sheet! </md-button>
 			</div>
 			 </md-card> 
-	-->		
-			</md-content>
+	--> </md-content>
 
 		</section>
 	</div>
@@ -160,6 +174,7 @@
 	<!-- </div> -->
 
 	<!-- All JS Dependencies -->
+<!-- 	<script src="/lib/base/googleapi.client.js"></script> -->
 	<script src="/lib/base/jquery.min.js"></script>
 	<script src="/lib/base/bootstrap.min.js"></script>
 	<script type="text/javascript"
@@ -188,20 +203,26 @@
 	<script src="/lib/base/textAngular-sanitize.min.js"></script>
 	<script src="/lib/base/textAngular.min.js"></script>
 	<script src="/lib/base/ngStorage.min.js"></script>
-<!-- file uplode library-->
+	<!-- file uplode library-->
 
-<script src="/lib/base/ng-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->
-<script src="/lib/base/ng-file-upload.min.js"></script>
+	<script src="/lib/base/ng-file-upload-shim.min.js"></script>
+	<!-- for no html5 browsers support -->
+	<script src="/lib/base/ng-file-upload.min.js"></script>
+	<script src="/lib/base/ng-file-upload.js"></script>
 
-<script src="/lib/base/ng-file-upload-shim.min.js"></script> 
-<script src="/lib/base/ng-file-upload.min.js"></script>
-<!-- 
+	<script src="/lib/base/ui-grid.js"></script>
+	<script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+	<script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
+	<script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+	<script src="http://ui-grid.info/release/ui-grid.js"></script>
+
+	<!-- 
 	<script src="/lib/base/angular-flexslider.js"></script>
 	<script src="/lib/base/angular.js"></script>
 	<script src="/lib/base/jquery.js"></script>
 	<script src="/lib/base/jquery.min.js"></script>
- -->	
- <script src="https://apis.google.com/js/client.js"></script>
+ -->
+	<script src="https://apis.google.com/js/client.js"></script>
 
 	<!-- App JS Dependencies -->
 	<script src="/app/common/common.app.js"></script>
@@ -213,11 +234,25 @@
 	<script src="/app/common/app.endpoint.service.js"></script>
 
 	<script src="/home.ctr.js"></script>
-	<script src="/app/customer/js/customer.ctr.js"></script>
 	<script src="/app/demo/js/state.ctr.js"></script>
 
+	<script src="/app/customer/js/customer.ctr.js"></script>
+	<script src="/app/customer/js/customer_module.ctr.js"></script>
+	<script src="/app/customer/js/customer_add.ctr.js"></script>
+	<script src="/app/customer/js/customer_list.ctr.js"></script>
+	<script src="/app/customer/js/customer_view.ctr.js"></script>
+		<script src="/app/customer/js/demo_internet.ctr.js"></script>
+
+	<script src="/app/invoice/js/invoice_module.ctr.js"></script>
+	<script src="/app/invoice/js/invoice_add.ctr.js"></script>
+	<script src="/app/invoice/js/invoice_list.ctr.js"></script>
+	<script src="/app/invoice/js/invoice_view.ctr.js"></script>
+
 	<script src="/app/stock/js/stock_module.ctr.js"></script>
-	<script src="/app/stock/js/stockItem.ctr.js"></script>
+	<script src="/app/stock/js/stockItem_add.ctr.js"></script>
+	<script src="/app/stock/js/stockItem_list.ctr.js"></script>
+	<script src="/app/stock/js/stock_reportByThreshold.ctr.js"></script>
+
 	<!--<script src="/app/invoice/js/invoice.ctr.js"></script>
 		<script src="/app/fileupload/js/fileupload.ctr.js"></script>-->
 
@@ -228,9 +263,21 @@
 	<script src="/app/student/js/student.ctr.js"></script>
 	<script src="/app/student/js/student.list.ctr.js"></script>
 	<script src="/app/tax/js/tax.ctr.js"></script>
-	<script src="/app/invoice/js/invoice.ctr.js"></script>
+
 	<script src="/app/sales/js/sales.ctr.js"></script>
 	<script src="/app/purchase/js/purchase.ctr.js"></script>
+
+	<!-- 	hr js  -->
+	<script src="/app/hr/js/hr.ctr.js"></script>
+	<script src="/app/hr/js/hr.ctr.add.js"></script>
+	<script src="/app/hr/js/hr.ctr.emplist.js"></script>
+	<script src="/app/hr/js/hr.ctr.empview.js"></script>
+	<script src="/app/hr/js/hr.ctr.addupdatesalstruct.js"></script>
+	<script src="/app/hr/js/hr.ctr.empdoc.js"></script>
+	<script src="/app/hr/js/hr.ctr.emsalslipstruct.js"></script>
+	<script src="/app/hr/js/hr.ctr.emplist_to_ganeratesalslip.js"></script>
+	<!-- complete	hr js  -->
+
 		
 	<!-- 	hr js  -->	
 		<script src="/app/hr/js/hr.ctr.js"></script>
@@ -271,7 +318,6 @@
 <!--    <script type="text/javascript" src="/app/hr/js/jspdf.min.js"></script>
         <script src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>  -->
         
-
 	<script src="index.ctr.js"></script>
 
 </body>
