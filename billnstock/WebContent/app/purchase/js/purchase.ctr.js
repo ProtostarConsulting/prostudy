@@ -24,7 +24,8 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 	};
 	
 	$scope.addPurchaseOrder = function() {
-		var purchaseService = appEndpointSF.getPurchaseService();
+		var purchaseService = appEndpointSF.getPurchaseOrderOrderService();
+		
 		purchaseService.addPurchaseOrder($scope.purchaseOrderObj).then(function(msgBean) {
 
 			$log.debug("Inside Ctr addPurchaseOrder");
@@ -38,7 +39,7 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 
 	$scope.getAllPurchaseOrder = function() {
 		$log.debug("Inside Ctr $scope.getAllPurchaseOrder");
-		var purchaseService = appEndpointSF.getPurchaseService();
+		var purchaseService = appEndpointSF.getPurchaseOrderOrderService();
 
 		purchaseService.getAllPurchaseOrder().then(
 				function(purchaseOrderList) {
@@ -61,21 +62,21 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 	$scope.selectedPurchaseOrderNo = $stateParams.selectedPONo;
 	
 	$scope.getPOByID = function() {
-		var purchaseService = appEndpointSF.getPurchaseService();
+		var purchaseService = appEndpointSF.getPurchaseOrderOrderService();
 
 		purchaseService
 				.getPOByID($scope.selectedPurchaseOrderNo)
 				.then(function(pOList) {
 							$scope.pODetail = pOList[0];
 							$log
-									.debug("$scope.showPO ===="
+									.debug("getPOByID at controller===="
 											+ angular
 													.toJson($scope.pODetail));
 						});
 
 	}
 	$scope.pODetail = [];
-	$scope.getPOByID();
+//	$scope.getPOByID();
 	
 	
 	$scope.addItem = function() {

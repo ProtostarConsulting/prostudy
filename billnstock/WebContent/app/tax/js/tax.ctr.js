@@ -4,26 +4,24 @@ angular.module("stockApp").controller(
 				$log, objectFactory, appEndpointSF) {
 
 			$log.debug("Inside taxCtr");
-			
 
 			$scope.showSimpleToast = function() {
-				$mdToast.show($mdToast.simple().content('Tax Data Saved!').position(
-						"top").hideDelay(3000));
+				$mdToast.show($mdToast.simple().content('Tax Data Saved!')
+						.position("top").hideDelay(3000));
 			};
 
 			$scope.tax = {};
 			$scope.addTax = function() {
 				$log.debug("No1");
 				var taxService = appEndpointSF.getTaxService();
-				
-				taxService.addTax($scope.tax).then(
-						function(msgBean) {
-							$log.debug("No6");
-							$log.debug("Inside Ctr addTax");
-							$log.debug("msgBean.msg:" + msgBean.msg);
-							$scope.showSimpleToast();
-							
-						});
+
+				taxService.addTax($scope.tax).then(function(msgBean) {
+					$log.debug("No6");
+					$log.debug("Inside Ctr addTax");
+					$log.debug("msgBean.msg:" + msgBean.msg);
+					$scope.showSimpleToast();
+
+				});
 				$log.debug("No4");
 			}
 
@@ -36,16 +34,29 @@ angular.module("stockApp").controller(
 							$log.debug("Inside Ctr getAllTaxes");
 							$scope.taxData = taxList;
 							$log.debug("Inside Ctr $scope.taxData:"
-									+ angular.toJson($scope.taxData));							
+									+ angular.toJson($scope.taxData));
 						});
 			}
-			
+
 			$scope.taxData = [];
 			$scope.getAllTaxes();
-			
-//			 Setup menu 
+
+			$scope.selected = [];
+
+			$scope.updateTax = function() {
+				$log.debug("Inside Ctr $scope.updateTax");
+				var taxService = appEndpointSF.getTaxService();
+
+				taxService.updateTax($scope.selected[0]).then(
+						function(msgBean) {
+							$log.debug("Inside Ctr updateTax");
+							$log.debug("msgBean.msg:" + msgBean.msg);
+							$scope.showSimpleToast();
+						});
+			}
+			// Setup menu
 			$scope.toggleRight = buildToggler('right');
-		
+
 			function buildToggler(navID) {
 				var debounceFn = $mdUtil.debounce(function() {
 					$mdSidenav(navID).toggle().then(function() {

@@ -4,7 +4,7 @@ app.controller("salesCtr", function($scope, $window, $mdToast, $timeout,
 		$filter, objectFactory, appEndpointSF) {
 
 	$scope.salesOrder = {
-		salesOrderId : '',
+		salesOrderId : "SO",
 		customerName : '',
 		customerRefId : '',
 		quotationDate : '',
@@ -28,8 +28,8 @@ app.controller("salesCtr", function($scope, $window, $mdToast, $timeout,
 	
 	$scope.addSalesOrder = function() {
 
-		var salesService = appEndpointSF.getSalesService();
-		salesService.addSalesOrder($scope.salesOrder).then(function(msgBean) {
+		var salesOrderService = appEndpointSF.getSalesOrderService();
+		salesOrderService.addSalesOrder($scope.salesOrder).then(function(msgBean) {
 
 			$log.debug("Inside Ctr salesOrder");
 			$log.debug("msgBean.msg:" + msgBean.msg);
@@ -42,13 +42,13 @@ app.controller("salesCtr", function($scope, $window, $mdToast, $timeout,
 
 	$scope.getAllSalesOrder = function() {
 		$log.debug("Inside Ctr $scope.getAllSalesOrder");
-		var salesService = appEndpointSF.getSalesService();
+		var salesOrderService = appEndpointSF.getSalesOrderService();
 
-		salesService.getAllSalesOrder().then(
+		salesOrderService.getAllSalesOrder().then(
 				function(salesOrderList) {
 					$log.debug("Inside Ctr getAllSalesOrder");
 					$scope.salesOrderList = salesOrderList;
-					$log.debug("@@@@@@@getAllSalesOrder"+angular.toJson($scope.salesOrderList));
+					$log.debug("@@@@@@@getAllSalesOrder:"+angular.toJson($scope.salesOrderList));
 					$scope.tempSalesOrder = $scope.salesOrderList.length + 1;
 					$scope.salesOrder.salesOrderId = $scope.tempSalesOrder;
 				});
@@ -66,7 +66,7 @@ app.controller("salesCtr", function($scope, $window, $mdToast, $timeout,
 	$scope.selectedSalesOrderNo = $stateParams.selectedSOId;
 	
 	$scope.getSOByID = function() {
-		var salesService = appEndpointSF.getSalesService();
+		var salesService = appEndpointSF.getSalesOrderService();
 
 		salesService
 				.getSOByID($scope.selectedSalesOrderNo)
@@ -80,7 +80,7 @@ app.controller("salesCtr", function($scope, $window, $mdToast, $timeout,
 
 	}
 	$scope.sODetail = [];
-	$scope.getSOByID();
+//	$scope.getSOByID();
 	
 	$scope.addItem = function() {
 		var item = {

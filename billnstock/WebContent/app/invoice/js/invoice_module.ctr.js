@@ -1,9 +1,9 @@
 angular.module("stockApp").controller(
-		"stockModuleCtr",
+		"invoiceModuleCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, objectFactory, appEndpointSF) {
 
-			$log.debug("Inside stockModuleCtr");
+			$log.debug("Inside invoiceModuleCtr");
 
 			$scope.testGAPICall = function() {
 				console.log("in side testGAPICall");
