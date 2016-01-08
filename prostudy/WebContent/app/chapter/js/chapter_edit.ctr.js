@@ -8,6 +8,7 @@ angular
 
 					$scope.Chapter = {
 						id : "",
+						chapterId :"",
 						chapter_name : "",
 						chapter_content : "",
 						board : "",
@@ -34,13 +35,15 @@ angular
 											$log.debug("chapters :"
 													+ $scope.chapters);
 
-											$scope.chapters.chapter_content = $sce
+						/*					$scope.chapters.chapter_content = $sce
 													.trustAsHtml($scope.chapters.chapter_content);
 											$log
 													.debug("$scope.chapters.chapter_content: "
-															+ $scope.chapters.chapter_content);
+															+ $scope.chapters.chapter_content);*/
 										});
 					}// end of getChapters
+					
+					$scope.getChapters();
 
 					$scope.editingData = [];
 					for (var i = 0, length = $scope.chapters.length; i < length; i++) {
@@ -84,6 +87,6 @@ angular
 						$state.go('^', {});
 					};// end of cancelButton
 
-					$scope.getChapters();
+					
 
 				});// end of chapterEditCtr

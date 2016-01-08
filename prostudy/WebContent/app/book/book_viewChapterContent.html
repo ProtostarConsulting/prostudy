@@ -2,7 +2,7 @@
 
 <div id="viewChapterContent">
 	<div layout="column" flex
-		ng-repeat="chapter in chapters | filter:searchText">
+		ng-repeat="chapter in chapters | toArray:false | filter:searchText">
 
 
 

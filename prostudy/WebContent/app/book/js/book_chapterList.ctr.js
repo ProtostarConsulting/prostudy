@@ -16,9 +16,7 @@ angular
 								3000));
 					};// end of showSavedToast
 
-					$log.debug("$stateParams:", $stateParams);
-					$log.debug("$stateParams.selectedBookId:",$stateParams.selectedBookId);
-					$scope.selectedBookId = $stateParams.selectedBookId;
+			
 
 	
 					$scope.addMyBook = function() {
@@ -37,6 +35,7 @@ angular
 
 					$scope.selectedChapter = {
 						id : "",
+						chapterId :"",
 						chapter_name : "",
 						chapter_content : "",
 						board : "",
@@ -44,6 +43,10 @@ angular
 						subject : "",
 					};
 
+					$log.debug("$stateParams:", $stateParams);
+					$log.debug("$stateParams.selectedBookId:",$stateParams.selectedBookId);
+					$scope.selectedBookId = $stateParams.selectedBookId;
+					
 					$scope.showBookContents = function() {
 						var BookService = appEndpointSF.getBookService();
 						$log.debug("$scope.selectedBookId:"
@@ -56,17 +59,14 @@ angular
 								.then(
 										function(bookList) {
 
-											$scope.book_ChapterDetails = bookList;
-											$log.debug("bookList ===="
-													+ angular.toJson(bookList));
-											$scope.selectedChapter = $scope.book_ChapterDetails[0];
+											$scope.book_ChapterDetails = bookList.chapterEntities;
+											/*$log.debug("$scope.book_ChapterDetails :-"
+													+ angular.toJson($scope.book_ChapterDetails));*/
+											
+										$scope.selectedChapter = $scope.book_ChapterDetails;
 
-											$log
-													.debug("$scope.selectedChapter ===="
-															+ angular
-																	.toJson($scope.selectedChapter));
+											$log.debug("$scope.selectedChapter :-"+ angular.toJson($scope.selectedChapter));
 
-											// $scope.showSavedChapterListToast();
 										});
 
 					};// end of $scope.showBookDetails

@@ -12,6 +12,7 @@ angular.module("prostudyApp").controller(
 
 			$scope.tempChapter = {
 				id : "",
+				chapterId :"",
 				chapter_name : "",
 				chapter_content : "",
 				board : "",
@@ -49,6 +50,7 @@ angular.module("prostudyApp").controller(
 							$log.debug("tempChapter" + $scope.tempChapter);
 							$scope.tempChapter = {
 								id : "",
+								chapterId :"",
 								chapter_name : "",
 								chapter_content : "",
 								board : "",

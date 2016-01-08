@@ -8,6 +8,7 @@ angular.module("prostudyApp")
 
 					$scope.tempChapter = {
 						id : "",
+						chapterId : "",
 						chapter_name : "",
 						chapter_content : "",
 						board : "",
@@ -23,6 +24,7 @@ angular.module("prostudyApp")
 							$stateParams.selectedChapterId);
 					$scope.selectedChapterId = $stateParams.selectedChapterId;
 
+					$scope.chapters = [];
 					$scope.showChapterContent = function() {
 						$log.debug("Inside showChapterContent ");
 						var ChapterService = appEndpointSF.getChapterService();
@@ -41,9 +43,10 @@ angular.module("prostudyApp")
 										});
 
 					};// end of $scope.showChapterContent
+			
 
-					$scope.chapters = [];
-					$scope.showChapterContent();
+					
+				    $scope.showChapterContent();
 
 					$("#viewChapterContent").show();
 					$("#TotalChapters").hide();
