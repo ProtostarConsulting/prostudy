@@ -5,13 +5,12 @@ angular.module("prostudyApp").controller(
 
 			console.log("Inside chapterAddCtr");
 	  
-			$scope.tempChapter = {id: "", chapter_name: "",chapter_content: "", board:"", student_class:"",subject:""};
+			$scope.tempChapter = {chapterId: "", chapter_name: "",chapter_content: "", board:"", student_class:"",subject:""};
 			$scope.chapters = []; 
 			
 
 
 			$scope.tempChapter = {
-				id : "",
 				chapterId :"",
 				chapter_name : "",
 				chapter_content : "",
@@ -49,7 +48,6 @@ angular.module("prostudyApp").controller(
 
 							$log.debug("tempChapter" + $scope.tempChapter);
 							$scope.tempChapter = {
-								id : "",
 								chapterId :"",
 								chapter_name : "",
 								chapter_content : "",
