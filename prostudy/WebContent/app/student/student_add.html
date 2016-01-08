@@ -25,13 +25,26 @@
 						Code</label> <input ng-model="tempStudent.pin"> </md-input-container>
 
 
-					<md-input-container flex> <md-select ng-model="institute1" placeholder="Institute name">
-					<md-option ng-value="institute.name" ng-repeat="institute in institutes">{{institute.name }}</md-option>
+					<md-input-container flex> <md-select ng-model="tempStudent.institute" placeholder="Institute name">
+					<md-option ng-value="institute.name" ng-repeat="institute in institutes">{{institute.name}}</md-option>
 					</md-select> </md-input-container>
 				</div>
 				
-				
 			</div>
+			
+				
+				<div layout-align="center center">
+				<md-input-container flex> <md-select ng-model="tempStudent.class" placeholder="Class">
+					<md-option>FE COMP</md-option>
+					<md-option>SE COMP</md-option>
+					<md-option>TE COMP</md-option>
+					<md-option>BE COMP</md-option>
+					<md-option>FE MECH</md-option>
+					<md-option>SE MECH</md-option>
+					<md-option>TE MECH</md-option>
+					<md-option>BE MECH</md-option>
+					</md-select> </md-input-container>
+				</div>
 			
 		 <div layout="row" layout-align="center center">
 			    <md-button class="md-raised" ng-click="getStudents()"> Cancel </md-button>
