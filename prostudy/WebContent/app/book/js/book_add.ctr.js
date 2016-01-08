@@ -8,18 +8,19 @@ angular
 
 					console.log("Inside bookAddCtr");
 
-					$scope.comments={
-							userId:"",
-							desc:""
+					$scope.comments = {
+						userId : "",
+						desc : ""
 					}
 					$scope.tempBook = {
 						id : "",
+						bookId : "",
 						book_name : "",
 						author : "",
 						board : "",
 						standard : "",
 						chapters : [],
-						comments:[]
+						comments : []
 					};// end of tempBook object
 
 					$scope.showSavedToast = function() {
@@ -38,16 +39,19 @@ angular
 									$log.debug("msgBean.msg:" + msgBean.msg);
 									$scope.showSavedToast();
 
-									$log.debug("tempBook" + angular.toJson($scope.tempBook));
+									$log.debug("tempBook"
+											+ angular.toJson($scope.tempBook));
 									$scope.tempBook = {
-											id : "",
-											book_name : "",
-											author : "",
-											board : "",
-											standard : "",
-											chapters : [],
-											comments:[]
-										};//After click on submit button,htmlform to be set as a blank
+										id : "",
+										bookId : "",
+										book_name : "",
+										author : "",
+										board : "",
+										standard : "",
+										chapters : [],
+										comments : []
+									};// After click on submit button,htmlform
+										// to be set as a blank
 								});
 						$log.debug("No4");
 					}// end of addBook
@@ -57,18 +61,24 @@ angular
 
 						var ChapterService = appEndpointSF.getChapterService();
 
-						ChapterService.getChapters()
+						ChapterService
+								.getChapters()
 								.then(
 										function(chapterList) {
-											$log.debug("Inside Ctr getChapters");
+											$log
+													.debug("Inside Ctr getChapters");
 
 											$scope.chapters = chapterList;
-								$log.debug("chapters :"	+ $scope.chapters);
-								$scope.chapters.chapter_content = $sce.trustAsHtml($scope.chapters.chapter_content);
-								$log.debug("$scope.chapters.chapter_content: "+ $scope.chapters.chapter_content);
-				});
-
+											$log.debug("chapters :"
+													+ $scope.chapters);
+											$scope.chapters.chapter_content = $sce
+													.trustAsHtml($scope.chapters.chapter_content);
+											$log
+													.debug("$scope.chapters.chapter_content: "
+															+ $scope.chapters.chapter_content);
+										});
 					}// end of getChapters
+					$scope.getChapters();
 
 					$scope.selectedChapters = [];
 
@@ -100,8 +110,6 @@ angular
 					$scope.cancelButton = function() {
 						$state.go('^', {});
 					};// end of cancelButton
-
-					$scope.getChapters();
 
 				});// end of bookAddCtr
 

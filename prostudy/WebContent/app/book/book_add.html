@@ -1,86 +1,77 @@
 <div layout="column" layout-padding>
 	<md-content>
-		
+
 	<form name="bookForm">
-	  <div layout="row" layout-sm="column">
-					
-		 <div layout="column" flex>
- 	<!-- <md-input-container>
+		<div layout="row" layout-sm="column">
+
+			<div layout="column" flex>
+
+
+				<!-- <md-input-container>
 				<label>Book No :-</label>
 				<input name="id" id="id"  ng-model="tempBook.id">
-			</md-input-container>  -->
-	<md-input-container >
-				<label>Book Name </label>
-				<input name="book_name" id="book_name"  ng-model="tempBook.book_name">
-			</md-input-container>
-		
+			</md-input-container> -->
 
-			<md-input-container>
-				<label>Author </label>
-				<input name="author" id="author"  ng-model="tempBook.author">
-			</md-input-container>
+				<md-input-container> <label>Book Id :-</label>
+				<input name="bookId" id="bookId" ng-model="tempBook.bookId">
+				</md-input-container>
 
-			<md-input-container>
-				<label>Board</label>
-				<input name="board" id="board" ng-model="tempBook.board">
-			</md-input-container>
-			
-			
-			<md-input-container>
-				<label>Standard</label>
-				<input name="standard" id="standard" ng-model="tempBook.standard">
-			</md-input-container>
 
-					<table>
-					 <tr>
-					 <td>
-						<label for="aChapters">Available Chapters</label>
-						<select size="5" multiple ng-model="available"
+				<md-input-container> <label>Book Name
+				</label> <input name="book_name" id="book_name"
+					ng-model="tempBook.book_name"> </md-input-container>
+
+
+				<md-input-container> <label>Author </label> <input
+					name="author" id="author" ng-model="tempBook.author"> </md-input-container>
+
+				<md-input-container> <label>Board</label> <input
+					name="board" id="board" ng-model="tempBook.board"> </md-input-container>
+
+
+				<md-input-container> <label>Standard</label> <input
+					name="standard" id="standard" ng-model="tempBook.standard">
+				</md-input-container>
+
+				<table>
+					<tr>
+						<td><label for="aChapters">Available Chapters</label> <select
+							size="5" multiple ng-model="available"
 							ng-options="chapter as chapter.chapter_name for chapter in chapters"
-							style="width: 400px"></select>
-					 </td>
-				  
-                     <td>
-						<input id="moveright" type="button" value=">>"
+							style="width: 400px"></select></td>
+
+						<td><input id="moveright" type="button" value=">>"
 							ng-click="moveItem(available[0], chapters,selectedChapters)" />
-						<input id="moverightall" type="button" value="Add All Chapters"
-							ng-click="moveAll(chapters,selectedChapters)" />
-							
-						<input id="move left" type="button" value="<<"
-							ng-click="moveItem(selected[0], selectedChapters,chapters)" />
-						<input id="moveleftall" type="button" value="Remove All Chapters"
-							ng-click="moveAll(selectedChapters,chapters)" />
-					 </td>
+							<input id="moverightall" type="button" value="Add All Chapters"
+							ng-click="moveAll(chapters,selectedChapters)" /> <input
+							id="move left" type="button" value="<<"
+							ng-click="moveItem(selected[0], selectedChapters,chapters)" /> <input
+							id="moveleftall" type="button" value="Remove All Chapters"
+							ng-click="moveAll(selectedChapters,chapters)" /></td>
 
-					<td>
-						<label for="sChapters">Selected Chapters</label>
-						<select size="5" multiple ng-model="selected"
+						<td><label for="sChapters">Selected Chapters</label> <select
+							size="5" multiple ng-model="selected"
 							ng-options="chapter as chapter.chapter_name for chapter in selectedChapters"
-							style="width: 400px"></select>
-					</td>
-						</tr>
-					
-					</table>
-					
-						<!-- <div>Selected Chapters: {{selectedChapters}}</div>
-						<div>Available Chapters: {{chapters}}</div>
-						<div>Selected: {{selected}}</div>
-						<div>Available: {{available}}</div> -->
+							style="width: 400px"></select></td>
+					</tr>
 
-								
-				</div>
+				</table>
+
+			
+
+
 			</div>
+		</div>
 
-			</form>
-		</section>
+	</form>
 
-		<section layout="row" layout-sm="column" layout-align="left left">
-		
-		    
-		    
-			   <md-button class="md-raised md-primary" ng-click="addBook()">Submit</md-button>
-			    <md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
+	<section layout="row" layout-sm="column" layout-align="left left">
 
-		</section>
+
+
+		<md-button class="md-raised md-primary" ng-click="addBook()">Submit</md-button>
+		<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
+
+	</section>
 	</md-content>
 </div>

@@ -14,9 +14,9 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="book in books | filter: searchText">
-					<td>{{book.bookid}}</td>
+					<td>{{book.bookId}}</td>
 					<td ng-click="showBookContents()"><a
-						ui-sref="book.chapterList({selectedBookId : book.bookid})"><b>{{book.book_name}}</b></a></td>
+						ui-sref="book.chapterList({selectedBookId : book.bookId})"><b>{{book.book_name}}</b></a></td>
 					<td>{{book.author}}</td>
 					<td><md-button ng-click="like(book.bookid)"> <ng-md-icon
 								icon="thumb_up"></ng-md-icon>{{books[book.bookid-1].likes}}</md-button></td>

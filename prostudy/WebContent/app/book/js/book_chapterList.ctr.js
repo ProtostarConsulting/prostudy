@@ -52,16 +52,13 @@ angular
 						$log.debug("$scope.selectedBookId:"
 								+ $scope.selectedBookId)
 
-						BookService.getBooksByID($scope.selectedBookId)
 
 						BookService
 								.getBookbyID($scope.selectedBookId)
 								.then(
 										function(bookList) {
 
-											$scope.book_ChapterDetails = bookList.chapterEntities;
-											/*$log.debug("$scope.book_ChapterDetails :-"
-													+ angular.toJson($scope.book_ChapterDetails));*/
+										$scope.book_ChapterDetails = bookList.chapterEntities;
 											
 										$scope.selectedChapter = $scope.book_ChapterDetails;
 

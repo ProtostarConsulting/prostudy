@@ -9,31 +9,34 @@ angular.module("prostudyApp").controller(
 
 			$scope.addselectedBookId = $stateParams.addselectedBookId;
 
-			
 
 			$scope.book = {
 				bookid : "",
+				bookId : "",
 				book_name : "",
 				author : "",
 				board : "",
 				standard : "",
 				chapters : []
 			};// end of tempBook object
+			
+		
 
 			$scope.tempMyBook = {
 				user_name : $scope.curUser,
 				book : $scope.currentBook
 
 			};
-			$scope.myBooks = [];
-
+			
+			$scope.books = [];
 			$scope.getBooks = function() {
 
 				var BookService = appEndpointSF.getBookService();
 
-				BookService.getBooks().then(
-						function(bookList) {
-							$log.debug("Inside Ctr getBooks");
+				BookService.getBooks().then(function(bookList)
+						{
+									$log.debug("Inside Ctr getBooks");
+
 
 							$scope.books = bookList;
 							$scope.currentBook = $scope.books[0];
@@ -41,7 +44,26 @@ angular.module("prostudyApp").controller(
 									+ angular.toJson($scope.currentBook));
 						});
 			}// end of getBooks
+			
+			//$scope.getBooks();
+			
+			
 
+			if(appEndpointSF.is_service_ready){
+				$scope.getBooks();
+			      }
+			      else{       
+			       $timeout(function() {
+			    		$scope.getBooks();
+			       }, 4000);
+			      }
+		
+			
+			
+		   $scope.addselectedBookId = $stateParams.addselectedBookId;
+		   $log.debug("$scope.addselectedBookId===="+$stateParams.addselectedBookId); 
+			
+			$scope.myBook=[];
 			$scope.getBookbyID = function() {
 
 				var UserService = appEndpointSF.getUserService();
@@ -49,6 +71,7 @@ angular.module("prostudyApp").controller(
 				if (typeof $scope.addselectedBookId != 'undefined') {
 					UserService.getBookbyID($scope.addselectedBookId).then(
 							function(MyBooksList) {
+
 
 								$scope.myBook = MyBooksList[0];
 
@@ -58,11 +81,9 @@ angular.module("prostudyApp").controller(
 				}
 			};// end of getBookbyID
 
-			$scope.myBook = [];
 			$scope.getBookbyID();
 
 			$scope.books = [];                           
-			
 			$scope.like = function(selectedBookId) {
 
 				var BookService = appEndpointSF
@@ -87,6 +108,7 @@ angular.module("prostudyApp").controller(
 			}
 			
 			$scope.dislike = function(selectedBookId) {
+
 
 				var BookService = appEndpointSF
 						.getBookService();
@@ -113,7 +135,7 @@ angular.module("prostudyApp").controller(
 				$state.go('^', {});
 			};// end of cancelButton
 
-			$scope.getBooks();
+			
 
 		});// end of bookListCtr
 
