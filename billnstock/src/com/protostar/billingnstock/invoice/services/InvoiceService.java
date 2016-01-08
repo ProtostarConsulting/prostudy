@@ -1,23 +1,42 @@
 package com.protostar.billingnstock.invoice.services;
+import static com.googlecode.objectify.ObjectifyService.ofy;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
+import com.googlecode.objectify.Key;
 import com.protostar.billingnstock.invoice.entities.InvoiceEntity;
-import com.protostar.billnstock.until.data.EMF;
-import com.protostar.billnstock.until.data.ServerMsg;
 
 @Api(name = "invoiceService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.stock.services", ownerName = "com.protostar.billingnstock.stock.services", packagePath = ""))
 public class InvoiceService {
 
-	@ApiMethod(name = "saveBill")
+	@ApiMethod(name="addInvoice")
+	public void addInvoice(InvoiceEntity invoiceEntity){
+		Key<InvoiceEntity> now=ofy().save().entity(invoiceEntity).now();
+	}
+	
+	@ApiMethod(name="getAllInvoice")
+	public List<InvoiceEntity> getAllInvoice(){
+		
+		return ofy().load().type(InvoiceEntity.class).list();
+		
+	}
+	
+
+	@ApiMethod(name = "getinvoiceByID")
+	public InvoiceEntity getinvoiceByID(@Named("invoiceId") Long invoiceId) {
+
+		InvoiceEntity invoiceByID = ofy().load().type(InvoiceEntity.class).filter("invoiceId", invoiceId).first().now();
+
+		System.out.println("getinvoiceByID Recored is:"+ invoiceId);
+		
+		return invoiceByID;
+
+	}
+/*	@ApiMethod(name = "saveBill")
 	public ServerMsg saveBill(InvoiceEntity invoiceEntity) {
 		System.out.println("invoiceEntity:" + invoiceEntity);
 		ServerMsg msgBean = new ServerMsg();
@@ -87,5 +106,5 @@ public class InvoiceService {
 		}
 		
 		return invoiceEntity;
-	}
+	}*/
 }// end of StockServices
