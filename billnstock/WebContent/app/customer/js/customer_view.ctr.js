@@ -1,7 +1,7 @@
 var app= angular.module("stockApp");
 
 app.controller(
-		"customerCtr",
+		"customerViewCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log,$stateParams, objectFactory, appEndpointSF) {
 
@@ -13,7 +13,7 @@ app.controller(
 			};
 
 			// $scope.cust = objectFactory.newCustomer();		
-			
+/*			
 			$scope.cust = {
 				customerId : "",
 				customerName : "",
@@ -37,7 +37,7 @@ app.controller(
 				$scope.cust = {};
 			}
 
-/*			$scope.getAllCustomers = function() {
+			$scope.getAllCustomers = function() {
 				$log.debug("Inside Ctr $scope.getAllCustomers");
 				var customerService = appEndpointSF.getCustomerService();
 
@@ -53,21 +53,21 @@ app.controller(
 			$scope.customers = [];
 			$scope.getAllCustomers();
 
-			
+*/			
 			
 			$log.debug("$stateParams:", $stateParams);
 			$log.debug("$stateParams.selectedCustomerId:",
 					$stateParams.selectedCustomerId);
 
-			$scope.selectedCustomerId = $stateParams.selectedCustomerId;
+			$scope.customerId = $stateParams.selectedCustomerId;
 
 			$scope.showCustomerDetails = function() {
 				var customerService = appEndpointSF.getCustomerService();
 
 				customerService
-						.getCustomerByID($scope.selectedCustomerId)
+						.getCustomerByID($scope.customerId)
 						.then(function(customerList) {
-									$scope.customerDetails = customerList[0];
+									$scope.customerDetails = customerList;
 									$log
 											.debug("$scope.showCustomerDetails:customerList ===="
 													+ angular
@@ -76,7 +76,7 @@ app.controller(
 
 			}
 			$scope.customerDetails = [];
-			//$scope.showCustomerDetails();
+			$scope.showCustomerDetails();
 			
 			$scope.getAllInvoiceByCustId = function() {
 				$log.debug("Inside Ctr $scope.getAllInvoiceByCustId");
@@ -99,7 +99,7 @@ app.controller(
 			$scope.custInvoiceData = [];
 			//$scope.getAllInvoiceByCustId();
 			
-*/			
+			
 			
 			$scope.toggleRight = buildToggler('right');
 

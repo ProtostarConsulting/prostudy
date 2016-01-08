@@ -1,14 +1,19 @@
 
-<md-content layout-padding> <md-input-container
+<md-content layout-padding> 
 	class="md-icon-float md-block">
 <div id="addField">
 
-<!-- 	<div layout layout-sm="column">
+	<!-- 	<div layout layout-sm="column">
 		<md-input-container flex> <label>Customer
 			Name </label> <input ng-model="cust.customerName"
 			placeholder="Customre Name (required)" ng-required="true"> </md-input-container>
 	</div>
  -->
+ <div layout layout-sm="column">
+		<md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+		<md-input-container flex> <label>Customer ID
+			 </label> <input ng-model="cust.customerId" disabled> </md-input-container>
+	</div>
 	<div layout layout-sm="column">
 		<md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
 		<md-input-container flex> <label>Customer
@@ -50,15 +55,7 @@
 </div>
 
 <div>
-  <input type="file" id="file" name="file"/>
-  <br>
-  <button ng-click="add()">Add</button>
-  <p>{{data}}</p>
+<input type="file" file-model="myFile" />
+	<button ng-click="uploadFile()">upload me</button>
 </div>
-
-<div>
-<input type="file" id="file1" name="file" multiple
-            ng-files="getTheFiles($files)" />
-
-        <input type="button" ng-click="uploadFiles()" value="Upload" />
-</div></md-input-container> </md-content>
+</md-content>

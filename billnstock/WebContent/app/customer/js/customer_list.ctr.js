@@ -1,7 +1,7 @@
 var app= angular.module("stockApp");
 
 app.controller(
-		"customerCtr",
+		"customerListCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log,$stateParams, objectFactory, appEndpointSF) {
 
@@ -14,7 +14,7 @@ app.controller(
 
 			// $scope.cust = objectFactory.newCustomer();		
 			
-			$scope.cust = {
+/*			$scope.cust = {
 				customerId : "",
 				customerName : "",
 				mobile : "",
@@ -36,8 +36,8 @@ app.controller(
 				$log.debug("No4");
 				$scope.cust = {};
 			}
-
-/*			$scope.getAllCustomers = function() {
+*/
+			$scope.getAllCustomers = function() {
 				$log.debug("Inside Ctr $scope.getAllCustomers");
 				var customerService = appEndpointSF.getCustomerService();
 
@@ -53,7 +53,7 @@ app.controller(
 			$scope.customers = [];
 			$scope.getAllCustomers();
 
-			
+/*			
 			
 			$log.debug("$stateParams:", $stateParams);
 			$log.debug("$stateParams.selectedCustomerId:",
@@ -76,9 +76,9 @@ app.controller(
 
 			}
 			$scope.customerDetails = [];
-			//$scope.showCustomerDetails();
-			
-			$scope.getAllInvoiceByCustId = function() {
+			$scope.showCustomerDetails();
+*/			
+/*			$scope.getAllInvoiceByCustId = function() {
 				$log.debug("Inside Ctr $scope.getAllInvoiceByCustId");
 				var invoiceService = appEndpointSF.getInvoiceService();
 
@@ -98,8 +98,8 @@ app.controller(
 
 			$scope.custInvoiceData = [];
 			//$scope.getAllInvoiceByCustId();
-			
 */			
+			
 			
 			$scope.toggleRight = buildToggler('right');
 

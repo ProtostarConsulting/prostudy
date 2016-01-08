@@ -1,7 +1,7 @@
 var app= angular.module("stockApp");
 
 app.controller(
-		"customerCtr",
+		"customerAddCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log,$stateParams, objectFactory, appEndpointSF) {
 
@@ -37,7 +37,7 @@ app.controller(
 				$scope.cust = {};
 			}
 
-/*			$scope.getAllCustomers = function() {
+			$scope.getAllCustomers = function() {
 				$log.debug("Inside Ctr $scope.getAllCustomers");
 				var customerService = appEndpointSF.getCustomerService();
 
@@ -45,16 +45,20 @@ app.controller(
 						function(custList) {
 							$log.debug("Inside Ctr getAllCustomers");
 							$scope.customers = custList;
+							$scope.tempCustomerId = $scope.customers.length + 1;
+							$scope.cust.customerId = $scope.tempCustomerId;
+							
 							$log.debug("Inside Ctr $scope.customers:"
 									+ angular.toJson($scope.customers));
 						});
 			}
 
 			$scope.customers = [];
+			$scope.tempCustomerId;
 			$scope.getAllCustomers();
 
 			
-			
+			/*			
 			$log.debug("$stateParams:", $stateParams);
 			$log.debug("$stateParams.selectedCustomerId:",
 					$stateParams.selectedCustomerId);
