@@ -997,23 +997,6 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 			invoiceList.push(invoice);
 			$localStorage.dbinvoice = angular.toJson(invoiceList);
-
-			/*			var stockList = angular.fromJson($localStorage.dbStocks);		
-			 for(i=0;i<=invoice.invoiceLineItemList.length;i++)
-			 {
-			 if (invoice.invoiceLineItemList[i].itemName == stockList.itemName) {
-			 stockList.qty = stockList.qty - invoice.invoiceLineItemList[i].qty;
-			 }
-			 }
-			
-			 */
-			/*			 for(var i=0;i<stockList.length;i++)
-			 { 
-			 if(invoice.invoiceLineItemList.itemName==stockList[i].itemName)
-			 stockList[i] = invoice;
-			 }
-			 */
-			//			$localStorage.dbStocks = angular.toJson(stockList);
 			deferred.resolve({
 				"msg" : "StockItem Updated Successfully."
 			});

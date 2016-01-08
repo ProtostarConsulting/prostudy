@@ -1,6 +1,6 @@
 var app = angular.module("stockApp", [ 'ngMaterial', 'ngMessages', "xeditable",
 		"ui.bootstrap", "ui.router", 'md.data.table', 'ngResource',
-		'ngStorage', 'ngRoute']);
+		'ngStorage', 'ngRoute','ngFileUpload', 'ngAnimate', 'ui.grid', 'ui.grid.selection', 'ui.grid.exporter']);
 
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('light-blue')
@@ -39,19 +39,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('stock', {
 		url : "/stock",
 		templateUrl : '/app/stock/stock_module.html',
-		controller : 'addItemStockCtr'
+		controller : 'stockModuleCtr'
 	}).state('stock.stockItemAdd', {
 		url : "/stockItemAdd",
 		templateUrl : '/app/stock/stockItem_add.html',
-		controller : 'addItemStockCtr'
+		controller : 'stockAddCtr'
 	}).state('stock.stockItemList', {
 		url : "/stockItemList",
 		templateUrl : '/app/stock/stockItem_list.html',
-		controller : 'addItemStockCtr'
+		controller : 'stockListCtr'
 	}).state('stock.reportByThreshold', {
 		url : "/reportByThreshold",
 		templateUrl : '/app/stock/stock_reportByThreshold.html',
-		controller : 'addItemStockCtr'
+		controller : 'stockReportByThresholdCtr'
 	}).state('stock.taxadd', {
 		url : "/tax/taxadd",
 		templateUrl : '/app/tax/tax_add.html',
@@ -63,35 +63,39 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('invoice', {
 		url : "/invoice",
 		templateUrl : '/app/invoice/invoice_module.html',
-		controller : 'invoiceCtr'
+		controller : 'invoiceModuleCtr'
 	}).state('invoice.add', {
 		url : "/add",
 		templateUrl : '/app/invoice/invoice_add.html',
-		controller : 'invoiceCtr'
+		controller : 'invoiceAddCtr'
 	}).state('invoice.list', {
 		url : "/list",
 		templateUrl : '/app/invoice/invoice_list.html',
-		controller : 'invoiceCtr',
+		controller : 'invoiceListCtr',
 	}).state('invoice.view', {
 		url : "/view/:selectedInvoiceNo",
 		templateUrl : '/app/invoice/invoice_view.html',
-		controller : 'invoiceCtr',
+		controller : 'invoiceViewCtr',
 	}).state('customer', {
 		url : "/customer",
 		templateUrl : '/app/customer/customer_module.html',
-		controller : 'customerCtr'
+		controller : 'customerModuleCtr'
 	}).state('customer.add', {
 		url : "/add",
 		templateUrl : '/app/customer/customer_add.html',
-		controller : 'customerCtr'
+		controller : 'customerAddCtr'
 	}).state('customer.view', {
 		url : "/view/:selectedCustomerId",
 		templateUrl : '/app/customer/customer_view.html',
-		controller : 'customerCtr'
+		controller : 'customerViewCtr'
 	}).state('customer.list', {
 		url : "/list",
 		templateUrl : '/app/customer/customer_list.html',
-		controller : 'customerCtr'
+		controller : 'customerListCtr'
+	}).state('customer.internet', {
+		url : "/internet",
+		templateUrl : '/app/customer/demo_internet.html',
+		controller : 'demoInternetCtr'
 	}).state('report', {
 		url : "/report",
 		templateUrl : '/app/report/report_module.html',
@@ -120,15 +124,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/SalesOrderview/:selectedSOId",
 		templateUrl : '/app/sales/salesOder_view.html',
 		controller : 'salesCtr'
-	}).state('salesOrder.PurchaseOrderadd', {
+	}).state('purchaseOrder', {
+		url : "/purchaseOrder",
+		templateUrl : '/app/purchase/purchase_module.html',
+		controller : 'purchaseCtr'
+	}).state('purchaseOrder.PurchaseOrderadd', {
 		url : "/PurchaseOrderadd",
 		templateUrl : '/app/purchase/purchaseOrder_add.html',
 		controller : 'purchaseCtr'
-	}).state('salesOrder.PurchaseOrderList', {
+	}).state('purchaseOrder.PurchaseOrderList', {
 		url : "/PurchaseOrderList",
 		templateUrl : '/app/purchase/purchaseOrder_list.html',
 		controller : 'purchaseCtr'
-	}).state('salesOrder.POview', {
+	}).state('purchaseOrder.POview', {
 		url : "/POview/:selectedPONo",
 		templateUrl : '/app/purchase/purchaseOrder_view.html',
 		controller : 'purchaseCtr'
