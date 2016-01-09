@@ -1,25 +1,48 @@
-angular.module("prostudyApp").controller(	"indexCtr",
+angular
+		.module("prostudyApp")
+		.controller(
+				"indexCtr",
 				function($scope, $window, $log, $q, $timeout, $mdToast,
 						$mdBottomSheet, $state, appEndpointSF) {
 
-	$log.debug("Inside indexCtr");
+					$log.debug("Inside indexCtr");
+
+					$scope.googleUser = 'null';
+
+					$scope.$on('event:google-plus-signin-success', function(
+							event, authResult) {
+						// User successfully authorized the G+ App!
+						console.log('Signed in!');
+						var profile = authResult.getBasicProfile();
+						$scope.googleUser = profile;
+						console.log('ID: ' + profile.getId());
+						// Do not send to your backend! Use an ID token instead.
+						console.log('Name: ' + profile.getName());
+						console.log('Image URL: ' + profile.getImageUrl());
+						console.log('Email: ' + profile.getEmail());
+
+						appEndpointSF.getUserService()
+								.saveLoggedInUser(profile);
+					});
+
+					$scope.signOut = function() {
+						var auth2 = gapi.auth2.getAuthInstance();
+						auth2.signOut().then(function() {
+							console.log('User signed out.');
+							$scope.googleUser = 'null';
+						});
+					}
+
+					$scope.$on('event:google-plus-signin-failure', function(
+							event, authResult) {
+						// User has not authorized the G+ App!
+						console.log('Not signed into Google Plus.');
+						$scope.googleUser = 'null';
+					});
 
 					$scope.curUser = appEndpointSF.getUserService()
 							.getLoggedinUser();
 
-					$scope.loginClick = function() {
-						$state.go("login");
-
-					};
-										
-					
-					$scope.logoutClick = function() {
-						appEndpointSF.getUserService().logout();
-						$state.go("home");
-						$log.debug("User logged out:" + $scope.curUser.name);
-						$scope.curUser = null;
-					};
-					
 					$scope.showSimpleToast = function() {
 						$mdToast.show($mdToast.simple().content(
 								'Customer Saved!').position("top").hideDelay(
@@ -31,10 +54,14 @@ angular.module("prostudyApp").controller(	"indexCtr",
 						$log.debug("Came to initGAPI");
 						// This will load all server side end points
 						// $scope.loadAppGoogleServices();
-						$timeout(function() {
-									appEndpointSF.loadAppGoogleServices($q.defer())
-											.then(function() {
-														$log.debug("##########Loaded All Google Endpoint Services....#########");
+						$timeout(
+								function() {
+									appEndpointSF
+											.loadAppGoogleServices($q.defer())
+											.then(
+													function() {
+														$log
+																.debug("##########Loaded All Google Endpoint Services....#########");
 													});
 								}, 2000);
 
@@ -77,4 +104,4 @@ angular.module("prostudyApp").controller(	"indexCtr",
 							$log.debug("close LEFT is done");
 						});
 					};
-				});		
+				});
