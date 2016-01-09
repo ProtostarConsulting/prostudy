@@ -1,67 +1,43 @@
-
-<div layout="column">
-	<div>
-		<section layout="row">
-			<!-- View Specific Toolbar-->
-			<div class="md-toolbar-tools">
-				<span flex></span>
-
-				<section layout="column">
-
-					<div layout="row" layout-align="end start">
-
-						<md-button aria-label="Search" ng-click="showSearch = !showSearch">
-						<ng-md-icon icon="search"></ng-md-icon> </md-button>
-
-						<md-button aria-label="Open Settings" ng-click="toggleRight()">
-						<ng-md-icon icon="more_vert"></ng-md-icon> </md-button>
-
+<div ng-cloak>
+	<md-content>
+		<md-tabs md-dynamic-height md-border-bottom>
+			<md-tab label="Login with Google">
+				<md-content class="md-padding">
+					<h1 class="md-display-2">Login with Google Account</h1>
+					<div>
+						<google-plus-signin clientid="871660457189-1ishasdcqph3an1eu26262htusofo6v2"></google-plus-signin>
 					</div>
-				</section>
-			</div>
 
+				</md-content>
+			</md-tab>
+			<md-tab label="Loging with Facebook">
+				<md-content class="md-padding">
+					<h1 class="md-display-2">Loging with Facebook Account</h1>
+					<p>
+						Under dev...
+					</p>
+				</md-content>
+			</md-tab>
+			<md-tab label="Login with Prostudy Account">
+				<md-content class="md-padding">
+					<h1 class="md-display-2">Login with Prostudy Account</h1>
+					<div>
+						<md-input-container flex>
+							<label>User Name</label>
+							<input ng-model="tempUser.userName">
+						</md-input-container>
 
+						<md-input-container flex>
+							<label>Password</label>
+							<input ng-model="tempUser.pwd" type="password">
+						</md-input-container>
 
-			<!-- Right Navigation Pane -->
-			<md-sidenav class="md-sidenav-right md-whiteframe-z2"
-				md-component-id="right"> <md-toolbar
-				class="md-theme-light">
-			<h1 class="md-toolbar-tools">Student Page Sub Menu</h1>
-			</md-toolbar> <md-content layout-padding> <md-button
-				ng-click="close()" class="md-primary"> Close Sidenav
-			Right </md-button>
-
-			<p hide-md show-gt-md>This shows the selected module
-				links/actions.</p>
-			<md-button ng-click="close()" class="md-primary"> Current
-			Module Action 1 </md-button> <md-button ng-click="close()" class="md-primary">
-			Current Module Action 2 </md-button> <md-button ui-sref="institute.add"
-				ng-click="close()" class="md-primary"> Add New Institute
-			</md-button> <md-button ui-sref="institute.view" ng-click="close()"
-				class="md-primary"> View Institute </md-button> </md-content> </md-sidenav>
-
-		</section>
-	</div>
-
-
-
-	<div layout="column" layout-align="center center">
-
-				 <span> <spanstyle: "color:red">{{loginMsg}}</span>
-				
-				
-					<md-input-container flex>
-      				<label>User Name</label>
-      				<input ng-model="tempUser.userName">
-    				</md-input-container>
-    	
-    				<md-input-container flex>
-      				<label>Password</label>
-     				<input ng-model="tempUser.pwd" type="password">
-    				</md-input-container>
-    				
-					<md-button class="md-raised md-primary" ng-click="login()">LOGIN</md-button> 
-	</div>
-
+						<md-button class="md-raised md-primary" ng-click="login()">
+							LOGIN
+						</md-button>
+					</div>
+				</md-content>
+			</md-tab>
+		</md-tabs>
+	</md-content>
 </div>
-
