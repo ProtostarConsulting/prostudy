@@ -48,6 +48,16 @@ angular
 
 					$scope.signOut = function() {
 						
+						if(gapi.auth2 == undefined) {
+							$scope.curUser = null;
+							$scope.curUser = appEndpointSF
+									.getUserService().logout();
+							
+							$state.go("home");
+							return;
+						}
+						
+						
 						var auth2 = gapi.auth2.getAuthInstance();
 						auth2.signOut().then(
 								function() {
