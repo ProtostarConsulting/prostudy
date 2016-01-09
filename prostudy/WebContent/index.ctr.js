@@ -7,7 +7,13 @@ angular
 
 					$log.debug("Inside indexCtr");
 
+					$scope.curUser = null;
+					$scope.googleUserDetails = "";
 					$scope.googleUser = 'null';
+
+					$scope.loginClick = function() {
+						$state.go("login");
+					};
 
 					$scope.$on('event:google-plus-signin-success', function(
 							event, authResult) {
@@ -20,17 +26,39 @@ angular
 						console.log('Name: ' + profile.getName());
 						console.log('Image URL: ' + profile.getImageUrl());
 						console.log('Email: ' + profile.getEmail());
+						$scope.googleUserDetails = profile.getName() + "<br>"
+								+ profile.getEmail()
 
-						appEndpointSF.getUserService()
-								.saveLoggedInUser(profile);
+						// getUser object from server
+						// UserService.getUserByEmailID(profile.getEmail())
+						// inside then function set $scope.curUser and then save
+						// into UserService.saveLoggedInUser
+
+						$scope.curUser = appEndpointSF.getUserService()
+								.getLoggedinUser();
+
+						$scope.curUser = {
+							role : 'Admin',
+							profile : profile
+						};
+						$log.debug("Forwarding to home state...");
+						$state.go("home");
+
 					});
 
 					$scope.signOut = function() {
+						
 						var auth2 = gapi.auth2.getAuthInstance();
-						auth2.signOut().then(function() {
-							console.log('User signed out.');
-							$scope.googleUser = 'null';
-						});
+						auth2.signOut().then(
+								function() {
+									console.log('User signed out.');
+									$scope.googleUser = 'null';
+									$scope.curUser = null;
+									$scope.curUser = appEndpointSF
+											.getUserService().logout();
+									
+									$state.go("home");
+								});
 					}
 
 					$scope.$on('event:google-plus-signin-failure', function(
@@ -65,13 +93,6 @@ angular
 													});
 								}, 2000);
 
-					};
-
-					$scope.openBottomSheet = function() {
-						$mdBottomSheet
-								.show({
-									template : '<md-bottom-sheet>Hello!</md-bottom-sheet>'
-								});
 					};
 
 					// initialize local objects
