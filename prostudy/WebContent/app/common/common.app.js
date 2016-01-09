@@ -1,5 +1,6 @@
 var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
-		'ngMessages', "xeditable", "ui.bootstrap", "ui.router",	'md.data.table', 'ngResource', 'textAngular', 'ngRoute', 'ngStorage' ]);
+		'ngMessages', "xeditable", "ui.bootstrap", "ui.router",	'md.data.table', 'ngResource', 'textAngular', 'ngRoute', 'ngStorage', 'directive.g+signin' ]);
+
 
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette(
