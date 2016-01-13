@@ -1,32 +1,53 @@
 package com.protostar.prostudy.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.List;
 
-import com.google.appengine.api.datastore.Key;
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
+
 
 @Entity
-public class BookEntity {
+public class BookEntity 
+{
 
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Key id;
+	@Id Long id;
+	
+	@Index
+	private String bookId;
 
 	private String book_name;
 	private String author;
 	private String board;
 	private String standard;
+	
+	private List<ChapterEntity> chapters;
+	
 
 
-	public Key getid() {
+	public List<ChapterEntity> getChapters() {
+		return chapters;
+	}
+
+	public void setChapters(List<ChapterEntity> chapters) {
+		this.chapters = chapters;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setid(Key id) {
+	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public String getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(String bookId) {
+		this.bookId = bookId;
 	}
 
 	public String getBook_name() {
@@ -60,8 +81,9 @@ public class BookEntity {
 	public void setStandard(String standard) {
 		this.standard = standard;
 	}
-	
-
 
 
 }// end of BookEntity
+
+
+

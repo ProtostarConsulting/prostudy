@@ -1,31 +1,42 @@
 package com.protostar.prostudy.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
-import com.google.appengine.api.datastore.Key;
 
 @Entity
 public class ChapterEntity
 {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Key id;
-	private String chapter_name;
+	private Long id;
+	
+	@Index
+	private String chapterId;
+	
+    private String chapter_name;
 	private String chapter_content;
 	private String board;
 	private String student_class;
 	private String subject;
 	
-	public Key getId() {
+	
+
+	public Long getId() {
 		return id;
 	}
-	public void setId(Key id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	public String getChapterId() {
+		return chapterId;
+	}
+	public void setChapterId(String chapterId) {
+		this.chapterId = chapterId;
+	}
+	
 	public String getChapter_name() {
 		return chapter_name;
 	}
