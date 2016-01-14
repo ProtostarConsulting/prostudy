@@ -23,13 +23,17 @@ angular
 						comments : []
 					};// end of tempBook object
 
-					$scope.showSavedToast = function() {
-						$mdToast.show($mdToast.simple().content('Book Saved!')
-								.position("top").hideDelay(3000));
-					};// end of showSavedToast
+				
+	
 
 					$scope.addBook = function() {
 						$log.debug("No1");
+						
+						for(i=0;i<$scope.selectedChapters.length;i++)
+						{
+							$scope.tempBook.chapters.push($scope.selectedChapters[i]);
+						}
+						
 						var BookService = appEndpointSF.getBookService();
 
 						BookService.addBook($scope.tempBook).then(
@@ -39,8 +43,7 @@ angular
 									$log.debug("msgBean.msg:" + msgBean.msg);
 									$scope.showSavedToast();
 
-									$log.debug("tempBook"
-											+ angular.toJson($scope.tempBook));
+									$log.debug("tempBook"+ angular.toJson($scope.tempBook));
 									$scope.tempBook = {
 										id : "",
 										bookId : "",
@@ -55,34 +58,35 @@ angular
 								});
 						$log.debug("No4");
 					}// end of addBook
-
+					
+					
 					$scope.chapters = [];
 					$scope.getChapters = function() {
 
 						var ChapterService = appEndpointSF.getChapterService();
 
-						ChapterService
-								.getChapters()
+						ChapterService.getChapters()
 								.then(
 										function(chapterList) {
-											$log
-													.debug("Inside Ctr getChapters");
+											$log.debug("Inside Ctr getChapters");
 
 											$scope.chapters = chapterList;
-											$log.debug("chapters :"
-													+ $scope.chapters);
-											$scope.chapters.chapter_content = $sce
-													.trustAsHtml($scope.chapters.chapter_content);
-											$log
-													.debug("$scope.chapters.chapter_content: "
-															+ $scope.chapters.chapter_content);
+											$log.debug("chapters :"+ angular.toJson($scope.chapters));
+								
 										});
+						
 					}// end of getChapters
 					$scope.getChapters();
 
 					$scope.selectedChapters = [];
+			
+			
 
-					$scope.tempBook.chapters.push($scope.selectedChapters);
+					$scope.showSavedToast = function() {
+						$mdToast.show($mdToast.simple().content('Book Saved!')
+								.position("top").hideDelay(3000));
+					};// end of showSavedToast
+		
 
 					$scope.moveItem = function(item, from, to) {
 

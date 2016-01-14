@@ -58,7 +58,7 @@ angular
 								.then(
 										function(bookList) {
 
-										$scope.book_ChapterDetails = bookList.chapterEntities;
+										$scope.book_ChapterDetails = bookList.chapters;
 											
 										$scope.selectedChapter = $scope.book_ChapterDetails;
 

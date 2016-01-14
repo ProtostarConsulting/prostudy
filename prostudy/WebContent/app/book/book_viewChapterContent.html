@@ -2,7 +2,7 @@
 
 <div id="viewChapterContent">
 	<div layout="column" flex
-		ng-repeat="chapter in chapters | filter:searchText">
+		ng-repeat="chapter in chapters">
 
 
 
@@ -38,7 +38,7 @@
 		ng-model="isDisabledPrevious" ng-click="onPreviousChapter()">Previous</md-button>
 
 	<md-button class="md-primary" ng-disabled="isDisabledNext"
-		ng-model="isDisabledNext" ng-click="getChapters()">Next</md-button>
+		ng-model="isDisabledNext" ng-click="viewChapterContent({selectedBookId : selectedBookId})">Next</md-button>
 </div>
 <div>
 	<md-button class="md-raised md-primary"

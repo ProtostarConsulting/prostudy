@@ -4,7 +4,7 @@ angular.module("prostudyApp")
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $stateParams, appEndpointSF, $state,
 						$sce) {
-					console.log("Inside bookListCtr");
+					console.log("Inside book_viewChapterContentCtr");
 
 					$scope.tempChapter = {
 						id : "",
@@ -20,16 +20,17 @@ angular.module("prostudyApp")
 					// selectedChapterId
 
 					$log.debug("$stateParams:", $stateParams);
-					$log.debug("$stateParams.selectedChapterId:",
-							$stateParams.selectedChapterId);
+				
 					$scope.selectedChapterId = $stateParams.selectedChapterId;
+					$log.debug("$scope.selectedChapterId:"+ $scope.selectedChapterId)
 
 					$scope.chapters = [];
+					
 					$scope.showChapterContent = function() {
 						$log.debug("Inside showChapterContent ");
 						var ChapterService = appEndpointSF.getChapterService();
 
-						$log.debug("$scope.selectedChapterId:"+ $scope.selectedChapterId)
+						
 						ChapterService
 								.getChaptersByID($scope.selectedChapterId)
 								.then(
@@ -44,26 +45,20 @@ angular.module("prostudyApp")
 
 					};// end of $scope.showChapterContent
 			
-
-					
 				    $scope.showChapterContent();
 
 					$("#viewChapterContent").show();
 					$("#TotalChapters").hide();
-
+/*
 					$log.debug("$stateParams:", $stateParams);
-					$log.debug("$stateParams.selectedBookId:",
-							$stateParams.selectedBookId);
 					$scope.selectedBookId = $stateParams.selectedBookId;
-
+					$log.debug("$scope.selectedBookId:"+ $scope.selectedBookId)
+					
 					$scope.getChapters = function() {
+						
 						var BookService = appEndpointSF.getBookService();
 
-						var BookService = appEndpointSF.getBookService();
-						
-						$log.debug("$scope.selectedBookId:"+ $scope.selectedBookId)
-								
-						BookService.getBooksByID($scope.selectedBookId).then(function(bookList)
+						BookService.getBookbyID($scope.selectedBookId).then(function(bookList)
 										{
 
 											$scope.book_ChapterDetails = bookList;
@@ -83,8 +78,43 @@ angular.module("prostudyApp")
 
 					};// end of $scope.getChapters
 
-					// $scope.getChapters();
-					$scope.book_ChapterDetails = [];
+					$scope.book_ChapterDetails = [];*/
+					
+					
+					$log.debug("$stateParams:", $stateParams);
+					$log.debug("$stateParams.selectedBookId:",$stateParams.selectedBookId);
+					$scope.selectedBookId = $stateParams.selectedBookId;
+					
+					$scope.viewChapterContent = function() {
+						var BookService = appEndpointSF.getBookService();
+						$log.debug("$scope.selectedBookId:"
+								+ $scope.selectedBookId)
+
+
+						BookService
+								.getBookbyID($scope.selectedBookId)
+								.then(
+										function(bookList) {
+
+										$scope.book_ChapterDetails = bookList.chapters;
+											
+										$scope.selectedChapter = $scope.book_ChapterDetails;
+										
+										$log.debug("$scope.selectedChapter ===="+ angular.toJson($scope.selectedChapter));
+
+										$scope.totalPages = Math.round($scope.selectedChapter.length/ $scope.itemsPerPage);
+
+											$log.debug("$scope.selectedChapter :-"+ angular.toJson($scope.selectedChapter));
+											
+											$scope.onNextChapter();
+											$("#viewChapterContent").hide();
+											$("#TotalChapters").show();
+
+										});
+
+					};// end of $scope.showBookDetails
+					$scope.book_ChapterDetails=[];
+					
 
 					// For chapters on next and previous button
 
