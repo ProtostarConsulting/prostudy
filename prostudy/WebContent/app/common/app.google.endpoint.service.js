@@ -5,8 +5,6 @@ function googleEndpointSF($log, $q,$localStorage,$timeout) {
 	var serviceFactory = {};
 	
 	// start of ChapterService
-	
-
 	var ChapterService = {};
 
 	serviceFactory.getChapterService = function() {
@@ -21,7 +19,7 @@ function googleEndpointSF($log, $q,$localStorage,$timeout) {
 				function(resp) {
 					$log
 					.debug("No5");	
-					$log.debug("ChapterService#resp:" + resp);
+					$log.debug("addChapter#resp:" + resp);
 					deferred.resolve(resp);
 				});
 		$log.debug("No3");	
@@ -31,15 +29,27 @@ function googleEndpointSF($log, $q,$localStorage,$timeout) {
 
 	ChapterService.getChapters = function() {
 		var deferred = $q.defer();
-		gapi.client.chapterService.getAllChapter().execute(
+		gapi.client.chapterService.getAllChapters().execute(
 				function(resp) {
-					$log.debug("getChapters#resp :" + resp);
-					deferred.resolve(resp.items);
+					$log.debug("getAllChapters#resp :" + resp);
+					deferred.resolve(resp.items);   //resp.items
 				});
 		return deferred.promise;
 	}  // End of getChapters
 	
-	ChapterService.getChapterById = function(selectedChapterId) {
+	
+	ChapterService.getChaptersByID = function(selectedChapterId) {
+		var deferred = $q.defer();
+		gapi.client.chapterService.getChaptersByID({'chapterId':selectedChapterId}).execute(
+				function(resp) {
+			
+					$log.debug("getChaptersByID#resp:" +angular.toJson(resp));
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+	} // End of getChaptersByID
+	
+/*	ChapterService.getChapterById = function(selectedChapterId) {
 
 		var deferred = $q.defer();
 		$timeout(function() {
@@ -59,7 +69,7 @@ function googleEndpointSF($log, $q,$localStorage,$timeout) {
 		}, 1000);
 		return deferred.promise;
 	}//end of getChapterById
-	
+*/	
 	
 	// start of BookService
 	
@@ -73,11 +83,12 @@ function googleEndpointSF($log, $q,$localStorage,$timeout) {
 		$log.debug("No2");	
 		var deferred = $q.defer();
 		$log.debug("abc");
+			
 		gapi.client.bookService.addBook(book).execute(
 				function(resp) {
 					$log
 					.debug("No5");	
-					$log.debug("BookService#resp:" + resp);
+					$log.debug("addBook#resp:" + resp);
 					deferred.resolve(resp);
 				});
 		$log.debug("No3");	
@@ -86,7 +97,7 @@ function googleEndpointSF($log, $q,$localStorage,$timeout) {
 	
 	BookService.getBooks = function() {
 		var deferred = $q.defer();
-		gapi.client.bookService.getAllBook().execute(
+		gapi.client.bookService.getBooks().execute(
 				function(resp) {
 					$log.debug("getBooks#resp:" + resp);
 					deferred.resolve(resp.items);
@@ -94,7 +105,21 @@ function googleEndpointSF($log, $q,$localStorage,$timeout) {
 		return deferred.promise;
 	}  // End of getBooks
 	
+	
 	BookService.getBookbyID = function(selectedBookId) {
+		var deferred = $q.defer();
+		gapi.client.bookService.getBookbyID({'bookId':selectedBookId}).execute(
+				function(resp) {
+			
+					$log.debug("getBookbyID#resp:" +angular.toJson(resp));
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+	}  // End of getBookbyID
+	
+
+	
+/*	BookService.getBookbyID = function(selectedBookId) {
 
 		var deferred = $q.defer();
 		$timeout(function() {
@@ -118,6 +143,7 @@ function googleEndpointSF($log, $q,$localStorage,$timeout) {
 		}, 1000);
 		return deferred.promise;
 	}//end of getBookbyID
+*/	
 	
 // start of UserService
 	

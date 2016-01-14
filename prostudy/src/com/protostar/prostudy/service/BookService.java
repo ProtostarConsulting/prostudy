@@ -1,139 +1,51 @@
 package com.protostar.prostudy.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import static com.googlecode.objectify.ObjectifyService.ofy;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import java.util.List;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
+import com.googlecode.objectify.Key;
 import com.protostar.prostudy.entity.BookEntity;
-import com.protostar.prostudy.until.data.EMF;
-import com.protostar.prostudy.until.data.ServerMsg;
 
 @Api(name = "bookService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
 public class BookService {
 
-	@ApiMethod(name = "addBook")
-	public ServerMsg addBook(BookEntity bookEntity) {
-		System.out.println("bookEntity:" + bookEntity);
-		ServerMsg msgBean = new ServerMsg();
-
-		EntityManager em = null;
-
-		try {
-			em = EMF.get().createEntityManager();
-			em.persist(bookEntity);
-			
-			msgBean.setMsg("Book Records Added successfully" + " "
-					+ bookEntity.getBook_name());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			em.close();
-		}
-
-		return msgBean;
-
-	}// end of addBook
-
-	@SuppressWarnings("unchecked")
-	@ApiMethod(name = "getAllBook")
-	public List<BookEntity> getAllBook() {
-		System.out.println("In side getAllBook ");
-		List<BookEntity> bookList = new ArrayList<BookEntity>();
-		EntityManager em = null;
-		try {
-
-			em = EMF.get().createEntityManager();
-
-			Query q = em.createQuery("select c from BookEntity c");
-			bookList = q.getResultList();
-			System.out.println("Got AllBook: " + bookList.size());
-
-		} catch (Exception e)
-
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			em.close();
-		}
-
-		return bookList;
-
-	}// end of getAllBook
-	
-	@SuppressWarnings("unchecked")
-	@ApiMethod(name="getBookbyID")
-	public BookEntity  getBookbyID(@Named("Id") String Id)
+	@ApiMethod(name="addBook")
+	public void addBook(BookEntity bookEntity)
 	{
-		System.out.println("In side getBooksByID ");
-		@SuppressWarnings("unused")
-		ServerMsg msgBean=new ServerMsg();
-		List<BookEntity> bookList = new ArrayList<BookEntity>();
-		EntityManager em=null;
-		
-		try 
-		{
-			em = EMF.get().createEntityManager();
-			Query q = em.createQuery("select c from BookEntity c where c.id =" + Id);
-			bookList = q.getResultList();
-			System.out.println("Got AllBookList: " + bookList.size());		
-			
-		} 
-		catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		finally
-		{
-			em.close();
-		}
-		if(bookList.size() > 0)		
-		  return bookList.get(0);
-		else
-			return null;	
-		
-	}//end of getBookbyID
+		System.out.println("addBook ");
+		 Key<BookEntity> now = ofy().save().entity(bookEntity).now();
+		 System.out.println("addBook "+now);
+	}//end of addBook
 	
-
-/*	@ApiMethod(name = "updateBook")
-	public ServerMsg updateChapter(BookEntity bookEntity)
+	
+	@ApiMethod(name="getBooks")
+	public List<BookEntity>getBooks()
 	{
+		System.out.println("getBooks ");
+		return ofy().load().type(BookEntity.class).list();
 		
-		System.out.println("In side updateBook ");
-		System.out.println("bookEntity:" + bookEntity);
-		ServerMsg msgBean = new ServerMsg();
-
-		EntityManager em = null;
-
-		try {
-			
-			BookEntity bookEntity2 = new BookEntity();
-			
-			bookEntity2.setBook_name(bookEntity.getBook_name());
-			bookEntity2.setAuthor(bookEntity.getAuthor());
-            bookEntity2.setBoard(bookEntity.getBoard());
-            bookEntity2.setStandard(bookEntity.getStandard());
-			
-			em = EMF.get().createEntityManager();
-			em.persist(bookEntity2 );
-			msgBean.setMsg("Chapter Records Updated successfully" + " "
-					+ bookEntity2 .getBook_name());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			em.close();
-		}
-
-		return msgBean;
-
-	}// end of updateBook
-*/
+	}//end of getBooks
+	
+	 @ApiMethod(name="getBookbyID") 
+	 public BookEntity getBookbyID(@Named("bookId") String bookId)
+	 {
+		 System.out.println("getBookbyID ");
+		 BookEntity bookById = ofy().load().type(BookEntity.class).filter("bookId ", bookId).first().now();
+		 
+		 return bookById;
+			 
+		
+	 }//end of getBookbyID
+	 
+	 
+	
 }// end of BookService
+
+
+
+

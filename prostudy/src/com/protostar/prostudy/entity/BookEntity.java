@@ -6,14 +6,12 @@ import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 
-
 @Entity
-public class BookEntity 
-{
+public class BookEntity {
 
+	@Id
+	Long id;
 
-	@Id Long id;
-	
 	@Index
 	private String bookId;
 
@@ -21,9 +19,8 @@ public class BookEntity
 	private String author;
 	private String board;
 	private String standard;
-	
+
 	private List<ChapterEntity> chapters;
-	
 
 
 	public List<ChapterEntity> getChapters() {
@@ -41,7 +38,7 @@ public class BookEntity
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getBookId() {
 		return bookId;
 	}
@@ -82,8 +79,5 @@ public class BookEntity
 		this.standard = standard;
 	}
 
-
 }// end of BookEntity
-
-
 
