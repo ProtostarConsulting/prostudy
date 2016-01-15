@@ -3,8 +3,117 @@ angular.module("prostudyApp").factory('googleEndpointSF', googleEndpointSF);
 function googleEndpointSF($log, $q,$localStorage,$timeout) {
 
 	var serviceFactory = {};
+
 	
-	// start of ChapterService
+	var UserService = {};
+
+	serviceFactory.getUserService = function() {
+		return UserService;
+	}
+
+	UserService.addUser = function(user) {
+		$log
+		.debug("No2");	
+		var deferred = $q.defer();
+		gapi.client.userService.addUser(user).execute(
+				function(resp) {	
+					//$log.debug("addUser... #resp:" + angular.toJson(resp));
+					deferred.resolve(resp);
+				});
+		$log.debug("No3");	
+		return deferred.promise;
+	}
+	
+		
+	UserService.getUser = function() {
+		var deferred = $q.defer();
+		gapi.client.userService.getUser().execute(
+				function(resp) {
+					$log.debug("getUser #resp :" + resp);
+					deferred.resolve(resp.items);
+				});
+		return deferred.promise;
+	} 
+
+/*	UserService.getUserByEmailID = function(email_id) {
+		var deferred = $q.defer();
+		gapi.client.userService.getUserByEmailID('email_id' : email_id).execute(
+				function(resp) {
+					$log.debug("getUserByEmailID #resp :" + resp);
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+	} 
+	*/
+	UserService.getUserByEmailID = function(email_id) {
+		  var deferred = $q.defer();
+		  gapi.client.userService.getUserByEmailID({
+		   'email_id' : email_id
+		  }).execute(function(resp) {
+		   $log.debug("resp:" + angular.toJson(resp));
+		   
+		   deferred.resolve(resp.result);
+		  });
+		  return deferred.promise;
+		 }
+	 
+	 
+	 
+	UserService.getLoggedinUser = function() {
+		var user = $localStorage.loggedinUser;
+		if (user == 'undefined' || user == null)
+			return null;
+		else
+			return $localStorage.loggedinUser;
+	}
+	
+	UserService.login = function(userName, pwd) {
+		
+		var deferred = $q.defer();
+		gapi.client.userService.login(userName, pwd).execute(
+				function(resp) {
+					$log.debug("login #resp :" + resp);
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+
+	}
+	
+	UserService.logout = function() {
+		$localStorage.loggedinUser = null;
+	}
+			
+	var SyllabusService = {};
+
+	serviceFactory.getSyllabusService = function() {
+		return SyllabusService;
+	}
+
+	SyllabusService.addSyllabus = function(syll) {
+		$log
+		.debug("No2");	
+		var deferred = $q.defer();
+		$log.debug("abc");
+		gapi.client.syllabusService.addSyllabus(syll).execute(
+				function(resp) {$log.debug("No5");	
+					$log.debug("addSyllabus #resp:" + resp);
+					deferred.resolve(resp);
+				});
+		$log.debug("No3");	
+		return deferred.promise;
+	}
+	
+	SyllabusService.getSyllabus = function() {
+		var deferred = $q.defer();
+		gapi.client.syllabusService.getSyllabus().execute(
+				function(resp) {
+					$log.debug("Syllabus.....Service#resp :" + resp);
+					deferred.resolve(resp.items);
+				});
+		return deferred.promise;
+	} 
+
+	
 	var ChapterService = {};
 
 	serviceFactory.getChapterService = function() {
@@ -24,8 +133,7 @@ function googleEndpointSF($log, $q,$localStorage,$timeout) {
 				});
 		$log.debug("No3");	
 		return deferred.promise;
-	}//end of addChapter
-	
+	}
 
 	ChapterService.getChapters = function() {
 		var deferred = $q.defer();
@@ -35,7 +143,7 @@ function googleEndpointSF($log, $q,$localStorage,$timeout) {
 					deferred.resolve(resp.items);   //resp.items
 				});
 		return deferred.promise;
-	}  // End of getChapters
+	} 
 	
 	
 	ChapterService.getChaptersByID = function(selectedChapterId) {
@@ -68,11 +176,11 @@ function googleEndpointSF($log, $q,$localStorage,$timeout) {
 
 		}, 1000);
 		return deferred.promise;
-	}//end of getChapterById
+	}
 */	
-	
+
 	// start of BookService
-	
+
 	var BookService = {};
 
 	serviceFactory.getBookService = function() {
@@ -142,52 +250,20 @@ function googleEndpointSF($log, $q,$localStorage,$timeout) {
 
 		}, 1000);
 		return deferred.promise;
+
 	}//end of getBookbyID
 */	
 	
 // start of UserService
-	
+	/*
 	var UserService = {};
 
 	serviceFactory.getUserService = function() {
 		return UserService;
+
 	}
 
-	UserService.addUser = function(user) {
-		$log.debug("No2");	
-		var deferred = $q.defer();
-		$log.debug("abc");
-		gapi.client.userService.addUser(user).execute(
-				function(resp) {
-					$log
-					.debug("No5");	
-					$log.debug("UserService#resp:" + resp);
-					deferred.resolve(resp);
-				});
-		$log.debug("No3");	
-		return deferred.promise;
-	}//end of addUser
-	
-	UserService.getUser = function() {
-		var deferred = $q.defer();
-		gapi.client.userService.getAllUser().execute(
-				function(resp) {
-					$log.debug("getUsers#resp:" + resp);
-					deferred.resolve(resp.items);
-				});
-		return deferred.promise;
-	}  // End of getUsers
-	
-	UserService.getLoggedinUser = function() {
-		var user = $localStorage.loggedinUser;
-		if (user == 'undefined' || user == null)
-			return null;
-		else
-			return $localStorage.loggedinUser;
-	}//end of getLoggedinUser
-
-	// Add Student Service
-	var StudentService = {};
+	/*var StudentService = {};
 
 	serviceFactory.getStudentService = function() {
 		return StudentService;
@@ -216,7 +292,7 @@ function googleEndpointSF($log, $q,$localStorage,$timeout) {
 				});
 		return deferred.promise;
 	} // End of StudentService
-	
+	*/
 	
 	// Add PracticeExam Service
 	var PracticeExamService = {};
@@ -250,41 +326,7 @@ function googleEndpointSF($log, $q,$localStorage,$timeout) {
 		return deferred.promise;
 	} // End of PracticeExamService
 	
-	// Add Syllabus Service
-	var SyllabusService = {};
-
-	serviceFactory.getSyllabusService = function() {
-		return SyllabusService;
-	}
-
-	SyllabusService.addSyllabus = function(syllabi) {
-		$log
-		.debug("No2");	
-		var deferred = $q.defer();
-		$log
-		.debug("abc");
-		gapi.client.syllabusService.addSyllabus(syllabi).execute(
-				function(resp) {
-					$log
-					.debug("No5");	
-					$log.debug("addSyllabus#resp:" + resp);
-					deferred.resolve(resp);
-				});
-		$log
-		.debug("No3");	
-		return deferred.promise;
-	}
-
-
-	SyllabusService.getSyllabus = function() {
-		var deferred = $q.defer();
-		gapi.client.syllabusService.getSyllabus().execute(
-				function(resp) {
-					$log.debug("addSyllabus#resp:" + resp);
-					deferred.resolve(resp.items);
-				});
-		return deferred.promise;
-	} // End of SyllabusService
+	
 
 	
 	// start of InstituteService

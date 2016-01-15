@@ -256,22 +256,23 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('syllabus', {
 		url : "/syllabus",
 		templateUrl : '/app/syllabus/syllabus_module.html',
-		controller : 'syllabusCtr'
+		controller : 'syllabusModuleCtr'
 
 	}).state('syllabus.addsyllabus', {
 
 		url : "/addsyllabus",
 		templateUrl : '/app/syllabus/syllabus_addsyllabus.html',
-		controller : 'syllabusCtr'
+		controller : 'syllabusAddCtr'
 
 	}).state('syllabus.viewsyllabus', {
 		url : "/viewsyllabus",
 		templateUrl : '/app/syllabus/syllabus_viewsyllabus.html',
-		controller : 'syllabusCtr'
+		controller : 'syllabusViewCtr'
+			
 	}).state('syllabus.listsyllabus', {
 		url : "/listsyllabus",
 		templateUrl : '/app/syllabus/syllabus_listsyllabus.html',
-		controller : 'syllabusCtr'
+		controller : 'syllabusListCtr'
 
 	}).state('book.addselectedbook', {
 		url : "/addselectedbook/:addselectedBookId",

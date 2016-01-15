@@ -2,15 +2,21 @@ angular.module("prostudyApp").factory('appEndpointSF', appEndpointSF);
 
 function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 	//When app is in test mode, it will return service from local db store. Else actual google end points.
-  
+
 	//var isTestMode = true;
 	var isTestMode = false;
-
 	
 	var endpointFactory = {};
 	endpointFactory.is_service_ready = false;
 	// This will call the function to load services
 	
+	endpointFactory.getSyllabusService = function() 
+	{
+		if(isTestMode)
+			return localDBServiceFactory.getSyllabusService();
+		else	
+			return googleEndpointSF.getSyllabusService();
+	};
 	
 	endpointFactory.getChapterService = function() 
 	{
@@ -27,6 +33,10 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 		else	
 			return googleEndpointSF.getBookService();
 	};//end of getBookService
+	
+	endpointFactory.getLocalUserService = function() {
+		return localDBServiceFactory.getUserService();
+	};//end of getUserService
 	
 	endpointFactory.getUserService = function() {
 
@@ -67,12 +77,6 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getQuestionService();
 	};
 	
-	endpointFactory.getSyllabusService = function() {
-		if(isTestMode)
-			return localDBServiceFactory.getSyllabusService();
-		else	
-			return googleEndpointSF.getSyllabusService();
-	};
 
 	endpointFactory.loadAppGoogleServices = function(deferred) {
 		$log.debug("###Inside Google appEndpointSF.loadAppGoogleServices###");
@@ -102,13 +106,28 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 
 		}, apiRoot);
 		
-		gapi.client.load('bookService', 'v0.1', function() {
+		/*gapi.client.load('bookService', 'v0.1', function() {
 			$log.debug("bookService Loaded....");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);*/
+		gapi.client.load('syllabusService', 'v0.1', function() {
+			$log.debug("syllabusService Loaded");
 			endpointFactory.is_service_ready = true;
 			deferred.resolve();
 
 		}, apiRoot);
 		
+		gapi.client.load('userService', 'v0.1', function() {
+			$log.debug("userService Loaded......");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+		
+	
+			
 		return deferred.promise;
 
 	};
