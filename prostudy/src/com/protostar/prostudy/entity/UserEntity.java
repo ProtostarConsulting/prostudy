@@ -1,94 +1,117 @@
 package com.protostar.prostudy.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-import com.google.appengine.api.datastore.Key;
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 @Entity
-public class UserEntity
-{
-	
+public class UserEntity {
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Key id;
+	private Long id;	
+	private String userId;
+	private String userName;
 	private String firstName;
 	private String lastName;
-	private String userName ;
-	private String email_id ;
-	private String address ;
-	private String contact ;
-	private String gender;
-	private String pwd ;
-	private String role;
-	//book : [],
-	//exam : []
 	
-	public Key getid() {
-		return id;
-	}
-	public void setid(Key id) {
+	@Index
+	private String email_id;
+	private String address;
+	private String contact;
+	private String gender;
+	private String pwd;
+	private String role;
+	
+	//private List<QuestionEntity> books;
+
+	private String book;
+	private String exam;
+
+	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getFirstName() {
-		return firstName;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	public String getLastName() {
-		return lastName;
-	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	public Long getId() {
+		return id;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public String getLastName() {
+		return lastName;
 	}
 	public String getUserName() {
 		return userName;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
 	public String getEmail_id() {
 		return email_id;
-	}
-	public void setEmail_id(String email_id) {
-		this.email_id = email_id;
 	}
 	public String getAddress() {
 		return address;
 	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
 	public String getContact() {
 		return contact;
-	}
-	public void setContact(String contact) {
-		this.contact = contact;
 	}
 	public String getGender() {
 		return gender;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
 	public String getPwd() {
 		return pwd;
-	}
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
 	}
 	public String getRole() {
 		return role;
 	}
+	public String getBook() {
+		return book;
+	}
+	public String getExam() {
+		return exam;
+	}
+/*	public List<QuestionEntity> getBooks() {
+		return books;
+	}*/
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public void setEmail_id(String email_id) {
+		this.email_id = email_id;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
 	public void setRole(String role) {
 		this.role = role;
 	}
+	public void setBook(String book) {
+		this.book = book;
+	}
+	public void setExam(String exam) {
+		this.exam = exam;
+	}
+/*	public void setBooks(List<QuestionEntity> books) {
+		this.books = books;
+	}*/
 
-	
-	
-	
 
-}//end of UserEntity
+}

@@ -1,176 +1,48 @@
 package com.protostar.prostudy.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import static com.googlecode.objectify.ObjectifyService.ofy;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import java.util.List;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
+import com.googlecode.objectify.Key;
+import com.googlecode.objectify.LoadResult;
 import com.protostar.prostudy.entity.UserEntity;
-import com.protostar.prostudy.until.data.EMF;
-import com.protostar.prostudy.until.data.ServerMsg;
+
+//import com.protostar.prostudy.entity.BookEntity;
 
 @Api(name = "userService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
 public class UserService {
 
 	@ApiMethod(name = "addUser")
-	public ServerMsg addUser(UserEntity userEntity) {
-		System.out.println("chapterEntity:" + userEntity);
-		ServerMsg msgBean = new ServerMsg();
-
-		EntityManager em = null;
-
-		try {
-			em = EMF.get().createEntityManager();
-			em.persist(userEntity);
-			msgBean.setMsg("User Records Added successfully" + " "
-					+ userEntity.getFirstName());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			em.close();
-		}
-
-		return msgBean;
-
-	}// end of addUser
-
-	@SuppressWarnings("unchecked")
-	@ApiMethod(name = "getAllUser")
-	public List<UserEntity> getAllUser() {
-		System.out.println("In side getAllUser ");
-		List<UserEntity> userList = new ArrayList<UserEntity>();
-		EntityManager em = null;
-		try {
-
-			em = EMF.get().createEntityManager();
-
-			Query q = em.createQuery("select c from UserEntity c");
-			userList = q.getResultList();
-			System.out.println("Got AllUser: " + userList.size());
-
-		} catch (Exception e)
-
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			em.close();
-		}
-
-		return userList;
-
-	}// end of getAllUser
-	
-	
-	@SuppressWarnings("unchecked")
-	@ApiMethod(name="getByUserId")
-	public UserEntity  getByUserId(@Named("Id") String Id)
-	{
-		System.out.println("In side getByUserId ");
-		
-		List<UserEntity> userList = new ArrayList<UserEntity>();
-		EntityManager em=null;
-		
-		try 
-		{
-			em = EMF.get().createEntityManager();
-			Query q = em.createQuery("select c from UserEntity c where c.id =" + Id);
-			userList = q.getResultList();
-			System.out.println("Got AllBookList: " + userList.size());		
-			
-		} 
-		catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		finally
-		{
-			em.close();
-		}
-		if(userList.size() > 0)		
-		  return userList.get(0);
-		else
-			return null;	
-		
-	}//end of getByUserId
-	
-	
-	@ApiMethod(name="getLoggedinUser")
-	public UserEntity  getLoggedinUser(UserEntity userEntity)
-	{
-		System.out.println("Inside getLoggedinUser ");
-		
-		EntityManager em=null;
-				
-		try
-		{
-			em = EMF.get().createEntityManager();
-		
-			
-			if(userEntity !=null)
-			{
-				em.persist(userEntity);
-				UserEntity loggedinUser=em.merge(userEntity);
-				System.out.println("userEntity.getFirstName " + userEntity.getFirstName());
-				
-				return loggedinUser;
-				
-			}
-			
-		}
-		catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		finally
-		{
-			em.close();
-		}
-		return null;
-	}//getLoggedinUser
+	public void addUser(UserEntity usr) {
+		Key<UserEntity> now = ofy().save().entity(usr).now();
+	}
 
 	@ApiMethod(name = "updateUser")
-	public ServerMsg updateUser(UserEntity userEntity)
-	{
-		
-		System.out.println("In side updateUser ");
-		System.out.println("userEntity:" + userEntity);
-		ServerMsg msgBean = new ServerMsg();
+	public void updateUser(UserEntity usr) {
+		Key<UserEntity> now = ofy().save().entity(usr).now();
+	}
 
-		EntityManager em = null;
+	@ApiMethod(name = "getUserList")
+	public List<UserEntity> getUserList() {
+		return ofy().load().type(UserEntity.class).list();
+	}
 
-		try {
-			
-			UserEntity userEntity2 = new UserEntity();
-			
-			userEntity2.setFirstName(userEntity.getFirstName());
-			userEntity2.setLastName(userEntity.getLastName());
-			userEntity2.setUserName(userEntity.getUserName());
-			userEntity2.setEmail_id(userEntity.getEmail_id());
-			userEntity2.setPwd(userEntity.getPwd());
-			userEntity2.setRole(userEntity.getRole());
-			userEntity2.setContact(userEntity.getContact());
-			userEntity2.setGender(userEntity.getGender());
-			
-			em = EMF.get().createEntityManager();
-			em.persist(userEntity2);
-			msgBean.setMsg("User Records Updated successfully" + " "
-					+ userEntity2.getUserName());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			em.close();
-		}
+	@ApiMethod(name = "getUserByEmailID")
+	public UserEntity getUserByEmailID(@Named("email_id") String email) {
+		List<UserEntity> list = ofy().load().type(UserEntity.class)
+				.filter("email_id", email).list();
+		return (list == null || list.size() == 0) ? null : list.get(0);
+	}
 
-		return msgBean;
+	@ApiMethod(name = "getUserID")
+	public UserEntity getUserID(@Named("id") String id) {
+		UserEntity foundUser = ofy().load().type(UserEntity.class).id(id).now();
+		return foundUser;
+	}
 
-	}// end of updateUser
-
-}// end of UserService
+}
