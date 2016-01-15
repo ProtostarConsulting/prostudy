@@ -78,8 +78,7 @@
 							<md-button
 							ui-sref="student"
 							ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher'  || curUser.role == 'Student'"
-							ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student' "
-							ng-click="close()" class="md-primary" show-gt-md>
+													ng-click="close()" class="md-primary" show-gt-md>
 								Student
 							</md-button>
 							<md-button ui-sref="exam"
@@ -117,7 +116,7 @@
 								Book
 							</md-button>
 							<md-button ui-sref="syllabus"
-							ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
+							
 							ng-click="close()" class="md-primary" show-gt-md>
 								Syllabus
 							</md-button>
@@ -270,7 +269,8 @@
 		<!-- All JS Dependencies -->
 		<script src="/lib/base/jquery.min.js"></script>
 		<script src="/lib/base/bootstrap.min.js"></script>
-		
+		<!-- <script src="/lib/base/google-plus-signin.js"></script> -->		
+
 		<!-- Angular Material Dependencies -->
 		<script src="/lib/base/angular.min.js"></script>
 		<script src="/lib/base/angular-animate.min.js"></script>
@@ -290,8 +290,10 @@
 		<script src="/lib/base/textAngular-sanitize.min.js"></script>
 		<script src="/lib/base/textAngular.min.js"></script>
 		<script src="/lib/base/ngStorage.min.js"></script>
+
 		<script src="/lib/base/google-plus-signin.js"></script>
-		
+
+
 		<!--<script src="/lib/base/googleapi.client.js"></script>-->
 		<script src="https://apis.google.com/js/client.js"></script>
 
@@ -352,9 +354,6 @@
 		<script src="/app/chapter/js/chapter_view.ctr.js"></script>
 		<script src="/app/chapter/js/chapter_edit.ctr.js"></script>
 
-		<script src="/app/book/js/book_module.ctr.js"></script>
-		<script src="/app/book/js/book_add.ctr.js"></script>
-		<script src="/app/book/js/book_list.ctr.js"></script>
 
 	<!-- 	<script src="/app/book/js/book_addComments.ctr.js"></script> -->
 		<script src="/app/examdemo/js/examdemo_module.ctr.js"></script>
@@ -374,14 +373,18 @@
 		<script src="/app/report/js/display_report.ctr.js"></script>
 
 		<script src="/app/login/js/login_module.ctr.js"></script>
-<!-- 		<script src="/app/login/js/newUser_student.ctr.js"></script> -->
+		<script src="/app/login/js/newUser_student.ctr.js"></script> 
 		<script src="/app/myBooks/js/myBooks_module.ctr.js"></script>
 		<script src="/app/myPracticeExams/js/myPracticeExams_module.ctr.js"></script>
 
 		<script src="/app/test/js/table.demo.data.service.js"></script>
 		<script src="/app/demo/js/table.demo.withservice.ctr2.js"></script>
-
-		<script src="/app/syllabus/js/syllabus.js"></script>
+		<!--  <script src="/app/syllabus/js/syllabus.ctr.js"></script>  -->
+		<!-- <script src="/app/syllabus/js/syllabus.js"></script> -->
+		<script src="/app/syllabus/js/syllabus_module.ctr.js"></script> 
+		<script src="/app/syllabus/js/syllabus_add.ctr.js"></script> 
+		<script src="/app/syllabus/js/syllabus_view.ctr.js"></script> 
+		<script src="/app/syllabus/js/syllabus_list.ctr.js"></script> 
 
 		<script src="index.ctr.js"></script>
 

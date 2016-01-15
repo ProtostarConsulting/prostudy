@@ -25,39 +25,48 @@ angular
 						// Do not send to your backend! Use an ID token instead.
 						console.log('Name: ' + profile.getName());
 						console.log('Image URL: ' + profile.getImageUrl());
-						console.log('Email: ' + profile.getEmail());
+						console.log('email_id: ' + profile.getEmail());
 						$scope.googleUserDetails = profile.getName() + "<br>"
 								+ profile.getEmail()
 
-						// getUser object from server
-						// UserService.getUserByEmailID(profile.getEmail())
-						// inside then function set $scope.curUser and then save
-						// into UserService.saveLoggedInUser
+						appEndpointSF.getUserService().getUserByEmailID(
+								profile.getEmail()).then(
+								function(loggedInUser) {
+									$log.debug("loggedInUser:"
+											+ angular.toJson(loggedInUser));
+									appEndpointSF.getLocalUserService()
+											.saveLoggedInUser(loggedInUser);
 
-						$scope.curUser = appEndpointSF.getUserService()
-								.getLoggedinUser();
+									$scope.curUser = loggedInUser;
+									if (loggedInUser.id == undefined) {
 
-						$scope.curUser = {
-							role : 'Admin',
-							profile : profile
-						};
+										$state.go("newUserStudent");
+										return;
+									}
+
+								}
+
+						)
+
 						$log.debug("Forwarding to home state...");
 						$state.go("home");
 
 					});
 
+					console.log('$scope.curUser'
+							+ angular.toJson($scope.curUser));
+
 					$scope.signOut = function() {
-						
-						if(gapi.auth2 == undefined) {
+						console.log('signOut1');
+						if (gapi.auth2 == undefined) {
 							$scope.curUser = null;
 							$scope.curUser = appEndpointSF
-									.getUserService().logout();
-							
+									.getLocalUserService().logout();
+
 							$state.go("home");
 							return;
 						}
-						
-						
+						console.log('signOut2');
 						var auth2 = gapi.auth2.getAuthInstance();
 						auth2.signOut().then(
 								function() {
@@ -65,8 +74,8 @@ angular
 									$scope.googleUser = 'null';
 									$scope.curUser = null;
 									$scope.curUser = appEndpointSF
-											.getUserService().logout();
-									
+											.getLocalUserService().logout();
+
 									$state.go("home");
 								});
 					}
@@ -77,15 +86,6 @@ angular
 						console.log('Not signed into Google Plus.');
 						$scope.googleUser = 'null';
 					});
-
-					$scope.curUser = appEndpointSF.getUserService()
-							.getLoggedinUser();
-
-					$scope.showSimpleToast = function() {
-						$mdToast.show($mdToast.simple().content(
-								'Customer Saved!').position("top").hideDelay(
-								3000));
-					};
 
 					// $window.initGAPI = function() {}
 					$scope.initGAPI = function() {
@@ -106,10 +106,7 @@ angular
 					};
 
 					// initialize local objects
-					/*
-					 * $scope.customer = $scope.newCustomer();
-					 * $scope.customerList = {};
-					 */
+
 					$scope.initGAPI();
 
 				}).controller('AppCtrl',
