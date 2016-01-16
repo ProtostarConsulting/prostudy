@@ -173,7 +173,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 
 		var deferred = $q.defer();
 		// ques.examId = practiceExamList.length + 1;
-		ques.examId = 1;
+		ques.examId = 2;
 		gapi.client.practiceExamService.addPracticeExam(ques).execute(
 				function(resp) {
 
