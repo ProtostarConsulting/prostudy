@@ -104,7 +104,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/myprofile",
 		templateUrl : '/app/myprofile/myprofile.html',
 		controller : 'myProfileCtr'
-	}).state('institute', {
+	})
+	.state('institute', {
 		url : "/institute",
 		templateUrl : '/app/institute/institute_module.html',
 		controller : 'instituteModuleCtr'
@@ -217,7 +218,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/login",
 		templateUrl : '/app/login/login_module.html',
 		controller : 'loginModuleCtr'
-	}).state('newUserTeacher', {
+	})	
+	.state('updatemyprofile', {
+		url : "/updatemyprofile",
+		templateUrl : '/app/myprofile/myprofile_update.html',
+		controller : 'updateMyProfileCtr'
+	})
+	.state('newUserTeacher', {
 		url : "/newUserTeacher",
 		templateUrl : '/app/login/newUser.html',
 		controller : 'loginModuleCtr'

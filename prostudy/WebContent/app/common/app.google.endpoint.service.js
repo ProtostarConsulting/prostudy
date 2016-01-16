@@ -100,7 +100,18 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		  return deferred.promise;
 		 }
 	 
-	 
+	UserService.updateUser = function(user) {
+		$log
+		.debug("No2");	
+		var deferred = $q.defer();
+		gapi.client.userService.updateUser(user).execute(
+				function(resp) {	
+					//$log.debug("addUser... #resp:" + angular.toJson(resp));
+					deferred.resolve(resp.result);
+				});
+		$log.debug("No3");	
+		return deferred.promise;
+	}
 	 
 	UserService.getLoggedinUser = function() {
 		var user = $localStorage.loggedinUser;
