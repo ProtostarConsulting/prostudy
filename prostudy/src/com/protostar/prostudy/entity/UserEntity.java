@@ -1,6 +1,8 @@
 package com.protostar.prostudy.entity;
 
 
+import java.util.List;
+
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
@@ -16,17 +18,16 @@ public class UserEntity {
 	private String lastName;
 	
 	@Index
-	private String email_id;
+	private String email_id;    
 	private String address;
 	private String contact;
 	private String gender;
 	private String pwd;
 	private String role;
-	
-	//private List<QuestionEntity> books;
 
 	private String book;
-	private String exam;
+	
+	private List<PracticeExamEntity> exam;
 
 	public void setId(Long id) {
 		this.id = id;
@@ -76,12 +77,14 @@ public class UserEntity {
 	public String getBook() {
 		return book;
 	}
-	public String getExam() {
+
+	public List<PracticeExamEntity> getExam() {
 		return exam;
 	}
-/*	public List<QuestionEntity> getBooks() {
-		return books;
-	}*/
+	public void setExam(List<PracticeExamEntity> exam) {
+		this.exam = exam;
+	}
+
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
@@ -106,12 +109,5 @@ public class UserEntity {
 	public void setBook(String book) {
 		this.book = book;
 	}
-	public void setExam(String exam) {
-		this.exam = exam;
-	}
-/*	public void setBooks(List<QuestionEntity> books) {
-		this.books = books;
-	}*/
-
 
 }
