@@ -21,6 +21,7 @@ public class PracticeExamEntity {
 	private String date;
 	private Integer likes;
 	private Integer dislikes;
+	
 
 	public Integer getLikes() {
 		return likes;
