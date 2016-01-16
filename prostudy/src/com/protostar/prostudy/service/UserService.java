@@ -9,7 +9,6 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
-import com.googlecode.objectify.LoadResult;
 import com.protostar.prostudy.entity.UserEntity;
 
 //import com.protostar.prostudy.entity.BookEntity;
@@ -39,10 +38,5 @@ public class UserService {
 		return (list == null || list.size() == 0) ? null : list.get(0);
 	}
 
-	@ApiMethod(name = "getUserID")
-	public UserEntity getUserID(@Named("id") String id) {
-		UserEntity foundUser = ofy().load().type(UserEntity.class).id(id).now();
-		return foundUser;
-	}
 
 }
