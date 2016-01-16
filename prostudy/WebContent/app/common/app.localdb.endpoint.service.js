@@ -244,6 +244,8 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			var studList = angular.fromJson($localStorage.dbStudents);
 			if (typeof studList === 'undefined')
 				studList = [];
+			stud.ID = studList.length + 1;
+			stud.attendance = "Present";
 			studList.push(stud);
 			$localStorage.dbStudents = angular.toJson(studList);
 			deferred.resolve({
@@ -268,7 +270,36 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 
 	}
+	StudentService.addAttendance = function(selectedStudID) {
 
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side local DB addAttendance...");
+			var studList = angular.fromJson($localStorage.dbStudents);
+			if (typeof studList === 'undefined')
+				studList = [];
+			
+			for(var i=0;i<studList.length;i++)
+				{
+					if(selectedStudID == studList[i].ID)
+					{
+						studList[i].attendance = "Absent";	
+					}
+				}
+			
+			
+			$localStorage.dbStudents = angular.toJson(studList);
+			deferred.resolve({
+				"msg" : "Attendance Added Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+	
+	
 	var PracticeExamService = {};
 
 	serviceFactory.getPracticeExamService = function() {
@@ -567,8 +598,8 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return InstituteService;
 	}
 
+	InstituteService.addInstitute = function(insti, admins,teachers, students) {
 
-	InstituteService.addInstitute = function(insti,admins,teachers, students, admins) {
 		var deferred = $q.defer();
 		$timeout(function() {
 
@@ -904,7 +935,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 	}
 
 	UserService.saveLoggedInUser = function(user) {
-		$localStorage.loggedinUser = user
+		$localStorage.loggedinUser = user;
 
 	}
 	
@@ -967,7 +998,11 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			currUserObj.book.push(selectedBook);
 			
 			UserService.updateProfile(currUserObj);
+
+			$log.debug("selectedBook :"+selectedBook);
+
 			$log.debug("currUserObj------"+angular.toJson(currUserObj));
+
 			deferred.resolve({
 				"msg" : "MyBook added Successfully."
 			});
