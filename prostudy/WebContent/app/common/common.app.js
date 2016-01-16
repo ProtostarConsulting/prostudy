@@ -132,43 +132,39 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/view/:selectedInstituteId",
 		templateUrl : '/app/institute/institute_view.html',
 		controller : 'instituteViewCtr'
-	})
-	.state('institute.view.view_admins', {
+	}).state('institute.view.view_admins', {
 		url : "/view_admin",
 		templateUrl : '/app/institute/institute_view_admins.html',
 		controller : 'instituteViewCtr'
-	})
-		.state('institute.view.view_admins.addadmins', {
+	}).state('institute.view.view_admins.addadmins', {
 		url : "/addadmins",
 		templateUrl : '/app/institute/institute_addAdmins.html',
 		controller : 'instituteViewCtr'
-	})
-	.state('institute.view.view_teachers', {
+	}).state('institute.view.view_teachers', {
 		url : "/view_teachers",
 		templateUrl : '/app/institute/institute_view_teachers.html',
 		controller : 'instituteViewCtr'
-	})
-	.state('institute.view.view_teachers.addteachers', {
+	}).state('institute.view.view_teachers.addteachers', {
 		url : "/addteachers",
 		templateUrl : '/app/institute/institute_addTeachers.html',
 		controller : 'instituteViewCtr'
-	})
-	.state('institute.view.view_students', {
+	}).state('institute.view.view_students', {
 		url : "/view_students",
 		templateUrl : '/app/institute/institute_view_students.html',
 		controller : 'instituteViewCtr'
-	})	
-		.state('institute.view.view_students.addstudents', {
+	}).state('institute.view.view_students.addstudents', {
 		url : "/addstudents",
 		templateUrl : '/app/institute/institute_addStudents.html',
 		controller : 'instituteViewCtr'
-	})
-	.state('institute.view.editInstitute', {
+	}).state('institute.view.editInstitute', {
 		url : "/editInstitute",
 		templateUrl : '/app/institute/institute_editInstitute.html',
 		controller : 'instituteViewCtr'
-	})
-	.state('report', {
+	}).state('attendance', {
+		url : "/attendance",
+		templateUrl : '/app/attendance/attendance_module.html',
+		controller : 'attendanceModuleCtr'
+	}).state('report', {
 		url : "/report",
 		templateUrl : '/app/report/report_module.html',
 		controller : 'reportModuleCtr'
