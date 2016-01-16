@@ -11,6 +11,7 @@ public class AdminEntity {
 	private String admin_name;
 	private String admin_email_id;
 	private String admin_contact_no;
+	
 	public Long getId() {
 		return id;
 	}
