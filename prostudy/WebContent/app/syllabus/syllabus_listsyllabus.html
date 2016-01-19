@@ -1,4 +1,4 @@
-
+<div>
 <md-card ng-show="isShowTable"> <md-data-table-toolbar
 	ng-show="!selected.length">
 <h2 class="md-title">Syllabus List</h2>
@@ -33,25 +33,31 @@
 </table>
 </md-data-table-container> <md-data-table-pagination md-limit="query.limit" md-page="query.page"
 	md-total={{syllabus.length}} md-trigger="onpagechange"></md-data-table-pagination>
+<div layout="column" layout-align="center center">
 <md-button class="md-raised md-primary" ng-show="selected.length > 0"
-	ng-click="editSyllabus()">Edit</md-button> </md-card>
-<md-card ng-show="isShowRecord">
-<div layout="column" flex>
+	ng-click="editSyllabus()">Edit</md-button> 
+	</div></md-card>
+	<md-card ng-show="isShowRecord">
+	<div layout="column" flex>
 	<md-input-container flex> <label>Board</label> <input
 		ng-model="editRecord.board" > </md-input-container>
 
 	<md-input-container flex> <label>standard</label>
 	<input ng-model="editRecord.standard"> </md-input-container>
 		<md-input-container flex> <label>Subject</label> <input
-		ng-model="editRecord.subject"> </md-input-container>
+		ng-model="editRecord.subject"> </md-input-container>	
 	<md-input-container flex> <label>Chapter
 		Name</label> <input ng-model="editRecord.chapterName"> </md-input-container>
 	<text-angular name="chaptercontent" id="chaptercontent"
 		ng-model="editRecord.chapterContent"></text-angular>
+		
+		</div>
+	<div layout="column" layout-align="center center">
 	<md-button class="md-raised md-primary" ng-show="selected.length > 0"
 		ng-disable="isShowTable" ng-click="cancel()">Cancel</md-button>
 	<md-button class="md-raised md-primary" ng-show="selected.length > 0"
 		ng-disable="isShowTable" ng-click="update()">Save</md-button>
+		</div>
 </md-card>
-
+</div>
 
