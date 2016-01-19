@@ -6,7 +6,12 @@ import javax.servlet.ServletContextListener;
 import com.googlecode.objectify.ObjectifyService;
 import com.protostar.billingnstock.crm.entities.Lead;
 import com.protostar.billingnstock.crm.entities.Task;
+<<<<<<< .mine
 import com.protostar.billingnstock.cust.entities.Customer;
+import com.protostar.billingnstock.cust.entities.Internet;
+=======
+import com.protostar.billingnstock.cust.entities.Customer;
+>>>>>>> .r426
 import com.protostar.billingnstock.hr.entities.Employee;
 import com.protostar.billingnstock.hr.entities.SalSlip;
 import com.protostar.billingnstock.hr.entities.SalStruct;
@@ -30,6 +35,12 @@ public class AppServletContextListener implements ServletContextListener {
 		System.out.println("###Inside AppServletContextListener###");
 		// register all your entities here
 		ObjectifyService.register(Car.class);
+		ObjectifyService.register(Employee.class);
+		ObjectifyService.register(SalStruct.class);
+		ObjectifyService.register(SalSlip.class);
+		ObjectifyService.register(Lead.class);
+		ObjectifyService.register(Task.class);
+		ObjectifyService.register(TimeSheet.class);
 		ObjectifyService.register(Customer.class);
 		ObjectifyService.register(StockItemEntity.class);
 		ObjectifyService.register(InvoiceEntity.class);
@@ -44,6 +55,5 @@ public class AppServletContextListener implements ServletContextListener {
 	      ObjectifyService.register(Task.class);
 	      ObjectifyService.register(TimeSheet.class);
 	}
-
 
 }

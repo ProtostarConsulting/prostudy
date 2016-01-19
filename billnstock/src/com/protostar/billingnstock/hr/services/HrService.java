@@ -127,6 +127,17 @@ public class HrService
 		return weekdata;
 	 }
 	
+	//not working
+	@ApiMethod(name="getallsalslip") 
+	 public SalSlip getallsalslip(@Named("curryear") String curryear) {
+	
+		SalSlip salslipdata = ofy().load().type(SalSlip.class).filter("curryear",curryear).first().now();
+
+		return salslipdata;
+	 }
+	
+	
+	
 	
  
 }//end of InternetService
