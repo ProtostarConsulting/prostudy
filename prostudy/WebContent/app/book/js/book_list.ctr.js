@@ -11,7 +11,6 @@ angular.module("prostudyApp").controller(
 
 
 			$scope.book = {
-				bookid : "",
 				bookId : "",
 				book_name : "",
 				author : "",
@@ -35,32 +34,33 @@ angular.module("prostudyApp").controller(
 
 				BookService.getBooks().then(function(bookList)
 						{
-									$log.debug("Inside Ctr getBooks");
-
-
+							$log.debug("Inside Ctr getBooks");
 							$scope.books = bookList;
 							$scope.currentBook = $scope.books[0];
 							$log.debug("$scope.currentBook :"
 									+ angular.toJson($scope.currentBook));
 						});
+			     
+			  	
 			}// end of getBooks
 			
-			//$scope.getBooks();
+			$scope.getBooks();
 			
-			
-
-			if(appEndpointSF.is_service_ready){
-				$scope.getBooks();
-			      }
-			      else{       
-			       $timeout(function() {
-			    		$scope.getBooks();
-			       }, 4000);
-			      }
 		
-			
-			
-		   $scope.addselectedBookId = $stateParams.addselectedBookId;
+		     $scope.selected = [];
+		      $scope.toggle = function (book, list) {
+		        var idx = list.indexOf(book);
+		        if (idx > -1) list.splice(idx, 1);
+		        else list.push(book);
+		      };
+		      $scope.exists = function (book, list) {
+		        return list.indexOf(book) > -1;
+		      };//end of selected Book by checkbox
+		      
+	      
+		
+
+/*		   $scope.addselectedBookId = $stateParams.addselectedBookId;
 		   $log.debug("$scope.addselectedBookId===="+$stateParams.addselectedBookId); 
 			
 			$scope.myBook=[];
@@ -81,7 +81,7 @@ angular.module("prostudyApp").controller(
 				}
 			};// end of getBookbyID
 
-			$scope.getBookbyID();
+			$scope.getBookbyID();*/
 
 			$scope.books = [];                           
 			$scope.like = function(selectedBookId) {

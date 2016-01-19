@@ -4,7 +4,7 @@ angular
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $stateParams, appEndpointSF, $state,
 						$sce) {
-					console.log("Inside bookListCtr");
+					console.log("Inside book_chapterListCtr");
 
 					$scope.curUser = appEndpointSF.getUserService()
 							.getLoggedinUser();

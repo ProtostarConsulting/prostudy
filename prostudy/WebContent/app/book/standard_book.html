@@ -1,0 +1,36 @@
+<div layout="column" layout-padding>
+	<md-content>
+
+	<form name="standardForm">
+		
+		
+		<div class="table-responsive-vertical shadow-z-1">
+		<table class="table table-hover table-mc-light-blue">
+			<thead>
+				<tr>
+					<th>Book Name</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="std in stdBooks | filter: searchText">
+					<td>{{std.book.book_name}}</td>
+					
+			
+				</tr>
+			</tbody>
+			</table>
+		</div>
+		
+		<section layout="row" layout-sm="column" layout-align="left left">
+
+<!-- 		<md-button class="md-raised md-primary" ng-click="addBookInStd()">Add Book In Std</md-button>
+		<md-button class="md-raised md-primary" ng-click="getStdBooks()">Get Books By Std</md-button> -->
+		<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
+
+	</section>
+
+	</form>
+
+	
+	</md-content>
+</div>
