@@ -109,11 +109,11 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getSalesOrderService();
 	};
 	// ----------------------------------------------------
-	endpointFactory.getPurchaseOrderOrderService = function() {
+	endpointFactory.getPurchaseOrderService = function() {
 		if (isTestMode)
-			return localDBServiceFactory.getPurchaseOrderOrderService();
+			return localDBServiceFactory.getPurchaseOrderService();
 		else
-			return googleEndpointSF.getPurchaseOrderOrderService();
+			return googleEndpointSF.getPurchaseOrderService();
 	};
 	// ----------------------------------------------------
 

@@ -4,8 +4,8 @@ app.controller("salesCtr", function($scope, $window, $mdToast, $timeout,
 		$filter, objectFactory, appEndpointSF) {
 
 	$scope.salesOrder = {
-		salesOrderId : "SO",
-		customerName : '',
+		salesOrderId : '',
+		customer : {},
 		customerRefId : '',
 		quotationDate : '',
 		salesOrderDate : '',
@@ -49,7 +49,8 @@ app.controller("salesCtr", function($scope, $window, $mdToast, $timeout,
 					$log.debug("Inside Ctr getAllSalesOrder");
 					$scope.salesOrderList = salesOrderList;
 					$log.debug("@@@@@@@getAllSalesOrder:"+angular.toJson($scope.salesOrderList));
-					$scope.tempSalesOrder = $scope.salesOrderList.length + 1;
+					$scope.tempSalesOrder = $scope.salesOrderList.length +1;
+					$log.debug("@@@@@@@getAllSalesOrder!!!!!!!!!!!!!!:"+angular.toJson($scope.tempSalesOrder));
 					$scope.salesOrder.salesOrderId = $scope.tempSalesOrder;
 				});
 	}
@@ -80,7 +81,7 @@ app.controller("salesCtr", function($scope, $window, $mdToast, $timeout,
 
 	}
 	$scope.sODetail = [];
-//	$scope.getSOByID();
+	$scope.getSOByID();
 	
 	$scope.addItem = function() {
 		var item = {
@@ -134,13 +135,16 @@ app.controller("salesCtr", function($scope, $window, $mdToast, $timeout,
 		$scope.calfinalTotal();
 	};
 
-	$scope.CustomerddlChange = function(index, customerName) {
+	$scope.CustomerddlChange = function(index, customer) {
 		$log.debug("##Came to CustomerddlChange...");
 	};
 	
 	$scope.lineItemTaxChange = function(index, selectedTaxItem) {
 		$log.debug("##Came to lineItemTaxChange...");
 
+		$scope.salesOrder.taxCodeName =$scope.salesOrder.selectedTaxItem.taxCodeName;
+		$scope.salesOrder.taxPercenatge =$scope.salesOrder.selectedTaxItem.taxPercenatge;
+		
 		$scope.salesOrder.taxTotal = ($scope.salesOrder.selectedTaxItem.taxPercenatge / 100)
 				* ($scope.salesOrder.subTotal)
 

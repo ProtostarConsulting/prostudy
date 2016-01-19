@@ -2,6 +2,7 @@
 <div>
 		<md-input-container flex> <label>Search</label> <input
 			ng-model="searchText"> </md-input-container>
+			
 	</div>
 
 <div>
@@ -23,12 +24,12 @@
 				<!-- <a ng-href="#/invoice.list/{{invoiceId.id}}">{{invoice.finalTotal}}</a> -->
 				<td>{{$index+1}}</td>
 				<td>{{pOItem.purchaseOrderNo}}</td>
-				<td>{{pOItem.PODate}}</td>
+				<td>{{pOItem.poDate}}</td>
 				<td>{{pOItem.finalTotal}}</td>
 				<td>
 					<section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary"
-							ui-sref="salesOrder.POview({selectedPONo: pOItem.purchaseOrderNo})">View PO</md-button>
+							ui-sref="purchaseOrder.POview({selectedPONo: pOItem.purchaseOrderNo})">View PO</md-button>
 					</section>
 				</td>
 			</tr>

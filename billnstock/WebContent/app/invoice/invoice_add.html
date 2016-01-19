@@ -23,7 +23,7 @@
 			</h3>
 			<div layout layout-sm="column">
 				<md-input-container flex> <md-select
-					ng-model="invoiceObj.customerName" placeholder="Customer Name"
+					ng-model="invoiceObj.customer" placeholder="Customer Name"
 					ng-change="CustomerddlChange($index, selectedcustomerName)">
 				<md-option ng-value="cust" ng-repeat="cust in customersforinvoice">{{cust.customerName
 				}}</md-option> </md-select> </md-input-container>
@@ -53,7 +53,7 @@
 			</div>
 			<div layout layout-sm="column">
 				<md-input-container flex> <label>Address
-				</label> <textarea ng-model="invoiceObj.customerName.customerAddress" rows="2"
+				</label> <textarea ng-model="invoiceObj.customer.customerAddress" rows="2"
 					cols="1" disabled></textarea> </md-input-container>
 
 			</div>			

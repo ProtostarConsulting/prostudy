@@ -124,22 +124,32 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/SalesOrderview/:selectedSOId",
 		templateUrl : '/app/sales/salesOder_view.html',
 		controller : 'salesCtr'
+	
+	
+			
+			
 	}).state('purchaseOrder', {
 		url : "/purchaseOrder",
-		templateUrl : '/app/purchase/purchase_module.html',
-		controller : 'purchaseCtr'
-	}).state('purchaseOrder.PurchaseOrderadd', {
-		url : "/PurchaseOrderadd",
+		templateUrl : '/app/purchase/purchaseOrder_module.html',
+		controller : 'purchaseOrderCtr'
+	
+	}).state('purchaseOrder.PurchaseOrderAdd', {
+		url : "/PurchaseOrderAdd",
 		templateUrl : '/app/purchase/purchaseOrder_add.html',
-		controller : 'purchaseCtr'
+		controller : 'purchaseOrderAddCtr'
+	
 	}).state('purchaseOrder.PurchaseOrderList', {
 		url : "/PurchaseOrderList",
 		templateUrl : '/app/purchase/purchaseOrder_list.html',
-		controller : 'purchaseCtr'
+		controller : 'purchaseOrderListCtr'
+	
 	}).state('purchaseOrder.POview', {
 		url : "/POview/:selectedPONo",
 		templateUrl : '/app/purchase/purchaseOrder_view.html',
-		controller : 'purchaseCtr'
+		controller : 'purchaseOrderViewCtr'
+	
+	
+						
 	}).state('hr', {
 		url : "/hr",
 		templateUrl : '/app/hr/hr_module.html',

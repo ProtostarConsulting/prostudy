@@ -1,6 +1,6 @@
 app = angular.module("stockApp");
 
-app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
+app.controller("purchaseOrderListCtr", function($scope, $window, $mdToast, $timeout,
 		$mdSidenav, $mdUtil, $log, $state, $http, $stateParams, $routeParams,
 		$filter, objectFactory, appEndpointSF) {
 
@@ -22,9 +22,9 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 			taxTotal : 0,
 			finalTotal : ''
 	};
-	
+/*	
 	$scope.addPurchaseOrder = function() {
-		var purchaseService = appEndpointSF.getPurchaseOrderOrderService();
+		var purchaseService = appEndpointSF.getPurchaseOrderService();
 		
 		purchaseService.addPurchaseOrder($scope.purchaseOrderObj).then(function(msgBean) {
 
@@ -36,10 +36,10 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 
 		$scope.purchaseOrderObj = {};
 	}
-
+*/
 	$scope.getAllPurchaseOrder = function() {
 		$log.debug("Inside Ctr $scope.getAllPurchaseOrder");
-		var purchaseService = appEndpointSF.getPurchaseOrderOrderService();
+		var purchaseService = appEndpointSF.getPurchaseOrderService();
 
 		purchaseService.getAllPurchaseOrder().then(
 				function(purchaseOrderList) {
@@ -54,7 +54,7 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 	$scope.purchaseOrderList = [];
 	$scope.temppurchaseOrder;
 	$scope.getAllPurchaseOrder();
-
+/*
 	$log.debug("$stateParams:", $stateParams);
 	$log.debug("$stateParams.selectedPONo:",
 			$stateParams.selectedPONo);
@@ -62,7 +62,7 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 	$scope.selectedPurchaseOrderNo = $stateParams.selectedPONo;
 	
 	$scope.getPOByID = function() {
-		var purchaseService = appEndpointSF.getPurchaseOrderOrderService();
+		var purchaseService = appEndpointSF.getPurchaseOrderService();
 
 		purchaseService
 				.getPOByID($scope.selectedPurchaseOrderNo)
@@ -150,7 +150,7 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 
 		$scope.calfinalTotal();
 	};
-	
+*/	
 	/* Setup menu */
 	$scope.toggleRight = buildToggler('right');
 	/**
@@ -177,7 +177,7 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 				'Purchase Order Saved!').position("top")
 				.hideDelay(3000));
 	};
-	
+/*	
 	$scope.getAllCustomers = function() {
 		$log.debug("Inside Ctr $scope.getAllCustomers");
 		var customerService = appEndpointSF
@@ -219,4 +219,5 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 	}
 	$scope.taxforPO = [];
 	$scope.getAllTaxes();
+*/	
 });

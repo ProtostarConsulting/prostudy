@@ -11,41 +11,18 @@ app
 						invoiceId : '',
 						purchaseOrderNo : '',
 						salesOrderId : '',
-						customerName : '',
-						customerAddress : '',
+						customer : '',
+					//	customerAddress : '',
 						invoiceDate : $filter("date")(Date.now(), 'dd-MM-yyyy'),
 						invoiceLineItemList : [],
 						subTotal : '',
 						taxCodeName : '',
 						taxPercenatge : '',
 						taxTotal : 0,
-						finalTotal : ''
+						finalTotal : '',
+						note:''	
 					};
-/*					$scope.selected = [];
 
-					$log.debug("$stateParams:", $stateParams);
-					$log.debug("$stateParams.selectedInvoiceNo:",
-							$stateParams.selectedInvoiceNo);
-
-					$scope.selectedBillNo = $stateParams.selectedInvoiceNo;
-
-					$scope.showBill = function() {
-						var invoiceService = appEndpointSF.getInvoiceService();
-
-						invoiceService
-								.getinvoiceByID($scope.selectedBillNo)
-								.then(
-										function(invoiceList) {
-											$scope.invoiceDetail = invoiceList[0];
-											$log
-													.debug("$scope.showBill:invoiceDetail ===="
-															+ angular.toJson($scope.invoiceDetail));
-										});
-
-					}
-					$scope.invoiceDetail = [];
-					$scope.showBill();
-*/
 					$scope.addInvoice = function() {
 						$log.debug("No1");
 						var InvoiceService = appEndpointSF.getInvoiceService();
@@ -144,7 +121,7 @@ app
 					};
 
 					$scope.CustomerddlChange = function(index,
-							selectedcustomerName) {
+							customer) {
 						$log.debug("##Came to CustomerddlChange...");
 					//	$scope.SelectedCustomerAddress = $scope.invoiceObj.customerName.customerAddress;
 					//	$log.debug("##SelectedCustomerAddress##"+SelectedCustomerAddress);
@@ -255,7 +232,7 @@ app
 					$scope.getAllPurchaseOrder = function() {
 						$log.debug("Inside Ctr $scope.getAllPurchaseOrder");
 						var purchaseService = appEndpointSF
-								.getPurchaseOrderOrderService();
+								.getPurchaseOrderService();
 
 						purchaseService
 								.getAllPurchaseOrder()

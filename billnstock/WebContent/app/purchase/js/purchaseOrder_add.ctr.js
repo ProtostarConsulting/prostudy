@@ -1,6 +1,6 @@
 app = angular.module("stockApp");
 
-app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
+app.controller("purchaseOrderAddCtr", function($scope, $window, $mdToast, $timeout,
 		$mdSidenav, $mdUtil, $log, $state, $http, $stateParams, $routeParams,
 		$filter, objectFactory, appEndpointSF) {
 
@@ -24,7 +24,7 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 	};
 	
 	$scope.addPurchaseOrder = function() {
-		var purchaseService = appEndpointSF.getPurchaseOrderOrderService();
+		var purchaseService = appEndpointSF.getPurchaseOrderService();
 		
 		purchaseService.addPurchaseOrder($scope.purchaseOrderObj).then(function(msgBean) {
 
@@ -39,7 +39,7 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 
 	$scope.getAllPurchaseOrder = function() {
 		$log.debug("Inside Ctr $scope.getAllPurchaseOrder");
-		var purchaseService = appEndpointSF.getPurchaseOrderOrderService();
+		var purchaseService = appEndpointSF.getPurchaseOrderService();
 
 		purchaseService.getAllPurchaseOrder().then(
 				function(purchaseOrderList) {
@@ -54,7 +54,7 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 	$scope.purchaseOrderList = [];
 	$scope.temppurchaseOrder;
 	$scope.getAllPurchaseOrder();
-
+/*
 	$log.debug("$stateParams:", $stateParams);
 	$log.debug("$stateParams.selectedPONo:",
 			$stateParams.selectedPONo);
@@ -62,7 +62,7 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 	$scope.selectedPurchaseOrderNo = $stateParams.selectedPONo;
 	
 	$scope.getPOByID = function() {
-		var purchaseService = appEndpointSF.getPurchaseOrderOrderService();
+		var purchaseService = appEndpointSF.getPurchaseOrderService();
 
 		purchaseService
 				.getPOByID($scope.selectedPurchaseOrderNo)
@@ -77,7 +77,7 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 	}
 	$scope.pODetail = [];
 //	$scope.getPOByID();
-	
+*/	
 	
 	$scope.addItem = function() {
 		var item = {
@@ -190,7 +190,7 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 				});
 	}
 
-//	$scope.customers = [];
+	$scope.customers = [];
 	$scope.getAllCustomers();
 	
 	$scope.getAllStock = function() {

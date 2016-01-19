@@ -11,7 +11,7 @@ app
 						invoiceId : '',
 						purchaseOrderNo : '',
 						salesOrderId : '',
-						customerName : '',
+						customer : '',
 						customerAddress : '',
 						invoiceDate : $filter("date")(Date.now(), 'dd-MM-yyyy'),
 						invoiceLineItemList : [],

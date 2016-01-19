@@ -9,7 +9,7 @@
 					Order </label> <input ng-model="salesOrder.salesOrderId" disabled>
 				</md-input-container>
 				<md-input-container flex> <md-select
-					ng-model="salesOrder.customerName" placeholder="Customer Name"
+					ng-model="salesOrder.customer" placeholder="Customer Name"
 					ng-change="CustomerddlChange($index, customerName)"> <md-option
 					ng-value="cust" ng-repeat="cust in customersforinvoice">{{cust.customerName
 				}}</md-option> </md-select> </md-input-container>

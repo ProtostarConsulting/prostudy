@@ -1,10 +1,10 @@
 app = angular.module("stockApp");
 
-app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
+app.controller("purchaseOrderViewCtr", function($scope, $window, $mdToast, $timeout,
 		$mdSidenav, $mdUtil, $log, $state, $http, $stateParams, $routeParams,
 		$filter, objectFactory, appEndpointSF) {
 
-	$scope.purchaseOrderObj = {
+/*	$scope.purchaseOrderObj = {
 			
 			purchaseOrderNo: '',
 			customer:'',
@@ -24,7 +24,7 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 	};
 	
 	$scope.addPurchaseOrder = function() {
-		var purchaseService = appEndpointSF.getPurchaseOrderOrderService();
+		var purchaseService = appEndpointSF.getPurchaseOrderService();
 		
 		purchaseService.addPurchaseOrder($scope.purchaseOrderObj).then(function(msgBean) {
 
@@ -39,7 +39,7 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 
 	$scope.getAllPurchaseOrder = function() {
 		$log.debug("Inside Ctr $scope.getAllPurchaseOrder");
-		var purchaseService = appEndpointSF.getPurchaseOrderOrderService();
+		var purchaseService = appEndpointSF.getPurchaseOrderService();
 
 		purchaseService.getAllPurchaseOrder().then(
 				function(purchaseOrderList) {
@@ -54,20 +54,20 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 	$scope.purchaseOrderList = [];
 	$scope.temppurchaseOrder;
 	$scope.getAllPurchaseOrder();
-
+*/
 	$log.debug("$stateParams:", $stateParams);
 	$log.debug("$stateParams.selectedPONo:",
 			$stateParams.selectedPONo);
 
-	$scope.selectedPurchaseOrderNo = $stateParams.selectedPONo;
+	$scope.purchaseOrderNo = $stateParams.selectedPONo;
 	
 	$scope.getPOByID = function() {
-		var purchaseService = appEndpointSF.getPurchaseOrderOrderService();
+		var purchaseService = appEndpointSF.getPurchaseOrderService();
 
 		purchaseService
-				.getPOByID($scope.selectedPurchaseOrderNo)
-				.then(function(pOList) {
-							$scope.pODetail = pOList[0];
+				.getPOByID($scope.purchaseOrderNo)
+				.then(function(pODetails) {
+							$scope.pODetail = pODetails;
 							$log
 									.debug("getPOByID at controller===="
 											+ angular
@@ -76,9 +76,9 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 
 	}
 	$scope.pODetail = [];
-//	$scope.getPOByID();
+	$scope.getPOByID();
 	
-	
+/*	
 	$scope.addItem = function() {
 		var item = {
 			srNo : $scope.purchaseOrderObj.pOLineItemList.length + 1,
@@ -150,7 +150,7 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 
 		$scope.calfinalTotal();
 	};
-	
+*/	
 	/* Setup menu */
 	$scope.toggleRight = buildToggler('right');
 	/**
@@ -177,7 +177,7 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 				'Purchase Order Saved!').position("top")
 				.hideDelay(3000));
 	};
-	
+/*	
 	$scope.getAllCustomers = function() {
 		$log.debug("Inside Ctr $scope.getAllCustomers");
 		var customerService = appEndpointSF
@@ -219,4 +219,5 @@ app.controller("purchaseCtr", function($scope, $window, $mdToast, $timeout,
 	}
 	$scope.taxforPO = [];
 	$scope.getAllTaxes();
+*/	
 });

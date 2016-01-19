@@ -518,13 +518,13 @@ function googleEndpointSF($log, $q) {
 				});
 		return deferred.promise;
 	}
-
-	SalesOrderService.getSOByID = function(SOByID) {
+	
+	SalesOrderService.getSOByID = function(salesOrderId) {
 		var deferred = $q.defer();
 		gapi.client.salesOrderService.getSOByID({
-			"SOByID" : SOByID
+			"salesOrderId" : salesOrderId
 		}).execute(function(resp) {
-			$log.debug("getSOByID  at enpoint" + resp);
+			$log.debug("getSOByID at enpoint" + angular.toJson(resp));
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -532,13 +532,13 @@ function googleEndpointSF($log, $q) {
 	/* =============================================================================================================================== */
 
 	// Start of SalesOrderService
-	var PurchaseOrderOrderService = {};
+	var PurchaseOrderService = {};
 
-	serviceFactory.getPurchaseOrderOrderService = function() {
-		return PurchaseOrderOrderService;
+	serviceFactory.getPurchaseOrderService = function() {
+		return PurchaseOrderService;
 	}
 	
-	PurchaseOrderOrderService.addPurchaseOrder = function(purchaseOrder) {
+	PurchaseOrderService.addPurchaseOrder = function(purchaseOrder) {
 		var deferred = $q.defer();
 		gapi.client.purchaseOrderService.addPurchaseOrder(purchaseOrder).execute(function(resp) {
 			$log.debug("addPurchaseOrder at enpoint:" + resp);
@@ -547,7 +547,7 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	PurchaseOrderOrderService.getAllPurchaseOrder = function(){
+	PurchaseOrderService.getAllPurchaseOrder = function(){
 		var deferred = $q.defer();
 		
 		gapi.client.purchaseOrderService.getAllPurchaseOrder().execute(function(resp){
@@ -557,14 +557,16 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 	
-	PurchaseOrderOrderService.getPOByID = function(purchaseOrderId){
+	PurchaseOrderService.getPOByID = function(purchaseOrderNo) {
 		var deferred = $q.defer();
-		
-		gapi.client.purchaseOrderService.getPOByID("purchaseOrderId" , purchaseOrderId).execute(function(resp){
-			$log.debug("getPOByID  at enpoint" + resp);
+		gapi.client.purchaseOrderService.getPOByID({
+			"purchaseOrderNo" : purchaseOrderNo
+		}).execute(function(resp) {
+			$log.debug("getPOByID at enpoint" + angular.toJson(resp));
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
 	}
+	
 	return serviceFactory;
 }

@@ -15,8 +15,8 @@
 				</label> <input ng-model="purchaseOrderObj.purchaseOrderNo"> </md-input-container>
 				
 					<md-input-container flex> <md-select
-					ng-model="purchaseOrderObj.customerName" placeholder="Customer Name"
-					ng-change="CustomerddlChange($index, customerName)"> <md-option
+					ng-model="purchaseOrderObj.customer" placeholder="Customer Name"
+					ng-change="CustomerddlChange($index, customer)"> <md-option
 					ng-value="cust" ng-repeat="cust in customersforinvoice">{{cust.customerName
 				}}</md-option> </md-select> </md-input-container>
 			</div>
@@ -31,7 +31,7 @@
 
 			<div layout layout-sm="column">
 				<md-input-container flex> <label>P.O.Date
-				</label> <input ng-model="purchaseOrderObj.PODate"> </md-input-container>
+				</label> <input ng-model="purchaseOrderObj.poDate"> </md-input-container>
 				
 				<md-input-container flex> <label>Requisitioner
 				</label> <input ng-model="purchaseOrderObj.requisitioner"> </md-input-container>
@@ -112,17 +112,15 @@
 					<td><md-input-container flex> <md-select
 							ng-model="purchaseOrderObj.selectedTaxItem" placeholder="Tax Type"
 							ng-change="lineItemTaxChange($index, selectedTaxItem)">
+					
 						<md-option ng-value="taxValue"
 							ng-repeat="taxValue in taxforPO">{{taxValue.taxCodeName}}</md-option>
 						</md-select> </md-input-container></td>
 						
-<!-- 						<td><md-input-container flex> <label>Item Name
-						</label> <input ng-model="item.taxCodeName" 
-							ng-change="calSubTotal()"> </md-input-container></td>	 -->
 					<td><md-input-container flex> <label>Tax
-						</label> <b> <input
-							ng-model="purchaseOrderObj.selectedTaxItem.taxPercenatge" >%
+						</label> <b> {{purchaseOrderObj.selectedTaxItem.taxPercenatge}}%
 						</b> </md-input-container></td>
+					
 					<td><md-input-container flex> <b>{{purchaseOrderObj.taxTotal}}</b>
 						</md-input-container></td>
 				</tr>
