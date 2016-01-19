@@ -9,6 +9,7 @@ import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.purchase.entities.PurchaseOrderEntity;
 import com.protostar.billingnstock.sales.entities.SalesOrderEntity;
 import com.protostar.billingnstock.stock.entities.StockItemEntity;
+import com.protostar.billingnstock.tax.entities.TaxEntity;
 
 @Entity
 public class InvoiceEntity {
@@ -16,20 +17,32 @@ public class InvoiceEntity {
 	private Long id;
 	@Index
 	private Long invoiceId;
-
-	private List<Customer> customer;
-	private List<SalesOrderEntity> salesOrder;
-	private List<PurchaseOrderEntity> purchaseOrder;
-	private List<StockItemEntity> stockItem;
-
-	// private String customerName;
-
-	public List<StockItemEntity> getStockItem() {
-		return stockItem;
+	private String invoiceDate;
+	private String itemName;
+	private String rate;
+	private String qty;
+	private String subTotal;
+	private String taxTotal;
+	private String finalTotal;
+	private String note;
+	
+	private List<StockItemEntity> invoiceLineItemList;
+	private Customer customer;
+	private PurchaseOrderEntity purchaseOrderNo;
+	private SalesOrderEntity salesOrderId;
+    private TaxEntity selectedTaxItem;
+  
+    
+    public TaxEntity getSelectedTaxItem() {
+		return selectedTaxItem;
 	}
 
-	public void setStockItem(List<StockItemEntity> stockItem) {
-		this.stockItem = stockItem;
+	public void setSelectedTaxItem(TaxEntity selectedTaxItem) {
+		this.selectedTaxItem = selectedTaxItem;
+	}
+	
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	public String getInvoiceDate() {
@@ -39,17 +52,6 @@ public class InvoiceEntity {
 	public void setInvoiceDate(String invoiceDate) {
 		this.invoiceDate = invoiceDate;
 	}
-
-	// private String customerAddress;
-	private String invoiceDate;
-	private String itemName;
-	private String rate;
-	private String qty;
-	private String subTotal;
-	private String taxCodeName;
-	private String taxPercenatge;
-	private String taxTotal;
-	private String finalTotal;
 
 	public Long getInvoiceId() {
 		return invoiceId;
@@ -91,21 +93,6 @@ public class InvoiceEntity {
 		this.subTotal = subTotal;
 	}
 
-	public String getTaxCodeName() {
-		return taxCodeName;
-	}
-
-	public void setTaxCodeName(String taxCodeName) {
-		this.taxCodeName = taxCodeName;
-	}
-
-	public String getTaxPercenatge() {
-		return taxPercenatge;
-	}
-
-	public void setTaxPercenatge(String taxPercenatge) {
-		this.taxPercenatge = taxPercenatge;
-	}
 
 	public String getTaxTotal() {
 		return taxTotal;
@@ -131,28 +118,40 @@ public class InvoiceEntity {
 		this.id = id;
 	}
 
-	public List<Customer> getCustomer() {
+	public PurchaseOrderEntity getPurchaseOrderNo() {
+		return purchaseOrderNo;
+	}
+
+	public void setPurchaseOrderNo(PurchaseOrderEntity purchaseOrderNo) {
+		this.purchaseOrderNo = purchaseOrderNo;
+	}
+
+	public SalesOrderEntity getSalesOrderId() {
+		return salesOrderId;
+	}
+
+	public void setSalesOrderId(SalesOrderEntity salesOrderId) {
+		this.salesOrderId = salesOrderId;
+	}
+
+	public List<StockItemEntity> getInvoiceLineItemList() {
+		return invoiceLineItemList;
+	}
+
+	public void setInvoiceLineItemList(List<StockItemEntity> invoiceLineItemList) {
+		this.invoiceLineItemList = invoiceLineItemList;
+	}
+
+	public Customer getCustomer() {
 		return customer;
 	}
-
-	public void setCustomer(List<Customer> customer) {
-		this.customer = customer;
+	
+	public String getNote() {
+		return note;
 	}
 
-	public List<SalesOrderEntity> getSalesOrder() {
-		return salesOrder;
+	public void setNote(String note) {
+		this.note = note;
 	}
-
-	public List<PurchaseOrderEntity> getPurchaseOrder() {
-		return purchaseOrder;
-	}
-
-	public void setPurchaseOrder(List<PurchaseOrderEntity> purchaseOrder) {
-		this.purchaseOrder = purchaseOrder;
-	}
-
-	public void setSalesOrder(List<SalesOrderEntity> salesOrder) {
-		this.salesOrder = salesOrder;
-	}
-
+	
 }// end of InvoiceEntity

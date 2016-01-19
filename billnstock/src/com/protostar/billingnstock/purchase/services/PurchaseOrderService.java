@@ -28,13 +28,13 @@ public class PurchaseOrderService {
 			
 		}
 		
-		@ApiMethod(name="getPOByID")
-		public PurchaseOrderEntity getPOByID(@Named("purchaseOrderId") String purchaseOrderId){
+		
+		@ApiMethod(name = "getPOByID")
+		public PurchaseOrderEntity getPOByID(@Named("purchaseOrderNo") Long purchaseOrderNo) {
+
+			PurchaseOrderEntity POById = ofy().load().type(PurchaseOrderEntity.class).filter("purchaseOrderNo", purchaseOrderNo).first().now();
+			System.out.println("getPOByID Recored is:"+ purchaseOrderNo);
 			
-			PurchaseOrderEntity POById=ofy().load().type(PurchaseOrderEntity.class).filter("purchaseOrderId", purchaseOrderId).first().now();
-			System.out.println("Searched Recored is:"
-					+ POById.getCustomerName());
 			return POById;
-			
 		}
 }

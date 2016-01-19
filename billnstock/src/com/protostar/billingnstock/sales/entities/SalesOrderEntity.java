@@ -1,8 +1,12 @@
 package com.protostar.billingnstock.sales.entities;
 
+import java.util.List;
+
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
+import com.protostar.billingnstock.cust.entities.Customer;
+import com.protostar.billingnstock.stock.entities.StockItemEntity;
 
 @Entity
 public class SalesOrderEntity {
@@ -10,9 +14,7 @@ public class SalesOrderEntity {
 	@Id
 	private Long id;
 	@Index
-	private String salesOrderId;
-	@Index
-	private String customerName ;
+	private Long salesOrderId;
 	private String customerRefId ;
 	private String quotationDate ;
 	private String salesOrderDate ;
@@ -24,33 +26,43 @@ public class SalesOrderEntity {
 	private String deliveryDate;
 	private String paymentTerms;
 	private String dueDate;
-	private String sOLineItemList;
 	private double subTotal ;
 	private String taxCodeName ;
 	private double taxPercenatge ;
 	private double taxTotal ;
 	private double finalTotal;
 	
+	private List<StockItemEntity> sOLineItemList;
+	private Customer customer;	
+
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 	
+	public List<StockItemEntity> getsOLineItemList() {
+		return sOLineItemList;
+	}
+	public void setsOLineItemList(List<StockItemEntity> sOLineItemList) {
+		this.sOLineItemList = sOLineItemList;
+	}
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getCustomerName() {
-		return customerName;
-	}
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
-	}
-	public String getSalesOrderId() {
+	
+
+
+	public Long getSalesOrderId() {
 		return salesOrderId;
 	}
-	public void setSalesOrderId(String salesOrderId) {
+	public void setSalesOrderId(Long salesOrderId) {
 		this.salesOrderId = salesOrderId;
 	}
-
 	public String getCustomerRefId() {
 		return customerRefId;
 	}
@@ -116,12 +128,6 @@ public class SalesOrderEntity {
 	}
 	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
-	}
-	public String getsOLineItemList() {
-		return sOLineItemList;
-	}
-	public void setsOLineItemList(String sOLineItemList) {
-		this.sOLineItemList = sOLineItemList;
 	}
 	public double getSubTotal() {
 		return subTotal;

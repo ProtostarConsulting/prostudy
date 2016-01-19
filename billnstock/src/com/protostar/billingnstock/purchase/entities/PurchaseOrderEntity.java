@@ -1,8 +1,13 @@
 package com.protostar.billingnstock.purchase.entities;
 
+import java.util.List;
+
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
+import com.protostar.billingnstock.cust.entities.Customer;
+import com.protostar.billingnstock.stock.entities.StockItemEntity;
+import com.protostar.billingnstock.tax.entities.TaxEntity;
 
 @Entity
 public class PurchaseOrderEntity {
@@ -10,29 +15,50 @@ public class PurchaseOrderEntity {
 	@Id
 	private Long id;
 	@Index
-	private Long purchaseOrderNo;
-	@Index
-	private String customerName;
+	private Long purchaseOrderNo;	
 	private String to;
 	private String shipTo;
-	private String PODate;
+	private String poDate;
 	private String requisitioner;
 	private String shippedVia;
 	private String fOBPoint;
 	private String terms;
-	private String pOLineItemList;
-	private String doublesubTotal ;
+	private String subTotal ;
 	private String taxCodeName ;
-	private Long taxPercenatge ;
+	private String taxPercenatge ;
 	private double taxTotal; 
 	private double finalTotal ;
 	
+	private Customer customer;
+	private List<StockItemEntity> pOLineItemList;
+	private TaxEntity selectedTaxItem;
 	
+	
+	
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public TaxEntity getSelectedTaxItem() {
+		return selectedTaxItem;
+	}
+	public void setSelectedTaxItem(TaxEntity selectedTaxItem) {
+		this.selectedTaxItem = selectedTaxItem;
+	}
+	public List<StockItemEntity> getpOLineItemList() {
+		return pOLineItemList;
+	}
+	public void setpOLineItemList(List<StockItemEntity> pOLineItemList) {
+		this.pOLineItemList = pOLineItemList;
 	}
 	public Long getPurchaseOrderNo() {
 		return purchaseOrderNo;
@@ -40,12 +66,7 @@ public class PurchaseOrderEntity {
 	public void setPurchaseOrderNo(Long purchaseOrderNo) {
 		this.purchaseOrderNo = purchaseOrderNo;
 	}
-	public String getCustomerName() {
-		return customerName;
-	}
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
-	}
+
 	public String getTo() {
 		return to;
 	}
@@ -58,12 +79,7 @@ public class PurchaseOrderEntity {
 	public void setShipTo(String shipTo) {
 		this.shipTo = shipTo;
 	}
-	public String getPODate() {
-		return PODate;
-	}
-	public void setPODate(String pODate) {
-		PODate = pODate;
-	}
+	
 	public String getRequisitioner() {
 		return requisitioner;
 	}
@@ -88,28 +104,25 @@ public class PurchaseOrderEntity {
 	public void setTerms(String terms) {
 		this.terms = terms;
 	}
-	public String getpOLineItemList() {
-		return pOLineItemList;
-	}
-	public void setpOLineItemList(String pOLineItemList) {
-		this.pOLineItemList = pOLineItemList;
-	}
-	public String getDoublesubTotal() {
-		return doublesubTotal;
-	}
-	public void setDoublesubTotal(String doublesubTotal) {
-		this.doublesubTotal = doublesubTotal;
-	}
+
+	
 	public String getTaxCodeName() {
 		return taxCodeName;
 	}
 	public void setTaxCodeName(String taxCodeName) {
 		this.taxCodeName = taxCodeName;
 	}
-	public Long getTaxPercenatge() {
+	
+	public String getSubTotal() {
+		return subTotal;
+	}
+	public void setSubTotal(String subTotal) {
+		this.subTotal = subTotal;
+	}
+	public String getTaxPercenatge() {
 		return taxPercenatge;
 	}
-	public void setTaxPercenatge(Long taxPercenatge) {
+	public void setTaxPercenatge(String taxPercenatge) {
 		this.taxPercenatge = taxPercenatge;
 	}
 	public double getTaxTotal() {
@@ -123,6 +136,12 @@ public class PurchaseOrderEntity {
 	}
 	public void setFinalTotal(double finalTotal) {
 		this.finalTotal = finalTotal;
+	}
+	public String getPoDate() {
+		return poDate;
+	}
+	public void setPoDate(String poDate) {
+		this.poDate = poDate;
 	}
 	
 	
