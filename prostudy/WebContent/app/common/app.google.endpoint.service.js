@@ -24,7 +24,6 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 	
-
 	UserService.getUser = function() {
 		var deferred = $q.defer();
 		gapi.client.userService.getUser().execute(
@@ -34,7 +33,6 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 				});
 		return deferred.promise;
 	} 
-
 
 	UserService.getUserByEmailID = function(email_id) {
 		  var deferred = $q.defer();
@@ -77,14 +75,118 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 					deferred.resolve(resp);
 				});
 		return deferred.promise;
-
 	}
 	
 	UserService.logout = function() {
 		$localStorage.loggedinUser = null;
-	}
+	}	// End of UserService
 	
-	// End of UserService
+	//start of ChapterService
+	var ChapterService = {};
+
+	serviceFactory.getChapterService = function() {
+		return ChapterService;
+	}
+
+	ChapterService.addChapter = function(chapter) {
+		$log.debug("No2");	
+		var deferred = $q.defer();
+		$log.debug("abc");
+		gapi.client.chapterService.addChapter(chapter).execute(
+				function(resp) {
+					$log
+					.debug("No5");	
+					$log.debug("addChapter#resp:" + resp);
+					deferred.resolve(resp);
+				});
+		$log.debug("No3");	
+		return deferred.promise;
+	}
+
+	ChapterService.getChapters = function() {
+		var deferred = $q.defer();
+		gapi.client.chapterService.getAllChapters().execute(
+				function(resp) {
+					$log.debug("getAllChapters#resp :" + resp);
+					deferred.resolve(resp.items);   
+				});
+		return deferred.promise;
+	} 
+	
+	
+	ChapterService.getChaptersByID = function(selectedChapterId) {
+		var deferred = $q.defer();
+		gapi.client.chapterService.getChaptersByID({'chapterId':selectedChapterId}).execute(
+				function(resp) {
+			
+					$log.debug("getChaptersByID#resp:" +angular.toJson(resp));
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+	} // End of getChaptersByID
+	
+	//end of ChapterService
+	
+	
+	// start of BookService
+
+	var BookService = {};
+
+	serviceFactory.getBookService = function() {
+		return BookService;
+	}
+
+	BookService.addBook = function(book) {
+		$log.debug("No2");	
+		var deferred = $q.defer();
+		$log.debug("abc");
+			
+		gapi.client.bookService.addBook(book).execute(
+				function(resp) {
+					$log
+					.debug("No5");	
+					$log.debug("addBook#resp:" + resp);
+					deferred.resolve(resp);
+				});
+		$log.debug("No3");	
+		return deferred.promise;
+	}//end of addBook
+	
+	BookService.getBooks = function() {
+		var deferred = $q.defer();
+		gapi.client.bookService.getBooks().execute(
+				function(resp) {
+					$log.debug("getBooks#resp:" + resp);
+					deferred.resolve(resp.items);
+				});
+		return deferred.promise;
+	}  // End of getBooks
+	
+	
+	BookService.getBookbyID = function(selectedBookId) {
+		var deferred = $q.defer();
+		gapi.client.bookService.getBookbyID({'bookId':selectedBookId}).execute(
+				function(resp) {
+			
+					$log.debug("getBookbyID#resp:" +angular.toJson(resp));
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+	}  // End of getBookbyID
+	
+	BookService.getStandard_BookbyID = function(selectedStdId) {
+		var deferred = $q.defer();
+		gapi.client.bookService.getStandard_BookbyID({'standard':selectedStdId}).execute(
+				function(resp) {
+			
+					$log.debug("getStandard_BookbyID#resp:" +angular.toJson(resp));
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+	}  // End of getStandard_BookbyID
+
+	
+
 			
 	// start of SyllabusService
 	
@@ -148,11 +250,16 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		gapi.client.practiceExamService.getPracticeExams().execute(
 				function(resp) {
 
-					deferred.resolve(resp.items);
+					$log.debug("getAllChapters#resp :" + resp);
+					deferred.resolve(resp.items);   
+
 				});
 		return deferred.promise;
-	}
 
+	} 
+	
+	// Add PracticeExam Service
+	var PracticeExamService = {};
 	PracticeExamService.getPracticeExamById = function(selectedExamId) {
 		var deferred = $q.defer();
 		gapi.client.practiceExamService.getPracticeExamById({
@@ -165,6 +272,11 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 	// End of PracticeExamService
+	
+	
+	
+
+
 
 	// start of InstituteService
 
@@ -209,6 +321,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 
+
 	InstituteService.addInstituteAdmins = function(selectedInstituteId, admin) {
 
 		var deferred = $q.defer();
@@ -219,31 +332,23 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 				});
 
 		return deferred.promise;
-	}
+	}  // End of getStandard_BookbyID
+	
+	
 
-	InstituteService.addInstituteStudents = function(selectedInstituteId, stud) {
 
-		var deferred = $q.defer();
-		gapi.client.instituteService.addInstituteStudents(stud).execute(
-				function(resp) {
+		InstituteService.getInstituteById = function(selectedInstituteId) {
+			  var deferred = $q.defer();
+			  gapi.client.instituteService.getInstituteById({
+			   'instituteId' : selectedInstituteId
+			  }).execute(function(resp) {
+			   $log.debug("resp:" + angular.toJson(resp));
 
-					deferred.resolve(resp);
-				});
+			   deferred.resolve(resp);
+			  });
+			  return deferred.promise;                                   
+			 }
 
-		return deferred.promise;
-	}
-
-	InstituteService.getInstituteById = function(selectedInstituteId) {
-		var deferred = $q.defer();
-		gapi.client.instituteService.getInstituteById({
-			'instituteId' : selectedInstituteId
-		}).execute(function(resp) {
-			$log.debug("resp:" + angular.toJson(resp));
-
-			deferred.resolve(resp);
-		});
-		return deferred.promise;                                   
-	}
 	
 	
 	InstituteService.editInstitute = function(insti) {
@@ -251,16 +356,46 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		var deferred = $q.defer();
 		gapi.client.instituteService.editInstitute(insti).execute(
 				function(resp) {
+			
+					$log.debug("getStandard_BookbyID#resp:" +angular.toJson(resp));
 					$log.debug("result123 :" + angular.toJson(resp));
 
 					deferred.resolve(resp);
 				});
-
 		return deferred.promise;
-	}
-
-	// End of InstituteService
+	}	// End of InstituteService  
 	
+	// End of getStandard_BookbyID
+	
+	/*	Standard_BookService.addStandard_Book = function(book) {
+	$log.debug("No2");	
+	var deferred = $q.defer();
+	$log.debug("abc");
+		
+	gapi.client.standardBookService.addStandard_Book(book).execute(
+			function(resp) {
+				$log
+				.debug("No5");	
+				$log.debug("addStandard_Book#resp:" + resp);
+				deferred.resolve(resp);
+			});
+	$log.debug("No3");	
+	return deferred.promise;
+}//end of addStandard_Book
+
+
+Standard_BookService.getStdBooks = function() {
+	var deferred = $q.defer();
+	gapi.client.standardBookService.getStdBooks().execute(
+			function(resp) {
+				$log.debug("getStdBooks#resp:" + resp);
+				deferred.resolve(resp.items);
+			});
+	return deferred.promise;
+}  // End of getStdBooks
+*/	
+
+
 
 	// start of QuestionService
 	var QuestionService = {};
@@ -315,7 +450,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
-	}
-	// End of StudentService
+	}// End of StudentService
+	
 	return serviceFactory;
 }
