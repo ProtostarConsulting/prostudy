@@ -1,10 +1,7 @@
 package com.protostar.prostudy.entity;
 
-import static com.googlecode.objectify.ObjectifyService.ofy;
-
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
-import com.googlecode.objectify.annotation.Ignore;
 
 @Entity
 public class CarAddress {

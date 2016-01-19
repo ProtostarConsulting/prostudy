@@ -48,6 +48,7 @@ angular.module("prostudyApp").controller(
 
 							$log.debug("tempChapter" + $scope.tempChapter);
 							$scope.tempChapter = {
+									chapterId : "",
 								chapterId :"",
 								chapter_name : "",
 								chapter_content : "",

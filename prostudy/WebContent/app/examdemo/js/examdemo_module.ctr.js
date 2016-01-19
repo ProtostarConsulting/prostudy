@@ -3,8 +3,52 @@ angular.module("prostudyApp").controller(
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, objectFactory, appEndpointSF) {
 
+			$scope.showSavedToast = function() {
+				$mdToast.show($mdToast.simple().content('Institute Saved!')
+						.position("top").hideDelay(3000));
+			};
+			
 			$log.debug("Inside examDemoModuleCtr");
+			$scope.tempInternet = {
+					internet_name:"",
+					data_plan : "",
+					cost:""				
+				};
+			$scope.addInternet = function() {
+				
+				var internetService = appEndpointSF.getInternetService();
+				
+				internetService.addInternet($scope.tempInternet).then(
+						function(msgBean) {
+						
+							$log.debug("Inside Ctr examDemoModuleCtr");
+							$scope.showSavedToast();
+							$scope.tempInternet = {
+									internet_name:"",
+									data_plan : "",
+									cost:""				
+								};
+				
+						});
+							}
+			$scope.getInternet = function() {
 
+				var internetService = appEndpointSF.getInternetService();
+				internetService.getInternet().then(function(internetList) {
+					$log.debug("Inside Ctr getInternetService");
+					$scope.internet = internetList;
+				});
+			}
+		
+				$scope.fetchNewInternet = function() {
+
+				var internetService = appEndpointSF.getInternetService();
+				internetService.fetchNewInternet().then(function(internetList) {
+					
+					$scope.Internetdetails = internetList;
+				});
+			}
+			
 			$scope.testGAPICall = function() {
 				console.log("in side testGAPICall");
 				var cars = appEndpointSF.getQuestionService().getCars()
@@ -19,7 +63,6 @@ angular.module("prostudyApp").controller(
 						});
 
 			};
-
 			/* Setup page menu */
 			$scope.toggleRight = buildToggler('right');
 			/**

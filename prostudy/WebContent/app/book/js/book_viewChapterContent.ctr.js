@@ -30,15 +30,12 @@ angular.module("prostudyApp")
 						$log.debug("Inside showChapterContent ");
 						var ChapterService = appEndpointSF.getChapterService();
 
-						
-						ChapterService
-								.getChaptersByID($scope.selectedChapterId)
-								.then(
+						//$log.debug("$scope.selectedChapterId:"+ $scope.selectedChapterId)
+						ChapterService.getChaptersByID($scope.selectedChapterId).then(
 										function(chapterList) {
 
 											$scope.chapters = chapterList;
-											$log.debug("$scope.chapters  ===="
-															+ angular.toJson($scope.chapters));
+											$log.debug("$scope.chapters...  ===="+ angular.toJson($scope.chapters));
 
 											
 										});
@@ -62,8 +59,7 @@ angular.module("prostudyApp")
 										{
 
 											$scope.book_ChapterDetails = bookList;
-											$log.debug("bookList ===="
-													+ angular.toJson(bookList));
+											$log.debug("bookList ===="+ angular.toJson(bookList));
 											$scope.selectedChapter = $scope.book_ChapterDetails[0];
 
 											$log.debug("$scope.selectedChapter ===="+ angular.toJson($scope.selectedChapter));
@@ -137,8 +133,7 @@ angular.module("prostudyApp")
 											($scope.currentPage * $scope.itemsPerPage)
 													- $scope.itemsPerPage,
 											($scope.currentPage * $scope.itemsPerPage));
-							$log.debug(" $scope.chaptersOnButton "
-									+ angular.toJson($scope.chaptersOnButton));
+							$log.debug(" $scope.chaptersOnButton "+ angular.toJson($scope.chaptersOnButton));
 
 						}
 						console.log("$scope.currentPage=" + $scope.currentPage);

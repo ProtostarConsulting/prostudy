@@ -13,7 +13,7 @@ angular.module("prostudyApp").controller(
 
 				var studentService = appEndpointSF.getStudentService();
 
-				studentService.getStudent().then(function(studList) {
+				studentService.getStudents().then(function(studList) {
 					$log.debug("Inside Ctr getStudents");
 					$scope.students = studList;
 				});

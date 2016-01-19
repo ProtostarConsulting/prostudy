@@ -5,12 +5,11 @@ angular.module("prostudyApp").controller(
 				tableTestDataFactory, $state) {
 
 			$scope.showSavedToast = function() {
-				$mdToast.show($mdToast.simple().content('login Saved!')
+				$mdToast.show($mdToast.simple().content('New Teacher Registered!')
 						.position("top").hideDelay(3000));
 			};
 			
-			//$scope.userRole = [admin,student,teacher]
-			$scope.book = {
+					$scope.book = {
 					bookid : "",
 					book_name : "",
 					author : "",
@@ -30,8 +29,9 @@ angular.module("prostudyApp").controller(
 				gender : "",
 				pwd : "",
 				role : "Teacher",
-				book :$scope.book,
-				exam :[]
+				book:""
+				//book :$scope.book,
+				//exam :[]
 			};
 			$scope.loginMsg  = "";
 			$scope.users = [];
@@ -41,7 +41,7 @@ angular.module("prostudyApp").controller(
 				var UserService = appEndpointSF.getUserService();
 				UserService.addUser($scope.tempUser).then(function(msgBean) {
 					$log.debug("No6");
-					$log.debug("Inside Ctr addLogin");
+					$log.debug("Inside Ctr addTeacher");
 					$log.debug("msgBean.msg:" + msgBean.msg);
 					$scope.showSavedToast();
 					
@@ -58,6 +58,7 @@ angular.module("prostudyApp").controller(
 					$scope.users = userList;
 				});
 			}
+			
 
 			$scope.login = function() {
 				appEndpointSF.getUserService().login($scope.tempUser.userName, $scope.tempUser.pwd).then(
@@ -74,9 +75,7 @@ angular.module("prostudyApp").controller(
 										+ $scope.tempUser.userName);
 								$scope.loginMsg="Login failed.";
 							}
-						}
-
-				)
+						})
 
 			}
 

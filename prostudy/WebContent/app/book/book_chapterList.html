@@ -6,12 +6,9 @@
 			<tr>
 				<th>Chapter No</th>
 				<th>Chapter</th>
-
 			</tr>
 		</thead>
-
 		<tbody>
-
 			<tr ng-repeat="chapter in selectedChapter">
 
 				<td>
@@ -22,27 +19,24 @@
 				<td ng-click="showChapterContent()"><a href="#"
 					ui-sref="book.view({selectedBookId : selectedBookId, selectedChapterId : chapter.chapterId})"><b>{{chapter.chapter_name}}</b></a>
 				</td>
-
-
 			</tr>
 		</tbody>
+		</table>
+			<div>
 	</table>
 
 	<div>
 		<table>
-			<tr>
-				<td><md-button class="md-raised md-primary" ui-sref="book.list">Back
-					To Book</md-button></td>
-				<td><md-button class="md-raised md-primary"
-						ng-click="addMyBook()">Add To My Books</md-button></td>
-			</tr>
-		</table>
-
-
+		<tr>
+			<td><md-button class="md-raised md-primary" ui-sref="book.list">Back To Book</md-button></td>
+			<td><md-button class="md-raised md-primary"	ng-click="addMyBook()">Add To My Books</md-button></td>
+		</tr>
+				</table>
 	</div>
 	<a
 		ui-sref="book.chapterList.addcomment({selectedBookId : selectedBookId})"><b>Add
 			Comment</b></a>
 	<div ui-view></div>
-</div>
+	</div>
+	
 </md-content>

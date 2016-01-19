@@ -4,58 +4,6 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 
 	var serviceFactory = {};
 
-	// start of InternetService
-
-	var InternetService = {};
-
-	serviceFactory.getInternetService = function() {
-		return InternetService;
-	}
-
-	InternetService.addInternet = function(inter) {
-
-		var deferred = $q.defer();
-		gapi.client.internetService.addInternet(inter).execute(function(resp) {
-			$log.debug("result123456 :" + angular.toJson(resp));
-			deferred.resolve(resp);
-		});
-
-		return deferred.promise;           
-	}
-	
-	InternetService. updateInternet = function(inter) {
-
-		var deferred = $q.defer();
-		gapi.client.internetService. updateInternet(inter).execute(function(resp) {
-			$log.debug("result..... :" + angular.toJson(resp));
-			deferred.resolve(resp);
-		});
-
-		return deferred.promise;           
-	}
-
-	InternetService.getInternet = function() {
-		var deferred = $q.defer();
-		gapi.client.internetService.getInternet().execute(function(resp) {
-
-			deferred.resolve(resp.items);
-		});
-		return deferred.promise;
-	}
-
-	InternetService.fetchInternet = function(cost) {
-		var deferred = $q.defer();
-		gapi.client.internetService.fetchInternet({
-			'cost' : cost
-		}).execute(function(resp) {
-			$log.debug("resp:" + angular.toJson(resp));
-			// deferred.resolve(resp.items); //for list
-			deferred.resolve(resp);
-		});
-		return deferred.promise;
-	}
-	// End of InternetService
-
 	// start of UserService
 	var UserService = {};
 
@@ -106,7 +54,6 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		var deferred = $q.defer();
 		gapi.client.userService.updateUser(user).execute(
 				function(resp) {	
-					//$log.debug("addUser... #resp:" + angular.toJson(resp));
 					deferred.resolve(resp.result);
 				});
 		$log.debug("No3");	

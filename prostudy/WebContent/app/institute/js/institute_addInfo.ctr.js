@@ -27,7 +27,6 @@ angular.module("prostudyApp").controller(
 			   $scope.disableButton = function() {
 			        $scope.isDisabled = true;
 			    }
-
 			$scope.students=[];
 				$scope.addStudents = function(){		
 				$scope.students.push({ 'student_name':$scope.student_name, 'student_email_id': $scope.student_email_id, 'student_contact_no':$scope.student_contact_no});
@@ -174,7 +173,7 @@ angular.module("prostudyApp").controller(
 			}
 
 			$scope.getPracticeExams();		
-			$scope.getBooks = function() {
+		/*	$scope.getBooks = function() {
 
 				var BookService = appEndpointSF.getBookService();
 
@@ -185,7 +184,7 @@ angular.module("prostudyApp").controller(
 							
 						});
 			}
-			$scope.getBooks();
+			$scope.getBooks();*/
 			$scope.getInstitutes = function() {
 				
 				var InstituteService = appEndpointSF.getInstituteService();

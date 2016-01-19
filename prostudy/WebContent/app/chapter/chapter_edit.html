@@ -12,7 +12,7 @@
 				<th name="Board" order-by="board"></th>
 				<th name="Student Class" order-by="student_class"></th>
 				<th name="Subject" order-by="subject"></th>
-			</tr>
+</tr>
 		</thead>
 
 		<tbody>
@@ -29,16 +29,21 @@
 
 				<td>
 					<div ng-hide="editingData[chapter.id]">
-						{{chapter.chapter_name}}</div>
+						{{chapter.id}}</div>
 					<div ng-show="editingData[chapter.id]">
 						<md-input-container flex>
 						 <input ng-model="chapter.chapter_name" /> </md-input-container>
 					</div>
 				</td>
-				
-			
-
 				<td>
+					<div ng-hide="editingData[chapter.id]">
+						{{chapter.chapter_name}}</div>
+					<div ng-show="editingData[chapter.chapter_name]">
+						<md-input-container flex> <input
+							ng-model="chapter.id" /> </md-input-container>
+					</div>
+				</td>
+<td>
 					<div ng-hide="editingData[chapter.id]">
 						{{chapter.board}}</div>
 					<div ng-show="editingData[chapter.id]">
@@ -64,8 +69,17 @@
 							ng-model="chapter.subject" /> </md-input-container>
 					</div>
 				</td>
+		<!-- <td>
+					<div ng-hide="editingData[chapter.id]">
+						{{chapter.chapter_no}}</div>
+					<div ng-show="editingData[chapter.id]">
+						<md-input-container flex> <input
+							ng-model="chapter.chapter_no" /> </md-input-container>
+					</div>
+				</td>
 
-				<td><md-button class="md-raised md-primary"
+ -->
+	<td><md-button class="md-raised md-primary"
 						ng-hide="editingData[chapter.id]" ng-click="modify(chapter)">Edit</md-button>
 					<md-button class="md-raised md-primary"
 						ng-show="editingData[chapter.id]" ng-click="update(chapter)">Save</md-button>
@@ -87,14 +101,22 @@
 
 		
 		<div layout="column" flex  id="updateChapter">
-		
-			<md-input-container>
+
+	  <md-subheader class="md-primary">
+		<h3 class="md-headline">Edit Chapter</h3>
+		</md-subheader>
+	<md-input-container>
+
+				<label>Chapter Id</label>
+				<input name="id" id="id"  ng-model="selected[0].id" readonly>
+
 				<label>ID :-</label>
 				<input type="number" name="id" id="id"  ng-model="selected[0].id">
+
 			</md-input-container>
 			
 			<md-input-container>
-				<label>Chapter Name :-</label>
+				<label>Chapter Name </label>
 				<input name="chapter_name" id="chapter_name"  ng-model="selected[0].chapter_name">
 			</md-input-container>
 
@@ -118,8 +140,15 @@
 				<label>Subject</label>
 				<input  name="subject" id="subject"   ng-model="selected[0].subject">
 			</md-input-container>
-		
-		<section layout="row" layout-sm="column" layout-align="left left">
+
+			
+	<!-- 		<md-input-container>
+				<label>Chapter No</label>
+				<input type="number" name="chapter_no" id="chapter_no"   ng-model="selected[0].chapter_no">
+			</md-input-container>
+			
+			 -->
+	<section layout="row" layout-sm="column" layout-align="left left">
 			
 			<md-button class="md-raised md-primary" ng-click="update(selected[0])">Save</md-button>
 			<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
@@ -166,8 +195,7 @@
 			</div>
 		</div>
 			<section layout="row" layout-sm="column" layout-align="left left">
-			
-			      <md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
+		      <md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
 
 		     </section>
 	</div>

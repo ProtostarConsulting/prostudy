@@ -1,7 +1,6 @@
 angular
 		.module("prostudyApp")
-		.controller(
-				"book_chapterListCtr",
+		.controller("book_chapterListCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $stateParams, appEndpointSF, $state,
 						$sce) {
@@ -16,9 +15,8 @@ angular
 								3000));
 					};// end of showSavedToast
 
-			
-
-	
+				
+					//$log.debug("$scope.selectedBookId====:", $scope.selectedBookId);
 					$scope.addMyBook = function() {
 						$log.debug("No1");
 						var UserService = appEndpointSF.getUserService();
@@ -49,19 +47,15 @@ angular
 					
 					$scope.showBookContents = function() {
 						var BookService = appEndpointSF.getBookService();
-						$log.debug("$scope.selectedBookId:"
-								+ $scope.selectedBookId)
-
-
-						BookService
-								.getBookbyID($scope.selectedBookId)
+						$log.debug("$scope.selectedBookId:"+ $scope.selectedBookId);
+						BookService.getBooksByID($scope.selectedBookId)
 								.then(
 										function(bookList) {
+										$scope.book_ChapterDetails = bookList[0];										
 
 										$scope.book_ChapterDetails = bookList.chapters;
 											
 										$scope.selectedChapter = $scope.book_ChapterDetails;
-
 											$log.debug("$scope.selectedChapter :-"+ angular.toJson($scope.selectedChapter));
 
 										});

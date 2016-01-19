@@ -13,7 +13,7 @@ angular
 						desc : ""
 					}
 					$scope.tempBook = {
-						id : "",
+						bookid : "",
 						bookId : "",
 						book_name : "",
 						author : "",
@@ -45,16 +45,17 @@ angular
 
 									$log.debug("tempBook"+ angular.toJson($scope.tempBook));
 									$scope.tempBook = {
-										id : "",
-										bookId : "",
-										book_name : "",
-										author : "",
-										board : "",
-										standard : "",
-										chapters : [],
-										comments : []
-									};// After click on submit button,htmlform
-										// to be set as a blank
+
+											bookid : "",
+											book_name : "",
+											author : "",
+											board : "",
+											standard : "",
+											chapters : [],
+											comments:[]
+										};//After click on submit button,htmlform to be set as a blank
+
+							
 								});
 						$log.debug("No4");
 					}// end of addBook

@@ -10,13 +10,6 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 	endpointFactory.is_service_ready = false;
 	// This will call the function to load services
 
-	endpointFactory.getInternetService = function() 
-	{
-		if(isTestMode)
-			return localDBServiceFactory.getInternetService();
-		else	
-			return googleEndpointSF.getInternetService();
-	};//end of getInternetService
 
 	endpointFactory.getSyllabusService = function() 
 	{
@@ -115,19 +108,13 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 
 		}, apiRoot);
 		
-		/*gapi.client.load('bookService', 'v0.1', function() {
+		gapi.client.load('bookService', 'v0.1', function() {
 			$log.debug("bookService Loaded....");
 			
 			deferred.resolve();
 
 		}, apiRoot);
-		
-		gapi.client.load('internetService', 'v0.1', function() {
-			$log.debug("InternetService Loaded....");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
-		}, apiRoot);*/
+	
 		gapi.client.load('syllabusService', 'v0.1', function() {
 			$log.debug("syllabusService Loaded");
 			endpointFactory.is_service_ready = true;

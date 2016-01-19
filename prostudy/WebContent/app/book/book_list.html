@@ -8,33 +8,31 @@
 			<thead>
 				<tr>
 					<th>Book ID</th>
-					<th>Book</th>
+					<th>Book Name</th>
 					<th>Author</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="book in books | filter: searchText">
 					<td>{{book.bookId}}</td>
-					<td ng-click="showBookContents()"><a
-						ui-sref="book.chapterList({selectedBookId : book.bookId})"><b>{{book.book_name}}</b></a></td>
+					<td><b>{{book.book_name}}</b></td>
+
+					<!-- <td>{{book.bookid}}</td>
+					<td ng-click="showBookContents()"><a ui-sref="book.chapterList({selectedBookId : book.bookid})"><b>{{book.book_name}}</b></a></td>
+
+					<!-- <a	ui-sref="book.chapterList({selectedBookId : book.bookId})"><b>{{book.book_name}}</b></a></td> -->
 					<td>{{book.author}}</td>
+
+					<td ><a	ui-sref="book.chapterList({selectedBookId : book.bookid})"><b>View Book</b></a></td>
 					<td><md-button ng-click="like(book.bookid)"> <ng-md-icon
 								icon="thumb_up"></ng-md-icon>{{books[book.bookid-1].likes}}</md-button></td>
 
 						<td><md-button ng-click="dislike(book.bookid)"> <ng-md-icon
 								icon="thumb_down"></ng-md-icon>{{books[book.bookid-1].dislikes}}</md-button></td>
-					
-
-				</tr>
-
-
-
+</tr>
 			</tbody>
 		</table>
 	</div>
-
-	<div></div>
-
 </div>
 
 

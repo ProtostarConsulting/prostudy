@@ -7,7 +7,6 @@ angular
 					console.log("Inside chapterEditCtr");
 
 					$scope.Chapter = {
-						id : "",
 						chapterId :"",
 						chapter_name : "",
 						chapter_content : "",

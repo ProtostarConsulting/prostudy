@@ -6,19 +6,23 @@
 					
 		<div layout="column" flex>
 		
-
-		<!-- 	<md-input-container>
+		<!-- 
+		<md-input-container>
+				<label>Chapter Name</label>
 				<label>Chapter No :-</label>
+		<input type="number" name="id" id="id"  ng-model="tempChapter.chapterId">
+			</md-input-container> 
+
 				<input type="number" name="id" id="id"  ng-model="tempChapter.id">
 			</md-input-container> -->
-			
+
 			<md-input-container>
 				<label>Chapter Id :-</label>
 				<input type="number" name="chapterId" id="chapterId"  ng-model="tempChapter.chapterId">
 			</md-input-container>
 			
 			<md-input-container>
-				<label>Chapter :-</label>
+				<label>Chapter Name :-</label>
 				<input name="chapter_name" id="chapter_name"  ng-model="tempChapter.chapter_name">
 			</md-input-container>
 
@@ -41,9 +45,14 @@
 				<label>Subject</label>
 				<input  name="subject" id="subject"   ng-model="tempChapter.subject">
 			</md-input-container>
+
+	<!-- 		<md-input-container>
+				<label>Chapter No</label>
+				<input type="number" name="chapter_no" id="chapter_no" ng-minlength="1"  ng-maxlength="1"  ng-model="tempChapter.chapter_no">
+			</md-input-container>
 			
-		
-					</div>
+			 -->
+		</div>
 				</div>
 
 			</form>

@@ -12,8 +12,7 @@ public class UserEntity {
 
 	@Id
 	private Long id;	
-	private String userId;
-	private String userName;
+	
 	private String firstName;
 	private String lastName;
 	
@@ -21,9 +20,15 @@ public class UserEntity {
 	private String email_id;    
 	private String address;
 	private String contact;
-	private String gender;
-	private String pwd;
 	private String role;
+	private String gender;
+	
+	private String userId;
+	private String userName;
+	private String pwd;
+
+	//private List<QuestionEntity> books;
+
 
 	private String book;
 	

@@ -19,7 +19,7 @@ angular.module("prostudyApp").controller(
 
 				var InstituteService = appEndpointSF.getInstituteService();
 
-				InstituteService.getInstitute().then(function(instituteList) {
+				InstituteService.getInstitutes().then(function(instituteList) {
 					$log.debug("Inside Ctr getInstitutes");
 					$scope.institutes = instituteList;
 				});

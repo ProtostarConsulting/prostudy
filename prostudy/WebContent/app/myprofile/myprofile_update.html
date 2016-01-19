@@ -5,7 +5,7 @@
 		 	 <span>
 				<div>
 				
-				<h3>Welcome {{curuser.wc}}.....</h3>
+				<h3>Welcome {{ tempUser.firstName}}{{tempUser.lastName}}.....</h3>
 				
 				</div>
 			
@@ -13,18 +13,18 @@
 					
 					<md-input-container flex>
       				<label>First Name</label>
-      				<input ng-model="tempUser.firstName">
+      				<input ng-model="tempUser.firstName" readonly>
     				</md-input-container>
     				
     				<md-input-container flex>
     				<label>Last Name</label>
-      				<input ng-model="tempUser.lastName">
+      				<input ng-model="tempUser.lastName"readonly>
     				</md-input-container>
     			
     				
     				<md-input-container flex>
       				<label>Email-Id</label>
-      				<input ng-model="curuser.email_id" type="email"   readonly>
+      				<input ng-model="tempUser.email_id" type="email"   readonly>
     				</md-input-container>
     		
     				<md-input-container flex>
