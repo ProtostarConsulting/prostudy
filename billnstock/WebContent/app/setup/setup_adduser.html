@@ -6,15 +6,19 @@
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>User Id
 			</label> <input ng-model="user.id" disabled> </md-input-container>
-
+</div>
+			<div layout layout-sm="column">
 			<md-input-container flex> <label>Enter
-				Email id </label> <input ng-model="user.email"> </md-input-container>
+			
+				Email id/User Name </label> <input ng-model="user.email"> </md-input-container>
+						<md-input-container flex> <label>Password 
+						 </label> <input type="password" ng-model="user.password"> </md-input-container>
 		</div>
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>First
 				Name </label> <input ng-model="user.fName"> </md-input-container>
 			<md-input-container flex> <label>Last
-				Name </label> <input ng-model="user.lName"> </md-input-container>
+				Name </label> <input   ng-model="user.lName"> </md-input-container>
 		</div>
 		<b>Authority</b><br><br>
 		<div layout layout-sm="column">

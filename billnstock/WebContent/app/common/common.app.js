@@ -143,7 +143,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('hr', {
 		url : "/hr",
 		templateUrl : '/app/hr/hr_module.html',
-		controller : 'customerCtr'
+		controller : 'hrCtr'
 	}).state('hr.employeeadd', {
 		url : "/empadd",
 		templateUrl : '/app/hr/employee_add.html',
@@ -260,6 +260,26 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/printheaderfooter",
 		templateUrl : '/app/setup/setup_headerfooter.html',
 		controller : 'setup_headerfooter',
+
+	}).state('login', {
+		url : "/login",
+		templateUrl : '/app/login/login.html',
+		controller : 'login',
+
+	}).state('homecall', {
+		url : "/home/:userauthoritys",
+		templateUrl : '/home.html',
+		controller : 'AppCtrl'
+
+	}).state('internet', {
+		url : "/internet",
+		templateUrl : '/app/demo/internet.html',
+		controller : 'internet'
+
+	}).state('hr.timeSheet', {
+		url : "/timeSheet",
+		templateUrl : '/app/hr/timesheet.html',
+		controller : 'timesheet'
 
 	});
 });

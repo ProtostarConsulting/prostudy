@@ -3,7 +3,267 @@ angular.module("stockApp").factory('googleEndpointSF', googleEndpointSF);
 function googleEndpointSF($log, $q) {
 
 	var serviceFactory = {};
+
+	
+	
+	//--------------------hr services--------------------------------------
+	
+	var hrService = {};
+
 	// Add Customer Service
+
+	serviceFactory.gethrService = function() {
+		return hrService;
+	}
+
+	hrService.addemp = function(emp) {
+	
+		var deferred = $q.defer();
+		gapi.client.hrService.addemp(emp).execute(
+				function() {
+					
+					deferred.resolve({
+						"msg" : "employee Added Successfully."
+					});
+
+				});
+		return deferred.promise;
+	}
+
+	
+	hrService.getAllemp = function() {
+		var deferred = $q.defer();
+		gapi.client.hrService.getAllemp().execute(
+				function(resp) {
+		deferred.resolve(resp);
+				});
+		return deferred.promise;	
+	}
+
+	hrService.getempByID= function(selectedempNo) {
+		var deferred = $q.defer();
+		gapi.client.hrService.getempByID({'empid': selectedempNo }).execute(
+				function(resp) {
+					/*$log.debug("internet cost:=" + resp);*/
+					deferred.resolve(resp);
+				});
+		return deferred.promise;	
+	}
+	
+	
+	hrService.updateemp	= function(emp) {
+	
+		var deferred = $q.defer();
+		gapi.client.hrService.updateemp(emp).execute(
+				function() {
+					
+					deferred.resolve({
+						"msg" : "employee Updated Successfully."
+					});
+
+				});
+		return deferred.promise;
+	}
+
+	
+	
+	hrService.addsalstruct = function(struct) {
+	
+		var deferred = $q.defer();
+		gapi.client.hrService.addsalstruct(struct).execute(
+				function() {
+					
+					deferred.resolve({
+						"msg" : "struct Added Successfully."
+					});
+
+				});
+		return deferred.promise;
+	}
+	
+	
+	hrService.findsalstruct = function(struct) {
+		var deferred = $q.defer();
+		gapi.client.hrService.findsalstruct({'empid': struct }).execute(
+				function(resp) {
+					/*$log.debug("internet cost:=" + resp);*/
+					deferred.resolve(resp);
+				});
+		return deferred.promise;	
+	}
+	
+	hrService.getAllempsSalStruct=function() {
+		var deferred = $q.defer();
+		gapi.client.hrService.getAllempsSalStruct().execute(
+				function(resp) {
+		deferred.resolve(resp);
+				});
+		return deferred.promise;	
+	}
+	
+	hrService.viewfindsalstruct=function(struct) {
+		var deferred = $q.defer();
+		gapi.client.hrService.viewfindsalstruct({'empid': struct }).execute(
+				function(resp) {
+					/*$log.debug("internet cost:=" + resp);*/
+					deferred.resolve(resp);
+				});
+		return deferred.promise;	
+	}
+	
+	hrService.updatesalinfo = function(struct) {
+	
+		var deferred = $q.defer();
+		gapi.client.hrService.updatesalinfo(struct).execute(
+				function() {
+					
+					deferred.resolve({
+						"msg" : "struct Updated Successfully."
+					});
+
+				});
+		return deferred.promise;
+	}
+	
+	
+	
+	hrService.getstructByID =function(struct) {
+		var deferred = $q.defer();
+		gapi.client.hrService.viewfindsalstruct({'empid': struct }).execute(
+				function(resp) {
+					/*$log.debug("internet cost:=" + resp);*/
+					deferred.resolve(resp);
+				});
+		return deferred.promise;	
+	}
+	
+	hrService.addgsalslip =function(salslip) {
+	
+		var deferred = $q.defer();
+		//salslip.salslip_id = salslipList.length + 100;
+		
+		gapi.client.hrService.addgsalslip(salslip).execute(
+				function() {
+					
+					deferred.resolve({
+						"msg" : "salslip Added Successfully."
+					});
+
+				});
+		return deferred.promise;
+	}
+	
+	hrService.countOfRecordsiInganeratedslip = function() {
+		var deferred = $q.defer();
+		gapi.client.hrService.countofrecord().execute(
+				function(resp) {
+		deferred.resolve(resp);
+				});
+		return deferred.promise;	
+	}
+	
+	
+	hrService.displyOnlySelected=function(curmonth){
+		var deferred = $q.defer();
+		gapi.client.hrService.displyOnlySelected({'month': curmonth }).execute(
+				function(resp) {
+					deferred.resolve(resp);
+				});
+		return deferred.promise;	
+	}
+	
+	
+	hrService.addtimesheet = function(timesheet) {
+		var deferred = $q.defer();
+		gapi.client.hrService.addtimesheet(timesheet).execute(
+				function() {
+					deferred.resolve({
+						"msg" : "timesheet Added Successfully."
+					});
+				});
+		return deferred.promise;
+	}
+	
+	
+	hrService.getcurweekdata=function(weekNumber){
+		var deferred = $q.defer();
+		gapi.client.hrService.getcurweekdata({'week': weekNumber }).execute(
+				function(resp) {
+					deferred.resolve(resp);
+				});
+		return deferred.promise;	
+	}
+	
+	//------------------------- CRM ---------------------------------
+	var crmService = {};
+
+	serviceFactory.getleadService = function() {
+		return crmService;
+	}
+	crmService.addlead = function(lead) {
+	
+		var deferred = $q.defer();
+		gapi.client.crmService.addlead(lead).execute(
+				function() {
+					
+					deferred.resolve({
+						"msg" : "Lead Added Successfully."
+					});
+
+				});
+		return deferred.promise;
+	}
+	
+	
+	crmService.getAllleads = function() {
+		var deferred = $q.defer();
+		gapi.client.crmService.getAllleads().execute(
+				function(resp) {
+		deferred.resolve(resp);
+				});
+		return deferred.promise;	
+	}
+	
+	crmService.getLeadById = function(lead) {
+		var deferred = $q.defer();
+		gapi.client.crmService.getLeadById({'id': lead }).execute(
+				function(resp) {
+					/*$log.debug("internet cost:=" + resp);*/
+					deferred.resolve(resp);
+				});
+		return deferred.promise;	
+	}
+	//---------------------------------------------------------------
+	//ADD INTERNET SERVICE
+	
+	var internetService = {};
+
+	serviceFactory.getinternetService = function() {
+		return internetService;
+	}
+
+	internetService.addinternet = function(internet) {
+		var deferred = $q.defer();
+		gapi.client.internetService.addinternet(internet).execute(
+				function(resp) {
+					$log.debug("addinternet#resp:" + resp);
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+	}
+	
+	internetService.findplan = function(rate) {
+		var deferred = $q.defer();
+		gapi.client.internetService.findplan({'rate': rate }).execute(
+				function(resp) {
+					/*$log.debug("internet cost:=" + resp);*/
+					deferred.resolve(resp);
+				});
+		return deferred.promise;	
+	}
+
+
+	//Add Customer Service
 
 	var InternetService = {};
 
@@ -53,6 +313,7 @@ function googleEndpointSF($log, $q) {
 	}
 	// =====================================================================================================================================
 	// Add Customer Service
+
 	var CustomerService = {};
 
 	serviceFactory.getCustomerService = function() {
@@ -61,10 +322,18 @@ function googleEndpointSF($log, $q) {
 
 	CustomerService.addCustomer = function(cust) {
 		var deferred = $q.defer();
+
+		gapi.client.customerService.addCustomer(cust).execute(
+				function(resp) {
+					/*$log.debug("addCustomer#resp:" + resp);*/
+					deferred.resolve(resp);
+				});
+
 		gapi.client.customerService.addCustomer(cust).execute(function(resp) {
 			$log.debug("addCustomer#resp at enpoint:" + resp);
 			deferred.resolve(resp);
 		});
+
 		return deferred.promise;
 	}
 

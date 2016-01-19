@@ -42,6 +42,7 @@
 				<md-button class="md-icon-button" aria-label="More"
 					ng-click="toggleRight()"> <md-icon
 					md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
+					
 			</div>
 			<md-button aria-label="Logout" ng-click="showSearch = !showSearch">
 			<ng-md-icon icon="logout"></ng-md-icon> </md-button>
@@ -49,10 +50,13 @@
 				ng-click="showListBottomSheet($event)"> <ng-md-icon
 				icon="more_vert"></ng-md-icon> </md-button>
 		</section>
+		
+		
 	</div>
+
 	</md-toolbar>
 
-	<div ng-controller="AppCtrl">
+ <div ng-controller="AppCtrl"> 
 		<section layout="row" flex>
 			<!-- Left Navigation Pane -->
 			<md-sidenav class="md-sidenav-left md-whiteframe-z2"
@@ -65,9 +69,9 @@
 				class="md-primary" show-gt-md> Home </md-button> <!-- <md-button
 				ui-sref="customer" ng-click="close()" class="md-primary" show-gt-md>
 
-			Customer </md-button> --> <md-button ui-sref="stock" ng-click="close()"
+			Customer </md-button> --> <md-button ui-sref="stock" ng-click="close()" ng-show="loader.stock"
 				class="md-primary" show-gt-md> Stock </md-button> <md-button
-				ui-sref="invoice" ng-click="close()" class="md-primary" show-gt-md>
+				ui-sref="invoice" ng-show="loader.invoice" ng-click="close()" class="md-primary" show-gt-md>    <!-- ng-show="loader.invoice"  -->
 
 			Invoice </md-button> <md-button ui-sref="salesOrder" ng-click="close()"
 				class="md-primary" show-gt-md> Sales </md-button>
@@ -79,18 +83,21 @@
 
 			Invoice </md-button>
 				<md-button
-				ui-sref="salesOrder" ng-click="close()" class="md-primary" show-gt-md>
+				ui-sref="salesOrder" ng-show="loader.sales" ng-click="close()" class="md-primary" show-gt-md>
 			Sales </md-button>
 			
-			<md-button ui-sref="hr"
-				ng-click="close()" class="md-primary" show-gt-md>
+			<md-button ui-sref="hr" id="hr"
+				ng-click="close()" ng-show="loader.hr" class="md-primary" show-gt-md>
 			HR </md-button>
 			<md-button ui-sref="crm"
-				ng-click="close()" class="md-primary" show-gt-md>
+				ng-click="close()" ng-show="loader.crm" class="md-primary" show-gt-md>
 			CRM </md-button>
 					<md-button ui-sref="setup"
-				ng-click="close()" class="md-primary" show-gt-md>
+				ng-click="close()"   class="md-primary" show-gt-md>
 			SETUP </md-button>
+			<md-button ui-sref="login"
+				ng-click="close()"  class="md-primary" show-gt-md>
+			LOGIN</md-button>
 			
 			 </md-content> </md-sidenav>
 
@@ -193,6 +200,7 @@
 	<script src="/lib/base/angular-resource.min.js"></script>
 	<script src="/lib/base/angular-material-icons.min.js"></script>
 
+
 	<script src="/lib/base/angular-material.min.js"></script>
 	<script src="/lib/base/md-data-table.min.js"></script>
 
@@ -283,11 +291,12 @@
 		<script src="/app/hr/js/hr.ctr.js"></script>
 		<script src="/app/hr/js/hr.ctr.add.js"></script>
         <script src="/app/hr/js/hr.ctr.emplist.js"></script>
-         <script src="/app/hr/js/hr.ctr.empview.js"></script>
+         <script src="/app/hr/js/hr.ctr.empview1.js"></script>
          <script src="/app/hr/js/hr.ctr.addupdatesalstruct.js"></script>
          <script src="/app/hr/js/hr.ctr.empdoc.js"></script>
          <script src="/app/hr/js/hr.ctr.emsalslipstruct.js"></script>
           <script src="/app/hr/js/hr.ctr.emplist_to_ganeratesalslip.js"></script>
+          <script src="/app/hr/js/hr.ctr.timesheet.js"></script>
    <!-- complete	hr js  -->
 
    
@@ -301,6 +310,9 @@
  <script src="/app/setup/js/setup_module.js"></script>
  <script src="/app/setup/js/setup_headerfooter.js"></script>
  
+ <!-- login -->
+  <script src="/app/login/js/login.js"></script>
+   <script src="/app/demo/js/internet.ctr.js"></script>
    <!-- use for ganerating pdf -->
 <!--    <script type="text/javascript" src="/app/hr/js/jspdf.min.js"></script>
         <script src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>  -->

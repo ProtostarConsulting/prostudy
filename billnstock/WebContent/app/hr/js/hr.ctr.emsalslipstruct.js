@@ -13,32 +13,32 @@ angular
 							empName : "",
 							grosssal : "",
 							monthly : "",
-							Byearly : "",
+							byearly : "",
 							bmonthly : "",
-							HRAyearly : "",
-							HRAmonthly : "",
-							CCAyearly : "",
-							CCAmonthly : "",
-							EC12Byearly : "",
-							Convyearly : "",
-							Convmonthly : "",
-							SAyearly : "",
+							hrayearly : "",
+							hramonthly : "",
+							ccayearly : "",
+							ccamonthly : "",
+							ec12Byearly : "",
+							convyearly : "",
+							convmonthly : "",
+							sayearly : "",
 							grandtotal : "",
-							SAmonthly : "",
+							samonthly : "",
 							bgrandtotal : "",
 							ptaxyearly : "",
 							pf1 : 0,
 							pf2 : 0,
-							Ptaxgrandtotal : "",
-							Netsalgrandtotalmonthly : "",
-							Netsalgrandtotal : "",
+							ptaxgrandtotal : "",
+							netsalgrandtotalmonthly : "",
+							netsalgrandtotal : "",
 							addprobonus : "",
-							CTC : "",
-							MCTC : "",
-							LDOther1dis:"",
-							LDOther2dis:"",
-							LDOther1amt:"",
-							LDOther2amt:""
+							ctc : "",
+							mctc : "",
+							ldother1dis:"",
+							ldother2dis:"",
+							ldother1amt:"",
+							ldother2amt:""
 						};
 
 						$scope.viewsalstruct = $scope.salstruct;
@@ -51,14 +51,14 @@ angular
 						hrService.getAllempsSalStruct().then(
 								function(empSalstructList) {
 									$log.debug("Inside Ctr getAllemps");
-									$scope.empSalStruct = empSalstructList;
+									$scope.empSalStruct = empSalstructList.items;
 
 								});
 					}
 					$scope.empSalStruct = [];
 					$scope.getAllempsSalStruct();
 					
-					$scope.viewfindsalstruct = function() {
+				$scope.viewfindsalstruct = function() {
 						$log.debug("selectedempstructno="
 								+ $scope.selectedempstructno);
 
@@ -73,7 +73,7 @@ angular
 											$log
 													.debug("Inside Ctr getsalstruct");
 											$scope.viewslist = structList;
-											$scope.viewsalstruct = $scope.viewslist[0];
+											$scope.viewsalstruct = $scope.viewslist;
 
 											$log
 													.debug("Inside Ctr viewslist:"

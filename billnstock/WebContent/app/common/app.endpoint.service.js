@@ -4,12 +4,26 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 
 	// When app is in test mode, it will return service from local db store.
 	// Else actual google end points.
+
+	//var isTestMode = true;
+	 var isTestMode = false;
+
 //	var isTestMode = true;
 	var isTestMode = false;
+
 
 	var endpointFactory = {};
 	endpointFactory.is_service_ready = false;
 	// This will call the function to load services
+	
+	
+	endpointFactory.getinternetService = function() {
+		if (isTestMode)
+			return localDBServiceFactory.getinternetService();
+		else
+			return googleEndpointSF.getinternetService();
+	};
+	// ----------------------------------------------------
 
 	endpointFactory.getCustomerService = function() {
 		if (isTestMode)
@@ -30,6 +44,14 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			return localDBServiceFactory.getleadService();
 		else
 			return googleEndpointSF.getleadService();
+	}
+
+	//-----------------------------------------------------
+	endpointFactory.getloginService=function(){
+		if (isTestMode)
+			return localDBServiceFactory.getloginService();
+		else
+			return googleEndpointSF.getloginService();
 	}
 
 	//-----------------------------------------------------
@@ -146,12 +168,40 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			deferred.resolve();
 
 		}, apiRoot);
+
+		
+		gapi.client.load('internetService', 'v0.1', function() {
+			$log.debug("internetService2 Loaded....");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
 		
 		gapi.client.load('internetService', 'v0.1', function() {
 			$log.debug("internetService Loaded....");
 			
 			endpointFactory.is_service_ready = true;
 			deferred.resolve();
+
+
+
+		}, apiRoot);
+		
+		gapi.client.load('hrService', 'v0.1', function() {
+			$log.debug("hr Loaded....");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+		
+		
+		
+		gapi.client.load('crmService', 'v0.1', function() {
+			$log.debug("CRM Loaded.(lead services)...");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+
 
 		}, apiRoot);
 		
@@ -170,6 +220,7 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			deferred.resolve();
 
 		}, apiRoot);
+
 
 		return deferred.promise;
 	};

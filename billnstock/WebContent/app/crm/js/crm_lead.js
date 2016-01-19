@@ -41,7 +41,8 @@ angular
 
 						leadService.getAllleads().then(function(leadList) {
 							$log.debug("Inside Ctr getAllleads");
-							$scope.leads = leadList;
+							$scope.leads = leadList.items;
+							$log.debug("Inside Ctr getAllleads===="+angular.toJson($scope.leads ));
 							$scope.cleadid = $scope.leads.length + 1;
 							$scope.lead.id = $scope.cleadid;
 							

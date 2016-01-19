@@ -27,7 +27,7 @@ angular
 					$scope.showEmp();
 
 					$scope.updateemp = function() {
-
+							
 						var hrService = appEndpointSF.gethrService();
 						hrService.updateemp($scope.empDetail).then(
 								function(msgBean) {

@@ -24,7 +24,7 @@ angular
 
 						hrService.getAllemp().then(function(empList) {
 							$log.debug("Inside Ctr getAllemps");
-							$scope.emps = empList;
+							$scope.emps = empList.items;
 							
 						});
 					}

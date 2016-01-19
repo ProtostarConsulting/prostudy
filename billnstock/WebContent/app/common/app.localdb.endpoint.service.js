@@ -843,8 +843,54 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 	}
 	
 	
+	setupService.headerfooter = function(headfoot) {
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			$log.debug("In side local DB adduser...");
+			var headfootList = angular.fromJson($localStorage.dbheadfoot);
+			if (typeof headfootList === 'undefined')
+				headfootList = [];
+			headfootList=(headfoot);
+			$localStorage.dbheadfoot = angular.toJson(headfootList);
+			deferred.resolve({
+				"msg" : "headerfooter Added/updated Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
 	
-	//*************************************************************************************************************************		
+	
+	//*************************************************************************************************************************	
+	//start login
+	var loginService = {};
+
+	serviceFactory.getloginService = function() {
+		return loginService;
+	}
+
+	
+	loginService.getuserById= function(uid) {
+		
+		var deferred = $q.defer();
+		$timeout(function() {
+			var tempItem = [];
+				var userList = angular.fromJson($localStorage.dbuser);
+					if (typeof userList === 'undefined')
+						userList = [];
+				for (i = 0; i < userList.length; i++) {
+				if (uid == userList[i].email) {
+					tempItem.push(userList[i]);
+				}
+			}
+			deferred.resolve(tempItem);
+			}, 1000);
+		return deferred.promise;
+	}
+	
+	//*************************************************************************************************************************	
 	// Start of StockService
 	var StockService = {};
 

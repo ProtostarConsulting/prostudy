@@ -14,7 +14,7 @@ angular
 							email : "",
 							compemail : "",
 							empAddress : "",
-							Designation:""
+							designation:""
 						};
 
 					$scope.addemp = function() {
@@ -38,15 +38,17 @@ angular
 						hrService.getAllemp().then(function(empList) {
 							$log.debug("Inside Ctr getAllemps");
 							$scope.emps = empList;
-							$scope.cempid = $scope.emps.length + 1;
+							$log.debug("$scope.emps====="+angular.toJson($scope.emps.items));
+							$scope.cempid = $scope.emps.items.length + 1;
 							$scope.emp.empid = $scope.cempid;
+							
 
 						});
 					}
 					
 					$scope.emps = [];
 					$scope.cempid;
-					$scope.getAllemps();
+				$scope.getAllemps();
 					
 					
 					$scope.toggleRight = buildToggler('right');

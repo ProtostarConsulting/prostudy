@@ -10,41 +10,52 @@
 				Add Employee </md-button> <md-button ui-sref="hr.employeelist"
 					ng-click="close()" class="md-primary"> employee List </md-button> <!--  <md-button
 		ui-sref="hr.docuplode" ng-click="close()" class="md-primary">
-	employee Document Uplode </md-button>  --> <md-button
+	employee Document Uplode </md-button>  -->  <md-button
 					ui-sref="hr.salarystru" ng-click="close()" class="md-primary">
-				Add Salary Structure </md-button> <!-- <md-button ui-sref="hr.salslip" ng-click="close()"
-		class="md-primary"> Salary Slip </md-button> </md-content> --> </md-content>
+				Add Salary Structure </md-button> <md-button ui-sref="hr.salslip" ng-click="close()"
+		class="md-primary"> Salary Slip </md-button> </md-content> </md-content>
 			</div>
 
 			<div class="md-toolbar-tools">
 				<span flex></span>
-				<!--<md-card>-->
+				<md-card>
 				<section layout="row">
 					<md-button class="md-icon-button" aria-label="More"
 						ng-click="toggleRight()"> <md-icon
 						md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
 
 				</section>
-				<!--</md-card>-->
+				</md-card>
 			</div>
 
 
 			<md-sidenav class="md-sidenav-right md-whiteframe-z2"
 				md-component-id="right"> <md-toolbar
-				class="md-theme-light"> <!--<h1 class="md-toolbar-tools">Sidenav Right</h1>-->
+				class="md-theme-light"> <h1 class="md-toolbar-tools">Sidenav Right</h1>
 
 
 			</md-toolbar> <md-content layout-padding> <md-button
 				ui-sref="hr.employeeadd" ng-click="close()" class="md-primary">
 			Add Employee </md-button> <md-button ui-sref="hr.employeelist" ng-click="close()"
-				class="md-primary"> employee List </md-button> <md-button
+				class="md-primary"> employee List </md-button>
+				<!--  <md-button
 				ui-sref="hr.docuplode" ng-click="close()" class="md-primary">
-			employee Document Uplode </md-button> <md-button ui-sref="hr.salarystru"
+			employee Document Uplode </md-button> -->
+			 <md-button ui-sref="hr.salarystru"
 				ng-click="close()" class="md-primary"> Add Salary
 			Structure </md-button> <md-button ui-sref="hr.salslip" ng-click="close()"
-				class="md-primary"> Salary Structure List </md-button> <md-button
+				class="md-primary"> Salary Structure List </md-button> 
+				
+				<md-button
 				ui-sref="hr.generatesalslip" ng-click="close()" class="md-primary">
-			generate Salary Slip </md-button> </md-content> </md-sidenav>
+			generate Salary Slip </md-button> 
+				<md-button
+				ui-sref="hr.timeSheet" ng-click="close()" class="md-primary">
+			Time Sheet </md-button> 
+						
+			
+			
+			</md-content> </md-sidenav> 
 		</section>
 
 	</div>

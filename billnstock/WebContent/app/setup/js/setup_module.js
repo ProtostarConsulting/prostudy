@@ -35,6 +35,7 @@ angular
 							  email:"",
 							  fName:"",
 							  lName:"",
+							  password:"",
 							  authority:[]
 					  }
 					  
@@ -52,6 +53,8 @@ angular
 
 							$scope.user = {};
 						}
+					  
+					  // return "http://localhost:8888/img/images/erpag_document_footer.JPG"
 					  
 					  
 					  $scope.getAlluser = function() {

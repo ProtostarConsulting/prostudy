@@ -19,34 +19,33 @@ angular
 							empName : "",
 							grosssal : "",
 							monthly : "",
-							Byearly : "",
+							byearly : "",
 							bmonthly : "",
-							HRAyearly : "",
-							HRAmonthly : "",
-							CCAyearly : "",
-							CCAmonthly : "",
-							EC12Byearly : "",
-							Convyearly : "",
-							Convmonthly : "",
-							SAyearly : "",
+							hrayearly : "",
+							hramonthly : "",
+							ccayearly : "",
+							ccamonthly : "",
+							ec12Byearly : "",
+							convyearly : "",
+							convmonthly : "",
+							sayearly : "",
 							grandtotal : "",
-							SAmonthly : "",
+							samonthly : "",
 							bgrandtotal : "",
 							ptaxyearly : "",
 							pf1 : 0,
 							pf2 : 0,
-							Ptaxgrandtotal : "",
-							Netsalgrandtotalmonthly : "",
-							Netsalgrandtotal : "",
+							ptaxgrandtotal : "",
+							netsalgrandtotalmonthly : "",
+							netsalgrandtotal : "",
 							addprobonus : "",
-							CTC : "",
-							MCTC : "",
-							LDOther1dis:"",
-							LDOther2dis:"",
-							LDOther1amt:"",
-							LDOther2amt:""
+							ctc : "",
+							mctc : "",
+							ldother1dis:"",
+							ldother2dis:"",
+							ldother1amt:"",
+							ldother2amt:""
 						};
-					
 					
 					$scope.getAllemps = function() {
 						$log.debug("Inside Ctr $scope.getAllemps");
@@ -54,17 +53,19 @@ angular
 
 						hrService.getAllemp().then(function(empList) {
 							$log.debug("Inside Ctr getAllemps");
-							$scope.emps = empList;
-							
-
+							$scope.emps = empList.items;
 						});
 					}
-
+					
 					$scope.emps = [];
+					$scope.cempid;
 					$scope.getAllemps();
+				
+				
+				
 					
 					$scope.updateempname = function(empid) {
-
+						$scope.getAllemps();
 						for (i = 0; i < $scope.emps.length; i++) {
 							if (empid == $scope.emps[i].empid) {
 								$scope.salstruct.empName = $scope.emps[i].empName;
@@ -72,7 +73,7 @@ angular
 
 						}
 
-					}
+					}	
 					
 					$scope.addsalstruct = function() {
 
@@ -120,10 +121,12 @@ angular
 										function(structList) {
 											$log
 													.debug("Inside Ctr getsalstruct");
-											$scope.slist = structList;
+											//$scope.slist = structList    					use for localdb
+ 											$scope.slist = structList;				//use for google db
 											// disable and enable add and update
 											// button
-											if (typeof $scope.slist[0] == 'undefined') {
+											/*if (typeof $scope.slist[0] == 'undefined') {*/  //use for local db
+											if (typeof $scope.slist == 'null') {
 												angular
 														.element(document
 																.getElementById('addsal'))[0].disabled = false;
@@ -142,39 +145,39 @@ angular
 																.getElementById('updatesal'))[0].disabled = false;
 											
 											// assign list
-											// $scope.salstruct=$scope.slist[0];
-											$scope.salstruct.grosssal = $scope.slist[0].grosssal;
-											$scope.salstruct.monthly = $scope.slist[0].monthly;
-											$scope.salstruct.Byearly = $scope.slist[0].Byearly;
-											$scope.salstruct.bmonthly = $scope.slist[0].bmonthly;
-											$scope.salstruct.HRAyearly = $scope.slist[0].HRAyearly;
-											$scope.salstruct.HRAmonthly = $scope.slist[0].HRAmonthly;
-											$scope.salstruct.CCAyearly = $scope.slist[0].CCAyearly;
-											$scope.salstruct.CCAmonthly = $scope.slist[0].CCAmonthly;
-											$scope.salstruct.EC12Byearly = $scope.slist[0].EC12Byearly;
-											$scope.salstruct.Convyearly = $scope.slist[0].Convyearly;
-											$scope.salstruct.Convmonthly = $scope.slist[0].Convmonthly;
-											$scope.salstruct.SAyearly = $scope.slist[0].SAyearly;
-											$scope.salstruct.grandtotal = $scope.slist[0].grandtotal;
-											$scope.salstruct.SAmonthly = $scope.slist[0].SAmonthly;
-											$scope.salstruct.bgrandtotal = $scope.slist[0].bgrandtotal;
-											$scope.salstruct.ptaxyearly = $scope.slist[0].ptaxyearly;
-											$scope.salstruct.pf1 = $scope.slist[0].pf1;
-											$scope.salstruct.pf2 = $scope.slist[0].pf2;
-											$scope.salstruct.Ptaxgrandtotal = $scope.slist[0].Ptaxgrandtotal;
-											$scope.salstruct.Netsalgrandtotal = $scope.slist[0].Netsalgrandtotal;
-											$scope.salstruct.addprobonus = $scope.slist[0].addprobonus;
-											$scope.salstruct.CTC = $scope.slist[0].CTC;
-											$scope.salstruct.MCTC = $scope.slist[0].MCTC;
-											$scope.salstruct.Netsalgrandtotalmonthly = $scope.slist[0].Netsalgrandtotalmonthly;
-											$scope.salstruct.LDOther1dis = $scope.slist[0].LDOther1dis;
-											$scope.salstruct.LDOther2dis = $scope.slist[0].LDOther2dis;
-											$scope.salstruct.LDOther1amt = $scope.slist[0].LDOther1amt;
-											$scope.salstruct.LDOther2amt = $scope.slist[0].LDOther2amt;
+											//$scope.salstruct=$scope.slist;
+											$scope.salstruct.grosssal = $scope.slist.grosssal;
+											$scope.salstruct.monthly = $scope.slist.monthly;
+											$scope.salstruct.byearly = $scope.slist.byearly;
+											$scope.salstruct.bmonthly = $scope.slist.bmonthly;
+											$scope.salstruct.hrayearly = $scope.slist.hrayearly;
+											$scope.salstruct.hramonthly = $scope.slist.hramonthly;
+											$scope.salstruct.ccayearly = $scope.slist.ccayearly;
+											$scope.salstruct.ccamonthly = $scope.slist.ccamonthly;
+											$scope.salstruct.ec12Byearly = $scope.slist.ec12Byearly;
+											$scope.salstruct.convyearly = $scope.slist.convyearly;
+											$scope.salstruct.convmonthly = $scope.slist.convmonthly;
+											$scope.salstruct.sayearly = $scope.slist.sayearly;
+											$scope.salstruct.grandtotal = $scope.slist.grandtotal;
+											$scope.salstruct.samonthly = $scope.slist.samonthly;
+											$scope.salstruct.bgrandtotal = $scope.slist.bgrandtotal;
+											$scope.salstruct.ptaxyearly = $scope.slist.ptaxyearly;
+											$scope.salstruct.pf1 =  Number($scope.slist.pf1);
+											$scope.salstruct.pf2 =  Number($scope.slist.pf2);
+											$scope.salstruct.ptaxgrandtotal = $scope.slist.ptaxgrandtotal;
+											$scope.salstruct.netsalgrandtotal = $scope.slist.netsalgrandtotal;
+											$scope.salstruct.addprobonus = Number($scope.slist.addprobonus);
+											$scope.salstruct.ctc = $scope.slist.ctc;
+											$scope.salstruct.ctc = $scope.slist.mctc;
+											$scope.salstruct.netsalgrandtotalmonthly = $scope.slist.netsalgrandtotalmonthly;
+											$scope.salstruct.ldother1dis = $scope.slist.ldother1dis;
+											$scope.salstruct.ldother2dis = $scope.slist.ldother2dis;
+											$scope.salstruct.ldother1amt = $scope.slist.ldother1amt;
+											$scope.salstruct.ldother2amt = $scope.slist.ldother2amt;
 											$log
 													.debug("Inside Ctr salstruct:"
 															+ angular
-																	.toJson($scope.slist));
+																	.toJson($scope.slist.items));
 											}
 										});
 					}
@@ -186,67 +189,67 @@ angular
 					$scope.updatesalstruct = function(grossal) {
 						// $log.debug("grossal =" + grossal);
 						$scope.salstruct.monthly = grossal / 12;
-						$scope.salstruct.Byearly = grossal * 0.30;
+						$scope.salstruct.byearly = grossal * 0.30;
 						$scope.salstruct.bmonthly = $scope.salstruct.monthly * 0.30;
-						$scope.salstruct.HRAyearly = grossal * 0.20;
-						$scope.salstruct.HRAmonthly = $scope.salstruct.monthly * 0.20;
-						$scope.salstruct.CCAyearly = grossal * 0.30;
-						$scope.salstruct.CCAmonthly = $scope.salstruct.monthly * 0.30;
+						$scope.salstruct.hrayearly = grossal * 0.20;
+						$scope.salstruct.hramonthly = $scope.salstruct.monthly * 0.20;
+						$scope.salstruct.ccayearly = grossal * 0.30;
+						$scope.salstruct.ccamonthly = $scope.salstruct.monthly * 0.30;
 
-						if ((($scope.salstruct.HRAyearly * .012) / 12) < 780) {
-							$scope.salstruct.EC12Byearly = $scope.salstruct.HRAyearly * 0.12;
+						if ((($scope.salstruct.hrayearly * .012) / 12) < 780) {
+							$scope.salstruct.ec12Byearly = $scope.salstruct.hrayearly * 0.12;
 						} else {
-							$scope.salstruct.EC12Byearly = 780 * 12;
+							$scope.salstruct.ec12Byearly = 780 * 12;
 						}
 
-						$scope.salstruct.Convyearly = 9600;
-						$scope.salstruct.Convmonthly = 800;
-						$scope.salstruct.SAyearly = grossal
-								- ($scope.salstruct.Byearly
-										+ $scope.salstruct.HRAyearly
-										+ $scope.salstruct.CCAyearly
-										+ $scope.salstruct.EC12Byearly + $scope.salstruct.Convyearly);
-						$scope.salstruct.grandtotal = $scope.salstruct.Byearly
-								+ $scope.salstruct.HRAyearly
-								+ $scope.salstruct.CCAyearly
-								+ $scope.salstruct.EC12Byearly
-								+ $scope.salstruct.Convyearly
-								+ $scope.salstruct.SAyearly;
-						$scope.salstruct.SAmonthly = $scope.salstruct.monthly
+						$scope.salstruct.convyearly = 9600;
+						$scope.salstruct.convmonthly = 800;
+						$scope.salstruct.sayearly = grossal
+								- ($scope.salstruct.byearly
+										+ $scope.salstruct.hrayearly
+										+ $scope.salstruct.ccayearly
+										+ $scope.salstruct.ec12Byearly + $scope.salstruct.convyearly);
+						$scope.salstruct.grandtotal = $scope.salstruct.byearly
+								+ $scope.salstruct.hrayearly
+								+ $scope.salstruct.ccayearly
+								+ $scope.salstruct.ec12Byearly
+								+ $scope.salstruct.convyearly
+								+ $scope.salstruct.sayearly;
+						$scope.salstruct.samonthly = $scope.salstruct.monthly
 								- ($scope.salstruct.bmonthly
-										+ $scope.salstruct.HRAmonthly
-										+ $scope.salstruct.CCAmonthly + $scope.salstruct.Convmonthly);
+										+ $scope.salstruct.hramonthly
+										+ $scope.salstruct.ccamonthly + $scope.salstruct.convmonthly);
 						$scope.salstruct.bgrandtotal = $scope.salstruct.bmonthly
-								+ $scope.salstruct.HRAmonthly
-								+ $scope.salstruct.CCAmonthly
-								+ $scope.salstruct.Convmonthly
-								+ $scope.salstruct.SAmonthly;
+								+ $scope.salstruct.hramonthly
+								+ $scope.salstruct.ccamonthly
+								+ $scope.salstruct.convmonthly
+								+ $scope.salstruct.samonthly;
 						$scope.salstruct.ptaxyearly = 2500;
-						$scope.salstruct.Ptaxgrandtotal = $scope.salstruct.pf1
+						$scope.salstruct.ptaxgrandtotal = $scope.salstruct.pf1
 								+ $scope.salstruct.pf2
 								+ $scope.salstruct.ptaxyearly;
-						$scope.salstruct.Netsalgrandtotal = $scope.salstruct.grandtotal
-								- $scope.salstruct.Ptaxgrandtotal;
+						$scope.salstruct.netsalgrandtotal = $scope.salstruct.grandtotal
+								- $scope.salstruct.ptaxgrandtotal;
 
-						$scope.salstruct.Netsalgrandtotalmonthly = $scope.salstruct.Netsalgrandtotal / 12;
+						$scope.salstruct.netsalgrandtotalmonthly = $scope.salstruct.netsalgrandtotal / 12;
 
-						$scope.salstruct.CTC = $scope.salstruct.addprobonus
+						$scope.salstruct.ctc = $scope.salstruct.addprobonus
 								+ $scope.salstruct.grandtotal;
 
-						$scope.salstruct.MCTC = $scope.salstruct.CTC / 12;
+						$scope.salstruct.mctc = $scope.salstruct.ctc / 12;
 
 					}
 
-					$scope.updateCTC = function(CTC) {
-						$scope.salstruct.CTC = $scope.salstruct.addprobonus
+					$scope.updateCTC = function(ctc) {
+						$scope.salstruct.ctc = $scope.salstruct.addprobonus
 								+ $scope.salstruct.grandtotal;
-						$scope.salstruct.MCTC = $scope.salstruct.CTC / 12;
+						$scope.salstruct.mctc = $scope.salstruct.ctc / 12;
 					}
 					$scope.updateptaxgrandtotal = function(ptaxgtot) {
 
-						$scope.salstruct.Ptaxgrandtotal = ($scope.salstruct.pf2 + $scope.salstruct.ptaxyearly)
+						$scope.salstruct.ptaxgrandtotal = ($scope.salstruct.pf2 + $scope.salstruct.ptaxyearly)
 								+ $scope.salstruct.pf1;
-						$scope.salstruct.MCTC = $scope.salstruct.CTC / 12;
+						$scope.salstruct.mctc = $scope.salstruct.ctc / 12;
 					}
 
 					

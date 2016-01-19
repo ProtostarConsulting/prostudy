@@ -54,7 +54,7 @@ angular.module("stockApp").controller(
 				leadService.getLeadById($scope.selectedleadNo).then(
 						function(leadList) {
 							$log.debug("Inside Ctr getAllleads");
-							$scope.leads = leadList[0];
+							$scope.leads = leadList.result;
 							$scope.ctaskid = $scope.leads.tasks.length + 1;
 							$scope.task.id = $scope.ctaskid;
 						});
@@ -71,7 +71,7 @@ angular.module("stockApp").controller(
 			$scope.activetask = [];
 			$scope.getLeadById();
 
-			//------------------save task----------
+		/*	//------------------save task----------
 
 			$scope.addupdatetask = function(leadid) {
 
@@ -123,7 +123,7 @@ angular.module("stockApp").controller(
 				$scope.task={};
 
 			}
-
+*/
 			$scope.toggleRight = buildToggler('right');
 
 			function buildToggler(navID) {
