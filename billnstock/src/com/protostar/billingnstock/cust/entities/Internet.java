@@ -1,3 +1,55 @@
+
+package com.protostar.billingnstock.cust.entities;
+
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
+
+
+
+@Entity
+public class Internet {
+
+	@Id
+	private Long id;
+
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	//	private String cust_id;
+	private String plan;
+	private String data;
+	@Index
+	private String rate;
+	
+	
+	
+	public String getPlan() {
+		return plan;
+	}
+	public void setPlan(String plan) {
+		this.plan = plan;
+	}
+	public String getData() {
+		return data;
+	}
+	public void setData(String data) {
+		this.data = data;
+	}
+	public String getRate() {
+		return rate;
+	}
+	public void setRate(String rate) {
+		this.rate = rate;
+	}
+	
+	
+}
+
+
 package com.protostar.billingnstock.cust.entities;
 
 
@@ -42,3 +94,4 @@ public class Internet {
 		this.cost = cost;
 	}
 }
+
