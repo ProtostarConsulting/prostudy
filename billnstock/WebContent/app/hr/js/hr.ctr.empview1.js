@@ -41,7 +41,7 @@ angular
 									//	$scope.empDetail = [];
 								});
 					}
-					/*
+				
 					$scope.getallsalslip = function(abc) {
 						var date = new Date();
 						var hrService = appEndpointSF.gethrService();
@@ -54,7 +54,7 @@ angular
 						}
 						
 						hrService
-								.getallsalslip($scope.viewsalslips,$scope.curryear)
+								.getallsalslip($scope.curryear) //$scope.viewsalslips, use emp id
 								.then(
 										function(empsalslips) {
 											$scope.empSalSlip = empsalslips;
@@ -66,7 +66,7 @@ angular
 
 					}
 					$scope.empSalSlip = [];
-					$scope.getallsalslip();*/
+					$scope.getallsalslip();
 
 					var printDivCSS = new String(
 							'<link href="/lib/base/css/angular-material.min.css"" rel="stylesheet" type="text/css">'

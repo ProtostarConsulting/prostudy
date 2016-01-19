@@ -194,6 +194,18 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;	
 	}
 	
+	hrService.getallsalslip = function(curryear){
+		var deferred = $q.defer();
+		gapi.client.hrService.getallsalslip({'curryear': curryear}).execute(
+				function(resp) {
+					deferred.resolve(resp);
+				});
+		return deferred.promise;	
+	}
+	
+	
+	
+	
 	//------------------------- CRM ---------------------------------
 	var crmService = {};
 

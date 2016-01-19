@@ -61,6 +61,28 @@
 			<!-- Left Navigation Pane -->
 			<md-sidenav class="md-sidenav-left md-whiteframe-z2"
 				md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+
+			<md-toolbar class="md-theme-indigo">
+			<h1 class="md-toolbar-tools">Apps Module</h1>
+			</md-toolbar> 
+			<md-content layout="column" ng-controller="LeftCtrl"> 
+			<md-button class="md-primary" ng-click="close()" hide-gt-md> Close Sidenav </md-button>
+			<md-button ui-sref="home" ng-click="close()" class="md-primary" show-gt-md> Home </md-button>
+			<md-button ui-sref="customer" ng-click="close()" class="md-primary" show-gt-md> Customer </md-button>
+			<md-button ui-sref="stock" ng-click="close()" ng-show="loader.stock" class="md-primary" show-gt-md> Stock </md-button> 	
+			<md-button ui-sref="stock" ng-click="close()" class="md-primary" show-gt-md> Stock </md-button> 	
+			<md-button ui-sref="invoice" ng-show="loader.invoice" ng-click="close()" class="md-primary" show-gt-md>  Invoice </md-button> 
+			<md-button ui-sref="salesOrder" ng-click="close()" class="md-primary" show-gt-md> Sales </md-button>
+			<md-button ui-sref="purchaseOrder" ng-click="close()" class="md-primary" show-gt-md> Purchase </md-button>
+<!-- 			<md-button ui-sref="hr" ng-click="close()" class="md-primary" show-gt-md> HR </md-button> 
+			<md-button ui-sref="salesOrder" ng-show="loader.sales" ng-click="close()" class="md-primary" show-gt-md>Sales </md-button>
+ -->			<md-button ui-sref="hr" id="hr" ng-click="close()" ng-show="loader.hr" class="md-primary" show-gt-md> HR </md-button>
+			<md-button ui-sref="crm" ng-click="close()" ng-show="loader.crm" class="md-primary" show-gt-md>CRM </md-button>
+			<md-button ui-sref="setup" ng-click="close()"   class="md-primary" show-gt-md>SETUP </md-button>
+			<md-button ui-sref="login" ng-click="close()"  class="md-primary" show-gt-md>LOGIN</md-button>
+			</md-content> 
+			  </md-sidenav> </md-content>
+
 				<md-toolbar class="md-theme-indigo">
 					<h1 class="md-toolbar-tools">Apps Module</h1>
 				</md-toolbar> 
@@ -80,6 +102,10 @@
 						<md-button ui-sref="setup" ng-click="close()" class="md-primary" show-gt-md> SETUP </md-button> 
 				</md-content> 
 			</md-sidenav>
+
+
+
+
 
 <!-- 
 							<md-button ui-sref="salesOrder" ng-show="loader.sales" ng-click="close()" class="md-primary" show-gt-md>
@@ -101,6 +127,7 @@
 			 </md-content> </md-sidenav>
 
  -->
+
 			<md-content flex layout-padding>
 			<div class="md-toolbar-tools" hide-gt-md>
 				<div>
@@ -116,8 +143,12 @@
 					<!--This is the center page of all main modules for the index module. -->
 				</div>
 			</div>
+
+			</md-card> </md-content>
+
 			</md-card> <!--This is a botton section of the app--> <md-divider></md-divider>
 			</md-content>
+
 
 		</section>
 	</div>
