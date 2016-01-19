@@ -214,6 +214,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/view/:selectedBookId/:selectedChapterId",
 		templateUrl : "/app/book/book_viewChapterContent.html",
 		controller : 'book_viewChapterContentCtr'
+	}).state('book.standard_book', {
+		url : "/standard_book/:selectedStdId",
+		templateUrl : "/app/book/standard_book.html",
+		controller : 'standardBookCtr'
 	}).state('login', {
 		url : "/login",
 		templateUrl : '/app/login/login_module.html',
