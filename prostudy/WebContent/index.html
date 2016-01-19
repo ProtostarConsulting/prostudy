@@ -116,7 +116,7 @@
 								Book
 							</md-button>
 							<md-button ui-sref="syllabus"
-							
+							ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
 							ng-click="close()" class="md-primary" show-gt-md>
 								Syllabus
 							</md-button>
@@ -130,7 +130,7 @@
 							</md-button>
 							<md-button aria-label="Login" ng-hide="curUser == null"
 							ng-click="loginClick()">
-								<a ui-sref="myprofile">Edit
+								<a ui-sref="updatemyprofile">Edit
 								profile </a>
 							</md-button>
 
@@ -330,8 +330,7 @@
 		<!-- <script src="/app/exam/js/examScore.ctr.js"></script> -->
 
 		<!--  	<script src="/app/exam/js/userQuesAnsView.ctr.js"></script> -->
-		<script src="/app/exam/js/practiceExamResult.ctr.js"></script>
-
+	
 		<script src="/app/chapter/js/chapter_module.ctr.js"></script>
 		<script src="/app/chapter/js/chapter_add.ctr.js"></script>
 		<script src="/app/chapter/js/chapter_view.ctr.js"></script>
@@ -348,6 +347,7 @@
 		<script src="/app/examdemo/js/examdemo_math.ctr.js"></script>
 
 		<script src="/app/myprofile/js/myprofile.ctr.js"></script>
+		<script src="/app/myprofile/js/myprofile_update.ctr.js"></script>
 
 		<script src="/app/chapter/js/chapter_module.ctr.js"></script>
 		<script src="/app/chapter/js/chapter_add.ctr.js"></script>
@@ -359,8 +359,6 @@
 		<script src="/app/examdemo/js/examdemo_module.ctr.js"></script>
 		<script src="/app/examdemo/js/examdemo_science.ctr.js"></script>
 		<script src="/app/examdemo/js/examdemo_math.ctr.js"></script>
-
-		<script src="/app/myprofile/js/myprofile.ctr.js"></script>
 
 		<script src="/app/institute/js/institute_module.ctr.js"></script>
 		<script src="/app/institute/js/institute_view.ctr.js"></script>

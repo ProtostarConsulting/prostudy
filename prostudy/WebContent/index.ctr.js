@@ -15,49 +15,64 @@ angular
 						$state.go("login");
 					};
 
+					// on page load firs see if user is already logged. if yes getch and set values.
+					$scope.curUser = appEndpointSF.getLocalUserService()
+					.getLoggedinUser();
+					
 					$scope.$on('event:google-plus-signin-success', function(
 							event, authResult) {
 						// User successfully authorized the G+ App!
-						console.log('Signed in!');
+						$log.debug('Signed in!');
 						var profile = authResult.getBasicProfile();
 						$scope.googleUser = profile;
-						console.log('ID: ' + profile.getId());
+
+						$log.debug('ID: ' + profile.getId());
 						// Do not send to your backend! Use an ID token instead.
-						console.log('Name: ' + profile.getName());
-						console.log('Image URL: ' + profile.getImageUrl());
-						console.log('email_id: ' + profile.getEmail());
+						$log.debug('Name: ' + profile.getName());
+						$log.debug('Image URL: ' + profile.getImageUrl());
+						$log.debug('email_id: ' + profile.getEmail());
 						$scope.googleUserDetails = profile.getName() + "<br>"
 								+ profile.getEmail()
 
 						appEndpointSF.getUserService().getUserByEmailID(
 								profile.getEmail()).then(
 								function(loggedInUser) {
-									$log.debug("loggedInUser:"
-											+ angular.toJson(loggedInUser));
+
 									appEndpointSF.getLocalUserService()
 											.saveLoggedInUser(loggedInUser);
 
-									$scope.curUser = loggedInUser;
-									if (loggedInUser.id == undefined) {
+									$log.debug("loggedInUser:"
+											+ angular.toJson(loggedInUser));
 
-										$state.go("newUserStudent");
+									$scope.curUser = loggedInUser;
+									$log.debug("$scope.curUser:"
+											+ angular.toJson($scope.curUser));
+									if (loggedInUser.id == undefined) {
+											
+										loggedInUser.email_id = profile.getEmail();
+										profile.getName().split(" ")[0];
+										loggedInUser.firstName = profile.getName().split(" ")[0];
+										loggedInUser.lastName = profile.getName().split(" ")[1];
+										
+										appEndpointSF.getLocalUserService()
+										.saveLoggedInUser(loggedInUser);
+										
+										$state.go("updatemyprofile");
 										return;
 									}
 
-								}
-
-						)
+								})
 
 						$log.debug("Forwarding to home state...");
 						$state.go("home");
 
 					});
 
-					console.log('$scope.curUser'
+					$log.debug('$scope.curUser'
 							+ angular.toJson($scope.curUser));
 
 					$scope.signOut = function() {
-						console.log('signOut1');
+						$log.debug('signOut1');
 						if (gapi.auth2 == undefined) {
 							$scope.curUser = null;
 							$scope.curUser = appEndpointSF
@@ -66,11 +81,13 @@ angular
 							$state.go("home");
 							return;
 						}
-						console.log('signOut2');
+						$log.debug('signOut2');
 						var auth2 = gapi.auth2.getAuthInstance();
 						auth2.signOut().then(
 								function() {
-									console.log('User signed out.');
+									$log.debug('User signed out.');
+									//also remove login details from chrome browser
+									
 									$scope.googleUser = 'null';
 									$scope.curUser = null;
 									$scope.curUser = appEndpointSF
@@ -83,7 +100,7 @@ angular
 					$scope.$on('event:google-plus-signin-failure', function(
 							event, authResult) {
 						// User has not authorized the G+ App!
-						console.log('Not signed into Google Plus.');
+						$log.debug('Not signed into Google Plus.');
 						$scope.googleUser = 'null';
 					});
 
