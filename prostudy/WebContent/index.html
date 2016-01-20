@@ -105,21 +105,22 @@
 							ng-click="close()" class="md-primary" show-gt-md>
 								Report
 							</md-button>
-							<md-button ui-sref="chapter"
+							
+						<!-- 	<md-button ui-sref="chapter"
 							ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-							ng-click="close()" class="md-primary" show-gt-md>
-								Chapter
+							ng-click="close()" class="md-primary" show-gt-md>Chapter
 							</md-button>
+							
 							<md-button ui-sref="book"
 							ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-							ng-click="close()" class="md-primary" show-gt-md>
-								Book
-							</md-button>
-							<md-button ui-sref="syllabus"
+							ng-click="close()" class="md-primary" show-gt-md>Book
+							</md-button> -->
 							ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-							ng-click="close()" class="md-primary" show-gt-md>
-								Syllabus
-							</md-button>
+							<md-button ui-sref="chapter" ng-click="close()" class="md-primary" show-gt-md>Chapter</md-button>
+							<md-button ui-sref="book" ng-click="close()" class="md-primary" show-gt-md>Book</md-button>
+							
+							<md-button ui-sref="syllabus" ng-click="close()" class="md-primary" show-gt-md>Syllabus</md-button>
+							
 							<md-button ui-sref="myBooks" ng-show="curUser.role == 'Student'"
 							ng-click="close()" class="md-primary" show-gt-md>
 								My Books
@@ -306,8 +307,30 @@
 		<script src="/app/common/app.google.endpoint.service.js"></script>
 		<script src="/app/common/app.endpoint.service.js"></script>
 
+		<script src="index.ctr.js"></script>
+		<script src="/app/login/js/login_module.ctr.js"></script>
+	      <script src="/app/login/js/newUser_student.ctr.js"></script>
 		<script src="/home.ctr.js"></script>
+		
+			<script src="/app/chapter/js/chapter_module.ctr.js"></script>
+		<script src="/app/chapter/js/chapter_add.ctr.js"></script>
+		<script src="/app/chapter/js/chapter_view.ctr.js"></script>
+		<script src="/app/chapter/js/chapter_edit.ctr.js"></script>
+		
+		<script src="/app/book/js/book_module.ctr.js"></script>
+		<script src="/app/book/js/book_add.ctr.js"></script>
+		<script src="/app/book/js/book_list.ctr.js"></script>
+		<script src="/app/book/js/book_chapterList.ctr.js"></script>
+		<script src="/app/book/js/book_viewChapterContent.ctr.js"></script>
+		<script src="/app/book/js/standard_Book.ctr.js"></script>
+
+		<script src="/app/myBooks/js/myBooks_module.ctr.js"></script>
+		
 		<script src="/app/demo/js/state.ctr.js"></script>
+		
+	
+
+
 
 		<script src="/app/student/js/student_module.ctr.js"></script>
 		<script src="/app/student/js/student.ctr.js"></script>
@@ -327,64 +350,42 @@
 		<script src="/app/exam/js/practiceExamList.ctr.js"></script>
 		<script src="/app/exam/js/practiceExamResult.ctr.js"></script>
 
-		<!-- <script src="/app/exam/js/examScore.ctr.js"></script> -->
+<!--  	<script src="/app/exam/js/userQuesAnsView.ctr.js"></script> -->
+
 
 		<!--  	<script src="/app/exam/js/userQuesAnsView.ctr.js"></script> -->
 	
-		<script src="/app/chapter/js/chapter_module.ctr.js"></script>
-		<script src="/app/chapter/js/chapter_add.ctr.js"></script>
-		<script src="/app/chapter/js/chapter_view.ctr.js"></script>
-		<script src="/app/chapter/js/chapter_edit.ctr.js"></script>
+	
 
-		<script src="/app/book/js/book_module.ctr.js"></script>
-		<script src="/app/book/js/book_add.ctr.js"></script>
-		<script src="/app/book/js/book_list.ctr.js"></script>
-		<script src="/app/book/js/book_chapterList.ctr.js"></script>
-		<script src="/app/book/js/book_viewChapterContent.ctr.js"></script>
+
 
 		<script src="/app/examdemo/js/examdemo_module.ctr.js"></script>
 		<script src="/app/examdemo/js/examdemo_science.ctr.js"></script>
 		<script src="/app/examdemo/js/examdemo_math.ctr.js"></script>
 
-		<script src="/app/myprofile/js/myprofile.ctr.js"></script>
 		<script src="/app/myprofile/js/myprofile_update.ctr.js"></script>
 
-		<script src="/app/chapter/js/chapter_module.ctr.js"></script>
-		<script src="/app/chapter/js/chapter_add.ctr.js"></script>
-		<script src="/app/chapter/js/chapter_view.ctr.js"></script>
-		<script src="/app/chapter/js/chapter_edit.ctr.js"></script>
-
-
-	<!-- 	<script src="/app/book/js/book_addComments.ctr.js"></script> -->
-		<script src="/app/examdemo/js/examdemo_module.ctr.js"></script>
-		<script src="/app/examdemo/js/examdemo_science.ctr.js"></script>
-		<script src="/app/examdemo/js/examdemo_math.ctr.js"></script>
 
 		<script src="/app/institute/js/institute_module.ctr.js"></script>
 		<script src="/app/institute/js/institute_view.ctr.js"></script>
 		<script src="/app/institute/js/institute_addInfo.ctr.js"></script>
 		<script src="/app/institute/js/institute.list.ctr.js"></script>
-		<!-- <script src="/app/institute/js/institute_edit.ctr.js"></script>
-		<script src="/app/institute/js/institute_editInstitute.ctr.js"></script>
-		-->
+	
 		<script src="/app/report/js/report_module.ctr.js"></script>
 		<script src="/app/report/js/display_report.ctr.js"></script>
 
-		<script src="/app/login/js/login_module.ctr.js"></script>
-		<script src="/app/login/js/newUser_student.ctr.js"></script> 
-		<script src="/app/myBooks/js/myBooks_module.ctr.js"></script>
+	
 		<script src="/app/myPracticeExams/js/myPracticeExams_module.ctr.js"></script>
+		
 
 		<script src="/app/test/js/table.demo.data.service.js"></script>
 		<script src="/app/demo/js/table.demo.withservice.ctr2.js"></script>
-		<!--  <script src="/app/syllabus/js/syllabus.ctr.js"></script>  -->
-		<!-- <script src="/app/syllabus/js/syllabus.js"></script> -->
-		<script src="/app/syllabus/js/syllabus_module.ctr.js"></script> 
+	
+	<!-- 	<script src="/app/syllabus/js/syllabus_module.ctr.js"></script> 
 		<script src="/app/syllabus/js/syllabus_add.ctr.js"></script> 
-		<script src="/app/syllabus/js/syllabus_view.ctr.js"></script> 
-		<script src="/app/syllabus/js/syllabus_list.ctr.js"></script> 
+		<script src="/app/syllabus/js/syllabus_view.ctr.js"></script>  -->
 
-		<script src="index.ctr.js"></script>
+	
 
 	</body>
 </html>
