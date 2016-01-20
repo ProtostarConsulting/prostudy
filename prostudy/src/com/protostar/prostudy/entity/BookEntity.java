@@ -10,7 +10,7 @@ import com.googlecode.objectify.annotation.Index;
 public class BookEntity {
 
 	@Id
-	Long id;
+	private Long id;
 
 	@Index
 	private String bookId;
@@ -18,6 +18,7 @@ public class BookEntity {
 	private String book_name;
 	private String author;
 	private String board;
+	@Index
 	private String standard;
 
 	private List<ChapterEntity> chapters;
