@@ -9,7 +9,12 @@ angular.module("prostudyApp").controller(
 						.position("top").hideDelay(3000));
 			};
 			
+
+			
+		
+
 					$scope.book = {
+
 					bookid : "",
 					book_name : "",
 					author : "",
