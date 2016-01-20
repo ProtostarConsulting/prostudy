@@ -4,18 +4,15 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import com.googlecode.objectify.ObjectifyService;
-import com.protostar.prostudy.entity.AdminEntity;
 import com.protostar.prostudy.entity.BookEntity;
 import com.protostar.prostudy.entity.Car;
 import com.protostar.prostudy.entity.CarAddress;
 import com.protostar.prostudy.entity.CarOwner;
 import com.protostar.prostudy.entity.ChapterEntity;
-import com.protostar.prostudy.entity.InstituteEntity;
 import com.protostar.prostudy.entity.PracticeExamEntity;
-import com.protostar.prostudy.entity.PracticeExamResultEntity;
 import com.protostar.prostudy.entity.QuestionEntity;
+import com.protostar.prostudy.entity.Standard_Book;
 import com.protostar.prostudy.entity.StudentEntity;
-import com.protostar.prostudy.entity.TeacherEntity;
 import com.protostar.prostudy.entity.UserEntity;
 
 
@@ -36,14 +33,11 @@ public class AppServletContextListener  implements ServletContextListener {
 		  ObjectifyService.register(CarAddress.class);
 		  ObjectifyService.register(CarOwner.class);  
 		  ObjectifyService.register(StudentEntity.class);  
-		  ObjectifyService.register(InstituteEntity.class); 
 		  ObjectifyService.register(QuestionEntity.class);
 		  ObjectifyService.register(PracticeExamEntity.class);
-		  ObjectifyService.register(AdminEntity.class);
-		  ObjectifyService.register(TeacherEntity.class);
 		  ObjectifyService.register(BookEntity.class);
 		  ObjectifyService.register(ChapterEntity.class);
-		  ObjectifyService.register(PracticeExamResultEntity.class);
+		  ObjectifyService.register(Standard_Book.class);
 		  ObjectifyService.register(UserEntity.class);
 			
 		  
