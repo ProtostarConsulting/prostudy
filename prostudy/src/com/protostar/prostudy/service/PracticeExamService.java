@@ -42,14 +42,27 @@ public class PracticeExamService {
 		return stru;
 	}
 
+	@ApiMethod(name = "updatePracticeExam")
+	public void updatePracticeExam(PracticeExamEntity exam) {
+		Key<PracticeExamEntity> now = ofy().save().entity(exam).now();
+	}
+
 	@ApiMethod(name = "likeCount")
 	public PracticeExamEntity likeCount(@Named("examId") String struct) {
-
-		PracticeExamEntity stru = ofy().load().type(PracticeExamEntity.class)
+		PracticeExamEntity like = ofy().load().type(PracticeExamEntity.class)
 				.filter("examId", struct).first().now();
 
-		System.out.println("likeCount " + stru);
-		return stru;
+		return like;
+
+	}
+
+	@ApiMethod(name = "dislikeCount")
+	public PracticeExamEntity dislikeCount(@Named("examId") String struct) {
+		PracticeExamEntity dislike = ofy().load()
+				.type(PracticeExamEntity.class).filter("examId", struct)
+				.first().now();
+
+		return dislike;
 	}
 
 }
