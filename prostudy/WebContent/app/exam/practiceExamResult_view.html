@@ -15,7 +15,7 @@
 		</thead>
 
 		<tbody>
-			<tr md-auto-select ng-repeat="result in examResults  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText ">
+			<tr md-auto-select ng-repeat="result in results  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText ">
 
 				<td>
 					<div>{{result.examTitle}}</div>

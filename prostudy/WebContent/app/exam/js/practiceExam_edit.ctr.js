@@ -24,7 +24,7 @@ angular.module("prostudyApp")
 						PracticeExamService.getPracticeExamById($scope.selectedExamId)
 								.then(
 										function(practiceTest) {
-											$scope.Test = practiceTest[0];
+											$scope.Test = practiceTest;
 										
 										});
 

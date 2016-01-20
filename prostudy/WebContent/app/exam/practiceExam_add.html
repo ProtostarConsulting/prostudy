@@ -7,6 +7,17 @@
 
 
 		<div layout="column">
+		
+					<md-input-container
+						md-is-error="myQuestionForm.examId.$invalid && (myQuestionForm.$submitted || myQuestionForm.examId.$dirty)">
+					<label>Practice Exam ID</label> <input name="examId" id="examId" ng-required="true"
+						ng-model="examId"  ng-change="getSelected()">
+					<div ng-messages="myQuestionForm.examId.$error"
+						ng-if="myQuestionForm.examId.$submitted || myQuestionForm.examId.$touched">
+						<div ng-message="required">Please Enter Exam ID.</div>
+					</div>
+					</md-input-container>
+		
 					<md-input-container
 						md-is-error="myQuestionForm.examtitle.$invalid && (myQuestionForm.$submitted || myQuestionForm.examtitle.$dirty)">
 					<label>Practice Exam Title</label> <input name="examtitle" id="examtitle" ng-required="true"

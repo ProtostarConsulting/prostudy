@@ -34,6 +34,7 @@ angular.module("prostudyApp").controller(
 			$scope.getQuestion();
 
 			$scope.getSelected = function() {
+				$scope.tempPracticeExam.examId = $scope.examId;
 				$scope.tempPracticeExam.examtitle = $scope.examtitle;
 				$scope.tempPracticeExam.board = $scope.board;
 				$scope.tempPracticeExam.standard = $scope.standard;

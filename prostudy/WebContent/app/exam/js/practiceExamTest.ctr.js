@@ -12,8 +12,11 @@ angular
 								.hideDelay(3000));
 					};
 
-					$scope.curUser = appEndpointSF.getUserService()
-							.getLoggedinUser();
+					$scope.curuser=appEndpointSF.getLocalUserService().getLoggedinUser();
+					$log.debug("$scope.curuser....................."
+							+ angular.toJson($scope.curuser));
+					/*$scope.curUser = appEndpointSF.getUserService()
+							.getLoggedinUser();*/
 
 					// Code for timer
 					var date = new Date();
@@ -104,7 +107,7 @@ angular
 						$scope.stopTimer();
 						$scope.addPracticeExamResult();
 						//$state.go("examscore");
-						$state.go('userQuesAnsView',{selectedExamId: $scope.Test.examId , selectedResultId: $scope.examResults.ID });
+						//$state.go('userQuesAnsView',{selectedExamId: $scope.Test.examId , selectedResultId: $scope.examResults.ID });
 						
 					}
 
@@ -191,7 +194,7 @@ angular
 					$scope.score = 0;
 					
 
-					/*$scope.getPracticeExams = function() {
+					$scope.getPracticeExams = function() {
 
 						var PracticeExamService = appEndpointSF
 								.getPracticeExamService();
@@ -207,7 +210,7 @@ angular
 
 										});
 					}// End of getPracticeExams
-*/
+
 					$log.debug("$stateParams:", $stateParams);
 					$log.debug("$stateParams.selectedExamId:",
 							$stateParams.selectedExamId);
@@ -222,7 +225,7 @@ angular
 								.getPracticeExamById($scope.selectedExamId)
 								.then(
 										function(practiceTest) {
-											$scope.Test = practiceTest[0];
+											$scope.Test = practiceTest;
 											$scope.buttonLimit = function(count) {
 												$scope.totalPages = Math
 														.ceil($scope.Test.questions.length / 4);
@@ -277,12 +280,12 @@ angular
 
 					$scope.getPracticeExamResultbyID = function() {
 
-						var PracticeExamService = appEndpointSF
-								.getPracticeExamService();
+						var PracticeExamResultService = appEndpointSF
+								.getPracticeExamResultService();
 
-						PracticeExamService
+						PracticeExamResultService
 								.getPracticeExamResultbyID(
-										$scope.curUser.userId)
+										$scope.curUser.email_id)
 								.then(
 										function(practiceExamResultList) {
 
@@ -295,22 +298,22 @@ angular
 							
 							ID : "",
 							examTitle : "",
-							userId : $scope.curUser.userId,
-							userName : $scope.curUser.name,
+							userId : $scope.curUser.email_id,
+							userName : $scope.curUser.firstName,
 							startTime : "",
 							endTime : "",
 							score : $scope.score,
-							userAns : $scope.userAnsList,
-							test :""
+							//userAns : $scope.userAnsList,
+							//test :""
 
 						}
 
 						$scope.addPracticeExamResult = function() {
 							$log.debug("No1");
-							var PracticeExamService = appEndpointSF
-									.getPracticeExamService();
+							var PracticeExamResultService = appEndpointSF
+									.getPracticeExamResultService();
 
-							PracticeExamService
+							PracticeExamResultService
 									.addPracticeExamResult(
 											$scope.tempPracticeExamResult)
 									.then(
@@ -332,8 +335,8 @@ angular
 													startTime : "",
 													endTime : "",
 													score : "",
-													userAns : "",
-													test :""
+													//userAns : "",
+													//test :""
 												};
 											});
 
@@ -343,7 +346,7 @@ angular
 					$scope.getPracticeExamResultbyID();
 
 					$scope.showselectedExam();
-					//$scope.getPracticeExams();
+					$scope.getPracticeExams();
 
 				});// end of examDemoCtr
 
