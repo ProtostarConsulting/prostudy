@@ -1,6 +1,43 @@
+<head>
+<style>
+#hidetr{
+display:none;
+}
+
+</style>
+</head>
 <md-content>
-<div id="invoiceDiv">
-	<h3>Sales Order View</h3>
+
+
+<div class="md-toolbar-tools">
+	<span flex></span>
+	<!--<md-card>-->
+	<section layout="row">
+
+		<md-button class="md-icon-button md-accent"
+			ng-click="printDiv('salesOrderDiv')" aria-label="Favorite">
+		<md-icon md-svg-icon="img/icons/print.svg"></md-icon> </md-button>
+
+	</section>
+	<!--</md-card>-->
+</div>
+</md-content>
+<md-content>
+<div id="salesOrderDiv">
+
+		<table ng-show="myValue" class="ng-hide">
+			<tbody>
+				<tr><td style="width: 20%"><img alt="Logo" src="img/images/protostar_logo_pix_313_132.jpg"></td>
+					<td style="width: 60%">
+						<h2 style= "color:green">Protostar Consulting Services</h2>						
+					</td>
+					<td style="width: 20%"><label style= "color:blue"><u>Address</u><br>E-101,
+							Manimangar Appartment<br>Kasarwadi-414141.<br>Ph.(020)4141414.<br>info@protostar.co.in
+					</label></td>
+				</tr>
+			</tbody>
+		</table>
+	<h3>Sales Order</h3>
 	<div layout="row" layout-align="center start"
 		style="margin-top: 20px; margin-bottom: 20px;">
 		<md-divider flex></md-divider>
@@ -14,8 +51,8 @@
 					<td style="width: 20%"><b>S.O.No :</b>
 						{{sODetail.salesOrderId}}</td>
 					<td style="width: 20%"><b>Customer Name :</b>
-						{{sODetail.customerName.customerName}}</td>
-						<td style="width: 20%"><b>Referance By :</b>
+						{{sODetail.customer.customerName}}</td>
+					<td style="width: 20%"><b>Referance By :</b>
 						{{sODetail.customerRefId}}</td>
 				</tr>
 				<tr>
@@ -25,25 +62,25 @@
 						{{sODetail.salesOrderDate}}</td>
 				</tr>
 				<tr>
-					<td style="width: 50%" colspan="2"><label>To :</label><br>
+					<td style="width: 50%" colspan="2"><b>To :</b><br>
 						{{sODetail.to}}</td>
-					<td style="width: 50%" colspan="3"><label>Ship To :</label><br>
+					<td style="width: 50%" colspan="3"><b>Ship To :</b><br>
 						{{sODetail.shipTo}}</td>
 				</tr>
 				<tr>
-					<td style="width: 20%"><label>Sales Person :</label><br>
+					<td style="width: 20%"><b>Sales Person :</b><br>
 						{{sODetail.salesPerson}}</td>
-					<td style="width: 20%"><label>Job :</label><br>
+					<td style="width: 20%"><b>Job :</b><br>
 						{{sODetail.requisitioner}}</td>
-					<td style="width: 20%"><label>Shipped Via :</label><br>
+					<td style="width: 20%"><b>Shipped Via :</b><br>
 						{{sODetail.shippedVia}}</td>
-					<td style="width: 20%"><label>Shipping Terms :</label><br>
+					<td style="width: 20%"><b>Shipping Terms :</b><br>
 						{{sODetail.shippingTerms}}</td>
-					<td style="width: 20%"><label>Delivery Date :</label><br>
+					<td style="width: 20%"><b>Delivery Date :</b><br>
 						{{sODetail.deliveryDate}}</td>
-					<td style="width: 20%"><label>Payment Terms :</label><br>
+					<td style="width: 20%"><b>Payment Terms :</b><br>
 						{{sODetail.paymentTerms}}</td>
-					<td style="width: 20%"><label>Due Date :</label><br>
+					<td style="width: 20%"><b>Due Date :</b><br>
 						{{sODetail.dueDate}}</td>
 				</tr>
 
@@ -78,7 +115,7 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td><label><u>Sub Total</u> </label></td>
+					<td><b><u>Sub Total</u> </b></td>
 					<td>{{sODetail.subTotal}}</td>
 				</tr>
 
@@ -91,13 +128,13 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td><label><u>Tax Details</u> </label></td>
-					<td><md-input-container flex> <label>Tax
-							Type </label> </md-input-container>{{sODetail.selectedTaxItem.taxCodeName}}</td>
-					<td><md-input-container flex> <label>Tax
-						</label> </md-input-container> {{sODetail.selectedTaxItem.taxPercenatge}}%</td>
-					<td><md-input-container flex> <label>Tax
-							Total </label> </md-input-container>{{sODetail.taxTotal}}</td>
+					<td><b><u>Tax Details</u> </b></td>
+					<td><md-input-container flex> <b>Tax
+							Type </b> </md-input-container>{{sODetail.selectedTaxItem.taxCodeName}}</td>
+					<td><md-input-container flex> <b>Tax
+						</b> </md-input-container> {{sODetail.selectedTaxItem.taxPercenatge}}%</td>
+					<td><md-input-container flex> <b>Tax
+							Total </b> </md-input-container>{{sODetail.taxTotal}}</td>
 				</tr>
 				<tr>
 					<td>-</td>
@@ -110,7 +147,7 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td><label><u>Final Total</u> </label></td>
+					<td><b><u>Final Total</u> </b></td>
 					<td><md-input-container flex>
 						{{sODetail.finalTotal}}</md-input-container></td>
 				</tr>

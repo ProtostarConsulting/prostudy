@@ -1,32 +1,32 @@
 app = angular.module("stockApp");
-
-app.controller("purchaseOrderViewCtr", function($scope, $window, $mdToast, $timeout,
+app.controller("salesOrderViewCtr", function($scope, $window, $mdToast, $timeout,
 		$mdSidenav, $mdUtil, $log, $state, $http, $stateParams, $routeParams,
 		$filter, objectFactory, appEndpointSF) {
 
+	$scope.salesOrder = {};
+
 	$log.debug("$stateParams:", $stateParams);
-	$log.debug("$stateParams.selectedPONo:",
-			$stateParams.selectedPONo);
+	$log.debug("$stateParams.selectedSOId:",
+			$stateParams.selectedSOId);
 
-	$scope.purchaseOrderNo = $stateParams.selectedPONo;
+	$scope.selectedSalesOrderNo = $stateParams.selectedSOId;
 	
-	$scope.getPOByID = function() {
-		var purchaseService = appEndpointSF.getPurchaseOrderService();
+	$scope.getSOByID = function() {
+		var salesService = appEndpointSF.getSalesOrderService();
 
-		purchaseService
-				.getPOByID($scope.purchaseOrderNo)
-				.then(function(pODetails) {
-							$scope.pODetail = pODetails;
+		salesService
+				.getSOByID($scope.selectedSalesOrderNo)
+				.then(function(sOList) {
+							$scope.sODetail = sOList;
 							$log
-									.debug("getPOByID at controller===="
+									.debug("$scope.showSales Order ===="
 											+ angular
-													.toJson($scope.pODetail));
+													.toJson($scope.sODetail));
 						});
 
 	}
-	$scope.pODetail = [];
-	$scope.getPOByID();
-	
+	$scope.sODetail = [];
+	$scope.getSOByID();
 
 	/* Setup menu */
 	$scope.toggleRight = buildToggler('right');
@@ -48,13 +48,7 @@ app.controller("purchaseOrderViewCtr", function($scope, $window, $mdToast, $time
 			$log.debug("close RIGHT is done");
 		});
 	};
-	
-	$scope.showSimpleToast = function() {
-		$mdToast.show($mdToast.simple().content(
-				'Purchase Order Saved!').position("top")
-				.hideDelay(3000));
-	};	
-	
+
 	var printDivCSS = new String(
 			'<link href="/lib/base/css/angular-material.min.css"" rel="stylesheet" type="text/css">'
 					+ '<link href="/css/header.css"" rel="stylesheet" type="text/css">')
@@ -67,4 +61,5 @@ app.controller("purchaseOrderViewCtr", function($scope, $window, $mdToast, $time
 		window.frames["print_frame"].window.focus();
 		window.frames["print_frame"].window.print();
 	}
+	
 });

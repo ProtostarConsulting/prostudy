@@ -170,21 +170,6 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 		}, apiRoot);
 
 		
-		gapi.client.load('internetService', 'v0.1', function() {
-			$log.debug("internetService2 Loaded....");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
-		
-		gapi.client.load('internetService', 'v0.1', function() {
-			$log.debug("internetService Loaded....");
-			
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
-
-
-		}, apiRoot);
 		
 		gapi.client.load('hrService', 'v0.1', function() {
 			$log.debug("hr Loaded....");
@@ -202,9 +187,6 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 
 		}, apiRoot);
 
-
-		}, apiRoot);
-		
 		gapi.client.load('salesOrderService', 'v0.1', function() {
 			$log.debug("salesOrderService Loaded....");
 			

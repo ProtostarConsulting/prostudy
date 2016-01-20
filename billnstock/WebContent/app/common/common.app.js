@@ -108,22 +108,28 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/allcustomer",
 		templateUrl : '/app/report/customer_list.html',
 		controller : 'reportCtr'
+	
+	
+	
 	}).state('salesOrder', {
 		url : "/salesOrder",
-		templateUrl : '/app/sales/sales_module.html',
-		controller : 'salesCtr'
+		templateUrl : '/app/sales/salesOrder_module.html',
+		controller : 'salesOrderCtr'
+			
 	}).state('salesOrder.SalesOrderAdd', {
 		url : "/SalesOrderAdd",
 		templateUrl : '/app/sales/salesOrder_add.html',
-		controller : 'salesCtr'
-	}).state('salesOrder.SalesOrderList', {
+		controller : 'salesOrderAddCtr'
+			
+		}).state('salesOrder.SalesOrderList', {
 		url : "/SalesOrderList",
 		templateUrl : '/app/sales/salesOrder_list.html',
-		controller : 'salesCtr'
+		controller : 'salesOrderListCtr'
+						
 	}).state('salesOrder.view', {
 		url : "/SalesOrderview/:selectedSOId",
 		templateUrl : '/app/sales/salesOder_view.html',
-		controller : 'salesCtr'
+		controller : 'salesOrderViewCtr'
 	
 	
 			

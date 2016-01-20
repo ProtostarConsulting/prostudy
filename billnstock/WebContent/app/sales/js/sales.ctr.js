@@ -1,5 +1,5 @@
 app = angular.module("stockApp");
-app.controller("salesCtr", function($scope, $window, $mdToast, $timeout,
+app.controller("salesCtr1", function($scope, $window, $mdToast, $timeout,
 		$mdSidenav, $mdUtil, $log, $state, $http, $stateParams, $routeParams,
 		$filter, objectFactory, appEndpointSF) {
 
@@ -81,7 +81,7 @@ app.controller("salesCtr", function($scope, $window, $mdToast, $timeout,
 
 	}
 	$scope.sODetail = [];
-	$scope.getSOByID();
+	//$scope.getSOByID();
 	
 	$scope.addItem = function() {
 		var item = {
