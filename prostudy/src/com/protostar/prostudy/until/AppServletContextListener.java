@@ -15,9 +15,6 @@ import com.protostar.prostudy.entity.Standard_Book;
 import com.protostar.prostudy.entity.StudentEntity;
 import com.protostar.prostudy.entity.UserEntity;
 
-
-
-
 public class AppServletContextListener  implements ServletContextListener {
 
 	  @Override
@@ -28,6 +25,7 @@ public class AppServletContextListener  implements ServletContextListener {
 	  @Override
 	  public void contextInitialized(ServletContextEvent arg0) {
 		  System.out.println("###Inside AppServletContextListener###");
+		  
 		  //register all your entities here
 		  ObjectifyService.register(Car.class);
 		  ObjectifyService.register(CarAddress.class);
