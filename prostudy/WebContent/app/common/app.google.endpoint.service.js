@@ -365,38 +365,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}	// End of InstituteService  
 	
-	// End of getStandard_BookbyID
 	
-	/*	Standard_BookService.addStandard_Book = function(book) {
-	$log.debug("No2");	
-	var deferred = $q.defer();
-	$log.debug("abc");
-		
-	gapi.client.standardBookService.addStandard_Book(book).execute(
-			function(resp) {
-				$log
-				.debug("No5");	
-				$log.debug("addStandard_Book#resp:" + resp);
-				deferred.resolve(resp);
-			});
-	$log.debug("No3");	
-	return deferred.promise;
-}//end of addStandard_Book
-
-
-Standard_BookService.getStdBooks = function() {
-	var deferred = $q.defer();
-	gapi.client.standardBookService.getStdBooks().execute(
-			function(resp) {
-				$log.debug("getStdBooks#resp:" + resp);
-				deferred.resolve(resp.items);
-			});
-	return deferred.promise;
-}  // End of getStdBooks
-*/	
-
-
-
 	// start of QuestionService
 	var QuestionService = {};
 
