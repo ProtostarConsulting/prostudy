@@ -1,9 +1,9 @@
  <md-content>
 
-<div id="bookList">
+<div >
 
 
-	<div class="table-responsive-vertical shadow-z-1">
+	<div id="bookList" class="table-responsive-vertical shadow-z-1">
 		<table class="table table-hover table-mc-light-blue">
 			<thead>
 				<tr>
@@ -32,27 +32,28 @@
 	</div>
 
 
-	<div>
+	<div id="viewBookOnStdButton" class="table-responsive-vertical shadow-z-1">
 	
-	<md-button ng-click="getStandard_BookbyID(5)"><b>STD 5</b></md-button>
-	<md-button ng-click="getStandard_BookbyID(6)"><b>STD 6</b></md-button>
-	<md-button ng-click="getStandard_BookbyID(7)"><b>STD 7</b></md-button>
-	<md-button ng-click="getStandard_BookbyID(8)"><b>STD 8</b></md-button>
-	<md-button ng-click="getStandard_BookbyID(9)"><b>STD 9</b></md-button>
-	<md-button ng-click="getStandard_BookbyID(10)"><b>STD 10</b></md-button>
+	<md-button ng-click="getBookByStandard(5)"><b>STD 5</b></md-button>
+	<md-button ng-click="getBookByStandard(6)"><b>STD 6</b></md-button>
+	<md-button ng-click="getBookByStandard(7)"><b>STD 7</b></md-button>
+	<md-button ng-click="getBookByStandard(8)"><b>STD 8</b></md-button>
+	<md-button ng-click="getBookByStandard(9)"><b>STD 9</b></md-button>
+	<md-button ng-click="getBookByStandard(10)"><b>STD 10</b></md-button>
 	
-	<table class="table table-hover table-mc-light-blue">
+	     <table align="center" class="table table-hover table-mc-light-blue">
 		
 			<tbody>
 				<tr ng-repeat="std in stdBooks | filter: searchText">
-					<td><b>{{std.book.book_name}}</b></td>
+					<td><b>{{std.book_name}}</b></td>
 				</tr>
-
-
-
-
+				
 			</tbody>
 		</table>
+		
+		<div>
+		    <md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
+		</div>
 	
 	</div>
 
