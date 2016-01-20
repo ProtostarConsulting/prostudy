@@ -10,18 +10,6 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 	endpointFactory.is_service_ready = false;
 	// This will call the function to load services
 
-
-/*	endpointFactory.getInternetService = function() 
-	{
-		if(isTestMode)
-			return localDBServiceFactory.getInternetService();
-		else	
-			return googleEndpointSF.getInternetService();
-	};//end of getInternetService
-=======
-
-*/
-	
 	endpointFactory.getLocalUserService = function() {
 		return localDBServiceFactory.getUserService();
 	};//end of getUserService
@@ -53,24 +41,17 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getBookService();
 	};//end of getBookService
 	
-	endpointFactory.getStandard_BookService = function() {
-
-		if(isTestMode)
-			return localDBServiceFactory.getStandard_BookService();
-		else	
-			return googleEndpointSF.getStandard_BookService();
-	};//end of getStandard_BookService
 	
 
 	
 
-/*	endpointFactory.getSyllabusService = function() 
+	endpointFactory.getSyllabusService = function() 
 	{
 		if(isTestMode)
 			return localDBServiceFactory.getSyllabusService();
 		else	
 			return googleEndpointSF.getSyllabusService();
-	};*/
+	};
 	
 	endpointFactory.getPracticeExamService = function() 
 	{
@@ -142,24 +123,6 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 		gapi.client.load('bookService', 'v0.1', function() {
 			$log.debug("bookService Loaded....");
 			
-			deferred.resolve();
-
-		}, apiRoot);
-
-		
-/*		gapi.client.load('internetService', 'v0.1', function() {
-			$log.debug("InternetService Loaded....");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
-		}, apiRoot);*/
-
-	
-
-		
-		gapi.client.load('standardBookService', 'v0.1', function() {
-			$log.debug("standardBookService Loaded....");
-			endpointFactory.is_service_ready = true;
 			deferred.resolve();
 
 		}, apiRoot);
