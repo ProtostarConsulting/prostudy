@@ -174,16 +174,16 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}  // End of getBookbyID
 	
-	BookService.getStandard_BookbyID = function(selectedStdId) {
+	BookService.getBookByStandard = function(selectedStdId) {
 		var deferred = $q.defer();
-		gapi.client.bookService.getStandard_BookbyID({'standard':selectedStdId}).execute(
+		gapi.client.bookService.getBookByStandard({'standard':selectedStdId}).execute(
 				function(resp) {
 			
-					$log.debug("getStandard_BookbyID#resp:" +angular.toJson(resp));
-					deferred.resolve(resp);
+					$log.debug("getBookByStandard#resp:" +angular.toJson(resp));
+					deferred.resolve(resp.items);
 				});
 		return deferred.promise;
-	}  // End of getStandard_BookbyID
+	}  // End of getBookByStandard
 
 	
 
