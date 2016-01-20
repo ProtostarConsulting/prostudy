@@ -10,7 +10,7 @@ angular.module("prostudyApp").controller(
 			};
 
 			$scope.tempInstitute = {
-					id:"",
+					instituteId:"",
 					name : "",
 					desc:"",
 					user_fname:"",

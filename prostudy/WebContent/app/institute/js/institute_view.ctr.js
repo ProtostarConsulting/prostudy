@@ -26,9 +26,9 @@ angular.module("prostudyApp").controller(
 			$scope.students = [];
 			$scope.addStudents = function() {
 				$scope.students.push({
-					'student_name' : $scope.student_name,
-					'student_email_id' : $scope.student_email_id,
-					'student_contact_no' : $scope.student_contact_no
+					'firstName' : $scope.student_name,
+					'email' : $scope.student_email_id,
+					'city' : $scope.student_contact_no
 				});
 				$scope.student_name = '';
 				$scope.student_email_id = '';
@@ -107,7 +107,7 @@ angular.module("prostudyApp").controller(
 				var InstituteService = appEndpointSF.getInstituteService();
 				InstituteService.getInstituteById($scope.selectedInstituteId)
 						.then(function(institutes) {
-							$scope.Institute = institutes[0];
+							$scope.Institute = institutes;
 						});
 			}
 			$scope.showselectedInstitute();

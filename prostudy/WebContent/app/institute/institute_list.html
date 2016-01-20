@@ -6,7 +6,7 @@
 		<table md-data-table md-row-select="selected" md-progress="deferred">
 			<thead md-order="query.order" md-trigger="onorderchange">
 				<tr>
-					<th name="INSTITUTE ID" order-by="id"></th>
+					<th name="INSTITUTE ID" order-by="instituteId"></th>
 					<th name="INSTITUTE NAME" order-by="name"></th>
 					<th name="EMAIL-ID" order-by="user_email_id"></th>
 					<th name="CONTACT NO" order-by="phone_no"></th>
@@ -16,12 +16,12 @@
 			<tbody>
 				<tr md-auto-select
 					ng-repeat="institute in institutes  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText">
-					<td>{{institute.id}}</td>
+					<td>{{institute.instituteId}}</td>
 					<td>{{institute.name}}</td>
 					<td>{{institute.user_email_id}}</td>
 					<td>{{institute.phone_no}}</td>
 					<td>{{institute.address}}</td>
-				 <td><a ui-sref="institute.view({selectedInstituteId: institute.id})"><md-button class="md-raised md-primary" ng-click="">VIEW</md-button> </a></td> 
+				 <td><a ui-sref="institute.view({selectedInstituteId: institute.instituteId})"><md-button class="md-raised md-primary" ng-click="">VIEW</md-button> </a></td> 
 				</tr>
 			</tbody>
 		</table>

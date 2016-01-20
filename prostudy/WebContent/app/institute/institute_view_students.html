@@ -4,18 +4,18 @@
 		<table md-data-table md-row-select="selected" md-progress="deferred">
 			<thead md-order="query.order" md-trigger="onorderchange">
 				<tr>
-					<th name="STUDENT NAME" order-by="admin_name"></th>
-					<th name="STUDENT EMAIL-ID" order-by="admin_email_id"></th>
-					<th name="STUDENT CONTACT NO" order-by="admin_contact_no"></th>
+					<th name="STUDENT NAME" order-by="firstName"></th>
+					<th name="STUDENT EMAIL-ID" order-by="email"></th>
+					<th name="STUDENT CITY" order-by="city"></th>
 					
 				</tr>
 			</thead>
 			<tbody>
 				<tr md-auto-select
 					ng-repeat="a in Institute.students  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText">
-					<td>{{a.student_name}}</td>
-					<td>{{a.student_email_id}}</td>
-					<td>{{a.student_contact_no}}</td>
+					<td>{{a.firstName}}</td>
+					<td>{{a.email}}</td>
+					<td>{{a.city}}</td>
 				</tr>
 			</tbody>
 		</table>

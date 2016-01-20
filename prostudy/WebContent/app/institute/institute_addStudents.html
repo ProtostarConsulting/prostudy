@@ -21,17 +21,17 @@
 		md-progress="deferred">
 		<thead>
 			<tr>
-				<th order-by="student_name" name="Student Name" unit=""></th>
-				<th order-by="student_email_id" name="Student EMAIL-ID"></th>
-				<th order-by="student_contact_no" name="Student Contact No."></th>
+				<th order-by="firstName" name="Student Name" unit=""></th>
+				<th order-by="email" name="Student EMAIL-ID"></th>
+				<th order-by="city" name="City"></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr md-auto-select
 				ng-repeat="a in students | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText" ">
-				<td>{{a.student_name}}</td>
-				<td>{{a.student_email_id}}</td>
-				<td>{{a.student_contact_no}}</td>
+				<td>{{a.firstName}}</td>
+				<td>{{a.email}}</td>
+				<td>{{a.city}}</td>
 			</tr>
 		</tbody>
 	</table>
