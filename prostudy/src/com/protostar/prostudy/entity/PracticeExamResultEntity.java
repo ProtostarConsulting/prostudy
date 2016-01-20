@@ -2,6 +2,7 @@ package com.protostar.prostudy.entity;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 
 @Entity
@@ -10,13 +11,13 @@ public class PracticeExamResultEntity {
 	@Id
 	private Long id;
 	private String examTitle;
+	@Index
 	private String userId;
 	private String userName;
 	private String startTime;
 	private String endTime;
 	private String score;
-	private String userAns;
-	private String test;
+	
 	public Long getId() {
 		return id;
 	}
@@ -59,18 +60,7 @@ public class PracticeExamResultEntity {
 	public void setScore(String score) {
 		this.score = score;
 	}
-	public String getUserAns() {
-		return userAns;
-	}
-	public void setUserAns(String userAns) {
-		this.userAns = userAns;
-	}
-	public String getTest() {
-		return test;
-	}
-	public void setTest(String test) {
-		this.test = test;
-	}
+
 	
 	
 }
