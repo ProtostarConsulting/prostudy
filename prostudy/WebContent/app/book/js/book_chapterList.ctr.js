@@ -48,7 +48,7 @@ angular
 					$scope.showBookContents = function() {
 						var BookService = appEndpointSF.getBookService();
 						$log.debug("$scope.selectedBookId:"+ $scope.selectedBookId);
-						BookService.getBooksByID($scope.selectedBookId)
+						BookService.getBookbyID($scope.selectedBookId)
 								.then(
 										function(bookList) {
 										$scope.book_ChapterDetails = bookList[0];										

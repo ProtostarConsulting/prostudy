@@ -19,14 +19,6 @@ angular.module("prostudyApp").controller(
 				chapters : []
 			};// end of tempBook object
 			
-		
-
-			$scope.tempMyBook = {
-				user_name : $scope.curUser,
-				book : $scope.currentBook
-
-			};
-			
 			$scope.books = [];
 			$scope.getBooks = function() {
 
@@ -45,6 +37,38 @@ angular.module("prostudyApp").controller(
 			}// end of getBooks
 			
 			$scope.getBooks();
+			
+		
+
+			$scope.tempMyBook = {
+				user_name : $scope.curUser,
+				book : $scope.currentBook
+
+			};
+			
+			$scope.getStandard_BookbyID = function(selectedStdId) {
+				
+				$log.debug("Inside getStandard_BookbyID");
+				
+				var BookService = appEndpointSF.getBookService();
+				
+
+				BookService.getStandard_BookbyID(selectedStdId)
+						.then(
+								function(stdBookList) {
+									$log.debug("Inside BookService.getStandard_BookbyID");
+								$scope.stdBooks = stdBookList;
+							/*		$scope.tempstdBook=$scope.stdBooks.length+1;
+								//$scope.books = $scope.stdBooks;
+									$scope.stdBook.stdId=$scope.tempstdBook.stdId;
+									$log.debug("$scope.stdBook.stdId :-"+ angular.toJson($scope.tempstdBook));*/
+									$log.debug("$scope.stdBooks :-"+ angular.toJson($scope.stdBooks));
+
+								});
+
+			};// end of $scope.getStandard_BookbyID
+			
+
 			
 		
 		     $scope.selected = [];

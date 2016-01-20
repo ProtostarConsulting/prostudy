@@ -11,14 +11,14 @@ angular.module("prostudyApp").controller(
 		
 			
 			//$scope.standard;
-				$scope.getStandard_BookbyID = function() {
+				$scope.getStandard_BookbyID = function(selectedStdId) {
 					
-					$log.debug("$scope.selectedStdId:" + $scope.standard);
+					$log.debug("$scope.selectedStdId:" + $scope.selectedStdId);
 					
 					var BookService = appEndpointSF.getBookService();
 					
 
-					BookService.getStandard_BookbyID()
+					BookService.getStandard_BookbyID(selectedStdId)
 							.then(
 									function(stdBookList) {
 
