@@ -13,7 +13,6 @@ angular
 						desc : ""
 					}
 					$scope.tempBook = {
-						bookid : "",
 						bookId : "",
 						book_name : "",
 						author : "",
@@ -46,7 +45,7 @@ angular
 									$log.debug("tempBook"+ angular.toJson($scope.tempBook));
 									$scope.tempBook = {
 
-											bookid : "",
+											bookId : "",
 											book_name : "",
 											author : "",
 											board : "",
