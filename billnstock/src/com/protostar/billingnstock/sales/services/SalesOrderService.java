@@ -31,11 +31,9 @@ public class SalesOrderService {
 		
 		@ApiMethod(name = "getSOByID")
 		public SalesOrderEntity getSOByID(@Named("salesOrderId") Long salesOrderId) {
-
 			SalesOrderEntity SalesOrderById = ofy().load().type(SalesOrderEntity.class).filter("salesOrderId", salesOrderId).first().now();
 
 			System.out.println("getSOByID Recored is:"+ SalesOrderById);
-			
 			return SalesOrderById;
 
 		}
