@@ -24,4 +24,9 @@ public class QuestionService {
 	public List<QuestionEntity> getQuestion() {
 		return ofy().load().type(QuestionEntity.class).list();
 	}
+	
+	@ApiMethod(name = "updateQuestion")
+	public void updateQuestion(QuestionEntity ques) {
+		Key<QuestionEntity> now = ofy().save().entity(ques).now();
+	}
 }
