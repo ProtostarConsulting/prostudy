@@ -26,7 +26,7 @@ public class BookService {
 	@ApiMethod(name="getBooks")
 	public List<BookEntity>getBooks()
 	{
-		System.out.println("getBooks ");
+		System.out.println("Inside getBooks ");
 		return ofy().load().type(BookEntity.class).list();
 		
 	}//end of getBooks
@@ -34,14 +34,23 @@ public class BookService {
 	 @ApiMethod(name="getBookbyID") 
 	 public BookEntity getBookbyID(@Named("bookId") String bookId)
 	 {
-		 System.out.println("getBookbyID ");
+		 System.out.println("Inside getBookbyID ");
 		 BookEntity bookById = ofy().load().type(BookEntity.class).filter("bookId ", bookId).first().now();
 		 
-		 return bookById;
-			 
-		
+		 return bookById;	
 	 }//end of getBookbyID
 	 
+	 @ApiMethod(name="getBookByStandard") 
+	 public List<BookEntity> getBookByStandard(@Named("standard") String standard)
+	 {
+		 System.out.println("Inside getBookByStandard ");
+		 List<BookEntity>  standardBookById=ofy().load().type(BookEntity.class).filter("standard", standard).list();
+		 System.out.println("standardBookById :"+standardBookById);
+		 
+		 return standardBookById; 
+	 }//end of getBookByStandard
+	 
+
 	 
 	
 }// end of BookService
