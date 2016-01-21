@@ -1,5 +1,7 @@
 package com.protostar.prostudy.entity;
 
+import java.util.List;
+
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
@@ -17,7 +19,21 @@ public class PracticeExamResultEntity {
 	private String startTime;
 	private String endTime;
 	private String score;
+	private List<userAnsEntity> userAns;   
+	private List<QuestionEntity> test;
 	
+	public List<QuestionEntity> getTest() {
+		return test;
+	}
+	public void setTest(List<QuestionEntity> test) {
+		this.test = test;
+	}
+	public List<userAnsEntity> getUserAns() {
+		return userAns;
+	}
+	public void setUserAns(List<userAnsEntity> userAns) {
+		this.userAns = userAns;
+	}
 	public Long getId() {
 		return id;
 	}
