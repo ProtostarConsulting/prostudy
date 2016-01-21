@@ -84,6 +84,13 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getQuestionService();
 	};
 	
+	endpointFactory.getPracticeExamResultService = function() {
+		if(isTestMode)
+			return localDBServiceFactory.getPracticeExamResultService();
+		else	
+			return googleEndpointSF.getPracticeExamResultService();
+	};
+	
 
 	endpointFactory.loadAppGoogleServices = function(deferred) {
 		$log.debug("###Inside Google appEndpointSF.loadAppGoogleServices###");
@@ -134,6 +141,42 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 
 		}, apiRoot);
 		
+
+		
+		gapi.client.load('questionService', 'v0.1', function() {
+			$log.debug("QuestionService Loaded....");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+		
+		gapi.client.load('practiceExamService', 'v0.1', function() {
+			$log.debug("PracticeExamService Loaded....");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+
+		gapi.client.load('userService', 'v0.1', function() {
+			$log.debug("userService Loaded......");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+		
+		gapi.client.load('practiceExamResultService', 'v0.1', function() {
+			$log.debug("PracticeExamResultService Loaded......");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+		
+		gapi.client.load('instituteService', 'v0.1', function() {
+			$log.debug("InstituteService Loaded......");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
 
 		return deferred.promise;
 
