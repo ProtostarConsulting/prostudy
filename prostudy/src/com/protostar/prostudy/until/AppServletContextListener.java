@@ -14,6 +14,7 @@ import com.protostar.prostudy.entity.QuestionEntity;
 import com.protostar.prostudy.entity.Standard_Book;
 import com.protostar.prostudy.entity.StudentEntity;
 import com.protostar.prostudy.entity.UserEntity;
+import com.protostar.prostudy.entity.userAnsEntity;
 
 public class AppServletContextListener  implements ServletContextListener {
 
@@ -37,7 +38,7 @@ public class AppServletContextListener  implements ServletContextListener {
 		  ObjectifyService.register(ChapterEntity.class);
 		  ObjectifyService.register(Standard_Book.class);
 		  ObjectifyService.register(UserEntity.class);
-			
+		  ObjectifyService.register(userAnsEntity.class);
 		  
 		  
 	  }
