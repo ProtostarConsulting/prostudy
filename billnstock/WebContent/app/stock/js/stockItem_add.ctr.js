@@ -69,7 +69,15 @@ angular.module("stockApp").controller(
 						"top").hideDelay(3000));
 			};
 
-			$scope.stock = {};
+			$scope.stock = {
+					itemId : "",
+					itemName : "",
+					category : "",
+					qty : "",
+					price : "",
+					thresholdValue :'',
+					notes :''
+			};
 			$scope.addStock = function() {
 				$log.debug("No1");
 				var stockService = appEndpointSF.getStockService();
@@ -86,7 +94,7 @@ angular.module("stockApp").controller(
 				$scope.stock = {};
 			}
 			
-			$scope.selected = [];
+/*			$scope.selected = [];
 			$scope.updateStockItem = function() {
 			    var stockService = appEndpointSF.getStockService();
 			    
@@ -100,7 +108,7 @@ angular.module("stockApp").controller(
 			    $log.debug("Selected Item updated");
 			    
 			}
-			    
+*/			    
 			$scope.getAllStock = function() {
 				$log.debug("Inside Ctr $scope.getAllStock");
 				var stockService = appEndpointSF.getStockService();
@@ -109,6 +117,8 @@ angular.module("stockApp").controller(
 						function(stockList) {
 							$log.debug("Inside Ctr getAllStock");
 							$scope.stockData = stockList;
+							$scope.tempItem = $scope.stockData.length + 1;
+							$scope.stock.itemId=$scope.tempItem;
 							$log.debug("Inside Ctr $scope.stockData:"
 									+ angular.toJson($scope.stockData));	
 							

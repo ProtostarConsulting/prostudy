@@ -491,10 +491,10 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	InvoiceService.getAllInvoiceByCustId = function(CustomerId) {
+	InvoiceService.getAllInvoiceByCustId = function(customerId) {
 		var deferred = $q.defer();
 		gapi.client.invoiceService.getAllInvoiceByCustId({
-			"selectedCustomerId" : CustomerId
+			"customerId" : customerId
 		}).execute(function(resp) {
 			$log.debug("getAllInvoiceByCustId at enpoint" + resp);
 			deferred.resolve(resp);

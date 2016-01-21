@@ -21,7 +21,73 @@
 </head>
 <body layout="column">
 	<!-- <div layout="column" layout-fill> -->
-	<md-content> <!-- Top Navigation Pane --> <md-toolbar>
+<!-- 	<md-content> Top Navigation Pane <md-toolbar>
+	<div class="md-toolbar-tools">
+		<span hide-sm>ProERP - Manage your business paperless, anytime,
+			& anywhere!</span> <span hide-gt-sm>ProERP</span>
+		fill up the space between left and right area
+		<span flex></span>
+		<section layout="row">
+			<div hide-sm layout="row" layout-align="end start">
+				<md-button class="md-icon-button md-accent" aria-label="Favorite">
+				<md-icon md-font-icon="icon-home" ng-class="font.theme" class="step"></md-icon>
+				</md-button>
+
+				<md-button class="md-icon-button md-accent" aria-label="Favorite">
+				<md-icon md-svg-icon="img/icons/ic_comment_24px.svg"></md-icon> </md-button>
+				<md-button class="md-icon-button md-accent" aria-label="Favorite">
+				<md-icon md-svg-icon="img/icons/codepen-logo.svg"></md-icon> </md-button>
+				<md-button class="md-icon-button md-accent" aria-label="Favorite">
+				<md-icon md-svg-icon="img/icons/separator.svg"></md-icon> </md-button>
+				<md-button class="md-icon-button" aria-label="More"
+					ng-click="toggleRight()"> <md-icon
+					md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
+					
+			</div>
+			<md-button aria-label="Logout" ng-click="showSearch = !showSearch">
+			<ng-md-icon icon="logout"></ng-md-icon> </md-button>
+			<md-button aria-label="Open Settings"
+				ng-click="showListBottomSheet($event)"> <ng-md-icon
+				icon="more_vert"></ng-md-icon> </md-button>
+		</section>
+		
+		
+	</div>
+
+	</md-toolbar>
+
+ <div ng-controller="AppCtrl"> 
+		<section layout="row" flex>
+			Left Navigation Pane
+			<md-sidenav class="md-sidenav-left md-whiteframe-z2"
+				md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+
+			<md-toolbar class="md-theme-indigo">
+			<h1 class="md-toolbar-tools">Apps Module</h1>
+			</md-toolbar> 
+			<md-content layout="column" ng-controller="LeftCtrl"> 
+				<md-button class="md-primary" ng-click="close()" hide-gt-md> Close Sidenav </md-button>
+				<md-button ui-sref="home" ng-click="close()" class="md-primary" show-gt-md> Home </md-button>
+				<md-button ui-sref="customer" ng-click="close()" class="md-primary" show-gt-md> Customer </md-button>
+				<md-button ui-sref="stock" ng-click="close()" ng-show="loader.stock" class="md-primary" show-gt-md> Stock </md-button> 	
+				<md-button ui-sref="stock" ng-click="close()" class="md-primary" show-gt-md> Stock </md-button> 	
+				<md-button ui-sref="invoice" ng-show="loader.invoice" ng-click="close()" class="md-primary" show-gt-md>  Invoice </md-button> 
+				<md-button ui-sref="salesOrder" ng-click="close()" class="md-primary" show-gt-md> Sales </md-button>
+				<md-button ui-sref="purchaseOrder" ng-click="close()" class="md-primary" show-gt-md> Purchase </md-button>
+				<md-button ui-sref="hr" id="hr" ng-click="close()" ng-show="loader.hr" class="md-primary" show-gt-md> HR </md-button>
+				<md-button ui-sref="crm" ng-click="close()" ng-show="loader.crm" class="md-primary" show-gt-md>CRM </md-button>
+				<md-button ui-sref="setup" ng-click="close()"   class="md-primary" show-gt-md>SETUP </md-button>
+				<md-button ui-sref="login" ng-click="close()"  class="md-primary" show-gt-md>LOGIN</md-button>
+			</md-content> 
+			  </md-sidenav> 
+	</section>
+</div>
+</md-content>
+			
+	 -->		
+		
+		
+			<md-content> <!-- Top Navigation Pane --> <md-toolbar>
 	<div class="md-toolbar-tools">
 		<span hide-sm>ProERP - Manage your business paperless, anytime,
 			& anywhere!</span> <span hide-gt-sm>ProERP</span>
@@ -74,56 +140,15 @@
 			<md-button ui-sref="invoice" ng-show="loader.invoice" ng-click="close()" class="md-primary" show-gt-md>  Invoice </md-button> 
 			<md-button ui-sref="salesOrder" ng-click="close()" class="md-primary" show-gt-md> Sales </md-button>
 			<md-button ui-sref="purchaseOrder" ng-click="close()" class="md-primary" show-gt-md> Purchase </md-button>
-<!-- 			<md-button ui-sref="hr" ng-click="close()" class="md-primary" show-gt-md> HR </md-button> 
-			<md-button ui-sref="salesOrder" ng-show="loader.sales" ng-click="close()" class="md-primary" show-gt-md>Sales </md-button>
- -->			<md-button ui-sref="hr" id="hr" ng-click="close()" ng-show="loader.hr" class="md-primary" show-gt-md> HR </md-button>
+			<md-button ui-sref="hr" id="hr" ng-click="close()" ng-show="loader.hr" class="md-primary" show-gt-md> HR </md-button>
 			<md-button ui-sref="crm" ng-click="close()" ng-show="loader.crm" class="md-primary" show-gt-md>CRM </md-button>
 			<md-button ui-sref="setup" ng-click="close()"   class="md-primary" show-gt-md>SETUP </md-button>
 			<md-button ui-sref="login" ng-click="close()"  class="md-primary" show-gt-md>LOGIN</md-button>
 			</md-content> 
 			  </md-sidenav> </md-content>
 
-				<md-toolbar class="md-theme-indigo">
-					<h1 class="md-toolbar-tools">Apps Module</h1>
-				</md-toolbar> 
-				<md-content layout="column" ng-controller="LeftCtrl"> 
-					<md-button class="md-primary" ng-click="close()" hide-gt-md> Close Sidenav </md-button> 
-						<md-button ui-sref="home" ng-click="close()" class="md-primary" show-gt-md> Home </md-button> 
-						<md-button ui-sref="customer" ng-click="close()" class="md-primary" show-gt-md>	Customer </md-button> 
-						
-						<md-button ui-sref="stock" ng-click="close()" ng-show="loader.stock" class="md-primary" show-gt-md> Stock </md-button> 						
-						<md-button ui-sref="stock" ng-click="close()" class="md-primary" show-gt-md> Stock </md-button> 
-						
-						<md-button ui-sref="invoice" ng-show="loader.invoice" ng-click="close()" class="md-primary" show-gt-md>Invoice </md-button> 
-						<md-button ui-sref="salesOrder" ng-click="close()" class="md-primary" show-gt-md> Sales </md-button> 
-						<md-button ui-sref="purchaseOrder" ng-click="close()" class="md-primary" show-gt-md> Purchase </md-button> 
-						<md-button ui-sref="hr" ng-click="close()" class="md-primary" show-gt-md> HR </md-button> 
-						<md-button ui-sref="crm" ng-click="close()" class="md-primary" show-gt-md>CRM </md-button> 
-						<md-button ui-sref="setup" ng-click="close()" class="md-primary" show-gt-md> SETUP </md-button> 
-				</md-content> 
-			</md-sidenav>
-
-
-<!-- 
-							<md-button ui-sref="salesOrder" ng-show="loader.sales" ng-click="close()" class="md-primary" show-gt-md>
-			Sales </md-button>
-			
-			<md-button ui-sref="hr" id="hr"
-				ng-click="close()" ng-show="loader.hr" class="md-primary" show-gt-md>
-			HR </md-button>
-			<md-button ui-sref="crm"
-				ng-click="close()" ng-show="loader.crm" class="md-primary" show-gt-md>
-			CRM </md-button>
-					<md-button ui-sref="setup"
-				ng-click="close()"   class="md-primary" show-gt-md>
-			SETUP </md-button>
-			<md-button ui-sref="login"
-				ng-click="close()"  class="md-primary" show-gt-md>
-			LOGIN</md-button>
-			
-			 </md-content> </md-sidenav>
-
-
+	
+		
 			<md-content flex layout-padding>
 			<div class="md-toolbar-tools" hide-gt-md>
 				<div>

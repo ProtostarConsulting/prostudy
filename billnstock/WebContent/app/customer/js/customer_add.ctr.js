@@ -56,54 +56,6 @@ app.controller(
 			$scope.customers = [];
 			$scope.tempCustomerId;
 			$scope.getAllCustomers();
-
-			
-			/*			
-			$log.debug("$stateParams:", $stateParams);
-			$log.debug("$stateParams.selectedCustomerId:",
-					$stateParams.selectedCustomerId);
-
-			$scope.selectedCustomerId = $stateParams.selectedCustomerId;
-
-			$scope.showCustomerDetails = function() {
-				var customerService = appEndpointSF.getCustomerService();
-
-				customerService
-						.getCustomerByID($scope.selectedCustomerId)
-						.then(function(customerList) {
-									$scope.customerDetails = customerList[0];
-									$log
-											.debug("$scope.showCustomerDetails:customerList ===="
-													+ angular
-															.toJson($scope.customerDetails));
-								});
-
-			}
-			$scope.customerDetails = [];
-			//$scope.showCustomerDetails();
-			
-			$scope.getAllInvoiceByCustId = function() {
-				$log.debug("Inside Ctr $scope.getAllInvoiceByCustId");
-				var invoiceService = appEndpointSF.getInvoiceService();
-
-				invoiceService
-						.getAllInvoiceByCustId($scope.selectedCustomerId)
-						.then(
-								function(custInvoiveList) {
-									$log
-											.debug("Inside Ctr getAllInvoiceByCustId");
-									$scope.custInvoiceData = custInvoiveList;
-									$log
-											.debug("Inside Ctr $scope.custInvoiceData:"
-													+ angular
-															.toJson($scope.custInvoiceData));
-								});
-			}
-
-			$scope.custInvoiceData = [];
-			//$scope.getAllInvoiceByCustId();
-			
-*/			
 			
 			$scope.toggleRight = buildToggler('right');
 
