@@ -107,7 +107,7 @@ angular
 						$scope.stopTimer();
 						$scope.addPracticeExamResult();
 						//$state.go("examscore");
-						//$state.go('userQuesAnsView',{selectedExamId: $scope.Test.examId , selectedResultId: $scope.examResults.ID });
+						$state.go('userQuesAnsView',{selectedExamId: $scope.Test.examId , selectedResultId: $scope.examResults.ID });
 						
 					}
 
@@ -303,8 +303,8 @@ angular
 							startTime : "",
 							endTime : "",
 							score : $scope.score,
-							//userAns : $scope.userAnsList,
-							//test :""
+							userAns : $scope.userAnsList,
+							test :""
 
 						}
 
@@ -335,8 +335,8 @@ angular
 													startTime : "",
 													endTime : "",
 													score : "",
-													//userAns : "",
-													//test :""
+													userAns : "",
+													test :""
 												};
 											});
 
