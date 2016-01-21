@@ -10,11 +10,15 @@ import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
 import com.protostar.billingnstock.cust.entities.Customer;
+import com.protostar.billingnstock.hr.entities.Employee;
 
 @Api(name = "customerService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.stock.cust.services", ownerName = "com.protostar.billingnstock.stock.cust.services", packagePath = ""))
 public class CustomerService {
+	
 	@ApiMethod(name = "addCustomer")
 	public void addCustomer(Customer customer) {
+	//	Key<Customer> now = ofy().save().entity(customer).now();
+		
 		Key<Customer> now = ofy().save().entity(customer).now();
 	}
 

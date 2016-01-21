@@ -34,8 +34,18 @@ public class InvoiceService {
 		System.out.println("getinvoiceByID Recored is:"+ invoiceId);
 		
 		return invoiceByID;
-
 	}
+	
+	@ApiMethod(name = "getAllInvoiceByCustId")
+	public List<InvoiceEntity> getAllInvoiceByCustId(@Named("customerId") String customerId) {
+
+		List<InvoiceEntity> invoiceByCustID = ofy().load().type(InvoiceEntity.class).filter("customerId", customerId).list();
+
+		System.out.println("getAllInvoiceByCustId Recored is:"+ invoiceByCustID);
+		
+		return invoiceByCustID;
+	}
+	
 /*	@ApiMethod(name = "saveBill")
 	public ServerMsg saveBill(InvoiceEntity invoiceEntity) {
 		System.out.println("invoiceEntity:" + invoiceEntity);
