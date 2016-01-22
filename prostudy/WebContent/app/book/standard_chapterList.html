@@ -1,0 +1,31 @@
+<md-content>
+
+<div class="table-responsive-vertical shadow-z-1">
+	<table id="chapterTable" class="table table-hover table-mc-light-blue">
+		<thead>
+			<tr>
+				<th>Chapter No</th>
+				<th>Chapter</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="chapter in selectedChapter">
+
+				<td>
+					<div>{{chapter.chapterId}}</div>
+
+				</td>
+
+				<td ng-click="showChapterContent()"><a href="#"
+					ui-sref="book.standard_view({selectedBookId : selectedBookId, selectedChapterId : chapter.chapterId})"><b>{{chapter.chapter_name}}</b></a>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+		
+		<div>
+		    <md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
+		</div>
+
+</div>
+</md-content>
