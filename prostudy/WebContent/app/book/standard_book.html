@@ -3,34 +3,33 @@
 
 	<form name="standardForm">
 		
+		<center><b> Click on Standard Button To View Books </b></center>
+	<div align="center" class="table-responsive-vertical shadow-z-1">
+	<md-button type="button" class="btn" ng-class="{true: 'btn-primary', false: 'btn-default'}[isActive5]" ng-click="getBookByStandard(5)"><b>STD 5</b></md-button>
+	<md-button type="button" class="btn" ng-class="{true: 'btn-primary', false: 'btn-default'}[isActive6]"  ng-click="getBookByStandard(6)"><b>STD 6</b></md-button>
+	<md-button type="button" class="btn" ng-class="{true: 'btn-primary', false: 'btn-default'}[isActive7]"  ng-click="getBookByStandard(7)"><b>STD 7</b></md-button>
+	<md-button type="button" class="btn" ng-class="{true: 'btn-primary', false: 'btn-default'}[isActive8]"  ng-click="getBookByStandard(8)"><b>STD 8</b></md-button>
+	<md-button type="button" class="btn" ng-class="{true: 'btn-primary', false: 'btn-default'}[isActive9]"  ng-click="getBookByStandard(9)"><b>STD 9</b></md-button>
+	<md-button type="button" class="btn" ng-class="{true: 'btn-primary', false: 'btn-default'}[isActive10]"  ng-click="getBookByStandard(10)"><b>STD 10</b></md-button>
+	
+	     <table align="center" class="table table-hover table-mc-light-blue">
 		
-		<div class="table-responsive-vertical shadow-z-1">
-		<table class="table table-hover table-mc-light-blue">
-			<thead>
-				<tr>
-					<th>Book Name</th>
-				</tr>
-			</thead>
 			<tbody>
-				<tr ng-repeat="std in stdBooks | filter: searchText">
-					<td>{{std.book.book_name}}</td>
+				<tr ng-repeat="book in stdBooks | filter: searchText">
+					<!-- <td ng-click="showBookContents()"><a ui-sref="book.chapterList({selectedBookId : book.bookId})"><b>{{book.book_name}}</b></a></td> -->
+					<td ng-click="showBookContents()"><a ui-sref="book.standard_chapterList({selectedBookId : book.bookId})"><b>{{book.book_name}}</b></a></td>
 					
-			
 				</tr>
+				
 			</tbody>
-			</table>
-		</div>
+		</table>
 		
-		<section layout="row" layout-sm="column" layout-align="left left">
-
-<!-- 		<md-button class="md-raised md-primary" ng-click="addBookInStd()">Add Book In Std</md-button>
-		<md-button class="md-raised md-primary" ng-click="getStdBooks()">Get Books By Std</md-button> -->
-		<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
-
-	</section>
+		<div>
+		    <md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
+		</div>
+	
+	</div>
 
 	</form>
-
-	
 	</md-content>
 </div>
