@@ -46,50 +46,6 @@ angular.module("prostudyApp").controller(
 
 			};
 			
-			  $scope.isActive5 = false;
-			  $scope.isActive6 = false;
-			  $scope.isActive7 = false;
-			  $scope.isActive8 = false;
-			  $scope.isActive9 = false;
-			  $scope.isActive10 = false;
-			 
-			
-			$scope.getBookByStandard = function(standard) {
-				
-				$log.debug("Inside getBookByStandard");
-				
-			
-				$scope.isActive5 = !$scope.isActive5;
-				$scope.isActive6 = !$scope.isActive6;
-				$scope.isActive7 = !$scope.isActive7;
-			    $scope.isActive8 = !$scope.isActive8;
-			    $scope.isActive9 = !$scope.isActive9;
-			    $scope.isActive10 = !$scope.isActive10;
-			    
-				var BookService = appEndpointSF.getBookService();
-				
-
-				BookService.getBookByStandard(standard)
-						.then(
-								function(stdBookList) {
-									$log.debug("Inside BookService.getBookByStandard");
-									if (stdBookList == "") {
-									   $scope.stdBooks="";
-								      alert("No Books available here");
-								   
-							        } else {
-								    $scope.stdBooks = stdBookList;
-
-								   $log.debug("$scope.stdBooks"+ angular.toJson($scope.stdBooks));
-							     }
-
-								});
-			/*
-			  $("#viewBookOnStdButton").show(); 
-			  $("#bookList").hide();
-			 */
-			};// end of $scope.getBookByStandard
-			
 
 			
 		
