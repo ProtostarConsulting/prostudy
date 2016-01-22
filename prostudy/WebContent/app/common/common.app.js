@@ -214,10 +214,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/view/:selectedBookId/:selectedChapterId",
 		templateUrl : "/app/book/book_viewChapterContent.html",
 		controller : 'book_viewChapterContentCtr'
-	}).state('book.standard_book', {
-		url : "/standard_book/:selectedStdId",
+	}).state('book.standard', {
+		url : "/standard",
 		templateUrl : "/app/book/standard_book.html",
 		controller : 'standardBookCtr'
+	}).state('book.standard_chapterList', {
+		url : "/standard_chapterList/:selectedBookId",
+		templateUrl : "/app/book/standard_chapterList.html",
+		controller : 'standard_chapterListCtr'
+	}).state('book.standard_view', {
+		url : "/standard_view/:selectedBookId/:selectedChapterId",
+		templateUrl : "/app/book/standard_viewChapterContent.html",
+		controller : 'standard_viewChapterContentCtr'
 	}).state('login', {
 		url : "/login",
 		templateUrl : '/app/login/login_module.html',
