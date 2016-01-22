@@ -6,33 +6,47 @@ angular.module("prostudyApp").controller(
 			console.log("Inside standardBookCtr");
 
 		
-				$log.debug("$stateParams.selectedStdId:",$stateParams.selectedStdId);
-				$scope.selectedStdId = $stateParams.selectedStdId;
-		
+			$log.debug("$stateParams.selectedBookId:",$stateParams.selectedBookId);
+			$scope.selectedBookId = $stateParams.selectedBookId;
 			
-			//$scope.standard;
-				$scope.getStandard_BookbyID = function(selectedStdId) {
+			
+			  $scope.isActive5 = false;
+			  $scope.isActive6 = false;
+			  $scope.isActive7 = false;
+			  $scope.isActive8 = false;
+			  $scope.isActive9 = false;
+			  $scope.isActive10 = false;
+			
+				$scope.getBookByStandard = function(standard) {
 					
-					$log.debug("$scope.selectedStdId:" + $scope.selectedStdId);
+					$log.debug("Inside getBookByStandard");
+					
+					//For Std Button
+					$scope.isActive5 = !$scope.isActive5;
+					$scope.isActive6 = !$scope.isActive6;
+					$scope.isActive7 = !$scope.isActive7;
+				    $scope.isActive8 = !$scope.isActive8;
+				    $scope.isActive9 = !$scope.isActive9;
+				    $scope.isActive10 = !$scope.isActive10;
 					
 					var BookService = appEndpointSF.getBookService();
-					
+			
+					BookService.getBookByStandard(standard).then(function(stdBookList) {
+			
+							if (stdBookList == "") {
+								$scope.stdBooks = "";
+								alert("No Books available here");
 
-					BookService.getStandard_BookbyID(selectedStdId)
-							.then(
-									function(stdBookList) {
+							} else 
+							{
 
-									$scope.stdBooks = stdBookList;
-								/*		$scope.tempstdBook=$scope.stdBooks.length+1;
-									//$scope.books = $scope.stdBooks;
-										$scope.stdBook.stdId=$scope.tempstdBook.stdId;
-										$log.debug("$scope.stdBook.stdId :-"+ angular.toJson($scope.tempstdBook));*/
-										$log.debug("$scope.stdBooks :-"+ angular.toJson($scope.stdBooks));
+								$scope.stdBooks = stdBookList;
+								$log.debug("$scope.stdBooks :-"
+										+ angular.toJson($scope.stdBooks));
+							}
+				  });
 
-									});
-
-				};// end of $scope.getStandard_BookbyID
-				//$scope.getStandard_BookbyID();
+				};// end of $scope.getBookByStandard
 			
 
 	
