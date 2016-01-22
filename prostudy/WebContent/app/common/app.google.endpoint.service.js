@@ -75,7 +75,8 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		$localStorage.loggedinUser = null;
 	} // End of UserService
 
-	// start of ChapterService
+//end of UserService-----------------------------------------------------------------------------------------------------------------
+	
 	var ChapterService = {};
 
 	serviceFactory.getChapterService = function() {
@@ -116,10 +117,8 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	} // End of getChaptersByID
 
-	// end of ChapterService
-
-	// start of BookService
-
+//end of ChapterService----------------------------------------------------------------------------------------------------------
+	
 	var BookService = {};
 
 	serviceFactory.getBookService = function() {
@@ -172,7 +171,9 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	} // End of getBookByStandard
-
+	
+//-------end of BookService------------------------------------------------------------------------------------------------------
+	
 	// start of SyllabusService
 
 	var SyllabusService = {};
