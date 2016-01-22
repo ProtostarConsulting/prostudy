@@ -44,10 +44,11 @@ public class BookService {
 	 public List<BookEntity> getBookByStandard(@Named("standard") String standard)
 	 {
 		 System.out.println("Inside getBookByStandard ");
-		 List<BookEntity>  standardBookById=ofy().load().type(BookEntity.class).filter("standard", standard).list();
-		 System.out.println("standardBookById :"+standardBookById);
+		 List<BookEntity>  bookByStandardId=ofy().load().type(BookEntity.class).filter("standard", standard).list();
+
+		 System.out.println("bookByStandardId :"+bookByStandardId);
 		 
-		 return standardBookById; 
+		 return bookByStandardId; 
 	 }//end of getBookByStandard
 	 
 
