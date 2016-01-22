@@ -33,13 +33,12 @@
 
 
 	<div id="viewBookOnStdButton" class="table-responsive-vertical shadow-z-1">
-	
-	<md-button ng-click="getBookByStandard(5)"><b>STD 5</b></md-button>
-	<md-button ng-click="getBookByStandard(6)"><b>STD 6</b></md-button>
-	<md-button ng-click="getBookByStandard(7)"><b>STD 7</b></md-button>
-	<md-button ng-click="getBookByStandard(8)"><b>STD 8</b></md-button>
-	<md-button ng-click="getBookByStandard(9)"><b>STD 9</b></md-button>
-	<md-button ng-click="getBookByStandard(10)"><b>STD 10</b></md-button>
+	<md-button type="button" class="btn" ng-class="{true: 'btn-primary', false: 'btn-default'}[isActive5]" ng-click="getBookByStandard(5)"><b>STD 5</b></md-button>
+	<md-button type="button" class="btn" ng-class="{true: 'btn-primary', false: 'btn-default'}[isActive6]"  ng-click="getBookByStandard(6)"><b>STD 6</b></md-button>
+	<md-button type="button" class="btn" ng-class="{true: 'btn-primary', false: 'btn-default'}[isActive7]"  ng-click="getBookByStandard(7)"><b>STD 7</b></md-button>
+	<md-button type="button" class="btn" ng-class="{true: 'btn-primary', false: 'btn-default'}[isActive8]"  ng-click="getBookByStandard(8)"><b>STD 8</b></md-button>
+	<md-button type="button" class="btn" ng-class="{true: 'btn-primary', false: 'btn-default'}[isActive9]"  ng-click="getBookByStandard(9)"><b>STD 9</b></md-button>
+	<md-button type="button" class="btn" ng-class="{true: 'btn-primary', false: 'btn-default'}[isActive10]"  ng-click="getBookByStandard(10)"><b>STD 10</b></md-button>
 	
 	     <table align="center" class="table table-hover table-mc-light-blue">
 		
