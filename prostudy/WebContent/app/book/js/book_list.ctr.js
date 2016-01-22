@@ -54,9 +54,9 @@ angular.module("prostudyApp").controller(
 			  $scope.isActive10 = false;
 			 
 			
-			$scope.getBookByStandard = function(parameter1) {
+			$scope.getBookByStandard = function(standard) {
 				
-				$log.debug("Inside getStandard_BookbyID");
+				$log.debug("Inside getBookByStandard");
 				
 			
 				$scope.isActive5 = !$scope.isActive5;
@@ -69,21 +69,24 @@ angular.module("prostudyApp").controller(
 				var BookService = appEndpointSF.getBookService();
 				
 
-				BookService.getBookByStandard(parameter1)
+				BookService.getBookByStandard(standard)
 						.then(
 								function(stdBookList) {
 									$log.debug("Inside BookService.getBookByStandard");
 									if (stdBookList == "") {
+									   $scope.stdBooks="";
 								      alert("No Books available here");
+								   
 							        } else {
-								  $scope.stdBooks = stdBookList;
+								    $scope.stdBooks = stdBookList;
 
-								$log.debug("$scope.stdBooks"+ angular.toJson($scope.stdBooks));
-							}
+								   $log.debug("$scope.stdBooks"+ angular.toJson($scope.stdBooks));
+							     }
 
 								});
 			/*
-			 * $("#viewBookOnStdButton").show(); $("#bookList").hide();
+			  $("#viewBookOnStdButton").show(); 
+			  $("#bookList").hide();
 			 */
 			};// end of $scope.getBookByStandard
 			
