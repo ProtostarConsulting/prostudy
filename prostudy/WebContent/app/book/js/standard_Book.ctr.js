@@ -16,7 +16,8 @@ angular.module("prostudyApp").controller(
 			  $scope.isActive8 = false;
 			  $scope.isActive9 = false;
 			  $scope.isActive10 = false;
-			
+			  
+			  
 				$scope.getBookByStandard = function(standard) {
 					
 					$log.debug("Inside getBookByStandard");
@@ -33,17 +34,11 @@ angular.module("prostudyApp").controller(
 			
 					BookService.getBookByStandard(standard).then(function(stdBookList) {
 			
-							if (stdBookList == "") {
-								$scope.stdBooks = "";
-								alert("No Books available here");
-
-							} else 
-							{
-
 								$scope.stdBooks = stdBookList;
-								$log.debug("$scope.stdBooks :-"
-										+ angular.toJson($scope.stdBooks));
-							}
+								$log.debug("$scope.stdBooks :-"+ angular.toJson($scope.stdBooks));
+								
+								$scope.std= $scope.stdBooks[0].standard;
+								$log.debug("$scope.std :-"+ ($scope.std));	
 				  });
 
 				};// end of $scope.getBookByStandard
