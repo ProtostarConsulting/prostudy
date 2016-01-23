@@ -7,11 +7,15 @@ angular
 						appEndpointSF, $state, $filter) {
 
 					$scope.count = 0;
+					
+					$scope.curuser = appEndpointSF.getLocalUserService().getLoggedinUser();
+					$log.debug(".....$scope.curuser on practiceExamListCtr : "+angular.toJson($scope.curuser));
+			
+					
 
-					$log.debug("Inside practiceExamListCtr");
 					$scope.showSavedToast = function() {
 						$mdToast.show($mdToast.simple()
-								.content('Result Saved!').position("top")
+								.content('Added Exam to MyExams!').position("top")
 								.hideDelay(3000));
 					};
 
@@ -31,20 +35,37 @@ angular
 
 										});
 					}
-
+		
 					$scope.addTestToMyList = function(selectedMyExamId) {
+												
+						var practiceTest = null;
+						for (var i =0; i < $scope.practiceTest.length; i++){							
+							if($scope.practiceTest[i].examId == selectedMyExamId){
+								practiceTest = $scope.practiceTest[i];
+								break;
+							}
+						}
+						
+						$scope.curuser.myExams.push(practiceTest);
+						
+						$scope.updateUser();
 
-						$log.debug("selectedMyExamId:" + selectedMyExamId);
-
+					}
+					
+					$scope.updateUser = function() {
+						$log.debug("No1");
 						var UserService = appEndpointSF.getUserService();
-						UserService.addMyPracticeExam(
-								UserService.getExamId(selectedMyExamId)).then(
-								function() {
-									$scope.showSavedToast();
-								});
-
-					};
-
+						UserService.updateUser($scope.curuser).then(function(msgBean) {
+							
+							$log.debug("msgBean.msg:" + msgBean.msg);
+							$scope.showSavedToast();
+							$scope.tempUser = {
+								};
+							});
+						
+					}
+		
+			
 					$scope.like = function(selectedMyExamId) {
 
 						var PracticeExamService = appEndpointSF
@@ -92,5 +113,5 @@ angular
 
 					$scope.getPracticeExams();
 
-				});// end of examDemoCtr
+				});
 
