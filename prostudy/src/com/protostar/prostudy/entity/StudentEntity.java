@@ -11,12 +11,21 @@ public class StudentEntity {
 	private String firstName;
 	private String lastName;
 	private String institute;
+	private String studClass ;
 	private String phone_no;
 	private String email;
 	private String city;
 	private String state;
 	private String pin;
 	private String attendance;
+	
+	
+	public String getStudClass() {
+		return studClass;
+	}
+	public void setStudClass(String studClass) {
+		this.studClass = studClass;
+	}
 	public Long getId() {
 		return id;
 	}
