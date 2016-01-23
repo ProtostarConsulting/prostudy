@@ -41,10 +41,7 @@ angular
 					$scope.book_ChapterDetails = [];
 					$scope.showBookContents();
 
-					$scope.cancelButton = function() {
-						$log.debug("inside cancelButton");
-						$state.go('^', {});
-					};// end of cancelButton
+		
 
 				});// end of book_chapterListCtr
 
