@@ -9,15 +9,24 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
+import com.protostar.prostudy.entity.InstituteEntity;
 import com.protostar.prostudy.entity.PracticeExamEntity;
 
 @Api(name = "practiceExamService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
 public class PracticeExamService {
 
-	@ApiMethod(name = "addPracticeExam")
+/*	@ApiMethod(name = "addPracticeExam")
 	public void addPracticeExam(PracticeExamEntity exam) {
 		Key<PracticeExamEntity> now = ofy().save().entity(exam).now();
+	}*/
+	
+	@ApiMethod(name = "addPracticeExam")
+	public PracticeExamEntity addPracticeExam(PracticeExamEntity exam) {
+		Key<PracticeExamEntity> now = ofy().save().entity(exam).now();
+		PracticeExamEntity practiceExamEntity = ofy().load().type(PracticeExamEntity.class).id(now.getId()).now();
+		return practiceExamEntity;
 	}
+	
 
 	@ApiMethod(name = "getPracticeExams")
 	public List<PracticeExamEntity> getPracticeExams() {

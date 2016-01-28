@@ -12,7 +12,6 @@ public class UserEntity {
 
 	@Id
 	private Long id;	
-	
 	private String firstName;
 	private String lastName;
 	
@@ -22,23 +21,12 @@ public class UserEntity {
 	private String contact;
 	private String role;
 	private String gender;
+	private List<PracticeExamEntity> myExams;
 	
-	private String userId;
-	private String userName;
-	private String pwd;
-
-	//private List<QuestionEntity> books;
-
-
-	private String book;
-	
-	private List<PracticeExamEntity> exam;
+	private List<BookEntity> myBooks;
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -48,18 +36,12 @@ public class UserEntity {
 	}
 	public Long getId() {
 		return id;
-	}
-	public String getUserId() {
-		return userId;
-	}
+	}	
 	public String getFirstName() {
 		return firstName;
 	}
 	public String getLastName() {
 		return lastName;
-	}
-	public String getUserName() {
-		return userName;
 	}
 	public String getEmail_id() {
 		return email_id;
@@ -73,26 +55,24 @@ public class UserEntity {
 	public String getGender() {
 		return gender;
 	}
-	public String getPwd() {
-		return pwd;
-	}
 	public String getRole() {
 		return role;
 	}
-	public String getBook() {
-		return book;
+		
+	public List<BookEntity> getMyBooks() {
+		return myBooks;
 	}
 
-	public List<PracticeExamEntity> getExam() {
-		return exam;
+	public void setMyBooks(List<BookEntity> myBooks) {
+		this.myBooks = myBooks;
 	}
-	public void setExam(List<PracticeExamEntity> exam) {
-		this.exam = exam;
+	public List<PracticeExamEntity> getMyExams() {
+		return myExams;
 	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setMyExams(List<PracticeExamEntity> myExams) {
+		this.myExams = myExams;
 	}
+	
 	public void setEmail_id(String email_id) {
 		this.email_id = email_id;
 	}
@@ -105,14 +85,10 @@ public class UserEntity {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
-	}
+	
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public void setBook(String book) {
-		this.book = book;
-	}
+	
 
 }

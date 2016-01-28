@@ -1,7 +1,9 @@
 package com.protostar.prostudy.entity;
 
+import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 @Entity
 public class StudentEntity {
@@ -10,7 +12,10 @@ public class StudentEntity {
 	private Long id;
 	private String firstName;
 	private String lastName;
-	private String institute;
+
+	@Index
+	private Ref<InstituteEntity> institute;
+	
 	private String studClass ;
 	private String phone_no;
 	private String email;
@@ -19,6 +24,7 @@ public class StudentEntity {
 	private String pin;
 	private String attendance;
 	
+
 	
 	public String getStudClass() {
 		return studClass;
@@ -44,12 +50,7 @@ public class StudentEntity {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getInstitute() {
-		return institute;
-	}
-	public void setInstitute(String institute) {
-		this.institute = institute;
-	}
+	
 	public String getPhone_no() {
 		return phone_no;
 	}
@@ -85,6 +86,12 @@ public class StudentEntity {
 	}
 	public void setAttendance(String attendance) {
 		this.attendance = attendance;
+	}
+	public InstituteEntity getInstitute() {
+		return institute.get();
+	}
+	public void setInstitute(InstituteEntity institute) {
+		this.institute = Ref.create(institute);
 	}
 	
 	

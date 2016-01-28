@@ -37,6 +37,5 @@ public class UserService {
 				.filter("email_id", email).list();
 		return (list == null || list.size() == 0) ? null : list.get(0);
 	}
-
-
+	
 }

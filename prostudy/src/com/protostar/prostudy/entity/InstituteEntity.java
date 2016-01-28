@@ -10,7 +10,7 @@ import com.googlecode.objectify.annotation.Index;
 public class InstituteEntity {
 
 	@Id
-	private Long ID;
+	private Long id;
 	@Index
 	private String instituteId;
 
@@ -37,11 +37,11 @@ public class InstituteEntity {
 	}
 
 	public Long getID() {
-		return ID;
+		return id;
 	}
 
 	public void setID(Long iD) {
-		ID = iD;
+		id = iD;
 	}
 
 	public List<BookEntity> getBooks() {
