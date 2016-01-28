@@ -86,15 +86,6 @@
 							ng-click="close()" class="md-primary" show-gt-md>
 								Exam
 							</md-button>
-							<md-button ui-sref="state1" ng-click="close()" class="md-primary"
-							show-gt-md>
-								State Demo
-							</md-button>
-							<md-button ui-sref="examdemo"
-							ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-							ng-click="close()" class="md-primary" show-gt-md>
-								ExamDemo
-							</md-button>
 							<md-button ui-sref="institute"
 							ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'" ng-click="close()"
 							class="md-primary" show-gt-md>
@@ -327,13 +318,8 @@
 		<script src="/app/book/js/standard_chapterList.ctr.js"></script>
 		<script src="/app/book/js/standard_viewChapterContent.ctr.js"></script>
 
-		<script src="/app/myBooks/js/myBooks_module.ctr.js"></script>
+		<script src="/app/myBooks/js/myBooks_module.ctr.js"></script>		
 		
-		<script src="/app/demo/js/state.ctr.js"></script>
-		
-	
-
-
 
 		<script src="/app/student/js/student_module.ctr.js"></script>
 		<script src="/app/student/js/student.ctr.js"></script>
@@ -343,7 +329,6 @@
 
 		<script src="/app/question/js/question.ctr.js"></script>
 		<script src="/app/question/js/questionlist.ctr.js"></script>
-		<script src="/app/examdemo/js/examdemo_module.ctr.js"></script>
 		<script src="/app/exam/js/practiceExam_add.ctr.js"></script>
 		<script src="/app/exam/js/newQuestion_add.ctr.js"></script>
 		<script src="/app/exam/js/exam_module.ctr.js"></script>
@@ -377,9 +362,9 @@
 		<script src="/app/test/js/table.demo.data.service.js"></script>
 		<script src="/app/demo/js/table.demo.withservice.ctr2.js"></script>
 	
-	<!-- 	<script src="/app/syllabus/js/syllabus_module.ctr.js"></script> 
-		<script src="/app/syllabus/js/syllabus_add.ctr.js"></script> 
-		<script src="/app/syllabus/js/syllabus_view.ctr.js"></script>  -->
+			<script src="/app/syllabus/js/syllabus_module.ctr.js"></script> 
+			<script src="/app/syllabus/js/syllabus_add.ctr.js"></script> 
+		<script src="/app/syllabus/js/syllabus_view.ctr.js"></script> 
 
 	
 

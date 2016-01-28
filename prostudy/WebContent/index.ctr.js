@@ -44,9 +44,16 @@ angular
 									$log.debug("loggedInUser:"
 											+ angular.toJson(loggedInUser));
 
+									if (loggedInUser.myExams == undefined) {
+										loggedInUser.myExams=[];
+									}
+									if (loggedInUser.myBooks == undefined) {
+										loggedInUser.myBooks=[];
+									}
 									$scope.curUser = loggedInUser;
 									$log.debug("$scope.curUser:"
 											+ angular.toJson($scope.curUser));
+								
 									if (loggedInUser.id == undefined) {
 											
 										loggedInUser.email_id = profile.getEmail();
@@ -59,7 +66,7 @@ angular
 										
 										$state.go("updatemyprofile");
 										return;
-									}
+									}	
 
 								})
 
