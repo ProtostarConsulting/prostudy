@@ -47,7 +47,7 @@ public class BookService {
 		 return theBook;	
 	 }//end of getBookbyID
 	 
-	/* @ApiMethod(name="getBookByStandard") 
+	 @ApiMethod(name="getBookByStandard") 
 	 public List<BookEntity> getBookByStandard(@Named("standard") String standard)
 	 {
 		 System.out.println("Inside getBookByStandard ");
@@ -57,7 +57,7 @@ public class BookService {
 		 
 		 return bookByStandardId; 
 	 }//end of getBookByStandard
-*/	 
+	 
 
 	 
 	
