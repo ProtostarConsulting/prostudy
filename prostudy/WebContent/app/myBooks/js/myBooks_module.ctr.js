@@ -4,14 +4,14 @@ angular.module("prostudyApp").controller(
 				$log, $q, $location, objectFactory, appEndpointSF,
 				tableTestDataFactory, $state) {
 
-			$scope.curUser = appEndpointSF.getUserService().getLoggedinUser();
-
+			$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
+			
 	
 			$scope.getMyBookList = function() {
 
 				var UserService = appEndpointSF.getUserService();
-
-				UserService.getMyBookList($scope.curUser.userId).then(
+			
+				UserService.getMyBookList($scope.curUser.email_id).then(
 						function(bookList) {
 
 							$scope.books = bookList;

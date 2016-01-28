@@ -73,7 +73,41 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 
 	UserService.logout = function() {
 		$localStorage.loggedinUser = null;
-	} // End of UserService
+	} 
+	
+	UserService.getExamId = function(selectedMyExamId) {
+		$log
+		.debug("No2");	
+		var deferred = $q.defer();
+		gapi.client.userService.getExamId(selectedMyExamId).execute(
+				function(resp) {	
+					$log.debug("getExamId... #resp:" + angular.toJson(resp));
+					deferred.resolve(resp);
+				});
+		$log.debug("No3");	
+		return deferred.promise;
+	}
+	UserService.getMyExamList = function(email_id) {
+
+		var deferred = $q.defer();
+		gapi.client.userService.getUserByEmailID({'email_id' : email_id}).execute(function(resp) {
+			$log.debug("getMyExamList #resp :" + resp.myExams);
+			deferred.resolve(resp.myExams);
+		});
+		return deferred.promise;
+	}
+	UserService.getMyBookList = function(email_id) {
+
+		var deferred = $q.defer();
+		gapi.client.userService.getUserByEmailID({'email_id' : email_id}).execute(function(resp) {
+			$log.debug("getMyBookList #resp :" + resp.myBooks);
+			deferred.resolve(resp.myBooks);
+		});
+		return deferred.promise;
+	}
+	
+		
+	// End of UserService
 
 //end of UserService-----------------------------------------------------------------------------------------------------------------
 	
@@ -150,7 +184,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 
 	BookService.getBookbyID = function(selectedBookId) {
 		var deferred = $q.defer();
-		gapi.client.bookService.getBookbyID({
+		gapi.client.bookService.getBookByID({
 			'bookId' : selectedBookId
 		}).execute(function(resp) {
 

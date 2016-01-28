@@ -4,12 +4,18 @@ angular.module("prostudyApp").controller(
 				$log, $stateParams, appEndpointSF, $state, $sce) {
 
 			console.log("Inside bookListCtr");
-
-			$scope.curUser = appEndpointSF.getUserService().getLoggedinUser();
-
+			$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
+			
+			
+			$scope.showSavedToast = function() {
+				$mdToast.show($mdToast.simple()
+						.content('Added Book to MyBooks!').position("top")
+						.hideDelay(3000));
+			};
+		
 			$scope.addselectedBookId = $stateParams.addselectedBookId;
 
-
+			
 			$scope.book = {
 				bookId : "",
 				book_name : "",
@@ -45,10 +51,35 @@ angular.module("prostudyApp").controller(
 				book : $scope.currentBook
 
 			};
-			
-
-			
 		
+			$scope.addBookToMyList = function(selectedBookId) {
+				var selectedBook = null;
+				for (var i =0; i < $scope.books.length; i++){							
+					if($scope.books[i].bookId == selectedBookId){
+						selectedBook = $scope.books[i];
+						break;
+					}
+				}
+				
+				$scope.curUser.myBooks.push(selectedBook);
+				
+				$scope.updateUser();
+
+			}
+			
+			$scope.updateUser = function() {
+				$log.debug("No1");
+				var UserService = appEndpointSF.getUserService();
+				UserService.updateUser($scope.curUser).then(function(msgBean) {
+					
+					$log.debug("msgBean.msg:" + msgBean.msg);
+					$scope.showSavedToast();
+					$scope.tempUser = {
+						};
+					});
+				
+			}
+
 		     $scope.selected = [];
 		      $scope.toggle = function (book, list) {
 		        var idx = list.indexOf(book);

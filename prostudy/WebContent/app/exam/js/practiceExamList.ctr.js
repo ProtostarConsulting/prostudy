@@ -8,8 +8,8 @@ angular
 
 					$scope.count = 0;
 					
-					$scope.curuser = appEndpointSF.getLocalUserService().getLoggedinUser();
-					$log.debug(".....$scope.curuser on practiceExamListCtr : "+angular.toJson($scope.curuser));
+					$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
+					$log.debug(".....$scope.curUser on practiceExamListCtr : "+angular.toJson($scope.curUser));
 			
 					
 
@@ -35,7 +35,7 @@ angular
 
 										});
 					}
-		
+				
 					$scope.addTestToMyList = function(selectedMyExamId) {
 												
 						var practiceTest = null;
@@ -46,7 +46,7 @@ angular
 							}
 						}
 						
-						$scope.curuser.myExams.push(practiceTest);
+						$scope.curUser.myExams.push(practiceTest);
 						
 						$scope.updateUser();
 
@@ -55,7 +55,7 @@ angular
 					$scope.updateUser = function() {
 						$log.debug("No1");
 						var UserService = appEndpointSF.getUserService();
-						UserService.updateUser($scope.curuser).then(function(msgBean) {
+						UserService.updateUser($scope.curUser).then(function(msgBean) {
 							
 							$log.debug("msgBean.msg:" + msgBean.msg);
 							$scope.showSavedToast();

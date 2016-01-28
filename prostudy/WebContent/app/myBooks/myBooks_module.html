@@ -55,7 +55,7 @@
 			<tr md-auto-select
 				ng-repeat="book in books | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText">
 
-				<td>{{book.id}}</td>
+				<td>{{book.bookId}}</td>
 				<td><a
 					ui-sref="book.chapterList({selectedBookId : book.bookid})"><b>{{book.book_name}}</b></a></td>
 				<td>{{book.author}}</td>
@@ -71,7 +71,6 @@
 
 	</md-data-table-container>
 </div>
-
 
 </md-content>
 

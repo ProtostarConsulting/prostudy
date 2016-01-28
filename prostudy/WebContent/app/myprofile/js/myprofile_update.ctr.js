@@ -7,12 +7,25 @@ angular.module("prostudyApp").controller(
 				$mdToast.show($mdToast.simple().content('Profile Updated!')
 						.position("top").hideDelay(3000));
 			};
-			$scope.curuser=[];
-			$scope.curuser=appEndpointSF.getLocalUserService().getLoggedinUser();
-			$log.debug("$scope.curuser : "+angular.toJson($scope.curuser));
+			$scope.curUser=appEndpointSF.getLocalUserService().getLoggedinUser();
+			$log.debug("$scope.curUser : "+angular.toJson($scope.curUser));
 			
-			$scope.tempUser =$scope.curuser;
-		
+			//$scope.tempUser =$scope.curUser;
+			$scope.tempUser = {
+					id: $scope.curUser.id,
+					firstName : $scope.curUser.firstName,
+					lastName : $scope.curUser.lastName,
+					email_id : $scope.curUser.email_id,
+					address : $scope.curUser.address,
+					contact : $scope.curUser.contact,
+					role : $scope.curUser.role,
+					gender : "",	
+					myExams : [],	
+					myBooks : [],	
+					
+				};
+			
+				
 			$scope.updateUser = function() {
 				$log.debug("No1");
 				var UserService = appEndpointSF.getUserService();

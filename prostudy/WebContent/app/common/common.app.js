@@ -17,23 +17,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise("/home");
 
 	// Now set up the states
-	$stateProvider.state('state1', {
-		url : "/state1",
-		templateUrl : "/app/demo/state1.html",
-		controller : 'statesPageCtr'
-	}).state('state1.list', {
-		url : "/list",
-		templateUrl : "/app/demo/state1.list.html",
-		controller : 'statesPageCtr'
-	}).state('state2', {
-		url : "/state2",
-		templateUrl : "/app/demo/state2.html",
-		controller : 'statesPageCtr'
-	}).state('state2.list', {
-		url : "/list",
-		templateUrl : "/app/demo/state2.list.html",
-		controller : 'statesPageCtr'
-	}).state('home', {
+	$stateProvider.state('home', {
 		url : "/home",
 		templateUrl : '/home.html',
 		controller : 'homeCtr'
@@ -80,10 +64,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/userQuesAnsView/:selectedExamId",
 		templateUrl : '/app/exam/userQuesAns_view.html',
 		controller : 'userQuesAnsViewCtr'
-	}).state('examtest', {
-		url : "/examtest",
-		templateUrl : '/app/exam/examdemo.html',
-		controller : 'examDemoCtr'
 	}).state('exam.question', {
 		url : "/question",
 		templateUrl : '/app/question/question_add.html',
@@ -264,10 +244,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/list",
 		templateUrl : '/app/student/student_list.html',
 		controller : 'studentListPageCtr'
-	}).state('student.listtest', {
-		url : "/listtest",
-		templateUrl : '/app/demo/table_demo3_view.html',
-		controller : 'nutritionController'
 	}).state('syllabus', {
 		url : "/syllabus",
 		templateUrl : '/app/syllabus/syllabus_module.html',

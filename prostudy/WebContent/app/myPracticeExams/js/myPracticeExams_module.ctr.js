@@ -4,13 +4,16 @@ angular.module("prostudyApp").controller(
 				$log, $q, $location, objectFactory, appEndpointSF,
 				tableTestDataFactory, $state) {
 
-			$scope.curUser = appEndpointSF.getUserService().getLoggedinUser();
-
+			//$scope.curUser = appEndpointSF.getUserService().getLoggedinUser();
+			$scope.exams = [];
+			$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
+			$log.debug(".....$scope.curUser on myPracticeExamsModuleCtr : "+angular.toJson($scope.curUser));
+		
 			$scope.getMyExamList = function() {
 
 				var UserService = appEndpointSF.getUserService();
 
-				UserService.getMyExamList($scope.curUser.userId).then(
+				UserService.getMyExamList($scope.curUser.email_id).then(
 						function(examList) {
 
 							$scope.exams = examList;
@@ -18,7 +21,7 @@ angular.module("prostudyApp").controller(
 						});
 			}
 
-			$scope.exams = [];
+		
 			$scope.getMyExamList();
 
 	
