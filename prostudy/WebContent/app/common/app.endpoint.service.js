@@ -163,6 +163,12 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 			deferred.resolve();
 
 		}, apiRoot);
+		gapi.client.load('syllabusService', 'v0.1', function() {
+			$log.debug("syllabusService Loaded......");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
 		
 		gapi.client.load('practiceExamResultService', 'v0.1', function() {
 			$log.debug("PracticeExamResultService Loaded......");

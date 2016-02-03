@@ -1,6 +1,7 @@
 var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
-		'ngMessages', "xeditable", "ui.bootstrap", "ui.router",	'md.data.table', 'ngResource', 'textAngular', 'ngRoute', 'ngStorage', 'directive.g+signin' ]);
-
+		'ngMessages', "xeditable", "ui.bootstrap", "ui.router",
+		'md.data.table', 'ngResource', 'textAngular', 'ngRoute', 'ngStorage',
+		'directive.g+signin' ]);
 
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette(
@@ -32,12 +33,27 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('exam.addnewquestion', {
 		url : "/addnewquestion",
 		templateUrl : '/app/exam/newQuestion_add.html',
-		controller : 'addNewQuestionCtr'
+		controller : 'addNewQuestionCtr',
+		params : {
+			sourceSate : null,
+			selectedExamId : null
+		}
 	}).state('exam.questionlist', {
 		url : "/question_list",
 		templateUrl : '/app/exam/question_list.html',
 		controller : 'questionListCtr'
-	}).state('exam.addpracticeexam', {
+	}).state('exam.editquestion', {
+		url : "/question_edit",
+		templateUrl : '/app/exam/question_edit.html',
+		controller : 'editQuestionCtr',
+		params : {
+			sourceSate : null,
+			selectedExamId : null,
+			selectedQuestionId : null,
+			selectedQuestion : null
+		}
+		})
+	.state('exam.addpracticeexam', {
 		url : "/addpracticeexam",
 		templateUrl : '/app/exam/practiceExam_add.html',
 		controller : 'addPracticeExamCtr'
@@ -51,12 +67,22 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('exam.editpracticeexam', {
 		url : "/editpracticeexam/:selectedExamId",
 		templateUrl : '/app/exam/practiceExam_edit.html',
-		controller : 'editPracticeExamCtr'
+		controller : 'editPracticeExamCtr',
+		params : {
+			
+			addedQ : null,
+			updatedQ : null,
+			selectedExamId : null,
+			selectedQuestionId : null,
+			addFlag : null,
+			editFlag : null
+		}
+	
 	}).state('exam.practiceexamtest', {
 		url : "/practiceexam/:selectedExamId",
 		templateUrl : '/app/exam/practiceExamTest.html',
 		controller : 'practiceExamTestCtr'
-	})	.state('exam.view', {
+	}).state('exam.view', {
 		url : "/exam/view",
 		templateUrl : '/app/exam/exam_view.html',
 		controller : 'examCtr'
@@ -84,8 +110,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/myprofile",
 		templateUrl : '/app/myprofile/myprofile.html',
 		controller : 'myProfileCtr'
-	})
-	.state('institute', {
+	}).state('institute', {
 		url : "/institute",
 		templateUrl : '/app/institute/institute_module.html',
 		controller : 'instituteModuleCtr'
@@ -97,7 +122,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/institute/addAdmins/:currentInstID",
 		templateUrl : '/app/institute/institute_addAdmins.html',
 		controller : 'instituteAddInfoCtr'
-	})	.state('institute.addTeachers', {
+	}).state('institute.addTeachers', {
 		url : "/institute/addTeachers/:currentInstID",
 		templateUrl : '/app/institute/institute_addTeachers.html',
 		controller : 'instituteAddInfoCtr'
@@ -185,12 +210,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/chapterList/:selectedBookId",
 		templateUrl : "/app/book/book_chapterList.html",
 		controller : 'book_chapterListCtr'
-	})
-	.state('book.chapterList.addcomment', {
+	}).state('book.chapterList.addcomment', {
 		url : "/addcomment/:selectedBookId",
 		templateUrl : "/app/book/book_addComments.html",
 		controller : 'bookCommentAddCtr'
-	})	.state('book.view', {
+	}).state('book.view', {
 		url : "/view/:selectedBookId/:selectedChapterId",
 		templateUrl : "/app/book/book_viewChapterContent.html",
 		controller : 'book_viewChapterContentCtr'
@@ -210,13 +234,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/login",
 		templateUrl : '/app/login/login_module.html',
 		controller : 'loginModuleCtr'
-	})	
-	.state('updatemyprofile', {
+	}).state('updatemyprofile', {
 		url : "/updatemyprofile",
 		templateUrl : '/app/myprofile/myprofile_update.html',
 		controller : 'updateMyProfileCtr'
-	})
-	.state('newUserTeacher', {
+	}).state('newUserTeacher', {
 		url : "/newUserTeacher",
 		templateUrl : '/app/login/newUser.html',
 		controller : 'loginModuleCtr'
@@ -259,7 +281,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/viewsyllabus",
 		templateUrl : '/app/syllabus/syllabus_viewsyllabus.html',
 		controller : 'syllabusViewCtr'
-			
+
 	}).state('syllabus.listsyllabus', {
 		url : "/listsyllabus",
 		templateUrl : '/app/syllabus/syllabus_listsyllabus.html',
@@ -272,7 +294,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 	});
 
-	});
+});
 
 app.filter('unique', function() {
 	return function(input, key) {
