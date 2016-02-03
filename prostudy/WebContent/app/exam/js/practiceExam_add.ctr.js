@@ -74,7 +74,31 @@ angular.module("prostudyApp").controller(
 				$log.debug("No4");
 				$state.go('exam.listpracticeexam', {});
 			}
-			// $scope.getPracticeExams();
-			// $scope.showselectedExam();
+			$scope.query = {
+					order : 'description',
+					limit : 5,
+					page : 1
+				};
+
+				$scope.onpagechange = function(page, limit) {
+					var deferred = $q.defer();
+
+					$timeout(function() {
+						deferred.resolve();
+					}, 2000);
+
+					return deferred.promise;
+				};
+
+				$scope.onorderchange = function(order) {
+					var deferred = $q.defer();
+
+					$timeout(function() {
+						deferred.resolve();
+					}, 2000);
+
+					return deferred.promise;
+				};
+			
 
 		});

@@ -9,7 +9,7 @@ angular
 					$scope.count = 0;
 					
 					$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
-					$log.debug(".....$scope.curUser on practiceExamListCtr : "+angular.toJson($scope.curUser));
+				//	$log.debug(".....$scope.curUser on practiceExamListCtr : "+angular.toJson($scope.curUser));
 			
 					
 

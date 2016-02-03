@@ -5,7 +5,7 @@ angular.module("prostudyApp").controller(
 
 			$log.debug("Inside examModuleCtr");
 
-			$scope.testGAPICall = function() {
+			/*$scope.testGAPICall = function() {
 				console.log("in side testGAPICall");
 				var q = appEndpointSF.getQuestionService().getQuestions()
 						.execute(function(resp) {
@@ -19,7 +19,7 @@ angular.module("prostudyApp").controller(
 						});
 
 			};
-
+*/
 			$scope.getPracticeExams = function() {
 
 				var PracticeExamService = appEndpointSF

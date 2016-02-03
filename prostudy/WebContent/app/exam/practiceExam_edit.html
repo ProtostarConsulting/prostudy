@@ -4,9 +4,8 @@
 		<md-subheader class="md-primary">
 		<h4 class="md-headline">Edit Exam</h4>
 		</md-subheader>
-<div layout="column">
-					
-					<md-content layout-padding>
+		<div layout="column">
+			<md-content layout-padding>
 			<div id="updateTest">
 			<md-input-container flex>
 					<label>Exam Title</label>
@@ -33,7 +32,7 @@
 				</div>
 
 				<md-data-table-container>
-				<table md-data-table md-row-select="selectedQ" md-progress="deferred" >
+				<table md-data-table md-row-select="selectedQ" md-progress="deferred" style="width:40%", height="40%" ng-model="checked">
 					<thead md-order="query.order" md-trigger="onorderchange">
 					<tr>
 						<th name="Question Desc"   order-by="description"></th>
@@ -46,36 +45,36 @@
 						</tr>
 					</thead>
 				<tbody>
-					<tr md-auto-select  ng-repeat="question in questions | orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit" checked="Test.Questions">
+					<tr md-auto-select  ng-repeat="question in Test.questions | orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit" checked="Test.Questions">
 						<td ng-bind-html="question.description">{{question.description}}</td>
-
 						<td>{{question.option1}}</td>
 						<td>{{question.option2}}</td>
 						<td>{{question.option3}}</td>
 						<td>{{question.option4}}</td>
 						<td>{{question.correctAns}}</td>
-
-					</tr>
+					
+						<td><md-button ng-show="selectedQ.length >0" class="md-raised md-primary"ng-click="editQuestion()">Edit</md-button></td>
+						<td><md-button ng-show="selectedQ.length > 0" class="md-raised md-primary"ng-click="remove($index)">Remove</md-button></td>
+						</tr>
 				</tbody>
 			</table>
 		<br>
 		</md-data-table-container>
-		<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total={{questions.length}} md-trigger="onpagechange"></md-data-table-pagination>
-		
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total={{Test.questions.length}} md-trigger="onpagechange"></md-data-table-pagination>
+		</md-content>
+		</div>
+		<div>
+		<section layout="row" layout-sm="column" >
+		<md-button class="md-raised md-primary"ng-click="addQuestion()">Add Question</md-button></section></div>	
+
 			<section layout="row" layout-sm="column" layout-align="center center">
 					<md-button class="md-raised md-primary" ng-click="updateExam(Test.examId)">
 						Update Test
 					</md-button>
-						<md-button class="md-raised md-primary"ng-click="clickCancelButton()">
+						<md-button class="md-raised md-primary"ng-click="cancel()">
 						cancel</md-button>
 				</section>
-			</div>
-		</md-content>
-		<md-input-container>
- 
-</md-input-container>
-		</div>
 
 </section>
 	</md-content>
-</div>
+	</div>
