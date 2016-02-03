@@ -15,7 +15,7 @@ angular
 						$state.go("login");
 					};
 
-					// on page load firs see if user is already logged. if yes getch and set values.
+					// on page load first see if user is already logged. if yes fetch and set values.
 					$scope.curUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
 					
