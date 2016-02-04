@@ -2,11 +2,13 @@ package com.protostar.billingnstock.sales.entities;
 
 import java.util.List;
 
+import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.stock.entities.StockItemEntity;
+import com.protostar.billingnstock.tax.entities.TaxEntity;
 
 @Entity
 public class SalesOrderEntity {
@@ -27,19 +29,27 @@ public class SalesOrderEntity {
 	private String paymentTerms;
 	private String dueDate;
 	private double subTotal ;
-	private String taxCodeName ;
+/*	private String taxCodeName ;
 	private double taxPercenatge ;
 	private double taxTotal ;
-	private double finalTotal;
+*/	private double finalTotal;
 	
 	private List<StockItemEntity> sOLineItemList;
-	private Customer customer;	
-
+	
+	Ref<Customer> customer;	
 	public Customer getCustomer() {
-		return customer;
+		return customer.get();
 	}
 	public void setCustomer(Customer customer) {
-		this.customer = customer;
+		this.customer = Ref.create(customer);
+	}
+	
+	Ref<TaxEntity> selectedTaxItem;
+	public TaxEntity getSelectedTaxItem() {
+		return selectedTaxItem.get();
+	}
+	public void setSelectedTaxItem(TaxEntity selectedTaxItem) {
+		this.selectedTaxItem = Ref.create(selectedTaxItem);
 	}
 	
 	public List<StockItemEntity> getsOLineItemList() {
@@ -135,7 +145,7 @@ public class SalesOrderEntity {
 	public void setSubTotal(double subTotal) {
 		this.subTotal = subTotal;
 	}
-	public String getTaxCodeName() {
+/*	public String getTaxCodeName() {
 		return taxCodeName;
 	}
 	public void setTaxCodeName(String taxCodeName) {
@@ -153,7 +163,7 @@ public class SalesOrderEntity {
 	public void setTaxTotal(double taxTotal) {
 		this.taxTotal = taxTotal;
 	}
-	public double getFinalTotal() {
+*/	public double getFinalTotal() {
 		return finalTotal;
 	}
 	public void setFinalTotal(double finalTotal) {
