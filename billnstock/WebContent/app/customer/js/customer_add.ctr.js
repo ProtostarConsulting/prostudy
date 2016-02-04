@@ -12,8 +12,8 @@ app.controller(
 						.position("top").hideDelay(3000));
 			};
 
-			// $scope.cust = objectFactory.newCustomer();		
-			
+			// $scope.cust = objectFactory.newCustomer();
+			    
 			$scope.cust = {
 				customerId : "",
 				customerName : "",

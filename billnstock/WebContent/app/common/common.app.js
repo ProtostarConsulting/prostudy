@@ -28,7 +28,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/home",
 		templateUrl : '/home.html',
 		controller : 'homeCtr'
-	}).state('student', {
+	})./*state('student', {
 		url : "/student",
 		templateUrl : '/app/student/student_module.html',
 		controller : 'customerCtr'
@@ -36,7 +36,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/listtest",
 		templateUrl : '/app/demo/table_demo3_view.html',
 		controller : 'nutritionController'
-	}).state('stock', {
+	}).*/state('stock', {
 		url : "/stock",
 		templateUrl : '/app/stock/stock_module.html',
 		controller : 'stockModuleCtr'

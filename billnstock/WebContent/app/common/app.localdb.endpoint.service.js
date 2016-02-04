@@ -1231,7 +1231,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 						custInvoiveList = [];
 
 					for (i = 0; i < custInvoiveList.length; i++) {
-						if (selectedCustomerId == custInvoiveList[i].customerName.customerId) {
+						if (selectedCustomerId == custInvoiveList[i].customer.customerId) {
 
 							// selectedBillNo = invoiceList[i];
 							tempInvoice.push(custInvoiveList[i]);

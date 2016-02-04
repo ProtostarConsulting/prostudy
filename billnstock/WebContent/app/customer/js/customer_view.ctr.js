@@ -18,7 +18,7 @@ app.controller(
 
 			$scope.customerId = $stateParams.selectedCustomerId;
 
-			$scope.showCustomerDetails = function() {
+/*			$scope.showCustomerDetails = function() {
 				var customerService = appEndpointSF.getCustomerService();
 
 				customerService
@@ -34,13 +34,13 @@ app.controller(
 			}
 			$scope.customerDetails = [];
 			$scope.showCustomerDetails();
-			
+*/			
 			$scope.getAllInvoiceByCustId = function() {
 				$log.debug("Inside Ctr $scope.getAllInvoiceByCustId");
 				var invoiceService = appEndpointSF.getInvoiceService();
 
 				invoiceService
-						.getAllInvoiceByCustId($scope.selectedCustomerId)
+						.getAllInvoiceByCustId($scope.customerId)
 						.then(
 								function(custInvoiveList) {
 									$log
@@ -54,7 +54,7 @@ app.controller(
 			}
 
 			$scope.custInvoiceData = [];
-			//$scope.getAllInvoiceByCustId();
+			$scope.getAllInvoiceByCustId();
 			
 			
 			

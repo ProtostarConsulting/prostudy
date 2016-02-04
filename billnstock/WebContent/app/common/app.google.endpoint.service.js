@@ -602,6 +602,7 @@ function googleEndpointSF($log, $q) {
 			deferred.resolve(resp);
 		});
 
+
 		gapi.client.customerService.addCustomer(cust).execute(function(resp) {
 			$log.debug("addCustomer#resp at enpoint:" + resp);
 			deferred.resolve(resp);
@@ -752,13 +753,11 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	InvoiceService.getAllInvoiceByCustId = function(customerId) {
+	InvoiceService.getAllInvoiceByCustId = function(id) {
 		var deferred = $q.defer();
-		gapi.client.invoiceService.getAllInvoiceByCustId({
-			"customerId" : customerId
-		}).execute(function(resp) {
-			$log.debug("getAllInvoiceByCustId at enpoint" + resp);
-			deferred.resolve(resp);
+		gapi.client.invoiceService.getAllInvoiceByCustId({"id":id}).execute(function(resp) {
+			$log.debug("getAllInvoiceByCustId at enpoint" + resp.items);
+			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
 	}// End of StockService
