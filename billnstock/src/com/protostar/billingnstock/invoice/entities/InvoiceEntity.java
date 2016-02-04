@@ -2,9 +2,11 @@ package com.protostar.billingnstock.invoice.entities;
 
 import java.util.List;
 
+import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
+import com.googlecode.objectify.annotation.Load;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.purchase.entities.PurchaseOrderEntity;
 import com.protostar.billingnstock.sales.entities.SalesOrderEntity;
@@ -25,26 +27,50 @@ public class InvoiceEntity {
 	private String taxTotal;
 	private String finalTotal;
 	private String note;
-	
 	private List<StockItemEntity> invoiceLineItemList;
-	private Customer customer;
-	private PurchaseOrderEntity purchaseOrderNo;
-	private SalesOrderEntity salesOrderId;
-    private TaxEntity selectedTaxItem;
-  
-    
-    public TaxEntity getSelectedTaxItem() {
-		return selectedTaxItem;
+
+	@Index
+	Ref<Customer> customer;
+	public Customer getCustomer() {
+		return customer.get();
 	}
 
-	public void setSelectedTaxItem(TaxEntity selectedTaxItem) {
-		this.selectedTaxItem = selectedTaxItem;
+	public void setCustomer(Customer customer) {
+		this.customer = Ref.create(customer);
 	}
 	
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	Ref<TaxEntity> selectedTaxItem;
+	public TaxEntity getSelectedTaxItem() {
+		return selectedTaxItem.get();
+	}
+	public void setSelectedTaxItem(TaxEntity selectedTaxItem) {
+		this.selectedTaxItem = Ref.create(selectedTaxItem);
+	}
+	
+	Ref<PurchaseOrderEntity>purchaseOrderNo;
+	Ref<SalesOrderEntity>salesOrderId;
+	
+
+	
+	
+	public PurchaseOrderEntity getPurchaseOrderNo() {
+		return purchaseOrderNo.get();
 	}
 
+	public void setPurchaseOrderNo(PurchaseOrderEntity purchaseOrderNo) {
+		this.purchaseOrderNo = Ref.create(purchaseOrderNo);
+	}
+
+	public SalesOrderEntity getSalesOrderId() {
+		return salesOrderId.get();
+	}
+
+	public void setSalesOrderId(SalesOrderEntity salesOrderId) {
+		this.salesOrderId = Ref.create(salesOrderId);
+	}
+
+	
+	
 	public String getInvoiceDate() {
 		return invoiceDate;
 	}
@@ -93,7 +119,6 @@ public class InvoiceEntity {
 		this.subTotal = subTotal;
 	}
 
-
 	public String getTaxTotal() {
 		return taxTotal;
 	}
@@ -118,22 +143,6 @@ public class InvoiceEntity {
 		this.id = id;
 	}
 
-	public PurchaseOrderEntity getPurchaseOrderNo() {
-		return purchaseOrderNo;
-	}
-
-	public void setPurchaseOrderNo(PurchaseOrderEntity purchaseOrderNo) {
-		this.purchaseOrderNo = purchaseOrderNo;
-	}
-
-	public SalesOrderEntity getSalesOrderId() {
-		return salesOrderId;
-	}
-
-	public void setSalesOrderId(SalesOrderEntity salesOrderId) {
-		this.salesOrderId = salesOrderId;
-	}
-
 	public List<StockItemEntity> getInvoiceLineItemList() {
 		return invoiceLineItemList;
 	}
@@ -142,10 +151,6 @@ public class InvoiceEntity {
 		this.invoiceLineItemList = invoiceLineItemList;
 	}
 
-	public Customer getCustomer() {
-		return customer;
-	}
-	
 	public String getNote() {
 		return note;
 	}
@@ -153,5 +158,5 @@ public class InvoiceEntity {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	
+
 }// end of InvoiceEntity
