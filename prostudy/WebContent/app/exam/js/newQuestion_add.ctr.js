@@ -17,11 +17,11 @@ angular.module("prostudyApp").controller(
 				option2 : "",
 				option3 : "",
 				option4 : "",
-				correctAns : "",
+				correctAns : ""
 				
 			};
 			$scope.question = [];
-
+			
 			$scope.addQuestion = function() {
 				$log.debug("No1");
 				var QuestionService = appEndpointSF.getQuestionService();
@@ -40,10 +40,15 @@ angular.module("prostudyApp").controller(
 								correctAns : "",
 								
 							};
+							
+							
 							$log.debug("$scope.sourceSate:" + $scope.sourceSate);
-							//$log.debug("$scope.sourceSate !== undefined:" + angular.isUndefined($scope.sourceSate !== undefined));
 						
-							if($scope.sourceSate !== undefined){
+							if($scope.sourceSate == null)
+								{
+								$state.go("exam.questionlist",{});
+								}
+							else if($scope.sourceSate){
 								
 								$state.go($scope.sourceSate, {addedQ: addedQ, selectedExamId: $stateParams.selectedExamId,addFlag : true});
 							}
@@ -64,5 +69,20 @@ angular.module("prostudyApp").controller(
 			$scope.cancelButton = function() {
 				$state.go("exam", {});
 			}
+			$scope.toggleSelection = function toggleSelection(id,
+					optionId) {
+				var idx = $scope.selection.indexOf(id, optionId);
+				$scope.userAnsList.push({
+					qID : id,
+					userOption : optionId
+				});
+				if (idx > -1) {
+					$scope.selection.splice(idx, 1);
+				} else {
+					$scope.selection.push(optionId);
+				}
+
+			};
+
 
 		});

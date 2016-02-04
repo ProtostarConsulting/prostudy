@@ -45,7 +45,11 @@ angular.module("prostudyApp")
 									$log.debug("updatedQ:",updatedQ);
 									$scope.showSavedToast();
 														
-									if($scope.sourceSate !== undefined)
+									if($scope.sourceSate == null)
+									{
+									$state.go("exam.questionlist",{});
+									}
+									else if($scope.sourceSate)
 									{
 										
 									$state.go($scope.sourceSate, {updatedQ: updatedQ, selectedExamId: $stateParams.selectedExamId,selectedQuestionId:$scope.selectedQuestionId,editFlag:true });
@@ -53,6 +57,9 @@ angular.module("prostudyApp")
 								});
 						
 					};
+					$scope.cancelButton = function() {
+						$state.go("exam.questionlist", {});
+					}
 					
 
 				});// end of editQuestionCtr

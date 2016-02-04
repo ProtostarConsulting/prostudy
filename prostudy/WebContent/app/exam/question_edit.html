@@ -25,11 +25,13 @@
 					<md-input-container flex>
 						<label>Option1</label>
 						<input ng-model="question.option1">
+						 <md-checkbox  ng-true-value="'option1'"  ng-model="question.correctAns"	ng-click=" ">
 					</md-input-container>
 
 					<md-input-container flex>
 						<label>Option2</label>
 						<input ng-model="question.option2">
+						 <md-checkbox  ng-true-value="'option2'"  ng-model="question.correctAns"	ng-click=" ">
 					</md-input-container>
 				</div>
 
@@ -37,18 +39,13 @@
 					<md-input-container flex>
 						<label>Option3</label>
 						<input ng-model="question.option3">
+						 <md-checkbox  ng-true-value="'option3'"  ng-model="question.correctAns"	ng-click=" ">
 					</md-input-container>
 
 					<md-input-container flex>
 						<label>Option4</label>
 						<input ng-model="question.option4">
-					</md-input-container>
-				</div>
-
-				<div layout layout-sm="column">
-					<md-input-container flex>
-						<label>Correct Ans.</label>
-						<input ng-model="question.correctAns">
+						 <md-checkbox  ng-true-value="'option4'"  ng-model="question.correctAns"	ng-click=" ">
 					</md-input-container>
 				</div>
 
@@ -56,9 +53,9 @@
 					<md-button class="md-raised md-primary" ng-click="updateQuestion(question)">
 						Update Question
 					</md-button>
-					<!-- <md-button class="md-raised md-primary"ng-click="clickCancelButton(selected[0])">
+					 <md-button class="md-raised md-primary"ng-click="cancelButton()">
 						cancel
-					</md-button> -->
+					</md-button> 
 				</section>
 			</div>
 		
