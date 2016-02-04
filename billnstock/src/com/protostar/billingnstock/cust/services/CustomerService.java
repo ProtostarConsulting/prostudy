@@ -10,7 +10,6 @@ import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
 import com.protostar.billingnstock.cust.entities.Customer;
-import com.protostar.billingnstock.hr.entities.Employee;
 
 @Api(name = "customerService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.stock.cust.services", ownerName = "com.protostar.billingnstock.stock.cust.services", packagePath = ""))
 public class CustomerService {
@@ -19,7 +18,7 @@ public class CustomerService {
 	public void addCustomer(Customer customer) {
 	//	Key<Customer> now = ofy().save().entity(customer).now();
 		
-		Key<Customer> now = ofy().save().entity(customer).now();
+		Key<Customer> cust = ofy().save().entity(customer).now();
 	}
 
 	@ApiMethod(name = "getAllCustomers")
@@ -28,10 +27,9 @@ public class CustomerService {
 	}
 
 	@ApiMethod(name = "getCustomerByID")
-	public Customer getCustomerByID(@Named("customerId") String customerId) {
+	public Customer getCustomerByID(@Named("Id") Long Id) {
 
-		Customer customerById = ofy().load().type(Customer.class)
-				.filter("customerId", customerId).first().now();
+		Customer customerById = ofy().load().type(Customer.class).id(Id).now();
 
 		System.out.println("Searched Recored is:"
 				+ customerById.getCustomerName());

@@ -8,23 +8,21 @@ import com.googlecode.objectify.annotation.Index;
 public class Customer {
 
 	@Id
-	private Long Id;
+	private Long id;
 	@Index
 	private String customerId;
 	@Index
 	private String customerName;
-	@Index
 	private String mobile;
-	@Index
 	private String email;
 	private String customerAddress;
 
 	public Long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(Long Id) {
-		this.Id = Id;
+		this.id = Id;
 	}
 	public String getCustomerId() {
 		return customerId;
