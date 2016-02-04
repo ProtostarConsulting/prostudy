@@ -4,14 +4,10 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import com.googlecode.objectify.ObjectifyService;
+import com.protostar.billingnstock.crm.entities.Contact;
 import com.protostar.billingnstock.crm.entities.Lead;
-import com.protostar.billingnstock.crm.entities.Task;
-<<<<<<< .mine
+import com.protostar.billingnstock.crm.entities.Opportunity;
 import com.protostar.billingnstock.cust.entities.Customer;
-import com.protostar.billingnstock.cust.entities.Internet;
-=======
-import com.protostar.billingnstock.cust.entities.Customer;
->>>>>>> .r426
 import com.protostar.billingnstock.hr.entities.Employee;
 import com.protostar.billingnstock.hr.entities.SalSlip;
 import com.protostar.billingnstock.hr.entities.SalStruct;
@@ -22,6 +18,8 @@ import com.protostar.billingnstock.sales.entities.SalesOrderEntity;
 import com.protostar.billingnstock.stock.entities.Car;
 import com.protostar.billingnstock.stock.entities.StockItemEntity;
 import com.protostar.billingnstock.tax.entities.TaxEntity;
+import com.protostar.billingnstock.user.entities.BusinessEntity;
+import com.protostar.billingnstock.user.entities.UserEntity;
 
 public class AppServletContextListener implements ServletContextListener {
 
@@ -39,7 +37,7 @@ public class AppServletContextListener implements ServletContextListener {
 		ObjectifyService.register(SalStruct.class);
 		ObjectifyService.register(SalSlip.class);
 		ObjectifyService.register(Lead.class);
-		ObjectifyService.register(Task.class);
+
 		ObjectifyService.register(TimeSheet.class);
 		ObjectifyService.register(Customer.class);
 		ObjectifyService.register(StockItemEntity.class);
@@ -47,13 +45,11 @@ public class AppServletContextListener implements ServletContextListener {
 		ObjectifyService.register(TaxEntity.class);
 		ObjectifyService.register(PurchaseOrderEntity.class);
 		ObjectifyService.register(SalesOrderEntity.class);
-		
-		ObjectifyService.register(Employee.class);
-		ObjectifyService.register(SalStruct.class);
-	      ObjectifyService.register(SalSlip.class);
-	      ObjectifyService.register(Lead.class);
-	      ObjectifyService.register(Task.class);
-	      ObjectifyService.register(TimeSheet.class);
+		ObjectifyService.register(Opportunity.class);
+		ObjectifyService.register(Contact.class);
+		ObjectifyService.register(UserEntity.class);
+		ObjectifyService.register(BusinessEntity.class);
+	
 	}
 
 }

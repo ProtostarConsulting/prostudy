@@ -37,8 +37,20 @@ public class Lead {
 	private String email;
 	private String designation;
 	private String address;
+
 	private List<Task> tasks;
+	
 	private String  name;
+	
+	
+	public List<Task> getTasks() {
+		return tasks;
+	}
+	public void setTasks(List<Task> tasks) {
+		this.tasks = tasks;
+	}
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -75,12 +87,7 @@ public class Lead {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public List<Task> getTasks() {
-		return tasks;
-	}
-	public void setTasks(List<Task> tasks) {
-		this.tasks = tasks;
-	}
+	
 
 
 

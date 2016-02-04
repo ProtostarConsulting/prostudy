@@ -28,6 +28,10 @@ public class HrService
 		  Key<Employee> now = ofy().save().entity(emp).now();
 	
 	}
+	/*@ApiMethod(name="getAllemp") 
+	public List<Employee> getAllemp(@Named("businessAccountID") Long businessAccountID) {
+	  return ofy().load().type(Employee.class).list();
+	 }*/
 	
 	@ApiMethod(name="getAllemp") 
 	public List<Employee> getAllemp() {
@@ -98,7 +102,7 @@ public class HrService
 		Key<SalSlip> now = ofy().save().entity(salslip).now();
 	 
 	}
-	//not working
+	
 	@ApiMethod(name="displyOnlySelected") 
 	 public SalSlip displyOnlySelected(@Named("month") String mon) {
 	
@@ -106,6 +110,17 @@ public class HrService
 
 		return month;
 	 }
+	
+	
+	@ApiMethod(name="printslip") 
+	 public SalSlip printslip(@Named("salslip_id") String salslipid) {
+	
+		SalSlip sals = ofy().load().type(SalSlip.class).filter("salslip_id", salslipid).first().now();
+
+		return sals;
+	 }
+	
+	
 	
 	@ApiMethod(name="addtimesheet") 
 	public void addtimesheet(TimeSheet timesheet)
@@ -126,12 +141,10 @@ public class HrService
 
 		return weekdata;
 	 }
-	
-	//not working
 	@ApiMethod(name="getallsalslip") 
-	 public SalSlip getallsalslip(@Named("curryear") String curryear) {
+	 public SalSlip getallsalslip(@Named("year") String curryear) {
 	
-		SalSlip salslipdata = ofy().load().type(SalSlip.class).filter("curryear",curryear).first().now();
+		SalSlip salslipdata = ofy().load().type(SalSlip.class).filter("year",curryear).first().now();
 
 		return salslipdata;
 	 }

@@ -1,14 +1,12 @@
 package com.protostar.billingnstock.crm.entities;
 
-import com.googlecode.objectify.annotation.Entity;
-import com.googlecode.objectify.annotation.Id;
 
 
 
-@Entity
+/*@Entity*/
 public class Task {
 
-	@Id
+	/*@Id
 	private Long id;
 
 	public long getId() {
@@ -16,7 +14,7 @@ public class Task {
 	}
 	public void setId(long id) {
 		this.id = id;
-	}
+	}*/
 	
 	//private String id ;
 	private String type;

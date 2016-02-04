@@ -9,6 +9,7 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
+import com.protostar.billingnstock.crm.entities.Contact;
 import com.protostar.billingnstock.crm.entities.Lead;
 
 
@@ -39,7 +40,35 @@ public class CrmService
 
 		return lead;
 	 }
+	@ApiMethod(name="addupdatetask")
+	public void addupdatetask(Lead lead)
+	{
+		  Key<Lead> now = ofy().save().entity(lead).now();
 	
+	}
+	
+	@ApiMethod(name="addcontact")
+	public void addcontact(Contact contact)
+	{
+		  Key<Contact> now = ofy().save().entity(contact).now();
+	
+	}
 	
  
+	@ApiMethod(name="getAllcontact") 
+	
+	 public List<Contact> getAllcontact() {
+	  return ofy().load().type(Contact.class).list();
+	 }
+	
+	
+	@ApiMethod(name="getContactById") 
+	 public Contact getContactById(@Named("cid") String contactNo) {
+	
+		Contact contact = ofy().load().type(Contact.class).filter("cid", contactNo).first().now();
+
+		return contact;
+	 }
+	
+	
 }//end of InternetService

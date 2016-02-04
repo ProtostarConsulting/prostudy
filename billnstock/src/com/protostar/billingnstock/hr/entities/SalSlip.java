@@ -2,6 +2,7 @@ package com.protostar.billingnstock.hr.entities;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 
 
@@ -19,13 +20,16 @@ public class SalSlip {
 	}
 	
 	private String ganeratedcode;
+	@Index
 	private String salslip_id ;
 	private SalStruct salarystruct;
 	private Employee empdetail;
+	@Index
 	private String month;
 	private String generateddate ;
 	private String bank_name ;
 	private String acno ;
+	@Index
 	private String year;
 	
 	
