@@ -14,9 +14,9 @@ function googleEndpointSF($log, $q) {
 	UserService.addUser = function(user) {
 		$log.debug("No2");
 		var deferred = $q.defer();
-		gapi.client.userService.addUser(user).execute(function(resp) {
+		gapi.client.userService.addUser(user).execute(function() {
 			deferred.resolve({
-				"msg" : resp
+				"msg" : "user Successfully Added"
 			});
 
 		});
