@@ -93,7 +93,6 @@ angular
 						for (var i = 0; i < 3; i++) {
 							$scope.months.push(monthNames[date.getMonth()]
 									+ ' ' + date.getFullYear());
-
 							// Subtract a month each time
 							date.setMonth(date.getMonth() - 1);
 						}
@@ -175,11 +174,10 @@ angular
 										function(printSalSelectedSlipList) {
 											$scope.printGSalStruct = printSalSelectedSlipList.result;
 											$scope.salslip.ganeratedcode = $scope.printGSalStruct.length + 100;
+											$scope.salslip.salslip_id = $scope.printGSalStruct.length + 100;
 											$scope.salslip.month = $scope.selectmonth;
-											$scope.salslip.year = "Year" + ' '
-													+ date.getFullYear();
-
-										});
+											$scope.salslip.year = "Year" + ' '+ date.getFullYear();
+											});
 					}
 					$scope.printGSalStruct = [];
 					$scope.printganeratesalslip();
@@ -201,7 +199,8 @@ angular
 								.displyOnlySelected($scope.currmonth)
 								.then(
 										function(getDisplyOnlySelected) {
-											$scope.displyselected = getDisplyOnlySelected.result;
+											$scope.displyselected = getDisplyOnlySelected;
+										
 											$log
 													.debug("$scope.displyselected=========="
 															+ angular
@@ -209,6 +208,7 @@ angular
 										});
 					}
 					$scope.displyselected = [];
+			
 					$scope.displyOnlySelected();
 
 					var printDivCSS = new String(
@@ -217,10 +217,6 @@ angular
 									+ '<link href="/lib/base/css/bootstrap.min.css"" rel="stylesheet" type="text/css">')
 
 					$scope.printSalSlipDiv = function(salSlipDiv) {
-						// window.frames["print_frame"].document.body.innerHTML
-						// = printDivCSS
-						// + document.getElementById(divId).innerHTML;
-
 						document.getElementById('hidetr').style.display = 'block';
 						window.frames["print_frame"].document.body.innerHTML = printDivCSS
 								+ document.getElementById(salSlipDiv).innerHTML;
@@ -230,16 +226,22 @@ angular
 
 					}
 
-					/*
-					 * $scope.printslip = function() { var hrService =
-					 * appEndpointSF.gethrService();
-					 * 
-					 * hrService .printslip($scope.printempidsalslip) .then(
-					 * function(getslip) { $scope.printslectedslip = getslip;
-					 * $log .debug("$scope.printslectedslip==========" +
-					 * $scope.printslectedslip); }); } $scope.printslectedslip =
-					 * []; $scope.printslip();
-					 */
+					$scope.printslip = function() {
+						var hrService = appEndpointSF.gethrService();
+
+						hrService
+								.printslip($scope.printempidsalslip)
+								.then(
+										function(getslip) {
+											$scope.printslectedslip = getslip;
+											$log
+													.debug("$scope.printslectedslip=========="
+															+ $scope.printslectedslip);
+										});
+					}
+					$scope.printslectedslip = [];
+					$scope.printslip();
+
 					$scope.toggleRight = buildToggler('right');
 
 					function buildToggler(navID) {

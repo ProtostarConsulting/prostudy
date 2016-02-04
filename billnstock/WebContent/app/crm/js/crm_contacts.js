@@ -9,52 +9,45 @@ angular.module("stockApp").controller(
 			};
 			$scope.selectedcontactNo = $stateParams.selectedcontactNo;
 
-			$scope.contact={
-					cid:"",
-					fName:"",
-					lName:"",
-					status:"",
-					phone:"",
-					email:"",
-					uid:"",
-					supp:"",
-					cust:"",
-					salespartner:""
+			$scope.contact = {
+				cid : "",
+				fName : "",
+				lName : "",
+				status : "",
+				phone : "",
+				email : "",
+				uid : "",
+				supp : "",
+				cust : "",
+				salespartner : ""
 			}
-			
-			
+
 			$scope.addcontact = function() {
-
 				var leadService = appEndpointSF.getleadService();
-				
 				leadService.addcontact($scope.contact).then(function(msgBean) {
-
 					$log.debug("Inside Ctr addlead");
 					$log.debug("msgBean.msg:" + msgBean.msg);
 					$scope.showSimpleToast(msgBean.msg);
-					$scope.getAllleads();
+					//$scope.getAllleads();
 				});
 
 				$scope.contact = {};
 			}
-			
-			
-			
+
 			$scope.getAllcontact = function() {
 				var leadService = appEndpointSF.getleadService();
 				leadService.getAllcontact().then(function(contactList) {
 					$log.debug("Inside Ctr getAllleads");
-					$scope.contacts = contactList;
+					$scope.contacts = contactList.items;
 					$scope.cleadid = $scope.contacts.length + 1;
 					$scope.contact.cid = $scope.cleadid;
-					
+
 				});
 			}
-			
+
 			$scope.contacts = [];
 			$scope.getAllcontact();
-			
-			
+
 			$scope.getContactById = function() {
 				$log.debug("Inside Ctr $scope.getAlllead");
 				var leadService = appEndpointSF.getleadService();
@@ -62,15 +55,15 @@ angular.module("stockApp").controller(
 				leadService.getContactById($scope.selectedcontactNo).then(
 						function(contactList) {
 							$log.debug("Inside Ctr getAllleads");
-							$scope.contactL = contactList[0];
-				
+							$scope.contactL = contactList.result;
+
 						});
 
 			}
 
 			$scope.contactL = [];
 			$scope.getContactById();
-			
+
 			$scope.updatecontact = function() {
 
 				var leadService = appEndpointSF.getleadService();
@@ -82,7 +75,7 @@ angular.module("stockApp").controller(
 							//	$scope.empDetail = [];
 						});
 			}
-			
+
 			$scope.toggleRight = buildToggler('right');
 
 			function buildToggler(navID) {

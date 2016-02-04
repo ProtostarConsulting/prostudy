@@ -17,10 +17,17 @@ angular
 							tasks :[]
 					}
 					
-					
+					$scope.task  = [{
+							id : "",
+							description : "",
+							type : "",
+							date : $scope.curdate,
+							note : "",
+							status : ""
+						}]
 					
 					$scope.addlead = function() {
-
+						$scope.lead.tasks= $scope.task ;
 						var leadService = appEndpointSF.getleadService();
 						
 						leadService.addlead($scope.lead).then(function(msgBean) {

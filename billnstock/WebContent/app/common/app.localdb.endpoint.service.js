@@ -5,9 +5,132 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 	var serviceFactory = {};
 
+	
+	//---------------------------------------userlogin --------------------
+	
+	var UserService = {};
+
+	 serviceFactory.getUserService = function() {
+	  return UserService;
+	 }
+
+	 UserService.addUser = function(user) {
+
+	  var deferred = $q.defer();
+	  $timeout(function() {
+
+	   $log.debug("In side local DB addLogin...");
+	   var userList = angular.fromJson($localStorage.dbUser);
+	   if (typeof userList === 'undefined')
+	    userList = [];
+	   user.userId = userList.length + 1;
+	   userList.push(user);
+	   $localStorage.dbUser = angular.toJson(userList);
+	   deferred.resolve({
+	    "msg" : "User added Successfully."
+	   });
+
+	  }, 1000);
+
+	  return deferred.promise;
+	 }
+
+	 UserService.getUsers = function() {
+	  var deferred = $q.defer();
+	  $timeout(function() {
+	   $log.debug("In side local DB getLogin...");
+	   var userList = angular.fromJson($localStorage.dbUser);
+	   if (typeof userList === 'undefined')
+	    userList = [];
+	   deferred.resolve(userList);
+	  }, 1000);
+
+	  return deferred.promise;
+
+	 }
+
+	 UserService.login = function(userName, pwd) {
+	  var deferred = $q.defer();
+	  $timeout(function() {
+	   var loggedin = false;
+	   var userList = angular.fromJson($localStorage.dbUser);
+	   if (typeof userList === 'undefined')
+	    userList = [];
+
+	   for (i = 0; i < userList.length; i++) {
+	    if (userList[i].userName === userName
+	      && userList[i].pwd === pwd) {
+	     $localStorage.loggedinUser = userList[i];
+	     deferred.resolve(true);
+	    }
+	   }
+	   deferred.resolve(false);
+	  }, 1000);
+
+	  return deferred.promise;
+
+	 }
+
+	 UserService.saveLoggedInUser = function(user) {
+	  $localStorage.loggedinUser = user;
+
+	 }
+	 
+	 UserService.logout = function() {
+	  $localStorage.loggedinUser = null;
+	 }
+
+	 UserService.getLoggedinUser = function() {
+	  var user = $localStorage.loggedinUser;
+	  if (user == 'undefined' || user == null)
+	   return null;
+	  else
+	   return $localStorage.loggedinUser;
+	 }
+
+	 UserService.getUserById = function(userId) {
+	  var foundUser;
+	  var userList = angular.fromJson($localStorage.dbUser);
+	  for (i = 0; i < userList.length; i++) {
+	   if (userId == userList[i].userId) {
+	    foundUser = userList[i];
+	    break;
+	   }
+
+	  }
+
+	  return foundUser;
+	 }
+
+	 UserService.updateProfile = function(editProfile) {
+	  var deferred = $q.defer();
+	  $timeout(function() {
+
+	   $log.debug("In side updated local DB ...");
+	   var userList = angular.fromJson($localStorage.dbUser);
+	   if (typeof userList === 'undefined')
+	    userList = [];
+	   for (var i = 0; i < userList.length; i++) {
+	    if (editProfile.userId == userList[i].userId)
+	     userList[i] = editProfile;
+	   }
+	   $localStorage.dbUser = angular.toJson(userList);
+	   deferred.resolve({
+	    "msg" : "User data Updated Successfully."
+	   });
+
+	  }, 1000);
+
+	  return deferred.promise;
+	 }
+	
+	//-------------------------------------------------------------------
+	
+	
 	// Add Customer Service
 	var CustomerService = {};
 
+	
 	serviceFactory.getCustomerService = function() {
 		return CustomerService;
 	}

@@ -23,8 +23,7 @@
 	<!-- <div layout="column" layout-fill> -->
 <!-- 	<md-content> Top Navigation Pane <md-toolbar>
 	<div class="md-toolbar-tools">
-		<span hide-sm>ProERP - Manage your business paperless, anytime,
-			& anywhere!</span> <span hide-gt-sm>ProERP</span>
+		<span hide-sm>ProERP - {{businessAccountName}}</span> <span hide-gt-sm>ProERP</span>
 		fill up the space between left and right area
 		<span flex></span>
 		<section layout="row">
@@ -89,11 +88,30 @@
 		
 			<md-content> <!-- Top Navigation Pane --> <md-toolbar>
 	<div class="md-toolbar-tools">
-		<span hide-sm>ProERP - Manage your business paperless, anytime,
-			& anywhere!</span> <span hide-gt-sm>ProERP</span>
+		<span hide-sm>ProERP - {{if(businessAccountName)?businessAccountName:"Manage your business paperless, anytime,
+			& anywhere!"}}<!--  Manage your business paperless, anytime,
+			& anywhere! --></span> <span hide-gt-sm>ProERP</span>
 		<!-- fill up the space between left and right area -->
 		<span flex></span>
 		<section layout="row">
+		<md-button aria-label="Login" ng-hide="curUser !== null"
+    ng-show="curUser == null" ng-click="loginClick()"> Login
+   <md-tooltip> Login </md-tooltip> </md-button>
+
+
+   <md-button aria-label="Logout" ng-hide="curUser == null"
+    ng-click="signOut()"> Logout <md-tooltip>
+   {{ googleUser.getName() + "|" + googleUser.getEmail()}} </md-tooltip> </md-button>
+
+   <!-- <md-button class="md-icon-button" aria-label="More"
+    ng-click="toggleRight()"> <md-icon
+    md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
+ -->
+   <img ng-show="true" ngf-src="googleUser.getImageUrl()" class=icon>
+   <md-button aria-label="Open Settings"
+    ng-click="showListBottomSheet($event)"> <md-tooltip>
+   {{ googleUser.getName() + "|" + googleUser.getEmail()}} </md-tooltip> <ng-md-icon
+    icon="more_vert"></ng-md-icon> </md-button>
 			<div hide-sm layout="row" layout-align="end start">
 				<md-button class="md-icon-button md-accent" aria-label="Favorite">
 				<md-icon md-font-icon="icon-home" ng-class="font.theme" class="step"></md-icon>
@@ -131,24 +149,34 @@
 			<md-toolbar class="md-theme-indigo">
 			<h1 class="md-toolbar-tools">Apps Module</h1>
 			</md-toolbar> 
+			
+		<div ng-repeat="user in curUser.authority">	
 			<md-content layout="column" ng-controller="LeftCtrl"> 
 			<md-button class="md-primary" ng-click="close()" hide-gt-md> Close Sidenav </md-button>
-			<md-button ui-sref="home" ng-click="close()" class="md-primary" show-gt-md> Home </md-button>
-			<md-button ui-sref="customer" ng-click="close()" class="md-primary" show-gt-md> Customer </md-button>
-			<md-button ui-sref="stock" ng-click="close()" ng-show="loader.stock" class="md-primary" show-gt-md> Stock </md-button> 	
-			<md-button ui-sref="stock" ng-click="close()" class="md-primary" show-gt-md> Stock </md-button> 	
-			<md-button ui-sref="invoice" ng-show="loader.invoice" ng-click="close()" class="md-primary" show-gt-md>  Invoice </md-button> 
-			<md-button ui-sref="salesOrder" ng-click="close()" class="md-primary" show-gt-md> Sales </md-button>
-			<md-button ui-sref="purchaseOrder" ng-click="close()" class="md-primary" show-gt-md> Purchase </md-button>
-			<md-button ui-sref="hr" id="hr" ng-click="close()" ng-show="loader.hr" class="md-primary" show-gt-md> HR </md-button>
-			<md-button ui-sref="crm" ng-click="close()" ng-show="loader.crm" class="md-primary" show-gt-md>CRM </md-button>
-			<md-button ui-sref="setup" ng-click="close()"   class="md-primary" show-gt-md>SETUP </md-button>
-			<md-button ui-sref="login" ng-click="close()"  class="md-primary" show-gt-md>LOGIN</md-button>
+			<md-button ui-sref="home" ng-show="user == 'basic'" ng-click="close()" class="md-primary" show-gt-md> Home </md-button>
+			<md-button ui-sref="customer"  ng-show="user == 'basic'|| user == 'customer'" ng-click="close()" class="md-primary" show-gt-md> Customer </md-button>
+			<md-button ui-sref="stock" ng-show="user == 'basic' || user == 'stock' " ng-click="close()" ng-show="loader.stock" class="md-primary" show-gt-md> Stock </md-button> 	
+			<!-- <md-button ui-sref="stock" ng-click="close()" class="md-primary" show-gt-md> Stock </md-button>  -->	
+			<md-button ui-sref="invoice" ng-show="user == 'basic' || user == 'invoice' " ng-click="close()" class="md-primary" show-gt-md>  Invoice </md-button> 
+			<md-button ui-sref="salesOrder" ng-show="user == 'basic' || user == 'sales' " ng-click="close()" class="md-primary" show-gt-md> Sales </md-button>
+			<md-button ui-sref="purchaseOrder" ng-show="user == 'basic' || user == 'purchase' " ng-click="close()" class="md-primary" show-gt-md> Purchase </md-button>
+			<md-button ui-sref="hr" id="hr" ng-show="user == 'basic'|| user == 'hr' " ng-click="close()" ng-show="loader.hr" class="md-primary" show-gt-md> HR </md-button>
+			<md-button ui-sref="crm" ng-show="user == 'basic'|| user == 'crm' " ng-click="close()" ng-show="loader.crm" class="md-primary" show-gt-md>CRM </md-button>
+			<md-button ui-sref="setup" ng-show="user == 'basic' || user == 'setup' " ng-click="close()"   class="md-primary" show-gt-md>SETUP </md-button>
+			<md-button ui-sref="login" ng-show="user == 'basic' || user == 'login' " ng-click="close()"  class="md-primary" show-gt-md>LOGIN</md-button>
 			</md-content> 
+		</div>
 			  </md-sidenav> </md-content>
+
+			 <md-button ui-sref="institute"
+    ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
+    ng-click="close()" class="md-primary" show-gt-md>
+   Institute </md-button>
+
 
 	
 		
+
 			<md-content flex layout-padding>
 			<div class="md-toolbar-tools" hide-gt-md>
 				<div>
@@ -197,7 +225,7 @@
 	<script src="/lib/base/angular-messages.min.js"></script>
 	<script src="/lib/base/angular-resource.min.js"></script>
 	<script src="/lib/base/angular-material-icons.min.js"></script>
-
+	
 
 	<script src="/lib/base/angular-material.min.js"></script>
 	<script src="/lib/base/md-data-table.min.js"></script>
@@ -209,6 +237,7 @@
 	<script src="/lib/base/textAngular-sanitize.min.js"></script>
 	<script src="/lib/base/textAngular.min.js"></script>
 	<script src="/lib/base/ngStorage.min.js"></script>
+	<script src="/lib/base/google-plus-signin.js"></script>
 	<!-- file uplode library-->
 
 	<script src="/lib/base/ng-file-upload-shim.min.js"></script>
@@ -328,6 +357,19 @@
 
 	<script src="/app/setup/js/setup_module.js"></script>
 	<script src="/app/setup/js/setup_headerfooter.js"></script>
+	<script src="/app/setup/js/setup_adduser.js"></script>
+	
+	
+	
+	<!-- login user -->
+	
+	<script src="/app/login/js/login_module.ctr.js"></script>
+	<script src="/app/login/js/newUser_student.ctr.js"></script>
+	
+<script src="/app/myprofile/js/myprofile_update.ctr.js"></script>
+<script src="/app/myprofile/js/myprofile.ctr.js"></script>
+
+	<script src="/app/login/js/needBusinessAccount.ctr.js"></script>
 
 	<!-- use for ganerating pdf -->
 	<!--    <script type="text/javascript" src="/app/hr/js/jspdf.min.js"></script>
@@ -344,8 +386,11 @@
  <script src="/app/setup/js/setup_headerfooter.js"></script>
  
  <!-- login -->
-  <script src="/app/login/js/login.js"></script>
+  <script src="/app/login1/js/login.js"></script>
   
+   
+      
+   
    <!-- use for ganerating pdf -->
 <!--    <script type="text/javascript" src="/app/hr/js/jspdf.min.js"></script>
 

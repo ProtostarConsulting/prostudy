@@ -3,13 +3,13 @@
 <form name="contactform">
 
 	<div id="addField">
-	<div layout layout-sm="column">
-			<md-input-container flex> <label>Contact Id</label> <input
-				ng-model="contact.cid" disabled> </md-input-container>
-				</div>
 		<div layout layout-sm="column">
-			<md-input-container flex> <label>First Name</label> <input
-				ng-model="contact.fName" > </md-input-container>
+			<md-input-container flex> <label>Contact
+				Id</label> <input ng-model="contact.cid" disabled> </md-input-container>
+		</div>
+		<div layout layout-sm="column">
+			<md-input-container flex> <label>First
+				Name</label> <input ng-model="contact.fName"> </md-input-container>
 
 			<md-input-container flex> <label>Last
 				Name </label> <input ng-model="contact.lName"> </md-input-container>
@@ -24,19 +24,22 @@
 			<md-input-container flex> <label>Email </label>
 			<input ng-model="contact.email"> </md-input-container>
 		</div>
-		<h4><b>Reference</b></h4>
+		<h4>
+			<b>Reference</b>
+		</h4>
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>user Id
 			</label> <input ng-model="contact.uid"> </md-input-container>
-			<md-input-container flex> <label>Supplier </label>
-			<input ng-model="contact.supp"> </md-input-container>
-		</div><div layout layout-sm="column">
+			<md-input-container flex> <label>Supplier
+			</label> <input ng-model="contact.supp"> </md-input-container>
+		</div>
+		<div layout layout-sm="column">
 			<md-input-container flex> <label>Customer
 			</label> <input ng-model="contact.cust"> </md-input-container>
-			<md-input-container flex> <label>Sales Partner </label>
-			<input ng-model="contact.salespartner"> </md-input-container>
+			<md-input-container flex> <label>Sales
+				Partner </label> <input ng-model="contact.salespartner"> </md-input-container>
 		</div>
-	
+
 		<section layout="row" layout-sm="column" layout-align="left left">
 			<md-button class="md-raised md-primary" ng-click="addcontact()">Add</md-button>
 

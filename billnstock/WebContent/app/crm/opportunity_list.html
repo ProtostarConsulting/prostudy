@@ -23,14 +23,14 @@
 		<tbody>
 			<tr md-auto-select
 				ng-repeat="opportunity in opportunitys | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
-				<td>{{opportunity.id}}</td>
+				<td>{{opportunity.oid}}</td>
 				<td>{{opportunity.from}}</td>
 				<td>{{opportunity.name}}</td>
 				
 				<td>
 					<section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary"
-							ui-sref="crm.opportunityView({selectedopportunityNo: opportunity.id})">View Opportunity</md-button>
+							ui-sref="crm.opportunityView({selectedopportunityNo: opportunity.oid})">View Opportunity</md-button>
 					</section>
 	     		</td>
 			</tr>

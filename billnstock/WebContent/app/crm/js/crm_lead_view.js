@@ -8,7 +8,7 @@ angular.module("stockApp").controller(
 						.position("top").hideDelay(3000));
 			};
 			$scope.selectedleadNo = $stateParams.selectedleadNo;
-
+			$log.debug("$scope.selectedleadNo========="+$scope.selectedleadNo);
 			$scope.taskType = [ "Phone Call", "Email", "Visit" ];
 			var d = new Date();
 			var year = d.getFullYear();
@@ -30,7 +30,8 @@ angular.module("stockApp").controller(
 				address : "",
 				tasks : []
 			}
-
+			$scope.objlead=$scope.lead;
+			
 			$scope.task = {
 				id : "",
 				description : "",
@@ -50,13 +51,13 @@ angular.module("stockApp").controller(
 			$scope.getLeadById = function() {
 				$log.debug("Inside Ctr $scope.getAlllead");
 				var leadService = appEndpointSF.getleadService();
-				$scope.ctaskid;
+				$scope.ctaskid=[];
 				leadService.getLeadById($scope.selectedleadNo).then(
 						function(leadList) {
 							$log.debug("Inside Ctr getAllleads");
-							$scope.leads = leadList.result;
-							$scope.ctaskid = $scope.leads.tasks.length + 1;
-							$scope.task.id = $scope.ctaskid;
+							$scope.leads = leadList;
+							$scope.ctaskid = $scope.leads.tasks;
+							$scope.task.id = $scope.ctaskid.length + 1;
 						});
 				
 				/*for(i=0;i<$scope.ctaskid;i++){
@@ -71,13 +72,15 @@ angular.module("stockApp").controller(
 			$scope.activetask = [];
 			$scope.getLeadById();
 
-		/*	//------------------save task----------
+		//------------------save task----------
 
 			$scope.addupdatetask = function(leadid) {
-
+			/*	$scope.objlead=$scope.leads;
+				$scope.objlead.tasks.push($scope.task);*/
+				$scope.leads.tasks.push($scope.task);
 				var leadService = appEndpointSF.getleadService();
 
-				leadService.addupdatetask($scope.task, leadid).then(
+				leadService.addupdatetask($scope.leads).then(
 						function(msgBean) {
 
 							$log.debug("Inside Ctr addlead");
@@ -97,7 +100,7 @@ angular.module("stockApp").controller(
 			$scope.ShowHide = function() {
 				$scope.IsHidden = $scope.IsHidden ? false : true;
 			}
-			//-----------------------------------------------------
+/*			//-----------------------------------------------------
 
 			$scope.convertocustomer = function(leadid) {
 				$scope.converttocustomer.customerId = $scope.leads.id;

@@ -1,9 +1,10 @@
 
 <md-content layout-padding>
-<div layout layout-sm="column" >
+<div layout layout-sm="column">
 	<md-input-container flex> <md-select
-		ng-model="months[0]" id="selectedmonth" ng-change="displyOnlySelected(months[0])">
-	<md-option   ng-value="month"  ng-repeat="month in months"  >{{month}}</md-option> </md-select> 
+		ng-model="months[0]" id="selectedmonth"
+		ng-change="displyOnlySelected(months[0])"> <md-option
+		ng-value="month" ng-repeat="month in months">{{month}}</md-option> </md-select>
 	</md-input-container>
 </div>
 <div>
@@ -13,16 +14,17 @@
 	<table md-data-table md-row-select="selected" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onOrderChange">
 			<tr>
-		    	<th name="Employee id" order-by="empid"></th>
+				<th name="Employee id" order-by="empid"></th>
 				<th name="Employee Name" order-by="empName"></th>
 				<th name="gross" order-by="gross"></th>
 				<th name="month" order-by="month"></th>
-				 <th name="print" order-by="print"></th> 
-	        </tr>
+				<th name="print" order-by="print"></th>
+			</tr>
 		</thead>
 
 		<tbody>
-			<tr md-auto-select ng-repeat="emps in displyselected | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+			<tr md-auto-select
+				ng-repeat="emps in displyselected | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
 				<td>{{emps.salarystruct.empid}}</td>
 				<td>{{emps.salarystruct.empName}}</td>
 				<td>{{emps.salarystruct.grosssal}}</td>
@@ -30,28 +32,22 @@
 				<td>
 					<section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary"
-							ui-sref="hr.print({printempidsalslip: emps.salslip_id})">print Slip</md-button>
+							ui-sref="hr.print({printempidsalslip: emps.salslip_id})">print
+						Slip</md-button>
 					</section>
-	     		</td> 
-			
-				
+				</td>
+
+
 			</tr>
 		</tbody>
 	</table>
- 
- <md-data-table-pagination md-limit="query.limit"
-		md-page="query.page" md-total={{displyselected.length}}
-		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
+
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{displyselected.length}} md-trigger="onpagechange"></md-data-table-pagination>
+	</md-data-table-container>
 </div>
 
-<!-- <div layout layout-sm="column">
-		<md-button ui-sref="hr.gSalSlip({selectedempstructno:selected})" 
-				class="md-primary"> Salary Slip </md-button>
 
-	</div> <div>
-	{{selected}}
-	</div> -->
 
-	
 </md-content>
 

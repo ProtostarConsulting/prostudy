@@ -19,7 +19,7 @@ angular
 								.getempByID($scope.selectedempNo)
 								.then(
 										function(empList) {
-											$scope.empDetail = empList[0];
+											$scope.empDetail = empList.result;
 											$log
 													.debug("$scope.showBill:empDetail ===="
 															+ angular
@@ -54,10 +54,16 @@ angular
 						}
 						
 						hrService
-								.getallsalslip($scope.viewsalslips,$scope.curryear)
+								.getallsalslip($scope.curryear)   //$scope.viewsalslips,
 								.then(
 										function(empsalslips) {
 											$scope.empSalSlip = empsalslips;
+											
+											/*for (i = 0; i < $scope.empSalSlip1.length; i++) {
+												if($scope.viewsalslips==$scope.empSalSlip1[i].salarystruct.empid){
+													$scope.empSalSlip.push($scope.empSalSlip1[i]);
+												}
+											}*/
 											$log
 													.debug("$scope.empSalSlip:empSalSlip ===="
 															+ angular
@@ -65,6 +71,7 @@ angular
 										});
 
 					}
+					$scope.empSalSlip1 = [];
 					$scope.empSalSlip = [];
 					$scope.getallsalslip();
 

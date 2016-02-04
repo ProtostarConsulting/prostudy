@@ -7,8 +7,36 @@ angular
 						appEndpointSF) {
 					
 				$scope.selecteduserNo = $stateParams.selecteduserNo;
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 			
-				$scope.files={
+				/*$scope.files={
 						header:"",
 						footer:""
 				}
@@ -63,7 +91,7 @@ angular
 					$scope.url ='http://localhost:8888/img/images/protostar_logo_pix_313_132.JPG';
 				}
 				
-				
+*/				
 					$scope.toggleRight = buildToggler('right');
 
 					function buildToggler(navID) {

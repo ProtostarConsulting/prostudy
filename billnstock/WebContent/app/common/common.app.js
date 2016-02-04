@@ -1,6 +1,6 @@
 var app = angular.module("stockApp", [ 'ngMaterial', 'ngMessages', "xeditable",
 		"ui.bootstrap", "ui.router", 'md.data.table', 'ngResource',
-		'ngStorage', 'ngRoute','ngFileUpload', 'ngAnimate', 'ui.grid', 'ui.grid.selection', 'ui.grid.exporter']);
+		'ngStorage', 'ngRoute','ngFileUpload', 'ngAnimate', 'ui.grid', 'ui.grid.selection', 'ui.grid.exporter','directive.g+signin']);
 
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('light-blue')
@@ -265,24 +265,34 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('setup.useradd', {
 		url : "/useradd",
 		templateUrl : '/app/setup/setup_adduser.html',
-		controller : 'setup',
+		controller : 'setup.adduser',
 
 	}).state('setup.userview', {
 		url : "/userview/:selecteduserNo",
 		templateUrl : '/app/setup/setup_viewuser.html',
-		controller : 'setup',
+		controller : 'setup.adduser',
 
 	}).state('setup.printheaderfooter', {
 		url : "/printheaderfooter",
 		templateUrl : '/app/setup/setup_headerfooter.html',
 		controller : 'setup_headerfooter',
 
-	}).state('login', {
+	}).state('setup.businesssetup', {
+		url : "/businesssetup",
+		templateUrl : '/app/setup/businesssetup.html',
+		controller : 'setup',
+
+	}).state('setup.userlist', {
+			url : "/userlist",
+			templateUrl : '/app/setup/userlist.html',
+			controller : 'setup',
+
+		})/*.state('login', {
 		url : "/login",
 		templateUrl : '/app/login/login.html',
 		controller : 'login',
 
-	}).state('homecall', {
+	})*/.state('homecall', {
 		url : "/home/:userauthoritys",
 		templateUrl : '/home.html',
 		controller : 'AppCtrl'
@@ -297,5 +307,25 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/hr/timesheet.html',
 		controller : 'timesheet'
 
-	});
+	}).state('login', {
+		  url : "/login",
+		  templateUrl : '/app/login/login_module.html',
+		  controller : 'indexCtr'
+		 }).state('needBusinessAccount', {
+		  url : "/NeedBusinessAccount",
+		  templateUrl : '/app/login/needBusinessAccount.html',
+		  controller : 'needBusinessAccountCtr'
+		 }).state('createBusinessAccount', {
+			  url : "/CreateBusiness",
+			  templateUrl : '/app/login/createBusinessAccount.html',
+			  controller : 'needBusinessAccountCtr'
+			 }).state('newUserTeacher', {
+			  url : "/newUserTeacher",
+			  templateUrl : '/app/login/newUser.html',
+			  controller : 'loginModuleCtr'
+			 }).state('newUserStudent', {
+			  url : "/newUserStudent",
+			  templateUrl : '/app/login/newUser.html',
+			  controller : 'newUserStudentCtr'
+			 });
 });

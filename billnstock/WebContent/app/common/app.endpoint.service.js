@@ -5,10 +5,7 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 	// When app is in test mode, it will return service from local db store.
 	// Else actual google end points.
 
-	//var isTestMode = true;
-	 var isTestMode = false;
-
-//	var isTestMode = true;
+	//	var isTestMode = true;
 	var isTestMode = false;
 
 
@@ -23,8 +20,21 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 		else
 			return googleEndpointSF.getinternetService();
 	};
-	// ----------------------------------------------------
+	// -----------------------------------user login-----------------
+	
+	endpointFactory.getLocalUserService = function() {
+		  return localDBServiceFactory.getUserService();
+		 };// end of getUserService
 
+		 endpointFactory.getUserService = function() {
+
+		  if (isTestMode)
+		   return localDBServiceFactory.getUserService();
+		  else
+		   return googleEndpointSF.getUserService();
+		 };// end of getUserService
+	
+//------------------------------------------------
 	endpointFactory.getCustomerService = function() {
 		if (isTestMode)
 			return localDBServiceFactory.getCustomerService();
@@ -170,7 +180,14 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 		}, apiRoot);
 
 		
-		
+
+	/*	gapi.client.load('internetService', 'v0.1', function() {
+			$log.debug("internetService2 Loaded....");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+		}, apiRoot);
+		*/
+
 		gapi.client.load('hrService', 'v0.1', function() {
 			$log.debug("hr Loaded....");
 			endpointFactory.is_service_ready = true;
@@ -187,8 +204,25 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 
 		}, apiRoot);
 
+
+		gapi.client.load('opportunityService', 'v0.1', function() {
+			$log.debug("opportunityService Loaded.(opportunityService services)...");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+
+		
 		gapi.client.load('salesOrderService', 'v0.1', function() {
 			$log.debug("salesOrderService Loaded....");
+			
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+		
+		gapi.client.load('setupService', 'v0.1', function() {
+			$log.debug("setupService Loaded....");
 			
 			endpointFactory.is_service_ready = true;
 			deferred.resolve();
@@ -202,6 +236,15 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			deferred.resolve();
 
 		}, apiRoot);
+		
+		
+		 gapi.client.load('userService', 'v0.1', function() {
+			   $log.debug("userService Loaded......");
+			   endpointFactory.is_service_ready = true;
+			   deferred.resolve();
+
+			  }, apiRoot);
+		
 
 
 		return deferred.promise;
