@@ -4,25 +4,32 @@
 		<md-subheader class="md-primary">
 		<h4 class="md-headline">List of Practice Exam</h4>
 		</md-subheader>
-
+		<div>
+			<md-input-container flex>
+				<label>Search By Category</label>
+				<input ng-model="searchCategory">
+			</md-input-container>
+		</div>
 
 		<div layout="column">
 			<md-data-table-container>
-			<table md-data-table>
-				<thead>
+				<table md-data-table md-progress="deferred">
+				<thead md-order="query.order" md-trigger="onorderchange">
 					<tr>
 						<th name="Exam Id"></th>
 						<th name="Exam Title"></th>
 						<th name="Created on Date"></th>
-
+						<th name="Category"></th>
 					</tr>
 				</thead>
 
 				<tbody>
-					<tr md-auto-select ng-repeat="test in practiceTest ">
+				<tr md-auto-select ng-repeat="test in practiceTest | orderBy: query.order | filter: {category: searchCategory} | limitTo: query.limit: (query.page - 1) * query.limit">
+					
 						<td>{{test.examId}}</td>
 						<td>{{test.examtitle}}</td>
 						<td>{{test.date}}</td>
+						<td>{{test.category}}</td>
 						<td><a
 							ui-sref="exam.practiceexamtest({selectedExamId: test.examId})"><md-button
 									class="md-raised md-primary" ng-click="">Start</md-button> </a></td>
@@ -46,6 +53,7 @@
 			</table>
 
 			</md-data-table-container>
+			<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total={{practiceTest.length}} md-trigger="onpagechange"></md-data-table-pagination>
 		</div>
 		
 		

@@ -1,19 +1,20 @@
 angular.module("prostudyApp").controller(
 		"addPracticeExamCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $q, appEndpointSF, $state, $stateParams, $sce, $filter) {
+				$log, $q, appEndpointSF, $state, $stateParams, $sce, $filter,standardList) {
 
 			$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content('Practice Exam Saved!')
 						.position("top").hideDelay(3000));
 			};
-			
+
 			$scope.tempPracticeExam = {
 				examId : "",
 				examtitle : "",
 				board : "",
 				standard : "",
 				subject : "",
+				category : "",
 				instructions : "",
 				questions : [],
 				date : "",
@@ -39,6 +40,7 @@ angular.module("prostudyApp").controller(
 				$scope.tempPracticeExam.board = $scope.board;
 				$scope.tempPracticeExam.standard = $scope.standard;
 				$scope.tempPracticeExam.subject = $scope.subject;
+				$scope.tempPracticeExam.category = $scope.category;
 				$scope.tempPracticeExam.instructions = $scope.instructions;
 				$scope.tempPracticeExam.date = new Date();
 
@@ -55,7 +57,7 @@ angular.module("prostudyApp").controller(
 				practiceExamService.addPracticeExam($scope.tempPracticeExam)
 						.then(function(msgBean) {
 							$log.debug("No6");
-							$log.debug("Inside Ctr addInstitute");
+							$log.debug("Inside Ctr addPracticeExamCtr");
 							$log.debug("msgBean.msg:" + msgBean.msg);
 							$scope.showSavedToast();
 							$scope.tempPracticeExam = {
@@ -64,6 +66,7 @@ angular.module("prostudyApp").controller(
 								board : "",
 								standard : "",
 								subject : "",
+								category :"",
 								instructions : "",
 								questions : [],
 								date : "",
@@ -74,6 +77,7 @@ angular.module("prostudyApp").controller(
 				$log.debug("No4");
 				$state.go('exam.listpracticeexam', {});
 			}
+			
 			$scope.query = {
 					order : 'description',
 					limit : 5,
@@ -99,6 +103,9 @@ angular.module("prostudyApp").controller(
 
 					return deferred.promise;
 				};
+				$scope.cancelButton = function() {
+					$state.go("exam", {});
+				}
 			
 
 		});

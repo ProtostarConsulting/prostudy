@@ -3,8 +3,8 @@
 	<div>
 		<div>
 			<md-input-container flex>
-				<label>Search</label>
-				<input ng-model="searchText">
+				<label>Search By Category</label>
+				<input ng-model="searchCategory">
 			</md-input-container>
 		</div>
 
@@ -13,7 +13,7 @@
 				<thead md-order="query.order" md-trigger="onorderchange">
 					<tr>
 						<th name="Question Desc"   order-by="description"></th>
-						<!--<th name="note" order-by="note"></th>-->
+						<th name="Category" order-by="category"></th>
 						<th name="Option1"  order-by="option1"></th>
 						<th name="Option2"  order-by="option2"></th>
 						<th name="Option3"  order-by="option3"></th>
@@ -24,13 +24,18 @@
 				</thead>
 
 				<tbody>
-					<tr md-auto-select ng-repeat="question in questions | orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit">
+					<tr md-auto-select ng-repeat="question in questions | orderBy: query.order | filter: {category: searchCategory} | limitTo: query.limit: (query.page - 1) * query.limit">
 						<td ng-bind-html="question.description">
 						<div>
 							{{question.description}}
 						</div>
 						</td>
-
+						
+						<td>
+						<div>
+							{{question.category}}
+						</div>
+						</td>
 						<td>
 						<div>
 							{{question.option1}}

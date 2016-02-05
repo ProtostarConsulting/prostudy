@@ -6,7 +6,7 @@ angular.module("prostudyApp").controller(
 
 			
 			$scope.questions = [];
-
+			$scope.qcategory = [];
 			$scope.getQuestion = function() {
 
 				var QuestionService = appEndpointSF.getQuestionService();
@@ -16,6 +16,7 @@ angular.module("prostudyApp").controller(
 					$scope.questions = questionList;
 				});
 			}
+	
 			$scope.query = {
 				order : 'description',
 				limit : 5,

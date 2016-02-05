@@ -13,6 +13,7 @@ angular.module("prostudyApp").controller(
 			$scope.tempQuestion = {
 				description : "",
 				note : "",
+				category :"",
 				option1 : "",
 				option2 : "",
 				option3 : "",
@@ -33,6 +34,7 @@ angular.module("prostudyApp").controller(
 							$scope.tempQuestion = {
 								description : "",
 								note : "",
+								category :"",
 								option1 : "",
 								option2 : "",
 								option3 : "",

@@ -56,6 +56,15 @@
 						<div ng-message="required">Please enter Subject.</div>
 					</div>
 					</md-input-container>
+					<md-input-container
+						md-is-error="myQuestionForm.category.$invalid && (myQuestionForm.$submitted || myQuestionForm.category.$dirty)">
+					<label>Category</label> <input name="category" id="category" ng-required="true"
+						ng-model="category"  ng-change="getSelected()">
+					<div ng-messages="myQuestionForm.category.$error"
+						ng-if="myQuestionForm.category.$submitted || myQuestionForm.category.$touched">
+						<div ng-message="required">Please enter Category.</div>
+					</div>
+					</md-input-container>
 					
 					<md-input-container
 						md-is-error="myQuestionForm.instructions.$invalid && (myQuestionForm.$submitted || myQuestionForm.instructions.$dirty)">
@@ -68,7 +77,6 @@
 						<div ng-message="required">Please enter instructions.</div>
 					</div>
 					</md-input-container>
-					
 		
 					<md-data-table-container>
 				<table md-data-table md-row-select="selected" md-progress="deferred">
@@ -107,6 +115,8 @@
 		<div layout="row" layout-align="center end">
 		
 			<md-button class="md-raised md-primary" ng-click="addPracticeExam()">Create Practice Exam</md-button>
+			<md-button class="md-raised md-primary" ng-click="cancelButton()">Cancel</md-button>
+			
 		</div>
 	</section>
 	</md-content>
