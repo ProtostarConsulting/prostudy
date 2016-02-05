@@ -3,6 +3,8 @@ var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
 		'md.data.table', 'ngResource', 'textAngular', 'ngRoute', 'ngStorage',
 		'directive.g+signin' ]);
 
+app.constant('standardList', ["5th", "6th", "7th", "8th", "9th", "10th"]);
+
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette(
 			'red').warnPalette('pink').backgroundPalette('grey');

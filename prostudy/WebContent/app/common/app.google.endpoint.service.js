@@ -247,14 +247,14 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return PracticeExamService;
 	}
 
-	PracticeExamService.addPracticeExam = function(ques) {
+	PracticeExamService.addPracticeExam = function(exam) {
 
 		var deferred = $q.defer();
 
-		gapi.client.practiceExamService.addPracticeExam(ques).execute(
+		gapi.client.practiceExamService.addPracticeExam(exam).execute(
 				function(resp) {
 
-					$log.debug("ques :" + angular.toJson(ques));
+					$log.debug("addPracticeExam :" + angular.toJson(exam));
 					$log.debug("res.result.length :" + resp.result.length);
 					deferred.resolve(resp);
 				});
