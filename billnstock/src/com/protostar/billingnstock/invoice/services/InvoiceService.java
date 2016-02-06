@@ -13,6 +13,7 @@ import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Ref;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.invoice.entities.InvoiceEntity;
+import com.protostar.billingnstock.stock.entities.StockItemEntity;
 
 @Api(name = "invoiceService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.stock.services", ownerName = "com.protostar.billingnstock.stock.services", packagePath = ""))
 public class InvoiceService {
@@ -20,7 +21,19 @@ public class InvoiceService {
 	@ApiMethod(name="addInvoice")
 	public void addInvoice(InvoiceEntity invoiceEntity){
 		Key<InvoiceEntity> now=ofy().save().entity(invoiceEntity).now();
-	}
+		
+		System.out.println(invoiceEntity.getInvoiceLineItemList());
+		
+	/*	 inv=invoiceEntity.getInvoiceLineItemList();
+		StockItemEntity stockItemEntity = new StockItemEntity();
+
+		
+		for(int i=0;i)
+		if(stockItemEntity.getId().equals(invoiceEntity.getInvoiceLineItemList()))
+		{
+			
+		}
+*/	}
 	
 	@ApiMethod(name="getAllInvoice")
 	public List<InvoiceEntity> getAllInvoice(){
