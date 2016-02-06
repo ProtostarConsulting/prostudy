@@ -114,7 +114,7 @@ angular
 					}
 
 					$scope.opportunitys = [];
-					$scope.getAllopportunity();
+//					$scope.getAllopportunity();
 
 					$scope.getopportunityById = function() {
 						$log.debug("Inside Ctr $scope.getAlllead");
@@ -135,7 +135,7 @@ angular
 					}
 
 					$scope.opportunityL = [];
-					$scope.getopportunityById();
+//					$scope.getopportunityById();
 
 					$scope.updateopportunity = function() {
 

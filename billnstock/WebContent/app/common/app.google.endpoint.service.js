@@ -573,7 +573,7 @@ function googleEndpointSF($log, $q) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
-	}// End of CustomerService
+	}// End of InternetService
 
 	InternetService.searchByCost = function(cost) {
 		var deferred = $q.defer();
@@ -596,12 +596,6 @@ function googleEndpointSF($log, $q) {
 
 	CustomerService.addCustomer = function(cust) {
 		var deferred = $q.defer();
-
-		gapi.client.customerService.addCustomer(cust).execute(function(resp) {
-			/*$log.debug("addCustomer#resp:" + resp);*/
-			deferred.resolve(resp);
-		});
-
 
 		gapi.client.customerService.addCustomer(cust).execute(function(resp) {
 			$log.debug("addCustomer#resp at enpoint:" + resp);
