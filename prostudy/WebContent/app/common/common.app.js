@@ -4,6 +4,8 @@ var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
 		'directive.g+signin' ]);
 
 app.constant('standardList', ["5th", "6th", "7th", "8th", "9th", "10th"]);
+app.constant('boardList', ["State Board", "CBSE", "ICSE"]);
+app.constant('subjectList', ["Mathematics", "English", "Computer Fundamentals","History","Hindi","Marathi","Science"]);
 
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette(
