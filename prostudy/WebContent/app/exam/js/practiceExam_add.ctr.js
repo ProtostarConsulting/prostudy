@@ -1,13 +1,21 @@
 angular.module("prostudyApp").controller(
 		"addPracticeExamCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $q, appEndpointSF, $state, $stateParams, $sce, $filter,standardList) {
+				$log, $q, appEndpointSF, $state, $stateParams, $sce, $filter,standardList,boardList,subjectList) {
 
 			$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content('Practice Exam Saved!')
 						.position("top").hideDelay(3000));
 			};
-
+			 $scope.standards = [{}];
+		     $scope.standards = standardList;
+		     
+		     $scope.boards = [{}];
+		     $scope.boards = boardList;	
+		     
+		     $scope.subjects = [{}];
+		     $scope.subjects = subjectList;	
+		     
 			$scope.tempPracticeExam = {
 				examId : "",
 				examtitle : "",
@@ -34,17 +42,6 @@ angular.module("prostudyApp").controller(
 
 			$scope.getQuestion();
 
-			$scope.getSelected = function() {
-				$scope.tempPracticeExam.examId = $scope.examId;
-				$scope.tempPracticeExam.examtitle = $scope.examtitle;
-				$scope.tempPracticeExam.board = $scope.board;
-				$scope.tempPracticeExam.standard = $scope.standard;
-				$scope.tempPracticeExam.subject = $scope.subject;
-				$scope.tempPracticeExam.category = $scope.category;
-				$scope.tempPracticeExam.instructions = $scope.instructions;
-				$scope.tempPracticeExam.date = new Date();
-
-			}
 
 			$scope.addPracticeExam = function() {
 				$log.debug("No1");
@@ -106,6 +103,42 @@ angular.module("prostudyApp").controller(
 				$scope.cancelButton = function() {
 					$state.go("exam", {});
 				}
+				
+				
+				$scope.checkValidation = function() {
+					if($scope.tempPracticeExam.examId=="")
+					{
+						alert("Please Enter the Examtitle");			
+					}
+					if($scope.tempPracticeExam.examtitle=="")
+					{
+						alert("Please Enter the Examtitle");	
+						
+					}
+					if($scope.tempPracticeExam.standard==false)
+					{
+						alert("Please Select the Standard");	
+						
+					}
+					if($scope.tempPracticeExam.board==false)
+					{
+						alert("Please Select the Board");				
+					}
+					if($scope.tempPracticeExam.subject==false)
+					{
+						alert("Please Select the Subject");				
+					}
+					if($scope.tempPracticeExam.category=="")
+					{
+						alert("Please Enter the Category");				
+					}
+					if($scope.selected=="")
+					{
+						alert("Please select the questions which you want to add into Practice Exam");		
+					}
+				
+				}
+				
 			
 
 		});

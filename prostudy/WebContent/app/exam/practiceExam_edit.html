@@ -15,20 +15,27 @@
 				<div layout layout-sm="column">
 					<md-input-container flex>
 						<label>Board</label>
-						<input ng-model="Test.board">
+						<md-select ng-model="Test.board"  >
+				<md-option ng-value="board" ng-repeat="board in boards">{{board}}</md-option>
+				</md-select> 
 					</md-input-container>
 				</div>
 				<div layout layout-sm="column">
 					<md-input-container flex>
 						<label>Standard</label>
-						<input ng-model="Test.standard">
+						<md-select ng-model="Test.standard"  >
+				<md-option ng-value="standard" ng-repeat="standard in standards">{{standard}}</md-option>
+				</md-select> 
+						
 					</md-input-container>
 				</div>		
 				<div>
 					<md-input-container flex>
 						<label>Subject</label>
-						<input ng-model="Test.subject">
-					</md-input-container>
+							<md-select ng-model="Test.subject"  >
+				<md-option ng-value="subject" ng-repeat="subject in subjects">{{subject}}</md-option>
+				</md-select> 
+				</md-input-container>
 				</div>
 
 				<md-data-table-container>

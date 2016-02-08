@@ -3,13 +3,24 @@ angular.module("prostudyApp")
 				"editPracticeExamCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $q, $sce, tableTestDataFactory,
-						appEndpointSF, $state, $filter, $stateParams) {
+						appEndpointSF, $state, $filter, $stateParams,standardList,boardList,subjectList) {
 					$scope.checked="false";
 					$scope.showSavedToast = function() {
 						$mdToast.show($mdToast.simple()
 								.content('Practice Exam Updated!').position("top")
 								.hideDelay(3000));
 					};
+					
+					
+					 $scope.standards = [{}];
+				     $scope.standards = standardList;
+				     
+				     $scope.boards = [{}];
+				     $scope.boards = boardList;	
+				     
+				     $scope.subjects = [{}];
+				     $scope.subjects = subjectList;	
+				     
 					$scope.selectedExamId = $stateParams.selectedExamId;
 				
 					$log.debug(" $stateParams.addFlag"+ $stateParams.addFlag);
