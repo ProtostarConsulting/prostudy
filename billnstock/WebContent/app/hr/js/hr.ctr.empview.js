@@ -8,10 +8,12 @@ angular
 
 					$scope.selectedempNo = $stateParams.selectedempNo;
 					$scope.viewsalslips = $stateParams.viewsalslips;
+					
+					$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 
 					$scope.x = location.href;
 					var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May",
-										"Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+							"Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
 					$scope.showEmp = function() {
 						var hrService = appEndpointSF.gethrService();
 
@@ -38,32 +40,31 @@ angular
 									$log.debug("Inside Ctr updateemp");
 									$log.debug("msgBean.msg:" + msgBean.msg);
 									$scope.showSimpleToast(msgBean.msg);
-									//	$scope.empDetail = [];
+									// $scope.empDetail = [];
 								});
 					}
 
 					$scope.getallsalslip = function(abc) {
 						var date = new Date();
 						var hrService = appEndpointSF.gethrService();
-						$scope.curryear = "Year"
-							+ ' ' + date.getFullYear();
+						$scope.curryear = "Year" + ' ' + date.getFullYear();
 
 						if (typeof abc != 'undefined') {
 							$scope.curryear = abc;
 							$log.debug("*******************abc===" + abc);
 						}
-						
+
 						hrService
-								.getallsalslip($scope.curryear)   //$scope.viewsalslips,
-								.then(
+								.getallsalslip($scope.curryear,$scope.curUser.businessAccount.id)
+								 .then(
 										function(empsalslips) {
-											$scope.empSalSlip = empsalslips;
-											
-											/*for (i = 0; i < $scope.empSalSlip1.length; i++) {
-												if($scope.viewsalslips==$scope.empSalSlip1[i].salarystruct.empid){
+											$scope.empSalSlip1 = empsalslips.items;
+											$scope.empSalSlip = [];
+											for (i = 0; i < $scope.empSalSlip1.length; i++) {
+												if ($scope.viewsalslips == $scope.empSalSlip1[i].salarystruct.empAccount.empid) {
 													$scope.empSalSlip.push($scope.empSalSlip1[i]);
 												}
-											}*/
+											}
 											$log
 													.debug("$scope.empSalSlip:empSalSlip ===="
 															+ angular
@@ -82,13 +83,15 @@ angular
 
 					$scope.printSalSlipDiv = function(salSlipDiv) {
 
-						/* window.frames["print_frame"].document.body.innerHTML = printDivCSS
-							 + document.getElementById(salSlipDiv).innerHTML;
+						/*
+						 * window.frames["print_frame"].document.body.innerHTML =
+						 * printDivCSS +
+						 * document.getElementById(salSlipDiv).innerHTML;
 						 */
 						document.getElementById('hidetr').style.display = 'block';
-						
-						window.frames["print_frame"].document.body.innerHTML = printDivCSS+ document
-								.getElementById(salSlipDiv).innerHTML;
+
+						window.frames["print_frame"].document.body.innerHTML = printDivCSS
+								+ document.getElementById(salSlipDiv).innerHTML;
 						window.frames["print_frame"].window.focus();
 						document.getElementById('hidetr').style.display = 'none';
 						window.frames["print_frame"].window.print();
@@ -97,17 +100,20 @@ angular
 
 					$scope.viewpdf = function() {
 
-						//ExportToPDF('salSlipDiv');//,[], '??????? ???????', PDFPageType.Portrait);
+						// ExportToPDF('salSlipDiv');//,[], '??????? ???????',
+						// PDFPageType.Portrait);
 
 					}
 					$scope.getlastyear = function() {
 						var date = new Date();
 						for (var i = 0; i < 2; i++) {
-							/*$scope.months.push(monthNames[date.getMonth()]
-									+ ' ' + date.getFullYear());*/
-							
-							$scope.years.push("Year"
-							+ ' ' + date.getFullYear());
+							/*
+							 * $scope.months.push(monthNames[date.getMonth()] + ' ' +
+							 * date.getFullYear());
+							 */
+
+							$scope.years
+									.push("Year" + ' ' + date.getFullYear());
 							// Subtract a month each time
 							date.setFullYear(date.getFullYear() - 1);
 						}
@@ -115,8 +121,6 @@ angular
 
 					$scope.years = [];
 					$scope.getlastyear();
-					
-					
 
 					$scope.toggleRight = buildToggler('right');
 

@@ -10,8 +10,7 @@ angular.module("stockApp").controller(
 			$scope.selecteduserNo = $stateParams.selecteduserNo;
 			$scope.id;
 
-			$scope.items = [ "stock", "sales", "hr", "crm", "customer","setup",
-					"invoice", "purchase" ];
+			$scope.items = [ "stock", "sales", "hr", "crm", "customer","setup","invoice", "purchase" ];
 			$scope.selection = [];
 
 			$scope.curuser = appEndpointSF.getLocalUserService()

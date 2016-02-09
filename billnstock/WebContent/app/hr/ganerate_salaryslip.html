@@ -5,10 +5,10 @@
 	<div id="addField">
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>Employee
-				id </label> <input type="text" ng-model="viewsalstruct.empid" disabled
+				id </label> <input type="text" ng-model="viewsalstruct.empAccount.empid" disabled
 				> </md-input-container>
 			<md-input-container flex> <label>Employee
-				Name </label> <input type="text" ng-model="viewsalstruct.empName" disabled> </md-input-container>
+				Name </label> <input type="text" ng-model="viewsalstruct.empAccount.empName" disabled> </md-input-container>
 		</div>
 		
 		<div>
@@ -188,7 +188,7 @@
 						</md-input-container></td>
 					<td></td>
 					<td></td>
-					<td></td>
+					<td>{{viewsalstruct.netsalgrandtotalmonthly}}</td>
 				</tr>
 				<tr>
 					<td>*Additional Performance Bonus</td>
@@ -213,7 +213,7 @@
 						</md-input-container></td>
 					<td></td>
 					<td></td>
-					<td></td>
+					<td>{{viewsalstruct.mctc}}</td>
 				</tr>
 			</tbody>
 		</table>

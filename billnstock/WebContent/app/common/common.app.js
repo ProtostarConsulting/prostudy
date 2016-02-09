@@ -196,6 +196,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/selectedlist",
 		templateUrl : '/app/hr/slected_Employeesalaryslip.html',
 		controller : 'hrCtr.emplist_to_ganeratesalslip',
+		  params : {
+			  ganeratedsalslip : ""
+			          }
 	}).state('hr.print', {
 		url : "/print/:printempidsalslip",
 		templateUrl : '/app/hr/print_salaryslip.html',

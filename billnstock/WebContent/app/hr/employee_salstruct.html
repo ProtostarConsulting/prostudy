@@ -5,14 +5,14 @@
 	<div id="addField">
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>Employee
-				id </label> <input type="text" ng-model="salstruct.empid"
-				ng-change="updateempname(salstruct.empid)"> </md-input-container>
+				id </label> <input type="text" ng-model="salstruct.empAccount.empid"
+				ng-change="updateempname(salstruct.empAccount.empid)"> </md-input-container>
 			<md-input-container flex> <label>Employee
-				Name </label> <input type="text" ng-model="salstruct.empName" disabled> </md-input-container>
+				Name </label> <input type="text" ng-model="salstruct.empAccount.empName" disabled> </md-input-container>
 		</div>
 		<div align="center" width=100%>
 		<section layout="row" layout-sm="column" layout-align="left left">
-			<md-button class="md-raised md-primary" ng-click="findsalstruct(salstruct.empid)">Find</md-button>
+			<md-button class="md-raised md-primary" ng-click="findsalstruct(salstruct.empAccount.empid)">Find</md-button>
 
 		</section>
 	</div>

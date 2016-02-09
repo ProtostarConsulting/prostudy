@@ -25,14 +25,14 @@
 		<tbody>
 			<tr md-auto-select
 				ng-repeat="emps in displyselected | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
-				<td>{{emps.salarystruct.empid}}</td>
-				<td>{{emps.salarystruct.empName}}</td>
+				<td>{{emps.salarystruct.empAccount.empid}}</td>
+				<td>{{emps.salarystruct.empAccount.empName}}</td>
 				<td>{{emps.salarystruct.grosssal}}</td>
 				<td>{{emps.month}}</td>
 				<td>
 					<section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary"
-							ui-sref="hr.print({printempidsalslip: emps.salslip_id})">print
+							ui-sref="hr.print({printempidsalslip: emps.id})">print
 						Slip</md-button>
 					</section>
 				</td>

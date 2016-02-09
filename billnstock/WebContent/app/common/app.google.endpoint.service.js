@@ -186,9 +186,9 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	hrService.getAllemp = function() {
+	hrService.getAllemp = function(id) {
 		var deferred = $q.defer();
-		gapi.client.hrService.getAllemp().execute(function(resp) {
+		gapi.client.hrService.getAllemp({'id':id}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -197,7 +197,7 @@ function googleEndpointSF($log, $q) {
 	hrService.getempByID = function(selectedempNo) {
 		var deferred = $q.defer();
 		gapi.client.hrService.getempByID({
-			'empid' : selectedempNo
+			'id' : selectedempNo
 		}).execute(function(resp) {
 			/*$log.debug("internet cost:=" + resp);*/
 			deferred.resolve(resp);
@@ -242,9 +242,9 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	hrService.getAllempsSalStruct = function() {
+	hrService.getAllempsSalStruct = function(id) {
 		var deferred = $q.defer();
-		gapi.client.hrService.getAllempsSalStruct().execute(function(resp) {
+		gapi.client.hrService.getAllempsSalStruct({'id':id}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -252,9 +252,7 @@ function googleEndpointSF($log, $q) {
 
 	hrService.viewfindsalstruct = function(struct) {
 		var deferred = $q.defer();
-		gapi.client.hrService.viewfindsalstruct({
-			'empid' : struct
-		}).execute(function(resp) {
+		gapi.client.hrService.findsalstruct({'id' : struct}).execute(function(resp) {
 			/*$log.debug("internet cost:=" + resp);*/
 			deferred.resolve(resp);
 		});
@@ -276,8 +274,8 @@ function googleEndpointSF($log, $q) {
 
 	hrService.getstructByID = function(struct) {
 		var deferred = $q.defer();
-		gapi.client.hrService.viewfindsalstruct({
-			'empid' : struct
+		gapi.client.hrService.findsalstruct({
+			'id' : struct
 		}).execute(function(resp) {
 			/*$log.debug("internet cost:=" + resp);*/
 			deferred.resolve(resp);
@@ -286,16 +284,9 @@ function googleEndpointSF($log, $q) {
 	}
 
 	hrService.addgsalslip = function(salslip) {
-
 		var deferred = $q.defer();
-		//salslip.salslip_id = salslipList.length + 100;
-
-		gapi.client.hrService.addgsalslip(salslip).execute(function() {
-
-			deferred.resolve({
-				"msg" : "salslip Added Successfully."
-			});
-
+		gapi.client.hrService.addgsalslip(salslip).execute(function(resp) {
+			deferred.resolve(resp);
 		});
 		return deferred.promise;
 	}
@@ -308,11 +299,9 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	hrService.displyOnlySelected = function(curmonth) {
+	hrService.displyOnlySelected = function(curmonth,id) {
 		var deferred = $q.defer();
-		gapi.client.hrService.displyOnlySelected({
-			'month' : curmonth
-		}).execute(function(resp) {
+		gapi.client.hrService.displyOnlySelected({'month' : curmonth,'id':id}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -320,9 +309,7 @@ function googleEndpointSF($log, $q) {
 
 	hrService.printslip = function(salslipid) {
 		var deferred = $q.defer();
-		gapi.client.hrService.printslip({
-			'salslip_id' : salslipid
-		}).execute(function(resp) {
+		gapi.client.hrService.printslip({'id' : salslipid}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -348,11 +335,9 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	hrService.getallsalslip = function(curryear) {
+	hrService.getallsalslip = function(curryear,id) {
 		var deferred = $q.defer();
-		gapi.client.hrService.getallsalslip({
-			'year' : curryear
-		}).execute(function(resp) {
+		gapi.client.hrService.getallsalslip({'year' : curryear,'id':id}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;

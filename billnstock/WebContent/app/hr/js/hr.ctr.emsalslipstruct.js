@@ -6,11 +6,11 @@ angular
 						$mdUtil, $stateParams, $log, objectFactory,
 						appEndpointSF) {
 					$scope.selectedempstructno = $stateParams.selectedempstructno;
+					$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 					
 					$scope.selected = [];
 					$scope.salstruct = {
-							empid : "",
-							empName : "",
+							empAccount:"",
 							grosssal : "",
 							monthly : "",
 							byearly : "",
@@ -48,7 +48,7 @@ angular
 						$log.debug("Inside Ctr $scope.getAllempsSalStruct");
 						var hrService = appEndpointSF.gethrService();
 
-						hrService.getAllempsSalStruct().then(
+						hrService.getAllempsSalStruct($scope.curUser.businessAccount.id).then(
 								function(empSalstructList) {
 									$log.debug("Inside Ctr getAllemps");
 									$scope.empSalStruct = empSalstructList.items;
@@ -59,12 +59,7 @@ angular
 					$scope.getAllempsSalStruct();
 					
 				$scope.viewfindsalstruct = function() {
-						$log.debug("selectedempstructno="
-								+ $scope.selectedempstructno);
-
-						$log
-								.debug("Inside Ctr $scope.getAllselectedempstructno");
-						var hrService = appEndpointSF.gethrService();
+							var hrService = appEndpointSF.gethrService();
 
 						hrService
 								.viewfindsalstruct($scope.selectedempstructno)
@@ -74,12 +69,7 @@ angular
 													.debug("Inside Ctr getsalstruct");
 											$scope.viewslist = structList;
 											$scope.viewsalstruct = $scope.viewslist;
-
-											$log
-													.debug("Inside Ctr viewslist:"
-															+ angular
-																	.toJson($scope.viewslist));
-
+										
 										});
 					}
 

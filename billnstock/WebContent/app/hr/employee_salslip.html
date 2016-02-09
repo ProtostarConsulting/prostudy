@@ -17,13 +17,13 @@
 			<tr md-auto-select 
 				ng-repeat="emp in empSalStruct | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"
 				 >
-				<td>{{emp.empid}}</td>
-				<td>{{emp.empName}}</td>
+				<td>{{emp.empAccount.empid}}</td>
+				<td>{{emp.empAccount.empName}}</td>
 				<td>{{emp.grosssal}}</td>
 				<td>
 					<section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary"
-							ui-sref="hr.gSalSlip({selectedempstructno: emp.empid})">View Salary Structure</md-button>
+							ui-sref="hr.gSalSlip({selectedempstructno: emp.id})">View Salary Structure</md-button>
 					</section>
 	     		</td>
 			</tr>

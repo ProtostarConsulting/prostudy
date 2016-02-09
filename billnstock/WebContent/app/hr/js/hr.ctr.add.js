@@ -6,9 +6,10 @@ angular
 						$mdUtil, $stateParams, $log, objectFactory,
 						appEndpointSF) {
 					
-					
+					$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 					
 					$scope.emp = {
+							businessAccount:"",
 							empid : "",
 							empName : "",
 							email : "",
@@ -18,7 +19,7 @@ angular
 						};
 
 					$scope.addemp = function() {
-
+						$scope.emp.businessAccount =$scope.curUser.businessAccount;
 						var hrService = appEndpointSF.gethrService();
 						hrService.addemp($scope.emp).then(function(msgBean) {
 
@@ -35,15 +36,13 @@ angular
 						$log.debug("Inside Ctr $scope.getAllemps");
 						var hrService = appEndpointSF.gethrService();
 
-						hrService.getAllemp().then(function(empList) {
+						hrService.getAllemp($scope.curUser.businessAccount.id).then(function(empList) {
 							$log.debug("Inside Ctr getAllemps");
-							$scope.emps = empList;
+							$scope.emps = empList.items;
 							$log.debug("$scope.emps====="+angular.toJson($scope.emps.items));
-							$scope.cempid = $scope.emps.items.length + 1;
+							$scope.cempid = $scope.emps.length + 1;
 							$scope.emp.empid = $scope.cempid;
-							
-
-						});
+					});
 					}
 					
 					$scope.emps = [];

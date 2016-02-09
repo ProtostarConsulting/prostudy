@@ -6,7 +6,8 @@ angular
 						$mdUtil, $stateParams, $log, objectFactory,
 						appEndpointSF) {
 
-
+					$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
+					$scope.curemp;
 					$scope.emp = {
 							empid : "",
 							empName : "",
@@ -15,52 +16,51 @@ angular
 							empAddress : ""
 						};
 					$scope.salstruct = {
-							empid : "",
-							empName : "",
-							grosssal : "",
-							monthly : "",
-							byearly : "",
-							bmonthly : "",
-							hrayearly : "",
-							hramonthly : "",
-							ccayearly : "",
-							ccamonthly : "",
-							ec12Byearly : "",
-							convyearly : "",
-							convmonthly : "",
-							sayearly : "",
-							grandtotal : "",
-							samonthly : "",
-							bgrandtotal : "",
-							ptaxyearly : "",
+							empAccount:"",
+							grosssal : 0,
+							monthly : 0,
+							byearly : 0,
+							bmonthly : 0,
+							hrayearly : 0,
+							hramonthly : 0,
+							ccayearly : 0,
+							ccamonthly : 0,
+							ec12Byearly : 0,
+							convyearly : 0,
+							convmonthly : 0,
+							sayearly : 0,
+							grandtotal : 0,
+							samonthly : 0,
+							bgrandtotal :0,
+							ptaxyearly : 0,
 							pf1 : 0,
 							pf2 : 0,
-							ptaxgrandtotal : "",
-							netsalgrandtotalmonthly : "",
-							netsalgrandtotal : "",
-							addprobonus : "",
-							ctc : "",
-							mctc : "",
+							ptaxgrandtotal : 0,
+							netsalgrandtotalmonthly :0,
+							netsalgrandtotal : 0,
+							addprobonus : 0,
+							ctc : 0,
+							mctc : 0,
 							ldother1dis:"",
 							ldother2dis:"",
-							ldother1amt:"",
-							ldother2amt:""
-						};
+							ldother1amt:0,
+							ldother2amt:0
+							};
 					
 					$scope.getAllemps = function() {
 						$log.debug("Inside Ctr $scope.getAllemps");
 						var hrService = appEndpointSF.gethrService();
 
-						hrService.getAllemp().then(function(empList) {
+						hrService.getAllemp($scope.curUser.businessAccount.id).then(function(empList) {
 							$log.debug("Inside Ctr getAllemps");
 							$scope.emps = empList.items;
-						});
+							
+					});
 					}
 					
 					$scope.emps = [];
 					$scope.cempid;
-					$scope.getAllemps();
-				
+				$scope.getAllemps();
 				
 				
 					
@@ -68,7 +68,8 @@ angular
 						$scope.getAllemps();
 						for (i = 0; i < $scope.emps.length; i++) {
 							if (empid == $scope.emps[i].empid) {
-								$scope.salstruct.empName = $scope.emps[i].empName;
+								$scope.curemp=$scope.emps[i];
+								$scope.salstruct.empAccount.empName = $scope.emps[i].empName;
 							}
 
 						}
@@ -76,7 +77,8 @@ angular
 					}	
 					
 					$scope.addsalstruct = function() {
-
+						$scope.salstruct.empAccount=$scope.curemp;
+						
 						var hrService = appEndpointSF.gethrService();
 						hrService.addsalstruct($scope.salstruct).then(
 								function(msgBean) {
@@ -126,7 +128,7 @@ angular
 											// disable and enable add and update
 											// button
 											/*if (typeof $scope.slist[0] == 'undefined') {*/  //use for local db
-											if (typeof $scope.slist == 'null') {
+											if (typeof $scope.slist.empAccount == 'undefined') {
 												angular
 														.element(document
 																.getElementById('addsal'))[0].disabled = false;
@@ -134,7 +136,7 @@ angular
 														.element(document
 																.getElementById('updatesal'))[0].disabled = true;
 
-												$scope.salstruct=[];
+												//$scope.salstruct=[];
 												
 											} else {
 												angular
@@ -145,8 +147,8 @@ angular
 																.getElementById('updatesal'))[0].disabled = false;
 											
 											// assign list
-											//$scope.salstruct=$scope.slist;
-											$scope.salstruct.grosssal = $scope.slist.grosssal;
+											$scope.salstruct=$scope.slist;
+											/*$scope.salstruct.grosssal = $scope.slist.grosssal;
 											$scope.salstruct.monthly = $scope.slist.monthly;
 											$scope.salstruct.byearly = $scope.slist.byearly;
 											$scope.salstruct.bmonthly = $scope.slist.bmonthly;
@@ -162,18 +164,18 @@ angular
 											$scope.salstruct.samonthly = $scope.slist.samonthly;
 											$scope.salstruct.bgrandtotal = $scope.slist.bgrandtotal;
 											$scope.salstruct.ptaxyearly = $scope.slist.ptaxyearly;
-											$scope.salstruct.pf1 =  Number($scope.slist.pf1);
-											$scope.salstruct.pf2 =  Number($scope.slist.pf2);
+											$scope.salstruct.pf1 =  $scope.slist.pf1;
+											$scope.salstruct.pf2 =  $scope.slist.pf2;
 											$scope.salstruct.ptaxgrandtotal = $scope.slist.ptaxgrandtotal;
 											$scope.salstruct.netsalgrandtotal = $scope.slist.netsalgrandtotal;
-											$scope.salstruct.addprobonus = Number($scope.slist.addprobonus);
+											$scope.salstruct.addprobonus = $scope.slist.addprobonus;
 											$scope.salstruct.ctc = $scope.slist.ctc;
-											$scope.salstruct.ctc = $scope.slist.mctc;
+											$scope.salstruct.mctc = $scope.slist.mctc;
 											$scope.salstruct.netsalgrandtotalmonthly = $scope.slist.netsalgrandtotalmonthly;
 											$scope.salstruct.ldother1dis = $scope.slist.ldother1dis;
 											$scope.salstruct.ldother2dis = $scope.slist.ldother2dis;
 											$scope.salstruct.ldother1amt = $scope.slist.ldother1amt;
-											$scope.salstruct.ldother2amt = $scope.slist.ldother2amt;
+											$scope.salstruct.ldother2amt = $scope.slist.ldother2amt;*/
 											$log
 													.debug("Inside Ctr salstruct:"
 															+ angular
@@ -247,7 +249,7 @@ angular
 					}
 					$scope.updateptaxgrandtotal = function(ptaxgtot) {
 
-						$scope.salstruct.ptaxgrandtotal = ($scope.salstruct.pf2 + $scope.salstruct.ptaxyearly)
+						$scope.salstruct.ptaxgrandtotal = $scope.salstruct.pf2 + $scope.salstruct.ptaxyearly
 								+ $scope.salstruct.pf1;
 						$scope.salstruct.mctc = $scope.salstruct.ctc / 12;
 					}

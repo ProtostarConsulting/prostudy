@@ -18,19 +18,19 @@ angular
 						};
 
 				
-			$scope.getAllemps = function() {
+					$scope.getAllemps = function() {
 						$log.debug("Inside Ctr $scope.getAllemps");
 						var hrService = appEndpointSF.gethrService();
 
-						hrService.getAllemp().then(function(empList) {
+						hrService.getAllemp($scope.curUser.businessAccount.id).then(function(empList) {
 							$log.debug("Inside Ctr getAllemps");
 							$scope.emps = empList.items;
 							
-						});
+					});
 					}
 					
 					$scope.emps = [];
-					$scope.getAllemps();
+				$scope.getAllemps();
 					
 					
 					$scope.toggleRight = buildToggler('right');

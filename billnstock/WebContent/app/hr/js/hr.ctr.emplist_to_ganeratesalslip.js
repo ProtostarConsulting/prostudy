@@ -3,7 +3,7 @@ angular
 		.controller(
 				"hrCtr.emplist_to_ganeratesalslip",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $stateParams, $log, objectFactory,
+						$mdUtil, $stateParams, $log, objectFactory,$state,
 						appEndpointSF) {
 
 					$scope.showSimpleToast = function(msgBean) {
@@ -12,7 +12,9 @@ angular
 					};
 
 					$scope.printempidsalslip = $stateParams.printempidsalslip;
-
+					$scope.ganeratedsalslip = $stateParams.ganeratedsalslip;
+								
+					$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 					$scope.emp = {
 						empid : "",
 						empName : "",
@@ -23,8 +25,7 @@ angular
 					};
 
 					$scope.salstruct = {
-						empid : "",
-						empName : "",
+						empAccount : "",
 						grosssal : "",
 						monthly : "",
 						byearly : "",
@@ -56,10 +57,9 @@ angular
 					};
 
 					$scope.salslip = {
-						ganeratedcode : "",
+						ganeratedcode : 100,
 						salslip_id : "",
-						empdetail : [],
-						salarystruct : [],
+						salarystruct : "",
 						month : "-",
 						generateddate : "-",
 						bank_name : "-",
@@ -72,21 +72,21 @@ angular
 							"Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
 
 					var date = new Date();
+								
 					$scope.getAllempsSalStruct = function() {
 						$log.debug("Inside Ctr $scope.getAllempsSalStruct");
 						var hrService = appEndpointSF.gethrService();
 
-						hrService
-								.getAllempsSalStruct()
-								.then(
-										function(empSalstructList) {
-											$log.debug("Inside Ctr getAllemps");
-											$scope.empSalStruct = empSalstructList.items;
+						hrService.getAllempsSalStruct($scope.curUser.businessAccount.id).then(
+								function(empSalstructList) {
+									$log.debug("Inside Ctr getAllemps");
+									$scope.empSalStruct = empSalstructList.items;
 
-										});
+								});
 					}
 					$scope.empSalStruct = [];
 					$scope.getAllempsSalStruct();
+					
 
 					$scope.getlastmonth = function() {
 						var date = new Date();
@@ -97,89 +97,61 @@ angular
 							date.setMonth(date.getMonth() - 1);
 						}
 					}
-
+				
 					$scope.months = [];
 					$scope.getlastmonth();
 
 					$scope.ganeratesalslip = function() {
-						$scope.printganeratesalslip();
-
+						//$scope.printganeratesalslip();
 						var hrService = appEndpointSF.gethrService();
-
 						for (i = 0; i < $scope.selected.length; i++) {
-							var empid = $scope.selected[i].empid;
+
+							var empid = $scope.selected[i].id;
 							hrService
 									.getstructByID(empid)
 									.then(
 											function(structlist) {
 												$scope.selectedSalSlip = structlist.result;
-												$log
-														.debug("*********************="
-																+ angular
-																		.toJson($scope.selectedSalSlip));
-
 												$scope.salslip.salarystruct = $scope.selectedSalSlip;
-												$log
-														.debug("**************$scope.salslip.salarystruct="
-																+ angular
-																		.toJson($scope.salslip.salarystruct));
-
+												$scope.salslip.salslip_id = Number($scope.salslip.salslip_id) + 1;
+												$scope.salslip.month = $scope.selectmonth;
 												hrService
-														.getempByID(empid)
+														.addgsalslip($scope.salslip)
 														.then(
-																function(
-																		emplist) {
-																	$scope.selectedemp = emplist.result;
-
-																	$log
-																			.debug("*********************="
-																					+ angular
-																							.toJson($scope.selectedemp));
-
-																	$scope.salslip.empdetail = $scope.selectedemp;
-																	$log
-																			.debug("*********$scope.salslip.empdetail ="
-																					+ angular
-																							.toJson($scope.salslip.empdetail));
-																	hrService
-																			.addgsalslip(
-																					$scope.salslip)
-																			.then(
-																					function(
-																							msgBean) {
-
-																						$log
-																								.debug("msgBean.msg:"
-																										+ msgBean.msg);
-																						$scope
-																								.showSimpleToast(msgBean.msg);
-
-																					});
+																function(gsalslip) {
+																	$scope.ganeratedsalslip.push(gsalslip.result);
+																	$scope.showSimpleToast("salslip ganareted");
+																	$log.debug("********%%%%%***********" + angular
+																			.toJson($scope.ganeratedsalslip));
 																});
 											});
-						}
 
+						}
+						
+			
+							
+						       $state.go('hr.printgeneratesalslip',{sourceSate : "hr.generatesalslip",ganeratedsalslip : $scope.ganeratedsalslip});
+						  
 					}
 
 					$scope.selectedSalSlip = [];
-					$scope.selectedemp = [];
+					$scope.ganeratedsalslip = [];
 
-					$scope.printganeratesalslip = function() {
+					$scope.printganeratesalslip = function() { 
 						var date = new Date();
-
 						var hrService = appEndpointSF.gethrService();
 						hrService
 								.countOfRecordsiInganeratedslip()
 								.then(
 										function(printSalSelectedSlipList) {
-											$scope.printGSalStruct = printSalSelectedSlipList.result;
-											$scope.salslip.ganeratedcode = $scope.printGSalStruct.length + 100;
-											$scope.salslip.salslip_id = $scope.printGSalStruct.length + 100;
-											$scope.salslip.month = $scope.selectmonth;
-											$scope.salslip.year = "Year" + ' '+ date.getFullYear();
-											});
+											$scope.printGSalStruct = printSalSelectedSlipList.items;
+											$scope.salslip.salslip_id=$scope.printGSalStruct.length+1;
+											//$scope.salslip.month = monthNames[date.getMonth()]+ ' ' + date.getFullYear();
+											$scope.salslip.year = "Year"+ ' ' + date.getFullYear();
+										});
 					}
 					$scope.printGSalStruct = [];
+					$scope.gcode = [];
 					$scope.printganeratesalslip();
 
 					$scope.displyOnlySelected = function(abc) {
@@ -196,11 +168,11 @@ angular
 						}
 
 						hrService
-								.displyOnlySelected($scope.currmonth)
+								.displyOnlySelected($scope.currmonth,$scope.curUser.businessAccount.id)
 								.then(
 										function(getDisplyOnlySelected) {
-											$scope.displyselected = getDisplyOnlySelected;
-										
+											$scope.displyselected = getDisplyOnlySelected.items;
+
 											$log
 													.debug("$scope.displyselected=========="
 															+ angular
@@ -208,7 +180,7 @@ angular
 										});
 					}
 					$scope.displyselected = [];
-			
+
 					$scope.displyOnlySelected();
 
 					var printDivCSS = new String(
@@ -233,10 +205,10 @@ angular
 								.printslip($scope.printempidsalslip)
 								.then(
 										function(getslip) {
-											$scope.printslectedslip = getslip;
+											$scope.printslectedslip.push(getslip.result);
 											$log
 													.debug("$scope.printslectedslip=========="
-															+ $scope.printslectedslip);
+															+ angular.toJson($scope.printslectedslip));
 										});
 					}
 					$scope.printslectedslip = [];
