@@ -2,6 +2,7 @@ package com.protostar.billingnstock.hr.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.api.server.spi.config.Api;
@@ -13,6 +14,7 @@ import com.protostar.billingnstock.hr.entities.Employee;
 import com.protostar.billingnstock.hr.entities.SalSlip;
 import com.protostar.billingnstock.hr.entities.SalStruct;
 import com.protostar.billingnstock.hr.entities.TimeSheet;
+import com.protostar.billingnstock.user.entities.UserEntity;
 
 
 
@@ -34,14 +36,32 @@ public class HrService
 	 }*/
 	
 	@ApiMethod(name="getAllemp") 
-	public List<Employee> getAllemp() {
-	  return ofy().load().type(Employee.class).list();
+	public List<Employee> getAllemp(@Named("id") Long id) {
+	//  return ofy().load().type(Employee.class).list();
+	
+		
+		List<Employee> emp = ofy().load().type(Employee.class).list();
+		List<Employee> filteredemp = new ArrayList<Employee>();
+
+		for (int i = 0; i < emp.size(); i++) {
+			if (emp.get(i).getBusinessAccount().getId().equals(id)) {
+				System.out.println("Got the record:"
+						+ emp.get(i).getBusinessAccount().getId());
+				filteredemp.add(emp.get(i));
+			} else {
+				System.out.println("id:" + id);
+				System.out.println("Recored No found:"
+						+ emp.get(i).getBusinessAccount().getId());
+			}
+		}
+		return filteredemp;
 	 }
 	
 	@ApiMethod(name="getempByID") 
-	 public Employee getempByID(@Named("empid") String selectedid) {
+	 public Employee getempByID(@Named("id") Long selectedid) {
+		
 	
-		Employee Emp = ofy().load().type(Employee.class).filter("empid", selectedid).first().now();
+		Employee Emp = ofy().load().type(Employee.class).id(selectedid).now();
 
 		return Emp;
 	 }
@@ -60,31 +80,38 @@ public class HrService
 		  		
 	}
 	              
- @ApiMethod(name="getAllempsSalStruct") 
-	 public List<SalStruct> getAllempsSalStruct() {
-	  return ofy().load().type(SalStruct.class).list();
+ @ApiMethod(name="getAllempsSalStruct")    
+ 	 public List<SalStruct> getAllempsSalStruct(@Named("id") Long id) {
+	 List<SalStruct> salstruct =ofy().load().type(SalStruct.class).list();
+	  
+		List<SalStruct> filteredsalstruct= new ArrayList<SalStruct>();
+
+		for (int i = 0; i < salstruct.size(); i++) {
+			if (salstruct.get(i).getEmpAccount().getBusinessAccount().getId().equals(id)){
+				
+				filteredsalstruct.add(salstruct.get(i));
+			} else {
+				
+				System.out.println("Recored No found:");
+			}
+		}
+		return filteredsalstruct;
+	  
  }
  
 	@ApiMethod(name="findsalstruct") 
-	 public SalStruct findsalstruct(@Named("empid") String struct) {
-	
-		SalStruct structq = ofy().load().type(SalStruct.class).filter("empid", struct).first().now();
+	 public SalStruct findsalstruct(@Named("id") Long struct) {
+		
+		SalStruct salstruct = ofy().load().type(SalStruct.class).id(struct).now();
 
-		return structq;
+		return salstruct;
+		
 	 }
-	@ApiMethod(name="viewfindsalstruct") 
-	 public SalStruct viewfindsalstruct(@Named("empid") String struct) {
 	
-		SalStruct stru = ofy().load().type(SalStruct.class).filter("empid", struct).first().now();
-
-		return stru;
-	 }
 	@ApiMethod(name="updatesalinfo")
-	public SalStruct updatesalinfo(SalStruct struct)
+	public void updatesalinfo(SalStruct struct)
 	{
 		  Key<SalStruct> now = ofy().save().entity(struct).now();
-		return struct;
-		  		
 	}
 	
 	
@@ -96,30 +123,46 @@ public class HrService
 	
 	
 	@ApiMethod(name="addgsalslip")
-	public void addgsalslip(SalSlip salslip)
+	public SalSlip addgsalslip(SalSlip salslip)
 	{
-		  @SuppressWarnings("unused")
+		SalSlip salslips = salslip;
+	  @SuppressWarnings("unused")
 		Key<SalSlip> now = ofy().save().entity(salslip).now();
+	  
+	return salslips;
 	 
 	}
 	
 	@ApiMethod(name="displyOnlySelected") 
-	 public SalSlip displyOnlySelected(@Named("month") String mon) {
+	 public List<SalSlip> displyOnlySelected(@Named("month") String mon,@Named("id") Long id) {
 	
-		SalSlip month = ofy().load().type(SalSlip.class).filter("month", mon).first().now();
+		List<SalSlip> month = ofy().load().type(SalSlip.class).filter("month", mon).list();
 
-		return month;
+		
+		List<SalSlip> filteredmonth = new ArrayList<SalSlip>();
+
+		for (int i = 0; i < month.size(); i++) {
+			if (month.get(i).getSalarystruct().getEmpAccount().getBusinessAccount().getId().equals(id)){
+				
+				filteredmonth.add(month.get(i));
+			} else {
+				
+				System.out.println("Recored No found:");
+			}
+		}
+		return filteredmonth;
+		
 	 }
 	
 	
 	@ApiMethod(name="printslip") 
-	 public SalSlip printslip(@Named("salslip_id") String salslipid) {
+	 public SalSlip printslip(@Named("id") Long salslipid) {
 	
-		SalSlip sals = ofy().load().type(SalSlip.class).filter("salslip_id", salslipid).first().now();
+		SalSlip sals =  ofy().load().type(SalSlip.class).id(salslipid).now();
 
 		return sals;
 	 }
-	
+		
 	
 	
 	@ApiMethod(name="addtimesheet") 
@@ -142,11 +185,28 @@ public class HrService
 		return weekdata;
 	 }
 	@ApiMethod(name="getallsalslip") 
-	 public SalSlip getallsalslip(@Named("year") String curryear) {
+	 public List<SalSlip> getallsalslip(@Named("year") String curryear,@Named("id") Long id) {
 	
-		SalSlip salslipdata = ofy().load().type(SalSlip.class).filter("year",curryear).first().now();
+		List<SalSlip> salslipdata = ofy().load().type(SalSlip.class).filter("year",curryear).list();
+		
+		List<SalSlip> filteredsalslipdata = new ArrayList<SalSlip>();
 
-		return salslipdata;
+		for (int i = 0; i < salslipdata.size(); i++) {
+			if (salslipdata.get(i).getSalarystruct().getEmpAccount().getBusinessAccount().getId().equals(id)){
+				
+				filteredsalslipdata.add(salslipdata.get(i));
+			} else {
+				
+				System.out.println("Recored No found:");
+			}
+		}
+		return filteredsalslipdata;
+		
+		
+		
+		
+		
+		
 	 }
 	
 	

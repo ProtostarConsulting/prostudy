@@ -1,8 +1,10 @@
 package com.protostar.billingnstock.hr.entities;
 
+import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
+import com.protostar.billingnstock.user.entities.BusinessEntity;
 
 
 
@@ -21,9 +23,10 @@ public class SalSlip {
 	
 	private String ganeratedcode;
 	@Index
-	private String salslip_id ;
-	private SalStruct salarystruct;
-	private Employee empdetail;
+	public String salslip_id ;
+	private Ref<SalStruct> salarystruct;
+	
+
 	@Index
 	private String month;
 	private String generateddate ;
@@ -32,20 +35,13 @@ public class SalSlip {
 	@Index
 	private String year;
 	
-	
 	public SalStruct getSalarystruct() {
-		return salarystruct;
+		return salarystruct.get();
 	}
 	public void setSalarystruct(SalStruct salarystruct) {
-		this.salarystruct = salarystruct;
+		this.salarystruct = Ref.create(salarystruct);
 	}
-	public Employee getEmpdetail() {
-		return empdetail;
-	}
-	public void setEmpdetail(Employee empdetail) {
-		this.empdetail = empdetail;
-	}
-
+	
 	public String getGaneratedcode() {
 		return ganeratedcode;
 	}

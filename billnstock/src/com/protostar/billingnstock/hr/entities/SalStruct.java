@@ -1,5 +1,6 @@
 package com.protostar.billingnstock.hr.entities;
 
+import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
@@ -18,60 +19,69 @@ public class SalStruct {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	private Ref<Employee> empAccount;
+	
+	public Employee getEmpAccount() {
+		return empAccount.get();
+	}
+	
+	public void setEmpAccount(Employee empAccount) {
+			this.empAccount = Ref.create(empAccount);
+	}
+	
+	
 	//	private String cust_id;
 	private String empName; 
-	private String grosssal; 
-	private String monthly ;
-	private String byearly ;
-	private String bmonthly ;
-	private String hrayearly ;
-	private String hramonthly ;
-	private String ccayearly ;
-	private String ccamonthly ;
-	private String ec12Byearly ;
-	private String convyearly ;
-	private String convmonthly ;
-	private String sayearly ;
-	private String grandtotal; 
-	private String samonthly ;
-	private String bgrandtotal; 
-	private String ptaxyearly ;
-	private Long pf1 ;
-
-	public Long getPf1() {
-		return pf1;
-	}
-	public void setPf1(Long pf1) {
-		this.pf1 = pf1;
-	}
-	public Long getPf2() {
-		return pf2;
-	}
-	public void setPf2(Long pf2) {
-		this.pf2 = pf2;
-	}
-	private Long pf2 ;
-	private String ptaxgrandtotal ;
-	private String netsalgrandtotalmonthly; 
-	private String netsalgrandtotal ;
-	private Long addprobonus ;
-	public Long getAddprobonus() {
-		return addprobonus;
-	}
-	public void setAddprobonus(Long addprobonus) {
-		this.addprobonus = addprobonus;
-	}
-	private String ctc ;
-	private String mctc ;
+	private Integer grosssal; 
+	private Integer monthly ;
+	private Integer byearly ;
+	private Integer bmonthly ;
+	private Integer hrayearly ;
+	private Integer hramonthly ;
+	private Integer ccayearly ;
+	private Integer ccamonthly ;
+	private Integer ec12Byearly ;
+	private Integer convyearly ;
+	private Integer convmonthly ;
+	private Integer sayearly ;
+	private Integer grandtotal; 
+	private Integer samonthly ;
+	private Integer bgrandtotal; 
+	private Integer ptaxyearly ;
+	private Integer pf1 ;
+	private Integer pf2 ;
+	private Integer ptaxgrandtotal ;
+	private Integer netsalgrandtotalmonthly; 
+	private Integer netsalgrandtotal ;
+	private Integer addprobonus ;
+	private Integer ctc ;
+	private Integer mctc ;
 	private String ldother1dis;
 	private String ldother2dis;
-	private String ldother1amt;
-	private String ldother2amt;
+	private Integer ldother1amt;
+	private Integer ldother2amt;
 	@Index
 	private String empid; 
-	
-	
-	
+
+	public Integer getPf1() {
+		return pf1;
+	}
+	public void setPf1(Integer pf1) {
+		this.pf1 = pf1;
+	}
+	public Integer getPf2() {
+		return pf2;
+	}
+	public void setPf2(Integer pf2) {
+		this.pf2 = pf2;
+	}
+	public Integer getAddprobonus() {
+		return addprobonus;
+	}
+	public void setAddprobonus(Integer addprobonus) {
+		this.addprobonus = addprobonus;
+	}
 	public String getEmpid() {
 		return empid;
 	}
@@ -84,132 +94,132 @@ public class SalStruct {
 	public void setEmpName(String empName) {
 		this.empName = empName;
 	}
-	public String getGrosssal() {
+	public Integer getGrosssal() {
 		return grosssal;
 	}
-	public void setGrosssal(String grosssal) {
+	public void setGrosssal(Integer grosssal) {
 		this.grosssal = grosssal;
 	}
-	public String getMonthly() {
+	public Integer getMonthly() {
 		return monthly;
 	}
-	public void setMonthly(String monthly) {
+	public void setMonthly(Integer monthly) {
 		this.monthly = monthly;
 	}
-	public String getByearly() {
+	public Integer getByearly() {
 		return byearly;
 	}
-	public void setByearly(String byearly) {
+	public void setByearly(Integer byearly) {
 		this.byearly = byearly;
 	}
-	public String getBmonthly() {
+	public Integer getBmonthly() {
 		return bmonthly;
 	}
-	public void setBmonthly(String bmonthly) {
+	public void setBmonthly(Integer bmonthly) {
 		this.bmonthly = bmonthly;
 	}
-	public String getHRAyearly() {
+	public Integer getHRAyearly() {
 		return hrayearly;
 	}
-	public void setHRAyearly(String hRAyearly) {
+	public void setHRAyearly(Integer hRAyearly) {
 		hrayearly = hRAyearly;
 	}
-	public String getHRAmonthly() {
+	public Integer getHRAmonthly() {
 		return hramonthly;
 	}
-	public void setHRAmonthly(String hRAmonthly) {
+	public void setHRAmonthly(Integer hRAmonthly) {
 		hramonthly = hRAmonthly;
 	}
-	public String getCCAyearly() {
+	public Integer getCCAyearly() {
 		return ccayearly;
 	}
-	public void setCCAyearly(String cCAyearly) {
+	public void setCCAyearly(Integer cCAyearly) {
 		ccayearly = cCAyearly;
 	}
-	public String getCCAmonthly() {
+	public Integer getCCAmonthly() {
 		return ccamonthly;
 	}
-	public void setCCAmonthly(String cCAmonthly) {
+	public void setCCAmonthly(Integer cCAmonthly) {
 		ccamonthly = cCAmonthly;
 	}
-	public String getEC12Byearly() {
+	public Integer getEC12Byearly() {
 		return ec12Byearly;
 	}
-	public void setEC12Byearly(String eC12Byearly) {
+	public void setEC12Byearly(Integer eC12Byearly) {
 		ec12Byearly = eC12Byearly;
 	}
-	public String getConvyearly() {
+	public Integer getConvyearly() {
 		return convyearly;
 	}
-	public void setConvyearly(String convyearly) {
+	public void setConvyearly(Integer convyearly) {
 		this.convyearly = convyearly;
 	}
-	public String getConvmonthly() {
+	public Integer getConvmonthly() {
 		return convmonthly;
 	}
-	public void setConvmonthly(String convmonthly) {
+	public void setConvmonthly(Integer convmonthly) {
 		this.convmonthly = convmonthly;
 	}
-	public String getSAyearly() {
+	public Integer getSAyearly() {
 		return sayearly;
 	}
-	public void setSAyearly(String sAyearly) {
+	public void setSAyearly(Integer sAyearly) {
 		sayearly = sAyearly;
 	}
-	public String getGrandtotal() {
+	public Integer getGrandtotal() {
 		return grandtotal;
 	}
-	public void setGrandtotal(String grandtotal) {
+	public void setGrandtotal(Integer grandtotal) {
 		this.grandtotal = grandtotal;
 	}
-	public String getSAmonthly() {
+	public Integer getSAmonthly() {
 		return samonthly;
 	}
-	public void setSAmonthly(String sAmonthly) {
+	public void setSAmonthly(Integer sAmonthly) {
 		samonthly = sAmonthly;
 	}
-	public String getBgrandtotal() {
+	public Integer getBgrandtotal() {
 		return bgrandtotal;
 	}
-	public void setBgrandtotal(String bgrandtotal) {
+	public void setBgrandtotal(Integer bgrandtotal) {
 		this.bgrandtotal = bgrandtotal;
 	}
-	public String getPtaxyearly() {
+	public Integer getPtaxyearly() {
 		return ptaxyearly;
 	}
-	public void setPtaxyearly(String ptaxyearly) {
+	public void setPtaxyearly(Integer ptaxyearly) {
 		this.ptaxyearly = ptaxyearly;
 	}
 	
-	public String getPtaxgrandtotal() {
+	public Integer getPtaxgrandtotal() {
 		return ptaxgrandtotal;
 	}
-	public void setPtaxgrandtotal(String ptaxgrandtotal) {
+	public void setPtaxgrandtotal(Integer ptaxgrandtotal) {
 		this.ptaxgrandtotal = ptaxgrandtotal;
 	}
-	public String getNetsalgrandtotalmonthly() {
+	public Integer getNetsalgrandtotalmonthly() {
 		return netsalgrandtotalmonthly;
 	}
-	public void setNetsalgrandtotalmonthly(String netsalgrandtotalmonthly) {
+	public void setNetsalgrandtotalmonthly(Integer netsalgrandtotalmonthly) {
 		this.netsalgrandtotalmonthly = netsalgrandtotalmonthly;
 	}
-	public String getNetsalgrandtotal() {
+	public Integer getNetsalgrandtotal() {
 		return netsalgrandtotal;
 	}
-	public void setNetsalgrandtotal(String netsalgrandtotal) {
+	public void setNetsalgrandtotal(Integer netsalgrandtotal) {
 		this.netsalgrandtotal = netsalgrandtotal;
 	}
 
-	public String getCTC() {
+	public Integer getCTC() {
 		return ctc;
 	}
-	public void setCTC(String cTC) {
+	public void setCTC(Integer cTC) {
 		ctc = cTC;
 	}
-	public String getMCTC() {
+	public Integer getMCTC() {
 		return mctc;
 	}
-	public void setMCTC(String mCTC) {
+	public void setMCTC(Integer mCTC) {
 		mctc = mCTC;
 	}
 	public String getLDOther1dis() {
@@ -224,16 +234,16 @@ public class SalStruct {
 	public void setLDOther2dis(String lDOther2dis) {
 		ldother2dis = lDOther2dis;
 	}
-	public String getLDOther1amt() {
+	public Integer getLDOther1amt() {
 		return ldother1amt;
 	}
-	public void setLDOther1amt(String lDOther1amt) {
+	public void setLDOther1amt(Integer lDOther1amt) {
 		ldother1amt = lDOther1amt;
 	}
-	public String getLDOther2amt() {
+	public Integer getLDOther2amt() {
 		return ldother2amt;
 	}
-	public void setLDOther2amt(String lDOther2amt) {
+	public void setLDOther2amt(Integer lDOther2amt) {
 		ldother2amt = lDOther2amt;
 	}
 

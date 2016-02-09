@@ -1,8 +1,10 @@
 package com.protostar.billingnstock.hr.entities;
 
+import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
+import com.protostar.billingnstock.user.entities.BusinessEntity;
 
 
 
@@ -12,8 +14,19 @@ public class Employee {
 	@Id
 	private Long id;
 	
-	//private Long businessAccountID;
 
+	private Ref<BusinessEntity> businessAccount;
+	
+	public BusinessEntity getBusinessAccount() {
+		return businessAccount.get();
+	}
+
+	public void setBusinessAccount(BusinessEntity businessAccount) {
+		this.businessAccount = Ref.create(businessAccount);
+	}
+
+	
+	
 	public long getId() {
 		return id;
 	}
