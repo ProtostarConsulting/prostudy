@@ -150,7 +150,7 @@ angular
 															// update user
 															// appEndpointSF.getLocalUserService()
 															// .saveLoggedInUser($scope.curUser);
-															$scope.businessAccountName = $scope.curUser.businessAccount.businessName;
+													//		$scope.businessAccountName = $scope.curUser.businessAccount.businessName;
 														})
 
 										$log
