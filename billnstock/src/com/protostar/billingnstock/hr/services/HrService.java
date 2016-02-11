@@ -14,7 +14,6 @@ import com.protostar.billingnstock.hr.entities.Employee;
 import com.protostar.billingnstock.hr.entities.SalSlip;
 import com.protostar.billingnstock.hr.entities.SalStruct;
 import com.protostar.billingnstock.hr.entities.TimeSheet;
-import com.protostar.billingnstock.user.entities.UserEntity;
 
 
 
@@ -107,6 +106,26 @@ public class HrService
 		return salstruct;
 		
 	 }
+	@ApiMethod(name="findsalstructfromemp")
+ public SalStruct findsalstructfromemp(@Named("id") Long id) {
+
+		List<SalStruct> salstruct = ofy().load().type(SalStruct.class).list();
+		SalStruct filteredsalstruct = new SalStruct();
+		
+		for (int i = 0; i < salstruct.size(); i++) {
+			if (salstruct.get(i).getEmpAccount().getId()==id){
+				
+				filteredsalstruct=(salstruct.get(i));
+			} else {
+				
+				System.out.println("Recored No found:");
+			}
+		}
+			
+		return filteredsalstruct;
+		
+	 }
+	
 	
 	@ApiMethod(name="updatesalinfo")
 	public void updatesalinfo(SalStruct struct)

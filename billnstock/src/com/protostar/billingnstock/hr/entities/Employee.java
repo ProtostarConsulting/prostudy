@@ -7,7 +7,6 @@ import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
 
 
-
 @Entity
 public class Employee {
 
