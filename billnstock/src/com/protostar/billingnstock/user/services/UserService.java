@@ -111,7 +111,8 @@ public class UserService {
 		userEntity.setLastName(business.getAdminLastName());
 		userEntity.setIsGoogleUser(true);
 		userEntity.setAuthority(Arrays.asList("basic"));
-
+		userEntity.setPassword(business.getPassword());
+		
 		ofy().save().entity(userEntity).now();
 
 	}

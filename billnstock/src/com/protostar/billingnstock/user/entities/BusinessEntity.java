@@ -24,8 +24,15 @@ public class BusinessEntity {
 	private String adminGmailId;
 	private String adminFirstName;
 	private String adminLastName;
+	private String password;
 	
 	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public String getBusinessName() {
 		return businessName;
 	}
