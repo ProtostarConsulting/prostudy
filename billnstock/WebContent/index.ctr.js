@@ -57,7 +57,6 @@ angular
 												$log
 														.debug("User logged in successfully: "
 																+ $scope.user.email_id);
-
 												$window.location.reload();
 												$state.go("home");
 

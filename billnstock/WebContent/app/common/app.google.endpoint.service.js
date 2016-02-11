@@ -233,8 +233,8 @@ function googleEndpointSF($log, $q) {
 
 	hrService.findsalstruct = function(struct) {
 		var deferred = $q.defer();
-		gapi.client.hrService.findsalstruct({
-			'empid' : struct
+		gapi.client.hrService.findsalstructfromemp({
+			'id' : struct
 		}).execute(function(resp) {
 			/*$log.debug("internet cost:=" + resp);*/
 			deferred.resolve(resp);
@@ -362,9 +362,9 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	crmService.getAllleads = function() {
+	crmService.getAllleads = function(id) {
 		var deferred = $q.defer();
-		gapi.client.crmService.getAllleads().execute(function(resp) {
+		gapi.client.crmService.getAllleads({'id':id}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;

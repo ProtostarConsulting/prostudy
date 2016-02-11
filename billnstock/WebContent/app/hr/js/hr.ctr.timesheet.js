@@ -52,6 +52,7 @@ angular.module("stockApp").controller(
 
 			$scope.addItem = function() {
 				$scope.item = {
+						
 					tid : "",
 					taskname : "",
 					monday : 0,
@@ -164,6 +165,7 @@ angular.module("stockApp").controller(
 				
 				$scope.firstdate = new Date($scope.firstdate.getTime() + 7 * 24
 						* 60 * 60 * 1000);
+				$scope.calTotal();
 			}
 
 			$scope.prevWeek = function() {
@@ -172,6 +174,7 @@ angular.module("stockApp").controller(
 				$scope.getcurweekdata(week);
 				$scope.firstdate = new Date($scope.firstdate.getTime() - 7 * 24
 						* 60 * 60 * 1000);
+				$scope.calTotal();
 			}
 
 			// -------------------------------------------------------------------------------------------------

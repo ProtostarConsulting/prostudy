@@ -6,8 +6,11 @@ angular
 						$mdUtil, $stateParams, $log, objectFactory,
 						appEndpointSF) {
 					
+					$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
+					
 					$scope.lead ={
-							id:"",
+							loggedInUser:"",
+							Lid:"",
 							name:"",
 							company:"",
 							phone:"",
@@ -28,6 +31,8 @@ angular
 					
 					$scope.addlead = function() {
 						$scope.lead.tasks= $scope.task ;
+						$scope.lead.loggedInUser=$scope.curUser;
+						
 						var leadService = appEndpointSF.getleadService();
 						
 						leadService.addlead($scope.lead).then(function(msgBean) {
@@ -46,7 +51,7 @@ angular
 						$log.debug("Inside Ctr $scope.getAlllead");
 						var leadService = appEndpointSF.getleadService();
 
-						leadService.getAllleads().then(function(leadList) {
+						leadService.getAllleads($scope.curUser.businessAccount.id).then(function(leadList) {
 							$log.debug("Inside Ctr getAllleads");
 							$scope.leads = leadList.items;
 							$log.debug("Inside Ctr getAllleads===="+angular.toJson($scope.leads ));

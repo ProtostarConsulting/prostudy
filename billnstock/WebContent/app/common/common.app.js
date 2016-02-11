@@ -318,7 +318,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		  url : "/NeedBusinessAccount",
 		  templateUrl : '/app/login/needBusinessAccount.html',
 		  controller : 'needBusinessAccountCtr'
-		 }).state('createBusinessAccount', {
+		 }).state('newBusinessAccount', {
+			  url : "/NewBusinessAccount",
+			  templateUrl : '/app/login/newBusinessAccount.html',
+			  controller : 'newBusinessAccountCtr'
+			 }).state('createBusinessAccount', {
 			  url : "/CreateBusiness",
 			  templateUrl : '/app/login/createBusinessAccount.html',
 			  controller : 'needBusinessAccountCtr'

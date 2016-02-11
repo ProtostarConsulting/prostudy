@@ -10,7 +10,13 @@ angular.module("stockApp").controller(
 			$scope.selecteduserNo = $stateParams.selecteduserNo;
 			$scope.id;
 
-
+			$scope.business={
+					businessName:"",
+					adminGmailId:"",
+					adminFirstName:"",
+					adminLastName:""
+						
+			}
 			$scope.curuser = appEndpointSF.getLocalUserService().getLoggedinUser();
 
 			$scope.getCurUserByEmailId = function() {
@@ -23,7 +29,7 @@ angular.module("stockApp").controller(
 									+ $scope.business.id);
 						});
 			}
-			$scope.business = [];
+			
 			$scope.getCurUserByEmailId();
 
 			$scope.updateBusiness = function() {

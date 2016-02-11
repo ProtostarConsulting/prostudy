@@ -57,10 +57,15 @@ angular
 								};
 							}
 
-							$scope.cust = $scope.newCustomer();
+							/*$scope.cust = $scope.newCustomer();
 
 							// initialize local objects
 							$scope.customer = $scope.newCustomer();
-							$scope.customerList = {};
+							$scope.customerList = {};*/
+							 $scope.myDate = new Date();
+							 $scope.showDateValue = function() {
+							    console.log("in side showDateValue");
+							    $log.debug("$scope.myDate:" + $scope.myDate);
 
+							   };
 						} ]);

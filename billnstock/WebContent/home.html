@@ -6,12 +6,12 @@
 				<span flex></span>
 
 				<section layout="row">
-					<md-button class="md-icon-button md-primary" aria-label="Settings">
-					<md-icon md-svg-icon="img/icons/menu.svg"></md-icon> </md-button>
+				<!-- 	<md-button class="md-icon-button md-primary" aria-label="Settings">
+					<md-icon md-svg-icon="img/icons/menu.svg"></md-icon> </md-button> -->
 
 					<div layout="row" layout-align="center end" layout-sm="column">
-						<a ui-sref="newUserTeacher">Customer Registration</a> <a
-							ui-sref="newUserStudent">Manager Registration</a>
+						<a ui-sref="newBusinessAccount">Business Registration</a> 
+						
 						<!-- <a ui-sref="login">Existing user</a> -->
 					</div>
 					<!--
@@ -27,11 +27,11 @@
 					<md-button class="md-icon-button md-accent" aria-label="Favorite">
 						<md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
 					</md-button>-->
-					{{userid}}
-					<md-button class="md-icon-button" aria-label="More"
+				
+				<!-- 	<md-button class="md-icon-button" aria-label="More"
 						ng-click="toggleRight()"> <md-icon
 						md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
-
+ -->
 				</section>
 			</div>
 
@@ -121,7 +121,32 @@
 		<md-button href="/app/cust/customer.list.html"> Customer
 		List </md-button>
 	</section>
+<!-- <h2> Date Picker Test </h2>
+ <form name="myForm">
+  <md-datepicker name="dateField" ng-model="myDate" md-placeholder="Enter date"
+  required></md-datepicker>
+  <div class="validation-messages" ng-messages="myForm.dateField.$error">
+   <div ng-message="valid">
+    The entered value is not a date!
+   </div>
+   <div ng-message="required">
+    This date is required!
+   </div>
+   <div ng-message="mindate">
+    Date is too early!
+   </div>
+   <div ng-message="maxdate">
+    Date is too late!
+   </div>
+   <div ng-message="filtered">
+    Only weekends are allowed!
+   </div>
+  </div>
+  <md-button class="md-raised md-primary" ng-click="showDateValue()">
+   Print Date Value
+  </md-button>
 
+ </form> -->
 </div>
 
 
