@@ -1,0 +1,114 @@
+package com.protostar.billingnstock.crm.entities;
+
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
+
+@Entity
+public class Contact {
+
+	@Id
+	private Long id;
+
+	public Long getLeadid() {
+		return id;
+	}
+
+	public void setLeadid(Long id) {
+		this.id = id;
+	}
+	@Index
+	private String cid;
+
+	private String fName;
+	private String lName;
+	private String status;
+	private String phone;
+	private String email;
+	private String uid;
+	private String supp;
+	private String cust;
+	private String salespartner;
+	
+	public String getCid() {
+		return cid;
+	}
+
+	public void setCid(String cid) {
+		this.cid = cid;
+	}
+
+	public String getfName() {
+		return fName;
+	}
+
+	public void setfName(String fName) {
+		this.fName = fName;
+	}
+
+	public String getlName() {
+		return lName;
+	}
+
+	public void setlName(String lName) {
+		this.lName = lName;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
+
+	public String getSupp() {
+		return supp;
+	}
+
+	public void setSupp(String supp) {
+		this.supp = supp;
+	}
+
+	public String getCust() {
+		return cust;
+	}
+
+	public void setCust(String cust) {
+		this.cust = cust;
+	}
+
+	public String getSalespartner() {
+		return salespartner;
+	}
+
+	public void setSalespartner(String salespartner) {
+		this.salespartner = salespartner;
+	}
+	
+
+}
