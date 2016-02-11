@@ -17,24 +17,7 @@ app.controller(
 					$stateParams.selectedCustomerId);
 
 			$scope.customerId = $stateParams.selectedCustomerId;
-
-/*			$scope.showCustomerDetails = function() {
-				var customerService = appEndpointSF.getCustomerService();
-
-				customerService
-						.getCustomerByID($scope.customerId)
-						.then(function(customerList) {
-									$scope.customerDetails = customerList;
-									$log
-											.debug("$scope.showCustomerDetails:customerList ===="
-													+ angular
-															.toJson($scope.customerDetails));
-								});
-
-			}
-			$scope.customerDetails = [];
-			$scope.showCustomerDetails();
-*/			
+		
 			$scope.getAllInvoiceByCustId = function() {
 				$log.debug("Inside Ctr $scope.getAllInvoiceByCustId");
 				var invoiceService = appEndpointSF.getInvoiceService();

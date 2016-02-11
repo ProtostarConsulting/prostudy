@@ -4,6 +4,11 @@ app.controller("purchaseOrderListCtr", function($scope, $window, $mdToast, $time
 		$mdSidenav, $mdUtil, $log, $state, $http, $stateParams, $routeParams,
 		$filter, objectFactory, appEndpointSF) {
 
+	
+	$scope.curUser = appEndpointSF.getLocalUserService()
+	.getLoggedinUser();
+	$log.debug("$scope.curUser++++++++"+angular.toJson($scope.curUser));
+	
 	$scope.purchaseOrderObj = {
 			
 			purchaseOrderNo: '',
@@ -41,18 +46,18 @@ app.controller("purchaseOrderListCtr", function($scope, $window, $mdToast, $time
 		$log.debug("Inside Ctr $scope.getAllPurchaseOrder");
 		var purchaseService = appEndpointSF.getPurchaseOrderService();
 
-		purchaseService.getAllPurchaseOrder().then(
+		purchaseService.getAllPurchaseOrder($scope.curUser.businessAccount.id).then(
 				function(purchaseOrderList) {
 					$log.debug("Inside Ctr getAllPurchaseOrder");
 					$scope.purchaseOrderList = purchaseOrderList;
 					$log.debug("@@@@@@@getAllPurchaseOrder"+angular.toJson($scope.purchaseOrderList));
-					$scope.temppurchaseOrder = $scope.purchaseOrderList.length + 1;
-					$scope.purchaseOrderObj.purchaseOrderNo = $scope.temppurchaseOrder;
+//					$scope.temppurchaseOrder = $scope.purchaseOrderList.length + 1;
+//					$scope.purchaseOrderObj.purchaseOrderNo = $scope.temppurchaseOrder;
 				});
 	}
 
 	$scope.purchaseOrderList = [];
-	$scope.temppurchaseOrder;
+//	$scope.temppurchaseOrder;
 	$scope.getAllPurchaseOrder();
 /*
 	$log.debug("$stateParams:", $stateParams);
@@ -176,48 +181,5 @@ app.controller("purchaseOrderListCtr", function($scope, $window, $mdToast, $time
 		$mdToast.show($mdToast.simple().content(
 				'Purchase Order Saved!').position("top")
 				.hideDelay(3000));
-	};
-/*	
-	$scope.getAllCustomers = function() {
-		$log.debug("Inside Ctr $scope.getAllCustomers");
-		var customerService = appEndpointSF
-				.getCustomerService();
-
-		customerService.getAllCustomers().then(
-				function(custList) {
-					$log.debug("Inside Ctr getAllCustomers");
-					$scope.customersforinvoice = custList;
-				});
-	}
-
-//	$scope.customers = [];
-	$scope.getAllCustomers();
-	
-	$scope.getAllStock = function() {
-		$log.debug("Inside Ctr $scope.getAllStock");
-		var stockService = appEndpointSF.getStockService();
-
-		stockService.getAllStock().then(function(stockList) {
-			$log.debug("Inside Ctr getAllStock");
-			$scope.stockforPO = stockList;
-			$log.debug("@@@ $scope.stockforPO==="+$scope.stockforPO);
-		});
-	}
-
-	$scope.stockforPO = [];
-	$scope.getAllStock();
-
-	$scope.getAllTaxes = function() {
-		$log.debug("Inside Ctr $scope.getAllTaxes");
-		var taxService = appEndpointSF.getTaxService();
-
-		taxService.getAllTaxes().then(function(taxList) {
-			$log.debug("Inside Ctr getAllTaxes");
-			$scope.taxforPO = taxList;
-			$log.debug("@@@ $scope.taxforPO==="+$scope.taxforPO);
-		});
-	}
-	$scope.taxforPO = [];
-	$scope.getAllTaxes();
-*/	
+	};	
 });

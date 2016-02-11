@@ -17,7 +17,7 @@
 		<tbody>
 			<tr md-auto-select
 				ng-repeat="customer in customers | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
-				<td>{{customer.customerId}}</td>
+				<td>{{customer.id}}</td>
 				<td>{{customer.customerName}}</td>
 				<td>{{customer.mobile}}</td>
 				<td>{{customer.email}}</td>

@@ -29,7 +29,7 @@ angular.module("stockApp").controller(
 							$scope.showSavedToast();
 							//hide current section
 							//show next section
-						
+						$state.go("login_module.html");
 						});
 			}
 	

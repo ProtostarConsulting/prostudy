@@ -5,6 +5,10 @@ angular.module("stockApp").controller(
 
 			$log.debug("Inside taxCtr");
 
+			$scope.curUser = appEndpointSF.getLocalUserService()
+			.getLoggedinUser();
+			$log.debug("$scope.curUser++++++++"+angular.toJson($scope.curUser));
+			
 			$scope.showSimpleToast = function() {
 				$mdToast.show($mdToast.simple().content('Tax Data Saved!')
 						.position("top").hideDelay(3000));
@@ -13,6 +17,8 @@ angular.module("stockApp").controller(
 			$scope.tax = {};
 			$scope.addTax = function() {
 				$log.debug("No1");
+				$scope.tax.loggedInUser =$scope.curUser;
+				
 				var taxService = appEndpointSF.getTaxService();
 
 				taxService.addTax($scope.tax).then(function(msgBean) {
@@ -23,13 +29,14 @@ angular.module("stockApp").controller(
 
 				});
 				$log.debug("No4");
+				$scope.tax = {};
 			}
 
 			$scope.getAllTaxes = function() {
 				$log.debug("Inside Ctr $scope.getAllTaxes");
 				var taxService = appEndpointSF.getTaxService();
 
-				taxService.getAllTaxes().then(
+				taxService.getAllTaxes($scope.curUser.businessAccount.id).then(
 						function(taxList) {
 							$log.debug("Inside Ctr getAllTaxes");
 							$scope.taxData = taxList;

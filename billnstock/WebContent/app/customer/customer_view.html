@@ -45,14 +45,14 @@
 					ng-repeat="invoice in custInvoiceData | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
 
 					<td>{{$index+1}}</td>
-					<td>{{invoice.invoiceId}}</td>
+					<td>{{invoice.id}}</td>
 					<td>{{invoice.invoiceDate}}</td>
 					<td>{{invoice.finalTotal}}</td>
 
 
 					<td><section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary"
-							ui-sref="invoice.view({selectedInvoiceNo: invoice.invoiceId})">View Invoice</md-button>
+							ui-sref="invoice.view({selectedInvoiceNo: invoice.id})">View Invoice</md-button>
 					</section></td>
 					<td>
 				</tr>

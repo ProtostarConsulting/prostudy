@@ -6,9 +6,13 @@ app
 						$mdUtil, $log, $state, $http, $stateParams,
 						$routeParams, $filter, objectFactory, appEndpointSF) {
 
+					$scope.curUser = appEndpointSF.getLocalUserService()
+					.getLoggedinUser();
+					$log.debug("$scope.curUser++++++++"+angular.toJson($scope.curUser));
+					
 					$scope.invoiceObj = {
 
-						invoiceId : '',
+//						invoiceId : '',
 						purchaseOrderNo : '',
 						salesOrderId : '',
 						customer : '',
@@ -20,12 +24,14 @@ app
 						taxPercenatge : '',
 						taxTotal : 0,
 						finalTotal : '',
-						note:''	
+						note:''	,
+						loggedInUser:""
 					};
 
 					$scope.addInvoice = function() {
 						$log.debug("No1");
 						var InvoiceService = appEndpointSF.getInvoiceService();
+						$scope.invoiceObj.loggedInUser =$scope.curUser;
 
 						InvoiceService.addInvoice($scope.invoiceObj).then(
 								function(msgBean) {
@@ -40,7 +46,7 @@ app
 						$scope.invoiceObj = {};
 					}
 
-					$scope.getAllInvoice = function() {
+/*					$scope.getAllInvoice = function() {
 						$log.debug("Inside Ctr $scope.getAllInvoice");
 						var invoiceService = appEndpointSF.getInvoiceService();
 
@@ -64,7 +70,7 @@ app
 					$scope.invoiceData = [];
 					$scope.tempInvoiceId;
 					$scope.getAllInvoice();
-
+*/
 					$scope.addItem = function() {
 						var item = {
 							srNo : $scope.invoiceObj.invoiceLineItemList.length + 1,
@@ -166,27 +172,27 @@ app
 						});
 					};
 
-					$scope.getAllCustomers = function() {
+					$scope.getAllCustomersByCurrUser = function() {
 						$log.debug("Inside Ctr $scope.getAllCustomers");
-						var customerService = appEndpointSF
-								.getCustomerService();
+						var customerService = appEndpointSF.getCustomerService();
 
-						customerService.getAllCustomers().then(
+						customerService.getAllCustomersByCurrUser($scope.curUser.businessAccount.id).then(
 								function(custList) {
 									$log.debug("Inside Ctr getAllCustomers");
 									$scope.customersforinvoice = custList;
-									$log.debug("####$scope.customersforinvoice###"+$scope.customersforinvoice);
+									$log.debug("Inside Ctr $scope.customers:"
+											+ angular.toJson($scope.customersforinvoice));
 								});
 					}
 
-					// $scope.customers = [];
-					$scope.getAllCustomers();
+					$scope.customersforinvoice = [];
+					$scope.getAllCustomersByCurrUser();
 
 					$scope.getAllStock = function() {
 						$log.debug("Inside Ctr $scope.getAllStock");
 						var stockService = appEndpointSF.getStockService();
 
-						stockService.getAllStock().then(function(stockList) {
+						stockService.getAllStock($scope.curUser.businessAccount.id).then(function(stockList) {
 							$log.debug("Inside Ctr getAllStock");
 							$scope.stockforinvoice = stockList;
 						});
@@ -199,7 +205,7 @@ app
 						$log.debug("Inside Ctr $scope.getAllTaxes");
 						var taxService = appEndpointSF.getTaxService();
 
-						taxService.getAllTaxes().then(function(taxList) {
+						taxService.getAllTaxes($scope.curUser.businessAccount.id).then(function(taxList) {
 							$log.debug("Inside Ctr getAllTaxes");
 							$scope.taxforinvoice = taxList;
 						});
@@ -212,7 +218,7 @@ app
 						var salesService = appEndpointSF.getSalesOrderService();
 
 						salesService
-								.getAllSalesOrder()
+								.getAllSalesOrder($scope.curUser.businessAccount.id)
 								.then(
 										function(salesOrderList) {
 											$log
@@ -235,7 +241,7 @@ app
 								.getPurchaseOrderService();
 
 						purchaseService
-								.getAllPurchaseOrder()
+								.getAllPurchaseOrder($scope.curUser.businessAccount.id)
 								.then(
 										function(purchaseOrderList) {
 											$log

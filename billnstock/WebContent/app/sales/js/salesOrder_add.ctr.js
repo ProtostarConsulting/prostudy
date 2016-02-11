@@ -3,8 +3,13 @@ app.controller("salesOrderAddCtr", function($scope, $window, $mdToast, $timeout,
 		$mdSidenav, $mdUtil, $log, $state, $http, $stateParams, $routeParams,
 		$filter, objectFactory, appEndpointSF) {
 
+	
+	$scope.curUser = appEndpointSF.getLocalUserService()
+	.getLoggedinUser();
+	$log.debug("$scope.curUser++++++++"+angular.toJson($scope.curUser));
+	
 	$scope.salesOrder = {
-			salesOrderId : '',
+//			salesOrderId : '',
 			customer : {},
 			customerRefId : '',
 			quotationDate : '',
@@ -22,25 +27,28 @@ app.controller("salesOrderAddCtr", function($scope, $window, $mdToast, $timeout,
 			taxCodeName : '',
 			taxPercenatge : '',
 			taxTotal : 0,
-			finalTotal : ''
-			
+			finalTotal : '',
+			loggedInUser:""
 		};
 		
 		$scope.addSalesOrder = function() {
 
 			var salesOrderService = appEndpointSF.getSalesOrderService();
+			
+			$scope.salesOrder.loggedInUser =$scope.curUser;
+			
 			salesOrderService.addSalesOrder($scope.salesOrder).then(function(msgBean) {
 
 				$log.debug("Inside Ctr salesOrder");
 				$log.debug("msgBean.msg:" + msgBean.msg);
 				$scope.showSimpleToast(msgBean.msg);
-				$scope.getAllSalesOrder();
+//				$scope.getAllSalesOrder();
 			});
 
 			$scope.salesOrder = {};
 		}
 
-		$scope.getAllSalesOrder = function() {
+/*		$scope.getAllSalesOrder = function() {
 			$log.debug("Inside Ctr $scope.getAllSalesOrder");
 			var salesOrderService = appEndpointSF.getSalesOrderService();
 
@@ -58,7 +66,7 @@ app.controller("salesOrderAddCtr", function($scope, $window, $mdToast, $timeout,
 		$scope.salesOrderList = [];
 		$scope.tempSalesOrder;
 		$scope.getAllSalesOrder();
-
+*/
 		$scope.addItem = function() {
 			var item = {
 				srNo : $scope.salesOrder.sOLineItemList.length + 1,
@@ -148,26 +156,27 @@ app.controller("salesOrderAddCtr", function($scope, $window, $mdToast, $timeout,
 			});
 		};
 		
-		$scope.getAllCustomers = function() {
+		$scope.getAllCustomersByCurrUser = function() {
 			$log.debug("Inside Ctr $scope.getAllCustomers");
-			var customerService = appEndpointSF
-					.getCustomerService();
+			var customerService = appEndpointSF.getCustomerService();
 
-			customerService.getAllCustomers().then(
+			customerService.getAllCustomersByCurrUser($scope.curUser.businessAccount.id).then(
 					function(custList) {
 						$log.debug("Inside Ctr getAllCustomers");
 						$scope.customersforinvoice = custList;
+						$log.debug("Inside Ctr $scope.customers:"
+								+ angular.toJson($scope.customersforinvoice));
 					});
 		}
 
-		$scope.customers = [];
-		$scope.getAllCustomers();
+		$scope.customersforinvoice = [];
+		$scope.getAllCustomersByCurrUser();
 		
 		$scope.getAllStock = function() {
 			$log.debug("Inside Ctr $scope.getAllStock");
 			var stockService = appEndpointSF.getStockService();
 
-			stockService.getAllStock().then(function(stockList) {
+			stockService.getAllStock($scope.curUser.businessAccount.id).then(function(stockList) {
 				$log.debug("Inside Ctr getAllStock");
 				$scope.stockforPO = stockList;
 				$log.debug("@@@ $scope.stockforPO==="+$scope.stockforPO);
@@ -181,7 +190,7 @@ app.controller("salesOrderAddCtr", function($scope, $window, $mdToast, $timeout,
 			$log.debug("Inside Ctr $scope.getAllTaxes");
 			var taxService = appEndpointSF.getTaxService();
 
-			taxService.getAllTaxes().then(function(taxList) {
+			taxService.getAllTaxes($scope.curUser.businessAccount.id).then(function(taxList) {
 				$log.debug("Inside Ctr getAllTaxes");
 				$scope.taxforPO = taxList;
 				$log.debug("@@@ $scope.taxforPO==="+$scope.taxforPO);

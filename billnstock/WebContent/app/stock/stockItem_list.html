@@ -29,7 +29,7 @@
 			<tr md-auto-select
 				ng-repeat="stocks in stockData | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
 
-				<td>{{stocks.itemId}}</td>
+				<td>{{stocks.id}}</td>
 				<td>{{stocks.itemName}}</td>
 				<td>{{stocks.category}}</td>
 				<td>{{stocks.qty}}</td>

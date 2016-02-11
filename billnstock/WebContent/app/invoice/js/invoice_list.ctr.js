@@ -6,6 +6,10 @@ app
 						$mdUtil, $log, $state, $http, $stateParams,
 						$routeParams, $filter, objectFactory, appEndpointSF) {
 
+					$scope.curUser = appEndpointSF.getLocalUserService()
+					.getLoggedinUser();
+					$log.debug("$scope.curUser++++++++"+angular.toJson($scope.curUser));
+					
 					$scope.invoiceObj = {
 
 						invoiceId : '',
@@ -69,7 +73,7 @@ app
 						var invoiceService = appEndpointSF.getInvoiceService();
 
 						invoiceService
-								.getAllInvoice()
+								.getAllInvoice($scope.curUser.businessAccount.id)
 								.then(
 										function(invoiceList) {
 											$log

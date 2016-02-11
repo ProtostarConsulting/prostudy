@@ -3,24 +3,29 @@ app.controller("salesOrderListCtr", function($scope, $window, $mdToast, $timeout
 		$mdSidenav, $mdUtil, $log, $state, $http, $stateParams, $routeParams,
 		$filter, objectFactory, appEndpointSF) {
 
+	
+	$scope.curUser = appEndpointSF.getLocalUserService()
+	.getLoggedinUser();
+	$log.debug("$scope.curUser++++++++"+angular.toJson($scope.curUser));
+	
 	$scope.salesOrder = {};
 
 	$scope.getAllSalesOrder = function() {
 		$log.debug("Inside Ctr $scope.getAllSalesOrder");
 		var salesOrderService = appEndpointSF.getSalesOrderService();
 
-		salesOrderService.getAllSalesOrder().then(
+		salesOrderService.getAllSalesOrder($scope.curUser.businessAccount.id).then(
 				function(salesOrderList) {
 					$log.debug("Inside Ctr getAllSalesOrder");
 					$scope.salesOrderList = salesOrderList;
 					$log.debug("@@@@@@@getAllSalesOrder:"+angular.toJson($scope.salesOrderList));
-					$scope.tempSalesOrder = $scope.salesOrderList.length +1;
-					$log.debug("@@@@@@@getAllSalesOrder!!!!!!!!!!!!!!:"+angular.toJson($scope.tempSalesOrder));
-					$scope.salesOrder.salesOrderId = $scope.tempSalesOrder;
+//					$scope.tempSalesOrder = $scope.salesOrderList.length +1;
+//					$log.debug("@@@@@@@getAllSalesOrder!!!!!!!!!!!!!!:"+angular.toJson($scope.tempSalesOrder));
+//					$scope.salesOrder.salesOrderId = $scope.tempSalesOrder;
 				});
 	}
 
-	$scope.salesOrderList = [];
+//	$scope.salesOrderList = [];
 	$scope.tempSalesOrder;
 	$scope.getAllSalesOrder();
 

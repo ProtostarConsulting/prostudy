@@ -7,17 +7,18 @@ app.controller(
 
 			$log.debug("Inside customerCtr");
 
-			$scope.showSimpleToast = function() {
-				$mdToast.show($mdToast.simple().content('Customer Data Saved!')
-						.position("top").hideDelay(3000));
-			};
-	
 			
-			$scope.getAllCustomers = function() {
+			$scope.curUser = appEndpointSF.getLocalUserService()
+			.getLoggedinUser();
+			$log.debug("$scope.curUser++++++++"+angular.toJson($scope.curUser));
+			2
+//			$scope.cust.businessAccount =$scope.curUser.businessAccount;
+			
+			$scope.getAllCustomersByCurrUser = function() {
 				$log.debug("Inside Ctr $scope.getAllCustomers");
 				var customerService = appEndpointSF.getCustomerService();
 
-				customerService.getAllCustomers().then(
+				customerService.getAllCustomersByCurrUser($scope.curUser.businessAccount.id).then(
 						function(custList) {
 							$log.debug("Inside Ctr getAllCustomers");
 							$scope.customers = custList;
@@ -27,7 +28,7 @@ app.controller(
 			}
 
 			$scope.customers = [];
-			$scope.getAllCustomers();
+			$scope.getAllCustomersByCurrUser();
 			
 			$scope.toggleRight = buildToggler('right');
 
@@ -45,4 +46,10 @@ app.controller(
 					$log.debug("close RIGHT is done");
 				});
 			};
+			
+			$scope.showSimpleToast = function() {
+				$mdToast.show($mdToast.simple().content('Customer Data Saved!')
+						.position("top").hideDelay(3000));
+			};
+	
 		});

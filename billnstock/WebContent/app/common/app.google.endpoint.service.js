@@ -590,10 +590,10 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	CustomerService.getAllCustomers = function() {
+	CustomerService.getAllCustomersByCurrUser = function(id) {
 		var deferred = $q.defer();
-		gapi.client.customerService.getAllCustomers().execute(function(resp) {
-			$log.debug("getAllCustomers#resp at enpoint:" + resp);
+		gapi.client.customerService.getAllCustomersByCurrUser({"id" : id}).execute(function(resp) {
+			$log.debug("getAllCustomers#resp at enpoint:" + angular.toJson(resp));
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
@@ -638,9 +638,9 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	StockService.getAllStock = function() {
+	StockService.getAllStock = function(id) {
 		var deferred = $q.defer();
-		gapi.client.stockService.getAllStock().execute(function(resp) {
+		gapi.client.stockService.getAllStock({"id":id}).execute(function(resp) {
 			$log.debug("getAllStock#resp at enpoint:" + resp);
 			deferred.resolve(resp.items);
 		});
@@ -674,9 +674,9 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	TaxService.getAllTaxes = function() {
+	TaxService.getAllTaxes = function(id) {
 		var deferred = $q.defer();
-		gapi.client.taxService.getAllTaxes().execute(function(resp) {
+		gapi.client.taxService.getAllTaxes({"id":id}).execute(function(resp) {
 			$log.debug("getAllTaxes#resp at enpoint:" + resp);
 			deferred.resolve(resp.items);
 		});
@@ -705,26 +705,35 @@ function googleEndpointSF($log, $q) {
 
 	InvoiceService.addInvoice = function(invoice) {
 		var deferred = $q.defer();
+		
 		gapi.client.invoiceService.addInvoice(invoice).execute(function(resp) {
 			$log.debug("addInvoice#resp at enpoint:" + resp);
 			deferred.resolve(resp);
 		});
+		
+		
+		/*gapi.client.stockService.updateStock(updateStock).execute(
+				function(resp) {
+					$log.debug("updateStock#resp at enpoint:" + resp);
+					deferred.resolve(resp);
+				});*/
+		
 		return deferred.promise;
 	}
 
-	InvoiceService.getAllInvoice = function() {
+	InvoiceService.getAllInvoice = function(id) {
 		var deferred = $q.defer();
-		gapi.client.invoiceService.getAllInvoice().execute(function(resp) {
+		gapi.client.invoiceService.getAllInvoice({"id":id}).execute(function(resp) {
 			$log.debug("getAllInvoice#resp at enpoint:" + resp);
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
 	}
 
-	InvoiceService.getinvoiceByID = function(selectedBillNo) {
+	InvoiceService.getinvoiceByID = function(id) {
 		var deferred = $q.defer();
 		gapi.client.invoiceService.getinvoiceByID({
-			"invoiceId" : selectedBillNo
+			"id" : id
 		}).execute(function(resp) {
 			$log.debug("getinvoiceByID at enpoint" + angular.toJson(resp));
 			deferred.resolve(resp);
@@ -760,20 +769,20 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	SalesOrderService.getAllSalesOrder = function() {
+	SalesOrderService.getAllSalesOrder = function(id) {
 		var deferred = $q.defer();
-		gapi.client.salesOrderService.getAllSalesOrder().execute(
+		gapi.client.salesOrderService.getAllSalesOrder({"id":id}).execute(
 				function(resp) {
-					$log.debug("getAllSalesOrder#resp at enpoint:" + resp);
+					//$log.debug("getAllSalesOrder#resp at enpoint:" + angular.toJson(resp));
 					deferred.resolve(resp.items);
 				});
 		return deferred.promise;
 	}
 
-	SalesOrderService.getSOByID = function(salesOrderId) {
+	SalesOrderService.getSOByID = function(id) {
 		var deferred = $q.defer();
 		gapi.client.salesOrderService.getSOByID({
-			"salesOrderId" : salesOrderId
+			"id" : id
 		}).execute(function(resp) {
 			$log.debug("getSOByID at enpoint" + angular.toJson(resp));
 			deferred.resolve(resp);
@@ -799,10 +808,10 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	PurchaseOrderService.getAllPurchaseOrder = function() {
+	PurchaseOrderService.getAllPurchaseOrder = function(id) {
 		var deferred = $q.defer();
 
-		gapi.client.purchaseOrderService.getAllPurchaseOrder().execute(
+		gapi.client.purchaseOrderService.getAllPurchaseOrder({"id":id}).execute(
 				function(resp) {
 					$log.debug("getAllPurchaseOrder at enpoint:" + resp)
 					deferred.resolve(resp.items)
@@ -810,10 +819,10 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	PurchaseOrderService.getPOByID = function(purchaseOrderNo) {
+	PurchaseOrderService.getPOByID = function(id) {
 		var deferred = $q.defer();
 		gapi.client.purchaseOrderService.getPOByID({
-			"purchaseOrderNo" : purchaseOrderNo
+			"id" : id
 		}).execute(function(resp) {
 			$log.debug("getPOByID at enpoint" + angular.toJson(resp));
 			deferred.resolve(resp);

@@ -11,7 +11,7 @@
 				<thead md-order="query.order" md-trigger="onorderchange">
 			<tr>
 				<th name="Sr.No" order-by="sr_No"></th>
-				<th name="PO Id" order-by="purchaseOrderNo"></th>
+				<th name="PO Id" order-by="id"></th>
 				<th name="PO Date" order-by="PODate"></th>
 				<th name="Final Total" order-by="finalTotal"></th>
 
@@ -23,13 +23,13 @@
 				ng-repeat="pOItem in purchaseOrderList | filter: searchText | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
 				<!-- <a ng-href="#/invoice.list/{{invoiceId.id}}">{{invoice.finalTotal}}</a> -->
 				<td>{{$index+1}}</td>
-				<td>{{pOItem.purchaseOrderNo}}</td>
+				<td>{{pOItem.id}}</td>
 				<td>{{pOItem.poDate}}</td>
 				<td>{{pOItem.finalTotal}}</td>
 				<td>
 					<section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary"
-							ui-sref="purchaseOrder.POview({selectedPONo: pOItem.purchaseOrderNo})">View PO</md-button>
+							ui-sref="purchaseOrder.POview({selectedPONo: pOItem.id})">View PO</md-button>
 					</section>
 				</td>
 			</tr>

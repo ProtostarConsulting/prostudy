@@ -7,9 +7,10 @@ angular
 						'$window',
 						'$mdToast',
 
-						function($scope, $window, $mdToast) {
+						function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
+							    $log, $q, $location, objectFactory, appEndpointSF,
+							    tableTestDataFactory) {
 							console.log("Inside homeCtr");
-						
 
 							$scope.showSimpleToast = function() {
 								$mdToast.show($mdToast.simple().content(
@@ -67,5 +68,14 @@ angular
 							    console.log("in side showDateValue");
 							    $log.debug("$scope.myDate:" + $scope.myDate);
 
-							   };
+
+/*							$scope.myDate = new Date();
+							
+							$scope.showDateValue = function() {
+								console.log("in side showDateValue");
+								$log.debug("$scope.myDate:" + $scope.myDate);
+							}
+
+*/							   };
+
 						} ]);

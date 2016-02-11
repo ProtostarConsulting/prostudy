@@ -18,6 +18,7 @@
 <!-- <link rel="stylesheet" href="main.css" type="text/css">
  -->
 <link href="app/invoice/css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/header.css" rel="stylesheet" type="text/css" />
 </head>
 <body layout="column">
 	<!-- <div layout="column" layout-fill> -->
@@ -107,7 +108,7 @@
     ng-click="toggleRight()"> <md-icon
     md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
  -->
-   <img ng-show="true" ngf-src="googleUser.getImageUrl()" class=icon>
+   <img ng-show="true" ngf-src="googleUser.getImageUrl()" class=circular>
    <md-button aria-label="Open Settings"
     ng-click="showListBottomSheet($event)"> <md-tooltip>
    {{ googleUser.getName() + "|" + googleUser.getEmail()}} </md-tooltip> <ng-md-icon
