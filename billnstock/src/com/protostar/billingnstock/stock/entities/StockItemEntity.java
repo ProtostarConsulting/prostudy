@@ -1,8 +1,11 @@
 package com.protostar.billingnstock.stock.entities;
 
+import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
+import com.protostar.billingnstock.user.entities.BusinessEntity;
+import com.protostar.billingnstock.user.entities.UserEntity;
 
 @Entity
 public class StockItemEntity {
@@ -16,16 +19,24 @@ public class StockItemEntity {
 	private String qty;
 	private String price;
 	private String notes;
-	private String threshold_value;
+	private String thresholdValue;
 
-	public String getThreshold_value() {
-		return threshold_value;
+	@Index
+	Ref<UserEntity> loggedInUser;
+	public UserEntity getLoggedInUser() {
+		return loggedInUser.get();
 	}
 
-	public void setThreshold_value(String threshold_value) {
-		this.threshold_value = threshold_value;
+	public void setLoggedInUser(UserEntity loggedInUser) {
+		this.loggedInUser = Ref.create(loggedInUser);
 	}
-
+	
+	public String getThresholdValue() {
+		return thresholdValue;
+	}
+	public void setThresholdValue(String thresholdValue) {
+		this.thresholdValue = thresholdValue;
+	}
 	public Long getId() {
 		return id;
 	}

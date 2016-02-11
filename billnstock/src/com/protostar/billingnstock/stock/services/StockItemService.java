@@ -2,6 +2,7 @@ package com.protostar.billingnstock.stock.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.api.server.spi.config.Api;
@@ -21,9 +22,21 @@ public class StockItemService {
 	}
 	
 	@ApiMethod(name="getAllStock")
-	public List<StockItemEntity> getAllStock(){
+	public List<StockItemEntity> getAllStock(@Named("id") Long id){
 		
-		return ofy().load().type(StockItemEntity.class).list();		
+		List<StockItemEntity> stocks = ofy().load().type(StockItemEntity.class).list();	
+		List<StockItemEntity> filteredStocks = new ArrayList<StockItemEntity>();
+		 
+		for(int i=0;i<stocks.size();i++)
+		{				
+			 if(stocks.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id))
+			 {
+				 System.out.println("Got the record:" + stocks.get(i) );
+				 filteredStocks.add(stocks.get(i));
+			 }
+		
+		}
+		return filteredStocks;
 	}
 	
 	@ApiMethod(name="updateStock")

@@ -9,11 +9,14 @@ import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.stock.entities.StockItemEntity;
 import com.protostar.billingnstock.tax.entities.TaxEntity;
+import com.protostar.billingnstock.user.entities.BusinessEntity;
+import com.protostar.billingnstock.user.entities.UserEntity;
 
 @Entity
 public class PurchaseOrderEntity {
 
 	@Id
+	@Index
 	private Long id;
 	@Index
 	private Long purchaseOrderNo;	
@@ -38,14 +41,31 @@ public class PurchaseOrderEntity {
 		this.customer = Ref.create(customer);
 	}
 	
-	private List<StockItemEntity> pOLineItemList;
+	private List<LineItemEntity> pOLineItemList;
 	
+	public List<LineItemEntity> getpOLineItemList() {
+		return pOLineItemList;
+	}
+	public void setpOLineItemList(List<LineItemEntity> pOLineItemList) {
+		this.pOLineItemList = pOLineItemList;
+	}
+
 	Ref<TaxEntity> selectedTaxItem;
 	public TaxEntity getSelectedTaxItem() {
 		return selectedTaxItem.get();
 	}
 	public void setSelectedTaxItem(TaxEntity selectedTaxItem) {
 		this.selectedTaxItem = Ref.create(selectedTaxItem);
+	}
+	
+	@Index
+	Ref<UserEntity> loggedInUser;
+	public UserEntity getLoggedInUser() {
+		return loggedInUser.get();
+	}
+
+	public void setLoggedInUser(UserEntity loggedInUser) {
+		this.loggedInUser = Ref.create(loggedInUser);
 	}
 	
 	public Long getId() {
@@ -55,13 +75,6 @@ public class PurchaseOrderEntity {
 		this.id = id;
 	}
 	
-	
-	public List<StockItemEntity> getpOLineItemList() {
-		return pOLineItemList;
-	}
-	public void setpOLineItemList(List<StockItemEntity> pOLineItemList) {
-		this.pOLineItemList = pOLineItemList;
-	}
 	public Long getPurchaseOrderNo() {
 		return purchaseOrderNo;
 	}

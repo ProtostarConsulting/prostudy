@@ -2,6 +2,7 @@ package com.protostar.billingnstock.sales.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.api.server.spi.config.Api;
@@ -9,6 +10,7 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
+import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.invoice.entities.InvoiceEntity;
 import com.protostar.billingnstock.purchase.entities.PurchaseOrderEntity;
 import com.protostar.billingnstock.sales.entities.SalesOrderEntity;
@@ -22,16 +24,33 @@ public class SalesOrderService {
 		}
 		
 		@ApiMethod(name="getAllSalesOrder")
-		public List<SalesOrderEntity> getAllSalesOrder(){
+		public List<SalesOrderEntity> getAllSalesOrder(@Named("id") Long id){
 			
-			return ofy().load().type(SalesOrderEntity.class).list();
+			List<SalesOrderEntity> SOList=ofy().load().type(SalesOrderEntity.class).list();
+			List<SalesOrderEntity> filteredSO = new ArrayList<SalesOrderEntity>();
+			
+			
+			for(int i=0;i<SOList.size();i++)
+			{				
+				 if(SOList.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id))
+				 {
+					 System.out.println("Got the record:" + SOList.get(i) );
+					 filteredSO.add(SOList.get(i));
+				 }
+				 
+				 System.out.println("id:" + id);
+			}
+			System.out.println("filteredSO:" + filteredSO.getClass());
+			return filteredSO;
+			
+		//	return ofy().load().type(SalesOrderEntity.class).list();
 			
 		}
 
 		
 		@ApiMethod(name = "getSOByID")
-		public SalesOrderEntity getSOByID(@Named("salesOrderId") Long salesOrderId) {
-			SalesOrderEntity SalesOrderById = ofy().load().type(SalesOrderEntity.class).filter("salesOrderId", salesOrderId).first().now();
+		public SalesOrderEntity getSOByID(@Named("id") Long id) {
+			SalesOrderEntity SalesOrderById = ofy().load().type(SalesOrderEntity.class).id(id).now();
 
 			System.out.println("getSOByID Recored is:"+ SalesOrderById);
 			return SalesOrderById;

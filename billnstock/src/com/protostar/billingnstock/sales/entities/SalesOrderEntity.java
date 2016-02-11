@@ -9,11 +9,14 @@ import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.stock.entities.StockItemEntity;
 import com.protostar.billingnstock.tax.entities.TaxEntity;
+import com.protostar.billingnstock.user.entities.BusinessEntity;
+import com.protostar.billingnstock.user.entities.UserEntity;
 
 @Entity
 public class SalesOrderEntity {
 
 	@Id
+	@Index
 	private Long id;
 	@Index
 	private Long salesOrderId;
@@ -28,14 +31,41 @@ public class SalesOrderEntity {
 	private String deliveryDate;
 	private String paymentTerms;
 	private String dueDate;
-	private double subTotal ;
-/*	private String taxCodeName ;
+	private String taxCodeName;
 	private double taxPercenatge ;
-	private double taxTotal ;
-*/	private double finalTotal;
+	private double taxTotal;
 	
-	private List<StockItemEntity> sOLineItemList;
+	public String getTaxCodeName() {
+		return taxCodeName;
+	}
+	public void setTaxCodeName(String taxCodeName) {
+		this.taxCodeName = taxCodeName;
+	}
+	public double getTaxPercenatge() {
+		return taxPercenatge;
+	}
+	public void setTaxPercenatge(double taxPercenatge) {
+		this.taxPercenatge = taxPercenatge;
+	}
+	public double getTaxTotal() {
+		return taxTotal;
+	}
+	public void setTaxTotal(double taxTotal) {
+		this.taxTotal = taxTotal;
+	}
+
+	private double subTotal ;
+	private double finalTotal;
 	
+	private List<LineStockItem> sOLineItemList;
+	
+	public List<LineStockItem> getsOLineItemList() {
+		return sOLineItemList;
+	}
+	public void setsOLineItemList(List<LineStockItem> sOLineItemList) {
+		this.sOLineItemList = sOLineItemList;
+	}
+
 	Ref<Customer> customer;	
 	public Customer getCustomer() {
 		return customer.get();
@@ -44,6 +74,7 @@ public class SalesOrderEntity {
 		this.customer = Ref.create(customer);
 	}
 	
+
 	Ref<TaxEntity> selectedTaxItem;
 	public TaxEntity getSelectedTaxItem() {
 		return selectedTaxItem.get();
@@ -51,13 +82,28 @@ public class SalesOrderEntity {
 	public void setSelectedTaxItem(TaxEntity selectedTaxItem) {
 		this.selectedTaxItem = Ref.create(selectedTaxItem);
 	}
+
 	
-	public List<StockItemEntity> getsOLineItemList() {
-		return sOLineItemList;
+	
+/*	private List<SelectedTaxEntity> selectedTaxItem;
+		
+	public List<SelectedTaxEntity> getSelectedTaxItem() {
+		return selectedTaxItem;
 	}
-	public void setsOLineItemList(List<StockItemEntity> sOLineItemList) {
-		this.sOLineItemList = sOLineItemList;
+	public void setSelectedTaxItem(List<SelectedTaxEntity> selectedTaxItem) {
+		this.selectedTaxItem = selectedTaxItem;
 	}
+*/
+	@Index
+	Ref<UserEntity> loggedInUser;
+	public UserEntity getLoggedInUser() {
+		return loggedInUser.get();
+	}
+
+	public void setLoggedInUser(UserEntity loggedInUser) {
+		this.loggedInUser = Ref.create(loggedInUser);
+	}
+	
 	public Long getId() {
 		return id;
 	}

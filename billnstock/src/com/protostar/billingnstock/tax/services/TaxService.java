@@ -2,12 +2,15 @@ package com.protostar.billingnstock.tax.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
+import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
+import com.protostar.billingnstock.sales.entities.SalesOrderEntity;
 import com.protostar.billingnstock.tax.entities.TaxEntity;
 
 @Api(name = "taxService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.tax.services", ownerName = "com.protostar.billingnstock.tax.services", packagePath = ""))
@@ -20,8 +23,24 @@ public class TaxService {
 	}
 	
 	@ApiMethod(name="getAllTaxes")
-	public List<TaxEntity> getAllTaxes(){
-		return ofy().load().type(TaxEntity.class).list();
+	public List<TaxEntity> getAllTaxes(@Named("id") Long id){
+	
+		List<TaxEntity> taxList=ofy().load().type(TaxEntity.class).list();
+		List<TaxEntity> filteredTax = new ArrayList<TaxEntity>();
+		
+		
+		for(int i=0;i<taxList.size();i++)
+		{				
+			 if(taxList.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id))
+			 {
+				 System.out.println("Got the record:" + taxList.get(i) );
+				 filteredTax.add(taxList.get(i));
+			 }
+			 
+			 System.out.println("id:" + id);
+		}
+		System.out.println("filteredTax:" + filteredTax.getClass());
+		return filteredTax;
 		
 	}
 	

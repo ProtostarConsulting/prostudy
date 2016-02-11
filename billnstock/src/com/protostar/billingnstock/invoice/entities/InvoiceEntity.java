@@ -12,6 +12,8 @@ import com.protostar.billingnstock.purchase.entities.PurchaseOrderEntity;
 import com.protostar.billingnstock.sales.entities.SalesOrderEntity;
 import com.protostar.billingnstock.stock.entities.StockItemEntity;
 import com.protostar.billingnstock.tax.entities.TaxEntity;
+import com.protostar.billingnstock.user.entities.BusinessEntity;
+import com.protostar.billingnstock.user.entities.UserEntity;
 
 @Entity
 public class InvoiceEntity {
@@ -27,7 +29,7 @@ public class InvoiceEntity {
 	private String taxTotal;
 	private String finalTotal;
 	private String note;
-	private List<StockItemEntity> invoiceLineItemList;
+	private List<InvoiceLineItemEntity> invoiceLineItemList;
 
 	@Index
 	Ref<Customer> customer;
@@ -47,12 +49,19 @@ public class InvoiceEntity {
 		this.selectedTaxItem = Ref.create(selectedTaxItem);
 	}
 	
+	@Index
+	Ref<UserEntity> loggedInUser;
+	public UserEntity getLoggedInUser() {
+		return loggedInUser.get();
+	}
+
+	public void setLoggedInUser(UserEntity loggedInUser) {
+		this.loggedInUser = Ref.create(loggedInUser);
+	}
+	
 	Ref<PurchaseOrderEntity>purchaseOrderNo;
 	Ref<SalesOrderEntity>salesOrderId;
-	
-
-	
-	
+		
 	public PurchaseOrderEntity getPurchaseOrderNo() {
 		return purchaseOrderNo.get();
 	}
@@ -70,6 +79,14 @@ public class InvoiceEntity {
 	}
 
 	
+	public List<InvoiceLineItemEntity> getInvoiceLineItemList() {
+		return invoiceLineItemList;
+	}
+
+	public void setInvoiceLineItemList(
+			List<InvoiceLineItemEntity> invoiceLineItemList) {
+		this.invoiceLineItemList = invoiceLineItemList;
+	}
 	
 	public String getInvoiceDate() {
 		return invoiceDate;
@@ -141,14 +158,6 @@ public class InvoiceEntity {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public List<StockItemEntity> getInvoiceLineItemList() {
-		return invoiceLineItemList;
-	}
-
-	public void setInvoiceLineItemList(List<StockItemEntity> invoiceLineItemList) {
-		this.invoiceLineItemList = invoiceLineItemList;
 	}
 
 	public String getNote() {

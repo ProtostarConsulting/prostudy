@@ -2,6 +2,7 @@ package com.protostar.billingnstock.purchase.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.api.server.spi.config.Api;
@@ -22,18 +23,32 @@ public class PurchaseOrderService {
 		}
 		
 		@ApiMethod(name="getAllPurchaseOrder")
-		public List<PurchaseOrderEntity> getAllPurchaseOrder(){
+		public List<PurchaseOrderEntity> getAllPurchaseOrder(@Named("id") Long id){
 			
-		return ofy().load().type(PurchaseOrderEntity.class).list();
+			List<PurchaseOrderEntity> POList=ofy().load().type(PurchaseOrderEntity.class).list();
+			List<PurchaseOrderEntity> filteredPO = new ArrayList<PurchaseOrderEntity>();
 			
+			
+			for(int i=0;i<POList.size();i++)
+			{				
+				 if(POList.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id))
+				 {
+					 System.out.println("Got the record:" + POList.get(i) );
+					 filteredPO.add(POList.get(i));
+				 }
+				 
+	//			 System.out.println("id:" + id);
+			}
+			System.out.println("filteredPO:" + filteredPO.size());
+			return filteredPO;			
 		}
 		
 		
 		@ApiMethod(name = "getPOByID")
-		public PurchaseOrderEntity getPOByID(@Named("purchaseOrderNo") Long purchaseOrderNo) {
+		public PurchaseOrderEntity getPOByID(@Named("id") Long id) {
 
-			PurchaseOrderEntity POById = ofy().load().type(PurchaseOrderEntity.class).filter("purchaseOrderNo", purchaseOrderNo).first().now();
-			System.out.println("getPOByID Recored is:"+ purchaseOrderNo);
+			PurchaseOrderEntity POById = ofy().load().type(PurchaseOrderEntity.class).id(id).now();
+			System.out.println("getPOByID Recored is:"+ POById);
 			
 			return POById;
 		}
