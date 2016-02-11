@@ -2,6 +2,7 @@ package com.protostar.billingnstock.crm.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.api.server.spi.config.Api;
@@ -11,6 +12,7 @@ import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
 import com.protostar.billingnstock.crm.entities.Contact;
 import com.protostar.billingnstock.crm.entities.Lead;
+import com.protostar.billingnstock.hr.entities.SalStruct;
 
 
 
@@ -29,8 +31,23 @@ public class CrmService
 	
 	@ApiMethod(name="getAllleads") 
 	
-	 public List<Lead> getAllleads() {
-	  return ofy().load().type(Lead.class).list();
+	 public List<Lead> getAllleads(@Named("id") Long id) {
+	  
+	  List<Lead> lead =ofy().load().type(Lead.class).list();
+	  
+		List<Lead> filteredlead= new ArrayList<Lead>();
+
+		for (int i = 0; i < lead.size(); i++) {
+			if (lead.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id)){
+				
+				filteredlead.add(lead.get(i));
+			} else {
+				
+				System.out.println("Recored No found:");
+			}
+		}
+		return filteredlead;
+	 
 	 }
 	
 	@ApiMethod(name="getLeadById") 
