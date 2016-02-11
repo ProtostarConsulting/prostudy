@@ -1,0 +1,117 @@
+
+<md-content layout-padding>
+<form name="Signin">
+
+	<div id="addField">
+		<div layout layout-sm="column">
+			<md-input-container flex> <b>CREATE BUSINESS
+				ACCOUNT</b> </md-input-container>
+		</div>
+		<div layout layout-sm="column">
+			<md-input-container flex> <label>Enter
+				Business Name</label> <input ng-model="business.businessName"> </md-input-container>
+		</div>
+		<div layout layout-sm="column">
+			<label> Is Google User</label>
+			<md-checkbox ng-model="user.isGoogleUser" ng-true-value="true"
+				ng-false-value="false"> </md-checkbox>
+		</div>
+		<div layout layout-sm="column">
+
+			<md-input-container flex> <label>Admin
+				Gmail Email id</label> <input ng-model="business.adminGmailId"> </md-input-container>
+
+			<md-input-container flex ng-hide="user.isGoogleUser">
+			<label>Password </label> <input type="password"
+				ng-model="business.password"> </md-input-container>
+		</div>
+		<div layout layout-sm="column">
+
+			<md-input-container flex> <label>First
+				Name</label> <input ng-model="business.adminFirstName"> </md-input-container>
+		</div>
+		<div layout layout-sm="column">
+			<md-input-container flex> <label>Last
+				Name</label> <input ng-model="business.adminLastName"> </md-input-container>
+		</div>
+
+		<section layout="row" layout-sm="column" layout-align="left left">
+			<md-button class="md-raised md-primary" ng-click="addBusiness()">Register</md-button>
+
+		</section>
+	</div>
+</form>
+</md-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+
+
+
+<div layout-align="centre centre">
+
+	<md-whiteframe class="md-whiteframe-9dp" flex="30" layout
+		layout-align="center center"> <span>
+
+
+
+		<div layout="column" layout-align="center center">
+			<md-input-container flex> <b>CREATE BUSINESS
+				ACCOUNT</b> </md-input-container>
+			<md-input-container flex> <label>Enter
+				Business Name</label> <input ng-model="business.businessName"> </md-input-container>
+
+			<md-input-container flex> <label>Admin
+				Gmail Email id</label> <input ng-model="business.adminGmailId"> 	<div flex-xs flex="50">
+			<md-checkbox ng-model="user.isGoogleUser" ng-true-value="true"
+				ng-false-value="false"> Is Google User </md-checkbox> </div>
+			</md-input-container>
+			<md-input-container flex ng-hide="user.isGoogleUser">
+			<label>Password </label> <input type="password"
+				ng-model="business.password"> </md-input-container>
+			<md-input-container flex> <label>First
+				Name</label> <input ng-model="business.adminFirstName"> </md-input-container>
+
+			<md-input-container flex> <label>Last
+				Name</label> <input ng-model="business.adminLastName"> </md-input-container>
+		</div>
+
+
+
+		<div layout="row" layout-align="center end">
+			<md-button class="md-raised md-primary" ng-click="addBusiness()">Register</md-button>
+		</div> </md-card-content>
+	</span> </md-whiteframe>
+
+
+
+</div> -->
+
+
+
+
+
