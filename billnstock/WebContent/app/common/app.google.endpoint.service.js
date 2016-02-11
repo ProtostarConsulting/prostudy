@@ -91,8 +91,10 @@ function googleEndpointSF($log, $q) {
 
 	UserService.addBusiness = function(business) {
 		var deferred = $q.defer();
-		gapi.client.userService.addBusiness(business).execute(function(resp) {
-			deferred.resolve(resp);
+		gapi.client.userService.addBusiness(business).execute(function() {
+			deferred.resolve({
+				"msg" : "Business Add Successfully."
+			});
 		});
 		return deferred.promise;
 	}
