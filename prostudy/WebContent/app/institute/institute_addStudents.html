@@ -1,37 +1,39 @@
-<!-- <div layout="row" layout-align="centre centre" layout-sm="column" flex>
-<md-input-container flex> <label><h3>Institute Id  :  {{institutes[institutes.length-1].id}}</h3></label> </md-input-container>
-</div>
-<div layout="row" layout-align="centre centre" layout-sm="column" flex>
-	<md-input-container flex> <label><h3>Institute Name  :  {{institutes[institutes.length-1].name}}</h3></label> </md-input-container>
-	</div> -->
+<h5><b>Student's Information</b></h5>
 
 <div layout="row" layout-align="centre centre" layout-sm="column" flex>
-	<md-input-container flex> <label>Student Name</label> <input ng-model="student_name"> </md-input-container>
 
-	<md-input-container flex> <label>Student Email-Id</label>
-	<input ng-model="student_email_id"> </md-input-container>
+	<md-input-container flex> <label>First name</label> <input ng-model="firstName"> </md-input-container>
 
-	<md-input-container flex> <label>Student Contact No</label> <input ng-model="student_contact_no"> </md-input-container>
+	<md-input-container flex> <label>Last name</label> <input ng-model="lastName"> </md-input-container>
+
+	<md-input-container flex> <label>Email-id</label> <input ng-model="email_id"> </md-input-container>
+	
+	<md-input-container flex> <label>Contact</label> <input ng-model="contact"> </md-input-container>
+	
+	<md-input-container flex> <label>Address</label> <input ng-model="address"> </md-input-container>
+	
 	<md-button class="md-raised md-primary" ng-click="addStudents()">Add Student </md-button> 
 </div>
 <div>
+
+<h5><b>Select Student before Adding.</b></h5>
 
 	 <md-data-table-container>
 	<table md-data-table class="md-primary" md-row-select="selectedStudents"
 		md-progress="deferred">
 		<thead>
 			<tr>
-				<th order-by="firstName" name="Student Name" unit=""></th>
-				<th order-by="email" name="Student EMAIL-ID"></th>
-				<th order-by="city" name="City"></th>
+				<th order-by="firstName" name="Student Name"></th>
+				<th order-by="email_id" name="EMAIL-ID"></th>
+				<th order-by="contact" name="Contact No."></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="a in students | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText" ">
-				<td>{{a.firstName}}</td>
-				<td>{{a.email}}</td>
-				<td>{{a.city}}</td>
+				ng-repeat="student in students | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText" ">
+				<td>{{student.firstName}}</td>
+				<td>{{student.email_id}}</td>
+				<td>{{student.contact}}</td>
 			</tr>
 		</tbody>
 	</table>

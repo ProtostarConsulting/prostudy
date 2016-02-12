@@ -1,30 +1,38 @@
+<h5><b>Teacher's Information</b></h5>
 
 <div layout="row" layout-align="centre centre" layout-sm="column" flex>
-	<md-input-container flex> <label>Teacher Name</label> <input ng-model="teacher_name"> </md-input-container>
 
-	<md-input-container flex> <label>Teacher Email-Id</label>
-	<input ng-model="teacher_email_id"> </md-input-container>
+	<md-input-container flex> <label>First name</label> <input ng-model="firstName"> </md-input-container>
 
-	<md-input-container flex> <label>Teacher Contact No</label> <input ng-model="teacher_contact_no"> </md-input-container>
+	<md-input-container flex> <label>Last name</label> <input ng-model="lastName"> </md-input-container>
+
+	<md-input-container flex> <label>Email-id</label> <input ng-model="email_id"> </md-input-container>
+	
+	<md-input-container flex> <label>Contact</label> <input ng-model="contact"> </md-input-container>
+	
+	<md-input-container flex> <label>Address</label> <input ng-model="address"> </md-input-container>
+	
 	<md-button class="md-raised md-primary" ng-click="addTeachers()">Add Teachers </md-button> 
 </div>
+
+<h5><b>Select Teachers before Adding.</b></h5>
 <div>
 	 <md-data-table-container>
 	<table md-data-table class="md-primary" md-row-select="selectedTeachers"
 		md-progress="deferred">
 		<thead>
 			<tr>
-				<th order-by="teacher_name" name="Teacher Name" unit=""></th>
-				<th order-by="teacher_email_id" name="Teacher EMAIL-ID"></th>
-				<th order-by="teacher_contact_no" name="Teacher Contact No."></th>
+				<th order-by="firstName" name="Teacher Name"></th>
+				<th order-by="email_id" name="EMAIL-ID"></th>
+				<th order-by="contact" name="Contact No."></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="a in teachers | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText" ">
-				<td>{{a.teacher_name}}</td>
-				<td>{{a.teacher_email_id}}</td>
-				<td>{{a.teacher_contact_no}}</td>
+				ng-repeat="teacher in teachers | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText" ">
+				<td>{{teacher.firstName}}</td>
+				<td>{{teacher.email_id}}</td>
+				<td>{{teacher.contact}}</td>
 			</tr>
 		</tbody>
 	</table>

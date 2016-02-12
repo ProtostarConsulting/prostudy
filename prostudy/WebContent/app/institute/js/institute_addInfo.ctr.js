@@ -22,45 +22,75 @@ angular.module("prostudyApp").controller(
 						'Institute Student Added!').position("top").hideDelay(
 						3000));
 			};
+			
 			$scope.currentInstID = $stateParams.currentInstID;
-
+			
 			$scope.isDisabled = false;
 			$scope.disableButton = function() {
 				$scope.isDisabled = true;
 			}
+			
 			$scope.students = [];
 			$scope.addStudents = function() {
 				$scope.students.push({
-					'firstName' : $scope.student_name,
-					'email' : $scope.student_email_id,
-					'city' : $scope.student_contact_no
+					'instituteID' : $scope.currentInstID,
+					'institute' : $scope.name,
+					'firstName' : $scope.firstName,
+					'lastName' : $scope.lastName,
+					'email_id' : $scope.email_id,
+					'address' : $scope.address,
+					'contact' : $scope.contact,
+					'role' : "Student"
 				});
-				$scope.student_name = '';
-				$scope.student_email_id = '';
-				$scope.student_contact_no = '';
+				$scope.firstName = '';
+				$scope.lastName = '';
+				$scope.email_id = '';
+				$scope.address = '';
+				$scope.contact = '';
+				$scope.role = '';
 			};
+			
 			$scope.teachers = [];
 			$scope.addTeachers = function() {
 				$scope.teachers.push({
-					'teacher_name' : $scope.teacher_name,
-					'teacher_email_id' : $scope.teacher_email_id,
-					'teacher_contact_no' : $scope.teacher_contact_no
+					'instituteID' : $scope.currentInstID,
+					'institute' : $scope.name,
+					'firstName' : $scope.firstName,
+					'lastName' : $scope.lastName,
+					'email_id' : $scope.email_id,
+					'address' : $scope.address,
+					'contact' : $scope.contact,
+					'role' : "Teacher"
 				});
-				$scope.teacher_name = '';
-				$scope.teacher_email_id = '';
-				$scope.teacher_contact_no = '';
+				$scope.firstName = '';
+				$scope.lastName = '';
+				$scope.email_id = '';
+				$scope.address = '';
+				$scope.contact = '';
+				$scope.role = '';
 			};
+			
 			$scope.admins = [];
 			$scope.addToAdminsList = function() {
 				$scope.admins.push({
-					'admin_name' : $scope.admin_name,
-					'admin_email_id' : $scope.admin_email_id,
-					'admin_contact_no' : $scope.admin_contact_no
+					'instituteID' : $scope.currentInstID,
+					'institute' : $scope.name,
+					'firstName' : $scope.firstName,
+					'lastName' : $scope.lastName,
+					'email_id' : $scope.email_id,
+					'address' : $scope.address,
+					'contact' : $scope.contact,
+					'role' : "Admin"
 				});
-				$scope.admin_name = '';
-				$scope.admin_email_id = '';
-				$scope.admin_contact_no = '';
+				$scope.firstName = '';
+				$scope.lastName = '';
+				$scope.email_id = '';
+				$scope.address = '';
+				$scope.contact = '';
+				$scope.role = '';
 			};
+			
+			
 			$scope.selectedStudents = [];
 			$scope.selectedTeachers = [];
 			$scope.selectedAdmins = [];
@@ -91,6 +121,7 @@ angular.module("prostudyApp").controller(
 			};
 
 			$scope.tempInstitute = {
+				id : "",
 				instituteId : "",
 				name : "",
 				desc : "",
@@ -115,14 +146,17 @@ angular.module("prostudyApp").controller(
 				InstituteService.addInstitute($scope.tempInstitute,
 						$scope.selectedStudents, $scope.selectedAdmins,
 						$scope.selectedTeachers).then(function(msgBean) {
-
+							$log.debug("msgBean.msg:" + msgBean.msg);
 					$log.debug("Inside Ctr addInstitute");
-					$scope.currentInstID = msgBean.instId;
+					$scope.currentInstID = msgBean.id;
+					$scope.name = msgBean.name;
+					$log.debug("$scope.currentInstID :" +$scope.currentInstID);
 					$scope.showSavedToast();
 					$state.go("institute.addAdmins", {
 						currentInstID : $scope.currentInstID
 					});
 					$scope.tempInstitute = {
+						id : "",
 						instituteId : "",
 						name : "",
 						desc : "",
@@ -141,41 +175,53 @@ angular.module("prostudyApp").controller(
 				});
 
 			}
+			
 			$scope.addInstituteTeachers = function() {
-				var InstituteService = appEndpointSF.getInstituteService();
+				var UserService = appEndpointSF.getUserService();
+				
 				$state.go("institute.addStudents", {
 					currentInstID : $scope.currentInstID
 				});
 
-				InstituteService.addInstituteTeachers($scope.currentInstID,
-						$scope.selectedTeachers).then(function(msgBean) {
-					$log.debug("msgBean.msg:" + msgBean.msg);
-					$scope.showTeacherSavedToast();
-
+				for (i = 0; i < $scope.selectedTeachers.length; i++) {
+					UserService.addUser($scope.selectedTeachers[i]).then(function(msgBean) {
+					
 				});
+				}
+
+				$scope.showTeacherSavedToast();
+
 			}
+			
 			$scope.addInstituteAdmins = function() {
-				var InstituteService = appEndpointSF.getInstituteService();
+				var UserService = appEndpointSF.getUserService();
 
 				$state.go("institute.addTeachers", {
 					currentInstID : $scope.currentInstID
 				});
-				InstituteService.addInstituteAdmins($scope.currentInstID,
-						$scope.selectedAdmins).then(function(msgBean) {
-					$log.debug("msgBean.msg:" + msgBean.msg);
-					$scope.showAdminSavedToast();
-
+				
+				for (i = 0; i < $scope.selectedAdmins.length; i++) {
+				UserService.addUser($scope.selectedAdmins[i]).then(function(msgBean) {
+					
 				});
+				}
+
+				$scope.showAdminSavedToast();
+
 			}
+			
+			
 			$scope.addInstituteStudents = function() {
-				var InstituteService = appEndpointSF.getInstituteService();
+				var UserService = appEndpointSF.getUserService();
 
-				InstituteService.addInstituteStudents($scope.currentInstID,
-						$scope.selectedStudents).then(function(msgBean) {
-					$log.debug("msgBean.msg:" + msgBean.msg);
-					$scope.showStudentSavedToast();
-
+				for (i = 0; i < $scope.selectedStudents.length; i++) {
+					UserService.addUser($scope.selectedStudents[i]).then(function(msgBean) {
+					$log.debug("$scope.selectedStudents :" + angular.toJson($scope.selectedStudents));
+					
 				});
+				}
+				$scope.showStudentSavedToast();
+
 				$state.go("institute.list");
 			}
 
@@ -192,17 +238,7 @@ angular.module("prostudyApp").controller(
 			}
 
 			$scope.getPracticeExams();
-			/*
-			 * $scope.getBooks = function() {
-			 * 
-			 * var BookService = appEndpointSF.getBookService();
-			 * 
-			 * BookService.getBooks().then( function(bookList) {
-			 * 
-			 * $scope.books = bookList;
-			 * 
-			 * }); } $scope.getBooks();
-			 */
+			
 			$scope.getInstitutes = function() {
 
 				var InstituteService = appEndpointSF.getInstituteService();
