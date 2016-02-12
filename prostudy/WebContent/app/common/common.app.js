@@ -1,11 +1,9 @@
 var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
 		'ngMessages', "xeditable", "ui.bootstrap", "ui.router",
-		'md.data.table', 'ngResource', 'textAngular', 'ngRoute', 'ngStorage',
+		'md.data.table', 'ngResource', 'textAngular', 'ngRoute', 'ngStorage', "ngAria",
 		'directive.g+signin' ]);
 
 app.constant('standardList', ["5th", "6th", "7th", "8th", "9th", "10th"]);
-app.constant('boardList', ["State Board", "CBSE", "ICSE"]);
-app.constant('subjectList', ["Mathematics", "English", "Computer Fundamentals","History","Hindi","Marathi","Science"]);
 
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette(
@@ -174,6 +172,30 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/attendance",
 		templateUrl : '/app/attendance/attendance_module.html',
 		controller : 'attendanceModuleCtr'
+	}).state('attendance.add', {
+		url : "/addAttendance",
+		templateUrl : '/app/attendance/attendance_add.html',
+		controller : 'attendanceAddCtr'
+	}).state('attendance.reportByStudent', {
+		url : "/attendanceReportbyStudent",
+		templateUrl : '/app/attendance/attendance_reportByStudent.html',
+		controller : 'reportByStudentCtr'
+	}).state('attendance.reportBySubjectClass', {
+		url : "/attendanceReportbyClass",
+		templateUrl : '/app/attendance/attendance_reportBySubjectClass.html',
+		controller : 'reportBySubjectClassCtr',  
+		params : {
+				 newPresentCount : null,
+				 newAbsentCount : null
+				  }
+	}).state('attendance.reportDisplay', {
+		url : "/attendanceReportDisplay",
+		templateUrl : '/app/attendance/reportDisplay.html',
+		controller : 'reportDisplayCtr',
+		params : {
+				 newPresentCount : null,
+				 newAbsentCount : null
+				  }
 	}).state('report', {
 		url : "/report",
 		templateUrl : '/app/report/report_module.html',
