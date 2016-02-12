@@ -9,6 +9,7 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
+import com.protostar.prostudy.entity.AttendanceEntity;
 import com.protostar.prostudy.entity.UserEntity;
 
 //import com.protostar.prostudy.entity.BookEntity;
@@ -38,4 +39,14 @@ public class UserService {
 		return (list == null || list.size() == 0) ? null : list.get(0);
 	}
 	
+	@ApiMethod(name = "getUserByInstitute")
+	 public List<UserEntity> getUserByInstitute(@Named("instituteID") Long instituteID) {
+		System.out.println("inside getUserByInstitute");
+	  List<UserEntity> userList = ofy().load().type(UserEntity.class).filter("instituteID", instituteID).list();
+	  return userList;
+	  
+	 }
+
+	
+
 }
