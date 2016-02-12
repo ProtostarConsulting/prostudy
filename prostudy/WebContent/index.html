@@ -1,375 +1,297 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="prostudyApp" ng-controller="indexCtr">
-	<head>
-		<title>ProStudy App</title>
-		<meta name="viewport" content="initial-scale=1" />
+<head>
+<title>ProStudy App</title>
+<meta name="viewport" content="initial-scale=1" />
 
-		<link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
-		<link rel="stylesheet" href="/lib/base/css/googleapi.roboto.css">
-		<link rel="stylesheet" href="/lib/base/css/font-awesome.css">
-		<link rel="stylesheet" href="/lib/base/css/xeditable.css">
-		<link rel="stylesheet" href="/lib/base/css/bootstrap.min.css">
-		<link rel="stylesheet" href="/lib/base/css/md-data-table.min.css">
-		<link rel="stylesheet" href="/lib/base/css/textAngular.css">
-	</head>
-	<body layout="column">
-		<!-- <div layout="column" layout-fill> -->
-		<md-content>
-			<!-- Top Navigation Pane -->
-			<md-toolbar>
-				<div class="md-toolbar-tools">
-					<span hide-sm>ProStudy - Where learning meets teaching, self
-						study, tutorials and practice!</span><span hide-gt-sm>ProStudy</span>
-					<!-- fill up the space between left and right area -->
-					<span flex></span>
-					<section layout="row">
-						
-						<md-button aria-label="Login" ng-hide="curUser !== null" ng-show="curUser == null"
-						ng-click="loginClick()">
-							Login
-							<md-tooltip>
-								Login
-							</md-tooltip>
-						</md-button>
-						
+<link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
+<link rel="stylesheet" href="/lib/base/css/googleapi.roboto.css">
+<link rel="stylesheet" href="/lib/base/css/font-awesome.css">
+<link rel="stylesheet" href="/lib/base/css/xeditable.css">
+<link rel="stylesheet" href="/lib/base/css/bootstrap.min.css">
+<link rel="stylesheet" href="/lib/base/css/md-data-table.min.css">
+<link rel="stylesheet" href="/lib/base/css/textAngular.css">
+</head>
+<body layout="column">
+	<!-- <div layout="column" layout-fill> -->
+	<md-content> <!-- Top Navigation Pane --> <md-toolbar>
+	<div class="md-toolbar-tools">
+		<span hide-sm>ProStudy - Where learning meets teaching, self
+			study, tutorials and practice!</span><span hide-gt-sm>ProStudy</span>
+		<!-- fill up the space between left and right area -->
+		<span flex></span>
+		<section layout="row">
 
-						<md-button aria-label="Logout" ng-hide="curUser == null"
-						ng-click="signOut()">
-							Logout
-							<md-tooltip>
-								{{ googleUser.getName() + "|" + googleUser.getEmail()}}
-							</md-tooltip>
-						</md-button>
+			<md-button aria-label="Login" ng-hide="curUser !== null"
+				ng-show="curUser == null" ng-click="loginClick()"> Login
+			<md-tooltip> Login </md-tooltip> </md-button>
 
-						<md-button class="md-icon-button" aria-label="More"
-						ng-click="toggleRight()">
-							<md-icon
-							md-svg-icon="img/icons/more_vert.svg"></md-icon>
-						</md-button>
 
-						<img ng-show="true" ngf-src="googleUser.getImageUrl()" class="thumb">
-						<md-button aria-label="Open Settings"
-						ng-click="showListBottomSheet($event)">
-							<md-tooltip>
-								{{ googleUser.getName() + "|" + googleUser.getEmail()}}
-							</md-tooltip>
-							<ng-md-icon icon="more_vert"></ng-md-icon>
-						</md-button>
-					</section>
-				</div>
-			</md-toolbar>
+			<md-button aria-label="Logout" ng-hide="curUser == null"
+				ng-click="signOut()"> Logout <md-tooltip>
+			{{ googleUser.getName() + "|" + googleUser.getEmail()}} </md-tooltip> </md-button>
 
-			<div ng-controller="AppCtrl">
-				<section layout="row" flex>
-					<!-- Left Navigation Pane -->
-					<md-sidenav class="md-sidenav-left md-whiteframe-z2"
-					md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-						<md-toolbar class="md-theme-indigo">
-							<h1 class="md-toolbar-tools">Apps Module</h1>
-						</md-toolbar>
-						<md-content layout="column" ng-controller="LeftCtrl">
-							<md-button class="md-primary" ng-click="close()" hide-gt-md>
-								Close Sidenav
-							</md-button>
-							<md-button ui-sref="home" ng-click="close()"
-							class="md-primary" show-gt-md>
-								Home
-							</md-button>
-							<md-button
-							ui-sref="student"
-							ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher'  || curUser.role == 'Student'"
-													ng-click="close()" class="md-primary" show-gt-md>
-								Student
-							</md-button>
-							<md-button ui-sref="exam"
-							ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-							ng-click="close()" class="md-primary" show-gt-md>
-								Exam
-							</md-button>
-							<md-button ui-sref="institute"
-							ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'" ng-click="close()"
-							class="md-primary" show-gt-md>
-								Institute
-							</md-button>
-							<md-button
-							ui-sref="report" ng-show="curUser.role == 'Admin'"
-							ng-click="close()" class="md-primary" show-gt-md>
-								Report
-							</md-button>
-							
-							<md-button ui-sref="chapter"
-							ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-							ng-click="close()" class="md-primary" show-gt-md>Chapter
-							</md-button>
-							
-							<md-button ui-sref="book"
-							ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-							ng-click="close()" class="md-primary" show-gt-md>Book
-							</md-button>
-							
-				<!-- 			<md-button ui-sref="chapter" ng-click="close()" class="md-primary" show-gt-md>Chapter</md-button>
-							<md-button ui-sref="book" ng-click="close()" class="md-primary" show-gt-md>Book</md-button> -->
-							
-							<md-button ui-sref="syllabus" ng-click="close()" class="md-primary" show-gt-md>Syllabus</md-button>
-							
-							<md-button ui-sref="myBooks" ng-show="curUser.role == 'Student'"
-							ng-click="close()" class="md-primary" show-gt-md>
-								My Books
-							</md-button>
-							<md-button ui-sref="myPracticeExams" ng-show="curUser.role == 'Student'"
-							ng-click="close()" class="md-primary" show-gt-md>
-								My Practice Exams
-							</md-button>
-							<md-button aria-label="Login" ng-hide="curUser == null"
-							ng-click="loginClick()">
-								<a ui-sref="updatemyprofile">Edit
-								profile </a>
-							</md-button>
+			<md-button class="md-icon-button" aria-label="More"
+				ng-click="toggleRight()"> <md-icon
+				md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
 
-						</md-content>
-					</md-sidenav>
-		</md-content> </md-sidenav>
-
-		<md-content flex layout-padding>
-			<div class="md-toolbar-tools" hide-gt-md>
-				<div>
-					<md-button ng-click="toggleLeft()" class="md-fab md-mini"
-					aria-label="Mini FAB" hide-gt-md>
-						<md-icon
-						md-svg-src="img/icons/menu.svg"></md-icon>
-					</md-button>
-				</div>
-			</div>
-			<md-card>
-				<div layout="column" layout-align="top stretch">
-					<!--<div ng-view></div>-->
-					<div ui-view>
-						<!--This is the center page of all main modules for the index module. -->
-					</div>
-					<p>
-						&nbsp;
-					</p>
-					<p>
-						&nbsp;
-					</p>
-					<p>
-						&nbsp;
-					</p>
-					<p>
-						&nbsp;
-					</p>
-					<p>
-						&nbsp;
-					</p>
-					<p>
-						&nbsp;
-					</p>
-					<p>
-						&nbsp;
-					</p>
-					<p>
-						&nbsp;
-					</p>
-					<p>
-						&nbsp;
-					</p>
-				</div>
-			</md-card>
-			<!--This is a botton section of the app-->
-			<md-divider></md-divider>
-			<md-card>
-
-				<div layout="row" layout-wrap>
-					<div>
-						<a>Tihs is link one </a><a>Tihs is link one </a><a>Tihs is
-						link one </a><a>Tihs is link one </a><a>Tihs is link one </a><a>Tihs
-						is link one </a><a>Tihs is link one </a><a>Tihs is link one </a>
-					</div>
-					<div>
-						<a>Tihs is link two </a><a>Tihs is link two </a><a>Tihs is
-						link two </a><a>Tihs is link two </a><a>Tihs is link two </a><a>Tihs
-						is link two </a><a>Tihs is link two </a><a>Tihs is link two </a>
-					</div>
-					<div>
-						<a>Tihs is link three </a><a>Tihs is link three </a><a>Tihs
-						is link three </a><a>Tihs is link three </a><a>Tihs is link
-						three </a><a>Tihs is link three </a><a>Tihs is link three </a><a>Tihs
-						is link three </a>
-					</div>
-					<div>
-						<a>Tihs is link four </a><a>Tihs is link four </a><a>Tihs is
-						link four </a><a>Tihs is link four </a>
-						<md-button class="md-icon-button md-accent" aria-label="Favorite">
-							<md-icon md-font-icon="icon-home" ng-class="font.theme"
-							class="step"></md-icon>
-						</md-button>
-						<a>Tihs is link four </a><a>Tihs is link four </a><a>Tihs is
-						link four </a><a>Tihs is link four </a>
-						<md-switch ng-model="isActive" aria-label="Finished?">
-							Finished ?
-						</md-switch>
-						<md-switch md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
-							No Ink Effects
-						</md-switch>
-						<md-switch ng-disabled="true" ng-model="isDisabled"
-						aria-label="Disabled">
-							Disabled
-						</md-switch>
-					</div>
-				</div>
-				<div layout="row" layout-sm="column">
-					<div flex>
-						<md-button class="md-primary">
-							Click me
-						</md-button>
-						<md-button class="md-accent">
-							or maybe me
-						</md-button>
-						<md-button class="md-warn">
-							Careful
-						</md-button>
-						I'm above on mobile, and to the left on larger devices.
-					</div>
-					<div flex>
-						I'm below on mobile, and to the right on larger devices.
-						<md-button class="md-primary">
-							Click me
-						</md-button>
-						<md-button class="md-primary md-hue-1">
-							Click me
-						</md-button>
-						<md-button class="md-primary md-hue-2">
-							Click me
-						</md-button>
-					</div>
-				</div>
-				<div>
-					<md-button ng-click="openBottomSheet()">
-						Open a Bottom
-						Sheet!
-					</md-button>
-				</div>
-				<!--End---This is a botton section of the app-->
-			</md-card>
-		</md-content>
-
+			<img ng-show="true" ngf-src="googleUser.getImageUrl()" class="thumb">
+			<md-button aria-label="Open Settings"
+				ng-click="showListBottomSheet($event)"> <md-tooltip>
+			{{ googleUser.getName() + "|" + googleUser.getEmail()}} </md-tooltip> <ng-md-icon
+				icon="more_vert"></ng-md-icon> </md-button>
 		</section>
+	</div>
+	</md-toolbar>
+
+	<div ng-controller="AppCtrl">
+		<section layout="row" flex>
+			<!-- Left Navigation Pane -->
+			<md-sidenav class="md-sidenav-left md-whiteframe-z2"
+				md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+			<md-toolbar class="md-theme-indigo">
+			<h1 class="md-toolbar-tools">Apps Module</h1>
+			</md-toolbar> <md-content layout="column" ng-controller="LeftCtrl"> <md-button
+				class="md-primary" ng-click="close()" hide-gt-md> Close
+			Sidenav </md-button> <md-button ui-sref="home" ng-click="close()"
+				class="md-primary" show-gt-md> Home </md-button> <md-button
+				ui-sref="student"
+				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher'  || curUser.role == 'Student'"
+				ng-click="close()" class="md-primary" show-gt-md>
+			Student </md-button> <md-button ui-sref="exam"
+				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
+				ng-click="close()" class="md-primary" show-gt-md> Exam </md-button>
+			<md-button ui-sref="institute"
+				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
+				ng-click="close()" class="md-primary" show-gt-md>
+			Institute </md-button> <md-button ui-sref="report"
+				ng-show="curUser.role == 'Admin'" ng-click="close()"
+				class="md-primary" show-gt-md> Report </md-button> <md-button
+				ui-sref="chapter"
+				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
+				ng-click="close()" class="md-primary" show-gt-md>Chapter
+			</md-button> <md-button ui-sref="book"
+				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
+				ng-click="close()" class="md-primary" show-gt-md>Book </md-button> <md-button
+				ui-sref="syllabus" ng-click="close()" class="md-primary" show-gt-md>Syllabus</md-button>
+			<md-button ui-sref="myBooks" ng-show="curUser.role == 'Student'"
+				ng-click="close()" class="md-primary" show-gt-md> My
+			Books </md-button> <md-button ui-sref="myPracticeExams"
+				ng-show="curUser.role == 'Student'" ng-click="close()"
+				class="md-primary" show-gt-md> My Practice Exams </md-button> <md-button
+				aria-label="Login" ng-hide="curUser == null" ng-click="loginClick()">
+			<a ui-sref="updatemyprofile">Edit profile </a> </md-button> <md-button
+				ui-sref="attendance"
+				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
+				ng-click="close()" class="md-primary" show-gt-md>
+			Attendance </md-button> </md-content> </md-sidenav>
+	</md-content>
+	</md-sidenav>
+
+	<md-content flex layout-padding>
+	<div class="md-toolbar-tools" hide-gt-md>
+		<div>
+			<md-button ng-click="toggleLeft()" class="md-fab md-mini"
+				aria-label="Mini FAB" hide-gt-md> <md-icon
+				md-svg-src="img/icons/menu.svg"></md-icon> </md-button>
 		</div>
+	</div>
+	<md-card>
+	<div layout="column" layout-align="top stretch">
+		<!--<div ng-view></div>-->
+		<div ui-view>
+			<!--This is the center page of all main modules for the index module. -->
+		</div>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+	</div>
+	</md-card> <!--This is a botton section of the app--> <md-divider></md-divider> <md-card>
 
-		</md-content>
+	<div layout="row" layout-wrap>
+		<div>
+			<a>Tihs is link one </a><a>Tihs is link one </a><a>Tihs is link
+				one </a><a>Tihs is link one </a><a>Tihs is link one </a><a>Tihs is
+				link one </a><a>Tihs is link one </a><a>Tihs is link one </a>
+		</div>
+		<div>
+			<a>Tihs is link two </a><a>Tihs is link two </a><a>Tihs is link
+				two </a><a>Tihs is link two </a><a>Tihs is link two </a><a>Tihs is
+				link two </a><a>Tihs is link two </a><a>Tihs is link two </a>
+		</div>
+		<div>
+			<a>Tihs is link three </a><a>Tihs is link three </a><a>Tihs is
+				link three </a><a>Tihs is link three </a><a>Tihs is link three </a><a>Tihs
+				is link three </a><a>Tihs is link three </a><a>Tihs is link three </a>
+		</div>
+		<div>
+			<a>Tihs is link four </a><a>Tihs is link four </a><a>Tihs is link
+				four </a><a>Tihs is link four </a>
+			<md-button class="md-icon-button md-accent" aria-label="Favorite">
+			<md-icon md-font-icon="icon-home" ng-class="font.theme" class="step"></md-icon>
+			</md-button>
+			<a>Tihs is link four </a><a>Tihs is link four </a><a>Tihs is link
+				four </a><a>Tihs is link four </a>
+			<md-switch ng-model="isActive" aria-label="Finished?">
+			Finished ? </md-switch>
+			<md-switch md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+			No Ink Effects </md-switch>
+			<md-switch ng-disabled="true" ng-model="isDisabled"
+				aria-label="Disabled"> Disabled </md-switch>
+		</div>
+	</div>
+	<div layout="row" layout-sm="column">
+		<div flex>
+			<md-button class="md-primary"> Click me </md-button>
+			<md-button class="md-accent"> or maybe me </md-button>
+			<md-button class="md-warn"> Careful </md-button>
+			I'm above on mobile, and to the left on larger devices.
+		</div>
+		<div flex>
+			I'm below on mobile, and to the right on larger devices.
+			<md-button class="md-primary"> Click me </md-button>
+			<md-button class="md-primary md-hue-1"> Click me </md-button>
+			<md-button class="md-primary md-hue-2"> Click me </md-button>
+		</div>
+	</div>
+	<div>
+		<md-button ng-click="openBottomSheet()"> Open a Bottom
+		Sheet! </md-button>
+	</div>
+	<!--End---This is a botton section of the app--> </md-card> </md-content>
 
-		<!-- All JS Dependencies -->
-		<script src="/lib/base/jquery.min.js"></script>
-		<script src="/lib/base/bootstrap.min.js"></script>
-		<!-- <script src="/lib/base/google-plus-signin.js"></script> -->		
+	</section>
+	</div>
 
-		<!-- Angular Material Dependencies -->
-		<script src="/lib/base/angular.min.js"></script>
-		<script src="/lib/base/angular-animate.min.js"></script>
-		<script src="/lib/base/angular-route.min.js"></script>
-		<script src="/lib/base/angular-aria.min.js"></script>
-		<script src="/lib/base/angular-messages.min.js"></script>
-		<script src="/lib/base/angular-resource.min.js"></script>
-		<script src="/lib/base/angular-material-icons.min.js"></script>
+	</md-content>
 
-		<script src="/lib/base/angular-material.min.js"></script>
-		<script src="/lib/base/md-data-table.min.js"></script>
+	<!-- All JS Dependencies -->
+	<script src="/lib/base/jquery.min.js"></script>
+	<script src="/lib/base/bootstrap.min.js"></script>
 
-		<script src="/lib/base/ui-bootstrap-tpls.min.js"></script>
-		<script src="/lib/base/angular-ui-router.min.js"></script>
-		<script src="/lib/base/xeditable.js"></script>
-		<script src="/lib/base/textAngular-rangy.min.js"></script>
-		<script src="/lib/base/textAngular-sanitize.min.js"></script>
-		<script src="/lib/base/textAngular.min.js"></script>
-		<script src="/lib/base/ngStorage.min.js"></script>
+	<script type="text/javascript"
+		src="https://www.gstatic.com/charts/loader.js"></script>
+	<!-- <script src="/lib/base/google-plus-signin.js"></script> -->
 
-		<script src="/lib/base/google-plus-signin.js"></script>
+	<!-- Angular Material Dependencies -->
+	<script src="/lib/base/angular.min.js"></script>
+	<script src="/lib/base/angular-animate.min.js"></script>
+	<script src="/lib/base/angular-route.min.js"></script>
+	<script src="/lib/base/angular-aria.min.js"></script>
+	<script src="/lib/base/angular-messages.min.js"></script>
+	<script src="/lib/base/angular-resource.min.js"></script>
+	<script src="/lib/base/angular-material-icons.min.js"></script>
 
+	<script src="/lib/base/angular-material.min.js"></script>
+	<script src="/lib/base/md-data-table.min.js"></script>
 
-		<!--<script src="/lib/base/googleapi.client.js"></script>-->
-		<script src="https://apis.google.com/js/client.js"></script>
+	<script src="/lib/base/ui-bootstrap-tpls.min.js"></script>
+	<script src="/lib/base/angular-ui-router.min.js"></script>
+	<script src="/lib/base/xeditable.js"></script>
+	<script src="/lib/base/textAngular-rangy.min.js"></script>
+	<script src="/lib/base/textAngular-sanitize.min.js"></script>
+	<script src="/lib/base/textAngular.min.js"></script>
+	<script src="/lib/base/ngStorage.min.js"></script>
 
-		<!-- App JS Dependencies -->
-		<script src="/app/common/common.app.js"></script>
-
-		<!-- Load other view/service/controllers files-->
-		<script src="/app/common/app.object.service.js"></script>
-		<script src="/app/common/app.localdb.endpoint.service.js"></script>
-		<script src="/app/common/app.google.endpoint.service.js"></script>
-		<script src="/app/common/app.endpoint.service.js"></script>
-
-		<script src="index.ctr.js"></script>
-		<script src="/app/login/js/login_module.ctr.js"></script>
-	      <script src="/app/login/js/newUser_student.ctr.js"></script>
-		<script src="/home.ctr.js"></script>
-		
-			<script src="/app/chapter/js/chapter_module.ctr.js"></script>
-		<script src="/app/chapter/js/chapter_add.ctr.js"></script>
-		<script src="/app/chapter/js/chapter_view.ctr.js"></script>
-		<script src="/app/chapter/js/chapter_edit.ctr.js"></script>
-		
-		<script src="/app/book/js/book_module.ctr.js"></script>
-		<script src="/app/book/js/book_add.ctr.js"></script>
-		<script src="/app/book/js/book_list.ctr.js"></script>
-		<script src="/app/book/js/book_chapterList.ctr.js"></script>
-		<script src="/app/book/js/book_viewChapterContent.ctr.js"></script>
-		
-		<script src="/app/book/js/standard_Book.ctr.js"></script>
-		<script src="/app/book/js/standard_chapterList.ctr.js"></script>
-		<script src="/app/book/js/standard_viewChapterContent.ctr.js"></script>
-
-		<script src="/app/myBooks/js/myBooks_module.ctr.js"></script>		
-		
-
-		<script src="/app/student/js/student_module.ctr.js"></script>
-		<script src="/app/student/js/student.ctr.js"></script>
-		<script src="/app/student/js/student.list.ctr.js"></script>
-
-		<script src="/app/exam/js/exam_module.ctr.js"></script>
-
-		<script src="/app/question/js/question.ctr.js"></script>
-		
-		<script src="/app/exam/js/questionlist.ctr.js"></script>
-		<script src="/app/exam/js/practiceExam_add.ctr.js"></script>
-		<script src="/app/exam/js/newQuestion_add.ctr.js"></script>
-		<script src="/app/exam/js/question_edit.ctr.js"></script>
-		<script src="/app/exam/js/exam_module.ctr.js"></script>
-		<script src="/app/exam/js/practiceExamList.ctr.js"></script>
-		<script src="/app/exam/js/practiceExamTest.ctr.js"></script>
-		<script src="/app/exam/js/practiceExam_edit.ctr.js"></script>
-		<script src="/app/exam/js/practiceExamList.ctr.js"></script>
-		<script src="/app/exam/js/practiceExamResult.ctr.js"></script>
-		<script src="/app/exam/js/userQuesAnsView.ctr.js"></script>
-
-
-		<script src="/app/examdemo/js/examdemo_module.ctr.js"></script>
-		<script src="/app/examdemo/js/examdemo_science.ctr.js"></script>
-		<script src="/app/examdemo/js/examdemo_math.ctr.js"></script>
-
-		<script src="/app/myprofile/js/myprofile_update.ctr.js"></script>
+	<script src="/lib/base/google-plus-signin.js"></script>
 
 
-		<script src="/app/institute/js/institute_module.ctr.js"></script>
-		<script src="/app/institute/js/institute_view.ctr.js"></script>
-		<script src="/app/institute/js/institute_addInfo.ctr.js"></script>
-		<script src="/app/institute/js/institute.list.ctr.js"></script>
-	
-		<script src="/app/report/js/report_module.ctr.js"></script>
-		<script src="/app/report/js/display_report.ctr.js"></script>
+	<!--<script src="/lib/base/googleapi.client.js"></script>-->
+	<script src="https://apis.google.com/js/client.js"></script>
 
-	
-		<script src="/app/myPracticeExams/js/myPracticeExams_module.ctr.js"></script>
-		
+	<!-- App JS Dependencies -->
+	<script src="/app/common/common.app.js"></script>
 
-		<script src="/app/test/js/table.demo.data.service.js"></script>
-		<script src="/app/demo/js/table.demo.withservice.ctr2.js"></script>
-	
-		<script src="/app/syllabus/js/syllabus_module.ctr.js"></script> 
-		<script src="/app/syllabus/js/syllabus_add.ctr.js"></script> 
-		<script src="/app/syllabus/js/syllabus_view.ctr.js"></script> 
-		<script src="/app/syllabus/js/syllabus_list.ctr.js"></script> 
+	<!-- Load other view/service/controllers files-->
+	<script src="/app/common/app.object.service.js"></script>
+	<script src="/app/common/app.localdb.endpoint.service.js"></script>
+	<script src="/app/common/app.google.endpoint.service.js"></script>
+	<script src="/app/common/app.endpoint.service.js"></script>
 
-	
+	<script src="index.ctr.js"></script>
+	<script src="/app/login/js/login_module.ctr.js"></script>
+	<script src="/app/login/js/newUser_student.ctr.js"></script>
+	<script src="/home.ctr.js"></script>
 
-	</body>
+	<script src="/app/chapter/js/chapter_module.ctr.js"></script>
+	<script src="/app/chapter/js/chapter_add.ctr.js"></script>
+	<script src="/app/chapter/js/chapter_view.ctr.js"></script>
+	<script src="/app/chapter/js/chapter_edit.ctr.js"></script>
+
+	<script src="/app/book/js/book_module.ctr.js"></script>
+	<script src="/app/book/js/book_add.ctr.js"></script>
+	<script src="/app/book/js/book_list.ctr.js"></script>
+	<script src="/app/book/js/book_chapterList.ctr.js"></script>
+	<script src="/app/book/js/book_viewChapterContent.ctr.js"></script>
+
+	<script src="/app/book/js/standard_Book.ctr.js"></script>
+	<script src="/app/book/js/standard_chapterList.ctr.js"></script>
+	<script src="/app/book/js/standard_viewChapterContent.ctr.js"></script>
+
+	<script src="/app/myBooks/js/myBooks_module.ctr.js"></script>
+
+
+	<script src="/app/student/js/student_module.ctr.js"></script>
+	<script src="/app/student/js/student.ctr.js"></script>
+	<script src="/app/student/js/student.list.ctr.js"></script>
+
+	<script src="/app/attendance/js/attendance_module.ctr.js"></script>
+	<script src="/app/attendance/js/attendance_add.ctr.js"></script>
+	<script src="/app/attendance/js/attendance_reportByStudent.ctr.js"></script>
+	<script src="/app/attendance/js/attendance_reportBySubjectClass.ctr.js"></script>
+	<script src="/app/attendance/js/reportDisplay.ctr.js"></script>
+
+	<script src="/app/exam/js/exam_module.ctr.js"></script>
+
+	<script src="/app/question/js/question.ctr.js"></script>
+
+	<script src="/app/exam/js/questionlist.ctr.js"></script>
+	<script src="/app/exam/js/practiceExam_add.ctr.js"></script>
+	<script src="/app/exam/js/newQuestion_add.ctr.js"></script>
+	<script src="/app/exam/js/question_edit.ctr.js"></script>
+	<script src="/app/exam/js/exam_module.ctr.js"></script>
+	<script src="/app/exam/js/practiceExamList.ctr.js"></script>
+	<script src="/app/exam/js/practiceExamTest.ctr.js"></script>
+	<script src="/app/exam/js/practiceExam_edit.ctr.js"></script>
+	<script src="/app/exam/js/practiceExamList.ctr.js"></script>
+	<script src="/app/exam/js/practiceExamResult.ctr.js"></script>
+	<script src="/app/exam/js/userQuesAnsView.ctr.js"></script>
+
+
+	<script src="/app/examdemo/js/examdemo_module.ctr.js"></script>
+	<script src="/app/examdemo/js/examdemo_science.ctr.js"></script>
+	<script src="/app/examdemo/js/examdemo_math.ctr.js"></script>
+
+	<script src="/app/myprofile/js/myprofile_update.ctr.js"></script>
+
+
+	<script src="/app/institute/js/institute_module.ctr.js"></script>
+	<script src="/app/institute/js/institute_view.ctr.js"></script>
+	<script src="/app/institute/js/institute_addInfo.ctr.js"></script>
+	<script src="/app/institute/js/institute.list.ctr.js"></script>
+
+	<script src="/app/report/js/report_module.ctr.js"></script>
+	<script src="/app/report/js/display_report.ctr.js"></script>
+
+
+	<script src="/app/myPracticeExams/js/myPracticeExams_module.ctr.js"></script>
+
+
+	<script src="/app/test/js/table.demo.data.service.js"></script>
+	<script src="/app/demo/js/table.demo.withservice.ctr2.js"></script>
+
+	<script src="/app/syllabus/js/syllabus_module.ctr.js"></script>
+	<script src="/app/syllabus/js/syllabus_add.ctr.js"></script>
+	<script src="/app/syllabus/js/syllabus_view.ctr.js"></script>
+	<script src="/app/syllabus/js/syllabus_list.ctr.js"></script>
+
+
+
+</body>
 </html>
