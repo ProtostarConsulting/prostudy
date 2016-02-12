@@ -1,0 +1,76 @@
+
+
+<div layout-align="center center">
+
+	<md-input-container flex> <md-select
+		ng-model="selectedInstitute" placeholder="Select Institute"> <md-option
+		ng-value="institute" ng-repeat="institute in instituteList">{{institute}}</md-option>
+	</md-select> </md-input-container>
+
+
+	<md-input-container flex> <md-select
+		ng-model="selectedClass" placeholder="Select Standard" ng-change="">
+	<md-option ng-value="class" ng-repeat="class in standards">{{class}}</md-option>
+	</md-select> </md-input-container>
+
+	<md-input-container flex> <md-select
+		ng-model="selectedSubject" placeholder="Select Subject"> <md-option>English</md-option>
+	<md-option>Maths</md-option> <md-option>Electronics</md-option> <md-option>Physics</md-option>
+	<md-option>Chemistry</md-option> </md-select> </md-input-container>
+
+</div>
+
+<div layout="row" layout-align="center center">
+	<md-button class="md-raised md-primary" ng-click="getReport()">Get
+	Report</md-button>
+</div>
+
+<div>
+
+	<md-data-table-container>
+	<table md-data-table class="md-primary" md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onorderchange">
+			<tr>
+				<th order-by="studID" name="ID" unit=""></th>
+				<th order-by="attendance" name="Attendance"></th>
+
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="item in newStudList | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+				<td>{{item.studID}}</td>
+				<td>{{item.attendance}}</td>
+
+			</tr>
+		</tbody>
+	</table>
+	</md-data-table-container>
+
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{newStudList.length}} md-trigger="onpagechange"></md-data-table-pagination>
+</div>
+
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+<div layout="row" layout-align="center center">
+	<md-button class="md-raised md-primary"
+		ng-click="getNewDataFromServer()">Get New Data</md-button>
+</div>
+
+
+<div layout="row" layout-align="center center">
+	<div id="piechart" style="width: 900px; height: 500px;"></div>
+
+</div>
+
+
