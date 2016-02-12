@@ -21,10 +21,10 @@
 	</div>
 
 	<div layout="row" layout-sm="column" layout-wrap>
-		<div flex="50" ng-repeat="item in array ">
+		<div flex="50" ng-repeat="item in newQues ">
 			<div>
 				<md-content flex layout-padding> <b
-					ng-bind-html="+ (item.quesId+1) +')'+ item.description"></b> </md-content>
+					ng-bind-html="+ (item.qId) +')'+ item.description"></b> </md-content>
 			</div>
 
 			<p>
@@ -84,4 +84,5 @@
 
 	</md-content>
 </section>
+
 

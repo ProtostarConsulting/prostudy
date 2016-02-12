@@ -24,29 +24,32 @@
 				</thead>
 
 				<tbody>
-				<tr md-auto-select ng-repeat="test in practiceTest | orderBy: query.order | filter: {category: searchCategory} | limitTo: query.limit: (query.page - 1) * query.limit">
+
+				
+
+				<tr md-auto-select ng-repeat="test in practiceExams | orderBy: query.order | filter: {category: searchCategory} | limitTo: query.limit: (query.page - 1) * query.limit">
 					
-						<td>{{test.examId}}</td>
+						<td>{{test.id}}</td>
 						<td>{{test.examtitle}}</td>
 						<td>{{test.date}}</td>
 						<td>{{test.category}}</td>
 						<td><a
-							ui-sref="exam.practiceexamtest({selectedExamId: test.examId})"><md-button
+							ui-sref="exam.practiceexamtest({selectedExamId: test.id})"><md-button
 									class="md-raised md-primary" ng-click="">Start</md-button> </a></td>
 
 						<td><a
-							ui-sref="exam.editpracticeexam({selectedExamId: test.examId})"><md-button
+							ui-sref="exam.editpracticeexam({selectedExamId: test.id})"><md-button
 									class="md-raised md-primary" ng-click="">Edit </md-button> </a></td>
 
 						<td><md-button class="md-raised md-primary"
-								ng-click="addTestToMyList(test.examId)">Add To
+								ng-click="addTestToMyList(test.id)">Add To
 							MyPractice Exam </md-button></td>
 
-						<td><md-button ng-click="like(test.examId)"> <ng-md-icon
-								icon="thumb_up"></ng-md-icon>{{practiceTest[test.examId].likes}}</md-button></td>
+						<td><md-button ng-click="like(test.id)"> <ng-md-icon
+								icon="thumb_up"></ng-md-icon>{{test.likes}}</md-button></td>
 
-						<td><md-button ng-click="dislike(test.examId)"> <ng-md-icon
-								icon="thumb_down"></ng-md-icon>{{practiceTest[test.examId].dislikes}}</md-button></td>
+						<td><md-button ng-click="dislike(test.id)"> <ng-md-icon
+								icon="thumb_down"></ng-md-icon>{{test.dislikes}}</md-button></td>
 
 					</tr>
 				</tbody>
@@ -61,3 +64,4 @@
 	</section>
 	</md-content>
 </div>
+

@@ -13,6 +13,10 @@ angular
 					};
 
 					$log.debug("Inside userQuesAnsViewCtr.........");
+					$scope.selectedExamId = $stateParams.selectedExamId;
+					$log.debug("$stateParams:", $stateParams);
+					$log.debug("$stateParams.selectedExamId:",
+							$stateParams.selectedExamId);
 
 					$scope.curuser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
@@ -25,8 +29,9 @@ angular
 					$scope.Test = [];
 					$scope.examResults = [];
 					$scope.options = [];
-
-					$scope.selectedExamId = $stateParams.selectedExamId;
+					$scope.newQues = [ {
+						qId : ""
+					} ];
 
 					$scope.showselectedExam = function() {
 						var PracticeExamService = appEndpointSF
@@ -39,6 +44,20 @@ angular
 											$scope.Test = practiceTest;
 											$scope.Test.questions.description = $sce
 													.trustAsHtml($scope.Test.questions.description);
+											$scope.newQues = $scope.Test.questions;
+
+											$log
+													.debug("$scope.newQues :"
+															+ angular
+																	.toJson($scope.newQues));
+
+											$scope.newQues[0].qId = 1;
+											for (var i = 1; i < $scope.newQues.length; i++) {
+
+												$scope.newQues[i].qId = $scope.newQues[i - 1].qId + 1;
+
+											}
+
 										});
 
 					}// End of showselectedExam
@@ -66,26 +85,26 @@ angular
 
 						var currentQ = $scope.Test.questions[index];
 						var currentExamResult = $scope.examResults[1];// write
-																		// logic
-																		// got
-																		// get
-																		// correct
-																		// exma
-																		// result
-																		// obj
+						// logic
+						// got
+						// get
+						// correct
+						// exma
+						// result
+						// obj
 						var userOption = currentExamResult.userAns[index].userOption // write
-																						// a
-																						// method
-																						// to
-																						// get
-																						// user
-																						// select
-																						// option
-																						// for
-																						// Q
-																						// currentQ.id
-																						// and
-																						// currentExamResult.id
+						// a
+						// method
+						// to
+						// get
+						// user
+						// select
+						// option
+						// for
+						// Q
+						// currentQ.id
+						// and
+						// currentExamResult.id
 						if (userOption == currOption)
 							return true;
 						else

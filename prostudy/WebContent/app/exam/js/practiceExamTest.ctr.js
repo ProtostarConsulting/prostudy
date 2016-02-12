@@ -12,11 +12,14 @@ angular
 								.hideDelay(3000));
 					};
 
-					$scope.curuser=appEndpointSF.getLocalUserService().getLoggedinUser();
+					$scope.curuser = appEndpointSF.getLocalUserService()
+							.getLoggedinUser();
 					$log.debug("$scope.curuser....................."
 							+ angular.toJson($scope.curuser));
-					/*$scope.curUser = appEndpointSF.getUserService()
-							.getLoggedinUser();*/
+					/*
+					 * $scope.curUser = appEndpointSF.getUserService()
+					 * .getLoggedinUser();
+					 */
 
 					// Code for timer
 					var date = new Date();
@@ -24,7 +27,7 @@ angular
 					$scope.counter = 200;
 					$scope.startTime = null;
 					$scope.endTime = null;
-
+					
 					$scope.currentPage = 0;
 					$scope.totalPages = 0;
 					$scope.itemsPerPage = 4;
@@ -32,13 +35,16 @@ angular
 					$scope.isDisabledPrevious = false;
 					$scope.isDisabledNext = false;
 					$scope.score = 0;
+					$scope.newQues = [ {
+						qId : ""
+					} ];
 					var mytimeout = null;
 
 					$scope.onTimeout = function() {
 						if ($scope.counter === 0) {
 							$scope.$broadcast('timer-stopped', 0);
 							$timeout.cancel(mytimeout);
-							//$state.go("examscore");
+							// $state.go("examscore");
 							return;
 
 						}
@@ -106,9 +112,12 @@ angular
 						}
 						$scope.stopTimer();
 						$scope.addPracticeExamResult();
-						//$state.go("examscore");
-						$state.go('userQuesAnsView',{selectedExamId: $scope.Test.examId , selectedResultId: $scope.examResults.ID });
-						
+						// $state.go("examscore");
+						$state.go('userQuesAnsView', {
+							selectedExamId : $scope.Test.id,
+							selectedResultId : $scope.examResults.ID
+						});
+
 					}
 
 					$scope.getCorrectAnsByQID = function(qID) {
@@ -192,7 +201,6 @@ angular
 					}// end of onPrevious
 
 					$scope.score = 0;
-					
 
 					$scope.getPracticeExams = function() {
 
@@ -236,14 +244,25 @@ angular
 														function(value, index) {
 															return index;
 														});
-												
+
 											}// end of buttonlimit
-											$log.debug("Test len123 :"
-													+ $scope.Test.questions.length);
-											$log.debug("Val123: "+$scope.Test.questions);
-											$scope.tempPracticeExamResult.examTitle = $scope.Test.examtitle;
 											
-											$scope.tempPracticeExamResult.test = $scope.Test.questions; 
+											$scope.newQues = $scope.Test.questions;
+											
+
+											$log.debug("$scope.newQues :"+ angular.toJson($scope.newQues));
+
+										    $scope.newQues[0].qId = 1;
+											 for(var i=1; i<$scope.newQues.length; i++) 
+											 {
+												
+												 $scope.newQues[i].qId = $scope.newQues[i-1].qId + 1;
+												
+											  }
+										
+											$scope.tempPracticeExamResult.examTitle = $scope.Test.examtitle;
+
+											$scope.tempPracticeExamResult.test = $scope.Test.questions;
 
 											$scope.onNext();
 											$scope.isDisabledPrevious = true;
@@ -251,16 +270,15 @@ angular
 
 					}// End of showselectedExam
 
-					/*for(var i=0;i<$scope.Test.questions.length;i++)
-					{
-						if($scope.Test.questions[i].quesId == $scope.examResults[i].userAns.qID)
-						{
-							$scope.Test.questions[i].userOption = $scope.examResults[i].userAns.userOption;
-						}
-						
-					}
-					*/
-					
+					/*
+					 * for(var i=0;i<$scope.Test.questions.length;i++) {
+					 * if($scope.Test.questions[i].quesId ==
+					 * $scope.examResults[i].userAns.qID) {
+					 * $scope.Test.questions[i].userOption =
+					 * $scope.examResults[i].userAns.userOption; }
+					 *  }
+					 */
+
 					$scope.questions = [];
 					$scope.practiceTest = [];
 					$scope.Test = [];
@@ -274,8 +292,7 @@ angular
 					 * if($scope.isQuestionAnswered(id)){
 					 * $scope.removeUserQuestionAnswered(id); }
 					 * 
-					 * $scope.userAnsList.push({qID: id, userOption:optionId});
-					 *  };
+					 * $scope.userAnsList.push({qID: id, userOption:optionId}); };
 					 */
 
 					$scope.getPracticeExamResultbyID = function() {
@@ -293,55 +310,55 @@ angular
 
 										});
 					}
-					
+
 					$scope.tempPracticeExamResult = {
-							
-							ID : "",
-							examTitle : "",
-							userId : $scope.curUser.email_id,
-							userName : $scope.curUser.firstName,
-							startTime : "",
-							endTime : "",
-							score : $scope.score,
-							userAns : $scope.userAnsList,
-							test :""
 
-						}
+						ID : "",
+						examTitle : "",
+						userId : $scope.curUser.email_id,
+						userName : $scope.curUser.firstName,
+						startTime : "",
+						endTime : "",
+						score : $scope.score,
+						userAns : $scope.userAnsList,
+						test : ""
 
-						$scope.addPracticeExamResult = function() {
-							$log.debug("No1");
-							var PracticeExamResultService = appEndpointSF
-									.getPracticeExamResultService();
+					}
 
-							PracticeExamResultService
-									.addPracticeExamResult(
-											$scope.tempPracticeExamResult)
-									.then(
-											function(msgBean) {
+					$scope.addPracticeExamResult = function() {
+						$log.debug("No1");
+						var PracticeExamResultService = appEndpointSF
+								.getPracticeExamResultService();
 
-												$log.debug("No6");
-												$log
-														.debug("Inside Ctr practiceExamTestCtr");
-												$log.debug("Ans :"
-														+ $scope.userAnsList);
-												$log.debug("msgBean.msg:"
-														+ msgBean.msg);
-												$scope.showSavedToast();
-												$scope.tempPracticeExamResult = {
-													ID : "",
-													examTitle : "",
-													userId : "",
-													userName : "",
-													startTime : "",
-													endTime : "",
-													score : "",
-													userAns : "",
-													test :""
-												};
-											});
+						PracticeExamResultService
+								.addPracticeExamResult(
+										$scope.tempPracticeExamResult)
+								.then(
+										function(msgBean) {
 
-							$log.debug("No4");
-						} // End of addPracticeExamResult
+											$log.debug("No6");
+											$log
+													.debug("Inside Ctr practiceExamTestCtr");
+											$log.debug("Ans :"
+													+ $scope.userAnsList);
+											$log.debug("msgBean.msg:"
+													+ msgBean.msg);
+											$scope.showSavedToast();
+											$scope.tempPracticeExamResult = {
+												ID : "",
+												examTitle : "",
+												userId : "",
+												userName : "",
+												startTime : "",
+												endTime : "",
+												score : "",
+												userAns : "",
+												test : ""
+											};
+										});
+
+						$log.debug("No4");
+					} // End of addPracticeExamResult
 
 					$scope.getPracticeExamResultbyID();
 

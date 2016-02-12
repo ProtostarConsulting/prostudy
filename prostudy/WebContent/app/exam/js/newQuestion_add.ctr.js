@@ -3,6 +3,9 @@ angular.module("prostudyApp").controller(
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, $q, appEndpointSF, $state, $stateParams) {
 
+			$scope.curuser = appEndpointSF.getLocalUserService()
+			.getLoggedinUser();
+			
 			$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content('Question Saved!')
 						.position("top").hideDelay(3000));
@@ -41,6 +44,7 @@ angular.module("prostudyApp").controller(
 			$scope.sourceSate = $stateParams.sourceSate; //editpracticeexam/3 = {state: , examid}
 			$log.debug("$stateParams.sourceSate.examID:" + $scope.sourceSate);
 			$scope.tempQuestion = {
+				instituteID : $scope.curuser.instituteID,
 				description : "",
 				note : "",
 				category :"",
@@ -62,6 +66,7 @@ angular.module("prostudyApp").controller(
 							$log.debug("Inside Ctr addNewQuestionCtr");
 							$scope.showSavedToast();
 							$scope.tempQuestion = {
+								instituteID : "",	
 								description : "",
 								note : "",
 								category :"",

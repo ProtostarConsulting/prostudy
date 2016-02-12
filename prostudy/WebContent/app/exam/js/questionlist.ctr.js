@@ -4,17 +4,36 @@ angular.module("prostudyApp").controller(
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, $q, appEndpointSF, $state) {
 
+			$scope.curUser = appEndpointSF.getLocalUserService()
+			.getLoggedinUser();
 			
+			$scope.showSavedToast = function() {
+				$mdToast.show($mdToast.simple().content('Question Saved!')
+						.position("top").hideDelay(3000));
+			};
+
+			$scope.tempQuestion = {
+				quesId : "",
+				description : "",
+				note : "",
+				option1 : "",
+				option2 : "",
+				option3 : "",
+				option4 : "",
+				correctAns : ""
+			};
+
 			$scope.questions = [];
 			$scope.qcategory = [];
-			$scope.getQuestion = function() {
+		
+			$scope.getQuestionsByInstitute = function() {
 
 				var QuestionService = appEndpointSF.getQuestionService();
+				QuestionService.getQuestionsByInstitute($scope.curUser.instituteID).then(
+						function(questionsList) {
+							$scope.questions = questionsList;
 
-				QuestionService.getQuestion().then(function(questionList) {
-					$log.debug("Inside Ctr questionListCtr");
-					$scope.questions = questionList;
-				});
+						});
 			}
 	
 			$scope.query = {
@@ -42,6 +61,7 @@ angular.module("prostudyApp").controller(
 
 				return deferred.promise;
 			};
-			$scope.getQuestion();
+			
+			$scope.getQuestionsByInstitute();
 
 		});

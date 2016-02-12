@@ -1,9 +1,9 @@
 
 <div layout="row" layout-sm="column" layout-wrap>
-	<div flex="50" ng-repeat="item in Test.questions">
+	<div flex="50" ng-repeat="item in newQues">
 		<div>
 			<md-content flex layout-padding> <b
-				ng-bind-html="+ (item.quesId+1) +')'+ item.description"></b> </md-content>
+				ng-bind-html="+ (item.qId) +')'+ item.description"></b> </md-content>
 		</div>
 
 		<p>
@@ -27,32 +27,3 @@
 
 
 
-
-
-
-<!-- <hr>
-<hr>
-<div ng-repeat="x in Test.questions">
-
-	<td><b ng-bind-html="+ (x.quesId+1) +')'+x.description"></b>
-	<p>Correct Answer : {{x.correctAns}}</p></td>
-
-	<tr ng-repeat="result in examResults.userAns ">
-		<td>User Answer : {{option.userOption}}</td>
-		<br>
-	</tr>
-
-	<hr>
-</div>
-
-<div ng-repeat="result in examResults.userAns ">
-
-	<td>{{result.userOption}}</td>
-	
-</div>
-
-
-<p>Selected Test : {{Test.questions}}</p>
-<p>Selected Test ID: {{selectedExamId}}</p>
-<p>Correct Ans: {{examResults}}</p>
-<p>New result: {{results}}</p> -->

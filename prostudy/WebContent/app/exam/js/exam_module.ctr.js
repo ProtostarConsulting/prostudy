@@ -4,7 +4,8 @@ angular.module("prostudyApp").controller(
 				$log, objectFactory, appEndpointSF, $sce) {
 
 			$log.debug("Inside examModuleCtr");
-
+	
+			
 			/*$scope.testGAPICall = function() {
 				console.log("in side testGAPICall");
 				var q = appEndpointSF.getQuestionService().getQuestions()
