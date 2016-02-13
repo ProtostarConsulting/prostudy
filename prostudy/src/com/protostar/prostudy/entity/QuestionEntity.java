@@ -2,6 +2,7 @@ package com.protostar.prostudy.entity;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 
 @Entity
@@ -9,6 +10,8 @@ public class QuestionEntity {
 
 	@Id
 	private Long quesId;
+	@Index
+	private Long instituteID;
 	private String description;
 	private String note;
 	private String option1;
@@ -16,6 +19,13 @@ public class QuestionEntity {
 	private String option3;
 	private String option4;
 	private String correctAns;
+	
+	public Long getInstituteID() {
+		return instituteID;
+	}
+	public void setInstituteID(Long instituteID) {
+		this.instituteID = instituteID;
+	}
 	public Long getQuesId() {
 		return quesId;
 	}
