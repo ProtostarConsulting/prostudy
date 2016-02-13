@@ -233,9 +233,9 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}// end of addBook
 
-	BookService.getBooks = function() {
+	BookService.getBooks = function(id) {
 		var deferred = $q.defer();
-		gapi.client.bookService.getBooks().execute(function(resp) {
+		gapi.client.bookService.getBooks({'id':id}).execute(function(resp) {
 			$log.debug("getBooks#resp:" + resp);
 			deferred.resolve(resp.items);
 		});
