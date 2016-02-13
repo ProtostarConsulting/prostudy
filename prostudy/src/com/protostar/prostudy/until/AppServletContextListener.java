@@ -5,6 +5,7 @@ import javax.servlet.ServletContextListener;
 
 import com.googlecode.objectify.ObjectifyService;
 import com.protostar.prostudy.entity.AdminEntity;
+import com.protostar.prostudy.entity.AttendanceEntity;
 import com.protostar.prostudy.entity.BookEntity;
 import com.protostar.prostudy.entity.Car;
 import com.protostar.prostudy.entity.CarAddress;
@@ -46,6 +47,7 @@ public class AppServletContextListener implements ServletContextListener {
 		  ObjectifyService.register(PracticeExamResultEntity.class);
 		  ObjectifyService.register(AdminEntity.class);
 		  ObjectifyService.register(TeacherEntity.class);
+		  ObjectifyService.register(AttendanceEntity.class);
 
 	}
 
