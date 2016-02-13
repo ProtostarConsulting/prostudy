@@ -50,6 +50,9 @@ angular
 									if (loggedInUser.myBooks == undefined) {
 										loggedInUser.myBooks=[];
 									}
+									if (loggedInUser.institute == undefined) {
+										loggedInUser.institute=[];
+									}
 									$scope.curUser = loggedInUser;
 									$log.debug("$scope.curUser:"
 											+ angular.toJson($scope.curUser));
