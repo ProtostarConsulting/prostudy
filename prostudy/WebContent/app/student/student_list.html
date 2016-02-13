@@ -13,12 +13,11 @@
 			<table md-data-table class="md-primary" md-row-select="selected" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onorderchange">
 			<tr>
-				<th order-by="firstName" name="Name" unit=""></th>
-				<th order-by="phone_no" name="Phone no."></th>
-				<th order-by="phone_no" name="email"></th>
-				<th order-by="phone_no" name="city"></th>
-				<th order-by="phone_no" name="state"></th>
-				<th order-by="phone_no" name="pin"></th>
+				<th order-by="Name" name="Name" unit=""></th>
+				<th order-by="email_id" name="Email-ID"></th>
+				<th order-by="address" name="Address"></th>
+				<th order-by="contact" name="Contact"></th>
+			
 				
 			</tr>
 		</thead>
@@ -26,17 +25,15 @@
 		<tr md-auto-select  ng-repeat="student in students | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
 			
 				<td>{{student.firstName}} {{student.lastName}}</td>
-				<td>{{student.phone_no}}</td>
-				<td>{{student.email}}</td>
-				<td>{{student.city}}</td>
-				<td>{{student.state}}</td>
-				<td>{{student.pin}}</td>
+				<td>{{student.email_id}}</td>
+				<td>{{student.address}}</td>
+				<td>{{student.contact}}</td>
 				
 			</tr>
 		</tbody>
 	</table>
 	</md-data-table-container> 
-	<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total={{Students.length}} md-trigger="onpagechange"></md-data-table-pagination>
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total={{students.length}} md-trigger="onpagechange"></md-data-table-pagination>
 </div>
 
 
