@@ -11,11 +11,14 @@ public class InstituteEntity {
 	private Long id;
 	@Index
 	private String instituteId;
+
 	private String name;
 	private String desc;
 	private String address;
 	private String phone_no;
-	
+
+
+
 	public String getInstituteId() {
 		return instituteId;
 	}
@@ -24,14 +27,15 @@ public class InstituteEntity {
 		this.instituteId = instituteId;
 	}
 
-
-	public Long getId() {
+	public Long getID() {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setID(Long iD) {
+		id = iD;
 	}
+
+
 
 	public String getName() {
 		return name;
@@ -64,6 +68,5 @@ public class InstituteEntity {
 	public void setPhone_no(String phone_no) {
 		this.phone_no = phone_no;
 	}
-
 
 }
