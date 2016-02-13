@@ -22,7 +22,8 @@ angular.module("prostudyApp").controller(
 				author : "",
 				board : "",
 				standard : "",
-				chapters : []
+				chapters : [],
+				user :""
 			};// end of tempBook object 
 			
 			$scope.books = [];
@@ -30,13 +31,13 @@ angular.module("prostudyApp").controller(
 
 				var BookService = appEndpointSF.getBookService();
 
-				BookService.getBooks().then(function(bookList)
+				BookService.getBooks($scope.curUser.id).then(function(bookList)
 						{
 							$log.debug("Inside Ctr getBooks");
 							$scope.books = bookList;
-							$scope.currentBook = $scope.books[0];
+					/*		$scope.currentBook = $scope.books[0];
 							$log.debug("$scope.currentBook :"
-									+ angular.toJson($scope.currentBook));
+									+ angular.toJson($scope.currentBook));*/
 						});
 			     
 			  	
@@ -93,28 +94,6 @@ angular.module("prostudyApp").controller(
 	      
 		
 
-/*		   $scope.addselectedBookId = $stateParams.addselectedBookId;
-		   $log.debug("$scope.addselectedBookId"+$stateParams.addselectedBookId); 
-			
-			$scope.myBook=[];
-			$scope.getBookbyID = function() {
-
-				var UserService = appEndpointSF.getUserService();
-
-				if (typeof $scope.addselectedBookId != 'undefined') {
-					UserService.getBookbyID($scope.addselectedBookId).then(
-							function(MyBooksList) {
-
-
-								$scope.myBook = MyBooksList[0];
-
-								$log.debug("$scope.myBook"
-										+ angular.toJson($scope.myBook));
-							});
-				}
-			};// end of getBookbyID
-
-			$scope.getBookbyID();*/
 
 			$scope.books = [];                           
 			$scope.like = function(selectedBookId) {
