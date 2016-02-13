@@ -15,11 +15,6 @@ import com.protostar.prostudy.entity.PracticeExamEntity;
 @Api(name = "practiceExamService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
 public class PracticeExamService {
 
-/*	@ApiMethod(name = "addPracticeExam")
-	public void addPracticeExam(PracticeExamEntity exam) {
-		Key<PracticeExamEntity> now = ofy().save().entity(exam).now();
-	}*/
-	
 	@ApiMethod(name = "addPracticeExam")
 	public PracticeExamEntity addPracticeExam(PracticeExamEntity exam) {
 		Key<PracticeExamEntity> now = ofy().save().entity(exam).now();
@@ -33,15 +28,6 @@ public class PracticeExamService {
 		return ofy().load().type(PracticeExamEntity.class).list();
 	}
 
-	/*
-	 * @ApiMethod(name = "getPracticeExamById") public List<PracticeExamEntity>
-	 * getPracticeExamById(@Named("examId") String idvalue) { return
-	 * ofy().load().type(PracticeExamEntity.class) .filter("examId",
-	 * idvalue).list();
-	 * 
-	 * }
-	 */
-
 	@ApiMethod(name = "getPracticeExamById")
 	public PracticeExamEntity getPracticeExamById(@Named("examId") String struct) {
 
@@ -50,6 +36,14 @@ public class PracticeExamService {
 
 		return stru;
 	}
+	
+	@ApiMethod(name = "getPracticeExamByInstitute")
+	 public List<PracticeExamEntity> getPracticeExamByInstitute(@Named("instituteID") Long instituteID) {
+		System.out.println("inside getPracticeExamByInstitute");
+	  List<PracticeExamEntity> practiceExamList = ofy().load().type(PracticeExamEntity.class).filter("instituteID", instituteID).list();
+	  return practiceExamList;
+	  
+	 }
 
 	@ApiMethod(name = "updatePracticeExam")
 	public void updatePracticeExam(PracticeExamEntity exam) {
