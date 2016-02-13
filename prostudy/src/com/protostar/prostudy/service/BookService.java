@@ -2,6 +2,7 @@ package com.protostar.prostudy.service;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.api.server.spi.config.Api;
@@ -22,29 +23,36 @@ public class BookService {
 		 System.out.println("addBook "+now);
 	}//end of addBook
 	
-	
-	@ApiMethod(name="getBooks")
-	public List<BookEntity>getBooks()
+
+	@ApiMethod(name="getBooks" ,path="Somepath_realted_to_your_service")
+	public List<BookEntity>getBooks(@Named("id") Long id)
 	{
-		System.out.println("Inside getBooks ");
-		return ofy().load().type(BookEntity.class).list();
+		 System.out.println("Inside getBooks ");
+		 
+		  List<BookEntity> bookList=ofy().load().type(BookEntity.class).list();
+		 	  
+		   List<BookEntity> filteredbooks = new ArrayList<BookEntity>();
+		 
+		   
+		   for(int i=0;i<bookList.size();i++)
+		   {    
+		     if(bookList.get(i).getUser().getId().equals(id))
+		     {
+		   	      filteredbooks.add(bookList.get(i));
+		     }
+		   }
+		   return filteredbooks;
 		
 	}//end of getBooks
-	
-	/*@ApiMethod(name="getBooksByInstitue")
-	public List<BookEntity>getBooksByInstitue(@Named("instId")Long instId)
-	{
-		System.out.println("Inside getBooks ");
-		return ofy().load().type(BookEntity.class).list(); //add filter for instId
-		
-	}//end of getBooks
-*/	
+
+			  
 	 @ApiMethod(name="getBookByID") 
-	 public BookEntity getBookByID(@Named("bookId") Long bookId)
+	 public BookEntity getBookByID(@Named("bookId") String bookId)
 	 {
 		 System.out.println("Inside getBookByID ");
-		 BookEntity theBook = ofy().load().type(BookEntity.class).id(bookId).now();		 
-		 return theBook;	
+		 //BookEntity theBook = ofy().load().type(BookEntity.class).id(bookId).now();	
+		 BookEntity bookById = ofy().load().type(BookEntity.class).filter("bookId ", bookId).first().now();
+		 return bookById;	
 	 }//end of getBookbyID
 	 
 	 @ApiMethod(name="getBookByStandard") 
@@ -57,8 +65,6 @@ public class BookService {
 		 
 		 return bookByStandardId; 
 	 }//end of getBookByStandard
-	 
-
 	 
 	
 }// end of BookService
