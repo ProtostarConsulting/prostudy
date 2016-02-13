@@ -9,11 +9,7 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
-import com.protostar.prostudy.entity.AdminEntity;
-import com.protostar.prostudy.entity.AttendanceEntity;
 import com.protostar.prostudy.entity.InstituteEntity;
-import com.protostar.prostudy.entity.StudentEntity;
-import com.protostar.prostudy.until.data.AttendanceEntityWrapper;
 
 @Api(name = "instituteService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
 public class InstituteService {
@@ -44,14 +40,6 @@ public class InstituteService {
 		Key<InstituteEntity> now = ofy().save().entity(insti).now();
 	}
 	
-	 @ApiMethod(name = "addInstituteAttendance") 
-	 public void addInstituteAttendance(AttendanceEntityWrapper AttendanceListWrapper) {
-	  
-	  List<AttendanceEntity> attendanceRecordList = AttendanceListWrapper.getList();
-	  
-	  for (AttendanceEntity AttendanceEntity : attendanceRecordList) {
-	   ofy().save().entity(AttendanceEntity);
-	  }
-	 }
+
 	
 }
