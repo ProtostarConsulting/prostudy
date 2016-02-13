@@ -13,22 +13,31 @@ public class PracticeExamEntity {
 	private String examtitle;
 	@Index
 	private String examId;
+	@Index
+	private Long instituteID;
 	private String board;
 	private String standard;
 	private String subject;
 	private String instructions;
 	private List<QuestionEntity> questions;
 	private String date;
-	private Integer likes;
+	
+	private Integer likes;	
 	private Integer dislikes;
 	
+	public Long getInstituteID() {
+		return instituteID;
+	}
 
+	public void setInstituteID(Long instituteID) {
+		this.instituteID = instituteID;
+	}
 	public Integer getLikes() {
 		return likes;
 	}
 
 	public void setLikes(Integer likes) {
-		this.likes = 0;
+		this.likes = likes;
 	}
 
 	public Integer getDislikes() {
@@ -36,11 +45,10 @@ public class PracticeExamEntity {
 	}
 
 	public void setDislikes(Integer dislikes) {
-		this.dislikes = 0;
+		this.dislikes = dislikes;
 	}
 
 	
-
 	public Long getId() {
 		return id;
 	}
