@@ -3,19 +3,19 @@ angular
 		.controller(
 				"reportBySubjectClassCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $log, objectFactory, appEndpointSF, $state, standardList, $filter) {
+						$mdUtil, $log, objectFactory, appEndpointSF, $state, standardList, $filter, subjectList) {
 
 					$log.debug("Inside attendanceReportBySubjectClassCtr");
-				
+					$scope.curUser = appEndpointSF.getLocalUserService()
+					.getLoggedinUser();
 				    
-					$scope.standards = [{}];
+					$scope.standards = [ {} ];
 					$scope.standards = standardList;
+					$scope.subjects = [ {} ];
+					$scope.subjects = subjectList;
+					
 					$scope.selectedSubject;
-					$scope.selectedClass;
-					$scope.selectedInstitute;
-					$scope.selectedInstituteID;
-					$scope.selectedSubject;
-					$scope.selected;
+					$scope.selectedStandard;
 					
 					$scope.present;
 					$scope.absent;
@@ -28,47 +28,21 @@ angular
 
 					$scope.newStudList = [];
 					
-					$scope.instituteList = [ "mit", "seed", "niit" ];
-					
-					$scope.getReport = function() {
-						var InstituteService = appEndpointSF
-								.getInstituteService();
-						InstituteService
-								.getInstitutes()
-								.then(
-										function(instituteList) {
-											$log.debug("Inside Ctr getInstitutes");
-											$scope.institutes = instituteList;
-											for (i = 0; i < $scope.institutes.length; i++) {
-												if ($scope.selectedInstitute == $scope.institutes[i].name) {
-													$scope.selectedInstituteID = $scope.institutes[i].id;
-													$log.debug("$scope.selectedInstituteID :"
-																	+ $scope.selectedInstituteID);
-												}
-											}
-
-											$scope.getAttendanceByInstitute();
-
-										});
-
-					}
-
+				
 					$scope.getAttendanceByInstitute = function() {
 
 						var AttendanceService = appEndpointSF
 								.getAttendanceService();
 						AttendanceService
-								.getAttendanceByInstitute(
-										$scope.selectedInstituteID)
+								.getAttendanceByInstitute($scope.curUser.instituteID)
 								.then(
 										function(students) {
 											$scope.studentList = students;
 										
 											for (var i = 0; i < $scope.studentList.length; i++) {
 												if ($scope.studentList[i].subject == $scope.selectedSubject) {
-													if ($scope.studentList[i].standard == $scope.selectedClass) {
-														$scope.newStudList
-																.push($scope.studentList[i]);
+													if ($scope.studentList[i].standard == $scope.selectedStandard) {
+														$scope.newStudList.push($scope.studentList[i]);
 														
 													}
 
@@ -145,7 +119,7 @@ angular
 						$scope.clear = function() {
 							
 							$scope.selectedInstitute = "";
-							$scope.selectedClass = "";
+							$scope.selectedStandard = "";
 							$scope.selectedSubject = "";
 							$scope.newStudList.splice(0,$scope.newStudList.length);
 							$scope.newPresentCount = 0;

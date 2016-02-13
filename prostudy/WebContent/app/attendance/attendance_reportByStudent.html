@@ -1,6 +1,6 @@
 
 
-<div layout-"column"  layout-align="space-around center">
+<div layout="column" layout-align="center center">
 
 	<div>
 		From date :
@@ -15,24 +15,34 @@
 	</div>
 </div>
 
+<div layout="row" layout-align="space-around center" layout-sm="column" >
+	<md-input-container flex="30"> <md-select
+		ng-model="selectedStandard" placeholder="Standard" ng-change="">
+	<md-option ng-value="class" ng-repeat="class in standards">{{class}}</md-option>
+	</md-select> </md-input-container>
+	
+	<md-input-container flex="30"> <md-select
+		ng-model="selectedSubject" placeholder="Subject" ng-change="getAttendanceByInstitute()">
+	<md-option ng-value="subject" ng-repeat="subject in subjects">{{subject}}</md-option>
+	</md-select> </md-input-container>
+</div>
 
-
-<md-input-container flex> <md-select
-	ng-model="selectedInstitute" placeholder="Select Institute" ng-change="getInstituteStudents()">
-<md-option ng-value="institute" ng-repeat="institute in instituteList">{{institute}}</md-option>
-</md-select> </md-input-container>
-
-<md-input-container flex> <md-select
+<div layout="row" layout-align="center center" layout-sm="column" >	
+	<md-input-container flex="30"> <md-select
 	ng-model="selectedStudent" placeholder="Select Student"> <md-option
-	 ng-value="student" ng-repeat="student in studentList">{{student.firstName}}{{student.lastName}}</md-option>
-</md-select> </md-input-container>
+	 ng-value="student" ng-repeat="student in newStudList">{{student.firstName}}{{student.lastName}}</md-option>
+	</md-select> </md-input-container>
+</div>
 
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
-
-<div layout="row" layout-align="center center">
+<div layout="row"  layout-align="center center">
 	<md-button class="md-raised md-primary" ng-click="">Get
 	Report</md-button>
 </div>
+
+
 
 
 <div layout="row" layout-align="center center">
@@ -40,5 +50,5 @@
 
 </div>
 
-{{studentList}}
+
 

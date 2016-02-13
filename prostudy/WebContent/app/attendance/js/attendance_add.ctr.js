@@ -3,7 +3,8 @@ angular
 		.controller(
 				"attendanceAddCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $log, objectFactory, appEndpointSF,$filter,standardList,$state) {
+						$mdUtil, $log, objectFactory, appEndpointSF, $filter,
+						standardList, $state, subjectList) {
 
 					$log.debug("Inside attendanceAddCtr");
 					$scope.showSavedToast = function() {
@@ -12,102 +13,50 @@ angular
 								3000));
 					};
 
-					$scope.standards = [{}];
+					$scope.curUser = appEndpointSF.getLocalUserService()
+							.getLoggedinUser();
+
+					$scope.standards = [ {} ];
 					$scope.standards = standardList;
-				
-					$scope.instituteList = [ "mit", "seed", "niit" ];
-				
-					$scope.curdate = $filter("date")(Date.now(), 'dd-MM-yyyy')
-					
-					
-					
-					$scope.student1 = {};
-					$scope.IDList = [];
+
+					$scope.subjects = [ {} ];
+					$scope.subjects = subjectList;
+
+					$scope.students = [];
+					$scope.attendanceRecordList = [];
 					$scope.isActive = false;
-					$scope.selectedID;
-					$scope.selectedStud;
 					$scope.selectedSubject;
-					$scope.selectedClass;
-					$scope.selectedInstitute;
-					$scope.instiID;
+					$scope.selectedStandard;
 					$scope.firstName;
 					$scope.lastName;
-					
-					$scope.attendanceRecordList = [];
-					$scope.newStudentList = [];
-					$scope.institute1 = [ "mit", "seed" ];
 
-					$scope.getInstitutes = function() {
-						var InstituteService = appEndpointSF
-								.getInstituteService();
-						InstituteService.getInstitutes().then(
-								function(instituteList) {
-									$log.debug("Inside Ctr getInstitutes");
-									$scope.institutes = instituteList;
+					$scope.getStudentsByInstitute = function() {
 
-									$log.debug("$scope.institutes_len :"
-											+ $scope.institutes.length);
-
-								});
-
-					}
-					$scope.getInstitutes();
-
-					$scope.getStudents = function() {
-
-						var studentService = appEndpointSF.getStudentService();
-
-						// standard, class/subject
-
-						// studentService.getStudentByInst(instID, standard);
-						studentService.getStudents().then(function(studList) {
-							$log.debug("Inside Ctr getStudents");
-							$scope.students = studList;
-
-							/*
-							 * for(var i=0; i< studList.length; i++){
-							 * $scope.attendanceRecordList.push($scope.getAttendanceRecord(studList[i].id)); }
-							 */
-						});
-
-					}
-
-					$scope.getStudents();
-
-					$scope.showselectedStudent = function() {
-						var StudentService = appEndpointSF.getStudentService();
-						StudentService
-								.getStudentByInstitute($scope.selectedInstitute)
+						var UserService = appEndpointSF.getUserService();
+						UserService
+								.getUserByInstitute($scope.curUser.instituteID)
 								.then(
-										function(students) {
-											$scope.studentList = students;
-										
-											for (i = 0; i < $scope.studentList.length; i++) {
-												if ($scope.studentList[i].standard == $scope.selectedClass) {
-													$scope.newStudentList.push($scope.studentList[i]);
+										function(studentList) {
+											$scope.newStudents = studentList;
 
+											for (var i = 0; i < $scope.newStudents.length; i++) {
+												if ($scope.newStudents[i].role == "Student") {
+													if ($scope.newStudents[i].standard == $scope.selectedStandard) {
+														$scope.students
+																.push($scope.newStudents[i]);
+
+													}
 												}
-
 											}
 
-											for (i = 0; i < $scope.institutes.length; i++) {
-												if ($scope.institutes[i].name == $scope.selectedInstitute) {
-													$scope.instiID = $scope.institutes[i].id;
-													
-												}
-
-											}
-
-											
-											for (var i = 0; i < $scope.newStudentList.length; i++) {
+											for (var i = 0; i < $scope.students.length; i++) {
 												$scope.attendanceRecordList
-														.push($scope
-																.getAttendanceRecord($scope.newStudentList[i].id));
-												$scope.firstName = $scope.newStudentList[i].firstName;
-												$scope.lastName = $scope.newStudentList[i].lastName;
-												
+														.push($scope.getAttendanceRecord($scope.students[i].id));
+												$scope.firstName = $scope.students[i].firstName;
+												$scope.lastName = $scope.students[i].lastName;
+
 											}
-											
+
 										});
 					}
 
@@ -115,22 +64,20 @@ angular
 
 						return {
 							studID : studID,
+							instituteID : $scope.curUser.instituteID,
 							firstName : $scope.firstName,
 							lastName : $scope.lastName,
-							instituteID : $scope.instiID,
-							standard : $scope.selectedClass,
+							standard : $scope.selectedStandard,
 							subject : $scope.selectedSubject,
 							date : new Date(),
 							attendance : true,
-						// institute:$scope.instiID
 
 						};
 					}
 
 					$scope.toggleAttendance = function(index) {
 						$scope.attendanceRecordList[index].attendance = !$scope.attendanceRecordList[index].attendance;
-						$log.debug("$scope.attendanceRecordList :"
-								+ angular.toJson($scope.attendanceRecordList));
+						$log.debug("$scope.attendanceRecordList :"+ angular.toJson($scope.attendanceRecordList));
 					}
 
 					$scope.submitAttendance = function() {
@@ -142,10 +89,7 @@ angular
 									$scope.attendanceRecordList[i]).then(
 									function(msgBean) {
 
-										$log.debug("msgBean.msg:"
-														+ msgBean.msg);
 										
-
 									});
 						}
 						$scope.showSavedToast();
@@ -154,17 +98,12 @@ angular
 
 					$scope.isActive = false;
 
-
-					$scope.students = [];
-
 					$scope.toggleActive = function() {
 						$scope.isActive = !$scope.isActive;
 					};
-					
-					$scope.cancel = function()
-					{
+
+					$scope.cancel = function() {
 						$state.go('attendance');
 					}
-					
 
 				});

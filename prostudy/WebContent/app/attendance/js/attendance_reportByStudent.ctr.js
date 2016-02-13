@@ -3,15 +3,20 @@ angular
 		.controller(
 				"reportByStudentCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $log, objectFactory, appEndpointSF, $state, $filter) {
+						$mdUtil, $log, objectFactory, appEndpointSF, $state, $filter, standardList, subjectList) {
 
 					$log.debug("Inside reportByStudentCtr");
 				
-				
+					$scope.curUser = appEndpointSF.getLocalUserService()
+					.getLoggedinUser();
+				    
+					$scope.standards = [ {} ];
+					$scope.standards = standardList;
+					$scope.subjects = [ {} ];
+					$scope.subjects = subjectList;
 					
-					$scope.selectedInstitute;
-					$scope.selectedInstituteID;
-				
+					$scope.selectedSubject;
+					$scope.selectedStandard;
 					$scope.selected;
 					$scope.present;
 					$scope.absent;
@@ -21,7 +26,6 @@ angular
 					$scope.newPresentCount = 0;
 					$scope.newAbsentCount = 0;
 					$scope.newStudList = [];
-					$scope.instituteList = [ "mit", "seed", "niit" ];
 					
 					$scope.fromDate = new Date();
 					$scope.toDate = new Date();
@@ -54,47 +58,29 @@ angular
 					    $log.debug("dateArray :" + dateArray);
 					}
 					
-		
-					
-					
-				
-					$scope.getInstituteStudents = function() {
-						var InstituteService = appEndpointSF
-								.getInstituteService();
-						InstituteService
-								.getInstitutes()
-								.then(
-										function(instituteList) {
-											$log.debug("Inside Ctr getInstitutes");
-											$scope.institutes = instituteList;
-											for (i = 0; i < $scope.institutes.length; i++) {
-												if ($scope.selectedInstitute == $scope.institutes[i].name) {
-													$scope.selectedInstituteID = $scope.institutes[i].id;
-													$log.debug("$scope.selectedInstituteID :"
-																	+ $scope.selectedInstituteID);
-												}
-											}
-
-											$scope.getAllDates();
-											$scope.getAttendanceByInstitute();
-											
-											
-
-										});
-
-					}
 
 					$scope.getAttendanceByInstitute = function() {
 
 						var AttendanceService = appEndpointSF
 								.getAttendanceService();
 						AttendanceService
-								.getAttendanceByInstitute(
-										$scope.selectedInstituteID)
+								.getAttendanceByInstitute($scope.curUser.instituteID)
 								.then(
 										function(students) {
 											$scope.studentList = students;
-										
+											$log.debug("$scope.studentList :"+$scope.studentList.length);
+											for(var i=0;i<$scope.studentList.length;i++)
+											{
+												if($scope.selectedStandard == $scope.studentList[i].standard)
+												{
+													if($scope.selectedSubject == $scope.studentList[i].subject)
+													{
+														$scope.newStudList.push($scope.studentList[i])
+													}
+												}
+											}
+											$log.debug("$scope.newStudList :"+angular.toJson($scope.newStudList));
+											
 											var date = new Date($scope.fromDate).toDateString("dd-mm-yyyy");
 											$log.debug("date111 :"+date);
 											var date = $filter($scope.fromDate)(Date.parse('dd-MM-yyyy'));
@@ -107,6 +93,7 @@ angular
 											}
 											
 										});
+						$scope.getAllDates();
 					}
 					
 					

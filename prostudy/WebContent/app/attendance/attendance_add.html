@@ -1,3 +1,5 @@
+<h3><b>Attendance Section</b></h3>
+
 <div layout="row" layout-align="end start">
 	<h4>
 		<b>{{date | date:'yyyy-MM-dd'}}</b>
@@ -10,21 +12,14 @@
 <div layout-align="center center" layout-sm="column">
 
 	<md-input-container flex> <md-select
-		ng-model="selectedInstitute" placeholder="Institute"> <md-option
-		ng-value="institute" ng-repeat="institute in instituteList">{{institute}}</md-option>
-	</md-select> </md-input-container>
-
-
-	<md-input-container flex> <md-select
-		ng-model="selectedClass" placeholder="Class" ng-change="">
+		ng-model="selectedStandard" placeholder="Standard" ng-change="">
 	<md-option ng-value="class" ng-repeat="class in standards">{{class}}</md-option>
 	</md-select> </md-input-container>
-
+	
 	<md-input-container flex> <md-select
-		ng-model="selectedSubject" placeholder="Subject"> <md-option>English</md-option>
-	<md-option>Maths</md-option> <md-option>Electronics</md-option> <md-option>Physics</md-option>
-	<md-option>Chemistry</md-option> </md-select> </md-input-container>
-
+		ng-model="selectedSubject" placeholder="Subject" ng-change="">
+	<md-option ng-value="subject" ng-repeat="subject in subjects">{{subject}}</md-option>
+	</md-select> </md-input-container>
 
 </div>
 
@@ -34,7 +29,7 @@
 
 <div layout="row" layout-align="center center">
 	<md-button class="md-raised md-primary"
-		ng-click="showselectedStudent()">Get Attendance Record</md-button>
+		ng-click="getStudentsByInstitute()">Get Students</md-button>
 </div>
 
 <p>&nbsp;</p>
@@ -54,7 +49,7 @@
 
 
 <div layout="row" layout-align="center center" layout-sm="column">
-	<md-button class="md-raised md-primary" ng-click="submitAttendance()">Save Class Attendance</md-button>
+	<md-button class="md-raised md-primary" ng-click="submitAttendance()">Save Attendance</md-button>
 	<md-button class="md-raised md-primary" ng-click="cancel()">Cancel</md-button>
 </div>
 

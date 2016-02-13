@@ -1,29 +1,22 @@
+<h3><b>Attendance Report</b></h3>
 
 
-<div layout-align="center center">
+<div layout="row" layout-align="space-around center" layout-sm="column" >
 
-	<md-input-container flex> <md-select
-		ng-model="selectedInstitute" placeholder="Select Institute"> <md-option
-		ng-value="institute" ng-repeat="institute in instituteList">{{institute}}</md-option>
-	</md-select> </md-input-container>
-
-
-	<md-input-container flex> <md-select
-		ng-model="selectedClass" placeholder="Select Standard" ng-change="">
+	<md-input-container flex="30"> <md-select
+		ng-model="selectedStandard" placeholder="Standard" ng-change="">
 	<md-option ng-value="class" ng-repeat="class in standards">{{class}}</md-option>
 	</md-select> </md-input-container>
-
-	<md-input-container flex> <md-select
-		ng-model="selectedSubject" placeholder="Select Subject"> <md-option>English</md-option>
-	<md-option>Maths</md-option> <md-option>Electronics</md-option> <md-option>Physics</md-option>
-	<md-option>Chemistry</md-option> </md-select> </md-input-container>
+	
+	<md-input-container flex="30"> <md-select
+		ng-model="selectedSubject" placeholder="Subject" ng-change="getAttendanceByInstitute()">
+	<md-option ng-value="subject" ng-repeat="subject in subjects">{{subject}}</md-option>
+	</md-select> </md-input-container>
 
 </div>
 
-<div layout="row" layout-align="center center">
-	<md-button class="md-raised md-primary" ng-click="getReport()">Get
-	Report</md-button>
-</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 <div>
 
@@ -58,13 +51,12 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+
 
 
 <div layout="row" layout-align="center center">
 	<md-button class="md-raised md-primary"
-		ng-click="getNewDataFromServer()">Get New Data</md-button>
+		ng-click="getNewDataFromServer()">Get Report</md-button>
 </div>
 
 
