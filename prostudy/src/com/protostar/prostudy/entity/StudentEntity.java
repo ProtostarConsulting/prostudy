@@ -1,6 +1,5 @@
 package com.protostar.prostudy.entity;
 
-import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
@@ -10,27 +9,34 @@ public class StudentEntity {
 	
 	@Id
 	private Long id;
+	@Index          
+	private Long instituteID;
+	
 	private String firstName;
 	private String lastName;
-
 	@Index
-	private Ref<InstituteEntity> institute;
+	private String institute;
 	
-	private String studClass ;
+	private String standard;
 	private String phone_no;
 	private String email;
 	private String city;
 	private String state;
 	private String pin;
-	private String attendance;
 	
 
-	
-	public String getStudClass() {
-		return studClass;
+	public Long getInstituteID() {
+		return instituteID;
 	}
-	public void setStudClass(String studClass) {
-		this.studClass = studClass;
+	public void setInstituteID(Long instituteID) {
+		this.instituteID = instituteID;
+	}
+	
+	public String getStandard() {
+		return standard;
+	}
+	public void setStandard(String standard) {
+		this.standard = standard;
 	}
 	public Long getId() {
 		return id;
@@ -50,7 +56,12 @@ public class StudentEntity {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+	public String getInstitute() {
+		return institute;
+	}
+	public void setInstitute(String institute) {
+		this.institute = institute;
+	}
 	public String getPhone_no() {
 		return phone_no;
 	}
@@ -81,18 +92,7 @@ public class StudentEntity {
 	public void setPin(String pin) {
 		this.pin = pin;
 	}
-	public String getAttendance() {
-		return attendance;
-	}
-	public void setAttendance(String attendance) {
-		this.attendance = attendance;
-	}
-	public InstituteEntity getInstitute() {
-		return institute.get();
-	}
-	public void setInstitute(InstituteEntity institute) {
-		this.institute = Ref.create(institute);
-	}
+
 	
 	
 	
