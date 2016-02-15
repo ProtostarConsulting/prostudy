@@ -8,16 +8,18 @@
 					<th name="STUDENT EMAIL-ID" order-by="email_id"></th>
 					<th name="STUDENT ADDRESS" order-by="address"></th>
 					<th name="STUDENT CONTACT" order-by="contact"></th>
+					<th name="STUDENT STANDARD" order-by="standard"></th>
 					
 				</tr>
 			</thead>
 			<tbody>
 				<tr md-auto-select
 					ng-repeat="a in studentList  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText">
-					<td>{{a.firstName}}{{a.lastName}}</td>
+					<td>{{a.firstName}} {{a.lastName}}</td>
 					<td>{{a.email_id}}</td>
 					<td>{{a.address}}</td>
 					<td>{{a.contact}}</td>
+					<td>{{a.standard}}</td>
 				</tr>
 			</tbody>
 		</table>

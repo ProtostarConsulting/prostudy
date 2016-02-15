@@ -1,7 +1,11 @@
 angular.module("prostudyApp").controller(
 		"instituteAddInfoCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $q, appEndpointSF, $state, $stateParams) {
+				$log, $q, appEndpointSF, $state, $stateParams,standardList) {
+			
+			$scope.standards = [{}];
+			$scope.standards = standardList;
+			$scope.selectedStandard;
 
 			$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content('Institute Saved!')
@@ -40,7 +44,8 @@ angular.module("prostudyApp").controller(
 					'email_id' : $scope.email_id,
 					'address' : $scope.address,
 					'contact' : $scope.contact,
-					'role' : "Student"
+					'role' : "Student",
+					'standard' : $scope.selectedStandard
 				});
 				$scope.firstName = '';
 				$scope.lastName = '';

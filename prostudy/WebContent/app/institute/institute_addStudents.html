@@ -1,26 +1,41 @@
-<h5><b>Student's Information</b></h5>
+<h5>
+	<b>Student's Information</b>
+</h5>
 
 <div layout="row" layout-align="centre centre" layout-sm="column" flex>
 
-	<md-input-container flex> <label>First name</label> <input ng-model="firstName"> </md-input-container>
+	<md-input-container flex> <label>First
+		name</label> <input ng-model="firstName"> </md-input-container>
 
-	<md-input-container flex> <label>Last name</label> <input ng-model="lastName"> </md-input-container>
+	<md-input-container flex> <label>Last name</label>
+	<input ng-model="lastName"> </md-input-container>
 
-	<md-input-container flex> <label>Email-id</label> <input ng-model="email_id"> </md-input-container>
-	
-	<md-input-container flex> <label>Contact</label> <input ng-model="contact"> </md-input-container>
-	
-	<md-input-container flex> <label>Address</label> <input ng-model="address"> </md-input-container>
-	
-	<md-button class="md-raised md-primary" ng-click="addStudents()">Add Student </md-button> 
+	<md-input-container flex> <label>Email-id</label>
+	<input ng-model="email_id"> </md-input-container>
+
+	<md-input-container flex> <label>Contact</label> <input
+		ng-model="contact"> </md-input-container>
+
+	<md-input-container flex> <label>Address</label> <input
+		ng-model="address"> </md-input-container>
+
+	<md-input-container flex> <md-select
+		ng-model="selectedStandard" placeholder="Standard" ng-change="">
+	<md-option ng-value="class" ng-repeat="class in standards">{{class}}</md-option>
+	</md-select> </md-input-container>
+
+	<md-button class="md-raised md-primary" ng-click="addStudents()">Add
+	Student </md-button>
 </div>
 <div>
 
-<h5><b>Select Student before Adding.</b></h5>
+	<h5>
+		<b>Select Student before Adding.</b>
+	</h5>
 
-	 <md-data-table-container>
-	<table md-data-table class="md-primary" md-row-select="selectedStudents"
-		md-progress="deferred">
+	<md-data-table-container>
+	<table md-data-table class="md-primary"
+		md-row-select="selectedStudents" md-progress="deferred">
 		<thead>
 			<tr>
 				<th order-by="firstName" name="Student Name"></th>
@@ -30,20 +45,22 @@
 		</thead>
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="student in students | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText" ">
+				ng-repeat="student in students | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText"">
 				<td>{{student.firstName}}</td>
 				<td>{{student.email_id}}</td>
 				<td>{{student.contact}}</td>
 			</tr>
 		</tbody>
 	</table>
-	<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total={{student.length}} md-trigger="onpagechange"></md-data-table-pagination>
-	</md-data-table-container> 
-</div> 
-	
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{student.length}} md-trigger="onpagechange"></md-data-table-pagination>
+	</md-data-table-container>
+</div>
 
-	<div layout="row" layout-align="end end" layout-sm="column" flex> 
-	<md-button  class="md-raised md-primary"  ng-disabled="isDisabled" ng-click="addInstituteStudents()">Add Students </md-button>
-	<a ui-sref="institute.list"><md-button  class="md-raised md-primary" ng-click="">Skip</md-button> </a>
-		</div>
-	
+
+<div layout="row" layout-align="end end" layout-sm="column" flex>
+	<md-button class="md-raised md-primary" ng-disabled="isDisabled"
+		ng-click="addInstituteStudents()">Add Students </md-button>
+	<a ui-sref="institute.list"><md-button class="md-raised md-primary"
+			ng-click="">Skip</md-button> </a>
+</div>

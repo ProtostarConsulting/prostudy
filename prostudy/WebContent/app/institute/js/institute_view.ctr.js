@@ -2,7 +2,11 @@ angular.module("prostudyApp").controller(
 		"instituteViewCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, $q, $sce, tableTestDataFactory, appEndpointSF, $state,
-				$stateParams, $filter) {
+				$stateParams, $filter, standardList) {
+			
+			$scope.standards = [{}];
+			$scope.standards = standardList;
+			$scope.selectedStandard;
 			
 			$log.debug("$stateParams:", $stateParams);
 			$log.debug("$stateParams.selectedInstituteId:",
@@ -44,7 +48,8 @@ angular.module("prostudyApp").controller(
 					'email_id' : $scope.email_id,
 					'address' : $scope.address,
 					'contact' : $scope.contact,
-					'role' : "Student"
+					'role' : "Student",
+					'standard' : $scope.selectedStandard
 				});
 				$scope.firstName = '';
 				$scope.lastName = '';

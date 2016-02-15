@@ -8,56 +8,64 @@ angular.module("prostudyApp").controller(
 				$mdToast.show($mdToast.simple().content('Institute Saved!')
 						.position("top").hideDelay(3000));
 			};
+			
+			$scope.curUser=appEndpointSF.getLocalUserService().getLoggedinUser();
 
 			$scope.tempInstitute = {
-					instituteId:"",
-					name : "",
-					desc:"",
-					user_fname:"",
-					user_lname:"",
-					user_email_id:"",
-					user_contact_no:"",
-					books:[],
-					students: [],
-					teachers: [],
-					practiceExams: [],
-					admins:[]
-				};
+				instituteId : "",
+				name : "",
+				desc : "",
+				user_fname : "",
+				user_lname : "",
+				user_email_id : "",
+				user_contact_no : "",
+				books : [],
+				students : [],
+				teachers : [],
+				practiceExams : [],
+				admins : []
+			};
 			$scope.institutes = [];
-			$scope.getInstitutes = function() {
+
+			$scope.getInstituteById = function() {
 
 				var InstituteService = appEndpointSF.getInstituteService();
-				InstituteService.getInstitutes().then(function(instituteList) {
-					$log.debug("Inside Ctr getInstitutes");
-					$scope.institutes = instituteList;
-				});
+				InstituteService.getInstituteById($scope.curUser.instituteID)
+						.then(function(instituteList) {
+							$scope.institutes.push(instituteList);
+							$log.debug("$scope.institutes :"+angular.toJson($scope.institutes));
+
+						});
 			}
+
 			$scope.query = {
-					order : 'description',
-					limit : 5,
-					page : 1
-				};
+				order : 'description',
+				limit : 5,
+				page : 1
+			};
 
-				$scope.onpagechange = function(page, limit) {
-					var deferred = $q.defer();
+			$scope.onpagechange = function(page, limit) {
+				var deferred = $q.defer();
 
-					$timeout(function() {
-						deferred.resolve();
-					}, 2000);
+				$timeout(function() {
+					deferred.resolve();
+				}, 2000);
 
-					return deferred.promise;
-				};
+				return deferred.promise;
+			};
 
-				$scope.onorderchange = function(order) {
-					var deferred = $q.defer();
+			$scope.onorderchange = function(order) {
+				var deferred = $q.defer();
 
-					$timeout(function() {
-						deferred.resolve();
-					}, 2000);
+				$timeout(function() {
+					deferred.resolve();
+				}, 2000);
 
-					return deferred.promise;
-				};
-			$scope.getInstitutes();
+				return deferred.promise;
+			};
+			
+			
+			$scope.getInstituteById();
 			$scope.selected = [];
 
 		});
