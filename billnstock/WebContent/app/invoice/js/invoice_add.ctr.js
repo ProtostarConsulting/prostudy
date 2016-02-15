@@ -201,17 +201,17 @@ app
 					// $scope.stockData = [];
 					$scope.getAllStock();
 
-					$scope.getAllTaxes = function() {
+					$scope.getTaxesByVisibility = function() {
 						$log.debug("Inside Ctr $scope.getAllTaxes");
 						var taxService = appEndpointSF.getTaxService();
 
-						taxService.getAllTaxes($scope.curUser.businessAccount.id).then(function(taxList) {
+						taxService.getTaxesByVisibility($scope.curUser.businessAccount.id).then(function(taxList) {
 							$log.debug("Inside Ctr getAllTaxes");
 							$scope.taxforinvoice = taxList;
 						});
 					}
 					// $scope.taxData = [];
-					$scope.getAllTaxes();
+					$scope.getTaxesByVisibility();
 
 					$scope.getAllSalesOrder = function() {
 						$log.debug("Inside Ctr $scope.getAllSalesOrder");

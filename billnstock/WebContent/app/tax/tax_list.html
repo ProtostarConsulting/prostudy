@@ -14,6 +14,7 @@
 			<tr>
 				<th name="Name" order-by="taxCodeName"></th>
 				<th name="Rate" order-by="taxPercenatge"></th>
+				<th name="Disable/Enable Tax"></th>
 			</tr>
 		</thead>
 
@@ -23,11 +24,16 @@
 
 				<td>{{tax.taxCodeName}}</td>
 				<td>{{tax.taxPercenatge}}</td>
-				<td><input type="checkbox" value="disable" ng-model="checkboxValue" ng-checked="false"/></td>
+				<!-- 	<td><input type="checkbox" 
+					ng-model="taxVisibility" ng-value="true" ng-change="disableTax(taxVisibility)" /></td>
+ -->
+				<td><md-checkbox ng-model="tax.taxVisibility"
+						ng-true-value="true" ng-false-value="false" id="changer"> </md-checkbox></td>
+
 			</tr>
 		</tbody>
 	</table>
-<!-- 			<md-data-table-toolbar class="alternate" ng-show="selected.length">
+	<!-- 			<md-data-table-toolbar class="alternate" ng-show="selected.length">
 			<div>
 				{{selected.length}} {{selected.length > 1 ? 'taxData' : 'tax'}} selected
 			</div>
@@ -35,18 +41,17 @@
 				{{selected}}
 			</div>
 		</md-data-table-toolbar>
- -->		
- <md-data-table-pagination md-limit="query.limit"
+ --> <md-data-table-pagination md-limit="query.limit"
 		md-page="query.page" md-total={{taxData.length}}
 		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
 </div>
 
 <div id="update">
 	<section layout="layout-sm=row">
-		<md-input-container flex> <label>Tax Name	
+		<md-input-container flex> <label>Tax Name
 		</label> <input ng-model="selected[0].taxCodeName"> </md-input-container>
-		<md-input-container flex> <label>Rate
-			 </label> <input ng-model="selected[0].taxPercenatge"> </md-input-container>
+		<md-input-container flex> <label>Rate </label> <input
+			ng-model="selected[0].taxPercenatge"> </md-input-container>
 	</section>
 
 	<section layout="row" layout-sm="column" layout-align="left left">

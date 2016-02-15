@@ -190,7 +190,7 @@ app.controller("salesOrderAddCtr", function($scope, $window, $mdToast, $timeout,
 			$log.debug("Inside Ctr $scope.getAllTaxes");
 			var taxService = appEndpointSF.getTaxService();
 
-			taxService.getAllTaxes($scope.curUser.businessAccount.id).then(function(taxList) {
+			taxService.getTaxesByVisibility($scope.curUser.businessAccount.id).then(function(taxList) {
 				$log.debug("Inside Ctr getAllTaxes");
 				$scope.taxforPO = taxList;
 				$log.debug("@@@ $scope.taxforPO==="+$scope.taxforPO);

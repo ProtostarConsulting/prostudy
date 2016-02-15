@@ -28,15 +28,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/home",
 		templateUrl : '/home.html',
 		controller : 'homeCtr'
-	})./*state('student', {
-		url : "/student",
-		templateUrl : '/app/student/student_module.html',
-		controller : 'customerCtr'
-	}).state('student.listtest', {
-		url : "/listtest",
-		templateUrl : '/app/demo/table_demo3_view.html',
-		controller : 'nutritionController'
-	}).*/state('stock', {
+	}).state('stock', {
 		url : "/stock",
 		templateUrl : '/app/stock/stock_module.html',
 		controller : 'stockModuleCtr'
@@ -92,10 +84,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/list",
 		templateUrl : '/app/customer/customer_list.html',
 		controller : 'customerListCtr'
-	}).state('customer.internet', {
-		url : "/internet",
-		templateUrl : '/app/customer/demo_internet.html',
-		controller : 'demoInternetCtr'
+	}).state('customer.accountAdd', {
+		url : "/accountAdd",
+		templateUrl : '/app/customer/account_add.html',
+		controller : 'accountAddCtr'
+	}).state('customer.accountList', {
+		url : "/accountList",
+		templateUrl : '/app/customer/account_list.html',
+		controller : 'accountAddCtr'
 	}).state('report', {
 		url : "/report",
 		templateUrl : '/app/report/report_module.html',

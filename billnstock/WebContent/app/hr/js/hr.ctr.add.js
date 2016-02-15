@@ -38,7 +38,7 @@ angular
 
 						hrService.getAllemp($scope.curUser.businessAccount.id).then(function(empList) {
 							$log.debug("Inside Ctr getAllemps");
-							$scope.emps = empList.items;
+							$scope.emps = empList;
 							$log.debug("$scope.emps====="+angular.toJson($scope.emps.items));
 							$scope.cempid = $scope.emps.length + 1;
 							$scope.emp.empid = $scope.cempid;

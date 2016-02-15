@@ -41,7 +41,6 @@
 
 	</div>
 
-
 	<div ui-view>This is a default page for stock module!</div>
 	<!-- We'll also add some navigation: -->
 
@@ -49,7 +48,10 @@
 		ui-sref="customer.add" ng-click="close()" class="md-primary">
 	Add New Customer </md-button> <md-button ui-sref="customer.list"
 		ng-click="getAllCustomers()" class="md-primary"> Customer
-	List </md-button> <md-button ui-sref="customer.internet" class="md-primary">
-	Internet </md-button> </md-content>
+	List </md-button> <md-button ui-sref="customer.accountAdd" class="md-primary">
+	Add Account </md-button>
+	 <md-button ui-sref="customer.accountList" class="md-primary">
+	Account List</md-button>
+	 </md-content>
 
 </div>

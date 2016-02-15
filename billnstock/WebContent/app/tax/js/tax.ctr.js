@@ -14,7 +14,12 @@ angular.module("stockApp").controller(
 						.position("top").hideDelay(3000));
 			};
 
-			$scope.tax = {};
+			$scope.tax = {
+					taxCodeName:'',
+					taxPercenatge:'',
+					taxVisibility:true
+			}
+			
 			$scope.addTax = function() {
 				$log.debug("No1");
 				$scope.tax.loggedInUser =$scope.curUser;
@@ -59,8 +64,37 @@ angular.module("stockApp").controller(
 							$log.debug("Inside Ctr updateTax");
 							$log.debug("msgBean.msg:" + msgBean.msg);
 							$scope.showSimpleToast();
+							$scope.getAllTaxes();
 						});
 			}
+			
+/*			$scope.disableTax = function () {
+				$log.debug("Inside Ctr $scope.updateTax");
+				var taxService = appEndpointSF.getTaxService();
+				
+				taxService.disableTax($scope.tax.taxVisibility).then(
+						function(msgBean){
+							$log.debug("Inside Ctr disableTax");
+							$log.debug("msgBean.msg:" + msgBean.msg);
+							$scope.showSimpleToast();
+						})
+				
+			}
+*/			
+			
+			var lastValue;
+
+			$("#changer").bind("click", function(e){
+			    lastValue = $(this).val();
+			}).bind("change", function(e){
+			    changeConfirmation = confirm("Really?");
+			    if (changeConfirmation) {
+			        // Proceed as planned
+			    } else {
+			        $(this).val(lastValue);
+			    }
+			});
+			
 			// Setup menu
 			$scope.toggleRight = buildToggler('right');
 

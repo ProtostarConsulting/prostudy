@@ -212,11 +212,11 @@ app
 					$scope.stockforPO = [];
 					$scope.getAllStock();
 
-					$scope.getAllTaxes = function() {
+					$scope.getTaxesByVisibility = function() {
 						$log.debug("Inside Ctr $scope.getAllTaxes");
 						var taxService = appEndpointSF.getTaxService();
 
-						taxService.getAllTaxes($scope.curUser.businessAccount.id).then(
+						taxService.getTaxesByVisibility($scope.curUser.businessAccount.id).then(
 								function(taxList) {
 									$log.debug("Inside Ctr getAllTaxes");
 									$scope.taxforPO = taxList;
@@ -225,5 +225,5 @@ app
 								});
 					}
 					$scope.taxforPO = [];
-					$scope.getAllTaxes();
+					$scope.getTaxesByVisibility();
 				});

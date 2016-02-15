@@ -32,18 +32,21 @@
 			ng-model="cust.email" placeholder="Email (required)"
 			ng-required="true"> </md-input-container>
 	</div>
-	<div>
+<!-- 	<div>
 		<md-icon md-svg-src="img/icons/ic_place_24px.svg"
 			style="display:inline-block;"></md-icon>
 		<md-input-container flex> <label>Address
 		</label> <textarea ng-model="cust.customerAddress" rows="4" cols="1"
 			placeholder="Address (required)" ng-required="true"></textarea></md-input-container>
+	</div> -->
+	
+	<div layout layout-sm="column">
+	<md-input-container flex> <label>Note </label>
+				<textarea ng-model="invoiceObj.note" rows="2" cols="1"></textarea> </md-input-container>
 	</div>
 
 	<section layout="row" layout-sm="column" layout-align="left left">
 		<md-button class="md-raised md-primary" ng-click="addCustomer()">Add</md-button>
-		<!-- 				<md-button class="md-raised md-primary" ng-click="loadCustList()">Get
-				List</md-button> -->
 	</section>
 </div>
 

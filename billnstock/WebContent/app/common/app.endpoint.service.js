@@ -42,6 +42,13 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getCustomerService();
 	};
 	// ----------------------------------------------------
+	endpointFactory.getAccountService = function() {
+		if (isTestMode)
+			return localDBServiceFactory.getAccountService();
+		else
+			return googleEndpointSF.getAccountService();
+	};
+	// ----------------------------------------------------
 	endpointFactory.gethrService = function() {
 		if (isTestMode)
 			return localDBServiceFactory.gethrService();
@@ -181,12 +188,12 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 
 		
 
-	/*	gapi.client.load('internetService', 'v0.1', function() {
-			$log.debug("internetService2 Loaded....");
+		gapi.client.load('accountService', 'v0.1', function() {
+			$log.debug("accountService Loaded....");
 			endpointFactory.is_service_ready = true;
 			deferred.resolve();
 		}, apiRoot);
-		*/
+		
 
 		gapi.client.load('hrService', 'v0.1', function() {
 			$log.debug("hr Loaded....");

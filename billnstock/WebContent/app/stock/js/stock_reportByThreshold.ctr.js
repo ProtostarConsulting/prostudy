@@ -4,96 +4,30 @@ angular.module("stockApp").controller(
 				$log,$http, objectFactory, appEndpointSF) {
 
 			$log.debug("Inside customerCtr");
-
 			
-/*  
-					  var anyString = 'Brave new world';
-
-					  console.log('The index of the first w from the beginning is ' + anyString.indexOf('w'));
-					
-					  console.log('The index of the first w from the end is ' + anyString.lastIndexOf('w')); 
-				
-					  console.log('The index of "new" from the beginning is ' + anyString.indexOf('ne'));
+			$scope.curUser = appEndpointSF.getLocalUserService()
+			.getLoggedinUser();
+	$log.debug("$scope.curUser++++++++"
+			+ angular.toJson($scope.curUser));
+	
 			
-					  console.log('The index of "new" from the end is ' + anyString.lastIndexOf('ew'));
-					  
-					  console.log('The index of "new" from the beginning is ' + anyString.indexOf('B'));
-						
-					  console.log('The index of "new" from the end is ' + anyString.lastIndexOf('B'));
-*/				
-
-			$scope.showSimpleToast = function() {
-				$mdToast.show($mdToast.simple().content('Customer Data Saved!').position(
-						"top").hideDelay(3000));
-			};
-
-/*			$scope.stock = {};
-			$scope.addStock = function() {
-				$log.debug("No1");
-				var stockService = appEndpointSF.getStockService();
-				
-				stockService.addStock($scope.stock).then(
-						function(msgBean) {
-							$log.debug("No6");
-							$log.debug("Inside Ctr addStock");
-							$log.debug("msgBean.msg:" + msgBean.msg);
-							$scope.showSimpleToast();
-							
-						});
-				$log.debug("No4");
-				$scope.stock = {};
-			}
-			
-			$scope.selected = [];
-			$scope.updateStockItem = function() {
-			    var stockService = appEndpointSF.getStockService();
-			    
-			    stockService.updateStockItem($scope.selected).then(
-			      function(msgBean) {
-			       $log.debug("No6");
-			       $log.debug("Inside Ctr updateStockItem");
-			       $log.debug("msgBean.msg:" + msgBean.msg);
-			       $scope.showSavedToast();
-			     });
-			    $log.debug("Selected Item updated");
-			    
-			}
-			    
-			$scope.getAllStock = function() {
-				$log.debug("Inside Ctr $scope.getAllStock");
-				var stockService = appEndpointSF.getStockService();
-
-				stockService.getAllStock().then(
-						function(stockList) {
-							$log.debug("Inside Ctr getAllStock");
-							$scope.stockData = stockList;
-							$log.debug("Inside Ctr $scope.stockData:"
-									+ angular.toJson($scope.stockData));	
-							
-						});
-			}
-			$scope.tempItem = [];
-			$scope.stockData = [];
-			$scope.getAllStock();
-*/			
-			$scope.getstockByThreshold = function(){
-				$log.debug("Inside Ctr $scope.getstockByThreshold");
+			$scope.getReportByThreshold = function(){
+				$log.debug("Inside Ctr $scope.getReportByThreshold");
 				
 				var stockService = appEndpointSF.getStockService();
 				
-				stockService.getstockByThreshold().then(
+				stockService.getReportByThreshold($scope.curUser.businessAccount.id).then(
 						function(stockByThreshold) {
-							$log.debug("Inside Ctr getstockByThreshold");
 							$scope.thresholdStock = stockByThreshold;
-							$log.debug("Inside Ctr $scope.thresholdStock:"
+							$log.debug("$scope.thresholdStock:"
 									+ angular.toJson($scope.thresholdStock));							
 						})
 				
 			}
 			
 			$scope.thresholdStock = [];
-			$scope.getstockByThreshold();
-		
+			$scope.getReportByThreshold();
+					
 //			 Setup menu 
 			$scope.toggleRight = buildToggler('right');
 		
