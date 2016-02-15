@@ -28,13 +28,13 @@ public class PracticeExamService {
 		return ofy().load().type(PracticeExamEntity.class).list();
 	}
 
+
 	@ApiMethod(name = "getPracticeExamById")
-	public PracticeExamEntity getPracticeExamById(@Named("examId") String struct) {
-
-		PracticeExamEntity stru = ofy().load().type(PracticeExamEntity.class)
-				.filter("examId", struct).first().now();
-
-		return stru;
+	public PracticeExamEntity getPracticeExamById(@Named("examId") Long examId) {
+		System.out.println("Inside getPracticeExamById ");
+		PracticeExamEntity selected = ofy().load()
+				.type(PracticeExamEntity.class).id(examId).now();
+		return selected;
 	}
 	
 	@ApiMethod(name = "getPracticeExamByInstitute")
