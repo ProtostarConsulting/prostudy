@@ -45,7 +45,9 @@ angular.module("prostudyApp").controller(
 					'address' : $scope.address,
 					'contact' : $scope.contact,
 					'role' : "Student",
-					'standard' : $scope.selectedStandard
+					'standard' : $scope.selectedStandard,
+					'password' : $scope.password,
+					'isGoogleUser' :true
 				});
 				$scope.firstName = '';
 				$scope.lastName = '';
@@ -53,6 +55,8 @@ angular.module("prostudyApp").controller(
 				$scope.address = '';
 				$scope.contact = '';
 				$scope.role = '';
+				$scope.selectedStandard = '';
+				$scope.password = '';
 			};
 			
 			$scope.teachers = [];
@@ -65,7 +69,9 @@ angular.module("prostudyApp").controller(
 					'email_id' : $scope.email_id,
 					'address' : $scope.address,
 					'contact' : $scope.contact,
-					'role' : "Teacher"
+					'role' : "Teacher",
+					'password' : $scope.password,
+					'isGoogleUser' :true
 				});
 				$scope.firstName = '';
 				$scope.lastName = '';
@@ -73,6 +79,7 @@ angular.module("prostudyApp").controller(
 				$scope.address = '';
 				$scope.contact = '';
 				$scope.role = '';
+				$scope.password = '';
 			};
 			
 			$scope.admins = [];
@@ -85,7 +92,9 @@ angular.module("prostudyApp").controller(
 					'email_id' : $scope.email_id,
 					'address' : $scope.address,
 					'contact' : $scope.contact,
-					'role' : "Admin"
+					'role' : "Admin",
+					'password' : $scope.password,
+					'isGoogleUser' :true
 				});
 				$scope.firstName = '';
 				$scope.lastName = '';
@@ -93,6 +102,7 @@ angular.module("prostudyApp").controller(
 				$scope.address = '';
 				$scope.contact = '';
 				$scope.role = '';
+				$scope.password = '';
 			};
 			
 			

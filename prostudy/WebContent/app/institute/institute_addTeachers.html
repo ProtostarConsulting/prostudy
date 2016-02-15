@@ -6,7 +6,11 @@
 
 	<md-input-container flex> <label>Last name</label> <input ng-model="lastName"> </md-input-container>
 
-	<md-input-container flex> <label>Email-id</label> <input ng-model="email_id"> </md-input-container>
+	<label>Is Google User</label><md-input-container flex><md-checkbox ng-model="isGoogleUser" ng-true-value="true"ng-false-value="false"> </md-checkbox> </md-input-container>
+
+	<md-input-container flex> <label>Email-id</label><input ng-model="email_id"> </md-input-container>
+
+	<md-input-container flex ng-hide="isGoogleUser"> <label>Password</label> <input type="password" ng-model="password"> </md-input-container>
 	
 	<md-input-container flex> <label>Contact</label> <input ng-model="contact"> </md-input-container>
 	
