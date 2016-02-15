@@ -16,6 +16,7 @@ import com.protostar.prostudy.entity.PracticeExamEntity;
 import com.protostar.prostudy.entity.PracticeExamResultEntity;
 import com.protostar.prostudy.entity.QuestionEntity;
 import com.protostar.prostudy.entity.StudentEntity;
+import com.protostar.prostudy.entity.SyllabusEntity;
 import com.protostar.prostudy.entity.TeacherEntity;
 import com.protostar.prostudy.entity.UserEntity;
 import com.protostar.prostudy.entity.userAnsEntity;
@@ -32,7 +33,7 @@ public class AppServletContextListener implements ServletContextListener {
 		System.out.println("###Inside AppServletContextListener###");
 
 		// register all your entities here
-		 ObjectifyService.register(Car.class);
+		ObjectifyService.register(Car.class);
 		  ObjectifyService.register(CarAddress.class);
 		  ObjectifyService.register(CarOwner.class);  
 		  ObjectifyService.register(StudentEntity.class);  
@@ -48,6 +49,10 @@ public class AppServletContextListener implements ServletContextListener {
 		  ObjectifyService.register(AdminEntity.class);
 		  ObjectifyService.register(TeacherEntity.class);
 		  ObjectifyService.register(AttendanceEntity.class);
+		  ObjectifyService.register(SyllabusEntity.class);
+
+		
+
 
 	}
 
