@@ -10,12 +10,21 @@ public class SyllabusEntity
 	@Id
 	private Long id;
 	@Index
+	private Long instituteID;
+	
+	@Index
 	private String board;
 	private String standard;
 	private String subject;
 	private String chapterName;
 	private String chapterContent;
 	
+	public Long getInstituteID() {
+		return instituteID;
+	}
+	public void setInstituteID(Long instituteID) {
+		this.instituteID = instituteID;
+	}
 	public void setId(Long id) {
 		this.id = id;
 	}
