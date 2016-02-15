@@ -6,12 +6,13 @@
 		Organization id={{id}}
 		
 		 <div flex-xs flex="50">
-          <md-checkbox ng-model="user.isGoogleUser" ng-true-value="true" ng-false-value="false">
+          <md-checkbox ng-model="user.isGoogleUser"  ng-true-value="true" ng-false-value="false">
             Is Google User
           </md-checkbox>
         </div>
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>Enter
+
 
 				Email id/User Name </label> <input ng-model="user.email_id"> </md-input-container>
 			<md-input-container flex ng-hide="user.isGoogleUser"> <label >Password

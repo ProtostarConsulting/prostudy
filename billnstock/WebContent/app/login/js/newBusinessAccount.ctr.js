@@ -20,14 +20,15 @@ angular.module("stockApp").controller(
 					adminGmailId : "",
 					adminFirstName :"",
 					adminLastName : "",
-						password:""
+					password:"",
+					isGoogleUser:true
 			}
 
 			$scope.addBusiness = function() {
 				var UserService = appEndpointSF.getUserService();
-				UserService.addBusiness($scope.business).then(
+				UserService.addNewBusiness($scope.business).then(
 						function(msgBean) {
-							$scope.showSimpleToast(msgBean);
+							$scope.showSimpleToast(msgBean.msg);
 							$state.go("login");
 						
 						});

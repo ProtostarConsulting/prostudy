@@ -58,6 +58,7 @@ angular.module("stockApp").controller(
 							$scope.leads = leadList;
 							$scope.ctaskid = $scope.leads.tasks;
 							$scope.task.id = $scope.ctaskid.length + 1;
+							$scope.task.date= $scope.curdate;
 						});
 				
 				/*for(i=0;i<$scope.ctaskid;i++){

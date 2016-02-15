@@ -99,6 +99,16 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
+	UserService.addNewBusiness = function(business) {
+		var deferred = $q.defer();
+		gapi.client.userService.addNewBusiness(business).execute(function() {
+			deferred.resolve({
+				"msg" : "Business Add Successfully."
+			});
+		});
+		return deferred.promise;
+	}
+	
 	
 	//--------------------setup service----------------------------
 	
@@ -406,9 +416,9 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	crmService.getAllcontact = function() {
+	crmService.getAllcontact = function(id) {
 		var deferred = $q.defer();
-		gapi.client.crmService.getAllcontact().execute(function(resp) {
+		gapi.client.crmService.getAllcontact({'id':id}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -417,7 +427,7 @@ function googleEndpointSF($log, $q) {
 	crmService.getContactById = function(contactNo) {
 		var deferred = $q.defer();
 		gapi.client.crmService.getContactById({
-			'cid' : contactNo
+			'id' : contactNo
 		}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
@@ -452,9 +462,9 @@ function googleEndpointSF($log, $q) {
 				});
 		return deferred.promise;
 	}
-	opportunityService.getAllopportunity = function() {
+	opportunityService.getAllopportunity = function(id) {
 		var deferred = $q.defer();
-		gapi.client.opportunityService.getAllopportunity().execute(
+		gapi.client.opportunityService.getAllopportunity({'id':id}).execute(
 				function(resp) {
 					deferred.resolve(resp);
 				});
@@ -463,7 +473,7 @@ function googleEndpointSF($log, $q) {
 	opportunityService.getopportunityById = function(opportunityoid) {
 		var deferred = $q.defer();
 		gapi.client.opportunityService.getopportunityById({
-			'oid' : opportunityoid
+			'id' : opportunityoid
 		}).execute(function(resp) {
 			deferred.resolve(resp);
 		});

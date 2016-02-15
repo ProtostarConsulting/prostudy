@@ -11,7 +11,8 @@ angular
 								.position("top").hideDelay(3000));
 					};
 					$scope.selectedopportunityNo = $stateParams.selectedopportunityNo;
-
+					$scope.curUser = appEndpointSF.getLocalUserService()
+							.getLoggedinUser();
 					var d = new Date();
 					var year = d.getFullYear();
 					var month = d.getMonth() + 1;
@@ -25,6 +26,7 @@ angular
 					$scope.taskType = [ "Phone Call", "Email", "Visit" ];
 
 					$scope.opportunity = {
+						loggedInUser : "",
 						oid : "",
 						from : "",
 						name : "",
@@ -57,9 +59,11 @@ angular
 						if (temp.trim() == "Lead") {
 							$log.debug("============" + temp);
 							var leadService = appEndpointSF.getleadService();
-							leadService.getAllleads().then(function(leadList) {
-								$scope.leadorcustlist = leadList.items;
-							});
+							leadService.getAllleads(
+									$scope.curUser.businessAccount.id).then(
+									function(leadList) {
+										$scope.leadorcustlist = leadList.items;
+									});
 
 						}
 
@@ -67,7 +71,8 @@ angular
 							$log.debug("============" + temp);
 							var customerService = appEndpointSF
 									.getCustomerService();
-							customerService.getAllCustomers().then(
+							customerService.getAllCustomersByCurrUser(
+									$scope.curUser.businessAccount.id).then(
 									function(custList) {
 										$scope.leadorcustlist = custList;
 									});
@@ -79,6 +84,7 @@ angular
 
 					$scope.addopportunity = function() {
 
+						$scope.opportunity.loggedInUser = $scope.curUser;
 						$scope.opportunity.from = $scope.f;
 						$scope.opportunity.tasks = $scope.task;
 						var opportunityService = appEndpointSF
@@ -101,7 +107,8 @@ angular
 						var opportunityService = appEndpointSF
 								.getopportunityService();
 						opportunityService
-								.getAllopportunity()
+								.getAllopportunity(
+										$scope.curUser.businessAccount.id)
 								.then(
 										function(opportunityList) {
 											$log
@@ -114,7 +121,7 @@ angular
 					}
 
 					$scope.opportunitys = [];
-//					$scope.getAllopportunity();
+					$scope.getAllopportunity();
 
 					$scope.getopportunityById = function() {
 						$log.debug("Inside Ctr $scope.getAlllead");
@@ -130,12 +137,12 @@ angular
 											$scope.opportunityL = opportunityList.result;
 											$scope.ctaskid = $scope.opportunityL.tasks.length + 1;
 											$scope.taskobj.id = $scope.ctaskid;
-
+											$scope.taskobj.date = $scope.curdate;
 										});
 					}
 
 					$scope.opportunityL = [];
-//					$scope.getopportunityById();
+					$scope.getopportunityById();
 
 					$scope.updateopportunity = function() {
 
@@ -165,11 +172,10 @@ angular
 								.getopportunityService();
 						$scope.opportunityL.tasks.push($scope.taskobj);
 
-						opportunityService.addupdatetask($scope.opportunityL)// $scope.task, oppid
+						opportunityService.addupdatetask($scope.opportunityL)// $scope.task,
+																				// oppid
 						.then(function(msgBean) {
 
-							$log.debug("Inside Ctr addlead");
-							$log.debug("msgBean.msg:" + msgBean.msg);
 							$scope.showSimpleToast(msgBean.msg);
 							$scope.getopportunityById();
 						});

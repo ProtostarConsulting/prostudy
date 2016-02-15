@@ -66,7 +66,7 @@
 
 			</table>
 			<md-data-table-pagination md-limit="query.limit" md-page="query.page"
-				md-total={{leads.tasks.length}} md-trigger="onpagechange"></md-data-table-pagination>
+				md-total={{opportunityL.tasks.length}} md-trigger="onpagechange"></md-data-table-pagination>
 			</md-data-table-container>
 		</div>
 		<br>
@@ -96,7 +96,7 @@
 				ng-model="taskobj.note" rows="4" cols="1"> </textarea></md-input-container>
 		</div>
 		<div>
-			<md-checkbox ng-model="taskobj.status" ng-true-value="'inactive'">
+			<md-checkbox ng-model="taskobj.status" ng-true-value="'active'" ng-false-value="'inactive'">
 			Close </md-checkbox>
 
 		</div>

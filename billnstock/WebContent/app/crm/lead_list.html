@@ -25,7 +25,7 @@
 		<tbody>
 			<tr md-auto-select
 				ng-repeat="lead in leads | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
-				<td>{{lead.id}}</td>
+				<td>{{lead.lid}}</td>
 				<td>{{lead.name}}</td>
 				<td>{{lead.company}}</td>
 				<td>{{lead.phone}}</td>

@@ -4,8 +4,8 @@ angular.module("stockApp").controller(
 				$log, $q, $location, objectFactory, appEndpointSF,
 				tableTestDataFactory, $state) {
 
-			$scope.showSavedToast = function() {
-				$mdToast.show($mdToast.simple().content('New Student Registered!')
+			$scope.showSavedToast = function(msg) {
+				$mdToast.show($mdToast.simple().content(msg)
 						.position("top").hideDelay(3000));
 			};
 			
@@ -34,7 +34,7 @@ angular.module("stockApp").controller(
 					$log.debug("No6");
 					$log.debug("Inside Ctr addStudent");
 					$log.debug("msgBean.msg:" + msgBean.msg);
-					$scope.showSavedToast();
+					$scope.showSavedToast(msgBean.msg);
 					$scope.tempUser = {
 													
 						};

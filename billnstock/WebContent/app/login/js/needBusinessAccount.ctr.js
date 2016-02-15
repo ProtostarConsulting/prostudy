@@ -4,9 +4,8 @@ angular.module("stockApp").controller(
 				$log, $q, $location, objectFactory, appEndpointSF,
 				tableTestDataFactory, $state) {
 
-			$scope.showSavedToast = function() {
-				$mdToast.show($mdToast.simple().content(
-						'New Student Registered!').position("top").hideDelay(
+			$scope.showSavedToast = function(msg) {
+				$mdToast.show($mdToast.simple().content(msg).position("top").hideDelay(
 						3000));
 			};
 
@@ -26,10 +25,8 @@ angular.module("stockApp").controller(
 				var UserService = appEndpointSF.getUserService();
 				UserService.addBusiness($scope.business).then(
 						function(msgBean) {
-							$scope.showSavedToast();
-							//hide current section
-							//show next section
-						$state.go("login_module.html");
+							$scope.showSavedToast(msgBean.msg);
+							$state.go("login");
 						});
 			}
 	

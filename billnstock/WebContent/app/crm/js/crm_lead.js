@@ -10,7 +10,7 @@ angular
 					
 					$scope.lead ={
 							loggedInUser:"",
-							Lid:"",
+							lid:"",
 							name:"",
 							company:"",
 							phone:"",
@@ -56,7 +56,7 @@ angular
 							$scope.leads = leadList.items;
 							$log.debug("Inside Ctr getAllleads===="+angular.toJson($scope.leads ));
 							$scope.cleadid = $scope.leads.length + 1;
-							$scope.lead.id = $scope.cleadid;
+							$scope.lead.lid = $scope.cleadid;
 							
 						});
 					}

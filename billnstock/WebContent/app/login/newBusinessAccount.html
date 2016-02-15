@@ -13,7 +13,7 @@
 		</div>
 		<div layout layout-sm="column">
 			<label> Is Google User</label>
-			<md-checkbox ng-model="user.isGoogleUser" ng-true-value="true"
+			<md-checkbox ng-model="business.isGoogleUser" ng-true-value="true"
 				ng-false-value="false"> </md-checkbox>
 		</div>
 		<div layout layout-sm="column">
@@ -21,7 +21,7 @@
 			<md-input-container flex> <label>Admin
 				Gmail Email id</label> <input ng-model="business.adminGmailId"> </md-input-container>
 
-			<md-input-container flex ng-hide="user.isGoogleUser">
+			<md-input-container flex ng-hide="business.isGoogleUser">
 			<label>Password </label> <input type="password"
 				ng-model="business.password"> </md-input-container>
 		</div>

@@ -8,8 +8,11 @@ angular.module("stockApp").controller(
 						.position("top").hideDelay(3000));
 			};
 			$scope.selectedcontactNo = $stateParams.selectedcontactNo;
-
+			$scope.curUser = appEndpointSF.getLocalUserService()
+					.getLoggedinUser();
+			
 			$scope.contact = {
+				loggedInUser : "",
 				cid : "",
 				fName : "",
 				lName : "",
@@ -23,12 +26,13 @@ angular.module("stockApp").controller(
 			}
 
 			$scope.addcontact = function() {
+				$scope.contact.loggedInUser=$scope.curUser;
 				var leadService = appEndpointSF.getleadService();
 				leadService.addcontact($scope.contact).then(function(msgBean) {
 					$log.debug("Inside Ctr addlead");
 					$log.debug("msgBean.msg:" + msgBean.msg);
 					$scope.showSimpleToast(msgBean.msg);
-					//$scope.getAllleads();
+					// $scope.getAllleads();
 				});
 
 				$scope.contact = {};
@@ -36,7 +40,7 @@ angular.module("stockApp").controller(
 
 			$scope.getAllcontact = function() {
 				var leadService = appEndpointSF.getleadService();
-				leadService.getAllcontact().then(function(contactList) {
+				leadService.getAllcontact($scope.curUser.businessAccount.id).then(function(contactList) {
 					$log.debug("Inside Ctr getAllleads");
 					$scope.contacts = contactList.items;
 					$scope.cleadid = $scope.contacts.length + 1;
@@ -72,7 +76,7 @@ angular.module("stockApp").controller(
 							$log.debug("Inside Ctr updateemp");
 							$log.debug("msgBean.msg:" + msgBean.msg);
 							$scope.showSimpleToast(msgBean.msg);
-							//	$scope.empDetail = [];
+							// $scope.empDetail = [];
 						});
 			}
 
