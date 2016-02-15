@@ -4,7 +4,7 @@ angular
 				"addPracticeExamCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $q, appEndpointSF, $state, $stateParams,
-						$sce, $filter, standardList) {
+						$sce, $filter, standardList, boardList, subjectList) {
 
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
@@ -19,6 +19,11 @@ angular
 					$scope.standards = [ {} ];
 					$scope.standards = standardList;
 
+					$scope.boards = [ {} ];
+					$scope.boards = boardList;
+					
+					$scope.subjects = [ {} ];
+					$scope.subjects = subjectList;
 					
 					$scope.tempPracticeExam = {
 

@@ -16,11 +16,7 @@ angular
 							.getLoggedinUser();
 					$log.debug("$scope.curuser....................."
 							+ angular.toJson($scope.curuser));
-					/*
-					 * $scope.curUser = appEndpointSF.getUserService()
-					 * .getLoggedinUser();
-					 */
-
+				
 					// Code for timer
 					var date = new Date();
 
@@ -44,7 +40,7 @@ angular
 						if ($scope.counter === 0) {
 							$scope.$broadcast('timer-stopped', 0);
 							$timeout.cancel(mytimeout);
-							// $state.go("examscore");
+							
 							return;
 
 						}
@@ -112,7 +108,7 @@ angular
 						}
 						$scope.stopTimer();
 						$scope.addPracticeExamResult();
-						// $state.go("examscore");
+						
 						$state.go('userQuesAnsView', {
 							selectedExamId : $scope.Test.id,
 							selectedResultId : $scope.examResults.ID
@@ -202,7 +198,7 @@ angular
 
 					$scope.score = 0;
 
-					$scope.getPracticeExams = function() {
+				/*	$scope.getPracticeExams = function() {
 
 						var PracticeExamService = appEndpointSF
 								.getPracticeExamService();
@@ -218,6 +214,20 @@ angular
 
 										});
 					}// End of getPracticeExams
+*/					
+					$scope.getPracticeExamByInstitute = function() {
+
+						var PracticeExamService = appEndpointSF
+								.getPracticeExamService();
+						PracticeExamService.getPracticeExamByInstitute(
+								$scope.curUser.instituteID).then(
+								function(practiceExamList) {
+									$scope.practiceTest = practiceExamList;
+									$log.debug("$scope.practiceTest"
+											+ angular.toJson($scope.practiceTest));
+								});
+					}
+					$scope.getPracticeExamByInstitute();
 
 					$log.debug("$stateParams:", $stateParams);
 					$log.debug("$stateParams.selectedExamId:",
@@ -229,11 +239,12 @@ angular
 						var PracticeExamService = appEndpointSF
 								.getPracticeExamService();
 
-						PracticeExamService
-								.getPracticeExamById($scope.selectedExamId)
+						PracticeExamService.getPracticeExamById($scope.selectedExamId)
 								.then(
 										function(practiceTest) {
 											$scope.Test = practiceTest;
+											$log.debug("$scope.Test"
+													+ angular.toJson($scope.Test));
 											$scope.buttonLimit = function(count) {
 												$scope.totalPages = Math
 														.ceil($scope.Test.questions.length / 4);
@@ -363,7 +374,8 @@ angular
 					$scope.getPracticeExamResultbyID();
 
 					$scope.showselectedExam();
-					$scope.getPracticeExams();
+					//$scope.getPracticeExams();
+					$scope.getPracticeExamByInstitute();
 
 				});// end of examDemoCtr
 
