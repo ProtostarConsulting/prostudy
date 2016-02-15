@@ -76,7 +76,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 			return $localStorage.loggedinUser;
 	}
 
-	UserService.login = function(userName, pwd) {
+	/*UserService.login = function(userName, pwd) {
 
 		var deferred = $q.defer();
 		gapi.client.userService.login(userName, pwd).execute(function(resp) {
@@ -84,7 +84,18 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
-	}
+	}*/
+	
+	UserService.login = function(email,pass) {
+		  $log.debug("No2");
+		  var deferred = $q.defer();
+		
+		  gapi.client.userService.login({'email_id' : email,'password':pass}).execute(function(resp) { 
+		   deferred.resolve(resp);
+		  });
+		  $log.debug("No3");
+		  return deferred.promise;
+		 }
 
 	UserService.logout = function() {
 		$localStorage.loggedinUser = null;

@@ -4,7 +4,7 @@ var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
 		'directive.g+signin' ]);
 
 app.constant('standardList', ["5th", "6th", "7th", "8th", "9th", "10th"]);
-
+app.constant('boardList', ["State Board", "CBSE", "ICSE"]);
 app.constant('subjectList', ["Marathi", "Hindi", "English", "Mathematics", "Science", "History", "Geography"]);
 
 app.config(function($mdThemingProvider) {
@@ -261,7 +261,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('login', {
 		url : "/login",
 		templateUrl : '/app/login/login_module.html',
-		controller : 'loginModuleCtr'
+		controller : 'indexCtr'
 	}).state('updatemyprofile', {
 		url : "/updatemyprofile",
 		templateUrl : '/app/myprofile/myprofile_update.html',
