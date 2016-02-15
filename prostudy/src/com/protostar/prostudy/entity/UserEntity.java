@@ -16,15 +16,33 @@ public class UserEntity {
 	private String address;
 	private String contact;
 	private String role;
-    @Index
+	@Index
 	private String email_id;
+	private Boolean isGoogleUser = true;
 
-    @Index
+	private String password;
+
+	@Index
 	private Long instituteID;
 
 	private List<PracticeExamEntity> exam;
-	
-	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Boolean getIsGoogleUser() {
+		return isGoogleUser;
+	}
+
+	public void setIsGoogleUser(Boolean isGoogleUser) {
+		this.isGoogleUser = isGoogleUser;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -32,7 +50,7 @@ public class UserEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -88,7 +106,7 @@ public class UserEntity {
 	public void setExam(List<PracticeExamEntity> exam) {
 		this.exam = exam;
 	}
-	
+
 	public Long getInstituteID() {
 		return instituteID;
 	}
