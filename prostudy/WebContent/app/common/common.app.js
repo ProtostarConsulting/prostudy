@@ -5,6 +5,8 @@ var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
 
 app.constant('standardList', ["5th", "6th", "7th", "8th", "9th", "10th"]);
 
+app.constant('subjectList', ["Marathi", "Hindi", "English", "Mathematics", "Science", "History", "Geography"]);
+
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette(
 			'red').warnPalette('pink').backgroundPalette('grey');

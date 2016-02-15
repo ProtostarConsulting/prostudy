@@ -470,11 +470,11 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	InstituteService.getInstituteById = function(selectedInstituteId) {
 		var deferred = $q.defer();
 		gapi.client.instituteService.getInstituteById({
-			'instituteId' : selectedInstituteId
+			'instituteID' : selectedInstituteId
 		}).execute(function(resp) {
 			$log.debug("resp:" + angular.toJson(resp));
 
-			deferred.resolve(resp);
+			deferred.resolve(resp.result);
 		});
 		return deferred.promise;
 	}
