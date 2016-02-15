@@ -11,39 +11,18 @@ angular.module("prostudyApp").controller(
 			$scope.tempInstitute = {name: "", email_id: "", phone_no:"", address:""};
 			$scope.institutes = []; 
 			
-			$scope.addInstitute = function(){
-				$log
-				.debug("No1");	
+			$scope.getInstituteById = function() {
+
 				var InstituteService = appEndpointSF.getInstituteService();
-				InstituteService.addInstitute($scope.tempInstitute)
-				.then(
-						function(msgBean) {
-							$log
-							.debug("No6");	
-							$log
-									.debug("Inside Ctr addInstitute");
-							$log
-							.debug("msgBean.msg:" + msgBean.msg);
-							$scope.showSavedToast();
-							$scope.tempInstitute = {name: "", email_id: "", phone_no:"", address:""};
+				InstituteService.getInstituteById($scope.curUser.instituteID)
+						.then(function(instituteList) {
+							$scope.institutes.push(instituteList);
+							$log.debug("$scope.institutes :"+angular.toJson($scope.institutes));
+
 						});
-				$log
-				.debug("No4");	
 			}
 			
-			$scope.getInstitutes = function(){
-				//$scope.students = appEndpointSF.getStudentService().getStudents();
-				var InstituteService = appEndpointSF.getInstituteService();					
-										
-				InstituteService.getInstitutes()
-				.then(
-						function(instituteList) {
-							$log
-									.debug("Inside Ctr getInstitutes");
-							$scope.institutes = instituteList;
-						});
-			}
 
-			$scope.getInstitutes();
+			$scope.getInstituteById();
 
 		});
