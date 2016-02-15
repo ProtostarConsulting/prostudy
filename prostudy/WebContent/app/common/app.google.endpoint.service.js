@@ -297,6 +297,30 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
+	
+	SyllabusService.getSyllabusByInstitute = function(instituteID) {
+		var deferred = $q.defer();
+		gapi.client.syllabusService.getSyllabusByInstitute({
+			'instituteID' : instituteID
+		}).execute(function(resp) {
+			
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
+	SyllabusService.updateSyllabus = function(syllabus) {
+
+		var deferred = $q.defer();
+		
+		gapi.client.syllabusService.updateSyllabus(syllabus).execute(
+				function(resp) {
+					$log.debug(" updateSyllabus resp:" + angular.toJson(resp));
+					deferred.resolve(resp);
+				});
+
+		return deferred.promise;
+	}
 
 	// End of SyllabusService
 
@@ -539,11 +563,12 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		gapi.client.questionService.updateQuestion(ques).execute(
 				function(resp) {
 					$log.debug(" updateQuestion resp:" + angular.toJson(resp));
-					deferred.resolve(ques);
+					deferred.resolve(resp);
 				});
 
 		return deferred.promise;
 	}
+	
 	QuestionService.getQuestionByID = function(id) {
 		var deferred = $q.defer();
 		gapi.client.questionService.getQuestionByID({
