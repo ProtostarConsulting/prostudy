@@ -14,7 +14,6 @@ import com.protostar.prostudy.entity.InstituteEntity;
 @Api(name = "instituteService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
 public class InstituteService {
 
-	
 	@ApiMethod(name = "addInstitute")
 	public InstituteEntity addInstitute(InstituteEntity insti) {
 		InstituteEntity now = insti;
@@ -28,10 +27,10 @@ public class InstituteService {
 	}
 
 	@ApiMethod(name = "getInstituteById")
-	public InstituteEntity getInstituteById(@Named("instituteId") Long instituteId) {
+	public InstituteEntity getInstituteById(@Named("instituteID") Long instituteID) {
 		System.out.println("Inside getInstituteById ");
 		InstituteEntity selected = ofy().load()
-				.type(InstituteEntity.class).id(instituteId).now();
+				.type(InstituteEntity.class).id(instituteID).now();
 		return selected;
 	}
 	
@@ -41,5 +40,6 @@ public class InstituteService {
 	}
 	
 
+	
 	
 }
