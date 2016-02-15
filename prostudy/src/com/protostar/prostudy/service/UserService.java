@@ -46,6 +46,27 @@ public class UserService {
 	  return userList;
 	  
 	 }
+	
+	 @ApiMethod(name = "login")
+	 public UserEntity login(@Named("email_id") String email,
+	   @Named("password") String pass) {
+	  List<UserEntity> list = ofy().load().type(UserEntity.class)
+	    .filter("email_id", email).list();
+
+	  UserEntity foundUser = (list == null || list.size() == 0) ? null : list.get(0);
+	  if (foundUser != null) {
+	   if (foundUser.getPassword().equals(pass)) {
+	    return foundUser;
+	   } else {
+	    return null;
+
+	   }
+	  } else {
+	   return null;
+
+	  }
+
+	 }
 
 	
 
