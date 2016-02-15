@@ -29,7 +29,7 @@ public class InvoiceEntity {
 	private String taxTotal;
 	private String finalTotal;
 	private String note;
-	private List<InvoiceLineItemEntity> invoiceLineItemList;
+	private List<InvoiceLineItem> invoiceLineItemList;
 
 	@Index
 	Ref<Customer> customer;
@@ -79,12 +79,12 @@ public class InvoiceEntity {
 	}
 
 	
-	public List<InvoiceLineItemEntity> getInvoiceLineItemList() {
+	public List<InvoiceLineItem> getInvoiceLineItemList() {
 		return invoiceLineItemList;
 	}
 
 	public void setInvoiceLineItemList(
-			List<InvoiceLineItemEntity> invoiceLineItemList) {
+			List<InvoiceLineItem> invoiceLineItemList) {
 		this.invoiceLineItemList = invoiceLineItemList;
 	}
 	

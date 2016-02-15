@@ -39,6 +39,26 @@ public class StockItemService {
 		return filteredStocks;
 	}
 	
+	@ApiMethod(name="getReportByThreshold", path="Somepath_realted_to_your_service")
+	public List<StockItemEntity> getReportByThreshold(@Named("id") Long id){
+		
+		List<StockItemEntity> stocks = ofy().load().type(StockItemEntity.class).list();	
+		List<StockItemEntity> filteredThresholdStocks = new ArrayList<StockItemEntity>();
+		 
+		for(int i=0;i<stocks.size();i++)
+		{				
+			 if(stocks.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id))
+			 {
+				 if(stocks.get(i).getQty() <= stocks.get(i).getThresholdValue())
+				 {
+					 System.out.println("Got the record:" + stocks.get(i));
+					 filteredThresholdStocks.add(stocks.get(i));
+				 }
+			 }	 
+		}
+		return filteredThresholdStocks;
+	}
+	
 	@ApiMethod(name="updateStock")
 	public void updateStock(StockItemEntity stockItemEntity){
 		

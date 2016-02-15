@@ -15,6 +15,15 @@ public class TaxEntity {
 	private String taxId;
 	private String taxCodeName;
 	private double taxPercenatge;
+	private boolean taxVisibility=true;
+
+	public boolean isTaxVisibility() {
+		return taxVisibility;
+	}
+
+	public void setTaxVisibility(boolean taxVisibility) {
+		this.taxVisibility = taxVisibility;
+	}
 
 	@Index
 	Ref<UserEntity> loggedInUser;

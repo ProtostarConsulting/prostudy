@@ -3,18 +3,15 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
-import com.googlecode.objectify.Ref;
-import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.invoice.entities.InvoiceEntity;
-import com.protostar.billingnstock.purchase.entities.PurchaseOrderEntity;
 import com.protostar.billingnstock.stock.entities.StockItemEntity;
+import com.protostar.billingnstock.user.entities.UserEntity;
 
 @Api(name = "invoiceService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.stock.services", ownerName = "com.protostar.billingnstock.stock.services", packagePath = ""))
 public class InvoiceService {
@@ -25,17 +22,32 @@ public class InvoiceService {
 		
 		System.out.println(invoiceEntity.getInvoiceLineItemList());
 		
-/*		List<StockItemEntity> invoiceStockItem=invoiceEntity.getInvoiceLineItemList();
-		StockItemEntity stockItemEntity = new StockItemEntity();
-*/
+//		List<InvoiceLineItemEntity> invoiceStockItem = invoiceEntity.getInvoiceLineItemList();
+//		List<StockItemEntity> stockItemEntity = new ArrayList<StockItemEntity>();
+
+		List<StockItemEntity> stockItemEntity = ofy().load().type(StockItemEntity.class).list();
 		
-	/*	for(int i=0;i)
-		if(stockItemEntity.getId().equals(invoiceEntity.getInvoiceLineItemList()))
+		for(int i=0;i < invoiceEntity.getInvoiceLineItemList().size();i++)
 		{
-			
-		}*/
+			for(int j=0;j < stockItemEntity.size();j++)
+			{
+				if(invoiceEntity.getInvoiceLineItemList().get(i).getItemName().equals(stockItemEntity.get(j).getItemName()))
+				{
+					StockItemEntity a= stockItemEntity.get(j);
+
+					a.setQty((stockItemEntity.get(j).getQty()) - (Integer.valueOf((invoiceEntity.getInvoiceLineItemList().get(i).getQty()))));
+					ofy().save().entity(a).now();
+				}
+			}
+		}
+		
 	}
 	
+/*	private int parseInt(String qty) {
+		// TODO Auto-generated method stub
+		return 0;
+	}*/
+
 	@ApiMethod(name="getAllInvoice")
 	public List<InvoiceEntity> getAllInvoice(@Named("id") Long id){
 		
@@ -70,7 +82,7 @@ public class InvoiceService {
 	}
 	
 	
-/*	@ApiMethod(name = "getAllInvoiceByCustId")
+	@ApiMethod(name = "getAllInvoiceByCustId", path="Somepath_realted_to_your_service")
 	public List<InvoiceEntity> getAllInvoiceByCustId(@Named("id") Long id) {
 			//	long parseLong = Long.parseLong(id);
 				
@@ -85,13 +97,9 @@ public class InvoiceService {
 				 filteredInvoices.add(invoices.get(i));
 			 }
 			 
-			 System.out.println("id:" + id);
-			 System.out.println("No Recored found:" + invoices.get(i).getCustomer().getId());
+//			 System.out.println("id:" + id);
+//			 System.out.println("No Recored found:" + invoices.get(i).getCustomer().getId());
 		}
 		return filteredInvoices;		
-	}
-	
-*/	
-	
-	
+	}	
 }

@@ -16,10 +16,10 @@ public class StockItemEntity {
 	@Index
 	private String itemName;
 	private String category;
-	private String qty;
-	private String price;
+	private int qty;
+	private double price;
 	private String notes;
-	private String thresholdValue;
+	private int thresholdValue;
 
 	@Index
 	Ref<UserEntity> loggedInUser;
@@ -31,12 +31,6 @@ public class StockItemEntity {
 		this.loggedInUser = Ref.create(loggedInUser);
 	}
 	
-	public String getThresholdValue() {
-		return thresholdValue;
-	}
-	public void setThresholdValue(String thresholdValue) {
-		this.thresholdValue = thresholdValue;
-	}
 	public Long getId() {
 		return id;
 	}
@@ -65,26 +59,34 @@ public class StockItemEntity {
 		this.itemId = itemId;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public String getQty() {
+	public int getQty() {
 		return qty;
 	}
 
-	public void setQty(String qty) {
+	public void setQty(int qty) {
 		this.qty = qty;
 	}
 
-	public String getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
+	public int getThresholdValue() {
+		return thresholdValue;
+	}
+
+	public void setThresholdValue(int thresholdValue) {
+		this.thresholdValue = thresholdValue;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	
 	public String getNotes() {
 		return notes;
 	}
@@ -92,5 +94,4 @@ public class StockItemEntity {
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-
 }// end of StockServicesEntity

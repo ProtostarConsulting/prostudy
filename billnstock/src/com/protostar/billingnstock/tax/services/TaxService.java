@@ -48,6 +48,42 @@ public class TaxService {
 	public void updateTax(TaxEntity taxEntity){
 		Key<TaxEntity> now = ofy().save().entity(taxEntity).now();
 	}
+	
+	@ApiMethod(name="disableTax")
+	public void disableTax(TaxEntity taxEntity){
+		
+		if(taxEntity.isTaxVisibility()==true)
+		{
+			taxEntity.setTaxVisibility(false);
+		}
+		
+		Key<TaxEntity> now = ofy().save().entity(taxEntity).now();
+	}
+	
+	@ApiMethod(name="getTaxesByVisibility", path="Somepath_realted_to_your_service")
+	public List<TaxEntity> getTaxesByVisibility(@Named("id") Long id){
+	
+		List<TaxEntity> taxList=ofy().load().type(TaxEntity.class).list();
+		List<TaxEntity> filteredTax = new ArrayList<TaxEntity>();
+				
+		for(int i=0;i<taxList.size();i++)
+		{				
+			 if(taxList.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id))
+			 {
+				 if(taxList.get(i).isTaxVisibility()==true)
+				 {
+					 System.out.println("Got the record:" + taxList.get(i) );
+					 filteredTax.add(taxList.get(i));					 
+				 }
+			 }
+		}
+		System.out.println("filteredTax:" + filteredTax.getClass());
+		return filteredTax;
+		
+	}
+	
+	 
+	 
 	/*
 	 * @ApiMethod(name="addTax") public ServerMsg addTaxServices(TaxEntity
 	 * taxEntity) { //MyBean myBean = new MyBean();
