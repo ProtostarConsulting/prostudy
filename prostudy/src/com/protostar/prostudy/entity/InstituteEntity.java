@@ -17,8 +17,6 @@ public class InstituteEntity {
 	private String address;
 	private String phone_no;
 
-
-
 	public String getInstituteId() {
 		return instituteId;
 	}
