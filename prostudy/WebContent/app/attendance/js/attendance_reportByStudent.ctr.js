@@ -27,6 +27,8 @@ angular
 					$scope.newAbsentCount = 0;
 					$scope.newStudList = [];
 					
+					$scope.allDates = [];
+					
 					$scope.fromDate = new Date();
 					$scope.toDate = new Date();
 					
@@ -55,7 +57,10 @@ angular
 						    }
 
 						var dateArray = getDates($scope.fromDate,$scope.toDate);
+						$scope.allDates.push(dateArray);
 					    $log.debug("dateArray :" + dateArray);
+					    $log.debug("$scope.allDates :" + angular.toJson($scope.allDates));
+					    $log.debug("$scope.allDates_len :" + $scope.allDates.length);
 					}
 					
 
@@ -79,18 +84,20 @@ angular
 													}
 												}
 											}
-											$log.debug("$scope.newStudList :"+angular.toJson($scope.newStudList));
+											
+											
+											/*$log.debug("$scope.newStudList :"+angular.toJson($scope.newStudList));
 											
 											var date = new Date($scope.fromDate).toDateString("dd-mm-yyyy");
 											$log.debug("date111 :"+date);
 											var date = $filter($scope.fromDate)(Date.parse('dd-MM-yyyy'));
 											$log.debug("date222 :"+date);
-											/*var date = $filter($scope.fromDate)(Date.now(), 'dd-MM-yyyy')
-											$log.debug("date333 :"+date);*/
+											var date = $filter($scope.fromDate)(Date.now(), 'dd-MM-yyyy')
+											$log.debug("date333 :"+date);
 											if($scope.fromDate == "2016-02-09T13:22:07.931Z")
 											{
 												$log.debug("True");
-											}
+											}*/
 											
 										});
 						$scope.getAllDates();
