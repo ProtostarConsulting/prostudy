@@ -48,6 +48,7 @@ angular.module("prostudyApp").controller(
 						board : "",
 						standard : "",
 						chapters : [],
+						user : "",
 						comments : []
 					};// After click on submit button,htmlform to be set as a
 						// blank
