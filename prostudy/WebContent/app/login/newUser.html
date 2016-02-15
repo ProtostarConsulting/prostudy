@@ -60,6 +60,9 @@
 					</md-select> </md-input-container>
 				</div>
     				
+    				<md-input-container flex> <md-select ng-model="tempUser.instituteName" placeholder="Institute">
+					<md-option ng-value="instituteName" ng-repeat="instituteName in institutes">{{instituteName.name}}</md-option>
+					</md-select> </md-input-container> 
     				
     				<!-- <md-input-container flex> <md-select ng-model="tempUser.role" placeholder="User role">
 					<md-option >Admin</md-option>

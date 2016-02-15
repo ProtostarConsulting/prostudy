@@ -20,15 +20,15 @@
 			<md-tab label="Login with Prostudy Account">
 				<md-content class="md-padding">
 					<h1 class="md-display-2">Login with Prostudy Account</h1>
-					<div>
+					<div layout="column" layout-align="center center">
 						<md-input-container flex>
-							<label>User Name</label>
-							<input ng-model="tempUser.userName">
+							<label>User Email-id</label>
+							<input ng-model="tempUser.email_id">
 						</md-input-container>
 
 						<md-input-container flex>
 							<label>Password</label>
-							<input ng-model="tempUser.pwd" type="password">
+							<input ng-model="tempUser.password" type="password">
 						</md-input-container>
 
 						<md-button class="md-raised md-primary" ng-click="login()">
@@ -63,7 +63,7 @@
 	</div>
 
 
-
+<!-- 
 	<div layout="column" layout-align="center center">
 
 				 <span> <spanstyle: "color:red">{{loginMsg}}</span>
@@ -79,7 +79,7 @@
     				</md-input-container>
     				
 					<md-button class="md-raised md-primary" ng-click="login()">LOGIN</md-button> 
-	</div>
+	</div> -->
 
 </div>
 

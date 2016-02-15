@@ -5,40 +5,29 @@ angular.module("prostudyApp").controller(
 				tableTestDataFactory, $state) {
 
 			$scope.showSavedToast = function() {
-				$mdToast.show($mdToast.simple().content('New Teacher Registered!')
-						.position("top").hideDelay(3000));
+				$mdToast.show($mdToast.simple().content(
+						'New Teacher Registered!').position("top").hideDelay(
+						3000));
 			};
-			
-
-			
 		
-
-					$scope.book = {
-
-					bookid : "",
-					book_name : "",
-					author : "",
-					board : "",
-					standard : "",
-					chapters : []
-				};// end of tempBook object
-				
+			$scope.curUser = null; 
+			
 			$scope.tempUser = {
 				userId : "",
 				firstName : "",
 				lastName : "",
+				instituteName :"",
 				userName : "",
 				email_id : "",
 				address : "",
 				contact : "",
 				gender : "",
-				pwd : "",
+				password : "",
 				role : "Teacher",
-				book:""
-				//book :$scope.book,
-				//exam :[]
+				book : ""
+			
 			};
-			$scope.loginMsg  = "";
+			$scope.loginMsg = "";
 			$scope.users = [];
 
 			$scope.addUser = function() {
@@ -49,10 +38,10 @@ angular.module("prostudyApp").controller(
 					$log.debug("Inside Ctr addTeacher");
 					$log.debug("msgBean.msg:" + msgBean.msg);
 					$scope.showSavedToast();
-					
+
 				});
 				$log.debug("No4");
-				
+
 			}
 
 			$scope.getUser = function() {
@@ -63,27 +52,28 @@ angular.module("prostudyApp").controller(
 					$scope.users = userList;
 				});
 			}
-			
 
-			$scope.login = function() {
-				appEndpointSF.getUserService().login($scope.tempUser.userName, $scope.tempUser.pwd).then(
+			/*$scope.login = function() {
+				appEndpointSF.getUserService().login($scope.tempUser.email_id,
+						$scope.tempUser.password).then(
 						function(result) {
-							if (result){
-								$log.debug("User logged in successfully: "
-										+ $scope.tempUser.userName);
-								$window.location.reload();
+							if (result) {
+								$log.debug("result : "+angular.toJson(result));
+								$log.debug("User logged in successfully: "+ $scope.tempUser.email_id);
+								//$window.location.reload();
 								$state.go("home");
-								$scope.loginMsg  = "";
-							}
-							else {
+								$scope.loginMsg = "";
+								$scope.curUser = result;
+								$log.debug("curUser : "+angular.toJson($scope.curUser));
+							} else {
 								$log.debug("User loggin falied:"
-										+ $scope.tempUser.userName);
-								$scope.loginMsg="Login failed.";
+										+ $scope.tempUser.email_id);
+								$scope.loginMsg = "Login failed.";
 							}
 						})
 
 			}
-
+*/
 			/* Setup page menu */
 			$scope.toggleRight = buildToggler('right');
 

@@ -10,10 +10,23 @@ angular.module("prostudyApp").controller(
 			};
 			
 			//$scope.userRole = [admin,student,teacher]
+			
+			$scope.getInstitutes = function(){
+				var InstituteService = appEndpointSF.getInstituteService();					
+				InstituteService.getInstitutes()
+				.then(
+						function(instituteList) {
+							$log.debug("Inside Ctr getInstitutes");
+							$scope.institutes = instituteList;
+							$log.debug("$scope.institutes :"+$scope.institutes);
+						});
+			}
+			$scope.getInstitutes();
 
 			$scope.tempUser = {
 				userId : "",
 				name : "",
+				instituteName :"",
 				userName : "",
 				email_id : "",
 				address : "",
