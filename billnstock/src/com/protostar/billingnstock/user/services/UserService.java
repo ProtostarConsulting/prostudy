@@ -12,6 +12,7 @@ import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
+import com.protostar.billingnstock.user.entities.tempBusinessEntity;
 
 //import com.protostar.prostudy.entity.BookEntity;
 
@@ -111,12 +112,37 @@ public class UserService {
 		userEntity.setLastName(business.getAdminLastName());
 		userEntity.setIsGoogleUser(true);
 		userEntity.setAuthority(Arrays.asList("basic"));
-		userEntity.setPassword(business.getPassword());
+		//userEntity.setPassword(business.getPassword());
 		
 		ofy().save().entity(userEntity).now();
 
 	}
 
+	@ApiMethod(name = "addNewBusiness")
+	public void addNewBusiness(tempBusinessEntity business) {
+	
+		BusinessEntity businessEntity=new BusinessEntity();
+		businessEntity.setAdminFirstName(business.getAdminFirstName());
+		businessEntity.setAdminGmailId(business.getAdminGmailId());
+		businessEntity.setAdminLastName(business.getAdminLastName());
+		businessEntity.setBusinessName(business.getBusinessName());
+		
+		ofy().save().entity(businessEntity).now();
+		
+		UserEntity userEntity = new UserEntity();
+		userEntity.setBusinessAccount(businessEntity);
+		userEntity.setEmail_id(business.getAdminGmailId());
+		userEntity.setFirstName(business.getAdminFirstName());
+		userEntity.setLastName(business.getAdminLastName());
+		userEntity.setIsGoogleUser(business.getIsGoogleUser());
+		userEntity.setAuthority(Arrays.asList("basic"));
+		userEntity.setPassword(business.getPassword());
+		
+		ofy().save().entity(userEntity).now();
+
+	}
+	
+	
 	@ApiMethod(name = "getBusiness")
 	public List<BusinessEntity> getAlBusiness() {
 		return ofy().load().type(BusinessEntity.class).list();

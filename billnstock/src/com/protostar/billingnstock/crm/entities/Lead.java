@@ -17,13 +17,23 @@ public class Lead {
 	private Long id;
 
 	@Index
-	private String Lid;
+	private String lid;
 
+	
 	private String company;
 	private String phone;
 	private String email;
 	private String designation;
 	private String address;
+	
+
+	public String getLid() {
+		return lid;
+	}
+
+	public void setLid(String lid) {
+		this.lid = lid;
+	}
 
 	private List<Task> tasks;
 
@@ -37,13 +47,7 @@ public class Lead {
 		this.id = id;
 	}
 
-	public String getLid() {
-		return Lid;
-	}
-
-	public void setLid(String lid) {
-		Lid = lid;
-	}
+	
 
 	public UserEntity getLoggedInUser() {
 		return loggedInUser.get();

@@ -20,6 +20,7 @@ import com.protostar.billingnstock.stock.entities.StockItemEntity;
 import com.protostar.billingnstock.tax.entities.TaxEntity;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
+import com.protostar.billingnstock.user.entities.tempBusinessEntity;
 
 public class AppServletContextListener implements ServletContextListener {
 
@@ -49,6 +50,7 @@ public class AppServletContextListener implements ServletContextListener {
 		ObjectifyService.register(Contact.class);
 		ObjectifyService.register(UserEntity.class);
 		ObjectifyService.register(BusinessEntity.class);
+		ObjectifyService.register(tempBusinessEntity.class);
 	
 	}
 

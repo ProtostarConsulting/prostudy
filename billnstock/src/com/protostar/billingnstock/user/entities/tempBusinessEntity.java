@@ -5,7 +5,7 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 
 @Entity
-public class BusinessEntity {
+public class tempBusinessEntity {
 
 	@Id
 	private Long id;
@@ -23,6 +23,24 @@ public class BusinessEntity {
 	private String adminGmailId;
 	private String adminFirstName;
 	private String adminLastName;
+	private String password;
+	private Boolean isGoogleUser = true;
+
+	public Boolean getIsGoogleUser() {
+		return isGoogleUser;
+	}
+
+	public void setIsGoogleUser(Boolean isGoogleUser) {
+		this.isGoogleUser = isGoogleUser;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public String getBusinessName() {
 		return businessName;

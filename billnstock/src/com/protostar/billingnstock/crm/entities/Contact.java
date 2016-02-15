@@ -1,22 +1,28 @@
 package com.protostar.billingnstock.crm.entities;
 
+import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
+import com.protostar.billingnstock.user.entities.UserEntity;
 
 @Entity
 public class Contact {
 
+	
+	private Ref<UserEntity> loggedInUser;
+	
 	@Id
 	private Long id;
 
-	public Long getLeadid() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setLeadid(Long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
+
 	@Index
 	private String cid;
 
@@ -29,7 +35,16 @@ public class Contact {
 	private String supp;
 	private String cust;
 	private String salespartner;
+
 	
+	
+	public UserEntity getLoggedInUser() {
+		return loggedInUser.get();
+	}
+
+	public void setLoggedInUser(UserEntity loggedInUser) {
+		this.loggedInUser = Ref.create(loggedInUser);
+	}
 	public String getCid() {
 		return cid;
 	}
@@ -109,6 +124,5 @@ public class Contact {
 	public void setSalespartner(String salespartner) {
 		this.salespartner = salespartner;
 	}
-	
 
 }

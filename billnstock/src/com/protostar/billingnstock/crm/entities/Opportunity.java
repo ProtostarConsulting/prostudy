@@ -2,23 +2,27 @@ package com.protostar.billingnstock.crm.entities;
 
 import java.util.List;
 
+import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
+import com.protostar.billingnstock.user.entities.UserEntity;
 
 @Entity
 public class Opportunity {
 
+	private Ref<UserEntity> loggedInUser;
+
 	@Id
 	private Long id;
-
-	public Long getLeadid() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setLeadid(Long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
+
 	@Index
 	private String oid;
 	private String name;
@@ -26,8 +30,14 @@ public class Opportunity {
 	private String date;
 	private String description;
 	private List<OTask> tasks;
-	
-	
+
+	public UserEntity getLoggedInUser() {
+		return loggedInUser.get();
+	}
+
+	public void setLoggedInUser(UserEntity loggedInUser) {
+		this.loggedInUser = Ref.create(loggedInUser);
+	}
 
 	public List<OTask> getTasks() {
 		return tasks;
@@ -36,6 +46,7 @@ public class Opportunity {
 	public void setTasks(List<OTask> tasks) {
 		this.tasks = tasks;
 	}
+
 	public String getOid() {
 		return oid;
 	}
@@ -75,6 +86,5 @@ public class Opportunity {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 
 }

@@ -12,7 +12,6 @@ import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
 import com.protostar.billingnstock.crm.entities.Contact;
 import com.protostar.billingnstock.crm.entities.Lead;
-import com.protostar.billingnstock.hr.entities.SalStruct;
 
 
 
@@ -51,9 +50,9 @@ public class CrmService
 	 }
 	
 	@ApiMethod(name="getLeadById") 
-	 public Lead getLeadById(@Named("id") String selectedid) {
+	 public Lead getLeadById(@Named("id") Long selectedid) {
 	
-		Lead lead = ofy().load().type(Lead.class).filter("id", selectedid).first().now();
+		Lead lead = ofy().load().type(Lead.class).id(selectedid).now();
 
 		return lead;
 	 }
@@ -73,17 +72,30 @@ public class CrmService
 	
  
 	@ApiMethod(name="getAllcontact") 
+	 public List<Contact> getAllcontact(@Named("id") Long id) {
 	
-	 public List<Contact> getAllcontact() {
-	  return ofy().load().type(Contact.class).list();
+	  
+	  List<Contact> contact =ofy().load().type(Contact.class).list();
+	  
+			List<Contact> filteredcontact= new ArrayList<Contact>();
+
+			for (int i = 0; i < contact.size(); i++) {
+				if (contact.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id)){
+					
+					filteredcontact.add(contact.get(i));
+				} else {
+					
+					System.out.println("Recored No found:");
+				}
+			}
+			return filteredcontact;
+	  
+	  
 	 }
 	
-	
 	@ApiMethod(name="getContactById") 
-	 public Contact getContactById(@Named("cid") String contactNo) {
-	
-		Contact contact = ofy().load().type(Contact.class).filter("cid", contactNo).first().now();
-
+	 public Contact getContactById(@Named("id") Long contactNo) {
+			Contact contact = ofy().load().type(Contact.class).id(contactNo).now();
 		return contact;
 	 }
 	
