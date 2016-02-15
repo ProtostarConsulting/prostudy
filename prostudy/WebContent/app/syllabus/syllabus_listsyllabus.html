@@ -21,7 +21,7 @@
 	</thead>
 	<tbody>
 		<tr md-auto-select
-			ng-repeat="item in syllabus | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+			ng-repeat="item in syllabi | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
 
 			<td>{{item.board}}</td>
 			<td>{{item.standard}}</td>
@@ -32,7 +32,7 @@
 	</tbody>
 </table>
 </md-data-table-container> <md-data-table-pagination md-limit="query.limit" md-page="query.page"
-	md-total={{syllabus.length}} md-trigger="onpagechange"></md-data-table-pagination>
+	md-total={{syllabi.length}} md-trigger="onpagechange"></md-data-table-pagination>
 <div layout="column" layout-align="center center">
 <md-button class="md-raised md-primary" ng-show="selected.length > 0"
 	ng-click="editSyllabus()">Edit</md-button> 

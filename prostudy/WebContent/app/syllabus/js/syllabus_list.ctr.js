@@ -1,15 +1,21 @@
 angular.module("prostudyApp").controller(
-		"syllabusListCtr",		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,	$log, $q, tableTestDataFactory, $state, appEndpointSF, $filter,
+		"syllabusListCtr",
+		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
+				$log, $q, tableTestDataFactory, $state, appEndpointSF, $filter,
 				$log) {
+			
+			$scope.curUser = appEndpointSF.getLocalUserService()
+			.getLoggedinUser();
+
 			$scope.isShowTable = true;
 			$scope.isShowRecord = false;
-			
-				$scope.showSavedToast = function() {
+
+			$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content('Syllabus Saved!')
 						.position("top").hideDelay(3000));
 			};
-			//$scope.syllabus = "";
-			
+			// $scope.syllabus = "";
+
 			$scope.selected = [];
 
 			$scope.query = {
@@ -37,28 +43,26 @@ angular.module("prostudyApp").controller(
 
 				return deferred.promise;
 			};
-			
 
 
-			$scope.getSyllabus = function() {
+			$scope.getSyllabusByInstitute = function() {
+
 				var SyllabusService = appEndpointSF.getSyllabusService();
+				SyllabusService.getSyllabusByInstitute(
+						$scope.curUser.instituteID).then(function(SyllabusList) {
+					$scope.syllabi = SyllabusList;
 
-				SyllabusService.getSyllabus().then(function(syllabusList) {
-					$log.debug("Inside Ctr getSyllabus");
-					$scope.syllabus = syllabusList;
 				});
+
 			}
-			if(appEndpointSF.is_service_ready){
-			       $scope.getSyllabus();
-			      }
-			      else{       
-			       $timeout(function() {
-			        $scope.getSyllabus();
-			       }, 4000);
-			      }
-			
-			
-			
+
+			if (appEndpointSF.is_service_ready) {
+				$scope.getSyllabusByInstitute();
+			} else {
+				$timeout(function() {
+					$scope.getSyllabusByInstitute();
+				}, 4000);
+			}
 
 			// $scope.editRecord = create copy of selected[0];
 			$scope.editSyllabus = function() {
@@ -73,39 +77,21 @@ angular.module("prostudyApp").controller(
 				$scope.isShowRecord = false;
 
 			}
-			
-			/*
-			$scope.update = function() {
-				for (var i = 0; i < $scope.syllabus.length; i++) {
 
-					if ($scope.syllabus[i].board == $scope.editRecord.board) {
-						$scope.syllabus[i] = $scope.editRecord;
-						//$scope.sel = $scope.editRecord;
-						break;
-					}
-				}$scope.isShowTable = true;
-				$scope.isShowRecord = false;
-				
-				
-				
-				//$log.debug(" $scope.editRecord Value:"	+$scope.editRecord.subject);
-			}*/
-			
 			$scope.update = function() {
 				var SyllabusService = appEndpointSF.getSyllabusService();
-				
+
 				SyllabusService.updateSyllabus($scope.editRecord).then(
 						function(msgBean) {
 							$log.debug("No6");
 							$log.debug("Inside Ctr updateSyllabus");
 							$log.debug("msgBean.msg:" + msgBean.msg);
 							$scope.showSavedToast();
-					});
+						});
 				$log.debug("Select Syllabus updated");
-				
-				$log.debug("updated value"+$scope.syllabus.standard);
+
 				$scope.isShowTable = true;
 				$scope.isShowRecord = false;
-				
+
 			}
-				});
+		});

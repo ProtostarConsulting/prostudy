@@ -1,31 +1,39 @@
 angular.module("prostudyApp").controller(
-		"syllabusViewCtr",function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,	$log, $q, tableTestDataFactory, $state, appEndpointSF, $filter,
+		"syllabusViewCtr",
+		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
+				$log, $q, tableTestDataFactory, $state, appEndpointSF, $filter,
 				$log) {
-	
+
+			$scope.curUser = appEndpointSF.getLocalUserService()
+					.getLoggedinUser();
+
 			$scope.syllabus = [];
 			$scope.syllabus1 = {};
 			$scope.syllabus2 = {};
 			$scope.syllabus3 = {};
-			
-			
-			$scope.getSyllabus = function() {
-				var SyllabusService = appEndpointSF.getSyllabusService();
 
-				SyllabusService.getSyllabus().then(function(syllabusList) {
-					$log.debug("Inside Ctr getSyllabus");
-					$scope.syllabus = syllabusList;
-				});
+			$scope.getSyllabusByInstitute = function() {
+
+				var SyllabusService = appEndpointSF.getSyllabusService();
+				SyllabusService.getSyllabusByInstitute(
+						$scope.curUser.instituteID).then(
+						function(SyllabusList) {
+							$scope.syllabus = SyllabusList;
+
+						});
+
 			}
-			if(appEndpointSF.is_service_ready){
-			       $scope.getSyllabus();
-			      }
-			      else{       
-			       $timeout(function() {
-			        $scope.getSyllabus();
-			       }, 4000);
-			      }
 			
-				// Function for getting Board depending on selection of board
+
+			if (appEndpointSF.is_service_ready) {
+				$scope.getSyllabusByInstitute();
+			} else {
+				$timeout(function() {
+					$scope.getSyllabusByInstitute();
+				}, 4000);
+			}
+
+			// Function for getting Board depending on selection of board
 			$scope.getBoard = function(board) {
 				var bb = [];
 				for (var i = 0; i < $scope.syllabus.length; i++) {
@@ -33,16 +41,16 @@ angular.module("prostudyApp").controller(
 						bb.push($scope.syllabus[i].standard);
 
 				}
-				$scope.standardsList = bb.filter(onlyUnique); // returns Unique
-															// Standards
+				$scope.standardsList = bb.filter(onlyUnique); // returns
+																// Unique
+				// Standards
 				$log.debug(" standardsList Value:" + $scope.standardsList);
 			};
 			// function for finding unique elements from array
 			function onlyUnique(value, index, self) {
 				return self.indexOf(value) === index;
 			}
-	
-			
+
 			// Function for getting Standard depending on selection of board
 			$scope.getStandard = function(board, standard) {
 
@@ -55,11 +63,8 @@ angular.module("prostudyApp").controller(
 				}
 
 				$scope.subjectList = bb.filter(onlyUnique); // returns Unique
-														// Subject
+				// Subject
 				$log.debug(" subjectList Value:" + $scope.subjectList);
-				
-				
-				
 
 			};
 			// Function for getting Subject depending on selection of board,
@@ -74,9 +79,9 @@ angular.module("prostudyApp").controller(
 						bb.push($scope.syllabus[i].chapterName);
 
 				}
-				$scope.chapterList = bb.filter( onlyUnique ); // returns Unique Chapters
+				$scope.chapterList = bb.filter(onlyUnique); // returns Unique
+															// Chapters
 				$log.debug(" chapterList Value:" + $scope.chapterList);
-				
 
 			};
 
@@ -93,11 +98,12 @@ angular.module("prostudyApp").controller(
 						bb.push($scope.syllabus[i].chapterContent);
 
 				}
-				$scope.chapterContentList = bb.filter( onlyUnique ); // returns Unique Standards
+				$scope.chapterContentList = bb.filter(onlyUnique); // returns
+																	// Unique
+																	// Standards
 				$log.debug(" chapterContentList Value:"
 						+ $scope.chapterContentList);
-				
+
 			};
 
-	
-				});
+		});
