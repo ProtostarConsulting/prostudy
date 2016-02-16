@@ -6,13 +6,11 @@ import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
-import com.googlecode.objectify.annotation.Load;
+import com.protostar.billingnstock.cust.entities.AccountEntity;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.purchase.entities.PurchaseOrderEntity;
 import com.protostar.billingnstock.sales.entities.SalesOrderEntity;
-import com.protostar.billingnstock.stock.entities.StockItemEntity;
 import com.protostar.billingnstock.tax.entities.TaxEntity;
-import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
 
 @Entity
@@ -31,8 +29,14 @@ public class InvoiceEntity {
 	private String note;
 	private List<InvoiceLineItem> invoiceLineItemList;
 
+//	Ref<PurchaseOrderEntity>purchaseOrderNo;
+	Ref<SalesOrderEntity>salesOrderId;
+	Ref<AccountEntity> account;
 	@Index
 	Ref<Customer> customer;
+	@Index
+	Ref<UserEntity> loggedInUser;
+	
 	public Customer getCustomer() {
 		return customer.get();
 	}
@@ -49,8 +53,6 @@ public class InvoiceEntity {
 		this.selectedTaxItem = Ref.create(selectedTaxItem);
 	}
 	
-	@Index
-	Ref<UserEntity> loggedInUser;
 	public UserEntity getLoggedInUser() {
 		return loggedInUser.get();
 	}
@@ -58,18 +60,15 @@ public class InvoiceEntity {
 	public void setLoggedInUser(UserEntity loggedInUser) {
 		this.loggedInUser = Ref.create(loggedInUser);
 	}
-	
-	Ref<PurchaseOrderEntity>purchaseOrderNo;
-	Ref<SalesOrderEntity>salesOrderId;
-		
-	public PurchaseOrderEntity getPurchaseOrderNo() {
+			
+/*	public PurchaseOrderEntity getPurchaseOrderNo() {
 		return purchaseOrderNo.get();
 	}
 
 	public void setPurchaseOrderNo(PurchaseOrderEntity purchaseOrderNo) {
 		this.purchaseOrderNo = Ref.create(purchaseOrderNo);
 	}
-
+*/
 	public SalesOrderEntity getSalesOrderId() {
 		return salesOrderId.get();
 	}
@@ -78,6 +77,13 @@ public class InvoiceEntity {
 		this.salesOrderId = Ref.create(salesOrderId);
 	}
 
+	public AccountEntity getAccount() {
+		return account.get();
+	}
+
+	public void setAccount(AccountEntity account) {
+		this.account = Ref.create(account);
+	}
 	
 	public List<InvoiceLineItem> getInvoiceLineItemList() {
 		return invoiceLineItemList;
