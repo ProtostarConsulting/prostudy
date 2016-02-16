@@ -17,7 +17,7 @@
 	</md-select> </md-input-container>
 	
 	<md-input-container flex="40"> <md-select
-		ng-model="selectedSubject" placeholder="Subject" ng-change="">
+		ng-model="selectedSubject" placeholder="Subject" ng-change="getStudentsByInstitute()">
 	<md-option ng-value="subject" ng-repeat="subject in subjects">{{subject}}</md-option>
 	</md-select> </md-input-container>
 
@@ -26,11 +26,11 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
-
+<!-- 
 <div layout="row" layout-align="center center">
 	<md-button class="md-raised md-primary"
 		ng-click="getStudentsByInstitute()">Get Students</md-button>
-</div>
+</div> -->
 
 <p>&nbsp;</p>
 <p>&nbsp;</p>

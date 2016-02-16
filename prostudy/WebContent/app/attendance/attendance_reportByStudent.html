@@ -1,6 +1,6 @@
 
 
-<div layout="column" layout-align="center center">
+<div layout="column" layout-align="center center" layout-sm="column">
 
 	<div>
 		From date :
@@ -15,31 +15,65 @@
 	</div>
 </div>
 
-<div layout="row" layout-align="space-around center" layout-sm="column" >
+<div layout="row" layout-align="space-around center" layout-sm="column">
 	<md-input-container flex="30"> <md-select
 		ng-model="selectedStandard" placeholder="Standard" ng-change="">
 	<md-option ng-value="class" ng-repeat="class in standards">{{class}}</md-option>
 	</md-select> </md-input-container>
-	
+
 	<md-input-container flex="30"> <md-select
-		ng-model="selectedSubject" placeholder="Subject" ng-change="getAttendanceByInstitute()">
-	<md-option ng-value="subject" ng-repeat="subject in subjects">{{subject}}</md-option>
+		ng-model="selectedSubject" placeholder="Subject"
+		ng-change="getSelectedStudents()"> <md-option
+		ng-value="subject" ng-repeat="subject in subjects">{{subject}}</md-option>
 	</md-select> </md-input-container>
 </div>
 
-<div layout="row" layout-align="center center" layout-sm="column" >	
+<div layout="row" layout-align="center center" layout-sm="column">
 	<md-input-container flex="30"> <md-select
-	ng-model="selectedStudent" placeholder="Select Student"> <md-option
-	 ng-value="student" ng-repeat="student in newStudList">{{student.firstName}}{{student.lastName}}</md-option>
+		ng-model="selectedStudent" placeholder="Select Student"
+		ng-change="getStudent()"> <md-option ng-value="student"
+		ng-repeat="student in newStudList">{{student.firstName}}{{student.lastName}}</md-option>
 	</md-select> </md-input-container>
 </div>
 
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
-<div layout="row"  layout-align="center center">
-	<md-button class="md-raised md-primary" ng-click="">Get
-	Report</md-button>
+
+<div>
+
+	<md-data-table-container>
+	<table md-data-table class="md-primary" md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onorderchange">
+			<tr>
+				<th order-by="studID" name="ID" unit=""></th>
+				<th order-by="attendance" name="Attendance"></th>
+
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="item in newSelectedStudent | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+				<td>{{item.studID}}</td>
+				<td>{{item.attendance}}</td>
+
+			</tr>
+		</tbody>
+	</table>
+	</md-data-table-container>
+
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{newSelectedStudent.length}} md-trigger="onpagechange"></md-data-table-pagination>
+</div>
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<div layout="row" layout-align="center center">
+	<md-button class="md-raised md-primary"
+		ng-click="getNewDataFromServer()">Get Report</md-button>
 </div>
 
 

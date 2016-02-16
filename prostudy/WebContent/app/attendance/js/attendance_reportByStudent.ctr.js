@@ -17,17 +17,21 @@ angular
 					
 					$scope.selectedSubject;
 					$scope.selectedStandard;
+					$scope.selectedStudent = [];
+					$scope.newSelectedStudent = [];
 					$scope.selected;
 					$scope.present;
 					$scope.absent;
 					var presentCount = 0;
 					var absentCount = 0;
-					var totalStudents;
+					var totalCount;
 					$scope.newPresentCount = 0;
 					$scope.newAbsentCount = 0;
 					$scope.newStudList = [];
 					
 					$scope.allDates = [];
+					$scope.attendanceRecord = [];
+					var array = [];
 					
 					$scope.fromDate = new Date();
 					$scope.toDate = new Date();
@@ -57,14 +61,20 @@ angular
 						    }
 
 						var dateArray = getDates($scope.fromDate,$scope.toDate);
-						$scope.allDates.push(dateArray);
+						for(i=0;i<dateArray.length;i++)
+							{
+								$scope.allDates.push(dateArray[i]);
+							}
+						
+						array.push(dateArray);
 					    $log.debug("dateArray :" + dateArray);
+					    $log.debug("dateArray :" + array.length);
 					    $log.debug("$scope.allDates :" + angular.toJson($scope.allDates));
-					    $log.debug("$scope.allDates_len :" + $scope.allDates.length);
+					    $log.debug("$scope.allDates :"+$scope.allDates.length);
 					}
 					
 
-					$scope.getAttendanceByInstitute = function() {
+					$scope.getSelectedStudents = function() {
 
 						var AttendanceService = appEndpointSF
 								.getAttendanceService();
@@ -84,27 +94,55 @@ angular
 													}
 												}
 											}
-											
-											
-											/*$log.debug("$scope.newStudList :"+angular.toJson($scope.newStudList));
-											
-											var date = new Date($scope.fromDate).toDateString("dd-mm-yyyy");
-											$log.debug("date111 :"+date);
-											var date = $filter($scope.fromDate)(Date.parse('dd-MM-yyyy'));
-											$log.debug("date222 :"+date);
-											var date = $filter($scope.fromDate)(Date.now(), 'dd-MM-yyyy')
-											$log.debug("date333 :"+date);
-											if($scope.fromDate == "2016-02-09T13:22:07.931Z")
-											{
-												$log.debug("True");
-											}*/
+										
 											
 										});
 						$scope.getAllDates();
 					}
 					
+					$scope.getStudent = function()
+					{
+						for(var j=0;j<$scope.newStudList.length;j++)
+							{
+								if($scope.selectedStudent.studID == $scope.newStudList[j].studID)
+								{
+									$scope.newSelectedStudent.push($scope.newStudList[j]);
+								
+								}
+							}
+						
+						totalCount = $scope.newSelectedStudent.length;
+						for (var i = 0; i < $scope.newSelectedStudent.length; i++) {
+							if ($scope.newSelectedStudent[i].attendance == true) {
+								$scope.present = $scope.newSelectedStudent[i];
+								presentCount++;
+
+							} else {
+								$scope.absent = $scope.newSelectedStudent[i];
+								absentCount++;
+
+							}
+						}
 					
-		
+						$scope.newPresentCount = ((presentCount / totalCount) * 100);
+						$scope.newAbsentCount = ((absentCount / totalCount) * 100);
+					}
+					
+					$scope.getReport = function()
+					{
+						for(var i=0;i<$scope.allDates.length;i++)
+						{
+							for(var j=0;j<$scope.newSelectedStudent.length;j++)
+							{
+								if($scope.allDates[i] == $scope.newSelectedStudent[j].date)
+									{
+											$log.debug("true....:");
+											//$scope.attendanceRecord.push($scope.newStudList[j]);
+											//$log.debug("$scope.attendanceRecord :"+angular.toJson($scope.attendanceRecord));
+									}
+							}
+						}
+					}
 					
 					$scope.loadChart = function() {
 						google.charts.load('43', {packages: ['corechart']});
@@ -148,10 +186,10 @@ angular
 				  	
 						$scope.clear = function() {
 							
-							$scope.selectedInstitute = "";
-							$scope.selectedClass = "";
+							$scope.selectedStudent = "";
+							$scope.selectedStandard = "";
 							$scope.selectedSubject = "";
-							$scope.newStudList.splice(0,$scope.newStudList.length);
+							$scope.newSelectedStudent.splice(0,$scope.newSelectedStudent.length);
 							$scope.newPresentCount = 0;
 							$scope.newAbsentCount = 0;
 							presentCount = 0;
@@ -161,6 +199,5 @@ angular
 				
 
 				      $scope.loadChart();
-			
 
 				});
