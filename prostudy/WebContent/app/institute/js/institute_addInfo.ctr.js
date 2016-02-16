@@ -6,7 +6,8 @@ angular.module("prostudyApp").controller(
 			$scope.standards = [{}];
 			$scope.standards = standardList;
 			$scope.selectedStandard;
-
+			 $scope.isGoogleUser;
+			 
 			$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content('Institute Saved!')
 						.position("top").hideDelay(3000));
@@ -47,7 +48,7 @@ angular.module("prostudyApp").controller(
 					'role' : "Student",
 					'standard' : $scope.selectedStandard,
 					'password' : $scope.password,
-					'isGoogleUser' :true
+					'isGoogleUser' : $scope.isGoogleUser
 				});
 				$scope.firstName = '';
 				$scope.lastName = '';
@@ -71,7 +72,7 @@ angular.module("prostudyApp").controller(
 					'contact' : $scope.contact,
 					'role' : "Teacher",
 					'password' : $scope.password,
-					'isGoogleUser' :true
+					'isGoogleUser' : $scope.isGoogleUser
 				});
 				$scope.firstName = '';
 				$scope.lastName = '';
@@ -94,7 +95,7 @@ angular.module("prostudyApp").controller(
 					'contact' : $scope.contact,
 					'role' : "Admin",
 					'password' : $scope.password,
-					'isGoogleUser' :true
+					'isGoogleUser' : $scope.isGoogleUser
 				});
 				$scope.firstName = '';
 				$scope.lastName = '';

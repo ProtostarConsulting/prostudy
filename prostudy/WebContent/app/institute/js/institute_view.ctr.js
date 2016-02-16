@@ -7,6 +7,7 @@ angular.module("prostudyApp").controller(
 			$scope.standards = [{}];
 			$scope.standards = standardList;
 			$scope.selectedStandard;
+			$scope.isGoogleUser;
 			
 			$log.debug("$stateParams:", $stateParams);
 			$log.debug("$stateParams.selectedInstituteId:",
@@ -51,7 +52,7 @@ angular.module("prostudyApp").controller(
 					'role' : "Student",
 					'standard' : $scope.selectedStandard,
 					'password' : $scope.password,
-					'isGoogleUser' :true
+					'isGoogleUser' : $scope.isGoogleUser
 				});
 				$scope.firstName = '';
 				$scope.lastName = '';
@@ -75,7 +76,7 @@ angular.module("prostudyApp").controller(
 					'contact' : $scope.contact,
 					'role' : "Teacher",
 					'password' : $scope.password,
-					'isGoogleUser' :true
+					'isGoogleUser' : $scope.isGoogleUser
 				});
 				$scope.firstName = '';
 				$scope.lastName = '';
@@ -99,7 +100,7 @@ angular.module("prostudyApp").controller(
 					'contact' : $scope.contact,
 					'role' : "Admin",
 					'password' : $scope.password,
-					'isGoogleUser' :true
+					'isGoogleUser' : $scope.isGoogleUser
 				});
 				$scope.firstName = '';
 				$scope.lastName = '';
