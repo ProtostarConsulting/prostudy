@@ -18,7 +18,7 @@ public class UserEntity {
 	private String role;
 	@Index
 	private String email_id;
-	private Boolean isGoogleUser = true;
+	private Boolean isGoogleUser = false;
 
 	private String password;
 	private String standard;
