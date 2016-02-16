@@ -26,6 +26,7 @@ angular.module("prostudyApp").controller(
 				firstName : "",
 				lastName : "",
 				email_id : "",
+				standard : "",
 				address : "",
 				contact : "",
 				role : "Student",
@@ -41,17 +42,17 @@ angular.module("prostudyApp").controller(
 					$log.debug("Inside Ctr addStudent");
 					$scope.showSimpleToast();
 					$scope.tempStudent = {
-							firstName : "",
-							lastName : "",
-							email_id : "",
-							address : "",
-							contact : "",
-							
-						};
+						firstName : "",
+						lastName : "",
+						email_id : "",
+						standard : "",
+						address : "",
+						contact : "",
+
+					};
 
 				});
 
 			}
-
 
 		});
