@@ -13,26 +13,32 @@
 						Name</label> <input ng-model="tempStudent.lastName"> </md-input-container>
 					<md-input-container flex> <label>
 						Email-ID</label> <input ng-model="tempStudent.email_id"> </md-input-container>
-					
+
 				</div>
-				
+
 				<div layout="column" flex>
+					<md-input-container flex="30"> <md-select
+						ng-model="tempStudent.standard" placeholder="Standard" ng-change="">
+					<md-option ng-value="class" ng-repeat="class in standards">{{class}}</md-option>
+					</md-select> </md-input-container>
 					<md-input-container flex> <label>
 						Address</label> <input ng-model="tempStudent.address"> </md-input-container>
 					<md-input-container flex> <label>Contact</label>
 					<input ng-model="tempStudent.contact"> </md-input-container>
 				</div>
-				
-			</div>
-			
-				
-			
-		 <div layout="row" layout-align="center center">
-			    <md-button class="md-raised" ng-click="getStudents()"> Cancel </md-button>
-			    <md-button class="md-raised md-primary" ng-click="addStudent()">Submit </md-button>
-	     </div>
 
-	<hr>
+			</div>
+
+
+
+			<div layout="row" layout-align="center center">
+				<md-button class="md-raised" ng-click="getStudents()">
+				Cancel </md-button>
+				<md-button class="md-raised md-primary" ng-click="addStudent()">Submit
+				</md-button>
+			</div>
+
+			<hr>
 		</form>
 
 	</section>
