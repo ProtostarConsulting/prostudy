@@ -13,10 +13,9 @@ app
 					$scope.invoiceObj = {
 
 //						invoiceId : '',
-						purchaseOrderNo : '',
+//						purchaseOrderNo : '',
 						salesOrderId : '',
 						customer : '',
-					//	customerAddress : '',
 						invoiceDate : $filter("date")(Date.now(), 'dd-MM-yyyy'),
 						invoiceLineItemList : [],
 						subTotal : '',
@@ -25,6 +24,7 @@ app
 						taxTotal : 0,
 						finalTotal : '',
 						note:''	,
+						account:"",
 						loggedInUser:""
 					};
 
@@ -36,7 +36,6 @@ app
 						InvoiceService.addInvoice($scope.invoiceObj).then(
 								function(msgBean) {
 									$log.debug("No6");
-									$log.debug("Inside Ctr addInvoice");
 									$log.debug("msgBean.msg:" + msgBean.msg);
 									$scope.showSimpleToast();
 
@@ -46,31 +45,6 @@ app
 						$scope.invoiceObj = {};
 					}
 
-/*					$scope.getAllInvoice = function() {
-						$log.debug("Inside Ctr $scope.getAllInvoice");
-						var invoiceService = appEndpointSF.getInvoiceService();
-
-						invoiceService
-								.getAllInvoice()
-								.then(
-										function(invoiceList) {
-											$log
-													.debug("Inside Ctr getAllInvoice");
-											$scope.invoiceData = invoiceList;
-
-											$scope.tempInvoiceId = $scope.invoiceData.length + 1;
-											$scope.invoiceObj.invoiceId = $scope.tempInvoiceId;
-											$log
-													.debug("Inside Ctr $scope.invoiceData:"
-															+ angular
-																	.toJson($scope.invoiceData));
-										});
-					}
-
-					$scope.invoiceData = [];
-					$scope.tempInvoiceId;
-					$scope.getAllInvoice();
-*/
 					$scope.addItem = function() {
 						var item = {
 							srNo : $scope.invoiceObj.invoiceLineItemList.length + 1,
@@ -140,10 +114,11 @@ app
 
 					};
 
-					$scope.POddlChange = function(index, selectedPOId) {
-						$log.debug("##Came to POddlChange...");
+					$scope.AccountNameddlChange = function(index, selectedAccount) {
+						$log.debug("##Came to AcountNameddlChange...");
 
 					};
+
 
 					$scope.removeItem = function(index) {
 						$scope.invoiceObj.invoiceLineItemList.splice(index, 1);
@@ -235,28 +210,21 @@ app
 					// $scope.SOforinvoice = [];
 					$scope.getAllSalesOrder();
 
-					$scope.getAllPurchaseOrder = function() {
-						$log.debug("Inside Ctr $scope.getAllPurchaseOrder");
-						var purchaseService = appEndpointSF
-								.getPurchaseOrderService();
+					
+					$scope.getAllAccountsByBusiness = function() {
+						var accountService = appEndpointSF.getAccountService();
 
-						purchaseService
-								.getAllPurchaseOrder($scope.curUser.businessAccount.id)
-								.then(
-										function(purchaseOrderList) {
-											$log
-													.debug("Inside Ctr getAllPurchaseOrder");
-											$scope.POforinvoice = purchaseOrderList;
-											$log
-													.debug("@@@@@@@getAllPurchaseOrder"
-															+ angular
-																	.toJson($scope.POforinvoice));
-										});
+						accountService.getAllAccountsByBusiness($scope.curUser.businessAccount.id).then(
+								function(accountList) {
+									$log.debug("Inside Ctr getAllAccountsByBusiness");
+									$scope.accountforinvoice = accountList;							
+									$log.debug("Inside Ctr $scope.accounts:"
+											+ angular.toJson($scope.account));
+								});
 					}
-
-					// $scope.purchaseOrderList = [];
-					$scope.getAllPurchaseOrder();
-
+					$scope.accountforinvoice = [];
+					$scope.getAllAccountsByBusiness();
+					
 					var printDivCSS = new String(
 							'<link href="/lib/base/css/angular-material.min.css"" rel="stylesheet" type="text/css">'
 									+ '<link href="/lib/base/css/bootstrap.min.css"" rel="stylesheet" type="text/css">')

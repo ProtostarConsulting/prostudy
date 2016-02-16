@@ -92,6 +92,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/accountList",
 		templateUrl : '/app/customer/account_list.html',
 		controller : 'accountAddCtr'
+	}).state('customer.accountIncome', {
+		url : "/accountIncome",
+		templateUrl : '/app/customer/account_income.html',
+		controller : 'accountIncomeCtr'
 	}).state('report', {
 		url : "/report",
 		templateUrl : '/app/report/report_module.html',

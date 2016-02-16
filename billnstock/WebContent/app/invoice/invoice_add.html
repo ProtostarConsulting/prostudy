@@ -38,17 +38,17 @@
 				
 			</div>
 			<div layout layout-sm="column">
+			
+			<md-input-container flex> <md-select
+					ng-model="invoiceObj.account" placeholder="Account Name"
+					ng-change="AccountNameddlChange($index, selectedAccount)"> <md-option
+					ng-value="Account" ng-repeat="Account in accountforinvoice">{{Account.accountName
+				}}</md-option> </md-select> </md-input-container>
+				
 				<md-input-container flex> <md-select
 					ng-model="invoiceObj.salesOrderId" placeholder="Sales Order No"
 					ng-change="SOddlChange($index, selectedSOId)"> <md-option
 					ng-value="SO" ng-repeat="SO in SOforinvoice">{{SO.id
-				}}</md-option> </md-select> </md-input-container>
-
-				<md-input-container flex> <md-select
-					ng-model="invoiceObj.purchaseOrderNo"
-					placeholder="Purchase Order No"
-					ng-change="POddlChange($index, selectedPOId)"> <md-option
-					ng-value="PO" ng-repeat="PO in POforinvoice">{{PO.id
 				}}</md-option> </md-select> </md-input-container>
 			</div>
 			<div layout layout-sm="column">

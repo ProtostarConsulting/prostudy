@@ -26,48 +26,7 @@ app
 						finalTotal : ''
 					};
 					$scope.selected = [];
-/*
-					$log.debug("$stateParams:", $stateParams);
-					$log.debug("$stateParams.selectedInvoiceNo:",
-							$stateParams.selectedInvoiceNo);
 
-					$scope.selectedBillNo = $stateParams.selectedInvoiceNo;
-
-					$scope.showBill = function() {
-						var invoiceService = appEndpointSF.getInvoiceService();
-
-						invoiceService
-								.getinvoiceByID($scope.selectedBillNo)
-								.then(
-										function(invoiceList) {
-											$scope.invoiceDetail = invoiceList[0];
-											$log
-													.debug("$scope.showBill:invoiceDetail ===="
-															+ angular
-																	.toJson($scope.invoiceDetail));
-										});
-
-					}
-					$scope.invoiceDetail = [];
-					$scope.showBill();
-
-					$scope.addInvoice = function() {
-						$log.debug("No1");
-						var InvoiceService = appEndpointSF.getInvoiceService();
-
-						InvoiceService.addInvoice($scope.invoiceObj).then(
-								function(msgBean) {
-									$log.debug("No6");
-									$log.debug("Inside Ctr addInvoice");
-									$log.debug("msgBean.msg:" + msgBean.msg);
-									$scope.showSimpleToast();
-
-								});
-						$log.debug("No4");
-
-						$scope.invoiceObj = {};
-					}
-*/
 					$scope.getAllInvoice = function() {
 						$log.debug("Inside Ctr $scope.getAllInvoice");
 						var invoiceService = appEndpointSF.getInvoiceService();
