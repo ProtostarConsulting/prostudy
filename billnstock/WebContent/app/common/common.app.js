@@ -20,6 +20,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/state1",
 		templateUrl : "/app/demo/state1.html",
 		controller : 'statesPageCtr'
+	}).state('drivefiles', {
+		url : "/drivefiles",
+		templateUrl : "/app/demo/drivefiles.html",
+		controller : 'driveFilesCtr'
 	}).state('state1.list', {
 		url : "/list/:someVal",
 		templateUrl : "/app/demo/state1.list.html",
