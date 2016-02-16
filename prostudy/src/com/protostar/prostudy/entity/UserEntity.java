@@ -21,11 +21,21 @@ public class UserEntity {
 	private Boolean isGoogleUser = true;
 
 	private String password;
+	private String standard;
 
 	@Index
 	private Long instituteID;
 
 	private List<PracticeExamEntity> exam;
+
+
+	public String getStandard() {
+		return standard;
+	}
+
+	public void setStandard(String standard) {
+		this.standard = standard;
+	}
 
 	public String getPassword() {
 		return password;
