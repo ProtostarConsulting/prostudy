@@ -11,6 +11,7 @@ import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
 import com.protostar.prostudy.entity.AttendanceEntity;
 import com.protostar.prostudy.entity.UserEntity;
+import com.protostar.prostudy.until.data.UtilityService;
 
 //import com.protostar.prostudy.entity.BookEntity;
 
@@ -19,6 +20,8 @@ public class UserService {
 
 	@ApiMethod(name = "addUser")
 	public void addUser(UserEntity usr) {
+		String nextPRN = UtilityService.getNextPRN(usr.getRole());
+		usr.setPRN(nextPRN);
 		Key<UserEntity> now = ofy().save().entity(usr).now();
 	}
 
@@ -38,36 +41,36 @@ public class UserService {
 				.filter("email_id", email).list();
 		return (list == null || list.size() == 0) ? null : list.get(0);
 	}
-	
+
 	@ApiMethod(name = "getUserByInstitute")
-	 public List<UserEntity> getUserByInstitute(@Named("instituteID") Long instituteID) {
+	public List<UserEntity> getUserByInstitute(
+			@Named("instituteID") Long instituteID) {
 		System.out.println("inside getUserByInstitute");
-	  List<UserEntity> userList = ofy().load().type(UserEntity.class).filter("instituteID", instituteID).list();
-	  return userList;
-	  
-	 }
-	
-	 @ApiMethod(name = "login")
-	 public UserEntity login(@Named("email_id") String email,
-	   @Named("password") String pass) {
-	  List<UserEntity> list = ofy().load().type(UserEntity.class)
-	    .filter("email_id", email).list();
+		List<UserEntity> userList = ofy().load().type(UserEntity.class)
+				.filter("instituteID", instituteID).list();
+		return userList;
+	}
 
-	  UserEntity foundUser = (list == null || list.size() == 0) ? null : list.get(0);
-	  if (foundUser != null) {
-	   if (foundUser.getPassword().equals(pass)) {
-	    return foundUser;
-	   } else {
-	    return null;
+	@ApiMethod(name = "login")
+	public UserEntity login(@Named("email_id") String email,
+			@Named("password") String pass) {
+		List<UserEntity> list = ofy().load().type(UserEntity.class)
+				.filter("email_id", email).list();
 
-	   }
-	  } else {
-	   return null;
+		UserEntity foundUser = (list == null || list.size() == 0) ? null : list
+				.get(0);
+		if (foundUser != null) {
+			if (foundUser.getPassword().equals(pass)) {
+				return foundUser;
+			} else {
+				return null;
 
-	  }
+			}
+		} else {
+			return null;
 
-	 }
+		}
 
-	
+	}
 
 }

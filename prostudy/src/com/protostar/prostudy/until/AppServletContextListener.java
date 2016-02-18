@@ -20,6 +20,7 @@ import com.protostar.prostudy.entity.SyllabusEntity;
 import com.protostar.prostudy.entity.TeacherEntity;
 import com.protostar.prostudy.entity.UserEntity;
 import com.protostar.prostudy.entity.userAnsEntity;
+import com.protostar.prostudy.until.data.YearCounterEntity;
 
 public class AppServletContextListener implements ServletContextListener {
 
@@ -50,6 +51,7 @@ public class AppServletContextListener implements ServletContextListener {
 		  ObjectifyService.register(TeacherEntity.class);
 		  ObjectifyService.register(AttendanceEntity.class);
 		  ObjectifyService.register(SyllabusEntity.class);
+		  ObjectifyService.register(YearCounterEntity.class);
 
 		
 

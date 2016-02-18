@@ -18,6 +18,10 @@ public class UserEntity {
 	private String role;
 	@Index
 	private String email_id;
+	@Index
+	private String PRN;
+	
+	
 	private Boolean isGoogleUser = false;
 
 	private String password;
@@ -29,6 +33,13 @@ public class UserEntity {
 	private List<PracticeExamEntity> exam;
 
 
+	public String getPRN() {
+		return PRN;
+	}
+
+	public void setPRN(String pRN) {
+		PRN = pRN;
+	}
 	public String getStandard() {
 		return standard;
 	}
