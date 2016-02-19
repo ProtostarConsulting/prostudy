@@ -17,6 +17,7 @@ public class AttendanceEntity {
 	private Long instituteID;
 	@Index  
 	private String standard;
+	private String division;
 	private String subject;
 	private String date;
 	private Boolean attendance;
@@ -32,6 +33,12 @@ public class AttendanceEntity {
 	 }
 	
 	*/
+	public String getDivision() {
+		return division;
+	}
+	public void setDivision(String division) {
+		this.division = division;
+	}
 	
 	public String getFirstName() {
 		return firstName;
