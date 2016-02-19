@@ -17,6 +17,8 @@ public class PracticeExamEntity {
 	private Long instituteID;
 	private String board;
 	private String standard;
+	private String division;
+
 	private String subject;
 	private String instructions;
 	private List<QuestionEntity> questions;
@@ -25,6 +27,14 @@ public class PracticeExamEntity {
 	private Integer likes;	
 	private Integer dislikes;
 	
+	public String getDivision() {
+		return division;
+	}
+
+	public void setDivision(String division) {
+		this.division = division;
+	}
+
 	public Long getInstituteID() {
 		return instituteID;
 	}
