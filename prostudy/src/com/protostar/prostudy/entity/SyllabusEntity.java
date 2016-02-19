@@ -15,10 +15,18 @@ public class SyllabusEntity
 	@Index
 	private String board;
 	private String standard;
+	private String division;
+	
 	private String subject;
 	private String chapterName;
 	private String chapterContent;
 	
+	public String getDivision() {
+		return division;
+	}
+	public void setDivision(String division) {
+		this.division = division;
+	}
 	public Long getInstituteID() {
 		return instituteID;
 	}
