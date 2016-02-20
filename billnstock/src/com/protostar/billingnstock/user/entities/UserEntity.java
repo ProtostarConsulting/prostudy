@@ -9,7 +9,7 @@ import com.googlecode.objectify.annotation.Index;
 
 @Entity
 public class UserEntity {
-	
+
 	@Id
 	private Long id;
 
@@ -21,8 +21,8 @@ public class UserEntity {
 	@Index
 	private String email_id;
 	private List<String> authority;
-	private Boolean isGoogleUser=true;
-	
+	private Boolean isGoogleUser = true;
+
 	public Boolean getIsGoogleUser() {
 		return isGoogleUser;
 	}
@@ -32,9 +32,6 @@ public class UserEntity {
 	}
 
 	private String password;
-	
-	
-	
 
 	public String getPassword() {
 		return password;
@@ -80,12 +77,9 @@ public class UserEntity {
 		return email_id;
 	}
 
-
 	public void setEmail_id(String email_id) {
 		this.email_id = email_id;
 	}
-
-
 
 	public BusinessEntity getBusinessAccount() {
 		return businessAccount.get();
@@ -94,6 +88,5 @@ public class UserEntity {
 	public void setBusinessAccount(BusinessEntity businessAccount) {
 		this.businessAccount = Ref.create(businessAccount);
 	}
-
 
 }

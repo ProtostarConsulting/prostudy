@@ -23,6 +23,24 @@ public class BusinessEntity {
 	private String adminGmailId;
 	private String adminFirstName;
 	private String adminLastName;
+	private String registerDate;
+	private Integer totalUser = 1;
+
+	public String getRegisterDate() {
+		return registerDate;
+	}
+
+	public void setRegisterDate(String registerDate) {
+		this.registerDate = registerDate;
+	}
+
+	public Integer getTotalUser() {
+		return totalUser;
+	}
+
+	public void setTotalUser(Integer totalUser) {
+		this.totalUser = totalUser;
+	}
 
 	public String getBusinessName() {
 		return businessName;

@@ -34,38 +34,32 @@ public class setupService {
 	}
 
 	@ApiMethod(name = "getAllUserOfOrg")
-	public List<UserEntity> getAllUserOfOrg(@Named("id")Long id) {
+	public List<UserEntity> getAllUserOfOrg(@Named("id") Long id) {
 		List<UserEntity> user = ofy().load().type(UserEntity.class).list();
 		List<UserEntity> filtereduser = new ArrayList<UserEntity>();
 
 		for (int i = 0; i < user.size(); i++) {
 			if (user.get(i).getBusinessAccount().getId().equals(id)) {
-				System.out.println("Got the record:"
-						+ user.get(i).getBusinessAccount().getId());
-				filtereduser.add(user.get(i));
-			} else {
-				System.out.println("id:" + id);
-				System.out.println("Recored No found:"
-						+ user.get(i).getBusinessAccount().getId());
-			}
+						filtereduser.add(user.get(i));
+			} 
 		}
 		return filtereduser;
 	}
 	
 	@ApiMethod(name = "getuser", path="Somepath_realted_to_your_service")
-	public List<UserEntity> getuser(@Named("email_id") String usrid) {
-		List<UserEntity> usrlist = ofy().load().type(UserEntity.class).filter("email_id", usrid).list();
+	public UserEntity getuser(@Named("id") Long id) {
+		UserEntity usrlist = ofy().load().type(UserEntity.class).id(id).now();
 		return usrlist;
 	}
 	
 	
-	@ApiMethod(name ="adduser")	
+	/*@ApiMethod(name ="adduser")	
 	public void adduser(UserEntity user) {
 		
 		Key<UserEntity> now = ofy().save().entity(user).now();
 
 	}
-	
+	*/
 	
 
 }
