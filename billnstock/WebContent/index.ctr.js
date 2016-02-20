@@ -20,7 +20,8 @@ angular
 					$scope.googleUserDetails = "";
 					$scope.googleUser = 'null';
 					$scope.businessAccountName = "";
-
+					$scope.eid=null;
+					$scope.test;
 					$scope.loginClick = function() {
 						$state.go("login");
 					};
@@ -39,7 +40,9 @@ angular
 						isGoogleUser : true,
 						authority : []
 					}
-
+					
+					
+					
 					$scope.login = function() {
 						var UserService = appEndpointSF.getUserService();
 						UserService
@@ -53,10 +56,9 @@ angular
 														.saveLoggedInUser(
 																result.result);
 												$scope.curUser = result.result;
+												
 												$scope.businessAccountName = $scope.curUser.businessAccount.businessName;
-												$log
-														.debug("User logged in successfully: "
-																+ $scope.user.email_id);
+											
 												$window.location.reload();
 												$state.go("home");
 
@@ -131,7 +133,7 @@ angular
 																		.getLocalUserService()
 																		.saveLoggedInUser(
 																				loggedInUser);
-
+																
 																// $scope.businessAccountName
 																// = "XYZ Firm";
 																$state
@@ -139,26 +141,25 @@ angular
 																return;
 															}
 
-															// fetch buinsess
-															// entity by
-															// $scope.curUser.businessAccountID
-															// $scope.curUser
-															// appEndpointSF.getLocalUserService()
-															// .saveLoggedInUser(loggedInUser);
-															// $scope.curUser.biznessAccount
-															// = biznessAccount;
-															// update user
-															// appEndpointSF.getLocalUserService()
-															// .saveLoggedInUser($scope.curUser);
-													//		$scope.businessAccountName = $scope.curUser.businessAccount.businessName;
-														})
 
+															$scope.test=$scope.curUser.businessAccount.adminGmailId;
+														    $scope.eid=$scope.test.substring($scope.test.indexOf("@")+1);
+															$scope.curUser.authority.push($scope.eid);
+															
+															
+															})
+					
+
+														
+														
 										$log
 												.debug("Forwarding to home state...");
 										$state.go("home");
 
 									});
-
+					
+					
+					
 					$log.debug('$scope.curUser'
 							+ angular.toJson($scope.curUser));
 
