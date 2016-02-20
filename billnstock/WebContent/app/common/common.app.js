@@ -1,6 +1,7 @@
 var app = angular.module("stockApp", [ 'ngMaterial', 'ngMessages', "xeditable",
 		"ui.bootstrap", "ui.router", 'md.data.table', 'ngResource',
-		'ngStorage', 'ngRoute','ngFileUpload', 'ngAnimate', 'ui.grid', 'ui.grid.selection', 'ui.grid.exporter','directive.g+signin']);
+		'ngStorage', 'ngRoute', 'ngFileUpload', 'ngAnimate', 'ui.grid',
+		'ui.grid.selection', 'ui.grid.exporter', 'directive.g+signin' ]);
 
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('light-blue')
@@ -32,7 +33,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/home",
 		templateUrl : '/home.html',
 		controller : 'homeCtr'
+<<<<<<< .mine
+	})./*
+		 * state('student', { url : "/student", templateUrl :
+		 * '/app/student/student_module.html', controller : 'customerCtr'
+		 * }).state('student.listtest', { url : "/listtest", templateUrl :
+		 * '/app/demo/table_demo3_view.html', controller : 'nutritionController'
+		 * }).
+		 */state('stock', {
+=======
 	}).state('stock', {
+>>>>>>> .r608
 		url : "/stock",
 		templateUrl : '/app/stock/stock_module.html',
 		controller : 'stockModuleCtr'
@@ -112,54 +123,47 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/allcustomer",
 		templateUrl : '/app/report/customer_list.html',
 		controller : 'reportCtr'
-	
-	
-	
+
 	}).state('salesOrder', {
 		url : "/salesOrder",
 		templateUrl : '/app/sales/salesOrder_module.html',
 		controller : 'salesOrderCtr'
-			
+
 	}).state('salesOrder.SalesOrderAdd', {
 		url : "/SalesOrderAdd",
 		templateUrl : '/app/sales/salesOrder_add.html',
 		controller : 'salesOrderAddCtr'
-			
-		}).state('salesOrder.SalesOrderList', {
+
+	}).state('salesOrder.SalesOrderList', {
 		url : "/SalesOrderList",
 		templateUrl : '/app/sales/salesOrder_list.html',
 		controller : 'salesOrderListCtr'
-						
+
 	}).state('salesOrder.view', {
 		url : "/SalesOrderview/:selectedSOId",
 		templateUrl : '/app/sales/salesOder_view.html',
 		controller : 'salesOrderViewCtr'
-	
-	
-			
-			
+
 	}).state('purchaseOrder', {
 		url : "/purchaseOrder",
 		templateUrl : '/app/purchase/purchaseOrder_module.html',
 		controller : 'purchaseOrderCtr'
-	
+
 	}).state('purchaseOrder.PurchaseOrderAdd', {
 		url : "/PurchaseOrderAdd",
 		templateUrl : '/app/purchase/purchaseOrder_add.html',
 		controller : 'purchaseOrderAddCtr'
-	
+
 	}).state('purchaseOrder.PurchaseOrderList', {
 		url : "/PurchaseOrderList",
 		templateUrl : '/app/purchase/purchaseOrder_list.html',
 		controller : 'purchaseOrderListCtr'
-	
+
 	}).state('purchaseOrder.POview', {
 		url : "/POview/:selectedPONo",
 		templateUrl : '/app/purchase/purchaseOrder_view.html',
 		controller : 'purchaseOrderViewCtr'
-	
-	
-						
+
 	}).state('hr', {
 		url : "/hr",
 		templateUrl : '/app/hr/hr_module.html',
@@ -200,9 +204,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/selectedlist",
 		templateUrl : '/app/hr/slected_Employeesalaryslip.html',
 		controller : 'hrCtr.emplist_to_ganeratesalslip',
-		  params : {
-			  ganeratedsalslip : ""
-			          }
+		params : {
+			ganeratedsalslip : ""
+		}
 	}).state('hr.print', {
 		url : "/print/:printempidsalslip",
 		templateUrl : '/app/hr/print_salaryslip.html',
@@ -290,16 +294,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'setup',
 
 	}).state('setup.userlist', {
-			url : "/userlist",
-			templateUrl : '/app/setup/userlist.html',
-			controller : 'setup',
+		url : "/userlist",
+		templateUrl : '/app/setup/userlist.html',
+		controller : 'setup',
 
-		})/*.state('login', {
-		url : "/login",
-		templateUrl : '/app/login/login.html',
-		controller : 'login',
-
-	})*/.state('homecall', {
+	})/*
+		 * .state('login', { url : "/login", templateUrl :
+		 * '/app/login/login.html', controller : 'login',
+		 *  })
+		 */.state('homecall', {
 		url : "/home/:userauthoritys",
 		templateUrl : '/home.html',
 		controller : 'AppCtrl'
@@ -315,28 +318,48 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'timesheet'
 
 	}).state('login', {
-		  url : "/login",
-		  templateUrl : '/app/login/login_module.html',
-		  controller : 'indexCtr'
-		 }).state('needBusinessAccount', {
-		  url : "/NeedBusinessAccount",
-		  templateUrl : '/app/login/needBusinessAccount.html',
-		  controller : 'needBusinessAccountCtr'
-		 }).state('newBusinessAccount', {
-			  url : "/NewBusinessAccount",
-			  templateUrl : '/app/login/newBusinessAccount.html',
-			  controller : 'newBusinessAccountCtr'
-			 }).state('createBusinessAccount', {
-			  url : "/CreateBusiness",
-			  templateUrl : '/app/login/createBusinessAccount.html',
-			  controller : 'needBusinessAccountCtr'
-			 }).state('newUserTeacher', {
-			  url : "/newUserTeacher",
-			  templateUrl : '/app/login/newUser.html',
-			  controller : 'loginModuleCtr'
-			 }).state('newUserStudent', {
-			  url : "/newUserStudent",
-			  templateUrl : '/app/login/newUser.html',
-			  controller : 'newUserStudentCtr'
-			 });
+		url : "/login",
+		templateUrl : '/app/login/login_module.html',
+		controller : 'indexCtr'
+	}).state('needBusinessAccount', {
+		url : "/NeedBusinessAccount",
+		templateUrl : '/app/login/needBusinessAccount.html',
+		controller : 'needBusinessAccountCtr'
+	}).state('newBusinessAccount', {
+		url : "/NewBusinessAccount",
+		templateUrl : '/app/login/newBusinessAccount.html',
+		controller : 'newBusinessAccountCtr'
+	}).state('createBusinessAccount', {
+		url : "/CreateBusiness",
+		templateUrl : '/app/login/createBusinessAccount.html',
+		controller : 'needBusinessAccountCtr'
+	}).state('newUserTeacher', {
+		url : "/newUserTeacher",
+		templateUrl : '/app/login/newUser.html',
+		controller : 'loginModuleCtr'
+	}).state('newUserStudent', {
+		url : "/newUserStudent",
+		templateUrl : '/app/login/newUser.html',
+		controller : 'newUserStudentCtr'
+	}).state('probusiness', {
+		url : "/probusiness",
+		templateUrl : '/app/probusiness/proBusinessModule.html',
+		controller : 'probusinessCtr'
+	}).state('probusiness.list', {
+		url : "/businesslist",
+		templateUrl : '/app/probusiness/probusiness.html',
+		controller : 'probusinessCtr'
+	}).state('probusiness.editBusiness', {
+		url : "/editBusiness/:businessNo/:businessName",
+		templateUrl : '/app/probusiness/editProBusiness.html',
+		controller : 'probusinessCtr'
+	}).state('probusiness.userview', {
+		url : "/userview/:selecteduserNo",
+		templateUrl : '/app/probusiness/userview.html',
+		controller : 'probusinessCtr'
+	}).state('probusiness.adduser', {
+		url : "/adduser/:BNo",
+		templateUrl : '/app/probusiness/adduser.html',
+		controller : 'probusinessCtr'
+	});
 });
