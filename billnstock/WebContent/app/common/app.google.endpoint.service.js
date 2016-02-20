@@ -62,13 +62,41 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
+	UserService.getBusinessList= function() {
+		var deferred = $q.defer();
+		gapi.client.userService.getBusinessList().execute(function(resp) {
+			$log.debug("getUser #resp :" + resp);
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
+	UserService.getUsersByBusinessId= function(id) {
+		var deferred = $q.defer();
+		gapi.client.userService.getUsersByBusinessId({'id':id}).execute(function(resp) {
+			$log.debug("getUser #resp :" + resp);
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
+	UserService.getbusinessById= function(id) {
+		var deferred = $q.defer();
+		gapi.client.userService.getbusinessById({'id':id}).execute(function(resp) {
+			$log.debug("getUser #resp :" + resp);
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
 	UserService.updateUser = function(user) {
 		$log.debug("No2");
 		var deferred = $q.defer();
-		gapi.client.userService.updateUser(user).execute(function(resp) {
-			deferred.resolve(resp.result);
+		gapi.client.userService.updateUser(user).execute(function() {
+			deferred.resolve({
+				"msg" : "user Successfully Updated"
+			});
 		});
-		$log.debug("No3");
 		return deferred.promise;
 	}
 
@@ -137,9 +165,9 @@ function googleEndpointSF($log, $q) {
 	}
 	
 	
-	setupService.getAllUserOfOrg=function(orgid){
+	setupService.getAllUserOfOrg=function(id){
 		var deferred = $q.defer();
-		gapi.client.setupService.getAllUserOfOrg({'id' : orgid}).execute(function(resp) {
+		gapi.client.setupService.getAllUserOfOrg({'id':id}).execute(function(resp) {
 					deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -150,7 +178,7 @@ function googleEndpointSF($log, $q) {
 	
 	setupService.getuserById=function(usrid){
 		var deferred = $q.defer();
-		gapi.client.setupService.getuser({'email_id' : usrid}).execute(function(resp) {
+		gapi.client.setupService.getuser({'id' : usrid}).execute(function(resp) {
 					deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -158,7 +186,7 @@ function googleEndpointSF($log, $q) {
 	
 	
 	
-	setupService.adduser= function(user) {
+	/*setupService.adduser= function(user) {
 
 		var deferred = $q.defer();
 		gapi.client.setupService.adduser(user).execute(function() {
@@ -170,7 +198,7 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
-	
+	*/
 	
 	
 	

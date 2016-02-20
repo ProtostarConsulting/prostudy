@@ -1,6 +1,6 @@
 
 <md-content layout-padding>
-<form name="leadform">
+<form name="addform">
 
 	<div id="addField">
 		Organization id={{id}}
@@ -11,18 +11,39 @@
           </md-checkbox>
         </div>
 		<div layout layout-sm="column">
-			<md-input-container flex> <label>Enter
-
-
-				Email id/User Name </label> <input ng-model="user.email_id"> </md-input-container>
-			<md-input-container flex ng-hide="user.isGoogleUser"> <label >Password
-			</label> <input type="password" ng-model="user.password" > </md-input-container>
+			<md-input-container flex> <label>Enter Email id/User Name </label>
+			 <span style="color: red" ng-show="addform.emailid.$error.required" class="mandatory">*</span> 
+			  <input name="emailid" ng-model="user.email_id" ng-required="true">
+			 
+			<div ng-messages="addform.emailid.$error"
+			ng-if="addform.emailid.$submitted || addform.emailid.$touched">
+			<div ng-message="required">Please Enter Gmail Id.</div>
+		</div>
+			  </md-input-container>
+			
+			<md-input-container flex ng-hide="user.isGoogleUser"> <label >Password	</label> 
+			<input type="password" ng-model="user.password" > 
+			</md-input-container>
 		</div>
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>First
-				Name </label> <input ng-model="user.firstName"> </md-input-container>
+				Name </label>  <span style="color: red" ng-show="addform.fname.$error.required" class="mandatory">*</span> 
+				<input name="fname" ng-model="user.firstName" ng-required="true">
+				<div ng-messages="addform.fname.$error"
+			ng-if="addform.fname.$submitted || addform.fname.$touched">
+			<div ng-message="required">Please Enter First Name.</div>
+		</div>
+				 </md-input-container>
 			<md-input-container flex> <label>Last
-				Name </label> <input ng-model="user.lastName"> </md-input-container>
+				Name </label> 
+				 <span style="color: red" ng-show="addform.lname.$error.required" class="mandatory">*</span> 
+				<input name="lname" ng-model="user.lastName" ng-required="true">
+				<div ng-messages="addform.lname.$error"
+			ng-if="addform.lname.$submitted || addform.lname.$touched">
+			<div ng-message="required">Please Enter Last Name.</div>
+		</div>
+				
+				 </md-input-container>
 		</div>
 		<b>Authority</b><br> <br>
 		<div layout layout-sm="column">

@@ -8,27 +8,59 @@
 				ng-model="lead.lid" disabled> </md-input-container>
 
 			<md-input-container flex> <label>Person
-				Name </label> <input ng-model="lead.name"> </md-input-container>
+				Name </label> <input name = "name" ng-model="lead.name" ng-required="true"> 
+			<div ng-messages="leadform.name.$error"
+				ng-if="leadform.name.$submitted || leadform.name.$touched">
+				<div ng-message="required">Please Enter Employee Name.</div>
+			</div>
+
+			</md-input-container>
 		</div>
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>Company
-			</label> <input ng-model="lead.company"> </md-input-container>
+			</label> <input name="company" ng-model="lead.company" ng-required="true">
+				<div ng-messages="leadform.company.$error"
+				ng-if="leadform.company.$submitted || leadform.company.$touched">
+				<div ng-message="required">Please Enter Company Name.</div>
+			</div>
+			 </md-input-container>
 			<md-input-container flex> <label>Phone </label>
-			<input ng-model="lead.phone"> </md-input-container>
+			<input name="phone" ng-model="lead.phone" ng-required="true">
+			<div ng-messages="leadform.phone.$error"
+				ng-if="leadform.phone.$submitted || leadform.phone.$touched">
+				<div ng-message="required">Please Enter Phone Name.</div>
+			</div>
+			</md-input-container>
 		</div>
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>Email </label>
-			<input ng-model="lead.email"> </md-input-container>
+			<input type="email" name="email" ng-model="lead.email" ng-required="true">
+			<div ng-messages="leadform.email.$error"
+				ng-if="leadform.email.$submitted || leadform.email.$touched">
+				<div ng-message="required">Please Enter Email id.</div>
+			</div>
+			 </md-input-container>
 			<md-input-container flex> <label>Designation</label>
-			<input ng-model="lead.designation"> </md-input-container>
+			<input name="designation" ng-model="lead.designation" ng-required="true"> 
+			<div ng-messages="leadform.designation.$error"
+				ng-if="leadform.designation.$submitted || leadform.designation.$touched">
+				<div ng-show="leadform.designation.$error.pattern" ng-message="required">Please Enter Designation Name.</div>
+			</div>
+			</md-input-container>
 		</div>
 		<div>
 			<md-input-container flex> <label>Address
-			</label> <textarea ng-model="lead.address" rows="4" cols="1"></textarea></md-input-container>
+			</label> <textarea name ="address"ng-model="lead.address" rows="4" cols="50" ng-required="true">
+			</textarea>
+			<div ng-messages="leadform.address.$error"
+				ng-if="leadform.address.$submitted || leadform.address.$touched">
+				<div ng-message="required">Please Enter Address.</div>
+			</div>
+			</md-input-container>
 		</div>
 
 		<section layout="row" layout-sm="column" layout-align="left left">
-			<md-button class="md-raised md-primary" ng-click="addlead()">Add</md-button>
+			<md-button ng-disabled="leadform.$invalid" class="md-raised md-primary" ng-click="addlead()">Add</md-button>
 
 		</section>
 	</div>
