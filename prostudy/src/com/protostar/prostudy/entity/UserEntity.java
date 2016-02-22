@@ -26,12 +26,29 @@ public class UserEntity {
 
 	private String password;
 	private String standard;
+	private String division;
+	private String subject;
 
 	@Index
 	private Long instituteID;
 
 	private List<PracticeExamEntity> exam;
 
+	public String getDivision() {
+		return division;
+	}
+
+	public void setDivision(String division) {
+		this.division = division;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
 
 	public String getPRN() {
 		return PRN;
@@ -40,6 +57,7 @@ public class UserEntity {
 	public void setPRN(String pRN) {
 		PRN = pRN;
 	}
+
 	public String getStandard() {
 		return standard;
 	}
