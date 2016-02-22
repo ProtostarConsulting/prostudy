@@ -140,6 +140,180 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 //end of UserService-----------------------------------------------------------------------------------------------------------------
 
 	
+	
+	// start of StandardService
+	var StandardService = {};
+
+	serviceFactory.getStandardService = function() {
+		return StandardService;
+	}
+
+	StandardService.addStandards = function(std) {
+
+		var deferred = $q.defer();
+		gapi.client.standardService.addStandard(std).execute(
+				function(resp) {
+
+					deferred.resolve(resp);
+					$log.debug("resp :" + angular.toJson(resp));
+				});
+
+		return deferred.promise;
+	}
+	
+	StandardService.getStandards = function() {
+		var deferred = $q.defer();
+		gapi.client.standardService.getStandard().execute(function(resp) {
+			$log.debug("getUser #resp :" + resp);
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
+	StandardService.getStandardByInstitute = function(instituteID) {
+		var deferred = $q.defer();
+		gapi.client.standardService.getStandardByInstitute({
+			'instituteID' : instituteID
+		}).execute(function(resp) {
+			
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
+	StandardService.editStandard = function(standard) {
+
+		var deferred = $q.defer();
+		gapi.client.standardService.editStandard(standard).execute(
+				function(resp) {
+
+					deferred.resolve(resp);
+				});
+
+		return deferred.promise;
+	}
+
+	
+	// end of StandardService
+	
+	// start of DivisionService
+	var DivisionService = {};
+
+	serviceFactory.getDivisionService = function() {
+		return DivisionService;
+	}
+
+	DivisionService.addDivisions = function(div) {
+
+		var deferred = $q.defer();
+		gapi.client.divisionService.addDivision(div).execute(
+				function(resp) {
+
+					deferred.resolve(resp);
+					$log.debug("resp :" + angular.toJson(resp));
+				});
+
+		return deferred.promise;
+	}
+	
+	DivisionService.getDivisions = function() {
+		var deferred = $q.defer();
+		gapi.client.divisionService.getDivision().execute(function(resp) {   
+			$log.debug("getUser #resp :" + resp);
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
+	DivisionService.getDivisionByStandard = function(standardID) {
+		var deferred = $q.defer();
+		gapi.client.divisionService.getDivisionByStandard({
+			'standardID' : standardID
+		}).execute(function(resp) {
+			
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
+	DivisionService.editDivision = function(division) {
+
+		var deferred = $q.defer();
+		gapi.client.divisionService.editDivision(division).execute(
+				function(resp) {
+
+					deferred.resolve(resp);
+				});
+
+		return deferred.promise;
+	}
+	
+	// end of DivisionService
+	
+	// start of SubjectService
+	var SubjectService = {};
+
+	serviceFactory.getSubjectService = function() {
+		return SubjectService;
+	}
+
+	SubjectService.addSubjects = function(sub) {
+
+		var deferred = $q.defer();
+		gapi.client.subjectService.addSubject(sub).execute(
+				function(resp) {
+
+					deferred.resolve(resp);
+					$log.debug("resp :" + angular.toJson(resp));
+				});
+
+		return deferred.promise;
+	}
+	
+	SubjectService.getSubjects = function() {
+		var deferred = $q.defer();
+		gapi.client.subjectService.getSubject().execute(function(resp) {
+			$log.debug("getUser #resp :" + resp);
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
+	SubjectService.getSubjectByDivision = function(divisionID) {
+		var deferred = $q.defer();
+		gapi.client.subjectService.getSubjectByDivision({
+			'divisionID' : divisionID
+		}).execute(function(resp) {
+			
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
+/*	SubjectService.editSubject = function(subject) {
+
+		var deferred = $q.defer();
+		gapi.client.subjectService.editSubject(subject).execute(
+				function(resp) {
+
+					deferred.resolve(resp.result);
+				});
+
+		return deferred.promise;
+	}*/
+	
+	SubjectService.editSubject = function(subject) {
+	
+		var deferred = $q.defer();
+		gapi.client.subjectService.editSubject(subject).execute(function(resp) {
+			deferred.resolve(resp.result);
+		});
+		
+		return deferred.promise;
+	}
+	// end of SubjectService
+	
+	
 	// start of AttendanceService
 	var AttendanceService = {};
 
