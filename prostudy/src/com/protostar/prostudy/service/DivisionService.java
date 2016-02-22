@@ -8,7 +8,9 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
+import com.googlecode.objectify.Key;
 import com.protostar.prostudy.entity.DivisionEntity;
+
 
 @Api(name = "divisionService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
 public class DivisionService {
@@ -33,4 +35,10 @@ public class DivisionService {
 	  return divisionList;
 	  
 	 }
+	
+	@ApiMethod(name = "editDivision")
+	public void editDivision(DivisionEntity division) {
+		Key<DivisionEntity> now = ofy().save().entity(division).now();
+	}
+	
 }
