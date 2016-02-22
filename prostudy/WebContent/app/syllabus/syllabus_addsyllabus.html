@@ -12,13 +12,25 @@
 				Name</label> <input name="board" id="board" ng-model="tempSyllabus.board">
 			</md-input-container>
 
-			<md-input-container flex> <label>Standard
-				Name</label> <input name="standard" id="standard"
-				ng-model="tempSyllabus.standard"> </md-input-container>
+			<md-input-container> <label>Standard</label> <md-select
+				ng-model="tempSyllabus.standard" placeholder="Standard"
+				ng-change="getDivisionByStandard()"> <md-option
+				ng-value="standard" ng-repeat="standard in standards">{{standard}}</md-option>
+			</md-select> </md-input-container>
 
-			<md-input-container flex> <label>Subject
-				Name</label> <input name="subject" id="subject"
-				ng-model="tempSyllabus.subject"> </md-input-container>
+		
+			<md-input-container> <label>Division</label> <md-select
+				ng-model="tempSyllabus.division" placeholder="Division"
+				ng-change="getSubjectByDivision()"> <md-option
+				ng-value="division" ng-repeat="division in divisions">{{division}}</md-option>
+			</md-select> </md-input-container>
+			
+
+			<md-input-container> <label>Subject</label> <md-select
+				ng-model="tempSyllabus.subject" placeholder="Subject" ng-change="">
+			<md-option ng-value="subject" ng-repeat="subject in subjects">{{subject}}</md-option>
+			</md-select> </md-input-container>
+			
 
 			<md-input-container flex> <label>Chapter
 				Name</label> <input name="chaptername" id="chapter"
@@ -28,8 +40,9 @@
 		<text-angular name="chaptercontent" id="chaptercontent"
 			ng-model="tempSyllabus.chapterContent"></text-angular>
 		<br>
-		<md-button class="md-raised md-primary" ng-click="addSyllabus(tempSyllabus)">Add</md-button>
-			
+		<md-button class="md-raised md-primary"
+			ng-click="addSyllabus(tempSyllabus)">Add</md-button>
+
 	</section>
 	</md-content>
 </div>
