@@ -44,7 +44,7 @@ angular.module("prostudyApp").controller(
 				$log.debug("No1");
 				var UserService = appEndpointSF.getUserService();
 				UserService.updateUser($scope.tempUser).then(function(msgBean) {
-					$log.debug("No6");
+					$log.debug("msgBean :"+angular.toJson(msgBean));
 					$log.debug("Inside Ctr updateUser");
 					
 					$scope.showSavedToast();
