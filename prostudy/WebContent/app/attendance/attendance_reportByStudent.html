@@ -1,4 +1,6 @@
-
+<h3><b>Attendance Report for Student</b></h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 <div layout="column" layout-align="center center" layout-sm="column">
 
@@ -16,9 +18,15 @@
 </div>
 
 <div layout="row" layout-align="space-around center" layout-sm="column">
-	<md-input-container flex="30"> <md-select
-		ng-model="selectedStandard" placeholder="Standard" ng-change="">
+	<md-input-container flex="30"> <label>Standard</label><md-select
+		ng-model="selectedStandard" placeholder="Standard" ng-change="getDivisionByStandard()">
 	<md-option ng-value="class" ng-repeat="class in standards">{{class}}</md-option>
+	</md-select> </md-input-container>
+	
+	<md-input-container flex="30"> <label>Division</label> <md-select
+		ng-model="selectedDivision" placeholder="Division"
+		ng-change="getSubjectByDivision()"> <md-option
+		ng-value="division" ng-repeat="division in divisions">{{division}}</md-option>
 	</md-select> </md-input-container>
 
 	<md-input-container flex="30"> <md-select
