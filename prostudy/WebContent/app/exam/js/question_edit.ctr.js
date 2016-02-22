@@ -40,8 +40,7 @@ angular.module("prostudyApp")
 
 						var QuestionService = appEndpointSF.getQuestionService();
 				
-						QuestionService.updateQuestion($scope.question).then(
-								function(updatedQ) {
+						QuestionService.updateQuestion($scope.question).then(function(updatedQ) {
 									$log.debug("updatedQ:",updatedQ);
 									$scope.showSavedToast();
 														
