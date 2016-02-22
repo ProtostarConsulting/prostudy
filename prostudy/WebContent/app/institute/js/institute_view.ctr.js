@@ -21,7 +21,7 @@ angular
 			        $scope.newSub = {};
 			        $scope.editingSub = false;
 			        $scope.newSubject= {};
-			        
+			        $scope.standards = [];
 			        
 					$log.debug("$stateParams:", $stateParams);
 					$log.debug("$stateParams.selectedInstituteId:",
@@ -56,9 +56,9 @@ angular
 								'Institute Student Added!').position("top")
 								.hideDelay(3000));
 					};
-					$scope.showStandardSavedToast = function() {
+					$scope.showSavedToast = function() {
 						$mdToast.show($mdToast.simple().content(
-								'Institute Standard Added!').position("top")
+								'Added successfully!').position("top")
 								.hideDelay(3000));
 					};
 					$scope.showUpdateSavedToast = function() {
@@ -218,7 +218,18 @@ angular
 						$scope.showStudentSavedToast();
 						$scope.cancelButton();
 					}
-
+					
+					$scope.addInstituteStandards = function() {
+						var StandardService = appEndpointSF.getStandardService();
+					
+						StandardService.addStandards($scope.standard).then(function(msgBean) {
+							$log.debug("msgBean.msg:" +angular.toJson(msgBean));
+							$scope.currentStdID = msgBean.id;
+							$scope.showSavedToast();
+							
+							});
+						
+					}
 					
 					$scope.addInstituteSubjects = function() {
 						var SubjectService = appEndpointSF.getSubjectService();
@@ -276,7 +287,13 @@ angular
 						StandardService.getStandardByInstitute(
 								$scope.curUser.instituteID).then(
 								function(standardList) {
-									$scope.standards = standardList;
+									for(var i=0; i< standardList.length; i++)
+									{
+										$scope.standards.push(standardList[i].name);
+										
+									}
+									$scope.stdList = standardList;
+									
 									
 								});
 					}
@@ -311,17 +328,17 @@ angular
 					}
 					$scope.getSubjectByDivision();
 					
-					// Update Standard
+					// Update Standard$scope.stdList
 					
 					$scope.editStd = function(field) {
-				        $scope.editingStd = $scope.standards.indexOf(field);
+				        $scope.editingStd = $scope.stdList.indexOf(field);
 				        $scope.newField = angular.copy(field);
 				        $log.debug("$scope.newField :"+angular.toJson($scope.newField));
 				    }
 				    
 				    $scope.saveField = function(index) {
 				        if ($scope.editingStd !== false) {
-				            $scope.standards[$scope.editingStd] = $scope.newField;
+				            $scope.stdList[$scope.editingStd] = $scope.newField;
 				            $scope.editingStd = false;
 				        }       
 				    };
@@ -329,7 +346,7 @@ angular
 				    $scope.cancel = function(index) {
 				    	 $log.debug("$scope.newField :"+angular.toJson($scope.newField));
 				        if ($scope.editingStd !== false) {
-				            $scope.standards[$scope.editingStd] = $scope.newField;
+				            $scope.stdList[$scope.editingStd] = $scope.newField;
 				            $scope.editingStd = false;
 				        }       
 				    };
@@ -339,11 +356,11 @@ angular
 						var StandardService = appEndpointSF.getStandardService();
 						
 						$scope.selectedStandardId = $stateParams.selectedStandardId;  
-						for(var i=0;i<$scope.standards.length;i++)
+						for(var i=0;i<$scope.stdList.length;i++)
 						{
-							if($scope.selectedStandardId == $scope.standards[i].id)
+							if($scope.selectedStandardId == $scope.stdList[i].id)
 							{
-								 $scope.newStandards = $scope.standards[i]
+								 $scope.newStandards = $scope.stdList[i]
 							}
 							
 						}
