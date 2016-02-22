@@ -35,9 +35,8 @@
 	<md-button class="md-raised md-primary" ng-click="addStudents()">Add
 	Student </md-button>
 </div>
+
 <div>
-
-
 
 	<h5>
 		<b>Select Student before Adding.</b>
@@ -70,7 +69,7 @@
 
 <div layout="row" layout-align="end end" layout-sm="column" flex>
 	<md-button class="md-raised md-primary" ng-disabled="isDisabled"
-		ng-click="addInstituteStudents()">Add Students </md-button>
-	<a ui-sref="institute.list"><md-button class="md-raised md-primary"
-			ng-click="">Skip</md-button> </a>
+		ng-click="addInstituteStudents({currentInstID: currentInstID})">Add
+	Students </md-button>
+
 </div>
