@@ -1,12 +1,21 @@
 angular.module("prostudyApp").controller(
 		"instituteAddInfoCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $q, appEndpointSF, $state, $stateParams,standardList) {
+				$log, $q, appEndpointSF, $state, $stateParams) {
 			
-			$scope.standards = [{}];
-			$scope.standards = standardList;
 			$scope.selectedStandard;
+
+			
+			$scope.selectedStudents = [];
+			$scope.selectedTeachers = [];
+			$scope.selectedAdmins = [];
+			$scope.selectedStandards = [];
+			$scope.selectedDivisions = [];
+			$scope.selectedSubjects = [];
+			
+			
 			 $scope.isGoogleUser;
+			
 			 
 			$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content('Institute Saved!')
@@ -29,6 +38,8 @@ angular.module("prostudyApp").controller(
 			};
 			
 			$scope.currentInstID = $stateParams.currentInstID;
+			$scope.currentStdID = $stateParams.currentStdID;
+			$scope.currentDivID = $stateParams.currentDivID;
 			
 			$scope.isDisabled = false;
 			$scope.disableButton = function() {
@@ -106,10 +117,32 @@ angular.module("prostudyApp").controller(
 				$scope.password = '';
 			};
 			
+		
 			
-			$scope.selectedStudents = [];
-			$scope.selectedTeachers = [];
-			$scope.selectedAdmins = [];
+			$scope.standard= {
+					
+					instituteID : $scope.currentInstID,
+					name : ""
+			};
+			
+			$scope.division= {
+					
+					standardID : $scope.currentStdID,
+					name : ""
+			};
+		
+			
+			$scope.subjects = [];
+			$scope.addSubjects = function() {
+				$scope.subjects.push({
+					'divisionID' : $scope.currentDivID,
+					'name' : $scope.name,
+					
+				});
+				$scope.name = '';
+				
+			};
+			
 			$scope.query = {
 				order : 'description',
 				limit : 5,
@@ -159,9 +192,7 @@ angular.module("prostudyApp").controller(
 
 				var InstituteService = appEndpointSF.getInstituteService();
 
-				InstituteService.addInstitute($scope.tempInstitute,
-						$scope.selectedStudents, $scope.selectedAdmins,
-						$scope.selectedTeachers).then(function(msgBean) {
+				InstituteService.addInstitute($scope.tempInstitute,$scope.selectedStudents, $scope.selectedAdmins,$scope.selectedTeachers).then(function(msgBean) {
 							$log.debug("msgBean.msg:" + msgBean.msg);
 					$log.debug("Inside Ctr addInstitute");
 					$scope.currentInstID = msgBean.id;
@@ -229,7 +260,10 @@ angular.module("prostudyApp").controller(
 			
 			$scope.addInstituteStudents = function() {
 				var UserService = appEndpointSF.getUserService();
-
+				
+				$state.go("institute.addStandards", {
+					currentInstID : $scope.currentInstID
+				});
 				for (i = 0; i < $scope.selectedStudents.length; i++) {
 					UserService.addUser($scope.selectedStudents[i]).then(function(msgBean) {
 					$log.debug("$scope.selectedStudents :" + angular.toJson($scope.selectedStudents));
@@ -238,7 +272,53 @@ angular.module("prostudyApp").controller(
 				}
 				$scope.showStudentSavedToast();
 
-				$state.go("institute.list");
+			}
+			
+			$scope.addInstituteStandards = function() {
+				var StandardService = appEndpointSF.getStandardService();
+			
+				StandardService.addStandards($scope.standard).then(function(msgBean) {
+					$log.debug("msgBean.msg:" +angular.toJson(msgBean));
+					$scope.currentStdID = msgBean.id;
+				
+					$state.go('institute.addDivisions', {currentInstID : $scope.currentInstID, currentStdID: $scope.currentStdID});
+						//$scope.showStudentSavedToast();
+					});
+				
+			}
+			
+			$scope.addInstituteDivisions = function() {
+				var DivisionService = appEndpointSF.getDivisionService();
+				
+				$scope.currentStdID = $stateParams.currentStdID;
+				
+				DivisionService.addDivisions($scope.division).then(function(msgBean) {
+					$log.debug("msgBean.msg:" +angular.toJson(msgBean));
+						$scope.currentDivID = msgBean.id;
+						$state.go("institute.addSubjects", {currentInstID : $scope.currentInstID,currentStdID : $scope.currentStdID,currentDivID : $scope.currentDivID });
+						
+						
+					});
+				
+			}
+			
+			$scope.addMoreStd = function()
+			{
+				$state.go("institute.addStandards", {
+					currentInstID : $scope.currentInstID
+				});
+			}
+			
+			$scope.addInstituteSubjects = function() {
+				var SubjectService = appEndpointSF.getSubjectService();
+				$scope.currentDivID = $stateParams.currentDivID;
+				
+				for (i = 0; i < $scope.selectedSubjects.length; i++) {
+				SubjectService.addSubjects($scope.selectedSubjects[i]).then(function(msgBean) {
+						
+					});
+				}
+				$state.go("institute.addDivisions",  {currentInstID : $scope.currentInstID,currentStdID : $scope.currentStdID });
 			}
 
 			$scope.getPracticeExams = function() {
@@ -252,6 +332,8 @@ angular.module("prostudyApp").controller(
 
 						});
 			}
+			
+			
 
 			$scope.getPracticeExams();
 			
