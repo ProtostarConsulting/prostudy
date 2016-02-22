@@ -2,7 +2,7 @@ angular.module("prostudyApp").controller(
 		"practiceExamListCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, $q, $sce, tableTestDataFactory, appEndpointSF, $state,
-				$filter, standardList) {
+				$filter) {
 
 			$scope.count = 0;
 			$scope.newSelectedExam;
