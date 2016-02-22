@@ -3,7 +3,7 @@ angular.module("prostudyApp")
 				"editPracticeExamCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $q, $sce, tableTestDataFactory,
-						appEndpointSF, $state, $filter, $stateParams,standardList,boardList,subjectList) {
+						appEndpointSF, $state, $filter, $stateParams,boardList) {
 					$scope.checked="false";
 					$scope.showSavedToast = function() {
 						$mdToast.show($mdToast.simple()
@@ -12,14 +12,11 @@ angular.module("prostudyApp")
 					};
 					
 					
-					 $scope.standards = [{}];
-				     $scope.standards = standardList;
 				     
 				     $scope.boards = [{}];
 				     $scope.boards = boardList;	
 				     
-				     $scope.subjects = [{}];
-				     $scope.subjects = subjectList;	
+				    
 				     
 					$scope.selectedExamId = $stateParams.selectedExamId;
 				
@@ -133,12 +130,14 @@ angular.module("prostudyApp")
 				
 					$scope.showselectedExam();
 					$scope.addQuestion = function() {
-					
+						
+						$log.debug(" $stateParams.selectedExamId :"+ $stateParams.selectedExamId);
 						$state.go('exam.addnewquestion', {sourceSate: "exam.editpracticeexam", selectedExamId: $stateParams.selectedExamId});
 						
 					}
 					$scope.editQuestion = function(){
-						
+						$log.debug(" $stateParams.selectedExamId :"+angular.toJson($scope.selectedQ[0]));
+						$log.debug(" $scope.selectedQ[0].id :"+angular.toJson($scope.selectedQ[0].id));
 						$state.go('exam.editquestion', {sourceSate: "exam.editpracticeexam", selectedExamId: $stateParams.selectedExamId , selectedQuestion : $scope.selectedQ[0], selectedQuestionId:$scope.selectedQ[0].id});
 					};
 					
