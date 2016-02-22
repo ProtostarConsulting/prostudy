@@ -23,6 +23,30 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 		else
 			return googleEndpointSF.getUserService();
 	};// end of getUserService
+	
+	endpointFactory.getStandardService = function() {
+
+		if (isTestMode)
+			return localDBServiceFactory.getStandardService();
+		else
+			return googleEndpointSF.getStandardService();
+	};// end of getStandardService
+	
+	endpointFactory.getDivisionService = function() {
+
+		if (isTestMode)
+			return localDBServiceFactory.getDivisionService();
+		else
+			return googleEndpointSF.getDivisionService();
+	};// end of getDivisionService
+	
+	endpointFactory.getSubjectService = function() {
+
+		if (isTestMode)
+			return localDBServiceFactory.getSubjectService();
+		else
+			return googleEndpointSF.getSubjectService();
+	};// end of getSubjectService
 
 	endpointFactory.getChapterService = function() {
 		if (isTestMode)
@@ -185,6 +209,29 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 			deferred.resolve();
 
 		}, apiRoot);
+		
+		gapi.client.load('standardService', 'v0.1', function() {
+			$log.debug("StandardService Loaded......");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+		
+		gapi.client.load('divisionService', 'v0.1', function() {
+			$log.debug("DivisionService Loaded......");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+		
+		gapi.client.load('subjectService', 'v0.1', function() {
+			$log.debug("SubjectService Loaded......");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+
+
 
 		return deferred.promise;
 
