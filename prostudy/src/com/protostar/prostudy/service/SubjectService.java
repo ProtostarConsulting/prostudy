@@ -9,7 +9,7 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
-
+import com.protostar.prostudy.entity.DivisionEntity;
 import com.protostar.prostudy.entity.SubjectEntity;
 
 @Api(name = "subjectService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
@@ -32,4 +32,9 @@ public class SubjectService {
 	  return divisionList;
 	  
 	 }
+	
+	@ApiMethod(name = "editSubject")
+	public void editSubject(SubjectEntity subject) {
+		Key<SubjectEntity> now = ofy().save().entity(subject).now();
+	}
 }
