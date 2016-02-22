@@ -14,7 +14,7 @@
 			</thead>
 			<tbody>
 				<tr md-auto-select
-					ng-repeat="a in studentList  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText">
+					ng-repeat="a in studentList track by $index| orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText">
 					<td>{{a.firstName}} {{a.lastName}}</td>
 					<td>{{a.email_id}}</td>
 					<td>{{a.address}}</td>
