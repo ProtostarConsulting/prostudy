@@ -37,7 +37,7 @@
 						md-is-error="practiceExamForm.standard.$invalid && (practiceExamForm.$submitted || practiceExamForm.standard.$dirty)">
 					<label>Standard</label>
 					<md-select ng-model="tempPracticeExam.standard"
-						placeholder="Standard" ng-change=""> <md-option
+						placeholder="Standard" ng-change="getDivisionByStandard()"> <md-option
 						ng-value="standard" ng-repeat="standard in standards">{{standard}}</md-option>
 					</md-select>
 					<div ng-messages="practiceExamForm.standard.$error"
@@ -45,9 +45,23 @@
 						<div ng-message="required">Please Enter Standard.</div>
 					</div>
 					</md-input-container>
-
+				
 					<md-input-container
-						md-is-error="practiceExamForm.standard.$invalid && (practiceExamForm.$submitted || practiceExamForm.subject.$dirty)">
+						md-is-error="practiceExamForm.division.$invalid && (practiceExamForm.$submitted || practiceExamForm.division.$dirty)">
+					<label>Division</label>
+					<md-select ng-model="tempPracticeExam.division"
+						placeholder="Division" ng-change="getSubjectByDivision()"> <md-option
+						ng-value="division" ng-repeat="division in divisions">{{division}}</md-option>
+					</md-select>
+					<div ng-messages="practiceExamForm.division.$error"
+						ng-if="practiceExamForm.division.$submitted || practiceExamForm.division.$touched">
+						<div ng-message="required">Please Enter Division.</div>
+					</div>
+					</md-input-container>
+					
+					
+					<md-input-container
+						md-is-error="practiceExamForm.subject.$invalid && (practiceExamForm.$submitted || practiceExamForm.subject.$dirty)">
 					<label>Subject</label>
 					<md-select ng-model="tempPracticeExam.subject"
 						placeholder="Subject" ng-change=""> <md-option
@@ -55,10 +69,10 @@
 					</md-select>
 					<div ng-messages="practiceExamForm.subject.$error"
 						ng-if="practiceExamForm.subject.$submitted || practiceExamForm.subject.$touched">
-						<div ng-message="required">Please Select Standard.</div>
+						<div ng-message="required">Please Select Subject.</div>
 					</div>
 					</md-input-container>
-
+					
 
 					<md-input-container
 						md-is-error="practiceExamForm.category.$invalid && (practiceExamForm.$submitted || practiceExamForm.category.$dirty)">
