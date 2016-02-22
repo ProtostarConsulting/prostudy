@@ -65,7 +65,7 @@
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
 				ng-click="close()" class="md-primary" show-gt-md>
 			Institute </md-button> <md-button ui-sref="report"
-				ng-show="curUser.role == 'Admin'" ng-click="close()"
+				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'" ng-click="close()"
 				class="md-primary" show-gt-md> Report </md-button> <md-button
 				ui-sref="chapter"
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
@@ -81,11 +81,12 @@
 				
 				<md-button
 				ui-sref="syllabus" ng-click="close()" class="md-primary" show-gt-md>Syllabus</md-button>
-				
-			
-				
-			<md-button ui-sref="myPracticeExams"
-				ng-show="curUser.role == 'Student'" ng-click="close()"
+
+			<md-button ui-sref="myBooks" ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
+				ng-click="close()" class="md-primary" show-gt-md> My
+			Books </md-button>
+
+			<md-button ui-sref="myPracticeExams" ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'" ng-click="close()"
 				class="md-primary" show-gt-md> My Practice Exams </md-button> <md-button
 				aria-label="Login" ng-hide="curUser == null" ng-click="loginClick()">
 			<a ui-sref="updatemyprofile">Edit profile </a> </md-button> <md-button
