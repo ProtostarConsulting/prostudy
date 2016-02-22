@@ -1,0 +1,52 @@
+
+	<div layout="column" layout-align="centre centre" layout-sm="column">
+
+		<md-input-container>  <input ng-model="name" placeholder="Enter Subject name"> </md-input-container>
+	</div>
+	
+	<div layout="row" layout-align="centre centre" layout-sm="column">
+	<md-button class="md-raised md-primary" ng-click="addSubjects()">Add
+		Subject</md-button>
+	</div>
+		
+
+	
+<div>
+
+	<h5>
+		<b>Select Subject before Adding.</b>
+	</h5>
+
+	<md-data-table-container>
+	<table md-data-table class="md-primary"
+		md-row-select="selectedSubjects" md-progress="deferred">
+		<thead>
+			<tr>
+				<th order-by="name" name="Subject Name"></th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="subject in subjects | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText"">
+				<td>{{subject.name}}</td>
+				
+			</tr>
+		</tbody>
+	</table>
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{subjects.length}} md-trigger="onpagechange"></md-data-table-pagination>
+	</md-data-table-container>
+</div>
+
+<div layout="row" layout-align="end end" layout-sm="column" flex>
+	<md-button class="md-raised md-primary" ng-disabled="isDisabled"
+		ng-click="addInstituteSubjects({currentInstID: currentInstID , currentStdID: currentStdID, currentDivID: currentDivID})">Add
+	Subjects </md-button>
+	
+		
+			
+	<a ui-sref="institute.list"><md-button class="md-raised md-primary"
+			ng-click="">Skip</md-button> </a>
+
+</div>
