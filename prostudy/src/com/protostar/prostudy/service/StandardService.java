@@ -8,6 +8,8 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
+import com.googlecode.objectify.Key;
+
 import com.protostar.prostudy.entity.StandardEntity;
 
 
@@ -33,6 +35,12 @@ public class StandardService {
 	  return standardList;
 	  
 	 }
+	
+	@ApiMethod(name = "editStandard")
+	public void editStandard(StandardEntity standard) {
+		Key<StandardEntity> now = ofy().save().entity(standard).now();
+	}
+	
 	
 	
 }
