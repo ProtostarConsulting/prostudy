@@ -6,6 +6,7 @@
 		</md-subheader>
 		<form name="userForm">
 			<div layout="row" layout-sm="column">
+
 				<div layout="column" flex>
 					<md-input-container flex> <label>First
 						name</label> <input ng-model="tempStudent.firstName"> </md-input-container>
@@ -13,18 +14,34 @@
 						Name</label> <input ng-model="tempStudent.lastName"> </md-input-container>
 					<md-input-container flex> <label>
 						Email-ID</label> <input ng-model="tempStudent.email_id"> </md-input-container>
+						
+					<md-input-container flex> <label>Contact</label>
+					<input ng-model="tempStudent.contact"> </md-input-container>
 
 				</div>
 
 				<div layout="column" flex>
 					<md-input-container flex="30"> <md-select
-						ng-model="tempStudent.standard" placeholder="Standard" ng-change="">
-					<md-option ng-value="class" ng-repeat="class in standards">{{class}}</md-option>
+						ng-model="tempStudent.standard" placeholder="Standard"
+						ng-change="getDivisionByStandard()"> <md-option ng-value="standard"
+						ng-repeat="standard in standards">{{standard}}</md-option> </md-select> </md-input-container>
+						
+						
+					<md-input-container> <label>Division</label> <md-select
+						ng-model="tempStudent.division" placeholder="Division"
+						ng-change="getSubjectByDivision()"> <md-option
+						ng-value="division" ng-repeat="division in divisions">{{division}}</md-option>
 					</md-select> </md-input-container>
+					
+					<md-input-container> <label>Subject</label> <md-select
+						ng-model="tempStudent.subject" placeholder="Subject" ng-change="">
+					<md-option ng-value="subject" ng-repeat="subject in subjects">{{subject}}</md-option>
+					</md-select> </md-input-container>
+					
+
 					<md-input-container flex> <label>
 						Address</label> <input ng-model="tempStudent.address"> </md-input-container>
-					<md-input-container flex> <label>Contact</label>
-					<input ng-model="tempStudent.contact"> </md-input-container>
+					
 				</div>
 
 			</div>
