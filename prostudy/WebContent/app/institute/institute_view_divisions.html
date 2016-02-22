@@ -1,0 +1,57 @@
+<div>
+	<md-content layout-padding> <md-data-table-container>
+	<table md-data-table md-row-select="selected" md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onorderchange">
+			<tr>
+				<th name="DIVISION ID" order-by="id"></th>
+				<th name="DIVISION NAME" order-by="name"></th>
+
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="division in divisions  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText">
+				<td>{{division.id}}</td>
+				
+				<td><span data-ng-hide="editMode">{{division.name}}</span><input
+					type="text" data-ng-show="editMode" data-ng-model="division.name" 
+					data-ng-required /></td>
+					
+				<td><md-button
+						ui-sref="institute.view.view_subjects({selectedDivID : division.id})"
+						class="md-raised md-primary">View Subjects</md-button></td>
+						
+						
+				<td><a ui-sref="institute.view.view_divisions({selectedDivisionId: division.id})"><md-button data-ng-hide="editMode"
+						data-ng-click="editMode = true;editDiv(division)"
+						class="md-raised md-primary">Edit</md-button></a></td>
+
+
+				<td><md-button data-ng-show="editMode"
+						data-ng-click="editMode = false; updateDivision()" class="md-raised md-primary">Save</md-button></td>
+
+
+				<td><md-button type="submit" data-ng-show="editMode"
+					data-ng-click="editMode = false; cancelDiv()" class="md-raised md-primary">Cancel</md-button></td>
+
+			</tr>
+		</tbody>
+	</table>
+	
+	
+	</br>
+	
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{divisions.length}} md-trigger="onpagechange"></md-data-table-pagination>
+	</md-data-table-container>
+
+	<div layout="row" layout-align="centre centre" layout-sm="column" flex>
+		<a ui-sref="institute.view.view_standards({selectedStdID : selectedStdID})"><md-button
+				class="md-raised md-primary">Back </md-button> </a>
+	</div>
+
+	<div ui-view></div>
+	</md-content>
+</div>
+
