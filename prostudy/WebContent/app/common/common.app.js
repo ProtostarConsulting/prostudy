@@ -3,10 +3,7 @@ var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
 		'md.data.table', 'ngResource', 'textAngular', 'ngRoute', 'ngStorage', "ngAria",
 		'directive.g+signin' ]);
 
-app.constant('standardList', ["5th", "6th", "7th", "8th", "9th", "10th"]);
 app.constant('boardList', ["State Board", "CBSE", "ICSE"]);
-app.constant('subjectList', ["Marathi", "Hindi", "English", "Mathematics", "Science", "History", "Geography"]);
-
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette(
 			'red').warnPalette('pink').backgroundPalette('grey');
@@ -134,6 +131,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/institute/addStudents/:currentInstID",
 		templateUrl : '/app/institute/institute_addStudents.html',
 		controller : 'instituteAddInfoCtr'
+	}).state('institute.addStandards', {
+		url : "/institute/addStandards/:currentInstID",
+		templateUrl : '/app/institute/institute_addStandards.html',
+		controller : 'instituteAddInfoCtr'
+	}).state('institute.addDivisions', {
+		url : "/institute/addDivisions/:currentInstID/:currentStdID",
+		templateUrl : '/app/institute/institute_addDivisions.html',
+		controller : 'instituteAddInfoCtr'
+	}).state('institute.addSubjects', {
+		url : "/institute/addSubjects/:currentInstID/:currentStdID/:currentDivID",
+		templateUrl : '/app/institute/institute_addSubjects.html',
+		controller : 'instituteAddInfoCtr'
 	}).state('institute.list', {
 		url : "/list",
 		templateUrl : '/app/institute/institute_list.html',
@@ -165,6 +174,30 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('institute.view.view_students.addstudents', {
 		url : "/addstudents",
 		templateUrl : '/app/institute/institute_addStudents.html',
+		controller : 'instituteViewCtr'
+	}).state('institute.view.view_standards', {
+		url : "/view_standards/:selectedStandardId",
+		templateUrl : '/app/institute/institute_view_standards.html',
+		controller : 'instituteViewCtr'
+	}).state('institute.view.view_standards.addstandards', {
+		url : "/addstandards/:currentInstID",
+		templateUrl : '/app/institute/institute_addStandards.html',
+		controller : 'instituteViewCtr'
+	}).state('institute.view.view_divisions', {
+		url : "/view_divisions/:selectedStdID/:selectedDivisionId",
+		templateUrl : '/app/institute/institute_view_divisions.html',
+		controller : 'instituteViewCtr'
+	}).state('institute.view.view_divisions.adddivisions', {
+		url : "/adddivisions/:currentInstID/:currentStdID",
+		templateUrl : '/app/institute/institute_addDivisions.html',
+		controller : 'instituteViewCtr'
+	}).state('institute.view.view_subjects', {
+		url : "/view_subjects/:selectedStdID/:selectedDivID/:selectedSubjectId",
+		templateUrl : '/app/institute/institute_view_subjects.html',
+		controller : 'instituteViewCtr'
+	}).state('institute.view.view_subjects.addsubjects', {
+		url : "/addsubjects/:currentInstID/:currentStdID/:currentDivID",
+		templateUrl : '/app/institute/institute_addSubjects.html',
 		controller : 'instituteViewCtr'
 	}).state('institute.view.editInstitute', {
 		url : "/editInstitute",
