@@ -4,7 +4,7 @@ angular
 				"addPracticeExamCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $q, appEndpointSF, $state, $stateParams,
-						$sce, $filter, standardList, boardList, subjectList) {
+						$sce, $filter, boardList) {
 
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
@@ -16,14 +16,18 @@ angular
 								'Practice Exam Saved!').position("top")
 								.hideDelay(3000));
 					};
-					$scope.standards = [ {} ];
-					$scope.standards = standardList;
-
+					
 					$scope.boards = [ {} ];
 					$scope.boards = boardList;
+					$scope.divisions = [];
+					$scope.standards = [];
+					$scope.divisions = []; 
+					$scope.subjects = []; 
 					
-					$scope.subjects = [ {} ];
-					$scope.subjects = subjectList;
+					$scope.selectedStdID;
+					$scope.stdList;
+					$scope.divList;
+					$scope.subList;
 					
 					$scope.tempPracticeExam = {
 
@@ -31,6 +35,7 @@ angular
 						examtitle : "",
 						board : "",
 						standard : "",
+						division : "",
 						subject : "",
 						category : "",
 						instructions : "",
@@ -40,7 +45,66 @@ angular
 						dislikes : 0
 					};
 					$scope.questions = [];
+					
+					$scope.getStandardByInstitute = function() {
 
+						var StandardService = appEndpointSF
+								.getStandardService();
+						StandardService.getStandardByInstitute($scope.curUser.instituteID).then(
+								function(standardList) {
+									for(var i=0; i< standardList.length; i++)
+										{
+											$scope.standards.push(standardList[i].name);
+											
+										}
+									$scope.stdList = standardList;
+									
+								});
+					}
+					
+					$scope.getStandardByInstitute();
+					
+					$scope.getDivisionByStandard = function() {
+					
+						for(var i=0;i< $scope.stdList.length;i++)
+						{
+							if($scope.tempPracticeExam.standard == $scope.stdList[i].name)
+							{
+								$scope.selectedStdID = $scope.stdList[i].id;
+							}
+						}
+						var DivisionService = appEndpointSF
+								.getDivisionService();
+						DivisionService.getDivisionByStandard($scope.selectedStdID).then(
+								function(divisionList) {
+									for(var i=0; i< divisionList.length; i++)
+									{
+										$scope.divisions.push(divisionList[i].name);
+									}
+									$scope.divList = divisionList;
+								});
+					}
+					
+					$scope.getSubjectByDivision = function() {
+						
+						for(var i=0;i<$scope.divList.length;i++)
+						{
+							if($scope.tempPracticeExam.division == $scope.divList[i].name)
+							{
+								$scope.selectedDivID = $scope.divList[i].id;
+							}
+						}
+						var SubjectService = appEndpointSF.getSubjectService();
+						SubjectService.getSubjectByDivision($scope.selectedDivID).then(
+								function(subjectList) {
+									for(var i=0; i< subjectList.length; i++)
+									{
+										$scope.subjects.push(subjectList[i].name);
+									}
+
+								});
+						$scope.subjects.splice(0,$scope.subjects.length);
+					}
 					
 					$scope.getQuestionsByInstitute = function() {
 
