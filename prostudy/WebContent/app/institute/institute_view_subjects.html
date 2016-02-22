@@ -1,0 +1,58 @@
+<div>
+	<md-content layout-padding> <md-data-table-container>
+	<table md-data-table md-row-select="selected" md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onorderchange">
+			<tr>
+				<th name="SUBJECT ID" order-by="id"></th>
+				<th name="SUBJECT NAME" order-by="name"></th>
+
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="subject in subjects track by $index | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText"
+				data-ng-class="{danger:!subject.active}">
+
+				<td>{{subject.id}}</td>
+
+				<td><span data-ng-hide="editMode">{{subject.name}}</span> <input
+					type="text" data-ng-show="editMode" data-ng-model="subject.name"
+					data-ng-required /></td>
+
+				<td>{{subject.name}}</td>
+
+				<td><a ui-sref="institute.view.view_subjects({selectedSubjectId: subject.id})"><md-button data-ng-hide="editMode"
+						data-ng-click="editMode = true;editSub(subject)"
+						class="md-raised md-primary">Edit </md-button></a></td>
+
+
+				<td><md-button data-ng-show="editMode"
+						data-ng-click="editMode = false; updateSubject()"
+						class="md-raised md-primary">Save</md-button></td>
+
+
+				<td><md-button type="submit" data-ng-show="editMode"
+						data-ng-click="editMode = false; cancelSub()"
+						class="md-raised md-primary">Cancel</md-button></td>
+
+			</tr>
+		</tbody>
+	</table>
+
+	
+
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{subjects.length}} md-trigger="onpagechange"></md-data-table-pagination>
+	</md-data-table-container>
+
+	<div layout="row" layout-align="centre centre" layout-sm="column" flex>
+		<a
+			ui-sref="institute.view.view_standards"><md-button
+				class="md-raised md-primary">Back </md-button> </a>
+	</div>
+
+	<div ui-view></div>
+	</md-content>
+</div>
+
