@@ -467,7 +467,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		$log.debug("abc");
 		gapi.client.syllabusService.addSyllabus(syll).execute(function(resp) {
 			$log.debug("No5");
-			$log.debug("addSyllabus #resp:" + resp);
+			$log.debug("addSyllabus #resp:" +angular.toJson( resp));
 			deferred.resolve(resp);
 		});
 		$log.debug("No3");
@@ -548,8 +548,6 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		gapi.client.practiceExamService.getPracticeExamById({
 			'examId' : selectedExamId
 		}).execute(function(resp) {
-
-			// deferred.resolve(resp.items); //for list
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -712,9 +710,10 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	QuestionService.addQuestion = function(ques) {
 
 		var deferred = $q.defer();
+		
 		gapi.client.questionService.addQuestion(ques).execute(function(resp) {
-			$log.debug("result123    :" + angular.toJson(resp));
-
+			$log.debug("resp :" + angular.toJson(resp));
+		
 			deferred.resolve(resp);
 		});
 
@@ -744,10 +743,10 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	QuestionService.updateQuestion = function(ques) {
 
 		var deferred = $q.defer();
-		
 		gapi.client.questionService.updateQuestion(ques).execute(
 				function(resp) {
-					$log.debug(" updateQuestion resp:" + angular.toJson(resp));
+					$log.debug(" ques resp:" + angular.toJson(ques));
+					$log.debug(" updateQuestion* resp:" + angular.toJson(resp));
 					deferred.resolve(resp);
 				});
 
@@ -757,14 +756,14 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	QuestionService.getQuestionByID = function(id) {
 		var deferred = $q.defer();
 		gapi.client.questionService.getQuestionByID({
-			'id' : id
+			'quesId' : id
 		}).execute(function(resp) {
 			$log.debug("resp:" + angular.toJson(resp));
-			//$log.debug("result123 :" + angular.toJson(resp));
 			deferred.resolve(resp.result);
 		});
 		return deferred.promise;
 	}
+	
 
 	// End of QuestionService
 

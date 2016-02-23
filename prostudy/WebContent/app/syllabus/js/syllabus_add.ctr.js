@@ -1,9 +1,13 @@
 angular.module("prostudyApp").controller(
 		"syllabusAddCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $q, tableTestDataFactory, $state, appEndpointSF, $filter,
+				$log, $q, tableTestDataFactory, $state, appEndpointSF, $filter,boardList,
 				$log) {
 
+		
+			$scope.boards = [ {} ];
+			$scope.boards = boardList;
+		
 			$scope.curUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
 
@@ -107,6 +111,9 @@ angular.module("prostudyApp").controller(
 						});
 				$log.debug("No4");
 
+			}
+			$scope.cancelButton = function() {
+				$state.go("^", {});
 			}
 
 		});

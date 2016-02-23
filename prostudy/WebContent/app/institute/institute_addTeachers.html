@@ -1,51 +1,113 @@
-<h5><b>Teacher's Information</b></h5>
+<h5>
+	<b>Teacher's Information</b>
+</h5>
+<form name="instituteTeacherForm" ng-model="instituteTeacherForm">
+	<div layout="row" layout-align="centre centre" layout-sm="column" flex
+		ng-show="flag1">
 
-<div layout="row" layout-align="centre centre" layout-sm="column" flex>
+		<md-input-container flex> <label>First name<span
+			style="color: red"
+			ng-show="instituteTeacherForm.firstName.$error.required"
+			class="mandatory">*</span></label> <input ng-model="firstName"
+			name="firstName" ng-required="true">
+		<div ng-messages="instituteTeacherForm.firstName.$error"
+			ng-if="instituteTeacherForm.firstName.$submitted || instituteTeacherForm.firstName.$touched">
+			<div ng-message="required">Please Enter Teacher FirstName.</div>
+		</div>
+		</md-input-container>
 
-	<md-input-container flex> <label>First name</label> <input ng-model="firstName"> </md-input-container>
-
-	<md-input-container flex> <label>Last name</label> <input ng-model="lastName"> </md-input-container>
-
-	<label>Is Google User</label><md-input-container flex><md-checkbox ng-model="isGoogleUser" ng-true-value="true"ng-false-value="false"> </md-checkbox> </md-input-container>
-
-	<md-input-container flex> <label>Email-id</label><input ng-model="email_id"> </md-input-container>
-
-	<md-input-container flex ng-hide="isGoogleUser"> <label>Password</label> <input type="password" ng-model="password"> </md-input-container>
-	
-	<md-input-container flex> <label>Contact</label> <input ng-model="contact"> </md-input-container>
-	
-	<md-input-container flex> <label>Address</label> <input ng-model="address"> </md-input-container>
-	
-	<md-button class="md-raised md-primary" ng-click="addTeachers()">Add Teachers </md-button> 
-</div>
-
-<h5><b>Select Teachers before Adding.</b></h5>
-<div>
-	 <md-data-table-container>
-	<table md-data-table class="md-primary" md-row-select="selectedTeachers"
-		md-progress="deferred">
-		<thead>
-			<tr>
-				<th order-by="firstName" name="Teacher Name"></th>
-				<th order-by="email_id" name="EMAIL-ID"></th>
-				<th order-by="contact" name="Contact No."></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr md-auto-select
-				ng-repeat="teacher in teachers | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText" ">
-				<td>{{teacher.firstName}}</td>
-				<td>{{teacher.email_id}}</td>
-				<td>{{teacher.contact}}</td>
-			</tr>
-		</tbody>
-	</table>
-	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		<md-input-container flex> <label>Last name<span
+			style="color: red"
+			ng-show="instituteTeacherForm.lastName.$error.required"
+			class="mandatory">*</span></label> <input ng-model="lastName" name="lastName"
+			ng-required="true">
+		<div ng-messages="instituteTeacherForm.lastName.$error"
+			ng-if="instituteTeacherForm.lastName.$submitted || instituteTeacherForm.lastName.$touched">
+			<div ng-message="required">Please Enter Teacher LastName.</div>
+		</div>
+		</md-input-container>
+		<label>Is Google User</label>
+		<md-input-container flex> <md-checkbox
+			ng-model="isGoogleUser" ng-true-value="true" ng-false-value="false">
+		</md-checkbox> </md-input-container>
+		<md-input-container flex> <label>Email-id<span
+			style="color: red"
+			ng-show="instituteTeacherForm.email_id.$error.required"
+			class="mandatory">*</span></label> <input ng-model="email_id" type="email"
+			name="email_id" ng-required="true">
+		<div ng-messages="instituteTeacherForm.email_id.$error"
+			ng-if="instituteTeacherForm.email_id.$submitted || instituteTeacherForm.email_id.$touched">
+			<div ng-message="required">Please Enter Student Valid email_id.</div>
+		</div>
+		</md-input-container>
+		<md-input-container flex ng-hide="isGoogleUser"> <label>Password<span
+			style="color: red"
+			ng-show="instituteTeacherForm.password.$error.required"
+			class="mandatory">*</span></label> <input name="password" ng-model="password"
+			type="password" ng-required="true">
+		<div ng-messages="instituteTeacherForm.password.$error"
+			ng-if="instituteTeacherForm.password.$submitted || instituteTeacherForm.password.$touched">
+			<div ng-message="required">Please Enter Password.</div>
+		</div>
+		</md-input-container>
+		<md-input-container	flex> <label>Contact<span
+			style="color: red"
+			ng-show="instituteTeacherForm.contact.$error.required"
+			class="mandatory">*</span></label> <input ng-model="contact" type="number"
+			name="contact" ng-required="true" ng-minlength="10" ng-maxlength="10">
+		<div ng-messages="instituteTeacherForm.contact.$error"
+			ng-if="instituteTeacherForm.contact.$submitted || instituteTeacherForm.contact.$touched">
+			<div ng-message="required">Please Enter Contact.</div>
+			<span class="help-block"
+				ng-show="((instituteTeacherForm.contact.$error.minlength || instituteTeacherForm.contact.$error.maxlength) && instituteTeacherForm.contact.$dirty) ">Contact
+				number should be 10 digits</span>
+		</div>
+		</md-input-container>
+		<md-input-container flex> <label>Address</label>
+		<input name="address" ng-model="address"> </md-input-container>
+		<md-button class="md-raised md-primary" ng-click="addTeacherList()">Add To
+		TeacherList </md-button>
+		<a ui-sref="institute.addStudents"><md-button
+				class="md-raised md-primary" ng-click="">Skip</md-button> </a>
+	</div>
+	<div ng-show="flag2">
+		<h5>
+			<b>Select Teachers before Adding.</b>
+		</h5>
+		<md-button class="md-raised md-primary" ng-click="addMore()">Add
+		More</md-button>
+		<md-data-table-container>
+		<table md-data-table class="md-primary"
+			md-row-select="selectedTeachers" md-progress="deferred">
+			<thead>
+				<tr>
+					<th order-by="firstName" name="Teacher Name"></th>
+					<th order-by="email_id" name="EMAIL-ID"></th>
+					<th order-by="contact" name="Contact No."></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr md-auto-select
+					ng-repeat="teacher in teachers | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText"">
+					<td>{{teacher.firstName}}</td>
+					<td>{{teacher.email_id}}</td>
+					<td>{{teacher.contact}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
 			md-total={{teachers.length}} md-trigger="onpagechange"></md-data-table-pagination>
-	</md-data-table-container> 
-</div> 
-	
-	<div layout="row" layout-align="end end" layout-sm="column" flex> 
-	<md-button  class="md-raised md-primary" ng-disabled="isDisabled" ng-click="addInstituteTeachers({currentInstID: currentInstID})">Add Teachers </md-button>
-				</div>
-	
+		</md-data-table-container>
+
+		<div layout="row" layout-align="end end" layout-sm="column" flex>
+
+			<md-button class="md-raised md-primary"
+				ng-click="addInstituteTeachers({currentInstID: currentInstID})"
+				ng-disabled="selectedTeachers.length==0">Add Teachers </md-button>
+			<a ui-sref="institute.addStudents"><md-button
+					class="md-raised md-primary" ng-click="">Skip</md-button> </a>
+		</div>
+	</div>
+
+
+</form>

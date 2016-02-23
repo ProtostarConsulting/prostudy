@@ -1,7 +1,7 @@
 angular.module("prostudyApp").controller(
 		"studentPageCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, objectFactory, appEndpointSF, tableTestDataFactory,
+				$log, objectFactory, appEndpointSF, tableTestDataFactory,$state,
 				appEndpointSF) {
 
 			$scope.curUser = appEndpointSF.getLocalUserService()
@@ -11,7 +11,8 @@ angular.module("prostudyApp").controller(
 				$mdToast.show($mdToast.simple().content('Student Data Saved!')
 						.position("top").hideDelay(3000));
 			};
-
+					   
+			
 			$scope.standards = [];
 			$scope.divisions = [];
 			$scope.subjects = [];
@@ -122,8 +123,9 @@ angular.module("prostudyApp").controller(
 				});
 				
 			}
-			
-			
-			
+
+			$scope.cancelButton = function() {
+				$state.go("^", {});
+			}
 
 		});

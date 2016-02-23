@@ -23,7 +23,7 @@ angular.module("prostudyApp")
 					$scope.getQuestionByID = function() {
 						var QuestionService = appEndpointSF
 								.getQuestionService();
-
+						$log.debug("$scope.selectedQuestionId:" +$scope.selectedQuestionId);
 						QuestionService.getQuestionByID($scope.selectedQuestionId)
 								.then(
 										function(Question) {
@@ -39,9 +39,13 @@ angular.module("prostudyApp")
 					$scope.updateQuestion = function() {
 
 						var QuestionService = appEndpointSF.getQuestionService();
+
+						$log.debug("...$scope.selectedQuestionId:" + $scope.selectedQuestionId);
+						
 				
 						QuestionService.updateQuestion($scope.question).then(function(updatedQ) {
 									$log.debug("updatedQ:",updatedQ);
+
 									$scope.showSavedToast();
 														
 									if($scope.sourceSate == null)

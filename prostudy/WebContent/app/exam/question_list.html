@@ -1,4 +1,4 @@
-<md-content>
+ <md-content>
 
 	<div>
 		<div>
@@ -67,83 +67,11 @@
 						</td>
 
 						<td><a
-							ui-sref="exam.editquestion({selectedQuestionId: question.id})"><md-button
+							ui-sref="exam.editquestion({selectedQuestionId: question.quesId})"><md-button
 									class="md-raised md-primary" ng-click="">Edit </md-button> </a></td>
 						
 					</tr>
 				</tbody>
-
-			</table>
-
-		</md-data-table-container>
-		
-		
-		
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total={{questions.length}} md-trigger="onpagechange"></md-data-table-pagination>
-
-		<md-content layout-padding>
-			<div id="updateQuestion">
-
-				<md-input-container flex>
-					<label>Question Description</label>
-					<div text-angular="" ng-model="selected[0].description"></div>
-				</md-input-container>
-
-				<div layout layout-sm="column">
-					<md-input-container flex>
-						<label>Note</label>
-						<input ng-model="selected[0].note">
-					</md-input-container>
-
-					
-				</div>
-
-				<div layout layout-sm="column">
-					<md-input-container flex>
-						<label>Option1</label>
-						<input ng-model="selected[0].option1">
-					</md-input-container>
-
-					<md-input-container flex>
-						<label>Option2</label>
-						<input ng-model="selected[0].option2">
-					</md-input-container>
-				</div>
-
-				<div layout layout-sm="column">
-					<md-input-container flex>
-						<label>Option3</label>
-						<input ng-model="selected[0].option3">
-					</md-input-container>
-
-					<md-input-container flex>
-						<label>Option4</label>
-						<input ng-model="selected[0].option4">
-					</md-input-container>
-				</div>
-
-				<div layout layout-sm="column">
-					<md-input-container flex>
-						<label>Correct Ans.</label>
-						<input ng-model="selected[0].correctAns">
-					</md-input-container>
-				</div>
-
-				<section layout="row" layout-sm="column" layout-align="center center">
-					<md-button class="md-raised md-primary" ng-click="updateQuestion(selected[0])">
-						Submit
-					</md-button>
-					<md-button class="md-raised md-primary"ng-click="clickCancelButton(selected[0])">
-						cancel
-					</md-button>
-				</section>
-			</div>
-
-		</md-content>
-
-
 		
 			</table>
 
@@ -153,3 +81,4 @@
 	</div>
 		
 </md-content>
+ 

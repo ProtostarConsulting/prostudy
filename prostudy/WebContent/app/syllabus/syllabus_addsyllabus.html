@@ -5,44 +5,89 @@
 		<md-subheader class="md-primary">
 		<h3 class="md-headline">New Syllabus</h3>
 		</md-subheader>
+		<form name="syllabusForm" ng-model="syllabusForm">
+			<div layout="column">
 
-		<div layout="column">
+				<md-input-container flex> <label>Board
+					Name<span style="color: red"
+					ng-show="syllabusForm.board.$error.required" class="mandatory">*</span>
+				</label> <md-select name="board" ng-model="tempSyllabus.board"
+					ng-required="true"> <md-option ng-value="board"
+					ng-repeat="board in boards">{{board}}</md-option> </md-select>
+				<div ng-messages="syllabusForm.board.$error"
+					ng-if="syllabusForm.board.$submitted || syllabusForm.board.$touched">
+					<div ng-message="required">Please select Board.</div>
+				</div>
+				</md-input-container>
 
-			<md-input-container flex> <label>Board
-				Name</label> <input name="board" id="board" ng-model="tempSyllabus.board">
+				<md-input-container> <label>Standard</label> <md-select
+					ng-model="tempSyllabus.standard" placeholder="Standard"
+					ng-change="getDivisionByStandard()"> <md-option
+					ng-value="standard" ng-repeat="standard in standards">{{standard}}</md-option>
+				</md-select> </md-input-container>
+
+				<md-input-container> <label>Division</label> <md-select
+					ng-model="tempSyllabus.division" placeholder="Division"
+					ng-change="getSubjectByDivision()"> <md-option
+					ng-value="division" ng-repeat="division in divisions">{{division}}</md-option>
+				</md-select> </md-input-container>
+
+				<md-input-container> <label>Subject</label> <md-select
+					ng-model="tempSyllabus.subject" placeholder="Subject" ng-change="">
+				<md-option ng-value="subject" ng-repeat="subject in subjects">{{subject}}</md-option>
+				</md-select> </md-input-container>
+
+
+				<md-input-container flex> <label>Chapter
+					Name<span style="color: red"
+					ng-show="syllabusForm.chaptername.$error.required"
+					class="mandatory">*</span>
+				</label> <input name="chaptername" id="chapter"
+					ng-model="tempSyllabus.chapterName" required>
+				<div ng-messages="syllabusForm.chaptername.$error"
+					ng-if="syllabusForm.chaptername.$submitted || syllabusForm.chaptername.$touched">
+					<div ng-message="required">Please Enter Chapter Title.</div>
+				</div>
+				</md-input-container>
+			</div>
+			<md-input-container flex> <label>Chapter
+				Content<span style="color: red"
+				ng-show="syllabusForm.chaptercontent.$error.required"
+				class="mandatory">*</span>
+			</label> <text-angular name="chaptercontent" id="chaptercontent"
+				ng-model="tempSyllabus.chapterContent" required></text-angular>
+			<div ng-messages="syllabusForm.chaptercontent.$error"
+				ng-if="syllabusForm.chaptercontent.$submitted || syllabusForm.chaptercontent.$touched">
+				<div ng-message="required">Please Enter Chapter Contents.</div>
+			</div>
 			</md-input-container>
 
-			<md-input-container> <label>Standard</label> <md-select
-				ng-model="tempSyllabus.standard" placeholder="Standard"
-				ng-change="getDivisionByStandard()"> <md-option
-				ng-value="standard" ng-repeat="standard in standards">{{standard}}</md-option>
-			</md-select> </md-input-container>
 
+
+
+			<div layout="row" layout-align="center end">
+				<md-button class="md-raised md-primary"
+					ng-click="addSyllabus(tempSyllabus)"
+					ng-disabled="syllabusForm.$invalid">Add</md-button>
+				<md-button class="md-raised md-primary" ng-click="cancelButton()">Cancel</md-button>
+
+
+
+			</div>
+</div>
+</form>
+<!-- 
 		
-			<md-input-container> <label>Division</label> <md-select
-				ng-model="tempSyllabus.division" placeholder="Division"
-				ng-change="getSubjectByDivision()"> <md-option
-				ng-value="division" ng-repeat="division in divisions">{{division}}</md-option>
-			</md-select> </md-input-container>
-			
-
-			<md-input-container> <label>Subject</label> <md-select
-				ng-model="tempSyllabus.subject" placeholder="Subject" ng-change="">
-			<md-option ng-value="subject" ng-repeat="subject in subjects">{{subject}}</md-option>
-			</md-select> </md-input-container>
-			
-
 			<md-input-container flex> <label>Chapter
 				Name</label> <input name="chaptername" id="chapter"
 				ng-model="tempSyllabus.chapterName "> </md-input-container>
-		</div>
-
 		<text-angular name="chaptercontent" id="chaptercontent"
 			ng-model="tempSyllabus.chapterContent"></text-angular>
 		<br>
 		<md-button class="md-raised md-primary"
 			ng-click="addSyllabus(tempSyllabus)">Add</md-button>
 
-	</section>
-	</md-content>
+ -->
+</section>
+</md-content>
 </div>

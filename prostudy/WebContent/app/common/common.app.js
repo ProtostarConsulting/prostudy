@@ -4,6 +4,7 @@ var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
 		'directive.g+signin' ]);
 
 app.constant('boardList', ["State Board", "CBSE", "ICSE"]);
+
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette(
 			'red').warnPalette('pink').backgroundPalette('grey');

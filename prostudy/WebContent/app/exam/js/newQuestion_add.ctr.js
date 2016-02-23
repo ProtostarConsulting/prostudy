@@ -11,36 +11,7 @@ angular.module("prostudyApp").controller(
 						.position("top").hideDelay(3000));
 			};
 		
-		
-			$scope.checkValidation = function() {
-				if($scope.tempQuestion.correctAns==false)
-				{
-					alert("Please select the correctAns By selecting one of the check box");			
-				}
-				if($scope.tempQuestion.description=="")
-				{
-					alert("Please Enter the Question Description");	
-					
-				}
-				if($scope.tempQuestion.option1=="")
-				{
-					alert("Please Enter the option1");				
-				}
-				if($scope.tempQuestion.option2=="")
-				{
-					alert("Please Enter the option2");				
-				}
-				if($scope.tempQuestion.option3=="")
-				{
-					alert("Please Enter the option3");				
-				}
-				if($scope.tempQuestion.option4=="")
-				{
-					alert("Please Enter the option4");		
-				}
-			
-			}
-			
+				
 			$scope.sourceSate = $stateParams.sourceSate; //editpracticeexam/3 = {state: , examid}
 			$log.debug("$stateParams.sourceSate.examID:" + $scope.sourceSate);
 			$scope.tempQuestion = {

@@ -74,9 +74,7 @@ angular.module("prostudyApp").controller(
 
 				$scope.updateUser();
 
-				$scope.curuser.myExams.push(practiceTest);
-
-				$scope.updateUser();
+				
 
 			}
 

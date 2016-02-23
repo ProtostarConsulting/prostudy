@@ -23,16 +23,26 @@
 				<div layout layout-sm="column">
 					<md-input-container flex>
 						<label>Standard</label>
-						<md-select ng-model="Test.standard"  >
-				<md-option ng-value="standard" ng-repeat="standard in standards">{{standard}}</md-option>
+						<md-select ng-model="Test.standard" ng-change="getStandardByInstitute()" >
+				<md-option ng-value="standard" ng-repeat="standard in stdList">{{standard}}</md-option>
 				</md-select> 
 						
 					</md-input-container>
-				</div>		
+				</div>	
+				
+				
+				<div>
+				<md-input-container flex>
+						<label>Division</label>
+							<md-select ng-model="Test.division" ng-change="getDivisionByStandard()" >
+				<md-option ng-value="division" ng-repeat="division in divisions">{{division}}</md-option>
+				</md-select> 
+				</md-input-container>
+				</div>
 				<div>
 					<md-input-container flex>
 						<label>Subject</label>
-							<md-select ng-model="Test.subject"  >
+							<md-select ng-model="Test.subject" ng-change="getSubjectByDivision()" >
 				<md-option ng-value="subject" ng-repeat="subject in subjects">{{subject}}</md-option>
 				</md-select> 
 				</md-input-container>

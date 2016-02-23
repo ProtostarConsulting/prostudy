@@ -5,7 +5,9 @@ angular.module("prostudyApp").controller(
 			
 			$scope.selectedStandard;
 
-			
+			$scope.isGoogleUser;
+			$scope.flag1=true;
+			$scope.flag2=false;
 			$scope.selectedStudents = [];
 			$scope.selectedTeachers = [];
 			$scope.selectedAdmins = [];
@@ -15,8 +17,7 @@ angular.module("prostudyApp").controller(
 			
 			
 			 $scope.isGoogleUser;
-			
-			 
+
 			$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content('Institute Saved!')
 						.position("top").hideDelay(3000));
@@ -38,16 +39,19 @@ angular.module("prostudyApp").controller(
 			};
 			
 			$scope.currentInstID = $stateParams.currentInstID;
+
+			$log.debug("$scope.currentInstID:" + $scope.currentInstID);
+
 			$scope.currentStdID = $stateParams.currentStdID;
 			$scope.currentDivID = $stateParams.currentDivID;
-			
+
 			$scope.isDisabled = false;
 			$scope.disableButton = function() {
 				$scope.isDisabled = true;
 			}
 			
 			$scope.students = [];
-			$scope.addStudents = function() {
+			$scope.addStudentList = function() {
 				$scope.students.push({
 					'instituteID' : $scope.currentInstID,
 					'institute' : $scope.name,
@@ -69,10 +73,13 @@ angular.module("prostudyApp").controller(
 				$scope.role = '';
 				$scope.selectedStandard = '';
 				$scope.password = '';
+				
+				$scope.flag1=false;
+				$scope.flag2=true;
 			};
 			
 			$scope.teachers = [];
-			$scope.addTeachers = function() {
+			$scope.addTeacherList = function() {
 				$scope.teachers.push({
 					'instituteID' : $scope.currentInstID,
 					'institute' : $scope.name,
@@ -92,6 +99,10 @@ angular.module("prostudyApp").controller(
 				$scope.contact = '';
 				$scope.role = '';
 				$scope.password = '';
+				
+				$scope.flag1=false;
+				$scope.flag2=true;
+				
 			};
 			
 			$scope.admins = [];
@@ -115,6 +126,8 @@ angular.module("prostudyApp").controller(
 				$scope.contact = '';
 				$scope.role = '';
 				$scope.password = '';
+				$scope.flag1=false;
+				$scope.flag2=true;
 			};
 			
 		
@@ -345,5 +358,12 @@ angular.module("prostudyApp").controller(
 				});
 			}
 			$scope.getInstitutes();
+			$scope.cancelButton = function() {
+				$state.go("^", {});
+			}
+			$scope.addMore = function() {
+				$scope.flag1=true;
+				$scope.flag2=false;
+			}
 
 		});

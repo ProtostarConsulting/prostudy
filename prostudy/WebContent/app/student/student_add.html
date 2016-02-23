@@ -4,23 +4,57 @@
 		<md-subheader class="md-primary">
 		<h3 class="md-headline">New Student</h3>
 		</md-subheader>
-		<form name="userForm">
+		<form name="studentForm" ng-model="studentForm">
 			<div layout="row" layout-sm="column">
 
 				<div layout="column" flex>
-					<md-input-container flex> <label>First
-						name</label> <input ng-model="tempStudent.firstName"> </md-input-container>
-					<md-input-container flex> <label>Last
-						Name</label> <input ng-model="tempStudent.lastName"> </md-input-container>
-					<md-input-container flex> <label>
-						Email-ID</label> <input ng-model="tempStudent.email_id"> </md-input-container>
-						
-					<md-input-container flex> <label>Contact</label>
-					<input ng-model="tempStudent.contact"> </md-input-container>
+					<md-input-container flex> <label>First name<span
+						style="color: red" ng-show="studentForm.firstName.$error.required"
+						class="mandatory">*</span></label> <input name="firstName"
+						ng-model="tempStudent.firstName" ng-required="true">
+					<div ng-messages="studentForm.firstName.$error"
+						ng-if="studentForm.firstName.$submitted || studentForm.firstName.$touched">
+						<div ng-message="required">Please Enter First Name.</div>
+					</div>
+					</md-input-container>
+				
+					<md-input-container flex> <label>Last Name<span
+						style="color: red" ng-show="studentForm.lastName.$error.required"
+						class="mandatory">*</span></label> <input name="lastName"
+						ng-model="tempStudent.lastName" ng-required="true">
+					<div ng-messages="studentForm.lastName.$error"
+						ng-if="studentForm.lastName.$submitted || studentForm.lastName.$touched">
+						<div ng-message="required">Please Enter Last Name.</div>
+					</div>
+					</md-input-container>
+
+					<md-input-container flex> <label> Email-ID<span
+						style="color: red" ng-show="studentForm.email_id.$error.required"
+						class="mandatory">*</span></label> <input type="email" name="email_id"
+						ng-model="tempStudent.email_id" ng-required="true">
+					<div ng-messages="studentForm.email_id.$error"
+						ng-if="studentForm.email_id.$submitted || studentForm.email_id.$touched">
+						<div ng-message="required">Please Enter your Email-Id.</div>
+					</div>
+					</md-input-container>
+					<md-input-container 	flex> <label>Contact<span
+						style="color: red" ng-show="studentForm.contact.$error.required"
+						class="mandatory">*</span></label> <input type="number" name="contact"
+						ng-model="tempStudent.contact" ng-minlength="10" ng-maxlength="10"
+						ng-required="true">
+					<div ng-messages="studentForm.contact.$error"
+						ng-if="studentForm.contact.$submitted || studentForm.contact.$touched">
+						<div ng-message="required">Please Enter Your Contact.</div>
+						<span class="help-block"
+							ng-show="((studentForm.contact.$error.minlength || studentForm.contact.$error.maxlength) && studentForm.contact.$dirty) ">Contact
+							number should be 10 digits</span>
+					</div>
+					</md-input-container>
 
 				</div>
 
 				<div layout="column" flex>
+
 					<md-input-container flex="30"> <md-select
 						ng-model="tempStudent.standard" placeholder="Standard"
 						ng-change="getDivisionByStandard()"> <md-option ng-value="standard"
@@ -40,19 +74,20 @@
 					
 
 					<md-input-container flex> <label>
-						Address</label> <input ng-model="tempStudent.address"> </md-input-container>
+
+						Address</label> <input name="address" ng-model="tempStudent.address">
+					</md-input-container>
+
 					
 				</div>
 
 			</div>
 
-
-
 			<div layout="row" layout-align="center center">
-				<md-button class="md-raised" ng-click="getStudents()">
+				<md-button class="md-raised" ng-click="cancelButton()">
 				Cancel </md-button>
-				<md-button class="md-raised md-primary" ng-click="addStudent()">Submit
-				</md-button>
+				<md-button class="md-raised md-primary" ng-click="addStudent()"
+					ng-disabled="studentForm.$invalid">Submit </md-button>
 			</div>
 
 			<hr>

@@ -3,10 +3,9 @@ angular
 		.controller(
 				"addPracticeExamCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $log, $q, appEndpointSF, $state, $stateParams,
-						$sce, $filter, boardList) {
-
-					$scope.curUser = appEndpointSF.getLocalUserService()
+						$mdUtil, $log, $q, appEndpointSF, $state, $stateParams,$sce, $filter,boardList) {
+					
+			$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
 					$log.debug("$scope.curUser :"
 							+ angular.toJson($scope.curUser));
@@ -19,19 +18,21 @@ angular
 					
 					$scope.boards = [ {} ];
 					$scope.boards = boardList;
-					$scope.divisions = [];
+			
 					$scope.standards = [];
 					$scope.divisions = []; 
 					$scope.subjects = []; 
-					
+							
+
 					$scope.selectedStdID;
 					$scope.stdList;
 					$scope.divList;
 					$scope.subList;
+
 					
 					$scope.tempPracticeExam = {
-
-						instituteID : "",
+						id:"",
+						instituteID :  $scope.curUser.instituteID,
 						examtitle : "",
 						board : "",
 						standard : "",
@@ -40,7 +41,7 @@ angular
 						category : "",
 						instructions : "",
 						questions : [],
-						date : "",
+						date : new Date(),
 						likes : 0,
 						dislikes : 0
 					};
@@ -118,17 +119,6 @@ angular
 					
 					$scope.getQuestionsByInstitute();
 
-					$scope.getSelected = function() {
-
-						$scope.tempPracticeExam.instituteID = $scope.curUser.instituteID;
-						$scope.tempPracticeExam.examtitle = $scope.examtitle;
-						$scope.tempPracticeExam.board = $scope.board;
-						$scope.tempPracticeExam.standard = $scope.standard;
-						$scope.tempPracticeExam.subject = $scope.subject;
-						$scope.tempPracticeExam.instructions = $scope.instructions;
-						$scope.tempPracticeExam.date = new Date();
-					}
-
 					$scope.addPracticeExam = function() {
 						$log.debug("No1");
 						var practiceExamService = appEndpointSF
@@ -149,6 +139,7 @@ angular
 													+ msgBean.msg);
 											$scope.showSavedToast();
 											$scope.tempPracticeExam = {
+												id:"",
 												instituteID : "",
 												examtitle : "",
 												board : "",
@@ -193,33 +184,6 @@ angular
 					};
 					$scope.cancelButton = function() {
 						$state.go("exam", {});
-					}
-
-					$scope.checkValidation = function() {
-						if ($scope.tempPracticeExam.examId == "") {
-							alert("Please Enter the Examtitle");
-						}
-						if ($scope.tempPracticeExam.examtitle == "") {
-							alert("Please Enter the Examtitle");
-
-						}
-						if ($scope.tempPracticeExam.standard == false) {
-							alert("Please Select the Standard");
-
-						}
-						if ($scope.tempPracticeExam.board == false) {
-							alert("Please Select the Board");
-						}
-						if ($scope.tempPracticeExam.subject == false) {
-							alert("Please Select the Subject");
-						}
-						if ($scope.tempPracticeExam.category == "") {
-							alert("Please Enter the Category");
-						}
-						if ($scope.selected == "") {
-							alert("Please select the questions which you want to add into Practice Exam");
-						}
-
 					}
 
 				});
