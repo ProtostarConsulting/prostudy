@@ -20,24 +20,46 @@
 				</div>
 				</md-input-container>
 
-				<md-input-container> <label>Standard</label> <md-select
-					ng-model="tempSyllabus.standard" placeholder="Standard"
-					ng-change="getDivisionByStandard()"> <md-option
-					ng-value="standard" ng-repeat="standard in standards">{{standard}}</md-option>
-				</md-select> </md-input-container>
 
-				<md-input-container> <label>Division</label> <md-select
-					ng-model="tempSyllabus.division" placeholder="Division"
-					ng-change="getSubjectByDivision()"> <md-option
-					ng-value="division" ng-repeat="division in divisions">{{division}}</md-option>
-				</md-select> </md-input-container>
+				<md-input-container> <label>Standard<span
+					style="color: red" ng-show="syllabusForm.standard.$error.required"
+					class="mandatory">*</span></label> <md-select name="standard"
+					ng-model="tempSyllabus.standard"
+					ng-change="getDivisionByStandard()" ng-required="true">
+				<md-option ng-value="standard" ng-repeat="standard in standards">{{standard}}</md-option>
+				</md-select>
+				<div ng-messages="syllabusForm.standard.$error"
+					ng-if="syllabusForm.standard.$submitted || syllabusForm.standard.$touched">
+					<div ng-message="required">Please Select Standard.</div>
+				</div>
+				</md-input-container>
 
-				<md-input-container> <label>Subject</label> <md-select
-					ng-model="tempSyllabus.subject" placeholder="Subject" ng-change="">
-				<md-option ng-value="subject" ng-repeat="subject in subjects">{{subject}}</md-option>
-				</md-select> </md-input-container>
+				<md-input-container> <label>Division<span
+					style="color: red" ng-show="syllabusForm.division.$error.required"
+					class="mandatory">*</span></label> <md-select name="division"
+					ng-model="tempSyllabus.division" ng-change="getSubjectByDivision()"
+					ng-required="true"> <md-option ng-value="division"
+					ng-repeat="division in divisions">{{division}}</md-option> </md-select>
+				<div ng-messages="syllabusForm.division.$error"
+					ng-if="syllabusForm.division.$submitted || syllabusForm.division.$touched">
+					<div ng-message="required">Please Select Division.</div>
+				</div>
+				</md-input-container>
 
-
+				<md-input-container> <label>Subject<span
+					style="color: red" ng-show="syllabusForm.subject.$error.required"
+					class="mandatory">*</span></label> <md-select name="subject"
+					ng-model="tempSyllabus.subject" ng-change="" ng-required="true">
+				<md-option ng-value="subject"
+					ng-repeat="subject in subjects track by $index ">{{subject}}</md-option>
+				</md-select>
+				<div ng-messages="syllabusForm.subject.$error"
+					ng-if="syllabusForm.subject.$submitted || syllabusForm.subject.$touched">
+					<div ng-message="required">Please Select Subject.</div>
+				</div>
+				</md-input-container>
+				
+				
 				<md-input-container flex> <label>Chapter
 					Name<span style="color: red"
 					ng-show="syllabusForm.chaptername.$error.required"
@@ -62,9 +84,6 @@
 			</div>
 			</md-input-container>
 
-
-
-
 			<div layout="row" layout-align="center end">
 				<md-button class="md-raised md-primary"
 					ng-click="addSyllabus(tempSyllabus)"
@@ -76,18 +95,7 @@
 			</div>
 </div>
 </form>
-<!-- 
-		
-			<md-input-container flex> <label>Chapter
-				Name</label> <input name="chaptername" id="chapter"
-				ng-model="tempSyllabus.chapterName "> </md-input-container>
-		<text-angular name="chaptercontent" id="chaptercontent"
-			ng-model="tempSyllabus.chapterContent"></text-angular>
-		<br>
-		<md-button class="md-raised md-primary"
-			ng-click="addSyllabus(tempSyllabus)">Add</md-button>
 
- -->
 </section>
 </md-content>
 </div>
