@@ -10,11 +10,12 @@
 
 				<div layout="column">
 
-					<md-input-container flex> <label>Practice Exam Title<span
-						style="color: red"
+					<md-input-container flex> <label>Practice
+						Exam Title<span style="color: red"
 						ng-show="practiceExamForm.examtitle.$error.required"
-						class="mandatory">*</span></label> <input name="examtitle" id="examtitle"
-						ng-required="true" ng-model="tempPracticeExam.examtitle">
+						class="mandatory">*</span>
+					</label> <input name="examtitle" id="examtitle" ng-required="true"
+						ng-model="tempPracticeExam.examtitle">
 					<div ng-messages="practiceExamForm.examtitle.$error"
 						ng-if="practiceExamForm.examtitle.$submitted || practiceExamForm.examtitle.$touched">
 						<div ng-message="required">Please Enter Exam Title.</div>
@@ -33,10 +34,13 @@
 					</div>
 					</md-input-container>
 
-					<md-input-container> <label>Standard</label> <md-select
-						ng-model="tempPracticeExam.standard" 
-						ng-change="getDivisionByStandard()"> <md-option
-						ng-value="standard" ng-repeat="standard in standards">{{standard}}</md-option>
+					<md-input-container> <label>Standard<span
+						style="color: red"
+						ng-show="practiceExamForm.standard.$error.required"
+						class="mandatory">*</span></label> <md-select name="standard"
+						ng-model="tempPracticeExam.standard"
+						ng-change="getDivisionByStandard()" ng-required="true">
+					<md-option ng-value="standard" ng-repeat="standard in standards">{{standard}}</md-option>
 					</md-select>
 					<div ng-messages="practiceExamForm.standard.$error"
 						ng-if="practiceExamForm.standard.$submitted || practiceExamForm.standard.$touched">
@@ -44,28 +48,34 @@
 					</div>
 					</md-input-container>
 
-					<md-input-container> <label>Division</label> <md-select
-						ng-model="tempPracticeExam.division" placeholder="Division"
-						ng-change="getSubjectByDivision()"> <md-option
-						ng-value="division" ng-repeat="division in divisions">{{division}}</md-option>
+					<md-input-container> <label>Division<span
+						style="color: red"
+						ng-show="practiceExamForm.division.$error.required"
+						class="mandatory">*</span></label> <md-select name="division"
+						ng-model="tempPracticeExam.division"
+						ng-change="getSubjectByDivision()" ng-required="true">
+					<md-option ng-value="division" ng-repeat="division in divisions">{{division}}</md-option>
 					</md-select>
 					<div ng-messages="practiceExamForm.division.$error"
 						ng-if="practiceExamForm.division.$submitted || practiceExamForm.division.$touched">
-						<div ng-message="required">Please Enter Division.</div>
+						<div ng-message="required">Please Select Division.</div>
 					</div>
 					</md-input-container>
 
-
-					<md-input-container> <label>Subject</label> <md-select
-						ng-model="tempPracticeExam.subject" placeholder="Subject"
-						ng-change=""> <md-option ng-value="subject"
-						ng-repeat="subject in subjects">{{subject}}</md-option> </md-select>
+					<md-input-container>
+					<label>Subject<span
+						style="color: red"
+						ng-show="practiceExamForm.subject.$error.required"
+						class="mandatory">*</span></label> <md-select name="subject"
+						ng-model="tempPracticeExam.subject" 
+						ng-change="" ng-required="true"> <md-option ng-value="subject"
+						ng-repeat="subject in subjects track by $index ">{{subject}}</md-option>
+					</md-select>
 					<div ng-messages="practiceExamForm.subject.$error"
 						ng-if="practiceExamForm.subject.$submitted || practiceExamForm.subject.$touched">
 						<div ng-message="required">Please Select Subject.</div>
 					</div>
 					</md-input-container>
-
 
 					<md-input-container> <label>Category</label> <input
 						name="category" id="category" ng-required="true"
