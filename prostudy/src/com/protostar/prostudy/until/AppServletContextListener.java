@@ -11,11 +11,14 @@ import com.protostar.prostudy.entity.Car;
 import com.protostar.prostudy.entity.CarAddress;
 import com.protostar.prostudy.entity.CarOwner;
 import com.protostar.prostudy.entity.ChapterEntity;
+import com.protostar.prostudy.entity.DivisionEntity;
 import com.protostar.prostudy.entity.InstituteEntity;
 import com.protostar.prostudy.entity.PracticeExamEntity;
 import com.protostar.prostudy.entity.PracticeExamResultEntity;
 import com.protostar.prostudy.entity.QuestionEntity;
+import com.protostar.prostudy.entity.StandardEntity;
 import com.protostar.prostudy.entity.StudentEntity;
+import com.protostar.prostudy.entity.SubjectEntity;
 import com.protostar.prostudy.entity.SyllabusEntity;
 import com.protostar.prostudy.entity.TeacherEntity;
 import com.protostar.prostudy.entity.UserEntity;
@@ -51,9 +54,13 @@ public class AppServletContextListener implements ServletContextListener {
 		  ObjectifyService.register(TeacherEntity.class);
 		  ObjectifyService.register(AttendanceEntity.class);
 		  ObjectifyService.register(SyllabusEntity.class);
-		  ObjectifyService.register(YearCounterEntity.class);
 
-		
+		  ObjectifyService.register(StandardEntity.class);
+		  ObjectifyService.register(DivisionEntity.class);
+			 
+		  ObjectifyService.register(SubjectEntity.class);
+
+		  ObjectifyService.register(YearCounterEntity.class);
 
 
 	}

@@ -16,7 +16,8 @@ public class ChapterEntity {
 	private String chapter_name;
 	private String chapter_content;
 	private String board;
-	private String student_class;
+	private String standard;
+	private String division;
 	private String subject;
 
 	public Long getId() {
@@ -59,12 +60,20 @@ public class ChapterEntity {
 		this.board = board;
 	}
 
-	public String getStudent_class() {
-		return student_class;
+	public String getStandard() {
+		return standard;
 	}
 
-	public void setStudent_class(String student_class) {
-		this.student_class = student_class;
+	public void setStandard(String standard) {
+		this.standard = standard;
+	}
+
+	public String getDivision() {
+		return division;
+	}
+
+	public void setDivision(String division) {
+		this.division = division;
 	}
 
 	public String getSubject() {
@@ -74,5 +83,7 @@ public class ChapterEntity {
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
+
+	
 
 }// end of ChapterEntity

@@ -9,21 +9,18 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
-import com.protostar.prostudy.entity.AttendanceEntity;
 import com.protostar.prostudy.entity.UserEntity;
-import com.protostar.prostudy.until.data.UtilityService;
 
-//import com.protostar.prostudy.entity.BookEntity;
 
 @Api(name = "userService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
 public class UserService {
 
-	@ApiMethod(name = "addUser")
+	/*@ApiMethod(name = "addUser")
 	public void addUser(UserEntity usr) {
 		String nextPRN = UtilityService.getNextPRN(usr.getRole());
 		usr.setPRN(nextPRN);
 		Key<UserEntity> now = ofy().save().entity(usr).now();
-	}
+	}*/
 
 	@ApiMethod(name = "updateUser")
 	public void updateUser(UserEntity usr) {
