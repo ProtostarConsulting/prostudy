@@ -51,7 +51,7 @@ angular
 						$log.debug('Signed in!');
 						var profile = authResult.getBasicProfile();
 						$scope.googleUser = profile;
-
+					
 						$log.debug('ID: ' + profile.getId());
 						// Do not send to your backend! Use an ID token instead.
 						$log.debug('Name: ' + profile.getName());

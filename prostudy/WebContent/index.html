@@ -6,6 +6,8 @@
 
 <link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
 <link rel="stylesheet" href="/lib/base/css/googleapi.roboto.css">
+<link rel="stylesheet" href="/css/header.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
 <link rel="stylesheet" href="/lib/base/css/font-awesome.css">
 <link rel="stylesheet" href="/lib/base/css/xeditable.css">
 <link rel="stylesheet" href="/lib/base/css/bootstrap.min.css">
@@ -40,6 +42,7 @@
 				ng-click="showListBottomSheet($event)"> <md-tooltip>
 			{{ googleUser.getName() + "|" + googleUser.getEmail()}} </md-tooltip> <ng-md-icon
 				icon="more_vert"></ng-md-icon> </md-button>
+		<img ng-show="true" ngf-src="googleUser.getImageUrl()" class=circular>
 		</section>
 	</div>
 	</md-toolbar>
@@ -213,6 +216,9 @@
 
 	<!--<script src="/lib/base/googleapi.client.js"></script>-->
 	<script src="https://apis.google.com/js/client.js"></script>
+<!-- <script src="http://cdn.wijmo.com/interop/angular.wijmo.3.20131.1.js" type="text/javascript"></script>
+ <script src="http://cdnjs.cloudflare.com/ajax/libs/jszip/2.2.1/jszip.min.js" type="text/javascript"></script> -->
+ 
 
 	<!-- App JS Dependencies -->
 	<script src="/app/common/common.app.js"></script>
