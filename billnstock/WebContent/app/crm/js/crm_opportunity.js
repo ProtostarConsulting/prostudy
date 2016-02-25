@@ -85,7 +85,7 @@ angular
 					$scope.addopportunity = function() {
 
 						$scope.opportunity.loggedInUser = $scope.curUser;
-						$scope.opportunity.from = $scope.f;
+						$scope.opportunity.from = $scope.f;	
 						$scope.opportunity.tasks = $scope.task;
 						var opportunityService = appEndpointSF
 								.getopportunityService();
