@@ -17,8 +17,8 @@
 			<tr md-auto-select 
 				ng-repeat="emp in empSalStruct | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"
 				 >
-				<td>{{emp.empAccount.empid}}</td>
-				<td>{{emp.empAccount.empName}}</td>
+				<td>{{emp.empAccount.email_id}}</td>
+				<td>{{emp.empAccount.firstName}} {{emp.empAccount.lastName}}</td>
 				<td>{{emp.grosssal}}</td>
 				<td>
 					<section layout="row" layout-sm="column">

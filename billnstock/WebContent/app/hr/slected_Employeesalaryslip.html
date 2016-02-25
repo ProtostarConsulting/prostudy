@@ -25,8 +25,8 @@
 		<tbody>
 			<tr md-auto-select
 				ng-repeat="emps in displyselected | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
-				<td>{{emps.salarystruct.empAccount.empid}}</td>
-				<td>{{emps.salarystruct.empAccount.empName}}</td>
+				<td>{{emps.salarystruct.empAccount.email_id}}</td>
+				<td>{{emps.salarystruct.empAccount.firstName}} {{emps.salarystruct.empAccount.lastName}}</td>
 				<td>{{emps.salarystruct.grosssal}}</td>
 				<td>{{emps.month}}</td>
 				<td>

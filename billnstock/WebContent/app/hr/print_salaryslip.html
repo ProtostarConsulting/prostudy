@@ -63,18 +63,15 @@ display:none;
 							<br>
 							<table width="100%">
 								<tr height="10px">
-									<td width="50%"><b>ganerated no= </b>{{emp.ganeratedcode}}</td>
-									<td width="50%"><b>Employee Name = </b>{{emp.salarystruct.empAccount.empName}}</td>
+									<td width="50%"><b>Employee id = </b>{{emp.salarystruct.empAccount.email_id}}</td>
+									<td width="50%"><b>Employee Name = </b>{{emp.salarystruct.empAccount.firstName}} {{emp.salarystruct.empAccount.lastName}}</td>
 								</tr>
 
 								<tr height="10px">
-									<td width="50%"><b>Designation = </b>{{emp.salarystruct.empAccount.designation}}</td>
 									<td width="50%"><b>Month and Year = </b>{{emp.month}}</td>
+									<td width="50%"></td>
 								</tr>
-								<tr height="10px">
-									<td width="50%"><b>Employee id = </b>{{emp.salarystruct.empAccount.empid}}</td>
-									<td width="50%"><b></b></td>
-								</tr>
+								
 
 							</table>
 				<br>
@@ -90,7 +87,7 @@ display:none;
 					</tr>
 					<tr>
 						<td width="25%">Basic & DA</td>
-						<td width="25%">{{emp.salarystruct.monthly}}</td>
+						<td width="25%">{{emp.salarystruct.bmonthly}}</td>
 						<td width="25%">Provident Fund</td>
 						<td width="25%"></td>
 					</tr>
@@ -138,15 +135,15 @@ display:none;
 					</tr>
 					<tr>
 						<td width="25%">Total Addition</td>
-						<td width="25%">{{emp.salarystruct.monthly+emp.salarystruct.hramonthly+emp.salarystruct.convmonthly}}</td>
+						<td width="25%">{{emp.salarystruct.bmonthly+emp.salarystruct.hramonthly+emp.salarystruct.convmonthly}}</td>
 						<td width="25%">Total Deduction</td>
-						<td width="25%"></td>
+						<td width="25%">{{emp.salarystruct.pf1+emp.salarystruct.pf1+emp.salarystruct.ldother1amt+emp.salarystruct.ldother2amt}}</td>
 					</tr>
 					<tr>
 						<td width="25%"></td>
 						<td width="25%"></td>
 						<td width="25%"><b>NET Salary</b></td>
-						<td width="25%"><!-- {{emp.salarystruct.Netsalgrandtotalmonthly}} --></td>
+						<td width="25%">{{(emp.salarystruct.bmonthly+emp.salarystruct.hramonthly+emp.salarystruct.convmonthly)-(emp.salarystruct.pf1+emp.salarystruct.pf1+emp.salarystruct.ldother1amt+emp.salarystruct.ldother2amt)}}</td>
 					</tr>
 				
 
@@ -157,15 +154,15 @@ display:none;
 				<b>Name Of Bank :</b>
 				<br>
 				<b>Signature of Employee :</b>
-				<p align="Center"><br><br><br>
-					<b>this Document is Electronically Generated. Hence need no Signature or Stamp.</b>
-				</p>
-				<br>
+				
+				<br><br><br>
 				<p align="left">
 					<b>Generated on : {{date}}</b><br>
 					<b>Verified by : Pushpak Pimpale (Finance Manager)</b>
 				</p>
-
+					<p align="Center"><br><br><br>
+					<b>this Document is Electronically Generated. Hence need no Signature or Stamp.</b>
+				</p>
 				</div>
 				</td>
 
