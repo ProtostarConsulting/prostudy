@@ -107,10 +107,9 @@ angular
 						for (i = 0; i < $scope.selected.length; i++) {
 
 							var empid = $scope.selected[i].id;
-							hrService
-									.getstructByID(empid)
-									.then(
-											function(structlist) {
+							
+							hrService.getstructByID(empid)
+									.then(function(structlist) {
 												$scope.selectedSalSlip = structlist.result;
 												$scope.salslip.salarystruct = $scope.selectedSalSlip;
 												$scope.salslip.salslip_id = Number($scope.salslip.salslip_id) + 1;
