@@ -33,17 +33,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/home",
 		templateUrl : '/home.html',
 		controller : 'homeCtr'
-<<<<<<< .mine
+
 	})./*
 		 * state('student', { url : "/student", templateUrl :
 		 * '/app/student/student_module.html', controller : 'customerCtr'
 		 * }).state('student.listtest', { url : "/listtest", templateUrl :
 		 * '/app/demo/table_demo3_view.html', controller : 'nutritionController'
 		 * }).
-		 */state('stock', {
-=======
-	}).state('stock', {
->>>>>>> .r608
+		 */
+	state('stock', {
 		url : "/stock",
 		templateUrl : '/app/stock/stock_module.html',
 		controller : 'stockModuleCtr'
@@ -185,7 +183,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/hr/employee_doc.html',
 		controller : 'hrCtr.empdoc',
 	}).state('hr.salarystru', {
-		url : "/SalaryStructure",
+		url : "/SalaryStructure/:selectedUserId/:selectedUserName",
 		templateUrl : '/app/hr/employee_salstruct.html',
 		controller : 'hrCtr.addupdatesalstruct',
 	}).state('hr.salslip', {
@@ -361,5 +359,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/adduser/:BNo",
 		templateUrl : '/app/probusiness/adduser.html',
 		controller : 'probusinessCtr'
+	}).state('user_prof_detail', {
+		url : "/profile",
+		templateUrl : '/app/profile/profileModule.html',
+		controller : 'profileCtr'
+	}).state('user_prof_detail.viewprofile', {
+		url : "/viewprofile",
+		templateUrl : '/app/profile/viewprofile.html',
+		controller : 'profileCtr'
+	}).state('user_prof_detail.changepassword', {
+		url : "/changepassword",
+		templateUrl : '/app/profile/changepassword.html',
+		controller : 'profileCtr'
 	});
 });
