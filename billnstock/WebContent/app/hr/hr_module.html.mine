@@ -1,4 +1,3 @@
-<<<<<<< .mine
 <div layout="column">
 
 
@@ -66,69 +65,3 @@
 
 	<div ui-view></div>
 </div>
-=======
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Eclipse Public License - Version 1.0</title>
-<style type="text/css">
-  body {
-    size: 8.5in 11.0in;
-    margin: 0.25in 0.5in 0.25in 0.5in;
-    tab-interval: 0.5in;
-    }
-  p {  	
-    margin-left: auto;
-    margin-top:  0.5em;
-    margin-bottom: 0.5em;
-    }
-  p.list {
-  	margin-left: 0.5in;
-    margin-top:  0.05em;
-    margin-bottom: 0.05em;
-    }
-  </style>
-
-</head>
-
-<body lang="EN-US">
-
-<h2>Eclipse Public License - v 1.0</h2>
-
-<p>THE ACCOMPANYING PROGRAM IS PROVIDED UNDER THE TERMS OF THIS ECLIPSE
-PUBLIC LICENSE (&quot;AGREEMENT&quot;). ANY USE, REPRODUCTION OR
-DISTRIBUTION OF THE PROGRAM CONSTITUTES RECIPIENT'S ACCEPTANCE OF THIS
-AGREEMENT.</p>
-
-<p><b>1. DEFINITIONS</b></p>
-
-<p>&quot;Contribution&quot; means:</p>
-
-<p class="list">a) in the case of the initial Contributor, the initial
-code and documentation distributed under this Agreement, and</p>
-<p class="list">b) in the case of each subsequent Contributor:</p>
-<p class="list">i) changes to the Program, and</p>
-<p class="list">ii) additions to the Program;</p>
-<p class="list">where such changes and/or additions to the Program
-originate from and are distributed by that particular Contributor. A
-Contribution 'originates' from a Contributor if it was added to the
-Program by such Contributor itself or anyone acting on such
-Contributor's behalf. Contributions do not include additions to the
-Program which: (i) are separate modules of software distributed in
-conjunction with the Program under their own license agreement, and (ii)
-are not derivative works of the Program.</p>
-
-<p>&quot;Contributor&quot; means any person or entity that distributes
-the Program.</p>
-
-<p>&quot;Licensed Patents&quot; mean patent claims licensable by a
-Contributor which are necessarily infringed by the use or sale of its
-Contribution alone or when combined with the Program.</p>
-
-<p>&quot;Program&quot; means the Contributions distributed in accordance
-with this Agreement.</p>
-
-<p>&quot;Recipient&quot; means>>>>>>> .r678
