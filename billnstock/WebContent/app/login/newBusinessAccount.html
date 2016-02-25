@@ -8,11 +8,13 @@
 			ACCOUNT</b> </md-input-container>
 	</div>
 	<div layout layout-sm="column">
-		<md-input-container md-is-error="Signin.businessName.$invalid && (Signin.$submitted || Signin.businessName.$dirty)" flex> 
-		<label>Enter Business Name</label> 
-		<span style="color: red" ng-show="Signin.businessName.$error.required" class="mandatory">*</span> 
-		<input name="businessName"	ng-model="business.businessName" ng-required="true">
-		
+		<md-input-container
+			md-is-error="Signin.businessName.$invalid && (Signin.$submitted || Signin.businessName.$dirty)"
+			flex> <label>Enter Business Name</label> <span
+			style="color: red" ng-show="Signin.businessName.$error.required"
+			class="mandatory">*</span> <input name="businessName"
+			ng-model="business.businessName" ng-required="true">
+
 		<div ng-messages="Signin.businessName.$error"
 			ng-if="Signin.businessName.$submitted || Signin.businessName.$touched">
 			<div ng-message="required">Please Enter Business Name.</div>
@@ -26,57 +28,65 @@
 	</div>
 	<div layout layout-sm="column">
 
-		<md-input-container  md-is-error="Signin.adminGmailId.$invalid && (Signin.$submitted || Signin.adminGmailId.$dirty)" flex>
-		<label>Admin Gmail Email id</label> 
-		<span style="color: red" ng-show="Signin.adminGmailId.$error.required" class="mandatory">*</span> 
-		<input name="adminGmailId" ng-model="business.adminGmailId" ng-required="true">
+		<md-input-container
+			md-is-error="Signin.adminGmailId.$invalid && (Signin.$submitted || Signin.adminGmailId.$dirty)"
+			flex> <label>Admin Gmail Email id</label> <span
+			style="color: red" ng-show="Signin.adminGmailId.$error.required"
+			class="mandatory">*</span> <input name="adminGmailId"
+			ng-model="business.adminGmailId" ng-required="true">
 		<div ng-messages="Signin.adminGmailId.$error"
 			ng-if="Signin.adminGmailId.$submitted || Signin.adminGmailId.$touched">
 			<div ng-message="required">Please Enter Gmail Id.</div>
 		</div>
-		 </md-input-container>
+		</md-input-container>
 
 		<md-input-container flex ng-hide="business.isGoogleUser">
-		<label>Password </label>
-		<!-- <span style="color: red" ng-hide="business.isGoogleUser" ng-show="Signin.password.$error.required" class="mandatory">*</span> 
- -->		 <input type="password" name="password"	ng-model="business.password" > 
-		 <!-- <div ng-messages="Signin.password.$error"
+		<label>Password</label> <span style="color: red"
+			ng-show="Signin.password.$error.required" class="mandatory">*</span>
+		<input type="password" name="password" ng-model="business.password"
+			ng-required="condition()">
+
+		<div ng-messages="Signin.password.$error"
 			ng-if="Signin.password.$touched">
 			<div ng-message="required">Please Enter password.</div>
-		</div> -->
+		</div>
 		</md-input-container>
 	</div>
 	<div layout layout-sm="column">
 
-		<md-input-container  md-is-error="Signin.adminFirstName.$invalid && (Signin.$submitted || Signin.adminFirstName.$dirty)" flex> 
-		<label>First Name</label> 
-		<span style="color: red" ng-show="Signin.adminFirstName.$error.required" class="mandatory">*</span> 
-			<input name="adminFirstName" ng-model="business.adminFirstName" ng-required="true"> 
-			<div ng-messages="Signin.adminFirstName.$error"
+		<md-input-container
+			md-is-error="Signin.adminFirstName.$invalid && (Signin.$submitted || Signin.adminFirstName.$dirty)"
+			flex> <label>First Name</label> <span
+			style="color: red" ng-show="Signin.adminFirstName.$error.required"
+			class="mandatory">*</span> <input name="adminFirstName"
+			ng-model="business.adminFirstName" ng-required="true">
+		<div ng-messages="Signin.adminFirstName.$error"
 			ng-if="Signin.adminFirstName.$touched">
 			<div ng-message="required">Please Enter First Name.</div>
 		</div>
-			
-			
-			</md-input-container>
+
+	
+		</md-input-container>
 	</div>
 	<div layout layout-sm="column">
-		<md-input-container  md-is-error="Signin.adminLastName.$invalid && (Signin.$submitted || Signin.adminLastName.$dirty)" flex> 
-		<label>Last Name</label>
-			<span style="color: red" ng-show="Signin.adminLastName.$error.required" class="mandatory">*</span> 
-		 <input name="adminLastName" ng-model="business.adminLastName" ng-required="true">
-		
-		 <div ng-messages="Signin.adminLastName.$error"
+		<md-input-container
+			md-is-error="Signin.adminLastName.$invalid && (Signin.$submitted || Signin.adminLastName.$dirty)"
+			flex> <label>Last Name</label> <span
+			style="color: red" ng-show="Signin.adminLastName.$error.required"
+			class="mandatory">*</span> <input name="adminLastName"
+			ng-model="business.adminLastName" ng-required="true">
+
+		<div ng-messages="Signin.adminLastName.$error"
 			ng-if="Signin.adminLastName.$touched">
 			<div ng-message="required">Please Enter Last Name.</div>
 		</div>
-		 
-		  </md-input-container>
+
+		</md-input-container>
 	</div>
 
 	<section layout="row" layout-sm="column" layout-align="left left">
-		<md-button class="md-raised md-primary"
-			ng-disabled="Signin.$invalid" ng-click="addBusiness()">Register</md-button>
+		<md-button class="md-raised md-primary" ng-disabled="Signin.$invalid"
+			ng-click="addBusiness()">Register</md-button>
 
 	</section>
 	<!-- 	</div> -->
