@@ -4,7 +4,6 @@ angular.module("stockApp").controller(
 				$log, $q, $location, objectFactory, appEndpointSF,
 				tableTestDataFactory, $state) {
 
-			
 			$scope.showSimpleToast = function(msgBean) {
 				$mdToast.show($mdToast.simple().content(msgBean)
 						.position("top").hideDelay(3000));
@@ -14,14 +13,14 @@ angular.module("stockApp").controller(
 
 			$scope.curuser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
-		
+
 			$scope.business = {
-					businessName : "",
-					adminGmailId : "",
-					adminFirstName :"",
-					adminLastName : "",
-					password:"",
-					isGoogleUser:true
+				businessName : "",
+				adminGmailId : "",
+				adminFirstName : "",
+				adminLastName : "",
+				password : "",
+				isGoogleUser : true
 			}
 
 			$scope.addBusiness = function() {
@@ -30,16 +29,20 @@ angular.module("stockApp").controller(
 						function(msgBean) {
 							$scope.showSimpleToast(msgBean.msg);
 							$state.go("login");
-						
+
 						});
 			}
-	
 
-
+			$scope.condition = function() {
+				if ($scope.business.isGoogleUser == false) {
+					return true;
+				} else {
+					return false
+				}
+			}
 
 			// //////////////////////////////////////////////////////////////////////////////
 
-			
 			$scope.toggleRight = buildToggler('right');
 
 			function buildToggler(navID) {
