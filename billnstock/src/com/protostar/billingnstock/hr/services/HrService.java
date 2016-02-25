@@ -14,6 +14,7 @@ import com.protostar.billingnstock.hr.entities.Employee;
 import com.protostar.billingnstock.hr.entities.SalSlip;
 import com.protostar.billingnstock.hr.entities.SalStruct;
 import com.protostar.billingnstock.hr.entities.TimeSheet;
+import com.protostar.billingnstock.user.entities.UserEntity;
 
 
 
@@ -35,12 +36,12 @@ public class HrService
 	 }*/
 	
 	@ApiMethod(name="getAllemp") 
-	public List<Employee> getAllemp(@Named("id") Long id) {
+	public List<UserEntity> getAllemp(@Named("id") Long id) {
 	//  return ofy().load().type(Employee.class).list();
 	
 		
-		List<Employee> emp = ofy().load().type(Employee.class).list();
-		List<Employee> filteredemp = new ArrayList<Employee>();
+		List<UserEntity> emp = ofy().load().type(UserEntity.class).list();
+		List<UserEntity> filteredemp = new ArrayList<UserEntity>();
 
 		for (int i = 0; i < emp.size(); i++) {
 			if (emp.get(i).getBusinessAccount().getId().equals(id)) {
@@ -113,7 +114,7 @@ public class HrService
 		SalStruct filteredsalstruct = new SalStruct();
 		
 		for (int i = 0; i < salstruct.size(); i++) {
-			if (salstruct.get(i).getEmpAccount().getId()==id){
+			if (salstruct.get(i).getEmpAccount().getId().equals(id)){
 				
 				filteredsalstruct=(salstruct.get(i));
 			} else {

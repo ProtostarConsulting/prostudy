@@ -4,6 +4,7 @@ import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
+import com.protostar.billingnstock.user.entities.UserEntity;
 
 
 
@@ -20,13 +21,13 @@ public class SalStruct {
 		this.id = id;
 	}
 	
-	private Ref<Employee> empAccount;
+	private Ref<UserEntity> empAccount;
 	
-	public Employee getEmpAccount() {
+	public UserEntity getEmpAccount() {
 		return empAccount.get();
 	}
 	
-	public void setEmpAccount(Employee empAccount) {
+	public void setEmpAccount(UserEntity empAccount) {
 			this.empAccount = Ref.create(empAccount);
 	}
 	

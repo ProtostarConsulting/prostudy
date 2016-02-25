@@ -35,8 +35,8 @@ public class AppServletContextListener implements ServletContextListener {
 		// register all your entities here
 		ObjectifyService.register(Car.class);
 		ObjectifyService.register(Employee.class);
-		ObjectifyService.register(SalStruct.class);
 		ObjectifyService.register(SalSlip.class);
+		ObjectifyService.register(SalStruct.class);
 		ObjectifyService.register(Lead.class);
 
 		ObjectifyService.register(TimeSheet.class);
