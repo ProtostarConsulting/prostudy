@@ -1,4 +1,83 @@
 
+
+
+
+
+
+<md-content layout-padding>
+<div layout layout-sm="column">
+  <md-input-container flex> <label>Search</label> <input
+   ng-model="searchText"> </md-input-container>
+ </div>
+<div>
+	<md-data-table-container>
+
+	<table md-data-table md-row-select="selected" md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onOrderChange">
+			<tr>
+		    	<th name="id" order-by="id"></th>
+				<th name="Email" order-by="email"></th>
+				<th name="First Name" order-by="fName"></th>
+				<th name="Last Name" order-by="lName"></th>
+			   <th name="Add SalaryStruct" order-by="salstruct"></th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="user in emps | orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit"">
+				<td>{{user.id}}</td>
+				<td>{{user.email_id}}</td>
+				<td>{{user.firstName}}</td>
+				<td>{{user.lastName}}</td>
+				<td><section layout="row" layout-sm="column">
+						<md-button class="md-raised md-primary"
+							ui-sref="hr.salarystru({selectedUserId: user.id,selectedUserName: user.email_id})">
+						Add Salary Structure</md-button>
+					</section></td>
+				<td>
+			</tr>
+		</tbody>
+	</table>
+ 
+ <md-data-table-pagination md-limit="query.limit"
+		md-page="query.page" md-total={{emps.length}}
+		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
+</div>
+
+
+</md-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
 <md-content layout-padding>
 
 <div>
@@ -37,10 +116,10 @@
 		md-page="query.page" md-total={{emps.length}}
 		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
 </div>
-<!-- vals: {{customers}}
+vals: {{customers}}
 <md-button ui-sref="customer.list" ng-click="getAllemp()" class="md-primary">
 		Customer List in side List view 
-	</md-button>-->
+	</md-button>
 
 	
-</md-content>
+</md-content> -->
