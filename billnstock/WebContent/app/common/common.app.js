@@ -209,10 +209,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/print/:printempidsalslip",
 		templateUrl : '/app/hr/print_salaryslip.html',
 		controller : 'hrCtr.emplist_to_ganeratesalslip',
-	}).state('hr.getAllSlip', {
-		url : "/getAllSlip/:viewsalslips",
-		templateUrl : '/app/hr/getAllSalSlip.html',
-		controller : 'hrCtr.empview'
 	}).state('crm', {
 		url : "/crm",
 		templateUrl : '/app/crm/crm_module.html',
@@ -371,5 +367,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/changepassword",
 		templateUrl : '/app/profile/changepassword.html',
 		controller : 'profileCtr'
+	}).state('user_prof_detail.getAllSlip', {
+		url : "/getAllSlip/:viewsalslips",
+		templateUrl : '/app/profile/getAllSalSlip.html',
+		controller : 'profileCtr'
+	}).state('user_prof_detail.print', {
+		url : "/print/:printempidsalslip",
+		templateUrl : '/app/profile/print_salaryslip.html',
+		controller : 'profileCtr',
 	});
 });
