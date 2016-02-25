@@ -54,7 +54,7 @@ angular.module("stockApp").controller(
 				authority : []
 			}
 			$scope.items = [ "stock", "sales", "hr", "crm", "customer",
-					"setup", "invoice", "purchase","basic" ];
+					"setup", "invoice", "purchase","basic","employee" ];
 			$scope.selection = [];
 			$scope.toggleSelection = function toggleSelection(itemName) {
 				var idx = $scope.selection.indexOf(itemName);

@@ -11,7 +11,7 @@ angular.module("stockApp").controller(
 			$scope.selecteduserNo = $stateParams.selecteduserNo;
 			$scope.id;
 
-			$scope.items = [ "stock", "sales", "hr", "crm", "customer","setup","invoice", "purchase" ];
+			$scope.items = [ "stock", "sales", "hr", "crm", "customer","setup","invoice", "purchase","employee","basic" ];
 			$scope.selection = [];
 
 			$scope.curuser = appEndpointSF.getLocalUserService()
@@ -47,6 +47,13 @@ angular.module("stockApp").controller(
 
 			};
 
+			$scope.condition = function() {
+				if ($scope.user.isGoogleUser == false) {
+					return true;
+				} else {
+					return false
+				}
+			}
 			// -------------------------------------------------------------------------
 
 			$scope.user = {

@@ -1,6 +1,9 @@
 
 <md-content layout-padding>
-
+<div layout layout-sm="column">
+  <md-input-container flex> <label>Search</label> <input
+   ng-model="searchText"> </md-input-container>
+ </div>
 <div>
 	<md-data-table-container>
 	<table md-data-table md-row-select="selected" md-progress="deferred">
@@ -16,7 +19,7 @@
 
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="customer in customers | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
+				ng-repeat="customer in customers | orderBy: query.order |filter: searchText| limitTo: query.limit: (query.page - 1) * query.limit"">
 				<td>{{customer.id}}</td>
 				<td>{{customer.customerName}}</td>
 				<td>{{customer.mobile}}</td>
