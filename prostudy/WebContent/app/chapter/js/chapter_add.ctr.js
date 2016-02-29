@@ -5,20 +5,21 @@ angular.module("prostudyApp").controller(
 
 			console.log("Inside chapterAddCtr");
 	  
-			$scope.tempChapter = {chapterId: "", chapter_name: "",chapter_content: "", board:"", student_class:"",subject:""};
+			$scope.tempChapter = {id:"",chapterId: "", chapter_name: "",chapter_content: "", board:"", standard:"",subject:""};
 			$scope.chapters = []; 
 			
 
 
-			$scope.tempChapter = {
+	/*		$scope.tempChapter = {
+					id:"",
 				chapterId :"",
 				chapter_name : "",
 				chapter_content : "",
 				board : "",
-				student_class : "",
+				standard : "",
 				subject : ""
 			};
-			$scope.chapters = [];
+			$scope.chapters = [];*/
 
 
 			$scope.showSavedToast = function() {
@@ -48,12 +49,13 @@ angular.module("prostudyApp").controller(
 
 							$log.debug("tempChapter" + $scope.tempChapter);
 							$scope.tempChapter = {
+									id:"",
 									chapterId : "",
 								chapterId :"",
 								chapter_name : "",
 								chapter_content : "",
 								board : "",
-								student_class : "",
+								standard : "",
 								subject : ""
 							};// After Click Submit button,htmlform to be set
 								// as blank

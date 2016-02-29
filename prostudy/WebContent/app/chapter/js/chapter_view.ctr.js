@@ -5,7 +5,7 @@ angular.module("prostudyApp")
 						$mdUtil, $log,appEndpointSF,$state,$sce) {
 					console.log("Inside chapterViewCtr");
 				
-					$scope.tempChapter = {chapterId :"",chapter_name : "",chapter_content: "", board:"", student_class:"",subject:""};
+					$scope.tempChapter = {id:"",chapterId :"",chapter_name : "",chapter_content: "", board:"", standard:"",subject:""};
 				
 			
 					$scope.getChapters = function()
