@@ -33,10 +33,10 @@ public class BookService {
 	
 	
 	 @ApiMethod(name="getBookByID") 
-	 public BookEntity getBookByID(@Named("bookId") Long bookId)
+	 public BookEntity getBookByID(@Named("id") Long id)
 	 {
 		 System.out.println("Inside getBookByID ");
-		 BookEntity theBook = ofy().load().type(BookEntity.class).id(bookId).now();		 
+		 BookEntity theBook = ofy().load().type(BookEntity.class).id(id).now();		 
 		 return theBook;	
 	 }//end of getBookbyID
 	 
