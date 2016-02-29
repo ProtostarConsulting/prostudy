@@ -17,6 +17,7 @@ angular.module("prostudyApp").controller(
 
 			
 			$scope.book = {
+					id:"",
 				bookId : "",
 				book_name : "",
 				author : "",
@@ -56,7 +57,7 @@ angular.module("prostudyApp").controller(
 			$scope.addBookToMyList = function(selectedBookId) {
 				var selectedBook = null;
 				for (var i =0; i < $scope.books.length; i++){							
-					if($scope.books[i].bookId == selectedBookId){
+					if($scope.books[i].id == selectedBookId){
 						selectedBook = $scope.books[i];
 						break;
 					}
@@ -107,7 +108,7 @@ angular.module("prostudyApp").controller(
 							
 							for(i=0 ;i< $scope.books.length;i++)
 							{
-								if($scope.books[i].bookid == selectedBookId)
+								if($scope.books[i].id == selectedBookId)
 									{
 									 $scope.books[i].likes++;
 									 break;
@@ -130,7 +131,7 @@ angular.module("prostudyApp").controller(
 							
 							for(i=0 ;i< $scope.books.length;i++)
 							{
-								if($scope.books[i].bookid == selectedBookId)
+								if($scope.books[i].id == selectedBookId)
 									{
 									 $scope.books[i].dislikes++;
 									 break;

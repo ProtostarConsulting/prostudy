@@ -12,6 +12,7 @@ angular.module("prostudyApp").controller(
 				desc : ""
 			}
 			$scope.tempBook = {
+					id:"",
 				bookId : "",
 				book_name : "",
 				author : "",
@@ -41,7 +42,7 @@ angular.module("prostudyApp").controller(
 
 					$log.debug("tempBook" + angular.toJson($scope.tempBook));
 					$scope.tempBook = {
-
+                             id:"",
 						bookId : "",
 						book_name : "",
 						author : "",
