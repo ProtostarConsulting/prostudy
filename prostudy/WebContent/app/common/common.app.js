@@ -112,6 +112,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/myprofile",
 		templateUrl : '/app/myprofile/myprofile.html',
 		controller : 'myProfileCtr'
+	}).state('quickstart', {
+		url : "/quickstart",
+		templateUrl : '/app/myprofile/quickstart.html',
+		controller : 'quickstartCtr'
+	}).state('blobstore', {
+		url : "/blobstore",
+		templateUrl : '/app/blobstore/blobstore.html',
+		controller : 'blobstoreCtr'
+	}).state('email', {
+		url : "/email",
+		templateUrl : '/app/myprofile/testemail.html',
+		controller : ''
 	}).state('institute', {
 		url : "/institute",
 		templateUrl : '/app/institute/institute_module.html',
