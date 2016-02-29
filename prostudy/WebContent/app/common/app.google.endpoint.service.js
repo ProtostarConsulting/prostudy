@@ -387,7 +387,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	ChapterService.getChaptersByID = function(selectedChapterId) {
 		var deferred = $q.defer();
 		gapi.client.chapterService.getChaptersByID({
-			'chapterId' : selectedChapterId
+			'id' : selectedChapterId
 		}).execute(function(resp) {
 
 			$log.debug("getChaptersByID#resp:" + angular.toJson(resp));
@@ -430,7 +430,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	BookService.getBookbyID = function(selectedBookId) {
 		var deferred = $q.defer();
 		gapi.client.bookService.getBookByID({
-			'bookId' : selectedBookId
+			'id' : selectedBookId
 		}).execute(function(resp) {
 
 			$log.debug("getBookbyID#resp:" + angular.toJson(resp));
