@@ -46,37 +46,7 @@ angular.module("prostudyApp")
 
 					$("#viewChapterContent").show();
 					$("#TotalChapters").hide();
-/*
-					$log.debug("$stateParams:", $stateParams);
-					$scope.selectedBookId = $stateParams.selectedBookId;
-					$log.debug("$scope.selectedBookId:"+ $scope.selectedBookId)
-					
-					$scope.getChapters = function() {
-						
-						var BookService = appEndpointSF.getBookService();
-
-						BookService.getBookbyID($scope.selectedBookId).then(function(bookList)
-										{
-
-											$scope.book_ChapterDetails = bookList;
-											$log.debug("bookList ===="+ angular.toJson(bookList));
-											$scope.selectedChapter = $scope.book_ChapterDetails[0];
-
-											$log.debug("$scope.selectedChapter ===="+ angular.toJson($scope.selectedChapter));
-
-											$scope.totalPages = Math.round($scope.selectedChapter.length/ $scope.itemsPerPage);
-
-											$scope.onNextChapter();
-											$("#viewChapterContent").hide();
-											$("#TotalChapters").show();
-
-										});
-
-					};// end of $scope.getChapters
-
-					$scope.book_ChapterDetails = [];*/
-					
-					
+			
 					$log.debug("$stateParams:", $stateParams);
 					$log.debug("$stateParams.selectedBookId:",$stateParams.selectedBookId);
 					$scope.selectedBookId = $stateParams.selectedBookId;

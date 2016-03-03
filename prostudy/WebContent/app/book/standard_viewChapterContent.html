@@ -18,11 +18,11 @@
 </div>
 <div>
 	<md-button class="md-primary" ng-disabled="isDisabledPrevious"
-		ng-model="isDisabledPrevious" ng-click="onPreviousChapter({selectedChapterId : selectedChapterId})">Previous Chapter</md-button>
+		ng-model="isDisabledPrevious" ng-click="onPreviousChapter()">Previous Chapter</md-button>
 
 	<md-button class="md-primary" ng-disabled="isDisabledNext"
 		ng-model="isDisabledNext"
-		ng-click="viewChapterContent({selectedChapterId : selectedChapterId})">Next Chapter</md-button>
+		ng-click="viewChapterContent({selectedBookId : selectedBookId})">Next Chapter</md-button>
 </div>
 <div>
 	<md-button class="md-raised md-primary"
