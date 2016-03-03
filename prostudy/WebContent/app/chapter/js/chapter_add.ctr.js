@@ -10,7 +10,7 @@ angular.module("prostudyApp").controller(
 			
 
 
-	/*		$scope.tempChapter = {
+			$scope.tempChapter = {
 					id:"",
 				chapterId :"",
 				chapter_name : "",
@@ -19,7 +19,7 @@ angular.module("prostudyApp").controller(
 				standard : "",
 				subject : ""
 			};
-			$scope.chapters = [];*/
+			$scope.chapters = [];
 
 
 			$scope.showSavedToast = function() {

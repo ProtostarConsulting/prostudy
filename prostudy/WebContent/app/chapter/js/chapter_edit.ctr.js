@@ -47,11 +47,11 @@ angular
 
 					$scope.editingData = [];
 					for (var i = 0, length = $scope.chapters.length; i < length; i++) {
-						$scope.editingData[$scope.chapters[i].id] = false;
+						$scope.editingData[$scope.chapters[i].chapterId] = false;
 					}
 
 					$scope.modify = function(selectedChapters) {
-						$scope.editingData[selectedChapters.id] = true;
+						$scope.editingData[selectedChapters.chapterId] = true;
 						$scope.chapter = selectedChapters;
 
 						$("#updateChapter").show();
@@ -61,7 +61,7 @@ angular
 					};
 
 					$scope.update = function(chapter) {
-						$scope.editingData[$scope.chapters.id] = false;
+						$scope.editingData[$scope.chapters.chapterId] = false;
 						$scope.chapter = $scope.selected[0];
 						$log.debug("$scope.chapter : "
 								+ angular.toJson($scope.chapter));
@@ -71,6 +71,8 @@ angular
 						$("#editChapterList").show();
 					};// end of update
 
+					
+					
 					$scope.view = function(chapter) {
 						$scope.viewChapter = $scope.chapter;
 						$log.debug("$scope.chapter :" + $scope.chapter);
