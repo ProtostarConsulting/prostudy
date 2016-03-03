@@ -2,6 +2,7 @@ package com.protostar.prostudy.entity;
 
 import java.util.List;
 
+import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
@@ -20,27 +21,11 @@ public class BookEntity {
 	private String board;
 	@Index
 	private String standard;
-	private String division;
 	
-	private String subject;
+	private Ref<UserEntity>user;
 
 	private List<ChapterEntity> chapters;
 
-	public String getDivision() {
-		return division;
-	}
-
-	public void setDivision(String division) {
-		this.division = division;
-	}
-
-	public String getSubject() {
-		return subject;
-	}
-
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
 
 	public List<ChapterEntity> getChapters() {
 		return chapters;
@@ -97,6 +82,16 @@ public class BookEntity {
 	public void setStandard(String standard) {
 		this.standard = standard;
 	}
+
+	public UserEntity getUser() {
+		return user.get();
+	}
+
+	public void setUser(UserEntity user) {
+		this.user = Ref.create(user);
+	}
+
+
 
 }// end of BookEntity
 
