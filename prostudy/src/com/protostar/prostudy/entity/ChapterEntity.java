@@ -11,8 +11,7 @@ public class ChapterEntity {
 	private Long id;
 
 	@Index
-	private String chapterId;
-
+	private Long chapterId;
 	private String chapter_name;
 	private String chapter_content;
 	private String board;
@@ -28,13 +27,14 @@ public class ChapterEntity {
 		this.id = id;
 	}
 
-	public String getChapterId() {
+	public Long getChapterId() {
 		return chapterId;
 	}
 
-	public void setChapterId(String chapterId) {
+	public void setChapterId(Long chapterId) {
 		this.chapterId = chapterId;
 	}
+
 
 	public String getChapter_name() {
 		return chapter_name;
