@@ -375,5 +375,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/print/:printempidsalslip",
 		templateUrl : '/app/profile/print_salaryslip.html',
 		controller : 'profileCtr',
+	}).state('document', {
+		url : "/document",
+		templateUrl : '/app/Document/index.jsp',
+		controller : 'document',
+	}).state('email', {
+		url : "/email",
+		templateUrl : '/app/Email/email.html',
+		controller : 'email',
 	});
 });

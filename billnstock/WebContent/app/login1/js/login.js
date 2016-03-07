@@ -14,7 +14,7 @@ angular
 					
 					
 					
-					$scope.login=function(userid){
+				/*	$scope.login=function(userid){
 						
 						 var loginService = appEndpointSF.getloginService();
 							
@@ -28,7 +28,7 @@ angular
 										alert("login successfully");
 										$state.go('homecall',{userauthoritys:$scope.userL.authority});
 										 
-										/*for(i=0;i<$scope.userL.authority.length;i++){
+										for(i=0;i<$scope.userL.authority.length;i++){
 											if($scope.userL.authority[i]=='invoice')
 												$scope.loader.invoice = true ;
 											if($scope.userL.authority[i]=='hr')
@@ -41,7 +41,7 @@ angular
 												$scope.loader.setup = true ;
 											if($scope.userL.authority[i]=='login')
 												$scope.loader.login = true ;
-										}*/
+										}
 									//angular.element(document.getElementById('hr'))[0].disabled = false;
 								}else{
 										alert("invalid password");
@@ -52,7 +52,7 @@ angular
 						 
 						
 					}
-					$scope.userL = [];
+					$scope.userL = [];*/
 					
 					$scope.toggleRight = buildToggler('right');
 

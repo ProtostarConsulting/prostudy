@@ -203,7 +203,7 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 		}, apiRoot);
 		
 		
-
+	
 		gapi.client.load('crmService', 'v0.1', function() {
 			$log.debug("CRM Loaded.(lead services)...");
 			endpointFactory.is_service_ready = true;

@@ -41,14 +41,14 @@ function googleEndpointSF($log, $q) {
 	
 
 
-	/*UserService.getUser = function() {
+	UserService.getUser = function() {
 		var deferred = $q.defer();
 		gapi.client.userService.getUser().execute(function(resp) {
 			$log.debug("getUser #resp :" + resp);
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
-	}*/
+	}
 
 	UserService.getUserByEmailID = function(email_id) {
 		var deferred = $q.defer();
@@ -94,7 +94,7 @@ function googleEndpointSF($log, $q) {
 		var deferred = $q.defer();
 		gapi.client.userService.updateUser(user).execute(function() {
 			deferred.resolve({
-				"msg" : "user Successfully Added"
+				"msg" : "user Successfully Updated"
 			});
 		});
 		return deferred.promise;
@@ -661,6 +661,36 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}// End of CustomerService
 
+	// =====================================================================================================================================
+	// Add Customer Service
+
+	var AccountService = {};
+
+	serviceFactory.getAccountService = function() {
+		return AccountService;
+	}
+
+	AccountService.addAccount = function(account) {
+		var deferred = $q.defer();
+
+		gapi.client.accountService.addAccount(account).execute(function(resp) {
+			$log.debug("addAccount#resp at enpoint:" + resp);
+			deferred.resolve(resp);
+		});
+
+		return deferred.promise;
+	}
+
+	AccountService.getAllAccountsByBusiness = function(id) {
+		var deferred = $q.defer();
+		gapi.client.accountService.getAllAccountsByBusiness({"id" : id}).execute(function(resp) {
+			$log.debug("getAllAccountsByCurrUser#resp at enpoint:" + angular.toJson(resp));
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+// End of CustomerService
+	
 	/* =============================================================================================================================== */
 	// Start of StockService
 	var StockService = {};
@@ -685,7 +715,7 @@ function googleEndpointSF($log, $q) {
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
-	} // End of StockService
+	} 
 
 	StockService.updateStock = function(updateStock) {
 		var deferred = $q.defer();
@@ -696,6 +726,16 @@ function googleEndpointSF($log, $q) {
 				});
 		return deferred.promise;
 	}
+	
+	StockService.getReportByThreshold = function(id) {
+		var deferred = $q.defer();
+		gapi.client.stockService.getReportByThreshold({"id":id}).execute(function(resp) {
+			$log.debug("getReportByThreshold#resp at enpoint:" + resp);
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	} // End of StockService
+	
 	/* =============================================================================================================================== */
 
 	// Start of StockService
@@ -722,11 +762,29 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
+	
+	TaxService.getTaxesByVisibility = function(id) {
+		var deferred = $q.defer();
+		gapi.client.taxService.getTaxesByVisibility({"id":id}).execute(function(resp) {
+			$log.debug("getTaxesByVisibility#resp at enpoint:" + resp);
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
 
 	TaxService.updateTax = function(tax) {
 		var deferred = $q.defer();
 		gapi.client.taxService.updateTax(tax).execute(function(resp) {
 			$log.debug("updateTax#resp at enpoint:" + resp);
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
+	TaxService.disableTax = function(tax) {
+		var deferred = $q.defer();
+		gapi.client.taxService.disableTax(tax).execute(function(resp) {
+			$log.debug("disableTax#resp at enpoint:" + resp);
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -752,12 +810,12 @@ function googleEndpointSF($log, $q) {
 		});
 		
 		
-		/*gapi.client.stockService.updateStock(updateStock).execute(
+		/*gapi.client.stockService.updateStock(invoice).execute(
 				function(resp) {
 					$log.debug("updateStock#resp at enpoint:" + resp);
 					deferred.resolve(resp);
-				});*/
-		
+				});
+		*/
 		return deferred.promise;
 	}
 

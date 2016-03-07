@@ -12,12 +12,12 @@ angular
 					$log.debug("Inside hrCtr");
 					
 					
-					$log.debug("$stateParams:", $stateParams);
+			/*		$log.debug("$stateParams:", $stateParams);
 					$log.debug("$stateParams.selectedempNo:",
 							$stateParams.selectedempNo);
 					$log.debug("$stateParams.selectedempstructno:",
 							$stateParams.selectedempstructno);
-					$scope.selectedempNo = $stateParams.selectedempNo;
+					$scope.selectedempNo = $stateParams.selectedempNo;*/
 					$scope.selectedempstructno = $stateParams.selectedempstructno;
 					$scope.printempidsalslip = $stateParams.printempidsalslip;
 

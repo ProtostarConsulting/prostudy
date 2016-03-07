@@ -19,6 +19,8 @@ angular
 						compemail : "",
 						empAddress : ""
 					};
+					
+					
 					$scope.salstruct = {
 						empAccount : "",
 						grosssal : 0,
