@@ -7,14 +7,14 @@
 		<table class="table table-hover table-mc-light-blue">
 			<thead>
 				<tr>
-					<th>Book ID</th>
+				<!-- 	<th>Book ID</th> -->
 					<th>Book Name</th>
 					<th>Author</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="book in books | filter: searchText">
-					<td>{{book.bookId}}</td>
+					<!-- <td>{{book.bookId}}</td> -->
 
 					<td ng-click="showBookContents()"><a ui-sref="book.chapterList({selectedBookId : book.id})"><b>{{book.book_name}}</b></a></td>
 
