@@ -151,10 +151,15 @@
 			<h1 class="md-toolbar-tools">Apps Module</h1>
 			</md-toolbar> 
 			
+			<md-button ui-sref="user_prof_detail" ng-click="close()"  class="md-primary" show-gt-md>User Profile / Detail </md-button>
+			<md-button ui-sref="document"  ng-click="close()"  class="md-primary" show-gt-md>Document</md-button>
+			<md-button ui-sref="email"  ng-click="close()"  class="md-primary" show-gt-md>email</md-button>
+			
 		<div ng-repeat="user in curUser.authority">	
 			<md-content layout="column" ng-controller="LeftCtrl"> 
 			<md-button class="md-primary" ng-click="close()" hide-gt-md> Close Sidenav </md-button>
 			<md-button ui-sref="home" ng-show="user == 'basic'" ng-click="close()" class="md-primary" show-gt-md> Home </md-button>
+			
 			<md-button ui-sref="customer"  ng-show="user == 'basic'|| user == 'customer'" ng-click="close()" class="md-primary" show-gt-md> Customer </md-button>
 			<md-button ui-sref="stock" ng-show="user == 'basic' || user == 'stock' " ng-click="close()" ng-show="loader.stock" class="md-primary" show-gt-md> Stock </md-button> 	
 			<!-- <md-button ui-sref="stock" ng-click="close()" class="md-primary" show-gt-md> Stock </md-button>  -->	
@@ -166,6 +171,8 @@
 			<md-button ui-sref="setup" ng-show="user == 'basic' || user == 'setup' " ng-click="close()"   class="md-primary" show-gt-md>SETUP </md-button>
 			<md-button ui-sref="login" ng-show="user == 'basic' || user == 'login' " ng-click="close()"  class="md-primary" show-gt-md>LOGIN</md-button>
 			<md-button ui-sref="probusiness" ng-show="user=='protostarcs.com'" ng-click="close()"  class="md-primary" show-gt-md>ProBusiness</md-button>
+			
+			
 			</md-content> 
 		</div>
 			  </md-sidenav> </md-content>
@@ -272,7 +279,7 @@
 
 	<script src="/home.ctr.js"></script>
 	<script src="/app/demo/js/state.ctr.js"></script>
-	<script src="/app/demo/js/drivefiles.js"></script>
+	<!-- <script src="/app/demo/js/drivefiles.js"></script> -->
 
 	<!-- 	Customer js  -->
 	<script src="/app/customer/js/customer.ctr.js"></script>
@@ -283,8 +290,8 @@
 	<!-- 	Complete Customre js  -->
 	
 	<!-- 	Account js  -->
-	<script src="/app/customer/js/account_add.ctr.js"></script>
-		<script src="/app/customer/js/account_income.ctr.js"></script>
+	<!-- <script src="/app/customer/js/account_add.ctr.js"></script>
+		<script src="/app/customer/js/account_income.ctr.js"></script> -->
 	<!-- 	Complete Account js  -->
 	
 	<!-- 	Invoice js  -->
@@ -377,8 +384,8 @@
 	<script src="/app/setup/js/setup_module.js"></script>
 	<script src="/app/setup/js/setup_headerfooter.js"></script>
 	<script src="/app/setup/js/setup_adduser.js"></script>
-	
-	
+	<!--  profile js -->
+	<script src="/app/profile/js/profilemodule.js"></script>
 	
 	<!-- login user -->
 	
@@ -390,13 +397,9 @@
 
 	<script src="/app/login/js/needBusinessAccount.ctr.js"></script>
 	<script src="/app/login/js/newBusinessAccount.ctr.js"></script>
-<<<<<<< .mine
+
 <!-- protostar business list business -->
 <script src="/app/probusiness/js/probusinesslist.js"></script>
-
-=======
-							
->>>>>>> .r609
 	<!-- use for ganerating pdf -->
 	<!--    <script type="text/javascript" src="/app/hr/js/jspdf.min.js"></script>
 
@@ -414,8 +417,9 @@
  <!-- login -->
   <script src="/app/login1/js/login.js"></script>
   
-   
-      
+   <!-- Document -->
+      <script src="/app/Document/js/document.js"></script>
+       <script src="/app/Email/js/email.js"></script>
    
    <!-- use for ganerating pdf -->
 <!--    <script type="text/javascript" src="/app/hr/js/jspdf.min.js"></script>
