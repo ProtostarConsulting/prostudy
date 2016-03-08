@@ -67,4 +67,8 @@ app.controller("purchaseOrderViewCtr", function($scope, $window, $mdToast, $time
 		window.frames["print_frame"].window.focus();
 		window.frames["print_frame"].window.print();
 	}
+	
+	$scope.back = function() {
+		 window.history.back();
+	}
 });

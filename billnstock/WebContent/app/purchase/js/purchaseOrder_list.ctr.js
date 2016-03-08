@@ -27,21 +27,7 @@ app.controller("purchaseOrderListCtr", function($scope, $window, $mdToast, $time
 			taxTotal : 0,
 			finalTotal : ''
 	};
-/*	
-	$scope.addPurchaseOrder = function() {
-		var purchaseService = appEndpointSF.getPurchaseOrderService();
-		
-		purchaseService.addPurchaseOrder($scope.purchaseOrderObj).then(function(msgBean) {
 
-			$log.debug("Inside Ctr addPurchaseOrder");
-			$log.debug("msgBean.msg:" + msgBean.msg);
-			$scope.showSimpleToast();
-			$scope.getAllPurchaseOrder();
-		});
-
-		$scope.purchaseOrderObj = {};
-	}
-*/
 	$scope.getAllPurchaseOrder = function() {
 		$log.debug("Inside Ctr $scope.getAllPurchaseOrder");
 		var purchaseService = appEndpointSF.getPurchaseOrderService();
@@ -59,103 +45,7 @@ app.controller("purchaseOrderListCtr", function($scope, $window, $mdToast, $time
 	$scope.purchaseOrderList = [];
 //	$scope.temppurchaseOrder;
 	$scope.getAllPurchaseOrder();
-/*
-	$log.debug("$stateParams:", $stateParams);
-	$log.debug("$stateParams.selectedPONo:",
-			$stateParams.selectedPONo);
 
-	$scope.selectedPurchaseOrderNo = $stateParams.selectedPONo;
-	
-	$scope.getPOByID = function() {
-		var purchaseService = appEndpointSF.getPurchaseOrderService();
-
-		purchaseService
-				.getPOByID($scope.selectedPurchaseOrderNo)
-				.then(function(pOList) {
-							$scope.pODetail = pOList[0];
-							$log
-									.debug("getPOByID at controller===="
-											+ angular
-													.toJson($scope.pODetail));
-						});
-
-	}
-	$scope.pODetail = [];
-//	$scope.getPOByID();
-	
-	
-	$scope.addItem = function() {
-		var item = {
-			srNo : $scope.purchaseOrderObj.pOLineItemList.length + 1,
-			itemName : "",
-			qty : 1,
-			price : "",
-			subTotal : ""
-		};
-
-		$scope.purchaseOrderObj.pOLineItemList.push(item);
-	};
-	
-	$scope.removeItem = function(index) {
-		$scope.purchaseOrderObj.pOLineItemList.splice(index, 1);
-		$scope.calSubTotal();
-		$scope.calfinalTotal();
-	};
-	
-	$scope.calSubTotal = function() {
-		$log.debug("##Came to calSubTotal...");
-		$scope.purchaseOrderObj.subTotal = 0;
-
-		for (var i = 0; i < $scope.purchaseOrderObj.pOLineItemList.length; i++) {
-			var line = $scope.purchaseOrderObj.pOLineItemList[i];
-			$scope.purchaseOrderObj.subTotal += (line.qty * line.price);
-
-			$log.debug("subTotal :"
-					+ $scope.purchaseOrderObj.subTotal);
-		}
-		$log.debug("$scope.purchaseOrderObj 1 :"
-				+ $scope.purchaseOrderObj.subTotal);
-		return $scope.purchaseOrderObj.subTotal;
-	}
-
-	$scope.calfinalTotal = function() {
-		$log.debug("##Came to calfinalTotal...");
-
-		$scope.purchaseOrderObj.finalTotal = $scope.purchaseOrderObj.subTotal
-				+ $scope.purchaseOrderObj.taxTotal;
-	}
-	
-	$scope.lineItemStockChange = function(index, stockItem) {
-		$log.debug("##Came to lineItemStockChange...");
-		var lineSelectedItem = $scope.purchaseOrderObj.pOLineItemList[index];
-		lineSelectedItem.price = stockItem.price;
-		lineSelectedItem.itemName = stockItem.itemName;
-		lineSelectedItem.subTotal = stockItem.subTotal;
-
-	//	$scope.purchaseOrderObj.itemName =$scope.purchaseOrderObj.stockItem.itemName;
-	//	$scope.purchaseOrderObj.taxPercenatge =$scope.purchaseOrderObj.stockItem.taxPercenatge;
-		
-		$scope.calSubTotal();
-		$scope.calfinalTotal();
-	};
-
-	$scope.CustomerddlChange = function(index, customer) {
-		$log.debug("##Came to CustomerddlChange...");
-	//	$scope.purchaseOrderObj.customer =$scope.purchaseOrderObj.customer;
-	};
-	
-	$scope.lineItemTaxChange = function(index, selectedTaxItem) {
-		$log.debug("##Came to lineItemTaxChange...");
-
-//		$scope.purchaseOrderObj.taxCodeName =$scope.purchaseOrderObj.selectedTaxItem.taxCodeName;
-//		$scope.purchaseOrderObj.taxPercenatge =$scope.purchaseOrderObj.selectedTaxItem.taxPercenatge;
-	
-		$scope.purchaseOrderObj.taxTotal = ($scope.purchaseOrderObj.selectedTaxItem.taxPercenatge / 100)
-				* ($scope.purchaseOrderObj.subTotal)
-
-		$scope.calfinalTotal();
-	};
-*/	
 	/* Setup menu */
 	$scope.toggleRight = buildToggler('right');
 	/**
@@ -181,5 +71,9 @@ app.controller("purchaseOrderListCtr", function($scope, $window, $mdToast, $time
 		$mdToast.show($mdToast.simple().content(
 				'Purchase Order Saved!').position("top")
 				.hideDelay(3000));
-	};	
+	};
+	
+	$scope.back = function() {
+		 window.history.back();
+	}
 });
