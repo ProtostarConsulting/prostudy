@@ -4,6 +4,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import com.googlecode.objectify.ObjectifyService;
+import com.protostar.billingnstock.assetmanagement.entities.Asset;
 import com.protostar.billingnstock.crm.entities.Contact;
 import com.protostar.billingnstock.crm.entities.Lead;
 import com.protostar.billingnstock.crm.entities.Opportunity;
@@ -38,6 +39,7 @@ public class AppServletContextListener implements ServletContextListener {
 		ObjectifyService.register(SalStruct.class);
 		ObjectifyService.register(SalSlip.class);
 		ObjectifyService.register(Lead.class);
+		ObjectifyService.register(Asset.class);
 
 		ObjectifyService.register(TimeSheet.class);
 		ObjectifyService.register(Customer.class);
