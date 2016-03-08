@@ -18,6 +18,13 @@
 	<!--</md-card>-->
 </div>
 </md-content>
+
+<div>
+	<section layout="row" layout-align="end end" flex>
+		<md-button class="md-raised md-primary" ng-click="back()">BACK TO LIST
+		</md-button>
+	</section>
+</div>
  <md-content>
 <div id="invoiceDiv">
 
@@ -48,16 +55,16 @@
 					<td style="width: 20%"><b>Customer Name :</b>
 						{{invoiceDetail.customer.customerName}}</td>
 					<td style="width: 20%"><label>Invoice ID :</label>
-						{{invoiceDetail.invoiceId}}</td>
+						{{invoiceDetail.id}}</td>
 					<td style="width: 20%"><label>Date :</label>
 						{{invoiceDetail.invoiceDate}}</td>
 				</tr>
 				
 				<tr>
 					<td style="width: 20%"><b>Sales Order No. :</b>
-						{{invoiceDetail.salesOrderId.salesOrderId}}</td>
+						{{invoiceDetail.salesOrderId.id}}</td>
 					<td style="width: 20%"><label>Purchase Order No. :</label>
-						{{invoiceDetail.purchaseOrderNo.purchaseOrderNo}}</td>
+						{{invoiceDetail.purchaseOrderNo.id}}</td>
 				</tr>
 				
 				<tr>

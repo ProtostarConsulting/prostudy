@@ -17,6 +17,7 @@ app
 						salesOrderId : '',
 						customer : '',
 						invoiceDate : $filter("date")(Date.now(), 'dd-MM-yyyy'),
+						invoiceDueDate :'',
 						invoiceLineItemList : [],
 						subTotal : '',
 						taxCodeName : '',

@@ -31,8 +31,8 @@
 				<div layout="row">
 					<md-input-container flex> <label>Invoice
 						ID </label> <input ng-model="invoiceObj.invoiceId" disabled> </md-input-container>
-					<md-input-container flex> <label>Date
-					</label> <input ng-model="invoiceDate" id="invoiceDate" disabled></md-input-container>
+					<md-input-container flex> <label>Due Date
+					</label> <input ng-model="invoiceObj.invoiceDueDate" id="invoiceDueDate"></md-input-container>
 				</div>
 				
 				
@@ -42,7 +42,7 @@
 			<md-input-container flex> <md-select
 					ng-model="invoiceObj.account" placeholder="Account Name"
 					ng-change="AccountNameddlChange($index, selectedAccount)"> <md-option
-					ng-value="Account" ng-repeat="Account in accountforinvoice">{{Account.accountName
+					ng-value="Account" ng-repeat="Account in accountforinvoice" ng-selected="$first" required>{{Account.accountName
 				}}</md-option> </md-select> </md-input-container>
 				
 				<md-input-container flex> <md-select
@@ -87,11 +87,13 @@
 				<tr ng-repeat="item in invoiceObj.invoiceLineItemList"md-auto-selectorderBy:query.order| limitTo:query.limit: (query.page - 1) * query.limit"">
 
 					<td>{{ item.srNo }}</td>
+					
 					<td><md-input-container flex> <md-select
 							ng-model="selectedStockItem" placeholder="Item Name"
 							ng-change="lineItemStockChange($index, selectedStockItem)">
 						<md-option ng-value="item" ng-repeat="item in stockforinvoice">{{item.itemName
 						}}</md-option> </md-select> </md-input-container></td>
+						
 					<td><md-input-container flex> <label>Quantity
 						</label> <input ng-model="item.qty" type="number"
 							ng-change="calSubTotal()"> </md-input-container></td>

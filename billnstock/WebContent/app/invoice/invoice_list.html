@@ -1,16 +1,23 @@
 <md-content layout-padding>
 <div>
-		<md-input-container flex> <label>Search</label> <input
-			ng-model="searchText"> </md-input-container>
-	</div>
+	<section layout="row" layout-align="end end" flex>
+		<md-button class="md-raised md-primary" ng-click="back()">ADD
+		NEW</md-button>
+	</section>
+</div>
+<div layout layout-sm="column">
+	<md-input-container flex> <label>Search</label> <input
+		ng-model="searchText"> </md-input-container>
+</div>
 
 <div>
 	<md-data-table-container>
-		<table md-data-table class="md-primary" md-row-select="selected" md-progress="deferred">
-				<thead md-order="query.order" md-trigger="onorderchange">
+	<table md-data-table class="md-primary" md-row-select="selected"
+		md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onorderchange">
 			<tr>
 				<th name="Sr.No" order-by="sr_No"></th>
-				<th name="Invoice Id" order-by="invoiceId"></th>
+
 				<th name="Customer Name" order-by="customerName"></th>
 				<th name="Final Total" order-by="finalTotal"></th>
 
@@ -22,15 +29,29 @@
 				ng-repeat="invoice in invoiceData | filter: searchText | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
 				<!-- <a ng-href="#/invoice.list/{{invoiceId.id}}">{{invoice.finalTotal}}</a> -->
 				<td>{{$index+1}}</td>
-				<td>{{invoice.invoiceId}}</td>
 				<td>{{invoice.customer.customerName}}</td>
 				<td>{{invoice.finalTotal}}</td>
+
+				<td><md-input-container flex> <md-select
+						ng-model="account" placeholder="Account Name"
+						ng-change="AccountNameddlChange($index, selectedAccount)">
+					<md-option ng-value="Account"
+						ng-repeat="Account in accountforinvoice" required>{{Account
+					}}</md-option> </md-select> </md-input-container></td>
 				<td>
 					<section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary"
-							ui-sref="invoice.view({selectedInvoiceNo: invoice.invoiceId})">View Invoice</md-button>
+							
+							ng-show="account" ng-click="updateInvoice(invoice.id,account)">Update</md-button>
 					</section>
-					
+				</td>
+				<!-- ui-sref="invoice.list({UpdateInvoiceNo : invoice.id , status : account })" -->
+				<td>
+					<section layout="row" layout-sm="column">
+						<md-button class="md-raised md-primary"
+							ui-sref="invoice.view({selectedInvoiceNo: invoice.id})">View
+						Invoice</md-button>
+					</section>
 				</td>
 			</tr>
 		</tbody>
