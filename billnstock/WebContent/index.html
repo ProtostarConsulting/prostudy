@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/lib/base/css/bootstrap.min.css">
 <link rel="stylesheet" href="/lib/base/css/md-data-table.min.css">
 <link rel="stylesheet" href="/lib/base/css/textAngular.css">
-
+<link href="/app/AssetMangement/css/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="/lib/base/css/ui-grid.css">
 <link rel="stylesheet" href="http://ui-grid.info/release/ui-grid.css"
 	type="text/css">
@@ -88,11 +88,42 @@
 
 			<md-toolbar class="md-theme-indigo">
 			<h1 class="md-toolbar-tools">Apps Module</h1>
+<<<<<<< .mine
+			</md-toolbar> 
+			
+			
+			
+		<div ng-repeat="user in curUser.authority">	
+			<md-content layout="column" ng-controller="LeftCtrl"> 
+			<md-button class="md-primary" ng-click="close()" hide-gt-md> Close Sidenav </md-button>
+			<md-button ui-sref="home" ng-show="user == 'basic'" ng-click="close()" class="md-primary" show-gt-md> Home </md-button>
+			
+			<md-button ui-sref="customer"  ng-show="user == 'basic'|| user == 'customer'" ng-click="close()" class="md-primary" show-gt-md> Customer </md-button>
+			<md-button ui-sref="stock" ng-show="user == 'basic' || user == 'stock' " ng-click="close()" ng-show="loader.stock" class="md-primary" show-gt-md> Stock </md-button> 	
+			<!-- <md-button ui-sref="stock" ng-click="close()" class="md-primary" show-gt-md> Stock </md-button>  -->	
+			<md-button ui-sref="invoice" ng-show="user == 'basic' || user == 'invoice' " ng-click="close()" class="md-primary" show-gt-md>  Invoice </md-button> 
+			<md-button ui-sref="salesOrder" ng-show="user == 'basic' || user == 'sales' " ng-click="close()" class="md-primary" show-gt-md> Sales </md-button>
+			<md-button ui-sref="purchaseOrder" ng-show="user == 'basic' || user == 'purchase' " ng-click="close()" class="md-primary" show-gt-md> Purchase </md-button>
+			<md-button ui-sref="hr" id="hr" ng-show="user == 'basic'|| user == 'hr' " ng-click="close()" ng-show="loader.hr" class="md-primary" show-gt-md> HR </md-button>
+			<md-button ui-sref="crm" ng-show="user == 'basic'|| user == 'crm' " ng-click="close()" ng-show="loader.crm" class="md-primary" show-gt-md>CRM </md-button>
+			<md-button ui-sref="setup" ng-show="user == 'basic' || user == 'setup' " ng-click="close()"   class="md-primary" show-gt-md>SETUP </md-button>
+			<md-button ui-sref="login" ng-show="user == 'basic' || user == 'login' " ng-click="close()"  class="md-primary" show-gt-md>LOGIN</md-button>
+			<md-button ui-sref="probusiness" ng-show="user=='protostarcs.com'" ng-click="close()"  class="md-primary" show-gt-md>ProBusiness</md-button>
+			<md-button ui-sref="AssetMangement" ng-show="user == 'basic' || user == 'login' " ng-click="close()"  class="md-primary" show-gt-md>Asset Mangement</md-button>
+			
+			<md-button ui-sref="user_prof_detail" ng-show="user == 'basic'" ng-click="close()"  class="md-primary" show-gt-md>User Profile / Detail </md-button>
+			<md-button ui-sref="document"  ng-show="user == 'basic'" ng-click="close()"  class="md-primary" show-gt-md>Document</md-button>
+			<md-button ui-sref="email" ng-show="user == 'basic' " ng-click="close()"  class="md-primary" show-gt-md>email</md-button>
+			</md-content> 
+		</div>
+			  </md-sidenav> </md-content>
+=======
 			</md-toolbar> <md-button ui-sref="user_prof_detail" ng-click="close()"
 				class="md-primary" show-gt-md>User Profile / Detail </md-button> <md-button
 				ui-sref="document" ng-click="close()" class="md-primary" show-gt-md>Document</md-button>
 			<md-button ui-sref="email" ng-click="close()" class="md-primary"
 				show-gt-md>email</md-button>
+>>>>>>> .r739
 
 			<div ng-repeat="user in curUser.authority">
 				<md-content layout="column" ng-controller="LeftCtrl"> <md-button
@@ -409,7 +440,27 @@
    <script src="/app/crm/js/crm_contacts.js"></script>
       <script src="/app/crm/js/crm_opportunity.js"></script>
   <!--  lead js -->
+<<<<<<< .mine
+ <!-- setup module js -->
+ 
+ <script src="/app/setup/js/setup_module.js"></script>
+ <script src="/app/setup/js/setup_headerfooter.js"></script>
+ 
+ <!-- login -->
+  <script src="/app/login1/js/login.js"></script>
+  
+   <!-- Document -->
+      <script src="/app/Document/js/document.js"></script>
+       <script src="/app/Email/js/email.js"></script>
+       
+       <!--asset management   -->
+    <script src="/app/AssetMangement/js/AssetMgmtModule.js"></script>
+    <script src="/app/AssetMangement/js/AssignupdateAsset.js"></script>
+   <!-- use for ganerating pdf -->
+<!--    <script type="text/javascript" src="/app/hr/js/jspdf.min.js"></script>
+=======
 	<!-- setup module js -->
+>>>>>>> .r739
 
 	<script src="/app/setup/js/setup_module.js"></script>
 	<script src="/app/setup/js/setup_headerfooter.js"></script>
