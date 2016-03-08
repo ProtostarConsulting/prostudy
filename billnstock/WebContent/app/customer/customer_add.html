@@ -1,57 +1,78 @@
 
-<md-content layout-padding> 
-	class="md-icon-float md-block">
-<div id="addField">
+<md-content layout-padding>
 
-	<!-- 	<div layout layout-sm="column">
-		<md-input-container flex> <label>Customer
-			Name </label> <input ng-model="cust.customerName"
-			placeholder="Customre Name (required)" ng-required="true"> </md-input-container>
-	</div>
- -->
-<!--  <div layout layout-sm="column">
-		<md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
-		<md-input-container flex> <label>Customer ID
-			 </label> <input ng-model="cust.customerId" disabled> </md-input-container>
-	</div> -->
+<form name="custForm">
+
+
 	<div layout layout-sm="column">
-		<md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
-		<md-input-container flex> <label>Customer
-			Name </label> <input ng-model="cust.customerName"
-			placeholder="Customre Name (required)" ng-required="true"> </md-input-container>
+		<md-input-container flex> <label>Person
+			Name </label> <input name="name" ng-model="cust.customerName"
+			ng-required="true">
+		<div ng-messages="custForm.name.$error"
+			ng-if="custForm.name.$submitted || custForm.name.$touched">
+			<div ng-message="required">Please Enter Customer Name</div>
+		</div>
+
+		</md-input-container>
 	</div>
+
 	<div layout layout-sm="column">
-		<md-icon md-svg-src="img/icons/ic_phone_24px.svg"></md-icon>
-		<md-input-container flex> <label>Mobile
-			No. </label> <input ng-model="cust.mobile" placeholder="Mobile (required)"
-			ng-required="true"> </md-input-container>
+
+		<md-input-container flex> <label>Mobile </label>
+		<input name="mobile" ng-model="cust.mobile" ng-required="true">
+		<div ng-messages="custForm.mobile.$error"
+			ng-if="custForm.mobile.$submitted || custForm.mobile.$touched">
+			<div ng-message="required">Please Enter Mobile Number.</div>
+		</div>
+
+		</md-input-container>
 	</div>
+
 	<div layout layout-sm="column">
-		<md-icon md-svg-src="img/icons/ic_email_24px.svg" class="email"></md-icon>
-		<md-input-container flex> <label> Email</label> <input
-			ng-model="cust.email" placeholder="Email (required)"
-			ng-required="true"> </md-input-container>
+		<md-input-container flex> <label>Email </label> <input
+			type="email" name="email" ng-model="cust.email" ng-required="true">
+		<div ng-messages="custForm.email.$error"
+			ng-if="custForm.email.$submitted || custForm.email.$touched">
+			<div ng-message="required">Please Enter Email id.</div>
+		</div>
+		</md-input-container>
 	</div>
-<!-- 	<div>
-		<md-icon md-svg-src="img/icons/ic_place_24px.svg"
-			style="display:inline-block;"></md-icon>
+
+
+	<div layout layout-sm="column">
 		<md-input-container flex> <label>Address
-		</label> <textarea ng-model="cust.customerAddress" rows="4" cols="1"
-			placeholder="Address (required)" ng-required="true"></textarea></md-input-container>
-	</div> -->
-	
-	<div layout layout-sm="column">
-	<md-input-container flex> <label>Note </label>
-				<textarea ng-model="invoiceObj.note" rows="2" cols="1"></textarea> </md-input-container>
+		</label> <textarea name="address" ng-model="cust.address" ng-required="true"></textarea>
+		<div ng-messages="custForm.address.$error"
+			ng-if="custForm.address.$submitted || custForm.address.$touched">
+			<div ng-message="required">Please Enter Address</div>
+		</div>
+		</md-input-container>
 	</div>
 
 	<section layout="row" layout-sm="column" layout-align="left left">
-		<md-button class="md-raised md-primary" ng-click="addCustomer()">Add</md-button>
+		<md-button ng-disabled="custForm.$invalid"
+			class="md-raised md-primary" ng-click="addCustomer()">Add</md-button>
 	</section>
-</div>
 
-<div>
-<input type="file" file-model="myFile" />
-	<button ng-click="uploadFile()">upload me</button>
-</div>
+
+	<div></div>
+</form>
+
+<h3>File Upload:</h3>
+Select a file to upload: <br />
+<form action="FileUploadServlet" method="post"
+	enctype="multipart/form-data">
+	<input type="file" name="file" size="50" /> <br /> <input
+		type="submit" value="Upload File" />
+</form>
 </md-content>
+
+<form action="UploadDownloadFileServlet" method="post"
+	enctype="multipart/form-data">
+
+	Select File to Upload:<input type="file" name="fileName"> <br>
+
+	<input type="submit" value="Upload">
+
+</form>
+
