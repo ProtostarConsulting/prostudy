@@ -2,7 +2,6 @@
 <html lang="en" ng-app="stockApp" ng-controller="indexCtr">
 <head>
 <title>ProERP</title>
-        
 <meta name="viewport" content="initial-scale=1" />
 
 <link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
@@ -22,81 +21,36 @@
 <link href="css/header.css" rel="stylesheet" type="text/css" />
 </head>
 <body layout="column">
-	<!-- <div layout="column" layout-fill> -->
-<!-- 	<md-content> Top Navigation Pane <md-toolbar>
+
+
+	<md-content> <!-- Top Navigation Pane --> <md-toolbar>
 	<div class="md-toolbar-tools">
-		<span hide-sm>ProERP - {{businessAccountName}}</span> <span hide-gt-sm>ProERP</span>
-		fill up the space between left and right area
-		<span flex></span>
-		<section layout="row">
-			<div hide-sm layout="row" layout-align="end start">
-				<md-button class="md-icon-button md-accent" aria-label="Favorite">
-				<md-icon md-font-icon="icon-home" ng-class="font.theme" class="step"></md-icon>
-				</md-button>
-
-				<md-button class="md-icon-button md-accent" aria-label="Favorite">
-				<md-icon md-svg-icon="img/icons/ic_comment_24px.svg"></md-icon> </md-button>
-				<md-button class="md-icon-button md-accent" aria-label="Favorite">
-				<md-icon md-svg-icon="img/icons/codepen-logo.svg"></md-icon> </md-button>
-				<md-button class="md-icon-button md-accent" aria-label="Favorite">
-				<md-icon md-svg-icon="img/icons/separator.svg"></md-icon> </md-button>
-				<md-button class="md-icon-button" aria-label="More"
-					ng-click="toggleRight()"> <md-icon
-					md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
-					
-			</div>
-			<md-button aria-label="Logout" ng-click="showSearch = !showSearch">
-			<ng-md-icon icon="logout"></ng-md-icon> </md-button>
-			<md-button aria-label="Open Settings"
-				ng-click="showListBottomSheet($event)"> <ng-md-icon
-				icon="more_vert"></ng-md-icon> </md-button>
-		</section>
-		
-		
-	</div>
-
-	</md-toolbar>
-
- <div ng-controller="AppCtrl"> 
-		<section layout="row" flex>
-			Left Navigation Pane
-			<md-sidenav class="md-sidenav-left md-whiteframe-z2"
-				md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-
-			<md-toolbar class="md-theme-indigo">
-			<h1 class="md-toolbar-tools">Apps Module</h1>
-			</md-toolbar> 
-			<md-content layout="column" ng-controller="LeftCtrl"> 
-				<md-button class="md-primary" ng-click="close()" hide-gt-md> Close Sidenav </md-button>
-				<md-button ui-sref="home" ng-click="close()" class="md-primary" show-gt-md> Home </md-button>
-				<md-button ui-sref="customer" ng-click="close()" class="md-primary" show-gt-md> Customer </md-button>
-				<md-button ui-sref="stock" ng-click="close()" ng-show="loader.stock" class="md-primary" show-gt-md> Stock </md-button> 	
-				<md-button ui-sref="stock" ng-click="close()" class="md-primary" show-gt-md> Stock </md-button> 	
-				<md-button ui-sref="invoice" ng-show="loader.invoice" ng-click="close()" class="md-primary" show-gt-md>  Invoice </md-button> 
-				<md-button ui-sref="salesOrder" ng-click="close()" class="md-primary" show-gt-md> Sales </md-button>
-				<md-button ui-sref="purchaseOrder" ng-click="close()" class="md-primary" show-gt-md> Purchase </md-button>
-				<md-button ui-sref="hr" id="hr" ng-click="close()" ng-show="loader.hr" class="md-primary" show-gt-md> HR </md-button>
-				<md-button ui-sref="crm" ng-click="close()" ng-show="loader.crm" class="md-primary" show-gt-md>CRM </md-button>
-				<md-button ui-sref="setup" ng-click="close()"   class="md-primary" show-gt-md>SETUP </md-button>
-				<md-button ui-sref="login" ng-click="close()"  class="md-primary" show-gt-md>LOGIN</md-button>
-			</md-content> 
-			  </md-sidenav> 
-	</section>
-</div>
-</md-content>
-			
-	 -->		
-		
-		
-			<md-content> <!-- Top Navigation Pane --> <md-toolbar>
-	<div class="md-toolbar-tools">
-		<span hide-sm>ProERP - {{if(businessAccountName)?businessAccountName:"Manage your business paperless, anytime,
-			& anywhere!"}}<!--  Manage your business paperless, anytime,
-			& anywhere! --></span> <span hide-gt-sm>ProERP</span>
+		<span hide-sm>ProERP -
+			{{if(businessAccountName)?businessAccountName:"Manage your business
+			paperless, anytime, & anywhere!"}}<!--  Manage your business paperless, anytime,
+			& anywhere! -->
+		</span> <span hide-gt-sm>ProERP</span>
 		<!-- fill up the space between left and right area -->
 		<span flex></span>
 		<section layout="row">
-    
+			<md-button aria-label="Login" ng-hide="curUser !== null"
+				ng-show="curUser == null" ng-click="loginClick()"> Login
+			<md-tooltip> Login </md-tooltip> </md-button>
+
+
+			<md-button aria-label="Logout" ng-hide="curUser == null"
+				ng-click="signOut()"> Logout <md-tooltip>
+			{{ googleUser.getName() + "|" + googleUser.getEmail()}} </md-tooltip> </md-button>
+
+			<!-- <md-button class="md-icon-button" aria-label="More"
+    ng-click="toggleRight()"> <md-icon
+    md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
+ -->
+			<img ng-show="true" ngf-src="googleUser.getImageUrl()" class=circular>
+			<md-button aria-label="Open Settings"
+				ng-click="showListBottomSheet($event)"> <md-tooltip>
+			{{ googleUser.getName() + "|" + googleUser.getEmail()}} </md-tooltip> <ng-md-icon
+				icon="more_vert"></ng-md-icon> </md-button>
 			<div hide-sm layout="row" layout-align="end start">
 				<md-button class="md-icon-button md-accent" aria-label="Favorite">
 				<md-icon md-font-icon="icon-home" ng-class="font.theme" class="step"></md-icon>
@@ -111,72 +65,22 @@
 				<md-button class="md-icon-button" aria-label="More"
 					ng-click="toggleRight()"> <md-icon
 					md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
-					
+
 			</div>
-
-		<md-button aria-label="Login" ng-hide="curUser !== null"
-   				 ng-show="curUser == null" ng-click="loginClick()"> Login
-   			<md-tooltip> Login </md-tooltip> 
-   		</md-button>
-			
-		
-	<ul style="list-style-type: none;" >
-   		<li><img ng-show="true" id="img" ng-click="showInfo()" ngf-src="googleUser.getImageUrl()" class=circular ></li>
-   
-		<ul id="showUserInfo">
-			<li style="padding: 0px; list-style-type: none;">
-				<h6>{{curUser.businessAccount.adminFirstName +""+ curUser.businessAccount.adminLastName}}</h4>		
-			</li>
-			<li style="padding: 0px; list-style-type: none;">
-				<h6>{{curUser.businessAccount.adminGmailId}}</h4>		
-			</li>
-			<li style="padding: 0px; list-style-type: none;">
-				<h6><a>Edit Profile</a></h4>		
-			</li>
-			<li style="list-style-type: none;">		
-				<md-button aria-label="Logout" ng-click="signOut()"> Logout
-    				<md-tooltip>
-   						{{ googleUser.getName() + "|" + googleUser.getEmail()}} 
-   					</md-tooltip> 
-   				</md-button>
-   			</li>
-   		</ul>	
- 	</ul>
- 	
- 	  
-<!--   <div class="bottom-sheet-demo inset" layout="row" layout-sm="column" layout-align="right" >
-    <md-button flex="50" class="md-primary md-raised" ng-click="showListBottomSheet()">Show as List</md-button>
-
-  </div>
-   -->
-<!--    			ng-hide="curUser == null" -->
-
-
-   		<md-button aria-label="Open Settings"
-    				ng-click="showListBottomSheet($event)"> 
-    		<md-tooltip>{{ googleUser.getName() + "|" + googleUser.getEmail()}} 
-    		</md-tooltip> 
-    	<ng-md-icon
-    icon="more_vert"></ng-md-icon> </md-button>
-    
- 
-
- 
- 
-    
 			<md-button aria-label="Logout" ng-click="showSearch = !showSearch">
 			<ng-md-icon icon="logout"></ng-md-icon> </md-button>
 			<md-button aria-label="Open Settings"
 				ng-click="showListBottomSheet($event)"> <ng-md-icon
 				icon="more_vert"></ng-md-icon> </md-button>
 		</section>
-		
-		
+
+
 	</div>
 
 	</md-toolbar>
-	
- <div ng-controller="AppCtrl"> 
+
+
+	<div ng-controller="AppCtrl">
 		<section layout="row" flex>
 			<!-- Left Navigation Pane -->
 			<md-sidenav class="md-sidenav-left md-whiteframe-z2"
@@ -184,72 +88,91 @@
 
 			<md-toolbar class="md-theme-indigo">
 			<h1 class="md-toolbar-tools">Apps Module</h1>
-			</md-toolbar> 
-			
-			<md-button ui-sref="user_prof_detail" ng-click="close()"  class="md-primary" show-gt-md>User Profile / Detail </md-button>
-			<md-button ui-sref="document"  ng-click="close()"  class="md-primary" show-gt-md>Document</md-button>
-			<md-button ui-sref="email"  ng-click="close()"  class="md-primary" show-gt-md>email</md-button>
-			
-		<div ng-repeat="user in curUser.authority">	
-			<md-content layout="column" ng-controller="LeftCtrl"> 
-			<md-button class="md-primary" ng-click="close()" hide-gt-md> Close Sidenav </md-button>
-			<md-button ui-sref="home" ng-show="user == 'basic'" ng-click="close()" class="md-primary" show-gt-md> Home </md-button>
-			
-			<md-button ui-sref="customer"  ng-show="user == 'basic'|| user == 'customer'" ng-click="close()" class="md-primary" show-gt-md> Customer </md-button>
-			<md-button ui-sref="stock" ng-show="user == 'basic' || user == 'stock' " ng-click="close()" ng-show="loader.stock" class="md-primary" show-gt-md> Stock </md-button> 	
-			<md-button ui-sref="account" ng-show="user == 'basic' || user == 'login' " ng-click="close()"  class="md-primary" show-gt-md>ACCOUNT</md-button>
-			<md-button ui-sref="invoice" ng-show="user == 'basic' || user == 'invoice' " ng-click="close()" class="md-primary" show-gt-md>  Invoice </md-button> 
-			<md-button ui-sref="salesOrder" ng-show="user == 'basic' || user == 'sales' " ng-click="close()" class="md-primary" show-gt-md> Sales </md-button>
-			<md-button ui-sref="purchaseOrder" ng-show="user == 'basic' || user == 'purchase' " ng-click="close()" class="md-primary" show-gt-md> Purchase </md-button>
-			<md-button ui-sref="hr" id="hr" ng-show="user == 'basic'|| user == 'hr' " ng-click="close()" ng-show="loader.hr" class="md-primary" show-gt-md> HR </md-button>
-			<md-button ui-sref="crm" ng-show="user == 'basic'|| user == 'crm' " ng-click="close()" ng-show="loader.crm" class="md-primary" show-gt-md>CRM </md-button>
-			<md-button ui-sref="setup" ng-show="user == 'basic' || user == 'setup' " ng-click="close()"   class="md-primary" show-gt-md>SETUP </md-button>
-			<md-button ui-sref="login" ng-show="user == 'basic' || user == 'login' " ng-click="close()"  class="md-primary" show-gt-md>LOGIN</md-button>
+			</md-toolbar> <md-button ui-sref="user_prof_detail" ng-click="close()"
+				class="md-primary" show-gt-md>User Profile / Detail </md-button> <md-button
+				ui-sref="document" ng-click="close()" class="md-primary" show-gt-md>Document</md-button>
+			<md-button ui-sref="email" ng-click="close()" class="md-primary"
+				show-gt-md>email</md-button>
 
-			<md-button ui-sref="store" ng-show="user == 'basic' || user == 'login' " ng-click="close()"  class="md-primary" show-gt-md>STORE</md-button>
+			<div ng-repeat="user in curUser.authority">
+				<md-content layout="column" ng-controller="LeftCtrl"> <md-button
+					class="md-primary" ng-click="close()" hide-gt-md> Close
+				Sidenav </md-button> <md-button ui-sref="home" ng-show="user == 'basic'"
+					ng-click="close()" class="md-primary" show-gt-md> Home
+				</md-button> <md-button ui-sref="customer"
+					ng-show="user == 'basic'|| user == 'customer'" ng-click="close()"
+					class="md-primary" show-gt-md> Customer </md-button> <md-button
+					ui-sref="stock" ng-show="user == 'basic' || user == 'stock' "
+					ng-click="close()" ng-show="loader.stock" class="md-primary"
+					show-gt-md> Stock </md-button> <md-button ui-sref="account"
+					ng-show="user == 'basic' || user == 'login' " ng-click="close()"
+					class="md-primary" show-gt-md>ACCOUNT</md-button> <md-button
+					ui-sref="invoice" ng-show="user == 'basic' || user == 'invoice' "
+					ng-click="close()" class="md-primary" show-gt-md>
+				Invoice </md-button> <md-button ui-sref="salesOrder"
+					ng-show="user == 'basic' || user == 'sales' " ng-click="close()"
+					class="md-primary" show-gt-md> Sales </md-button> <md-button
+					ui-sref="purchaseOrder"
+					ng-show="user == 'basic' || user == 'purchase' " ng-click="close()"
+					class="md-primary" show-gt-md> Purchase </md-button> <md-button
+					ui-sref="hr" id="hr" ng-show="user == 'basic'|| user == 'hr' "
+					ng-click="close()" ng-show="loader.hr" class="md-primary"
+					show-gt-md> HR </md-button> <md-button ui-sref="crm"
+					ng-show="user == 'basic'|| user == 'crm' " ng-click="close()"
+					ng-show="loader.crm" class="md-primary" show-gt-md>CRM
+				</md-button> <md-button ui-sref="setup"
+					ng-show="user == 'basic' || user == 'setup' " ng-click="close()"
+					class="md-primary" show-gt-md>SETUP </md-button> <md-button
+					ui-sref="login" ng-show="user == 'basic' || user == 'login' "
+					ng-click="close()" class="md-primary" show-gt-md>LOGIN</md-button>
+
+				<md-button ui-sref="warehouse"
+					ng-show="user == 'basic' || user == 'login' " ng-click="close()"
+					class="md-primary" show-gt-md>Warehouse Management</md-button> <md-button
+					ui-sref="probusiness" ng-show="user=='protostarcs.com'"
+					ng-click="close()" class="md-primary" show-gt-md>ProBusiness</md-button>
+
+				<md-button ui-sref="AssetMangement"
+					ng-show="user == 'basic' || user == 'login' " ng-click="close()"
+					class="md-primary" show-gt-md>Asset Mangement</md-button> </md-content>
+			</div>
+			</md-sidenav>
+	</md-content>
+
+	<md-button ui-sref="institute"
+		ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
+		ng-click="close()" class="md-primary" show-gt-md>
+	Institute </md-button>
 
 
-			<md-button ui-sref="probusiness" ng-show="user=='protostarcs.com'" ng-click="close()"  class="md-primary" show-gt-md>ProBusiness</md-button>
 
-			<md-button ui-sref="AssetMangement" ng-show="user == 'basic' || user == 'login' " ng-click="close()"  class="md-primary" show-gt-md>Asset Mangement</md-button>
-			
 
-			</md-content> 
+
+	<md-content flex layout-padding>
+	<div class="md-toolbar-tools" hide-gt-md>
+		<div>
+			<md-button ng-click="toggleLeft()" class="md-fab md-mini"
+				aria-label="Mini FAB" hide-gt-md> <md-icon
+				md-svg-src="img/icons/menu.svg"></md-icon> </md-button>
 		</div>
-			  </md-sidenav> </md-content>
+	</div>
+	<md-card>
+	<div layout="column" layout-align="top stretch">
+		<!--<div ng-view></div>-->
+		<div ui-view>
+			<!--This is the center page of all main modules for the index module. -->
+		</div>
+	</div>
 
-			 <md-button ui-sref="institute"
-    ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-    ng-click="close()" class="md-primary" show-gt-md>
-   Institute </md-button>
+	</md-card> </md-content>
 
-
-	
-		
-
-			<md-content flex layout-padding>
-			<div class="md-toolbar-tools" hide-gt-md>
-				<div>
-					<md-button ng-click="toggleLeft()" class="md-fab md-mini"
-						aria-label="Mini FAB" hide-gt-md> <md-icon
-						md-svg-src="img/icons/menu.svg"></md-icon> </md-button>
-				</div>
-			</div>
-			<md-card>
-			<div layout="column" layout-align="top stretch">
-				<!--<div ng-view></div>-->
-				<div ui-view>
-					<!--This is the center page of all main modules for the index module. -->
-				</div>
-			</div>
-
-			</md-card> </md-content>
-
-			</md-card> <!--This is a botton section of the app--> <md-divider></md-divider>
-			</md-content>
+	</md-card>
+	<!--This is a botton section of the app-->
+	<md-divider></md-divider>
+	</md-content>
 
 
-		</section>
+	</section>
 	</div>
 
 
@@ -269,7 +192,7 @@
 	</script>
 	<script type="text/javascript"
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<!-- 	<script src="http://code.jquery.com/2.1.3/jquery.min.js"></script>
+	<!-- 	<script src="http://code.jquery.com/2.1.3/jquery.min.js"></script>
 	<script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.js"></script>
 <script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
 <script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/additional-methods.js"></script>
@@ -284,7 +207,7 @@
 	<script src="/lib/base/angular-messages.min.js"></script>
 	<script src="/lib/base/angular-resource.min.js"></script>
 	<script src="/lib/base/angular-material-icons.min.js"></script>
-	
+
 
 	<script src="/lib/base/angular-material.min.js"></script>
 	<script src="/lib/base/md-data-table.min.js"></script>
@@ -303,13 +226,13 @@
 	<!-- for no html5 browsers support -->
 	<script src="/lib/base/ng-file-upload.min.js"></script>
 	<script src="/lib/base/ng-file-upload.js"></script>
-
+ 
 	<script src="/lib/base/ui-grid.js"></script>
-	<script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+<!--	<script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
 	<script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
 	<script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
 	<script src="http://ui-grid.info/release/ui-grid.js"></script>
-
+ -->
 	<!-- 
 	<script src="/lib/base/angular-flexslider.js"></script>
 	<script src="/lib/base/angular.js"></script>
@@ -338,7 +261,7 @@
 	<script src="/app/customer/js/customer_list.ctr.js"></script>
 	<script src="/app/customer/js/customer_view.ctr.js"></script>
 	<!-- 	Complete Customre js  -->
-	
+
 	<!-- 	Account js  -->
 
 	<script src="/app/account/js/account_module.ctr.js"></script>
@@ -348,11 +271,14 @@
 	<script src="/app/account/js/account_receivable.ctr.js"></script>
 	<script src="/app/account/js/account_payableList.ctr.js"></script>
 	<script src="/app/account/js/account_receivableList.ctr.js"></script>
-
-	<!-- <script src="/app/customer/js/account_add.ctr.js"></script>
-		<script src="/app/customer/js/account_income.ctr.js"></script> -->
-
 	<!-- 	Complete Account js  -->
+
+	<!-- 	Warehouse js  -->
+	<script src="/app/warehouse/js/warehouse_module.ctr.js"></script>
+	<script src="/app/warehouse/js/warehouse_add.ctr.js"></script>
+	<script src="/app/warehouse/js/warehouse_list.ctr.js"></script>
+	<script src="/app/warehouse/js/warehouse_view.ctr.js"></script>
+	<!-- 	Complete Warehouse js  -->
 	
 	<!-- 	Invoice js  -->
 	<script src="/app/invoice/js/invoice_module.ctr.js"></script>
@@ -360,14 +286,14 @@
 	<script src="/app/invoice/js/invoice_list.ctr.js"></script>
 	<script src="/app/invoice/js/invoice_view.ctr.js"></script>
 	<!-- 	Complete Invoice js  -->
-	
+
 	<!-- 	Stock js  -->
 	<script src="/app/stock/js/stock_module.ctr.js"></script>
 	<script src="/app/stock/js/stockItem_add.ctr.js"></script>
 	<script src="/app/stock/js/stockItem_list.ctr.js"></script>
 	<script src="/app/stock/js/stock_reportByThreshold.ctr.js"></script>
 	<!-- 	Complete Stock js  -->
-	
+
 	<!--<script src="/app/invoice/js/invoice.ctr.js"></script>
 		<script src="/app/fileupload/js/fileupload.ctr.js"></script>-->
 
@@ -377,20 +303,20 @@
 	<!-- 	Tax js  -->
 	<script src="/app/tax/js/tax.ctr.js"></script>
 	<!-- 	Complete Tax js  -->
-	
+
 	<!-- 	Student js  -->
 	<script src="/app/student/js/student_module.ctr.js"></script>
 	<script src="/app/student/js/student.ctr.js"></script>
 	<script src="/app/student/js/student.list.ctr.js"></script>
 	<!-- 	Complete Student js  -->
-	
+
 	<!-- 	Sales Order js  -->
 	<script src="/app/sales/js/salesOrder_add.ctr.js"></script>
 	<script src="/app/sales/js/salesOrder_list.ctr.js"></script>
 	<script src="/app/sales/js/salesOrder_view.ctr.js"></script>
 	<script src="/app/sales/js/salesOrder_module.ctr.js"></script>
 	<!-- 	Complete Sales Order js  -->
-	
+
 	<!-- 	Purchase Order js  -->
 	<script src="/app/purchase/js/purchaseOrder_add.ctr.js"></script>
 	<script src="/app/purchase/js/purchaseOrder_list.ctr.js"></script>
@@ -409,18 +335,18 @@
 	<script src="/app/hr/js/hr.ctr.emplist_to_ganeratesalslip.js"></script>
 	<!-- complete	hr js  -->
 
-	
-	<!-- 	hr js  -->	
-		<script src="/app/hr/js/hr.ctr.js"></script>
-		<script src="/app/hr/js/hr.ctr.add.js"></script>
-        <script src="/app/hr/js/hr.ctr.emplist.js"></script>
-         <script src="/app/hr/js/hr.ctr.empview1.js"></script>
-         <script src="/app/hr/js/hr.ctr.addupdatesalstruct.js"></script>
-         <script src="/app/hr/js/hr.ctr.empdoc.js"></script>
-         <script src="/app/hr/js/hr.ctr.emsalslipstruct.js"></script>
-          <script src="/app/hr/js/hr.ctr.emplist_to_ganeratesalslip.js"></script>
-          <script src="/app/hr/js/hr.ctr.timesheet.js"></script>
-   <!-- complete	hr js  -->
+
+	<!-- 	hr js  -->
+	<script src="/app/hr/js/hr.ctr.js"></script>
+	<script src="/app/hr/js/hr.ctr.add.js"></script>
+	<script src="/app/hr/js/hr.ctr.emplist.js"></script>
+	<script src="/app/hr/js/hr.ctr.empview1.js"></script>
+	<script src="/app/hr/js/hr.ctr.addupdatesalstruct.js"></script>
+	<script src="/app/hr/js/hr.ctr.empdoc.js"></script>
+	<script src="/app/hr/js/hr.ctr.emsalslipstruct.js"></script>
+	<script src="/app/hr/js/hr.ctr.emplist_to_ganeratesalslip.js"></script>
+	<script src="/app/hr/js/hr.ctr.timesheet.js"></script>
+	<!-- complete	hr js  -->
 
 	<!-- 	hr js  -->
 	<script src="/app/hr/js/hr.ctr.js"></script>
@@ -439,18 +365,19 @@
 	<script src="/app/crm/js/crm_contacts.js"></script>
 	<script src="/app/crm/js/crm_opportunity.js"></script>
 	<!--  lead js -->
-	
-<!-- 	<script src="http://maps.google.com/maps/api/js?sensor=false"></script> -->
-	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
+
+	<!-- 	<script src="http://maps.google.com/maps/api/js?sensor=false"></script> -->
+	<script
+		src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
 	<!-- <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFvwl0xEt8WISv0zovMXjWFVU1bNYHpTc&callback=initMap">
     </script> -->
-	 <script src="/app/store/js/store_module.ctr.js"></script>
-	 <script src="/app/store/js/store_add.ctr.js"></script>
- 
-  
+	<script src="/app/store/js/store_module.ctr.js"></script>
+	<script src="/app/store/js/store_add.ctr.js"></script>
 
-  
+
+
+
 	<!-- setup module js -->
 
 	<script src="/app/setup/js/setup_module.js"></script>
@@ -458,20 +385,20 @@
 	<script src="/app/setup/js/setup_adduser.js"></script>
 	<!--  profile js -->
 	<script src="/app/profile/js/profilemodule.js"></script>
-	
+
 	<!-- login user -->
-	
+
 	<script src="/app/login/js/login_module.ctr.js"></script>
 	<script src="/app/login/js/newUser_student.ctr.js"></script>
-	
-<script src="/app/myprofile/js/myprofile_update.ctr.js"></script>
-<script src="/app/myprofile/js/myprofile.ctr.js"></script>
+
+	<script src="/app/myprofile/js/myprofile_update.ctr.js"></script>
+	<script src="/app/myprofile/js/myprofile.ctr.js"></script>
 
 	<script src="/app/login/js/needBusinessAccount.ctr.js"></script>
 	<script src="/app/login/js/newBusinessAccount.ctr.js"></script>
 
-<!-- protostar business list business -->
-<script src="/app/probusiness/js/probusinesslist.js"></script>
+	<!-- protostar business list business -->
+	<script src="/app/probusiness/js/probusinesslist.js"></script>
 
 	<!-- use for ganerating pdf -->
 	<!--    <script type="text/javascript" src="/app/hr/js/jspdf.min.js"></script>
@@ -482,24 +409,23 @@
    <script src="/app/crm/js/crm_contacts.js"></script>
       <script src="/app/crm/js/crm_opportunity.js"></script>
   <!--  lead js -->
- <!-- setup module js -->
- 
- <script src="/app/setup/js/setup_module.js"></script>
- <script src="/app/setup/js/setup_headerfooter.js"></script>
- 
- <!-- login -->
-  <script src="/app/login1/js/login.js"></script>
-  
+	<!-- setup module js -->
 
-   <!-- Document -->
-      <script src="/app/Document/js/document.js"></script>
-       <script src="/app/Email/js/email.js"></script>
-       
-       <!--asset management   -->
-    <script src="/app/AssetMangement/js/AssetMgmtModule.js"></script>
+	<script src="/app/setup/js/setup_module.js"></script>
+	<script src="/app/setup/js/setup_headerfooter.js"></script>
 
-   <!-- use for ganerating pdf -->
-<!--    <script type="text/javascript" src="/app/hr/js/jspdf.min.js"></script>
+	<!-- login -->
+	<script src="/app/login1/js/login.js"></script>
+
+
+	<!-- Document -->
+	<script src="/app/Document/js/document.js"></script>
+	<script src="/app/Email/js/email.js"></script>
+
+
+
+	<!-- use for ganerating pdf -->
+	<!--    <script type="text/javascript" src="/app/hr/js/jspdf.min.js"></script>
 
         <script src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>  -->
 
