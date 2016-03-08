@@ -6,9 +6,8 @@ import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
-import com.protostar.billingnstock.cust.entities.AccountEntity;
+import com.protostar.billingnstock.account.entities.AccountEntity;
 import com.protostar.billingnstock.cust.entities.Customer;
-import com.protostar.billingnstock.purchase.entities.PurchaseOrderEntity;
 import com.protostar.billingnstock.sales.entities.SalesOrderEntity;
 import com.protostar.billingnstock.tax.entities.TaxEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
@@ -20,6 +19,7 @@ public class InvoiceEntity {
 	@Index
 	private Long invoiceId;
 	private String invoiceDate;
+	private String invoiceDueDate;
 	private String itemName;
 	private String rate;
 	private String qty;
@@ -27,6 +27,9 @@ public class InvoiceEntity {
 	private String taxTotal;
 	private String finalTotal;
 	private String note;
+	private String status = "NotPaid";
+	
+
 	private List<InvoiceLineItem> invoiceLineItemList;
 
 //	Ref<PurchaseOrderEntity>purchaseOrderNo;
@@ -61,14 +64,13 @@ public class InvoiceEntity {
 		this.loggedInUser = Ref.create(loggedInUser);
 	}
 			
-/*	public PurchaseOrderEntity getPurchaseOrderNo() {
-		return purchaseOrderNo.get();
+	public String getInvoiceDueDate() {
+		return invoiceDueDate;
 	}
 
-	public void setPurchaseOrderNo(PurchaseOrderEntity purchaseOrderNo) {
-		this.purchaseOrderNo = Ref.create(purchaseOrderNo);
+	public void setInvoiceDueDate(String invoiceDueDate) {
+		this.invoiceDueDate = invoiceDueDate;
 	}
-*/
 	public SalesOrderEntity getSalesOrderId() {
 		return salesOrderId.get();
 	}
@@ -174,4 +176,12 @@ public class InvoiceEntity {
 		this.note = note;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 }// end of InvoiceEntity
