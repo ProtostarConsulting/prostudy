@@ -1,0 +1,97 @@
+
+<md-content layout-padding>
+<h3>
+	<u>Add Warehouse</u>
+</h3>
+<form name="warehouseForm">
+	<div layout layout-sm="column">
+		<md-input-container flex> <label>Warehouse
+			Name </label> <input name="name" ng-model="warehouse.warehouseName"
+			ng-required="true">
+		<div ng-messages="warehouseForm.warehouseName.$error"
+			ng-if="warehouseForm.warehouseName.$submitted || warehouseForm.warehouseName.$touched">
+			<div ng-message="required">Please Enter Customer Name</div>
+		</div>
+
+		</md-input-container>
+	</div>
+
+	<div layout layout-sm="column">
+		<md-input-container flex> <label>Description
+		</label> <textarea name="description" ng-model="warehouse.description"
+			ng-required="true"></textarea>
+		<div ng-messages="warehouseForm.description.$error"
+			ng-if="warehouseForm.description.$submitted || warehouseForm.description.$touched">
+			<div ng-message="required">Please Enter Description</div>
+		</div>
+		</md-input-container>
+	</div>
+
+	<div layout layout-sm="column">
+		<md-input-container flex> <label>Address
+			1 </label> <textarea name="address1" ng-model="warehouse.address1"
+			ng-required="true"></textarea>
+		<div ng-messages="warehouseForm.address1.$error"
+			ng-if="warehouseForm.address1.$submitted || warehouseForm.address1.$touched">
+			<div ng-message="required">Please Enter Address1</div>
+		</div>
+		</md-input-container>
+	
+		<md-input-container flex> <label>Address
+			2 </label> <textarea name="address2" ng-model="warehouse.address2"
+			ng-required="true"></textarea>
+		<div ng-messages="warehouseForm.address2.$error"
+			ng-if="warehouseForm.address2.$submitted || warehouseForm.address2.$touched">
+			<div ng-message="required">Please Enter Address2</div>
+		</div>
+		</md-input-container>
+	</div>
+
+	<div layout layout-sm="column">
+
+		<md-input-container flex> <label>City </label> <input
+			name="city" ng-model="warehouse.city" ng-required="true">
+		<div ng-messages="warehouseForm.city.$error"
+			ng-if="warehouseForm.city.$submitted || warehouseForm.city.$touched">
+			<div ng-message="required">Please Enter City.</div>
+		</div>
+
+		</md-input-container>
+
+		<md-input-container flex> <label>PIN </label> <input
+			 name="pin" ng-model="warehouse.pin" ng-required="true">
+		<div ng-messages="warehouseForm.pin.$error"
+			ng-if="warehouseForm.pin.$submitted || warehouseForm.pin.$touched">
+			<div ng-message="required">Please Enter PIN.</div>
+		</div>
+		</md-input-container>
+	</div>
+
+	<div layout layout-sm="column">
+
+		<md-input-container flex> <label>State </label> <input
+			name="state" ng-model="warehouse.state" ng-required="true">
+		<div ng-messages="warehouseForm.state.$error"
+			ng-if="warehouseForm.state.$submitted || warehouseForm.state.$touched">
+			<div ng-message="required">Please Enter State.</div>
+		</div>
+
+		</md-input-container>
+
+		<md-input-container flex> <label>Country </label> <input
+			 name="country" ng-model="warehouse.country" ng-required="true">
+		<div ng-messages="warehouseForm.country.$error"
+			ng-if="warehouseForm.country.$submitted || warehouseForm.country.$touched">
+			<div ng-message="required">Please Enter Country.</div>
+		</div>
+		</md-input-container>
+	</div>
+
+	<section layout="row" layout-sm="column" layout-align="left left">
+		<md-button ng-disabled="warehouseForm.$invalid"
+			class="md-raised md-primary" ng-click="addWarehouse()">Add</md-button>
+	</section>
+
+
+	<div></div>
+</form>

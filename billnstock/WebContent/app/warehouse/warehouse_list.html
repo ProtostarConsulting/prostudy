@@ -1,0 +1,69 @@
+
+<md-content layout-padding>
+<h3>
+	<u>Customer List</u>
+</h3>
+<div>
+	<section layout="row" layout-align="end end" flex>
+		<md-button class="md-raised md-primary" ng-click="back()">ADD
+		NEW</md-button>
+	</section>
+</div>
+<div layout layout-sm="column">
+	<md-input-container flex> <label>Search</label> <input
+		ng-model="searchText"> </md-input-container>
+</div>
+
+<div layout layout-sm="column">
+	<md-input-container flex> <label>Search</label> <input
+		ng-model="searchText"> </md-input-container>
+</div>
+
+<div>
+	<md-data-table-container>
+	<table md-data-table md-row-select="selected" md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onOrderChange">
+			<tr>
+				<th name="Customer Id" order-by="customerId"></th>
+				<th name="Customer Name" order-by="customerName"></th>
+				<th name="Mobile" order-by="mobile"></th>
+				<th name="Email" order-by="email"></th>
+				<th name="Address" order-by="customerAddress"></th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="customer in customers | orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit">
+				<td>{{customer.id}}</td>
+				<td>{{customer.customerName}}</td>
+				<td>{{customer.mobile}}</td>
+				<td>{{customer.email}}</td>
+				<td>{{customer.customerAddress}}</td>
+				<td><section layout="row" layout-sm="column">
+						<md-button class="md-raised md-primary"
+							ui-sref="customer.view({selectedCustomerId: customer.id})">
+						Customer Details</md-button>
+					</section></td>
+				<td>
+			</tr>
+		</tbody>
+	</table>
+	<!-- 		<md-data-table-toolbar class="alternate" ng-show="selected.length">
+			<div>
+				{{selected.length}} {{selected.length > 1 ? 'stockData' : 'stock'}} selected
+			</div>
+			<div>
+				{{selected}}
+			</div>
+		</md-data-table-toolbar>
+ --> <md-data-table-pagination md-limit="query.limit"
+		md-page="query.page" md-total={{customers.length}}
+		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
+</div>
+
+<input type=button onClick="print()" value="Print"> <applet
+	id="qz" code="qz.PrintApplet.class" archive="./qz-print.jar"
+	width="100" height="100">
+	<param name="printer" value="zebra">
+</applet> </md-content>
