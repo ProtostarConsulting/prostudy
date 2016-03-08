@@ -131,7 +131,23 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/accountReceivableList",
 		templateUrl : '/app/account/account_receivableList.html',
 		controller : 'accountReceivableListCtr'
-	}).state('report', {
+	})
+	
+	.state('warehouse', {
+		url : "/warehouse",
+		templateUrl : '/app/warehouse/warehouse_module.html',
+		controller : 'warehouseModuleCtr'
+	}).state('warehouse.add', {
+		url : "/add",
+		templateUrl : '/app/warehouse/warehouse_add.html',
+		controller : 'warehouseAddCtr'
+	}).state('warehouse.list', {
+		url : "/list",
+		templateUrl : '/app/warehouse/warehouse_list.html',
+		controller : 'warehouseListCtr'
+	})
+	
+	.state('report', {
 		url : "/report",
 		templateUrl : '/app/report/report_module.html',
 		controller : 'reportCtr'
