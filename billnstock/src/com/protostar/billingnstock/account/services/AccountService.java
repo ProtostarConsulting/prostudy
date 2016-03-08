@@ -108,7 +108,7 @@ public class AccountService {
 						.type(ReceivableEntity.class).list();
 				
 				ReceivableEntity receivableEntity1 = new ReceivableEntity();
-/*				
+				
 				for(int i=0; i<invoiceEntity.size();i++){
 						if(invoiceEntity.get(i).getStatus().equals("Paid")){
 							System.out.println("invoice Paid already");
@@ -131,7 +131,7 @@ public class AccountService {
 							}
 						}
 				}
-*/
+
 			
 		
 		List<ReceivableEntity> receivableList=ofy().load().type(ReceivableEntity.class).list();
