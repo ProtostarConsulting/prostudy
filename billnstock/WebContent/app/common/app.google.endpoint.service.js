@@ -136,7 +136,24 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
+	//---------------------------assetService--------------------------------
 	
+	var assetService={};
+	
+	serviceFactory.getAssetManagementService=function(){
+		return assetService;
+	}
+	
+	
+	assetService.addAsset=function(asset){
+		var deferred = $q.defer();
+		gapi.client.assetService.addAsset(asset).execute(function() {
+			deferred.resolve({
+				"msg" : "assetService Added Successfully."
+			});
+     	});
+		return deferred.promise;
+	}
 	
 	//--------------------setup service----------------------------
 	

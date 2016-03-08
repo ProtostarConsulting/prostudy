@@ -133,6 +133,13 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getPurchaseOrderService();
 	};
 	// ----------------------------------------------------
+	endpointFactory.getAssetManagementService = function() {
+		if (isTestMode)
+			return localDBServiceFactory.getAssetManagementService();
+		else
+			return googleEndpointSF.getAssetManagementService();
+	};
+	// ----------------------------------------------------
 
 	endpointFactory.loadAppGoogleServices = function(deferred) {
 		$log.debug("###Inside Google appEndpointSF.loadAppGoogleServices###");
@@ -251,6 +258,15 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			   deferred.resolve();
 
 			  }, apiRoot);
+		 
+		 
+		 gapi.client.load('assetService', 'v0.1', function() {
+			   $log.debug("assetService Loaded......");
+			   endpointFactory.is_service_ready = true;
+			   deferred.resolve();
+
+			  }, apiRoot);
+		 
 		 
 		 gapi.load('auth', {
 				'callback' : function() {
