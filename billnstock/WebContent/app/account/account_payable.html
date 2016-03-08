@@ -1,0 +1,55 @@
+
+<md-content layout-padding>
+<h3>
+	<u>Create Account Payable</u>
+</h3>
+<form name="payableForm">
+
+	<h3>Account Payables</h3>
+	<div layout layout-sm="column">
+
+		Customer Name:
+		<md-input-container flex> <md-select
+			ng-model="accountPayable.customer" placeholder="Customer Name"
+			ng-change="CustomerddlChange($index, selectedcustomerName)">
+		<md-option ng-value="accountPayable"
+			ng-repeat="accountPayable in customersforPayable">{{accountPayable.customerName
+		}}</md-option> </md-select> </md-input-container>
+
+		<md-input-container flex> <label>Customer
+			Email Id </label> <input ng-model="accountPayable.customer.email"> </md-input-container>
+
+		<md-input-container flex> <label>Mobile
+			No. </label> <input ng-model="accountPayable.customer.mobile"> </md-input-container>
+	</div>
+
+	<div layout layout-sm="column">
+		<md-input-container flex> <label>Invoice
+			ID </label> <input ng-model="accountPayable.invoiceId"> </md-input-container>
+
+		<md-input-container flex> <label>Invoice
+			Date </label> <input ng-model="accountPayable.invoiceDate"> </md-input-container>
+	</div>
+
+	<div layout layout-sm="column">
+		<md-input-container flex> <label>Amount </label>
+		<input ng-model="accountPayable.invoiceAmount"> </md-input-container>
+
+		<md-input-container flex> <label>Due Date
+		</label> <input ng-model="accountPayable.invoiceDueDate"> </md-input-container>
+	</div>
+
+	<div layout layout-sm="column">
+		<md-input-container flex> <label>Purchase
+			Order ID </label> <input ng-model="accountPayable.purchaseOrderId"> </md-input-container>
+
+		<md-input-container flex> <label>Due Date
+		</label> <input ng-model="accountPayable.purchaseOrderDate"> </md-input-container>
+	</div>
+
+	<section layout="row" layout-sm="column" layout-align="left left">
+		<md-button class="md-raised md-primary"
+			ng-disabled="custForm.$invalid" ng-click="addPayable()">Add</md-button>
+	</section>
+</form>
+</md-content>

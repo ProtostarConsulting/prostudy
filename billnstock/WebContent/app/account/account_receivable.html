@@ -1,0 +1,50 @@
+
+<md-content layout-padding>
+<h3>
+	<u>Create Account Receivable</u>
+</h3>
+<form name="payableForm">
+
+	<h3>Account Receivable</h3>
+	<div layout layout-sm="column">
+
+		Customer Name:
+		<md-input-container flex> <md-select
+			ng-model="accountReveivable.customer" placeholder="Customer Name"
+			ng-change="CustomerddlChange($index, selectedcustomerName)">
+		<md-option ng-value="accountReveivable"
+			ng-repeat="accountReveivable in customersforaccount">{{accountReveivable.customerName
+		}}</md-option> </md-select> </md-input-container>
+	
+		<md-input-container flex> <label>Customer
+			Email Id </label> <input ng-model="accountReveivable.customer.email"> </md-input-container>
+
+		<md-input-container flex> <label>Mobile
+			No. </label> <input ng-model="accountReveivable.customer.mobile" >
+		</md-input-container>
+	</div>
+
+	<div layout layout-sm="column">
+		<md-input-container flex> <label>Invoice
+			ID </label> <input ng-model="accountReveivable.invoiceId"> </md-input-container>
+
+		<md-input-container flex> <label>Invoice
+			Date </label> <input ng-model="accountReveivable.invoiceDate"> </md-input-container>
+	</div>
+
+	<div layout layout-sm="column">
+		<md-input-container flex> <label>Amount
+			 </label> <input ng-model="accountReveivable.invoiceAmount">
+		</md-input-container>
+
+		<md-input-container flex> <label>Due Date
+			 </label> <input ng-model="accountReveivable.invoiceDueDate">
+		</md-input-container>
+	</div>
+
+	<section layout="row" layout-sm="column" layout-align="left left">
+		<md-button class="md-raised md-primary"
+			ng-disabled="custForm.$invalid" ng-click="addReceivable()">Add</md-button>
+	</section>
+</form>
+</md-content>

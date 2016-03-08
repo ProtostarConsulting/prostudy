@@ -1,0 +1,152 @@
+
+<div ng-cloak>
+	<h3 class="md-display-10">Receivables</h3>
+	<md-content> <md-tabs md-dynamic-height md-border-bottom>
+	<md-tab label="Genaral List"> <md-content class="md-padding">
+	<!-- <h3 class="md-display-10">Genaral</h3> -->
+
+	<div>
+		<section layout="row" layout-align="end end" flex>
+			<md-button class="md-raised md-primary"
+				ui-sref="account.accountReceivable">ADD NEW</md-button>
+		</section>
+	</div>
+	<div layout layout-sm="column">
+		<md-input-container flex> <label>Search</label> <input
+			ng-model="searchText"> </md-input-container>
+	</div>
+
+	<div>
+
+		<md-data-table-container>
+		<table md-data-table md-row-select="selected" md-progress="deferred">
+			<thead md-order="query.order" md-trigger="onOrderChange">
+				<tr>
+					<th name="Invoice ID" order-by="id"></th>
+					<th name="Customer Name" order-by="customerName"></th>
+					<th name="Due Date" order-by="invoiceDueDate"></th>
+					<th name="Final Total" order-by="finalTotal"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr md-auto-select
+					ng-repeat="receivable in receivables | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
+					<td>{{receivable.id}}</td>
+					<td>{{receivable.customer.customerName}}</td>
+					<td>{{receivable.invoiceDueDate}}</td>
+					<td>{{receivable.finalTotal}}</td>
+				</tr>
+				<table>
+					<tr>
+						<td>Total : {{totalReceivable}}</td>
+
+					</tr>
+				</table>
+			</tbody>
+		</table>
+
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+			md-total={{receivables.length}} md-trigger="onpagechange"></md-data-table-pagination>
+		</md-data-table-container>
+	</div>
+
+
+	</md-content> </md-tab> <md-tab label="Date Wise"> <md-content class="md-padding">
+	<!-- 	<h3 class="md-display-10">Day</h3> -->
+	<div>
+
+		<div layout layout-sm="column">
+			<md-input-container flex> <label>Enter
+				Date </label> <input ng-model="ReceivablesAtDate.atDate"
+				placeholder="Enter Date" ng-required="true"> </md-input-container>
+		</div>
+		<div layout layout-sm="column">
+			<section layout="row" layout-sm="column">
+				<md-button class="md-raised md-primary" id="showReceivables"
+					ng-click="showReceivablesByDate()">Show</md-button>
+			</section>
+		</div>
+		<md-data-table-container>
+		<table md-data-table md-row-select="selected" md-progress="deferred">
+			<thead md-order="query.order" md-trigger="onOrderChange">
+				<tr>
+					<th name="Invoice ID" order-by="id"></th>
+					<th name="Customer Name" order-by="customerName"></th>
+					<th name="Due Date" order-by="invoiceDueDate"></th>
+					<th name="Final Total" order-by="finalTotal"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr md-auto-select
+					ng-repeat="receivable in ReceivablesAtDate.filteredByAtDate | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
+					<td>{{receivable.id}}</td>
+					<td>{{receivable.customer.customerName}}</td>
+					<td>{{receivable.invoiceDueDate}}</td>
+					<td>{{receivable.finalTotal}}</td>
+				</tr>
+				<table>
+					<tr>
+						<td>Total : {{totalReceivable}}</td>
+
+					</tr>
+				</table>
+			</tbody>
+		</table>
+
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+			md-total={{receivables.length}} md-trigger="onpagechange"></md-data-table-pagination>
+		</md-data-table-container>
+	</div>
+	</md-content> </md-tab> <md-tab label="Month Wise"> <md-content class="md-padding">
+	<!-- 	<h3 class="md-display-10">Month</h3> -->
+	<div>
+
+		<div>
+			<md-input-container flex> <md-select
+				ng-model="month" placeholder="Select Month"
+				ng-change="MonthsddlChange($index ,month)"> <md-option
+				ng-value="month" ng-repeat="month in months">{{month }}</md-option>
+			</md-select> </md-input-container>
+		</div>
+
+		<div layout layout-sm="column">
+			<section layout="row" layout-sm="column">
+				<md-button class="md-raised md-primary" id="showReceivablesByMonth"
+					ng-click="showReceivablesByMonth(month)">Show</md-button>
+			</section>
+		</div>
+
+		<md-data-table-container>
+		<table md-data-table md-row-select="selected" md-progress="deferred">
+			<thead md-order="query.order" md-trigger="onOrderChange">
+				<tr>
+					<th name="Invoice ID" order-by="id"></th>
+					<th name="Customer Name" order-by="customerName"></th>
+					<th name="Due Date" order-by="invoiceDueDate"></th>
+					<th name="Final Total" order-by="finalTotal"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr md-auto-select
+					ng-repeat="receivable in receivables | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
+					<td>{{receivable.id}}</td>
+					<td>{{receivable.customer.customerName}}</td>
+					<td>{{receivable.invoiceDueDate}}</td>
+					<td>{{receivable.finalTotal}}</td>
+				</tr>
+				<table>
+					<tr>
+						<td>Total : {{totalReceivable}}</td>
+
+					</tr>
+				</table>
+			</tbody>
+		</table>
+
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+			md-total={{receivables.length}} md-trigger="onpagechange"></md-data-table-pagination>
+		</md-data-table-container>
+	</div>
+
+	</section>
+</div>

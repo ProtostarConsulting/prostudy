@@ -1,0 +1,55 @@
+
+<md-content layout-padding>
+<h3>
+	<u>Create Account</u>
+</h3>
+<form name="accountForm">
+
+	<div layout layout-sm="column">
+		<md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+		<md-input-container flex> <label>Account
+			Name </label> <input ng-model="account.accountName" name="name"
+			ng-required="true" minlength="3">
+
+		<div ng-messages="accountForm.name.$error"
+			ng-if="accountForm.name.$submitted || accountForm.name.$touched">
+			<div ng-message="required">Please Enter Customer Name</div>
+			<div ng-message="minlength">Please Enter more thar 3 character</div>
+		</div>
+		</md-input-container>
+	</div>
+
+	<div layout layout-sm="column">
+		<md-input-container flex> <label>Account
+			No </label> <input ng-model="account.accountNo" name="accountNo"
+			ng-required="true" minlength="3">
+
+		<div ng-messages="accountForm.accountNo.$error"
+			ng-if="accountForm.accountNo.$submitted || accountForm.accountNo.$touched">
+			<div ng-message="required">Please Enter Account No</div>
+		</div>
+		</md-input-container>
+	</div>
+
+	<div layout layout-sm="column">
+		<md-icon md-svg-src="img/icons/ic_place_24px.svg"
+			style="display:inline-block;"></md-icon>
+		<md-input-container flex> <label>Description
+		</label> <textarea name="desc" ng-model="account.description"
+			ng-required="true" maxlength="300"></textarea>
+
+		<div ng-messages="accountForm.desc.$error"
+			ng-if="accountForm.desc.$submitted || accountForm.desc.$touched">
+			<div ng-message="required">Please Enter Customer Name</div>
+			<div ng-message="maxlength">Please Enter less than 300
+				character</div>
+		</div>
+		</md-input-container>
+	</div>
+
+	<section layout="row" layout-sm="column" layout-align="left left">
+		<md-button class="md-raised md-primary"
+			ng-disabled="custForm.$invalid" ng-click="addAccount()">Add</md-button>
+	</section>
+</form>
+</md-content>
