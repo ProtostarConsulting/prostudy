@@ -425,6 +425,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/AddAsset",
 		templateUrl : '/app/AssetMangement/AddAsset.html',
 		controller : 'AssetMangementCtr',
+	}).state('AssetMangement.list', {
+		url : "/ListAsset",
+		templateUrl : '/app/AssetMangement/ListAsset.html',
+		controller : 'AssetMangementCtr',
+	}).state('AssetMangement.editasset', {
+		url : "/editasset/:selectedasetNo",
+		templateUrl : '/app/AssetMangement/assignupdateuser.html',
+		controller : 'AssignupdateAsset',
+	}).state('AssetMangement.assignuser', {
+		url : "/assignuser/:selectedasetNo",
+		templateUrl : '/app/AssetMangement/assignuser.html',
+		controller : 'AssignupdateAsset',
 	});
 
 });
