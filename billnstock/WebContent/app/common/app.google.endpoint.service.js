@@ -183,6 +183,43 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 	
+	assetService.getallAsset=function(id){
+		var deferred = $q.defer();
+		gapi.client.assetService.getallAsset({'id':id}).execute(function(resp) {
+					deferred.resolve(resp);
+		});
+		return deferred.promise;
+}
+	assetService.getselectedasset=function(id){
+		var deferred = $q.defer();
+		gapi.client.assetService.getselectedasset({'id':id}).execute(function(resp) {
+					deferred.resolve(resp);
+		});
+		return deferred.promise;
+}
+	
+	
+	assetService.updateAsset=function(asset){
+		var deferred = $q.defer();
+		gapi.client.assetService.addAsset(asset).execute(function() {
+			deferred.resolve({
+				"msg" : "assetService updated Successfully."
+			});
+     	});
+		return deferred.promise;
+	}
+	
+	assetService.addAssignAsset=function(asset){
+		var deferred = $q.defer();
+		gapi.client.assetService.addAssignAsset(asset).execute(function() {
+			deferred.resolve({
+				"msg" : "Asset Assign Successfully."
+			});
+     	});
+		return deferred.promise;
+	}
+	
+	
 	//--------------------setup service----------------------------
 	
 	var setupService={};
