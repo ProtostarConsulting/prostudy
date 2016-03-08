@@ -817,39 +817,7 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	
 	}
-	// End of AccountService
-	
-
-	// =====================================================================================================================================
-	// Add Customer Service
-
-	/*var AccountService = {};
-
-	serviceFactory.getAccountService = function() {
-		return AccountService;
-	}
-*/
-/*	AccountService.addAccount = function(account) {
-		var deferred = $q.defer();
-
-		gapi.client.accountService.addAccount(account).execute(function(resp) {
-			$log.debug("addAccount#resp at enpoint:" + resp);
-			deferred.resolve(resp);
-		});
-
-		return deferred.promise;
-	}
-*/
-/*	AccountService.getAllAccountsByBusiness = function(id) {
-		var deferred = $q.defer();
-		gapi.client.accountService.getAllAccountsByBusiness({"id" : id}).execute(function(resp) {
-			$log.debug("getAllAccountsByCurrUser#resp at enpoint:" + angular.toJson(resp));
-			deferred.resolve(resp.items);
-		});
-		return deferred.promise;
-	}*/
-// End of CustomerService
-	
+	// End of AccountService		
 
 	/* =============================================================================================================================== */
 
@@ -1070,7 +1038,7 @@ function googleEndpointSF($log, $q) {
 	}
 	/* =============================================================================================================================== */
 
-	// Start of SalesOrderService
+	// Start of PurchaseOrderService
 	var PurchaseOrderService = {};
 
 	serviceFactory.getPurchaseOrderService = function() {
@@ -1110,6 +1078,30 @@ function googleEndpointSF($log, $q) {
 	}
 
 	/* =============================================================================================================================== */
+
+	// Start of WarehouseManagement
+	
+	
+	var warehouseManagementService = {};
+
+	serviceFactory.getWarehouseManagementService = function() {
+		return warehouseManagementService;
+	}
+
+	warehouseManagementService.addWarehouse = function(add) {
+		var deferred = $q.defer();
+		gapi.client.warehouseManagementService.addWarehouse(add)
+				.execute(function(resp) {
+					$log.debug("addWarehouse at enpoint:" + resp);
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+	}
+
+	 // End of WarehouseService
+	
+	/* =============================================================================================================================== */
+
 		
 	return serviceFactory;
 }
