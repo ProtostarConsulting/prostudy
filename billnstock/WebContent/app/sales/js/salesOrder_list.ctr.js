@@ -50,4 +50,8 @@ app.controller("salesOrderListCtr", function($scope, $window, $mdToast, $timeout
 			$log.debug("close RIGHT is done");
 		});
 	};
+	
+	$scope.back = function() {
+		 window.history.back();
+	}
 });

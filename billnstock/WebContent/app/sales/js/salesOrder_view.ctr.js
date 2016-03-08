@@ -62,4 +62,7 @@ app.controller("salesOrderViewCtr", function($scope, $window, $mdToast, $timeout
 		window.frames["print_frame"].window.print();
 	}
 	
+	$scope.back = function() {
+		 window.history.back();
+	}
 });

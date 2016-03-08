@@ -1,6 +1,15 @@
 
 <md-content layout-padding>
-
+<div>
+	<section layout="row" layout-align="end end" flex>
+		<md-button class="md-raised md-primary" ng-click="back()">ADD
+		NEW</md-button>
+	</section>
+</div>
+<div layout layout-sm="column">
+	<md-input-container flex> <label>Search</label> <input
+		ng-model="searchText"> </md-input-container>
+</div>
 <div>
 	<md-data-table-container>
 	<table md-data-table md-row-select="selected" md-progress="deferred">
