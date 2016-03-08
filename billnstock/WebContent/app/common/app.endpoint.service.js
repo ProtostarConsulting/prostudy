@@ -150,6 +150,13 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getAssetManagementService();
 	};
 	// ----------------------------------------------------
+	endpointFactory.getWarehouseManagementService = function() {
+		if (isTestMode)
+			return localDBServiceFactory.getWarehouseManagementService();
+		else
+			return googleEndpointSF.getWarehouseManagementService();
+	};
+	// ----------------------------------------------------
 
 
 	endpointFactory.loadAppGoogleServices = function(deferred) {
@@ -184,6 +191,14 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 		
 		gapi.client.load('customerService', 'v0.1', function() {
 			$log.debug("customerService Loaded....");
+
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+		
+		gapi.client.load('warehouseManagementService', 'v0.1', function() {
+			$log.debug("warehouseManagementService Loaded....");
 
 			endpointFactory.is_service_ready = true;
 			deferred.resolve();
