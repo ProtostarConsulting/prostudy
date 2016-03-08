@@ -3,6 +3,11 @@ var app = angular.module("stockApp", [ 'ngMaterial', 'ngMessages', "xeditable",
 		'ngStorage', 'ngRoute', 'ngFileUpload', 'ngAnimate', 'ui.grid',
 		'ui.grid.selection', 'ui.grid.exporter', 'directive.g+signin' ]);
 
+
+app.constant('monthList', ["January", "February", "March", "April",
+            				"May", "June", "July", "Augast", "September",
+           				"October", "November", "December"]);
+
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('light-blue')
 			.accentPalette('pink');
@@ -90,18 +95,42 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/list",
 		templateUrl : '/app/customer/customer_list.html',
 		controller : 'customerListCtr'
-	}).state('customer.accountAdd', {
+	}).state('customer.uplodFile', {
+		url : "/uplodFile",
+		templateUrl : '/app/customer/fileUpload.jsp',
+	//	controller : 'customerListCtr'
+	}).state('account', {
+		url : "/account",
+		templateUrl : '/app/account/account_module.html',
+		controller : 'accountModuleCtr'
+	}).state('account.accountAdd', {
 		url : "/accountAdd",
-		templateUrl : '/app/customer/account_add.html',
+		templateUrl : '/app/account/account_add.html',
 		controller : 'accountAddCtr'
-	}).state('customer.accountList', {
+	}).state('account.accountList', {
 		url : "/accountList",
-		templateUrl : '/app/customer/account_list.html',
+		templateUrl : '/app/account/account_list.html',
 		controller : 'accountAddCtr'
-	}).state('customer.accountIncome', {
+	}).state('account.accountIncome', {
 		url : "/accountIncome",
-		templateUrl : '/app/customer/account_income.html',
+		templateUrl : '/app/account/account_income.html',
 		controller : 'accountIncomeCtr'
+	}).state('account.accountPayable', {
+		url : "/accountPayable",
+		templateUrl : '/app/account/account_payable.html',
+		controller : 'accountPayableCtr'
+	}).state('account.accountPayableList', {
+		url : "/accountPayableList",
+		templateUrl : '/app/account/account_payableList.html',
+		controller : 'accountPayableListCtr'
+	}).state('account.accountReceivable', {
+		url : "/accountReceivable",
+		templateUrl : '/app/account/account_receivable.html',
+		controller : 'accountReceivableCtr'
+	}).state('account.accountReceivableList', {
+		url : "/accountReceivableList",
+		templateUrl : '/app/account/account_receivableList.html',
+		controller : 'accountReceivableListCtr'
 	}).state('report', {
 		url : "/report",
 		templateUrl : '/app/report/report_module.html',
@@ -328,6 +357,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/newUserStudent",
 		templateUrl : '/app/login/newUser.html',
 		controller : 'newUserStudentCtr'
+	}).state('store', {
+		url : "/store",
+		templateUrl : '/app/store/store_module.html',
+		controller : 'storeModuleCtr'
+	}).state('store.add', {
+		url : "/add",
+		templateUrl : '/app/store/store_add.html',
+		controller : 'storeAddCtr'
+	}).state('store.search', {
+		url : "/search",
+		templateUrl : '/app/store/search_neareststore.html',
+		controller : 'storeAddCtr'
 	}).state('probusiness', {
 		url : "/probusiness",
 		templateUrl : '/app/probusiness/proBusinessModule.html',
@@ -385,4 +426,5 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/AssetMangement/AddAsset.html',
 		controller : 'AssetMangementCtr',
 	});
+
 });
