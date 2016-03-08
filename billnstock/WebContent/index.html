@@ -171,7 +171,7 @@
 			<md-button ui-sref="setup" ng-show="user == 'basic' || user == 'setup' " ng-click="close()"   class="md-primary" show-gt-md>SETUP </md-button>
 			<md-button ui-sref="login" ng-show="user == 'basic' || user == 'login' " ng-click="close()"  class="md-primary" show-gt-md>LOGIN</md-button>
 			<md-button ui-sref="probusiness" ng-show="user=='protostarcs.com'" ng-click="close()"  class="md-primary" show-gt-md>ProBusiness</md-button>
-			
+			<md-button ui-sref="AssetMangement" ng-show="user == 'basic' || user == 'login' " ng-click="close()"  class="md-primary" show-gt-md>Asset Mangement</md-button>
 			
 			</md-content> 
 		</div>
@@ -420,7 +420,9 @@
    <!-- Document -->
       <script src="/app/Document/js/document.js"></script>
        <script src="/app/Email/js/email.js"></script>
-   
+       
+       <!--asset management   -->
+    <script src="/app/AssetMangement/js/AssetMgmtModule.js"></script>
    <!-- use for ganerating pdf -->
 <!--    <script type="text/javascript" src="/app/hr/js/jspdf.min.js"></script>
 
