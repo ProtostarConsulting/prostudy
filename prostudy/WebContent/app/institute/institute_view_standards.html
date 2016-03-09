@@ -11,7 +11,7 @@
 		</thead>
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="standard in stdList track by $index | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText"
+				ng-repeat="standard in viewstdList track by $index | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText"
 				data-ng-class="{danger:!standard.active}">
 
 				<td>{{standard.id}}</td>

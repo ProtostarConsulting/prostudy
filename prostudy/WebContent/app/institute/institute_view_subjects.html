@@ -11,7 +11,7 @@
 		</thead>
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="subject in subjects track by $index | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText"
+				ng-repeat="subject in viewSubList track by $index | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText"
 				data-ng-class="{danger:!subject.active}">
 
 				<td>{{subject.id}}</td>
@@ -20,7 +20,7 @@
 					type="text" data-ng-show="editMode" data-ng-model="subject.name"
 					data-ng-required /></td>
 
-				<td>{{subject.name}}</td>
+				
 
 				<td><a ui-sref="institute.view.view_subjects({selectedSubjectId: subject.id})"><md-button data-ng-hide="editMode"
 						data-ng-click="editMode = true;editSub(subject)"

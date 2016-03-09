@@ -10,6 +10,8 @@ angular
 					.getLoggedinUser();
 					
 					$scope.selectedStandard;
+					$scope.selectedDivision;
+					$scope.selectedSubject;
 					$scope.isGoogleUser;
 					
 					$scope.newField = {};
@@ -22,16 +24,19 @@ angular
 			        $scope.editingSub = false;
 			        $scope.newSubject= {};
 			        $scope.standards = [];
+			        $scope.divisions = []; 
+					$scope.subjects = []; 
+			        $scope.newStandards = [];
+					$scope.newDivisions = []; 
+					$scope.newSubjects = []; 
+					
+					
+					$scope.newSelectedStdID;
+					$scope.stdList;
+					$scope.divList;
+					$scope.subList;
 			        
-					$log.debug("$stateParams:", $stateParams);
-					$log.debug("$stateParams.selectedInstituteId:",
-							$stateParams.selectedInstituteId);
-					$log.debug("$stateParams.selectedStdID :",
-							$stateParams.selectedStdID);
-					$log.debug("$stateParams.selectedDivID :",
-							$stateParams.selectedDivID);
-					
-					
+			        
 					$scope.selectedInstituteId = $stateParams.selectedInstituteId;
 					$scope.selectedStdID = $stateParams.selectedStdID;
 					$scope.selectedDivID = $stateParams.selectedDivID; 
@@ -99,7 +104,7 @@ angular
 					};
 					
 
-					$scope.addStudents = function() {
+					$scope.addStudentList = function() {
 						$scope.students.push({
 							'instituteID' : $scope.curUser.instituteID,
 							'institute' : $scope.name,
@@ -110,6 +115,8 @@ angular
 							'contact' : $scope.contact,
 							'role' : "Student",
 							'standard' : $scope.selectedStandard,
+							'division' : $scope.selectedDivision,
+							'subject' : $scope.selectedSubject,
 							'password' : $scope.password,
 							'isGoogleUser' : $scope.isGoogleUser
 						});
@@ -124,7 +131,7 @@ angular
 					};
 
 					$scope.teachers = [];
-					$scope.addTeachers = function() {
+					$scope.addTeacherList = function() {
 						$scope.teachers.push({
 							'instituteID' : $scope.curUser.instituteID,
 							'institute' : $scope.name,
@@ -280,65 +287,124 @@ angular
 										});
 					}
 
-					$scope.getStandardByInstitute = function() {
+					$scope.viewStandardByInstitute = function() {
 
 						var StandardService = appEndpointSF
 								.getStandardService();
 						StandardService.getStandardByInstitute(
 								$scope.curUser.instituteID).then(
 								function(standardList) {
-									for(var i=0; i< standardList.length; i++)
-									{
-										$scope.standards.push(standardList[i].name);
-										
-									}
-									$scope.stdList = standardList;
 									
+									$scope.viewstdList = standardList;
 									
 								});
 					}
 
 					$scope.showselectedInstitute();
 					$scope.getUserByInstitute();
-					$scope.getStandardByInstitute();
+					$scope.viewStandardByInstitute();
 					
 					
-					$scope.getDivisionByStandard = function() {
+					$scope.viewDivisionByStandard = function() {
 
 						var DivisionService = appEndpointSF
 								.getDivisionService();
 						DivisionService.getDivisionByStandard($scope.selectedStdID).then(
 								function(divisionList) {
-									$scope.divisions = divisionList;
+									$scope.viewDivList = divisionList;
 									
 
 								});
 					}
-					$scope.getDivisionByStandard();
+					$scope.viewDivisionByStandard();
 					
 					
-					$scope.getSubjectByDivision = function() {
+					$scope.viewSubjectByDivision = function() {
 
 						var SubjectService = appEndpointSF.getSubjectService();
 						SubjectService.getSubjectByDivision($scope.selectedDivID).then(
 								function(subjectList) {
-									$scope.subjects = subjectList;
+									$scope.viewSubList = subjectList;
 									
 								});
 					}
-					$scope.getSubjectByDivision();
+					$scope.viewSubjectByDivision();
+					
+					
+					$scope.getStandardByInstitute = function() {
+
+						var StandardService = appEndpointSF
+								.getStandardService();
+						StandardService.getStandardByInstitute($scope.curUser.instituteID).then(
+								function(standardList) {
+									for(var i=0; i< standardList.length; i++)
+										{
+											$scope.standards.push(standardList[i].name);
+											
+										}
+									$scope.stdList = standardList;
+									
+								});
+					}
+					
+					$scope.getStandardByInstitute();
+					
+					$scope.getDivisionByStandard = function() {
+					
+						for(var i=0;i< $scope.stdList.length;i++)
+						{
+							if($scope.selectedStandard == $scope.stdList[i].name)
+							{
+								$scope.selectedStdID = $scope.stdList[i].id;
+							}
+						}
+						var DivisionService = appEndpointSF
+								.getDivisionService();
+						DivisionService.getDivisionByStandard($scope.selectedStdID).then(
+								function(divisionList) {
+									for(var i=0; i< divisionList.length; i++)
+									{
+										$scope.divisions.push(divisionList[i].name);
+									}
+									$scope.divList = divisionList;
+								});
+					}
+					
+					$scope.getSubjectByDivision = function() {
+						
+						for(var i=0;i<$scope.divList.length;i++)
+						{
+							if($scope.selectedDivision == $scope.divList[i].name)
+							{
+								$scope.selectedDivID = $scope.divList[i].id;
+							}
+						}
+						var SubjectService = appEndpointSF.getSubjectService();
+						SubjectService.getSubjectByDivision($scope.selectedDivID).then(
+								function(subjectList) {
+									for(var i=0; i< subjectList.length; i++)
+									{
+										$scope.subjects.push(subjectList[i].name);
+									}
+
+								});
+						$scope.subjects.splice(0,$scope.subjects.length);
+					}
+					
+					
+					
 					
 					// Update Standard$scope.stdList
 					
 					$scope.editStd = function(field) {
-				        $scope.editingStd = $scope.stdList.indexOf(field);
+				        $scope.editingStd = $scope.viewstdList.indexOf(field);
 				        $scope.newField = angular.copy(field);
 				        $log.debug("$scope.newField :"+angular.toJson($scope.newField));
 				    }
 				    
 				    $scope.saveField = function(index) {
 				        if ($scope.editingStd !== false) {
-				            $scope.stdList[$scope.editingStd] = $scope.newField;
+				            $scope.viewstdList[$scope.editingStd] = $scope.newField;
 				            $scope.editingStd = false;
 				        }       
 				    };
@@ -346,7 +412,7 @@ angular
 				    $scope.cancel = function(index) {
 				    	 $log.debug("$scope.newField :"+angular.toJson($scope.newField));
 				        if ($scope.editingStd !== false) {
-				            $scope.stdList[$scope.editingStd] = $scope.newField;
+				            $scope.viewstdList[$scope.editingStd] = $scope.newField;
 				            $scope.editingStd = false;
 				        }       
 				    };
@@ -356,15 +422,15 @@ angular
 						var StandardService = appEndpointSF.getStandardService();
 						
 						$scope.selectedStandardId = $stateParams.selectedStandardId;  
-						for(var i=0;i<$scope.stdList.length;i++)
+						for(var i=0;i<$scope.viewstdList.length;i++)
 						{
-							if($scope.selectedStandardId == $scope.stdList[i].id)
+							if($scope.selectedStandardId == $scope.viewstdList[i].id)
 							{
-								 $scope.newStandards = $scope.stdList[i]
+								 $scope.updatedval = $scope.viewstdList[i]
 							}
 							
 						}
-						StandardService.editStandard($scope.newStandards).then(function(msgBean) {
+						StandardService.editStandard($scope.updatedval).then(function(msgBean) {
 							$log.debug("msgBean :"+angular.toJson(msgBean));
 							$log.debug("Inside Ctr updateStandard");
 							
@@ -376,15 +442,16 @@ angular
 					
 					// Update Division
 					
+					
 					$scope.editDiv = function(field) {
-				        $scope.editingDiv = $scope.divisions.indexOf(field);
+				        $scope.editingDiv = $scope.viewDivList.indexOf(field);
 				        $scope.newDIv = angular.copy(field);
 				        $log.debug("$scope.newDIv :"+angular.toJson($scope.newDIv));
 				    }
 				    
 				    $scope.saveDiv = function(index) {
 				        if ($scope.editingDiv !== false) {
-				            $scope.divisions[$scope.editingDiv] = $scope.newDIv;
+				            $scope.viewDivList[$scope.editingDiv] = $scope.newDIv;
 				            $scope.editingDiv = false;
 				        }       
 				    };
@@ -392,7 +459,7 @@ angular
 				    $scope.cancelDiv = function(index) {
 				    	 $log.debug("$scope.newDIv :"+angular.toJson($scope.newDIv));
 				        if ($scope.editingDiv !== false) {
-				            $scope.divisions[$scope.editingDiv] = $scope.newDIv;
+				            $scope.viewDivList[$scope.editingDiv] = $scope.newDIv;
 				            $scope.editingDiv = false;
 				        }       
 				    };
@@ -404,16 +471,16 @@ angular
 						$log.debug("$stateParams.selectedDivisionId :",
 								$stateParams.selectedDivisionId);
 						$scope.selectedDivisionId = $stateParams.selectedDivisionId;  
-						for(var i=0;i<$scope.divisions.length;i++)
+						for(var i=0;i<$scope.viewDivList.length;i++)
 						{
-							if($scope.selectedDivisionId == $scope.divisions[i].id)
+							if($scope.selectedDivisionId == $scope.viewDivList[i].id)
 							{
-								 $scope.newDivisions = $scope.divisions[i]
+								 $scope.updatedval = $scope.viewDivList[i]
 							}
 							
 						}
 						
-						DivisionService.editDivision($scope.newDivisions).then(function(msgBean) {
+						DivisionService.editDivision($scope.updatedval).then(function(msgBean) {
 							$log.debug("msgBean :"+angular.toJson(msgBean));
 							$log.debug("Inside Ctr updateDivision");
 							
@@ -426,14 +493,14 @@ angular
 					// Update Subject
 					
 					$scope.editSub = function(field) {
-				        $scope.editingSub = $scope.subjects.indexOf(field);
+				        $scope.editingSub = $scope.viewSubList.indexOf(field);
 				        $scope.newSub = angular.copy(field);
 				        $log.debug("$scope.newSub :"+angular.toJson($scope.newSub));
 				    }
 				    
 				    $scope.saveSub = function(index) {
 				        if ($scope.editingSub !== false) {
-				            $scope.subjects[$scope.editingSub] = $scope.newSub;
+				            $scope.viewSubList[$scope.editingSub] = $scope.newSub;
 				            $scope.editingSub = false;
 				        }       
 				    };
@@ -441,7 +508,7 @@ angular
 				    $scope.cancelSub = function(index) {
 				    	 $log.debug("$scope.newSub :"+angular.toJson($scope.newSub));
 				        if ($scope.editingSub !== false) {
-				            $scope.subjects[$scope.editingSub] = $scope.newSub;
+				            $scope.viewSubList[$scope.editingSub] = $scope.newSub;
 				            $scope.editingSub = false;
 				        }       
 				    };
@@ -453,15 +520,15 @@ angular
 						$log.debug("$stateParams.selectedSubjectId :",
 								$stateParams.selectedSubjectId);
 						$scope.selectedSubjectId = $stateParams.selectedSubjectId;  
-						for(var i=0;i<$scope.subjects.length;i++)
+						for(var i=0;i<$scope.viewSubList.length;i++)
 						{
-							if($scope.selectedSubjectId == $scope.subjects[i].id)
+							if($scope.selectedSubjectId == $scope.viewSubList[i].id)
 							{
-								 $scope.newSubjects = $scope.subjects[i]
+								 $scope.updatedval = $scope.viewSubList[i]
 							}
 							
 						}
-						SubjectService.editSubject($scope.newSubjects).then(function(msgBean) {
+						SubjectService.editSubject($scope.updatedval).then(function(msgBean) {
 							$log.debug("msgBean :"+angular.toJson(msgBean));
 							$log.debug("Inside Ctr updatesubject");
 							

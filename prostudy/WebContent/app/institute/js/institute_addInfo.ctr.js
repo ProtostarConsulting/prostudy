@@ -1,9 +1,11 @@
 angular.module("prostudyApp").controller(
 		"instituteAddInfoCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $q, appEndpointSF, $state, $stateParams) {
+				$log, $q, appEndpointSF, $state, $stateParams, $mdDialog) {
 			
 			$scope.selectedStandard;
+			$scope.selectedDivision;
+			$scope.selectedSubject;
 
 			$scope.isGoogleUser;
 			$scope.flag1=true;
@@ -15,6 +17,15 @@ angular.module("prostudyApp").controller(
 			$scope.selectedDivisions = [];
 			$scope.selectedSubjects = [];
 			
+			$scope.standards = [];
+			$scope.divisions = []; 
+			$scope.subjects = []; 
+					
+
+			$scope.selectedStdID;
+			$scope.stdList;
+			$scope.divList;
+			$scope.subList;
 			
 			 $scope.isGoogleUser;
 
@@ -32,11 +43,7 @@ angular.module("prostudyApp").controller(
 						'Institute Teacher Added!').position("top").hideDelay(
 						3000));
 			};
-			$scope.showStudentSavedToast = function() {
-				$mdToast.show($mdToast.simple().content(
-						'Institute Student Added!').position("top").hideDelay(
-						3000));
-			};
+			
 			
 			$scope.currentInstID = $stateParams.currentInstID;
 
@@ -62,6 +69,8 @@ angular.module("prostudyApp").controller(
 					'contact' : $scope.contact,
 					'role' : "Student",
 					'standard' : $scope.selectedStandard,
+					'division' : $scope.selectedDivision,
+					'subject' : $scope.selectedSubject,
 					'password' : $scope.password,
 					'isGoogleUser' : $scope.isGoogleUser
 				});
@@ -130,8 +139,6 @@ angular.module("prostudyApp").controller(
 				$scope.flag2=true;
 			};
 			
-		
-			
 			$scope.standard= {
 					
 					instituteID : $scope.currentInstID,
@@ -145,9 +152,9 @@ angular.module("prostudyApp").controller(
 			};
 		
 			
-			$scope.subjects = [];
+			$scope.subjectList = [];
 			$scope.addSubjects = function() {
-				$scope.subjects.push({
+				$scope.subjectList.push({
 					'divisionID' : $scope.currentDivID,
 					'name' : $scope.name,
 					
@@ -189,15 +196,7 @@ angular.module("prostudyApp").controller(
 				desc : "",
 				address : "",
 				phone_no : "",
-				user_fname : "",
-				user_lname : "",
-				user_email_id : "",
-				user_contact_no : "",
-				books : [],
-				students : [],
-				teachers : [],
-				practiceExams : [],
-				admins : []
+				
 			};
 			$scope.institutes = [];
 
@@ -212,7 +211,7 @@ angular.module("prostudyApp").controller(
 					$scope.name = msgBean.name;
 					$log.debug("$scope.currentInstID :" +$scope.currentInstID);
 					$scope.showSavedToast();
-					$state.go("institute.addAdmins", {
+					$state.go("institute.addStandards", {
 						currentInstID : $scope.currentInstID
 					});
 					$scope.tempInstitute = {
@@ -222,26 +221,33 @@ angular.module("prostudyApp").controller(
 						desc : "",
 						address : "",
 						phone_no : "",
-						user_fname : "",
-						user_lname : "",
-						user_email_id : "",
-						user_contact_no : "",
-						books : [],
-						students : [],
-						teachers : [],
-						practiceExams : [],
-						admins : []
+						
 					};
 				});
-
+				
+				
 			}
+			
+			
+			 $scope.showAlert = function(ev) {
+				 $scope.addInstitute();
+				  
+				    $mdDialog.show(
+				      $mdDialog.alert()
+				        .parent(angular.element(document.querySelector('#popupContainer')))
+				        .clickOutsideToClose(true)
+				        .textContent('INSTITUTE REGISTERED SUCCESSFULLLY...\n PLEASE ADD FURTHER DETAILS..')
+				        .ariaLabel('Alert Dialog Demo')
+				        .ok('OK')
+				        .targetEvent(ev)
+				    );
+				  };
+
 			
 			$scope.addInstituteTeachers = function() {
 				var UserService = appEndpointSF.getUserService();
 				
-				$state.go("institute.addStudents", {
-					currentInstID : $scope.currentInstID
-				});
+				$state.go("institute.addStudents", {currentInstID : $scope.currentInstID});
 
 				for (i = 0; i < $scope.selectedTeachers.length; i++) {
 					UserService.addUser($scope.selectedTeachers[i]).then(function(msgBean) {
@@ -256,9 +262,7 @@ angular.module("prostudyApp").controller(
 			$scope.addInstituteAdmins = function() {
 				var UserService = appEndpointSF.getUserService();
 
-				$state.go("institute.addTeachers", {
-					currentInstID : $scope.currentInstID
-				});
+				$state.go("institute.addTeachers", {currentInstID : $scope.currentInstID});
 				
 				for (i = 0; i < $scope.selectedAdmins.length; i++) {
 				UserService.addUser($scope.selectedAdmins[i]).then(function(msgBean) {
@@ -331,9 +335,11 @@ angular.module("prostudyApp").controller(
 						
 					});
 				}
+				
 				$state.go("institute.addDivisions",  {currentInstID : $scope.currentInstID,currentStdID : $scope.currentStdID });
 			}
 
+			  
 			$scope.getPracticeExams = function() {
 
 				var PracticeExamService = appEndpointSF
@@ -358,12 +364,15 @@ angular.module("prostudyApp").controller(
 				});
 			}
 			$scope.getInstitutes();
+			
 			$scope.cancelButton = function() {
 				$state.go("^", {});
 			}
+			
 			$scope.addMore = function() {
 				$scope.flag1=true;
 				$scope.flag2=false;
 			}
+			
 
 		});

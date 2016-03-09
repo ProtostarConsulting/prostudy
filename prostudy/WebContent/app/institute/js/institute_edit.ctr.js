@@ -10,48 +10,45 @@ angular.module("prostudyApp").controller(
 
 			$scope.selected = [];
 
-			$scope.tempInstitute = {name: "", email_id: "", phone_no:"", address:""};
-			$scope.institutes = []; 
-			
-			$scope.addInstitute = function(){
-				$log
-				.debug("No1");	
+			$scope.tempInstitute = {
+				name : "",
+				email_id : "",
+				phone_no : "",
+				address : ""
+			};
+			$scope.institutes = [];
+
+			$scope.addInstitute = function() {
+				
 				var InstituteService = appEndpointSF.getInstituteService();
-				//$scope.students = studentService.addStudent($scope.tempStudent);
-										
-				InstituteService.addInstitute($scope.tempInstitute)
-				.then(
+
+				InstituteService.addInstitute($scope.tempInstitute).then(
 						function(msgBean) {
-							$log
-							.debug("No6");	
-							$log
-									.debug("Inside Ctr addInstitute");
-							$log
-							.debug("msgBean.msg:" + msgBean.msg);
+
 							$scope.showSavedToast();
-							$scope.tempInstitute = {name: "", email_id: "", phone_no:"", address:""};
+							$scope.tempInstitute = {
+								name : "",
+								email_id : "",
+								phone_no : "",
+								address : ""
+							};
 						});
-				$log
-				.debug("No4");	
+
 			}
-			
-			$scope.getInstitutes = function(){
-				//$scope.students = appEndpointSF.getStudentService().getStudents();
-				var InstituteService = appEndpointSF.getInstituteService();					
-										
-				InstituteService.getInstitutes()
-				.then(
-						function(instituteList) {
-							$log
-									.debug("Inside Ctr getInstitutes");
-							$scope.institutes = instituteList;
-						});
+
+			$scope.getInstitutes = function() {
+
+				var InstituteService = appEndpointSF.getInstituteService();
+
+				InstituteService.getInstitutes().then(function(instituteList) {
+					$log.debug("Inside Ctr getInstitutes");
+					$scope.institutes = instituteList;
+				});
 			}
 
 			$scope.editingData = [];
 
-			$scope.modify = function(selectedInstitute) 
-			{
+			$scope.modify = function(selectedInstitute) {
 				$scope.editingData[selectedInstitute.name] = true;
 				$scope.institute = selectedInstitute;
 			};
@@ -61,10 +58,10 @@ angular.module("prostudyApp").controller(
 			};// end of update
 
 			$scope.removeInstitute = function(index) {
-			
+
 				delete $scope.selected;
 			}; // end of remove
-			
+
 			$scope.getInstitutes();
 
 		});

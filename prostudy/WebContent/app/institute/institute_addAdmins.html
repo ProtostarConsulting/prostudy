@@ -1,9 +1,9 @@
-<h5>
+
+ <h5>
 	<b>Admin's Information</b>
 </h5>
 <form name="instituteAdminForm" ng-model=instituteAdminForm>
-	<div layout="row" layout-align="centre centre" layout-sm="column" flex
-		ng-show="flag1">
+	<div layout="column" layout-align="centre centre" layout-sm="column" flex>
 
 		<md-input-container flex> <label>First name<span
 			style="color: red"
@@ -72,20 +72,18 @@
 		<md-input-container flex> <label>Address</label>
 		<input name="address " ng-model="address"> </md-input-container>
 
-		<md-button class="md-raised md-primary" ng-click="addToAdminsList()">Add
+		<md-button class="md-raised md-primary" ng-disabled="instituteAdminForm.$invalid" ng-click="addToAdminsList()">Add
 		To AdminList </md-button>
-		<a ui-sref="institute.addTeachers"><md-button
-				class="md-raised md-primary">Skip</md-button> </a>
+		
 
 	</div>
-	<div ng-show="flag2">
+	<div>
 
 
 		<h5>
 			<b>Select Admins before Adding.</b>
 		</h5>
-		<md-button class="md-raised md-primary" ng-click="addMore()">Add
-		More</md-button>
+		
 		<md-data-table-container>
 		<table md-data-table class="md-primary" md-row-select="selectedAdmins"
 			ng-model="admintable" md-progress="deferred">
@@ -109,11 +107,11 @@
 			md-total={{admins.length}} md-trigger="onpagechange"></md-data-table-pagination>
 		</md-data-table-container>
 		<div layout="row" layout-align="end end" layout-sm="column" flex>
-			<md-button class="md-raised md-primary"
+			<md-button class="md-raised md-primary" 
 				ng-click="addInstituteAdmins({currentInstID: currentInstID})"
 				ng-disabled="selectedAdmins.length==0">Add Admins to
 			Institute </md-button>
-			<a ui-sref="institute.addTeachers"><md-button
+			<a ui-sref="institute.addTeachers({currentInstID: currentInstID})"><md-button
 					class="md-raised md-primary" ng-click="">Skip</md-button> </a>
 
 
@@ -124,3 +122,4 @@
 
 </form>
 
+ 

@@ -11,7 +11,7 @@
 		</thead>
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="division in divisions  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText">
+				ng-repeat="division in viewDivList track by $index | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText">
 				<td>{{division.id}}</td>
 				
 				<td><span data-ng-hide="editMode">{{division.name}}</span><input

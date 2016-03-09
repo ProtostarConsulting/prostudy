@@ -2,8 +2,7 @@
 	<b>Teacher's Information</b>
 </h5>
 <form name="instituteTeacherForm" ng-model="instituteTeacherForm">
-	<div layout="row" layout-align="centre centre" layout-sm="column" flex
-		ng-show="flag1">
+	<div layout="column" layout-align="centre centre" layout-sm="column" flex>
 
 		<md-input-container flex> <label>First name<span
 			style="color: red"
@@ -65,17 +64,15 @@
 		</md-input-container>
 		<md-input-container flex> <label>Address</label>
 		<input name="address" ng-model="address"> </md-input-container>
-		<md-button class="md-raised md-primary" ng-click="addTeacherList()">Add To
+		<md-button class="md-raised md-primary" ng-disabled="instituteTeacherForm.$invalid" ng-click="addTeacherList()">Add To
 		TeacherList </md-button>
-		<a ui-sref="institute.addStudents"><md-button
-				class="md-raised md-primary" ng-click="">Skip</md-button> </a>
+		
 	</div>
-	<div ng-show="flag2">
+	<div>
 		<h5>
 			<b>Select Teachers before Adding.</b>
 		</h5>
-		<md-button class="md-raised md-primary" ng-click="addMore()">Add
-		More</md-button>
+		
 		<md-data-table-container>
 		<table md-data-table class="md-primary"
 			md-row-select="selectedTeachers" md-progress="deferred">
@@ -104,7 +101,7 @@
 			<md-button class="md-raised md-primary"
 				ng-click="addInstituteTeachers({currentInstID: currentInstID})"
 				ng-disabled="selectedTeachers.length==0">Add Teachers </md-button>
-			<a ui-sref="institute.addStudents"><md-button
+			<a ui-sref="institute.addStudents({currentInstID: currentInstID})"><md-button
 					class="md-raised md-primary" ng-click="">Skip</md-button> </a>
 		</div>
 	</div>
