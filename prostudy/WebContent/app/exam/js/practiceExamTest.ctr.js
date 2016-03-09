@@ -307,8 +307,10 @@ angular
 
 						ID : "",
 						examTitle : "",
-						userId : $scope.curUser.email_id,
-						userName : $scope.curUser.firstName,
+						userId : $scope.curUser.id,
+						email_id : $scope.curUser.email_id,
+						firstName : $scope.curUser.firstName,
+						lastName : $scope.curUser.lastName,
 						startTime : "",
 						endTime : "",
 						score : $scope.score,
@@ -318,45 +320,27 @@ angular
 					}
 
 					$scope.addPracticeExamResult = function() {
-						$log.debug("No1");
 						var PracticeExamResultService = appEndpointSF
 								.getPracticeExamResultService();
 
-						PracticeExamResultService
-								.addPracticeExamResult(
+						PracticeExamResultService.addPracticeExamResult(
 										$scope.tempPracticeExamResult)
 								.then(
 										function(msgBean) {
 
 											$log.debug("No6");
-											$log
-													.debug("Inside Ctr practiceExamTestCtr");
-											$log.debug("Ans :"
-													+ $scope.userAnsList);
-											$log.debug("msgBean.msg:"
-													+ msgBean.msg);
+											$log.debug("Inside Ctr practiceExamTestCtr");
 											$scope.showSavedToast();
-											$scope.tempPracticeExamResult = {
-												ID : "",
-												examTitle : "",
-												userId : "",
-												userName : "",
-												startTime : "",
-												endTime : "",
-												score : "",
-												userAns : "",
-												test : ""
-											};
+											
 										});
 
-						$log.debug("No4");
-					} // End of addPracticeExamResult
+					}
 
 					$scope.getPracticeExamResultbyID();
 
 					$scope.showselectedExam();
-					// $scope.getPracticeExams();
+					
 					$scope.getPracticeExamByInstitute();
 
-				});// end of examDemoCtr
+				});
 

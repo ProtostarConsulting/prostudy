@@ -18,9 +18,7 @@ angular.module("prostudyApp").controller(
 				var PracticeExamResultService = appEndpointSF
 						.getPracticeExamResultService();
 
-				PracticeExamResultService
-						.getPracticeExamResultbyID(
-								$scope.curUser.email_id)
+				PracticeExamResultService.getPracticeExamResultbyID($scope.curUser.email_id)
 						.then(
 								function(practiceExamResultList) {
 

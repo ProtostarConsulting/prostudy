@@ -1,53 +1,59 @@
-<md-content>
+<md-content> <md-data-table-container>
+<table md-data-table md-row-select="selected" md-progress="deferred">
+	<thead md-order="query.order" md-trigger="onorderchange">
+		<tr>
+			<th name="Exam Title" order-by="title"></th>
+			<th name="User Id" order-by="userId"></th>
+			<th name="User Name" order-by="userName"></th>
+			<th name="Start Time" order-by="startTime"></th>
+			<th name="End Time" order-by="endTime"></th>
+			<th name="Score" order-by="score"></th>
 
-	<md-data-table-container>
-	<table md-data-table md-row-select="selected" md-progress="deferred">
-		<thead md-order="query.order" md-trigger="onorderchange">
-			<tr>
-				<th name="Exam Title" order-by="title"></th>
-				<th name="User Id" order-by="userId"></th>
-				<th name="User Name" order-by="userName"></th>
-				<th name="Start Time" order-by="startTime"></th>
-				<th name="End Time" order-by="endTime"></th>
-				<th name="Score" order-by="score"></th>
-				
-			</tr>
-		</thead>
+		</tr>
+	</thead>
 
-		<tbody>
-			<tr md-auto-select ng-repeat="result in results  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText ">
+	<tbody>
+		<tr md-auto-select
+			ng-repeat="result in results  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText ">
 
-				<td>
-					<div>{{result.examTitle}}</div>
-				</td>
-				
-				<td>
-					<div>{{result.userId}}</div>
-				</td>
+			<td>
+				<div>{{result.examTitle}}</div>
+			</td>
 
-				<td>
-					<div>{{result.userName}}</div>
-				</td>
-				
-				<td>
-					<div>{{result.startTime}}</div>
-				</td>
-				
-				<td>
-					<div>{{result.endTime}}</div>
-				</td>
-				
-				<td>
-					<div>{{result.score}}</div>
-				</td>
-				
-				</tr>
-		</tbody>
-		
-	</table>
-	<md-data-table-pagination md-limit="query.limit"  md-page="query.page" md-total={{examResults.length}} md-trigger="onpagechange"></md-data-table-pagination>
+			<td>
+				<div>{{result.userId}}</div>
+			</td>
 
-	</md-data-table-container>
+			<td>
+				<div>{{result.firstName}} {{result.lastName}}</div>
+			</td>
+
+			<td>
+				<div>{{result.startTime}}</div>
+			</td>
+
+			<td>
+				<div>{{result.endTime}}</div>
+			</td>
+
+			<td>
+				<div>{{result.score}}</div>
+			</td>
+
+			<td><a
+				ui-sref="certificateMgmt.generateTemplate({selectedStudID:result.userId, selectedfirstName:result.firstName, selectedlastName:result.lastName, selectedExam:result.examTitle, selectedScore:result.score})">
+					<md-button class="md-raised md-primary" ng-click="">Generate
+					Certificate</md-button>
+			</a></td>
+
+		</tr>
+	</tbody>
+
+</table>
+<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+	md-total={{examResults.length}} md-trigger="onpagechange"></md-data-table-pagination>
+
+</md-data-table-container>
 </div>
-		
+
 </md-content>
