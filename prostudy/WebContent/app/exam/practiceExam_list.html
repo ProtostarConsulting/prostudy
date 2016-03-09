@@ -5,15 +5,13 @@
 		<h4 class="md-headline">List of Practice Exam</h4>
 		</md-subheader>
 		<div>
-			<md-input-container flex>
-				<label>Search By Category</label>
-				<input ng-model="searchCategory">
-			</md-input-container>
+			<md-input-container flex> <label>Search
+				By Category</label> <input ng-model="searchCategory"> </md-input-container>
 		</div>
 
 		<div layout="column">
 			<md-data-table-container>
-				<table md-data-table md-progress="deferred">
+			<table md-data-table md-progress="deferred">
 				<thead md-order="query.order" md-trigger="onorderchange">
 					<tr>
 						<th name="Exam Id"></th>
@@ -25,30 +23,40 @@
 
 				<tbody>
 
-				
 
-				<tr md-auto-select ng-repeat="test in practiceExams | orderBy: query.order | filter: {category: searchCategory} | limitTo: query.limit: (query.page - 1) * query.limit">
-					
+
+					<tr md-auto-select
+						ng-repeat="test in practiceExams | orderBy: query.order | filter: {category: searchCategory} | limitTo: query.limit: (query.page - 1) * query.limit">
+
 						<td>{{test.id}}</td>
 						<td>{{test.examtitle}}</td>
 						<td>{{test.date}}</td>
 						<td>{{test.category}}</td>
 						<td><a
 							ui-sref="exam.practiceexamtest({selectedExamId: test.id})"><md-button
-									class="md-raised md-primary" ng-click="">Start</md-button> </a></td>
+									class="md-raised md-primary"
+									ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher'  || curUser.role == 'Student'"
+									ng-click="">Start</md-button> </a></td>
 
 						<td><a
 							ui-sref="exam.editpracticeexam({selectedExamId: test.id})"><md-button
-									class="md-raised md-primary" ng-click="">Edit </md-button> </a></td>
+									class="md-raised md-primary"
+									ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher'"
+									ng-click="">Edit </md-button> </a></td>
 
 						<td><md-button class="md-raised md-primary"
+								ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher'  || curUser.role == 'Student'"
 								ng-click="addTestToMyList(test.id)">Add To
 							MyPractice Exam </md-button></td>
 
-						<td><md-button ng-click="like(test.id)"> <ng-md-icon
+						<td><md-button
+								ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher'  || curUser.role == 'Student'"
+								ng-click="like(test.id)"> <ng-md-icon
 								icon="thumb_up"></ng-md-icon>{{test.likes}}</md-button></td>
 
-						<td><md-button ng-click="dislike(test.id)"> <ng-md-icon
+						<td><md-button
+								ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher'  || curUser.role == 'Student'"
+								ng-click="dislike(test.id)"> <ng-md-icon
 								icon="thumb_down"></ng-md-icon>{{test.dislikes}}</md-button></td>
 
 					</tr>
@@ -56,10 +64,11 @@
 			</table>
 
 			</md-data-table-container>
-			<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total={{practiceTest.length}} md-trigger="onpagechange"></md-data-table-pagination>
+			<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+				md-total={{practiceTest.length}} md-trigger="onpagechange"></md-data-table-pagination>
 		</div>
-		
-		
+
+
 
 	</section>
 	</md-content>

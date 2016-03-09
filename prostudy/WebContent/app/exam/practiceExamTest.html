@@ -14,6 +14,7 @@
 			<div ng-repeat="i in buttonLimit(totalPages) track by $index">
 				<md-button class="md-raised md-primary"
 					ng-click="onButtonClick($index+1)">Page{{$index+1}}</md-button>
+					
 			</div>
 
 		</div>
@@ -21,7 +22,7 @@
 	</div>
 
 	<div layout="row" layout-sm="column" layout-wrap>
-		<div flex="50" ng-repeat="item in newQues ">
+		<div flex="50" ng-repeat="item in array">
 			<div>
 				<md-content flex layout-padding> <b
 					ng-bind-html="+ (item.qId) +')'+ item.description"></b> </md-content>

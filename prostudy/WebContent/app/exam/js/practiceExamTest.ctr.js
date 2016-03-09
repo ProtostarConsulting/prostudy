@@ -16,14 +16,14 @@ angular
 							.getLoggedinUser();
 					$log.debug("$scope.curuser....................."
 							+ angular.toJson($scope.curuser));
-				
+
 					// Code for timer
 					var date = new Date();
 
 					$scope.counter = 200;
 					$scope.startTime = null;
 					$scope.endTime = null;
-					
+
 					$scope.currentPage = 0;
 					$scope.totalPages = 0;
 					$scope.itemsPerPage = 4;
@@ -40,7 +40,7 @@ angular
 						if ($scope.counter === 0) {
 							$scope.$broadcast('timer-stopped', 0);
 							$timeout.cancel(mytimeout);
-							
+
 							return;
 
 						}
@@ -108,7 +108,7 @@ angular
 						}
 						$scope.stopTimer();
 						$scope.addPracticeExamResult();
-						
+
 						$state.go('userQuesAnsView', {
 							selectedExamId : $scope.Test.id,
 							selectedResultId : $scope.examResults.ID
@@ -198,34 +198,18 @@ angular
 
 					$scope.score = 0;
 
-				/*	$scope.getPracticeExams = function() {
-
-						var PracticeExamService = appEndpointSF
-								.getPracticeExamService();
-						PracticeExamService
-								.getPracticeExams()
-								.then(
-										function(practiceExamList) {
-											$log
-													.debug("Inside Ctr getPracticeExam");
-											$scope.practiceTest = practiceExamList;
-											$scope.practiceTest.description = $sce
-													.trustAsHtml($scope.practiceTest.description);
-
-										});
-					}// End of getPracticeExams
-*/					
 					$scope.getPracticeExamByInstitute = function() {
 
 						var PracticeExamService = appEndpointSF
 								.getPracticeExamService();
-						PracticeExamService.getPracticeExamByInstitute(
-								$scope.curUser.instituteID).then(
-								function(practiceExamList) {
-									$scope.practiceTest = practiceExamList;
-									$log.debug("$scope.practiceTest"
-											+ angular.toJson($scope.practiceTest));
-								});
+						PracticeExamService
+								.getPracticeExamByInstitute(
+										$scope.curUser.instituteID)
+								.then(
+										function(practiceExamList) {
+											$scope.practiceTest = practiceExamList;
+											
+										});
 					}
 					$scope.getPracticeExamByInstitute();
 
@@ -239,12 +223,12 @@ angular
 						var PracticeExamService = appEndpointSF
 								.getPracticeExamService();
 
-						PracticeExamService.getPracticeExamById($scope.selectedExamId)
+						PracticeExamService
+								.getPracticeExamById($scope.selectedExamId)
 								.then(
 										function(practiceTest) {
 											$scope.Test = practiceTest;
-											$log.debug("$scope.Test"
-													+ angular.toJson($scope.Test));
+											
 											$scope.buttonLimit = function(count) {
 												$scope.totalPages = Math
 														.ceil($scope.Test.questions.length / 4);
@@ -257,20 +241,18 @@ angular
 														});
 
 											}// end of buttonlimit
-											
+
 											$scope.newQues = $scope.Test.questions;
-											
 
 											$log.debug("$scope.newQues :"+ angular.toJson($scope.newQues));
 
-										    $scope.newQues[0].qId = 1;
-											 for(var i=1; i<$scope.newQues.length; i++) 
-											 {
-												
-												 $scope.newQues[i].qId = $scope.newQues[i-1].qId + 1;
-												
-											  }
-										
+											$scope.newQues[0].qId = 1;
+											for (var i = 1; i < $scope.newQues.length; i++) {
+
+												$scope.newQues[i].qId = $scope.newQues[i - 1].qId + 1;
+
+											}
+
 											$scope.tempPracticeExamResult.examTitle = $scope.Test.examtitle;
 
 											$scope.tempPracticeExamResult.test = $scope.Test.questions;
@@ -286,8 +268,7 @@ angular
 					 * if($scope.Test.questions[i].quesId ==
 					 * $scope.examResults[i].userAns.qID) {
 					 * $scope.Test.questions[i].userOption =
-					 * $scope.examResults[i].userAns.userOption; }
-					 *  }
+					 * $scope.examResults[i].userAns.userOption; } }
 					 */
 
 					$scope.questions = [];
@@ -374,7 +355,7 @@ angular
 					$scope.getPracticeExamResultbyID();
 
 					$scope.showselectedExam();
-					//$scope.getPracticeExams();
+					// $scope.getPracticeExams();
 					$scope.getPracticeExamByInstitute();
 
 				});// end of examDemoCtr

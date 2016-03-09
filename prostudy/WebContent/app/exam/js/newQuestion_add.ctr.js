@@ -18,7 +18,7 @@ angular.module("prostudyApp").controller(
 				instituteID : $scope.curuser.instituteID,
 				description : "",
 				note : "",
-				category :"",
+						category :"",
 				option1 : "",
 				option2 : "",
 				option3 : "",
