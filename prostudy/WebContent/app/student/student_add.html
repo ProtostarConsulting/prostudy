@@ -37,7 +37,8 @@
 						<div ng-message="required">Please Enter your Email-Id.</div>
 					</div>
 					</md-input-container>
-					<md-input-container 	flex> <label>Contact<span
+					
+					<md-input-container flex> <label>Contact<span
 						style="color: red" ng-show="studentForm.contact.$error.required"
 						class="mandatory">*</span></label> <input type="number" name="contact"
 						ng-model="tempStudent.contact" ng-minlength="10" ng-maxlength="10"
@@ -55,23 +56,50 @@
 
 				<div layout="column" flex>
 
-					<md-input-container flex="30"> <md-select
-						ng-model="tempStudent.standard" placeholder="Standard"
-						ng-change="getDivisionByStandard()"> <md-option ng-value="standard"
-						ng-repeat="standard in standards">{{standard}}</md-option> </md-select> </md-input-container>
-						
-						
-					<md-input-container> <label>Division</label> <md-select
-						ng-model="tempStudent.division" placeholder="Division"
-						ng-change="getSubjectByDivision()"> <md-option
-						ng-value="division" ng-repeat="division in divisions">{{division}}</md-option>
-					</md-select> </md-input-container>
 					
-					<md-input-container> <label>Subject</label> <md-select
-						ng-model="tempStudent.subject" placeholder="Subject" ng-change="">
-					<md-option ng-value="subject" ng-repeat="subject in subjects">{{subject}}</md-option>
-					</md-select> </md-input-container>
+					<md-input-container> <label>Standard<span
+						style="color: red"
+						ng-show="studentForm.standard.$error.required"
+						class="mandatory">*</span></label> <md-select name="standard"
+						ng-model="tempStudent.standard"
+						ng-change="getDivisionByStandard()" ng-required="true">
+					<md-option ng-value="standard" ng-repeat="standard in standards">{{standard}}</md-option>
+					</md-select>
+					<div ng-messages="studentForm.standard.$error"
+						ng-if="studentForm.standard.$submitted || studentForm.standard.$touched">
+						<div ng-message="required">Please Select Standard.</div>
+					</div>
+					</md-input-container>
 					
+					<md-input-container> <label>Division<span
+						style="color: red"
+						ng-show="studentForm.division.$error.required"
+						class="mandatory">*</span></label> <md-select name="division"
+						ng-model="tempStudent.division"
+						ng-change="getSubjectByDivision()" ng-required="true">
+					<md-option ng-value="division" ng-repeat="division in divisions">{{division}}</md-option>
+					</md-select>
+					<div ng-messages="studentForm.division.$error"
+						ng-if="studentForm.division.$submitted || studentForm.division.$touched">
+						<div ng-message="required">Please Select Division.</div>
+					</div>
+					</md-input-container>
+					
+					
+					<md-input-container>
+					<label>Subject<span
+						style="color: red"
+						ng-show="studentForm.subject.$error.required"
+						class="mandatory">*</span></label> <md-select name="subject"
+						ng-model="tempStudent.subject" 
+						ng-change="" ng-required="true"> <md-option ng-value="subject"
+						ng-repeat="subject in subjects track by $index ">{{subject}}</md-option>
+					</md-select>
+					<div ng-messages="studentForm.subject.$error"
+						ng-if="studentForm.subject.$submitted || studentForm.subject.$touched">
+						<div ng-message="required">Please Select Subject.</div>
+					</div>
+					</md-input-container>
 
 					<md-input-container flex> <label>
 
