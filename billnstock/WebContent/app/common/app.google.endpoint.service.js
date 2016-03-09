@@ -1097,7 +1097,26 @@ function googleEndpointSF($log, $q) {
 				});
 		return deferred.promise;
 	}
+	
+	warehouseManagementService.getAllWarehouseByBusiness = function(id) {
+		var deferred = $q.defer();
+		gapi.client.warehouseManagementService.getAllWarehouseByBusiness({"id":id})
+				.execute(function(resp) {
+					$log.debug("getAllWarehouseByBusiness at enpoint:" + resp);
+					deferred.resolve(resp.items);
+				});
+		return deferred.promise;
+	}
 
+	warehouseManagementService.updateWarehouse = function(updateWarehouse) {
+		var deferred = $q.defer();
+		gapi.client.warehouseManagementService.updateWarehouse(updateWarehouse).execute(
+				function(resp) {
+					$log.debug("updateWarehouse#resp at enpoint:" + resp);
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+	}
 	 // End of WarehouseService
 	
 	/* =============================================================================================================================== */

@@ -9,10 +9,6 @@
 		NEW</md-button>
 	</section>
 </div>
-<div layout layout-sm="column">
-	<md-input-container flex> <label>Search</label> <input
-		ng-model="searchText"> </md-input-container>
-</div>
 
 <div layout layout-sm="column">
 	<md-input-container flex> <label>Search</label> <input
@@ -24,22 +20,22 @@
 	<table md-data-table md-row-select="selected" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onOrderChange">
 			<tr>
-				<th name="Customer Id" order-by="customerId"></th>
-				<th name="Customer Name" order-by="customerName"></th>
-				<th name="Mobile" order-by="mobile"></th>
-				<th name="Email" order-by="email"></th>
-				<th name="Address" order-by="customerAddress"></th>
+				<th name="Warehouse Id" order-by="id"></th>
+				<th name="Warehouse Name" order-by="warehouseName"></th>
+				<th name="Description" order-by="description"></th>
+				<th name="Address1" order-by="address1"></th>
+				<th name="Address2" order-by="address2"></th>
 			</tr>
 		</thead>
 
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="customer in customers | orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit">
-				<td>{{customer.id}}</td>
-				<td>{{customer.customerName}}</td>
-				<td>{{customer.mobile}}</td>
-				<td>{{customer.email}}</td>
-				<td>{{customer.customerAddress}}</td>
+				ng-repeat="warehouse in warehouses | orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit">
+				<td>{{warehouse.id}}</td>
+				<td>{{warehouse.warehouseName}}</td>
+				<td>{{warehouse.description}}</td>
+				<td>{{warehouse.address1}}</td>
+				<td>{{warehouse.address2}}</td>
 				<td><section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary"
 							ui-sref="customer.view({selectedCustomerId: customer.id})">
@@ -58,12 +54,35 @@
 			</div>
 		</md-data-table-toolbar>
  --> <md-data-table-pagination md-limit="query.limit"
-		md-page="query.page" md-total={{customers.length}}
+		md-page="query.page" md-total={{warehouses.length}}
 		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
 </div>
 
-<input type=button onClick="print()" value="Print"> <applet
-	id="qz" code="qz.PrintApplet.class" archive="./qz-print.jar"
-	width="100" height="100">
-	<param name="printer" value="zebra">
-</applet> </md-content>
+<div id="update">
+	<section layout="layout-sm=row">
+		<md-input-container flex> <label>Warehouse Id
+		</label> <input ng-model="selected[0].id" disabled> </md-input-container>
+		<md-input-container flex> <label>Warehouse
+			Name </label> <input ng-model="selected[0].warehouseName"> </md-input-container>
+		<md-input-container flex> <label>Description
+		</label> <input ng-model="selected[0].description"> </md-input-container>
+		<md-input-container flex> <label>Address1
+		</label> <input ng-model="selected[0].address1"> </md-input-container>
+
+		<md-input-container flex> <label>Address2 </label> <input
+			ng-model="selected[0].address2"> </md-input-container>
+		<md-input-container flex> <label>City </label> <input
+			ng-model="selected[0].city"> </md-input-container>
+			<md-input-container flex> <label>State </label> <input
+			ng-model="selected[0].state"> </md-input-container>
+			<md-input-container flex> <label>Country </label> <input
+			ng-model="selected[0].country"> </md-input-container>
+
+	</section>
+
+	<section layout="row" layout-sm="column" layout-align="left left">
+		<md-button class="md-raised md-primary" ng-click="updateWarehouse()">Update</md-button>
+	</section>
+
+</div>
+ </md-content>

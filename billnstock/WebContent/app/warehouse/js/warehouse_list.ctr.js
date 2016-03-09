@@ -5,7 +5,7 @@ app.controller(
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log,$stateParams, objectFactory, appEndpointSF) {
 
-			$log.debug("Inside customerCtr");
+			$log.debug("Inside warehouseListCtr");
 
 			
 			$scope.curUser = appEndpointSF.getLocalUserService()
@@ -14,21 +14,39 @@ app.controller(
 			2
 //			$scope.cust.businessAccount =$scope.curUser.businessAccount;
 			
-			$scope.getAllCustomersByCurrUser = function() {
-				$log.debug("Inside Ctr $scope.getAllCustomers");
-				var customerService = appEndpointSF.getCustomerService();
+			$scope.getAllWarehouseByBusiness = function() {
+				$log.debug("Inside function $scope.getAllWarehouseByBusiness");
+				var warehouseService = appEndpointSF.getWarehouseManagementService();
 
-				customerService.getAllCustomersByCurrUser($scope.curUser.businessAccount.id).then(
-						function(custList) {
-							$log.debug("Inside Ctr getAllCustomers");
-							$scope.customers = custList;
-							$log.debug("Inside Ctr $scope.customers:"
-									+ angular.toJson($scope.customers));
+				warehouseService.getAllWarehouseByBusiness($scope.curUser.businessAccount.id).then(
+						function(warehouseList) {
+							$scope.warehouses = warehouseList;
+							$log.debug("Inside Ctr $scope.warehouses:"
+									+ angular.toJson($scope.warehouses));
 						});
 			}
 
-			$scope.customers = [];
-			$scope.getAllCustomersByCurrUser();
+			$scope.getAllWarehouseByBusiness();
+			
+			
+			$scope.selected = [];
+			$scope.updateWarehouse = function() {
+				var warehouseService = appEndpointSF.getWarehouseManagementService();
+
+				warehouseService.updateWarehouse($scope.selected[0]).then(
+						function(msgBean) {
+							$scope.showSimpleToast();
+						});
+				$log.debug("Selected Warehouse updated");
+				$scope.selected[0].id = "";
+				$scope.selected[0].warehouseName = "";
+				$scope.selected[0].description = "";
+				$scope.selected[0].address1 = "";
+				$scope.selected[0].address2 = "";
+				$scope.selected[0].city = ""; 
+				$scope.selected[0].state = "";
+				$scope.selected[0].country = "";
+			}
 			
 			$scope.toggleRight = buildToggler('right');
 
