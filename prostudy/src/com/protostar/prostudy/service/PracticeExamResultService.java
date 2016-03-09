@@ -9,8 +9,9 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
-
 import com.protostar.prostudy.entity.PracticeExamResultEntity;
+import com.protostar.prostudy.entity.UserEntity;
+
 
 @Api(name = "practiceExamResultService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
 public class PracticeExamResultService {
@@ -25,14 +26,13 @@ public class PracticeExamResultService {
 		return ofy().load().type(PracticeExamResultEntity.class).list();
 	}
 
+	
 	@ApiMethod(name = "getPracticeExamResultbyID")
-	public List<PracticeExamResultEntity> getPracticeExamResultbyID(
-			@Named("userId") String struct) {
-
-		return ofy().load()
-				.type(PracticeExamResultEntity.class)
-				.filter("userId", struct).list();
-
+	public List<PracticeExamResultEntity> getPracticeExamResultbyID(@Named("email_id") String email_id) {
+		List<PracticeExamResultEntity> list = ofy().load().type(PracticeExamResultEntity.class)
+				.filter("email_id", email_id).list();
+		return list;
 	}
+
 
 }
