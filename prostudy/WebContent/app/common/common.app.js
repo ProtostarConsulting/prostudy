@@ -143,7 +143,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('institute.addStudents', {
 		url : "/institute/addStudents/:currentInstID",
 		templateUrl : '/app/institute/institute_addStudents.html',
-		controller : 'instituteAddInfoCtr'
+		controller : 'instituteAddStudCtr'
 	}).state('institute.addStandards', {
 		url : "/institute/addStandards/:currentInstID",
 		templateUrl : '/app/institute/institute_addStandards.html',
@@ -161,7 +161,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/institute/institute_list.html',
 		controller : 'instituteListCtr'
 	}).state('institute.view', {
-		url : "/view/:selectedInstituteId",
+		url : "/view/:currentInstID",
 		templateUrl : '/app/institute/institute_view.html',
 		controller : 'instituteViewCtr'
 	}).state('institute.view.view_admins', {
@@ -232,18 +232,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/attendanceReportbyClass",
 		templateUrl : '/app/attendance/attendance_reportBySubjectClass.html',
 		controller : 'reportBySubjectClassCtr',  
-		params : {
-				 newPresentCount : null,
-				 newAbsentCount : null
-				  }
-	}).state('attendance.reportDisplay', {
-		url : "/attendanceReportDisplay",
-		templateUrl : '/app/attendance/reportDisplay.html',
-		controller : 'reportDisplayCtr',
-		params : {
-				 newPresentCount : null,
-				 newAbsentCount : null
-				  }
 	}).state('report', {
 		url : "/report",
 		templateUrl : '/app/report/report_module.html',
@@ -265,7 +253,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : "/app/chapter/chapter_view.html",
 		controller : 'chapterViewCtr'
 	}).state('chapter.edit', {
-		url : "/edit",
+		url : "/edit/:selectedChapterId",
 		templateUrl : "/app/chapter/chapter_edit.html",
 		controller : 'chapterEditCtr'
 	}).state('book', {
@@ -366,6 +354,22 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/book/book_list.html',
 		controller : 'bookListCtr'
 
+	}).state('certificateMgmt', {
+		url : "/certificateMgmt",
+		templateUrl : '/app/certificateMgmt/certificate_module.html',
+		controller : 'certificateModuleCtr'
+	}).state('certificateMgmt.generateTemplate', {
+		url : "/generateTemplate/:selectedStudID/:selectedfirstName/:selectedlastName",
+		templateUrl : '/app/certificateMgmt/generateTemplate.html',
+		controller : 'generateTemplateCtr'
+	}).state('certificateMgmt.generateCertificate', {
+		url : "/generateCertificate",
+		templateUrl : '/app/certificateMgmt/generateCertificate.html',
+		controller : 'generateCertificateCtr'
+	}).state('certificateMgmt.viewCertificate', {
+		url : "/viewCertificate",
+		templateUrl : '/app/certificateMgmt/viewCertificate.html',
+		controller : 'viewCertificateCtr'
 	});
 
 });

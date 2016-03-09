@@ -24,6 +24,14 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getUserService();
 	};// end of getUserService
 	
+	endpointFactory.getCertificateService = function() {
+
+		if (isTestMode)
+			return localDBServiceFactory.getCertificateService();
+		else
+			return googleEndpointSF.getCertificateService();
+	};// end of getCertificateService
+	
 	endpointFactory.getStandardService = function() {
 
 		if (isTestMode)
@@ -226,6 +234,13 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 		
 		gapi.client.load('subjectService', 'v0.1', function() {
 			$log.debug("SubjectService Loaded......");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+		
+		gapi.client.load('certificateService', 'v0.1', function() {
+			$log.debug("CertificateService Loaded......");
 			endpointFactory.is_service_ready = true;
 			deferred.resolve();
 
