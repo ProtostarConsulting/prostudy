@@ -23,7 +23,7 @@ angular
 					$scope.selectedSubject;
 					$scope.selectedStandard;
 					$scope.selectedDivision;
-					$scope.selectedStudent = [];
+					$scope.selectedStud;
 					$scope.newSelectedStudent = [];
 					$scope.selected;
 					$scope.present;
@@ -171,7 +171,7 @@ angular
 					{
 						for(var j=0;j<$scope.newStudList.length;j++)
 							{
-								if($scope.selectedStudent.studID == $scope.newStudList[j].studID)
+								if($scope.selectedStud.studID == $scope.newStudList[j].studID)
 								{
 									$scope.newSelectedStudent.push($scope.newStudList[j]);
 								
@@ -253,7 +253,7 @@ angular
 				  	
 						$scope.clear = function() {
 							
-							$scope.selectedStudent = "";
+							$scope.selectedStud = "";
 							$scope.selectedStandard = "";
 							$scope.selectedSubject = "";
 							$scope.newSelectedStudent.splice(0,$scope.newSelectedStudent.length);
