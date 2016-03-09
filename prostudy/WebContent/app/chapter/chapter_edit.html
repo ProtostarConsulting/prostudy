@@ -1,184 +1,152 @@
 <md-content>
 
-<div  id="editChapterList">
-
+<div id="editChapterList">
+	<h3 class="md-headline">Chapter</h3>
 
 	<md-data-table-container>
 	<table md-data-table md-row-select="selected" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onorderchange">
 			<tr>
-				<th name="Chapter No" order-by="chapterId"></th>
+				<th name="Chapter ID" order-by="id"></th>
 				<th name="Chapter Name" order-by="chapter_name"></th>
 				<th name="Board" order-by="board"></th>
-				<th name="Student Class" order-by="standard"></th>
+				<th name="Standard" order-by="standard"></th>
 				<th name="Subject" order-by="subject"></th>
-</tr>
+			</tr>
 		</thead>
 
 		<tbody>
-			<tr md-auto-select ng-repeat="chapter in chapters  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText ">
+			<tr md-auto-select
+				ng-repeat="chapter in chapters  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText ">
 
-	             <td>
-					<div ng-hide="editingData[chapter.chapterId]">
-						{{chapter.chapterId}}</div>
-					<div ng-show="editingData[chapter.chapterId]">
+				<td>
+					<div ng-hide="editingData[chapter.id]">{{chapter.id}}</div>
+					<div ng-show="editingData[chapter.id]">
 						<md-input-container flex> <input
 							ng-model="chapter.chapterId" /> </md-input-container>
 					</div>
 				</td>
 
-		
+
 				<td>
-					<div ng-hide="editingData[chapter.chapterId]">
+					<div ng-hide="editingData[chapter.id]">
 						{{chapter.chapter_name}}</div>
 					<div ng-show="editingData[chapter.chapter_name]">
 						<md-input-container flex> <input
 							ng-model="chapter.chapter_name" /> </md-input-container>
 					</div>
 				</td>
-				
-                <td>
-					<div ng-hide="editingData[chapter.chapterId]">
-						{{chapter.board}}</div>
-					<div ng-show="editingData[chapter.chapterId]">
+
+				<td>
+					<div ng-hide="editingData[chapter.id]">{{chapter.board}}</div>
+					<div ng-show="editingData[chapter.id]">
 						<md-input-container flex> <input
 							ng-model="chapter.board" /> </md-input-container>
 					</div>
 				</td>
 
 				<td>
-					<div ng-hide="editingData[chapter.chapterId]">
-						{{chapter.standard}}</div>
-					<div ng-show="editingData[chapter.chapterId]">
+					<div ng-hide="editingData[chapter.id]">{{chapter.standard}}</div>
+					<div ng-show="editingData[chapter.id]">
 						<md-input-container flex> <input
 							ng-model="chapter.standard" /> </md-input-container>
 					</div>
 				</td>
-				
+
 				<td>
-					<div ng-hide="editingData[chapter.chapterId]">
-						{{chapter.subject}}</div>
-					<div ng-show="editingData[chapter.chapterId]">
+					<div ng-hide="editingData[chapter.id]">{{chapter.subject}}</div>
+					<div ng-show="editingData[chapter.id]">
 						<md-input-container flex> <input
 							ng-model="chapter.subject" /> </md-input-container>
 					</div>
 				</td>
 
-	<td>
-	   <md-button class="md-raised md-primary" ng-hide="editingData[chapter.chapterId]" ng-click="modify(chapter)">Edit</md-button>
-	    <md-button class="md-raised md-primary" ng-show="editingData[chapter.chapterId]" ng-click="update(chapter)">Save</md-button>
-	</td>
+				<td><md-button class="md-raised md-primary"
+						ng-hide="editingData[chapter.id]" ng-click="modify(chapter)">Edit</md-button>
+					
+				</td>
 
-				<!-- <td>
-				    <md-button class="md-raised"  ng-click="view(chapter)"> View</md-button>
-				</td> -->
+				
 			</tr>
 		</tbody>
-		
+
 	</table>
-	<md-data-table-pagination md-limit="query.limit"
-  md-page="query.page" md-total={{chapters.length}}
-  md-trigger="onpagechange"></md-data-table-pagination>
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{chapters.length}} md-trigger="onpagechange"></md-data-table-pagination>
 
 	</md-data-table-container>
 </div>
 
-		
-		<div layout="column" flex  id="updateChapter">
 
-	  <md-subheader class="md-primary">
+<div flex id="updateChapter">
+
+	<div layout="column">
+		<md-subheader class="md-primary">
 		<h3 class="md-headline">Edit Chapter</h3>
 		</md-subheader>
-	<md-input-container>
 
-			<!-- 	<label>Chapter Id</label>
-				<input name="id" id="id"  ng-model="selected[0].id" readonly> -->
+		<md-input-container> <label>Chapter ID</label> <input
+			type="text" name="chapterId" id="chapterId" ng-model="selected[0].id" readonly>
+		</md-input-container>
 
-				<label>ID :-</label>
-				<input  name="chapterId" id="chapterId"  ng-model="selected[0].chapterId">
+		<md-input-container> <label>Chapter Name
+		</label> <input name="chapter_name" id="chapter_name"
+			ng-model="selected[0].chapter_name"> </md-input-container>
 
-			</md-input-container>
-			
-			<md-input-container>
-				<label>Chapter Name </label>
-				<input name="chapter_name" id="chapter_name"  ng-model="selected[0].chapter_name">
-			</md-input-container>
+		<md-input-container flex> <label>Chapter
+			Content</label>
+		<div text-angular="" ng-model="selected[0].chapter_content"></div>
+		</md-input-container>
 
-			<md-input-container>
-				<label>Chapter Content</label>
-				<p ng-bind-html="chapter.chapter_content"></p>
-			<!-- 	<text-angular name="chapter_content" id="chapter_content" ng-model="selected[0].chapter_content"></text-angular> -->
-			</md-input-container>
+		<md-input-container> <label>Board</label> <input
+			name="board" id="board" ng-model="selected[0].board"> </md-input-container>
 
-			<md-input-container>
-				<label>Board</label>
-				<input name="board" id="board"  ng-model="selected[0].board">
-			</md-input-container>
+		<md-input-container> <label>Standard</label> <input
+			name="standard" id="standard" ng-model="selected[0].standard">
+		</md-input-container>
 
-			<md-input-container>
-				<label>Student Class</label>
-				<input name="standard" id="standard"  ng-model="selected[0].standard">
-			</md-input-container>
+		<md-input-container> <label>Subject</label> <input
+			name="subject" id="subject" ng-model="selected[0].subject"> </md-input-container>
 
-			<md-input-container>
-				<label>Subject</label>
-				<input  name="subject" id="subject"   ng-model="selected[0].subject">
-			</md-input-container>
+	</div>
 
-			
+	<div layout="row" layout-sm="column" layout-align="left left">
+
+		<md-button class="md-raised md-primary" ng-click="updateChapter()">Save</md-button>
+		<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
+
+	</div>
+</div>
+
+<div layout="column" layout-sm="column" id="viewChapter">
+
+	<md-input-container> <label>Chapter ID
+		{{chapter.id}} </label> </md-input-container>
+
+	<md-input-container> <label>Chapter Name
+		{{chapter.chapter_name}} </label> </md-input-container>
+
+	<md-input-container> <label>Chapter
+		Content </label>
+	<p ng-bind-html="chapter.chapter_content"></p>
+	</md-input-container>
+
+	<md-input-container> <label>Board
+		{{chapter.board}}</label> </md-input-container>
+
+	<md-input-container> <label>Standard
+		{{chapter.standard}}</label> </md-input-container>
+
+	<md-input-container> <label>Subject
+		{{chapter.subject}}</label> </md-input-container>
+
 
 	<section layout="row" layout-sm="column" layout-align="left left">
-			
-			<md-button class="md-raised md-primary" ng-click="update(selected[0])">Save</md-button>
-			<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
+		<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
 
-		</section>
-		</div>
-		
-		
-<!-- 	<div id="viewChapter">
-
-		<div layout="row" layout-sm="column">
-
-			<div layout="column" flex>
+	</section>
+</div>
 
 
-			<md-input-container>
-				<label>Chapter No :-{{chapter.chapterId}} </label>
-				</md-input-container>
-				
-					<md-input-container>
-				<label>Chapter Name :-{{chapter.chapter_name}} </label>
-				</md-input-container>
 
-				<md-input-container>
-				<label>Chapter Content :-</label> 
-				    <p ng-bind-html="chapter.chapter_content"></p>
-                    <div text-angular="" ng-model="chapter.chapter_content" disabled></div>
-			
-			    </md-input-container>
-
-	
-				<md-input-container>
-				        <label>Board :-{{chapter.board}}</label>
-				</md-input-container>
-
-				<md-input-container>
-				     <label>Student Class :-{{chapter.standard}}</label>
-				</md-input-container>
-
-				<md-input-container>
-				    <label>Subject :-{{chapter.subject}}</label>
-				</md-input-container>
-
-			</div>
-		</div>
-			<section layout="row" layout-sm="column" layout-align="left left">
-		      <md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
-
-		     </section>
-	</div> -->
-		
-		
-		
 </md-content>

@@ -5,24 +5,22 @@
 	<div layout="row" layout-align="center center">
 
 		<md-input-container flex> <label>Enter
-			Chapter No :</label> <input ng-model="searchText.chapterId"> </md-input-container>
-
-
+			Chapter Name :</label> <input ng-model="searchText.chapter_name"> </md-input-container>
 	</div>
 
 	<div layout="row" layout-align="center center" layout-sm="column">
-	
 		<td><md-button class="md-raised md-primary"
 				ng-click="clicked=true">View Chapter Details</md-button></td>
-				
 		<td><md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button></td>
 
 	</div>
 
-	<div custom-select="chapter in chapters | filter: { state: $searchTerm }">
+	<div
+		custom-select="chapter in chapters | filter: { state: $searchTerm }">
 
 		<div class="pull-left">
-			<strong>{{ chapter.chapterId}}</strong><br /></div>
+			<strong>{{chapter.chapter_name}}</strong><br />
+		</div>
 		<div class="clearfix"></div>
 	</div>
 
@@ -32,41 +30,41 @@
 
 		<div layout="row" layout-sm="column">
 
-			<div layout="column" flex ng-repeat="chapter in chapters | filter:searchText">
+			<div layout="column" flex
+				ng-repeat="chapter in chapters | filter:searchText">
 
 
-				<md-input-container>
-				          <label>Chapter No :-</label> <input name="chapterId" id="chapterId" ng-model="chapter.chapterId" disabled>
-                </md-input-container>
-                
-                	<md-input-container>
-				          <label>Chapter Name :-</label> <input name="chapter_name" id="chapter_name" ng-model="chapter.chapter_name" disabled>
-                </md-input-container>
+				<md-input-container> <label>Chapter ID
+				</label> <input name="chapterId" id="chapterId" ng-model="chapter.id"
+					readonly> </md-input-container>
 
-			
+				<md-input-container> <label>Board</label> <input
+					name="board" id="board" ng-required="true" ng-model="chapter.board"
+					readonly> </md-input-container>
 
-				<md-input-container> 
-				     <label>Chapter Content
-				     <p ng-bind-html="chapter.chapter_content"></p> </label>
+				
+				<md-input-container> <label>Standard</label> <input
+					name="standard" id="standard" ng-required="true"
+					ng-model="chapter.standard" readonly> </md-input-container>
+
+				<md-input-container> <label>Subject</label> <input
+					name="subject" id="subject" ng-model="chapter.subject" readonly>
 				</md-input-container>
 
 
-				<md-input-container>
-				        <label>Board</label>
-				        <input name="board" id="board" ng-required="true" ng-model="chapter.board" disabled>
+				<md-input-container> <label>Chapter
+					Name </label> <input name="chapter_name" id="chapter_name"
+					ng-model="chapter.chapter_name" readonly> </md-input-container>
+
+				<md-input-container> <label>Chapter
+					content</label>
+				<p ng-bind-html="chapter.chapter_content">
+					<input name="content" id="content" ng-required="true"
+						ng-model="chapter.chapter_content" readonly>
+				</p>
 				</md-input-container>
 
-				<md-input-container>
-				     <label>Student Class</label> 
-				     <input name="standard" id="standard" ng-required="true" ng-model="chapter.standard" disabled>
-				</md-input-container>
-
-				<md-input-container>
-				    <label>Subject</label> <input name="subject" id="subject" ng-model="chapter.subject" disabled>
-				</md-input-container>
-
-			
-
+				
 			</div>
 		</div>
 	</div>
