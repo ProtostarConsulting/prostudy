@@ -22,7 +22,7 @@ public class AccountService {
 	@ApiMethod(name = "addAccount")
 	public void addAccount(AccountEntity accountEntity) {
 				
-		Key<AccountEntity> cust = ofy().save().entity(accountEntity).now();
+		ofy().save().entity(accountEntity).now();
 	
 	}
 
