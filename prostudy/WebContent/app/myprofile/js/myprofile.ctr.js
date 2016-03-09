@@ -134,11 +134,6 @@ angular.module("prostudyApp").controller(
 							$log.debug("msgBean.msg:" + msgBean.msg);
 							$scope.showSavedToast();
 					});
-				$log.debug("Select profile updated");
-				
-				$log.debug("updated value :"+$scope.tempUser.role);
-				//$scope.isShowTable = true;
-				//$scope.isShowRecord = false;
 				
 			}
 			
