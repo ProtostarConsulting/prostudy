@@ -1,4 +1,5 @@
 package com.protostar.prostudy.service;
+
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import java.util.List;
@@ -13,8 +14,6 @@ import com.protostar.prostudy.entity.InstituteEntity;
 import com.protostar.prostudy.entity.PracticeExamEntity;
 import com.protostar.prostudy.entity.QuestionEntity;
 
-
-
 @Api(name = "questionService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
 public class QuestionService {
 
@@ -24,32 +23,35 @@ public class QuestionService {
 		ofy().save().entity(ques).now();
 		return now;
 	}
-	
+
 	@ApiMethod(name = "getQuestion")
 	public List<QuestionEntity> getQuestion() {
 		return ofy().load().type(QuestionEntity.class).list();
 	}
-	
+
 	@ApiMethod(name = "updateQuestion")
 	public QuestionEntity updateQuestion(QuestionEntity ques) {
 		QuestionEntity now = ques;
 		ofy().save().entity(ques).now();
-		System.out.println("inside update Q now"+now);
+		System.out.println("inside update Q now" + now);
 		return now;
-			}
+	}
 
-	 @ApiMethod(name="getQuestionByID") 
-	 public QuestionEntity getQuestionByID(@Named("quesId") Long QId)
-	 {
-		 QuestionEntity question = ofy().load().type(QuestionEntity.class).id(QId).now();		 
-		 return question;	
-	 }//end of getQuestionByID
-		
+	@ApiMethod(name = "getQuestionByID")
+	public QuestionEntity getQuestionByID(@Named("quesId") Long QId) {
+		QuestionEntity question = ofy().load().type(QuestionEntity.class)
+				.id(QId).now();
+		return question;
+	}// end of getQuestionByID
+
 	@ApiMethod(name = "getQuestionsByInstitute")
-	 public List<QuestionEntity> getQuestionsByInstitute(@Named("instituteID") Long instituteID) {
+	public List<QuestionEntity> getQuestionsByInstitute(
+			@Named("instituteID") Long instituteID) {
 		System.out.println("inside getQuestionsByInstitute");
-	  List<QuestionEntity> questionsList = ofy().load().type(QuestionEntity.class).filter("instituteID", instituteID).list();
-	  return questionsList;
-	  
-	 }
+		List<QuestionEntity> questionsList = ofy().load()
+				.type(QuestionEntity.class).filter("instituteID", instituteID)
+				.list();
+		return questionsList;
+
+	}
 }

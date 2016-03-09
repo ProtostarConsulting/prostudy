@@ -9,7 +9,9 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
+import com.protostar.prostudy.entity.BookEntity;
 import com.protostar.prostudy.entity.ChapterEntity;
+import com.protostar.prostudy.entity.QuestionEntity;
 
 @Api(name = "chapterService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
 public class ChapterService 
@@ -21,7 +23,7 @@ public class ChapterService
 	{
 		System.out.println("addChapter ");
 		 Key<ChapterEntity> now = ofy().save().entity(chapterEntity).now();
-	}//end of addChapter
+	}
 	
 	@ApiMethod(name="getAllChapters")
 	public List<ChapterEntity>getAllChapters()
@@ -29,19 +31,30 @@ public class ChapterService
 		System.out.println("getAllChapters ");
 		return ofy().load().type(ChapterEntity.class).list();
 		
-	}//end of getAllChapters
+	}
 	
 	 @ApiMethod(name="getChaptersByID") 
-	 public ChapterEntity getChaptersByID(@Named("chapterId") Long chapterId)
+	 public ChapterEntity getChaptersByID(@Named("id") String id)
 	 {
 		 System.out.println("getChaptersByID ");
-		 ChapterEntity chapterById= ofy().load().type(ChapterEntity.class).filter("chapterId", chapterId).first().now();
-		 System.out.println("chapterById "+chapterById);
+		 ChapterEntity chapterById = ofy().load().type(ChapterEntity.class).id(id).now();		 
 		 return chapterById;
-	 }//end of getChaptersByID
+	 }
 	 
-
-
+	 @ApiMethod(name = "getChaptersByInstitute")
+	 public List<ChapterEntity> getChaptersByInstitute(@Named("instituteID") Long instituteID) {
+		System.out.println("inside getChaptersByInstitute");
+	  List<ChapterEntity> chapterList = ofy().load().type(ChapterEntity.class).filter("instituteID", instituteID).list();
+	  return chapterList;
+	  
+	 }
+	 
+	 @ApiMethod(name = "updateChapter")
+		public ChapterEntity updateChapter(ChapterEntity chapter) {
+		 ChapterEntity now = chapter;
+		 ofy().save().entity(chapter).now();
+		 return now;
+	}
 
 }// end of ChapterService
 

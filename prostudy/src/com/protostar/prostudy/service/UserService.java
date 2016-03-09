@@ -9,6 +9,7 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
+import com.protostar.prostudy.entity.StudentEntity;
 import com.protostar.prostudy.entity.UserEntity;
 import com.protostar.prostudy.until.data.UtilityService;
 
@@ -70,5 +71,7 @@ public class UserService {
 		}
 
 	}
+	
+	
 
 }

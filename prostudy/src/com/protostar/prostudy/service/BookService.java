@@ -10,6 +10,7 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
+import com.protostar.prostudy.entity.AttendanceEntity;
 import com.protostar.prostudy.entity.BookEntity;
 
 @Api(name = "bookService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
@@ -21,30 +22,16 @@ public class BookService {
 		System.out.println("addBook ");
 		 Key<BookEntity> now = ofy().save().entity(bookEntity).now();
 		 System.out.println("addBook "+now);
-	}//end of addBook
+	}
 	
 
-	@ApiMethod(name="getBooks" ,path="Somepath_realted_to_your_service")
-	public List<BookEntity>getBooks(@Named("id") Long id)
+	@ApiMethod(name="getBooks")
+	public List<BookEntity>getBooks()
 	{
-		 System.out.println("Inside getBooks ");
-		 
-		  List<BookEntity> bookList=ofy().load().type(BookEntity.class).list();
-		 	  
-		   List<BookEntity> filteredbooks = new ArrayList<BookEntity>();
-		 
-		   
-		   for(int i=0;i<bookList.size();i++)
-		   {    
-		     if(bookList.get(i).getUser().getId().equals(id))
-		     {
-		   	      filteredbooks.add(bookList.get(i));
-		     }
-		   }
-		   return filteredbooks;
+		System.out.println("Inside getBooks ");
+		return ofy().load().type(BookEntity.class).list();
 		
-	}//end of getBooks
-
+	}
 			  
 	 @ApiMethod(name="getBookByID") 
 	 public BookEntity getBookByID(@Named("id") Long id)
@@ -52,9 +39,8 @@ public class BookService {
 		 System.out.println("Inside getBookByID ");
 		 BookEntity theBook = ofy().load().type(BookEntity.class).id(id).now();	
 		 return theBook;
-	/*	 BookEntity bookById = ofy().load().type(BookEntity.class).filter("bookId ", bookId).first().now();
-		 return bookById;*/	
-	 }//end of getBookbyID
+	
+	 }
 	 
 	 @ApiMethod(name="getBookByStandard") 
 	 public List<BookEntity> getBookByStandard(@Named("standard") String standard)
@@ -65,8 +51,16 @@ public class BookService {
 		 System.out.println("bookByStandardId :"+bookByStandardId);
 		 
 		 return bookByStandardId; 
-	 }//end of getBookByStandard
-	 
+	 }
+
+	 @ApiMethod(name = "getBooksByInstitute" , path="Somepath_realted_to_your_service")
+	 public List<BookEntity> getBooksByInstitute(@Named("instituteID") Long instituteID) {
+		System.out.println("inside getBooksByInstitute");
+	  List<BookEntity> bookList = ofy().load().type(BookEntity.class).filter("instituteID", instituteID).list();
+	  return bookList;
+	  
+	 }
+
 	
 }// end of BookService
 
