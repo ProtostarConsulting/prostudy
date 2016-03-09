@@ -5,7 +5,9 @@ angular.module("prostudyApp").controller(
 			
 			$scope.uploadFile = function()
 			{
-				alert("File Uploaded Successfully");
+				alert("Inside blobstoreCtr");
+				//alert("File Uploaded Successfully");
+				
 			}//end of uploadFile
 
 		});// end of blobstoreCtr

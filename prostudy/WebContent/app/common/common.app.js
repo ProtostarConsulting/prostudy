@@ -118,7 +118,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'quickstartCtr'
 	}).state('blobstore', {
 		url : "/blobstore",
-		templateUrl : '/app/blobstore/myIndexFile.jsp',
+		templateUrl : '/app/blobstore/myCorn.html',
 		controller : 'blobstoreCtr'
 	}).state('email', {
 		url : "/email",

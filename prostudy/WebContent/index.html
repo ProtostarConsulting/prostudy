@@ -85,39 +85,17 @@
 				<md-button
 				ui-sref="syllabus" ng-click="close()" class="md-primary" show-gt-md>Syllabus</md-button>
 
-			<md-button ui-sref="myBooks" ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-				ng-click="close()" class="md-primary" show-gt-md> My
-			Books </md-button>
+			<md-button ui-sref="blobstore" ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
+				ng-click="close()" class="md-primary" show-gt-md>blobstore</md-button>
 
 			<md-button ui-sref="myPracticeExams" ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'" ng-click="close()"
-				class="md-primary" show-gt-md> My Practice Exams </md-button> 
-				
-				<md-button
+				class="md-primary" show-gt-md> My Practice Exams </md-button> <md-button
 				aria-label="Login" ng-hide="curUser == null" ng-click="loginClick()">
-			<a ui-sref="updatemyprofile">Edit profile </a> </md-button> 
-			
-			<md-button ui-sref="quickstart" ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || 'Student'"
-				ng-click="close()" class="md-primary" show-gt-md> MyQuickStart </md-button>
-				
-			<md-button ui-sref="blobstore" ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || 'Student'"
-				ng-click="close()" class="md-primary" show-gt-md> BlobStore </md-button>
-			
-			<md-button
+			<a ui-sref="updatemyprofile">Edit profile </a> </md-button> <md-button
 				ui-sref="attendance"
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
 				ng-click="close()" class="md-primary" show-gt-md>
-
-			Attendance </md-button> 
-			<md-button
-				ui-sref="certificateMgmt"
-				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-				ng-click="close()" class="md-primary" show-gt-md>
-			Certificate Management </md-button></md-content> </md-sidenav>
-
-			Attendance </md-button>
-			
-			 </md-content> </md-sidenav>
-
+			Attendance </md-button> </md-content> </md-sidenav>
 	</md-content>
 	</md-sidenav>
 
@@ -237,8 +215,6 @@
 
 	<!--<script src="/lib/base/googleapi.client.js"></script>-->
 	<script src="https://apis.google.com/js/client.js"></script>
-<!-- <script src="http://cdn.wijmo.com/interop/angular.wijmo.3.20131.1.js" type="text/javascript"></script>
- <script src="http://cdnjs.cloudflare.com/ajax/libs/jszip/2.2.1/jszip.min.js" type="text/javascript"></script> -->
  
 
 	<!-- App JS Dependencies -->
@@ -276,7 +252,7 @@
 	<script src="/app/student/js/student_module.ctr.js"></script>
 	<script src="/app/student/js/student.ctr.js"></script>
 	<script src="/app/student/js/student.list.ctr.js"></script>
-
+	
 	<script src="/app/attendance/js/attendance_module.ctr.js"></script>
 	<script src="/app/attendance/js/attendance_add.ctr.js"></script>
 	<script src="/app/attendance/js/attendance_reportByStudent.ctr.js"></script>
@@ -305,19 +281,13 @@
 	<script src="/app/examdemo/js/examdemo_math.ctr.js"></script>
 
 	<script src="/app/myprofile/js/myprofile_update.ctr.js"></script>
-	
-	
-	<script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
-
-	
 
 
 	<script src="/app/institute/js/institute_module.ctr.js"></script>
 	<script src="/app/institute/js/institute_view.ctr.js"></script>
 	<script src="/app/institute/js/institute_addInfo.ctr.js"></script>
 	<script src="/app/institute/js/institute.list.ctr.js"></script>
-	<script src="/app/institute/js/institute_addStud.ctr.js"></script>
-	
+
 	<script src="/app/report/js/report_module.ctr.js"></script>
 	<script src="/app/report/js/display_report.ctr.js"></script>
 
@@ -332,14 +302,8 @@
 	<script src="/app/syllabus/js/syllabus_add.ctr.js"></script>
 	<script src="/app/syllabus/js/syllabus_view.ctr.js"></script>
 	<script src="/app/syllabus/js/syllabus_list.ctr.js"></script>
-
 	
-	<script src="/app/certificateMgmt/js/certificate_module.ctr.js"></script>
-	<script src="/app/certificateMgmt/js/generateTemplate.ctr.js"></script>
-	<script src="/app/certificateMgmt/js/generateCertificate.ctr.js"></script>
-	<script src="/app/certificateMgmt/js/viewCertificate.ctr.js"></script>
-
-	<script src="https://apis.google.com/js/client.js"></script>
+	<script src="/app/blobstore/js/blobstore.ctr.js"></script>
 
 
 

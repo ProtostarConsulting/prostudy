@@ -1,38 +1,62 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="WebApp_ID" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-	<display-name>ProStudy</display-name>
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-	</welcome-file-list>
-
-	<servlet>
-		<servlet-name>SystemServiceServlet</servlet-name>
-		<servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
-		<init-param>
-			<param-name>services</param-name>
-
-			<param-value>com.protostar.prostudy.service.AttendanceService,com.protostar.prostudy.service.BookService,com.protostar.prostudy.service.ChapterService,com.protostar.prostudy.service.InstituteService,com.protostar.prostudy.service.PracticeExamResultService,com.protostar.prostudy.service.PracticeExamService,com.protostar.prostudy.service.QuestionService,com.protostar.prostudy.service.StudentService,com.protostar.prostudy.service.SyllabusService,com.protostar.prostudy.service.TestService,com.protostar.prostudy.service.UserService</param-value>
-
-		 
-			
-
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>SystemServiceServlet</servlet-name>
-		<url-pattern>/_ah/spi/*</url-pattern>
-	</servlet-mapping>
-
-	<filter>
-		<filter-name>ObjectifyFilter</filter-name>
-		<filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>ObjectifyFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	<listener>
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>ProStudy</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>SystemServiceServlet</servlet-name>
+    <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
+    <init-param>
+      <param-name>services</param-name>
+      <param-value>com.protostar.prostudy.service.AttendanceService,com.protostar.prostudy.service.BookService,com.protostar.prostudy.service.ChapterService,com.protostar.prostudy.service.DivisionService,com.protostar.prostudy.service.InstituteService,com.protostar.prostudy.service.PracticeExamResultService,com.protostar.prostudy.service.PracticeExamService,com.protostar.prostudy.service.QuestionService,com.protostar.prostudy.service.StandardService,com.protostar.prostudy.service.StudentService,com.protostar.prostudy.service.SubjectService,com.protostar.prostudy.service.SyllabusService,com.protostar.prostudy.service.TestService,com.protostar.prostudy.service.UserService</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SystemServiceServlet</servlet-name>
+    <url-pattern>/_ah/spi/*</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <filter-name>ObjectifyFilter</filter-name>
+    <filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ObjectifyFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <listener>
     <listener-class>
         com.protostar.prostudy.until.AppServletContextListener
     </listener-class>
-</listener>
+  </listener>
+  <servlet>
+    <description></description>
+    <display-name>FileUploadServlet</display-name>
+    <servlet-name>FileUploadServlet</servlet-name>
+    <servlet-class>com.protostar.prostudy.service.FileUploadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FileUploadServlet</servlet-name>
+    <url-pattern>/FileUploadServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Serve</display-name>
+    <servlet-name>Serve</servlet-name>
+    <servlet-class>com.protostar.prostudy.service.Serve</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Serve</servlet-name>
+    <url-pattern>/Serve</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TestCronServlet</display-name>
+    <servlet-name>TestCronServlet</servlet-name>
+    <servlet-class>com.protostar.prostudy.service.TestCronServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestCronServlet</servlet-name>
+    <url-pattern>/TestCronServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
