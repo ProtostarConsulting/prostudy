@@ -1,6 +1,6 @@
 <style>
 #myDiv {
-	border: 20px solid blue;
+	border: 20px solid gold;
 	background-color: #4a4a4a;
 	font-style: italic;
 }
@@ -11,6 +11,9 @@
 <md-icon md-svg-icon="img/icons/print.svg"></md-icon> </md-button>
 
 <md-button class="md-raised md-primary" ng-click="addCertificate()">Save</md-button>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 <div id="myDiv" layout="column">
 
@@ -26,12 +29,12 @@
 
 	<p align="center">
 		<font face="Monotype Corsiva" size="7" color="green">successfully
-			completed the course.</font>
+			passed the {{selectedExam}} exam with the score {{selectedScore}}.</font>
 	</p>
 
 	<p>&nbsp;</p>
 
-	
+
 
 	<p>&nbsp;</p>
 	<p align="right">
@@ -43,5 +46,5 @@
 
 <iframe name="print_frame" width="0" height="0" frameborder="0"
 	src="about:blank"></iframe>
-	
-	
+
+

@@ -17,17 +17,22 @@ angular
 					$scope.selectedStudID = $stateParams.selectedStudID;
 					$scope.firstName = $stateParams.selectedfirstName;
 					$scope.lastName = $stateParams.selectedlastName;
+					$scope.selectedExam = $stateParams.selectedExam;
+					$scope.selectedScore = $stateParams.selectedScore;
 					
+					$log.debug("$scope.selectedScore :"+$stateParams.selectedScore);
 					$scope.date = new Date();
 					$scope.students = [];
-					
 					
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
 
 					$scope.certificate = {
 						studID : $scope.selectedStudID,
-						name : $scope.firstName,
+						firstName : $scope.firstName,
+						lastName : $scope.lastName,
+						exam : $scope.selectedExam,
+						score : $scope.selectedScore,
 						date : new Date()
 					};
 
@@ -51,8 +56,7 @@ angular
 						CertificateService.addCertificate($scope.certificate)
 								.then(
 										function(msgBean) {
-											$log.debug("msgBean.msg:"
-													+ angular.toJson(msgBean));
+											$log.debug("msgBean.msg:"+ angular.toJson(msgBean));
 											$scope.showSavedToast();
 
 										});
