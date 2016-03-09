@@ -15,13 +15,36 @@ public class PracticeExamResultEntity {
 	private String examTitle;
 	@Index
 	private String userId;
-	private String userName;
+	@Index
+	private String email_id;
+	
+	private String firstName;
+
+	private String lastName;
 	private String startTime;
 	private String endTime;
 	private String score;
 	private List<userAnsEntity> userAns;   
 	private List<QuestionEntity> test;
 	
+	public String getEmail_id() {
+		return email_id;
+	}
+	public void setEmail_id(String email_id) {
+		this.email_id = email_id;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 	public List<QuestionEntity> getTest() {
 		return test;
 	}
@@ -52,12 +75,7 @@ public class PracticeExamResultEntity {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+	
 	public String getStartTime() {
 		return startTime;
 	}
