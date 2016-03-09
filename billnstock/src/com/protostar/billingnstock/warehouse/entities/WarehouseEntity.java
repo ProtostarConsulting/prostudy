@@ -2,6 +2,8 @@ package com.protostar.billingnstock.warehouse.entities;
 
 import java.util.List;
 
+import javax.management.loading.PrivateClassLoader;
+
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
@@ -21,20 +23,19 @@ public class WarehouseEntity {
 	private String state; 
 	private String country; 
 
-	Ref<UserEntity> loggedInUsers;
+	Ref<UserEntity> loggedInUser;
 
-	public UserEntity getLoggedInUsers() {
-		return loggedInUsers.get();
+	public UserEntity getLoggedInUser() {
+		return loggedInUser.get();
 	}
 
-	public void setLoggedInUsers(UserEntity loggedInUsers) {
-		this.loggedInUsers = Ref.create(loggedInUsers);
+	public void setLoggedInUser(UserEntity loggedInUser) {
+		this.loggedInUser = Ref.create(loggedInUser);
 	}
 
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
