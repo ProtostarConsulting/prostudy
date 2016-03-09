@@ -9,7 +9,7 @@ import com.googlecode.objectify.annotation.Index;
 @Entity
 public class UserEntity {
 
-	@Id
+	@Id 
 	private Long id;
 	private String firstName;
 	private String lastName;

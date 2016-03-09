@@ -22,17 +22,7 @@ public class AttendanceEntity {
 	private String date;
 	private Boolean attendance;
 	
-	/*private Ref<InstituteEntity> institute;
-	 
-	 public InstituteEntity getinstitute() {
-	  return institute.get();
-	 }
-
-	 public void setinstitute(InstituteEntity institute) {
-	  this.institute = Ref.create(institute);
-	 }
 	
-	*/
 	public String getDivision() {
 		return division;
 	}

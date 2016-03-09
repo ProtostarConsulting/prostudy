@@ -10,14 +10,23 @@ public class ChapterEntity {
 	@Id
 	private Long id;
 
-	@Index
-	private Long chapterId;
+	@Index          
+	private Long instituteID;
+	
 	private String chapter_name;
 	private String chapter_content;
 	private String board;
 	private String standard;
 	private String division;
 	private String subject;
+
+	public Long getInstituteID() {
+		return instituteID;
+	}
+
+	public void setInstituteID(Long instituteID) {
+		this.instituteID = instituteID;
+	}
 
 	public Long getId() {
 		return id;
@@ -27,15 +36,7 @@ public class ChapterEntity {
 		this.id = id;
 	}
 
-	public Long getChapterId() {
-		return chapterId;
-	}
-
-	public void setChapterId(Long chapterId) {
-		this.chapterId = chapterId;
-	}
-
-
+	
 	public String getChapter_name() {
 		return chapter_name;
 	}

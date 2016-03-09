@@ -15,18 +15,46 @@ public class BookEntity {
 
 	@Index
 	private String bookId;
-
+	@Index          
+	private Long instituteID;
+	
 	private String book_name;
 	private String author;
 	private String board;
 	@Index
 	private String standard;
-	
-	private Ref<UserEntity>user;
+	private String division;
+	public String getDivision() {
+		return division;
+	}
 
+	public void setDivision(String division) {
+		this.division = division;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
+	
+	private String subject;
+
+	
 	private List<ChapterEntity> chapters;
 
+	public Long getInstituteID() {
+		return instituteID;
+	}
 
+	public void setInstituteID(Long instituteID) {
+		this.instituteID = instituteID;
+	}
+
+	
 	public List<ChapterEntity> getChapters() {
 		return chapters;
 	}
@@ -83,13 +111,6 @@ public class BookEntity {
 		this.standard = standard;
 	}
 
-	public UserEntity getUser() {
-		return user.get();
-	}
-
-	public void setUser(UserEntity user) {
-		this.user = Ref.create(user);
-	}
 
 
 

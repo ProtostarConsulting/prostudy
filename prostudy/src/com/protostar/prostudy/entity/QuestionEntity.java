@@ -14,12 +14,19 @@ public class QuestionEntity {
 	private Long instituteID;
 	private String description;
 	private String note;
+	private String category;
 	private String option1;
 	private String option2;
 	private String option3;
 	private String option4;
 	private String correctAns;
 	
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	public Long getInstituteID() {
 		return instituteID;
 	}
