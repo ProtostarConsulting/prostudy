@@ -106,9 +106,18 @@
 				ui-sref="attendance"
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
 				ng-click="close()" class="md-primary" show-gt-md>
+
+			Attendance </md-button> 
+			<md-button
+				ui-sref="certificateMgmt"
+				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
+				ng-click="close()" class="md-primary" show-gt-md>
+			Certificate Management </md-button></md-content> </md-sidenav>
+
 			Attendance </md-button>
 			
 			 </md-content> </md-sidenav>
+
 	</md-content>
 	</md-sidenav>
 
@@ -297,8 +306,7 @@
 
 	<script src="/app/myprofile/js/myprofile_update.ctr.js"></script>
 	
-	<script src="/app/myprofile/js/quickstart.ctr.js"></script>
-	<script src="/app/blobstore/js/blobstore.ctr.js"></script>
+	
 	<script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
 
 	
@@ -308,7 +316,8 @@
 	<script src="/app/institute/js/institute_view.ctr.js"></script>
 	<script src="/app/institute/js/institute_addInfo.ctr.js"></script>
 	<script src="/app/institute/js/institute.list.ctr.js"></script>
-
+	<script src="/app/institute/js/institute_addStud.ctr.js"></script>
+	
 	<script src="/app/report/js/report_module.ctr.js"></script>
 	<script src="/app/report/js/display_report.ctr.js"></script>
 
@@ -323,7 +332,15 @@
 	<script src="/app/syllabus/js/syllabus_add.ctr.js"></script>
 	<script src="/app/syllabus/js/syllabus_view.ctr.js"></script>
 	<script src="/app/syllabus/js/syllabus_list.ctr.js"></script>
+
+	
+	<script src="/app/certificateMgmt/js/certificate_module.ctr.js"></script>
+	<script src="/app/certificateMgmt/js/generateTemplate.ctr.js"></script>
+	<script src="/app/certificateMgmt/js/generateCertificate.ctr.js"></script>
+	<script src="/app/certificateMgmt/js/viewCertificate.ctr.js"></script>
+
 	<script src="https://apis.google.com/js/client.js"></script>
+
 
 
 </body>
