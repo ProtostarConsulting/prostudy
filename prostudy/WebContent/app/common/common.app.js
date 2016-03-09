@@ -359,7 +359,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/certificateMgmt/certificate_module.html',
 		controller : 'certificateModuleCtr'
 	}).state('certificateMgmt.generateTemplate', {
-		url : "/generateTemplate/:selectedStudID/:selectedfirstName/:selectedlastName",
+		url : "/generateTemplate/:selectedStudID/:selectedfirstName/:selectedlastName/:selectedExam/:selectedScore",
 		templateUrl : '/app/certificateMgmt/generateTemplate.html',
 		controller : 'generateTemplateCtr'
 	}).state('certificateMgmt.generateCertificate', {

@@ -130,6 +130,46 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 
 //end of UserService-----------------------------------------------------------------------------------------------------------------
 
+	// start of CertificateService
+	var CertificateService = {};
+
+	serviceFactory.getCertificateService = function() {
+		return CertificateService;
+	}
+
+	CertificateService.addCertificate = function(certificate) {
+
+		var deferred = $q.defer();
+		gapi.client.certificateService.addCertificate(certificate).execute(
+				function(resp) {
+
+					deferred.resolve(resp);
+					$log.debug("resp :" + angular.toJson(resp));
+				});
+
+		return deferred.promise;
+	}
+	
+	CertificateService.getCertificate = function() {
+		var deferred = $q.defer();
+		gapi.client.certificateService.getCertificate().execute(function(resp) {
+			$log.debug("getCertificate #resp :" + resp);
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
+	CertificateService.getCertificateById = function(studID) {
+		var deferred = $q.defer();
+		gapi.client.certificateService.getCertificateById({
+			'studID' : studID
+		}).execute(function(resp) {
+			
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	//End of CertificateService
 	
 	
 	
@@ -643,10 +683,10 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 
-	PracticeExamResultService.getPracticeExamResultbyID = function(selectedId) {
+	PracticeExamResultService.getPracticeExamResultbyID = function(email_id) {
 		var deferred = $q.defer();
 		gapi.client.practiceExamResultService.getPracticeExamResultbyID({
-			'userId' : selectedId
+			'email_id' : email_id
 		}).execute(function(resp) {
 
 			deferred.resolve(resp.items);
