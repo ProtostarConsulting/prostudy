@@ -1,5 +1,8 @@
 
 <md-content layout-padding>
+<h3>
+	<u>Stock List</u>
+</h3>
 <div>
 	<section layout="row" layout-align="end end" flex>
 		<md-button class="md-raised md-primary" ui-sref="stock.stockItemAdd">ADD
@@ -36,7 +39,7 @@
 
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="stocks in stockData | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
+				ng-repeat="stocks in stockData | orderBy: query.order| filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit"">
 
 				<td>{{stocks.id}}</td>
 				<td>{{stocks.itemName}}</td>

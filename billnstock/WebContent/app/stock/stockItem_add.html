@@ -1,13 +1,22 @@
 
 <md-content layout-padding>
+<h3>
+	<u>Add Stock</u>
+</h3>
 <form name="userForm">
 	<div id="addField">
 		<div layout layout-sm="column">
-			<md-input-container flex> <label>Item Id
-			</label> <input ng-model="stock.itemId"> </md-input-container>
+			<md-input-container flex> <md-select
+				ng-model="selectedWarehouse" placeholder="Item Name"
+				ng-change="warehouseDDLChange($index, selectedWarehouse)">
+			<md-option ng-value="warehouse" ng-repeat="warehouse in warehouses">{{warehouse.warehouseName
+			}}</md-option> </md-select> </md-input-container>
+
+
 			<md-input-container flex> <label>Item
 				Name </label> <input ng-model="stock.itemName"> </md-input-container>
 		</div>
+
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>Categories
 			</label> <input ng-model="stock.category"> </md-input-container>
@@ -17,23 +26,23 @@
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>Price </label>
 			<input ng-model="stock.price"> </md-input-container>
-			<md-input-container flex> <label>Threshold Value </label>
-			<input ng-model="stock.thresholdValue"> </md-input-container>
+			<md-input-container flex> <label>Threshold
+				Value </label> <input ng-model="stock.thresholdValue"> </md-input-container>
 		</div>
- 
-		<div>
+
+		<div layout layout-sm="column">
 			<md-input-container flex> <label>Notes </label>
 			<textarea ng-model="stock.notes" rows="4" cols="1"></textarea></md-input-container>
 		</div>
 
-<!--  <md-input-container md-no-float>
+		<!--  <md-input-container md-no-float>
       <md-icon md-svg-src="img/icons/ic_place_24px.svg" style="display:inline-block;"></md-icon>
       <input ng-model="user.address" type="text" placeholder="Address" >
     </md-input-container>
-  -->   
+  -->
 		<section layout="row" layout-sm="column" layout-align="left left">
 			<md-button class="md-raised md-primary" ng-click="addStock()">Submit</md-button>
-<!-- 			<md-button class="md-raised md-primary"
+			<!-- 			<md-button class="md-raised md-primary"
 				ng-click="">Cancel</md-button> -->
 		</section>
 	</div>
