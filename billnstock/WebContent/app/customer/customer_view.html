@@ -1,36 +1,24 @@
 
 <md-content layout-padding>
-<div >
-<section layout="row" layout-align="end end" flex>
-	<md-button class="md-raised md-primary"
-	ng-click="back()">BACK TO LIST</md-button>
-</section>
+<h3>
+	<u>Customer View</u>
+</h3>
+<div>
+	<section layout="row" layout-align="end end" flex>
+		<md-button class="md-raised md-primary" ng-click="back()">BACK
+		TO LIST</md-button>
+	</section>
 </div>
 
 
 <div id="addField">
-<!-- 	<div>
-		<md-input-container flex> <label>Customer
-			Id </label> </md-input-container>
-		{{customer.customerId}}
+	
+	<div>{{custInvoiceData.customer.id}}</div>
+	<div>{{custInvoiceData.customer.customerName}}</div>
+	<div>{{custInvoiceData.customer.mobile}}</div>
+	<div>{{custInvoiceData.customer.email}}</div>
+	<div>{{custInvoiceData.customer.customerAddress}}</div>
 
-		<md-input-container flex> <label>Customer
-			Name </label> </md-input-container>
-		{{customer.customerName}}
-
-		<md-input-container flex> <label>Mobile
-			No. </label> </md-input-container>
-		{{purchaseOrderNo.customer.mobile}}
-
-		<md-input-container flex> <label>E-mail
-			ID : </label> </md-input-container>
-		{{salesOrderId.customer.email}}
-
-		<md-input-container flex> <label>Address
-		</label> </md-input-container>
-		{{custInvoiceData.customer.customerAddress}}
-	</div>
- -->	
 
 	<div>
 		<md-data-table-container>
@@ -56,9 +44,10 @@
 
 
 					<td><section layout="row" layout-sm="column">
-						<md-button class="md-raised md-primary"
-							ui-sref="invoice.view({selectedInvoiceNo: invoice.id})">View Invoice</md-button>
-					</section></td>
+							<md-button class="md-raised md-primary"
+								ui-sref="invoice.view({selectedInvoiceNo: invoice.id})">View
+							Invoice</md-button>
+						</section></td>
 					<td>
 				</tr>
 			</tbody>

@@ -1,12 +1,13 @@
 
 <md-content layout-padding>
-
+<h3>
+	<u>Customer Add</u>
+</h3>
 <form name="custForm">
-
 
 	<div layout layout-sm="column">
 		<md-input-container flex> <label>Person
-			Name </label> <input name="name" ng-model="cust.customerName"
+			Name <span style="color: red;">*</span></label> <input name="name" ng-model="cust.customerName"
 			ng-required="true">
 		<div ng-messages="custForm.name.$error"
 			ng-if="custForm.name.$submitted || custForm.name.$touched">
@@ -18,7 +19,7 @@
 
 	<div layout layout-sm="column">
 
-		<md-input-container flex> <label>Mobile </label>
+		<md-input-container flex> <label>Mobile <span style="color: red;">*</span></label>
 		<input name="mobile" ng-model="cust.mobile" ng-required="true">
 		<div ng-messages="custForm.mobile.$error"
 			ng-if="custForm.mobile.$submitted || custForm.mobile.$touched">
@@ -29,7 +30,7 @@
 	</div>
 
 	<div layout layout-sm="column">
-		<md-input-container flex> <label>Email </label> <input
+		<md-input-container flex> <label>Email <span style="color: red;">*</span></label> <input
 			type="email" name="email" ng-model="cust.email" ng-required="true">
 		<div ng-messages="custForm.email.$error"
 			ng-if="custForm.email.$submitted || custForm.email.$touched">
@@ -40,7 +41,7 @@
 
 
 	<div layout layout-sm="column">
-		<md-input-container flex> <label>Address
+		<md-input-container flex> <label>Address <span style="color: red;">*</span>
 		</label> <textarea name="address" ng-model="cust.address" ng-required="true"></textarea>
 		<div ng-messages="custForm.address.$error"
 			ng-if="custForm.address.$submitted || custForm.address.$touched">
@@ -54,7 +55,7 @@
 			class="md-raised md-primary" ng-click="addCustomer()">Add</md-button>
 	</section>
 
-
+[<span style="color: red;">Field Marked as asterik (*) are mandetory</span>]
 	<div></div>
 </form>
 

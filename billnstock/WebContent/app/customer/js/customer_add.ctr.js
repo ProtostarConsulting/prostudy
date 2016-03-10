@@ -13,7 +13,7 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 		customerName : "",
 		mobile : "",
 		email : "",
-		customerAddress : "",
+		address : "",
 		loggedInUser : ""
 	};
 
