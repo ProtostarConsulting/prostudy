@@ -88,7 +88,7 @@
 
 			<md-toolbar class="md-theme-indigo">
 			<h1 class="md-toolbar-tools">Apps Module</h1>
-<<<<<<< .mine
+
 			</md-toolbar> 
 			
 			
@@ -99,6 +99,7 @@
 			<md-button ui-sref="home" ng-show="user == 'basic'" ng-click="close()" class="md-primary" show-gt-md> Home </md-button>
 			
 			<md-button ui-sref="customer"  ng-show="user == 'basic'|| user == 'customer'" ng-click="close()" class="md-primary" show-gt-md> Customer </md-button>
+			<md-button ui-sref="account"  ng-show="user == 'basic'|| user == 'account'" ng-click="close()" class="md-primary" show-gt-md> Account </md-button>
 			<md-button ui-sref="stock" ng-show="user == 'basic' || user == 'stock' " ng-click="close()" ng-show="loader.stock" class="md-primary" show-gt-md> Stock </md-button> 	
 			<!-- <md-button ui-sref="stock" ng-click="close()" class="md-primary" show-gt-md> Stock </md-button>  -->	
 			<md-button ui-sref="invoice" ng-show="user == 'basic' || user == 'invoice' " ng-click="close()" class="md-primary" show-gt-md>  Invoice </md-button> 
@@ -110,21 +111,20 @@
 			<md-button ui-sref="login" ng-show="user == 'basic' || user == 'login' " ng-click="close()"  class="md-primary" show-gt-md>LOGIN</md-button>
 			<md-button ui-sref="probusiness" ng-show="user=='protostarcs.com'" ng-click="close()"  class="md-primary" show-gt-md>ProBusiness</md-button>
 			<md-button ui-sref="AssetMangement" ng-show="user == 'basic' || user == 'login' " ng-click="close()"  class="md-primary" show-gt-md>Asset Mangement</md-button>
-			
+			<md-button ui-sref="warehouse" ng-show="user == 'basic' || user == 'login' " ng-click="close()" class="md-primary" show-gt-md>Warehouse Management</md-button>
 			<md-button ui-sref="user_prof_detail" ng-show="user == 'basic'" ng-click="close()"  class="md-primary" show-gt-md>User Profile / Detail </md-button>
 			<md-button ui-sref="document"  ng-show="user == 'basic'" ng-click="close()"  class="md-primary" show-gt-md>Document</md-button>
 			<md-button ui-sref="email" ng-show="user == 'basic' " ng-click="close()"  class="md-primary" show-gt-md>email</md-button>
 			</md-content> 
 		</div>
 			  </md-sidenav> </md-content>
-=======
-			</md-toolbar> <md-button ui-sref="user_prof_detail" ng-click="close()"
-				class="md-primary" show-gt-md>User Profile / Detail </md-button> <md-button
-				ui-sref="document" ng-click="close()" class="md-primary" show-gt-md>Document</md-button>
-			<md-button ui-sref="email" ng-click="close()" class="md-primary"
-				show-gt-md>email</md-button>
->>>>>>> .r739
 
+<!--			</md-toolbar> <md-button ui-sref="user_prof_detail" ng-click="close()"
+ 				class="md-primary" show-gt-md>User Profile / Detail </md-button> <md-button
+				ui-sref="document" ng-click="close()" class="md-primary" show-gt-md>Document</md-button>
+			<md-button ui-sref="email" ng-click="close()" class="md-primary">
+ -->
+<!-- 
 			<div ng-repeat="user in curUser.authority">
 				<md-content layout="column" ng-controller="LeftCtrl"> <md-button
 					class="md-primary" ng-click="close()" hide-gt-md> Close
@@ -167,6 +167,7 @@
 					ng-show="user == 'basic' || user == 'login' " ng-click="close()"
 					class="md-primary" show-gt-md>Asset Mangement</md-button> </md-content>
 			</div>
+ -->			
 			</md-sidenav>
 	</md-content>
 
@@ -286,7 +287,6 @@
 	<!-- <script src="/app/demo/js/drivefiles.js"></script> -->
 
 	<!-- 	Customer js  -->
-	<script src="/app/customer/js/customer.ctr.js"></script>
 	<script src="/app/customer/js/customer_module.ctr.js"></script>
 	<script src="/app/customer/js/customer_add.ctr.js"></script>
 	<script src="/app/customer/js/customer_list.ctr.js"></script>
@@ -323,6 +323,7 @@
 	<script src="/app/stock/js/stockItem_add.ctr.js"></script>
 	<script src="/app/stock/js/stockItem_list.ctr.js"></script>
 	<script src="/app/stock/js/stock_reportByThreshold.ctr.js"></script>
+	<script src="/app/stock/js/stock_reportByWarehouse.ctr.js"></script>
 	<!-- 	Complete Stock js  -->
 
 	<!--<script src="/app/invoice/js/invoice.ctr.js"></script>
@@ -403,11 +404,6 @@
 	<!-- <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFvwl0xEt8WISv0zovMXjWFVU1bNYHpTc&callback=initMap">
     </script> -->
-	<script src="/app/store/js/store_module.ctr.js"></script>
-	<script src="/app/store/js/store_add.ctr.js"></script>
-
-
-
 
 	<!-- setup module js -->
 
@@ -440,7 +436,7 @@
    <script src="/app/crm/js/crm_contacts.js"></script>
       <script src="/app/crm/js/crm_opportunity.js"></script>
   <!--  lead js -->
-<<<<<<< .mine
+
  <!-- setup module js -->
  
  <script src="/app/setup/js/setup_module.js"></script>
@@ -458,9 +454,9 @@
     <script src="/app/AssetMangement/js/AssignupdateAsset.js"></script>
    <!-- use for ganerating pdf -->
 <!--    <script type="text/javascript" src="/app/hr/js/jspdf.min.js"></script>
-=======
+
 	<!-- setup module js -->
->>>>>>> .r739
+
 
 	<script src="/app/setup/js/setup_module.js"></script>
 	<script src="/app/setup/js/setup_headerfooter.js"></script>
