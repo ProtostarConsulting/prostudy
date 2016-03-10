@@ -6,6 +6,7 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
+import com.protostar.billingnstock.warehouse.entities.WarehouseEntity;
 
 @Entity
 public class StockItemEntity {
@@ -20,6 +21,16 @@ public class StockItemEntity {
 	private double price;
 	private String notes;
 	private int thresholdValue;
+
+	Ref<WarehouseEntity> warehouseId;
+
+	public WarehouseEntity getWarehouseId() {
+		return warehouseId.get();
+	}
+
+	public void setWarehouseId(WarehouseEntity warehouseId) {
+		this.warehouseId = Ref.create(warehouseId);
+	}
 
 	@Index
 	Ref<UserEntity> loggedInUser;

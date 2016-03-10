@@ -18,7 +18,7 @@ public class InvoiceService {
 
 	@ApiMethod(name = "addInvoice")
 	public void addInvoice(InvoiceEntity invoiceEntity) {
-		Key<InvoiceEntity> now = ofy().save().entity(invoiceEntity).now();
+		ofy().save().entity(invoiceEntity).now();
 
 		System.out.println(invoiceEntity.getInvoiceLineItemList());
 

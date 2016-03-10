@@ -18,7 +18,7 @@ public class Customer {
 	private String customerName;
 	private String mobile;
 	private String email;
-	private String customerAddress;
+	private String address;
 
 	@Index
 	Ref<UserEntity> loggedInUser;
@@ -62,13 +62,15 @@ public class Customer {
 		this.customerName = customerName;
 	}
 
-	public String getCustomerAddress() {
-		return customerAddress;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setCustomerAddress(String customerAddress) {
-		this.customerAddress = customerAddress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
+
+	
 
 	/*
 	 * @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL) private
