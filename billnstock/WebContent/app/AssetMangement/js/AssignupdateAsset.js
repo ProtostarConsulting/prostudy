@@ -12,8 +12,6 @@ angular.module("stockApp").controller(
 			$scope.curuser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
 
-		
-			
 			$scope.getselectedasset = function() {
 				var assetService = appEndpointSF.getAssetManagementService();
 				if (typeof $scope.selectedasetNo != "undefined") {
@@ -23,63 +21,96 @@ angular.module("stockApp").controller(
 							});
 				}
 			}
-			$scope.asset=[];
+			$scope.asset = [];
 			$scope.getselectedasset();
 
-			$scope.updateAsset=function(){
-			var assetService = appEndpointSF.getAssetManagementService();
+			$scope.updateAsset = function() {
+				var assetService = appEndpointSF.getAssetManagementService();
 				assetService.updateAsset($scope.asset).then(function(msgBean) {
 					$scope.showSimpleToast(msgBean.msg);
-					
+
 				});
 			}
-			
-			
+
 			$scope.getAllemps = function() {
 				$log.debug("Inside Ctr $scope.getAllemps");
 				var hrService = appEndpointSF.gethrService();
 
-				hrService.getAllemp($scope.curUser.businessAccount.id).then(function(empList) {
-					$log.debug("Inside Ctr getAllemps");
-					$scope.emps = empList.items;
-					
-			});
+				hrService.getAllemp($scope.curUser.businessAccount.id).then(
+						function(empList) {
+							$log.debug("Inside Ctr getAllemps");
+							$scope.emps = empList.items;
+
+						});
 			}
-			
+
 			$scope.emps = [];
-		$scope.getAllemps();
-		
-		$scope.Assignasset={
-				assetEntity:"",
-				userEntity:"",
-					qty:""
-		}
-		
-		
-			
-		$scope.AssignAsset=function(){
-			$log.debug("id======="+$scope.user);
-			$scope.Assignasset.assetEntity=$scope.asset;
-			var setupService = appEndpointSF.getsetupService();
+			$scope.getAllemps();
+
+			$scope.Assignasset = {
+				assetEntity : "",
+				userEntity : "",
+				status : "inactive"
+			}
+
+			$scope.AssignAsset = function() {
+				$log.debug("id=======" + $scope.user);
+				$scope.Assignasset.assetEntity = $scope.asset;
+				var setupService = appEndpointSF.getsetupService();
 				setupService.getuserById($scope.user).then(
 						function(userList) {
 							$log.debug("Inside Ctr getAllleads");
 							$scope.userL = userList.result;
-							$scope.Assignasset.userEntity=$scope.userL;
-						
-						var assetService = appEndpointSF.getAssetManagementService();
-							
-						assetService.addAssignAsset($scope.Assignasset).then(function(msgBean) {
-								$scope.showSimpleToast(msgBean.msg);
-								
-							});
-						
+							$scope.Assignasset.userEntity = $scope.userL;
+
+							var assetService = appEndpointSF
+									.getAssetManagementService();
+
+							assetService.addAssignAsset($scope.Assignasset)
+									.then(function(msgBean) {
+										$scope.showSimpleToast(msgBean.msg);
+										
+										$scope.getselectedassetdetail();
+										
+									});
+
 						});
+
+			}
+			// ----------hide and show ---------------------------
+			$scope.IsHidden = true;
+			$scope.ShowHide = function() {
+				$scope.IsHidden = $scope.IsHidden ? false : true;
+				$scope.getselectedassetdetail();
+			}
+			// -----------------------------------------------------
+
+			$scope.getselectedassetdetail = function() {
+				var assetService = appEndpointSF.getAssetManagementService();
+				if (typeof $scope.selectedasetNo != "undefined") {
+					assetService.getselectedassetdetail($scope.selectedasetNo)
+							.then(function(assetdetail) {
+								$scope.assetdetail = assetdetail.items;
+							});
+				}
+			}
+			$scope.assetdetail = [];
+			$scope.getselectedassetdetail();
+
+			
+			$scope.releaseAsset=function(id){
 				
+				var assetService = appEndpointSF.getAssetManagementService();
+				assetService.releaseAsset(id).then(function(msgBean) {
+					$scope.showSimpleToast(msgBean.msg);
+					
+					$scope.getselectedassetdetail();
+				});
+			
+				
+			}
 			
 			
-		}
-		
 			
 			
 			$scope.toggleRight = buildToggler('right');

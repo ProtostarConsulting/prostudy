@@ -8,7 +8,7 @@
 				id</label> <input ng-model="asset.id" ng-required="true" disabled> </md-input-container>
 			<md-input-container flex> <label>Asset
 				Name </label> <input name="AssetName" ng-model="asset.assetName"
-				ng-required="true">
+				ng-required="true" disabled>
 
 			<div ng-messages="assetForm.AssetName.$error"
 				ng-if="assetForm.AssetName.$submitted || assetForm.AssetName.$touched">
@@ -53,6 +53,81 @@
 			</md-input-container>
 		</div>
 
+		<!-- ---------Assigned Asset------------- -->
+		<div>
+			<b>Assigned Asset </b>
+		</div>
+		<div>
+			<md-data-table-container>
+			<table md-data-table md-progress="deferred">
+				<thead md-order="query.order" md-trigger="onOrderChange">
+					<tr>
+						<th name="Asset Name" order-by="assetName"></th>
+						<th name="User Name" order-by="userName"></th>
+						<th name="Assign Date" order-by="assignDate"></th>
+						<th name="Release Asset" order-by="releaseAsset"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr md-auto-select
+						ng-repeat="at in assetdetail | filter : { status : 'active' }  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit ">
+						<td width="20%" align="left">{{at.assetEntity.assetName}}</td>
+						<td width="20%" align="left">{{at.userEntity.firstName}}
+							{{at.userEntity.lastName}}</td>
+						<td width="20%" align="left">{{at.assignDate}}</td>
+						<td width="20%" align="left"><md-button
+								class="md-icon-button" aria-label="prev"
+								ng-click="releaseAsset(at.id)"> <md-tooltip>
+							Release the Asset </md-tooltip> <md-icon
+								md-svg-icon="img/icons/ic_lock_open_black_24px.svg"></md-icon>
+							</md-button></td>
+					</tr>
+				</tbody>
+
+			</table>
+			<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+				md-total={{assetdetail.length}} md-trigger="onpagechange"></md-data-table-pagination>
+			</md-data-table-container>
+		</div>
+
+
+		<!-- ----------------------------------------------------------------------------------------- -->
+		<div>
+			<a href='' ng-click='ShowHide()'>History +/-</a>
+		</div>
+		<div ng-hide="IsHidden">
+			<md-data-table-container>
+			<table md-data-table md-progress="deferred">
+				<thead md-order="query.order" md-trigger="onOrderChange">
+					<tr>
+						<th name="Asset Name" order-by="assetName"></th>
+						<th name="User Name" order-by="userName"></th>
+						<th name="Assign Date" order-by="assignDate"></th>
+						<th name="Release Date" order-by="releaseDate"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr md-auto-select
+						ng-repeat="t in assetdetail | filter: { status : 'inactive' } | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+						<td width="20%" align="left">{{t.assetEntity.assetName}}</td>
+						<td width="20%" align="left">{{t.userEntity.firstName}}
+							{{t.userEntity.lastName}}</td>
+						<td width="20%" align="left">{{t.assignDate}}</td>
+						<td width="20%" align="left">{{t.releaseDate}}</td>
+					</tr>
+				</tbody>
+
+			</table>
+			<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+				md-total={{assetdetail.length}} md-trigger="onpagechange"></md-data-table-pagination>
+			</md-data-table-container>
+		</div>
+
+
+
+
+		<!-- ----------------------------------------------------------------------------------------- -->
+
 		<div layout layout-sm="column">
 
 			<md-input-container flex> <md-select
@@ -69,19 +144,15 @@
 			</md-input-container>
 		</div>
 
-		<div layout layout-sm="column">
-			<md-input-container flex> <label>
-				Quantity </label> <input type="text" name="Quantity"
-				ng-model="Assignasset.qty" ng-required="true">
-			<div ng-messages="assetForm.Quantity.$error"
-				ng-if="assetForm.Quantity.$submitted || assetForm.Quantity.$touched">
-				<div ng-message="required">Please Enter Quantity.</div>
-			</div>
-			</md-input-container>
-			</div>
+		<div>
+			<md-checkbox ng-model="Assignasset.status" ng-true-value="'active'"
+				ng-false-value="'inactive'"> Acive User </md-checkbox>
+
+		</div>
+
 		<section layout="row" layout-sm="column" layout-align="left left">
 			<md-button class="md-raised md-primary"
-				ng-disabled="assetForm.$invalid" ng-click="AssignAsset()">update</md-button>
+				ng-disabled="assetForm.$invalid" ng-click="AssignAsset()">Assign</md-button>
 
 		</section>
 	</div>
