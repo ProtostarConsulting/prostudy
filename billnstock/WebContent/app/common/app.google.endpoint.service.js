@@ -219,6 +219,24 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 	
+	assetService.getselectedassetdetail=function(id){
+		var deferred = $q.defer();
+		gapi.client.assetService.getselectedassetdetail({'id':id}).execute(function(resp) {
+					deferred.resolve(resp);
+		});
+		return deferred.promise;
+    }
+	
+	
+	assetService.releaseAsset=function(id){
+		var deferred = $q.defer();
+		gapi.client.assetService.releaseAsset({'id':id}).execute(function() {
+			deferred.resolve({
+				"msg" : "Asset Release Successfully."
+			});
+		});
+		return deferred.promise;
+    }
 	
 	//--------------------setup service----------------------------
 	

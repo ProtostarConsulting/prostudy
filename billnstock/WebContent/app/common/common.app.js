@@ -457,6 +457,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/assignuser/:selectedasetNo",
 		templateUrl : '/app/AssetMangement/assignuser.html',
 		controller : 'AssignupdateAsset',
+	}).state('proAdmin', {
+		url : "/Admin",
+		templateUrl : '/app/ProAdmin/ProAdminModule.html',
+		controller : 'proadminctr',
+	}).state('proAdmin.addAccount', {
+		url : "/addAccountType",
+		templateUrl : '/app/ProAdmin/AddAccountType.html',
+		controller : 'proadminctr',
 	});
 
 });
