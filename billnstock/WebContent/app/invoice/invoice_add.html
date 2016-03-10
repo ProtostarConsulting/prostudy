@@ -1,5 +1,8 @@
 
 <md-content layout-padding>
+<h3>
+	<u>Generate Invoice</u>
+</h3>
 <div id="invoiceDiv">
 	<form>
 <!-- 		<div>
@@ -18,9 +21,7 @@
 				style="margin-top: 20px; margin-bottom: 20px;">
 				<md-divider flex></md-divider>
 			</div>
- -->			<h3>
-				<u>Create Invoice</u>
-			</h3>
+ -->		
 			<div layout layout-sm="column">
 				<md-input-container flex> <md-select
 					ng-model="invoiceObj.customer" placeholder="Customer Name"
@@ -51,12 +52,7 @@
 					ng-value="SO" ng-repeat="SO in SOforinvoice">{{SO.id
 				}}</md-option> </md-select> </md-input-container>
 			</div>
-			<div layout layout-sm="column">
-				<md-input-container flex> <label>Address
-				</label> <textarea ng-model="invoiceObj.customer.customerAddress" rows="2"
-					cols="1" disabled></textarea> </md-input-container>
-
-			</div>			
+		
 			
 			<div layout layout-sm="column">
 
@@ -79,12 +75,12 @@
 					<th name="Quantity" order-by="qty"></th>
 					<th name="Price" order-by="price"></th>
 					<th name="Total" order-by="total"></th>
-					<th name="Actions"></th>
+					<th name="Actions" order-by="total"></th>
 				</tr>
 			</thead>
 
 			<tbody>
-				<tr ng-repeat="item in invoiceObj.invoiceLineItemList"md-auto-selectorderBy:query.order| limitTo:query.limit: (query.page - 1) * query.limit"">
+				<tr ng-repeat="item in invoiceObj.invoiceLineItemList | orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit">
 
 					<td>{{ item.srNo }}</td>
 					
@@ -105,9 +101,7 @@
 						<section layout="row" layout-sm="column">
 							<md-button class="md-raised md-primary"
 								ng-click="removeItem($index)">Remove Item</md-button>
-
 						</section>
-
 					</td>
 
 				</tr>

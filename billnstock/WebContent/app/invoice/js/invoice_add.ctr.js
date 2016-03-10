@@ -11,9 +11,6 @@ app
 					$log.debug("$scope.curUser++++++++"+angular.toJson($scope.curUser));
 					
 					$scope.invoiceObj = {
-
-//						invoiceId : '',
-//						purchaseOrderNo : '',
 						salesOrderId : '',
 						customer : '',
 						invoiceDate : $filter("date")(Date.now(), 'dd-MM-yyyy'),
