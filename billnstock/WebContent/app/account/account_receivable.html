@@ -6,7 +6,7 @@
 <form name="payableForm">
 
 	<h3>Account Receivable</h3>
-	<div layout layout-sm="column">
+	<div layout="row" layout-xs="column">
 
 		Customer Name:
 		<md-input-container flex> <md-select
@@ -24,7 +24,7 @@
 		</md-input-container>
 	</div>
 
-	<div layout layout-sm="column">
+	<div layout="row" layout-xs="column">
 		<md-input-container flex> <label>Invoice
 			ID </label> <input ng-model="accountReveivable.invoiceId"> </md-input-container>
 
@@ -32,9 +32,9 @@
 			Date </label> <input ng-model="accountReveivable.invoiceDate"> </md-input-container>
 	</div>
 
-	<div layout layout-sm="column">
+	<div layout="row" layout-xs="column">
 		<md-input-container flex> <label>Amount
-			 </label> <input ng-model="accountReveivable.invoiceAmount">
+			 </label> <input ng-model="accountReveivable.finalTotal">
 		</md-input-container>
 
 		<md-input-container flex> <label>Due Date

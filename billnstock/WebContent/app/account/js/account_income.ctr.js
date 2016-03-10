@@ -71,9 +71,9 @@ app
 						}
 								
 						$scope.filteredDatatotal = 0;
-						for (var i = 0; i < $scope.filteredData.length; i++) {
+						for (var i = 0; i < $scope.income.filteredData.length; i++) {
 							$scope.filteredDatatotal = $scope.filteredDatatotal
-									+ (parseInt($scope.filteredData[i].finalTotal));
+									+ (parseInt($scope.income.filteredData[i].finalTotal));
 						}
 
 						$log.debug("filteredDatatotal:"+ ($scope.filteredDatatotal));	

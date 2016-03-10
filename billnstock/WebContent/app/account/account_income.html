@@ -7,10 +7,10 @@
 
 <div layout layout-sm="column">
 	<md-input-container flex> <label>From </label> <input
-		ng-model="accountIncome.fromDate" placeholder="From Date (required)"
+		ng-model="accountIncome.fromDate" placeholder="From Date (dd-mm-yyyy)"
 		ng-required="true"> </md-input-container>
 	<md-input-container flex> <label>To </label> <input
-		ng-model="accountIncome.toDate" placeholder="To Date (required)"
+		ng-model="accountIncome.toDate" placeholder="To Date (dd-mm-yyyy)"
 		ng-required="true"> </md-input-container>
 </div>
 
@@ -68,7 +68,7 @@
 				<td>{{account.id}}</td>
 				<td>{{account.finalTotal}}</td>
 
-				<td>
+				<!-- <td>
 					<table>
 						<tr>
 							<md-input-container flex> <input
@@ -76,12 +76,13 @@
 							</md-input-container>
 						</tr>
 					</table>
-				</td>
+				</td> -->
 			</tr>
 		</tbody>
 
 	</table>
-
+Total{{income.filteredDataIncome}
+Filtered Record Total{{income.filteredDataIncome}
 	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
 		md-total={{accounts.length}} md-trigger="onpagechange"></md-data-table-pagination>
 	</md-data-table-container>

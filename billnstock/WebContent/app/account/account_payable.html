@@ -6,7 +6,7 @@
 <form name="payableForm">
 
 	<h3>Account Payables</h3>
-	<div layout layout-sm="column">
+	<div layout="row" layout-xs="column">
 
 		Customer Name:
 		<md-input-container flex> <md-select
@@ -17,13 +17,15 @@
 		}}</md-option> </md-select> </md-input-container>
 
 		<md-input-container flex> <label>Customer
-			Email Id </label> <input ng-model="accountPayable.customer.email"> </md-input-container>
+			Email Id </label> <input ng-model="accountPayable.customer.email" disabled>
+		</md-input-container>
 
 		<md-input-container flex> <label>Mobile
-			No. </label> <input ng-model="accountPayable.customer.mobile"> </md-input-container>
+			No.</label> <input ng-model="accountPayable.customer.mobile" disabled>
+		</md-input-container>
 	</div>
 
-	<div layout layout-sm="column">
+	<div layout="row" layout-xs="column">
 		<md-input-container flex> <label>Invoice
 			ID </label> <input ng-model="accountPayable.invoiceId"> </md-input-container>
 
@@ -31,25 +33,37 @@
 			Date </label> <input ng-model="accountPayable.invoiceDate"> </md-input-container>
 	</div>
 
-	<div layout layout-sm="column">
-		<md-input-container flex> <label>Amount </label>
-		<input ng-model="accountPayable.invoiceAmount"> </md-input-container>
+	<div layout="row" layout-xs="column">
 
-		<md-input-container flex> <label>Due Date
-		</label> <input ng-model="accountPayable.invoiceDueDate"> </md-input-container>
+		<md-input-container flex> <label>Amount
+			ID <span style="color: red;">*</span>
+		</label> <input ng-model="accountPayable.finalTotal" name="finalTotal"
+			ng-required="true" minlength="3">
+
+		<div ng-messages="payableForm.finalTotal.$error"
+			ng-if="payableForm.finalTotal.$submitted || payableForm.finalTotal.$touched">
+			<div ng-message="required">Please Enter Amount</div>
+		</div>
+		</md-input-container>
+
+		<md-input-container flex> <label>Invoice
+			Due Date </label> <input ng-model="accountPayable.invoiceDueDate"> </md-input-container>
 	</div>
 
-	<div layout layout-sm="column">
+	<div layout="row" layout-xs="column">
 		<md-input-container flex> <label>Purchase
 			Order ID </label> <input ng-model="accountPayable.purchaseOrderId"> </md-input-container>
 
-		<md-input-container flex> <label>Due Date
-		</label> <input ng-model="accountPayable.purchaseOrderDate"> </md-input-container>
+		<md-input-container flex> <label>Purchase
+			Due Date </label> <input ng-model="accountPayable.purchaseOrderDate">
+		</md-input-container>
 	</div>
 
 	<section layout="row" layout-sm="column" layout-align="left left">
 		<md-button class="md-raised md-primary"
 			ng-disabled="custForm.$invalid" ng-click="addPayable()">Add</md-button>
 	</section>
+	[<span style="color: red;">Field Marked as asterik (*) are
+		mandetory</span>]
 </form>
 </md-content>

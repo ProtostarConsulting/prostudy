@@ -8,7 +8,7 @@
 	<div layout layout-sm="column">
 		<md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
 		<md-input-container flex> <label>Account
-			Name </label> <input ng-model="account.accountName" name="name"
+			Name <span style="color: red;">*</span></label> <input ng-model="account.accountName" name="name"
 			ng-required="true" minlength="3">
 
 		<div ng-messages="accountForm.name.$error"
@@ -21,7 +21,7 @@
 
 	<div layout layout-sm="column">
 		<md-input-container flex> <label>Account
-			No </label> <input ng-model="account.accountNo" name="accountNo"
+			No <span style="color: red;">*</span></label> <input ng-model="account.accountNo" name="accountNo"
 			ng-required="true" minlength="3">
 
 		<div ng-messages="accountForm.accountNo.$error"
@@ -34,7 +34,7 @@
 	<div layout layout-sm="column">
 		<md-icon md-svg-src="img/icons/ic_place_24px.svg"
 			style="display:inline-block;"></md-icon>
-		<md-input-container flex> <label>Description
+		<md-input-container flex> <label>Description <span style="color: red;">*</span>
 		</label> <textarea name="desc" ng-model="account.description"
 			ng-required="true" maxlength="300"></textarea>
 
@@ -51,5 +51,6 @@
 		<md-button class="md-raised md-primary"
 			ng-disabled="custForm.$invalid" ng-click="addAccount()">Add</md-button>
 	</section>
+	[<span style="color: red;">Field Marked as asterik (*) are mandetory</span>]
 </form>
 </md-content>

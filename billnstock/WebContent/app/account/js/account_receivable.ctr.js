@@ -16,7 +16,7 @@ app.controller(
 					customer:[],
 					invoiceId : '',
 					invoiceDate : '',
-					invoiceAmount : '',
+					finalTotal : '',
 					invoiceDueDate : '',
 					loggedInUser : ''
 				};
