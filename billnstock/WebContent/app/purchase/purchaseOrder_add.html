@@ -65,7 +65,7 @@
 			</thead>
 
 			<tbody>
-				<tr ng-repeat="item in purchaseOrderObj.pOLineItemList"md-auto-selectorderBy:query.order| limitTo:query.limit: (query.page - 1) * query.limit"">
+				<tr ng-repeat="item in purchaseOrderObj.pOLineItemList| orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit">
 
 					<td>{{ item.srNo }}</td>
 					<td><md-input-container flex> <md-select
