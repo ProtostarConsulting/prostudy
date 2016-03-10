@@ -13,14 +13,6 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 	endpointFactory.is_service_ready = false;
 	// This will call the function to load services
 	
-	endpointFactory.getLocationService = function() {
-		if (isTestMode)
-			return localDBServiceFactory.getLocationService();
-		else
-			return googleEndpointSF.getLocationService();
-	};
-	
-	
 	// -----------------------------------user login-----------------
 	
 	endpointFactory.getLocalUserService = function() {
@@ -135,14 +127,6 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 	};
 	// ----------------------------------------------------
 
-	endpointFactory.getPayableAccountService = function() {
-		if (isTestMode)
-			return localDBServiceFactory.getPayableAccountService();
-		else
-			return googleEndpointSF.getPayableAccountService();
-	};
-	// ----------------------------------------------------
-
 	endpointFactory.getAssetManagementService = function() {
 		if (isTestMode)
 			return localDBServiceFactory.getAssetManagementService();
@@ -181,14 +165,6 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 		apisToLoad = 4; // must match number of calls to
 		// gapi.client.load()
 
-		gapi.client.load('locationService', 'v0.1', function() {
-			$log.debug("locationService Loaded....");
-
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
-		}, apiRoot);
-		
 		gapi.client.load('customerService', 'v0.1', function() {
 			$log.debug("customerService Loaded....");
 
@@ -312,13 +288,7 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 					   $log.debug("Google Auth API Loaded......");					  
 				  }
 			});
-		 gapi.client.load('payableService', 'v0.1', function() {
-			   $log.debug("payableService Loaded......");
-			   endpointFactory.is_service_ready = true;
-			   deferred.resolve();
-
-			  }, apiRoot);
-
+		 
 		return deferred.promise;
 	};
 

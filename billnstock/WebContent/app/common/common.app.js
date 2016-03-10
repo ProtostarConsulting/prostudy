@@ -55,6 +55,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/reportByThreshold",
 		templateUrl : '/app/stock/stock_reportByThreshold.html',
 		controller : 'stockReportByThresholdCtr'
+	}).state('stock.reportByWarehouse', {
+		url : "/reportByWarehouse",
+		templateUrl : '/app/stock/stock_reportByWarehouse.html',
+		controller : 'stockReportByWarehouseCtr'
 	}).state('stock.taxadd', {
 		url : "/tax/taxadd",
 		templateUrl : '/app/tax/tax_add.html',
