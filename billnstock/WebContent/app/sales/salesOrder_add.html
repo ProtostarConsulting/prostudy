@@ -4,7 +4,7 @@
 	<form>
 		<div>
 		<h3><u>Sales Order</u></h3>
-			<div layout layout-sm="column">
+			<div layout="row" layout-xs="column">
 				<md-input-container flex> <label>Sales
 					Order </label> <input ng-model="salesOrder.salesOrderId" disabled>
 				</md-input-container>
@@ -17,7 +17,7 @@
 					Referance ID </label> <input ng-model="salesOrder.customerRefId"> </md-input-container>
 			</div>
 
-			<div layout layout-sm="column">
+			<div layout="row" layout-xs="column">
 
 				<md-input-container flex> <label>Quotation
 					Date </label> <input ng-model="salesOrder.quotationDate"> </md-input-container>
@@ -25,7 +25,7 @@
 					Order Date </label> <input ng-model="salesOrder.salesOrderDate"></md-input-container>
 			</div>
 
-			<div layout layout-sm="column">
+			<div layout="row" layout-xs="column">
 				<md-input-container flex> <label>To </label> <textarea
 					ng-model="salesOrder.to" rows="4" cols="1"></textarea> </md-input-container>
 
@@ -34,7 +34,7 @@
 				</md-input-container>
 			</div>
 
-			<div layout layout-sm="column">
+			<div layout="row" layout-xs="column">
 				<md-input-container flex> <label>Sales
 					Person </label> <input ng-model="salesOrder.salesPerson"> </md-input-container>
 
@@ -76,7 +76,7 @@
 			</thead>
 
 			<tbody>
-				<tr ng-repeat="item in salesOrder.sOLineItemList"md-auto-selectorderBy:query.order| limitTo:query.limit: (query.page - 1) * query.limit"">
+				<tr ng-repeat="item in salesOrder.sOLineItemList| orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit">
 
 					<td>{{ item.srNo }}</td>
 					<td><md-input-container flex> <md-select
