@@ -2,7 +2,9 @@ package com.protostar.billingnstock.assetmanagement.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.api.server.spi.config.Api;
@@ -12,6 +14,7 @@ import com.google.api.server.spi.config.Named;
 import com.protostar.billingnstock.assetmanagement.entities.Asset;
 import com.protostar.billingnstock.assetmanagement.entities.AssetAssign;
 import com.protostar.billingnstock.crm.entities.Contact;
+import com.protostar.billingnstock.hr.entities.Employee;
 
 
 
@@ -59,9 +62,48 @@ public class AssetService
 	@ApiMethod(name="addAssignAsset")
 	public void addAssignAsset(AssetAssign assignaseet)
 	{
-	 ofy().save().entity(assignaseet).now();
+		Date date = new Date();
+	String DATE_FORMAT = "dd/MM/yyyy";
+	SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+
+	assignaseet.setAssignDate(sdf.format(date));  
+
+ ofy().save().entity(assignaseet).now();
 	
 	}
 	
+	
+	@ApiMethod(name="getselectedassetdetail") 
+	 public List<AssetAssign> getselectedassetdetail(@Named("id") Long assetid) {
+		
+		  List<AssetAssign> asset =ofy().load().type(AssetAssign.class).list();
+		  
+			List<AssetAssign> filteredasset= new ArrayList<AssetAssign>();
+
+			for (int i = 0; i < asset.size(); i++) {
+				if (asset.get(i).getAssetEntity().getId().equals(assetid)){
+					
+					filteredasset.add(asset.get(i));
+				} else {
+					
+					System.out.println("Recored No found:");
+				}
+			}
+			return filteredasset;
+	   }
+	
+	
+	@ApiMethod(name="releaseAsset") 
+	 public void releaseAsset(@Named("id") Long assetid) {
+		
+		AssetAssign assignasset = ofy().load().type(AssetAssign.class).id(assetid).now();
+		  	Date date = new Date();
+			String DATE_FORMAT = "dd/MM/yyyy";
+			SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+		assignasset.setReleaseDate(sdf.format(date));
+		assignasset.setStatus("inactive");
+		
+		ofy().save().entity(assignasset).now();
+	   }
 	
 }//end of InternetService

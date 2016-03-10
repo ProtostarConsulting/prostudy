@@ -13,6 +13,14 @@ public class Asset {
 	@Id
 	private Long id;
 
+	private String assetName;
+	private String category;
+	private String value;
+	private String purchasedate;
+	private String expirydate;
+	
+	
+	
 	public UserEntity getLoggedInUser() {
 		return loggedInUser.get();
 	}
@@ -57,11 +65,7 @@ public class Asset {
 	public void setExpirydate(String expirydate) {
 		this.expirydate = expirydate;
 	}
-	private String assetName;
-	private String category;
-	private String value;
-	private String purchasedate;
-	private String expirydate;
+
 	
 
 }

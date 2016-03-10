@@ -14,9 +14,41 @@ public class AssetAssign {
 	@Id
 	private Long id;
 	
-	private Integer qty;
+	private String status;
+	private String assignDate;
+	private String releaseDate;
 
-	
+	public String getAssignDate() {
+		return assignDate;
+	}
+
+	public void setAssignDate(String assignDate) {
+		this.assignDate = assignDate;
+	}
+
+	public String getReleaseDate() {
+		return releaseDate;
+	}
+
+	public void setReleaseDate(String releaseDate) {
+		this.releaseDate = releaseDate;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public UserEntity getuserEntity() {
 		return userEntity.get();
@@ -35,13 +67,7 @@ public class AssetAssign {
 		this.assetEntity = Ref.create(assetEntity);
 	}
 
-	public Integer getQty() {
-		return qty;
-	}
-
-	public void setQty(Integer qty) {
-		this.qty = qty;
-	}
+	
 	
 
 }
