@@ -22,6 +22,7 @@ import com.protostar.billingnstock.hr.entities.SalSlip;
 import com.protostar.billingnstock.hr.entities.SalStruct;
 import com.protostar.billingnstock.hr.entities.TimeSheet;
 import com.protostar.billingnstock.invoice.entities.InvoiceEntity;
+import com.protostar.billingnstock.proadmin.entities.AccountType;
 import com.protostar.billingnstock.purchase.entities.PurchaseOrderEntity;
 import com.protostar.billingnstock.sales.entities.SalesOrderEntity;
 import com.protostar.billingnstock.stock.entities.Car;
@@ -30,10 +31,14 @@ import com.protostar.billingnstock.tax.entities.TaxEntity;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
 import com.protostar.billingnstock.user.entities.tempBusinessEntity;
+<<<<<<< .mine
+import com.protostar.billingnstock.warehouse.entities.WarehouseEntity;
+=======
 import com.protostar.billingnstock.warehouse.entities.WarehouseEntity;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
 import com.protostar.billingnstock.user.entities.tempBusinessEntity;
+>>>>>>> .r790
 
 public class AppServletContextListener implements ServletContextListener {
 
@@ -55,6 +60,11 @@ public class AppServletContextListener implements ServletContextListener {
 		ObjectifyService.register(TimeSheet.class);
 		ObjectifyService.register(Asset.class);
 		ObjectifyService.register(AssetAssign.class);
+<<<<<<< .mine
+		ObjectifyService.register(AccountType.class);
+
+=======
+>>>>>>> .r790
 		ObjectifyService.register(TimeSheet.class);
 		ObjectifyService.register(Opportunity.class);
 		ObjectifyService.register(Contact.class);
@@ -75,7 +85,8 @@ public class AppServletContextListener implements ServletContextListener {
 		ObjectifyService.register(WarehouseEntity.class);
 
 		
-	
+		ObjectifyService.register(WarehouseEntity.class);
+
 
 
 	}
