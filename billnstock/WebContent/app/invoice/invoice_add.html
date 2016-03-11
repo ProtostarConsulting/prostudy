@@ -4,41 +4,21 @@
 	<u>Generate Invoice</u>
 </h3>
 <div id="invoiceDiv">
-	<form>
-<!-- 		<div>
-			<div layout layout-sm="column">
-				<md-input-container flex> <img
-					src="img/images/protostar_logo_pix_313_132.jpg" /> </md-input-container>
-				<md-input-container flex> <label><h1>Protostar
-						Consulting Services</h1> </label> </md-input-container>
-
-				<md-input-container flex> <label><u>Address</u><br>E-101,
-					Manimangar Appartment<br>Kasarwadi-414141.<br>Ph.(020)4141414.<br>info@protostar.co.in
-				</label> <input ng-model="invoice_id" disabled> </md-input-container>
-
-			</div>
-			<div layout="row" layout-align="center start"
-				style="margin-top: 20px; margin-bottom: 20px;">
-				<md-divider flex></md-divider>
-			</div>
- -->		
-			<div layout layout-sm="column">
+	<form>	
+			<div layout="row" layout-xs="column">
 				<md-input-container flex> <md-select
 					ng-model="invoiceObj.customer" placeholder="Customer Name"
 					ng-change="CustomerddlChange($index, selectedcustomerName)">
 				<md-option ng-value="cust" ng-repeat="cust in customersforinvoice">{{cust.customerName
 				}}</md-option> </md-select> </md-input-container>
 
-				<div layout="row">
+			
 					<md-input-container flex> <label>Invoice
 						ID </label> <input ng-model="invoiceObj.invoiceId" disabled> </md-input-container>
 					<md-input-container flex> <label>Due Date
-					</label> <input ng-model="invoiceObj.invoiceDueDate" id="invoiceDueDate"></md-input-container>
-				</div>
-				
-				
+					</label> <input ng-model="invoiceObj.invoiceDueDate" id="invoiceDueDate"></md-input-container>				
 			</div>
-			<div layout layout-sm="column">
+			<div layout="row" layout-xs="column">
 			
 			<md-input-container flex> <md-select
 					ng-model="invoiceObj.account" placeholder="Account Name"
@@ -54,7 +34,7 @@
 			</div>
 		
 			
-			<div layout layout-sm="column">
+			<div layout="row" layout-xs="column">
 
 				<md-input-container flex> <label>Note </label>
 				<textarea ng-model="invoiceObj.note" rows="2" cols="1"></textarea> </md-input-container>
