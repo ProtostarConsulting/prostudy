@@ -4,7 +4,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import com.googlecode.objectify.ObjectifyService;
-<<<<<<< .mine
+
 import com.protostar.billingnstock.account.entities.AccountEntity;
 import com.protostar.billingnstock.account.entities.PayableEntity;
 import com.protostar.billingnstock.account.entities.ReceivableEntity;
@@ -31,14 +31,14 @@ import com.protostar.billingnstock.tax.entities.TaxEntity;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
 import com.protostar.billingnstock.user.entities.tempBusinessEntity;
-<<<<<<< .mine
+
 import com.protostar.billingnstock.warehouse.entities.WarehouseEntity;
-=======
+
 import com.protostar.billingnstock.warehouse.entities.WarehouseEntity;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
 import com.protostar.billingnstock.user.entities.tempBusinessEntity;
->>>>>>> .r790
+
 
 public class AppServletContextListener implements ServletContextListener {
 
@@ -60,11 +60,10 @@ public class AppServletContextListener implements ServletContextListener {
 		ObjectifyService.register(TimeSheet.class);
 		ObjectifyService.register(Asset.class);
 		ObjectifyService.register(AssetAssign.class);
-<<<<<<< .mine
+
 		ObjectifyService.register(AccountType.class);
 
-=======
->>>>>>> .r790
+
 		ObjectifyService.register(TimeSheet.class);
 		ObjectifyService.register(Opportunity.class);
 		ObjectifyService.register(Contact.class);
@@ -84,8 +83,6 @@ public class AppServletContextListener implements ServletContextListener {
 		ObjectifyService.register(ReceivableEntity.class);
 		ObjectifyService.register(WarehouseEntity.class);
 
-		
-		ObjectifyService.register(WarehouseEntity.class);
 
 
 
