@@ -94,10 +94,20 @@
 			<a ui-sref="updatemyprofile">Edit profile </a> </md-button> <md-button
 				ui-sref="attendance"
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
+				ng-click="close()" class="md-primary" show-gt-md>Attendance </md-button> 
+			<md-button
+				ui-sref="certificateMgmt"
+				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
 				ng-click="close()" class="md-primary" show-gt-md>
-			Attendance </md-button> </md-content> </md-sidenav>
-	</md-content>
-	</md-sidenav>
+			Certificate Management </md-button>
+				<md-button
+				ui-sref="admissionMgmt"
+				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
+				ng-click="close()" class="md-primary" show-gt-md>
+			Admission Management </md-button>
+			</md-content> </md-sidenav>
+
+			
 
 	<md-content flex layout-padding>
 	<div class="md-toolbar-tools" hide-gt-md>
@@ -287,6 +297,8 @@
 	<script src="/app/institute/js/institute_view.ctr.js"></script>
 	<script src="/app/institute/js/institute_addInfo.ctr.js"></script>
 	<script src="/app/institute/js/institute.list.ctr.js"></script>
+	<script src="/app/institute/js/institute._view_studentByStd.ctr.js "></script>
+	
 
 	<script src="/app/report/js/report_module.ctr.js"></script>
 	<script src="/app/report/js/display_report.ctr.js"></script>
@@ -303,8 +315,14 @@
 	<script src="/app/syllabus/js/syllabus_view.ctr.js"></script>
 	<script src="/app/syllabus/js/syllabus_list.ctr.js"></script>
 	
-	<script src="/app/blobstore/js/blobstore.ctr.js"></script>
-
+	<script src="/app/certificateMgmt/js/certificate_module.ctr.js"></script>
+	<script src="/app/certificateMgmt/js/generateTemplate.ctr.js"></script>
+	<script src="/app/certificateMgmt/js/generateCertificate.ctr.js"></script>
+	<script src="/app/certificateMgmt/js/viewCertificate.ctr.js"></script>
+	
+	<script src="/app/admissionMgmt/js/admission_module.ctr.js"></script>
+	<script src="/app/admissionMgmt/js/applicant_add.ctr.js"></script>
+	<script src="/app/admissionMgmt/js/applicant_list.ctr.js"></script>
 
 
 </body>
