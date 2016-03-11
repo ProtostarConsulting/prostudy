@@ -10,7 +10,7 @@
 				<md-divider flex></md-divider>
 			</div>
 
-			<div layout layout-sm="column">
+			<div layout="row" layout-xs="column">
 				<md-input-container flex> <label>P.O.No
 				</label> <input ng-model="purchaseOrderObj.purchaseOrderNo"> </md-input-container>
 				
@@ -21,7 +21,7 @@
 				}}</md-option> </md-select> </md-input-container>
 			</div>
 
-			<div layout layout-sm="column">
+			<div layout="row" layout-xs="column">
 				<md-input-container flex> <label>To </label> 
 				<textarea ng-model="purchaseOrderObj.to" rows="4" cols="1"></textarea> </md-input-container>
 
@@ -29,7 +29,7 @@
 					ng-model="purchaseOrderObj.shipTo" rows="4" cols="1"></textarea> </md-input-container>
 			</div>
 
-			<div layout layout-sm="column">
+			<div layout="row" layout-xs="column">
 				<md-input-container flex> <label>P.O.Date
 				</label> <input ng-model="purchaseOrderObj.poDate"> </md-input-container>
 				
