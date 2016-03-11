@@ -40,6 +40,20 @@ angular.module("stockApp").controller(
 					return false
 				}
 			}
+			
+			
+			
+	/* get Account Type */
+			
+			$scope.getallAccountType = function() {
+				var proadminService = appEndpointSF.getproadminService();
+				proadminService.getallAccountType().then(function(assetList) {
+					$scope.accountlist = assetList.items;
+				});
+			}
+			$scope.accountlist = [];
+			$scope.getallAccountType();
+
 
 			// //////////////////////////////////////////////////////////////////////////////
 

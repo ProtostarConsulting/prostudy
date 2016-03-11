@@ -5,20 +5,20 @@ angular.module("stockApp").controller(
 				tableTestDataFactory, $state) {
 
 			$scope.showSavedToast = function(msg) {
-				$mdToast.show($mdToast.simple().content(msg).position("top").hideDelay(
-						3000));
+				$mdToast.show($mdToast.simple().content(msg).position("top")
+						.hideDelay(3000));
 			};
 
 			// ////////////////////////////////////////////////////////////////////////////////
 
 			$scope.curuser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
-		
+
 			$scope.business = {
-					businessName : "",
-					adminGmailId : $scope.curuser.email_id,
-					adminFirstName : $scope.curuser.firstName,
-					adminLastName : $scope.curuser.lastName
+				businessName : "",
+				adminGmailId : $scope.curuser.email_id,
+				adminFirstName : $scope.curuser.firstName,
+				adminLastName : $scope.curuser.lastName
 			}
 
 			$scope.addBusiness = function() {
@@ -29,13 +29,20 @@ angular.module("stockApp").controller(
 							$state.go("login");
 						});
 			}
-	
 
-
+			/* get Account Type */
+			
+			$scope.getallAccountType = function() {
+				var proadminService = appEndpointSF.getproadminService();
+				proadminService.getallAccountType().then(function(assetList) {
+					$scope.accountlist = assetList.items;
+				});
+			}
+			$scope.accountlist = [];
+			$scope.getallAccountType();
 
 			// //////////////////////////////////////////////////////////////////////////////
 
-	
 			$scope.toggleRight = buildToggler('right');
 
 			function buildToggler(navID) {

@@ -1,66 +1,68 @@
 
-		<div layout-align="centre centre">
-		
-			<md-whiteframe class="md-whiteframe-9dp" flex="30" layout layout-align="center center">
-		 	 <span>
-				
-				<div layout="row" layout-align="center center">
-			
-				<div layout="column" layout-align="center center">
-							<md-input-container flex>
-						<b>CREATE BUSINESS ACCOUNT</b>
-						</md-input-container>
-					<md-input-container flex>
-      				<label>Enter Business Name</label>
-      				<input ng-model="business.businessName">
-    				</md-input-container>
-    				
-    				<md-input-container flex>
-    				<label>Admin Gmail Email id</label>
-      				<input ng-model="business.adminGmailId">
-    				</md-input-container>
-    				
-    				<md-input-container flex>
-      				<label>First Name</label>
-      				<input ng-model="business.adminFirstName">
-    				</md-input-container>
-    				
-    				<md-input-container flex>
-      				<label>Last Name</label>
-      				<input ng-model="business.adminLastName">
-    				</md-input-container>
-    			</div>
-    				    				
-    			
-    			</div>
-    			
-    			<!-- <div layout="column" layout-align="center center">
-    				<md-input-container flex> <md-select ng-model="tempUser.gender" placeholder="Gender">
-					<md-option>Male</md-option>
-					<md-option>Female</md-option>
-					</md-select> </md-input-container>
-				</div> -->
-    				
-    				
-    				<!-- <md-input-container flex> <md-select ng-model="tempUser.role" placeholder="User role">
-					<md-option >Admin</md-option>
-					<md-option >Student</md-option>
-					<md-option >Teacher</md-option>
-					</md-select> </md-input-container> -->
-					
-		 			 <div layout="row" layout-align="center end">
-			 		 <md-button class="md-raised md-primary" ng-click="addBusiness()">Register</md-button> 
-			 		 </div>
-			 		 
-			 		 </md-card-content>
-			 </span>
-		 	</md-whiteframe>
-		 	
-		 	
-		 	
-		 </div>
-		 
-		 
+<md-content layout-padding>
+<form name="RegiForm">
+	<md-input-container flex> <b>CREATE BUSINESS
+		ACCOUNT</b> </md-input-container>
+
+	<div layout layout-sm="column">
+		<md-input-container flex> <label>Enter
+			Business Name</label> <input name="businessname" ng-model="business.businessName" ng-required="true">
+
+		<div ng-messages="RegiForm.businessname.$error"
+			ng-if="RegiForm.businessname.$submitted || RegiForm.businessname.$touched">
+			<div ng-message="required">Please Enter business name.</div>
+		</div>
+		</md-input-container>
+	</div>
+	<div layout layout-sm="column">
+
+		<md-input-container flex> <label>Admin
+			Gmail Email id</label> <input name="gmailid" ng-model="business.adminGmailId" ng-required="true">
+		<div ng-messages="RegiForm.gmailid.$error"
+			ng-if="RegiForm.gmailid.$submitted || RegiForm.gmailid.$touched">
+			<div ng-message="required">Please Enter Gmail id.</div>
+		</div>	
+		</md-input-container>
+		<md-input-container flex> <label>First
+			Name</label> <input name="fName" ng-model="business.adminFirstName" ng-required="true">
+		<div ng-messages="RegiForm.fName.$error"
+			ng-if="RegiForm.fName.$submitted || RegiForm.fName.$touched">
+			<div ng-message="required">Please Enter First Name.</div>
+		</div>	
+		</md-input-container>
+
+		<md-input-container flex> <label>Last
+			Name</label> <input name="lName" ng-model="business.adminLastName" ng-required="true"> 
+		<div ng-messages="RegiForm.lName.$error"
+			ng-if="RegiForm.lName.$submitted || RegiForm.lName.$touched">
+			<div ng-message="required">Please Enter Last Name.</div>
+		</div>
+		</md-input-container>
+	</div>
+	<div layout layout-sm="column">
+		<md-input-container flex> <md-select
+			name="selectedaccount" placeholder="accounttype"
+			ng-model="business.accounttype" ng-required="true"> <md-option
+			value={{list.id}} ng-repeat="list in accountlist">
+		{{list.accountName}} ( {{list.description}} ) </md-option> </md-select>
+		  <div ng-messages="RegiForm.selectedaccount.$error"
+				ng-if="RegiForm.selectedaccount.$submitted || RegiForm.selectedaccount.$touched">
+				<div ng-message="required">select Account Type.</div>
+			</div>  </md-input-container>
+	</div>
+
+
+	<div layout="row" layout-align="center end">
+		<md-button class="md-raised md-primary" ng-disabled="RegiForm.$invalid" 
+		ng-click="addBusiness()">Register</md-button>
+	</div>
+
+</form>
+</md-content>
+
+
+
+
 
 
 
