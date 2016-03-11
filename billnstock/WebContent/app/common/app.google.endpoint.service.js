@@ -4,7 +4,6 @@ function googleEndpointSF($log, $q) {
 
 	var serviceFactory = {};
 
-	
 	var LocationService = {};
 
 	serviceFactory.getLocationService = function() {
@@ -23,7 +22,7 @@ function googleEndpointSF($log, $q) {
 		$log.debug("No3");
 		return deferred.promise;
 	}
-	
+
 	LocationService.getAllLocation = function() {
 		var deferred = $q.defer();
 		gapi.client.locationService.getAllLocation().execute(function(resp) {
@@ -31,8 +30,8 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
-	
-	//---------------------------user login------------------------------
+
+	// ---------------------------user login------------------------------
 	var UserService = {};
 
 	serviceFactory.getUserService = function() {
@@ -51,23 +50,20 @@ function googleEndpointSF($log, $q) {
 		$log.debug("No3");
 		return deferred.promise;
 	}
-	
-	
-	
-	
-	UserService.login = function(email,pass) {
+
+	UserService.login = function(email, pass) {
 		$log.debug("No2");
 		var deferred = $q.defer();
-		//gapi.client.userService.login(user).execute(function(resp) {
-		gapi.client.userService.login({'email_id' : email,'password':pass}).execute(function(resp) {	
+		// gapi.client.userService.login(user).execute(function(resp) {
+		gapi.client.userService.login({
+			'email_id' : email,
+			'password' : pass
+		}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
 		$log.debug("No3");
 		return deferred.promise;
 	}
-	
-	
-
 
 	UserService.getUser = function() {
 		var deferred = $q.defer();
@@ -90,7 +86,7 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	UserService.getBusinessList= function() {
+	UserService.getBusinessList = function() {
 		var deferred = $q.defer();
 		gapi.client.userService.getBusinessList().execute(function(resp) {
 			$log.debug("getUser #resp :" + resp);
@@ -98,25 +94,29 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
-	
-	UserService.getUsersByBusinessId= function(id) {
+
+	UserService.getUsersByBusinessId = function(id) {
 		var deferred = $q.defer();
-		gapi.client.userService.getUsersByBusinessId({'id':id}).execute(function(resp) {
+		gapi.client.userService.getUsersByBusinessId({
+			'id' : id
+		}).execute(function(resp) {
 			$log.debug("getUser #resp :" + resp);
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
 	}
-	
-	UserService.getbusinessById= function(id) {
+
+	UserService.getbusinessById = function(id) {
 		var deferred = $q.defer();
-		gapi.client.userService.getbusinessById({'id':id}).execute(function(resp) {
+		gapi.client.userService.getbusinessById({
+			'id' : id
+		}).execute(function(resp) {
 			$log.debug("getUser #resp :" + resp);
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
 	}
-	
+
 	UserService.updateUser = function(user) {
 		$log.debug("No2");
 		var deferred = $q.defer();
@@ -136,14 +136,11 @@ function googleEndpointSF($log, $q) {
 			return $localStorage.loggedinUser;
 	}
 
-
 	UserService.logout = function() {
 		$localStorage.loggedinUser = null;
 	} // End of UserService
 
-	
-	
-	//start business 
+	// start business
 
 	UserService.addBusiness = function(business) {
 		var deferred = $q.defer();
@@ -164,95 +161,147 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
-	//---------------------------assetService--------------------------------
-	
-	var assetService={};
-	
-	serviceFactory.getAssetManagementService=function(){
+	// ---------------------------assetService--------------------------------
+
+	var assetService = {};
+
+	serviceFactory.getAssetManagementService = function() {
 		return assetService;
 	}
-	
-	
-	assetService.addAsset=function(asset){
+
+	assetService.addAsset = function(asset) {
 		var deferred = $q.defer();
 		gapi.client.assetService.addAsset(asset).execute(function() {
 			deferred.resolve({
 				"msg" : "assetService Added Successfully."
 			});
-     	});
+		});
 		return deferred.promise;
 	}
-	
-	assetService.getallAsset=function(id){
+
+	assetService.getallAsset = function(id) {
 		var deferred = $q.defer();
-		gapi.client.assetService.getallAsset({'id':id}).execute(function(resp) {
-					deferred.resolve(resp);
+		gapi.client.assetService.getallAsset({
+			'id' : id
+		}).execute(function(resp) {
+			deferred.resolve(resp);
 		});
 		return deferred.promise;
-}
-	assetService.getselectedasset=function(id){
+	}
+	assetService.getselectedasset = function(id) {
 		var deferred = $q.defer();
-		gapi.client.assetService.getselectedasset({'id':id}).execute(function(resp) {
-					deferred.resolve(resp);
+		gapi.client.assetService.getselectedasset({
+			'id' : id
+		}).execute(function(resp) {
+			deferred.resolve(resp);
 		});
 		return deferred.promise;
-}
-	
-	
-	assetService.updateAsset=function(asset){
+	}
+
+	assetService.updateAsset = function(asset) {
 		var deferred = $q.defer();
 		gapi.client.assetService.addAsset(asset).execute(function() {
 			deferred.resolve({
 				"msg" : "assetService updated Successfully."
 			});
-     	});
+		});
 		return deferred.promise;
 	}
-	
-	assetService.addAssignAsset=function(asset){
+
+	assetService.addAssignAsset = function(asset) {
 		var deferred = $q.defer();
 		gapi.client.assetService.addAssignAsset(asset).execute(function() {
 			deferred.resolve({
 				"msg" : "Asset Assign Successfully."
 			});
-     	});
-		return deferred.promise;
-	}
-	
-	assetService.getselectedassetdetail=function(id){
-		var deferred = $q.defer();
-		gapi.client.assetService.getselectedassetdetail({'id':id}).execute(function(resp) {
-					deferred.resolve(resp);
 		});
 		return deferred.promise;
-    }
-	
-	
-	assetService.releaseAsset=function(id){
+	}
+
+	assetService.getselectedassetdetail = function(id) {
 		var deferred = $q.defer();
-		gapi.client.assetService.releaseAsset({'id':id}).execute(function() {
+		gapi.client.assetService.getselectedassetdetail({
+			'id' : id
+		}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+
+	assetService.releaseAsset = function(id) {
+		var deferred = $q.defer();
+		gapi.client.assetService.releaseAsset({
+			'id' : id
+		}).execute(function() {
 			deferred.resolve({
 				"msg" : "Asset Release Successfully."
 			});
 		});
 		return deferred.promise;
-    }
-	
-	//--------------------setup service----------------------------
-	
-	var setupService={};
-	
-	serviceFactory.getsetupService=function(){
-		return setupService;
 	}
-	
-	setupService.getCurUserByEmailId=function(emailid){
+
+	// --------------------pro adminservice---------------------
+
+	var proadminService = {};
+	serviceFactory.getproadminService = function() {
+		return proadminService;
+	}
+
+	proadminService.addAccountType = function(account) {
 		var deferred = $q.defer();
-		gapi.client.setupService.getCurUserByEmailId({'adminGmailId' : emailid}).execute(function(resp) {
-					deferred.resolve(resp);
+		gapi.client.proadminService.addAccountType(account).execute(function() {
+			deferred.resolve({
+				"msg" : "Account Added Successfully."
+			});
+
 		});
 		return deferred.promise;
-}
+	}
+
+	proadminService.updateAccountType = function(account) {
+		var deferred = $q.defer();
+		gapi.client.proadminService.addAccountType(account).execute(function() {
+			deferred.resolve({
+				"msg" : "Account Update Successfully."
+			});
+
+		});
+		return deferred.promise;
+	}
+	
+	proadminService.getallAccountType = function() {
+		var deferred = $q.defer();
+		gapi.client.proadminService.getallAccountType().execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
+	proadminService.getAccountTypeById=function(id) {
+		var deferred = $q.defer();
+		gapi.client.proadminService.getAccountTypeById({'id' : id}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+
+	// --------------------setup service----------------------------
+
+	var setupService = {};
+
+	serviceFactory.getsetupService = function() {
+		return setupService;
+	}
+
+	setupService.getCurUserByEmailId = function(emailid) {
+		var deferred = $q.defer();
+		gapi.client.setupService.getCurUserByEmailId({
+			'adminGmailId' : emailid
+		}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
 
 	setupService.updateBusiness = function(business) {
 		var deferred = $q.defer();
@@ -260,51 +309,42 @@ function googleEndpointSF($log, $q) {
 			deferred.resolve({
 				"msg" : "Business updated Successfully."
 			});
-     	});
-		return deferred.promise;
-	}
-	
-	
-	setupService.getAllUserOfOrg=function(id){
-		var deferred = $q.defer();
-		gapi.client.setupService.getAllUserOfOrg({'id':id}).execute(function(resp) {
-					deferred.resolve(resp);
-		});
-		return deferred.promise;
-}	
-	
-	
-	
-	
-	setupService.getuserById=function(usrid){
-		var deferred = $q.defer();
-		gapi.client.setupService.getuser({'id' : usrid}).execute(function(resp) {
-					deferred.resolve(resp);
 		});
 		return deferred.promise;
 	}
-	
-	
-	
-	/*setupService.adduser= function(user) {
 
+	setupService.getAllUserOfOrg = function(id) {
 		var deferred = $q.defer();
-		gapi.client.setupService.adduser(user).execute(function() {
-
-			deferred.resolve({
-				"msg" : "user Added Successfully."
-			});
-
+		gapi.client.setupService.getAllUserOfOrg({
+			'id' : id
+		}).execute(function(resp) {
+			deferred.resolve(resp);
 		});
 		return deferred.promise;
 	}
-	*/
-	
-	
-	
-	
-	//--------------------hr services--------------------------------------
 
+	setupService.getuserById = function(usrid) {
+		var deferred = $q.defer();
+		gapi.client.setupService.getuser({
+			'id' : usrid
+		}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+
+	/*
+	 * setupService.adduser= function(user) {
+	 * 
+	 * var deferred = $q.defer();
+	 * gapi.client.setupService.adduser(user).execute(function() {
+	 * 
+	 * deferred.resolve({ "msg" : "user Added Successfully." });
+	 * 
+	 * }); return deferred.promise; }
+	 */
+
+	// --------------------hr services--------------------------------------
 	var hrService = {};
 
 	// Add Customer Service
@@ -328,7 +368,9 @@ function googleEndpointSF($log, $q) {
 
 	hrService.getAllemp = function(id) {
 		var deferred = $q.defer();
-		gapi.client.hrService.getAllemp({'id':id}).execute(function(resp) {
+		gapi.client.hrService.getAllemp({
+			'id' : id
+		}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -339,7 +381,7 @@ function googleEndpointSF($log, $q) {
 		gapi.client.hrService.getempByID({
 			'id' : selectedempNo
 		}).execute(function(resp) {
-			/*$log.debug("internet cost:=" + resp);*/
+			/* $log.debug("internet cost:=" + resp); */
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -376,7 +418,7 @@ function googleEndpointSF($log, $q) {
 		gapi.client.hrService.findsalstructfromemp({
 			'id' : struct
 		}).execute(function(resp) {
-			/*$log.debug("internet cost:=" + resp);*/
+			/* $log.debug("internet cost:=" + resp); */
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -384,7 +426,9 @@ function googleEndpointSF($log, $q) {
 
 	hrService.getAllempsSalStruct = function(id) {
 		var deferred = $q.defer();
-		gapi.client.hrService.getAllempsSalStruct({'id':id}).execute(function(resp) {
+		gapi.client.hrService.getAllempsSalStruct({
+			'id' : id
+		}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -392,8 +436,10 @@ function googleEndpointSF($log, $q) {
 
 	hrService.viewfindsalstruct = function(struct) {
 		var deferred = $q.defer();
-		gapi.client.hrService.findsalstruct({'id' : struct}).execute(function(resp) {
-			/*$log.debug("internet cost:=" + resp);*/
+		gapi.client.hrService.findsalstruct({
+			'id' : struct
+		}).execute(function(resp) {
+			/* $log.debug("internet cost:=" + resp); */
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -417,7 +463,7 @@ function googleEndpointSF($log, $q) {
 		gapi.client.hrService.findsalstruct({
 			'id' : struct
 		}).execute(function(resp) {
-			/*$log.debug("internet cost:=" + resp);*/
+			/* $log.debug("internet cost:=" + resp); */
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -439,9 +485,12 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	hrService.displyOnlySelected = function(curmonth,id) {
+	hrService.displyOnlySelected = function(curmonth, id) {
 		var deferred = $q.defer();
-		gapi.client.hrService.displyOnlySelected({'month' : curmonth,'id':id}).execute(function(resp) {
+		gapi.client.hrService.displyOnlySelected({
+			'month' : curmonth,
+			'id' : id
+		}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -449,7 +498,9 @@ function googleEndpointSF($log, $q) {
 
 	hrService.printslip = function(salslipid) {
 		var deferred = $q.defer();
-		gapi.client.hrService.printslip({'id' : salslipid}).execute(function(resp) {
+		gapi.client.hrService.printslip({
+			'id' : salslipid
+		}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -475,15 +526,18 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	hrService.getallsalslip = function(curryear,id) {
+	hrService.getallsalslip = function(curryear, id) {
 		var deferred = $q.defer();
-		gapi.client.hrService.getallsalslip({'year' : curryear,'id':id}).execute(function(resp) {
+		gapi.client.hrService.getallsalslip({
+			'year' : curryear,
+			'id' : id
+		}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
 	}
 
-	//------------------------- CRM ---------------------------------
+	// ------------------------- CRM ---------------------------------
 	var crmService = {};
 
 	serviceFactory.getleadService = function() {
@@ -504,7 +558,9 @@ function googleEndpointSF($log, $q) {
 
 	crmService.getAllleads = function(id) {
 		var deferred = $q.defer();
-		gapi.client.crmService.getAllleads({'id':id}).execute(function(resp) {
+		gapi.client.crmService.getAllleads({
+			'id' : id
+		}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -515,7 +571,7 @@ function googleEndpointSF($log, $q) {
 		gapi.client.crmService.getLeadById({
 			'id' : lead
 		}).execute(function(resp) {
-			/*$log.debug("internet cost:=" + resp);*/
+			/* $log.debug("internet cost:=" + resp); */
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -546,7 +602,9 @@ function googleEndpointSF($log, $q) {
 
 	crmService.getAllcontact = function(id) {
 		var deferred = $q.defer();
-		gapi.client.crmService.getAllcontact({'id':id}).execute(function(resp) {
+		gapi.client.crmService.getAllcontact({
+			'id' : id
+		}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -571,7 +629,7 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	//opportunity service
+	// opportunity service
 
 	var opportunityService = {};
 
@@ -592,10 +650,11 @@ function googleEndpointSF($log, $q) {
 	}
 	opportunityService.getAllopportunity = function(id) {
 		var deferred = $q.defer();
-		gapi.client.opportunityService.getAllopportunity({'id':id}).execute(
-				function(resp) {
-					deferred.resolve(resp);
-				});
+		gapi.client.opportunityService.getAllopportunity({
+			'id' : id
+		}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
 		return deferred.promise;
 	}
 	opportunityService.getopportunityById = function(opportunityoid) {
@@ -632,8 +691,8 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	//---------------------------------------------------------------
-	//ADD INTERNET SERVICE
+	// ---------------------------------------------------------------
+	// ADD INTERNET SERVICE
 
 	var internetService = {};
 
@@ -656,13 +715,13 @@ function googleEndpointSF($log, $q) {
 		gapi.client.internetService.findplan({
 			'rate' : rate
 		}).execute(function(resp) {
-			/*$log.debug("internet cost:=" + resp);*/
+			/* $log.debug("internet cost:=" + resp); */
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
 	}
 
-	//Add Customer Service
+	// Add Customer Service
 
 	var InternetService = {};
 
@@ -732,10 +791,14 @@ function googleEndpointSF($log, $q) {
 
 	CustomerService.getAllCustomersByCurrUser = function(id) {
 		var deferred = $q.defer();
-		gapi.client.customerService.getAllCustomersByCurrUser({"id" : id}).execute(function(resp) {
-			$log.debug("getAllCustomers#resp at enpoint:" + angular.toJson(resp));
-			deferred.resolve(resp.items);
-		});
+		gapi.client.customerService.getAllCustomersByCurrUser({
+			"id" : id
+		}).execute(
+				function(resp) {
+					$log.debug("getAllCustomers#resp at enpoint:"
+							+ angular.toJson(resp));
+					deferred.resolve(resp.items);
+				});
 		return deferred.promise;
 	}
 
@@ -761,8 +824,6 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}// End of CustomerService
 
-
-
 	// =====================================================================================================================================
 	// Add Customer Service
 
@@ -785,13 +846,16 @@ function googleEndpointSF($log, $q) {
 
 	AccountService.getAllAccountsByBusiness = function(id) {
 		var deferred = $q.defer();
-		gapi.client.accountService.getAllAccountsByBusiness({"id" : id}).execute(function(resp) {
-			$log.debug("getAllAccountsByCurrUser#resp at enpoint:" + angular.toJson(resp));
-			deferred.resolve(resp.items);
-		});
+		gapi.client.accountService.getAllAccountsByBusiness({
+			"id" : id
+		}).execute(
+				function(resp) {
+					$log.debug("getAllAccountsByCurrUser#resp at enpoint:"
+							+ angular.toJson(resp));
+					deferred.resolve(resp.items);
+				});
 		return deferred.promise;
 	}
-	
 
 	AccountService.addPayable = function(payable) {
 		var deferred = $q.defer();
@@ -806,36 +870,44 @@ function googleEndpointSF($log, $q) {
 
 	AccountService.getAllPayablesByBusiness = function(id) {
 		var deferred = $q.defer();
-		gapi.client.accountService.getAllPayablesByBusiness({"id" : id}).execute(function(resp) {
-			$log.debug("getAllPayablesByBusiness#resp at enpoint:" + angular.toJson(resp));
-			deferred.resolve(resp.items);
-		});
+		gapi.client.accountService.getAllPayablesByBusiness({
+			"id" : id
+		}).execute(
+				function(resp) {
+					$log.debug("getAllPayablesByBusiness#resp at enpoint:"
+							+ angular.toJson(resp));
+					deferred.resolve(resp.items);
+				});
 		return deferred.promise;
-	
+
 	}
-	
-	
+
 	AccountService.addReceivable = function(receivable) {
 		var deferred = $q.defer();
 
-		gapi.client.accountService.addReceivable(receivable).execute(function(resp) {
-			$log.debug("addReceivable#resp at enpoint:" + resp);
-			deferred.resolve(resp);
-		});
+		gapi.client.accountService.addReceivable(receivable).execute(
+				function(resp) {
+					$log.debug("addReceivable#resp at enpoint:" + resp);
+					deferred.resolve(resp);
+				});
 
 		return deferred.promise;
 	}
 
 	AccountService.getAllReceivablesByBusiness = function(id) {
 		var deferred = $q.defer();
-		gapi.client.accountService.getAllReceivablesByBusiness({"id" : id}).execute(function(resp) {
-			$log.debug("getAllReceivablesByBusiness#resp at enpoint:" + angular.toJson(resp));
-			deferred.resolve(resp.items);
-		});
+		gapi.client.accountService.getAllReceivablesByBusiness({
+			"id" : id
+		}).execute(
+				function(resp) {
+					$log.debug("getAllReceivablesByBusiness#resp at enpoint:"
+							+ angular.toJson(resp));
+					deferred.resolve(resp.items);
+				});
 		return deferred.promise;
-	
+
 	}
-	// End of AccountService		
+	// End of AccountService
 
 	/* =============================================================================================================================== */
 
@@ -857,12 +929,14 @@ function googleEndpointSF($log, $q) {
 
 	StockService.getAllStock = function(id) {
 		var deferred = $q.defer();
-		gapi.client.stockService.getAllStock({"id":id}).execute(function(resp) {
+		gapi.client.stockService.getAllStock({
+			"id" : id
+		}).execute(function(resp) {
 			$log.debug("getAllStock#resp at enpoint:" + resp);
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
-	} 
+	}
 
 	StockService.updateStock = function(updateStock) {
 		var deferred = $q.defer();
@@ -873,16 +947,18 @@ function googleEndpointSF($log, $q) {
 				});
 		return deferred.promise;
 	}
-	
+
 	StockService.getReportByThreshold = function(id) {
 		var deferred = $q.defer();
-		gapi.client.stockService.getReportByThreshold({"id":id}).execute(function(resp) {
+		gapi.client.stockService.getReportByThreshold({
+			"id" : id
+		}).execute(function(resp) {
 			$log.debug("getReportByThreshold#resp at enpoint:" + resp);
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
 	} // End of StockService
-	
+
 	/* =============================================================================================================================== */
 
 	// Start of StockService
@@ -903,16 +979,20 @@ function googleEndpointSF($log, $q) {
 
 	TaxService.getAllTaxes = function(id) {
 		var deferred = $q.defer();
-		gapi.client.taxService.getAllTaxes({"id":id}).execute(function(resp) {
+		gapi.client.taxService.getAllTaxes({
+			"id" : id
+		}).execute(function(resp) {
 			$log.debug("getAllTaxes#resp at enpoint:" + resp);
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
 	}
-	
+
 	TaxService.getTaxesByVisibility = function(id) {
 		var deferred = $q.defer();
-		gapi.client.taxService.getTaxesByVisibility({"id":id}).execute(function(resp) {
+		gapi.client.taxService.getTaxesByVisibility({
+			"id" : id
+		}).execute(function(resp) {
 			$log.debug("getTaxesByVisibility#resp at enpoint:" + resp);
 			deferred.resolve(resp.items);
 		});
@@ -927,7 +1007,7 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
-	
+
 	TaxService.disableTax = function(tax) {
 		var deferred = $q.defer();
 		gapi.client.taxService.disableTax(tax).execute(function(resp) {
@@ -950,36 +1030,36 @@ function googleEndpointSF($log, $q) {
 
 	InvoiceService.updateInvoice = function(valueToUpdate) {
 		var deferred = $q.defer();
-		
-		gapi.client.invoiceService.updateInvoice(valueToUpdate).execute(function(resp) {
-			$log.debug("UpdateInvoice#resp at enpoint:" + resp);
-			deferred.resolve(resp);
-		});
+
+		gapi.client.invoiceService.updateInvoice(valueToUpdate).execute(
+				function(resp) {
+					$log.debug("UpdateInvoice#resp at enpoint:" + resp);
+					deferred.resolve(resp);
+				});
 		return deferred.promise;
 	}
-	
+
 	InvoiceService.addInvoice = function(invoice) {
 		var deferred = $q.defer();
-		
+
 		gapi.client.invoiceService.addInvoice(invoice).execute(function(resp) {
 			$log.debug("addInvoice#resp at enpoint:" + resp);
 			deferred.resolve(resp);
 		});
 
-		
-		
-		/*gapi.client.stockService.updateStock(invoice).execute(
-				function(resp) {
-					$log.debug("updateStock#resp at enpoint:" + resp);
-					deferred.resolve(resp);
-				});
-		*/
+		/*
+		 * gapi.client.stockService.updateStock(invoice).execute( function(resp) {
+		 * $log.debug("updateStock#resp at enpoint:" + resp);
+		 * deferred.resolve(resp); });
+		 */
 		return deferred.promise;
 	}
 
 	InvoiceService.getAllInvoice = function(id) {
 		var deferred = $q.defer();
-		gapi.client.invoiceService.getAllInvoice({"id":id}).execute(function(resp) {
+		gapi.client.invoiceService.getAllInvoice({
+			"id" : id
+		}).execute(function(resp) {
 			$log.debug("getAllInvoice#resp at enpoint:" + resp);
 			deferred.resolve(resp.items);
 		});
@@ -999,19 +1079,25 @@ function googleEndpointSF($log, $q) {
 
 	InvoiceService.getAllInvoiceByCustId = function(id) {
 		var deferred = $q.defer();
-		gapi.client.invoiceService.getAllInvoiceByCustId({"id":id}).execute(function(resp) {
+		gapi.client.invoiceService.getAllInvoiceByCustId({
+			"id" : id
+		}).execute(function(resp) {
 			$log.debug("getAllInvoiceByCustId at enpoint" + resp.items);
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
 	}
-	
+
 	InvoiceService.getAllPayableInvoices = function(id) {
 		var deferred = $q.defer();
-		gapi.client.InvoiceService.getAllPayableInvoices({"id" : id}).execute(function(resp) {
-			$log.debug("getAllPayableInvoices#resp at enpoint:" + angular.toJson(resp));
-			deferred.resolve(resp.items);
-		});
+		gapi.client.InvoiceService.getAllPayableInvoices({
+			"id" : id
+		}).execute(
+				function(resp) {
+					$log.debug("getAllPayableInvoices#resp at enpoint:"
+							+ angular.toJson(resp));
+					deferred.resolve(resp.items);
+				});
 		return deferred.promise;
 	}// End of InvoiceService
 
@@ -1036,11 +1122,13 @@ function googleEndpointSF($log, $q) {
 
 	SalesOrderService.getAllSalesOrder = function(id) {
 		var deferred = $q.defer();
-		gapi.client.salesOrderService.getAllSalesOrder({"id":id}).execute(
-				function(resp) {
-					//$log.debug("getAllSalesOrder#resp at enpoint:" + angular.toJson(resp));
-					deferred.resolve(resp.items);
-				});
+		gapi.client.salesOrderService.getAllSalesOrder({
+			"id" : id
+		}).execute(function(resp) {
+			// $log.debug("getAllSalesOrder#resp at enpoint:" +
+			// angular.toJson(resp));
+			deferred.resolve(resp.items);
+		});
 		return deferred.promise;
 	}
 
@@ -1076,11 +1164,12 @@ function googleEndpointSF($log, $q) {
 	PurchaseOrderService.getAllPurchaseOrder = function(id) {
 		var deferred = $q.defer();
 
-		gapi.client.purchaseOrderService.getAllPurchaseOrder({"id":id}).execute(
-				function(resp) {
-					$log.debug("getAllPurchaseOrder at enpoint:" + resp)
-					deferred.resolve(resp.items)
-				});
+		gapi.client.purchaseOrderService.getAllPurchaseOrder({
+			"id" : id
+		}).execute(function(resp) {
+			$log.debug("getAllPurchaseOrder at enpoint:" + resp)
+			deferred.resolve(resp.items)
+		});
 		return deferred.promise;
 	}
 
@@ -1098,8 +1187,7 @@ function googleEndpointSF($log, $q) {
 	/* =============================================================================================================================== */
 
 	// Start of WarehouseManagement
-	
-	
+
 	var warehouseManagementService = {};
 
 	serviceFactory.getWarehouseManagementService = function() {
@@ -1108,37 +1196,37 @@ function googleEndpointSF($log, $q) {
 
 	warehouseManagementService.addWarehouse = function(add) {
 		var deferred = $q.defer();
-		gapi.client.warehouseManagementService.addWarehouse(add)
-				.execute(function(resp) {
+		gapi.client.warehouseManagementService.addWarehouse(add).execute(
+				function(resp) {
 					$log.debug("addWarehouse at enpoint:" + resp);
 					deferred.resolve(resp);
 				});
 		return deferred.promise;
 	}
-	
+
 	warehouseManagementService.getAllWarehouseByBusiness = function(id) {
 		var deferred = $q.defer();
-		gapi.client.warehouseManagementService.getAllWarehouseByBusiness({"id":id})
-				.execute(function(resp) {
-					$log.debug("getAllWarehouseByBusiness at enpoint:" + resp);
-					deferred.resolve(resp.items);
-				});
+		gapi.client.warehouseManagementService.getAllWarehouseByBusiness({
+			"id" : id
+		}).execute(function(resp) {
+			$log.debug("getAllWarehouseByBusiness at enpoint:" + resp);
+			deferred.resolve(resp.items);
+		});
 		return deferred.promise;
 	}
 
 	warehouseManagementService.updateWarehouse = function(updateWarehouse) {
 		var deferred = $q.defer();
-		gapi.client.warehouseManagementService.updateWarehouse(updateWarehouse).execute(
-				function(resp) {
+		gapi.client.warehouseManagementService.updateWarehouse(updateWarehouse)
+				.execute(function(resp) {
 					$log.debug("updateWarehouse#resp at enpoint:" + resp);
 					deferred.resolve(resp);
 				});
 		return deferred.promise;
 	}
-	 // End of WarehouseService
-	
+	// End of WarehouseService
+
 	/* =============================================================================================================================== */
 
-		
 	return serviceFactory;
 }

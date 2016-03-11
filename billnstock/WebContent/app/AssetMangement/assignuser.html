@@ -70,7 +70,7 @@
 				</thead>
 				<tbody>
 					<tr md-auto-select
-						ng-repeat="at in assetdetail | filter : { status : 'active' }  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit ">
+						ng-repeat="at in activeassetdetail | filter : { status : 'active' }  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit ">
 						<td width="20%" align="left">{{at.assetEntity.assetName}}</td>
 						<td width="20%" align="left">{{at.userEntity.firstName}}
 							{{at.userEntity.lastName}}</td>

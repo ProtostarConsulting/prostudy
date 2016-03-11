@@ -49,6 +49,7 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.gethrService();
 	};
 	// ----------------------------------------------------
+	
 	endpointFactory.getleadService=function(){
 		if (isTestMode)
 			return localDBServiceFactory.getleadService();
@@ -139,6 +140,13 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			return localDBServiceFactory.getWarehouseManagementService();
 		else
 			return googleEndpointSF.getWarehouseManagementService();
+	};
+	// ----------------------------------------------------
+	endpointFactory.getproadminService = function() {
+		if (isTestMode)
+			return localDBServiceFactory.getproadminService();
+		else
+			return googleEndpointSF.getproadminService();
 	};
 	// ----------------------------------------------------
 
@@ -277,6 +285,13 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 
 			  }, apiRoot);
 		 
+		 
+		 gapi.client.load('proadminService', 'v0.1', function() {
+			   $log.debug("proadminService Loaded......");
+			   endpointFactory.is_service_ready = true;
+			   deferred.resolve();
+
+			  }, apiRoot);
 		 
 		 gapi.load('auth', {
 				'callback' : function() {

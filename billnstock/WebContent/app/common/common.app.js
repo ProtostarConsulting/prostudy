@@ -465,6 +465,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/addAccountType",
 		templateUrl : '/app/ProAdmin/AddAccountType.html',
 		controller : 'proadminctr',
+	}).state('proAdmin.listAccount', {
+		url : "/listAccountType",
+		templateUrl : '/app/ProAdmin/ListAccountType.html',
+		controller : 'proadminctr',
+	}).state('proAdmin.editAccoutType', {
+		url : "/EditAccoutType/:typeid",
+		templateUrl : '/app/ProAdmin/EditAccoutType.html',
+		controller : 'proadminctr',
 	});
 
 });
