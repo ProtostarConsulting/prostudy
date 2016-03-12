@@ -19,6 +19,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 
 					deferred.resolve(resp);
 					$log.debug("resp :" + angular.toJson(resp));
+					$log.debug("getUser #resp :" + resp);
 				});
 
 		return deferred.promise;
@@ -31,6 +32,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
+		
 	}
 
 	UserService.getUserByEmailID = function(email_id) {
@@ -55,6 +57,17 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
+	}
+	
+	UserService.getUserByClass = function(standard,division,subject) {
+		 
+		  var deferred = $q.defer();
+		
+		  gapi.client.userService.getUserByClass({'standard' : standard ,'division': division ,'subject': subject }).execute(function(resp) { 
+		   deferred.resolve(resp.items);
+		  });
+		 
+		  return deferred.promise;
 	}
 
 
@@ -86,7 +99,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		  });
 		  $log.debug("No3");
 		  return deferred.promise;
-		 }
+	}
 
 	UserService.logout = function() {
 		$localStorage.loggedinUser = null;
@@ -407,7 +420,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	ChapterService.getChaptersByID = function(selectedChapterId) {
 		var deferred = $q.defer();
 		gapi.client.chapterService.getChaptersByID({
-			'chapterId' : selectedChapterId
+			'id' : selectedChapterId
 		}).execute(function(resp) {
 
 			$log.debug("getChaptersByID#resp:" + angular.toJson(resp));
@@ -499,6 +512,16 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 			
 			deferred.resolve(resp.items);
 		});
+		return deferred.promise;
+	}
+	
+	BookService.updateBook = function(book) {
+		
+		var deferred = $q.defer();
+		gapi.client.bookService.updateBook(book).execute(function(resp) {
+			deferred.resolve(resp.result);
+		});
+		
 		return deferred.promise;
 	}
 
@@ -730,7 +753,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	InstituteService.getInstituteById = function(selectedInstituteId) {
 		var deferred = $q.defer();
 		gapi.client.instituteService.getInstituteById({
-			'instituteID' : selectedInstituteId
+			'id' : selectedInstituteId
 		}).execute(function(resp) {
 			$log.debug("resp:" + angular.toJson(resp));
 

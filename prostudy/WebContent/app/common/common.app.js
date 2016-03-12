@@ -191,23 +191,23 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('institute.view.view_standards', {
 		url : "/view_standards/:selectedStandardId",
 		templateUrl : '/app/institute/institute_view_standards.html',
-		controller : 'instituteViewCtr'
+		controller : 'instituteViewCtr',
 	}).state('institute.view.view_standards.addstandards', {
 		url : "/addstandards/:currentInstID",
 		templateUrl : '/app/institute/institute_addStandards.html',
 		controller : 'instituteViewCtr'
 	}).state('institute.view.view_divisions', {
-		url : "/view_divisions/:selectedStdID/:selectedDivisionId",
+		url : "/view_divisions/:selectedStdID/:selectedDivisionId/:selectedStdName",
 		templateUrl : '/app/institute/institute_view_divisions.html',
-		controller : 'instituteViewCtr'
+		controller : 'instituteViewCtr',
 	}).state('institute.view.view_divisions.adddivisions', {
 		url : "/adddivisions/:currentInstID/:currentStdID",
 		templateUrl : '/app/institute/institute_addDivisions.html',
 		controller : 'instituteViewCtr'
 	}).state('institute.view.view_subjects', {
-		url : "/view_subjects/:selectedStdID/:selectedDivID/:selectedSubjectId",
+		url : "/view_subjects/:selectedStdID/:selectedDivID/:selectedSubjectId/:selectedStdName/:selectedDivName/",
 		templateUrl : '/app/institute/institute_view_subjects.html',
-		controller : 'instituteViewCtr'
+		controller : 'instituteViewCtr',
 	}).state('institute.view.view_subjects.addsubjects', {
 		url : "/addsubjects/:currentInstID/:currentStdID/:currentDivID",
 		templateUrl : '/app/institute/institute_addSubjects.html',
@@ -216,6 +216,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/editInstitute",
 		templateUrl : '/app/institute/institute_editInstitute.html',
 		controller : 'instituteViewCtr'
+	}).state('institute.view.studentByStd', {
+		url : "/viewStudentByStd/:selectedStdName/:selectedDivName/:selectedSubName",
+		templateUrl : '/app/institute/institute_view_studentByStd.html',
+		controller : 'instituteViewCtr',
+		
 	}).state('attendance', {
 		url : "/attendance",
 		templateUrl : '/app/attendance/attendance_module.html',
@@ -370,6 +375,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/viewCertificate",
 		templateUrl : '/app/certificateMgmt/viewCertificate.html',
 		controller : 'viewCertificateCtr'
+	}).state('admissionMgmt', {
+		url : "/admissionMgmt",
+		templateUrl : '/app/admissionMgmt/admission_module.html',
+		controller : 'admissionMgmtModuleCtr'
+	}).state('applicant.add', {
+		url : "/addApplicant",
+		templateUrl : '/app/admissionMgmt/applicant_add.html',
+		controller : 'applicantAddCtr'
+	}).state('applicant.list', {
+		url : "/applicantList",
+		templateUrl : '/app/admissionMgmt/applicant_list.html',
+		controller : 'applicantListCtr'
 	});
 
 });
