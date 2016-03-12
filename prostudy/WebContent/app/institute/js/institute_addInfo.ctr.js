@@ -101,7 +101,8 @@ angular.module("prostudyApp").controller(
 					'contact' : $scope.contact,
 					'role' : "Teacher",
 					'password' : $scope.password,
-					'isGoogleUser' : $scope.isGoogleUser
+					'isGoogleUser' : $scope.isGoogleUser,
+					'myBooks' : $scope.myBooks
 				});
 				$scope.firstName = '';
 				$scope.lastName = '';
@@ -128,7 +129,8 @@ angular.module("prostudyApp").controller(
 					'contact' : $scope.contact,
 					'role' : "Admin",
 					'password' : $scope.password,
-					'isGoogleUser' : $scope.isGoogleUser
+					'isGoogleUser' : $scope.isGoogleUser,
+					'myBooks' : $scope.myBooks
 				});
 				$scope.firstName = '';
 				$scope.lastName = '';
