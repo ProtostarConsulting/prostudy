@@ -9,7 +9,7 @@ angular.module("stockApp").controller(
 						.position("top").hideDelay(3000));
 			};
 
-			// ////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////
 
 			$scope.curuser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
@@ -20,19 +20,27 @@ angular.module("stockApp").controller(
 				adminFirstName : "",
 				adminLastName : "",
 				password : "",
-				isGoogleUser : true
+				isGoogleUser : true,
+				accounttype:""
 			}
 
 			$scope.addBusiness = function() {
-				var UserService = appEndpointSF.getUserService();
-				UserService.addNewBusiness($scope.business).then(
-						function(msgBean) {
-							$scope.showSimpleToast(msgBean.msg);
-							$state.go("login");
-
+				
+				var proadminService = appEndpointSF.getproadminService();
+					proadminService.getAccountTypeById($scope.accounttype).then(
+							function(assetList) {
+								$scope.business.accounttype = assetList.result;
+				
+								var UserService = appEndpointSF.getUserService();
+									UserService.addNewBusiness($scope.business).then(
+											function(msgBean) {
+												$scope.showSimpleToast(msgBean.msg);
+												$state.go("login");
 						});
+					});
+							
+				
 			}
-
 			$scope.condition = function() {
 				if ($scope.business.isGoogleUser == false) {
 					return true;
@@ -53,7 +61,8 @@ angular.module("stockApp").controller(
 			}
 			$scope.accountlist = [];
 			$scope.getallAccountType();
-
+			
+		
 
 			// //////////////////////////////////////////////////////////////////////////////
 

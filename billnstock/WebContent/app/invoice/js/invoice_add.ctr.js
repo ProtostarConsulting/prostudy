@@ -10,6 +10,9 @@ app
 					.getLoggedinUser();
 					$log.debug("$scope.curUser++++++++"+angular.toJson($scope.curUser));
 					
+					
+					
+					
 					$scope.invoiceObj = {
 						salesOrderId : '',
 						customer : '',

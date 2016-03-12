@@ -18,15 +18,23 @@ angular.module("stockApp").controller(
 				businessName : "",
 				adminGmailId : $scope.curuser.email_id,
 				adminFirstName : $scope.curuser.firstName,
-				adminLastName : $scope.curuser.lastName
+				adminLastName : $scope.curuser.lastName,
+				accounttype:""
 			}
 
 			$scope.addBusiness = function() {
-				var UserService = appEndpointSF.getUserService();
-				UserService.addBusiness($scope.business).then(
-						function(msgBean) {
-							$scope.showSavedToast(msgBean.msg);
-							$state.go("login");
+				
+				var proadminService = appEndpointSF.getproadminService();
+				proadminService.getAccountTypeById($scope.accounttype).then(
+						function(assetList) {
+							$scope.business.accounttype = assetList.result;
+				
+									var UserService = appEndpointSF.getUserService();
+										UserService.addBusiness($scope.business).then(
+												function(msgBean) {
+													$scope.showSavedToast(msgBean.msg);
+													$state.go("login");
+												});
 						});
 			}
 

@@ -42,8 +42,8 @@
 	<div layout layout-sm="column">
 		<md-input-container flex> <md-select
 			name="selectedaccount" placeholder="accounttype"
-			ng-model="business.accounttype" ng-required="true"> <md-option
-			value={{list.id}} ng-repeat="list in accountlist">
+			ng-model="accounttype" ng-required="true"> <md-option
+			value={{list.id}} ng-repeat="list in accountlist" ng-selected="$first">
 		{{list.accountName}} ( {{list.description}} ) </md-option> </md-select>
 		  <div ng-messages="RegiForm.selectedaccount.$error"
 				ng-if="RegiForm.selectedaccount.$submitted || RegiForm.selectedaccount.$touched">
