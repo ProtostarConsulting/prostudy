@@ -8,23 +8,14 @@ import com.googlecode.objectify.annotation.Index;
 public class InstituteEntity {
 
 	@Id
-	private Long id;
 	@Index
-	private String instituteId;
-
+	private Long id;
 	private String name;
 	private String desc;
 	private String address;
 	private String phone_no;
 
-	public String getInstituteId() {
-		return instituteId;
-	}
-
-	public void setInstituteId(String instituteId) {
-		this.instituteId = instituteId;
-	}
-
+	
 	public Long getID() {
 		return id;
 	}
@@ -32,8 +23,6 @@ public class InstituteEntity {
 	public void setID(Long iD) {
 		id = iD;
 	}
-
-
 
 	public String getName() {
 		return name;
