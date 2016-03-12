@@ -20,20 +20,37 @@ public class UserEntity {
 	private String email_id;
 	@Index
 	private String PRN;
-	
-	
 	private Boolean isGoogleUser = false;
-
 	private String password;
+	@Index
 	private String standard;
+	@Index
 	private String division;
+	@Index
 	private String subject;
-
 	@Index
 	private Long instituteID;
+	
+	private List<PracticeExamEntity> myExams;
+	private List<BookEntity> myBooks;
 
-	private List<PracticeExamEntity> exam;
+	public List<PracticeExamEntity> getMyExams() {
+		return myExams;
+	}
 
+	public void setMyExams(List<PracticeExamEntity> myExams) {
+		this.myExams = myExams;
+	}
+
+	public List<BookEntity> getMyBooks() {
+		return myBooks;
+	}
+
+	public void setMyBooks(List<BookEntity> myBooks) {
+		this.myBooks = myBooks;
+	}
+
+	
 	public String getDivision() {
 		return division;
 	}
@@ -136,14 +153,6 @@ public class UserEntity {
 
 	public void setRole(String role) {
 		this.role = role;
-	}
-
-	public List<PracticeExamEntity> getExam() {
-		return exam;
-	}
-
-	public void setExam(List<PracticeExamEntity> exam) {
-		this.exam = exam;
 	}
 
 	public Long getInstituteID() {
