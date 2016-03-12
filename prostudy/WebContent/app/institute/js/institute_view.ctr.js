@@ -12,6 +12,11 @@ angular
 					$scope.selectedStandard;
 					$scope.selectedDivision;
 					$scope.selectedSubject;
+					
+					$scope.selectedStdName = $stateParams.selectedStdName;
+					$scope.selectedDivName = $stateParams.selectedDivName;
+					$scope.selectedSubName = $stateParams.selectedSubName;
+					
 					$scope.isGoogleUser;
 					
 					$scope.newField = {};
@@ -36,10 +41,13 @@ angular
 					$scope.divList;
 					$scope.subList;
 			        
+					$scope.viewstdList = [];
+					$scope.myBooks = [];
 			        
 					$scope.selectedInstituteId = $stateParams.selectedInstituteId;
 					$scope.selectedStdID = $stateParams.selectedStdID;
 					$scope.selectedDivID = $stateParams.selectedDivID; 
+					$scope.std;
 					
 					$scope.currentInstID = $stateParams.currentInstID;
 					$scope.currentStdID = $stateParams.currentStdID;
@@ -118,7 +126,8 @@ angular
 							'division' : $scope.selectedDivision,
 							'subject' : $scope.selectedSubject,
 							'password' : $scope.password,
-							'isGoogleUser' : $scope.isGoogleUser
+							'isGoogleUser' : $scope.isGoogleUser,
+							'myBooks' : $scope.myBooks
 						});
 						$scope.firstName = '';
 						$scope.lastName = '';
@@ -201,8 +210,7 @@ angular
 							UserService.addUser($scope.selectedTeachers[i])
 									.then(
 											function(msgBean) {
-												$log.debug("msgBean.msg:"
-														+ msgBean.msg);
+												$log.debug("msgBean.msg:"+ msgBean.msg);
 
 											});
 						}
@@ -267,7 +275,7 @@ angular
 								.then(
 										function(userList) {
 											$scope.users = userList;
-											$log.debug("$scope.users :"+ angular.toJson($scope.users));
+											
 											for (var i = 0; i < $scope.users.length; i++) {
 												if ($scope.users[i].role == "Admin") {
 													$scope.adminList
@@ -286,6 +294,9 @@ angular
 
 										});
 					}
+					
+					$scope.showselectedInstitute();
+					$scope.getUserByInstitute();
 
 					$scope.viewStandardByInstitute = function() {
 
@@ -297,39 +308,35 @@ angular
 									
 									$scope.viewstdList = standardList;
 									
+									
 								});
-					}
+						}
 
-					$scope.showselectedInstitute();
-					$scope.getUserByInstitute();
-					$scope.viewStandardByInstitute();
-					
-					
 					$scope.viewDivisionByStandard = function() {
-
+					
+						$log.debug("$scope.selectedStdName: "+ $scope.selectedStdName);
+						$scope.std = $scope.selectedStdName;
 						var DivisionService = appEndpointSF
 								.getDivisionService();
 						DivisionService.getDivisionByStandard($scope.selectedStdID).then(
 								function(divisionList) {
 									$scope.viewDivList = divisionList;
 									
-
 								});
 					}
-					$scope.viewDivisionByStandard();
-					
 					
 					$scope.viewSubjectByDivision = function() {
-
+						
+						$log.debug("$scope.selectedStdName.....: "+ $scope.selectedStdName);
+						$log.debug("$scope.selectedDivName......: "+ $scope.selectedDivName);
+						
 						var SubjectService = appEndpointSF.getSubjectService();
 						SubjectService.getSubjectByDivision($scope.selectedDivID).then(
 								function(subjectList) {
 									$scope.viewSubList = subjectList;
-									
+								
 								});
 					}
-					$scope.viewSubjectByDivision();
-					
 					
 					$scope.getStandardByInstitute = function() {
 
@@ -554,6 +561,20 @@ angular
 
 						$state.go("institute.view");
 					}
+					
+					
+					$scope.getUserByClass = function() {
+
+						var UserService = appEndpointSF
+								.getUserService();
+						UserService.getUserByClass($scope.selectedStdName,$scope.selectedDivName,$scope.selectedSubName).then(
+								function(studentList) {
+									$scope.students = studentList;
+									
+								});
+					}
+					
+					
 					$scope.query = {
 						order : 'description',
 						limit : 5,

@@ -1,4 +1,4 @@
-<div>
+<div ng-init="viewStandardByInstitute()">
 	<md-content layout-padding> <md-data-table-container>
 	<table md-data-table md-row-select="selected" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onorderchange">
@@ -21,7 +21,7 @@
 					data-ng-required /></td>
 
 				<td><md-button
-						ui-sref="institute.view.view_divisions({selectedStdID : standard.id})"
+						ui-sref="institute.view.view_divisions({selectedStdID : standard.id, selectedStdName : standard.name})"
 						class="md-raised md-primary">View Divisions</md-button></td>
 
 				<td><md-button

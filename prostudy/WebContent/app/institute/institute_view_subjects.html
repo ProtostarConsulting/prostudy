@@ -1,4 +1,4 @@
-<div>
+<div ng-init="viewSubjectByDivision()">
 	<md-content layout-padding> <md-data-table-container>
 	<table md-data-table md-row-select="selected" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onorderchange">
@@ -19,12 +19,16 @@
 				<td><span data-ng-hide="editMode">{{subject.name}}</span> <input
 					type="text" data-ng-show="editMode" data-ng-model="subject.name"
 					data-ng-required /></td>
+					
+				<td><a
+					ui-sref="institute.view.studentByStd({selectedSubName : subject.name, selectedStdName:selectedStdName, selectedDivName:selectedDivName})"><md-button
+							class="md-raised md-primary">View Student</md-button></a></td>
 
-				
-
-				<td><a ui-sref="institute.view.view_subjects({selectedSubjectId: subject.id})"><md-button data-ng-hide="editMode"
-						data-ng-click="editMode = true;editSub(subject)"
-						class="md-raised md-primary">Edit </md-button></a></td>
+				<td><a
+					ui-sref="institute.view.view_subjects({selectedSubjectId: subject.id, selectedSubName : subject.name})"><md-button
+							data-ng-hide="editMode"
+							data-ng-click="editMode = true;editSub(subject)"
+							class="md-raised md-primary">Edit </md-button></a></td>
 
 
 				<td><md-button data-ng-show="editMode"
@@ -36,19 +40,20 @@
 						data-ng-click="editMode = false; cancelSub()"
 						class="md-raised md-primary">Cancel</md-button></td>
 
+				
+
 			</tr>
 		</tbody>
 	</table>
 
-	
+
 
 	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
 		md-total={{subjects.length}} md-trigger="onpagechange"></md-data-table-pagination>
 	</md-data-table-container>
 
 	<div layout="row" layout-align="centre centre" layout-sm="column" flex>
-		<a
-			ui-sref="institute.view.view_standards"><md-button
+		<a ui-sref="institute.view.view_standards"><md-button
 				class="md-raised md-primary">Back </md-button> </a>
 	</div>
 

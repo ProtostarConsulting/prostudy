@@ -20,6 +20,7 @@ angular.module("prostudyApp").controller(
 			$scope.standards = [];
 			$scope.divisions = []; 
 			$scope.subjects = []; 
+			$scope.myBooks = [];
 					
 
 			$scope.selectedStdID;
@@ -72,7 +73,8 @@ angular.module("prostudyApp").controller(
 					'division' : $scope.selectedDivision,
 					'subject' : $scope.selectedSubject,
 					'password' : $scope.password,
-					'isGoogleUser' : $scope.isGoogleUser
+					'isGoogleUser' : $scope.isGoogleUser,
+					'myBooks' : $scope.myBooks
 				});
 				$scope.firstName = '';
 				$scope.lastName = '';
