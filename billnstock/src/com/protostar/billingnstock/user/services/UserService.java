@@ -151,6 +151,7 @@ public class UserService {
 		businessEntity.setAdminGmailId(business.getAdminGmailId());
 		businessEntity.setAdminLastName(business.getAdminLastName());
 		businessEntity.setBusinessName(business.getBusinessName());
+		businessEntity.setAccounttype(business.getAccounttype());
 		businessEntity.setRegisterDate(sdf.format(date));
 
 		ofy().save().entity(businessEntity).now();

@@ -1,14 +1,29 @@
 package com.protostar.billingnstock.user.entities;
 
+import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
+import com.protostar.billingnstock.proadmin.entities.AccountType;
 
 @Entity
 public class BusinessEntity {
 
+	
+	private Ref<AccountType> accounttype;
+
+	public AccountType getAccounttype() {
+		return accounttype.get();
+	}
+
+	public void setAccounttype(AccountType accounttype) {
+		this.accounttype = Ref.create(accounttype);
+	}
+	
 	@Id
 	private Long id;
+
+	
 
 	public Long getId() {
 		return id;

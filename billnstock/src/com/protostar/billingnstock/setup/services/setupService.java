@@ -48,8 +48,9 @@ public class setupService {
 	
 	@ApiMethod(name = "getuser", path="Somepath_realted_to_your_service")
 	public UserEntity getuser(@Named("id") Long id) {
-		UserEntity usrlist = ofy().load().type(UserEntity.class).id(id).now();
-		return usrlist;
+		
+		return ofy().load().type(UserEntity.class).id(id).now();
+		
 	}
 	
 	
