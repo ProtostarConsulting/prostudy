@@ -9,10 +9,8 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
-import com.protostar.prostudy.entity.StudentEntity;
 import com.protostar.prostudy.entity.UserEntity;
 import com.protostar.prostudy.until.data.UtilityService;
-
 
 @Api(name = "userService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
 public class UserService {
@@ -23,6 +21,7 @@ public class UserService {
 		usr.setPRN(nextPRN);
 		Key<UserEntity> now = ofy().save().entity(usr).now();
 	}
+
 
 	@ApiMethod(name = "updateUser")
 	public void updateUser(UserEntity usr) {
@@ -71,7 +70,15 @@ public class UserService {
 		}
 
 	}
-	
-	
+
+	@ApiMethod(name = "getUserByClass", path = "Somepath_realted_to_your_service")
+	public List<UserEntity> getUserByClass(@Named("standard") String standard,
+			@Named("division") String division, @Named("subject") String subject) {
+		List<UserEntity> list = ofy().load().type(UserEntity.class)
+				.filter("standard", standard).filter("division", division)
+				.filter("subject", subject).list();
+
+		return list;
+	}
 
 }
