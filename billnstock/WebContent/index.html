@@ -111,7 +111,7 @@
 			<md-button ui-sref="user_prof_detail" ng-show="user == 'basic'" ng-click="close()"  class="md-primary" show-gt-md>User Profile / Detail </md-button>
 			<md-button ui-sref="document"  ng-show="user == 'basic'" ng-click="close()"  class="md-primary" show-gt-md>Document</md-button>
 			<md-button ui-sref="email" ng-show="user == 'basic' " ng-click="close()"  class="md-primary" show-gt-md>email</md-button>
-			<md-button ui-sref="proAdmin" ng-show="user=='protostarcs.com'" ng-click="close()"  class="md-primary" show-gt-md>Protostar Admin </md-button>
+			<md-button ui-sref="proAdmin" ng-show="(userDoamin=='protostarcs.com' || userDoamin=='protostar.co.in') && user == 'basic'" ng-click="close()"  class="md-primary" show-gt-md>Protostar Admin </md-button>
 			
 			</md-content> 
 		</div>
