@@ -42,10 +42,6 @@
 				ng-click="signOut()"> Logout <md-tooltip>
 			{{ googleUser.getName() + "|" + googleUser.getEmail()}} </md-tooltip> </md-button>
 
-			<!-- <md-button class="md-icon-button" aria-label="More"
-    ng-click="toggleRight()"> <md-icon
-    md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
- -->
 			<img ng-show="true" ngf-src="googleUser.getImageUrl()" class=circular>
 			<md-button aria-label="Open Settings"
 				ng-click="showListBottomSheet($event)"> <md-tooltip>
@@ -120,25 +116,7 @@
 			</md-content> 
 		</div>
 			  </md-sidenav> </md-content>
-
-<!--			</md-toolbar> <md-button ui-sref="user_prof_detail" ng-click="close()"
- 				class="md-primary" show-gt-md>User Profile / Detail </md-button> <md-button
-				ui-sref="document" ng-click="close()" class="md-primary" show-gt-md>Document</md-button>
-			<md-button ui-sref="email" ng-click="close()" class="md-primary">
- -->
-<!-- 
-
-				<md-button ui-sref="warehouse"
-					ng-show="user == 'basic' || user == 'login' " ng-click="close()"
-					class="md-primary" show-gt-md>Warehouse Management</md-button> <md-button
-					ui-sref="probusiness" ng-show="user=='protostarcs.com'"
-					ng-click="close()" class="md-primary" show-gt-md>ProBusiness</md-button>
-
-				<md-button ui-sref="AssetMangement"
-					ng-show="user == 'basic' || user == 'login' " ng-click="close()"
-					class="md-primary" show-gt-md>Asset Mangement</md-button> </md-content>
-			</div>
- -->			
+			
 			</md-sidenav>
 	</md-content>
 
@@ -194,13 +172,7 @@
 		src="http://jqueryjs.googlecode.com/files/jquery-1.3.1.min.js">
 		
 	</script>
-	<script type="text/javascript"
-		src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-	<!-- 	<script src="http://code.jquery.com/2.1.3/jquery.min.js"></script>
-	<script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.js"></script>
-<script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
-<script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/additional-methods.js"></script>
-<script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/additional-methods.min.js"></script> -->
+	
 
 
 	<!-- Angular Material Dependencies -->
@@ -232,17 +204,7 @@
 	<script src="/lib/base/ng-file-upload.js"></script>
  
 	<script src="/lib/base/ui-grid.js"></script>
-<!--	<script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
-	<script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
-	<script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
-	<script src="http://ui-grid.info/release/ui-grid.js"></script>
- -->
-	<!-- 
-	<script src="/lib/base/angular-flexslider.js"></script>
-	<script src="/lib/base/angular.js"></script>
-	<script src="/lib/base/jquery.js"></script>
-	<script src="/lib/base/jquery.min.js"></script>
- -->
+
 	<script src="https://apis.google.com/js/client.js"></script>
 	<script src="https://apis.google.com/js/api.js"></script>
 	<!-- App JS Dependencies -->
