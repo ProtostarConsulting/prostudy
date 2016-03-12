@@ -6,12 +6,19 @@ angular
 						$mdBottomSheet, $state, $http, appEndpointSF) {
 
 					console.log("Inside indexCtr");
-
-					$scope.showSimpleToast = function() {
+					
+					$scope.showCSSToast = function() {
 						$mdToast.show($mdToast.simple().content(
-								'Customer Saved!').position("top").hideDelay(
+								'Changes Saved Successfully.').position("top").hideDelay(
 								3000));
 					};
+
+					$scope.showNRSSToast = function() {
+						$mdToast.show($mdToast.simple().content(
+								'New Record Saved Successfully.').position("top").hideDelay(
+								3000));
+					};
+					
 
 					// ------------------------------------------login
 					// user---------------------
