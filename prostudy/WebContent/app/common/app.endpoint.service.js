@@ -141,101 +141,80 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 		apisToLoad = 4; // must match number of calls to
 
 		gapi.client.load('userService', 'v0.1', function() {
-			$log.debug("userService Loaded......");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
+			$log.debug("userService Loaded......");			
 
 		}, apiRoot);
 
 		gapi.client.load('chapterService', 'v0.1', function() {
 			$log.debug("chapterService Loaded....");
 
-			deferred.resolve();
 
 		}, apiRoot);
 
 		gapi.client.load('bookService', 'v0.1', function() {
 			$log.debug("bookService Loaded....");
 
-			deferred.resolve();
-
 		}, apiRoot);
 
 		gapi.client.load('studentService', 'v0.1', function() {
 			$log.debug("StudentService Loaded....");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
+		
 
 		}, apiRoot);
 
 		gapi.client.load('questionService', 'v0.1', function() {
 			$log.debug("QuestionService Loaded....");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
+			
 
 		}, apiRoot);
 
 		gapi.client.load('practiceExamService', 'v0.1', function() {
 			$log.debug("PracticeExamService Loaded....");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
+			
 
 		}, apiRoot);
-
-		gapi.client.load('userService', 'v0.1', function() {
-			$log.debug("userService Loaded......");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
-		}, apiRoot);
+		
 
 		gapi.client.load('syllabusService', 'v0.1', function() {
 			$log.debug("syllabusService Loaded......");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
+			
 
 		}, apiRoot);
 		
 
 		gapi.client.load('practiceExamResultService', 'v0.1', function() {
 			$log.debug("PracticeExamResultService Loaded......");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
+			
 
 		}, apiRoot);
 
 		gapi.client.load('instituteService', 'v0.1', function() {
 			$log.debug("InstituteService Loaded......");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
+			
 
 		}, apiRoot);
 		
 		gapi.client.load('attendanceService', 'v0.1', function() {
 			$log.debug("AttendanceService Loaded......");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
+			
 
 		}, apiRoot);
 		
 		gapi.client.load('standardService', 'v0.1', function() {
 			$log.debug("StandardService Loaded......");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
+			
 
 		}, apiRoot);
 		
 		gapi.client.load('divisionService', 'v0.1', function() {
 			$log.debug("DivisionService Loaded......");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
+			
 
 		}, apiRoot);
 		
 		gapi.client.load('subjectService', 'v0.1', function() {
 			$log.debug("SubjectService Loaded......");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
+			
 
 		}, apiRoot);
 		
