@@ -10,6 +10,7 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
+import com.protostar.billingnstock.account.entities.ReceivableEntity;
 import com.protostar.billingnstock.invoice.entities.InvoiceEntity;
 import com.protostar.billingnstock.stock.entities.StockItemEntity;
 
@@ -40,6 +41,17 @@ public class InvoiceService {
 				}
 			}
 		}
+		
+		ReceivableEntity receivableEntity1 = new ReceivableEntity();
+		
+		receivableEntity1.setCustomer(invoiceEntity.getCustomer());
+		receivableEntity1.setFinalTotal(invoiceEntity.getFinalTotal());
+		receivableEntity1.setInvoiceDate(invoiceEntity.getInvoiceDate());
+		receivableEntity1.setInvoiceDueDate(invoiceEntity.getInvoiceDueDate());
+		receivableEntity1.setInvoiceId(invoiceEntity.getId());
+		receivableEntity1.setLoggedInUser(invoiceEntity.getLoggedInUser());
+		
+		ofy().save().entity(receivableEntity1).now();	
 	}
 
 	@ApiMethod(name = "updateInvoice")
@@ -48,8 +60,15 @@ public class InvoiceService {
 		InvoiceEntity invoiceEntity = new InvoiceEntity();
 		List<InvoiceEntity> invoiceList = ofy().load()
 				.type(InvoiceEntity.class).list();
+		
+		List<ReceivableEntity> receivableList = ofy().load()
+				.type(ReceivableEntity.class).list();
+				
 		try {
-			for (int i = 0; i <= invoiceList.size(); i++) {
+			
+			//for update the invoiceEntity entity status
+			
+			for (int i = 0; i < invoiceList.size(); i++) {
 				if (invoiceList.get(i).getId().equals(updateValues.getId())) {
 					invoiceEntity.setStatus(updateValues.getStatus());
 					invoiceEntity.setId(invoiceList.get(i).getId());
@@ -79,6 +98,29 @@ public class InvoiceService {
 					System.out.println("Record Not Found:");
 				}
 			}
+			
+		//for update the reseivable entity status
+			
+			for (int i = 0; i <= receivableList.size(); i++) {
+				if (receivableList.get(i).getInvoiceId().equals(updateValues.getId())) {
+					
+					ReceivableEntity receivableEntity = new ReceivableEntity();
+					
+					receivableEntity.setStatus(updateValues.getStatus());;
+					receivableEntity.setCustomer(receivableList.get(i).getCustomer());
+					receivableEntity.setFinalTotal(receivableList.get(i).getFinalTotal());
+					receivableEntity.setInvoiceDate(receivableList.get(i).getInvoiceDate());
+					receivableEntity.setInvoiceDueDate(receivableList.get(i).getInvoiceDueDate());
+					receivableEntity.setInvoiceId(updateValues.getId());
+					receivableEntity.setId(receivableList.get(i).getId());
+					receivableEntity.setLoggedInUser(receivableList.get(i).getLoggedInUser());
+					
+					ofy().save().entity(receivableEntity).now();
+				} else {
+					System.out.println("Record Not Found:");
+				}
+			}
+			
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
