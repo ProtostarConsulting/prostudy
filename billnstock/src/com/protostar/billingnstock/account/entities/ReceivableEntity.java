@@ -23,8 +23,16 @@ public class ReceivableEntity {
 	private String invoiceDate;
 	private String finalTotal;
 	private String invoiceDueDate;
+	private String status = "NotPaid";
 	
-	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public Customer getCustomer() {
 		return customer.get();
 	}

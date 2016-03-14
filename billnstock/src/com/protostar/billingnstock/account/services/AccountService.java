@@ -15,6 +15,7 @@ import com.protostar.billingnstock.account.entities.PayableEntity;
 import com.protostar.billingnstock.account.entities.ReceivableEntity;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.invoice.entities.InvoiceEntity;
+import com.protostar.billingnstock.user.entities.UserEntity;
 
 @Api(name = "accountService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.stock.cust.services", ownerName = "com.protostar.billingnstock.stock.cust.services", packagePath = ""))
 public class AccountService {
@@ -100,39 +101,7 @@ public class AccountService {
 
 	@ApiMethod(name = "getAllReceivablesByBusiness", path = "Somepath_realted_to_your_service")
 	public List<ReceivableEntity> getAllReceivablesByBusiness(@Named("id") Long id) {
-				
-				List<InvoiceEntity> invoiceEntity = ofy().load()
-						.type(InvoiceEntity.class).list();
-				
-				List<ReceivableEntity> receivableEntity = ofy().load()
-						.type(ReceivableEntity.class).list();
-				
-				ReceivableEntity receivableEntity1 = new ReceivableEntity();
-				
-				for(int i=0; i<invoiceEntity.size();i++){
-						if(invoiceEntity.get(i).getStatus().equals("Paid")){
-							System.out.println("invoice Paid already");
-						}
-						else{
-							for(int j=0; j<receivableEntity.size();j++){
-								if(receivableEntity.get(j).getInvoiceId().equals(invoiceEntity.get(i).getId())){
-									System.out.println("Same record found");
-								}
-								else{
-									receivableEntity1.setCustomer(invoiceEntity.get(i).getCustomer());
-									receivableEntity1.setFinalTotal(invoiceEntity.get(i).getFinalTotal());
-									receivableEntity1.setInvoiceDate(invoiceEntity.get(i).getInvoiceDate());
-									receivableEntity1.setInvoiceDueDate(invoiceEntity.get(i).getInvoiceDueDate());
-									receivableEntity1.setInvoiceId(invoiceEntity.get(i).getId());
-									receivableEntity1.setLoggedInUser(invoiceEntity.get(i).getLoggedInUser());
-									
-									ofy().save().entity(receivableEntity1).now();
-								}
-							}
-						}
-				}
-
-			
+		
 		
 		List<ReceivableEntity> receivableList=ofy().load().type(ReceivableEntity.class).list();
 		List<ReceivableEntity> filteredReceivables = new ArrayList<ReceivableEntity>();
@@ -140,7 +109,7 @@ public class AccountService {
 		
 		for(int i=0;i<receivableList.size();i++)
 		{				
-			 if(receivableList.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id))
+			 if(receivableList.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id) && receivableList.get(i).getStatus().equals("NotPaid"))
 			 {
 				 System.out.println("Got the record:" + receivableList.get(i) );
 				 filteredReceivables.add(receivableList.get(i));
