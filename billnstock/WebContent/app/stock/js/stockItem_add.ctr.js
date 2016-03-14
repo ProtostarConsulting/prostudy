@@ -46,7 +46,7 @@ angular.module("stockApp").controller(
 						$scope.curUser.businessAccount.id).then(
 						function(warehouseList) {
 							$scope.warehouses = warehouseList;
-							$log.debug("Inside Ctr $scope.warehouses:"
+							$log.debug("$scope.warehouses:"
 									+ angular.toJson($scope.warehouses));
 						});
 			}
