@@ -13,7 +13,7 @@
 						<md-button class="md-icon-button md-primary" aria-label="Settings">
 							<md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
 						</md-button>
-						<md-button ui-sref="index.student.list" ng-click="close()"
+						<md-button href="#student.list" ng-click="close()"
 						class="md-primary">
 							student List
 						</md-button>
@@ -65,12 +65,12 @@
 					<md-button ng-click="close()" class="md-primary">
 						Current Module Action 2
 					</md-button>
-					<md-button ui-sref="index.student.add"
+					<md-button ui-sref="student.add"
 					ng-click="close()" class="md-primary">
 						New Student
 					</md-button>
 					<md-button
-					ui-sref="index.student.list" ng-click="close()" class="md-primary">
+					ui-sref="student.list" ng-click="close()" class="md-primary">
 						student List
 					</md-button>
 				</md-content>
@@ -82,8 +82,8 @@
 	</div>
 	<!-- We'll also add some navigation: -->
 
-	<a ui-sref="index.student.add">Add Student</a>
-	<a ui-sref="index.student.list">List Of Student</a>
+	<a ui-sref="student.add">Add Student</a>
+	<a ui-sref="student.list">List Of Student</a>
 		
 	
 

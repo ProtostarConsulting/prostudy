@@ -6,14 +6,13 @@ angular
 						$mdBottomSheet, $state, appEndpointSF) {
 
 					$log.debug("Inside indexCtr");
-					
-					$scope.loading = true;
+
 					$scope.curUser = null;
 					$scope.googleUserDetails = "";
 					$scope.googleUser = 'null';
 
 					$scope.loginClick = function() {
-						$state.go("index.login");
+						$state.go("login");
 					};
 
 					
@@ -35,7 +34,7 @@ angular
 					          
 					            $log.debug("User logged in successfully: "+ $scope.tempUser.email_id);
 					            $window.location.reload();
-					            $state.go("index.home");
+					            $state.go("home");
 
 					           } else {
 					           // $log.debug("User Not logged  " + $scope.user.email_id);
@@ -93,14 +92,14 @@ angular
 										appEndpointSF.getLocalUserService()
 										.saveLoggedInUser(loggedInUser);
 										
-										$state.go("index.updatemyprofile");
+										$state.go("updatemyprofile");
 										return;
 									}	
 
 								})
 
 						$log.debug("Forwarding to home state...");
-						$state.go("index.home");
+						$state.go("home");
 
 					});
 
@@ -114,7 +113,7 @@ angular
 							$scope.curUser = appEndpointSF
 									.getLocalUserService().logout();
 
-							$state.go("index.home");
+							$state.go("home");
 							return;
 						}
 						$log.debug('signOut2');
@@ -129,7 +128,7 @@ angular
 									$scope.curUser = appEndpointSF
 											.getLocalUserService().logout();
 
-									$state.go("index.home");
+									$state.go("home");
 								});
 					}
 
@@ -153,10 +152,6 @@ angular
 													function() {
 														$log
 																.debug("##########Loaded All Google Endpoint Services....#########");
-														
-														//hide loading msg
-														$scope.loading = false;	
-														
 													});
 								}, 2000);
 
