@@ -175,114 +175,67 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 
 		gapi.client.load('customerService', 'v0.1', function() {
 			$log.debug("customerService Loaded....");
-
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
 		}, apiRoot);
 		
 		gapi.client.load('warehouseManagementService', 'v0.1', function() {
 			$log.debug("warehouseManagementService Loaded....");
-
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
 		}, apiRoot);
 
 		gapi.client.load('stockService', 'v0.1', function() {
 			$log.debug("stockService Loaded....");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
 		}, apiRoot);
 
 		gapi.client.load('taxService', 'v0.1', function() {
 			$log.debug("taxService Loaded....");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
 		}, apiRoot);
 
 		gapi.client.load('invoiceService', 'v0.1', function() {
 			$log.debug("invoiceService Loaded....");
-			
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
 		}, apiRoot);
 
 		
 
 		gapi.client.load('accountService', 'v0.1', function() {
 			$log.debug("accountService Loaded....");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
 		}, apiRoot);
 		
 
 		gapi.client.load('hrService', 'v0.1', function() {
 			$log.debug("hr Loaded....");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
 		}, apiRoot);
 		
 		
 	
 		gapi.client.load('crmService', 'v0.1', function() {
 			$log.debug("CRM Loaded.(lead services)...");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
 		}, apiRoot);
 
 
 		gapi.client.load('opportunityService', 'v0.1', function() {
 			$log.debug("opportunityService Loaded.(opportunityService services)...");
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
 		}, apiRoot);
 
 		
 		gapi.client.load('salesOrderService', 'v0.1', function() {
 			$log.debug("salesOrderService Loaded....");
-			
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
 		}, apiRoot);
 		
 		gapi.client.load('setupService', 'v0.1', function() {
 			$log.debug("setupService Loaded....");
-			
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
 		}, apiRoot);
 		
 		gapi.client.load('purchaseOrderService', 'v0.1', function() {
-			$log.debug("purchaseOrderService Loaded....");
-			
-			endpointFactory.is_service_ready = true;
-			deferred.resolve();
-
+			$log.debug("purchaseOrderService Loaded....");		
 		}, apiRoot);
 		
 		
 		 gapi.client.load('userService', 'v0.1', function() {
-			   $log.debug("userService Loaded......");
-			   endpointFactory.is_service_ready = true;
-			   deferred.resolve();
-
+			   $log.debug("userService Loaded......");	
 			  }, apiRoot);
 		 
 		 
 		 gapi.client.load('assetService', 'v0.1', function() {
-			   $log.debug("assetService Loaded......");
-			   endpointFactory.is_service_ready = true;
-			   deferred.resolve();
-
+			   $log.debug("assetService Loaded......");	 
 			  }, apiRoot);
 		 
 		 
