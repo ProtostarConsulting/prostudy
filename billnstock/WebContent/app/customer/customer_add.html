@@ -31,7 +31,7 @@
 
 	<div layout layout-sm="column">
 		<md-input-container flex> <label>Email <span style="color: red;">*</span></label> <input
-			type="email" name="email" ng-model="cust.email" ng-required="true">
+			type="email" name="email" ng-model="cust.email" ng-required="true" ng-pattern="/^.+@.+\..+$/">
 		<div ng-messages="custForm.email.$error"
 			ng-if="custForm.email.$submitted || custForm.email.$touched">
 			<div ng-message="required">Please Enter Email id.</div>

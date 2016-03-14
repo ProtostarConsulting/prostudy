@@ -30,6 +30,7 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 		});
 		$log.debug("No4");
 		$scope.cust = {};
+		
 	}
 
 	$scope.toggleRight = buildToggler('right');
