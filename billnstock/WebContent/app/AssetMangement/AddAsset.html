@@ -5,7 +5,7 @@
 	<div id="addField">
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>Asset
-				Name </label> <input name="AssetName" ng-model="Asset.assetName"
+				Name <span style="color: red;">*</span> </label> <input name="AssetName" ng-model="Asset.assetName"
 				ng-required="true">
 
 			<div ng-messages="assetForm.AssetName.$error"
@@ -15,7 +15,7 @@
 			</md-input-container>
 		</div>
 		<div layout layout-sm="column">
-			<md-input-container flex> <label>category
+			<md-input-container flex> <label>category <span style="color: red;">*</span>
 			</label> <input type="text" name="category" ng-model="Asset.category"
 				ng-required="true">
 			<div ng-messages="assetForm.category.$error"
@@ -23,7 +23,7 @@
 				<div ng-message="required">Please Enter category.</div>
 			</div>
 			</md-input-container>
-			<md-input-container flex> <label>value </label>
+			<md-input-container flex> <label>value <span style="color: red;">*</span> </label>
 			<input type="text" name="value" ng-model="Asset.value"
 				ng-required="true">
 			<div ng-messages="assetForm.value.$error"
@@ -34,7 +34,7 @@
 		</div>
 		<div>
 			<md-input-container flex> <label>purchase
-				date</label> <input type="text" name="purchasedate"
+				date <span style="color: red;">*</span></label> <input type="text" name="purchasedate"
 				ng-model="Asset.purchasedate" ng-required="true">
 
 			<div ng-messages="assetForm.purchasedate.$error"
@@ -43,7 +43,7 @@
 			</div>
 			</md-input-container>
 			<md-input-container flex> <label> Expiry
-				date </label> <input type="text" name="Expirydate"
+				date <span style="color: red;">*</span> </label> <input type="text" name="Expirydate"
 				ng-model="Asset.expirydate" ng-required="true">
 			<div ng-messages="assetForm.Expirydate.$error"
 				ng-if="assetForm.Expirydate.$submitted || assetForm.Expirydate.$touched">
