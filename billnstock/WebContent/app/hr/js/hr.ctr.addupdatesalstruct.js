@@ -83,7 +83,7 @@ angular
 
 					$scope.addsalstruct = function() {
 						var setupService = appEndpointSF.getsetupService();
-						if (typeof $scope.selecteduserNo != undefined) {
+						if (typeof $scope.selecteduserNo != "undefined") {
 							setupService.getuserById($scope.selectedUserId)
 									.then(function(userList) {
 												
