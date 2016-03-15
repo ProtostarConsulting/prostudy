@@ -387,6 +387,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/applicantList",
 		templateUrl : '/app/admissionMgmt/applicant_list.html',
 		controller : 'applicantListCtr'
+	}).state('gfe', {
+		url : "/gfe",
+		templateUrl : '/app/gfe/gfe_module.html',
+		controller : 'gfeModuleCtr'
+	}).state('gfe.classroomCourseList', {
+		url : "/classroomCourseList",
+		templateUrl : '/app/gfe/classroom_list.html',
+		controller : 'classroomCourseListCtr'
 	});
 
 });

@@ -6,7 +6,7 @@ angular
 						$mdBottomSheet, $state, appEndpointSF) {
 
 					$log.debug("Inside indexCtr");
-
+					$scope.loading = true;
 					$scope.curUser = null;
 					$scope.googleUserDetails = "";
 					$scope.googleUser = 'null';
@@ -152,6 +152,7 @@ angular
 													function() {
 														$log
 																.debug("##########Loaded All Google Endpoint Services....#########");
+														$scope.loading = false;		
 													});
 								}, 2000);
 
@@ -160,6 +161,17 @@ angular
 					// initialize local objects
 
 					$scope.initGAPI();
+					
+					$scope.safeApply = function(fn) {
+						  var phase = this.$root.$$phase;
+						  if(phase == '$apply' || phase == '$digest') {
+						    if(fn && (typeof(fn) === 'function')) {
+						      fn();
+						    }
+						  } else {
+						    this.$apply(fn);
+						  }
+						};
 
 				}).controller('AppCtrl',
 				function($scope, $timeout, $mdSidenav, $mdUtil, $log) {
