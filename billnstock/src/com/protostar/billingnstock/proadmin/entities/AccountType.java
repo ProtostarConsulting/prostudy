@@ -3,17 +3,19 @@ package com.protostar.billingnstock.proadmin.entities;
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.user.entities.UserEntity;
 
 @Entity
 public class AccountType {
 
-	private Ref<UserEntity> loggedInUser;
+	/*private Ref<UserEntity> loggedInUser;*/
 
 	@Id
 	private Long id;
-
+	@Index
 	private String accountName;
+	
 	private String description;
 	private String maxuser;
 	private String paymentDesc;
@@ -55,13 +57,13 @@ public class AccountType {
 	
 
 	
-	public UserEntity getLoggedInUser() {
+	/*public UserEntity getLoggedInUser() {
 		return loggedInUser.get();
 	}
 
 	public void setLoggedInUser(UserEntity loggedInUser) {
 		this.loggedInUser = Ref.create(loggedInUser);
-	}
+	}*/
 	
 	public Long getId() {
 		return id;
