@@ -11,16 +11,16 @@
 		</div>
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>Enter
-				Email id/User Name </label> <input ng-model="user.email_id"> </md-input-container>
+				Email id/User Name <span style="color: red;">*</span> </label> <input ng-model="user.email_id"> </md-input-container>
 			<md-input-container flex ng-hide="user.isGoogleUser">
-			<label>Password </label> <input type="password"
+			<label>Enter Password </label> <input type="password"
 				ng-model="user.password"> </md-input-container>
 		</div>
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>First
-				Name </label> <input ng-model="user.firstName"> </md-input-container>
+				Name <span style="color: red;">*</span> </label> <input ng-model="user.firstName"> </md-input-container>
 			<md-input-container flex> <label>Last
-				Name </label> <input ng-model="user.lastName"> </md-input-container>
+				Name <span style="color: red;">*</span> </label> <input ng-model="user.lastName"> </md-input-container>
 		</div>
 		<b>Authority</b><br> <br>
 		<div layout layout-sm="column">

@@ -89,7 +89,7 @@ angular.module("stockApp").controller(
 			$scope.getuserById = function() {
 				$log.debug("Inside Ctr $scope.getuserById");
 				var setupService = appEndpointSF.getsetupService();
-				if (typeof $scope.selecteduserNo != undefined) {
+				if (typeof $scope.selecteduserNo != 'undefined') {
 					setupService.getuserById($scope.selecteduserNo).then(
 							function(userList) {
 								$log.debug("Inside Ctr getAllleads");

@@ -284,6 +284,25 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
+	
+	
+	proadminService.initsetup=function() {
+		var deferred = $q.defer();
+		gapi.client.proadminService.initsetup().execute(function(resp) {
+			deferred.resolve({
+				"msg" : resp
+			});
+		});
+		return deferred.promise;
+	}
+	
+	/*proadminService.getfreeAccountTypeRecord=function() {
+		var deferred = $q.defer();
+		gapi.client.proadminService.getfreeAccountTypeRecord({'accountName':"Free"}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}*/
 
 	// --------------------setup service----------------------------
 

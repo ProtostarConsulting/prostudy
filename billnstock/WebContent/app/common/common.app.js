@@ -473,6 +473,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/EditAccoutType/:typeid",
 		templateUrl : '/app/ProAdmin/EditAccoutType.html',
 		controller : 'proadminctr',
+	}).state('initsetup', {
+		url : "/initsetup",
+		templateUrl : '/app/Initsetup/initsetup.html',
+		controller : 'initsetup',
 	});
 
 });
