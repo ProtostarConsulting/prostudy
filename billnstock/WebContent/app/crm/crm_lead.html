@@ -8,7 +8,7 @@
 				ng-model="lead.lid" disabled> </md-input-container>
 
 			<md-input-container flex> <label>Person
-				Name </label> <input name = "name" ng-model="lead.name" ng-required="true"> 
+				Name  <span style="color: red;">*</span> </label> <input name = "name" ng-model="lead.name" ng-required="true"> 
 			<div ng-messages="leadform.name.$error"
 				ng-if="leadform.name.$submitted || leadform.name.$touched">
 				<div ng-message="required">Please Enter Employee Name.</div>
@@ -17,14 +17,14 @@
 			</md-input-container>
 		</div>
 		<div layout layout-sm="column">
-			<md-input-container flex> <label>Company
+			<md-input-container flex> <label>Company  <span style="color: red;">*</span>
 			</label> <input name="company" ng-model="lead.company" ng-required="true">
 				<div ng-messages="leadform.company.$error"
 				ng-if="leadform.company.$submitted || leadform.company.$touched">
 				<div ng-message="required">Please Enter Company Name.</div>
 			</div>
 			 </md-input-container>
-			<md-input-container flex> <label>Phone </label>
+			<md-input-container flex> <label>Phone  <span style="color: red;">*</span>  </label>
 			<input name="phone" ng-model="lead.phone" ng-required="true">
 			<div ng-messages="leadform.phone.$error"
 				ng-if="leadform.phone.$submitted || leadform.phone.$touched">
@@ -33,14 +33,14 @@
 			</md-input-container>
 		</div>
 		<div layout layout-sm="column">
-			<md-input-container flex> <label>Email </label>
+			<md-input-container flex> <label>Email  <span style="color: red;">*</span></label>
 			<input type="email" name="email" ng-model="lead.email" ng-required="true">
 			<div ng-messages="leadform.email.$error"
 				ng-if="leadform.email.$submitted || leadform.email.$touched">
 				<div ng-message="required">Please Enter Email id.</div>
 			</div>
 			 </md-input-container>
-			<md-input-container flex> <label>Designation</label>
+			<md-input-container flex> <label>Designation  <span style="color: red;">*</span></label>
 			<input name="designation" ng-model="lead.designation" ng-required="true"> 
 			<div ng-messages="leadform.designation.$error"
 				ng-if="leadform.designation.$submitted || leadform.designation.$touched">
@@ -48,8 +48,8 @@
 			</div>
 			</md-input-container>
 		</div>
-		<div>
-			<md-input-container flex> <label>Address
+		<div> 
+			<md-input-container flex> <label>Address  <span style="color: red;">*</span>
 			</label> <textarea name ="address"ng-model="lead.address" rows="4" cols="50" ng-required="true">
 			</textarea>
 			<div ng-messages="leadform.address.$error"
