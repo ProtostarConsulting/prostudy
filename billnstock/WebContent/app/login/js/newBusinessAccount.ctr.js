@@ -28,8 +28,8 @@ angular.module("stockApp").controller(
 				
 				var proadminService = appEndpointSF.getproadminService();
 					proadminService.getAccountTypeById($scope.accounttype).then(
-							function(assetList) {
-								$scope.business.accounttype = assetList.result;
+							function(accounttyperecord) {
+								$scope.business.accounttype = accounttyperecord.result;
 				
 								var UserService = appEndpointSF.getUserService();
 									UserService.addNewBusiness($scope.business).then(

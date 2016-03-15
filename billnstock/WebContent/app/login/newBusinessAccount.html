@@ -14,17 +14,17 @@
 			style="color: red" ng-show="Signin.businessName.$error.required"
 			class="mandatory">*</span> <input name="businessName"
 			ng-model="business.businessName" ng-required="true">
-
+			
 		<div ng-messages="Signin.businessName.$error"
 			ng-if="Signin.businessName.$submitted || Signin.businessName.$touched">
 			<div ng-message="required">Please Enter Business Name.</div>
 		</div>
 		</md-input-container>
-	</div>
-	<div layout layout-sm="column">
-		<label> Is Google User</label>
+	<md-input-container flex >
+		 Is Google User
 		<md-checkbox ng-model="business.isGoogleUser" ng-true-value="true"
 			ng-false-value="false"> </md-checkbox>
+		</md-input-container>	
 	</div>
 	<div layout layout-xs="column">
 
@@ -41,7 +41,7 @@
 		</md-input-container>
 
 		<md-input-container flex ng-hide="business.isGoogleUser">
-		<label>Password</label> <span style="color: red"
+		<label>Enter Password</label> <span style="color: red"
 			ng-show="Signin.password.$error.required" class="mandatory">*</span>
 		<input type="password" name="password" ng-model="business.password"
 			ng-required="condition()">
@@ -67,8 +67,7 @@
 
 	
 		</md-input-container>
-	</div>
-	<div layout layout-sm="column">
+
 		<md-input-container
 			md-is-error="Signin.adminLastName.$invalid && (Signin.$submitted || Signin.adminLastName.$dirty)"
 			flex> <label>Last Name</label> <span
@@ -83,7 +82,7 @@
 
 		</md-input-container>
 	</div>
-<div layout layout-sm="column">
+ <div layout layout-sm="column">
 		<md-input-container flex> <md-select
 			name="selectedaccount" placeholder="accounttype"
 			ng-model="accounttype" ng-required="true"> <md-option
@@ -93,7 +92,7 @@
 				ng-if="Signin.selectedaccount.$submitted || Signin.selectedaccount.$touched">
 				<div ng-message="required">select Account Type.</div>
 			</div>  </md-input-container>
-	</div>
+	</div> 
 
 	<section layout="row" layout-sm="column" layout-align="left left">
 		<md-button class="md-raised md-primary" ng-disabled="Signin.$invalid"
