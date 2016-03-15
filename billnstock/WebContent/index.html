@@ -22,8 +22,8 @@
 </head>
 <body layout="column" ng-cloak>
 
-
-	<md-content> <!-- Top Navigation Pane --> <md-toolbar>
+	<div ng-show="loading">Loading... </div>	
+	<md-content ng-hide="loading"> <!-- Top Navigation Pane --> <md-toolbar>
 	<div class="md-toolbar-tools">
 		<span hide-sm>ProERP -
 			{{if(businessAccountName)?businessAccountName:"Manage your business

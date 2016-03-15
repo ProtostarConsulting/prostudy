@@ -6,6 +6,7 @@ angular
 						$mdBottomSheet, $state, $http, appEndpointSF) {
 
 					console.log("Inside indexCtr");
+					$scope.loading = true;
 					
 					$scope.showCSSToast = function() {
 						$mdToast.show($mdToast.simple().content(
@@ -219,6 +220,7 @@ angular
 													function() {
 														$log
 																.debug("##########Loaded All Google Endpoint Services....#########");
+														$scope.loading = false;
 													});
 								}, 2000);
 
