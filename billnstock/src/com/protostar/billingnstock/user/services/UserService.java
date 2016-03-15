@@ -132,7 +132,7 @@ public class UserService {
 		userEntity.setFirstName(business.getAdminFirstName());
 		userEntity.setLastName(business.getAdminLastName());
 		userEntity.setIsGoogleUser(true);
-		userEntity.setAuthority(Arrays.asList("basic"));
+		userEntity.setAuthority(Arrays.asList("admin"));
 		// userEntity.setPassword(business.getPassword());
 
 		ofy().save().entity(userEntity).now();
@@ -162,7 +162,7 @@ public class UserService {
 		userEntity.setFirstName(business.getAdminFirstName());
 		userEntity.setLastName(business.getAdminLastName());
 		userEntity.setIsGoogleUser(business.getIsGoogleUser());
-		userEntity.setAuthority(Arrays.asList("basic"));
+		userEntity.setAuthority(Arrays.asList("admin"));
 		userEntity.setPassword(business.getPassword());
 
 		ofy().save().entity(userEntity).now();
