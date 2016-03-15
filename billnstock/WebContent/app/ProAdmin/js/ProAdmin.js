@@ -14,7 +14,7 @@ angular.module("stockApp").controller(
 
 			$scope.AccountType = {
 
-				loggedInUser : "",
+				/*loggedInUser : "",*/
 				accountName : "",
 				description : "",
 				maxuser : "",
@@ -22,7 +22,7 @@ angular.module("stockApp").controller(
 			}
 
 			$scope.addAccountType = function() {
-				$scope.AccountType.loggedInUser = $scope.curUser;
+				/*$scope.AccountType.loggedInUser = $scope.curUser;*/
 
 				var proadminService = appEndpointSF.getproadminService();
 				proadminService.addAccountType($scope.AccountType).then(
