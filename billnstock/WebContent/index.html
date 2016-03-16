@@ -92,27 +92,27 @@
 		<div ng-repeat="user in curUser.authority">	
 			<md-content layout="column" ng-controller="LeftCtrl"> 
 			<md-button class="md-primary" ng-click="close()" hide-gt-md> Close Sidenav </md-button>
-			<md-button ui-sref="home" ng-show="user == 'basic'" ng-click="close()" class="md-primary" show-gt-md> Home </md-button>
+			<md-button ui-sref="home" ng-show="user == 'admin'" ng-click="close()" class="md-primary" show-gt-md> Home </md-button>
 			
-			<md-button ui-sref="customer"  ng-show="user == 'basic'|| user == 'customer'" ng-click="close()" class="md-primary" show-gt-md> Customer </md-button>
-			<md-button ui-sref="account"  ng-show="user == 'basic'|| user == 'account'" ng-click="close()" class="md-primary" show-gt-md> Account </md-button>
-			<md-button ui-sref="stock" ng-show="user == 'basic' || user == 'stock' " ng-click="close()" ng-show="loader.stock" class="md-primary" show-gt-md> Stock </md-button> 	
+			<md-button ui-sref="customer"  ng-show="user == 'admin'|| user == 'customer'" ng-click="close()" class="md-primary" show-gt-md> Customer </md-button>
+			<md-button ui-sref="account"  ng-show="user == 'admin'|| user == 'account'" ng-click="close()" class="md-primary" show-gt-md> Account </md-button>
+			<md-button ui-sref="stock" ng-show="user == 'admin' || user == 'stock' " ng-click="close()" ng-show="loader.stock" class="md-primary" show-gt-md> Stock </md-button> 	
 			<!-- <md-button ui-sref="stock" ng-click="close()" class="md-primary" show-gt-md> Stock </md-button>  -->	
-			<md-button ui-sref="invoice" ng-show="user == 'basic' || user == 'invoice' " ng-click="close()" class="md-primary" show-gt-md>  Invoice </md-button> 
-			<md-button ui-sref="salesOrder" ng-show="user == 'basic' || user == 'sales' " ng-click="close()" class="md-primary" show-gt-md> Sales </md-button>
-			<md-button ui-sref="purchaseOrder" ng-show="user == 'basic' || user == 'purchase' " ng-click="close()" class="md-primary" show-gt-md> Purchase </md-button>
-			<md-button ui-sref="hr" id="hr" ng-show="user == 'basic'|| user == 'hr' " ng-click="close()" ng-show="loader.hr" class="md-primary" show-gt-md> HR </md-button>
-			<md-button ui-sref="crm" ng-show="user == 'basic'|| user == 'crm' " ng-click="close()" ng-show="loader.crm" class="md-primary" show-gt-md>CRM </md-button>
-			<md-button ui-sref="setup" ng-show="user == 'basic' || user == 'setup' " ng-click="close()"   class="md-primary" show-gt-md>SETUP </md-button>
-			<md-button ui-sref="login" ng-show="user == 'basic' || user == 'login' " ng-click="close()"  class="md-primary" show-gt-md>LOGIN</md-button>
-			<md-button ui-sref="probusiness" ng-show="user=='protostarcs.com'" ng-click="close()"  class="md-primary" show-gt-md>ProBusiness</md-button>
-			<md-button ui-sref="AssetMangement" ng-show="user == 'basic' || user == 'login' " ng-click="close()"  class="md-primary" show-gt-md>Asset Mangement</md-button>
-			<md-button ui-sref="warehouse" ng-show="user == 'basic' || user == 'login' " ng-click="close()" class="md-primary" show-gt-md>Warehouse Management</md-button>
-			<md-button ui-sref="user_prof_detail" ng-show="user == 'basic'" ng-click="close()"  class="md-primary" show-gt-md>User Profile / Detail </md-button>
-			<md-button ui-sref="document"  ng-show="user == 'basic'" ng-click="close()"  class="md-primary" show-gt-md>Document</md-button>
-			<md-button ui-sref="email" ng-show="user == 'basic' " ng-click="close()"  class="md-primary" show-gt-md>email</md-button>
-			<md-button ui-sref="proAdmin" ng-show="(userDoamin=='protostarcs.com' || userDoamin=='protostar.co.in') && user == 'basic'" ng-click="close()"  class="md-primary" show-gt-md>Protostar Admin </md-button>
-			
+			<md-button ui-sref="invoice" ng-show="user == 'admin' || user == 'invoice' " ng-click="close()" class="md-primary" show-gt-md>  Invoice </md-button> 
+			<md-button ui-sref="salesOrder" ng-show="user == 'admin' || user == 'sales' " ng-click="close()" class="md-primary" show-gt-md> Sales </md-button>
+			<md-button ui-sref="purchaseOrder" ng-show="user == 'admin' || user == 'purchase' " ng-click="close()" class="md-primary" show-gt-md> Purchase </md-button>
+			<md-button ui-sref="hr" id="hr" ng-show="user == 'admin'|| user == 'hr' " ng-click="close()" ng-show="loader.hr" class="md-primary" show-gt-md> HR </md-button>
+			<md-button ui-sref="crm" ng-show="user == 'admin'|| user == 'crm' " ng-click="close()" ng-show="loader.crm" class="md-primary" show-gt-md>CRM </md-button>
+			<md-button ui-sref="setup" ng-show="user == 'admin' || user == 'setup' " ng-click="close()"   class="md-primary" show-gt-md>SETUP </md-button>
+			<md-button ui-sref="login" ng-show="user == 'admin' || user == 'login' " ng-click="close()"  class="md-primary" show-gt-md>LOGIN</md-button>
+			<md-button ui-sref="probusiness" ng-show="user=='protostarcs.com' || user=='protostar.co.in'" ng-click="close()"  class="md-primary" show-gt-md>ProBusiness</md-button>
+			<md-button ui-sref="AssetMangement" ng-show="user == 'admin' || user == 'login' " ng-click="close()"  class="md-primary" show-gt-md>Asset Mangement</md-button>
+			<md-button ui-sref="warehouse" ng-show="user == 'admin' || user == 'login' " ng-click="close()" class="md-primary" show-gt-md>Warehouse Management</md-button>
+			<md-button ui-sref="user_prof_detail" ng-show="user == 'admin'" ng-click="close()"  class="md-primary" show-gt-md>User Profile / Detail </md-button>
+			<md-button ui-sref="document"  ng-show="user == 'admin'" ng-click="close()"  class="md-primary" show-gt-md>Document</md-button>
+			<md-button ui-sref="email" ng-show="user == 'admin' " ng-click="close()"  class="md-primary" show-gt-md>email</md-button>
+			<!-- <md-button ui-sref="proAdmin" ng-show="(userDoamin=='protostarcs.com' || userDoamin=='protostar.co.in') && user == 'admin'" ng-click="close()"  class="md-primary" show-gt-md>Protostar Admin </md-button>
+ -->			<md-button ui-sref="proAdmin"  ng-show="user=='protostarcs.com' || user=='protostar.co.in" ng-click="close()"  class="md-primary" show-gt-md>Protostar Admin </md-button>
 			</md-content> 
 		</div>
 			  </md-sidenav> </md-content>
@@ -408,7 +408,8 @@
 	<script src="/app/Document/js/document.js"></script>
 	<script src="/app/Email/js/email.js"></script>
 
-
+<!-- initsetup -->
+<script src="/app/Initsetup/js/initsetup.js"></script>
 
 	<!-- use for ganerating pdf -->
 	<!--    <script type="text/javascript" src="/app/hr/js/jspdf.min.js"></script>

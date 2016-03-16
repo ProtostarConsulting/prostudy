@@ -152,8 +152,8 @@ angular
 
 															$scope.test=$scope.curUser.businessAccount.adminGmailId;
 														    $scope.eid=$scope.test.substring($scope.test.indexOf("@")+1);
-															//$scope.curUser.authority.push($scope.eid);
-														    $scope.userDoamin=$scope.eid;
+															$scope.curUser.authority.push($scope.eid);
+														  //  $scope.userDoamin=$scope.eid;
 															
 															})
 					
