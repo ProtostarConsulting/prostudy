@@ -238,4 +238,53 @@ app
 						window.frames["print_frame"].window.focus();
 						window.frames["print_frame"].window.print();
 					}
+					
+					// list of `state` value/display objects
+					loadAll();
+					$scope.selectedItem = null;
+					$scope.searchText = null;
+
+					// ******************************
+					// Internal methods
+					// ******************************
+					/**
+					 * Search for states... use $timeout to simulate remote
+					 * dataservice call.
+					 */
+					$scope.querySearch = function(query) {
+						var results = query ? $scope.customersforinvoice
+								.filter(createFilterFor(query)) : $scope.customersforinvoice;
+						var deferred = $q.defer();
+						$timeout(function() {
+							deferred.resolve(results);
+						}, Math.random() * 1000, false);
+						return deferred.promise;
+					}
+					/**
+					 * Build `states` list of key/value pairs
+					 */
+					function loadAll() {
+						
+						$scope.getAllCustomersByCurrUser = function() {
+							var customerService = appEndpointSF.getCustomerService();
+							customerService.getAllCustomersByCurrUser($scope.curUser.businessAccount.id).then(
+									function(custList) {
+										$scope.customersforinvoice = custList;	
+									});
+						}
+
+						$scope.customersforinvoice = [];
+			//			$scope.getAllCustomersByCurrUser();
+						
+					}
+					/**
+					 * Create filter function for a query string
+					 */
+					function createFilterFor(query) {
+						var lowercaseQuery = angular.lowercase(query);
+						return function filterFn(state) {
+							return (state.value.indexOf(lowercaseQuery) === 0);
+						};
+					}
+
 				});
