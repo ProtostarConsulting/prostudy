@@ -14,8 +14,8 @@
 			<md-input-container flex> <label>Enter
 				Email id/User Name </label> <span style="color: red"
 				ng-show="addform.emailid.$error.required" class="mandatory">*</span>
-			<input name="emailid" ng-model="user.email_id" ng-required="true">
-
+			<input name="emailid" id="emailid" ng-model="user.email_id" ng-required="true"><!--  ng-blur="Checkemail(user.email_id)" -->
+			<span style="color: red" >{{userexists}}</span>
 			<div ng-messages="addform.emailid.$error"
 				ng-if="addform.emailid.$submitted || addform.emailid.$touched">
 				<div ng-message="required">Please Enter Gmail Id.</div>

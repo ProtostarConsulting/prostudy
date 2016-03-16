@@ -27,9 +27,9 @@ angular
 								$scope.curuser.email_id).then(
 								function(user) {
 									$scope.business = user.items[0];
-									$scope.id = $scope.business.id;
+									$scope.id = $scope.business.businessAccount.id;
 									$log.debug("$scope.business.id"
-											+ $scope.business.id);
+											+ $scope.business.businessAccount.id);
 								});
 					}
 					$scope.business = [];
@@ -124,6 +124,30 @@ angular
 								});
 					}
 
+					
+					/*	/////////////////Checkemail
+					$scope.Checkemail=function(emailid){
+						var hrService = appEndpointSF.gethrService();
+						hrService.getAllemp($scope.curUser.businessAccount.id).then(function(empList) {
+							$scope.user = empList.items;
+							for(i=0;i<$scope.user.length;i++){
+							 if ($scope.user.items[i].email_id == emailid){
+								 $scope.userexists="user already exists"
+									 break;
+								$scope.usediffemail="checked";
+							 }else{
+								 $scope.userexists="";
+							 }
+							}
+						});
+						
+						}
+					$scope.user=[];
+					$scope.userexist="";
+					$scope.usediffemail="unchecked";
+					*/
+					
+					
 					$scope.toggleRight = buildToggler('right');
 
 					function buildToggler(navID) {

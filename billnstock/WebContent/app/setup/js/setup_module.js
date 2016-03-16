@@ -24,8 +24,8 @@ angular.module("stockApp").controller(
 				setupService.getCurUserByEmailId($scope.curuser.email_id).then(
 						function(user) {
 							$scope.business = user.items[0];
-							$scope.id = $scope.business.id;
-							$log.debug("$scope.business.id"+ $scope.business.id);
+							$scope.id = $scope.business.businessAccount.id;
+							$log.debug("$scope.business.id"+ $scope.business.businessAccount.id);
 						});
 			}
 			
@@ -41,7 +41,7 @@ angular.module("stockApp").controller(
 
 			$scope.getAllUserOfOrg = function() {
 				var setupService = appEndpointSF.getsetupService();
-				if (typeof $scope.id != undefined) {
+				if (typeof $scope.id != 'undefined') {
 				setupService.getAllUserOfOrg($scope.curuser.businessAccount.id).then(function(users) {
 					$scope.userslist = users.items;
 
