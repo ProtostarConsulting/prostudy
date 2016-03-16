@@ -76,6 +76,13 @@ public class UserService {
 				.filter("email_id", email).list();
 		return (list == null || list.size() == 0) ? null : list.get(0);
 	}
+	
+	@ApiMethod(name = "getBusinessByEmailID", path="Somepath_realted_to_your_service")
+	public BusinessEntity getBusinessByEmailID(@Named("adminGmailId") String emailid) {
+		List<BusinessEntity> list = ofy().load().type(BusinessEntity.class)
+				.filter("adminGmailId", emailid).list();
+		return (list == null || list.size() == 0) ? null : list.get(0);
+	}
 
 	/*
 	 * @ApiMethod(name = "login") public UserEntity login(UserEntity usr) {

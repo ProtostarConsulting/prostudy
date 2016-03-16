@@ -19,11 +19,10 @@ import com.sun.corba.se.spi.servicecontext.UEInfoServiceContext;
 @Api(name = "setupService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.setup.services", ownerName = "com.protostar.billingnstock.setup.services", packagePath = ""))
 public class setupService {
 
-	@ApiMethod(name = "getCurUserByEmailId")
-	public List<BusinessEntity> getCurUserByEmailId(
-			@Named("adminGmailId") String email) {
-		List<BusinessEntity> list = ofy().load().type(BusinessEntity.class)
-				.filter("adminGmailId", email).list();
+	@ApiMethod(name = "getCurUserByEmailId", path="Somepath_realted_to_your_service")
+	public List<UserEntity> getCurUserByEmailId(@Named("email_id") String email) {
+		List<UserEntity> list = ofy().load().type(UserEntity.class)
+				.filter("email_id", email).list();
 		return list;
 	}
 
@@ -46,7 +45,7 @@ public class setupService {
 		return filtereduser;
 	}
 	
-	@ApiMethod(name = "getuser", path="Somepath_realted_to_your_service")
+	@ApiMethod(name = "getuser")
 	public UserEntity getuser(@Named("id") Long id) {
 		
 		return ofy().load().type(UserEntity.class).id(id).now();

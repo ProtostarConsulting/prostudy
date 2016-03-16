@@ -32,45 +32,8 @@ public class ProAdminService {
 	public AccountType getAccountTypeById(@Named("id") Long id) {
 		return ofy().load().type(AccountType.class).id(id).now();
 	}
-
-	@ApiMethod(name = "initsetup")
-	public void initsetup() {
-		try{
-		AccountType accounttype = new AccountType();
-		accounttype.setAccountName("Free");
-		accounttype.setDescription("Free for upto 2 users");
-		accounttype.setMaxuser("2");
-		accounttype.setPaymentDesc("Free no charges");
-		ofy().save().entity(accounttype).now();
-		AccountType accounttype1 = new AccountType();
-		accounttype1.setAccountName("Silver");
-		accounttype1.setDescription("Good for upto 20 users");
-		accounttype1.setMaxuser("20");
-		accounttype1.setPaymentDesc("Rs. 4000 PM + Tax");
-		ofy().save().entity(accounttype1).now();
-		AccountType accounttype2 = new AccountType();
-		accounttype2.setAccountName("Gold");
-		accounttype2.setDescription("20 to 50 users");
-		accounttype2.setMaxuser("50");
-		accounttype2.setPaymentDesc("Rs. 8000 PM + Tax");
-		ofy().save().entity(accounttype2).now();
-		AccountType accounttype3 = new AccountType();
-		accounttype3.setAccountName("Platinum");
-		accounttype3.setDescription("50 to 500 users");
-		accounttype3.setMaxuser("500");
-		accounttype3.setPaymentDesc("Rs. 25,000 PM + Tax");
-		ofy().save().entity(accounttype3).now();
-		
-		Thread.sleep(30000);
-		
-		}
-		catch(Exception e)
-		{
-			
-		}
-		////////////////////////// create 2 protostar user /////////////////////////
-		
-		
+	@ApiMethod(name = "initsetupnext")
+	public void initsetupnext() {
 		Date date = new Date();
 		String DATE_FORMAT = "dd/MM/yyyy";
 		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
@@ -117,14 +80,54 @@ public class ProAdminService {
 		/////////////////////
 		
 		
-
 	}
 
-	/*
-	 * @ApiMethod(name="getfreeAccountTypeRecord") public List<AccountType>
-	 * getfreeAccountTypeRecord(@Named("accountName") String type) { return
-	 * ofy().load().type(AccountType.class).filter("accountName", type).list();
-	 * }
-	 */
+	@ApiMethod(name = "initsetup")
+	public void initsetup() {
+		//try{
+		AccountType accounttype = new AccountType();
+		accounttype.setAccountName("Free");
+		accounttype.setDescription("Free for upto 2 users");
+		accounttype.setMaxuser("2");
+		accounttype.setPaymentDesc("Free no charges");
+		ofy().save().entity(accounttype).now();
+		AccountType accounttype1 = new AccountType();
+		accounttype1.setAccountName("Silver");
+		accounttype1.setDescription("Good for upto 20 users");
+		accounttype1.setMaxuser("20");
+		accounttype1.setPaymentDesc("Rs. 4000 PM + Tax");
+		ofy().save().entity(accounttype1).now();
+		AccountType accounttype2 = new AccountType();
+		accounttype2.setAccountName("Gold");
+		accounttype2.setDescription("20 to 50 users");
+		accounttype2.setMaxuser("50");
+		accounttype2.setPaymentDesc("Rs. 8000 PM + Tax");
+		ofy().save().entity(accounttype2).now();
+		AccountType accounttype3 = new AccountType();
+		accounttype3.setAccountName("Platinum");
+		accounttype3.setDescription("50 to 500 users");
+		accounttype3.setMaxuser("500");
+		accounttype3.setPaymentDesc("Rs. 25,000 PM + Tax");
+		ofy().save().entity(accounttype3).now();
+		
+		//Thread.sleep(30000);
+		
+		//}
+		//catch(Exception e)
+		//{
+			
+		//}
+		////////////////////////// create 2 protostar user /////////////////////////
+		
+		
+		
+		
+
+	}
+ @ApiMethod(name="getAllemp") 
+	 public List<UserEntity> getAllemp() { 
+		 return	 ofy().load().type(UserEntity.class).list();
+	 }
+	 
 
 }// end of InternetService
