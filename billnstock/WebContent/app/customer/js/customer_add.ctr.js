@@ -30,9 +30,16 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 		});
 		$log.debug("No4");
 		$scope.cust = {};
+		//$scope.clearAll();
 		
 	}
 
+	$scope.clearAll = function(){
+		$scope.customerName = "";
+		$scope.mobile = "";
+		$scopeemail = "";
+		$scopeaddress = "";
+	}
 	$scope.toggleRight = buildToggler('right');
 
 	function buildToggler(navID) {

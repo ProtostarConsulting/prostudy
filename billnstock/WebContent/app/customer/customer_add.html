@@ -3,7 +3,7 @@
 <h3>
 	<u>Customer Add</u>
 </h3>
-<form name="custForm">
+<form name="custForm" data-ng-submit="addCustomer()">
 
 	<div layout layout-sm="column">
 		<md-input-container flex> <label>Person
@@ -52,7 +52,7 @@
 
 	<section layout="row" layout-sm="column" layout-align="left left">
 		<md-button ng-disabled="custForm.$invalid"
-			class="md-raised md-primary" ng-click="addCustomer()">Add</md-button>
+			class="md-raised md-primary" type="submit">Add</md-button>
 	</section>
 
 [<span style="color: red;">Field Marked as asterik (*) are mandetory</span>]
