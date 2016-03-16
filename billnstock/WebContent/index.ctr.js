@@ -65,11 +65,10 @@ angular
 																result.result);
 												$scope.curUser = result.result;
 												
-												$scope.businessAccountName = $scope.curUser.businessAccount.businessName;
-											
+												//$scope.businessAccountName = $scope.curUser.businessAccount.businessName;
 												$window.location.reload();
 												$state.go("home");
-
+											
 											} else {
 												$log.debug("User Not logged  "
 														+ $scope.user.email_id);
