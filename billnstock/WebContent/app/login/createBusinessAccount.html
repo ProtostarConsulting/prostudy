@@ -17,7 +17,9 @@
 	<div layout layout-sm="column">
 
 		<md-input-container flex> <label>Admin
-			Gmail Email id</label> <input name="gmailid" ng-model="business.adminGmailId" ng-required="true">
+			Gmail Email id</label> <input name="gmailid"  id="adminGmailId" 
+			 ng-model="business.adminGmailId" ng-blur="Checkemail(business.adminGmailId)" ng-required="true"><span
+			style="color: red" >{{userexists}}</span>
 		<div ng-messages="RegiForm.gmailid.$error"
 			ng-if="RegiForm.gmailid.$submitted || RegiForm.gmailid.$touched">
 			<div ng-message="required">Please Enter Gmail id.</div>

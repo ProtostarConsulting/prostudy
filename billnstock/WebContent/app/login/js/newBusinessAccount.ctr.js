@@ -26,6 +26,11 @@ angular.module("stockApp").controller(
 
 			$scope.addBusiness = function() {
 				
+				var UserService = appEndpointSF.getUserService();
+				UserService.getBusinessByEmailID($scope.business.adminGmailId).then(function(assetList) {
+					$scope.user = assetList;
+					 if (typeof $scope.user.adminGmailId === 'undefined'){
+				
 				var proadminService = appEndpointSF.getproadminService();
 					proadminService.getAccountTypeById($scope.accounttype).then(
 							function(accounttyperecord) {
@@ -38,7 +43,12 @@ angular.module("stockApp").controller(
 												$state.go("login");
 						});
 					});
-							
+				}else{
+			
+			angular.element('#adminGmailId').focus();
+				}	
+					 
+				});
 				
 			}
 			$scope.condition = function() {
@@ -57,13 +67,33 @@ angular.module("stockApp").controller(
 				var proadminService = appEndpointSF.getproadminService();
 				proadminService.getallAccountType().then(function(assetList) {
 					$scope.accountlist = assetList.items;
+				
 				});
 			}
 			$scope.accountlist = [];
 			$scope.getallAccountType();
 			
 		
-
+			
+			/////////////////Checkemail
+				$scope.Checkemail=function(emailid){
+					var UserService = appEndpointSF.getUserService();
+					UserService.getBusinessByEmailID(emailid).then(function(assetList) {
+						$scope.user = assetList;
+						 if (typeof $scope.user.adminGmailId != 'undefined'){
+							 $scope.userexists="user already exists"
+							/*$scope.usediffemail="checked";*/
+						 }else{
+							 $scope.userexists="";
+						 }
+						
+					});
+					
+					}
+				$scope.user;
+				$scope.userexist="";
+				/*$scope.usediffemail="unchecked";*/
+			
 			// //////////////////////////////////////////////////////////////////////////////
 
 			$scope.toggleRight = buildToggler('right');

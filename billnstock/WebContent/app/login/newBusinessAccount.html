@@ -32,8 +32,9 @@
 			md-is-error="Signin.adminGmailId.$invalid && (Signin.$submitted || Signin.adminGmailId.$dirty)"
 			flex> <label>Admin Gmail Email id</label> <span
 			style="color: red" ng-show="Signin.adminGmailId.$error.required"
-			class="mandatory">*</span> <input name="adminGmailId"
-			ng-model="business.adminGmailId" ng-required="true">
+			class="mandatory">*</span> <input type="text" name="adminGmailId" id="adminGmailId"
+			ng-model="business.adminGmailId" ng-blur="Checkemail(business.adminGmailId)" ng-required="true"><span
+			style="color: red" >{{userexists}}</span>
 		<div ng-messages="Signin.adminGmailId.$error"
 			ng-if="Signin.adminGmailId.$submitted || Signin.adminGmailId.$touched">
 			<div ng-message="required">Please Enter Gmail Id.</div>
@@ -95,7 +96,7 @@
 	</div> 
 
 	<section layout="row" layout-sm="column" layout-align="left left">
-		<md-button class="md-raised md-primary" ng-disabled="Signin.$invalid"
+		<md-button class="md-raised md-primary" ng-disabled="Signin.$invalid" 
 			ng-click="addBusiness()">Register</md-button>
 
 	</section>
