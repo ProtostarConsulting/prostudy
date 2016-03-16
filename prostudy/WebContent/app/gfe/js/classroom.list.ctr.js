@@ -8,13 +8,20 @@ angular
 
 					$scope.authorized = false;
 					$scope.loading = false;
+					$scope.currentClassroomUser = null;
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
 					$scope.classroomCourses = [];
 
 					var CLIENT_ID = '759880535753-3h86dfhcao97655vcnooobn17l4flp8q.apps.googleusercontent.com';
 
-					var SCOPES = [ "https://www.googleapis.com/auth/classroom.courses.readonly" ];
+					var SCOPES = [
+							"https://www.googleapis.com/auth/classroom.courses.readonly",
+							"https://www.googleapis.com/auth/userinfo.profile",
+							"https://www.googleapis.com/auth/plus.me",
+							"https://www.googleapis.com/auth/userinfo.email",
+							"https://www.googleapis.com/auth/admin.directory.user",
+							"https://www.googleapis.com/auth/classroom.rosters" ];
 
 					/**
 					 * Check if current user has authorized this application.
@@ -43,7 +50,8 @@ angular
 							// Hide auth UI, then load client library.
 							// authorizeDiv.style.display = 'none';
 							$scope.authorized = true;
-							$scope.loadClassroomApi(); //Do not auto load. Do it via user action
+							$scope.loadClassroomApi(); // Do not auto load. Do
+							// it via user action
 						} else {
 							// Show auth UI, allowing the user to initiate
 							// authorization by
@@ -75,6 +83,29 @@ angular
 					 */
 					$scope.loadClassroomApi = function() {
 						gapi.client.load('classroom', 'v1', $scope.listCourses);
+						gapi.client
+								.load(
+										'plus',
+										'v1',
+										function() {
+											var request = gapi.client.plus.people
+													.get({
+														'userId' : 'me'
+													});
+											request
+													.execute(function(resp) {
+														$scope.currentClassroomUser = resp;
+														$log
+																.debug('Retrieved profile for:'
+																		+ resp.displayName);
+														$log
+																.debug("$scope.currentClassroomUser:"
+																		+ angular
+																				.toJson($scope.currentClassroomUser));
+													});
+
+										});
+
 					}
 
 					/**
@@ -86,7 +117,7 @@ angular
 						$log.debug("Inside listCourses..");
 						$scope.loading = true;
 						var request = gapi.client.classroom.courses.list({
-							pageSize : 10
+							pageSize : 20
 						});
 
 						request.execute(function(resp) {
@@ -110,12 +141,45 @@ angular
 						});
 					}
 
+					$scope.viewClassTeachers = function() {
+						$log.debug("Inside viewClassTeachers..");
+						$scope.userType = "Teacher";
+						var request = gapi.client.classroom.courses.teachers
+								.list({
+									courseId : $scope.selected[0].id,
+									pageSize : 20
+								});
+
+						request.execute(function(resp) {
+							$scope.userList = resp.result.teachers?resp.result.teachers:[];
+							$log.debug("resp:" + angular.toJson(resp));
+						});
+					}
+
+					$scope.viewClassStudents = function() {
+						$log.debug("Inside viewClassStudents..");
+						$scope.userType = "Student";
+						var request = gapi.client.classroom.courses.students
+								.list({
+									courseId : $scope.selected[0].id,
+									pageSize : 20
+								});
+
+						request.execute(function(resp) {
+							$scope.userList = resp.result.students?resp.result.students:[];
+							$log.debug("resp:" + angular.toJson(resp));
+						});
+					}
+
 					$scope.showSavedToast = function() {
 						$mdToast.show($mdToast.simple().content(
 								'classroomtListCtr Saved!').position("top")
 								.hideDelay(3000));
 					};
 
+					$scope.userType = "";
+					$scope.userList = [];
+					
 					$scope.checkAuth();
 
 					// Table generic functions
