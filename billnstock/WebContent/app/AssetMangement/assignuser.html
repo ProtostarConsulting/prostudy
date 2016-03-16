@@ -148,7 +148,7 @@
 
 <!-- ----------------------------------------------------------- -->
 
-<!-- <div layout="column" ng-cloak>
+<div layout="column" ng-cloak>
 	<md-content class="md-padding">
 		<form ng-submit="$event.preventDefault()" name="searchForm">
 			<p>
@@ -167,10 +167,10 @@
 				md-selected-item="selectedItem"
 				md-search-text="searchText"
 				md-items="item in querySearch(searchText)"
-				md-item-text="item.display"
-				md-floating-label="Favorite state">
+				md-item-text="item.firstName"
+				md-floating-label="Select Your Name">
 					<md-item-template>
-						<span md-highlight-text="searchText">{{item.display}}</span>
+						<span md-highlight-text="searchText">{{item.firstName}}</span>
 					</md-item-template>
 					<div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
 						<div ng-message="required">
@@ -212,7 +212,7 @@
 			</p>
 		</form>
 	</md-content>
-</div> -->
+</div>
 
 <!-- ---------------------------------------------  -->
 
