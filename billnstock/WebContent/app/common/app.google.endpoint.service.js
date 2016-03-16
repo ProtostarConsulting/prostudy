@@ -85,7 +85,18 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
+	UserService.getBusinessByEmailID = function(email_id) {
+		var deferred = $q.defer();
+		gapi.client.userService.getBusinessByEmailID({
+			'adminGmailId' : email_id
+		}).execute(function(resp) {
+			$log.debug("resp:" + angular.toJson(resp));
 
+			deferred.resolve(resp.result);
+		});
+		return deferred.promise;
+	}
+	
 	UserService.getBusinessList = function() {
 		var deferred = $q.defer();
 		gapi.client.userService.getBusinessList().execute(function(resp) {
@@ -296,6 +307,23 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 	
+	proadminService.initsetupnext=function() {
+		var deferred = $q.defer();
+		gapi.client.proadminService.initsetupnext().execute(function(resp) {
+			deferred.resolve({
+				"msg" : resp
+			});
+		});
+		return deferred.promise;
+	}
+	proadminService.getAllemp=function() {
+		var deferred = $q.defer();
+		gapi.client.proadminService.getAllemp().execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
 	/*proadminService.getfreeAccountTypeRecord=function() {
 		var deferred = $q.defer();
 		gapi.client.proadminService.getfreeAccountTypeRecord({'accountName':"Free"}).execute(function(resp) {
@@ -315,7 +343,7 @@ function googleEndpointSF($log, $q) {
 	setupService.getCurUserByEmailId = function(emailid) {
 		var deferred = $q.defer();
 		gapi.client.setupService.getCurUserByEmailId({
-			'adminGmailId' : emailid
+			'email_id' : emailid
 		}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
