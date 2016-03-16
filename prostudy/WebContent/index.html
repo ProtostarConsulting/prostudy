@@ -37,13 +37,12 @@
 			<md-button class="md-icon-button" aria-label="More"
 				ng-click="toggleRight()"> <md-icon
 				md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
-
-			<img ng-show="true" ngf-src="googleUser.getImageUrl()" class="thumb">
+			
 			<md-button aria-label="Open Settings"
 				ng-click="showListBottomSheet($event)"> <md-tooltip>
 			{{ googleUser.getName() + "|" + googleUser.getEmail()}} </md-tooltip> <ng-md-icon
 				icon="more_vert"></ng-md-icon> </md-button>
-		<img ng-show="true" ngf-src="googleUser.getImageUrl()" class=circular>
+		<img ng-show="true" ng-src="{{imgUrl}}" class=circular>
 		</section>
 	</div>
 	</md-toolbar>
@@ -298,8 +297,8 @@
 	<script src="/app/institute/js/institute_view.ctr.js"></script>
 	<script src="/app/institute/js/institute_addInfo.ctr.js"></script>
 	<script src="/app/institute/js/institute.list.ctr.js"></script>
-	<script src="/app/institute/js/institute._view_studentByStd.ctr.js "></script>
-	
+	<!-- <script src="/app/institute/js/institute._view_studentByStd.ctr.js "></script>
+	 -->
 
 	<script src="/app/report/js/report_module.ctr.js"></script>
 	<script src="/app/report/js/display_report.ctr.js"></script>
@@ -321,9 +320,9 @@
 	<script src="/app/certificateMgmt/js/generateCertificate.ctr.js"></script>
 	<script src="/app/certificateMgmt/js/viewCertificate.ctr.js"></script>
 	
-	<script src="/app/admissionMgmt/js/admission_module.ctr.js"></script>
+	<!-- <script src="/app/admissionMgmt/js/admission_module.ctr.js"></script>
 	<script src="/app/admissionMgmt/js/applicant_add.ctr.js"></script>
-	<script src="/app/admissionMgmt/js/applicant_list.ctr.js"></script>
+	<script src="/app/admissionMgmt/js/applicant_list.ctr.js"></script> -->
 	
 	<script src="/app/gfe/js/gfe_module.ctr.js"></script>
 	<script src="/app/gfe/js/classroom.list.ctr.js"></script>
