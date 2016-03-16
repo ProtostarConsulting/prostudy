@@ -1226,6 +1226,13 @@ function googleEndpointSF($log, $q) {
 	warehouseManagementService.getAllWarehouseByBusiness = function(id) {
 		var deferred = $q.defer();
 
+
+		gapi.client.warehouseManagementService.getAllWarehouseByBusiness({"id":id})
+				.execute(function(resp) {
+					$log.debug("getAllWarehouseByBusiness at enpoint:" + angular.toJson(resp));
+					deferred.resolve(resp.items);
+				});
+
 		gapi.client.warehouseManagementService.getAllWarehouseByBusiness({
 			"id" : id
 		}).execute(function(resp) {
