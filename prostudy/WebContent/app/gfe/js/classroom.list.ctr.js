@@ -141,45 +141,13 @@ angular
 						});
 					}
 
-					$scope.viewClassTeachers = function() {
-						$log.debug("Inside viewClassTeachers..");
-						$scope.userType = "Teacher";
-						var request = gapi.client.classroom.courses.teachers
-								.list({
-									courseId : $scope.selected[0].id,
-									pageSize : 20
-								});
-
-						request.execute(function(resp) {
-							$scope.userList = resp.result.teachers?resp.result.teachers:[];
-							$log.debug("resp:" + angular.toJson(resp));
-						});
-					}
-
-					$scope.viewClassStudents = function() {
-						$log.debug("Inside viewClassStudents..");
-						$scope.userType = "Student";
-						var request = gapi.client.classroom.courses.students
-								.list({
-									courseId : $scope.selected[0].id,
-									pageSize : 20
-								});
-
-						request.execute(function(resp) {
-							$scope.userList = resp.result.students?resp.result.students:[];
-							$log.debug("resp:" + angular.toJson(resp));
-						});
-					}
-
+					
 					$scope.showSavedToast = function() {
 						$mdToast.show($mdToast.simple().content(
 								'classroomtListCtr Saved!').position("top")
 								.hideDelay(3000));
 					};
 
-					$scope.userType = "";
-					$scope.userList = [];
-					
 					$scope.checkAuth();
 
 					// Table generic functions

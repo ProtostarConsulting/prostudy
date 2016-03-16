@@ -1,0 +1,34 @@
+<div ng-show="loading">
+	Loading...
+</div>
+<div ng-hide="loading">
+    <md-data-table-toolbar >
+		<h2 class="md-title">{{userType}} List</h2>
+	</md-data-table-toolbar>
+
+	
+	</md-data-table-toolbar>
+	<div>
+		<md-data-table-container>
+			<table md-data-table class="md-primary" md-row-select="selected" md-progress="deferred">
+				<thead md-order="query.order" md-trigger="onorderchange">
+					<tr>
+						<th order-by="profile.name.fullName" name="Name" unit=""></th>
+						<th order-by="courseId" name="courseId" unit=""></th>
+						<th order-by="userId" name="userId"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr md-auto-select  ng-repeat="user in userList | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+
+						<td>{{user.profile.name.fullName}}</td>
+						<td>{{user.courseId}}</td>
+						<td>{{user.userId}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</md-data-table-container>
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total={{userList.length}} md-trigger="onpagechange"></md-data-table-pagination>
+	</div>
+</div>
+

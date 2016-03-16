@@ -395,6 +395,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/classroomCourseList",
 		templateUrl : '/app/gfe/classroom_list.html',
 		controller : 'classroomCourseListCtr'
+	}).state('gfe.classroomCourseUserListCtr', {
+		url : "/classroomCourseUserListCtr",
+		templateUrl : '/app/gfe/classroom_list.users.html',
+		controller : 'classroomCourseUserListCtr',
+		params : {
+			userType : null,
+			selectedCourseId : null
+		}
 	});
 
 });
