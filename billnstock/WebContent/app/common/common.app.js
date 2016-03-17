@@ -258,7 +258,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('crm.customer', {
 		url : "/customer",
 		templateUrl : '/app/customer/customer_module.html',
-		controller : 'customerCtr',
+		controller : 'customerModuleCtr',
 	}).state('crm.lead', {
 		url : "/lead",
 		templateUrl : '/app/crm/lead_list.html',
