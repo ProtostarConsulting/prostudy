@@ -2,7 +2,6 @@ package com.protostar.prostudy.entity;
 
 import java.util.List;
 
-import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
@@ -12,18 +11,44 @@ public class BookEntity {
 
 	@Id
 	private Long id;
-
-	@Index
-	private String bookId;
+	
 	@Index          
 	private Long instituteID;
-	
 	private String book_name;
 	private String author;
 	private String board;
 	@Index
 	private String standard;
 	private String division;
+	private String subject;
+	private List<ChapterEntity> chapters;
+	private List<CommentEntity> comment;
+	private Integer likes;	
+	private Integer dislikes;
+	
+	public Integer getLikes() {
+		return likes;
+	}
+	public void setLikes(Integer likes) {
+		this.likes = likes;
+	}
+
+	public Integer getDislikes() {
+		return dislikes;
+	}
+
+	public void setDislikes(Integer dislikes) {
+		this.dislikes = dislikes;
+	}
+
+	public List<CommentEntity> getComment() {
+		return comment;
+	}
+
+	public void setComment(List<CommentEntity> comment) {
+		this.comment = comment;
+	}
+
 	public String getDivision() {
 		return division;
 	}
@@ -41,11 +66,6 @@ public class BookEntity {
 	}
 
 	
-	private String subject;
-
-	
-	private List<ChapterEntity> chapters;
-
 	public Long getInstituteID() {
 		return instituteID;
 	}
@@ -71,14 +91,7 @@ public class BookEntity {
 		this.id = id;
 	}
 
-	public String getBookId() {
-		return bookId;
-	}
-
-	public void setBookId(String bookId) {
-		this.bookId = bookId;
-	}
-
+	
 	public String getBook_name() {
 		return book_name;
 	}

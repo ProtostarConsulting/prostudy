@@ -26,11 +26,6 @@ public class SyllabusService {
 		return ofy().load().type(SyllabusEntity.class).list();
 	}
 
-	/*@ApiMethod(name = "getByBoard")
-	public List<SyllabusEntity> getByBoard(@Named("board") String brdvalue) {
-		return ofy().load().type(SyllabusEntity.class)
-				.filter("board", brdvalue).list();
-	}*/
 	
 	@ApiMethod(name = "updateSyllabus")
 	public void updateSyllabus(SyllabusEntity syllabus) {

@@ -20,7 +20,8 @@ public class UserEntity {
 	private String email_id;
 	@Index
 	private String PRN;
-	private Boolean isGoogleUser = false;
+	private Boolean isGoogleUser;
+	
 	private String password;
 	@Index
 	private String standard;
@@ -34,6 +35,14 @@ public class UserEntity {
 	private List<PracticeExamEntity> myExams;
 	private List<BookEntity> myBooks;
 
+	
+	public Boolean getIsGoogleUser() {
+		return isGoogleUser;
+	}
+
+	public void setIsGoogleUser(Boolean isGoogleUser) {
+		this.isGoogleUser = isGoogleUser;
+	}
 	public List<PracticeExamEntity> getMyExams() {
 		return myExams;
 	}
@@ -91,13 +100,7 @@ public class UserEntity {
 		this.password = password;
 	}
 
-	public Boolean getIsGoogleUser() {
-		return isGoogleUser;
-	}
 
-	public void setIsGoogleUser(Boolean isGoogleUser) {
-		this.isGoogleUser = isGoogleUser;
-	}
 
 	public Long getId() {
 		return id;

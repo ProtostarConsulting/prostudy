@@ -7,17 +7,19 @@ import com.googlecode.objectify.annotation.Index;
 @Entity
 public class ChapterEntity {
 
-	@Id
+	@Id 
+	@Index     
 	private Long id;
-
 	@Index          
 	private Long instituteID;
-	
 	private String chapter_name;
 	private String chapter_content;
 	private String board;
+	@Index  
 	private String standard;
+	@Index  
 	private String division;
+	@Index  
 	private String subject;
 
 	public Long getInstituteID() {

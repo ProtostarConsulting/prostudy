@@ -50,22 +50,6 @@ public class PracticeExamService {
 		Key<PracticeExamEntity> now = ofy().save().entity(exam).now();
 	}
 
-	@ApiMethod(name = "likeCount")
-	public PracticeExamEntity likeCount(@Named("examId") String struct) {
-		PracticeExamEntity like = ofy().load().type(PracticeExamEntity.class)
-				.filter("examId", struct).first().now();
-
-		return like;
-
-	}
-
-	@ApiMethod(name = "dislikeCount")
-	public PracticeExamEntity dislikeCount(@Named("examId") String struct) {
-		PracticeExamEntity dislike = ofy().load()
-				.type(PracticeExamEntity.class).filter("examId", struct)
-				.first().now();
-
-		return dislike;
-	}
+	
 
 }

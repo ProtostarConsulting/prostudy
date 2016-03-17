@@ -33,13 +33,5 @@ public class AttendanceService {
 	  
 	 }
 	
-	/*@ApiMethod(name = "getByClass")
-	 public List<AttendanceEntity> getByClass(@Named("standard") String standard) {
-		System.out.println("inside getByClass");
-	  List<AttendanceEntity> attendanceList = ofy().load().type(AttendanceEntity.class).filter("standard", standard).list();
-	  return attendanceList;
-	  
-	 }*/
-	
 
 }
