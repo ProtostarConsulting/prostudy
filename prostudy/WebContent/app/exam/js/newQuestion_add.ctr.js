@@ -12,13 +12,13 @@ angular.module("prostudyApp").controller(
 			};
 		
 				
-			$scope.sourceSate = $stateParams.sourceSate; //editpracticeexam/3 = {state: , examid}
+			$scope.sourceSate = $stateParams.sourceSate; 
 			$log.debug("$stateParams.sourceSate.examID:" + $scope.sourceSate);
 			$scope.tempQuestion = {
 				instituteID : $scope.curuser.instituteID,
 				description : "",
 				note : "",
-						category :"",
+				category :"",
 				option1 : "",
 				option2 : "",
 				option3 : "",
@@ -36,19 +36,7 @@ angular.module("prostudyApp").controller(
 							
 							$log.debug("Inside Ctr addNewQuestionCtr");
 							$scope.showSavedToast();
-							$scope.tempQuestion = {
-								instituteID : "",	
-								description : "",
-								note : "",
-								category :"",
-								option1 : "",
-								option2 : "",
-								option3 : "",
-								option4 : "",
-								correctAns : "",
-								
-							};
-							
+							$scope.tempQuestion = {	};							
 							
 							$log.debug("$scope.sourceSate:" + $scope.sourceSate);
 						

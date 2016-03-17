@@ -13,7 +13,7 @@ angular.module("prostudyApp").controller(
 			};
 
 			$scope.tempQuestion = {
-				quesId : "",
+				id : "",
 				description : "",
 				note : "",
 				option1 : "",

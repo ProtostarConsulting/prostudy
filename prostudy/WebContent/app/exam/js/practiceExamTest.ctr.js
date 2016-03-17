@@ -120,7 +120,7 @@ angular
 
 						for (var i = 0; i < $scope.Test.questions.length; i++) {
 
-							if ($scope.Test.questions[i].quesId == qID) {
+							if ($scope.Test.questions[i].id == qID) {
 								return $scope.Test.questions[i].correctAns;
 								$log.debug("Correct ans :"
 										+ $scope.Test.questions[i].correctAns);
@@ -265,7 +265,7 @@ angular
 
 					/*
 					 * for(var i=0;i<$scope.Test.questions.length;i++) {
-					 * if($scope.Test.questions[i].quesId ==
+					 * if($scope.Test.questions[i].id ==
 					 * $scope.examResults[i].userAns.qID) {
 					 * $scope.Test.questions[i].userOption =
 					 * $scope.examResults[i].userAns.userOption; } }

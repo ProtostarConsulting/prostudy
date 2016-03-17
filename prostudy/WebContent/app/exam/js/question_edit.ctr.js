@@ -9,8 +9,7 @@ angular.module("prostudyApp")
 						$mdToast.show($mdToast.simple()
 								.content('Question Updated!').position("top")
 								.hideDelay(3000));
-					};
-					
+					};					
 					$scope.sourceSate = $stateParams.sourceSate; 
 				
 					$log.debug("$scope.sourceSate:" + $scope.sourceSate);

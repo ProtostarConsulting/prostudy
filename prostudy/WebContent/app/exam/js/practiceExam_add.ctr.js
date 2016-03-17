@@ -120,7 +120,7 @@ angular
 					$scope.getQuestionsByInstitute();
 
 					$scope.addPracticeExam = function() {
-						$log.debug("No1");
+				
 						var practiceExamService = appEndpointSF
 								.getPracticeExamService();
 						for (var i = 0; i < $scope.selected.length; i++) {
@@ -138,22 +138,9 @@ angular
 											$log.debug("msgBean.msg:"
 													+ msgBean.msg);
 											$scope.showSavedToast();
-											$scope.tempPracticeExam = {
-												id:"",
-												instituteID : "",
-												examtitle : "",
-												board : "",
-												standard : "",
-												subject : "",
-												category : "",
-												instructions : "",
-												questions : [],
-												date : "",
-												likes : "",
-												dislikes : "",
-											};
+											$scope.tempPracticeExam = {	};
 										});
-						$log.debug("No4");
+					
 						$state.go('exam.listpracticeexam', {});
 					}
 
