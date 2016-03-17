@@ -4,7 +4,7 @@
 	<table id="chapterTable" class="table table-hover table-mc-light-blue">
 		<thead>
 			<tr>
-				<th>Chapter No</th>
+				<th>Chapter ID</th>
 				<th>Chapter</th>
 
 			</tr>
@@ -12,15 +12,15 @@
 
 		<tbody>
 
-			<tr ng-repeat="chapter in selectedChapter">
+			<tr ng-repeat="chapter in Chapters">
 
 				<td>
-					<div>{{chapter.chapterId}}</div>
+					<div>{{chapter.id}}</div>
 
 				</td>
 
 				<td ng-click="showChapterContent()"><a href="#"
-					ui-sref="book.view({selectedBookId : selectedBookId, selectedChapterId : chapter.chapterId})"><b>{{chapter.chapter_name}}</b></a>
+					ui-sref="book.view({selectedBookId : selectedBookId, selectedChapterId : chapter.id})"><b>{{chapter.chapter_name}}</b></a>
 				</td>
 
 
@@ -33,8 +33,7 @@
 			<tr>
 				<td><md-button class="md-raised md-primary" ui-sref="book.list">Back
 					To Book</md-button></td>
-				<td><md-button class="md-raised md-primary"
-						ng-click="addMyBook()">Add To My Books</md-button></td>
+				
 			</tr>
 		</table>
 

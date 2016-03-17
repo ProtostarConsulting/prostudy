@@ -6,19 +6,7 @@ angular.module("prostudyApp")
 						$sce) {
 					console.log("Inside book_viewChapterContentCtr");
 
-					$scope.tempChapter = {
-						id : "",
-						chapterId : "",
-						chapter_name : "",
-						chapter_content : "",
-						board : "",
-						student_class : "",
-						subject : "",
-					};
-
-					// For chapter_content, we pass its chapter.id as
-					// selectedChapterId
-
+					
 					$log.debug("$stateParams:", $stateParams);
 				
 					$scope.selectedChapterId = $stateParams.selectedChapterId;
@@ -30,11 +18,10 @@ angular.module("prostudyApp")
 						$log.debug("Inside showChapterContent ");
 						var ChapterService = appEndpointSF.getChapterService();
 
-						//$log.debug("$scope.selectedChapterId:"+ $scope.selectedChapterId)
 						ChapterService.getChaptersByID($scope.selectedChapterId).then(
 										function(chapterList) {
 
-											$scope.chapters = chapterList;
+											$scope.chapters.push(chapterList);
 											$log.debug("$scope.chapters...  ===="+ angular.toJson($scope.chapters));
 
 											
@@ -57,32 +44,24 @@ angular.module("prostudyApp")
 								+ $scope.selectedBookId)
 
 
-						BookService
-								.getBookbyID($scope.selectedBookId)
-								.then(
+						BookService.getBookbyID($scope.selectedBookId).then(
 										function(bookList) {
 
 										$scope.book_ChapterDetails = bookList.chapters;
-											
 										$scope.selectedChapter = $scope.book_ChapterDetails;
-										
-										$log.debug("$scope.selectedChapter ===="+ angular.toJson($scope.selectedChapter));
-
 										$scope.totalPages = Math.round($scope.selectedChapter.length/ $scope.itemsPerPage);
 
-											$log.debug("$scope.selectedChapter :-"+ angular.toJson($scope.selectedChapter));
-											
 											$scope.onNextChapter();
 											$("#viewChapterContent").hide();
 											$("#TotalChapters").show();
 
 										});
 
-					};// end of $scope.showBookDetails
+					};
 					$scope.book_ChapterDetails=[];
 					
 
-					// For chapters on next and previous button
+				
 
 					$scope.currentPage = 0;
 					$scope.totalPages = 0;
@@ -145,7 +124,7 @@ angular.module("prostudyApp")
 							return true;
 						}
 
-					}// end of onPreviousChapter
+					}
 
-				});// end of book_viewChapterContentCtr
+				});
 

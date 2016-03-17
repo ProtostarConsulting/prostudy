@@ -1,30 +1,99 @@
 angular.module("prostudyApp").controller(
 		"bookAddCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $q, tableTestDataFactory, $state, appEndpointSF, $sce) {
+				$log, $q, tableTestDataFactory, $state, appEndpointSF, $sce,
+				boardList) {
 
 			console.log("Inside bookAddCtr");
 			$scope.curUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
 
-			$scope.comments = {
-				userId : "",
+			$scope.boards = [ {} ];
+			$scope.boards = boardList;
+
+			$scope.standards = [];
+			$scope.divisions = [];
+			$scope.subjects = [];
+
+			$scope.selectedStdID;
+			$scope.stdList;
+			$scope.divList;
+			$scope.subList;
+
+			$scope.comment = {
+				userID : "",
 				desc : ""
 			}
 			$scope.tempBook = {
-					id:"",
-				bookId : "",
+
+				id : "",
+				instituteID : $scope.curUser.instituteID,
 				book_name : "",
 				author : "",
 				board : "",
 				standard : "",
+				division : "",
+				subject : "",
 				chapters : [],
 				user : "",
-				comments : []
+				comment : [],
+				likes : 0,
+				dislikes : 0
 			};// end of tempBook object
 
+			$scope.getStandardByInstitute = function() {
+
+				var StandardService = appEndpointSF.getStandardService();
+				StandardService.getStandardByInstitute(
+						$scope.curUser.instituteID).then(
+						function(standardList) {
+							for (var i = 0; i < standardList.length; i++) {
+								$scope.standards.push(standardList[i].name);
+
+							}
+							$scope.stdList = standardList;
+
+						});
+			}
+
+			$scope.getStandardByInstitute();
+
+			$scope.getDivisionByStandard = function() {
+
+				for (var i = 0; i < $scope.stdList.length; i++) {
+					if ($scope.tempBook.standard == $scope.stdList[i].name) {
+						$scope.selectedStdID = $scope.stdList[i].id;
+					}
+				}
+				var DivisionService = appEndpointSF.getDivisionService();
+				DivisionService.getDivisionByStandard($scope.selectedStdID)
+						.then(function(divisionList) {
+							for (var i = 0; i < divisionList.length; i++) {
+								$scope.divisions.push(divisionList[i].name);
+							}
+							$scope.divList = divisionList;
+						});
+			}
+
+			$scope.getSubjectByDivision = function() {
+
+				for (var i = 0; i < $scope.divList.length; i++) {
+					if ($scope.tempBook.division == $scope.divList[i].name) {
+						$scope.selectedDivID = $scope.divList[i].id;
+					}
+				}
+				var SubjectService = appEndpointSF.getSubjectService();
+				SubjectService.getSubjectByDivision($scope.selectedDivID).then(
+						function(subjectList) {
+							for (var i = 0; i < subjectList.length; i++) {
+								$scope.subjects.push(subjectList[i].name);
+							}
+
+						});
+				$scope.subjects.splice(0, $scope.subjects.length);
+			}
+
 			$scope.addBook = function() {
-				$log.debug("No1");
 
 				$scope.tempBook.user = $scope.curUser;
 
@@ -35,51 +104,60 @@ angular.module("prostudyApp").controller(
 				var BookService = appEndpointSF.getBookService();
 
 				BookService.addBook($scope.tempBook).then(function(msgBean) {
-					$log.debug("No6");
-					$log.debug("Inside Ctr addBook");
+
 					$log.debug("msgBean.msg:" + msgBean.msg);
 					$scope.showSavedToast();
 
 					$log.debug("tempBook" + angular.toJson($scope.tempBook));
 					$scope.tempBook = {
-							id:"",
+
+						id : "",
 						bookId : "",
 						book_name : "",
 						author : "",
 						board : "",
 						standard : "",
+						division : "",
+						subject : "",
 						chapters : [],
 						user : "",
 						comments : []
-					};// After click on submit button,htmlform to be set as a
-						// blank
+					};
 
 				});
 				$log.debug("No4");
-			}// end of addBook
+			}
 
 			$scope.chapters = [];
-			$scope.getChapters = function() {
+
+			/*
+			 * $scope.getChaptersByInstitute = function() {
+			 * 
+			 * var ChapterService = appEndpointSF.getChapterService();
+			 * ChapterService.getChaptersByInstitute(
+			 * $scope.curUser.instituteID).then(function(chapterList) {
+			 * $scope.chapters = chapterList;
+			 * 
+			 * }); } $scope.getChaptersByInstitute();
+			 */
+
+			$scope.getChaptersByClass = function() {
 
 				var ChapterService = appEndpointSF.getChapterService();
+				ChapterService.getChaptersByClass($scope.tempBook.standard,
+						$scope.tempBook.division, $scope.tempBook.subject).then(
+						function(chapterList) {
+							$scope.chapters = chapterList;
 
-				ChapterService.getChapters().then(function(chapterList) {
-					$log.debug("Inside Ctr getChapters");
-
-					$scope.chapters = chapterList;
-					$log.debug("chapters :" + angular.toJson($scope.chapters));
-
-				});
-
-			}// end of getChapters
-			$scope.getChapters();
+						});
+			}
 
 			$scope.selectedChapters = [];
 
 			$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content('Book Saved!')
 						.position("top").hideDelay(3000));
-			};// end of showSavedToast
+			};
 
 			$scope.moveItem = function(item, from, to) {
 
@@ -91,22 +169,19 @@ angular.module("prostudyApp").controller(
 					from.splice(idx, 1);
 					to.push(item);
 				}
-			};// end of moveItem
+			};
 
 			$scope.moveAll = function(from, to) {
-
 				console.log('Move all  From:: ' + from + ' To:: ' + to);
-				// Here from is returned as blank and to as undefined
-
 				angular.forEach(from, function(item) {
 					to.push(item);
 				});
 				from.length = 0;
-			};// end of moveAll
+			};
 
 			$scope.cancelButton = function() {
 				$state.go('^', {});
-			};// end of cancelButton
+			};
 
 		});// end of bookAddCtr
 

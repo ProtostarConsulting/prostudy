@@ -1,20 +1,61 @@
-<div layout="column">
-	
-
-	<div ui-view> 
-	        This is a default template for <b>Book module!</b>
-	</div>
-	
-	<!-- We'll also add some navigation: -->
-
-	<a ui-sref="book.add">Book ADD</a>
-	
-	<a ui-sref="book.list">All Book List</a>
-	
-	<a ui-sref="book.standard">Book By Standard</a>
-
-		
-
 
 </div>
-	
+
+
+<div layout="column">
+	<div>
+		<section layout="row">
+			<!-- View Specific Toolbar-->
+			<div class="md-toolbar-tools">
+				<span flex></span>
+
+				<div layout="row" layout-align="end start">
+
+					<md-button aria-label="Search" ng-click="showSearch = !showSearch">
+					<ng-md-icon icon="search"></ng-md-icon> </md-button>
+
+					<md-button aria-label="Open Settings" ng-click="toggleRight()">
+					<ng-md-icon icon="more_vert"></ng-md-icon> </md-button>
+				</div>
+
+
+			</div>
+
+			<!-- Right Navigation Pane -->
+			<md-sidenav class="md-sidenav-right md-whiteframe-z2"
+				md-component-id="right"> <md-toolbar
+				class="md-theme-light"> </md-toolbar> <md-content layout-padding>
+			<md-button ng-click="close()" class="md-primary"> Close
+			Sidenav Right </md-button>
+
+
+			<div layout="column">
+				<md-button ui-sref="book.add" ng-click="close()" class="md-primary">
+				Book ADD </md-button>
+				<md-button ui-sref="book.list" ng-click="close()" class="md-primary">
+				Book List </md-button>
+				<md-button ui-sref="book.standard" ng-click="close()"
+					class="md-primary"> Book By Standard </md-button>
+			</div>
+			</md-content> </md-sidenav>
+
+		</section>
+
+	</div>
+
+	<div ui-view>
+
+		<div layout="column" layout-align="start start">
+			<md-button ui-sref="book.add" ng-click="close()" class="md-primary">
+			Book ADD </md-button>
+			<md-button ui-sref="book.list" ng-click="close()" class="md-primary">
+			Book List </md-button>
+			<md-button ui-sref="book.standard" ng-click="close()"
+				class="md-primary"> Book By Standard </md-button>
+
+		</div>
+	</div>
+	<!-- We'll also add some navigation: -->
+
+</div>
+

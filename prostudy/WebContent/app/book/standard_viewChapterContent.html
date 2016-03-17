@@ -8,8 +8,10 @@
 		</md-content>
 	</div>
 </div>
+
+
 <div id="TotalChapters">
-	<div layout="column" flex ng-repeat="chapter in chaptersOnButton">
+	<div layout="column" flex ng-repeat="chapter in chapters">
 		<h3 align="center">{{chapter.chapter_name}}</h3>
 		<md-content flex layout-padding>
 		<p ng-bind-html="chapter.chapter_content"></p>

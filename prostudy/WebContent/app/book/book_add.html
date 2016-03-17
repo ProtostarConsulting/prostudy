@@ -1,77 +1,134 @@
 <div layout="column" layout-padding>
 	<md-content>
+	<section>
+		<form name="bookForm" ng-model="bookForm">
 
-	<form name="bookForm">
-		<div layout="row" layout-sm="column">
+			<div layout="row" layout-sm="column">
 
-			<div layout="column" flex>
+				<div layout="column" flex>
+
+					<md-input-container flex> <label>Book Name<span style="color: red"
+						ng-show="bookForm.book_name.$error.required"
+						class="mandatory">*</span>
+					</label> <input  name="book_name" id="book_name" ng-required="true"
+						ng-model="tempBook.book_name">
+					<div ng-messages="bookForm.book_name.$error"
+						ng-if="bookForm.book_name.$submitted || bookForm.book_name.$touched">
+						<div ng-message="required">Please Enter Book name.</div>
+					</div>
+					</md-input-container>
+
+					<md-input-container> <label>Author<span style="color: red"
+						ng-show="bookForm.author.$error.required"
+						class="mandatory">*</span> </label> <input
+						name="author" id="author" ng-required="true" ng-model="tempBook.author">
+						<div ng-messages="bookForm.author.$error"
+						ng-if="bookForm.author.$submitted || bookForm.author.$touched">
+						<div ng-message="required">Please Enter Book name.</div>
+					</div> </md-input-container>
+					
+					<md-input-container> <label>Board<span
+						style="color: red"
+						ng-show="bookForm.board.$error.required" class="mandatory">*</span></label>
+					<md-select name="board" ng-model="tempBook.board""
+						ng-required="true"> <md-option ng-value="board"
+						ng-repeat="board in boards">{{board}}</md-option> </md-select>
+					<div ng-messages="bookForm.board.$error"
+						ng-if="bookForm.board.$submitted || bookForm.board.$touched">
+						<div ng-message="required">Please Select Board.</div>
+					</div>
+					</md-input-container>
+
+					<md-input-container> <label>Standard<span
+						style="color: red"
+						ng-show="bookForm.standard.$error.required"
+						class="mandatory">*</span></label> <md-select name="standard"
+						ng-model="tempBook.standard"
+						ng-change="getDivisionByStandard()" ng-required="true">
+					<md-option ng-value="standard" ng-repeat="standard in standards">{{standard}}</md-option>
+					</md-select>
+					<div ng-messages="bookForm.standard.$error"
+						ng-if="bookForm.standard.$submitted || bookForm.standard.$touched">
+						<div ng-message="required">Please Select Standard.</div>
+					</div>
+					</md-input-container>
+					
+					
+					<md-input-container> <label>Division<span
+						style="color: red"
+						ng-show="bookForm.division.$error.required"
+						class="mandatory">*</span></label> <md-select name="division"
+						ng-model="tempBook.division"
+						ng-change="getSubjectByDivision()" ng-required="true">
+					<md-option ng-value="division" ng-repeat="division in divisions">{{division}}</md-option>
+					</md-select>
+					<div ng-messages="bookForm.division.$error"
+						ng-if="bookForm.division.$submitted || bookForm.division.$touched">
+						<div ng-message="required">Please Select Division.</div>
+					</div>
+					</md-input-container>
+
+				
+					<md-input-container>
+					<label>Subject<span
+						style="color: red"
+						ng-show="bookForm.subject.$error.required"
+						class="mandatory">*</span></label> <md-select name="subject"
+						ng-model="tempBook.subject" 
+						ng-change="getChaptersByClass()" ng-required="true"> <md-option ng-value="subject"
+						ng-repeat="subject in subjects track by $index ">{{subject}}</md-option>
+					</md-select>
+					<div ng-messages="bookForm.subject.$error"
+						ng-if="bookForm.subject.$submitted || bookForm.subject.$touched">
+						<div ng-message="required">Please Select Subject.</div>
+					</div>
+					</md-input-container>
+
+					
+					<p>&nbsp;</p>
+					<p>&nbsp;</p>
+					<table>
+						<tr>
+							<td><label for="aChapters">Available Chapters</label> <select
+								size="5" multiple ng-model="available"
+								ng-options="chapter as chapter.chapter_name for chapter in chapters"
+								style="width: 400px"></select></td>
+
+							<td><input id="moveright" type="button" value=">>"
+								ng-click="moveItem(available[0], chapters,selectedChapters)" />
+								<input id="moverightall" type="button" value="Add All Chapters"
+								ng-click="moveAll(chapters,selectedChapters)" /> <input
+								id="move left" type="button" value="<<"
+								ng-click="moveItem(selected[0], selectedChapters,chapters)" />
+								<input id="moveleftall" type="button"
+								value="Remove All Chapters"
+								ng-click="moveAll(selectedChapters,chapters)" /></td>
+
+							<td><label for="sChapters">Selected Chapters</label> <select
+								size="5" multiple ng-model="selected"
+								ng-options="chapter as chapter.chapter_name for chapter in selectedChapters"
+								style="width: 400px"></select></td>
+						</tr>
+
+					</table>
 
 
-				<!-- <md-input-container>
-				<label>Book No :-</label>
-				<input name="id" id="id"  ng-model="tempBook.id">
-			</md-input-container> -->
-
-				<md-input-container> <label>Book No :-</label>
-				<input name="bookId" id="bookId" ng-model="tempBook.bookId">
-				</md-input-container>
 
 
-				<md-input-container> <label>Book Name
-				</label> <input name="book_name" id="book_name"
-					ng-model="tempBook.book_name"> </md-input-container>
-
-
-				<md-input-container> <label>Author </label> <input
-					name="author" id="author" ng-model="tempBook.author"> </md-input-container>
-
-				<md-input-container> <label>Board</label> <input
-					name="board" id="board" ng-model="tempBook.board"> </md-input-container>
-
-
-				<md-input-container> <label>Standard</label> <input
-					name="standard" id="standard" ng-model="tempBook.standard">
-				</md-input-container>
-
-				<table>
-					<tr>
-						<td><label for="aChapters">Available Chapters</label> <select
-							size="5" multiple ng-model="available"
-							ng-options="chapter as chapter.chapter_name for chapter in chapters"
-							style="width: 400px"></select></td>
-
-						<td><input id="moveright" type="button" value=">>"
-							ng-click="moveItem(available[0], chapters,selectedChapters)" />
-							<input id="moverightall" type="button" value="Add All Chapters"
-							ng-click="moveAll(chapters,selectedChapters)" /> <input
-							id="move left" type="button" value="<<"
-							ng-click="moveItem(selected[0], selectedChapters,chapters)" /> <input
-							id="moveleftall" type="button" value="Remove All Chapters"
-							ng-click="moveAll(selectedChapters,chapters)" /></td>
-
-						<td><label for="sChapters">Selected Chapters</label> <select
-							size="5" multiple ng-model="selected"
-							ng-options="chapter as chapter.chapter_name for chapter in selectedChapters"
-							style="width: 400px"></select></td>
-					</tr>
-
-				</table>
-
-			
-
-
+				</div>
 			</div>
-		</div>
 
-	</form>
+		</form>
 
-	<section layout="row" layout-sm="column" layout-align="left left">
-
+		<section layout="row" layout-sm="column" layout-align="left left">
 
 
-		<md-button class="md-raised md-primary" ng-click="addBook()">Submit</md-button>
-		<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
 
+			<md-button class="md-raised md-primary" ng-click="addBook()" ng-disabled="bookForm.$invalid">Submit</md-button>
+			<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
+
+		</section>
+		</form>
 	</section>
 	</md-content>
 </div>

@@ -5,6 +5,7 @@ angular.module("prostudyApp").controller(
 
 			console.log("Inside bookListCtr");
 			$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
+			$log.debug("$scope.curUser :"+angular.toJson($scope.curUser));
 			
 			
 			$scope.showSavedToast = function() {
@@ -13,57 +14,48 @@ angular.module("prostudyApp").controller(
 						.hideDelay(3000));
 			};
 		
-			$scope.addselectedBookId = $stateParams.addselectedBookId;
-
-			
-			$scope.book = {
-					id:"",
-				bookId : "",
-				book_name : "",
-				author : "",
-				board : "",
-				standard : "",
-				chapters : [],
-				user :""
-			};// end of tempBook object 
-			
 			$scope.books = [];
-			$scope.getBooks = function() {
+			$scope.newUser = [];
+			
+			$scope.getBooksByInstitute = function() {
 
 				var BookService = appEndpointSF.getBookService();
+				BookService.getBooksByInstitute($scope.curUser.instituteID)
+						.then(
+								function(bookList) {
+									$scope.books = bookList;		
+											
+									
+								});
+			}
+			$scope.getBooksByInstitute();
 
-				BookService.getBooks($scope.curUser.id).then(function(bookList)
-						{
-							$log.debug("Inside Ctr getBooks");
-							$scope.books = bookList;
-					/*		$scope.currentBook = $scope.books[0];
-							$log.debug("$scope.currentBook :"
-									+ angular.toJson($scope.currentBook));*/
-						});
-			     
-			  	
-			}// end of getBooks
-			
-			$scope.getBooks();
-			
+			$scope.getUserByEmailID = function() {
+
+				var UserService = appEndpointSF.getUserService();
+				UserService.getUserByEmailID($scope.curUser.email_id)
+						.then(
+								function(user) {
+									$scope.newUser = user;		
+									
+								});
+			}
+			$scope.getUserByEmailID();
 		
-
-			$scope.tempMyBook = {
-				user_name : $scope.curUser,
-				book : $scope.currentBook
-
-			};
 		
 			$scope.addBookToMyList = function(selectedBookId) {
 				var selectedBook = null;
 				for (var i =0; i < $scope.books.length; i++){							
-					if($scope.books[i].bookId == selectedBookId){
+					if($scope.books[i].id == selectedBookId){
 						selectedBook = $scope.books[i];
 						break;
 					}
 				}
 				
-				$scope.curUser.myBooks.push(selectedBook);
+				if (typeof $scope.newUser.myBooks === 'undefined')
+					$scope.newUser.myBooks = [];
+				
+				$scope.newUser.myBooks.push(selectedBook);
 				
 				$scope.updateUser();
 
@@ -72,7 +64,7 @@ angular.module("prostudyApp").controller(
 			$scope.updateUser = function() {
 				$log.debug("No1");
 				var UserService = appEndpointSF.getUserService();
-				UserService.updateUser($scope.curUser).then(function(msgBean) {
+				UserService.updateUser($scope.newUser).then(function(msgBean) {
 					
 					$log.debug("msgBean.msg:" + msgBean.msg);
 					$scope.showSavedToast();
@@ -82,66 +74,62 @@ angular.module("prostudyApp").controller(
 				
 			}
 
-		     $scope.selected = [];
-		      $scope.toggle = function (book, list) {
-		        var idx = list.indexOf(book);
-		        if (idx > -1) list.splice(idx, 1);
-		        else list.push(book);
-		      };
-		      $scope.exists = function (book, list) {
-		        return list.indexOf(book) > -1;
-		      };//end of selected Book by checkbox
+		    
+		      $scope.books = []; 
 		      
-	      
-		
+		      $scope.like = function(selectedBookId) {
 
+					for (i = 0; i < $scope.books.length; i++) {
+						if ($scope.books[i].id == selectedBookId) {
 
-			$scope.books = [];                           
-			$scope.like = function(selectedBookId) {
-
-				var BookService = appEndpointSF
-						.getBookService();
-				BookService.bookLikeCount(selectedBookId).then(
-						function(bookList) {
+							$scope.books[i].likes++;
+							$scope.newBook = $scope.books[i];
 							
-							$log.debug("Inside Ctr like");
-							
-							for(i=0 ;i< $scope.books.length;i++)
-							{
-								if($scope.books[i].bookid == selectedBookId)
-									{
-									 $scope.books[i].likes++;
-									 break;
-									}
+							break;
+						}
+
+					}
+
+					$scope.updateLikeCount()
+				}
+
+				$scope.updateLikeCount = function() {
+					var BookService = appEndpointSF.getBookService();
+					BookService.likeCount($scope.newBook).then(
+							function(msgBean) {
 								
-							}
+								$log.debug("msgBean.msg:" + msgBean.msg);
 
-						});
+							});
 
-			}
-			
-			$scope.dislike = function(selectedBookId) {
+				}
+				
+				$scope.dislike = function(selectedBookId) {
 
+					for (i = 0; i < $scope.books.length; i++) {
+						if ($scope.books[i].id == selectedBookId) {
 
-				var BookService = appEndpointSF
-						.getBookService();
-				BookService.bookDislikeCount(selectedBookId).then(
-						function(bookList) {
-							$log.debug("Inside Ctr dislike");
-							
-							for(i=0 ;i< $scope.books.length;i++)
-							{
-								if($scope.books[i].bookid == selectedBookId)
-									{
-									 $scope.books[i].dislikes++;
-									 break;
-									}
+							$scope.books[i].dislikes++;
+							$scope.newBook = $scope.books[i];
+							break;
+						}
+
+					}
+
+					$scope.updateDislikeCount()
+				}
+
+				$scope.updateDislikeCount = function() {
+					var BookService = appEndpointSF
+							.getBookService();
+					BookService.dislikeCount($scope.newBook).then(
+							function(msgBean) {
 								
-							}
+								$log.debug("msgBean.msg:" + msgBean.msg);
 
-						});
+							});
 
-			}
+				}
 
 			$scope.cancelButton = function() {
 				$log.debug("inside cancelButton");
