@@ -26,10 +26,10 @@ angular
 						setupService.getCurUserByEmailId(
 								$scope.curuser.email_id).then(
 								function(user) {
-									$scope.business = user.items[0];
-									$scope.id = $scope.business.businessAccount.id;
+									$scope.business = user.items[0].businessAccount;
+									$scope.id = $scope.business.id;
 									$log.debug("$scope.business.id"
-											+ $scope.business.businessAccount.id);
+											+ $scope.business.id);
 								});
 					}
 					$scope.business = [];
@@ -125,27 +125,32 @@ angular
 					}
 
 					
-					/*	/////////////////Checkemail
+						/////////////////Checkemail
 					$scope.Checkemail=function(emailid){
 						var hrService = appEndpointSF.gethrService();
 						hrService.getAllemp($scope.curUser.businessAccount.id).then(function(empList) {
-							$scope.user = empList.items;
-							for(i=0;i<$scope.user.length;i++){
-							 if ($scope.user.items[i].email_id == emailid){
+							$scope.user11 = empList.items;
+							for(i=0;i<$scope.user11.length;i++){
+							 if ($scope.user11[i].email_id == emailid){
 								 $scope.userexists="user already exists"
+									 angular.element(document.getElementById('fname'))[0].disabled = true;
+								 angular.element(document.getElementById('lname'))[0].disabled = true;
 									 break;
-								$scope.usediffemail="checked";
+								
 							 }else{
 								 $scope.userexists="";
+								 angular.element(document.getElementById('fname'))[0].disabled = false;
+								 angular.element(document.getElementById('lname'))[0].disabled = false;
+
 							 }
 							}
 						});
 						
 						}
-					$scope.user=[];
+					$scope.user11=[];
 					$scope.userexist="";
-					$scope.usediffemail="unchecked";
-					*/
+					
+					
 					
 					
 					$scope.toggleRight = buildToggler('right');

@@ -23,9 +23,9 @@ angular.module("stockApp").controller(
 				var setupService = appEndpointSF.getsetupService();
 				setupService.getCurUserByEmailId($scope.curuser.email_id).then(
 						function(user) {
-							$scope.business = user.items[0];
-							$scope.id = $scope.business.businessAccount.id;
-							$log.debug("$scope.business.id"+ $scope.business.businessAccount.id);
+							$scope.business = user.items[0].businessAccount;
+							$scope.id = $scope.business.id;
+							$log.debug("$scope.business.id"+ $scope.business.id);
 						});
 			}
 			

@@ -14,10 +14,11 @@
 			<md-input-container flex> <label>Enter
 				Email id/User Name </label> <span style="color: red"
 				ng-show="addform.emailid.$error.required" class="mandatory">*</span>
-			<input name="emailid" id="emailid" ng-model="user.email_id" ng-required="true"><!--  ng-blur="Checkemail(user.email_id)" -->
-			<span style="color: red" >{{userexists}}</span>
+			<input name="emailid" id="emailid" ng-model="user.email_id" 
+			 ng-blur="Checkemail(user.email_id)"  ng-required="true"> <span style="color: red" >
+			 {{userexists}}</span>
 			<div ng-messages="addform.emailid.$error"
-				ng-if="addform.emailid.$submitted || addform.emailid.$touched">
+				ng-if="addform.emailid.$submitted || addform.emailid.$touched ">
 				<div ng-message="required">Please Enter Gmail Id.</div>
 			</div>
 			</md-input-container>
@@ -40,7 +41,7 @@
 			<md-input-container flex> <label>First
 				Name </label> <span style="color: red"
 				ng-show="addform.fname.$error.required" class="mandatory">*</span> <input
-				name="fname" ng-model="user.firstName" ng-required="true">
+				id="fname"name="fname" ng-model="user.firstName" ng-required="true">
 			<div ng-messages="addform.fname.$error"
 				ng-if="addform.fname.$submitted || addform.fname.$touched">
 				<div ng-message="required">Please Enter First Name.</div>
@@ -49,7 +50,7 @@
 			<md-input-container flex> <label>Last
 				Name </label> <span style="color: red"
 				ng-show="addform.lname.$error.required" class="mandatory">*</span> <input
-				name="lname" ng-model="user.lastName" ng-required="true">
+				id="lname"name="lname" ng-model="user.lastName" ng-required="true">
 			<div ng-messages="addform.lname.$error"
 				ng-if="addform.lname.$submitted || addform.lname.$touched">
 				<div ng-message="required">Please Enter Last Name.</div>
@@ -72,8 +73,8 @@
 			<br> <br>
 		</div>
 		<section layout="row" layout-sm="column" layout-align="left left">
-			<md-button class="md-raised md-primary"
-				ng-disabled="addform.$invalid" ng-click="adduser(business)">Add</md-button>
+			<md-button class="md-raised md-primary" id="adduser"
+				ng-disabled="addform.$invalid " ng-click="adduser(business)">Add</md-button>
 		</section>
 	</div>
 </form>

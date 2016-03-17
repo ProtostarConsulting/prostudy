@@ -132,7 +132,7 @@ angular
 
 					$scope.printslip = function() {
 						var hrService = appEndpointSF.gethrService();
-
+						if (typeof $scope.printempidsalslip != "undefined") {
 						hrService
 								.printslip($scope.printempidsalslip)
 								.then(
@@ -142,6 +142,7 @@ angular
 													.debug("$scope.printslectedslip=========="
 															+ angular.toJson($scope.printslectedslip));
 										});
+					}
 					}
 					$scope.printslectedslip = [];
 					$scope.printslip();
