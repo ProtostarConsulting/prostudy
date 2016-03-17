@@ -2,7 +2,9 @@ package com.protostar.billingnstock.purchase.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.api.server.spi.config.Api;
@@ -19,6 +21,13 @@ public class PurchaseOrderService {
 
 		@ApiMethod(name="addPurchaseOrder")
 		public void addPurchaseOrder(PurchaseOrderEntity purchaseOrderEntity){
+			
+			Date date = new Date();
+			  String DATE_FORMAT = "dd-MM-yyyy";
+			  SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+
+			  purchaseOrderEntity.setPoDate(sdf.format(date));
+			  
 			Key<PurchaseOrderEntity> now=ofy().save().entity(purchaseOrderEntity).now();
 		}
 		

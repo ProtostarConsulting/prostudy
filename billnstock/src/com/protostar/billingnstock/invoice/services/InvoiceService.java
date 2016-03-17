@@ -2,14 +2,15 @@ package com.protostar.billingnstock.invoice.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
-import com.googlecode.objectify.Key;
 import com.protostar.billingnstock.account.entities.ReceivableEntity;
 import com.protostar.billingnstock.invoice.entities.InvoiceEntity;
 import com.protostar.billingnstock.stock.entities.StockItemEntity;
@@ -19,6 +20,14 @@ public class InvoiceService {
 
 	@ApiMethod(name = "addInvoice")
 	public void addInvoice(InvoiceEntity invoiceEntity) {
+		
+		Date date = new Date();
+		  String DATE_FORMAT = "dd-MM-yyyy";
+		  SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+
+		  invoiceEntity.setInvoiceDueDate(sdf.format(date));
+		  
+		  
 		ofy().save().entity(invoiceEntity).now();
 
 		System.out.println(invoiceEntity.getInvoiceLineItemList());

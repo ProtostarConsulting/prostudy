@@ -2,7 +2,9 @@ package com.protostar.billingnstock.sales.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.api.server.spi.config.Api;
@@ -10,9 +12,6 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
-import com.protostar.billingnstock.cust.entities.Customer;
-import com.protostar.billingnstock.invoice.entities.InvoiceEntity;
-import com.protostar.billingnstock.purchase.entities.PurchaseOrderEntity;
 import com.protostar.billingnstock.sales.entities.SalesOrderEntity;
 
 @Api(name = "salesOrderService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.sales.services", ownerName = "com.protostar.billingnstock.sales.services", packagePath = ""))
@@ -20,7 +19,17 @@ public class SalesOrderService {
 
 		@ApiMethod(name="addSalesOrder")
 		public void addSalesOrder(SalesOrderEntity salesOrderEntity){
-			Key<SalesOrderEntity> now=ofy().save().entity(salesOrderEntity).now();
+			
+			Date date = new Date();
+			  String DATE_FORMAT = "dd-MM-yyyy";
+			  SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+
+			  salesOrderEntity.setDueDate(sdf.format(date));
+			  salesOrderEntity.setDeliveryDate(sdf.format(date));
+			  salesOrderEntity.setSalesOrderDate(sdf.format(date));
+			  salesOrderEntity.setQuotationDate(sdf.format(date));
+			  
+			ofy().save().entity(salesOrderEntity).now();
 		}
 		
 		@ApiMethod(name="getAllSalesOrder")

@@ -1,5 +1,6 @@
 package com.protostar.billingnstock.invoice.entities;
 
+import java.util.Date;
 import java.util.List;
 
 import com.googlecode.objectify.Ref;
@@ -19,6 +20,7 @@ public class InvoiceEntity {
 	@Index
 	private Long invoiceId;
 	private String invoiceDate;
+//	private Date invoiceDueDate;
 	private String invoiceDueDate;
 	private String itemName;
 	private String rate;
@@ -63,7 +65,7 @@ public class InvoiceEntity {
 	public void setLoggedInUser(UserEntity loggedInUser) {
 		this.loggedInUser = Ref.create(loggedInUser);
 	}
-			
+		
 	public String getInvoiceDueDate() {
 		return invoiceDueDate;
 	}
@@ -71,6 +73,15 @@ public class InvoiceEntity {
 	public void setInvoiceDueDate(String invoiceDueDate) {
 		this.invoiceDueDate = invoiceDueDate;
 	}
+
+/*	public Date getInvoiceDueDate() {
+		return invoiceDueDate;
+	}
+
+	public void setInvoiceDueDate(Date invoiceDueDate) {
+		this.invoiceDueDate = invoiceDueDate;
+	}
+*/
 	public SalesOrderEntity getSalesOrderId() {
 		return salesOrderId.get();
 	}
