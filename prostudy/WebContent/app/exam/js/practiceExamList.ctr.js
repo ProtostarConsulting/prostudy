@@ -5,12 +5,7 @@ angular.module("prostudyApp").controller(
 				$filter) {
 
 			$scope.count = 0;
-			$scope.newSelectedExam;
-			$scope.newSelectedId;
-			$scope.newCount;
-
-			$scope.count = 0;
-
+		
 			$scope.curUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
 
@@ -100,8 +95,8 @@ angular.module("prostudyApp").controller(
 						$scope.practiceTest[i].likes++;
 						$log.debug("$scope.practiceTest[i].likes :"
 								+ $scope.practiceTest[i].likes);
-						$scope.newCount = $scope.practiceTest[i].likes;
-						$scope.newSelectedExam = $scope.practiceTest[i];
+						
+						$scope.newExam = $scope.practiceTest[i];
 						
 						break;
 					}
@@ -114,11 +109,9 @@ angular.module("prostudyApp").controller(
 			$scope.updateLikeCount = function() {
 				var PracticeExamService = appEndpointSF
 						.getPracticeExamService();
-				PracticeExamService.likeCount($scope.newSelectedExam).then(
+				PracticeExamService.likeCount($scope.newExam).then(
 						function(msgBean) {
-							$log.debug("$scope.newSelectedExam :"
-									+ angular.toJson($scope.newSelectedExam));
-
+							
 							$log.debug("msgBean.msg:" + msgBean.msg);
 
 						});
@@ -133,10 +126,8 @@ angular.module("prostudyApp").controller(
 					if ($scope.practiceTest[i].id == selectedMyExamId) {
 
 						$scope.practiceTest[i].dislikes++;
-						$log.debug("$scope.practiceTest[i].dislikes :"
-								+ $scope.practiceTest[i].dislikes);
-
-						$scope.newSelectedId = $scope.practiceTest[i];
+						
+						$scope.newTest = $scope.practiceTest[i];
 						break;
 					}
 
@@ -148,11 +139,9 @@ angular.module("prostudyApp").controller(
 			$scope.updateDislikeCount = function() {
 				var PracticeExamService = appEndpointSF
 						.getPracticeExamService();
-				PracticeExamService.likeCount($scope.newSelectedId).then(
+				PracticeExamService.likeCount($scope.newTest).then(
 						function(msgBean) {
-							$log.debug("$scope.newSelectedId :"
-									+ angular.toJson($scope.newSelectedId));
-
+							
 							$log.debug("msgBean.msg:" + msgBean.msg);
 
 						});
