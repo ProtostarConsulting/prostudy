@@ -48,7 +48,7 @@ angular.module("stockApp").controller(
 
 				});
 			}
-
+			
 			$scope.contacts = [];
 			$scope.getAllcontact();
 
@@ -56,6 +56,7 @@ angular.module("stockApp").controller(
 				$log.debug("Inside Ctr $scope.getAlllead");
 				var leadService = appEndpointSF.getleadService();
 				$scope.ctaskid;
+				if (typeof $scope.selectedcontactNo != "undefined") {
 				leadService.getContactById($scope.selectedcontactNo).then(
 						function(contactList) {
 							$log.debug("Inside Ctr getAllleads");
@@ -64,7 +65,7 @@ angular.module("stockApp").controller(
 						});
 
 			}
-
+			}
 			$scope.contactL = [];
 			$scope.getContactById();
 

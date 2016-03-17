@@ -127,6 +127,7 @@ angular
 						$log.debug("Inside Ctr $scope.getAlllead");
 						var opportunityService = appEndpointSF
 								.getopportunityService();
+						if (typeof $scope.selectedopportunityNo != "undefined") {
 						opportunityService
 								.getopportunityById(
 										$scope.selectedopportunityNo)
@@ -139,6 +140,7 @@ angular
 											$scope.taskobj.id = $scope.ctaskid;
 											$scope.taskobj.date = $scope.curdate;
 										});
+					}
 					}
 
 					$scope.opportunityL = [];
