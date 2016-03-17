@@ -28,7 +28,7 @@ angular.module("prostudyApp").controller(
 			$scope.divList;
 			$scope.subList;
 			
-			 $scope.isGoogleUser;
+			$scope.isGoogleUser;
 
 			$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content('Institute Saved!')
