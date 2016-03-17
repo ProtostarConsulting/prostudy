@@ -3,7 +3,7 @@ var app = angular.module("stockApp");
 app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 		$mdSidenav, $mdUtil, $log, $stateParams, objectFactory, appEndpointSF) {
 
-	$log.debug("Inside customerCtr");
+	$log.debug("Inside customerAddCtr");
 
 	$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 	$log.debug("$scope.curUser++++++++" + angular.toJson($scope.curUser));

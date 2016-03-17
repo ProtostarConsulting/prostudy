@@ -5,7 +5,7 @@ app.controller(
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log,$stateParams, objectFactory, appEndpointSF) {
 
-			$log.debug("Inside customerCtr");
+			$log.debug("Inside customerListCtr");
 
 			
 			$scope.curUser = appEndpointSF.getLocalUserService()
