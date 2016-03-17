@@ -1,6 +1,7 @@
-<md-content layout-padding>
+<!-- <md-content layout-padding>
 <form>
 
+{{chapters}}
 
 	<div layout="row" layout-align="center center">
 
@@ -76,3 +77,42 @@
 
 
 
+ -->
+
+
+	<div layout="column" flex
+				ng-repeat="chapter in chapters | filter:searchText">
+
+
+				<md-input-container> <label>Chapter ID
+				</label> <input name="chapterId" id="chapterId" ng-model="chapter.id"
+					readonly> </md-input-container>
+
+				<md-input-container> <label>Board</label> <input
+					name="board" id="board" ng-required="true" ng-model="chapter.board"
+					readonly> </md-input-container>
+
+				
+				<md-input-container> <label>Standard</label> <input
+					name="standard" id="standard" ng-required="true"
+					ng-model="chapter.standard" readonly> </md-input-container>
+
+				<md-input-container> <label>Subject</label> <input
+					name="subject" id="subject" ng-model="chapter.subject" readonly>
+				</md-input-container>
+
+
+				<md-input-container> <label>Chapter
+					Name </label> <input name="chapter_name" id="chapter_name"
+					ng-model="chapter.chapter_name" readonly> </md-input-container>
+
+				<md-input-container> <label>Chapter
+					content</label>
+				<p ng-bind-html="chapter.chapter_content">
+					<input name="content" id="content" ng-required="true"
+						ng-model="chapter.chapter_content" readonly>
+				</p>
+				</md-input-container>
+
+				
+			</div>

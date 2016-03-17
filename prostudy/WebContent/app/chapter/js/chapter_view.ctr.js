@@ -6,33 +6,30 @@ angular
 						$mdUtil, $log, appEndpointSF, $state, $sce, $stateParams) {
 					console.log("Inside chapterViewCtr");
 
-					$scope.tempChapter = {
-						id : "",
-						chapterId : "",
-						chapter_name : "",
-						chapter_content : "",
-						board : "",
-						standard : "",
-						subject : ""
-					};
+					
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
-					
+				
+				
 					$scope.selectedChapterId = $stateParams.selectedChapterId;
 					$log.debug("$scope.selectedChapterId :"+$scope.selectedChapterId);
+					
+					$scope.chapters = [];
 
-					$scope.getChaptersByInstitute = function() {
+					
+					$scope.getChaptersByID = function() {
 
 						var ChapterService = appEndpointSF.getChapterService();
-						ChapterService.getChaptersByInstitute($scope.curUser.instituteID)
+						ChapterService.getChaptersByID($scope.selectedChapterId)
 								.then(
 										function(chapterList) {
-											$scope.chapters = chapterList;		
-													
+											$scope.chapters.push(chapterList);
+											$log.debug("$scope.chapters :"+ angular.toJson($scope.chapters));
 											
+
 										});
 					}
-					$scope.getChaptersByInstitute();
+					$scope.getChaptersByID();
 
 					$scope.cancelButton = function() {
 						

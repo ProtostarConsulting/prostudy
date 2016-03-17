@@ -1,9 +1,12 @@
-<md-content>
+
 
 <div id="editChapterList">
-	<h3 class="md-headline">Chapter</h3>
-
-	<md-data-table-container>
+	
+	<md-content> <md-input-container flex>
+	<label>Search By Chapter name</label> <input ng-model="searchCategory">
+	</md-input-container>
+	 <md-data-table-container>
+	 
 	<table md-data-table md-row-select="selected" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onorderchange">
 			<tr>
@@ -17,7 +20,7 @@
 
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="chapter in chapters  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText ">
+				ng-repeat="chapter in chapters  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: {chapter_name: searchCategory}  ">
 
 				<td>
 					<div ng-hide="editingData[chapter.id]">{{chapter.id}}</div>
@@ -63,10 +66,13 @@
 
 				<td><md-button class="md-raised md-primary"
 						ng-hide="editingData[chapter.id]" ng-click="modify(chapter)">Edit</md-button>
-					
+
 				</td>
 
-				
+				<td><a ui-sref="chapter.view({selectedChapterId: chapter.id})"><md-button
+							class="md-raised md-primary" ng-click="">View</md-button> </a></td>
+
+
 			</tr>
 		</tbody>
 
@@ -80,14 +86,10 @@
 
 <div flex id="updateChapter">
 
-	<div layout="column">
-		<md-subheader class="md-primary">
-		<h3 class="md-headline">Edit Chapter</h3>
-		</md-subheader>
-
+	
 		<md-input-container> <label>Chapter ID</label> <input
-			type="text" name="chapterId" id="chapterId" ng-model="selected[0].id" readonly>
-		</md-input-container>
+			type="text" name="chapterId" id="chapterId" ng-model="selected[0].id"
+			readonly> </md-input-container>
 
 		<md-input-container> <label>Chapter Name
 		</label> <input name="chapter_name" id="chapter_name"
