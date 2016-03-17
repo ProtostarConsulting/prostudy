@@ -220,7 +220,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/viewStudentByStd/:selectedStdName/:selectedDivName/:selectedSubName",
 		templateUrl : '/app/institute/institute_view_studentByStd.html',
 		controller : 'instituteViewCtr',
-		
 	}).state('attendance', {
 		url : "/attendance",
 		templateUrl : '/app/attendance/attendance_module.html',
@@ -258,7 +257,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : "/app/chapter/chapter_view.html",
 		controller : 'chapterViewCtr'
 	}).state('chapter.edit', {
-		url : "/edit/:selectedChapterId",
+		url : "/list/:selectedChapterId",
 		templateUrl : "/app/chapter/chapter_edit.html",
 		controller : 'chapterEditCtr'
 	}).state('book', {

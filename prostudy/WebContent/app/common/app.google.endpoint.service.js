@@ -14,17 +14,16 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	UserService.addUser = function(user) {
 
 		var deferred = $q.defer();
-		gapi.client.userService.addUser(user).execute(
-				function(resp) {
+		gapi.client.userService.addUser(user).execute(function(resp) {
 
-					deferred.resolve(resp);
-					$log.debug("resp :" + angular.toJson(resp));
-					$log.debug("getUser #resp :" + resp);
-				});
+			deferred.resolve(resp);
+			$log.debug("resp :" + angular.toJson(resp));
+			$log.debug("getUser #resp :" + resp);
+		});
 
 		return deferred.promise;
 	}
-	
+
 	UserService.getUser = function() {
 		var deferred = $q.defer();
 		gapi.client.userService.getUser().execute(function(resp) {
@@ -32,7 +31,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
-		
+
 	}
 
 	UserService.getUserByEmailID = function(email_id) {
@@ -43,38 +42,42 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 			$log.debug("resp:" + angular.toJson(resp));
 
 			deferred.resolve(resp.result);
-			
+
 		});
 		return deferred.promise;
 	}
-	
+
 	UserService.getUserByInstitute = function(instituteID) {
 		var deferred = $q.defer();
 		gapi.client.userService.getUserByInstitute({
 			'instituteID' : instituteID
 		}).execute(function(resp) {
-			
+
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
 	}
-	
-	UserService.getUserByClass = function(standard,division,subject) {
-		 
-		  var deferred = $q.defer();
-		
-		  gapi.client.userService.getUserByClass({'standard' : standard ,'division': division ,'subject': subject }).execute(function(resp) { 
-		   deferred.resolve(resp.items);
-		  });
-		 
-		  return deferred.promise;
-	}
 
+	UserService.getUserByClass = function(standard, division, subject) {
+
+		var deferred = $q.defer();
+
+		gapi.client.userService.getUserByClass({
+			'standard' : standard,
+			'division' : division,
+			'subject' : subject
+		}).execute(function(resp) {
+			deferred.resolve(resp.items);
+		});
+
+		return deferred.promise;
+	}
 
 	UserService.updateUser = function(user) {
 		$log.debug("No2");
 		var deferred = $q.defer();
 		gapi.client.userService.updateUser(user).execute(function(resp) {
+			$log.debug("user......." + angular.toJson(user));
 			deferred.resolve(resp.result);
 		});
 		$log.debug("No3");
@@ -89,59 +92,62 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 			return $localStorage.loggedinUser;
 	}
 
-	
-	UserService.login = function(email,pass) {
-		  $log.debug("No2");
-		  var deferred = $q.defer();
-		
-		  gapi.client.userService.login({'email_id' : email,'password':pass}).execute(function(resp) { 
-		   deferred.resolve(resp);
-		  });
-		  $log.debug("No3");
-		  return deferred.promise;
+	UserService.login = function(email, pass) {
+		$log.debug("No2");
+		var deferred = $q.defer();
+
+		gapi.client.userService.login({
+			'email_id' : email,
+			'password' : pass
+		}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		$log.debug("No3");
+		return deferred.promise;
 	}
 
 	UserService.logout = function() {
 		$localStorage.loggedinUser = null;
-	} 
-	
+	}
+
 	UserService.getExamId = function(selectedMyExamId) {
-		$log
-		.debug("No2");	
+		$log.debug("No2");
 		var deferred = $q.defer();
 		gapi.client.userService.getExamId(selectedMyExamId).execute(
-				function(resp) {	
+				function(resp) {
 					$log.debug("getExamId... #resp:" + angular.toJson(resp));
 					deferred.resolve(resp);
 				});
-		$log.debug("No3");	
+		$log.debug("No3");
 		return deferred.promise;
 	}
-	
+
 	UserService.getMyExamList = function(email_id) {
 
 		var deferred = $q.defer();
-		gapi.client.userService.getUserByEmailID({'email_id' : email_id}).execute(function(resp) {
+		gapi.client.userService.getUserByEmailID({
+			'email_id' : email_id
+		}).execute(function(resp) {
 			$log.debug("getMyExamList #resp :" + resp.myExams);
 			deferred.resolve(resp.myExams);
 		});
 		return deferred.promise;
 	}
-	
+
 	UserService.getMyBookList = function(email_id) {
 
 		var deferred = $q.defer();
-		gapi.client.userService.getUserByEmailID({'email_id' : email_id}).execute(function(resp) {
+		gapi.client.userService.getUserByEmailID({
+			'email_id' : email_id
+		}).execute(function(resp) {
 			$log.debug("getMyBookList #resp :" + resp.myBooks);
 			deferred.resolve(resp.myBooks);
 		});
 		return deferred.promise;
 	}
-	
-		
-	
 
-//end of UserService-----------------------------------------------------------------------------------------------------------------
+	// end of
+	// UserService-----------------------------------------------------------------------------------------------------------------
 
 	// start of CertificateService
 	var CertificateService = {};
@@ -162,7 +168,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 
 		return deferred.promise;
 	}
-	
+
 	CertificateService.getCertificate = function() {
 		var deferred = $q.defer();
 		gapi.client.certificateService.getCertificate().execute(function(resp) {
@@ -171,21 +177,19 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
-	
+
 	CertificateService.getCertificateById = function(studID) {
 		var deferred = $q.defer();
 		gapi.client.certificateService.getCertificateById({
 			'studID' : studID
 		}).execute(function(resp) {
-			
+
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
 	}
-	//End of CertificateService
-	
-	
-	
+	// End of CertificateService
+
 	// start of StandardService
 	var StandardService = {};
 
@@ -196,16 +200,15 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	StandardService.addStandards = function(std) {
 
 		var deferred = $q.defer();
-		gapi.client.standardService.addStandard(std).execute(
-				function(resp) {
+		gapi.client.standardService.addStandard(std).execute(function(resp) {
 
-					deferred.resolve(resp);
-					$log.debug("resp :" + angular.toJson(resp));
-				});
+			deferred.resolve(resp);
+			$log.debug("resp :" + angular.toJson(resp));
+		});
 
 		return deferred.promise;
 	}
-	
+
 	StandardService.getStandards = function() {
 		var deferred = $q.defer();
 		gapi.client.standardService.getStandard().execute(function(resp) {
@@ -214,18 +217,18 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
-	
+
 	StandardService.getStandardByInstitute = function(instituteID) {
 		var deferred = $q.defer();
 		gapi.client.standardService.getStandardByInstitute({
 			'instituteID' : instituteID
 		}).execute(function(resp) {
-			
+
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
 	}
-	
+
 	StandardService.editStandard = function(standard) {
 
 		var deferred = $q.defer();
@@ -238,9 +241,8 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 
-	
 	// end of StandardService
-	
+
 	// start of DivisionService
 	var DivisionService = {};
 
@@ -251,36 +253,35 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	DivisionService.addDivisions = function(div) {
 
 		var deferred = $q.defer();
-		gapi.client.divisionService.addDivision(div).execute(
-				function(resp) {
+		gapi.client.divisionService.addDivision(div).execute(function(resp) {
 
-					deferred.resolve(resp);
-					$log.debug("resp :" + angular.toJson(resp));
-				});
+			deferred.resolve(resp);
+			$log.debug("resp :" + angular.toJson(resp));
+		});
 
 		return deferred.promise;
 	}
-	
+
 	DivisionService.getDivisions = function() {
 		var deferred = $q.defer();
-		gapi.client.divisionService.getDivision().execute(function(resp) {   
+		gapi.client.divisionService.getDivision().execute(function(resp) {
 			$log.debug("getUser #resp :" + resp);
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
 	}
-	
+
 	DivisionService.getDivisionByStandard = function(standardID) {
 		var deferred = $q.defer();
 		gapi.client.divisionService.getDivisionByStandard({
 			'standardID' : standardID
 		}).execute(function(resp) {
-			
+
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
 	}
-	
+
 	DivisionService.editDivision = function(division) {
 
 		var deferred = $q.defer();
@@ -292,9 +293,9 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 
 		return deferred.promise;
 	}
-	
+
 	// end of DivisionService
-	
+
 	// start of SubjectService
 	var SubjectService = {};
 
@@ -305,16 +306,15 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	SubjectService.addSubjects = function(sub) {
 
 		var deferred = $q.defer();
-		gapi.client.subjectService.addSubject(sub).execute(
-				function(resp) {
+		gapi.client.subjectService.addSubject(sub).execute(function(resp) {
 
-					deferred.resolve(resp);
-					$log.debug("resp :" + angular.toJson(resp));
-				});
+			deferred.resolve(resp);
+			$log.debug("resp :" + angular.toJson(resp));
+		});
 
 		return deferred.promise;
 	}
-	
+
 	SubjectService.getSubjects = function() {
 		var deferred = $q.defer();
 		gapi.client.subjectService.getSubject().execute(function(resp) {
@@ -323,30 +323,29 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
-	
+
 	SubjectService.getSubjectByDivision = function(divisionID) {
 		var deferred = $q.defer();
 		gapi.client.subjectService.getSubjectByDivision({
 			'divisionID' : divisionID
 		}).execute(function(resp) {
-			
+
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
 	}
 
 	SubjectService.editSubject = function(subject) {
-	
+
 		var deferred = $q.defer();
 		gapi.client.subjectService.editSubject(subject).execute(function(resp) {
 			deferred.resolve(resp.result);
 		});
-		
+
 		return deferred.promise;
 	}
 	// end of SubjectService
-	
-	
+
 	// start of AttendanceService
 	var AttendanceService = {};
 
@@ -357,11 +356,12 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	AttendanceService.addAttendance = function(attendance) {
 
 		var deferred = $q.defer();
-		gapi.client.attendanceService.addAttendance(attendance).execute(function(resp) {
+		gapi.client.attendanceService.addAttendance(attendance).execute(
+				function(resp) {
 
-			deferred.resolve(resp);
-			
-		});
+					deferred.resolve(resp);
+
+				});
 
 		return deferred.promise;
 	}
@@ -374,20 +374,19 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
-	
+
 	AttendanceService.getAttendanceByInstitute = function(instituteID) {
 		var deferred = $q.defer();
 		gapi.client.attendanceService.getAttendanceByInstitute({
 			'instituteID' : instituteID
 		}).execute(function(resp) {
-			
+
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
 	}
 
 	// End of AttendanceService
-	
 
 	var ChapterService = {};
 
@@ -423,34 +422,49 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 			'id' : selectedChapterId
 		}).execute(function(resp) {
 
-			$log.debug("getChaptersByID#resp:" + angular.toJson(resp));
-			deferred.resolve(resp);
+			deferred.resolve(resp.result);
 		});
 		return deferred.promise;
-	} 
-	
+	}
+
 	ChapterService.getChaptersByInstitute = function(instituteID) {
 		var deferred = $q.defer();
 		gapi.client.chapterService.getChaptersByInstitute({
 			'instituteID' : instituteID
 		}).execute(function(resp) {
-			
+
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
 	}
-	
+
 	ChapterService.updateChapter = function(chapter) {
 		$log.debug("No2");
 		var deferred = $q.defer();
-		gapi.client.chapterService.updateChapter(chapter).execute(function(resp) {
-			deferred.resolve(resp.result);
-		});
+		gapi.client.chapterService.updateChapter(chapter).execute(
+				function(resp) {
+					deferred.resolve(resp.result);
+				});
 		$log.debug("No3");
 		return deferred.promise;
 	}
+	
+	ChapterService.getChaptersByClass = function(standard, division, subject) {
 
-	// end of  ChapterService----------------------------------------------------------------------------------------------------------
+		var deferred = $q.defer();
+		gapi.client.chapterService.getChaptersByClass({
+			'standard' : standard,
+			'division' : division,
+			'subject' : subject
+		}).execute(function(resp) {
+			deferred.resolve(resp.items);
+		});
+
+		return deferred.promise;
+	}
+
+	// end of
+	// ChapterService----------------------------------------------------------------------------------------------------------
 	var BookService = {};
 
 	serviceFactory.getBookService = function() {
@@ -473,7 +487,9 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 
 	BookService.getBooks = function(id) {
 		var deferred = $q.defer();
-		gapi.client.bookService.getBooks({'id':id}).execute(function(resp) {
+		gapi.client.bookService.getBooks({
+			'id' : id
+		}).execute(function(resp) {
 			$log.debug("getBooks#resp:" + resp);
 			deferred.resolve(resp.items);
 		});
@@ -486,7 +502,6 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 			'id' : selectedBookId
 		}).execute(function(resp) {
 
-			$log.debug("getBookbyID#resp:" + angular.toJson(resp));
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
@@ -502,32 +517,50 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
-	} 
-	
+	}
+
 	BookService.getBooksByInstitute = function(instituteID) {
 		var deferred = $q.defer();
 		gapi.client.bookService.getBooksByInstitute({
 			'instituteID' : instituteID
 		}).execute(function(resp) {
-			
+
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
 	}
-	
+
 	BookService.updateBook = function(book) {
-		
+
 		var deferred = $q.defer();
 		gapi.client.bookService.updateBook(book).execute(function(resp) {
+			$log.debug("book......." + angular.toJson(book));
 			deferred.resolve(resp.result);
 		});
-		
+
 		return deferred.promise;
 	}
 
+	BookService.likeCount = function(book) {
+		var deferred = $q.defer();
+		gapi.client.bookService.updateBook(book).execute(function(resp) {
 
-	// -------end of BookService------------------------------------------------------------------------------------------------------
+			deferred.resolve(resp);
 
+		});
+		return deferred.promise;
+	}
+
+	BookService.dislikeCount = function(book) {
+		var deferred = $q.defer();
+		gapi.client.bookService.updateBook(book).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+
+	// -------end of
+	// BookService------------------------------------------------------------------------------------------------------
 
 	// start of SyllabusService
 
@@ -543,7 +576,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		$log.debug("abc");
 		gapi.client.syllabusService.addSyllabus(syll).execute(function(resp) {
 			$log.debug("No5");
-			$log.debug("addSyllabus #resp:" +angular.toJson( resp));
+			$log.debug("addSyllabus #resp:" + angular.toJson(resp));
 			deferred.resolve(resp);
 		});
 		$log.debug("No3");
@@ -558,22 +591,22 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
-	
+
 	SyllabusService.getSyllabusByInstitute = function(instituteID) {
 		var deferred = $q.defer();
 		gapi.client.syllabusService.getSyllabusByInstitute({
 			'instituteID' : instituteID
 		}).execute(function(resp) {
-			
+
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
 	}
-	
+
 	SyllabusService.updateSyllabus = function(syllabus) {
 
 		var deferred = $q.defer();
-		
+
 		gapi.client.syllabusService.updateSyllabus(syllabus).execute(
 				function(resp) {
 					$log.debug(" updateSyllabus resp:" + angular.toJson(resp));
@@ -628,13 +661,13 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
-	
+
 	PracticeExamService.getPracticeExamByInstitute = function(instituteID) {
 		var deferred = $q.defer();
 		gapi.client.practiceExamService.getPracticeExamByInstitute({
 			'instituteID' : instituteID
 		}).execute(function(resp) {
-			
+
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
@@ -648,7 +681,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 				function(resp) {
 
 					deferred.resolve(resp);
-					
+
 				});
 
 		return deferred.promise;
@@ -713,7 +746,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		}).execute(function(resp) {
 
 			deferred.resolve(resp.items);
-			
+
 		});
 		return deferred.promise;
 	}
@@ -786,10 +819,10 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	QuestionService.addQuestion = function(ques) {
 
 		var deferred = $q.defer();
-		
+
 		gapi.client.questionService.addQuestion(ques).execute(function(resp) {
 			$log.debug("resp :" + angular.toJson(resp));
-		
+
 			deferred.resolve(resp);
 		});
 
@@ -804,13 +837,13 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
-	
+
 	QuestionService.getQuestionsByInstitute = function(instituteID) {
 		var deferred = $q.defer();
 		gapi.client.questionService.getQuestionsByInstitute({
 			'instituteID' : instituteID
 		}).execute(function(resp) {
-			
+
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
@@ -819,16 +852,18 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	QuestionService.updateQuestion = function(ques) {
 
 		var deferred = $q.defer();
-		gapi.client.questionService.updateQuestion(ques).execute(
-				function(resp) {
-					$log.debug(" ques resp:" + angular.toJson(ques));
-					$log.debug(" updateQuestion* resp:" + angular.toJson(resp));
-					deferred.resolve(resp);
-				});
+		gapi.client.questionService.updateQuestion(ques)
+				.execute(
+						function(resp) {
+							$log.debug(" ques resp:" + angular.toJson(ques));
+							$log.debug(" updateQuestion* resp:"
+									+ angular.toJson(resp));
+							deferred.resolve(resp);
+						});
 
 		return deferred.promise;
 	}
-	
+
 	QuestionService.getQuestionByID = function(id) {
 		var deferred = $q.defer();
 		gapi.client.questionService.getQuestionByID({
@@ -839,7 +874,6 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
-	
 
 	// End of QuestionService
 
@@ -856,7 +890,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		gapi.client.studentService.addStudent(stud).execute(function(resp) {
 
 			deferred.resolve(resp);
-			$log.debug("resp_stud" +angular.toJson(resp));
+			$log.debug("resp_stud" + angular.toJson(resp));
 		});
 
 		return deferred.promise;
@@ -880,24 +914,21 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 
 		return deferred.promise;
 	}
-	
+
 	StudentService.getStudentByInstitute = function(instituteID) {
 		var deferred = $q.defer();
 		gapi.client.studentService.getStudentByInstitute({
 			'instituteID' : instituteID
 		}).execute(function(resp) {
-			
 
 			deferred.resolve(resp.items);
-			
+
 			$log.debug("resp institute :" + angular.toJson(resp));
 		});
 		return deferred.promise;
 	}
 
-	
-	// End of StudentService   
-	
+	// End of StudentService
 
 	return serviceFactory;
 }
