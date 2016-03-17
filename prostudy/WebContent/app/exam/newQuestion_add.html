@@ -15,16 +15,12 @@
 						ng-show="questionForm.description.$error.required"
 						class="mandatory">*</span>
 					</label> <text-angular name="description" id="description"
-						ng-required="true" ng-model="tempQuestion.description"></text-angular>
+						ng-required="true" ng-model="tempQuestion.description" ></text-angular>
 
 					<div ng-messages="questionForm.description.$error"
 						ng-if="questionForm.description.$submitted || questionForm.description.$touched ">
-						<div ng-message="required">Please Enter Question
-							Description.</div>
-						<div ng-message="md-maxlength">The Question has to be less
-							than 200 characters long.</div>
-						<div ng-message="md-minlength">The Question has to be
-							greater than 20 characters long.</div>
+						<div ng-message="required">Please Enter Question Description.</div>
+					
 					</div>
 
 					</md-input-container>

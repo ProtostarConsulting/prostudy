@@ -7,91 +7,91 @@
 		<div layout="column">
 			<md-content layout-padding>
 			<div id="updateTest">
-			<md-input-container flex>
-					<label>Exam Title</label>
-					<input ng-model="Test.examtitle">
-				</md-input-container>
+				<md-input-container flex> <label>Exam
+					Title</label> <input ng-model="Test.examtitle"> </md-input-container>
 
 				<div layout layout-sm="column">
-					<md-input-container flex>
-						<label>Board</label>
-						<md-select ng-model="Test.board"  >
-				<md-option ng-value="board" ng-repeat="board in boards">{{board}}</md-option>
-				</md-select> 
-					</md-input-container>
+					<md-input-container flex> <label>Board</label>
+					<md-select ng-model="Test.board"> <md-option
+						ng-value="board" ng-repeat="board in boards">{{board}}</md-option>
+					</md-select> </md-input-container>
 				</div>
 				<div layout layout-sm="column">
-					<md-input-container flex>
-						<label>Standard</label>
-						<md-select ng-model="Test.standard" ng-change="getStandardByInstitute()" >
-				<md-option ng-value="standard" ng-repeat="standard in stdList">{{standard}}</md-option>
-				</md-select> 
-						
-					</md-input-container>
-				</div>	
-				
+					<md-input-container flex> <label>Standard</label>
+					<md-select ng-model="Test.standard" ng-change="getDivisionByStandard()"> <md-option
+						ng-value="standard.name" ng-repeat="standard in stdList">{{standard.name}}</md-option>
+					</md-select> </md-input-container>
+				</div>
 				
 				<div>
-				<md-input-container flex>
-						<label>Division</label>
-							<md-select ng-model="Test.division" ng-change="getDivisionByStandard()" >
-				<md-option ng-value="division" ng-repeat="division in divisions">{{division}}</md-option>
-				</md-select> 
-				</md-input-container>
+					<md-input-container flex> <label>Division</label>
+					<md-select ng-model="Test.division" ng-change="getSubjectByDivision()" > 
+					 <md-option		ng-value="division.name" ng-repeat="division in divList">{{division.name}}</md-option> 
+					</md-select> </md-input-container>
 				</div>
 				<div>
-					<md-input-container flex>
-						<label>Subject</label>
-							<md-select ng-model="Test.subject" ng-change="getSubjectByDivision()" >
-				<md-option ng-value="subject" ng-repeat="subject in subjects">{{subject}}</md-option>
-				</md-select> 
-				</md-input-container>
+					<md-input-container flex> <label>Subject</label>
+					<md-select ng-model="Test.subject"
+						ng-change=""> <md-option
+						ng-value="subject.name" ng-repeat="subject in subList">{{subject.name}}</md-option>
+					</md-select> </md-input-container>
 				</div>
+
 
 				<md-data-table-container>
-				<table md-data-table md-row-select="selectedQ" md-progress="deferred" style="width:40%", height="40%" ng-model="checked">
+				<table md-data-table md-row-select="selectedQ"
+					md-progress="deferred" style="width: 40%" , height="40%"
+					ng-model="checked">
 					<thead md-order="query.order" md-trigger="onorderchange">
-					<tr>
-						<th name="Question Desc"   order-by="description"></th>
-						<th name="Option1"  order-by="option1"></th>
-						<th name="Option2"  order-by="option2"></th>
-						<th name="Option3"  order-by="option3"></th>
-						<th name="Option4"  order-by="option4"></th>
-						<th numeric name="Answer"  order-by="correctAns"></th>
+						<tr>
+							<th name="Question Desc" order-by="description"></th>
+							<th name="Option1" order-by="option1"></th>
+							<th name="Option2" order-by="option2"></th>
+							<th name="Option3" order-by="option3"></th>
+							<th name="Option4" order-by="option4"></th>
+							<th numeric name="Answer" order-by="correctAns"></th>
 
 						</tr>
 					</thead>
-				<tbody>
-					<tr md-auto-select  ng-repeat="question in Test.questions | orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit" checked="Test.Questions">
-						<td ng-bind-html="question.description">{{question.description}}</td>
-						<td>{{question.option1}}</td>
-						<td>{{question.option2}}</td>
-						<td>{{question.option3}}</td>
-						<td>{{question.option4}}</td>
-						<td>{{question.correctAns}}</td>
-					
-						<td><md-button ng-show="selectedQ.length >0" class="md-raised md-primary"ng-click="editQuestion()">Edit</md-button></td>
-						<td><md-button ng-show="selectedQ.length > 0" class="md-raised md-primary"ng-click="remove($index)">Remove</md-button></td>
+					<tbody>
+						<tr md-auto-select
+							ng-repeat="question in Test.questions | orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit"
+							checked="Test.Questions">
+							<td ng-bind-html="question.description">{{question.description}}</td>
+							<td>{{question.option1}}</td>
+							<td>{{question.option2}}</td>
+							<td>{{question.option3}}</td>
+							<td>{{question.option4}}</td>
+							<td>{{question.correctAns}}</td>
+
+							<td><md-button ng-show="selectedQ.length >0"
+									class="md-raised md-primary" ng-click="editQuestion()">Edit</md-button></td>
+							<td><md-button ng-show="selectedQ.length > 0"
+									class="md-raised md-primary" ng-click="remove($index)">Remove</md-button></td>
 						</tr>
-				</tbody>
-			</table>
-		<br>
-		</md-data-table-container>
-		<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total={{Test.questions.length}} md-trigger="onpagechange"></md-data-table-pagination>
-		</md-content>
+					</tbody>
+				</table>
+				<br>
+				</md-data-table-container>
+				<md-data-table-pagination md-limit="query.limit"
+					md-page="query.page" md-total={{Test.questions.length}}
+					md-trigger="onpagechange"></md-data-table-pagination>
+			</md-content>
 		</div>
 		<div>
-		<section layout="row" layout-sm="column" >
-		<md-button class="md-raised md-primary"ng-click="addQuestion()">Add Question</md-button></section></div>	
+			<section layout="row" layout-sm="column">
+				<md-button class="md-raised md-primary" ng-click="addQuestion()">Add
+				Question</md-button>
+			</section>
+		</div>
 
-			<section layout="row" layout-sm="column" layout-align="center center">
-					<md-button class="md-raised md-primary" ng-click="updateExam(Test.id)">
-						Update Test
-					</md-button>
-						<md-button class="md-raised md-primary"ng-click="cancel()">
-						cancel</md-button>
-				</section>
+		<section layout="row" layout-sm="column" layout-align="center center">
+			<md-button class="md-raised md-primary"
+				ng-click="updateExam(Test.id)"> Update Test </md-button>
+			<md-button class="md-raised md-primary" ng-click="cancel()">
+			cancel</md-button>
+		</section>
 
-</section>
+	</section>
 	</md-content>
-	</div>
+</div>
