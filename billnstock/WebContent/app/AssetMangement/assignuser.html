@@ -128,11 +128,11 @@
 
 		<!-- ----------------------------------------------------------------------------------------- -->
 
-		<div layout layout-sm="column">
+		<!-- <div layout layout-sm="column">
 
 			<md-input-container flex> <md-select
 				name="selecteduser" placeholder="User" ng-model="user"
-				ng-required="true"><!-- ng-change="CustomerddlChange($index, selectedcustomerName)" ng-change="getuser(user)" -->
+				ng-required="true">ng-change="CustomerddlChange($index, selectedcustomerName)" ng-change="getuser(user)"
 			<md-option value={{list.id}} ng-repeat="list in emps">
 			{{list.firstName}} </md-option> </md-select>
 
@@ -142,7 +142,7 @@
 				<div ng-message="required">select user.</div>
 			</div>
 			</md-input-container>
-		</div> 
+		</div>  -->
 
 
 
@@ -151,15 +151,8 @@
 <div layout="column" ng-cloak>
 	<md-content class="md-padding">
 		<form ng-submit="$event.preventDefault()" name="searchForm">
-			<p>
-				The following example demonstrates floating labels being used as a normal form element.
-			</p>
 			<div layout-gt-sm="row">
-				<md-input-container flex>
-					<label>Name</label>
-					<input type="text"/>
-				</md-input-container>
-				<md-autocomplete flex required
+			<md-autocomplete flex required
 				md-input-name="autocompleteField"
 				md-input-minlength="2"
 				md-input-maxlength="18"
@@ -168,7 +161,7 @@
 				md-search-text="searchText"
 				md-items="item in querySearch(searchText)"
 				md-item-text="item.firstName"
-				md-floating-label="Select Your Name">
+				md-floating-label="Select User Name">
 					<md-item-template>
 						<span md-highlight-text="searchText">{{item.firstName}}</span>
 					</md-item-template>
@@ -185,31 +178,7 @@
 					</div>
 				</md-autocomplete>
 			</div>
-			<p>
-				Selected Object is:
-			</p>
-				
-				<p>
-				selectedItem: {{selectedItem}}
-			</p>
-
 			
-
-			<p>
-				The following example demonstrates floating labels being used as a normal form element.
-			</p>
-			<p>
-				The following example demonstrates floating labels being used as a normal form element.
-			</p>
-			<p>
-				The following example demonstrates floating labels being used as a normal form element.
-			</p>
-			<p>
-				The following example demonstrates floating labels being used as a normal form element.
-			</p>
-			<p>
-				The following example demonstrates floating labels being used as a normal form element.
-			</p>
 		</form>
 	</md-content>
 </div>

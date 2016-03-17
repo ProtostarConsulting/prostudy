@@ -61,17 +61,13 @@ angular
 					}
 
 					$scope.AssignAsset = function() {
-						$log.debug("id=======" + $scope.user);
+						$log.debug("id=======@@@@@@@@@@@@" + angular.toJson($scope.selectedItem));
 						$scope.Assignasset.assetEntity = $scope.asset;
-						var setupService = appEndpointSF.getsetupService();
-						setupService
-								.getuserById($scope.user)
-								.then(
-										function(userList) {
-											$log
-													.debug("Inside Ctr getAllleads");
-											$scope.userL = userList.result;
-											$scope.Assignasset.userEntity = $scope.userL;
+					/*	var setupService = appEndpointSF.getsetupService();
+						setupService.getuserById($scope.user).then(function(userList) {
+											$log.debug("Inside Ctr getAllleads");
+											$scope.userL = userList.result;*/
+											$scope.Assignasset.userEntity = $scope.selectedItem;
 
 											var assetService = appEndpointSF
 													.getAssetManagementService();
@@ -89,7 +85,7 @@ angular
 
 															});
 
-										});
+									//	});
 
 					}
 					// ----------hide and show ---------------------------
