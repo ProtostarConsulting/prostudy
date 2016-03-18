@@ -21,8 +21,7 @@ angular
 					
 					 $scope.login = function() {
 					      var UserService = appEndpointSF.getUserService();
-					      UserService.login($scope.tempUser.email_id,
-					          $scope.tempUser.password)
+					      UserService.login($scope.tempUser.email_id,$scope.tempUser.password)
 					        .then(
 					          function(result) {
 					           if (result.result.email_id) {
@@ -37,7 +36,7 @@ angular
 					            $state.go("home");
 
 					           } else {
-					           // $log.debug("User Not logged  " + $scope.user.email_id);
+					           
 					            $scope.loginMsg = "Login failed.";
 					           }
 					          });
