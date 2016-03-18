@@ -209,7 +209,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/institute/institute_view_subjects.html',
 		controller : 'instituteViewCtr',
 	}).state('institute.view.view_subjects.addsubjects', {
-		url : "/addsubjects/:currentInstID/:currentStdID/:currentDivID",
+		url : "/addsubjects/:currentInstID/:selectedDivID",
 		templateUrl : '/app/institute/institute_addSubjects.html',
 		controller : 'instituteViewCtr'
 	}).state('institute.view.editInstitute', {
@@ -220,6 +220,20 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/viewStudentByStd/:selectedStdName/:selectedDivName/:selectedSubName",
 		templateUrl : '/app/institute/institute_view_studentByStd.html',
 		controller : 'instituteViewCtr',
+		
+	}).state('institute.view.studentByStd.addstudentsByStd', {
+		url : "/addstudentsByStd",
+		templateUrl : '/app/institute/institute_addStudents.html',
+		controller : 'instituteViewCtr',
+		
+	}).state('institute.view.editUser', {
+		url : "/editUser/:selectedID",
+		templateUrl : '/app/institute/institute_editUser.html',
+		controller : 'userEditCtr',
+	}).state('institute.view.viewUser', {
+		url : "/viewUser/:selectedID",
+		templateUrl : '/app/institute/institute_viewUser.html',
+		controller : 'userViewCtr',
 	}).state('attendance', {
 		url : "/attendance",
 		templateUrl : '/app/attendance/attendance_module.html',
@@ -332,13 +346,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/list",
 		templateUrl : '/app/student/student_list.html',
 		controller : 'studentListPageCtr'
+	}).state('student.edit', {
+		url : "/edit/:selectedID",
+		templateUrl : '/app/student/student_edit.html',
+		controller : 'studentEditCtr'
+	}).state('student.view', {
+		url : "/view/:selectedID",
+		templateUrl : '/app/student/student_view.html',
+		controller : 'studentViewCtr'
 	}).state('syllabus', {
 		url : "/syllabus",
 		templateUrl : '/app/syllabus/syllabus_module.html',
 		controller : 'syllabusModuleCtr'
-
 	}).state('syllabus.addsyllabus', {
-
 		url : "/addsyllabus",
 		templateUrl : '/app/syllabus/syllabus_addsyllabus.html',
 		controller : 'syllabusAddCtr'
