@@ -8,12 +8,7 @@ angular.module("prostudyApp").controller(
 
 			$scope.curUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
-			
-			
-			$log.debug("$scope.curUser***** : "
-					+ angular.toJson($scope.curUser));
-			$log.debug("$scope.curUser.instituteID : "
-					+ $scope.curUser.instituteID);
+		
 			$scope.query = {
 				order : 'description',
 				limit : 5,
@@ -57,12 +52,12 @@ angular.module("prostudyApp").controller(
 			}
 			$scope.getPracticeExamByInstitute();
 			
-			$scope.isContainsTest = function(practiceTest) { 
+			$scope.isContainsTest = function(testid) { 
 				if (typeof $scope.curUser.myExams === 'undefined'){
 					$scope.curUser.myExams = [];}
 				else{
 				for (var i = 0; i < $scope.curUser.myExams.length; i++) {
-				  if (angular.equals($scope.curUser.myExams[i],practiceTest)) { return true; } }
+				  if (angular.equals($scope.curUser.myExams[i].id,testid)) { return true; } }
 				}
 				   return false; 
 				   };
@@ -99,35 +94,7 @@ angular.module("prostudyApp").controller(
 				});
 
 			}
-			/*
-			 * $scope.like = function(selectedMyExamId) {
-			 * $log.debug("selectedMyExamId" + selectedMyExamId); for (i = 0; i <
-			 * $scope.practiceTest.length; i++) { if ($scope.practiceTest[i].id ==
-			 * selectedMyExamId) { $scope.practiceTest[i].likes++;
-			 * $log.debug("$scope.practiceTest[i].likes :" +
-			 * $scope.practiceTest[i].likes); $scope.newExam =
-			 * $scope.practiceTest[i]; break; } } $scope.updateLikeCount(); }
-			 * 
-			 * $scope.updateLikeCount = function() { var PracticeExamService =
-			 * appEndpointSF .getPracticeExamService();
-			 * PracticeExamService.likeCount($scope.newExam).then(
-			 * function(msgBean) { $log.debug("msgBean.msg:" + msgBean.msg); }); }
-			 * 
-			 * $scope.dislike = function(selectedMyExamId) {
-			 * 
-			 * $log.debug("selectedMyExamId" + selectedMyExamId);
-			 * 
-			 * for (i = 0; i < $scope.practiceTest.length; i++) { if
-			 * ($scope.practiceTest[i].id == selectedMyExamId) {
-			 * $scope.practiceTest[i].dislikes++; $scope.newTest =
-			 * $scope.practiceTest[i]; break; } } $scope.updateDislikeCount() }
-			 * 
-			 * $scope.updateDislikeCount = function() { var PracticeExamService =
-			 * appEndpointSF .getPracticeExamService();
-			 * PracticeExamService.likeCount($scope.newTest).then(
-			 * function(msgBean) { $log.debug("msgBean.msg:" + msgBean.msg); }); }
-			 * 
-			 */
+		
 			$scope.like = function(selectedMyExamId) {
 
 				for (i = 0; i < $scope.practiceExams.length; i++) {

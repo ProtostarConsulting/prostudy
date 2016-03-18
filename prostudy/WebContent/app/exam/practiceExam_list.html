@@ -43,7 +43,7 @@
 
 						<td><md-button class="md-raised md-primary"
 								ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher'  || curUser.role == 'Student'"
-								ng-click="addTestToMyList(test.id)"  ng-disabled="isContainsTest(test)">Add To
+								ng-click="addTestToMyList(test.id)"  ng-disabled="isContainsTest(test.id)">Add To
 							MyPractice Exam </md-button></td>
 
 						<td><md-button

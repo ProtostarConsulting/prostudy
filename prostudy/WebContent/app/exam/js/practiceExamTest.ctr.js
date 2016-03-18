@@ -12,10 +12,10 @@ angular
 								.hideDelay(3000));
 					};
 
-					$scope.curuser = appEndpointSF.getLocalUserService()
+					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
-					$log.debug("$scope.curuser....................."
-							+ angular.toJson($scope.curuser));
+					$log.debug("$scope.curUser....................."
+							+ angular.toJson($scope.curUser));
 
 					// Code for timer
 					var date = new Date();
