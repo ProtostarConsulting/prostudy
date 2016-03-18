@@ -1,5 +1,6 @@
 package com.protostar.billingnstock.purchase.entities;
 
+import java.util.Date;
 import java.util.List;
 
 import com.googlecode.objectify.Ref;
@@ -7,9 +8,7 @@ import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.cust.entities.Customer;
-import com.protostar.billingnstock.stock.entities.StockItemEntity;
 import com.protostar.billingnstock.tax.entities.TaxEntity;
-import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
 
 @Entity
@@ -22,16 +21,13 @@ public class PurchaseOrderEntity {
 	private Long purchaseOrderNo;	
 	private String to;
 	private String shipTo;
-	private String poDate;
+	private Date poDate;
 	private String requisitioner;
 	private String shippedVia;
 	private String fOBPoint;
 	private String terms;
 	private String subTotal;
-/*	private String taxCodeName ;
-	private String taxPercenatge ;
-	private double taxTotal; 
-*/	private double finalTotal ;
+	private double finalTotal ;
 	
 	Ref<Customer> customer;	
 	public Customer getCustomer() {
@@ -152,12 +148,13 @@ public class PurchaseOrderEntity {
 	public void setFinalTotal(double finalTotal) {
 		this.finalTotal = finalTotal;
 	}
-	public String getPoDate() {
+	public Date getPoDate() {
 		return poDate;
 	}
-	public void setPoDate(String poDate) {
+	public void setPoDate(Date poDate) {
 		this.poDate = poDate;
 	}
+
 	
 	
 }

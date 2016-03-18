@@ -19,9 +19,10 @@ public class InvoiceEntity {
 	private Long id;
 	@Index
 	private Long invoiceId;
-	private String invoiceDate;
-//	private Date invoiceDueDate;
-	private String invoiceDueDate;
+	@Index
+	private Date invoiceDate;
+	@Index
+	private Date invoiceDueDate;
 	private String itemName;
 	private String rate;
 	private String qty;
@@ -31,12 +32,11 @@ public class InvoiceEntity {
 	private String note;
 	private String status = "NotPaid";
 	
-
 	private List<InvoiceLineItem> invoiceLineItemList;
-
-//	Ref<PurchaseOrderEntity>purchaseOrderNo;
 	Ref<SalesOrderEntity>salesOrderId;
 	Ref<AccountEntity> account;
+	Ref<TaxEntity> selectedTaxItem;
+	
 	@Index
 	Ref<Customer> customer;
 	@Index
@@ -50,7 +50,6 @@ public class InvoiceEntity {
 		this.customer = Ref.create(customer);
 	}
 	
-	Ref<TaxEntity> selectedTaxItem;
 	public TaxEntity getSelectedTaxItem() {
 		return selectedTaxItem.get();
 	}
@@ -66,22 +65,15 @@ public class InvoiceEntity {
 		this.loggedInUser = Ref.create(loggedInUser);
 	}
 		
-	public String getInvoiceDueDate() {
-		return invoiceDueDate;
-	}
 
-	public void setInvoiceDueDate(String invoiceDueDate) {
-		this.invoiceDueDate = invoiceDueDate;
-	}
-
-/*	public Date getInvoiceDueDate() {
+	public Date getInvoiceDueDate() {
 		return invoiceDueDate;
 	}
 
 	public void setInvoiceDueDate(Date invoiceDueDate) {
 		this.invoiceDueDate = invoiceDueDate;
 	}
-*/
+
 	public SalesOrderEntity getSalesOrderId() {
 		return salesOrderId.get();
 	}
@@ -107,14 +99,6 @@ public class InvoiceEntity {
 		this.invoiceLineItemList = invoiceLineItemList;
 	}
 	
-	public String getInvoiceDate() {
-		return invoiceDate;
-	}
-
-	public void setInvoiceDate(String invoiceDate) {
-		this.invoiceDate = invoiceDate;
-	}
-
 	public Long getInvoiceId() {
 		return invoiceId;
 	}
@@ -195,4 +179,11 @@ public class InvoiceEntity {
 		this.status = status;
 	}
 	
+	public Date getInvoiceDate() {
+		return invoiceDate;
+	}
+
+	public void setInvoiceDate(Date invoiceDate) {
+		this.invoiceDate = invoiceDate;
+	}
 }// end of InvoiceEntity

@@ -20,13 +20,6 @@ public class InvoiceService {
 
 	@ApiMethod(name = "addInvoice")
 	public void addInvoice(InvoiceEntity invoiceEntity) {
-		
-		Date date = new Date();
-		  String DATE_FORMAT = "dd-MM-yyyy";
-		  SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
-
-		  invoiceEntity.setInvoiceDueDate(sdf.format(date));
-		  
 		  
 		ofy().save().entity(invoiceEntity).now();
 

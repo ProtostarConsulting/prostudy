@@ -19,16 +19,7 @@ public class SalesOrderService {
 
 		@ApiMethod(name="addSalesOrder")
 		public void addSalesOrder(SalesOrderEntity salesOrderEntity){
-			
-			Date date = new Date();
-			  String DATE_FORMAT = "dd-MM-yyyy";
-			  SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
-
-			  salesOrderEntity.setDueDate(sdf.format(date));
-			  salesOrderEntity.setDeliveryDate(sdf.format(date));
-			  salesOrderEntity.setSalesOrderDate(sdf.format(date));
-			  salesOrderEntity.setQuotationDate(sdf.format(date));
-			  
+						  
 			ofy().save().entity(salesOrderEntity).now();
 		}
 		

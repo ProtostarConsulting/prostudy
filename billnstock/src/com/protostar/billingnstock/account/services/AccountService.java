@@ -2,7 +2,9 @@ package com.protostar.billingnstock.account.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.api.server.spi.config.Api;
@@ -64,8 +66,16 @@ public class AccountService {
 	@ApiMethod(name = "addPayable")
 	public void addPayable(PayableEntity payableEntity) {
 			
+		Date date = new Date();
+		  String DATE_FORMAT = "dd-MM-yyyy";
+		  SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+
+		  payableEntity.setInvoiceDate(sdf.format(date));
+		  payableEntity.setInvoiceDueDate(sdf.format(date));
+		  payableEntity.setPayableDate(sdf.format(date));
+		  payableEntity.setPurchaseOrderDate(sdf.format(date));
 		
-		Key<PayableEntity> payables = ofy().save().entity(payableEntity).now();
+		ofy().save().entity(payableEntity).now();
 	
 	}
 
