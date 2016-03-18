@@ -8,6 +8,7 @@ angular
 
 					$scope.curUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
+				
 					
 					$scope.selectedStandard;
 					$scope.selectedDivision;
@@ -34,8 +35,8 @@ angular
 			        $scope.newStandards = [];
 					$scope.newDivisions = []; 
 					$scope.newSubjects = []; 
-					
-					
+					$scope.selectedSubjects = [];
+
 					$scope.newSelectedStdID;
 					$scope.stdList;
 					$scope.divList;
@@ -99,18 +100,16 @@ angular
 							name : ""
 					};
 				
-					
-					$scope.subjects = [];
+					$scope.subjectList = [];
 					$scope.addSubjects = function() {
-						$scope.subjects.push({
-							'divisionID' : $scope.currentDivID,
+						$scope.subjectList.push({
+							'divisionID' : $scope.selectedDivID,
 							'name' : $scope.name,
-							
+
 						});
 						$scope.name = '';
-						
+
 					};
-					
 
 					$scope.addStudentList = function() {
 						$scope.students.push({
@@ -248,17 +247,37 @@ angular
 						
 					}
 					
-					$scope.addInstituteSubjects = function() {
+					$scope.addInstituteDivisions = function() {
+						var DivisionService = appEndpointSF.getDivisionService();
+						
+						DivisionService.addDivisions($scope.division).then(function(msgBean) {
+							$log.debug("msgBean.msg:" +angular.toJson(msgBean));
+								$scope.currentDivID = msgBean.id;
+								$scope.division = {};
+								$scope.showSavedToast();
+								
+							});
+						
+					}
+				
+					
+				$scope.addInstituteSubjects = function() {
 						var SubjectService = appEndpointSF.getSubjectService();
 						$scope.currentDivID = $stateParams.currentDivID;
 						
 						for (i = 0; i < $scope.selectedSubjects.length; i++) {
-						SubjectService.addSubjects($scope.selectedSubjects[i]).then(function(msgBean) {
-								
-							});
+							SubjectService.addSubjects(
+									$scope.selectedSubjects[i]).then(
+									function(msgBean) {
+
+									});
+							$scope.showSavedToast();
+							$scope.subjectList = [];
+							//$scope.selectedSubjects.splice(0,$scope.selectedSubjects.length);
 						}
-						$state.go("institute.addDivisions",  {currentInstID : $scope.currentInstID,currentStdID : $scope.currentStdID });
+						
 					}
+
 
 					$scope.showselectedInstitute = function() {
 						var InstituteService = appEndpointSF
@@ -605,5 +624,10 @@ angular
 						$state.go('^', {});
 					};
 					$scope.selected = [];
+					
+					$scope.test = function()
+					{
+						alert("Hiiiii");
+					}
 
 				});

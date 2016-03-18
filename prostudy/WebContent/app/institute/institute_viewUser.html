@@ -1,0 +1,46 @@
+<p>&nbsp;</p>
+<div layout="column" flex
+	ng-repeat="item in user | filter:searchText">
+
+
+	<md-input-container> <label>Student ID </label> <input
+		name="studID" id="studID" ng-model="item.id" readonly> </md-input-container>
+
+	<md-input-container> <label>PRN No.</label> <input
+		name="prn" id="prn" ng-model="item.prn" readonly> </md-input-container>
+
+	<md-input-container> <label>First Name</label> <input
+		name="firstName" id="firstName" ng-model="item.firstName" readonly>
+	</md-input-container>
+
+	<md-input-container> <label>Last Name</label> <input
+		name="lastName" id="lastName" ng-model="item.lastName" readonly>
+	</md-input-container>
+
+	<md-input-container> <label>Address</label> <input
+		name="address" id="address" ng-model="item.address" readonly>
+	</md-input-container>
+
+	<md-input-container> <label>Contact</label> <input
+		name="contact" id="contact" ng-model="item.contact" readonly>
+	</md-input-container>
+
+	<md-input-container> <label>Email ID</label> <input
+		name="email_id" id="email_id" ng-model="item.email_id" readonly>
+	</md-input-container>
+
+	<md-input-container ng-show="item.role == 'Student'"> <label>Standard</label> <input
+		name="standard" id="standard" ng-model="item.standard" readonly>
+	</md-input-container>
+
+	<md-input-container ng-show="item.role == 'Student'"> <label>Division</label> <input
+		name="division" id="division" ng-model="item.division" readonly>
+	</md-input-container>
+
+	<md-input-container ng-show="item.role == 'Student'"> <label>Subject</label> <input
+		name="subject" id="subject" ng-model="item.subject" readonly>
+	</md-input-container>
+
+</div>
+
+<md-button class="md-raised" ng-click="cancel()"> Cancel </md-button>

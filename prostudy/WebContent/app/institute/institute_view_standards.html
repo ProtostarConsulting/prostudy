@@ -24,9 +24,6 @@
 						ui-sref="institute.view.view_divisions({selectedStdID : standard.id, selectedStdName : standard.name})"
 						class="md-raised md-primary">View Divisions</md-button></td>
 
-				<td><md-button
-						ui-sref="institute.addDivisions({currentStdID : standard.id})"
-						class="md-raised md-primary">Add Division</md-button></td>
 						
 				<td><a ui-sref="institute.view.view_standards({selectedStandardId: standard.id})"><md-button data-ng-hide="editMode"
 						data-ng-click="editMode = true;editStd(standard)"
@@ -48,7 +45,11 @@
 	 <md-data-table-pagination
 		md-limit="query.limit" md-page="query.page"
 		md-total={{standards.length}} md-trigger="onpagechange"></md-data-table-pagination>
-	</md-data-table-container> <md-button ui-sref="institute.view.view_standards.addstandards"
+		
+		
+	</md-data-table-container> 
+	
+	<md-button ui-sref="institute.view.view_standards.addstandards"
 		class="md-raised md-primary">Add Standard</md-button>
 
 	<div ui-view></div>

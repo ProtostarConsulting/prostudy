@@ -1,34 +1,39 @@
-	<div >
-	<md-content layout-padding >
-		<md-data-table-container>
-		<table md-data-table md-row-select="selected" md-progress="deferred">
-			<thead md-order="query.order" md-trigger="onorderchange">
-				<tr>
-					<th name="STUDENT NAME" order-by="firstName"></th>
-					<th name="STUDENT EMAIL-ID" order-by="email_id"></th>
-					<th name="STUDENT ADDRESS" order-by="address"></th>
-					<th name="STUDENT CONTACT" order-by="contact"></th>
-					<th name="STUDENT STANDARD" order-by="standard"></th>
-					
-				</tr>
-			</thead>
-			<tbody>
-				<tr md-auto-select
-					ng-repeat="a in studentList track by $index| orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText">
-					<td>{{a.firstName}} {{a.lastName}}</td>
-					<td>{{a.email_id}}</td>
-					<td>{{a.address}}</td>
-					<td>{{a.contact}}</td>
-					<td>{{a.standard}}</td>
-				</tr>
-			</tbody>
-		</table>
-		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
-			md-total={{studentList.length}} md-trigger="onpagechange"></md-data-table-pagination>
-		</md-data-table-container>
+
+<div>
+	<md-content layout-padding> <md-data-table-container>
+	<table md-data-table md-row-select="selected" md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onorderchange">
+			<tr>
+				<th name="STUDENT NAME" order-by="firstName"></th>
+				<th name="STUDENT EMAIL-ID" order-by="email_id"></th>
+				<th name="STUDENT ADDRESS" order-by="address"></th>
+				<th name="STUDENT CONTACT" order-by="contact"></th>
+				<th name="STUDENT STANDARD" order-by="standard"></th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="student in studentList track by $index| orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText">
+				<td>{{student.firstName}} {{a.lastName}}</td>
+				<td>{{student.email_id}}</td>
+				<td>{{student.address}}</td>
+				<td>{{student.contact}}</td>
+				<td>{{student.standard}}</td>
+				<td><a ui-sref="institute.view.editUser({selectedID : student.id})"><md-button
+							class="md-raised md-primary" ng-click="">Edit</md-button></a></td>
+				<td><a ui-sref="institute.view.viewUser({selectedID : student.id})"><md-button
+							class="md-raised md-primary" ng-click="">View</md-button></a></td>
+			</tr>
+		</tbody>
+	</table>
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{studentList.length}} md-trigger="onpagechange"></md-data-table-pagination>
+	</md-data-table-container> 
+	<p>&nbsp;</p>
 	
-		<md-button ui-sref="institute.view.view_students.addstudents" class="md-raised md-primary">Add Students</md-button>
-		<div ui-view> </div>
+	<md-button ui-sref="institute.view.view_students.addstudents"
+		class="md-raised md-primary">Add Students</md-button>
+	<div ui-view></div>
 	</md-content>
-		</div>
-		
+</div>

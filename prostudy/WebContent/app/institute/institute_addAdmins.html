@@ -71,10 +71,11 @@
 
 		<md-input-container flex> <label>Address</label>
 		<input name="address " ng-model="address"> </md-input-container>
-
+		
+		<div layout="row" layout-align="center center">
 		<md-button class="md-raised md-primary" ng-disabled="instituteAdminForm.$invalid" ng-click="addToAdminsList()">Add
 		To AdminList </md-button>
-		
+		</div>
 
 	</div>
 	<div>
@@ -105,11 +106,14 @@
 		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
 			md-total={{admins.length}} md-trigger="onpagechange"></md-data-table-pagination>
 		</md-data-table-container>
-		<div layout="row" layout-align="end end" layout-sm="column" flex>
+		
+		<div layout="row" layout-align="end end" layout-sm="column">
+		
 			<md-button class="md-raised md-primary" 
 				ng-click="addInstituteAdmins({currentInstID: currentInstID})"
 				ng-disabled="selectedAdmins.length==0">Add Admins to
 			Institute </md-button>
+			
 			<a ui-sref="institute.addTeachers({currentInstID: currentInstID})"><md-button
 					class="md-raised md-primary" ng-click="">Skip</md-button> </a>
 

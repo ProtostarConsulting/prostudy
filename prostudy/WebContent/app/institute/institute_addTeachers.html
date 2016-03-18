@@ -39,16 +39,19 @@
 			<div ng-message="required">Please Enter Student Valid email_id.</div>
 		</div>
 		</md-input-container>
+
+		
 		<md-input-container flex ng-hide="isGoogleUser"> <label>Password<span
 			style="color: red"
 			ng-show="instituteTeacherForm.password.$error.required"
 			class="mandatory">*</span></label> <input name="password" ng-model="password"
-			type="password"  ng-required="!isGoogleUser">
+			type="password" ng-required="!isGoogleUser">
 		<div ng-messages="instituteTeacherForm.password.$error"
 			ng-if="instituteTeacherForm.password.$submitted || instituteTeacherForm.password.$touched">
 			<div ng-message="required">Please Enter Password.</div>
 		</div>
 		</md-input-container>
+		
 		<md-input-container	flex> <label>Contact<span
 			style="color: red"
 			ng-show="instituteTeacherForm.contact.$error.required"
@@ -64,8 +67,11 @@
 		</md-input-container>
 		<md-input-container flex> <label>Address</label>
 		<input name="address" ng-model="address"> </md-input-container>
+		
+		<div layout="row" layout-align="center center">
 		<md-button class="md-raised md-primary" ng-disabled="instituteTeacherForm.$invalid" ng-click="addTeacherList()">Add To
 		TeacherList </md-button>
+		</div>
 		
 	</div>
 	<div>
