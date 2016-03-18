@@ -116,10 +116,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/quickstart",
 		templateUrl : '/app/myprofile/quickstart.html',
 		controller : 'quickstartCtr'
-	}).state('blobstore', {
-		url : "/blobstore",
-		templateUrl : '/app/blobstore/myCorn.html',
-		controller : 'blobstoreCtr'
 	}).state('email', {
 		url : "/email",
 		templateUrl : '/app/myprofile/testemail.html',
