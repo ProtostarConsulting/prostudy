@@ -20,6 +20,15 @@ public class ReceivableEntity {
 	@Index
 	Ref<Customer> customer;
 	private Long invoiceId;
+	private String receivableDate;
+	public String getReceivableDate() {
+		return receivableDate;
+	}
+
+	public void setReceivableDate(String receivableDate) {
+		this.receivableDate = receivableDate;
+	}
+
 	private String invoiceDate;
 	private String finalTotal;
 	private String invoiceDueDate;

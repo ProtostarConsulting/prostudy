@@ -17,6 +17,15 @@ public class PayableEntity {
 	@Index
 	Ref<Customer> customer;
 	private Long invoiceId;
+	private String payableDate;
+	public String getPayableDate() {
+		return payableDate;
+	}
+
+	public void setPayableDate(String payableDate) {
+		this.payableDate = payableDate;
+	}
+
 	private String invoiceDate;
 	private String finalTotal;
 	private String invoiceDueDate;

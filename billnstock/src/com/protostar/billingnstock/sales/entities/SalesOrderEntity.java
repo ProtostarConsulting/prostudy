@@ -34,6 +34,10 @@ public class SalesOrderEntity {
 	private String taxCodeName;
 	private double taxPercenatge ;
 	private double taxTotal;
+	private double subTotal ;
+	private double finalTotal;
+	private List<LineStockItem> sOLineItemList;
+	Ref<TaxEntity> selectedTaxItem;
 	
 	public String getTaxCodeName() {
 		return taxCodeName;
@@ -54,11 +58,7 @@ public class SalesOrderEntity {
 		this.taxTotal = taxTotal;
 	}
 
-	private double subTotal ;
-	private double finalTotal;
-	
-	private List<LineStockItem> sOLineItemList;
-	
+
 	public List<LineStockItem> getsOLineItemList() {
 		return sOLineItemList;
 	}
@@ -75,7 +75,7 @@ public class SalesOrderEntity {
 	}
 	
 
-	Ref<TaxEntity> selectedTaxItem;
+	
 	public TaxEntity getSelectedTaxItem() {
 		return selectedTaxItem.get();
 	}
