@@ -45,9 +45,7 @@ angular
 												if ($stateParams.addedQ !== undefined) {
 													$scope.Test.questions
 															.push($stateParams.addedQ);
-
 													$scope.updateExam();
-
 												}
 											}
 
@@ -78,8 +76,7 @@ angular
 						var QuestionService = appEndpointSF
 								.getQuestionService();
 						QuestionService.getQuestion().then(
-								function(questionList) {
-									$log.debug("Inside Ctr getQuestion");
+								function(questionList) {								
 									$scope.questions = questionList;
 								});
 					}
@@ -123,12 +120,7 @@ angular
 						PracticeExamService
 								.updatePracticeExam($scope.Test)
 								.then(
-										function(msgBean) {
-											$log.debug("No6");
-											$log
-													.debug("Inside Ctr editPracticeExamCtr");
-											$log.debug("msgBean.msg:"
-													+ msgBean.msg);
+										function(msgBean) {											
 											$scope.showSavedToast();
 										});
 						if ($stateParams.editFlag || $stateParams.addFlag) {
@@ -140,8 +132,6 @@ angular
 					$scope.showselectedExam();
 					$scope.addQuestion = function() {
 
-						$log.debug(" $stateParams.selectedExamId :"
-								+ $stateParams.selectedExamId);
 						$state.go('exam.addnewquestion', {
 							sourceSate : "exam.editpracticeexam",
 							selectedExamId : $stateParams.selectedExamId
@@ -149,36 +139,32 @@ angular
 
 					}
 					$scope.editQuestion = function() {
-						$log.debug(" $stateParams.selectedExamId :"
-								+ angular.toJson($scope.selectedQ[0]));
-						$log.debug(" $scope.selectedQ[0].id :"
-								+ angular.toJson($scope.selectedQ[0].id));
+						
 						$state.go('exam.editquestion', {
 							sourceSate : "exam.editpracticeexam",
 							selectedExamId : $stateParams.selectedExamId,
 							selectedQuestion : $scope.selectedQ[0],
 							selectedQuestionId : $scope.selectedQ[0].id
 						});
-
 					};
 
 					$scope.remove = function($index) {
 
 						var actualIndex = -1;
 
-						for (var i = 0; i < $scope.Test.questions.length; i++) {
-
-							if ($scope.selectedQ[0].id == $scope.Test.questions[i].id) {
-								actualIndex = i;
+						for (var i = 0; i < $scope.Test.questions.length; i++) {							
+							if ($scope.selectedQ[0].id == $scope.Test.questions[i].id) {								
+								actualIndex = i;							
 								break;
 							}
 						}
-
 						if (actualIndex > -1) {
 							$scope.Test.questions.splice(actualIndex, 1);
 							actualIndex = -1;
+							$scope.selectedQ=[];
 						}
 					};
+					
 					$scope.cancel = function() {
 						$state.go('^');
 					};
@@ -194,10 +180,8 @@ angular
 									$scope.stdList = standardList;
 									for(var i=0; i< $scope.stdList.length; i++)
 									{	
-										$log.debug("Test.standard=" +$scope.Test.standard);
 										if($scope.stdList[i].name==$scope.Test.standard){
-										$scope.selectedStdID=$scope.stdList[i].id;
-										$log.debug("$scope.selectedID...=" +$scope.selectedStdID);
+										$scope.selectedStdID=$scope.stdList[i].id;										
 										}
 										
 									}
@@ -212,18 +196,12 @@ angular
 						DivisionService.getDivisionByStandard(
 								$scope.selectedStdID).then(
 								function(divisionList) {
-
-									$scope.divList = divisionList;
-									$log.debug("$scope.divList  "+angular.toJson($scope.divList));
+									$scope.divList = divisionList;								
 									for(var i=0; i< $scope.divList.length; i++)
-									{	
-										$log.debug("Test.division=" +$scope.Test.division);
+									{										
 										if($scope.divList[i].name==$scope.Test.division){
-										$scope.selectedDivID=$scope.divList[i].id;
-										$log.debug("$scope.selectedDivID...=" +$scope.selectedDivID);
-										
-										}
-										
+										$scope.selectedDivID=$scope.divList[i].id;				
+										}										
 									}
 								});
 					}
@@ -236,18 +214,14 @@ angular
 								function(subjectList) {
 									
 									$scope.subList = subjectList;
-									$log.debug("$scope.subList  "+angular.toJson($scope.subList));
+									
 									for(var i=0; i< $scope.subList.length; i++)
 									{	
-										$log.debug("Test.subject=" +$scope.Test.subject);
+									
 										if($scope.subList[i].name==$scope.Test.subject){
-										$scope.selectedSubID=$scope.divList[i].id;
-										$log.debug("$scope.selectedSubID...=" +$scope.selectedSubID);
-										
-										}
-										
+										$scope.selectedSubID=$scope.divList[i].id;							
+										}										
 									}
-
 								});
 						}
 			

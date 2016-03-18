@@ -20,10 +20,7 @@
 						<th name="Category"></th>
 					</tr>
 				</thead>
-
 				<tbody>
-
-
 
 					<tr md-auto-select
 						ng-repeat="test in practiceExams | orderBy: query.order | filter: {category: searchCategory} | limitTo: query.limit: (query.page - 1) * query.limit">
@@ -46,7 +43,7 @@
 
 						<td><md-button class="md-raised md-primary"
 								ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher'  || curUser.role == 'Student'"
-								ng-click="addTestToMyList(test.id)">Add To
+								ng-click="addTestToMyList(test.id)"  ng-disabled="isContainsTest(test)">Add To
 							MyPractice Exam </md-button></td>
 
 						<td><md-button
@@ -58,7 +55,6 @@
 								ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher'  || curUser.role == 'Student'"
 								ng-click="dislike(test.id)"> <ng-md-icon
 								icon="thumb_down"></ng-md-icon>{{test.dislikes}}</md-button></td>
-
 					</tr>
 				</tbody>
 			</table>
