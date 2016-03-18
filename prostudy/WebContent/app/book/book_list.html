@@ -21,7 +21,7 @@
 
 					<td>{{book.author}}</td>
 				
-					<td><md-button class="md-raised md-primary"ng-click="addBookToMyList(book.id)">Add To MyBooks</md-button></td>
+					<td><md-button class="md-raised md-primary"ng-click="addBookToMyList(book.id)"  ng-disabled="isContainsBook(book.id)">Add To MyBooks</md-button></td>
 				 	
 					<td><md-button ng-click="like(book.id)"> <ng-md-icon
 								icon="thumb_up"></ng-md-icon>{{book.likes}}</md-button></td>
