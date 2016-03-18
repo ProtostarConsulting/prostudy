@@ -31,7 +31,7 @@ angular.module("prostudyApp").controller(
 					lastName : $scope.curUser.lastName,
 					email_id : $scope.curUser.email_id,
 					address : $scope.curUser.address,
-					contact : $scope.curUser.contact,
+					contact : $scope.curUser.contact, 
 					role : $scope.curUser.role,
 					gender : "",	
 					myExams : [],	
