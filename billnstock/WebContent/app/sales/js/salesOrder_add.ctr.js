@@ -12,16 +12,16 @@ app.controller("salesOrderAddCtr", function($scope, $window, $mdToast, $timeout,
 //			salesOrderId : '',
 			customer : {},
 			customerRefId : '',
-			quotationDate : '',
-			salesOrderDate : '',
+			quotationDate : new Date(),
+			salesOrderDate : new Date(),
 			to: '',
 			shipTo: '',
 			salesPerson:'',
 			shippedVia: '',
 			shippingTerms:'',
-			deliveryDate:'',
+			deliveryDate: new Date(),
 			paymentTerms:'',
-			dueDate:'',
+			dueDate: new Date(),
 			sOLineItemList : [],
 			subTotal : '',
 			taxCodeName : '',
@@ -32,17 +32,11 @@ app.controller("salesOrderAddCtr", function($scope, $window, $mdToast, $timeout,
 		};
 		
 		$scope.addSalesOrder = function() {
-
-			var salesOrderService = appEndpointSF.getSalesOrderService();
-			
+			var salesOrderService = appEndpointSF.getSalesOrderService();	
 			$scope.salesOrder.loggedInUser =$scope.curUser;
 			
 			salesOrderService.addSalesOrder($scope.salesOrder).then(function(msgBean) {
-
-				$log.debug("Inside Ctr salesOrder");
-				$log.debug("msgBean.msg:" + msgBean.msg);
 				$scope.showSimpleToast(msgBean.msg);
-//				$scope.getAllSalesOrder();
 			});
 
 			$scope.salesOrder = {};
@@ -141,23 +135,7 @@ app.controller("salesOrderAddCtr", function($scope, $window, $mdToast, $timeout,
 			$mdToast.show($mdToast.simple().content('Customer Data Saved!')
 					.position("top").hideDelay(3000));
 		}
-		
-/*		$scope.getAllCustomersByCurrUser = function() {
-			$log.debug("Inside Ctr $scope.getAllCustomers");
-			var customerService = appEndpointSF.getCustomerService();
-
-			customerService.getAllCustomersByCurrUser($scope.curUser.businessAccount.id).then(
-					function(custList) {
-						$log.debug("Inside Ctr getAllCustomers");
-						$scope.customersforinvoice = custList;
-						$log.debug("Inside Ctr $scope.customers:"
-								+ angular.toJson($scope.customersforinvoice));
-					});
-		}
-
-		$scope.customersforinvoice = [];
-		$scope.getAllCustomersByCurrUser();
-*/		
+			
 		$scope.getAllStock = function() {
 			$log.debug("Inside Ctr $scope.getAllStock");
 			var stockService = appEndpointSF.getStockService();

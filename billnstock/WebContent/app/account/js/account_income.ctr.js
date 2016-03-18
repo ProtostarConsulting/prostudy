@@ -60,8 +60,8 @@ app
 							var getFrom = $scope.accountIncome.fromDate;						
 							var getTo = $scope.accountIncome.toDate;
 								
-							$scope.from=getFrom.getDate()+"-"+getFrom.getMonth()+"-"+getFrom.getFullYear();
-							$scope.To=getTo.getDate()+"-"+getTo.getMonth()+"-"+getTo.getFullYear();
+							$scope.from = getFrom.getDate()+"-"+getFrom.getMonth()+"-"+getFrom.getFullYear();
+							$scope.To = getTo.getDate()+"-"+getTo.getMonth()+"-"+getTo.getFullYear();
 							
 							if ($scope.invoiceData[i].invoiceDate >= $scope.from
 									&& $scope.invoiceData[i].invoiceDate <= $scope.To) {

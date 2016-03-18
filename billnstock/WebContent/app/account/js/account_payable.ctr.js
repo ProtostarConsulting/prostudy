@@ -1,7 +1,7 @@
 var app = angular.module("stockApp");
 
 app.controller("accountPayableCtr", function($scope, $window, $mdToast,
-		$timeout, $mdSidenav, $mdUtil, $log, $stateParams, objectFactory,
+		$timeout, $mdSidenav, $mdUtil, $log, $stateParams,$q, objectFactory,
 		appEndpointSF) {
 
 	$log.debug("Inside accountAddCtr");
@@ -53,7 +53,7 @@ app.controller("accountPayableCtr", function($scope, $window, $mdToast,
 		$mdToast.show($mdToast.simple().content('Account Data Saved!')
 				.position("top").hideDelay(3000));
 	};
-
+/*
 	$scope.getAllCustomersByCurrUser = function() {
 		$log.debug("Inside Ctr $scope.getAllCustomers");
 		var customerService = appEndpointSF.getCustomerService();
@@ -69,8 +69,42 @@ app.controller("accountPayableCtr", function($scope, $window, $mdToast,
 
 	$scope.customersforPayable = [];
 	$scope.getAllCustomersByCurrUser();
-	
+*/	
 	$scope.CustomerddlChange = function (index, selectedcustomerName){
 		$log.debug("##Came to CustomerddlChange...");
 	}	
+	
+	// list of `state` value/display objects
+	$scope.customersforinvoice = [];
+	loadAll();
+	$scope.accountPayable.customer = null;
+	$scope.searchTextInput = null;
+
+	$scope.querySearch = function(query) {
+		var results = query ? $scope.customersforinvoice
+				.filter(createFilterFor(query)) : $scope.customersforinvoice;
+		var deferred = $q.defer();
+		$timeout(function() {
+			deferred.resolve(results);
+	//		$scope.salesOrder.customer = results;
+		}, Math.random() * 1000, false);
+		return deferred.promise;
+	}
+
+	function loadAll() {
+		
+			var customerService = appEndpointSF.getCustomerService();
+			customerService.getAllCustomersByCurrUser($scope.curUser.businessAccount.id).then(
+					function(custList) {
+						$scope.customersforinvoice = custList.items;	
+					});			
+	}
+
+	function createFilterFor(query) {
+		var lowercaseQuery = angular.lowercase(query);
+		return function filterFn(cus) {
+			return (angular.lowercase(cus.customerName).indexOf(lowercaseQuery) === 0);
+		};
+	}
+
 });

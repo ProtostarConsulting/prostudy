@@ -8,14 +8,41 @@
 	<h3>Account Payables</h3>
 	<div layout="row" layout-xs="column">
 
-		Customer Name:
+<!-- 		Customer Name:
 		<md-input-container flex> <md-select
 			ng-model="accountPayable.customer" placeholder="Customer Name"
 			ng-change="CustomerddlChange($index, selectedcustomerName)">
 		<md-option ng-value="accountPayable"
 			ng-repeat="accountPayable in customersforPayable">{{accountPayable.customerName
 		}}</md-option> </md-select> </md-input-container>
-
+ -->
+ 
+ 				<md-autocomplete flex required
+				md-input-name="autocompleteField"
+				md-input-minlength="2"
+				md-input-maxlength="18"
+				md-no-cache=true
+				md-selected-item="accountPayable.customer"
+				md-search-text="searchTextInput"
+				md-items="item in querySearch(searchTextInput)"
+				md-item-text="item.customerName"
+				md-floating-label="Customer Name">
+					<md-item-template>
+						<span md-highlight-text="searchTextInput">{{item.customerName}}</span>
+					</md-item-template>
+					<div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
+						<div ng-message="required">
+							You <b>must</b> have a favorite state.
+						</div>
+						<div ng-message="minlength">
+							Your entry is not long enough.
+						</div>
+						<div ng-message="maxlength">
+							Your entry is too long.
+						</div>
+					</div>
+				</md-autocomplete>
+				
 		<md-input-container flex> <label>Customer
 			Email Id </label> <input ng-model="accountPayable.customer.email" disabled>
 		</md-input-container>
@@ -32,7 +59,7 @@
 <!-- 		<md-input-container flex> <label>Invoice
 			Date </label> <input ng-model="accountPayable.invoiceDate"> </md-input-container>
  -->
- 		<md-datepicker flex ng-model="accountPayable.invoiceDate" md-placeholder="Invoice Date"></md-datepicker>	
+ 		Invoice Date:<md-datepicker flex ng-model="accountPayable.invoiceDate" md-placeholder="Select Date"></md-datepicker>	
  	</div>
 
 	<div layout="row" layout-xs="column">
@@ -51,7 +78,7 @@
 		<md-input-container flex> <label>Invoice
 			Due Date </label> <input ng-model="accountPayable.invoiceDueDate"> </md-input-container>
  -->
- 		<md-datepicker flex ng-model="accountPayable.invoiceDueDate" md-placeholder="Invoice Due Date"></md-datepicker>	
+ 		Invoice Due Date:<md-datepicker flex ng-model="accountPayable.invoiceDueDate" md-placeholder="Select Date"></md-datepicker>	
  	</div>
 
 	<div layout="row" layout-xs="column">
@@ -63,7 +90,7 @@
 		</md-input-container>
  -->
  
-  		<md-datepicker flex ng-model="accountPayable.purchaseOrderDate" md-placeholder="PO Due Date"></md-datepicker>	
+  		PO Due Date:<md-datepicker flex ng-model="accountPayable.purchaseOrderDate" md-placeholder="Select Date"></md-datepicker>	
   	</div>
 
 	<section layout="row" layout-sm="column" layout-align="left left">

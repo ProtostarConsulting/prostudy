@@ -43,12 +43,23 @@ app.controller("accountPayableListCtr", function($scope, $window, $mdToast,
 		};
 		$scope.showPayablesByDate = function() {
 			for (var i = 0; i < $scope.payables.length; i++) {
-				if ($scope.payables[i].invoiceDueDate == $scope.payblesAtDate.atDate) {
-					$scope.payblesAtDate.filteredByAtDate
-							.push($scope.payables[i]);
+				
+				$scope.month = $scope.payblesAtDate.atDate.getMonth()
+
+				if($scope.month <= 9 ){
+					$scope.month1 = '0'+$scope.month;
 				}
-				$log
-						.debug("$scope.payblesAtDate.filteredByAtDate:"
+				
+				
+				$scope.tempDate = $scope.payblesAtDate.atDate.getDate()+"-"+$scope.month1+"-"+$scope.payblesAtDate.atDate.getFullYear();
+
+				$log.debug("$scope.tempDate:"+$scope.tempDate);
+						
+				if($scope.payables[i].invoiceDueDate == $scope.tempDate)
+					{
+						$scope.payblesAtDate.filteredByAtDate.push($scope.payables[i]);
+					}
+				$log.debug("$scope.payblesAtDate.filteredByAtDate:"
 								+ $scope.payblesAtDate.filteredByAtDate);
 
 			}
@@ -60,7 +71,8 @@ app.controller("accountPayableListCtr", function($scope, $window, $mdToast,
 				"May", "June", "July", "Augast", "September",
 				"October", "November", "December" ];
 	*/	
-		
+
+		// monthList taken from common.app.js
 		$scope.months = monthList;
 		
 		$scope.MonthsddlChange = function(index, selectedMonth) {
