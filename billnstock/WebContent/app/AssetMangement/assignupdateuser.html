@@ -33,23 +33,10 @@
 			</md-input-container>
 		</div>
 		<div>
-			<md-input-container flex> <label>purchase
-				date <span style="color: red;">*</span></label> <input type="text" name="purchasedate"
-				ng-model="asset.purchasedate" ng-required="true">
-
-			<div ng-messages="assetForm.purchasedate.$error"
-				ng-if="assetForm.purchasedate.$submitted || assetForm.purchasedate.$touched">
-				<div ng-message="required">Please Enter purchase date.</div>
-			</div>
-			</md-input-container>
-			<md-input-container flex> <label> Expiry
-				date <span style="color: red;">*</span></label> <input type="text" name="Expirydate"
-				ng-model="asset.expirydate" ng-required="true">
-			<div ng-messages="assetForm.Expirydate.$error"
-				ng-if="assetForm.Expirydate.$submitted || assetForm.Expirydate.$touched">
-				<div ng-message="required">Please Enter Expiry date.</div>
-			</div>
-			</md-input-container>
+			<lable>Enter Purchase Date:-</lable><md-datepicker flex name="purchasedate" date-format="MM/dd/yyyy" ng-model="asset.purchasedate" md-placeholder="Enter Purchase Date"></md-datepicker>
+		
+			<lable>Enter Expiry Date:-</lable><md-datepicker flex name="Expirydate" date-format="MM/dd/yyyy" ng-model="asset.expirydate" md-placeholder="Enter Expiry Date"></md-datepicker>
+	
 		</div>
 
 

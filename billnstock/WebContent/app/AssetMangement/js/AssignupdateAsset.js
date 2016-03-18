@@ -21,11 +21,17 @@ angular
 						if (typeof $scope.selectedasetNo != "undefined") {
 							assetService
 									.getselectedasset($scope.selectedasetNo)
-									.then(function(assetdetail) {
-										$scope.asset = assetdetail.result;
-									});
+									.then(
+											function(assetdetail) {
+												$scope.asset = assetdetail.result;
+												$scope.asset.purchasedate = new Date(
+														$scope.asset.purchasedate);
+												$scope.asset.expirydate = new Date(
+														$scope.asset.expirydate);
+											});
 						}
 					}
+
 					$scope.asset = [];
 					$scope.getselectedasset();
 
@@ -61,32 +67,17 @@ angular
 					}
 
 					$scope.AssignAsset = function() {
-						$log.debug("id=======@@@@@@@@@@@@" + angular.toJson($scope.selectedItem));
+						$log.debug("id=======@@@@@@@@@@@@"
+								+ angular.toJson($scope.selectedItem));
 						$scope.Assignasset.assetEntity = $scope.asset;
-					/*	var setupService = appEndpointSF.getsetupService();
-						setupService.getuserById($scope.user).then(function(userList) {
-											$log.debug("Inside Ctr getAllleads");
-											$scope.userL = userList.result;*/
-											$scope.Assignasset.userEntity = $scope.selectedItem;
-
-											var assetService = appEndpointSF
-													.getAssetManagementService();
-
-											assetService
-													.addAssignAsset(
-															$scope.Assignasset)
-													.then(
-															function(msgBean) {
-																$scope
-																		.showSimpleToast(msgBean.msg);
-
-																$scope
-																		.getselectedassetdetail();
-
-															});
-
-									//	});
-
+						$scope.Assignasset.userEntity = $scope.selectedItem;
+						var assetService = appEndpointSF
+								.getAssetManagementService();
+						assetService.addAssignAsset($scope.Assignasset).then(
+								function(msgBean) {
+									$scope.showSimpleToast(msgBean.msg);
+									$scope.getselectedassetdetail();
+								});
 					}
 					// ----------hide and show ---------------------------
 					$scope.IsHidden = true;
@@ -135,11 +126,11 @@ angular
 
 					}
 
-					// ////////////////////////////////////////auto complate
+					//auto complate
 					// list of `state` value/display objects
 					$scope.employees = [];
 					loadAll();
-					
+
 					$scope.selectedItem = null;
 					$scope.searchText = null;
 
@@ -152,7 +143,8 @@ angular
 					 */
 					$scope.querySearch = function(query) {
 						var results = query ? $scope.employees
-								.filter(createFilterFor(query)) : $scope.employees;
+								.filter(createFilterFor(query))
+								: $scope.employees;
 						var deferred = $q.defer();
 						$timeout(function() {
 							deferred.resolve(results);
@@ -163,15 +155,14 @@ angular
 					 * Build `states` list of key/value pairs
 					 */
 					function loadAll() {
-					
+
 						var hrService = appEndpointSF.gethrService();
 						var allStates;
 						hrService.getAllemp($scope.curUser.businessAccount.id)
 								.then(function(empList) {
 									$scope.employees = empList.items;
-									
-								});
 
+								});
 
 					}
 					$scope.fnames = [];

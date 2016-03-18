@@ -8,6 +8,12 @@ app.constant('monthList', ["January", "February", "March", "April",
             				"May", "June", "July", "Augast", "September",
            				"October", "November", "December"]);
 
+app.filter('formatDate', function ($filter) {
+	   return function (inputDate) {
+		   return $filter('date')(inputDate, 'yyyy-MM-dd HH:mm');		
+	   };
+	});
+
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('light-blue')
 			.accentPalette('pink');

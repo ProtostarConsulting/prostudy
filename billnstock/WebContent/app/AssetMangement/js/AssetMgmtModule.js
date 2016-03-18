@@ -1,8 +1,7 @@
 angular.module("stockApp").controller(
 		"AssetMangementCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$stateParams, $log, objectFactory, 
-				appEndpointSF) {
+				$stateParams, $log, objectFactory, appEndpointSF) {
 			$scope.showSimpleToast = function(msgBean) {
 				$mdToast.show($mdToast.simple().content(msgBean)
 						.position("top").hideDelay(3000));
@@ -18,8 +17,8 @@ angular.module("stockApp").controller(
 				assetName : "",
 				category : "",
 				value : "",
-				purchasedate : "",
-				expirydate : ""
+				purchasedate : new Date,
+				expirydate : new Date
 			}
 
 			$scope.addAsset = function() {
@@ -35,15 +34,26 @@ angular.module("stockApp").controller(
 			}
 			$scope.getallAsset = function() {
 				var assetService = appEndpointSF.getAssetManagementService();
-				assetService.getallAsset($scope.curUser.businessAccount.id).then(function(assetList) {
-					$scope.assetlist=assetList.items;
-				});
+				assetService.getallAsset($scope.curUser.businessAccount.id)
+						.then(
+								function(assetList) {
+									$scope.assetlist = $scope
+											.initDateFields(assetList.items);
+								});
 
-		
 			}
-			$scope.assetlist=[];
+
+			$scope.initDateFields = function(assetlist) {
+				for ( var asset in assetlist) {
+					asset.purchasedate = new Date(asset.purchasedate);
+					asset.expirydate = new Date(asset.expirydate);
+				}
+				return assetlist;
+			}
+
+			$scope.assetlist = [];
 			$scope.getallAsset();
-			
+
 			$scope.toggleRight = buildToggler('right');
 
 			function buildToggler(navID) {

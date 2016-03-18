@@ -27,8 +27,8 @@
 				<td>{{asset.assetName}}</td>
 				<!-- <td>{{asset.category}}</td>
 				<td>{{asset.value}}</td> -->
-				<td>{{asset.purchasedate}}</td>
-				<td>{{asset.expirydate}}</td>
+				<td>{{asset.purchasedate | formatDate}}</td>
+				<td>{{asset.expirydate | formatDate }}</td>
 				<td><section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary"
 							ui-sref="AssetMangement.editasset({selectedasetNo: asset.id})">
