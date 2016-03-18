@@ -9,7 +9,7 @@ import com.googlecode.objectify.annotation.Index;
 public class QuestionEntity {
 
 	@Id
-	private Long quesId;
+	private Long id;
 	@Index
 	private Long instituteID;
 	private String description;
@@ -20,7 +20,12 @@ public class QuestionEntity {
 	private String option3;
 	private String option4;
 	private String correctAns;
-	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getCategory() {
 		return category;
 	}
@@ -33,12 +38,7 @@ public class QuestionEntity {
 	public void setInstituteID(Long instituteID) {
 		this.instituteID = instituteID;
 	}
-	public Long getQuesId() {
-		return quesId;
-	}
-	public void setQuesId(Long quesId) {
-		this.quesId = quesId;
-	}
+
 	public String getDescription() {
 		return description;
 	}

@@ -11,8 +11,7 @@ public class PracticeExamEntity {
 	@Id
 	private Long id;
 	private String examtitle;
-	@Index
-	private String examId;
+	
 	@Index
 	private Long instituteID;
 	private String board;
@@ -66,15 +65,6 @@ public class PracticeExamEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public String getExamId() {
-		return examId;
-	}
-
-	public void setExamId(String examId) {
-		this.examId = examId;
-	}
-
 	public String getExamtitle() {
 		return examtitle;
 	}
