@@ -10,6 +10,7 @@ import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
 import com.protostar.prostudy.entity.UserEntity;
+import com.protostar.prostudy.entity.userAnsEntity;
 import com.protostar.prostudy.until.data.UtilityService;
 
 @Api(name = "userService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
@@ -80,5 +81,8 @@ public class UserService {
 
 		return list;
 	}
+	
 
+	
+	
 }

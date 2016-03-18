@@ -10,6 +10,7 @@ import com.googlecode.objectify.annotation.Index;
 public class UserEntity {
 
 	@Id 
+	@Index
 	private Long id;
 	private String firstName;
 	private String lastName;
@@ -99,8 +100,6 @@ public class UserEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-
 
 	public Long getId() {
 		return id;
