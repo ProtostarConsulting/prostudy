@@ -4,47 +4,68 @@
 	<u>Generate Invoice</u>
 </h3>
 <div id="invoiceDiv">
-	<form>
+<form ng-submit="$event.preventDefault()" name="searchForm">
 		<div layout="row" layout-xs="column">
-			<md-input-container flex> <md-select
+<!-- 			<md-input-container flex> <md-select
 				ng-model="invoiceObj.customer" placeholder="Customer Name"
 				ng-change="CustomerddlChange($index, selectedcustomerName)">
 			<md-option ng-value="cust" ng-repeat="cust in customersforinvoice">{{cust.customerName
 			}}</md-option> </md-select> </md-input-container>
-
-			<!-- 			<md-input-container flex> <label>Invoice
-				ID </label> <input ng-model="invoiceObj.invoiceId" disabled> </md-input-container>
  -->
-			<!-- 	<md-input-container > <label>Due
-				Date </label> <input ng-model="invoiceObj.invoiceDueDate"
-				id="invoiceDueDate"></md-input-container>
-				
-					<md-content>
-	<h4>Standard date-picker</h4> -->
-			<md-datepicker flex ng-model="invoiceObj.invoiceDueDate"
-				md-placeholder="Choose Date"></md-datepicker>
-</md-content>
-</div>
-<div layout="row" layout-xs="column">
+ 
+ 			<md-autocomplete flex required
+				ng-model="salesOrder.customer"
+				md-input-name="autocompleteField"
+				md-input-minlength="2"
+				md-input-maxlength="18"
+				md-no-cache=true
+				md-selected-item="invoiceObj.customer"
+				md-search-text="searchTextInput"
+				md-items="item in querySearch(searchTextInput)"
+				md-item-text="item.customerName"
+				md-floating-label="Customer Name">
+					<md-item-template>
+						<span md-highlight-text="searchTextInput">{{item.customerName}}</span>
+					</md-item-template>
+					<div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
+						<div ng-message="required">
+							You <b>must</b> have to enter Customer Name.
+						</div>
+						<div ng-message="minlength">
+							Your entry is not long enough.
+						</div>
+						<div ng-message="maxlength">
+							Your entry is too long.
+						</div>
+					</div>
+				</md-autocomplete>
+					
+			<md-datepicker ng-model="invoiceObj.invoiceDueDate"
+				md-placeholder="Enter Due Date"></md-datepicker>
+		</div>
+		<div layout="row" layout-xs="column">
 
-	<md-input-container flex> <md-select
-		ng-model="invoiceObj.account" placeholder="Account Name"
-		ng-change="AccountNameddlChange($index, selectedAccount)">
-	<md-option ng-value="Account" ng-repeat="Account in accountforinvoice"
-		ng-selected="$first" required>{{Account.accountName }}</md-option> </md-select> </md-input-container>
+			<md-input-container flex> <md-select
+				ng-model="invoiceObj.account" placeholder="Account Name"
+				ng-change="AccountNameddlChange($index, selectedAccount)">
+			<md-option ng-value="Account"
+				ng-repeat="Account in accountforinvoice" ng-selected="$first"
+				required>{{Account.accountName }}</md-option> </md-select> </md-input-container>
 
-	<md-input-container flex> <md-select
-		ng-model="invoiceObj.salesOrderId" placeholder="Sales Order No"
-		ng-change="SOddlChange($index, selectedSOId)"> <md-option
-		ng-value="SO" ng-repeat="SO in SOforinvoice">{{SO.id }}</md-option> </md-select> </md-input-container>
-</div>
+			<md-input-container flex> <md-select
+				ng-model="invoiceObj.salesOrderId" placeholder="Sales Order No"
+				ng-change="SOddlChange($index, selectedSOId)"> <md-option
+				ng-value="SO" ng-repeat="SO in SOforinvoice">{{SO.id }}</md-option>
+			</md-select> </md-input-container>
+		</div>
 
 
-<div layout="row" layout-xs="column">
+		<div layout="row" layout-xs="column">
 
-	<md-input-container flex> <label>Note </label> <textarea
-		ng-model="invoiceObj.note" rows="2" cols="1"></textarea> </md-input-container>
-</div>
+			<md-input-container flex> <label>Note </label> <textarea
+				ng-model="invoiceObj.note" rows="2" cols="1"></textarea> </md-input-container>
+		</div>
+	</form>
 </div>
 <div layout="row" layout-align="center start"
 	style="margin-top: 20px; margin-bottom: 20px;">
@@ -96,7 +117,6 @@
 					layout-align="left left">
 					<md-button class="md-raised md-primary" ng-click="addItem()">Add
 					Item</md-button>
-
 				</section></td>
 			<td></td>
 			<td></td>
@@ -141,44 +161,49 @@
 			ng-click="addInvoice()">Save Invoice</md-button>
 	</section>
 </div>
-
-</form>
-</div>
-
 <iframe name="print_frame" width="0" height="0" frameborder="0"
-	src="about:blank"></iframe>
-</md-content>
+	src="about:blank"></iframe> </md-content>
+
+
 
 
 
 <div layout="column" ng-cloak>
 	<md-content class="md-padding">
-	<form ng-submit="$event.preventDefault()" name="searchForm">
-		<p>The following example demonstrates floating labels being used
-			as a normal form element.</p>
-		<div layout-gt-sm="row">
-			<md-input-container flex> <label>Name</label> <input
-				type="text" /> </md-input-container>
-			<md-autocomplete flex required md-input-name="autocompleteField"
-				md-input-minlength="2" md-input-maxlength="18" md-no-cache=true
-				md-selected-item="selectedItem" md-search-text="searchText"
+		<form ng-submit="$event.preventDefault()" name="searchForm">
+			<div layout-gt-sm="row">
+				<md-input-container flex>
+					<label>Name</label>
+					<input type="text"/>
+				</md-input-container>
+				<md-autocomplete flex required
+				md-input-name="autocompleteField"
+				md-input-minlength="2"
+				md-input-maxlength="18"
+				md-no-cache=true
+				md-selected-item="selectedItem"
+				md-search-text="searchText"
 				md-items="item in querySearch(searchText)"
-				md-item-text="item.display" md-floating-label="select customer">
-			<md-item-template> <span
-				md-highlight-text="searchText">{{item.display}}</span> </md-item-template>
-			<div ng-messages="searchForm.autocompleteField.$error"
-				ng-if="searchForm.autocompleteField.$touched">
-				<div ng-message="required">
-					You <b>must</b> have a favorite state.
-				</div>
-				<div ng-message="minlength">Your entry is not long enough.</div>
-				<div ng-message="maxlength">Your entry is too long.</div>
+				md-item-text="item.customerName"
+				md-floating-label="Favorite state">
+					<md-item-template>
+						<span md-highlight-text="searchText">{{item.customerName}}</span>
+					</md-item-template>
+					<div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
+						<div ng-message="required">
+							You <b>must</b> have a favorite state.
+						</div>
+						<div ng-message="minlength">
+							Your entry is not long enough.
+						</div>
+						<div ng-message="maxlength">
+							Your entry is too long.
+						</div>
+					</div>
+				</md-autocomplete>
 			</div>
-			</md-autocomplete>
-		</div>
-		<p>Selected Object is:</p>
-
-		<p>selectedItem: {{selectedItem}}</p>
-	</form>
+		</form>
 	</md-content>
 </div>
+
+

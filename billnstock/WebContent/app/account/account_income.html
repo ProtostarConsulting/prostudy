@@ -6,12 +6,16 @@
 
 
 <div layout layout-sm="column">
-	<md-input-container flex> <label>From </label> <input
+<!-- 	<md-input-container flex> <label>From </label> <input
 		ng-model="accountIncome.fromDate" placeholder="From Date (dd-mm-yyyy)"
 		ng-required="true"> </md-input-container>
 	<md-input-container flex> <label>To </label> <input
 		ng-model="accountIncome.toDate" placeholder="To Date (dd-mm-yyyy)"
 		ng-required="true"> </md-input-container>
+ -->		
+		<md-datepicker ng-model="accountIncome.fromDate" md-placeholder="Enter From Date"></md-datepicker>	
+		
+		<md-datepicker ng-model="accountIncome.toDate" md-placeholder="Enter To Date"></md-datepicker>	
 </div>
 
 
@@ -36,7 +40,7 @@
 
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="account in invoiceData | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
+				ng-repeat="account in invoiceData track by $index | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
 				<td>{{account.account.accountName}}</td>
 				<td>{{account.id}}</td>
 				<td>{{account.finalTotal}}</td>
@@ -81,10 +85,10 @@
 		</tbody>
 
 	</table>
-Total{{income.filteredDataIncome}
-Filtered Record Total{{income.filteredDataIncome}
+
+Filtered Record Total{{filteredDatatotal}}
 	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
 		md-total={{accounts.length}} md-trigger="onpagechange"></md-data-table-pagination>
 	</md-data-table-container>
 </div>
-<h1>{{income.filteredDataIncome}}</h1>
+<h1>{{filteredDatatotal}}</h1>

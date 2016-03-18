@@ -29,9 +29,11 @@
 		<md-input-container flex> <label>Invoice
 			ID </label> <input ng-model="accountPayable.invoiceId"> </md-input-container>
 
-		<md-input-container flex> <label>Invoice
+<!-- 		<md-input-container flex> <label>Invoice
 			Date </label> <input ng-model="accountPayable.invoiceDate"> </md-input-container>
-	</div>
+ -->
+ 		<md-datepicker flex ng-model="accountPayable.invoiceDate" md-placeholder="Invoice Date"></md-datepicker>	
+ 	</div>
 
 	<div layout="row" layout-xs="column">
 
@@ -45,19 +47,24 @@
 			<div ng-message="required">Please Enter Amount</div>
 		</div>
 		</md-input-container>
-
+<!-- 
 		<md-input-container flex> <label>Invoice
 			Due Date </label> <input ng-model="accountPayable.invoiceDueDate"> </md-input-container>
-	</div>
+ -->
+ 		<md-datepicker flex ng-model="accountPayable.invoiceDueDate" md-placeholder="Invoice Due Date"></md-datepicker>	
+ 	</div>
 
 	<div layout="row" layout-xs="column">
 		<md-input-container flex> <label>Purchase
 			Order ID </label> <input ng-model="accountPayable.purchaseOrderId"> </md-input-container>
 
-		<md-input-container flex> <label>Purchase
+<!-- 		<md-input-container flex> <label>Purchase
 			Due Date </label> <input ng-model="accountPayable.purchaseOrderDate">
 		</md-input-container>
-	</div>
+ -->
+ 
+  		<md-datepicker flex ng-model="accountPayable.purchaseOrderDate" md-placeholder="PO Due Date"></md-datepicker>	
+  	</div>
 
 	<section layout="row" layout-sm="column" layout-align="left left">
 		<md-button class="md-raised md-primary"

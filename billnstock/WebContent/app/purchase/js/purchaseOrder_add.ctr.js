@@ -5,7 +5,7 @@ app
 				"purchaseOrderAddCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $state, $http, $stateParams,
-						$routeParams, $filter, objectFactory, appEndpointSF) {
+						$routeParams, $filter,$q, objectFactory, appEndpointSF) {
 
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
@@ -180,7 +180,7 @@ app
 								.hideDelay(3000));
 					};
 
-					$scope.getAllCustomersByCurrUser = function() {
+/*					$scope.getAllCustomersByCurrUser = function() {
 						$log.debug("Inside Ctr $scope.getAllCustomers");
 						var customerService = appEndpointSF.getCustomerService();
 
@@ -195,7 +195,7 @@ app
 
 					$scope.customersforinvoice = [];
 					$scope.getAllCustomersByCurrUser();
-
+*/
 					$scope.getAllStock = function() {
 						$log.debug("Inside Ctr $scope.getAllStock");
 						var stockService = appEndpointSF.getStockService();
@@ -226,4 +226,38 @@ app
 					}
 					$scope.taxforPO = [];
 					$scope.getTaxesByVisibility();
+					
+					// list of `state` value/display objects
+					$scope.customersforPO = [];
+					loadAll();
+					$scope.purchaseOrderObj.customer = null;
+					$scope.searchTextInput = null;
+
+					$scope.querySearch = function(query) {
+						var results = query ? $scope.customersforPO
+								.filter(createFilterFor(query)) : $scope.customersforPO;
+						var deferred = $q.defer();
+						$timeout(function() {
+							deferred.resolve(results);
+					//		$scope.salesOrder.customer = results;
+						}, Math.random() * 1000, false);
+						return deferred.promise;
+					}
+				
+					function loadAll() {
+						
+							var customerService = appEndpointSF.getCustomerService();
+							customerService.getAllCustomersByCurrUser($scope.curUser.businessAccount.id).then(
+									function(custList) {
+										$scope.customersforPO = custList.items;	
+									});			
+					}
+
+					function createFilterFor(query) {
+						var lowercaseQuery = angular.lowercase(query);
+						return function filterFn(cus) {
+							return (angular.lowercase(cus.customerName).indexOf(lowercaseQuery) === 0);
+						};
+					}
+					
 				});

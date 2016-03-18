@@ -12,6 +12,7 @@ app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('light-blue')
 			.accentPalette('pink');
 });
+	  
 app.config(function($logProvider) {
 	// $logProvider.debugEnabled(false);
 	$logProvider.debugEnabled(true);// this is default
@@ -74,6 +75,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('invoice.add', {
 		url : "/add",
 		templateUrl : '/app/invoice/invoice_add.html',
+		controller : 'invoiceAddCtr'
+	}).state('invoice.add1', {
+		url : "/add1",
+		templateUrl : '/app/invoice/invoice_add11111.html',
 		controller : 'invoiceAddCtr'
 	}).state('invoice.list', {
 		url : "/list",

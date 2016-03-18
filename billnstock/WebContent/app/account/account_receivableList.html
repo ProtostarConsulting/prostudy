@@ -56,10 +56,12 @@
 	<div>
 
 		<div layout layout-sm="column">
-			<md-input-container flex> <label>Enter
+<!-- 			<md-input-container flex> <label>Enter
 				Date </label> <input ng-model="ReceivablesAtDate.atDate"
 				placeholder="Enter Date" ng-required="true"> </md-input-container>
-		</div>
+ -->
+     		<md-datepicker flex ng-model="ReceivablesAtDate.atDate" md-placeholder="Select Date"></md-datepicker>	
+ 		</div>
 		<div layout layout-sm="column">
 			<section layout="row" layout-sm="column">
 				<md-button class="md-raised md-primary" id="showReceivables"

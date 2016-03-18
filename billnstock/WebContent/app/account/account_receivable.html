@@ -27,20 +27,24 @@
 	<div layout="row" layout-xs="column">
 		<md-input-container flex> <label>Invoice
 			ID </label> <input ng-model="accountReveivable.invoiceId"> </md-input-container>
-
+<!-- 
 		<md-input-container flex> <label>Invoice
 			Date </label> <input ng-model="accountReveivable.invoiceDate"> </md-input-container>
-	</div>
+ -->
+   		<md-datepicker flex ng-model="accountReveivable.invoiceDate" md-placeholder="Invoice Date"></md-datepicker>	
+   	</div>
 
 	<div layout="row" layout-xs="column">
 		<md-input-container flex> <label>Amount
 			 </label> <input ng-model="accountReveivable.finalTotal">
 		</md-input-container>
 
-		<md-input-container flex> <label>Due Date
+<!-- 		<md-input-container flex> <label>Due Date
 			 </label> <input ng-model="accountReveivable.invoiceDueDate">
 		</md-input-container>
-	</div>
+ -->
+    		<md-datepicker flex ng-model="accountReveivable.invoiceDueDate" md-placeholder="Invoice Due Date"></md-datepicker>	
+    </div>
 
 	<section layout="row" layout-sm="column" layout-align="left left">
 		<md-button class="md-raised md-primary"

@@ -1,5 +1,4 @@
 var app = angular.module("stockApp");
-
 app
 		.controller(
 				"accountIncomeCtr",
@@ -7,9 +6,7 @@ app
 						$mdUtil, $log, $stateParams, objectFactory,
 						appEndpointSF) {
 
-					$log.debug("Inside accountIncomeCtr");
-
-					
+					$log.debug("Inside accountIncomeCtr");					  
 					$scope.accountIncome = {
 							fromDate : '',
 							toDate : ''
@@ -55,13 +52,22 @@ app
 					
 					$scope.showAccountIncomme = function() {
 						$scope.income.filteredDataIncome = 0;
+						
+						
+						
 						for (i = 0; i < $scope.invoiceData.length; i++) {
 							
-							if ($scope.invoiceData[i].invoiceDate >= $scope.accountIncome.fromDate
-									&& $scope.invoiceData[i].invoiceDate <= $scope.accountIncome.toDate) {
+							var getFrom = $scope.accountIncome.fromDate;						
+							var getTo = $scope.accountIncome.toDate;
+								
+							$scope.from=getFrom.getDate()+"-"+getFrom.getMonth()+"-"+getFrom.getFullYear();
+							$scope.To=getTo.getDate()+"-"+getTo.getMonth()+"-"+getTo.getFullYear();
+							
+							if ($scope.invoiceData[i].invoiceDate >= $scope.from
+									&& $scope.invoiceData[i].invoiceDate <= $scope.To) {
 								
 								$scope.income.filteredData.push($scope.invoiceData[i]);
-								$scope.income.filteredDataIncome = ($scope.income.filteredDataIncome + (parseInt($scope.invoiceData[i].finalTotal)));
+	//							$scope.income.filteredDataIncome = ($scope.income.filteredDataIncome + (parseInt($scope.invoiceData[i].finalTotal)));
 								}
 							$log.debug("##Outer filteredDataIncome:"
 									+ ($scope.income.filteredDataIncome));		

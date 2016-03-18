@@ -21,7 +21,7 @@ app.controller(
 				customerService.getAllCustomersByCurrUser($scope.curUser.businessAccount.id).then(
 						function(custList) {
 							$log.debug("Inside Ctr getAllCustomers");
-							$scope.customers = custList;
+							$scope.customers = custList.items;
 							$log.debug("Inside Ctr $scope.customers:"
 									+ angular.toJson($scope.customers));
 						});

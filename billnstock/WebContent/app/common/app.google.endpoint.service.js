@@ -844,7 +844,7 @@ function googleEndpointSF($log, $q) {
 				function(resp) {
 					$log.debug("getAllCustomers#resp at enpoint:"
 							+ angular.toJson(resp));
-					deferred.resolve(resp.items);
+					deferred.resolve(resp);
 				});
 		return deferred.promise;
 	}

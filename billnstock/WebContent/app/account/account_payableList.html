@@ -51,9 +51,11 @@
 	<!-- 	<h3 class="md-display-10">Day</h3> -->
 	<div>
 	<div layout layout-sm="column">
-			<md-input-container flex> <label>Enter
+<!-- 			<md-input-container flex> <label>Enter
 				Date </label> <input ng-model="payblesAtDate.atDate"
 				placeholder="Enter Date" ng-required="true"> </md-input-container>
+ -->
+  		<md-datepicker flex ng-model="payblesAtDate.atDate" md-placeholder="Select Date"></md-datepicker>					
 		</div>
 		<div layout layout-sm="column">
 			<section layout="row" layout-sm="column">

@@ -4,20 +4,17 @@ app
 				"invoiceAddCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $state, $http, $stateParams,
-						$routeParams, $filter, objectFactory, appEndpointSF) {
+						$routeParams, $filter,$q, objectFactory, appEndpointSF) {
 
 					$scope.curUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
 					$log.debug("$scope.curUser++++++++"+angular.toJson($scope.curUser));
 					
-					
-					
-					
 					$scope.invoiceObj = {
 						salesOrderId : '',
 						customer : '',
 						invoiceDate : $filter("date")(Date.now(), 'dd-MM-yyyy'),
-						invoiceDueDate :'',
+						invoiceDueDate : new Date(),
 						invoiceLineItemList : [],
 						subTotal : '',
 						taxCodeName : '',
@@ -33,11 +30,11 @@ app
 						$log.debug("No1");
 						var InvoiceService = appEndpointSF.getInvoiceService();
 						$scope.invoiceObj.loggedInUser =$scope.curUser;
-
+						
 						InvoiceService.addInvoice($scope.invoiceObj).then(
 								function(msgBean) {
-									$log.debug("No6");
-									$log.debug("msgBean.msg:" + msgBean.msg);
+									
+
 									$scope.showSimpleToast();
 
 								});
@@ -57,6 +54,7 @@ app
 
 						$scope.invoiceObj.invoiceLineItemList.push(item);
 					};
+					
 
 					$scope.lineItemStockChange = function(index, stockItem) {
 						$log.debug("##Came to lineItemStockChange...");
@@ -148,7 +146,13 @@ app
 						});
 					};
 
-					$scope.getAllCustomersByCurrUser = function() {
+					$scope.showSimpleToast = function() {
+						$mdToast.show($mdToast.simple().content(
+								'Customer Data Saved!').position("top")
+								.hideDelay(3000));
+					};
+					
+/*					$scope.getAllCustomersByCurrUser = function() {
 						$log.debug("Inside Ctr $scope.getAllCustomers");
 						var customerService = appEndpointSF.getCustomerService();
 
@@ -163,7 +167,7 @@ app
 
 					$scope.customersforinvoice = [];
 					$scope.getAllCustomersByCurrUser();
-
+*/
 					$scope.getAllStock = function() {
 						$log.debug("Inside Ctr $scope.getAllStock");
 						var stockService = appEndpointSF.getStockService();
@@ -238,11 +242,11 @@ app
 						window.frames["print_frame"].window.focus();
 						window.frames["print_frame"].window.print();
 					}
-					
+			
 					// list of `state` value/display objects
 					loadAll();
-					$scope.selectedItem = null;
-					$scope.searchText = null;
+					$scope.invoiceObj.customer = null;
+					$scope.searchTextInput = null;
 
 					// ******************************
 					// Internal methods
@@ -265,13 +269,12 @@ app
 					 */
 					function loadAll() {
 						
-						$scope.getAllCustomersByCurrUser = function() {
 							var customerService = appEndpointSF.getCustomerService();
 							customerService.getAllCustomersByCurrUser($scope.curUser.businessAccount.id).then(
 									function(custList) {
-										$scope.customersforinvoice = custList;	
+										$scope.customersforinvoice = custList.items;	
 									});
-						}
+		
 
 						$scope.customersforinvoice = [];
 			//			$scope.getAllCustomersByCurrUser();
@@ -282,9 +285,10 @@ app
 					 */
 					function createFilterFor(query) {
 						var lowercaseQuery = angular.lowercase(query);
-						return function filterFn(customersforinvoice) {
-							return (customersforinvoice.customerName.indexOf(lowercaseQuery) === 0);
+						return function filterFn(cus) {
+							return (angular.lowercase(cus.customerName).indexOf(lowercaseQuery) === 0);
 						};
 					}
+
 
 				});

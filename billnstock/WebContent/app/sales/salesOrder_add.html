@@ -1,33 +1,69 @@
 
 <md-content layout-padding>
 <div id="invoiceDiv">
-	<form>
+	<form ng-submit="$event.preventDefault()" name="searchForm">
 		<div>
-		<h3><u>Sales Order</u></h3>
+			<h3>
+				<u>Sales Order</u>
+			</h3>
 			<div layout="row" layout-xs="column">
-				<md-input-container flex> <md-select
+<!-- 				<md-input-container flex> <md-select
 					ng-model="salesOrder.customer" placeholder="Customer Name"
 					ng-change="CustomerddlChange($index, customerName)"> <md-option
 					ng-value="cust" ng-repeat="cust in customersforinvoice">{{cust.customerName
 				}}</md-option> </md-select> </md-input-container>
+ -->
+ 
+				<md-autocomplete flex required
+				md-input-name="autocompleteField"
+				md-input-minlength="2"
+				md-input-maxlength="18"
+				md-no-cache=true
+				md-selected-item="salesOrder.customer"
+				md-search-text="searchTextInput"
+				md-items="item in querySearch(searchTextInput)"
+				md-item-text="item.customerName"
+				md-floating-label="Customer Name">
+					<md-item-template>
+						<span md-highlight-text="searchTextInput">{{item.customerName}}</span>
+					</md-item-template>
+					<div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
+						<div ng-message="required">
+							You <b>must</b> have a favorite state.
+						</div>
+						<div ng-message="minlength">
+							Your entry is not long enough.
+						</div>
+						<div ng-message="maxlength">
+							Your entry is too long.
+						</div>
+					</div>
+				</md-autocomplete>
+
+
+						
 				<md-input-container flex> <label>Customer
 					Referance ID </label> <input ng-model="salesOrder.customerRefId"> </md-input-container>
 			</div>
 
 			<div layout="row" layout-xs="column">
-
+<!-- 
 				<md-input-container flex> <label>Quotation
 					Date </label> <input ng-model="salesOrder.quotationDate"> </md-input-container>
 				<md-input-container flex> <label>Sales
 					Order Date </label> <input ng-model="salesOrder.salesOrderDate"></md-input-container>
-			</div>
+ -->
+   	 	 Quotation Date:<md-datepicker flex ng-model="salesOrder.quotationDate" md-placeholder="Enter Quotation Date"></md-datepicker>	
+ 		 SO Date:  <md-datepicker flex ng-model="salesOrder.salesOrderDate" md-placeholder="Enter SO Date"></md-datepicker>	
+ 			</div>
 
 			<div layout="row" layout-xs="column">
-				<md-input-container flex> <label>To </label> <textarea
-					ng-model="salesOrder.to" rows="4" cols="1"></textarea> </md-input-container>
-
-				<md-input-container flex> <label>Ship
-					To </label> <textarea ng-model="salesOrder.shipTo" rows="4" cols="1"></textarea>
+			
+				<md-input-container flex> <label>To 
+					</label> <textarea name="to" ng-model="salesOrder.to"></textarea>
+				</md-input-container>
+				<md-input-container flex> <label>Ship To 
+					</label> <textarea name="shipTo" ng-model="salesOrder.shipTo"></textarea>
 				</md-input-container>
 			</div>
 
@@ -44,109 +80,115 @@
 				<md-input-container flex> <label>Shipping
 					Terms </label> <input ng-model="salesOrder.shippingTerms"> </md-input-container>
 
-				<md-input-container flex> <label>Delivery Date
-				</label> <input ng-model="salesOrder.deliveryDate"> </md-input-container>
-
-				<md-input-container flex> <label>Payment Terms
-				</label> <input ng-model="salesOrder.paymentTerms"> </md-input-container>
-
+<!-- 				<md-input-container flex> <label>Delivery
+					Date </label> <input ng-model="salesOrder.deliveryDate"> </md-input-container>
+ -->
+ 
+ 				 <md-datepicker ng-model="salesOrder.deliveryDate" md-placeholder="Enter Delivery Date"></md-datepicker>	
+ 				 
+				<md-input-container flex> <label>Payment
+					Terms </label> <input ng-model="salesOrder.paymentTerms"> </md-input-container>
+				<!-- 
 				<md-input-container flex> <label>Due Date
 				</label> <input ng-model="salesOrder.dueDate"> </md-input-container>
+ -->
+
+				<md-datepicker ng-model="salesOrder.dueDate"
+					md-placeholder="Enter Due Date"></md-datepicker>
 			</div>
 
 
-		<div layout="row" layout-align="center start"
-			style="margin-top: 20px; margin-bottom: 20px;">
-			<md-divider flex></md-divider>
-		</div>
+			<div layout="row" layout-align="center start"
+				style="margin-top: 20px; margin-bottom: 20px;">
+				<md-divider flex></md-divider>
+			</div>
 
-		<table md-data-table md-progress="deferred">
-			<thead md-order="query.order" md-trigger="onOrderChange">
-				<tr>
-					<th name="Sr_No" order-by="srNo"></th>
-					<th name="Item Name" order-by="itemName"></th>
-					<th name="Quantity" order-by="qty"></th>
-					<th name="Price" order-by="price"></th>
-					<th name="Total" order-by="total"></th>
-					<th name="Actions"></th>
-				</tr>
-			</thead>
+			<table md-data-table md-progress="deferred">
+				<thead md-order="query.order" md-trigger="onOrderChange">
+					<tr>
+						<th name="Sr_No" order-by="srNo"></th>
+						<th name="Item Name" order-by="itemName"></th>
+						<th name="Quantity" order-by="qty"></th>
+						<th name="Price" order-by="price"></th>
+						<th name="Total" order-by="total"></th>
+						<th name="Actions"></th>
+					</tr>
+				</thead>
 
-			<tbody>
-				<tr ng-repeat="item in salesOrder.sOLineItemList| orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit">
+				<tbody>
+					<tr
+						ng-repeat="item in salesOrder.sOLineItemList| orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit">
 
-					<td>{{ item.srNo }}</td>
-					<td><md-input-container flex> <md-select
-							ng-model="selectedStockItem" placeholder="Item Name"
-							ng-change="lineItemStockChange($index, selectedStockItem)">
-						<md-option ng-value="item" ng-repeat="item in stockforPO">{{item.itemName
-						}}</md-option> </md-select> </md-input-container></td>
-<!-- 					<td><md-input-container flex> <label>Item Name
+						<td>{{ item.srNo }}</td>
+						<td><md-input-container flex> <md-select
+								ng-model="selectedStockItem" placeholder="Item Name"
+								ng-change="lineItemStockChange($index, selectedStockItem)">
+							<md-option ng-value="item" ng-repeat="item in stockforPO">{{item.itemName
+							}}</md-option> </md-select> </md-input-container></td>
+						<!-- 					<td><md-input-container flex> <label>Item Name
 						</label> <input ng-model="item.itemName" 
 							ng-change="calSubTotal()"> </md-input-container></td>	 -->
-					<td><md-input-container flex> <label>Quantity
-						</label> <input ng-model="item.qty" type="number"
-							ng-change="calSubTotal()"> </md-input-container></td>
-					<td><md-input-container flex> <label>Price
-						</label> <input ng-model="item.price" ng-change="calSubTotal()" ></md-input-container></td>
-					<td><md-input-container flex> <label>Price
-						</label> <b>{{item.qty * item.price}} </b></td>
-					<td>
-						<section layout="row" layout-sm="column">
-							<md-button class="md-raised md-primary"
-								ng-click="removeItem($index)">Remove Item</md-button>
-						</section>
-					</td>
-				</tr>
-				<tr>
-					<td><section layout="row" layout-sm="column"
-							layout-align="left left">
-							<md-button class="md-raised md-primary" ng-click="addItem()">Add
-							Item</md-button>
+						<td><md-input-container flex> <label>Quantity
+							</label> <input ng-model="item.qty" type="number"
+								ng-change="calSubTotal()"> </md-input-container></td>
+						<td><md-input-container flex> <label>Price
+							</label> <input ng-model="item.price" ng-change="calSubTotal()"></md-input-container></td>
+						<td><md-input-container flex> <label>Price
+							</label> <b>{{item.qty * item.price}} </b></td>
+						<td>
+							<section layout="row" layout-sm="column">
+								<md-button class="md-raised md-primary"
+									ng-click="removeItem($index)">Remove Item</md-button>
+							</section>
+						</td>
+					</tr>
+					<tr>
+						<td><section layout="row" layout-sm="column"
+								layout-align="left left">
+								<md-button class="md-raised md-primary" ng-click="addItem()">Add
+								Item</md-button>
+							</section></td>
+						<td></td>
+						<td></td>
+						<td><label><u>Sub Total</u> </label></td>
+						<td><md-input-container flex> <b>{{salesOrder.subTotal}}</b>
+							</md-input-container></td>
+					</tr>
+					<tr>
+						<td><label><u>Tax Details</u> </label></td>
+						<td></td>
+						<td><md-input-container flex> <md-select
+								ng-model="salesOrder.selectedTaxItem" placeholder="Tax Type"
+								ng-change="lineItemTaxChange($index, selectedTaxItem)">
+							<md-option ng-value="taxValue" ng-repeat="taxValue in taxforPO">{{taxValue.taxCodeName}}</md-option>
+							</md-select> </md-input-container></td>
 
-						</section></td>
-					<td></td>
-					<td></td>
-					<td><label><u>Sub Total</u> </label></td>
-					<td><md-input-container flex> <b>{{salesOrder.subTotal}}</b>
-						</md-input-container></td>
-				</tr>
-				<tr>
-					<td><label><u>Tax Details</u> </label></td>
-					<td></td>
-					<td><md-input-container flex> <md-select
-							ng-model="salesOrder.selectedTaxItem" placeholder="Tax Type"
-							ng-change="lineItemTaxChange($index, selectedTaxItem)">
-						<md-option ng-value="taxValue"
-							ng-repeat="taxValue in taxforPO">{{taxValue.taxCodeName}}</md-option>
-						</md-select> </md-input-container></td>
-						
-<!-- 						<td><md-input-container flex> <label>Item Name
+						<!-- 						<td><md-input-container flex> <label>Item Name
 						</label> <input ng-model="item.taxCodeName" 
 							ng-change="calSubTotal()"> </md-input-container></td>	 -->
-					<td><md-input-container flex> <label>Tax
-						</label> <b> <input
-							ng-model="salesOrder.selectedTaxItem.taxPercenatge" >%
-						</b> </md-input-container></td>
-					<td><md-input-container flex> <b>{{salesOrder.taxTotal}}</b>
-						</md-input-container></td>
-				</tr>
+						<td><md-input-container flex> <label>Tax
+							</label> <b> <input
+								ng-model="salesOrder.selectedTaxItem.taxPercenatge">%
+							</b> </md-input-container></td>
+						<td><md-input-container flex> <b>{{salesOrder.taxTotal}}</b>
+							</md-input-container></td>
+					</tr>
 
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td><label><u>Final Total</u> </label></td>
-					<td><md-input-container flex> <b>
-							{{salesOrder.finalTotal}}</b> </md-input-container></td>
-				</tr>
-				<tr>
-					<td></td>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><label><u>Final Total</u> </label></td>
+						<td><md-input-container flex> <b>
+								{{salesOrder.finalTotal}}</b> </md-input-container></td>
+					</tr>
+					<tr>
+						<td></td>
 
-				</tr>
-			</tbody>
-		</table>
-		
+					</tr>
+				</tbody>
+			</table>
+
 		</div>
 
 		<div layout layout-sm="column">

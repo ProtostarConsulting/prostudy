@@ -61,10 +61,4 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 		$mdToast.show($mdToast.simple().content('Customer Data Saved!')
 				.position("top").hideDelay(3000));
 	}
-
-	/*
-	 * $scope.validate = function(){
-	 * 
-	 * name: { inputType: 'text', required: true } };
-	 */
 });

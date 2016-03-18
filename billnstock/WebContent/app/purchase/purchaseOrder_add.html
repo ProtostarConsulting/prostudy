@@ -11,15 +11,42 @@
 			</div>
 
 			<div layout="row" layout-xs="column">
-				<md-input-container flex> <label>P.O.No
+<!-- 				<md-input-container flex> <label>P.O.No
 				</label> <input ng-model="purchaseOrderObj.purchaseOrderNo"> </md-input-container>
-				
-					<md-input-container flex> <md-select
+ -->				
+<!-- 					<md-input-container flex> <md-select
 					ng-model="purchaseOrderObj.customer" placeholder="Customer Name"
 					ng-change="CustomerddlChange($index, customer)"> <md-option
 					ng-value="cust" ng-repeat="cust in customersforinvoice">{{cust.customerName
 				}}</md-option> </md-select> </md-input-container>
-			</div>
+ -->
+ 				<md-autocomplete flex required
+				md-input-name="autocompleteField"
+				md-input-minlength="2"
+				md-input-maxlength="18"
+				md-no-cache=true
+				md-selected-item="purchaseOrderObj.customer"
+				md-search-text="searchTextInput"
+				md-items="item in querySearch(searchTextInput)"
+				md-item-text="item.customerName"
+				md-floating-label="Customer Name">
+					<md-item-template>
+						<span md-highlight-text="searchTextInput">{{item.customerName}}</span>
+					</md-item-template>
+					<div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
+						<div ng-message="required">
+							You <b>must</b> have a favorite state.
+						</div>
+						<div ng-message="minlength">
+							Your entry is not long enough.
+						</div>
+						<div ng-message="maxlength">
+							Your entry is too long.
+						</div>
+					</div>
+				</md-autocomplete>
+ 
+ 			</div>
 
 			<div layout="row" layout-xs="column">
 				<md-input-container flex> <label>To </label> 
@@ -30,9 +57,11 @@
 			</div>
 
 			<div layout="row" layout-xs="column">
-				<md-input-container flex> <label>P.O.Date
+<!-- 				<md-input-container flex> <label>P.O.Date
 				</label> <input ng-model="purchaseOrderObj.poDate"> </md-input-container>
-				
+ -->				
+				 <md-datepicker ng-model="purchaseOrderObj.poDate" md-placeholder="Enter Due Date"></md-datepicker>	
+ 
 				<md-input-container flex> <label>Requisitioner
 				</label> <input ng-model="purchaseOrderObj.requisitioner"> </md-input-container>
 				
@@ -43,7 +72,7 @@
 				</label> <input ng-model="purchaseOrderObj.fOBPoint"> </md-input-container>
 				
 				<md-input-container flex> <label>Terms
-				</label> <input ng-model="purchaseOrderObj.terms"> </md-input-container>
+				</label> <input ng-model="purchaseOrderObj.terms"> </md-input-container>						
 			</div>
 
 		</div>
