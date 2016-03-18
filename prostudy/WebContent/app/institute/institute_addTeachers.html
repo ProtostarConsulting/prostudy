@@ -43,7 +43,7 @@
 			style="color: red"
 			ng-show="instituteTeacherForm.password.$error.required"
 			class="mandatory">*</span></label> <input name="password" ng-model="password"
-			type="password" ng-required="true">
+			type="password"  ng-required="!isGoogleUser">
 		<div ng-messages="instituteTeacherForm.password.$error"
 			ng-if="instituteTeacherForm.password.$submitted || instituteTeacherForm.password.$touched">
 			<div ng-message="required">Please Enter Password.</div>

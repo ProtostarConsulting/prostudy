@@ -21,7 +21,7 @@ angular.module("prostudyApp").controller(
 			$scope.divisions = []; 
 			$scope.subjects = []; 
 			$scope.myBooks = [];
-					
+			$scope.myExams = [];	
 
 			$scope.selectedStdID;
 			$scope.stdList;
@@ -74,7 +74,8 @@ angular.module("prostudyApp").controller(
 					'subject' : $scope.selectedSubject,
 					'password' : $scope.password,
 					'isGoogleUser' : $scope.isGoogleUser,
-					'myBooks' : $scope.myBooks
+					'myBooks' : $scope.myBooks,
+					'myExams' : $scope.myExams
 				});
 				$scope.firstName = '';
 				$scope.lastName = '';
@@ -102,7 +103,8 @@ angular.module("prostudyApp").controller(
 					'role' : "Teacher",
 					'password' : $scope.password,
 					'isGoogleUser' : $scope.isGoogleUser,
-					'myBooks' : $scope.myBooks
+					'myBooks' : $scope.myBooks,
+					'myExams' : $scope.myExams
 				});
 				$scope.firstName = '';
 				$scope.lastName = '';
@@ -130,7 +132,8 @@ angular.module("prostudyApp").controller(
 					'role' : "Admin",
 					'password' : $scope.password,
 					'isGoogleUser' : $scope.isGoogleUser,
-					'myBooks' : $scope.myBooks
+					'myBooks' : $scope.myBooks,
+					'myExams' : $scope.myExams
 				});
 				$scope.firstName = '';
 				$scope.lastName = '';
@@ -352,7 +355,6 @@ angular.module("prostudyApp").controller(
 						function(practiceExamList) {
 							$log.debug("Inside Ctr getPracticeExam");
 							$scope.practiceTest = practiceExamList;
-
 						});
 			}
 			

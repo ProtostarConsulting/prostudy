@@ -47,7 +47,7 @@
 			style="color: red"
 			ng-show="instituteAdminForm.password.$error.required"
 			class="mandatory">*</span></label> <input name="password" type="password"
-			ng-model="password" ng-required="true">
+			ng-model="password" ng-required="!isGoogleUser">
 		<div ng-messages="instituteAdminForm.password.$error"
 			ng-if="instituteAdminForm.password.$submitted || instituteAdminForm.password.$touched">
 			<div ng-message="required">Please Enter Password.</div>
@@ -78,7 +78,6 @@
 
 	</div>
 	<div>
-
 
 		<h5>
 			<b>Select Admins before Adding.</b>

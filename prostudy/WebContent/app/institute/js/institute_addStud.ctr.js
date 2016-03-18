@@ -21,17 +21,14 @@ angular.module("prostudyApp").controller(
 			
 			$scope.standards = [];
 			$scope.divisions = []; 
-			$scope.subjects = []; 
-					
+			$scope.subjects = []; 					
 
 			$scope.selectedStdID;
 			$scope.stdList;
 			$scope.divList;
 			$scope.subList;
 			
-			 $scope.isGoogleUser;
-
-			
+			 $scope.isGoogleUser;			
 			
 			$scope.currentInstID = $stateParams.currentInstID;
 
