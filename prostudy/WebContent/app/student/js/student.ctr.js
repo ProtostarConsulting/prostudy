@@ -37,6 +37,8 @@ angular.module("prostudyApp").controller(
 				address : "",
 				contact : "",
 				role : 'Student',
+				myBooks :[],
+				myExams : []
 			};
 			
 			$scope.getStandardByInstitute = function() {
