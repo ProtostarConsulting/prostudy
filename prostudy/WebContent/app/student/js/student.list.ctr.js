@@ -19,13 +19,13 @@ angular.module("prostudyApp").controller(
 						.then(
 								function(studentList) {
 									$scope.newStudents = studentList;
-									$log.debug("$scope.newStudents :"+angular.toJson($scope.newStudents));
+									
 									for(var i=0;i<$scope.newStudents.length;i++)
 									{
 										if($scope.newStudents[i].role == "Student")
 										{
 											$scope.students.push($scope.newStudents[i]);
-											$log.debug("$scope.students :"+angular.toJson($scope.students));
+											;
 											
 										}
 									}		
