@@ -1,0 +1,93 @@
+<form name="studentEditForm" ng-model="studentEditForm"
+	ng-submit="studentEditForm.$valid " novalidate>
+
+	<div layout="column" flex
+		ng-repeat="stud in student track by stud.id |  filter:searchText">
+
+
+		<md-input-container> <label>Student ID </label> <input
+			name="studID" id="studID" ng-model="stud.id" readonly> </md-input-container>
+
+		<md-input-container> <label>PRN No.</label> <input
+			name="prn" id="prn" ng-model="stud.prn" readonly> </md-input-container>
+			
+			
+		<md-input-container> <label>First Name<span
+			style="color: red"
+			ng-show="studentEditForm.firstName.$error.required" class="mandatory">*</span></label>
+		<input name="firstName" id="firstName" ng-model="stud.firstName"
+			required name="firstName">
+		<div ng-messages="studentEditForm.firstName.$error"
+			ng-if="studentEditForm.firstName.$submitted || studentEditForm.firstName.$touched">
+			<div ng-message="required">Please Enter Your FirstName.</div>
+		</div>
+		</md-input-container>
+
+		<md-input-container> <label>Last Name<span
+			style="color: red" ng-show="studentEditForm.lastName.$error.required"
+			class="mandatory">*</span></label> <input name="lastName" id="lastName"
+			ng-model="stud.lastName" required name="lastName">
+		<div ng-messages="studentEditForm.lastName.$error"
+			ng-if="studentEditForm.lastName.$submitted || studentEditForm.lastName.$touched">
+			<div ng-message="required">Please Enter Your LastName.</div>
+		</div>
+		</md-input-container>
+
+		<md-input-container> <label>Address<span
+			style="color: red" ng-show="studentEditForm.address.$error.required"
+			class="mandatory">*</span></label> <input name="address" id="address"
+			ng-model="stud.address" required name="address">
+		<div ng-messages="studentEditForm.address.$error"
+			ng-if="studentEditForm.address.$submitted || studentEditForm.address.$touched">
+			<div ng-message="required">Please Enter Your Address.</div>
+		</div>
+		</md-input-container>
+
+		<md-input-container> <label>Contact<span
+			style="color: red" ng-show="studentEditForm.contact.$error.required"
+			class="mandatory">*</span></label> <input  name="contact"
+			ng-model="stud.contact" ng-minlength="10" ng-maxlength="10"
+			ng-required="true">
+		<div ng-messages="studentEditForm.contact.$error"
+			ng-if="studentEditForm.contact.$submitted || studentEditForm.contact.$touched">
+			<div ng-message="required">Please Enter Your Contact.</div>
+			<span class="help-block"
+				ng-show="((studentEditForm.contact.$error.minlength || studentEditForm.contact.$error.maxlength) && studentEditForm.contact.$dirty) ">Contact
+				number should be 10 digits</span>
+		</div>
+		</md-input-container>
+
+		<md-input-container> <label>Email-id<span
+			style="color: red" ng-show="studentEditForm.email_id.$error.required"
+			class="mandatory">*</span></label> <input type="email" name="email_id"
+			ng-model="stud.email_id" ng-required="true">
+		<div ng-messages="studentEditForm.email_id.$error"
+			ng-if="studentEditForm.email_id.$submitted || studentEditForm.email_id.$touched">
+			<div ng-message="required">Please Enter your Email-Id.</div>
+		</div>
+		</md-input-container>
+
+
+
+		<md-input-container> <label>Standard</label> <input
+			name="standard" id="standard" ng-model="stud.standard" readonly>
+		</md-input-container>
+
+		<md-input-container> <label>Division</label> <input
+			name="division" id="division" ng-model="stud.division" readonly>
+		</md-input-container>
+
+		<md-input-container> <label>Subject</label> <input
+			name="subject" id="subject" ng-model="stud.subject" readonly>
+		</md-input-container>
+
+	</div>
+
+	<div layout="row" layout-align="center center">
+		<md-button class="md-raised md-primary" ng-click="updateUser()"
+			ng-disabled="studentEditForm.$invalid">Save</md-button>
+		<md-button class="md-raised" ng-click="cancel()">
+		Cancel </md-button>
+	</div>
+
+</form>
