@@ -238,6 +238,8 @@ angular
 					 * $scope.customerList = {};
 					 */
 					$scope.initGAPI();
+					
+					
 
 				}).controller(
 				'AppCtrl',
