@@ -10,7 +10,7 @@
 		<div align="center" class="table-responsive-vertical shadow-z-1">	
 		<md-button
 					ng-repeat="standard in stdList track by $index"
-					type="button" class="md-raised md-primary"
+					type="button" ng-class="getButtonClass(standard.name)"
 					ng-click="getBookByStandard(standard.name)">{{standard.name}}
 		</md-button>
 		</div>

@@ -4,29 +4,36 @@ angular.module("prostudyApp").controller(
 				$log, $stateParams, appEndpointSF, $state, $sce) {
 
 			console.log("Inside standardBookCtr");
-			
+
 			$scope.curUser = appEndpointSF.getLocalUserService()
-			.getLoggedinUser();
+					.getLoggedinUser();
+
+			$scope.selectedStd = null;
 
 			$scope.selectedBookId = $stateParams.selectedBookId;
-			$scope.standards = [{}];
-			
+			$scope.standards = [ {} ];
+
 			$scope.getStandardByInstitute = function() {
 
-				var StandardService = appEndpointSF
-						.getStandardService();
-				StandardService.getStandardByInstitute($scope.curUser.instituteID).then(
+				var StandardService = appEndpointSF.getStandardService();
+				StandardService.getStandardByInstitute(
+						$scope.curUser.instituteID).then(
 						function(standardList) {
-							
+
 							$scope.stdList = standardList;
-							
+
 						});
 			}
 			$scope.getStandardByInstitute();
-		
+
+			$scope.getButtonClass = function(standard) {
+				return $scope.selectedStd == standard? "md-raised md-warn": "md-raised md-primary";
+
+			}
 
 			$scope.getBookByStandard = function(standard) {
 
+				$scope.selectedStd = standard;
 				$log.debug("Inside getBookByStandard");
 
 				var BookService = appEndpointSF.getBookService();
