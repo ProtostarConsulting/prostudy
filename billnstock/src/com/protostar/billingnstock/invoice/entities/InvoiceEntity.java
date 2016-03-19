@@ -17,12 +17,11 @@ import com.protostar.billingnstock.user.entities.UserEntity;
 public class InvoiceEntity {
 	@Id
 	private Long id;
+
 	@Index
-	private Long invoiceId;
+	private String invoiceDate;
 	@Index
-	private Date invoiceDate;
-	@Index
-	private Date invoiceDueDate;
+	private String invoiceDueDate;
 	private String itemName;
 	private String rate;
 	private String qty;
@@ -66,13 +65,7 @@ public class InvoiceEntity {
 	}
 		
 
-	public Date getInvoiceDueDate() {
-		return invoiceDueDate;
-	}
 
-	public void setInvoiceDueDate(Date invoiceDueDate) {
-		this.invoiceDueDate = invoiceDueDate;
-	}
 
 	public SalesOrderEntity getSalesOrderId() {
 		return salesOrderId.get();
@@ -99,13 +92,7 @@ public class InvoiceEntity {
 		this.invoiceLineItemList = invoiceLineItemList;
 	}
 	
-	public Long getInvoiceId() {
-		return invoiceId;
-	}
-
-	public void setInvoiceId(Long invoiceId) {
-		this.invoiceId = invoiceId;
-	}
+	
 
 	public String getItemName() {
 		return itemName;
@@ -178,12 +165,22 @@ public class InvoiceEntity {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	public Date getInvoiceDate() {
+
+	public String getInvoiceDate() {
 		return invoiceDate;
 	}
 
-	public void setInvoiceDate(Date invoiceDate) {
+	public void setInvoiceDate(String invoiceDate) {
 		this.invoiceDate = invoiceDate;
 	}
+
+	public String getInvoiceDueDate() {
+		return invoiceDueDate;
+	}
+
+	public void setInvoiceDueDate(String invoiceDueDate) {
+		this.invoiceDueDate = invoiceDueDate;
+	}
+	
+
 }// end of InvoiceEntity

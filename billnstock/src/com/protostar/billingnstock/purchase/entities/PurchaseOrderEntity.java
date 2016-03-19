@@ -21,7 +21,7 @@ public class PurchaseOrderEntity {
 	private Long purchaseOrderNo;	
 	private String to;
 	private String shipTo;
-	private Date poDate;
+	private String poDate;
 	private String requisitioner;
 	private String shippedVia;
 	private String fOBPoint;
@@ -148,10 +148,10 @@ public class PurchaseOrderEntity {
 	public void setFinalTotal(double finalTotal) {
 		this.finalTotal = finalTotal;
 	}
-	public Date getPoDate() {
+	public String getPoDate() {
 		return poDate;
 	}
-	public void setPoDate(Date poDate) {
+	public void setPoDate(String poDate) {
 		this.poDate = poDate;
 	}
 
