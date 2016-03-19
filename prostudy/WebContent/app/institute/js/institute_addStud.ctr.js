@@ -13,7 +13,7 @@ angular.module("prostudyApp").controller(
 			$scope.selectedDivision;
 			$scope.selectedSubject;
 
-			$scope.isGoogleUser;
+			$scope.isGoogleUser = false;
 		
 			$scope.selectedStandards = [];
 			$scope.selectedDivisions = [];

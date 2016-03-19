@@ -18,7 +18,7 @@ angular
 					$scope.selectedDivName = $stateParams.selectedDivName;
 					$scope.selectedSubName = $stateParams.selectedSubName;
 					
-					$scope.isGoogleUser;
+					$scope.isGoogleUser = false;
 					
 					$scope.newField = {};
 			        $scope.editingStd = false;

@@ -11,7 +11,7 @@ angular
 					$scope.selectedSubject;
 
 					$scope.isGoogleUser;
-					$scope.myExams = [];	
+					$scope.myExams = [];
 					$scope.selectedStudents = [];
 					$scope.selectedTeachers = [];
 					$scope.selectedAdmins = [];
@@ -29,7 +29,7 @@ angular
 					$scope.divList;
 					$scope.subList;
 
-					$scope.isGoogleUser;
+					$scope.isGoogleUser = false;
 
 					$scope.showSavedToast = function() {
 						$mdToast.show($mdToast.simple().content(
@@ -52,171 +52,12 @@ angular
 								.hideDelay(3000));
 					};
 
-
-			$scope.currentInstID = $stateParams.currentInstID;
-
-			$scope.isDisabled = false;
-			$scope.disableButton = function() {
-				$scope.isDisabled = true;
-			}
-			
-			$scope.students = [];
-			$scope.addStudentList = function() {
-				$scope.students.push({
-					'instituteID' : $scope.currentInstID,
-					'institute' : $scope.name,
-					'firstName' : $scope.firstName,
-					'lastName' : $scope.lastName,
-					'email_id' : $scope.email_id,
-					'address' : $scope.address,
-					'contact' : $scope.contact,
-					'role' : "Student",
-					'standard' : $scope.selectedStandard,
-					'division' : $scope.selectedDivision,
-					'subject' : $scope.selectedSubject,
-					'password' : $scope.password,
-					'isGoogleUser' : $scope.isGoogleUser,
-					'myBooks' : $scope.myBooks,
-					'myExams' : $scope.myExams
-				});
-				$scope.firstName = '';
-				$scope.lastName = '';
-				$scope.email_id = '';
-				$scope.address = '';
-				$scope.contact = '';
-				$scope.role = '';
-				$scope.selectedStandard = '';
-				$scope.password = '';
-				
-				$scope.flag1=false;
-				$scope.flag2=true;
-			};
-			
-			$scope.teachers = [];
-			$scope.addTeacherList = function() {
-				$scope.teachers.push({
-					'instituteID' : $scope.currentInstID,
-					'institute' : $scope.name,
-					'firstName' : $scope.firstName,
-					'lastName' : $scope.lastName,
-					'email_id' : $scope.email_id,
-					'address' : $scope.address,
-					'contact' : $scope.contact,
-					'role' : "Teacher",
-					'password' : $scope.password,
-					'isGoogleUser' : $scope.isGoogleUser,
-					'myBooks' : $scope.myBooks,
-					'myExams' : $scope.myExams
-				});
-				$scope.firstName = '';
-				$scope.lastName = '';
-				$scope.email_id = '';
-				$scope.address = '';
-				$scope.contact = '';
-				$scope.role = '';
-				$scope.password = '';
-				
-				$scope.flag1=false;
-				$scope.flag2=true;
-				
-			};
-			
-			$scope.admins = [];
-			$scope.addToAdminsList = function() {
-				$scope.admins.push({
-					'instituteID' : $scope.currentInstID,
-					'institute' : $scope.name,
-					'firstName' : $scope.firstName,
-					'lastName' : $scope.lastName,
-					'email_id' : $scope.email_id,
-					'address' : $scope.address,
-					'contact' : $scope.contact,
-					'role' : "Admin",
-					'password' : $scope.password,
-					'isGoogleUser' : $scope.isGoogleUser,
-					'myBooks' : $scope.myBooks,
-					'myExams' : $scope.myExams
-				});
-				$scope.firstName = '';
-				$scope.lastName = '';
-				$scope.email_id = '';
-				$scope.address = '';
-				$scope.contact = '';
-				$scope.role = '';
-				$scope.password = '';
-				$scope.flag1=false;
-				$scope.flag2=true;
-			};
-			
-			$scope.standard= {
-					
-					instituteID : $scope.currentInstID,
-					name : ""
-			};
-			
-			$scope.division= {
-					
-					standardID : $scope.currentStdID,
-					name : ""
-			};
-		
-			
-			$scope.subjectList = [];
-			$scope.addSubjects = function() {
-				$scope.subjectList.push({
-					'divisionID' : $scope.currentDivID,
-					'name' : $scope.name,
-					
-				});
-				$scope.name = '';
-				
-			};
-			
-			$scope.query = {
-				order : 'description',
-				limit : 5,
-				page : 1
-			};
-
-
-					$log.debug("$scope.currentInstID:" + $scope.currentInstID);
-
-					$scope.currentStdID = $stateParams.currentStdID;
-					$scope.currentDivID = $stateParams.currentDivID;
+					$scope.currentInstID = $stateParams.currentInstID;
 
 					$scope.isDisabled = false;
 					$scope.disableButton = function() {
 						$scope.isDisabled = true;
 					}
-
-					$scope.students = [];
-					$scope.addStudentList = function() {
-						$scope.students.push({
-							'instituteID' : $scope.currentInstID,
-							'institute' : $scope.name,
-							'firstName' : $scope.firstName,
-							'lastName' : $scope.lastName,
-							'email_id' : $scope.email_id,
-							'address' : $scope.address,
-							'contact' : $scope.contact,
-							'role' : "Student",
-							'standard' : $scope.selectedStandard,
-							'division' : $scope.selectedDivision,
-							'subject' : $scope.selectedSubject,
-							'password' : $scope.password,
-							'isGoogleUser' : $scope.isGoogleUser,
-							'myBooks' : $scope.myBooks
-						});
-						$scope.firstName = '';
-						$scope.lastName = '';
-						$scope.email_id = '';
-						$scope.address = '';
-						$scope.contact = '';
-						$scope.role = '';
-						$scope.selectedStandard = '';
-						$scope.password = '';
-
-					};
 
 					$scope.teachers = [];
 					$scope.addTeacherList = function() {
@@ -231,7 +72,8 @@ angular
 							'role' : "Teacher",
 							'password' : $scope.password,
 							'isGoogleUser' : $scope.isGoogleUser,
-							'myBooks' : $scope.myBooks
+							'myBooks' : $scope.myBooks,
+							'myExams' : $scope.myExams
 						});
 						$scope.firstName = '';
 						$scope.lastName = '';
@@ -241,6 +83,8 @@ angular
 						$scope.role = '';
 						$scope.password = '';
 
+						$scope.flag1 = false;
+						$scope.flag2 = true;
 
 					};
 
@@ -257,7 +101,8 @@ angular
 							'role' : "Admin",
 							'password' : $scope.password,
 							'isGoogleUser' : $scope.isGoogleUser,
-							'myBooks' : $scope.myBooks
+							'myBooks' : $scope.myBooks,
+							'myExams' : $scope.myExams
 						});
 						$scope.firstName = '';
 						$scope.lastName = '';
@@ -266,8 +111,46 @@ angular
 						$scope.contact = '';
 						$scope.role = '';
 						$scope.password = '';
-						
+						$scope.flag1 = false;
+						$scope.flag2 = true;
 					};
+
+					$scope.standard = {
+
+						instituteID : $scope.currentInstID,
+						name : ""
+					};
+
+					$scope.division = {
+
+						standardID : $scope.currentStdID,
+						name : ""
+					};
+
+					$scope.subjectList = [];
+					$scope.addSubjects = function() {
+						$scope.subjectList.push({
+							'divisionID' : $scope.currentDivID,
+							'name' : $scope.name,
+
+						});
+						$scope.name = '';
+
+					};
+
+					$scope.query = {
+						order : 'description',
+						limit : 5,
+						page : 1
+					};
+
+					$scope.currentStdID = $stateParams.currentStdID;
+					$scope.currentDivID = $stateParams.currentDivID;
+
+					$scope.isDisabled = false;
+					$scope.disableButton = function() {
+						$scope.isDisabled = true;
+					}
 
 					$scope.standard = {
 
@@ -364,7 +247,9 @@ angular
 						$mdDialog
 								.show($mdDialog
 										.alert()
-										.parent(angular.element(document
+										.parent(
+												angular
+														.element(document
 																.querySelector('#popupContainer')))
 										.clickOutsideToClose(true)
 										.textContent(
@@ -495,7 +380,5 @@ angular
 					$scope.cancelButton = function() {
 						$state.go("^", {});
 					}
-
-					
 
 				});
