@@ -173,7 +173,7 @@ angular
 					function createFilterFor(query) {
 						var lowercaseQuery = angular.lowercase(query);
 						return function filterFn(emp) {
-							return (emp.firstName.indexOf(lowercaseQuery) === 0);
+							return (angular.lowercase(emp.firstName).indexOf(lowercaseQuery) === 0);
 						};
 					}
 					// ////////////Auto complete code ends//////////////////////
