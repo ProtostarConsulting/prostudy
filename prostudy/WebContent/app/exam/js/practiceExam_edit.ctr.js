@@ -40,9 +40,14 @@ angular
 								.then(
 										function(practiceTest) {
 											$scope.Test = practiceTest;
+											
 
 											if ($stateParams.addFlag) {
 												if ($stateParams.addedQ !== undefined) {
+
+													if (typeof $scope.Test.questions === 'undefined')
+														$scope.Test.questions = [];													
+													
 													$scope.Test.questions
 															.push($stateParams.addedQ);
 													$scope.updateExam();
