@@ -17,7 +17,8 @@ public class PracticeExamEntity {
 	private String board;
 	private String standard;
 	private String division;
-
+	@Index
+	private String category;
 	private String subject;
 	private String instructions;
 	private List<QuestionEntity> questions;
@@ -57,6 +58,13 @@ public class PracticeExamEntity {
 		this.dislikes = dislikes;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	
 	public Long getId() {
 		return id;
