@@ -28,6 +28,7 @@ app.controller("warehouseAddCtr", function($scope, $window, $mdToast, $timeout,
 		WarehouseManagementService.addWarehouse($scope.warehouse).then(function(msgBean) {
 		});
 		$scope.warehouse = {};
+		window.history.back();
 	}
 
 	$scope.toggleRight = buildToggler('right');

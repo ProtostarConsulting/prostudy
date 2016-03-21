@@ -11,14 +11,14 @@ app.controller(
 			$scope.curUser = appEndpointSF.getLocalUserService()
 			.getLoggedinUser();
 			$log.debug("$scope.curUser++++++++"+angular.toJson($scope.curUser));
-			2
+
 //			$scope.cust.businessAccount =$scope.curUser.businessAccount;
 			
-			$scope.getAllCustomersByCurrUser = function() {
-				$log.debug("Inside Ctr $scope.getAllCustomers");
+			$scope.getAllCustomersByBusiness = function() {
+	
 				var customerService = appEndpointSF.getCustomerService();
 
-				customerService.getAllCustomersByCurrUser($scope.curUser.businessAccount.id).then(
+				customerService.getAllCustomersByBusiness($scope.curUser.businessAccount.id).then(
 						function(custList) {
 							$log.debug("Inside Ctr getAllCustomers");
 							$scope.customers = custList.items;
@@ -28,8 +28,28 @@ app.controller(
 			}
 
 			$scope.customers = [];
-			$scope.getAllCustomersByCurrUser();
+			$scope.getAllCustomersByBusiness();
 			
+			
+			$scope.selected = [];
+			$scope.myFunction = function(){
+				if($scope.selected.length>0){
+					$log.debug("More Record Found");
+					$("#invoiceBtn").hide();
+					$("#pOBtn").hide();
+					$("#sOBtn").hide();
+				}
+				else{
+					$("#invoiceBtn").show();
+					$("#pOBtn").show();
+					$("#sOBtn").show();
+					
+				}
+			
+		}
+		
+
+		
 			$scope.toggleRight = buildToggler('right');
 
 			function buildToggler(navID) {

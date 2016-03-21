@@ -1,7 +1,7 @@
 angular.module("stockApp").controller(
 		"stockListCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $http, objectFactory, appEndpointSF) {
+				$log, $http,$stateParams, objectFactory, appEndpointSF) {
 
 			$log.debug("Inside stockListCtr");
 
@@ -14,21 +14,11 @@ angular.module("stockApp").controller(
 			$scope.updateStock = function() {
 				var stockService = appEndpointSF.getStockService();
 
-				stockService.updateStock($scope.selected[0]).then(
+				stockService.updateStock($scope.stock).then(
 						function(msgBean) {
-							$log.debug("No6");
-							$log.debug("Inside Ctr updateStockItem");
 							$log.debug("msgBean.msg:" + msgBean.msg);
 							$scope.showSimpleToast();
 						});
-				$log.debug("Selected Item updated");
-				$scope.selected[0].id = "";
-				$scope.selected[0].itemName = "";
-				$scope.selected[0].category = "";
-				$scope.selected[0].qty = "";
-				$scope.selected[0].price = "";
-				$scope.selected[0].thresholdValue = ""; 
-				$scope.selected[0].notes = "";
 			}
 
 			$scope.getAllStock = function() {
@@ -41,13 +31,17 @@ angular.module("stockApp").controller(
 							$scope.stockData = stockList;
 							$log.debug("Inside Ctr $scope.stockData:"
 									+ angular.toJson($scope.stockData));
-
 						});
 			}
-			$scope.tempItem = [];
 			$scope.stockData = [];
 			$scope.getAllStock();
-		
+				
+			$scope.filteredStock = [];
+			for(var i=0; i<$scope.stockData.length;i++){
+				if($scope.stockData[i].id == $scope.selectedStocksId){
+					$scope.filteredStock.push($scope.stockData[i]);
+				}
+			}
 			// Setup menu
 			$scope.toggleRight = buildToggler('right');
 
@@ -68,7 +62,7 @@ angular.module("stockApp").controller(
 			
 
 			$scope.showSimpleToast = function() {
-				$mdToast.show($mdToast.simple().content('Stock Data Saved!')
+				$mdToast.show($mdToast.simple().content('Stock Updated....')
 						.position("top").hideDelay(3000));
 			};
 

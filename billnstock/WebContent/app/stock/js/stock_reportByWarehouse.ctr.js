@@ -55,15 +55,15 @@ angular.module("stockApp").controller(
 			}
 
 			$scope.getAllWarehouseByBusiness();
-			$scope.filteredWarehouseData = [];
+			
 			
 			$scope.warehouseDDLChange = function(index, selectedWarehouse) {
 				$log.debug("##Came to warehouseDDLChange...");
-
+				$scope.filteredWarehouseData = [];
 //				$scope.stock.warehouseId = selectedWarehouse;
 	
 				for(var i=0; i<$scope.stockData.length;i++){
-					if($scope.stockData[i].warehouseId.id == selectedWarehouse.id){
+					if($scope.stockData[i].warehouse.id == selectedWarehouse.id){
 						$scope.filteredWarehouseData.push($scope.stockData[i]);
 						$log.debug("$scope.stockData[i]"+$scope.stockData[i]);
 					}

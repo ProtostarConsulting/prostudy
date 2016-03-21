@@ -58,6 +58,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/stockItemList",
 		templateUrl : '/app/stock/stockItem_list.html',
 		controller : 'stockListCtr'
+	}).state('stock.edit', {
+		url : "/edit/:selectedStocksId",
+		templateUrl : '/app/stock/stockItem_edit.html',
+		controller : 'stockEditCtr'
 	}).state('stock.reportByThreshold', {
 		url : "/reportByThreshold",
 		templateUrl : '/app/stock/stock_reportByThreshold.html',
@@ -102,18 +106,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/add",
 		templateUrl : '/app/customer/customer_add.html',
 		controller : 'customerAddCtr'
-	}).state('customer.view', {
+	}).state('customer.edit', {
 		url : "/view/:selectedCustomerId",
-		templateUrl : '/app/customer/customer_view.html',
-		controller : 'customerViewCtr'
+		templateUrl : '/app/customer/customer_edit.html',
+		controller : 'customerEditCtr'
 	}).state('customer.list', {
 		url : "/list",
 		templateUrl : '/app/customer/customer_list.html',
 		controller : 'customerListCtr'
-	}).state('customer.uplodFile', {
-		url : "/uplodFile",
-		templateUrl : '/app/customer/fileUpload.jsp',
-	//	controller : 'customerListCtr'
 	}).state('account', {
 		url : "/account",
 		templateUrl : '/app/account/account_module.html',
@@ -160,6 +160,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/list",
 		templateUrl : '/app/warehouse/warehouse_list.html',
 		controller : 'warehouseListCtr'
+	}).state('warehouse.edit', {
+		url : "/edit/:selectedWarehouseId",
+		templateUrl : '/app/warehouse/warehouse_edit.html',
+		controller : 'warehouseEditCtr'
 	})
 	
 	.state('report', {

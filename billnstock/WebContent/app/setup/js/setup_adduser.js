@@ -15,7 +15,7 @@ angular
 					$scope.id;
 
 					$scope.items = [ "stock", "sales", "hr", "crm", "customer",
-							"setup", "invoice", "purchase", "employee", "basic" ];
+							"invoice", "purchase", "employee", "admin" ];
 					$scope.selection = [];
 
 					$scope.curuser = appEndpointSF.getLocalUserService()
@@ -29,7 +29,16 @@ angular
 									$scope.business = user.items[0].businessAccount;
 									$scope.id = $scope.business.id;
 									$log.debug("$scope.business.id"
-											+ $scope.business.id);
+											+ angular.toJson($scope.business));
+									
+										if($scope.business.accounttype.maxuser == $scope.business.totalUser-1){
+											$("#hideSpan").show();
+											$log.debug("#hideSpan");
+										}else{
+											$("#hideSpan").hide();
+											$("#hideDiv").hide();
+										}
+							
 								});
 					}
 					$scope.business = [];

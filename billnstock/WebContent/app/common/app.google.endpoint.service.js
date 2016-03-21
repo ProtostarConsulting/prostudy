@@ -96,7 +96,7 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
-	
+
 	UserService.getBusinessList = function() {
 		var deferred = $q.defer();
 		gapi.client.userService.getBusinessList().execute(function(resp) {
@@ -277,7 +277,7 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
-	
+
 	proadminService.getallAccountType = function() {
 		var deferred = $q.defer();
 		gapi.client.proadminService.getallAccountType().execute(function(resp) {
@@ -285,17 +285,18 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
-	
-	proadminService.getAccountTypeById=function(id) {
+
+	proadminService.getAccountTypeById = function(id) {
 		var deferred = $q.defer();
-		gapi.client.proadminService.getAccountTypeById({'id' : id}).execute(function(resp) {
+		gapi.client.proadminService.getAccountTypeById({
+			'id' : id
+		}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
 	}
-	
-	
-	proadminService.initsetup=function() {
+
+	proadminService.initsetup = function() {
 		var deferred = $q.defer();
 		gapi.client.proadminService.initsetup().execute(function(resp) {
 			deferred.resolve({
@@ -304,8 +305,8 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
-	
-	proadminService.initsetupnext=function() {
+
+	proadminService.initsetupnext = function() {
 		var deferred = $q.defer();
 		gapi.client.proadminService.initsetupnext().execute(function(resp) {
 			deferred.resolve({
@@ -314,13 +315,15 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
-	proadminService.getAllemp=function() {
+	proadminService.getAllemp = function() {
 		var deferred = $q.defer();
 		gapi.client.proadminService.getAllemp().execute(function(resp) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
 	}
+<<<<<<< .mine
+=======
 	
 	
 	
@@ -331,9 +334,16 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}*/
+>>>>>>> .r919
+
+	/*
+	 * proadminService.getfreeAccountTypeRecord=function() { var deferred =
+	 * $q.defer();
+	 * gapi.client.proadminService.getfreeAccountTypeRecord({'accountName':"Free"}).execute(function(resp) {
+	 * deferred.resolve(resp); }); return deferred.promise; }
+	 */
 
 	// --------------------setup service----------------------------
-
 	var setupService = {};
 
 	serviceFactory.getsetupService = function() {
@@ -836,40 +846,42 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	CustomerService.getAllCustomersByCurrUser = function(id) {
+	CustomerService.getAllCustomersByBusiness = function(id) {
 		var deferred = $q.defer();
-		gapi.client.customerService.getAllCustomersByCurrUser({
+		gapi.client.customerService.getAllCustomersByBusiness({
 			"id" : id
 		}).execute(
 				function(resp) {
-					$log.debug("getAllCustomers#resp at enpoint:"
+					$log.debug("getAllCustomersByBusiness#resp at enpoint:"
 							+ angular.toJson(resp));
 					deferred.resolve(resp);
 				});
 		return deferred.promise;
 	}
 
-	CustomerService.searchCustomerByName = function(customerName) {
-		var deferred = $q.defer();
-		gapi.client.customerService.searchCustomerByName({
-			"customerName" : customerName
-		}).execute(function(resp) {
-			$log.debug("getCustomerByID at enpoint" + resp);
-			deferred.resolve(resp.items);
-		});
-		return deferred.promise;
-	}
-
-	CustomerService.getCustomerByID = function(customerId) {
+	CustomerService.getCustomerByID = function(Id) {
 		var deferred = $q.defer();
 		gapi.client.customerService.getCustomerByID({
-			"customerId" : customerId
+			"Id" : Id
 		}).execute(function(resp) {
 			$log.debug("getCustomerByID at enpoint" + resp);
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
-	}// End of CustomerService
+	}
+	
+	CustomerService.updateCustomer = function(updates) {
+		var deferred = $q.defer();
+
+		gapi.client.customerService.updateCustomer(updates).execute(function(resp) {
+			$log.debug("updates#resp at enpoint:" + resp);
+			deferred.resolve(resp);
+		});
+
+		return deferred.promise;
+	}
+
+	// End of CustomerService
 
 	// =====================================================================================================================================
 	// Add Customer Service
@@ -995,6 +1007,17 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
+	StockService.getStockById = function(Id) {
+		var deferred = $q.defer();
+		gapi.client.stockService.getStockById({
+			"id" : Id
+		}).execute(function(resp) {
+			$log.debug("getStockById at enpoint" + resp);
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
 	StockService.getReportByThreshold = function(id) {
 		var deferred = $q.defer();
 		gapi.client.stockService.getReportByThreshold({
@@ -1234,7 +1257,6 @@ function googleEndpointSF($log, $q) {
 	/* =============================================================================================================================== */
 
 	// Start of WarehouseManagement
-
 	var warehouseManagementService = {};
 
 	serviceFactory.getWarehouseManagementService = function() {
@@ -1254,10 +1276,12 @@ function googleEndpointSF($log, $q) {
 	warehouseManagementService.getAllWarehouseByBusiness = function(id) {
 		var deferred = $q.defer();
 
-
-		gapi.client.warehouseManagementService.getAllWarehouseByBusiness({"id":id})
-				.execute(function(resp) {
-					$log.debug("getAllWarehouseByBusiness at enpoint:" + angular.toJson(resp));
+		gapi.client.warehouseManagementService.getAllWarehouseByBusiness({
+			"id" : id
+		}).execute(
+				function(resp) {
+					$log.debug("getAllWarehouseByBusiness at enpoint:"
+							+ angular.toJson(resp));
 					deferred.resolve(resp.items);
 				});
 
@@ -1271,6 +1295,17 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
+	warehouseManagementService.getWarehouseById = function(id) {
+		var deferred = $q.defer();
+		gapi.client.warehouseManagementService.getWarehouseById({
+			"id" : id
+		}).execute(function(resp) {
+			$log.debug("getWarehouseById at enpoint" + angular.toJson(resp));
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
 	warehouseManagementService.updateWarehouse = function(updateWarehouse) {
 		var deferred = $q.defer();
 		gapi.client.warehouseManagementService.updateWarehouse(updateWarehouse)

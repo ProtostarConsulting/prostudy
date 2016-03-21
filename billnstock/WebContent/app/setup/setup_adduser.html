@@ -2,10 +2,13 @@
 <md-content layout-padding>
 <form name="addform">
 
-	<div id="addField">
-		Organization id={{id}} 
-		<span style="color: red">Your Account is {{business.accounttype.accountName}} you can create only {{business.accounttype.maxuser}} Number Of User </span>
 
+		Organization id={{id}} 
+<!-- 		<span style="color: red">Your Account is {{business.accounttype.accountName}} you can create only {{business.accounttype.maxuser}} Number Of User </span> -->
+
+		<span id="hideSpan" style="color: red">Your Account exceed the user limit. Click to <a href="">Upgrade Account</a></span>
+
+<div id="hideDiv">
 		<div flex-xs flex="50">
 			<md-checkbox ng-model="user.isGoogleUser" ng-true-value="true"
 				ng-false-value="false"> Is Google User </md-checkbox>
@@ -59,18 +62,17 @@
 			</md-input-container>
 		</div>
 		<b>Authority</b><br> <br>
-		<div layout layout-sm="column">
+		<div flex layout layout-sm="column">
 
 			<div ng-repeat="item in items">
 				<div class="action-checkbox">
-					<input id="{{item}}" type="checkbox" value="{{item}}"
+					{{item}}<md-checkbox id="{{item}}" type="checkbox" value="{{item}}"
 						ng-checked="selection.indexOf(item) > -1"
-						ng-click="toggleSelection(item)" /> <label for="{{item}}"></label>
-					{{item}}
+						ng-click="toggleSelection(item)" > 
+						<!-- <label for="{{item}}"></label> -->
+					</md-checkbox>		
 				</div>
-
 			</div>
-			<br> <br>
 		</div>
 		<section layout="row" layout-sm="column" layout-align="left left">
 			<md-button class="md-raised md-primary" id="adduser"

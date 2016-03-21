@@ -3,13 +3,13 @@
 <h3>
 	<u>Customer List</u>
 </h3>
-<div>
+<!-- <div>
 	<section layout="row" layout-align="end end" flex>
 		<md-button class="md-raised md-primary" ng-click="back()">ADD
 		NEW</md-button>
 	</section>
 </div>
-
+ -->
 <div layout layout-sm="column">
 	<md-input-container flex> <label>Search</label> <input
 		ng-model="searchText"> </md-input-container>
@@ -20,8 +20,7 @@
 	<table md-data-table md-row-select="selected" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onOrderChange">
 			<tr>
-				<th name="Customer Id" order-by="customerId"></th>
-				<th name="Customer Name" order-by="customerName"></th>
+				<th name="Customer Name" order-by="firstName"></th>
 				<th name="Mobile" order-by="mobile"></th>
 				<th name="Email" order-by="email"></th>
 				<th name="Address" order-by="customerAddress"></th>
@@ -32,15 +31,14 @@
 		<tbody>
 			<tr md-auto-select
 				ng-repeat="customer in customers | orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit">
-				<td>{{customer.id}}</td>
-				<td>{{customer.customerName}}</td>
+				<td>{{customer.firstName}}</td>
 				<td>{{customer.mobile}}</td>
 				<td>{{customer.email}}</td>
 				<td>{{customer.address}}</td>
 				<td><section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary"
-							ui-sref="customer.view({selectedCustomerId: customer.id})">
-						Customer Details</md-button>
+							ui-sref="customer.edit({selectedCustomerId: customer.id})">
+						Edit</md-button>
 					</section></td>
 				<td>
 			</tr>
@@ -59,4 +57,15 @@
 		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
 </div>
 
+<div layout="row" layout-xs="column">
+
+	<md-button id="invoiceBtn" class="md-raised md-primary" type="submit" ng-click="userInvoices">Invoice</md-button>
+
+	<md-button id="pOBtn" class="md-raised md-primary" type="submit" ng-click="userPO">Purchase
+	Orders</md-button>
+
+	<md-button id="sOBtn" class="md-raised md-primary" type="submit" ng-click="userSO">Sales
+	Order</md-button>
+
+</div>
 </md-content>

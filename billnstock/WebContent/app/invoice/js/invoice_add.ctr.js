@@ -270,7 +270,7 @@ app
 					function loadAll() {
 						
 							var customerService = appEndpointSF.getCustomerService();
-							customerService.getAllCustomersByCurrUser($scope.curUser.businessAccount.id).then(
+							customerService.getAllCustomersByBusiness($scope.curUser.businessAccount.id).then(
 									function(custList) {
 										$scope.customersforinvoice = custList.items;	
 									});

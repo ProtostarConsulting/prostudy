@@ -10,16 +10,17 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 
 	
 	$scope.cust = {
-		customerName : "",
+		firstName : "",
+		lastName:"",
 		mobile : "",
 		email : "",
 		address : "",
-		loggedInUser : ""
+		userBusiness : ""
 	};
 
 	$scope.addCustomer = function() {
 		$log.debug("No1");
-		$scope.cust.loggedInUser = $scope.curUser;
+		$scope.cust.userBusiness = $scope.curUser.businessAccount;
 		var customerService = appEndpointSF.getCustomerService();
 		customerService.addCustomer($scope.cust).then(function(msgBean) {
 			$log.debug("No6");

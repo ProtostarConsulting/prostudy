@@ -27,9 +27,6 @@ angular.module("stockApp").controller(
 				var taxService = appEndpointSF.getTaxService();
 
 				taxService.addTax($scope.tax).then(function(msgBean) {
-					$log.debug("No6");
-					$log.debug("Inside Ctr addTax");
-					$log.debug("msgBean.msg:" + msgBean.msg);
 					$scope.showSimpleToast();
 
 				});
@@ -43,7 +40,6 @@ angular.module("stockApp").controller(
 
 				taxService.getAllTaxes($scope.curUser.businessAccount.id).then(
 						function(taxList) {
-							$log.debug("Inside Ctr getAllTaxes");
 							$scope.taxData = taxList;
 							$log.debug("Inside Ctr $scope.taxData:"
 									+ angular.toJson($scope.taxData));
@@ -53,48 +49,24 @@ angular.module("stockApp").controller(
 			$scope.taxData = [];
 			$scope.getAllTaxes();
 
-			$scope.selected = [];
-
+			$scope.selected = [];		
+			
 			$scope.updateTax = function() {
-				$log.debug("Inside Ctr $scope.updateTax");
 				var taxService = appEndpointSF.getTaxService();
 
 				taxService.updateTax($scope.selected[0]).then(
-						function(msgBean) {
-							$log.debug("Inside Ctr updateTax");
-							$log.debug("msgBean.msg:" + msgBean.msg);
-							$scope.showSimpleToast();
-							$scope.getAllTaxes();
+						function(msgBean) {							
+							$scope.showSimpleToastUpdateTax();
+					  		$scope.getAllTaxes();
+					  		window.history.back();
 						});
 			}
-			
-/*			$scope.disableTax = function () {
-				$log.debug("Inside Ctr $scope.updateTax");
-				var taxService = appEndpointSF.getTaxService();
-				
-				taxService.disableTax($scope.tax.taxVisibility).then(
-						function(msgBean){
-							$log.debug("Inside Ctr disableTax");
-							$log.debug("msgBean.msg:" + msgBean.msg);
-							$scope.showSimpleToast();
-						})
-				
+		
+			$scope.cancelUpdate = function() {	
+				window.history.back();
 			}
-*/			
 			
-			var lastValue;
-
-			$("#changer").bind("click", function(e){
-			    lastValue = $(this).val();
-			}).bind("change", function(e){
-			    changeConfirmation = confirm("Really?");
-			    if (changeConfirmation) {
-			        // Proceed as planned
-			    } else {
-			        $(this).val(lastValue);
-			    }
-			});
-			
+	
 			// Setup menu
 			$scope.toggleRight = buildToggler('right');
 
@@ -113,84 +85,13 @@ angular.module("stockApp").controller(
 				});
 			};
 			
+			$scope.showSimpleToast = function() {
+				$mdToast.show($mdToast.simple().content('Tax Data Saved!')
+						.position("top").hideDelay(3000));
+			};
 			
-			$(document).ready(function() {
-			    $('#taxForm').formValidation({
-			     /*   framework: 'bootstrap',
-			        excluded: ':disabled',*/
-			        icon: {
-			        	 valid: 'material-icons',
-			             invalid: 'material-icons',
-			             validating: 'material-icons'
-			        },
-			        fields: {
-			        	taxName: {
-			                validators: {
-			                    notEmpty: {
-			                        message: 'The name is required'
-			                    },
-			                    stringLength: {
-			                        min: 6,
-			                        max: 30,
-			                        message: 'The name must be more than 6 and less than 30 characters long'
-			                    },
-			                    regexp: {
-			                        regexp: /^[a-zA-Z0-9_]+$/,
-			                        message: 'The username can only consist of alphabetical, number and underscore'
-			                    }
-			                }
-			            },
-			            description: {
-			                validators: {
-			                    notEmpty: {
-			                        message: 'The description is required'
-			                    },
-			                    stringLength: {
-			                        min: 50,
-			                        max: 1000,
-			                        message: 'The description must be more than 50 and less than 1000 characters'
-			                    }
-			                }
-			            },
-			            price: {
-			                validators: {
-			                    notEmpty: {
-			                        message: 'The price is required'
-			                    },
-			                    numeric: {
-			                        message: 'The price must be a number'
-			                    }
-			                }
-			            },
-			            'size[]': {
-			                row: '.col-xs-4',
-			                validators: {
-			                    notEmpty: {
-			                        message: 'The size is required'
-			                    }
-			                }
-			            },
-			            'color[]': {
-			                row: '.col-xs-4',
-			                validators: {
-			                    notEmpty: {
-			                        message: 'The color is required'
-			                    }
-			                }
-			            },
-			            availability: {
-			                row: '.col-xs-4',
-			                validators: {
-			                    notEmpty: {
-			                        message: 'The availability option is required'
-			                    }
-			                }
-			            }
-			        }
-			    });
-
-			    // By calling Bootstrap Material Design after calling .formValidation()
-			    // you don't need to adjust the position of feedback icons
-			    $.material.init();
-			});
+			$scope.showSimpleToastUpdateTax = function() {
+				$mdToast.show($mdToast.simple().content('Tax Updated!')
+						.position("top").hideDelay(3000));
+			};
 		});

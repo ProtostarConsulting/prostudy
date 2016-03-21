@@ -5,8 +5,8 @@
 </h3>
 <div id="taxTable">
 	<div id="anothertax">
-		<section layout="row" layout-sm="column" layout-align="left left">
-			<md-button class="md-raised md-primary" ng-click="addAnotherTax()">Add
+		<section layout="row" layout-sm="column" layout-align="end end">
+			<md-button class="md-raised md-primary" ui-sref="stock.taxadd">Add
 			Tax</md-button>
 
 		</section>
@@ -27,8 +27,7 @@
 
 				<td>{{tax.taxCodeName}}</td>
 				<td>{{tax.taxPercenatge}}</td>
-				<td><md-checkbox ng-model="tax.taxVisibility"
-						ng-true-value="true" ng-false-value="false" id="changer"> </md-checkbox></td>
+				<td>{{tax.taxVisibility}}</td>
 
 			</tr>
 		</tbody>
@@ -45,20 +44,56 @@
 		md-page="query.page" md-total={{taxData.length}}
 		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
 </div>
+<form name="taxForm">
+	<div>
+		<div layout="row" layout-xs="column">
+			<md-input-container flex> <label>Tax
+				Name </label> <input ng-model="selected[0].taxCodeName" name="taxCodeName"
+				ng-pattern="/^[a-zA-Z]*$/" ng-required="true">
 
-<div id="update">
-	<section layout="layout-sm=row">
-		<md-input-container flex> <label>Tax Name
-		</label> <input ng-model="selected[0].taxCodeName"> </md-input-container>
-		<md-input-container flex> <label>Rate </label> <input
-			ng-model="selected[0].taxPercenatge"> </md-input-container>
-	</section>
+			<div ng-messages="taxForm.taxCodeName.$error"
+				ng-if="taxForm.taxCodeName.$submitted || taxForm.taxCodeName.$touched">
+				<div ng-message="required">Please Enter Tax Name(Example.:LBT)</div>
 
-	<section layout="row" layout-sm="column" layout-align="left left">
-		<md-button class="md-raised md-primary" ng-click="updateTax()">Update</md-button>
-	</section>
+				<span class="help-block"
+					ng-show="((taxForm.taxCodeName.$error.pattern) &&  taxForm.taxCodeName.$dirty) ">Tax
+					Name should be text only.(Example.:abc)</span>
+			</div>
+			</md-input-container>
 
-</div>
+			<md-input-container flex> <label>Rate </label> <input
+				ng-model="selected[0].taxPercenatge" name="taxPercenatge"
+				ng-maxlength="2" ng-required="true">
+			<div ng-messages="taxForm.taxPercenatge.$error"
+				ng-if="taxForm.taxPercenatge.$submitted || taxForm.taxPercenatge.$touched">
+				<div ng-message="required">Please Enter Tax in
+					Percentage(Example.:12)</div>
 
+
+				<span class="help-block"
+					ng-show="((taxForm.taxPercenatge.$error.minlength || taxForm.taxPercenatge.$error.maxlength) && taxForm.taxPercenatge.$dirty) ">Tax
+					Percenatge should be 2 digits only(Example.:01)</span>
+			</div>
+			</md-input-container>
+
+
+		</div>
+
+		<md-input-container flex> <label>Tax
+			Visibility </label> <md-checkbox ng-model="selected[0].taxVisibility"
+			ng-true-value="true" ng-false-value="false" id="changer">
+		</md-checkbox> </md-input-container>
+
+		<div layout="row" layout-xs="column">
+			<section layout="row" layout-sm="column" layout-align="left left">
+				<md-button class="md-raised md-primary" ui-sref="stock">Cancel</md-button>
+			</section>
+			<section layout="row" layout-sm="column" layout-align="left left">
+				<md-button class="md-raised md-primary"
+					ng-disabled="taxForm.$invalid" ng-click="updateTax()">Update</md-button>
+			</section>
+		</div>
+	</div>
+</form>
 
 </md-content>

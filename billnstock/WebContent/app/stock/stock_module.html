@@ -1,33 +1,30 @@
+
 <div layout="column">
 	<div>
 		<section layout="row">
-			<!-- View Specific Toolbar-->
+			<div class="md-toolbar-tools">
+				<md-content layout="row" layout-align="center start"> <md-button
+					ui-sref="stock.stockItemAdd" ng-click="close()" class="md-primary">
+				Add Stock</md-button> </md-content>
+				<md-content layout="row" layout-align="center start"> <md-button
+					ui-sref="stock.stockItemList" ng-click="close()" class="md-primary">
+				Stock List</md-button> </md-content>
+			</div>
+
 			<div class="md-toolbar-tools">
 				<span flex></span>
-
-				<!-- <section layout="row">
-					<md-button class="md-icon-button md-primary" aria-label="Settings">
-						<md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-					</md-button> -->
-					<!-- <md-button ui-sref="stock.taxadd" ng-click="close()"
-					class="md-primary">
-						Add Tax
-					</md-button> -->
-				<!-- 	<md-button ui-sref="home" class="md-icon-button md-accent" aria-label="Favorite">
-						<md-icon md-svg-icon="img/icons/print.svg"></md-icon>
-					</md-button> -->
-					<md-button  class="md-icon-button" aria-label="More"
-					ng-click="toggleRight()">
-						<md-icon
-						md-svg-icon="img/icons/more_vert.svg"></md-icon>
-					</md-button>
+				<md-card>
+				<section layout="row">
+					<md-button class="md-icon-button" aria-label="More"
+						ng-click="toggleRight()"> <md-icon
+						md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
 
 				</section>
+				</md-card>
 			</div>
 
 		
-
-	<!-- Right Navigation Pane --> 
+				<!-- Right Navigation Pane --> 
 		 <md-sidenav class="md-sidenav-right md-whiteframe-z2"
 			md-component-id="right">
 				<md-toolbar
@@ -35,52 +32,30 @@
 					<!--<h1 class="md-toolbar-tools">Sidenav Right</h1>-->
 				</md-toolbar>
 				<md-content layout-padding>
-					<md-button ng-click="close()" class="md-primary">
-						Close
-						Sidenav
-					</md-button>
 
-					<p hide-md show-gt-md>
-						This shows the selected module
-						links/actions.
-					</p>
-					
-					<md-button ui-sref="stock.taxadd" ng-click="close()"
-					class="md-primary">
+					<md-button flex ui-sref="stock.taxadd" ng-click="close()"
+					class="md-primary"><md-icon md-svg-src="img/icons/ic_queue_black_24px.svg" ui-sref="warehouse.add" class="name" style="color: Green; height: 30px; width: 30px"></md-icon>
 						Add Tax
 					</md-button>
-					<md-button ui-sref="stock.taxlist" ng-click="close()"
-					class="md-primary">
+					<md-button flex ui-sref="stock.taxlist" ng-click="close()"
+					class="md-primary"><md-icon md-svg-src="img/icons/ic_view_list_black_24px.svg" ui-sref="warehouse.add" class="name" style="color: Green; height: 30px; width: 30px"></md-icon>
 						Tax List
 					</md-button>
-					<h3><u>Reports</u></h3>
+					<h3><md-icon md-svg-src="img/icons/ic_receipt_black_24px.svg" ui-sref="warehouse.add" class="name" style="color: Green; height: 30px; width: 30px"></md-icon><u>Reports</u></h3>
 						<md-button ui-sref="stock.reportByThreshold" ng-click="close()"
-					class="md-primary">
+					class="md-primary"><md-icon md-svg-src="img/icons/ic_trending_flat_black_24px.svg" ui-sref="warehouse.add" class="name" style="color: Green; height: 20px; width: 20px"></md-icon>
 						Stock By Threshold
 					</md-button>
 					
 					<md-button ui-sref="stock.reportByWarehouse" ng-click="close()"
-					class="md-primary">
+					class="md-primary"><md-icon md-svg-src="img/icons/ic_trending_flat_black_24px.svg" ui-sref="warehouse.add" class="name" style="color: Green; height: 20px; width: 20px"></md-icon>
 						Stock By Warehouse
 					</md-button>
 				</md-content>
 			</md-sidenav>
+
 		</section>
 
 	</div>
-
-	
-<div ui-view> This is a default page for stock module!</div>
-	<!-- We'll also add some navigation: -->
-	
-	<md-content layout="column" layout-align="center start">
-	
-	<md-button ui-sref="stock.stockItemAdd" ng-click="close()" class="md-primary">
-		Add New Stock
-	</md-button>
-	<md-button ui-sref="stock.stockItemList" ng-click="close()" class="md-primary">
-		Stock List
-	</md-button>	
-	</md-content>
-
+	<div ui-view></div>
 </div>

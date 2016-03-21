@@ -12,24 +12,34 @@ angular.module("stockApp").controller(
 
 			$scope.stock = {
 				id : "",
-				warehouseId : "",
+				warehouse : "",
 				itemName : "",
 				category : "",
 				qty : "",
 				price : "",
 				thresholdValue : '',
 				notes : '',
-				loggedInUser : ""
+				userBusiness : ""
 			};
 			$scope.addStock = function() {
 				$log.debug("No1");
 				var stockService = appEndpointSF.getStockService();
-				$scope.stock.loggedInUser = $scope.curUser;
+				$scope.stock.userBusiness = $scope.curUser.businessAccount;
 
 				stockService.addStock($scope.stock).then(function(msgBean) {
-					$log.debug("No6");
-					$log.debug("Inside Ctr addStock");
-					$log.debug("msgBean.msg:" + msgBean.msg);
+					$scope.showSimpleToast();
+
+				});
+				$log.debug("No4");
+				$scope.stock = {};
+			}
+			
+			$scope.updateStock = function() {
+				$log.debug("No1");
+				var stockService = appEndpointSF.getStockService();
+				$scope.stock.userBusiness = $scope.curUser.businessAccount;
+
+				stockService.addStock($scope.stock).then(function(msgBean) {
 					$scope.showSimpleToast();
 
 				});
@@ -56,7 +66,7 @@ angular.module("stockApp").controller(
 			$scope.warehouseDDLChange = function(index, selectedWarehouse) {
 				$log.debug("##Came to warehouseDDLChange...");
 
-				$scope.stock.warehouseId = selectedWarehouse;
+				$scope.stock.warehouse = selectedWarehouse;
 			};
 
 			$scope.showSimpleToast = function() {

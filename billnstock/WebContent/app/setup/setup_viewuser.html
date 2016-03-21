@@ -16,19 +16,21 @@
 			<md-input-container flex> <label>Last
 				Name </label> <input ng-model="userL.lastName"> </md-input-container>
 		</div>
-		<b>Authority given==={{userL.authority}}</b><br><br>
+		<b>Authority given==={{userL.authority}}</b><br>
+		<br>
 		<div layout layout-sm="column">
-			
+
 			<div ng-repeat="item in items">
 				<div class="action-checkbox">
-					<input id="{{item}}" type="checkbox" value="{{item}}"
+					 {{item}}<md-checkbox id="{{item}}" type="checkbox" value="{{item}}"
 						ng-checked="selection.indexOf(item) > -1"
-						ng-click="toggleSelection(item)" /> <label for="{{item}}"></label>
-					{{item}}
+						ng-click="toggleSelection(item)"> </md-checkbox>
+					<label for="{{item}}"></label>
 				</div>
 
 			</div>
-<br><br>
+			<br>
+			<br>
 		</div>
 		<section layout="row" layout-sm="column" layout-align="left left">
 			<md-button class="md-raised md-primary" ng-click="updateuser()">Update</md-button>

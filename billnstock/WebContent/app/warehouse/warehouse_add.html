@@ -4,34 +4,41 @@
 	<u>Add Warehouse</u>
 </h3>
 <form name="warehouseForm">
-[<span style="color: red;">Field Marked as asterik (*) are mandetory</span>]
+	[<span style="color: red;">Field Marked as asterik (*) are
+		mandetory</span>]
 	<div layout layout-sm="column">
-		<md-input-container flex> <label>Warehouse Name
-		 <span style="color: red;">*</span></label>
-		<textarea name="warehouseName" ng-model="warehouse.warehouseName"
-			ng-required="true"></textarea>
+		<md-input-container flex> <label>Warehouse
+			Name <span style="color: red;">*</span>
+		</label> <textarea name="warehouseName" ng-model="warehouse.warehouseName"
+			ng-pattern="/^[a-zA-Z]*$/" ng-required="true"></textarea>
 		<div ng-messages="warehouseForm.warehouseName.$error"
 			ng-if="warehouseForm.warehouseName.$submitted || warehouseForm.warehouseName.$touched">
 			<div ng-message="required">Please Enter Warehouse Name</div>
+
+			<span class="help-block"
+				ng-show="((warehouseForm.warehouseName.$error.pattern) &&  warehouseForm.warehouseName.$dirty) ">Item
+				Name should be text only.(Example.:abc)</span>
 		</div>
 		</md-input-container>
 	</div>
 
 	<div layout layout-sm="column">
 		<md-input-container flex> <label>Description
-		 <span style="color: red;">*</span></label>
-		<textarea name="description" ng-model="warehouse.description"
+			<span style="color: red;">*</span>
+		</label> <textarea name="description" ng-model="warehouse.description"
 			ng-required="true"></textarea>
 		<div ng-messages="warehouseForm.description.$error"
 			ng-if="warehouseForm.description.$submitted || warehouseForm.description.$touched">
-			<div ng-message="required">Please Enter Description</div>
+			<div ng-message="required">Please Enter
+				Description.(Example.:abc)</div>
 		</div>
 		</md-input-container>
 	</div>
 
 	<div layout="row" layout-xs="column">
 		<md-input-container flex> <label>Address
-			1 <span style="color: red;">*</span></label> <textarea name="address1" ng-model="warehouse.address1"
+			1 <span style="color: red;">*</span>
+		</label> <textarea name="address1" ng-model="warehouse.address1"
 			ng-required="true"></textarea>
 		<div ng-messages="warehouseForm.address1.$error"
 			ng-if="warehouseForm.address1.$submitted || warehouseForm.address1.$touched">
@@ -40,53 +47,52 @@
 		</md-input-container>
 
 		<md-input-container flex> <label>Address
-			2 </label> <textarea name="address2" ng-model="warehouse.address2"
-			ng-required="true"></textarea>
-		<div ng-messages="warehouseForm.address2.$error"
-			ng-if="warehouseForm.address2.$submitted || warehouseForm.address2.$touched">
-			<div ng-message="required">Please Enter Address2</div>
-		</div>
+			2 </label> <textarea name="address2" ng-model="warehouse.address2"></textarea>
 		</md-input-container>
 	</div>
 
 	<div layout="row" layout-xs="column">
 
-		<md-input-container flex> <label>City <span style="color: red;">*</span> </label> <input
-			name="city" ng-model="warehouse.city" ng-required="true">
+		<md-input-container flex> <label>City <span
+			style="color: red;">*</span></label> <input name="city"
+			ng-model="warehouse.city" ng-pattern="/^[a-zA-Z]*$/"
+			ng-required="true">
+
 		<div ng-messages="warehouseForm.city.$error"
-			ng-if="warehouseForm.city.$submitted || warehouseForm.city.$touched">
-			<div ng-message="required">Please Enter City.</div>
-		</div>
+			ng-if="warehouseForm.city.$submitted || warehouseForm.city.$touched || warehouseForm.city.$dirty">
+			<div ng-message="required">Please Enter City
+				Number.(Example.:Pune)</div>
 
+			<span class="help-block"
+				ng-show="((warehouseForm.city.$error.pattern) &&  warehouseForm.city.$dirty) ">City
+				 should be text only.(Example.:Pune)</span>
+		</div>
 		</md-input-container>
 
-		<md-input-container flex> <label>PIN <span style="color: red;">*</span></label> <input
-			name="pin" ng-model="warehouse.pin" ng-required="true">
+		<md-input-container flex> <label>PIN <span
+			style="color: red;">*</span></label> <input type="number" name="pin"
+			ng-model="warehouse.pin" ng-minlength="5" ng-maxlength="5"
+			ng-required="true">
+
 		<div ng-messages="warehouseForm.pin.$error"
-			ng-if="warehouseForm.pin.$submitted || warehouseForm.pin.$touched">
-			<div ng-message="required">Please Enter PIN.</div>
+			ng-if="warehouseForm.pin.$submitted || warehouseForm.pin.$touched || warehouseForm.pin.$dirty">
+			<div ng-message="required">Please Enter pin
+				Number.(Example.:0123456789)</div>
+
+			<span class="help-block"
+				ng-show="((warehouseForm.pin.$error.minlength || warehouseForm.pin.$error.maxlength) && warehouseForm.pin.$dirty) ">PIN
+				Number should be 5 digits(Example.:01234)</span>
 		</div>
 		</md-input-container>
 	</div>
 
 	<div layout="row" layout-xs="column">
 
-		<md-input-container flex> <label>State <span style="color: red;">*</span></label> <input
-			name="state" ng-model="warehouse.state" ng-required="true">
-		<div ng-messages="warehouseForm.state.$error"
-			ng-if="warehouseForm.state.$submitted || warehouseForm.state.$touched">
-			<div ng-message="required">Please Enter State.</div>
-		</div>
+		<md-input-container flex> <label>State</label> <input
+			name="state" ng-model="warehouse.state"> </md-input-container>
 
-		</md-input-container>
-
-		<md-input-container flex> <label>Country <span style="color: red;">*</span>
-		</label> <input name="country" ng-model="warehouse.country" ng-required="true">
-		<div ng-messages="warehouseForm.country.$error"
-			ng-if="warehouseForm.country.$submitted || warehouseForm.country.$touched">
-			<div ng-message="required">Please Enter Country.</div>
-		</div>
-		</md-input-container>
+		<md-input-container flex> <label>Country
+		</label> <input name="country" ng-model="warehouse.country"> </md-input-container>
 	</div>
 
 	<section layout="row" layout-sm="column" layout-align="left left">

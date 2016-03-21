@@ -3,13 +3,6 @@
 <h3>
 	<u>Warehouse List</u>
 </h3>
-<div>
-	<section layout="row" layout-align="end end" flex>
-		<md-button class="md-raised md-primary" ng-click="back()">ADD
-		NEW</md-button>
-	</section>
-</div>
-
 <div layout layout-sm="column">
 	<md-input-container flex> <label>Search</label> <input
 		ng-model="searchText"> </md-input-container>
@@ -20,26 +13,24 @@
 	<table md-data-table md-row-select="selected" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onOrderChange">
 			<tr>
-				<th name="Warehouse Id" order-by="id"></th>
 				<th name="Warehouse Name" order-by="warehouseName"></th>
 				<th name="Description" order-by="description"></th>
 				<th name="Address1" order-by="address1"></th>
-				<th name="Address2" order-by="address2"></th>
+				<th name="PIN" order-by="pin"></th>
 			</tr>
 		</thead>
 
 		<tbody>
 			<tr md-auto-select
 				ng-repeat="warehouse in warehouses | orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit">
-				<td>{{warehouse.id}}</td>
 				<td>{{warehouse.warehouseName}}</td>
 				<td>{{warehouse.description}}</td>
 				<td>{{warehouse.address1}}</td>
-				<td>{{warehouse.address2}}</td>
+				<td>{{warehouse.pin}}</td>
 				<td><section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary"
-							ui-sref="customer.view({selectedCustomerId: customer.id})">
-						Customer Details</md-button>
+							ui-sref="warehouse.edit({selectedWarehouseId: warehouse.id})">
+						Edit</md-button>
 					</section></td>
 				<td>
 			</tr>
@@ -58,31 +49,4 @@
 		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
 </div>
 
-<div id="update">
-	<section layout="layout-sm=row">
-		<md-input-container flex> <label>Warehouse Id
-		</label> <input ng-model="selected[0].id" disabled> </md-input-container>
-		<md-input-container flex> <label>Warehouse
-			Name </label> <input ng-model="selected[0].warehouseName"> </md-input-container>
-		<md-input-container flex> <label>Description
-		</label> <input ng-model="selected[0].description"> </md-input-container>
-		<md-input-container flex> <label>Address1
-		</label> <input ng-model="selected[0].address1"> </md-input-container>
-
-		<md-input-container flex> <label>Address2 </label> <input
-			ng-model="selected[0].address2"> </md-input-container>
-		<md-input-container flex> <label>City </label> <input
-			ng-model="selected[0].city"> </md-input-container>
-			<md-input-container flex> <label>State </label> <input
-			ng-model="selected[0].state"> </md-input-container>
-			<md-input-container flex> <label>Country </label> <input
-			ng-model="selected[0].country"> </md-input-container>
-
-	</section>
-
-	<section layout="row" layout-sm="column" layout-align="left left">
-		<md-button class="md-raised md-primary" ng-click="updateWarehouse()">Update</md-button>
-	</section>
-
-</div>
  </md-content>

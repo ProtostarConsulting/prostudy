@@ -3,45 +3,96 @@
 <h3>
 	<u>Add Stock</u>
 </h3>
-<form name="userForm">
-	<div id="addField">
-		<div layout layout-sm="column">
-			<md-input-container flex> <md-select
-				ng-model="selectedWarehouse" placeholder="Warehouse Name"
-				ng-change="warehouseDDLChange($index, selectedWarehouse)">
-			<md-option ng-value="warehouse" ng-repeat="warehouse in warehouses">{{warehouse.warehouseName
-			}}</md-option> </md-select> </md-input-container>
-
-
+<form name="stockForm">
+	<div>
+		<div layout layout-xs="column">
+			<div layout="row" flex>
+				<md-select flex ng-model="selectedWarehouse"
+					placeholder="Warehouse Name"
+					ng-change="warehouseDDLChange($index, selectedWarehouse)">
+				<md-option ng-value="warehouse" ng-selected="$first" ng-repeat="warehouse in warehouses">{{warehouse.warehouseName
+				}}</md-option> </md-select>
+				<md-icon md-svg-src="img/icons/ic_queue_black_24px.svg"
+					ui-sref="warehouse.add" class="name"
+					style="color: Green; height: 40px; width: 40px"></md-icon>
+			</div>
 			<md-input-container flex> <label>Item
-				Name </label> <input ng-model="stock.itemName"> </md-input-container>
+				Name <span style="color: red;">*</span>
+			</label> <input name="itemName" ng-model="stock.itemName"
+				ng-pattern="/^[a-zA-Z]*$/" ng-required="true">
+			<div ng-messages="stockForm.itemName.$error"
+				ng-if="stockForm.itemName.$submitted || stockForm.itemName.$touched">
+				<div ng-message="required">Please Enter Item
+					Name(Example.:John)</div>
+
+				<span class="help-block"
+					ng-show="((stockForm.itemName.$error.pattern) &&  stockForm.itemName.$dirty) ">Item
+					Name should be text only.(Example.:abc)</span>
+			</div>
+			</md-input-container>
 		</div>
 
-		<div layout layout-sm="column">
+		<div layout="row" layout-xs="column">
 			<md-input-container flex> <label>Categories
-			</label> <input ng-model="stock.category"> </md-input-container>
-			<md-input-container flex> <label>Quantity
-			</label> <input ng-model="stock.qty"> </md-input-container>
+				<span style="color: red;">*</span>
+			</label> <input name="categories" ng-model="stock.category"
+				ng-pattern="/^[a-zA-Z]*$/" ng-required="true">
+			<div ng-messages="stockForm.categories.$error"
+				ng-if="stockForm.categories.$submitted || stockForm.categories.$touched">
+				<div ng-message="required">Please Enter First
+					Name(Example.:John)</div>
+
+				<span class="help-block"
+					ng-show="((stockForm.categories.$error.pattern) &&  stockForm.categories.$dirty) ">Category
+					should be text only.(Example.:abc)</span>
+			</div>
+			</md-input-container>
+
+			<md-input-container flex> <label>Quantity<span
+				style="color: red;">*</span></label> <input name="quantity" type="number"
+				ng-model="stock.qty" ng-required="true">
+			<div ng-messages="stockForm.quantity.$error"
+				ng-if="stockForm.quantity.$submitted || stockForm.quantity.$touched || stockForm.quantity.$dirty">
+				<div ng-message="required">Please Enter quantity.
+					(Example.:0123456789)</div>
+			</div>
+			</md-input-container>
+
 		</div>
-		<div layout layout-sm="column">
-			<md-input-container flex> <label>Price </label>
-			<input ng-model="stock.price"> </md-input-container>
+		<div layout="row" layout-xs="column">
+
+			<md-input-container flex> <label>Price<span
+				style="color: red;">*</span></label> <input name="price" type="number"
+				ng-model="stock.price" ng-required="true">
+			<div ng-messages="stockForm.price.$error"
+				ng-if="stockForm.price.$submitted || stockForm.price.$touched || stockForm.price.$dirty">
+				<div ng-message="required">Please Enter Price (Example.:1234)</div>
+			</div>
+			</md-input-container>
+
 			<md-input-container flex> <label>Threshold
-				Value </label> <input ng-model="stock.thresholdValue"> </md-input-container>
+				Value<span style="color: red;">*</span>
+			</label> <input name="threshold" type="number"
+				ng-model="stock.thresholdValue" ng-required="true">
+			<div ng-messages="stockForm.threshold.$error"
+				ng-if="stockForm.threshold.$submitted || stockForm.threshold.$touched || stockForm.threshold.$dirty">
+				<div ng-message="required">Please Enter Threshold
+					Value.(Example.:012)</div>
+			</div>
+			</md-input-container>
 		</div>
 
 		<div layout layout-sm="column">
-			<md-input-container flex> <label>Notes </label>
-			<textarea ng-model="stock.notes" rows="4" cols="1"></textarea></md-input-container>
+			<md-input-container flex> <label>Notes </span>
+			</label> <textarea name="note" ng-model="stock.notes" ng-required="true"></textarea>
+			</md-input-container>
 		</div>
 
-		<!--  <md-input-container md-no-float>
-      <md-icon md-svg-src="img/icons/ic_place_24px.svg" style="display:inline-block;"></md-icon>
-      <input ng-model="user.address" type="text" placeholder="Address" >
-    </md-input-container>
-  -->
 		<section layout="row" layout-sm="column" layout-align="left left">
-			<md-button class="md-raised md-primary" ng-click="addStock()">Submit</md-button>
+			<md-button class="md-raised md-primary" ng-click="addStock()">
+			<md-icon md-svg-src="img/icons/ic_queue_black_24px.svg"
+				ui-sref="warehouse.add" class="name"
+				style="color: Green; height: 20px; width: 20px"></md-icon>Add</md-button>
 			<!-- 			<md-button class="md-raised md-primary"
 				ng-click="">Cancel</md-button> -->
 		</section>
