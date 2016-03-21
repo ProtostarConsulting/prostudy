@@ -3,6 +3,14 @@
 <form name="Signin" ng-model="Signin">
 
 	<!-- <div id="addField"> -->
+	<div layout-sm="column" layout-align="start start" flex>
+
+		<md-button class="md-icon-button" aria-label="prev"
+			ng-click="back()"> <md-tooltip> go back </md-tooltip> <md-icon
+			md-svg-icon="img/icons/ic_reply_black_24px.svg"
+			aria-label="Prev Week"></md-icon> </md-button>
+
+	</div>
 	<div layout layout-sm="column">
 		<md-input-container flex> <b>CREATE BUSINESS
 			ACCOUNT</b> </md-input-container>
@@ -22,29 +30,29 @@
 		</md-input-container>
 	<md-input-container flex >
 		 Is Google User
-		<md-checkbox ng-model="business.isGoogleUser" ng-true-value="true"
+		<md-checkbox ng-model="userEntity.isGoogleUser" ng-true-value="true"
 			ng-false-value="false"> </md-checkbox>
 		</md-input-container>	
 	</div>
 	<div layout layout-xs="column">
 
 		<md-input-container
-			md-is-error="Signin.adminGmailId.$invalid && (Signin.$submitted || Signin.adminGmailId.$dirty)"
+			md-is-error="Signin.adminEmailId.$invalid && (Signin.$submitted || Signin.adminEmailId.$dirty)"
 			flex> <label>Admin Gmail Email id</label> <span
-			style="color: red" ng-show="Signin.adminGmailId.$error.required"
-			class="mandatory">*</span> <input type="text" name="adminGmailId" id="adminGmailId"
-			ng-model="business.adminGmailId" ng-blur="Checkemail(business.adminGmailId)" ng-required="true"><span
+			style="color: red" ng-show="Signin.adminEmailId.$error.required"
+			class="mandatory">*</span> <input type="text" name="adminEmailId" id="adminEmailId"
+			ng-model="userEntity.email_id" ng-blur="Checkemail(userEntity.email_id)" ng-required="true"><span
 			style="color: red" >{{userexists}}</span>
-		<div ng-messages="Signin.adminGmailId.$error"
-			ng-if="Signin.adminGmailId.$submitted || Signin.adminGmailId.$touched">
+		<div ng-messages="Signin.adminEmailId.$error"
+			ng-if="Signin.adminEmailId.$submitted || Signin.adminEmailId.$touched">
 			<div ng-message="required">Please Enter Gmail Id.</div>
 		</div>
 		</md-input-container>
 
-		<md-input-container flex ng-hide="business.isGoogleUser">
+		<md-input-container flex ng-hide="userEntity.isGoogleUser">
 		<label>Enter Password</label> <span style="color: red"
 			ng-show="Signin.password.$error.required" class="mandatory">*</span>
-		<input type="password" name="password" ng-model="business.password"
+		<input type="password" name="password" ng-model="userEntity.password"
 			ng-required="condition()">
 
 		<div ng-messages="Signin.password.$error"
@@ -59,8 +67,8 @@
 			md-is-error="Signin.adminFirstName.$invalid && (Signin.$submitted || Signin.adminFirstName.$dirty)"
 			flex> <label>First Name</label> <span
 			style="color: red" ng-show="Signin.adminFirstName.$error.required"
-			class="mandatory">*</span> <input name="adminFirstName"
-			ng-model="business.adminFirstName" ng-required="true">
+			class="mandatory">*</span> <input name="adminFirstName" id="adminFirstName"
+			ng-model="userEntity.firstName" ng-required="true">
 		<div ng-messages="Signin.adminFirstName.$error"
 			ng-if="Signin.adminFirstName.$touched">
 			<div ng-message="required">Please Enter First Name.</div>
@@ -73,8 +81,8 @@
 			md-is-error="Signin.adminLastName.$invalid && (Signin.$submitted || Signin.adminLastName.$dirty)"
 			flex> <label>Last Name</label> <span
 			style="color: red" ng-show="Signin.adminLastName.$error.required"
-			class="mandatory">*</span> <input name="adminLastName"
-			ng-model="business.adminLastName" ng-required="true">
+			class="mandatory">*</span> <input id="adminLastName" name="adminLastName"
+			ng-model="userEntity.lastName" ng-required="true">
 
 		<div ng-messages="Signin.adminLastName.$error"
 			ng-if="Signin.adminLastName.$touched">
@@ -147,7 +155,7 @@
 				Business Name</label> <input ng-model="business.businessName"> </md-input-container>
 
 			<md-input-container flex> <label>Admin
-				Gmail Email id</label> <input ng-model="business.adminGmailId"> 	<div flex-xs flex="50">
+				Gmail Email id</label> <input ng-model="business.adminEmailId"> 	<div flex-xs flex="50">
 			<md-checkbox ng-model="user.isGoogleUser" ng-true-value="true"
 				ng-false-value="false"> Is Google User </md-checkbox> </div>
 			</md-input-container>

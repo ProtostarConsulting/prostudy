@@ -16,19 +16,20 @@ angular.module("stockApp").controller(
 
 			$scope.business = {
 				businessName : "",
-				adminGmailId : $scope.curuser.email_id,
-				adminFirstName : $scope.curuser.firstName,
-				adminLastName : $scope.curuser.lastName,
 				accounttype:""
+			}
+			$scope.userEntity={
+					businessAccount:"",
+					email_id : $scope.curuser.email_id,
+					firstName : $scope.curuser.firstName,
+					lastName : $scope.curuser.lastName,	
+					authority:[],
+					isGoogleUser:true
 			}
 
 			$scope.addBusiness = function() {
-				var UserService = appEndpointSF.getUserService();
-				UserService.getBusinessByEmailID($scope.business.adminGmailId).then(function(assetList) {
-					$scope.user = assetList;
-					 if (typeof $scope.user.adminGmailId === 'undefined'){
-						 
-					 
+		
+				
 				var proadminService = appEndpointSF.getproadminService();
 				proadminService.getAccountTypeById($scope.accounttype).then(
 						function(assetList) {
@@ -36,17 +37,17 @@ angular.module("stockApp").controller(
 				
 									var UserService = appEndpointSF.getUserService();
 										UserService.addBusiness($scope.business).then(
-												function(msgBean) {
-													$scope.showSavedToast(msgBean.msg);
+												function(business) {
+													$scope.userEntity.businessAccount=business.result;
+													$scope.userEntity.authority.push("admin");
+													UserService.addUser($scope.userEntity).then(function(msg){
+												    $scope.showSavedToast("Business Added Sucessfully");
 													$state.go("login");
-												});
+
+													});
+										});
 						});
-					}else{
 				
-				angular.element('#adminGmailId').focus();
-					}	
-						 
-					});
 			}
 
 			/* get Account Type */
@@ -60,26 +61,9 @@ angular.module("stockApp").controller(
 			$scope.accountlist = [];
 			$scope.getallAccountType();
 			
-			
-			/////////////////Checkemail
-			$scope.Checkemail=function(emailid){
-				var UserService = appEndpointSF.getUserService();
-				UserService.getBusinessByEmailID(emailid).then(function(assetList) {
-					$scope.user = assetList;
-					 if (typeof $scope.user.adminGmailId != 'undefined'){
-						 $scope.userexists="user already exists"
-						/*$scope.usediffemail="checked";*/
-					 }else{
-						 $scope.userexists="";
-					 }
-					
-				});
-				
-				}
-			$scope.user;
-			$scope.userexist="";
-			/*$scope.usediffemail="unchecked";*/
 
+			
+	
 			// //////////////////////////////////////////////////////////////////////////////
 
 			$scope.toggleRight = buildToggler('right');

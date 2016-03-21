@@ -14,45 +14,47 @@ angular.module("stockApp").controller(
 			$scope.curuser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
 
+		
 			$scope.business = {
-				businessName : "",
-				adminGmailId : "",
-				adminFirstName : "",
-				adminLastName : "",
-				password : "",
-				isGoogleUser : true,
-				accounttype:""
-			}
+					businessName : "",
+					accounttype:""
+				}
+				$scope.userEntity={
+						businessAccount:"",
+						email_id : "",
+						firstName : "",
+						lastName : "",	
+						authority:[],
+						isGoogleUser:true
+				}
 
-			$scope.addBusiness = function() {
-				
-				var UserService = appEndpointSF.getUserService();
-				UserService.getBusinessByEmailID($scope.business.adminGmailId).then(function(assetList) {
-					$scope.user = assetList;
-					 if (typeof $scope.user.adminGmailId === 'undefined'){
-				
-				var proadminService = appEndpointSF.getproadminService();
+				$scope.addBusiness = function() {
+
+					var proadminService = appEndpointSF.getproadminService();
 					proadminService.getAccountTypeById($scope.accounttype).then(
-							function(accounttyperecord) {
-								$scope.business.accounttype = accounttyperecord.result;
-				
-								var UserService = appEndpointSF.getUserService();
-									UserService.addNewBusiness($scope.business).then(
-											function(msgBean) {
-												$scope.showSimpleToast(msgBean.msg);
-												$state.go("login");
-						});
-					});
-				}else{
+							function(assetList) {
+								$scope.business.accounttype = assetList.result;
+					
+										var UserService = appEndpointSF.getUserService();
+											UserService.addBusiness($scope.business).then(
+													function(business) {
+														$scope.userEntity.businessAccount=business.result;
+														$scope.userEntity.authority.push("admin");
+														UserService.addUser($scope.userEntity).then(function(msg){
+													    $scope.showSimpleToast("Business Added Sucessfully");
+														$state.go("login");
+
+														});
+											});
+							});
+					
+				}
 			
-			angular.element('#adminGmailId').focus();
-				}	
-					 
-				});
-				
-			}
+			
+			
+			
 			$scope.condition = function() {
-				if ($scope.business.isGoogleUser == false) {
+				if ($scope.userEntity.isGoogleUser == false) {
 					return true;
 				} else {
 					return false
@@ -75,25 +77,36 @@ angular.module("stockApp").controller(
 			
 		
 			
-			/////////////////Checkemail
-				$scope.Checkemail=function(emailid){
-					var UserService = appEndpointSF.getUserService();
-					UserService.getBusinessByEmailID(emailid).then(function(assetList) {
-						$scope.user = assetList;
-						 if (typeof $scope.user.adminGmailId != 'undefined'){
-							 $scope.userexists="user already exists"
-							/*$scope.usediffemail="checked";*/
-						 }else{
-							 $scope.userexists="";
-						 }
-						
-					});
-					
-					}
-				$scope.user;
-				$scope.userexist="";
-				/*$scope.usediffemail="unchecked";*/
+//check email already exists
 			
+			$scope.Checkemail=function(emailid){
+				var proadminService = appEndpointSF.getproadminService();
+				proadminService.getAllemp().then(function(empList) {
+					$scope.user11 = empList.items;
+					for(i=0;i<$scope.user11.length;i++){
+					 if ($scope.user11[i].email_id == emailid){
+						 $scope.userexists="user already exists"
+							 angular.element(document.getElementById('adminFirstName'))[0].disabled = true;
+						 angular.element(document.getElementById('adminLastName'))[0].disabled = true;
+							 break;
+						
+					 }else{
+						 $scope.userexists="";
+						 angular.element(document.getElementById('adminFirstName'))[0].disabled = false;
+						 angular.element(document.getElementById('adminLastName'))[0].disabled = false;
+
+					 }
+					}
+				});
+				
+				}
+			$scope.user11=[];
+			$scope.userexist="";
+
+			$scope.back = function() {
+				window.history.back();
+				// $state.go("^", {});
+			};
 			// //////////////////////////////////////////////////////////////////////////////
 
 			$scope.toggleRight = buildToggler('right');

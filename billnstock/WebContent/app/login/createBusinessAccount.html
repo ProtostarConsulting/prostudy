@@ -16,9 +16,9 @@
 	</div>
 	<div layout layout-sm="column">
 
-		<md-input-container flex> <label>Admin
-			Gmail Email id</label> <input name="gmailid"  id="adminGmailId" 
-			 ng-model="business.adminGmailId" ng-blur="Checkemail(business.adminGmailId)" ng-required="true"><span
+		<md-input-container flex> <label>Enter Admin Gmail Address | Enter Your Email Address
+		</label> <input name="gmailid"  id="adminEmailId" 
+			 ng-model="userEntity.email_id" ng-required="true" disabled><span
 			style="color: red" >{{userexists}}</span>
 		<div ng-messages="RegiForm.gmailid.$error"
 			ng-if="RegiForm.gmailid.$submitted || RegiForm.gmailid.$touched">
@@ -26,7 +26,7 @@
 		</div>	
 		</md-input-container>
 		<md-input-container flex> <label>First
-			Name</label> <input name="fName" ng-model="business.adminFirstName" ng-required="true">
+			Name</label> <input id="fName" name="fName" ng-model="userEntity.firstName" ng-required="true">
 		<div ng-messages="RegiForm.fName.$error"
 			ng-if="RegiForm.fName.$submitted || RegiForm.fName.$touched">
 			<div ng-message="required">Please Enter First Name.</div>
@@ -34,7 +34,7 @@
 		</md-input-container>
 
 		<md-input-container flex> <label>Last
-			Name</label> <input name="lName" ng-model="business.adminLastName" ng-required="true"> 
+			Name</label> <input id="lName" name="lName" ng-model="userEntity.lastName" ng-required="true"> 
 		<div ng-messages="RegiForm.lName.$error"
 			ng-if="RegiForm.lName.$submitted || RegiForm.lName.$touched">
 			<div ng-message="required">Please Enter Last Name.</div>
