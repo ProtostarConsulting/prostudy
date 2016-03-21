@@ -47,7 +47,7 @@
 
 			<div layout="row" layout-align="centre centre" layout-sm="column">
 				<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
-				<md-button class="md-raised md-primary" ng-click="login()">
+				<md-button class="md-raised md-primary" ng-click="login()" ng-disabled="loginForm.$invalid">
 				LOGIN </md-button>
 			</div>
 		</div>
