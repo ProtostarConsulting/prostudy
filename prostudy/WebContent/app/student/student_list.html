@@ -5,20 +5,18 @@
 		<md-data-table-toolbar class="alternate" ng-show="selected.length">
 			<div>
 				{{selected.length}} {{selected.length > 1 ? 'students' : 'student'}} selected
-			</div>
-			
+			</div>			
 		</md-data-table-toolbar>
  <div>
 	<md-data-table-container>
 			<table md-data-table class="md-primary" md-row-select="selected" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onorderchange">
+		
 			<tr>
-				<th order-by="Name" name="Name" unit=""></th>
+				<th order-by="firstName" name="Name" unit=""></th>
 				<th order-by="email_id" name="Email-ID"></th>
 				<th order-by="address" name="Address"></th>
-				<th order-by="contact" name="Contact"></th>
-			
-				
+				<th order-by="contact" name="Contact"></th>		
 			</tr>
 		</thead>
 		<tbody>
