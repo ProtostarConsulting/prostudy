@@ -127,16 +127,11 @@ angular
 							$scope.tempPracticeExam.questions
 									.push($scope.selected[i]);
 						}
-
+						$log.debug("$scope.tempPracticeExam"+angular.toJson($scope.tempPracticeExam));
 						practiceExamService
 								.addPracticeExam($scope.tempPracticeExam)
 								.then(
 										function(msgBean) {
-											$log.debug("No6");
-											$log
-													.debug("Inside Ctr addPracticeExamCtr");
-											$log.debug("msgBean.msg:"
-													+ msgBean.msg);
 											$scope.showSavedToast();
 											$scope.tempPracticeExam = {	};
 										});
