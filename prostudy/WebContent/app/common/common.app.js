@@ -309,7 +309,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('login', {
 		url : "/login",
 		templateUrl : '/app/login/login_module.html',
-		controller : 'indexCtr'
+		controller : 'loginModuleCtr'
 	}).state('updatemyprofile', {
 		url : "/updatemyprofile",
 		templateUrl : '/app/myprofile/myprofile_update.html',

@@ -23,7 +23,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 
 	UserService.getUser = function() {
 		var deferred = $q.defer();
-		gapi.client.userService.getUser().execute(function(resp) {
+		gapi.client.userService.getUserList().execute(function(resp) {
 				deferred.resolve(resp.items);
 		});
 		return deferred.promise;
@@ -544,7 +544,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	}
 	
 	PracticeExamService.addPracticeExam = function(exam) {
-		var deferred = $q.defer();
+		var deferred = $q.defer();		
 		gapi.client.practiceExamService.addPracticeExam(exam).execute(
 				function(resp) {
 					deferred.resolve(resp);
