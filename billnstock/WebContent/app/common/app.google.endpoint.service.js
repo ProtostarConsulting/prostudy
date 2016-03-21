@@ -322,8 +322,7 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
-<<<<<<< .mine
-=======
+
 	
 	
 	
@@ -334,14 +333,7 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}*/
->>>>>>> .r919
 
-	/*
-	 * proadminService.getfreeAccountTypeRecord=function() { var deferred =
-	 * $q.defer();
-	 * gapi.client.proadminService.getfreeAccountTypeRecord({'accountName':"Free"}).execute(function(resp) {
-	 * deferred.resolve(resp); }); return deferred.promise; }
-	 */
 
 	// --------------------setup service----------------------------
 	var setupService = {};
