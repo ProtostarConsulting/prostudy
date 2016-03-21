@@ -23,7 +23,7 @@ angular.module("stockApp").controller(
 
 			$scope.addAsset = function() {
 				$scope.Asset.loggedInUser = $scope.curUser;
-
+				
 				var assetService = appEndpointSF.getAssetManagementService();
 				assetService.addAsset($scope.Asset).then(function(msgBean) {
 					$scope.showSimpleToast(msgBean.msg);
