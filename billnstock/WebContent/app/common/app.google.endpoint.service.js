@@ -323,9 +323,6 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	
-	
-	
 	/*proadminService.getfreeAccountTypeRecord=function() {
 		var deferred = $q.defer();
 		gapi.client.proadminService.getfreeAccountTypeRecord({'accountName':"Free"}).execute(function(resp) {
