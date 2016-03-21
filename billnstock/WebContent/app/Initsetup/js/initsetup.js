@@ -14,13 +14,13 @@ angular.module("stockApp").controller(
 				 if ($scope.accountlist == 0){
 					 		proadminService.initsetup().then(function(msgBean) {
 					 				//$scope.showSimpleToast("setup 1 accout type created");
-					 				$scope.step1="account type is Created next to add user ";
+					 				$scope.step1="Account Type Is Created Click Next To Add User ";
 					 				/*angular.element(document.getElementById('addemp'))[0].disabled = false;*/
 						
 				});	
 				 }else{
 					 //$scope.showSimpleToast("setup allredy done");
-					 $scope.step1="setup already  done";
+					 $scope.step1="Setup Already  Done";
 					/* angular.element(document.getElementById('addemp'))[0].disabled = true;*/
 				 }
 
@@ -35,17 +35,17 @@ angular.module("stockApp").controller(
 								$scope.emps = empList.items.length;
 						if($scope.emps==0){
 											proadminService.initsetupnext().then(function(msgBean) {
-											$scope.step2="Add User successfully ";
+											$scope.step2="Add User Successfully ";
 											
 											});
 						}else{
-							$scope.step2="user already  added";
+							$scope.step2="Setup Is Finish";
 						}
 						
 							
 						});
 					 }else{
-						 $scope.step2="account type is not saved in daabase";
+						 $scope.step2="Account Type Is Not In Daabase Agin Click On Next Button";
 					 }
 
 				});
