@@ -64,15 +64,14 @@ angular
 														.saveLoggedInUser(
 																result.result);
 												$scope.curUser = result.result;
-												
-												//$scope.businessAccountName = $scope.curUser.businessAccount.businessName;
+														//$scope.businessAccountName = $scope.curUser.businessAccount.businessName;
 												$window.location.reload();
 												$state.go("home");
 											
 											} else {
 												$log.debug("User Not logged  "
 														+ $scope.user.email_id);
-												$scope.loginMsg = "Login failed.";
+												$scope.loginMsg = "Authontication failed. username password not correct";
 											}
 										});
 					}
@@ -149,7 +148,7 @@ angular
 															}
 
 
-															$scope.test=$scope.curUser.businessAccount.adminGmailId;
+															$scope.test=$scope.curUser.email_id;
 														    $scope.eid=$scope.test.substring($scope.test.indexOf("@")+1);
 															$scope.curUser.authority.push($scope.eid);
 														  //  $scope.userDoamin=$scope.eid;

@@ -30,9 +30,7 @@
 	<div ng-show="loading">Loading... </div>	
 	<md-content ng-hide="loading"> <!-- Top Navigation Pane --> <md-toolbar>
 	<div class="md-toolbar-tools">
-		<span hide-sm>ProERP -
-			{{if(businessAccountName)?businessAccountName:"Manage your business
-			paperless, anytime, & anywhere!"}}<!--  Manage your business paperless, anytime,
+		<span hide-sm>ProERP - {{curUser.businessAccount.businessName}}<!--  Manage your business paperless, anytime,
 			& anywhere! -->
 		</span> <span hide-gt-sm>ProERP</span>
 		<!-- fill up the space between left and right area -->
@@ -98,7 +96,7 @@
 			<md-content layout="column" ng-controller="LeftCtrl"> 
 			<md-button class="md-primary" ng-click="close()" hide-gt-md> Close Sidenav </md-button>
 			<md-button ui-sref="home" ng-show="user == 'admin'" ng-click="close()" class="md-primary" show-gt-md> Home </md-button>
-			
+				<md-button ui-sref="user_prof_detail" ng-show="user == 'admin'" ng-click="close()"  class="md-primary" show-gt-md>My Account </md-button>
 			<md-button ui-sref="customer"  ng-show="user == 'admin'|| user == 'customer'" ng-click="close()" class="md-primary" show-gt-md> Customer </md-button>
 			<md-button ui-sref="account"  ng-show="user == 'admin'|| user == 'account'" ng-click="close()" class="md-primary" show-gt-md> Account </md-button>
 			<md-button ui-sref="stock" ng-show="user == 'admin' || user == 'stock' " ng-click="close()" ng-show="loader.stock" class="md-primary" show-gt-md> Stock </md-button> 	
@@ -113,7 +111,7 @@
 			<md-button ui-sref="probusiness" ng-show="user=='protostarcs.com' || user=='protostar.co.in'" ng-click="close()"  class="md-primary" show-gt-md>ProBusiness</md-button>
 			<md-button ui-sref="AssetMangement" ng-show="user == 'admin' || user == 'login' " ng-click="close()"  class="md-primary" show-gt-md>Asset Mangement</md-button>
 			<md-button ui-sref="warehouse" ng-show="user == 'admin' || user == 'login' " ng-click="close()" class="md-primary" show-gt-md>Warehouse Management</md-button>
-			<md-button ui-sref="user_prof_detail" ng-show="user == 'admin'" ng-click="close()"  class="md-primary" show-gt-md>User Profile / Detail </md-button>
+		
 			<md-button ui-sref="document"  ng-show="user == 'admin'" ng-click="close()"  class="md-primary" show-gt-md>Document</md-button>
 			<md-button ui-sref="email" ng-show="user == 'admin' " ng-click="close()"  class="md-primary" show-gt-md>email</md-button>
 			<!-- <md-button ui-sref="proAdmin" ng-show="(userDoamin=='protostarcs.com' || userDoamin=='protostar.co.in') && user == 'admin'" ng-click="close()"  class="md-primary" show-gt-md>Protostar Admin </md-button>
