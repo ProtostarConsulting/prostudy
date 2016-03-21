@@ -1,58 +1,66 @@
-<div layout="column">
+<md-content>
 
+<div>
+	<section layout="row" layout-align="start start" flex>
+		<span hide-xs> 
+			<md-button ui-sref="user_prof_detail.viewprofile" ng-click="close()"
+				class="md-primary"> View Profile </md-button>
 
-	<div>
+			<md-button ui-sref="user_prof_detail.changepassword"
+				ng-click="close()" class="md-primary"> Change password </md-button>
 
-		<section layout="row">
-			<div class="md-toolbar-tools">
-				<md-content layout="row" layout-align="center start"> <md-button
-					ui-sref="user_prof_detail.viewprofile" ng-click="close()" class="md-primary">
-				View Profile </md-button> </md-content>
-				
-					<md-content layout="row" layout-align="center start"> <md-button
-					ui-sref="user_prof_detail.changepassword" ng-click="close()" class="md-primary">
-				Change password </md-button> </md-content>
-				
-				<md-content layout="row" layout-align="center start"> <md-button
-					 ui-sref="user_prof_detail.getAllSlip({viewsalslips: curuser.id})" ng-click="close()" class="md-primary">
-				View Salary Slip </md-button> </md-content>
-			</div>
+			<md-button
+				ui-sref="user_prof_detail.getAllSlip({viewsalslips: curuser.id})"
+				ng-click="close()" class="md-primary"> View Salary Slip
+			</md-button>
+		
 
+		</span>
+	  <span hide-gt-xm>
 			<div class="md-toolbar-tools">
 				<span flex></span>
-				<md-card>
+				<!--<md-card>-->
 				<section layout="row">
 					<md-button class="md-icon-button" aria-label="More"
 						ng-click="toggleRight()"> <md-icon
 						md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
 
 				</section>
-				</md-card>
+				<!--</md-card>-->
 			</div>
+		</span>
+	</section>
 
 
-			<md-sidenav class="md-sidenav-right md-whiteframe-z2"
-				md-component-id="right"> <md-toolbar
-				class="md-theme-light">
-			<h1 class="md-toolbar-tools">Sidenav Right</h1>
-
-
-			</md-toolbar> <md-content layout-padding> <md-button
-				ui-sref="user_prof_detail.viewprofile" ng-click="close()" class="md-primary">
-			View Profile </md-button></md-content>
-			<md-content layout="row" layout-align="center start"> <md-button
-					ui-sref="user_prof_detail.changepassword" ng-click="close()" class="md-primary">
-				Change password </md-button> </md-content>
-					<md-content layout="row" layout-align="center start"> <md-button
-					ui-sref="user_prof_detail.viewSalSlips" ng-click="close()" class="md-primary">
-				View Salary Slip </md-button> </md-content>
-			  </md-sidenav>
-		</section>
-
-	</div>
-
-
-
-
-	<div ui-view></div>
 </div>
+</md-content>
+
+<div>
+	<section layout="column" layout-align="start start" flex>	
+	
+		<md-sidenav class="md-sidenav-right md-whiteframe-z2"
+			md-component-id="right"> <md-toolbar
+			class="md-theme-light"> <!--<h1 class="md-toolbar-tools">Sidenav Right</h1>-->
+		</md-toolbar>
+		
+		<md-button ui-sref="user_prof_detail.viewprofile" ng-click="close()"
+				class="md-primary"> View Profile </md-button>
+
+			<md-button ui-sref="user_prof_detail.changepassword"
+				ng-click="close()" class="md-primary"> Change password </md-button>
+
+			<md-button
+				ui-sref="user_prof_detail.getAllSlip({viewsalslips: curuser.id})"
+				ng-click="close()" class="md-primary"> View Salary Slip
+			</md-button>
+			
+			</md-sidenav>
+
+	</section>
+
+</div>
+
+
+<div ui-view></div>
+			
+		

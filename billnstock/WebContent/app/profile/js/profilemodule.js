@@ -56,6 +56,7 @@ angular
 							var UserService = appEndpointSF.getUserService();
 							UserService.updateUser($scope.userL).then(function(msgBean) {
 								$scope.showSimpleToast(msgBean.msg); 
+															
 							});
 							}
 					}
@@ -147,6 +148,27 @@ angular
 					$scope.printslectedslip = [];
 					$scope.printslip();
 		//----------------------------------------------------------------
+					$scope.inputType1 = 'password';      
+					$scope.inputType2 = 'password'; 
+					
+					$scope.showpass1=function(){
+						if($scope.inputType1=='password'){
+						  $scope.inputType1 = 'text';
+						}
+						else{
+							$scope.inputType1 = 'password';
+						}
+					}
+					$scope.showpass2=function(){
+						if($scope.inputType2=='password'){
+							  $scope.inputType2 = 'text';
+							}
+							else{
+								$scope.inputType2 = 'password';
+							}
+					}
+					
+					//----------------------------------------------
 					
 					$scope.toggleRight = buildToggler('right');
 

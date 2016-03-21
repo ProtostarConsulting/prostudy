@@ -1,28 +1,37 @@
 
 <md-content layout-padding>
-<form name="leadform">
+<form name="viewProfileform">
 
 	<div id="addField">
 		<!-- <div layout layout-sm="column">
 			<md-input-container flex> <label>User Id
 			</label> <input ng-model="userL.id"> </md-input-container>
 		</div> -->
-		<div layout layout-sm="column">
-			<md-input-container flex> <label>
-				Email id </label> <input ng-model="userL.email_id"> </md-input-container>
+		<div layout layout-xs="column">
+			<md-input-container> <label> Email id </label> <input
+				ng-model="userL.email_id" disabled> </md-input-container>
 		</div>
-		<div layout layout-sm="column">
+		<div layout layout-xs="column">
 			<md-input-container flex> <label>First
-				Name </label> <input ng-model="userL.firstName"> </md-input-container>
-		</div>
-		<div layout layout-sm="column">
-		
+				Name <span style="color: red;">*</span>
+			</label> <input name="fname" ng-model="userL.firstName" ng-required="true">
+			<div ng-messages="viewProfileform.fname.$error"
+				ng-if="viewProfileform.fname.$submitted || viewProfileform.fname.$touched">
+				<div ng-message="required">Please Enter First Name.</div>
+			</div>
+			
+			</md-input-container>
 			<md-input-container flex> <label>Last
-				Name </label> <input ng-model="userL.lastName"> </md-input-container>
+				Name <span style="color: red;">*</span>
+			</label> <input name="lname" ng-model="userL.lastName" ng-required="true">
+			<div ng-messages="viewProfileform.lname.$error"
+				ng-if="viewProfileform.lname.$submitted || viewProfileform.lname.$touched">
+				<div ng-message="required">Please Enter Last Name.</div>
+			</div>
+			</md-input-container>
 		</div>
-		
 		<section layout="row" layout-sm="column" layout-align="left left">
-			<md-button class="md-raised md-primary" ng-click="updateuser()">Update</md-button>
+			<md-button ng-disabled="viewProfileform.$invalid" class="md-raised md-primary" ng-click="updateuser()">Update</md-button>
 
 		</section>
 	</div>
