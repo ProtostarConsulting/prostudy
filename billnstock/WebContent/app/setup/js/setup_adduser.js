@@ -127,8 +127,8 @@ angular
 					
 						/////////////////Checkemail
 					$scope.Checkemail=function(emailid){
-						var hrService = appEndpointSF.gethrService();
-						hrService.getAllemp($scope.curUser.businessAccount.id).then(function(empList) {
+						var proadminService = appEndpointSF.getproadminService();
+						proadminService.getAllemp().then(function(empList) {
 							$scope.user11 = empList.items;
 							for(i=0;i<$scope.user11.length;i++){
 							 if ($scope.user11[i].email_id == emailid){

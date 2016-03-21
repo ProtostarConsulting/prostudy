@@ -12,7 +12,7 @@ angular.module("stockApp").controller(
 
 			$scope.business={
 					businessName:"",
-					adminGmailId:"",
+					adminEmailId:"",
 					adminFirstName:"",
 					adminLastName:""
 						
