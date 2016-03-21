@@ -13,8 +13,6 @@ public class StockItemEntity {
 	@Id
 	private Long id;
 	@Index
-	private Long itemId;
-	@Index
 	private String itemName;
 	private String category;
 	private int qty;
@@ -22,26 +20,27 @@ public class StockItemEntity {
 	private String notes;
 	private int thresholdValue;
 
-	Ref<WarehouseEntity> warehouseId;
+	Ref<WarehouseEntity> warehouse;
 
-	public WarehouseEntity getWarehouseId() {
-		return warehouseId.get();
+	public WarehouseEntity getWarehouse() {
+		return warehouse.get();
 	}
 
-	public void setWarehouseId(WarehouseEntity warehouseId) {
-		this.warehouseId = Ref.create(warehouseId);
+	public void setWarehouse(WarehouseEntity warehouse) {
+		this.warehouse = Ref.create(warehouse);
 	}
 
 	@Index
-	Ref<UserEntity> loggedInUser;
-	public UserEntity getLoggedInUser() {
-		return loggedInUser.get();
+	Ref<BusinessEntity> userBusiness;
+	
+	public BusinessEntity getUserBusiness() {
+		return userBusiness.get();
 	}
 
-	public void setLoggedInUser(UserEntity loggedInUser) {
-		this.loggedInUser = Ref.create(loggedInUser);
+	public void setUserBusiness(BusinessEntity userBusiness) {
+		this.userBusiness = Ref.create(userBusiness);
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -60,14 +59,6 @@ public class StockItemEntity {
 
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
-	}
-
-	public Long getItemId() {
-		return itemId;
-	}
-
-	public void setItemId(Long itemId) {
-		this.itemId = itemId;
 	}
 
 	public int getQty() {

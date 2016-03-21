@@ -24,8 +24,8 @@ public class CustomerService {
 	
 	}
 
-	@ApiMethod(name = "getAllCustomersByCurrUser")
-	public List<Customer> getAllCustomersByCurrUser(@Named("id") Long id) {
+	@ApiMethod(name = "getAllCustomersByBusiness")
+	public List<Customer> getAllCustomersByBusiness(@Named("id") Long id) {
 		
 		List<Customer> customer=ofy().load().type(Customer.class).list();
 		List<Customer> filteredCustomers = new ArrayList<Customer>();
@@ -33,7 +33,7 @@ public class CustomerService {
 		
 		for(int i=0;i<customer.size();i++)
 		{				
-			 if(customer.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id))
+			 if(customer.get(i).getUserBusiness().getId().equals(id))
 			 {
 				 System.out.println("Got the record:" + customer.get(i) );
 				 filteredCustomers.add(customer.get(i));
@@ -53,78 +53,17 @@ public class CustomerService {
 		Customer customerById = ofy().load().type(Customer.class).id(Id).now();
 
 		System.out.println("Searched Recored is:"
-				+ customerById.getCustomerName());
+				+ customerById.getFirstName());
 
 		return customerById;
 	}
 
-	@ApiMethod(name = "searchCustomerByName")
-	public Customer searchCustomerByName(
-			@Named("customerName") String customerName) {
-
-		Customer customer = ofy().load().type(Customer.class)
-				.filter("customerName", customerName).first().now();
-
-		System.out.println("Searched Recored is:" + customer.getCustomerName());
-
-		return customer;
+	@ApiMethod(name = "updateCustomer")
+	public void updateCustomer(Customer customer) {
+			
+		
+		Key<Customer> cust = ofy().save().entity(customer).now();
+	
 	}
 
-	/*
-	 * @ApiMethod(name="addCustomer") public ServerMsg addCustomer(Customer
-	 * customer) { ServerMsg msgBean=new ServerMsg(); EntityManager em=null; try
-	 * { Customer customer2=new Customer(); if(customer.getId()!=null) {
-	 * customer2.setId(customer.getId());
-	 * 
-	 * }
-	 * 
-	 * customer2.setCustomerName(customer.getCustomerName());
-	 * customer2.setMobile(customer.getMobile());
-	 * customer2.setEmail(customer.getEmail());
-	 * customer2.setCustomerAddress(customer.getCustomerAddress()); //
-	 * msgBean.setToken("S");
-	 * 
-	 * em=EMF.get().createEntityManager(); em.persist(customer2);
-	 * msgBean.setMsg(
-	 * "Customer Records Added successfully"+" "+customer2.getCustomerName()); }
-	 * catch (Exception e) { e.printStackTrace(); } finally { em.close(); }
-	 * return msgBean; }
-	 * 
-	 * @SuppressWarnings("unchecked")
-	 * 
-	 * @ApiMethod(name="getAllCustomers") public List<Customer>
-	 * getAllCustomers() { System.out.println("In side getAllCustomers " );
-	 * List<Customer> customerList= new ArrayList<Customer>(); EntityManager em=
-	 * null; try { em = EMF.get().createEntityManager();
-	 * 
-	 * Query q= em.createQuery("select c from Customer c");
-	 * customerList=q.getResultList();
-	 * System.out.println("Got getAllCustomers: " + customerList.size() );
-	 * 
-	 * } catch (Exception e)
-	 * 
-	 * { // TODO Auto-generated catch block e.printStackTrace(); } finally {
-	 * em.close(); }
-	 * 
-	 * return customerList;
-	 * 
-	 * }//end of getAllStockServices
-	 * 
-	 * @SuppressWarnings("unchecked")
-	 * 
-	 * @ApiMethod(name="getCustomerByID") public Customer
-	 * getCustomerByID(@Named("Id") Long Id) {
-	 * System.out.println("In side getCustomerById "); ServerMsg msgBean=new
-	 * ServerMsg(); List<Customer> customerList = new ArrayList<Customer>();
-	 * EntityManager em=null;
-	 * 
-	 * try { em = EMF.get().createEntityManager(); Query q =
-	 * em.createQuery("select c from Customer c where c.id =" + Id);
-	 * customerList = q.getResultList();
-	 * System.out.println("Got AllCustomerList: " + customerList.size());
-	 * 
-	 * } catch (Exception e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); } finally { em.close(); } if(customerList.size() >
-	 * 0) return customerList.get(0); else return null; }
-	 */
 }// end of CustomerService

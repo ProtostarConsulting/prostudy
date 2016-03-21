@@ -19,9 +19,13 @@ public class WarehouseService {
 
 	@ApiMethod(name = "addWarehouse")
 	public void addWarehouse(WarehouseEntity warehouseEntity) {
-
 		ofy().save().entity(warehouseEntity).now();
-
+	}
+	
+	@ApiMethod(name = "getWarehouseById")
+	public WarehouseEntity getWarehouseById(@Named("id") Long id){
+		WarehouseEntity warehouseEntity2 = ofy().load().type(WarehouseEntity.class).id(id).now();
+		return warehouseEntity2;		
 	}
 
 	@ApiMethod(name = "getAllWarehouseByBusiness")

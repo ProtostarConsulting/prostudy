@@ -20,6 +20,14 @@ public class StockItemService {
 
 		Key<StockItemEntity> now = ofy().save().entity(stockItemEntity).now();
 	}
+	
+	@ApiMethod(name = "getStockById")
+	public StockItemEntity getStockById(@Named("id") Long id) {
+
+		StockItemEntity stock = ofy().load().type(StockItemEntity.class).id(id).now();
+		
+		return stock;
+	}
 
 	@ApiMethod(name = "getAllStock")
 	public List<StockItemEntity> getAllStock(@Named("id") Long id) {
@@ -29,8 +37,7 @@ public class StockItemService {
 		List<StockItemEntity> filteredStocks = new ArrayList<StockItemEntity>();
 
 		for (int i = 0; i < stocks.size(); i++) {
-			if (stocks.get(i).getLoggedInUser().getBusinessAccount().getId()
-					.equals(id)) {
+			if (stocks.get(i).getUserBusiness().getId().equals(id)) {
 				System.out.println("Got the record:" + stocks.get(i));
 				filteredStocks.add(stocks.get(i));
 			}
@@ -47,12 +54,13 @@ public class StockItemService {
 		List<StockItemEntity> filteredThresholdStocks = new ArrayList<StockItemEntity>();
 
 		for (int i = 0; i < stocks.size(); i++) {
-			if (stocks.get(i).getLoggedInUser().getBusinessAccount().getId()
-					.equals(id)) {
-				if (stocks.get(i).getQty() <= stocks.get(i).getThresholdValue()) {
-					System.out.println("Got the record:" + stocks.get(i));
-					filteredThresholdStocks.add(stocks.get(i));
-				}
+			if ((stocks.get(i).getUserBusiness().getId().equals(id))
+					&& (stocks.get(i).getQty() <= stocks.get(i)
+							.getThresholdValue())) {
+
+				System.out.println("Got the record:" + stocks.get(i));
+				filteredThresholdStocks.add(stocks.get(i));
+
 			}
 		}
 		return filteredThresholdStocks;

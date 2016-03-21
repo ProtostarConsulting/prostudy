@@ -11,8 +11,6 @@ import com.protostar.billingnstock.user.entities.UserEntity;
 public class TaxEntity {
 	@Id
 	private Long id;
-	@Index
-	private String taxId;
 	private String taxCodeName;
 	private double taxPercenatge;
 	private boolean taxVisibility=true;
