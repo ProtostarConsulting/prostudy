@@ -47,19 +47,6 @@ public class UserService {
 
 	}
 
-	/*
-	 * @ApiMethod(name = "addUser") public String addUser(UserEntity usr) { //
-	 * first check if user with given email ids exists // return that user
-	 * exisits // else add
-	 * 
-	 * List<UserEntity> list = ofy().load().type(UserEntity.class).list(); for
-	 * (int i = 0; i < list.size(); i++) { if
-	 * (list.get(i).getEmail_id().equals(usr.getEmail_id())) {
-	 * System.out.println("User already exits"); return "User Allready Exist"; }
-	 * else { Key<UserEntity> now = ofy().save().entity(usr).now(); return
-	 * "Add Suceessfully"; } } return null; }
-	 */
-
 	@ApiMethod(name = "updateUser")
 	public void updateUser(UserEntity usr) {
 		Key<UserEntity> now = ofy().save().entity(usr).now();
@@ -78,28 +65,11 @@ public class UserService {
 	}
 	
 	@ApiMethod(name = "getBusinessByEmailID", path="Somepath_realted_to_your_service")
-	public BusinessEntity getBusinessByEmailID(@Named("adminGmailId") String emailid) {
+	public BusinessEntity getBusinessByEmailID(@Named("adminEmailId") String emailid) {
 		List<BusinessEntity> list = ofy().load().type(BusinessEntity.class)
-				.filter("adminGmailId", emailid).list();
+				.filter("adminEmailId", emailid).list();
 		return (list == null || list.size() == 0) ? null : list.get(0);
 	}
-
-	/*
-	 * @ApiMethod(name = "login") public UserEntity login(UserEntity usr) {
-	 * List<UserEntity> list =
-	 * ofy().load().type(UserEntity.class).filter("email_id",
-	 * usr.getEmail_id()).list();
-	 * 
-	 * UserEntity foundUser = (list == null || list.size() == 0) ? null :
-	 * list.get(0); //
-	 * System.out.println("***************************************"+foundUser);
-	 * if(foundUser.getPassword().equals(usr.getPassword())){ return foundUser;
-	 * } else { return null;
-	 * 
-	 * }
-	 * 
-	 * }
-	 */
 
 	@ApiMethod(name = "login")
 	public UserEntity login(@Named("email_id") String email,
@@ -124,26 +94,23 @@ public class UserService {
 	}
 
 	@ApiMethod(name = "addBusiness")
-	public void addBusiness(BusinessEntity business) {
+	public BusinessEntity addBusiness(BusinessEntity business){
 		Date date = new Date();
 		String DATE_FORMAT = "dd/MM/yyyy";
+		
 		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
-
 		business.setRegisterDate(sdf.format(date));
-
+		
 		Key<BusinessEntity> now = ofy().save().entity(business).now();
+		
+		return business;
 
-		UserEntity userEntity = new UserEntity();
-		userEntity.setBusinessAccount(business);
-		userEntity.setEmail_id(business.getAdminGmailId());
-		userEntity.setFirstName(business.getAdminFirstName());
-		userEntity.setLastName(business.getAdminLastName());
-		userEntity.setIsGoogleUser(true);
-		userEntity.setAuthority(Arrays.asList("admin"));
-		// userEntity.setPassword(business.getPassword());
-
-		ofy().save().entity(userEntity).now();
-
+		
+/*		user.setBusinessAccount(business);
+		user.setIsGoogleUser(true);
+		user.setAuthority(Arrays.asList("admin"));
+		ofy().save().entity(user).now();
+*/
 	}
 
 	@ApiMethod(name = "addNewBusiness")
@@ -154,9 +121,9 @@ public class UserService {
 		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
 
 		BusinessEntity businessEntity = new BusinessEntity();
-		businessEntity.setAdminFirstName(business.getAdminFirstName());
-		businessEntity.setAdminGmailId(business.getAdminGmailId());
-		businessEntity.setAdminLastName(business.getAdminLastName());
+		/*businessEntity.setAdminFirstName(business.getAdminFirstName());
+		businessEntity.setAdminEmailId(business.getAdminEmailId());
+		businessEntity.setAdminLastName(business.getAdminLastName());*/
 		businessEntity.setBusinessName(business.getBusinessName());
 		businessEntity.setAccounttype(business.getAccounttype());
 		businessEntity.setRegisterDate(sdf.format(date));
@@ -165,9 +132,9 @@ public class UserService {
 
 		UserEntity userEntity = new UserEntity();
 		userEntity.setBusinessAccount(businessEntity);
-		userEntity.setEmail_id(business.getAdminGmailId());
+		/*userEntity.setEmail_id(business.getAdminEmailId());
 		userEntity.setFirstName(business.getAdminFirstName());
-		userEntity.setLastName(business.getAdminLastName());
+		userEntity.setLastName(business.getAdminLastName());*/
 		userEntity.setIsGoogleUser(business.getIsGoogleUser());
 		userEntity.setAuthority(Arrays.asList("admin"));
 		userEntity.setPassword(business.getPassword());

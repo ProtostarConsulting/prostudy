@@ -47,9 +47,9 @@ public class ProAdminService {
 		}
 		
 		BusinessEntity businessEntity = new BusinessEntity();
-		businessEntity.setAdminFirstName("ganesh");
-		businessEntity.setAdminGmailId("ganesh.lawande@protostar.co.in");
-		businessEntity.setAdminLastName("Lawande");
+		/*businessEntity.setAdminFirstName("ganesh");
+		businessEntity.setAdminEmailId("ganesh.lawande@protostar.co.in");
+		businessEntity.setAdminLastName("Lawande");*/
 		businessEntity.setBusinessName("Protostar");
 		businessEntity.setAccounttype(filteredaccount);
 		businessEntity.setRegisterDate(sdf.format(date));

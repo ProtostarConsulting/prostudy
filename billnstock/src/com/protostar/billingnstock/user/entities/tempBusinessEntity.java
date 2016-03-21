@@ -33,10 +33,10 @@ public class tempBusinessEntity {
 	}
 
 	private String businessName;
-	@Index
-	private String adminGmailId;
+	/*@Index
+	private String adminEmailId;
 	private String adminFirstName;
-	private String adminLastName;
+	private String adminLastName;*/
 	private String password;
 	private Boolean isGoogleUser = true;
 
@@ -64,12 +64,14 @@ public class tempBusinessEntity {
 		this.businessName = businessName;
 	}
 
-	public String getAdminGmailId() {
-		return adminGmailId;
+	
+
+	/*public String getAdminEmailId() {
+		return adminEmailId;
 	}
 
-	public void setAdminGmailId(String adminGmailId) {
-		this.adminGmailId = adminGmailId;
+	public void setAdminEmailId(String adminEmailId) {
+		this.adminEmailId = adminEmailId;
 	}
 
 	public String getAdminFirstName() {
@@ -87,5 +89,5 @@ public class tempBusinessEntity {
 	public void setAdminLastName(String adminLastName) {
 		this.adminLastName = adminLastName;
 	}
-
+*/
 }
