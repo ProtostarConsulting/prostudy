@@ -154,42 +154,38 @@ angular
 						}
 					}
 
-					// ///////////////Checkemail
-					$scope.Checkemail = function(emailid) {
-						var hrService = appEndpointSF.gethrService();
-						hrService
-								.getAllemp($scope.curUser.businessAccount.id)
-								.then(
-										function(empList) {
-											$scope.user11 = empList.items;
-											for (i = 0; i < $scope.user11.length; i++) {
-												if ($scope.user11[i].email_id == emailid) {
-													$scope.userexists = "user already exists"
-													angular
-															.element(document
-																	.getElementById('fname'))[0].disabled = true;
-													angular
-															.element(document
-																	.getElementById('lname'))[0].disabled = true;
-													break;
+	
+					
+					
+					
+					//check email already exists
+								
+								$scope.Checkemail=function(emailid){
+									var proadminService = appEndpointSF.getproadminService();
+									proadminService.getAllemp().then(function(empList) {
+										$scope.user11 = empList.items;
+										for(i=0;i<$scope.user11.length;i++){
+										 if ($scope.user11[i].email_id == emailid){
+											 $scope.userexists="user already exists"
+												 angular.element(document.getElementById('fname'))[0].disabled = true;
+											 angular.element(document.getElementById('lname'))[0].disabled = true;
+												 break;
+											
+										 }else{
+											 $scope.userexists="";
+											 angular.element(document.getElementById('fname'))[0].disabled = false;
+											 angular.element(document.getElementById('lname'))[0].disabled = false;
 
-												} else {
-													$scope.userexists = "";
-													angular
-															.element(document
-																	.getElementById('fname'))[0].disabled = false;
-													angular
-															.element(document
-																	.getElementById('lname'))[0].disabled = false;
+										 }
+										}
+									});
+									
+									}
+								$scope.user11=[];
+								$scope.userexist="";
 
-												}
-											}
-										});
-
-					}
-					$scope.user11 = [];
-					$scope.userexist = "";
-
+					
+					
 					$scope.toggleRight = buildToggler('right');
 
 					function buildToggler(navID) {
