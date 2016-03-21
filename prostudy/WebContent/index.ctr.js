@@ -14,34 +14,9 @@ angular
 					$scope.loginClick = function() {
 						$state.go("login");
 					};
-
 					
 					$scope.curUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
-					
-					 $scope.login = function() {
-					      var UserService = appEndpointSF.getUserService();
-					      UserService.login($scope.tempUser.email_id,$scope.tempUser.password)
-					        .then(
-					          function(result) {
-					           if (result.result.email_id) {
-					            appEndpointSF
-					              .getLocalUserService()
-					              .saveLoggedInUser(
-					                result.result);
-					            $scope.curUser = result.result;
-					          
-					            $log.debug("User logged in successfully: "+ $scope.tempUser.email_id);
-					            $window.location.reload();
-					            $state.go("home");
-
-					           } else {
-					           
-					            $scope.loginMsg = "Login failed.";
-					           }
-					          });
-					     }
-					 
 					
 					$scope.$on('event:google-plus-signin-success', function(
 							event, authResult) {
