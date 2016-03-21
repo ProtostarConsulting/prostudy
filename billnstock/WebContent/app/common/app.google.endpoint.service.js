@@ -88,7 +88,7 @@ function googleEndpointSF($log, $q) {
 	UserService.getBusinessByEmailID = function(email_id) {
 		var deferred = $q.defer();
 		gapi.client.userService.getBusinessByEmailID({
-			'adminGmailId' : email_id
+			'adminEmailId' : email_id
 		}).execute(function(resp) {
 			$log.debug("resp:" + angular.toJson(resp));
 
@@ -155,10 +155,8 @@ function googleEndpointSF($log, $q) {
 
 	UserService.addBusiness = function(business) {
 		var deferred = $q.defer();
-		gapi.client.userService.addBusiness(business).execute(function() {
-			deferred.resolve({
-				"msg" : "Business Add Successfully."
-			});
+		gapi.client.userService.addBusiness(business).execute(function(resp) {
+			deferred.resolve(resp);
 		});
 		return deferred.promise;
 	}
@@ -323,6 +321,8 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
+	
+	
 	
 	/*proadminService.getfreeAccountTypeRecord=function() {
 		var deferred = $q.defer();
