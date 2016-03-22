@@ -40,7 +40,7 @@
 				style="color: blue">Enter New Password <span style="color: red;">*</span> </label> <input
 				type="password" style="color: red" ng-model="userL.password"></md-input-container>
 		</div>
-		<b>Authority given==={{userL.authority}}</b><br> <br>
+	<!-- 	<b>Authority given==={{userL.authority}}</b><br> <br>
 		<div layout layout-sm="column">
 
 			<div ng-repeat="item in items">
@@ -55,6 +55,19 @@
 
 			</div>
 			<br> <br>
+		</div> -->
+		<b>Authority</b><br> <br>
+		<div flex layout layout-sm="column">
+
+			<div ng-repeat="item in items">
+				<div class="action-checkbox">
+					{{item}}
+					<md-checkbox id="{{item}}" type="checkbox" value="{{item}}"
+						ng-checked="selection.indexOf(item) > -1"
+						ng-click="toggleSelection(item)"> <!-- <label for="{{item}}"></label> -->
+					</md-checkbox>
+				</div>
+			</div>
 		</div>
 		<section layout="row" layout-sm="column" layout-align="left left">
 			<md-button class="md-raised md-primary" ng-click="updateuser()">Update</md-button>

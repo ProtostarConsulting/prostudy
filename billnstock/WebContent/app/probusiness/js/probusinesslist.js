@@ -58,7 +58,7 @@ angular
 						authority : []
 					}
 					$scope.items = [ "stock", "sales", "hr", "crm", "customer",
-							"setup", "invoice", "purchase", "basic", "employee" ];
+										"invoice", "purchase", "employee", "admin" ];
 					$scope.selection = [];
 					$scope.toggleSelection = function toggleSelection(itemName) {
 						var idx = $scope.selection.indexOf(itemName);
