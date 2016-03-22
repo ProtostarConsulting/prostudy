@@ -9,20 +9,20 @@
 			<md-input-container flex> <label>Code
 				Name <span style="color: red;">*</span>
 			</label> <input name="taxName" ng-model="tax.taxCodeName"
-				ng-pattern="/^[a-zA-Z]*$/" ng-required="true">
+				 ng-required="true">
 			<div ng-messages="taxForm.taxName.$error"
 				ng-if="taxForm.taxName.$submitted || taxForm.taxName.$touched">
 				<div ng-message="required">Please Enter Tax Name(Example.:LBT)</div>
 
-				<span class="help-block"
+<!-- 				<span class="help-block"
 					ng-show="((taxForm.taxName.$error.pattern) &&  taxForm.taxName.$dirty) ">Tax
 					Name should be text only.(Example.:abc)</span>
-			</div>
+ -->			</div>
 			</md-input-container>
 			<md-input-container flex> <label>Tax
 				Rate <span style="color: red;">*</span>
 			</label> <input type="number" name="taxPercenatge"
-				ng-model="tax.taxPercenatge" ng-maxlength="2" ng-required="true">
+				ng-model="tax.taxPercenatge" ng-required="true">
 			<div ng-messages="taxForm.taxPercenatge.$error"
 				ng-if="taxForm.taxPercenatge.$submitted || taxForm.taxPercenatge.$touched">
 				<div ng-message="required">Please Enter Tax in

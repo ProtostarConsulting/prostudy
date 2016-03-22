@@ -7,12 +7,6 @@
 				<u>Sales Order</u>
 			</h3>
 			<div layout="row" layout-xs="column">
-<!-- 				<md-input-container flex> <md-select
-					ng-model="salesOrder.customer" placeholder="Customer Name"
-					ng-change="CustomerddlChange($index, customerName)"> <md-option
-					ng-value="cust" ng-repeat="cust in customersforinvoice">{{cust.customerName
-				}}</md-option> </md-select> </md-input-container>
- -->
  
 				<md-autocomplete flex required
 				md-input-name="autocompleteField"
@@ -22,10 +16,10 @@
 				md-selected-item="salesOrder.customer"
 				md-search-text="searchTextInput"
 				md-items="item in querySearch(searchTextInput)"
-				md-item-text="item.customerName"
+				md-item-text="item.firstName"
 				md-floating-label="Customer Name">
 					<md-item-template>
-						<span md-highlight-text="searchTextInput">{{item.customerName}}</span>
+						<span md-highlight-text="searchTextInput">{{item.firstName}}</span>
 					</md-item-template>
 					<div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
 						<div ng-message="required">
@@ -47,12 +41,7 @@
 			</div>
 
 			<div layout="row" layout-xs="column">
-<!-- 
-				<md-input-container flex> <label>Quotation
-					Date </label> <input ng-model="salesOrder.quotationDate"> </md-input-container>
-				<md-input-container flex> <label>Sales
-					Order Date </label> <input ng-model="salesOrder.salesOrderDate"></md-input-container>
- -->
+
    	 	 Quotation Date:<md-datepicker flex ng-model="salesOrder.quotationDate" md-placeholder="Enter Quotation Date"></md-datepicker>	
  		 SO Date:  <md-datepicker flex ng-model="salesOrder.salesOrderDate" md-placeholder="Enter SO Date"></md-datepicker>	
  			</div>

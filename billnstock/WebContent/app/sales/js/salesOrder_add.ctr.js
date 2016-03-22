@@ -183,7 +183,7 @@ app.controller("salesOrderAddCtr", function($scope, $window, $mdToast, $timeout,
 		function loadAll() {
 			
 				var customerService = appEndpointSF.getCustomerService();
-				customerService.getAllCustomersByCurrUser($scope.curUser.businessAccount.id).then(
+				customerService.getAllCustomersByBusiness($scope.curUser.businessAccount.id).then(
 						function(custList) {
 							$scope.customersforinvoice = custList.items;	
 						});			
@@ -192,7 +192,7 @@ app.controller("salesOrderAddCtr", function($scope, $window, $mdToast, $timeout,
 		function createFilterFor(query) {
 			var lowercaseQuery = angular.lowercase(query);
 			return function filterFn(cus) {
-				return (angular.lowercase(cus.customerName).indexOf(lowercaseQuery) === 0);
+				return (angular.lowercase(cus.firstName).indexOf(lowercaseQuery) === 0);
 			};
 		}
 

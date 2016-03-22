@@ -25,10 +25,10 @@
 				md-selected-item="accountPayable.customer"
 				md-search-text="searchTextInput"
 				md-items="item in querySearch(searchTextInput)"
-				md-item-text="item.customerName"
+				md-item-text="item.firstName"
 				md-floating-label="Customer Name">
 					<md-item-template>
-						<span md-highlight-text="searchTextInput">{{item.customerName}}</span>
+						<span md-highlight-text="searchTextInput">{{item.firstName}}</span>
 					</md-item-template>
 					<div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
 						<div ng-message="required">
@@ -59,7 +59,7 @@
 <!-- 		<md-input-container flex> <label>Invoice
 			Date </label> <input ng-model="accountPayable.invoiceDate"> </md-input-container>
  -->
- 		Invoice Date:<md-datepicker flex ng-model="accountPayable.invoiceDate" md-placeholder="Select Date"></md-datepicker>	
+ 		Invoice Date:<md-datepicker flex ng-model="accountPayable.invoiceDate" md-placeholder="Select Date" ng-required="false"></md-datepicker>	
  	</div>
 
 	<div layout="row" layout-xs="column">
@@ -78,7 +78,7 @@
 		<md-input-container flex> <label>Invoice
 			Due Date </label> <input ng-model="accountPayable.invoiceDueDate"> </md-input-container>
  -->
- 		Invoice Due Date:<md-datepicker flex ng-model="accountPayable.invoiceDueDate" md-placeholder="Select Date"></md-datepicker>	
+ 		Invoice Due Date:<md-datepicker flex ng-model="accountPayable.invoiceDueDate" md-placeholder="Select Date" ng-required="false"></md-datepicker>	
  	</div>
 
 	<div layout="row" layout-xs="column">
@@ -90,12 +90,12 @@
 		</md-input-container>
  -->
  
-  		PO Due Date:<md-datepicker flex ng-model="accountPayable.purchaseOrderDate" md-placeholder="Select Date"></md-datepicker>	
+  		PO Due Date:<md-datepicker flex ng-model="accountPayable.purchaseOrderDate" md-placeholder="Select Date" ng-required="false"></md-datepicker>	
   	</div>
 
 	<section layout="row" layout-sm="column" layout-align="left left">
 		<md-button class="md-raised md-primary"
-			ng-disabled="custForm.$invalid" ng-click="addPayable()">Add</md-button>
+			ng-disabled="payableForm.$invalid" ng-click="addPayable()">Add</md-button>
 	</section>
 	[<span style="color: red;">Field Marked as asterik (*) are
 		mandetory</span>]

@@ -14,15 +14,11 @@
 			<md-input-container flex> <label>Item
 				Name <span style="color: red;">*</span>
 			</label> <input name="itemName" ng-model="stockData.itemName"
-				ng-pattern="/^[a-zA-Z]*$/" ng-required="true">
+				 ng-required="true">
 			<div ng-messages="stockForm.itemName.$error"
 				ng-if="stockForm.itemName.$submitted || stockForm.itemName.$touched">
 				<div ng-message="required">Please Enter Item
 					Name(Example.:John)</div>
-
-				<span class="help-block"
-					ng-show="((stockForm.itemName.$error.pattern) &&  stockForm.itemName.$dirty) ">Item
-					Name should be text only.(Example.:abc)</span>
 			</div>
 			</md-input-container>
 		</div>
@@ -31,15 +27,11 @@
 			<md-input-container flex> <label>Categories
 				<span style="color: red;">*</span>
 			</label> <input name="categories" ng-model="stockData.category"
-				ng-pattern="/^[a-zA-Z]*$/" ng-required="true">
+				ng-required="true">
 			<div ng-messages="stockForm.categories.$error"
 				ng-if="stockForm.categories.$submitted || stockForm.categories.$touched">
 				<div ng-message="required">Please Enter First
 					Name(Example.:John)</div>
-
-				<span class="help-block"
-					ng-show="((stockForm.categories.$error.pattern) &&  stockForm.categories.$dirty) ">Category
-					should be text only.(Example.:abc)</span>
 			</div>
 			</md-input-container>
 

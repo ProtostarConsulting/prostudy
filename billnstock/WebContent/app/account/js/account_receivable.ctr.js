@@ -3,7 +3,7 @@ var app= angular.module("stockApp");
 app.controller(
 		"accountReceivableCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log,$stateParams, objectFactory, appEndpointSF) {
+				$log,$stateParams,$q, objectFactory, appEndpointSF) {
 
 			$log.debug("Inside accountAddCtr");
 
@@ -27,9 +27,6 @@ app.controller(
 				var accountService = appEndpointSF.getAccountService();
 				accountService.addReceivable($scope.accountReveivable).then(
 						function(msgBean) {
-							$log.debug("No6");
-							$log.debug("Inside Ctr addAccount");
-							$log.debug("msgBean.msg:" + msgBean.msg);
 							$scope.showSimpleToast();
 
 						});
@@ -74,21 +71,37 @@ app.controller(
 						.position("top").hideDelay(3000));
 			};
 			
-			
-			$scope.getAllCustomersByCurrUser = function() {
-				$log.debug("Inside Ctr $scope.getAllCustomers");
-				var customerService = appEndpointSF.getCustomerService();
+			// list of `state` value/display objects
+			$scope.customersforinvoice = [];
+			loadAll();
+			$scope.accountReveivable.customer = null;
+			$scope.searchTextInput = null;
 
-				customerService.getAllCustomersByCurrUser($scope.curUser.businessAccount.id).then(
-						function(custList) {
-							$log.debug("Inside Ctr getAllCustomers");
-							$scope.customersforaccount = custList;
-							$log.debug("Inside Ctr $scope.customers:"
-									+ angular.toJson($scope.customersforaccount));
-						});
+			$scope.querySearch = function(query) {
+				var results = query ? $scope.customersforinvoice
+						.filter(createFilterFor(query)) : $scope.customersforinvoice;
+				var deferred = $q.defer();
+				$timeout(function() {
+					deferred.resolve(results);
+			//		$scope.salesOrder.customer = results;
+				}, Math.random() * 1000, false);
+				return deferred.promise;
 			}
 
-			$scope.customersforaccount = [];
-			$scope.getAllCustomersByCurrUser();
-			
+			function loadAll() {
+				
+					var customerService = appEndpointSF.getCustomerService();
+					customerService.getAllCustomersByBusiness($scope.curUser.businessAccount.id).then(
+							function(custList) {
+								$scope.customersforinvoice = custList.items;	
+							});			
+			}
+
+			function createFilterFor(query) {
+				var lowercaseQuery = angular.lowercase(query);
+				return function filterFn(cus) {
+					return (angular.lowercase(cus.firstName).indexOf(lowercaseQuery) === 0);
+				};
+			}
+
 		});

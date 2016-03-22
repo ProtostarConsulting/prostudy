@@ -11,15 +11,15 @@
 		<md-input-container flex> <label>First
 			Name <span style="color: red;">*</span>
 		</label> <input name="firstName" ng-model="cust.firstName"
-			ng-pattern="/^[a-zA-Z]*$/" ng-required="true">
+			 ng-required="true">
 		<div ng-messages="custForm.firstName.$error"
 			ng-if="custForm.firstName.$submitted || custForm.firstName.$touched">
 			<div ng-message="required">Please Enter First
 				Name(Example.:John)</div>
 
-			<span class="help-block"
+			<!-- <span class="help-block"
 				ng-show="((custForm.firstName.$error.pattern) &&  custForm.firstName.$dirty) ">First
-				Name should be text only.(Example.:abc)</span>
+				Name should be text only.(Example.:abc)</span> -->
 		</div>
 
 		</md-input-container>
@@ -27,15 +27,11 @@
 		<md-input-container flex> <label>Last
 			Name <span style="color: red;">*</span>
 		</label> <input name="lastName" ng-model="cust.lastName"
-			ng-pattern="/^[a-zA-Z]*$/" ng-required="true">
+			 ng-required="true">
 		<div ng-messages="custForm.lastName.$error"
 			ng-if="custForm.lastName.$submitted || custForm.lastName.$touched">
 			<div ng-message="required">Please Enter Last
 				Name(Example.:Dove)</div>
-
-			<span class="help-block"
-				ng-show="((custForm.lastName.$error.pattern) && custForm.lastName.$dirty) ">Last
-				Name should be text only.(Example.:abc)</span>
 		</div>
 		</md-input-container>
 
