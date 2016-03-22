@@ -29,7 +29,7 @@ public class Contact {
 	private String fName;
 	private String lName;
 	private String status;
-	private String phone;
+	private Integer phone;
 	private String email;
 	private String uid;
 	private String supp;
@@ -77,11 +77,11 @@ public class Contact {
 		this.status = status;
 	}
 
-	public String getPhone() {
+	public Integer getPhone() {
 		return phone;
 	}
 
-	public void setPhone(String phone) {
+	public void setPhone(Integer phone) {
 		this.phone = phone;
 	}
 

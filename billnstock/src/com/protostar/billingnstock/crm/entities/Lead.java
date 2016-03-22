@@ -21,7 +21,7 @@ public class Lead {
 
 	
 	private String company;
-	private String phone;
+	private Integer phone;
 	private String email;
 	private String designation;
 	private String address;
@@ -81,11 +81,11 @@ public class Lead {
 		this.company = company;
 	}
 
-	public String getPhone() {
+	public Integer getPhone() {
 		return phone;
 	}
 
-	public void setPhone(String phone) {
+	public void setPhone(Integer phone) {
 		this.phone = phone;
 	}
 
