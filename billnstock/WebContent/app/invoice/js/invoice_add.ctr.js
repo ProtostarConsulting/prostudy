@@ -248,13 +248,6 @@ app
 					$scope.invoiceObj.customer = null;
 					$scope.searchTextInput = null;
 
-					// ******************************
-					// Internal methods
-					// ******************************
-					/**
-					 * Search for states... use $timeout to simulate remote
-					 * dataservice call.
-					 */
 					$scope.querySearch = function(query) {
 						var results = query ? $scope.customersforinvoice
 								.filter(createFilterFor(query)) : $scope.customersforinvoice;
@@ -274,11 +267,7 @@ app
 									function(custList) {
 										$scope.customersforinvoice = custList.items;	
 									});
-		
-
-						$scope.customersforinvoice = [];
-			//			$scope.getAllCustomersByCurrUser();
-						
+						$scope.customersforinvoice = [];						
 					}
 					/**
 					 * Create filter function for a query string
@@ -286,7 +275,7 @@ app
 					function createFilterFor(query) {
 						var lowercaseQuery = angular.lowercase(query);
 						return function filterFn(cus) {
-							return (angular.lowercase(cus.customerName).indexOf(lowercaseQuery) === 0);
+							return (angular.lowercase(cus.firstName).indexOf(lowercaseQuery) === 0);
 						};
 					}
 
