@@ -10,6 +10,7 @@ angular
 					
 					$scope.showEmp = function() {
 						var hrService = appEndpointSF.gethrService();
+						if (typeof $scope.selectedempNo != 'undefined') {
 
 						hrService
 								.getempByID($scope.selectedempNo)
@@ -21,7 +22,7 @@ angular
 															+ angular
 																	.toJson($scope.empDetail));
 										});
-
+						}
 					}
 					$scope.empDetail = [];
 					$scope.showEmp();

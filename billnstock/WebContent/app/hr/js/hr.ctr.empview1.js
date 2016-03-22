@@ -14,6 +14,7 @@ angular
 										"Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
 					$scope.showEmp = function() {
 						var hrService = appEndpointSF.gethrService();
+						if (typeof $scope.selectedempNo != 'undefined') {
 
 						hrService
 								.getempByID($scope.selectedempNo)
@@ -25,7 +26,7 @@ angular
 													.toJson($scope.empDetail.result));
 										
 										});
-
+						}
 					}
 					$scope.empDetail = [];
 					$scope.showEmp();

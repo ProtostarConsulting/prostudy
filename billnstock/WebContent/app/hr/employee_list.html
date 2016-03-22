@@ -1,9 +1,4 @@
 
-
-
-
-
-
 <md-content layout-padding>
 <div layout layout-sm="column">
   <md-input-container flex> <label>Search</label> <input
@@ -15,7 +10,6 @@
 	<table md-data-table md-row-select="selected" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onOrderChange">
 			<tr>
-		    	<th name="id" order-by="id"></th>
 				<th name="Email" order-by="email"></th>
 				<th name="First Name" order-by="fName"></th>
 				<th name="Last Name" order-by="lName"></th>
@@ -26,7 +20,6 @@
 		<tbody>
 			<tr md-auto-select
 				ng-repeat="user in emps | orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit"">
-				<td>{{user.id}}</td>
 				<td>{{user.email_id}}</td>
 				<td>{{user.firstName}}</td>
 				<td>{{user.lastName}}</td>
