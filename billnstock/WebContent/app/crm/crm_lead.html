@@ -8,12 +8,14 @@
 				ng-model="lead.lid" disabled> </md-input-container>
 
 			<md-input-container flex> <label>Person
-				Name  <span style="color: red;">*</span> </label> <input name = "name" ng-model="lead.name" ng-required="true"> 
+				Name  <span style="color: red;">*</span> </label> <input name = "name" ng-pattern="/^[a-zA-Z]*$/" ng-model="lead.name" ng-required="true"> 
 			<div ng-messages="leadform.name.$error"
 				ng-if="leadform.name.$submitted || leadform.name.$touched">
 				<div ng-message="required">Please Enter Employee Name.</div>
 			</div>
-
+				<span class="help-block"  style="color: red"
+				ng-show="((leadform.name.$error.pattern) && leadform.name.$dirty) ">
+				Enter should be text only.(Example.:abc)</span>
 			</md-input-container>
 		</div>
 		<div layout layout-sm="column">
@@ -25,19 +27,26 @@
 			</div>
 			 </md-input-container>
 			<md-input-container flex> <label>Phone  <span style="color: red;">*</span>  </label>
-			<input name="phone" ng-model="lead.phone" ng-required="true">
+			<input type="number" name="phone" ng-minlength="10" ng-maxlength="11" ng-model="lead.phone" ng-required="true">
 			<div ng-messages="leadform.phone.$error"
 				ng-if="leadform.phone.$submitted || leadform.phone.$touched">
 				<div ng-message="required">Please Enter Phone Name.</div>
 			</div>
+			<span class="help-block" style="color: red"
+				ng-show="((leadform.phone.$error.minlength || leadform.phone.$error.maxlength) && leadform.phone.$dirty) ">Mobile
+				Number should be 10 digits(Example.:0123456789)</span>
 			</md-input-container>
 		</div>
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>Email  <span style="color: red;">*</span></label>
-			<input type="email" name="email" ng-model="lead.email" ng-required="true">
+			<input type="email" name="email" ng-model="lead.email" ng-pattern="/^.+@.+\..+$/" ng-required="true">
 			<div ng-messages="leadform.email.$error"
 				ng-if="leadform.email.$submitted || leadform.email.$touched">
 				<div ng-message="required">Please Enter Email id.</div>
+				
+				<span class="help-block" style="color: red"
+				ng-show="((leadform.email.$error.pattern) && leadform.email.$dirty) ">
+				Enter Valid Email Format </span>
 			</div>
 			 </md-input-container>
 			<md-input-container flex> <label>Designation  <span style="color: red;">*</span></label>
@@ -46,6 +55,7 @@
 				ng-if="leadform.designation.$submitted || leadform.designation.$touched">
 				<div ng-show="leadform.designation.$error.pattern" ng-message="required">Please Enter Designation Name.</div>
 			</div>
+			
 			</md-input-container>
 		</div>
 		<div> 
