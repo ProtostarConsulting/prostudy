@@ -1,4 +1,17 @@
-angular.module("prostudyApp").controller(
+angular.module("prostudyApp")
+/*.directive('validPasswordC', function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, elm, attrs, ctrl) {
+            ctrl.$parsers.unshift(function (viewValue, $scope) {
+                var noMatch = viewValue != $scope.studentForm.password.$viewValue             
+                ctrl.$setValidity('noMatch', !noMatch)
+            })
+        }
+    }
+})
+*/
+.controller(
 		"studentPageCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, objectFactory, appEndpointSF, tableTestDataFactory,$state,
@@ -11,8 +24,7 @@ angular.module("prostudyApp").controller(
 				$mdToast.show($mdToast.simple().content('Student Data Saved!')
 						.position("top").hideDelay(3000));
 			};
-					   
-			
+					  			
 			$scope.standards = [];
 			$scope.divisions = [];
 			$scope.subjects = [];
@@ -22,8 +34,21 @@ angular.module("prostudyApp").controller(
 			$scope.divList;
 			$scope.subList;
 			
-			
-
+			$scope.err=null;
+			$scope.checkConfirmPassword = function() {	
+				if($scope.tempStudent.password!="undefined" && $scope.tempStudent.confirmpassword!="undefined")
+				{					
+				if($scope.tempStudent.password==$scope.tempStudent.confirmpassword)
+				{
+				$scope.err=null;
+				}
+				else 
+				{
+				$scope.err="Password Does Not Match.";						
+				}	
+				}
+			}
+		
 			$scope.tempStudent = {
 				instituteID :$scope.curUser.instituteID,
 				firstName : "",

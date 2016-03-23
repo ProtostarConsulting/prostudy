@@ -26,7 +26,6 @@
 				<div ng-message="required">Please Enter Last Name.</div>
 			</div>
 			</md-input-container>
-
 	</div>
 	<div layout="row" layout-sm="column" flex>
 	
@@ -36,32 +35,44 @@
 
 			<md-input-container flex> <label>Email-id<span
 				style="color: red" ng-show="studentForm.email_id.$error.required"
-				class="mandatory">*</span></label> <input type="email" name="email_id"
+				class="mandatory">*</span></label> <input type="email" name="email_id" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" 
 				ng-model="tempStudent.email_id" ng-required="true">
 			<div ng-messages="studentForm.email_id.$error"
 				ng-if="studentForm.email_id.$submitted || studentForm.email_id.$touched">
 				<div ng-message="required">Please Enter your Email-Id.</div>
+				<div ng-message="pattern">Please Enter Valid Email-Id.</div>
 			</div>
 			</md-input-container>
-	</div>
-	<div layout="row" layout-sm="column" flex>	
+		</div>
+		<div layout="row" layout-sm="column" flex>	
 	
 				<md-input-container flex ng-hide="tempStudent.isGoogleUser"> <label>Password<span
 					style="color: red" ng-show="studentForm.password.$error.required"
 					class="mandatory">*</span>
 				</label> <input name="password" type="password"
 					ng-model="tempStudent.password"
-					ng-required="!tempStudent.isGoogleUser">
+					ng-required="!tempStudent.isGoogleUser" ng-blur="checkConfirmPassword()">
 				<div ng-messages="studentForm.password.$error"
 					ng-if="studentForm.password.$submitted || studentForm.password.$touched">
 					<div ng-message="required">Please Enter Password.</div>
 				</div>
 				</md-input-container>
-
-			<md-input-container flex> <label> Address</label> <input
-				name="address" ng-model="tempStudent.address"> </md-input-container>
+				<md-input-container flex ng-hide="tempStudent.isGoogleUser"> <label> Confirm Password<span
+					style="color: red" ng-show="studentForm.confirmpassword.$error.required"
+					class="mandatory">*</span>
+				</label> <input name="confirmpassword" type="password"
+					ng-model="tempStudent.confirmpassword"
+					ng-required="!tempStudent.isGoogleUser" ng-blur="checkConfirmPassword()" >
+				<div ng-messages="studentForm.confirmpassword.$error"
+					ng-if="studentForm.confirmpassword.$submitted || studentForm.confirmpassword.$touched">
+					<div ng-message="required">Please Enter Confirm Password.</div></div>
+					<span  style="color: red" id="err">{{err}}</span>     	 
+				</md-input-container>		
 	</div>
 	<div layout="row" layout-sm="column" flex>
+	<md-input-container flex> <label> Address</label> <input
+				name="address" ng-model="tempStudent.address"> </md-input-container>
+	
 	<md-input-container flex> <label>Contact<span
 				style="color: red" ng-show="studentForm.contact.$error.required"
 				class="mandatory">*</span></label> <input type="number" name="contact"
@@ -74,9 +85,12 @@
 					ng-show="((studentForm.contact.$error.minlength || studentForm.contact.$error.maxlength) && studentForm.contact.$dirty) ">Contact
 					number should be 10 digits</span>
 			</div>
-			</md-input-container>
-
-			<md-input-container flex> <label>Standard<span
+			</md-input-container>			
+			</div>
+			
+	</div>
+		<div layout="row" layout-sm="column" flex>	
+		<md-input-container flex> <label>Standard<span
 				style="color: red" ng-show="studentForm.standard.$error.required"
 				class="mandatory">*</span></label> <md-select name="standard"
 				ng-model="tempStudent.standard" ng-change="getDivisionByStandard()"
@@ -88,11 +102,6 @@
 				<div ng-message="required">Please Select Standard.</div>
 			</div>
 			</md-input-container>
-		
-			</div>
-			
-	</div>
-		<div layout="row" layout-sm="column" flex>	
 		<md-input-container flex> <label>Division<span
 				style="color: red" ng-show="studentForm.division.$error.required"
 				class="mandatory">*</span></label> <md-select name="division"

@@ -2,14 +2,13 @@
 			<h2 class="md-title">Student List</h2>
 		</md-data-table-toolbar>
 
-		<md-data-table-toolbar class="alternate" ng-show="selected.length">
-			<div>
-				{{selected.length}} {{selected.length > 1 ? 'students' : 'student'}} selected
-			</div>			
-		</md-data-table-toolbar>
+		<div>
+			<md-input-container flex> <label>Search
+				By Name</label> <input ng-model="searchName"> </md-input-container>
+		</div>
  <div>
 	<md-data-table-container>
-			<table md-data-table class="md-primary" md-row-select="selected" md-progress="deferred">
+			<table md-data-table class="md-primary" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onorderchange">
 		
 			<tr>
@@ -20,7 +19,7 @@
 			</tr>
 		</thead>
 		<tbody>
-		<tr md-auto-select  ng-repeat="student in students | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+		<tr md-auto-select  ng-repeat="student in students | orderBy: query.order | filter: { firstName: searchName} | limitTo: query.limit: (query.page - 1) * query.limit">
 			
 				<td>{{student.firstName}} {{student.lastName}}</td>
 				<td>{{student.email_id}}</td>
