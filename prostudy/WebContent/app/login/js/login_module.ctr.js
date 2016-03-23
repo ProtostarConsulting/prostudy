@@ -12,7 +12,8 @@ angular
 								.hideDelay(3000));
 					};
 					$scope.curUser = null;
-
+					$scope.flag=false;
+					
 					$scope.tempUser = {
 						userId : "",
 						firstName : "",
@@ -65,31 +66,13 @@ angular
 												$window.location.reload();
 												$state.go("home");
 
-											} else {
-
-												$scope.loginMsg = "Login failed.";
+											} else {							
+											document.getElementById("errmsg").innerHTML = "You are not registered user.";
+											$scope.loginMsg = "Login failed.";
 											}
 										});
 					}
-					$scope.user = [];
-					$scope.checkExistEmail = function() {
-						var UserService = appEndpointSF.getUserService();
-						UserService
-								.getUserByEmailID($scope.tempUser.email_id)
-								.then(
-										function(gotUser) {
-											$scope.user = gotUser;
-
-											if (!($scope.user.email_id)) {
-												document
-														.getElementById("errmsg").innerHTML = "You are not registered user.";
-											} else {
-												document
-														.getElementById("errmsg").innerHTML = null;
-											}
-
-										});
-					}
+			
 					$scope.cancelButton = function() {
 						$state.go("home", {});
 					}
@@ -113,3 +96,4 @@ angular
 					};
 
 				});
+

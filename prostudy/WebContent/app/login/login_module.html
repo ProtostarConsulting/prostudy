@@ -22,15 +22,13 @@
 			<md-input-container flex> <label>User
 				Email-id<span style="color: red"
 				ng-show="loginForm.email_id.$error.required" class="mandatory">*</span>
-			</label> <input type="email" id="email_id" name="email_id"
+			</label> <input type="email" id="email_id" name="email_id" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" 
 				ng-model="tempUser.email_id" ng-required="true"
-				ng-blur="checkExistEmail()">
+				>
 			<div ng-messages="loginForm.email_id.$error"
 				ng-if="loginForm.email_id.$submitted || loginForm.email_id.$touched ">
-				<div ng-message="required">Please Enter Valid Email Id.</div>
-				<div ng-show="errmsg !=null" ng-hide="errmsg">
-					<span id="errmsg"></span>
-				</div>
+				<div ng-message="required">Email-Id should not Empty.</div>
+				<div ng-message="pattern">Please Enter Valid Email Id.</div>
 			</div>
 
 			</md-input-container>
@@ -41,10 +39,11 @@
 				type="password" name="password" id="password" ng-required="true">
 			<div ng-messages="loginForm.password.$error"
 				ng-if="loginForm.password.$submitted || loginForm.password.$touched">
-				<div ng-message="required">Please Enter Correct Password.</div>
+				<div ng-message="required">Password should not Empty.</div>
 			</div>
-			</md-input-container>
-
+			</md-input-container>			
+	<div><span style="color: red" id="errmsg">{{errmsg}}</span></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	
 			<div layout="row" layout-align="centre centre" layout-sm="column">
 				<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
 				<md-button class="md-raised md-primary" ng-click="login()" ng-disabled="loginForm.$invalid">
@@ -75,25 +74,6 @@ View Institute </md-button> </md-content> </md-sidenav>
 
 </section>
 </div>
-
-
-<!-- 
-	<div layout="column" layout-align="center center">
-
-				 <span> <spanstyle: "color:red">{{loginMsg}}</span>
-								
-					<md-input-container flex>
-      				<label>User Name</label>
-      				<input ng-model="tempUser.userName">
-    				</md-input-container>
-    	
-    				<md-input-container flex>
-      				<label>Password</label>
-     				<input ng-model="tempUser.pwd" type="password">
-    				</md-input-container>
-    				
-					<md-button class="md-raised md-primary" ng-click="login()">LOGIN</md-button> 
-	</div> -->
 
 </div>
 
