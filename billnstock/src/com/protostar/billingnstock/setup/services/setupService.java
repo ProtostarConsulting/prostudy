@@ -27,8 +27,10 @@ public class setupService {
 	}
 
 	@ApiMethod(name = "updateBusiness")
-	public void updateBusiness(BusinessEntity business) {
+	public BusinessEntity updateBusiness(BusinessEntity business) {
 		Key<BusinessEntity> now = ofy().save().entity(business).now();
+		return business;
+		
 
 	}
 
