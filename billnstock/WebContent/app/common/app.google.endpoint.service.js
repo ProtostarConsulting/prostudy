@@ -351,10 +351,8 @@ function googleEndpointSF($log, $q) {
 
 	setupService.updateBusiness = function(business) {
 		var deferred = $q.defer();
-		gapi.client.setupService.updateBusiness(business).execute(function() {
-			deferred.resolve({
-				"msg" : "Business updated Successfully."
-			});
+		gapi.client.setupService.updateBusiness(business).execute(function(resp) {
+			deferred.resolve(resp);
 		});
 		return deferred.promise;
 	}

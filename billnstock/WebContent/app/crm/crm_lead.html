@@ -3,7 +3,7 @@
 <form name="leadform">
 
 	<div id="addField">
-		<div layout layout-sm="column">
+		<div layout layout-sx="column">
 			<md-input-container flex> <label>Lead id </label> <input
 				ng-model="lead.lid" disabled> </md-input-container>
 
@@ -18,7 +18,7 @@
 				Enter should be text only.(Example.:abc)</span>
 			</md-input-container>
 		</div>
-		<div layout layout-sm="column">
+		<div layout layout-sx="column">
 			<md-input-container flex> <label>Company  <span style="color: red;">*</span>
 			</label> <input name="company" ng-model="lead.company" ng-required="true">
 				<div ng-messages="leadform.company.$error"
@@ -37,7 +37,7 @@
 				Number should be 10 digits(Example.:0123456789)</span>
 			</md-input-container>
 		</div>
-		<div layout layout-sm="column">
+		<div layout layout-sx="column">
 			<md-input-container flex> <label>Email  <span style="color: red;">*</span></label>
 			<input type="email" name="email" ng-model="lead.email" ng-pattern="/^.+@.+\..+$/" ng-required="true">
 			<div ng-messages="leadform.email.$error"
@@ -69,7 +69,7 @@
 			</md-input-container>
 		</div>
 
-		<section layout="row" layout-sm="column" layout-align="left left">
+		<section layout="row" layout-sx="column" layout-align="left left">
 			<md-button ng-disabled="leadform.$invalid" class="md-raised md-primary" ng-click="addlead()">Add</md-button>
 
 		</section>

@@ -44,7 +44,7 @@ angular.module("stockApp").controller(
 			}
 
 			$scope.initDateFields = function(assetlist) {
-				for ( var asset in assetlist) {
+				for (var asset in assetlist) {
 					asset.purchasedate = new Date(asset.purchasedate);
 					asset.expirydate = new Date(asset.expirydate);
 				}

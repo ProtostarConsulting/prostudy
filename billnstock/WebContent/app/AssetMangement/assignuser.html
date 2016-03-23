@@ -34,7 +34,10 @@
 				<div ng-message="required">Please Enter the value.</div>
 			</div>
 			</md-input-container>
-			<md-input-container flex> <label>purchase
+			
+			<lable>Enter Purchase Date:-</lable><md-datepicker flex name="purchasedate" date-format="MM/dd/yyyy" ng-model="asset.purchasedate" md-placeholder="Enter Purchase Date" disabled ></md-datepicker>
+			<lable>Enter Expiry Date:-</lable><md-datepicker flex name="Expirydate" date-format="MM/dd/yyyy" ng-model="asset.expirydate" md-placeholder="Enter Expiry Date" disabled ></md-datepicker>
+			<!-- <md-input-container flex> <label>purchase
 				date</label> <input type="text" name="purchasedate"
 				ng-model="asset.purchasedate" ng-required="true" disabled>
 
@@ -50,7 +53,7 @@
 				ng-if="assetForm.Expirydate.$submitted || assetForm.Expirydate.$touched">
 				<div ng-message="required">Please Enter Expiry date.</div>
 			</div>
-			</md-input-container>
+			</md-input-container> -->
 		</div>
 
 		<!-- ---------Assigned Asset------------- -->
