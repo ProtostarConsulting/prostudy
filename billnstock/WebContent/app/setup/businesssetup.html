@@ -1,45 +1,54 @@
 
 		<div layout-align="centre centre">
 		
-			<md-whiteframe class="md-whiteframe-9dp" flex="30" layout layout-align="center center">
+		<!-- 	<md-whiteframe class="md-whiteframe-9dp" flex="30" layout layout-align="center center"> -->
 		 	 <span>
 				
-				<div layout="row" layout-align="center center">
 			
-				<div layout="column" layout-align="center center">
+			
+				<div layout="column" ><!-- layout-align="center center" -->
 							
 					<md-input-container flex>
       				<label>Business Name</label>
-      				<input name="businessName" ng-model="business.businessName">
+      				<input name="businessName" ng-model="curuser.businessAccount.businessName">
     				</md-input-container>
-    				
+    				</div>
+    				<div layout="column" >
     				<md-input-container flex>
     				<label>Admin Gmail id</label>
-      				<input name="adminEmailId" ng-model="business.adminEmailId" disabled>
+      				<input name="adminEmailId" ng-model="curuser.email_id" disabled>
     				</md-input-container>
-    				
+    				</div>
+    				<div layout="row" >
     				<md-input-container flex>
       				<label>First Name</label>
-      				<input name="adminFirstName" ng-model="business.adminFirstName" >
+      				<input name="adminFirstName" ng-model="curuser.firstName" >
     				</md-input-container>
     				
     				<md-input-container flex>
       				<label>Last Name</label>
-      				<input name="adminLastName" ng-model="business.adminLastName" >
+      				<input name="adminLastName" ng-model="curuser.lastName" >
+    				</md-input-container>
+    			</div>
+    			<div layout="row" >
+    				<md-input-container flex>
+      				<label>Address 1</label>
+      				<input name="address1" ng-model="curuser.businessAccount.address1" >
+    				</md-input-container>
+    				
+    				<md-input-container flex>
+      				<label>Address 2</label>
+      				<input name="address2" ng-model="curuser.businessAccount.address2" >
     				</md-input-container>
     			</div>
     				    				
-    			
-    			</div>
-    			
-    			
-		 			 <div layout="row" layout-align="center end">
+  	 <div layout="row" layout-align="center end">
 			 		 <md-button class="md-raised md-primary" ng-click="updateBusiness()">Update User</md-button> 
 			 		 </div>
 			 		 
 			 		 </md-card-content>
 			 </span>
-		 	</md-whiteframe>
+		 <!-- 	</md-whiteframe> -->
 		 	
 		 	
 		 	

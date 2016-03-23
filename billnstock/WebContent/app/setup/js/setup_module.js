@@ -10,16 +10,27 @@ angular.module("stockApp").controller(
 			$scope.selecteduserNo = $stateParams.selecteduserNo;
 			$scope.id;
 
-			$scope.business={
-					businessName:"",
-					adminEmailId:"",
-					adminFirstName:"",
-					adminLastName:""
-						
-			}
+	
+			
+			$scope.business = {
+					businessName : "",
+					accounttype:"",
+						address1:"",
+						address2:"",
+						registerDate:""
+				}
+				$scope.userEntity={
+						businessAccount:"",
+						email_id : "",
+						firstName : "",
+						lastName : "",	
+						authority:[],
+						isGoogleUser:true
+				}	
+
 			$scope.curuser = appEndpointSF.getLocalUserService().getLoggedinUser();
 
-			$scope.getCurUserByEmailId = function() {
+			/*$scope.getCurUserByEmailId = function() {
 				var setupService = appEndpointSF.getsetupService();
 				setupService.getCurUserByEmailId($scope.curuser.email_id).then(
 						function(user) {
@@ -29,19 +40,40 @@ angular.module("stockApp").controller(
 						});
 			}
 			
-			$scope.getCurUserByEmailId();
+			$scope.getCurUserByEmailId();*/
 
 			$scope.updateBusiness = function() {
 				var setupService = appEndpointSF.getsetupService();
+				var UserService = appEndpointSF.getUserService();
+				
+				$scope.business.businessName=$scope.curuser.businessAccount.businessName;
+				$scope.business.accounttype=$scope.curuser.businessAccount.accounttype;
+				$scope.business.address1=$scope.curuser.businessAccount.address1;
+				$scope.business.address2=$scope.curuser.businessAccount.address2;
+				$scope.business.registerDate=$scope.curuser.businessAccount.registerDate;
+				$scope.business.id=$scope.curuser.businessAccount.id;
+				
 				setupService.updateBusiness($scope.business).then(
-						function(msgBean) {
-							$scope.showSimpleToast(msgBean);
+						function(respbusiness) {
+							
+							$scope.userEntity.businessAccount=respbusiness.result;
+							$scope.userEntity.authority.push("admin");
+							$scope.userEntity.email_id=$scope.curuser.email_id;
+							$scope.userEntity.firstName=$scope.curuser.firstName
+							$scope.userEntity.lastName=$scope.curuser.lastName
+							$scope.userEntity.id=$scope.curuser.id							
+							UserService.addUser($scope.userEntity).then(function(msg){
+						    $scope.showSimpleToast("Business updated Sucessfully");
+							
+							});
+							
+							
 						});
 			}
 
 			$scope.getAllUserOfOrg = function() {
 				var setupService = appEndpointSF.getsetupService();
-				if (typeof $scope.id != 'undefined') {
+				if (typeof $scope.curuser.businessAccount.id != 'undefined') {
 				setupService.getAllUserOfOrg($scope.curuser.businessAccount.id).then(function(users) {
 					$scope.userslist = users.items;
 

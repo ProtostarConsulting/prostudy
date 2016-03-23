@@ -3,14 +3,14 @@
 <form name="leadform">
 
 	<div id="addField">
-		<div layout layout-sm="column">
+		<div layout layout-xs="column">
 			<md-input-container flex> <label>User Id
 			</label> <input ng-model="userL.id" disabled> </md-input-container>
 
 			<md-input-container flex> <label>Enter
 				Email id </label> <input ng-model="userL.email_id" disabled> </md-input-container>
 		</div>
-		<div layout layout-sm="column">
+		<div layout layout-xs="column">
 			<md-input-container flex> <label>First
 				Name </label> <input ng-model="userL.firstName"> </md-input-container>
 			<md-input-container flex> <label>Last
@@ -18,7 +18,7 @@
 		</div>
 		<b>Authority given==={{userL.authority}}</b><br>
 		<br>
-		<div layout layout-sm="column">
+		<div layout layout-xs="column">
 
 			<div ng-repeat="item in items">
 				<div class="action-checkbox">
@@ -32,7 +32,7 @@
 			<br>
 			<br>
 		</div>
-		<section layout="row" layout-sm="column" layout-align="left left">
+		<section layout="row" layout-xs="column" layout-align="left left">
 			<md-button class="md-raised md-primary" ng-click="updateuser()">Update</md-button>
 
 		</section>

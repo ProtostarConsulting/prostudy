@@ -15,7 +15,7 @@
 			<md-checkbox ng-model="user.isGoogleUser" ng-true-value="true"
 				ng-false-value="false"> Is Google User </md-checkbox>
 		</div>
-		<div layout layout-sm="column">
+		<div layout layout-xs="column">
 			<md-input-container flex> <label
 				ng-hide="user.isGoogleUser">User Name </label> <label
 				ng-show="user.isGoogleUser">Enter Email id</label> <span
@@ -46,7 +46,7 @@
 
 
 		</div>
-		<div layout layout-sm="column">
+		<div layout layout-xs="column">
 			<md-input-container flex> <label>First
 				Name </label> <span style="color: red"
 				ng-show="addform.fname.$error.required" class="mandatory">*</span> <input
@@ -73,7 +73,7 @@
 				Name should be text only.(Example.:abc)</span> </md-input-container>
 		</div>
 		<b>Authority</b><br> <br>
-		<div flex layout layout-sm="column">
+		<div flex layout layout-xs="column">
 
 			<div ng-repeat="item in items">
 				<div class="action-checkbox">

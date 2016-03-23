@@ -1,9 +1,13 @@
+<div layout="column">
 
-<md-content>
 
-<div>
-	<section layout="row" layout-align="start start" flex>
-		<span hide-sm><!--  <md-button ui-sref="setup.user"
+	<div>
+
+		<section layout="row">
+		<span hide-xs> 
+			<div class="md-toolbar-tools">
+			<md-content layout="row" layout-align="center start">
+			<!-- 	<md-button ui-sref="setup.user"
 				ng-click="close()" class="md-primary" show-gt-md> User </md-button>
 
 			<md-button ui-sref="setup.printheaderfooter" ng-click="close()"
@@ -15,41 +19,40 @@
 				 <md-button ui-sref="setup.userlist"
 				ng-click="close()" class="md-primary" show-gt-md> Userlist </md-button>
 
-
-		</span><span hide-gt-sm>
+			</md-content>
+			</div>
+		</span>
+		<!--  <span hide-gt-xs> -->
 			<div class="md-toolbar-tools">
 				<span flex></span>
-				<!--<md-card>-->
+				<md-card>
 				<section layout="row">
 					<md-button class="md-icon-button" aria-label="More"
 						ng-click="toggleRight()"> <md-icon
 						md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
-
 				</section>
-				<!--</md-card>-->
+				</md-card>
 			</div>
-		</span>
-	</section>
-
-
-
-</div>
-</md-content>
-
-<div>
-	<section layout="column" layout-align="start start" flex>
+		<!-- </span> -->
 
 		<md-sidenav class="md-sidenav-right md-whiteframe-z2"
-			md-component-id="right"> <md-toolbar
-			class="md-theme-light"> <!--<h1 class="md-toolbar-tools">Sidenav Right</h1>-->
-		</md-toolbar> <md-button ui-sref="setup.user" ng-click="close()" class="md-primary"
-			show-gt-md> User </md-button> <md-button
-			ui-sref="setup.printheaderfooter" ng-click="close()"
-			class="md-primary" show-gt-md> Print Header/Footer </md-button> </md-sidenav>
+				md-component-id="right"> <md-toolbar class="md-theme-light">
+					<h1 class="md-toolbar-tools">Sidenav Right</h1>
+			</md-toolbar> 
+			<md-content layout="column"> 
+					
+			<md-button ui-sref="setup.user" ng-click="close()" class="md-primary"> 
+			User </md-button>
+			<md-button ui-sref="setup.printheaderfooter" ng-click="close()"
+			class="md-primary"> Print Header/Footer </md-button>
+			</md-content> 
+		</md-sidenav>
+		</section>
 
-	</section>
+	</div>
 
+
+
+
+	<div ui-view></div>
 </div>
-
-
-<div ui-view></div>
