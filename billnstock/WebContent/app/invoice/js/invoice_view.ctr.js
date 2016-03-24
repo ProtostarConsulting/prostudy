@@ -37,6 +37,8 @@ app
 								.then(
 										function(invoiceList) {
 											$scope.invoiceDetail = invoiceList;
+											$scope.invoiceDetail.finalTotal = Math.round($scope.invoiceDetail.finalTotal);
+											$scope.finalTotalInWord = NumToWord($scope.invoiceDetail.finalTotal);
 											$log
 													.debug("$scope.showBill:invoiceDetail ===="
 															+ angular

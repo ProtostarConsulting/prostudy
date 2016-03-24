@@ -1,159 +1,183 @@
-
 <md-content>
-<h3>
-	<u>Invoice View</u>
-</h3>
-<div layout="row" layout-align="center start"
+	<h3><u>Invoice View</u></h3>
+	<div layout="row" layout-align="center start"
 	style="margin-top: 20px; margin-bottom: 20px;">
-	<md-divider flex></md-divider>
-</div>
+		<md-divider flex></md-divider>
+	</div>
 
-<div class="md-toolbar-tools">
-	<span flex></span>
-	<!--<md-card>-->
-	<section layout="row">
+	<div class="md-toolbar-tools">
+		<span flex></span>
+		<!--<md-card>-->
+		<section layout="row">
 
-		<md-button class="md-icon-button md-accent"
+			<md-button class="md-icon-button md-accent"
 			ng-click="printDiv('invoiceDiv')" aria-label="Favorite">
-		<md-icon md-svg-icon="img/icons/print.svg"></md-icon> </md-button>
+				<md-icon md-svg-icon="img/icons/print.svg"></md-icon>
+			</md-button>
 
-	</section>
-	<!--</md-card>-->
-</div>
+		</section>
+		<!--</md-card>-->
+	</div>
 </md-content>
 
 <div>
 	<section layout="row" layout-align="end end" flex>
-		<md-button class="md-raised md-primary" ng-click="back()">BACK TO LIST
+		<md-button class="md-raised md-primary" ng-click="back()">
+			BACK TO LIST
 		</md-button>
 	</section>
 </div>
- <md-content>
-<div id="invoiceDiv">
+<md-content>
+	<div id="invoiceDiv">
 
-	<div>
-		<table ng-show="myValue" class="ng-hide">
-			<tbody>
-				<tr><td style="width: 20%"><img alt="Logo" src="img/images/protostar_logo_pix_313_132.jpg"></td>
-					<td style="width: 60%">
-						<h2 style= "color:green">Protostar Consulting Services</h2>						
-					</td>
-					<td style="width: 20%"><label style= "color:blue"><u>Address</u><br>E-101,
-							Manimangar Appartment<br>Kasarwadi-414141.<br>Ph.(020)4141414.<br>info@protostar.co.in
-					</label></td>
-				</tr>
-			</tbody>
-		</table>
+		<div>
+			<table ng-show="myValue" class="ng-hide">
+				<tbody>
+					<tr>
+						<td style="width: 20%"><img alt="Logo" src="img/images/protostar_logo_pix_313_132.jpg"></td>
 
+						<td style="width: 40%"><b style= "color:blue"><h3 style= "color:green">Protostar Consulting Services</h3>
+						<br>
+						E-101,
+						Manimangar Appartment
+						<br>
+						Kasarwadi-414141.
+						<br>
+						Ph.(020)4141414.
+						<br>
+						info@protostar.co.in </b></td>
+					</tr>
+				</tbody>
+			</table>
 
-		<div layout="row" layout-align="center start"
+			<!--
+			<div layout="row" layout-align="center start"
 			style="margin-top: 20px; margin-bottom: 20px;">
 			<md-divider flex></md-divider>
-		</div>
+			</div>-->
+			<hr>
 
-		<table style="line-height: 20px;">
+			<table style="line-height: 20px;">
 
-			<tbody>
-				<tr>
-					<td style="width: 20%"><b>Customer Name :</b>
-						{{invoiceDetail.customer.customerName}}</td>
-					<td style="width: 20%"><label>Invoice ID :</label>
-						{{invoiceDetail.id}}</td>
-					<td style="width: 20%"><label>Date :</label>
-						{{invoiceDetail.invoiceDate}}</td>
-				</tr>
-				
-				<tr>
-					<td style="width: 20%"><b>Sales Order No. :</b>
-						{{invoiceDetail.salesOrderId.id}}</td>
-					<td style="width: 20%"><label>Purchase Order No. :</label>
-						{{invoiceDetail.purchaseOrderNo.id}}</td>
-				</tr>
-				
-				<tr>
-					<td><label>Customer Address :</label>
-						{{invoiceDetail.customer.address}}</td>
+				<tbody>
+					<tr>
+						<td style="width: 20%; text-align:right"><b>Invoice ID :</b></td>
+						<td style="width: 20%">{{invoiceDetail.id}}</td>
+						<td style="width: 20%; text-align:right"><b>Date :</b></td>
+						<td style="width: 20%">{{invoiceDetail.invoiceDate}}</td>
+					</tr>
 
-					<td><label>Note :</label> {{invoiceDetail.note}}</td>
-				</tr>
+					<tr>
+						<td style="width: 25%; text-align:right"><b>Customer Name :</b></td>
+						<td style="width: 35%">{{invoiceDetail.customer.customerName}} </td>
+						<td style="width: 25%; text-align:right"><b>Sales Order No :</b></td>
+						<td style="width: 35%">{{invoiceDetail.salesOrderId.id}} </td>
+					</tr>
 
-			</tbody>
-		</table>
-		<div layout="row" layout-align="center start"
+					<tr>
+						<td style="width: 25%; text-align:right"><b>Customer Address :</b></td>
+						<td style="width: 35%">{{invoiceDetail.customer.address}}</td>
+						<td style="width: 20%; text-align:right"><b>Purchase Order No :</b></td>
+						<td style="width: 20%">{{invoiceDetail.purchaseOrderNo.id}}</td>
+					</tr>
+					<tr>
+						<td style="width: 20%; text-align:right"><b>Note :</b></td>
+						<td colspan="3" style="width: 20%">{{invoiceDetail.note}}</td>
+					</tr>
+
+				</tbody>
+			</table>
+			<div layout="row" layout-align="center start"
 			style="margin-top: 20px; margin-bottom: 20px;">
-			<md-divider flex></md-divider>
+				<md-divider flex></md-divider>
+			</div>
+			<hr>
+			<b><u>Line Items</u></b>
+			<table>
+				<thead  style="background-color:gray">
+					<tr>
+						<th style="width: 5%; text-align:center">Sr. No</th>
+						<th style="width: 45%; text-align:center">Item Name</th>
+						<th style="width: 10%: text-align:center">Quantity</th>
+						<th style="width: 20%; text-align:center">Price(INR)</th>
+						<th style="width: 20%; text-align:center">Amount(INR)</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr ng-repeat="invoiceLineItem in invoiceDetail.invoiceLineItemList">
+
+						<td>{{$index + 1}}</td>
+						<td>{{invoiceLineItem.itemName}}</td>
+						<td style="text-align:right">{{invoiceLineItem.qty}}</td>
+						<td style="text-align:right">{{invoiceLineItem.price | currency :"": 2}}</td>
+						<td style="text-align:right">{{(invoiceLineItem.qty * invoiceLineItem.price) | currency :"": 2}}</td>
+
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align:right"><b><u>Sub Total</u> </b></td>
+						<td style="text-align:right"><b>{{invoiceDetail.subTotal | currency :"": 2}}</b></td>
+					</tr>
+					<tr>
+						<td colspan="5">
+						<br>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="5"><b><u>Tax Details</u> </b></td>
+					</tr>
+					<tr style="background-color:gray">
+						<td></td>
+						<td></td>
+						<td><b>Tax Type </b></td>
+						<td><b>Tax </b></td>
+						<td style="text-align:center"><b>Tax Total </b></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td>{{invoiceDetail.selectedTaxItem.taxCodeName}}</td>
+						<td>{{invoiceDetail.selectedTaxItem.taxPercenatge}}%</td>
+						<td  style="text-align:right">{{invoiceDetail.taxTotal | currency :"": 2}}</td>
+					</tr>
+					<tr>
+						<td>
+						<br>
+						<br>
+						</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align:right"><b><u>Final Total</u> </b></td>
+						<td style="text-align:right"><b>{{invoiceDetail.finalTotal | currency :"INR ": 2}}</b></td>
+					</tr>
+					<tr>
+						<td colspan="5">
+						<br>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="5" style="text-align:right">
+						<div>
+							<b> {{"Rupees " + finalTotalInWord + " Only"}} </b>
+						</div></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
-		<table>
-			<thead>
-				<tr>
-					<th style="width: 3%">Sr.No.</th>
-					<th style="width: 50%">Item Name</th>
-					<th style="width: 10%">Quantity</th>
-					<th style="width: 20%">Price</th>
-					<th style="width: 17%">Total</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="invoiceLineItem in invoiceDetail.invoiceLineItemList">
 
-					<td>{{ invoiceLineItem.srNo }}</td>
-					<td>{{invoiceLineItem.itemName}}</td>
-					<td>{{invoiceLineItem.qty}}</td>
-					<td>{{invoiceLineItem.price}}</td>
-					<td>{{invoiceLineItem.qty * invoiceLineItem.price}}</td>
-
-
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td><label><u>Sub Total</u> </label></td>
-					<td>{{selectedItem.invoiceObj.subTotal}}</td>
-				</tr>
-
-				<tr>
-					<td>-</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><label><u>Tax Details</u> </label></td>
-					<td><md-input-container flex> <label>Tax
-							Type </label> </md-input-container>{{invoiceDetail.selectedTaxItem.taxCodeName}}</td>
-					<td><md-input-container flex> <label>Tax
-						</label> </md-input-container> {{invoiceDetail.selectedTaxItem.taxPercenatge}}%</td>
-					<td><md-input-container flex> <label>Tax
-							Total </label> </md-input-container>{{invoiceDetail.taxTotal}}</td>
-				</tr>
-				<tr>
-					<td>-</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td><label><u>Final Total</u> </label></td>
-					<td><md-input-container flex>
-						{{invoiceDetail.finalTotal}}</md-input-container></td>
-				</tr>
-				<tr>
-					<td></td>
-
-				</tr>
-			</tbody>
-		</table>
-	</div>
-
-<!-- 	<b><u>Note</u>:</b>This is electronically generated invoice. <br> -->
-	
-	<iframe name="print_frame" width="0" height="0" frameborder="0"
+		<div style="position: fixed; bottom: 0;" ng-show="myValue" class="ng-hide">
+			<b><u>Note</u>:</b>This is electronically generated invoice. Needs no stamp or signature.
+		</div>
+		<iframe name="print_frame" width="0" height="0" frameborder="0"
 		src="about:blank"></iframe>
-</div>
+	</div>
