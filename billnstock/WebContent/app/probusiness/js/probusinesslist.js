@@ -83,6 +83,15 @@ angular
 							UserService.getbusinessById($scope.BNo).then(
 									function(busi) {
 										$scope.business = busi.result;
+										
+										if($scope.business.accounttype.maxuser == $scope.business.totalUser-1){
+											$("#hideSpan").show();
+											$log.debug("#hideSpan");
+										}else{
+											$("#hideSpan").hide();
+											$("#hideDiv").hide();
+										}
+										
 									});
 						}
 

@@ -2,11 +2,18 @@
 
 <md-content layout-padding>
 <form name="addform">
+<div layout-sm="column" layout-align="start start" flex>
+		<md-button class="md-icon-button" aria-label="prev"
+			ng-click="back()"> <md-tooltip> get back to user list</md-tooltip> <md-icon
+			md-svg-icon="img/icons/ic_reply_black_24px.svg"
+			aria-label="Prev Week"></md-icon> </md-button>
 
+	</div><br>
 	<div id="addField">
 		Organization id={{BNo}} 
-		<span style="color: red">Your Account is {{business.accounttype.accountName}} you can create only {{business.accounttype.maxuser}} Number Of User </span>
-
+		<span id="hideSpan" style="color: red">Your Account exceed the
+		user limit. Click to <a href="">Upgrade Account</a>
+	</span>
 		<div flex-xs flex="50">
 			<md-checkbox ng-model="user.isGoogleUser" ng-true-value="true"
 				ng-false-value="false"> Is Google User </md-checkbox>
@@ -43,14 +50,12 @@
 			<md-input-container flex> <label>First
 				Name </label> <span style="color: red"
 				ng-show="addform.fname.$error.required" class="mandatory">*</span> <input
-				id="fname"name="fname" ng-model="user.firstName" ng-pattern="/^[a-zA-Z]*$/" ng-required="true">
+				id="fname"name="fname" ng-model="user.firstName"  ng-required="true">
 			<div ng-messages="addform.fname.$error"
 				ng-if="addform.fname.$submitted || addform.fname.$touched">
 				<div ng-message="required">Please Enter First Name.</div>
 			</div>
-			<span class="help-block"  style="color: red"
-				ng-show="((addform.fname.$error.pattern) && addform.fname.$dirty) ">First
-				Name should be text only.(Example.:abc)</span>
+			
 				
 			</md-input-container>
 			<md-input-container flex> <label>Last
@@ -61,9 +66,7 @@
 				ng-if="addform.lname.$submitted || addform.lname.$touched">
 				<div ng-message="required">Please Enter Last Name.</div>
 			</div>
-<span class="help-block"  style="color: red"
-				ng-show="((addform.lname.$error.pattern) && addform.fname.$dirty) ">First
-				Name should be text only.(Example.:abc)</span>
+
 			</md-input-container>
 		</div>
 		<b>Authority</b><br> <br>
