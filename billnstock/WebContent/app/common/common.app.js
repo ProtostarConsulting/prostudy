@@ -332,7 +332,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('setup.userview', {
 		url : "/userview/:selecteduserNo",
 		templateUrl : '/app/setup/setup_viewuser.html',
-		controller : 'setup.adduser',
+		controller : 'setup.viewuser',
 
 	}).state('setup.printheaderfooter', {
 		url : "/printheaderfooter",
