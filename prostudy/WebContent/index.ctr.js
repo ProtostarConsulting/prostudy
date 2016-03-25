@@ -11,6 +11,7 @@ angular
 					$scope.googleUserDetails = "";
 					$scope.googleUser = 'null';
 
+					$scope.tempUser = {email_id: '', password: ''};
 					$scope.loginClick = function() {
 						$state.go("login");
 					};
@@ -113,7 +114,8 @@ angular
 						$log.debug('Not signed into Google Plus.');
 						$scope.googleUser = 'null';
 					});
-
+					
+					
 					// $window.initGAPI = function() {}
 					$scope.initGAPI = function() {
 						$log.debug("Came to initGAPI");
