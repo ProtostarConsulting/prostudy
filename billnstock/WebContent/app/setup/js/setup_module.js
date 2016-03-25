@@ -12,7 +12,7 @@ angular.module("stockApp").controller(
 
 	
 			
-			$scope.business = {
+			/*$scope.business = {
 					businessName : "",
 					accounttype:"",
 						address1:"",
@@ -27,42 +27,15 @@ angular.module("stockApp").controller(
 						authority:[],
 						isGoogleUser:true
 				}	
-
+*/
 			$scope.curuser = appEndpointSF.getLocalUserService().getLoggedinUser();
-
-			/*$scope.getCurUserByEmailId = function() {
-				var setupService = appEndpointSF.getsetupService();
-				setupService.getCurUserByEmailId($scope.curuser.email_id).then(
-						function(user) {
-							$scope.business = user.items[0].businessAccount;
-							$scope.id = $scope.business.id;
-							$log.debug("$scope.business.id"+ $scope.business.id);
-						});
-			}
-			
-			$scope.getCurUserByEmailId();*/
 
 			$scope.updateBusiness = function() {
 				var setupService = appEndpointSF.getsetupService();
 				var UserService = appEndpointSF.getUserService();
-				
-				$scope.business.businessName=$scope.curuser.businessAccount.businessName;
-				$scope.business.accounttype=$scope.curuser.businessAccount.accounttype;
-				$scope.business.address1=$scope.curuser.businessAccount.address1;
-				$scope.business.address2=$scope.curuser.businessAccount.address2;
-				$scope.business.registerDate=$scope.curuser.businessAccount.registerDate;
-				$scope.business.id=$scope.curuser.businessAccount.id;
-				
-				setupService.updateBusiness($scope.business).then(
+				setupService.updateBusiness($scope.curuser.businessAccount).then(
 						function(respbusiness) {
-							
-							$scope.userEntity.businessAccount=respbusiness.result;
-							$scope.userEntity.authority.push("admin");
-							$scope.userEntity.email_id=$scope.curuser.email_id;
-							$scope.userEntity.firstName=$scope.curuser.firstName
-							$scope.userEntity.lastName=$scope.curuser.lastName
-							$scope.userEntity.id=$scope.curuser.id							
-							UserService.addUser($scope.userEntity).then(function(msg){
+							UserService.addUser($scope.curuser).then(function(msg){
 						    $scope.showSimpleToast("Business updated Sucessfully");
 							
 							});
