@@ -9,7 +9,8 @@ angular
 					$scope.curUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
 				
-					
+					$scope.currentInstID = $scope.curUser.instituteID;
+				
 					$scope.selectedStandard;
 					$scope.selectedDivision;
 					$scope.selectedSubject;
@@ -19,6 +20,7 @@ angular
 					$scope.selectedSubName = $stateParams.selectedSubName;
 					
 					$scope.isGoogleUser = false;
+					$scope.flag=true;
 					
 					$scope.newField = {};
 			        $scope.editingStd = false;
@@ -37,20 +39,19 @@ angular
 					$scope.newSubjects = []; 
 					$scope.selectedSubjects = [];
 
-					$scope.newSelectedStdID;
 					$scope.stdList;
 					$scope.divList;
 					$scope.subList;
-			        
-					$scope.viewstdList = [];
-					$scope.myBooks = [];
-			        
-					$scope.selectedInstituteId = $stateParams.selectedInstituteId;
-					$scope.selectedStdID = $stateParams.selectedStdID;
-					$scope.selectedDivID = $stateParams.selectedDivID; 
 					$scope.std;
 					
-					$scope.currentInstID = $stateParams.currentInstID;
+			        $scope.viewstdList = [];
+					$scope.myBooks = [];
+					$scope.myExams = [];
+					$scope.selected = [{}];
+			        
+					$scope.selectedStdID = $stateParams.selectedStdID;
+					$scope.selectedDivID = $stateParams.selectedDivID; 
+					
 					$scope.currentStdID = $stateParams.currentStdID;
 					$scope.currentDivID = $stateParams.currentDivID;
 					
@@ -85,8 +86,8 @@ angular
 					$scope.adminList = [];
 					$scope.teacherList = [];
 					$scope.studentList = [];
+					$scope.subject = [];
 					
-					$scope.selectedStdID  = $stateParams.selectedStdID
 					
 					$scope.standard = {
 
@@ -110,10 +111,14 @@ angular
 						$scope.name = '';
 
 					};
-
-					$scope.addStudentList = function() {
-						$scope.students.push({
-							'instituteID' : $scope.curUser.instituteID,
+					
+					$scope.tempStudSub = {
+							studID : "",
+							name : $scope.selected
+					}
+					
+					$scope.tempStudent = {
+							'instituteID' : $scope.currentInstID,
 							'institute' : $scope.name,
 							'firstName' : $scope.firstName,
 							'lastName' : $scope.lastName,
@@ -121,27 +126,15 @@ angular
 							'address' : $scope.address,
 							'contact' : $scope.contact,
 							'role' : "Student",
-							'standard' : $scope.selectedStandard,
-							'division' : $scope.selectedDivision,
-							'subject' : $scope.selectedSubject,
+							'standard' : "" ,
+							'division' : "",
+							'subject' : $scope.selected,
 							'password' : $scope.password,
-							'isGoogleUser' : $scope.isGoogleUser,
-							'myBooks' : $scope.myBooks
-						});
-						$scope.firstName = '';
-						$scope.lastName = '';
-						$scope.email_id = '';
-						$scope.address = '';
-						$scope.contact = '';
-						$scope.role = '';
-						$scope.selectedStandard = '';
-						$scope.password = '';
-					};
+							'isGoogleUser' : $scope.isGoogleUser
+						};
 
-					$scope.teachers = [];
-					$scope.addTeacherList = function() {
-						$scope.teachers.push({
-							'instituteID' : $scope.curUser.instituteID,
+					$scope.tempTeacher = {
+							'instituteID' : $scope.currentInstID,
 							'institute' : $scope.name,
 							'firstName' : $scope.firstName,
 							'lastName' : $scope.lastName,
@@ -151,55 +144,41 @@ angular
 							'role' : "Teacher",
 							'password' : $scope.password,
 							'isGoogleUser' : $scope.isGoogleUser,
-							'myBooks' : $scope.myBooks
-						});
-						$scope.firstName = '';
-						$scope.lastName = '';
-						$scope.email_id = '';
-						$scope.address = '';
-						$scope.contact = '';
-						$scope.role = '';
-						$scope.password = '';
-					};
+							'myBooks' : $scope.myBooks,
+							'myExams' : $scope.myExams
+						};
 
-					$scope.admins = [];
-					$scope.addToAdminsList = function() {
-						$scope.admins.push({
-							'instituteID' : $scope.curUser.instituteID,
-							'institute' : $scope.name,
-							'firstName' : $scope.firstName,
-							'lastName' : $scope.lastName,
-							'email_id' : $scope.email_id,
-							'address' : $scope.address,
-							'contact' : $scope.contact,
-							'role' : "Admin",
-							'password' : $scope.password,
-							'isGoogleUser' : $scope.isGoogleUser,
-							'myBooks' : $scope.myBooks
-						});
-						$scope.firstName = '';
-						$scope.lastName = '';
-						$scope.email_id = '';
-						$scope.address = '';
-						$scope.contact = '';
-						$scope.role = '';
-						$scope.password = '';
-					};
 
+
+					$scope.tempAdmin = {
+						'instituteID' : $scope.currentInstID,
+						'institute' : $scope.name,
+						'firstName' : $scope.firstName,
+						'lastName' : $scope.lastName,
+						'email_id' : $scope.email_id,
+						'address' : $scope.address,
+						'contact' : $scope.contact,
+						'role' : "Admin",
+						'password' : $scope.password,
+						'isGoogleUser' : $scope.isGoogleUser,
+						'myBooks' : $scope.myBooks,
+						'myExams' : $scope.myExams
+					};
+					
 					$scope.selectedStudents = [];
 					$scope.selectedTeachers = [];
 					$scope.selectedAdmins = [];
 
 					$scope.addInstituteAdmins = function() {
 						var UserService = appEndpointSF.getUserService();
-						for (i = 0; i < $scope.selectedAdmins.length; i++) {
-							UserService.addUser($scope.selectedAdmins[i]).then(
+						
+							UserService.addUser($scope.tempAdmin).then(
 									function(msgBean) {
 										$log.debug("msgBean.msg:"
 														+ msgBean.msg);
 
 									});
-						}
+						
 						$scope.showAdminSavedToast();
 						$scope.cancelButton();
 
@@ -207,31 +186,44 @@ angular
 
 					$scope.addInstituteTeachers = function() {
 						var UserService = appEndpointSF.getUserService();
-						for (i = 0; i < $scope.selectedTeachers.length; i++) {
-							UserService.addUser($scope.selectedTeachers[i])
+						
+							UserService.addUser($scope.tempTeacher)
 									.then(
 											function(msgBean) {
 												$log.debug("msgBean.msg:"+ msgBean.msg);
 
 											});
-						}
+						
 						$scope.showTeacherSavedToast();
 						$scope.cancelButton();
 					}
-
-					$scope.addInstituteStudents = function() {
-						var UserService = appEndpointSF.getUserService();
-						for (i = 0; i < $scope.selectedStudents.length; i++) {
-							UserService.addUser($scope.selectedStudents[i])
-									.then(
-											function(msgBean) {
-												$log.debug("msgBean.msg:"
+					
+					$scope.addStudSubject = function() {
+						var StudSubService = appEndpointSF.getStudSubService();
+						
+						StudSubService.addStudSubject($scope.tempStudSub).then(
+									function(msgBean) {
+										$log.debug("msgBean.msg:"
 														+ msgBean.msg);
 
-											});
-						}
+									});
+						
+					}
+					
 
+					$scope.addInstituteStudents = function() {
+						
+						var UserService = appEndpointSF.getUserService();
+						UserService.addUser($scope.tempStudent).then(function(msgBean) {
+												$log.debug("msgBean.id:"+ msgBean.id);
+												$scope.tempStudSub.studID = msgBean.id;
+												$scope.tempStudSub.name = $scope.selected;
+												
+
+											});
+						
 						$scope.showStudentSavedToast();
+						//$scope.addStudSubject();
 						$scope.cancelButton();
 					}
 					
@@ -287,7 +279,7 @@ angular
 									$scope.Institute = institutes;
 								});
 					}
-
+					
 					$scope.getUserByInstitute = function() {
 
 						var UserService = appEndpointSF.getUserService();
@@ -316,7 +308,7 @@ angular
 										});
 					}
 					
-					$scope.showselectedInstitute();
+					
 					$scope.getUserByInstitute();
 
 					$scope.viewStandardByInstitute = function() {
@@ -335,21 +327,18 @@ angular
 
 					$scope.viewDivisionByStandard = function() {
 					
-						$log.debug("$scope.selectedStdName: "+ $scope.selectedStdName);
 						$scope.std = $scope.selectedStdName;
 						var DivisionService = appEndpointSF
 								.getDivisionService();
 						DivisionService.getDivisionByStandard($scope.selectedStdID).then(
 								function(divisionList) {
+									$log.debug("$scope.selectedStdID :"+$scope.selectedStdID);
 									$scope.viewDivList = divisionList;
 									
 								});
 					}
 					
 					$scope.viewSubjectByDivision = function() {
-						
-						$log.debug("$scope.selectedStdName.....: "+ $scope.selectedStdName);
-						$log.debug("$scope.selectedDivName......: "+ $scope.selectedDivName);
 						
 						var SubjectService = appEndpointSF.getSubjectService();
 						SubjectService.getSubjectByDivision($scope.selectedDivID).then(
@@ -358,12 +347,12 @@ angular
 								
 								});
 					}
-					
+			
 					$scope.getStandardByInstitute = function() {
 
 						var StandardService = appEndpointSF
 								.getStandardService();
-						StandardService.getStandardByInstitute($scope.curUser.instituteID).then(
+						StandardService.getStandardByInstitute($scope.currentInstID).then(
 								function(standardList) {
 									for(var i=0; i< standardList.length; i++)
 										{
@@ -381,7 +370,7 @@ angular
 					
 						for(var i=0;i< $scope.stdList.length;i++)
 						{
-							if($scope.selectedStandard == $scope.stdList[i].name)
+							if($scope.tempStudent.standard == $scope.stdList[i].name)
 							{
 								$scope.selectedStdID = $scope.stdList[i].id;
 							}
@@ -402,7 +391,7 @@ angular
 						
 						for(var i=0;i<$scope.divList.length;i++)
 						{
-							if($scope.selectedDivision == $scope.divList[i].name)
+							if($scope.tempStudent.division == $scope.divList[i].name)
 							{
 								$scope.selectedDivID = $scope.divList[i].id;
 							}
@@ -421,13 +410,22 @@ angular
 					
 					
 					
+				      $scope.toggle = function (subject, list) {
+				        var idx = list.indexOf(subject);
+				        if (idx > -1) list.splice(idx, 1);
+				        else list.push(subject);
+				      };
+				      $scope.exists = function (subject, list) {
+				        return list.indexOf(subject) > -1;
+				      };
 					
-					// Update Standard$scope.stdList
+					
+					// Update Standard
 					
 					$scope.editStd = function(field) {
 				        $scope.editingStd = $scope.viewstdList.indexOf(field);
 				        $scope.newField = angular.copy(field);
-				        $log.debug("$scope.newField :"+angular.toJson($scope.newField));
+				      
 				    }
 				    
 				    $scope.saveField = function(index) {
@@ -438,7 +436,7 @@ angular
 				    };
 				    
 				    $scope.cancel = function(index) {
-				    	 $log.debug("$scope.newField :"+angular.toJson($scope.newField));
+				    	
 				        if ($scope.editingStd !== false) {
 				            $scope.viewstdList[$scope.editingStd] = $scope.newField;
 				            $scope.editingStd = false;
@@ -449,10 +447,10 @@ angular
 						
 						var StandardService = appEndpointSF.getStandardService();
 						
-						$scope.selectedStandardId = $stateParams.selectedStandardId;  
+						$log.debug("$scope.selectedStdID :"+$scope.selectedStdID);
 						for(var i=0;i<$scope.viewstdList.length;i++)
 						{
-							if($scope.selectedStandardId == $scope.viewstdList[i].id)
+							if($scope.selectedStdID == $scope.viewstdList[i].id)
 							{
 								 $scope.updatedval = $scope.viewstdList[i]
 							}
@@ -460,7 +458,7 @@ angular
 						}
 						StandardService.editStandard($scope.updatedval).then(function(msgBean) {
 							$log.debug("msgBean :"+angular.toJson(msgBean));
-							$log.debug("Inside Ctr updateStandard");
+						
 							
 						});
 						
@@ -474,7 +472,7 @@ angular
 					$scope.editDiv = function(field) {
 				        $scope.editingDiv = $scope.viewDivList.indexOf(field);
 				        $scope.newDIv = angular.copy(field);
-				        $log.debug("$scope.newDIv :"+angular.toJson($scope.newDIv));
+				       
 				    }
 				    
 				    $scope.saveDiv = function(index) {
@@ -485,7 +483,7 @@ angular
 				    };
 				    
 				    $scope.cancelDiv = function(index) {
-				    	 $log.debug("$scope.newDIv :"+angular.toJson($scope.newDIv));
+				    	
 				        if ($scope.editingDiv !== false) {
 				            $scope.viewDivList[$scope.editingDiv] = $scope.newDIv;
 				            $scope.editingDiv = false;
@@ -496,8 +494,6 @@ angular
 						
 						var DivisionService = appEndpointSF.getDivisionService();
 						
-						$log.debug("$stateParams.selectedDivisionId :",
-								$stateParams.selectedDivisionId);
 						$scope.selectedDivisionId = $stateParams.selectedDivisionId;  
 						for(var i=0;i<$scope.viewDivList.length;i++)
 						{
@@ -545,8 +541,6 @@ angular
 						
 						var SubjectService = appEndpointSF.getSubjectService();
 						
-						$log.debug("$stateParams.selectedSubjectId :",
-								$stateParams.selectedSubjectId);
 						$scope.selectedSubjectId = $stateParams.selectedSubjectId;  
 						for(var i=0;i<$scope.viewSubList.length;i++)
 						{
@@ -566,16 +560,12 @@ angular
 					
 					// End of Update Subject
 					
-					
-				
-				
 					$scope.editInstitute = function() {
 						var InstituteService = appEndpointSF
 								.getInstituteService();
 						InstituteService.editInstitute($scope.Institute).then(
 								function(msgBean) {
-									$log.debug("No6");
-									$log.debug("Inside Ctr EditInstitute");
+									
 									$log.debug("msgBean.msg:" + msgBean.msg);
 									$scope.showUpdateSavedToast();
 								});
@@ -625,9 +615,4 @@ angular
 					};
 					$scope.selected = [];
 					
-					$scope.test = function()
-					{
-						alert("Hiiiii");
-					}
-
 				});

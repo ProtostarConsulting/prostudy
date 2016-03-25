@@ -12,7 +12,8 @@ angular.module("prostudyApp").controller(
 						.position("top").hideDelay(3000));
 			};
 					   
-			
+			$scope.selectedInstituteID = $stateParams.selectedInstituteID;
+			$log.debug("$scope.selectedInstituteID :"+$scope.selectedInstituteID)
 			$scope.selectedID = $stateParams.selectedID;
 			$scope.user = [];
 			
@@ -39,7 +40,6 @@ angular.module("prostudyApp").controller(
 				$state.go("^", {});
 			}
 			
-			
-			
 
+			
 		});

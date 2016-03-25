@@ -1,3 +1,5 @@
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <div ng-init="viewDivisionByStandard()">
 	<md-content layout-padding> <md-data-table-container>
 	<table md-data-table md-row-select="selected" md-progress="deferred">
@@ -13,7 +15,6 @@
 			<tr md-auto-select
 				ng-repeat="division in viewDivList track by $index | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText">
 				<td>{{division.id}}</td>
-				
 				<td><span data-ng-hide="editMode">{{division.name}}</span><input
 					type="text" data-ng-show="editMode" data-ng-model="division.name" 
 					data-ng-required /></td>

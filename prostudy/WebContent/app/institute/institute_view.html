@@ -1,46 +1,55 @@
 
+<h3 align="center".md-title">INSTITUTE DETAILS</h3>
+<p>&nbsp;</p>
 
-	<h3><b>Institute Details </b></h3> 
+<div layout="column" layout-align="center center" layout-sm="column"
+	ng-init="showselectedInstitute()">
 
-<div layout="column">
-	<md-content layout-padding>  <md-input-container flex>
 	<table md-data-table" cellpadding="10" cellspacing="2">
 		<tbody>
 			<tr>
-				<th style="font-weight: bold;">Institute ID:</th>
-				<td>{{Institute.id}}</td>
+				<th style="font-weight: bold;">Institute ID     : </th>
+				<td class=".md-body-1">{{Institute.id}}</td>
 			</tr>
 			<tr>
-				<th style="font-weight: bold;">Institute Name:</th>
+				<th style="font-weight: bold;">Institute Name   : </th>
 				<td>{{Institute.name}}</td>
 			</tr>
 			<tr>
-				<th style="font-weight: bold;">Description:</th>
+				<th style="font-weight: bold;">Description      : </th>
 				<td>{{Institute.desc}}</td>
 			</tr>
 			<tr>
-				<th style="font-weight: bold;">Address:</th>
+				<th style="font-weight: bold;">Address          : </th>
 				<td>{{Institute.address}}</td>
 			</tr>
 			<tr>
-				<th style="font-weight: bold;">Phone No:</th>
+				<th style="font-weight: bold;">Phone No         : </th>
 				<td>{{Institute.phone_no}}</td>
 			</tr>
-		
+
 		</tbody>
 	</table>
-	</md-input-container> </md-content>
-
-	<div layout="row" layout-align="centre centre" layout-sm="column" flex>
-		<md-button ui-sref="institute.view.editInstitute" class="md-raised md-primary">Edit Institute</md-button>
-		<md-button ui-sref="institute.view.view_admins({currentInstID: Institute.id})" class="md-raised md-primary">Admin List </md-button>
-		<md-button ui-sref="institute.view.view_teachers"  class="md-raised md-primary">Teacher List </md-button>
-		<md-button ui-sref="institute.view.view_students" class="md-raised md-primary">Student List </md-button>
-		<md-button ui-sref="institute.view.view_standards" class="md-raised md-primary">Standards List</md-button>
-		
-	</div>
-	 <div ui-view></div> 
-	 <footer>
-				
-				</footer>
 </div>
+
+<p>&nbsp;</p>
+
+<div layout="row" layout-align="center center" layout-sm="column">
+
+	<a ui-sref="institute.view.editInstitute"><md-button
+			class="md-raised md-primary">Edit Institute </md-button> </a> <a
+		ui-sref="institute.view.view_admins({currentInstID: Institute.id})"><md-button
+			class="md-raised md-primary">Admin List</md-button> </a> <a
+		ui-sref="institute.view.view_teachers"><md-button
+			class="md-raised md-primary">Teacher List</md-button> </a> <a
+		ui-sref="institute.view.view_students"><md-button
+			class="md-raised md-primary">Student List</md-button> </a> <a
+		ui-sref="institute.view.view_standards"><md-button
+			class="md-raised md-primary">Standards List</md-button> </a>
+
+
+
+</div>
+<div ui-view></div>
+<footer> </footer>
+

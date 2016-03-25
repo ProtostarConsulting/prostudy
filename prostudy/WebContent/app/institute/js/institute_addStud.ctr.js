@@ -9,6 +9,8 @@ angular.module("prostudyApp").controller(
 						3000));
 			};
 			
+			
+			
 			$scope.selectedStandard;
 			$scope.selectedDivision;
 			$scope.selectedSubject;
@@ -20,13 +22,14 @@ angular.module("prostudyApp").controller(
 			$scope.selectedSubjects = [];
 			
 			$scope.standards = [];
-			$scope.divisions = []; 
-			$scope.subjects = []; 					
+			$scope.divisions = [];
+			$scope.subjects = [];
 
 			$scope.selectedStdID;
 			$scope.stdList;
 			$scope.divList;
 			$scope.subList;
+			
 			
 			 $scope.isGoogleUser;			
 			
@@ -41,10 +44,9 @@ angular.module("prostudyApp").controller(
 			$scope.disableButton = function() {
 				$scope.isDisabled = true;
 			}
+	
 			
-			$scope.students = [];
-			$scope.addStudentList = function() {
-				$scope.students.push({
+			$scope.tempStudent = {
 					'instituteID' : $scope.currentInstID,
 					'institute' : $scope.name,
 					'firstName' : $scope.firstName,
@@ -53,25 +55,13 @@ angular.module("prostudyApp").controller(
 					'address' : $scope.address,
 					'contact' : $scope.contact,
 					'role' : "Student",
-					'standard' : $scope.selectedStandard,
-					'division' : $scope.selectedDivision,
-					'subject' : $scope.selectedSubject,
+					'standard' : "" ,
+					'division' : "",
+					'subject' : "",
 					'password' : $scope.password,
 					'isGoogleUser' : $scope.isGoogleUser
-				});
-				$scope.firstName = '';
-				$scope.lastName = '';
-				$scope.email_id = '';
-				$scope.address = '';
-				$scope.contact = '';
-				$scope.role = '';
-				$scope.selectedStandard = '';
-				$scope.password = '';
+				};
 				
-				$scope.flag1=false;
-				$scope.flag2=true;
-			};
-			
 			$scope.standard= {
 					
 					instituteID : $scope.currentInstID,
@@ -128,18 +118,17 @@ angular.module("prostudyApp").controller(
 
 			$scope.addInstituteStudents = function() {
 				var UserService = appEndpointSF.getUserService();
-				for (i = 0; i < $scope.selectedStudents.length; i++) {
-					UserService.addUser($scope.selectedStudents[i]).then(function(msgBean) {
-					$log.debug("$scope.selectedStudents :" + angular.toJson($scope.selectedStudents));
+				
+					UserService.addUser($scope.tempStudent).then(function(msgBean) {
 					
 				});
-				}
 				$scope.showStudentSavedToast();
 				$scope.showMsg();
 				$state.go("institute");
 
 			}
 			
+
 			$scope.getStandardByInstitute = function() {
 
 				var StandardService = appEndpointSF
@@ -162,7 +151,7 @@ angular.module("prostudyApp").controller(
 			
 				for(var i=0;i< $scope.stdList.length;i++)
 				{
-					if($scope.selectedStandard == $scope.stdList[i].name)
+					if($scope.tempStudent.standard == $scope.stdList[i].name)
 					{
 						$scope.selectedStdID = $scope.stdList[i].id;
 					}
@@ -183,7 +172,7 @@ angular.module("prostudyApp").controller(
 				
 				for(var i=0;i<$scope.divList.length;i++)
 				{
-					if($scope.selectedDivision == $scope.divList[i].name)
+					if($scope.tempStudent.division == $scope.divList[i].name)
 					{
 						$scope.selectedDivID = $scope.divList[i].id;
 					}
@@ -199,5 +188,15 @@ angular.module("prostudyApp").controller(
 						});
 				$scope.subjects.splice(0,$scope.subjects.length);
 			}
-
+			
+			 $scope.selected = [];
+		      $scope.toggle = function (subject, list) {
+		        var idx = list.indexOf(subject);
+		        if (idx > -1) list.splice(idx, 1);
+		        else list.push(subject);
+		      };
+		      $scope.exists = function (subject, list) {
+		        return list.indexOf(subject) > -1;
+		      };
+			
 		});

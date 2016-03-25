@@ -25,16 +25,22 @@
 			<md-sidenav class="md-sidenav-right md-whiteframe-z2"
 				md-component-id="right" layout="column"> <md-toolbar
 				class="md-theme-light">
-			<h1 class="md-toolbar-tools">Student Page Sub Menu</h1>
+			<h1 class="md-toolbar-tools">Institute Page Sub Menu</h1>
 			</md-toolbar> <md-content layout-padding> <md-button
 				ng-click="close()" class="md-primary"> Close Sidenav
 			Right </md-button>
-
+			
+			<div layout="column" layout-align="start start">
 			<md-button ui-sref="institute.addInfo"
 				ng-click="close()" class="md-primary">Institute Registration
-			</md-button> 
+			</md-button>
+			 
+			<md-button ui-sref="institute.list" ng-click="close()"
+				class="md-primary">Institute List</md-button> 
+				
 			<md-button ui-sref="institute.view" ng-click="close()"
 				class="md-primary">Institute View</md-button> 
+			</div>
 
 			</md-content> </md-sidenav>
 
@@ -47,6 +53,10 @@
 		<div layout="column" layout-align="start start">
 			<md-button ui-sref="institute.addInfo" ng-click="close()"
 				class="md-primary">Institute Registration</md-button>
+				
+				<md-button ui-sref="institute.list" ng-click="close()"
+				class="md-primary">Institute List</md-button> 
+				
 			<md-button ui-sref="institute.view" ng-click="close()"
 							class="md-primary">Institute View</md-button>
 		

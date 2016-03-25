@@ -1,3 +1,5 @@
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <div>
 	<md-content layout-padding> <md-data-table-container>
 	<table md-data-table md-row-select="selected" md-progress="deferred">
@@ -25,9 +27,16 @@
 	</table>
 	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
 		md-total={{adminList.length}} md-trigger="onpagechange"></md-data-table-pagination>
-	</md-data-table-container> <md-button
+	</md-data-table-container>
+	
+	 <md-button ng-show="flag==true"
 		ui-sref="institute.view.view_admins.addadmins({currentInstID: currentInstID})"
 		class="md-raised md-primary">Add Admins</md-button>
+		
+	<md-button ng-show="flag==false"
+		ui-sref="institute.list_view.view_admin.addadmins({currentInstID: currentInstID})"
+		class="md-raised md-primary">Add Admins</md-button>
+		
 	<div ui-view></div>
 	</md-content>
 </div>

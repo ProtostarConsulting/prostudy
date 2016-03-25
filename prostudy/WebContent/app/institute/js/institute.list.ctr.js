@@ -9,32 +9,14 @@ angular.module("prostudyApp").controller(
 						.position("top").hideDelay(3000));
 			};
 			
-			$scope.curUser=appEndpointSF.getLocalUserService().getLoggedinUser();
-
-			$scope.tempInstitute = {
-				instituteId : "",
-				name : "",
-				desc : "",
-				user_fname : "",
-				user_lname : "",
-				user_email_id : "",
-				user_contact_no : "",
-				books : [],
-				students : [],
-				teachers : [],
-				practiceExams : [],
-				admins : []
-			};
-			$scope.institutes = [];
-
-			$scope.getInstituteById = function() {
+			
+			$scope.getInstitutes = function() {
 
 				var InstituteService = appEndpointSF.getInstituteService();
-				InstituteService.getInstituteById($scope.curUser.instituteID)
+				InstituteService.getInstitutes()
 						.then(function(instituteList) {
-							$scope.institutes.push(instituteList);
-							$log.debug("$scope.institutes :"+angular.toJson($scope.institutes));
-
+							$scope.institutes = instituteList;
+							
 						});
 			}
 
@@ -65,7 +47,7 @@ angular.module("prostudyApp").controller(
 			};
 			
 			
-			$scope.getInstituteById();
+			$scope.getInstitutes();
 			$scope.selected = [];
 
 		});

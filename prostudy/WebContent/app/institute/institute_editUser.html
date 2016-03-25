@@ -1,99 +1,119 @@
- 
- <p>&nbsp;</p>
-  <form name="userEditForm" ng-model="userEditForm"
+
+<p>&nbsp;</p>
+<form name="userEditForm" ng-model="userEditForm"
 	ng-submit="userEditForm.$valid " novalidate>
 
 	<div layout="column" flex
 		ng-repeat="item in user track by stud.id |  filter:searchText">
 
+		<div layout="row" layout-align="centre centre" layout-sm="column">
 
-		<md-input-container> <label>Student ID </label> <input
-			name="studID" id="studID" ng-model="item.id" readonly> </md-input-container>
+			<md-input-container flex> <label>Student
+				ID </label> <input name="studID" id="studID" ng-model="item.id" readonly>
+			</md-input-container>
 
-		<md-input-container> <label>PRN No.</label> <input
-			name="prn" id="prn" ng-model="item.prn" readonly> </md-input-container>
+			<md-input-container flex> <label>PRN No.</label>
+			<input name="prn" id="prn" ng-model="item.prn" readonly> </md-input-container>
+		</div>
+
+		<div layout="row" layout-align="centre centre" layout-sm="column">
+
+			<md-input-container flex> <label>First
+				Name<span style="color: red"
+				ng-show="userEditForm.firstName.$error.required" class="mandatory">*</span>
+			</label> <input name="firstName" id="firstName" ng-model="item.firstName"
+				required name="firstName">
+			<div ng-messages="userEditForm.firstName.$error"
+				ng-if="userEditForm.firstName.$submitted || userEditForm.firstName.$touched">
+				<div ng-message="required">Please Enter Your FirstName.</div>
+			</div>
+			</md-input-container>
+
+			<md-input-container flex> <label>Last
+				Name<span style="color: red"
+				ng-show="userEditForm.lastName.$error.required" class="mandatory">*</span>
+			</label> <input name="lastName" id="lastName" ng-model="item.lastName"
+				required name="lastName">
+			<div ng-messages="userEditForm.lastName.$error"
+				ng-if="userEditForm.lastName.$submitted || userEditForm.lastName.$touched">
+				<div ng-message="required">Please Enter Your LastName.</div>
+			</div>
+			</md-input-container>
+		</div>
+
+
+
+
+		<div layout="row" layout-align="centre centre" layout-sm="column">
+
+			<md-input-container flex> <label>Address<span
+				style="color: red" ng-show="userEditForm.address.$error.required"
+				class="mandatory">*</span></label> <input name="address" id="address"
+				ng-model="item.address" required name="address">
+			<div ng-messages="userEditForm.address.$error"
+				ng-if="userEditForm.address.$submitted || userEditForm.address.$touched">
+				<div ng-message="required">Please Enter Your Address.</div>
+			</div>
+			</md-input-container>
+
+			<md-input-container flex> <label>Contact<span
+				style="color: red" ng-show="userEditForm.contact.$error.required"
+				class="mandatory">*</span></label> <input name="contact"
+				ng-model="item.contact" ng-minlength="10" ng-maxlength="10"
+				ng-required="true">
+			<div ng-messages="userEditForm.contact.$error"
+				ng-if="userEditForm.contact.$submitted || userEditForm.contact.$touched">
+				<div ng-message="required">Please Enter Your Contact.</div>
+				<span class="help-block"
+					ng-show="((userEditForm.contact.$error.minlength || userEditForm.contact.$error.maxlength) && userEditForm.contact.$dirty) ">Contact
+					number should be 10 digits</span>
+			</div>
+			</md-input-container>
+		</div>
+
+
+		<div layout="row" layout-align="centre centre" layout-sm="column">
+			<md-input-container flex> <label>Email-id<span
+				style="color: red" ng-show="userEditForm.email_id.$error.required"
+				class="mandatory">*</span></label> <input type="email" name="email_id"
+				ng-model="item.email_id" ng-required="true">
+			<div ng-messages="userEditForm.email_id.$error"
+				ng-if="userEditForm.email_id.$submitted || userEditForm.email_id.$touched">
+				<div ng-message="required">Please Enter your Email-Id.</div>
+			</div>
+			</md-input-container>
+
+			<md-input-container flex ng-hide ="changeRole()"> <label>Role<span
+				style="color: red" ng-show="userEditForm.role.$error.required"
+				class="mandatory">*</span></label> <md-select required name="role"
+				ng-model="item.role" placeholder="User role"> <md-option>Admin</md-option>
+			<md-option>Student</md-option> <md-option>Teacher</md-option> </md-select> </md-input-container>
+
+			</div>
 			
 			
-		<md-input-container> <label>First Name<span
-			style="color: red"
-			ng-show="userEditForm.firstName.$error.required" class="mandatory">*</span></label>
-		<input name="firstName" id="firstName" ng-model="item.firstName"
-			required name="firstName">
-		<div ng-messages="userEditForm.firstName.$error"
-			ng-if="userEditForm.firstName.$submitted || userEditForm.firstName.$touched">
-			<div ng-message="required">Please Enter Your FirstName.</div>
+			<div layout="row" layout-align="centre centre" layout-sm="column">
+				<md-input-container ng-show="item.role == 'Student'" flex="35">
+				<label>Standard</label> <input name="standard" id="standard"
+					ng-model="item.standard" readonly> </md-input-container>
+
+				<md-input-container ng-show="item.role == 'Student'" flex="35">
+				<label>Division</label> <input name="division" id="division"
+					ng-model="item.division" readonly> </md-input-container>
+
+				<md-input-container ng-show="item.role == 'Student'" flex="35">
+				<label>Subject</label> <input name="subject" id="subject"
+					ng-model="item.subject" readonly> </md-input-container>
+			</div>
 		</div>
-		</md-input-container>
 
-		<md-input-container> <label>Last Name<span
-			style="color: red" ng-show="userEditForm.lastName.$error.required"
-			class="mandatory">*</span></label> <input name="lastName" id="lastName"
-			ng-model="item.lastName" required name="lastName">
-		<div ng-messages="userEditForm.lastName.$error"
-			ng-if="userEditForm.lastName.$submitted || userEditForm.lastName.$touched">
-			<div ng-message="required">Please Enter Your LastName.</div>
+		<div layout="row" layout-align="center center">
+			<md-button class="md-raised md-primary" ng-click="updateUser()"
+				ng-disabled="userEditForm.$invalid">Save</md-button>
+			<md-button class="md-raised" ng-click="cancel()"> Cancel
+			</md-button>
 		</div>
-		</md-input-container>
-
-		<md-input-container> <label>Address<span
-			style="color: red" ng-show="userEditForm.address.$error.required"
-			class="mandatory">*</span></label> <input name="address" id="address"
-			ng-model="item.address" required name="address">
-		<div ng-messages="userEditForm.address.$error"
-			ng-if="userEditForm.address.$submitted || userEditForm.address.$touched">
-			<div ng-message="required">Please Enter Your Address.</div>
-		</div>
-		</md-input-container>
-
-		<md-input-container> <label>Contact<span
-			style="color: red" ng-show="userEditForm.contact.$error.required"
-			class="mandatory">*</span></label> <input  name="contact"
-			ng-model="item.contact" ng-minlength="10" ng-maxlength="10"
-			ng-required="true">
-		<div ng-messages="userEditForm.contact.$error"
-			ng-if="userEditForm.contact.$submitted || userEditForm.contact.$touched">
-			<div ng-message="required">Please Enter Your Contact.</div>
-			<span class="help-block"
-				ng-show="((userEditForm.contact.$error.minlength || userEditForm.contact.$error.maxlength) && userEditForm.contact.$dirty) ">Contact
-				number should be 10 digits</span>
-		</div>
-		</md-input-container>
-
-		<md-input-container> <label>Email-id<span
-			style="color: red" ng-show="userEditForm.email_id.$error.required"
-			class="mandatory">*</span></label> <input type="email" name="email_id"
-			ng-model="item.email_id" ng-required="true">
-		<div ng-messages="userEditForm.email_id.$error"
-			ng-if="userEditForm.email_id.$submitted || userEditForm.email_id.$touched">
-			<div ng-message="required">Please Enter your Email-Id.</div>
-		</div>
-		</md-input-container>
+</form>
 
 
 
-		<md-input-container ng-show="item.role == 'Student'"> <label>Standard</label> <input
-			name="standard" id="standard" ng-model="item.standard" readonly>
-		</md-input-container>
-
-		<md-input-container ng-show="item.role == 'Student'"> <label>Division</label> <input
-			name="division" id="division" ng-model="item.division" readonly>
-		</md-input-container>
-
-		<md-input-container ng-show="item.role == 'Student'"> <label>Subject</label> <input
-			name="subject" id="subject" ng-model="item.subject" readonly>
-		</md-input-container>
-
-	</div>
-
-	<div layout="row" layout-align="center center">
-		<md-button class="md-raised md-primary" ng-click="updateUser()"
-			ng-disabled="userEditForm.$invalid">Save</md-button>
-		<md-button class="md-raised" ng-click="cancel()">
-		Cancel </md-button>
-	</div>
-
-</form> 
-
-
- 
- 
