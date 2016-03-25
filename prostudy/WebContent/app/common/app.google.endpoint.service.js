@@ -308,6 +308,38 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 	// end of SubjectService
+	
+	// start of StudSubService
+	var StudSubService = {};
+
+	serviceFactory.getStudSubService = function() {
+		return StudSubService;
+	}
+
+	StudSubService.addStudSubject = function(sub) {
+
+		var deferred = $q.defer();
+		gapi.client.studSubService.addStudSubject(sub).execute(
+				function(resp) {
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+	}
+
+	StudSubService.getStudSubjects = function() {
+		var deferred = $q.defer();
+		gapi.client.studSubService.getStudSubjects().execute(function(resp) {
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
+
+
+
+
+	// End of StudSubService
+	
 
 	// start of AttendanceService
 	var AttendanceService = {};

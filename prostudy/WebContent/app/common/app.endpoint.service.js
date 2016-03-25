@@ -14,7 +14,7 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 
 	endpointFactory.getLocalUserService = function() {
 		return localDBServiceFactory.getUserService();
-	};// end of getUserService
+	};
 
 	endpointFactory.getUserService = function() {
 
@@ -22,7 +22,7 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 			return localDBServiceFactory.getUserService();
 		else
 			return googleEndpointSF.getUserService();
-	};// end of getUserService
+	};
 	
 	endpointFactory.getCertificateService = function() {
 
@@ -30,7 +30,7 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 			return localDBServiceFactory.getCertificateService();
 		else
 			return googleEndpointSF.getCertificateService();
-	};// end of getCertificateService
+	};
 	
 	endpointFactory.getStandardService = function() {
 
@@ -38,7 +38,7 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 			return localDBServiceFactory.getStandardService();
 		else
 			return googleEndpointSF.getStandardService();
-	};// end of getStandardService
+	};
 	
 	endpointFactory.getDivisionService = function() {
 
@@ -46,7 +46,7 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 			return localDBServiceFactory.getDivisionService();
 		else
 			return googleEndpointSF.getDivisionService();
-	};// end of getDivisionService
+	};
 	
 	endpointFactory.getSubjectService = function() {
 
@@ -54,21 +54,29 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 			return localDBServiceFactory.getSubjectService();
 		else
 			return googleEndpointSF.getSubjectService();
-	};// end of getSubjectService
+	};
+	
+	endpointFactory.getStudSubService = function() {
+
+		if (isTestMode)
+			return localDBServiceFactory.getStudSubService();
+		else
+			return googleEndpointSF.getStudSubService();
+	};
 
 	endpointFactory.getChapterService = function() {
 		if (isTestMode)
 			return localDBServiceFactory.getChapterService();
 		else
 			return googleEndpointSF.getChapterService();
-	};// end of getChapterService
+	};
 
 	endpointFactory.getBookService = function() {
 		if (isTestMode)
 			return localDBServiceFactory.getBookService();
 		else
 			return googleEndpointSF.getBookService();
-	};// end of getBookService
+	};
 
 	endpointFactory.getSyllabusService = function() {
 		if (isTestMode)
@@ -82,14 +90,14 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 			return localDBServiceFactory.getPracticeExamService();
 		else
 			return googleEndpointSF.getPracticeExamService();
-	};// end of getPracticeExamService
+	};
 
 	endpointFactory.getAttendanceService = function() {
 		if (isTestMode)
 			return localDBServiceFactory.getAttendanceService();
 		else
 			return googleEndpointSF.getAttendanceService();
-	};// end of getAttendanceService
+	};
 
 	endpointFactory.getStudentService = function() {
 		if (isTestMode)
@@ -220,6 +228,13 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 		
 		gapi.client.load('certificateService', 'v0.1', function() {
 			$log.debug("CertificateService Loaded......");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+		
+		gapi.client.load('studSubService', 'v0.1', function() {
+			$log.debug("StudSubService Loaded......");
 			endpointFactory.is_service_ready = true;
 			deferred.resolve();
 

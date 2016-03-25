@@ -160,6 +160,46 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/view/:currentInstID",
 		templateUrl : '/app/institute/institute_view.html',
 		controller : 'instituteViewCtr'
+	}).state('institute.list_view', {
+		url : "/list_view/:selectedInstituteID",
+		templateUrl : '/app/institute/institute_list_view.html',
+		controller : 'instituteListViewCtr'
+	}).state('institute.list_view.editInstitute', {
+		url : "/editInstitute",
+		templateUrl : '/app/institute/institute_editInstitute.html',
+		controller : 'instituteListViewCtr'
+	}).state('institute.list_view.view_admin', {
+		url : "/view_admin",
+		templateUrl : '/app/institute/institute_view_admins.html',
+		controller : 'instituteListViewCtr'
+	}).state('institute.list_view.view_admin.addadmins', {
+		url : "/addadmins",
+		templateUrl : '/app/institute/institute_addAdmins.html',
+		controller : 'instituteListViewCtr'
+	}).state('institute.list_view.view_teachers', {
+		url : "/view_teachers",
+		templateUrl : '/app/institute/institute_view_teachers.html',
+		controller : 'instituteListViewCtr'
+	}).state('institute.list_view.view_teachers.addteachers', {
+		url : "/addteachers",
+		templateUrl : '/app/institute/institute_addTeachers.html',
+		controller : 'instituteListViewCtr'
+	}).state('institute.list_view.view_students', {
+		url : "/view_students",
+		templateUrl : '/app/institute/institute_view_students.html',
+		controller : 'instituteListViewCtr'
+	}).state('institute.list_view.view_students.addstudents', {
+		url : "/addstudents",
+		templateUrl : '/app/institute/institute_addStudents.html',
+		controller : 'instituteListViewCtr'
+	}).state('institute.list_view.view_standards', {
+		url : "/view_standards/:selectedStdID",
+		templateUrl : '/app/institute/institute_view_standards.html',
+		controller : 'instituteListViewCtr',
+	}).state('institute.list_view.view_standards.addstandards', {
+		url : "/addstandards/:currentInstID",
+		templateUrl : '/app/institute/institute_addStandards.html',
+		controller : 'instituteListViewCtr'
 	}).state('institute.view.view_admins', {
 		url : "/view_admin",
 		templateUrl : '/app/institute/institute_view_admins.html',
@@ -185,7 +225,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/institute/institute_addStudents.html',
 		controller : 'instituteViewCtr'
 	}).state('institute.view.view_standards', {
-		url : "/view_standards/:selectedStandardId",
+		url : "/view_standards/:selectedStdID",
 		templateUrl : '/app/institute/institute_view_standards.html',
 		controller : 'instituteViewCtr',
 	}).state('institute.view.view_standards.addstandards', {
