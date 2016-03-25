@@ -16,13 +16,17 @@ import com.protostar.prostudy.until.data.UtilityService;
 public class UserService {
 
 	@ApiMethod(name = "addUser")
-	public void addUser(UserEntity usr) {
+	public UserEntity addUser(UserEntity usr) {
 		String nextPRN = UtilityService.getNextPRN(usr.getRole());
 		usr.setPRN(nextPRN);
-		Key<UserEntity> now = ofy().save().entity(usr).now();
+		
+		UserEntity now = usr;
+		ofy().save().entity(usr).now();
+		System.out.println("now_user :"+now);
+		return now;
+		
 	}
-
-
+	
 	@ApiMethod(name = "updateUser")
 	public void updateUser(UserEntity usr) {
 		Key<UserEntity> now = ofy().save().entity(usr).now();
@@ -58,13 +62,16 @@ public class UserService {
 		UserEntity foundUser = (list == null || list.size() == 0) ? null : list
 				.get(0);
 		if (foundUser != null) {
+			System.out.println("foundUser:" + foundUser);
 			if (foundUser.getPassword().equals(pass)) {
+				System.out.println("Pass matched:");
 				return foundUser;
-			} else {
+			} else {				
+				System.out.println("Pass NOT matched:");
 				return null;
-
 			}
 		} else {
+			System.out.println("foundUser:" + foundUser);
 			return null;
 
 		}
@@ -81,6 +88,18 @@ public class UserService {
 		return list;
 	}
 	
+	
+	/*@ApiMethod(name = "getStudnetBySubject", path = "Somepath_realted_to_your_service")
+	public List<UserEntity> getStudnetBySubject(@Named("subID") String subID,
+			@Named("division") String division, @Named("subject") String subject, String Temp) {
+		
+		List<StudSubEntity> listTemp= ofy().load().type(StudSubEntity.class)
+		.filter("subID", subID);
+		
+		List<UserEntity> list = ofy().load().type(UserEntity.class).ids(listTemp.get);
+
+		return list;
+	}*/
 
 	
 	
