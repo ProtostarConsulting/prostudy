@@ -12,8 +12,8 @@ angular
 								.hideDelay(3000));
 					};
 					$scope.curUser = null;
-					$scope.flag=false;
-					
+					$scope.flag = false;
+
 					$scope.tempUser = {
 						userId : "",
 						firstName : "",
@@ -60,19 +60,29 @@ angular
 																result.result);
 												$scope.curUser = result.result;
 
-												$log
-														.debug("User logged in successfully: "
+												$log.debug("User logged in successfully: "
 																+ $scope.tempUser.email_id);
 												$window.location.reload();
 												$state.go("home");
 
-											} else {							
-											document.getElementById("errmsg").innerHTML = "You are not registered user.";
-											$scope.loginMsg = "Login failed.";
+											} else {
+
+												UserService.getUserByEmailID($scope.tempUser.email_id)
+														.then(
+																function(user) {
+																	$scope.user = user;																	
+																	if ($scope.user.email_id==$scope.tempUser.email_id) {																
+																		document.getElementById("errmsg").innerHTML = "Password Does Not Match.";
+																	} else {
+																		document.getElementById("errmsg").innerHTML = "You are not registered user.";
+																	}
+																});											
+												$scope.loginMsg = "Login failed.";
 											}
+
 										});
 					}
-			
+
 					$scope.cancelButton = function() {
 						$state.go("home", {});
 					}
@@ -88,7 +98,7 @@ angular
 						}, 200);
 						return debounceFn;
 					}
-					
+
 					$scope.close = function() {
 						$mdSidenav('right').close().then(function() {
 							$log.debug("close RIGHT is done");
@@ -96,4 +106,3 @@ angular
 					};
 
 				});
-

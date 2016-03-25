@@ -23,8 +23,7 @@
 				Email-id<span style="color: red"
 				ng-show="loginForm.email_id.$error.required" class="mandatory">*</span>
 			</label> <input type="email" id="email_id" name="email_id" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" 
-				ng-model="tempUser.email_id" ng-required="true"
-				>
+				ng-model="tempUser.email_id" ng-required="true"	>
 			<div ng-messages="loginForm.email_id.$error"
 				ng-if="loginForm.email_id.$submitted || loginForm.email_id.$touched ">
 				<div ng-message="required">Email-Id should not Empty.</div>
@@ -42,7 +41,8 @@
 				<div ng-message="required">Password should not Empty.</div>
 			</div>
 			</md-input-container>			
-	<div><span style="color: red" id="errmsg">{{errmsg}}</span></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<div><span style="color: red" id="errmsg">{{errmsg}}</span>	
+	</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	
 			<div layout="row" layout-align="centre centre" layout-sm="column">
 				<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
