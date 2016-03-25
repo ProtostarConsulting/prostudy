@@ -147,13 +147,14 @@ angular
 																return;
 															}
 
-
+															var auth=$scope.curUser.authority;	
 															$scope.test=$scope.curUser.email_id;
 														    $scope.eid=$scope.test.substring($scope.test.indexOf("@")+1);
-															$scope.curUser.authority.push($scope.eid);
-														  //  $scope.userDoamin=$scope.eid;
+														    if($scope.eid=="protostarcs.com" || $scope.eid=="protostar.co.in")
+														    	if(auth.indexOf("protostarcs.com") !=-1 || auth.indexOf("protostar.co.in")!=-1)
+														    	{}else{$scope.curUser.authority.push($scope.eid);}
 															
-															})
+														});
 					
 
 														
