@@ -71,14 +71,12 @@
 			flex> <label>First Name</label> <span
 			style="color: red" ng-show="Signin.adminFirstName.$error.required"
 			class="mandatory">*</span> <input name="adminFirstName" id="adminFirstName"
-			ng-model="userEntity.firstName" ng-pattern="/^[a-zA-Z]*$/" ng-required="true">
+			ng-model="userEntity.firstName" ng-required="true">
 		<div ng-messages="Signin.adminFirstName.$error"
 			ng-if="Signin.adminFirstName.$touched">
 			<div ng-message="required">Please Enter First Name.</div>
 		</div>
-			<span class="help-block"  style="color: red"
-				ng-show="((Signin.adminFirstName.$error.pattern) && Signin.adminFirstName.$dirty) ">First
-				Name should be text only.(Example.:abc)</span>
+		
 	
 		</md-input-container>
 
@@ -86,16 +84,14 @@
 			md-is-error="Signin.adminLastName.$invalid && (Signin.$submitted || Signin.adminLastName.$dirty)"
 			flex> <label>Last Name</label> <span
 			style="color: red" ng-show="Signin.adminLastName.$error.required"
-			class="mandatory">*</span> <input id="adminLastName" name="adminLastName" ng-pattern="/^[a-zA-Z]*$/"
+			class="mandatory">*</span> <input id="adminLastName" name="adminLastName" 
 			ng-model="userEntity.lastName" ng-required="true">
 
 		<div ng-messages="Signin.adminLastName.$error"
 			ng-if="Signin.adminLastName.$touched">
 			<div ng-message="required">Please Enter Last Name.</div>
 		</div>
-		<span class="help-block" style="color: red"
-				ng-show="((Signin.adminLastName.$error.pattern) && Signin.adminLastName.$dirty) ">Last
-				Name should be text only.(Example.:abc)</span>
+		
 	
 		</md-input-container>
 	</div>
