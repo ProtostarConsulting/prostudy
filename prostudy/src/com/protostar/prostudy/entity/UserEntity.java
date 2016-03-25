@@ -28,15 +28,23 @@ public class UserEntity {
 	private String standard;
 	@Index
 	private String division;
-	@Index
-	private String subject;
+	
 	@Index
 	private Long instituteID;
 	
 	private List<PracticeExamEntity> myExams;
 	private List<BookEntity> myBooks;
-
+	private List<StudSubEntity> subject;
 	
+
+	public List<StudSubEntity> getSubject() {
+		return subject;
+	}
+
+	public void setSubject(List<StudSubEntity> subject) {
+		this.subject = subject;
+	}
+
 	public Boolean getIsGoogleUser() {
 		return isGoogleUser;
 	}
@@ -67,14 +75,6 @@ public class UserEntity {
 
 	public void setDivision(String division) {
 		this.division = division;
-	}
-
-	public String getSubject() {
-		return subject;
-	}
-
-	public void setSubject(String subject) {
-		this.subject = subject;
 	}
 
 	public String getPRN() {
