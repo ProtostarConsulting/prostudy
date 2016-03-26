@@ -1,0 +1,31 @@
+
+<md-content layout-padding>
+<form name="ChangePlan">
+
+
+		<div layout layout-xs="column">
+			<md-input-container flex>
+			Your current Account Type :-{{curuser.businessAccount.accounttype.accountName}}
+			</md-input-container>
+		</div>
+	<div layout layout-xs="column" flex>
+		<md-input-container>Change Account Type :-</md-input-container>
+		<md-input-container layout="center center"> 
+			<md-select name="selectedaccount" placeholder="Select Account Type"
+			ng-model="accounttype" ng-required="true"> <md-option
+			value={{list.id}} ng-repeat="list in accountlist" >
+				{{list.accountName}} ( {{list.description}} ) </md-option> 
+			</md-select>
+			<div ng-messages="Signin.selectedaccount.$error"
+				ng-if="Signin.selectedaccount.$submitted || Signin.selectedaccount.$touched">
+				<div ng-message="required">select Account Type.</div>
+			</div>  
+		</md-input-container>
+	</div> 
+	<section layout="row" layout-sm="column" layout-align="left left">
+		<md-button class="md-raised md-primary" ng-disabled="Signin.$invalid" 
+			ng-click="updatePlan()">Update Plan</md-button>
+
+	</section>
+</form>
+</md-content>
