@@ -239,14 +239,35 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 			deferred.resolve();
 
 		}, apiRoot);
-
-
-
-
-
 		return deferred.promise;
 
 	};
 
+	
+	endpointFactory.getUtilityService = function() {
+		
+		return {
+			checkConfirmPassword: function(pwd, cpwd) {	
+				
+				if(pwd!="undefined" && cpwd!="undefined")
+				{					
+				if(pwd==cpwd)
+				{
+					return null;
+				}
+				else 
+				{
+				 return "Password Does Not Match.";						
+				}	
+				}
+			}
+			
+		};
+		
+		
+	};
+
+	
+	
 	return endpointFactory;
 }
