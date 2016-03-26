@@ -35,6 +35,24 @@ function objectFactoryFn($log) {
 			}
 		}
 	};
+	
+	objectFactory.newInstituteUser = function(role,instituteID,isGoogleUser) {
+		return {
+			'instituteID' : instituteID,
+			'institute' : '',
+			'firstName' : '',
+			'lastName' : '',
+			'email_id' : '',
+			'address' : '',
+			'contact' :'',
+			'role' : role,
+			'standard' : '',
+			'division' : '',
+			'subject' : '',
+			'password' : '',
+			'isGoogleUser' : isGoogleUser,
+		}
+	}
 
 	return objectFactory;
 }

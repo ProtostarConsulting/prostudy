@@ -200,6 +200,26 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/addstandards/:currentInstID",
 		templateUrl : '/app/institute/institute_addStandards.html',
 		controller : 'instituteListViewCtr'
+	}).state('institute.list_view.view_divisions', {
+		url : "/view_divisions/:selectedStdID/:selectedDivisionId/:selectedStdName",
+		templateUrl : '/app/institute/institute_view_divisions.html',
+		controller : 'instituteListViewCtr',
+	}).state('institute.list_view.view_divisions.adddivisions', {
+		url : "/adddivisions/:currentInstID/:currentStdID",
+		templateUrl : '/app/institute/institute_addDivisions.html',
+		controller : 'instituteListViewCtr'
+	}).state('institute.list_view.view_subjects', {
+		url : "/view_subjects/:selectedStdID/:selectedDivID/:selectedSubjectId/:selectedStdName/:selectedDivName/",
+		templateUrl : '/app/institute/institute_view_subjects.html',
+		controller : 'instituteListViewCtr',
+	}).state('institute.list_view.view_subjects.addsubjects', {
+		url : "/addsubjects/:currentInstID/:selectedDivID",
+		templateUrl : '/app/institute/institute_addSubjects.html',
+		controller : 'instituteListViewCtr'
+	}).state('institute.list_view.editUser', {
+		url : "/editUser/:selectedID/:currentInstID",
+		templateUrl : '/app/institute/institute_editUser.html',
+		controller : 'userEditCtr',
 	}).state('institute.view.view_admins', {
 		url : "/view_admin",
 		templateUrl : '/app/institute/institute_view_admins.html',
@@ -256,14 +276,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/viewStudentByStd/:selectedStdName/:selectedDivName/:selectedSubName",
 		templateUrl : '/app/institute/institute_view_studentByStd.html',
 		controller : 'instituteViewCtr',
-		
 	}).state('institute.view.studentByStd.addstudentsByStd', {
 		url : "/addstudentsByStd",
 		templateUrl : '/app/institute/institute_addStudents.html',
 		controller : 'instituteViewCtr',
-		
 	}).state('institute.view.editUser', {
-		url : "/editUser/:selectedID",
+		url : "/editUser/:selectedID/:currentInstID",
 		templateUrl : '/app/institute/institute_editUser.html',
 		controller : 'userEditCtr',
 	}).state('institute.view.viewUser', {
