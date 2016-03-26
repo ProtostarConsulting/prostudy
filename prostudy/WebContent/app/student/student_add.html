@@ -126,8 +126,8 @@
 			<div ng-message="required">Please Select Division.</div>
 		</div>
 		</md-input-container>
-
-		<md-input-container flex> <label>Subject<span
+</div>
+		<!-- <md-input-container flex> <label>Subject<span
 			style="color: red" ng-show="studentForm.subject.$error.required"
 			class="mandatory">*</span></label> <md-select name="subject"
 			ng-model="tempStudent.subject" ng-change="" ng-required="true">
@@ -138,7 +138,45 @@
 			ng-if="studentForm.subject.$submitted || studentForm.subject.$touched">
 			<div ng-message="required">Please Select Subject.</div>
 		</div>
-		</md-input-container>
+		</md-input-container> -->
+	<!-- 	<div layout="row" layout-xs="column">
+			<div layout="row" layout-align="center center" layout-xs="column" flex ng-repeat="subject in subjects">
+		<md-checkbox ng-model="selected" 
+			ng-click="toggle(subject, selected)"> {{subject}}</md-checkbox>
+	</div>	
+	.....{{selected | json}} -->
+	
+	<div>
+				<md-checkbox name="subject"  ng-repeat="subject in subjects"
+					ng-model="selected[subject]"
+					ng-click="toggleSelection(subject)">
+				{{subject.name}}</md-checkbox>
+				
+			</div>
+			...{{selection}}
+			subjects;;;{{subjects}}
+			<!-- <div>
+				<md-checkbox name="answer"
+					ng-model="selected[item.quesId + item.option1]"
+					ng-click="toggleSelection(item.quesId,1)">
+				{{item.option1 }}</md-checkbox>
+				<md-checkbox name="answer"
+					ng-model="selected[item.quesId + item.option2]"
+					ng-click="toggleSelection(item.quesId,2)">
+				{{item.option2 }}</md-checkbox>
+				<md-checkbox name="answer"
+					ng-model="selected[item.quesId + item.option3]"
+					ng-click="toggleSelection(item.quesId,3)">
+				{{item.option3 }}</md-checkbox>
+				<md-checkbox name="answer"
+					ng-model="selected[item.quesId + item.option4]"
+					ng-click="toggleSelection(item.quesId,4)">
+				{{item.option4 }}</md-checkbox>
+
+
+			</div> -->
+	
+		
 	</div>
 	<div layout="row" layout-align="center center">
 		<md-button class="md-raised" ng-click="cancelButton()">

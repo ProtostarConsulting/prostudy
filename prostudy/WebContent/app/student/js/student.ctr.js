@@ -28,7 +28,8 @@ angular.module("prostudyApp")
 			$scope.standards = [];
 			$scope.divisions = [];
 			$scope.subjects = [];
-
+			
+			
 			$scope.selectedStdID;
 			$scope.stdList;
 			$scope.divList;
@@ -50,7 +51,8 @@ angular.module("prostudyApp")
 				contact : "",
 				role : 'Student',
 				myBooks :[],
-				myExams : []
+				myExams : [],
+				subjects : $scope.selection
 			};
 			
 			$scope.getStandardByInstitute = function() {
@@ -104,19 +106,32 @@ angular.module("prostudyApp")
 				var SubjectService = appEndpointSF.getSubjectService();
 				SubjectService.getSubjectByDivision($scope.selectedDivID).then(
 						function(subjectList) {
-							for(var i=0; i< subjectList.length; i++)
+							$scope.subjects=subjectList;
+							/*for(var i=0; i< subjectList.length; i++)
 							{
-								$scope.subjects.push(subjectList[i].name);
+								$scope.subjects.push(subjectList[i].id,subjectList[i].name);
 							}
-
+*/
 						});
-				$scope.subjects.splice(0,$scope.subjects.length);
+				//$scope.subjects.splice(0,$scope.subjects.length);
 			}
+			$scope.selection = [];
+			//$scope.subno=0;
+		  	$scope.toggleSelection = function toggleSelection(sname) {
+				var idx = $scope.selection.indexOf(sname);
+				//$scope.selection.push(sname);
+				if (idx > -1) {
+					$scope.selection.splice(idx, 1);
+				} else {
+					$scope.selection.push(sname);
+				}
+
+			};
 			
 			
 			$scope.addStudent = function() {
 				var UserService = appEndpointSF.getUserService();
-
+				$log.debug("$scope.tempStudent"+angular.toJson($scope.tempStudent));
 				UserService.addUser($scope.tempStudent).then(function(msgBean) {
 	 
 						$scope.showSavedToast();
