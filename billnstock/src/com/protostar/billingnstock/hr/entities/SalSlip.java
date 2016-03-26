@@ -24,6 +24,8 @@ public class SalSlip {
 	private String ganeratedcode;
 	@Index
 	public String salslip_id ;
+	
+	@Index
 	private Ref<SalStruct> salarystruct;
 	
 
@@ -32,6 +34,7 @@ public class SalSlip {
 	private String generateddate ;
 	private String bank_name ;
 	private String acno ;
+	
 	@Index
 	private String year;
 	

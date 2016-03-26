@@ -209,6 +209,7 @@ public class HrService
 	
 		List<SalSlip> salslipdata = ofy().load().type(SalSlip.class).filter("year",curryear).list();
 		
+		//List<SalSlip> salslipdata = ofy().load().type(SalSlip.class).filter("salarystruct.empAccount.id", "6333186975989760").list();
 		List<SalSlip> filteredsalslipdata = new ArrayList<SalSlip>();
 
 		for (int i = 0; i < salslipdata.size(); i++) {

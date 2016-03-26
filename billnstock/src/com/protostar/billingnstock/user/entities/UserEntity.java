@@ -6,6 +6,7 @@ import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
+import com.protostar.billnstock.entity.Address;
 
 @Entity
 public class UserEntity {
@@ -22,6 +23,8 @@ public class UserEntity {
 	private String email_id;
 	private List<String> authority;
 	private Boolean isGoogleUser = true;
+	
+	private Address address;
 
 	public Boolean getIsGoogleUser() {
 		return isGoogleUser;
@@ -87,6 +90,14 @@ public class UserEntity {
 
 	public void setBusinessAccount(BusinessEntity businessAccount) {
 		this.businessAccount = Ref.create(businessAccount);
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 }

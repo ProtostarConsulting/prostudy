@@ -21,6 +21,7 @@ public class SalStruct {
 		this.id = id;
 	}
 	
+	@Index
 	private Ref<UserEntity> empAccount;
 	
 	public UserEntity getEmpAccount() {
