@@ -3,7 +3,7 @@
 		ng-submit="addStandardForm.$valid " novalidate>
 
 
-		<div layout="column" layout-align="centre centre" layout-sm="column">
+		<div layout="column" layout-align="centre centre" layout-xs="column">
 
 			<md-input-container
 				md-is-error="addStandardForm.name.$invalid && (addStandardForm.$submitted || addStandardForm.name.$dirty )">
@@ -22,7 +22,7 @@
 
 
 
-		<div layout="row" layout-align="end end" layout-sm="column" flex>
+		<div layout="row" layout-align="end end" layout-xs="column" flex>
 			<md-button class="md-raised md-primary" ng-disabled="addStandardForm.$invalid"
 				ng-click="addInstituteStandards({currentInstID: currentInstID})">Add
 			Standard </md-button>

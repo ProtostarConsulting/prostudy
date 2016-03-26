@@ -4,7 +4,7 @@ angular
 				"instituteViewCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $q, $sce, tableTestDataFactory,
-						appEndpointSF, $state, $stateParams, $filter) {
+						appEndpointSF, $state, $stateParams, $filter, objectFactory) {
 
 					$scope.curUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
@@ -117,53 +117,9 @@ angular
 							name : $scope.selected
 					}
 					
-					$scope.tempStudent = {
-							'instituteID' : $scope.currentInstID,
-							'institute' : $scope.name,
-							'firstName' : $scope.firstName,
-							'lastName' : $scope.lastName,
-							'email_id' : $scope.email_id,
-							'address' : $scope.address,
-							'contact' : $scope.contact,
-							'role' : "Student",
-							'standard' : "" ,
-							'division' : "",
-							'subject' : $scope.selected,
-							'password' : $scope.password,
-							'isGoogleUser' : $scope.isGoogleUser
-						};
-
-					$scope.tempTeacher = {
-							'instituteID' : $scope.currentInstID,
-							'institute' : $scope.name,
-							'firstName' : $scope.firstName,
-							'lastName' : $scope.lastName,
-							'email_id' : $scope.email_id,
-							'address' : $scope.address,
-							'contact' : $scope.contact,
-							'role' : "Teacher",
-							'password' : $scope.password,
-							'isGoogleUser' : $scope.isGoogleUser,
-							'myBooks' : $scope.myBooks,
-							'myExams' : $scope.myExams
-						};
-
-
-
-					$scope.tempAdmin = {
-						'instituteID' : $scope.currentInstID,
-						'institute' : $scope.name,
-						'firstName' : $scope.firstName,
-						'lastName' : $scope.lastName,
-						'email_id' : $scope.email_id,
-						'address' : $scope.address,
-						'contact' : $scope.contact,
-						'role' : "Admin",
-						'password' : $scope.password,
-						'isGoogleUser' : $scope.isGoogleUser,
-						'myBooks' : $scope.myBooks,
-						'myExams' : $scope.myExams
-					};
+					$scope.tempStudent = objectFactory.newInstituteUser("Student",$scope.currentInstID,$scope.isGoogleUser);
+					$scope.tempTeacher = objectFactory.newInstituteUser("Teacher",$scope.currentInstID,$scope.isGoogleUser);
+					$scope.tempAdmin = objectFactory.newInstituteUser("Admin",$scope.currentInstID,$scope.isGoogleUser);
 					
 					$scope.selectedStudents = [];
 					$scope.selectedTeachers = [];
@@ -216,9 +172,9 @@ angular
 						var UserService = appEndpointSF.getUserService();
 						UserService.addUser($scope.tempStudent).then(function(msgBean) {
 												$log.debug("msgBean.id:"+ msgBean.id);
-												$scope.tempStudSub.studID = msgBean.id;
+												/*$scope.tempStudSub.studID = msgBean.id;
 												$scope.tempStudSub.name = $scope.selected;
-												
+												*/
 
 											});
 						

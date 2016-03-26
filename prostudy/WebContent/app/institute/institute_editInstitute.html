@@ -3,9 +3,9 @@
 <form name="instituteEditForm" ng-model="userEditForm"
 	ng-submit="instituteEditForm.$valid " novalidate>
 
-	<div layout="column" layout-align="" layout-sm="column">
+	<div layout="column" layout-align="" layout-xs="column">
 
-		<div layout="row" layout-align="centre centre" layout-sm="column">
+		<div layout="row" layout-align="centre centre" layout-xs="column">
 			<md-input-container flex> <label>Institute
 				Name<span style="color: red"
 				ng-show="instituteEditForm.name.$error.required" class="mandatory">*</span>
@@ -29,7 +29,7 @@
 			</md-input-container>
 		</div>
 
-		<div layout="row" layout-align="centre centre" layout-sm="column">
+		<div layout="row" layout-align="centre centre" layout-xs="column">
 			<md-input-container flex> <label>Institute
 				Address<span style="color: red"
 				ng-show="instituteEditForm.address.$error.required"
@@ -59,7 +59,7 @@
 		</div>
 
 
-		<div layout="row" layout-align="center center" layout-sm="column">
+		<div layout="row" layout-align="center center" layout-xs="column">
 			<md-button class="md-raised md-primary"
 				ng-disabled="instituteEditForm.$invalid" ng-click="editInstitute()">Update
 			Institute </md-button>

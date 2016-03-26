@@ -1,5 +1,9 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+
+<md-input-container flex> <label>Search By
+	Subject</label> <input ng-model="searchCategory"> </md-input-container>
+	
 <div ng-init="viewSubjectByDivision()">
 	<md-content layout-padding> <md-data-table-container>
 	<table md-data-table md-row-select="selected" md-progress="deferred">
@@ -13,8 +17,8 @@
 		</thead>
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="subject in viewSubList track by $index | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText"
-				data-ng-class="{danger:!subject.active}">
+				ng-repeat="subject in viewSubList | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit |  filter: {name: searchCategory}"
+				>
 				<td>{{subject.id}}</td>
 
 				<td><span data-ng-hide="editMode">{{subject.name}}</span> <input
@@ -50,16 +54,22 @@
 
 
 	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
-		md-total={{subjects.length}} md-trigger="onpagechange"></md-data-table-pagination>
+		md-total={{viewSubList.length}} md-trigger="onpagechange"></md-data-table-pagination>
 	</md-data-table-container>
 
 	<div layout="row" layout-align="centre centre" layout-sm="column" flex>
 	
-		<a ui-sref="institute.view.view_subjects.addsubjects"><md-button
-				class="md-raised md-primary">Add Subject </md-button> </a>
+		<md-button ng-show="flag==true" ui-sref="institute.view.view_subjects.addsubjects"
+		class="md-raised md-primary">Add Subject</md-button>
+	
+		<md-button ng-show="flag==false" ui-sref="institute.list_view.view_subjects.addsubjects"
+		class="md-raised md-primary">Add Subject</md-button>
 				
 	
-		<a ui-sref="institute.view.view_standards"><md-button
+		<a ui-sref="institute.view.view_standards"><md-button ng-show="flag==true"
+				class="md-raised md-primary">Back </md-button> </a>
+				
+		<a ui-sref="institute.list_view.view_standards"><md-button ng-show="flag==false"
 				class="md-raised md-primary">Back </md-button> </a>
 				
 	</div>

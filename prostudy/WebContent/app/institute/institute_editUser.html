@@ -6,7 +6,7 @@
 	<div layout="column" flex
 		ng-repeat="item in user track by stud.id |  filter:searchText">
 
-		<div layout="row" layout-align="centre centre" layout-sm="column">
+		<div layout="row" layout-align="centre centre" layout-xs="column">
 
 			<md-input-container flex> <label>Student
 				ID </label> <input name="studID" id="studID" ng-model="item.id" readonly>
@@ -16,7 +16,7 @@
 			<input name="prn" id="prn" ng-model="item.prn" readonly> </md-input-container>
 		</div>
 
-		<div layout="row" layout-align="centre centre" layout-sm="column">
+		<div layout="row" layout-align="centre centre" layout-xs="column">
 
 			<md-input-container flex> <label>First
 				Name<span style="color: red"
@@ -44,7 +44,7 @@
 
 
 
-		<div layout="row" layout-align="centre centre" layout-sm="column">
+		<div layout="row" layout-align="centre centre" layout-xs="column">
 
 			<md-input-container flex> <label>Address<span
 				style="color: red" ng-show="userEditForm.address.$error.required"
@@ -72,7 +72,7 @@
 		</div>
 
 
-		<div layout="row" layout-align="centre centre" layout-sm="column">
+		<div layout="row" layout-align="centre centre" layout-xs="column">
 			<md-input-container flex> <label>Email-id<span
 				style="color: red" ng-show="userEditForm.email_id.$error.required"
 				class="mandatory">*</span></label> <input type="email" name="email_id"
@@ -92,7 +92,7 @@
 			</div>
 			
 			
-			<div layout="row" layout-align="centre centre" layout-sm="column">
+			<div layout="row" layout-align="centre centre" layout-xs="column">
 				<md-input-container ng-show="item.role == 'Student'" flex="35">
 				<label>Standard</label> <input name="standard" id="standard"
 					ng-model="item.standard" readonly> </md-input-container>

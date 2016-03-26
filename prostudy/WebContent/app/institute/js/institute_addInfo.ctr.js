@@ -1,7 +1,7 @@
 angular.module("prostudyApp").controller(
 		"instituteAddInfoCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $q, appEndpointSF, $state, $stateParams, $mdDialog) {
+				$log, $q, appEndpointSF, $state, $stateParams, $mdDialog, objectFactory) {
 
 			$scope.selectedStandard;
 			$scope.selectedDivision;
@@ -10,7 +10,7 @@ angular.module("prostudyApp").controller(
 			$scope.flag1 = true;
 			$scope.flag2 = true;
 			
-			$scope.isGoogleUser;
+			
 			$scope.myExams = [];
 			$scope.selectedStudents = [];
 			$scope.selectedTeachers = [];
@@ -60,35 +60,9 @@ angular.module("prostudyApp").controller(
 				$scope.isDisabled = true;
 			}
 
-			$scope.tempAdmin = {
-				'instituteID' : $scope.currentInstID,
-				'institute' : $scope.name,
-				'firstName' : $scope.firstName,
-				'lastName' : $scope.lastName,
-				'email_id' : $scope.email_id,
-				'address' : $scope.address,
-				'contact' : $scope.contact,
-				'role' : "Admin",
-				'password' : $scope.password,
-				'isGoogleUser' : $scope.isGoogleUser,
-				'myBooks' : $scope.myBooks,
-				'myExams' : $scope.myExams
-			};
-
-			$scope.tempTeacher = {
-				'instituteID' : $scope.currentInstID,
-				'institute' : $scope.name,
-				'firstName' : $scope.firstName,
-				'lastName' : $scope.lastName,
-				'email_id' : $scope.email_id,
-				'address' : $scope.address,
-				'contact' : $scope.contact,
-				'role' : "Teacher",
-				'password' : $scope.password,
-				'isGoogleUser' : $scope.isGoogleUser,
-				'myBooks' : $scope.myBooks,
-				'myExams' : $scope.myExams
-			};
+			$scope.tempStudent = objectFactory.newInstituteUser("Student",$scope.currentInstID,$scope.isGoogleUser);
+			$scope.tempTeacher = objectFactory.newInstituteUser("Teacher",$scope.currentInstID,$scope.isGoogleUser);
+			$scope.tempAdmin = objectFactory.newInstituteUser("Admin",$scope.currentInstID,$scope.isGoogleUser);
 
 			$scope.standard = {
 

@@ -15,8 +15,10 @@ angular
 								'Student Updated!').position("top").hideDelay(
 								3000));
 					};
-
+					$scope.currentInstID = $stateParams.currentInstID;
 					$scope.selectedID = $stateParams.selectedID;
+					$log.debug("$scope.selectedID :"+$scope.selectedID);
+					$log.debug("$scope.currentInstID :"+$scope.currentInstID);
 					$scope.user = [];
 					$scope.flag1;
 					$scope.role;
@@ -25,14 +27,13 @@ angular
 
 						var UserService = appEndpointSF.getUserService();
 						UserService
-								.getUserByInstitute($scope.curUser.instituteID)
+								.getUserByInstitute($scope.currentInstID)
 								.then(
 										function(userList) {
 											$scope.users = userList;
 											for (i = 0; i < $scope.users.length; i++) {
 												if ($scope.selectedID == $scope.users[i].id) {
-													$scope.user
-															.push($scope.users[i]);
+													$scope.user.push($scope.users[i]);
 													$scope.role = $scope.users[i].role;
 													
 												}

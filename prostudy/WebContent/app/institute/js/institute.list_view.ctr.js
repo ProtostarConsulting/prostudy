@@ -2,19 +2,29 @@ angular.module("prostudyApp").controller(
 		"instituteListViewCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, $q, $sce, tableTestDataFactory, appEndpointSF, $state,
-				$filter, $stateParams) {
+				$filter, $stateParams, objectFactory) {
 
 			$scope.selectedInstituteID = $stateParams.selectedInstituteID;
 			$scope.currentInstID = $stateParams.selectedInstituteID;
-			
 			$scope.selectedStdID = $stateParams.selectedStdID;
+			$scope.selectedDivID = $stateParams.selectedDivID; 
+			
+			$scope.selectedStdName = $stateParams.selectedStdName;
+			$scope.selectedDivName = $stateParams.selectedDivName;
+			$scope.selectedSubName = $stateParams.selectedSubName;
+			
 			$scope.flag = false;
+			$scope.isGoogleUser = false;
 
 			$log.debug("$scope.currentInstID :" + $scope.currentInstID);
 
 			$scope.adminList = [];
 			$scope.teacherList = [];
 			$scope.studentList = [];
+			
+			$scope.standards = [];
+			$scope.divisions = [];
+			$scope.subjects = [];
 			
 			$scope.stdList;
 			$scope.divList;
@@ -46,50 +56,9 @@ angular.module("prostudyApp").controller(
 						.hideDelay(3000));
 			};
 
-			$scope.tempAdmin = {
-				'instituteID' : $scope.currentInstID,
-				'institute' : $scope.name,
-				'firstName' : $scope.firstName,
-				'lastName' : $scope.lastName,
-				'email_id' : $scope.email_id,
-				'address' : $scope.address,
-				'contact' : $scope.contact,
-				'role' : "Admin",
-				'password' : $scope.password,
-				'isGoogleUser' : $scope.isGoogleUser,
-				'myBooks' : $scope.myBooks,
-				'myExams' : $scope.myExams
-			};
-
-			$scope.tempTeacher = {
-				'instituteID' : $scope.currentInstID,
-				'institute' : $scope.name,
-				'firstName' : $scope.firstName,
-				'lastName' : $scope.lastName,
-				'email_id' : $scope.email_id,
-				'address' : $scope.address,
-				'contact' : $scope.contact,
-				'role' : "Teacher",
-				'password' : $scope.password,
-				'isGoogleUser' : $scope.isGoogleUser,
-				'myBooks' : $scope.myBooks,
-				'myExams' : $scope.myExams
-			};
-			$scope.tempStudent = {
-				'instituteID' : $scope.currentInstID,
-				'institute' : $scope.name,
-				'firstName' : $scope.firstName,
-				'lastName' : $scope.lastName,
-				'email_id' : $scope.email_id,
-				'address' : $scope.address,
-				'contact' : $scope.contact,
-				'role' : "Student",
-				'standard' : "",
-				'division' : "",
-				'subject' : $scope.selected,
-				'password' : $scope.password,
-				'isGoogleUser' : $scope.isGoogleUser
-			};
+			$scope.tempStudent = objectFactory.newInstituteUser("Student",$scope.currentInstID,$scope.isGoogleUser);
+			$scope.tempTeacher = objectFactory.newInstituteUser("Teacher",$scope.currentInstID,$scope.isGoogleUser);
+			$scope.tempAdmin = objectFactory.newInstituteUser("Admin",$scope.currentInstID,$scope.isGoogleUser);
 
 			$scope.standard = {
 
@@ -187,8 +156,8 @@ angular.module("prostudyApp").controller(
 				var UserService = appEndpointSF.getUserService();
 				UserService.addUser($scope.tempStudent).then(function(msgBean) {
 					$log.debug("msgBean.id:" + msgBean.id);
-					$scope.tempStudSub.studID = msgBean.id;
-					$scope.tempStudSub.name = $scope.selected;
+					/*$scope.tempStudSub.studID = msgBean.id;
+					$scope.tempStudSub.name = $scope.selected;*/
 
 				});
 

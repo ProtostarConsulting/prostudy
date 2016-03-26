@@ -3,11 +3,11 @@
 	<b>Admin's Information</b>
 </h5>
 <form name="instituteAdminForm" ng-model=instituteAdminForm
-	layout-sm="column" layout-gt-sm="column">
+	layout-xs="column" layout-gt-sm="column">
 
-	<div layout="column" layout-align="" layout-sm="column">
+	<div layout="column" layout-align="" layout-xs="column">
 
-		<div layout="row" layout-align="centre centre" layout-sm="column">
+		<div layout="row" layout-align="centre centre" layout-xs="column">
 
 			<md-input-container flex> <label>First
 				name<span style="color: red"
@@ -35,7 +35,7 @@
 
 		</div>
 
-		<div layout="row" layout-align="centre centre" layout-sm="column">
+		<div layout="row" layout-align="centre centre" layout-xs="column">
 
 
 			<md-input-container flex> <label>Address</label>
@@ -60,14 +60,13 @@
 		</div>
 	</div>
 
-	<div layout="row" layout-sm="column">
+	<div layout="row" layout-xs="column">
 	
-		<label>Is Google User</label>
-		<md-input-container flex="50"> <md-checkbox
+		<md-input-container flex><md-checkbox
 			ng-model="tempAdmin.isGoogleUser" ng-true-value="true"
-			ng-false-value="false"> </md-checkbox> </md-input-container>
+			ng-false-value="false"><label>Is Google User</label> </md-checkbox> </md-input-container>
 
-		<md-input-container flex="60"> <label>Email-id<span
+		<md-input-container flex> <label>Email-id<span
 			style="color: red"
 			ng-show="instituteAdminForm.email_id.$error.required"
 			class="mandatory">*</span></label> <input type="email" name="email_id"
@@ -79,7 +78,7 @@
 		</md-input-container>
 	</div>
 
-	<div layout="row" layout-sm="column">
+	<div layout="row" layout-xs="column">
 		<md-input-container ng-hide="tempAdmin.isGoogleUser" flex>
 		<label>Password<span style="color: red"
 			ng-show="instituteAdminForm.password.$error.required"

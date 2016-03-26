@@ -4,9 +4,9 @@
 </h5>
 <form name="instituteStudentForm" ng-model="instituteStudentForm">
 
-	<div layout="column" layout-align="" layout-sm="column">
+	<div layout="column" layout-align="" layout-xs="column">
 
-		<div layout="row" layout-align="centre centre" layout-sm="column">
+		<div layout="row" layout-align="centre centre" layout-xs="column">
 
 			<md-input-container flex> <label>First
 				name<span style="color: red"
@@ -33,7 +33,7 @@
 			</md-input-container>
 		</div>
 
-		<div layout="row" layout-sm="column">
+		<div layout="row" layout-xs="column">
 
 
 			<md-input-container flex> <label>Address</label>
@@ -57,13 +57,13 @@
 		</div>
 	</div>
 
-	<div layout="row" layout-sm="column">
-		<label>Is Google User</label>
-		<md-input-container flex="50"> <md-checkbox
+	<div layout="row" layout-xs="column">
+		
+		<md-input-container flex> <md-checkbox
 			ng-model="tempStudent.isGoogleUser" ng-true-value="true"
-			ng-false-value="false"> </md-checkbox></md-input-container>
+			ng-false-value="false"><label>Is Google User</label> </md-checkbox></md-input-container>
 
-		<md-input-container flex="60"> <label>Email-id<span
+		<md-input-container flex> <label>Email-id<span
 			style="color: red"
 			ng-show="instituteStudentForm.email_id.$error.required"
 			class="mandatory">*</span></label> <input type="email" name="email_id"
@@ -75,7 +75,7 @@
 		</md-input-container>
 	</div>
 
-	<div layout="row" layout-sm="column">
+	<div layout="row" layout-xs="column">
 
 		<md-input-container flex ng-hide="tempStudent.isGoogleUser">
 		<label>Password<span style="color: red"
@@ -105,7 +105,7 @@
 	</div>
 
 
-	<div layout="row" layout-sm="column">
+	<div layout="row" layout-xs="column">
 
 
 		<md-input-container flex> <label>Standard<span
@@ -155,7 +155,7 @@
 	<label>Select subjects</label>
 	</div>
 	
-	<div layout="row" layout-align="center center" layout-sm="column" flex ng-repeat="subject in subjects">
+	<div layout="row" layout-align="center center" layout-xs="column" flex ng-repeat="subject in subjects">
 		<md-checkbox ng-model="selected" 
 			ng-click="toggle(subject, selected)"> {{subject}}</md-checkbox>
 	</div>

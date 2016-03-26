@@ -3,9 +3,9 @@
 </h5>
 <form name="instituteTeacherForm" ng-model="instituteTeacherForm">
 
-	<div layout="column" layout-align="" layout-sm="column">
+	<div layout="column" layout-align="" layout-xs="column">
 
-		<div layout="row" layout-align="centre centre" layout-sm="column">
+		<div layout="row" layout-align="centre centre" layout-xs="column">
 
 			<md-input-container flex> <label>First
 				name<span style="color: red"
@@ -33,7 +33,7 @@
 
 		</div>
 
-		<div layout="row" layout-sm="column">
+		<div layout="row" layout-xs="column">
 			<md-input-container flex> <label>Address</label>
 			<input name="address" ng-model="tempTeacher.address"> </md-input-container>
 
@@ -56,13 +56,13 @@
 	</div>
 
 
-	<div layout="row" layout-sm="column">
-		<label>Is Google User</label>
-		<md-input-container flex="50"> <md-checkbox
+	<div layout="row" layout-xs="column">
+	
+		<md-input-container flex> <md-checkbox
 			ng-model="tempTeacher.isGoogleUser" ng-true-value="true"
-			ng-false-value="false"> </md-checkbox> </md-input-container>
+			ng-false-value="false">	<label>Is Google User</label></md-checkbox> </md-input-container>
 
-		<md-input-container flex="60"> <label>Email-id<span
+		<md-input-container flex> <label>Email-id<span
 			style="color: red"
 			ng-show="instituteTeacherForm.email_id.$error.required"
 			class="mandatory">*</span></label> <input ng-model="tempTeacher.email_id"
@@ -74,7 +74,7 @@
 		</md-input-container>
 	</div>
 
-	<div layout="row" layout-sm="column">
+	<div layout="row" layout-xs="column">
 		<md-input-container flex ng-hide="tempTeacher.isGoogleUser">
 		<label>Password<span style="color: red"
 			ng-show="instituteTeacherForm.password.$error.required"

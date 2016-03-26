@@ -2,7 +2,7 @@
 	<form name="addSubjectForm" ng-model="addSubjectForm"
 		ng-submit="addSubjectForm.$valid " novalidate>
 
-		<div layout="column" layout-align="centre centre" layout-sm="column">
+		<div layout="column" layout-align="centre centre" layout-xs="column">
 
 			<md-input-container
 				md-is-error="addSubjectForm.name.$invalid && (addSubjectForm.$submitted || addSubjectForm.name.$dirty )">
@@ -19,7 +19,7 @@
 			</div>
 		</div>
 
-		<div layout="row" layout-align="centre centre" layout-sm="column">
+		<div layout="row" layout-align="centre centre" layout-xs="column">
 			<md-button class="md-raised md-primary"
 				ng-disabled="addSubjectForm.$invalid" ng-click="addSubjects()">Add
 			Subject</md-button>

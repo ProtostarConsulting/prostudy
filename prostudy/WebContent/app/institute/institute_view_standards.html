@@ -1,5 +1,9 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+
+<md-input-container flex> <label>Search By
+	Standard</label> <input ng-model="searchCategory"> </md-input-container>
+	
 <div ng-init="viewStandardByInstitute()">
 	<md-content layout-padding> <md-data-table-container>
 	<table md-data-table md-row-select="selected" md-progress="deferred">
@@ -13,7 +17,7 @@
 		</thead>
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="standard in viewstdList | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText"
+				ng-repeat="standard in viewstdList | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: {name: searchCategory}"
 				data-ng-class="{danger:!standard.active}">
 
 				<td>{{standard.id}}</td>
@@ -21,8 +25,12 @@
 					type="text" data-ng-show="editMode" data-ng-model="standard.name" 
 					data-ng-required /></td>
 
-				<td><md-button
+				<td><md-button ng-show="flag==true"
 						ui-sref="institute.view.view_divisions({selectedStdID : standard.id, selectedStdName : standard.name})"
+						class="md-raised md-primary">View Divisions</md-button></td>
+						
+				<td><md-button ng-show="flag==false"
+						ui-sref="institute.list_view.view_divisions({selectedStdID : standard.id, selectedStdName : standard.name})"
 						class="md-raised md-primary">View Divisions</md-button></td>
 
 						
@@ -45,14 +53,16 @@
 	
 	 <md-data-table-pagination
 		md-limit="query.limit" md-page="query.page"
-		md-total={{standards.length}} md-trigger="onpagechange"></md-data-table-pagination>
-		
-		
+		md-total={{viewstdList.length}} md-trigger="onpagechange"></md-data-table-pagination>
 	</md-data-table-container> 
 	
-	<md-button ui-sref="institute.view.view_standards.addstandards"
+	<md-button ng-show="flag==true" ui-sref="institute.view.view_standards.addstandards"
 		class="md-raised md-primary">Add Standard</md-button>
-
+		
+	<md-button ng-show="flag==false" ui-sref="institute.list_view.view_standards.addstandards"
+		class="md-raised md-primary">Add Standard</md-button>
+		
+		
 	<div ui-view></div>
 	</md-content>
 </div>

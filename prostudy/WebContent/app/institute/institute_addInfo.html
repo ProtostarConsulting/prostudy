@@ -3,10 +3,10 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
-<div layout="column" layout-padding	layout-sm="column">
+<div layout="column" layout-padding	layout-xs="column">
 
 <form name="instituteForm" ng-model="instituteForm">
-	<div layout="row" layout-sm="column" flex>
+	<div layout="row" layout-xs="column" flex>
 	
 			<md-input-container  flex> <label>Institute
 				Name<span style="color:red" ng-show="instituteForm.name.$error.required" class="mandatory">*</span></label> <input  name="name" ng-model="tempInstitute.name" ng-required="true"> 
@@ -23,7 +23,7 @@
 	</div>
 
 
-	<div layout="row" layout-sm="column" flex>
+	<div layout="row" layout-xs="column" flex>
 		<md-input-container  flex> <label>Institute
 			Address<span style="color:red" ng-show="instituteForm.address.$error.required" class="mandatory">*</span></label> <input name="address" ng-model="tempInstitute.address" ng-required="true"><div ng-messages="instituteForm.address.$error"
 						ng-if="instituteForm.address.$submitted || instituteForm.address.$touched">
@@ -41,7 +41,7 @@
 </form>
 </div>
 
-<div layout="row" layout-align="center center" layout-sm="column">
+<div layout="row" layout-align="center center" layout-xs="column">
 	
 	<a ui-sref="institute.addAdmins"><md-button
 			class="md-raised md-primary" ng-click="addInstitute()" ng-disabled="instituteForm.$invalid">Add Institute </md-button> </a>
