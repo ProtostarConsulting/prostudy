@@ -82,11 +82,18 @@ angular
 
 										});
 					}
-
+					
 					$scope.cancelButton = function() {
 						$state.go("home", {});
 					}
-
+					$scope.inputType = 'password';
+					$scope.hoverIn = function() {						
+						      $scope.inputType = 'text';
+					}					
+					$scope.hoverOut = function() {
+						 $scope.inputType = 'password';
+					}
+					
 					/* Setup page menu */
 					$scope.toggleRight = buildToggler('right');
 
