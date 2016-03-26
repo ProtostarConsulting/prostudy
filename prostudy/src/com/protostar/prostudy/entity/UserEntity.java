@@ -34,16 +34,6 @@ public class UserEntity {
 	
 	private List<PracticeExamEntity> myExams;
 	private List<BookEntity> myBooks;
-	private List<StudSubEntity> subject;
-	
-
-	public List<StudSubEntity> getSubject() {
-		return subject;
-	}
-
-	public void setSubject(List<StudSubEntity> subject) {
-		this.subject = subject;
-	}
 
 	public Boolean getIsGoogleUser() {
 		return isGoogleUser;

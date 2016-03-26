@@ -12,6 +12,7 @@ public class SubjectEntity {
 	@Index
 	private Long divisionID;
 	private String name;
+	
 	public Long getId() {
 		return id;
 	}
