@@ -34,21 +34,8 @@ angular.module("prostudyApp")
 			$scope.divList;
 			$scope.subList;
 			
-			$scope.err=null;
-			$scope.checkConfirmPassword = function() {	
-				if($scope.tempStudent.password!="undefined" && $scope.tempStudent.confirmpassword!="undefined")
-				{					
-				if($scope.tempStudent.password==$scope.tempStudent.confirmpassword)
-				{
-				$scope.err=null;
-				}
-				else 
-				{
-				$scope.err="Password Does Not Match.";						
-				}	
-				}
-			}
-		
+			$scope.checkConfirmPassword = appEndpointSF.getUtilityService().checkConfirmPassword;
+			
 			$scope.tempStudent = {
 				instituteID :$scope.curUser.instituteID,
 				firstName : "",
