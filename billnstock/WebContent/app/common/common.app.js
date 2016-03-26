@@ -344,6 +344,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/setup/businesssetup.html',
 		controller : 'setup',
 
+	}).state('setup.changeplan', {
+		url : "/changePaln",
+		templateUrl : '/app/setup/changeplan.html',
+		controller : 'setup.changeplan',
+
 	}).state('setup.userlist', {
 		url : "/userlist",
 		templateUrl : '/app/setup/userlist.html',
@@ -414,12 +419,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'probusinessCtr'
 	}).state('probusiness.editBusiness', {
 		url : "/editBusiness/:businessNo/:businessName",
-		templateUrl : '/app/probusiness/editProBusiness.html',
-		controller : 'probusinessCtr'
-	}).state('probusiness.userview', {
+		/*templateUrl : '/app/probusiness/editProBusiness.html',
+		controller : 'probusinessCtr'*/
+		templateUrl : '/app/setup/setup_module.html',
+		controller : 'setup'
+	})/*.state('probusiness.userview', {
 		url : "/userview/:selecteduserNo",
 		templateUrl : '/app/probusiness/userview.html',
 		controller : 'probusinessCtr'
+	})*/.state('probusiness.userview', {
+		url : "/userview/:selecteduserNo",
+		templateUrl : '/app/setup/setup_viewuser.html',
+		controller : 'setup.viewuser',
+
 	}).state('probusiness.adduser', {
 		url : "/adduser/:BNo",
 		templateUrl : '/app/probusiness/adduser.html',

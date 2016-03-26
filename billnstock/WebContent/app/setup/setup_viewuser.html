@@ -2,7 +2,16 @@
 <md-content layout-padding>
 <form name="leadform">
 
+
 	<div id="addField">
+	<div layout-sm="column" layout-align="start start" flex>
+
+		<md-button class="md-icon-button" aria-label="prev"
+			ng-click="back()"> <md-tooltip> get back to user list</md-tooltip> <md-icon
+			md-svg-icon="img/icons/ic_reply_black_24px.svg"
+			aria-label="Prev Week"></md-icon> </md-button>
+
+	</div><br><br>
 		<div layout layout-xs="column">
 			<md-input-container flex> <label>User Id
 			</label> <input ng-model="userL.id" disabled> </md-input-container>
@@ -15,6 +24,77 @@
 				Name </label> <input ng-model="userL.firstName"> </md-input-container>
 			<md-input-container flex> <label>Last
 				Name </label> <input ng-model="userL.lastName"> </md-input-container>
+		</div>
+		<div layout layout-sm="column" layout-align="end end">
+			<a href='' ng-click='ShowHide()'>Change Password +/-</a><br>
+			<br>
+		</div>
+		<div layout layout-sm="column" ng-hide="IsHidden">
+			<md-input-container flex  ng-hide="userL.isGoogleUser"> 
+			<!-- <label style="color: blue">Enter New Password <span style="color: red;">*</span> </label>
+			 <input	type="password" style="color: red" ng-model="userL.password">
+			 -->
+			
+			
+			   <md-button class="md-primary md-raised" ng-click="showAdvanced($event)">
+      Custom Dialog
+    </md-button>
+			
+			
+			<!-- <div layout layout-sm="column" layout-align="center center"
+			ng-hide="savemsg">
+			<md-input-container> <label> Enter new
+				Password </label> <span style="color: red"
+				ng-show="changepassform.password.$error.required" class="mandatory">*</span>
+			<input type="{{inputType1}}" name="password" ng-model="password"
+				ng-required="true">
+			<div ng-messages="changepassform.password.$error"
+				ng-if="changepassform.password.$touched">
+				<div ng-message="required">Please Enter password.</div>
+			</div>
+			</md-input-container>
+			<md-input-container> <md-button
+				class="md-icon-button" aria-label="prev" ng-mousedown="showpass1()" ng-mouseup="showpass1()"
+				> <md-tooltip>show
+			Password</md-tooltip> <md-icon md-svg-icon="img/icons/ic_visibility_24px.svg"></md-icon>
+			</md-button> </md-input-container>
+
+			<md-input-container> <label>Confirm
+				password </label> <span style="color: red"
+				ng-show="changepassform.confirmpassword.$error.required "
+				class="mandatory">*</span> <input type="{{inputType2}}"
+				name="confirmpassword" ng-model="confirmpassword" ng-required="true">
+
+			<div ng-messages="changepassform.confirmpassword.$error"
+				ng-if="changepassform.confirmpassword.$touched">
+				<div ng-message="required">Please Enter Confirm password.</div>
+			</div>
+			</md-input-container>
+			<md-input-container> <md-button
+				class="md-icon-button" aria-label="prev" ng-mousedown="showpass2()" ng-mouseup="showpass2()"
+				> <md-tooltip>show
+			Password</md-tooltip> <md-icon md-svg-icon="img/icons/ic_visibility_24px.svg"></md-icon>
+			</md-button> </md-input-container>
+		</div>
+
+		<div layout="row" layout-sm="column" layout-align="center center"
+			ng-show="checkpass" style="color: red">The confirm password you
+			entered don't match..</div>
+		<div layout="row" layout-sm="column" layout-align="center center"
+			ng-show="savemsg" style="color: Blue">password updated
+			successfully updated.</div> -->
+			
+			
+			
+			
+			
+			
+			
+			 </md-input-container>
+				<md-input-container flex  ng-show="userL.isGoogleUser"> 
+				<a target="_blank" href="https://www.google.com/settings/passwordchange">Link Change Password</a>
+			 </md-input-container>
+			
 		</div>
 		<b>Authority given==={{userL.authority}}</b><br>
 		<br>

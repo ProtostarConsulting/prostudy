@@ -95,7 +95,7 @@ angular
 						}
 
 						hrService
-								.getallsalslip($scope.curryear,$scope.curUser.businessAccount.id)
+								.getallsalslip($scope.curryear, $scope.curUser.businessAccount.id)
 								 .then(
 										function(empsalslips) {
 											$scope.empSalSlip1 = empsalslips.items;
@@ -158,7 +158,8 @@ angular
 						else{
 							$scope.inputType1 = 'password';
 						}
-					}
+						
+				}
 					$scope.showpass2=function(){
 						if($scope.inputType2=='password'){
 							  $scope.inputType2 = 'text';
@@ -167,6 +168,13 @@ angular
 								$scope.inputType2 = 'password';
 							}
 					}
+					$scope.setpassinput1=function(){
+						$scope.inputType1 = 'password';
+					}
+					$scope.setpassinput2=function(){
+						$scope.inputType2 = 'password';
+					}
+					
 					
 					//----------------------------------------------
 					

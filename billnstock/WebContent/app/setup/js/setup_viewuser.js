@@ -3,9 +3,9 @@ angular
 		.controller(
 				"setup.viewuser",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $stateParams, $log, objectFactory,
-						appEndpointSF) {
-					
+						$mdUtil, $stateParams, $log, objectFactory, $mdDialog,
+						$mdMedia, appEndpointSF) {
+
 					$scope.showSimpleToast = function(msgBean) {
 						$mdToast.show($mdToast.simple().content(msgBean)
 								.position("top").hideDelay(3000));
@@ -21,9 +21,8 @@ angular
 					$scope.curuser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
 
-
-
-					//set toggled value onclick on check box and push in selection array only tru or false value
+					// set toggled value onclick on check box and push in
+					// selection array only tru or false value
 					$scope.toggleSelection = function toggleSelection(index) {
 						$scope.selection[index] = !$scope.selection[index];
 					};
@@ -32,11 +31,12 @@ angular
 						if ($scope.user.isGoogleUser == false) {
 							return true;
 						} else {
-							return false
+							return false;
 						}
 					}
-			
-//----------------------view user separate the controller----------------
+
+					// ----------------------view user separate the
+					// controller----------------
 					$scope.getuserById = function() {
 						$log.debug("Inside Ctr $scope.getuserById");
 						var setupService = appEndpointSF.getsetupService();
@@ -45,11 +45,15 @@ angular
 									.getuserById($scope.selecteduserNo)
 									.then(
 											function(userList) {
-												$log.debug("Inside Ctr getAllleads");
+												$log
+														.debug("Inside Ctr getAllleads");
 												$scope.userL = userList.result;
-												//push the authoried item index in true in selection array 
+												// push the authoried item index
+												// in true in selection array
 												for ( var i in $scope.items) {
-						$scope.selection.push($scope.userL.authority.indexOf($scope.items[i]) > -1);
+													$scope.selection
+															.push($scope.userL.authority
+																	.indexOf($scope.items[i]) > -1);
 												}
 
 											});
@@ -71,9 +75,111 @@ angular
 									$scope.showSimpleToast(msgBean.msg);
 								});
 					}
-//------------------------------------------------------------
-			
+					// ------------------------------------------------------------
+					$scope.back = function() {
+						window.history.back();
+						// $state.go("^", {});
+					};
+					// ----------hide and show ---------------------------
 
+					$scope.IsHidden = true;
+					$scope.ShowHide = function() {
+						$scope.IsHidden = $scope.IsHidden ? false : true;
+					}
+					// -----------------------------------------------------
+
+					$scope.showAdvanced = function(ev) {
+						var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
+								&& $scope.customFullscreen;
+						$mdDialog
+								.show(
+										{
+											controller : DialogController,
+											templateUrl : '/app/profile/changepassword.html',
+											parent : angular.element(document.body),
+											targetEvent : ev,
+											clickOutsideToClose : true,
+											fullscreen : useFullScreen,
+											locals: {
+												curuser: $scope.curuser
+										     }
+										})
+								.then(
+										function(answer) {
+											$scope.status = 'You said the information was "'
+													+ answer + '".';
+										},
+										function() {
+											$scope.status = 'You cancelled the dialog.';
+										});
+						$scope.updatepass=function(){
+							$log.debug("change pass");
+						}
+					};
+
+					function DialogController($scope, $mdDialog, curuser) {
+						
+						alert(angular.toJson(curuser));
+						$scope.hide = function() {
+							$mdDialog.hide();
+						};
+						$scope.cancel = function() {
+							$mdDialog.cancel();
+						};
+						$scope.answer = function(answer) {
+							$mdDialog.hide(answer);
+						};
+
+						$scope.inputType1 = 'password';
+						$scope.inputType2 = 'password';
+
+						$scope.showpass1 = function() {
+							if ($scope.inputType1 == 'password') {
+								$scope.inputType1 = 'text';
+							} else {
+								$scope.inputType1 = 'password';
+							}
+
+						}
+						$scope.showpass2 = function() {
+							if ($scope.inputType2 == 'password') {
+								$scope.inputType2 = 'text';
+							} else {
+								$scope.inputType2 = 'password';
+							}
+						}
+						$scope.setpassinput1 = function() {
+							$scope.inputType1 = 'password';
+						}
+						$scope.setpassinput2 = function() {
+							$scope.inputType2 = 'password';
+						}
+						$scope.changepass=function(){
+							
+							if ($scope.password == $scope.confirmpassword) {
+								$scope.savemsg=true;
+								$scope.checkpass=false;
+							} else {
+								$scope.checkpass=true;
+								$scope.savemsg=false;
+							}
+							
+							if($scope.savemsg==true){
+								//$scope.updatepass();
+					/*		$scope.userL.password=$scope.password;	
+							var UserService = appEndpointSF.getUserService();
+							UserService.updateUser($scope.userL).then(function(msgBean) {
+								$scope.showSimpleToast(msgBean.msg);
+															
+							});*/ 
+							}
+					}
+					}
+					
+					
+					
+
+					// -------------------------------------------------------
 					$scope.toggleRight = buildToggler('right');
 
 					function buildToggler(navID) {

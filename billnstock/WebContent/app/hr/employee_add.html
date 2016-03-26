@@ -3,7 +3,7 @@
 <form name="empForm">
 
 	<div id="addField">
-		<div layout layout-sm="column">
+		<div layout layout-xs="column">
 			<md-input-container flex> <label>Employee
 				id </label> <input ng-model="emp.empid" disabled> </md-input-container>
 
@@ -16,7 +16,7 @@
 			</div>
 			</md-input-container>
 		</div>
-		<div layout layout-sm="column">
+		<div layout layout-xs="column">
 			<md-input-container flex> <label> Email
 				id  <span style="color: red;">*</span></label> <input type="email" name="email" ng-model="emp.email" ng-required="true">
 			<div ng-messages="empForm.email.$error"
@@ -33,7 +33,7 @@
 			</div>
 			</md-input-container>
 		</div>
-		<div>
+		<div layout layout-xs="column">
 			<md-input-container flex> <label>Designation  <span style="color: red;">*</span></label>
 			<input name="designation" ng-model="emp.designation"
 				ng-required="true">
