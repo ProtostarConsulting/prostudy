@@ -40,10 +40,10 @@
 					<div layout="row">
 						1.
 						<md-checkbox name="answer" ng-true-value="'option1'"
-							ng-model="tempQuestion.correctAns" ng-click=" "> </md-checkbox>
+							ng-model="tempQuestion.correctAns"><label>Option 1<span style="color: red"
+							ng-show="questionForm.option1.$error.required" class="mandatory">*</span></label></md-checkbox>
 
-						<label>Option 1<span style="color: red"
-							ng-show="questionForm.option1.$error.required" class="mandatory">*</span></label>
+						
 						<input name="option1" id="option1" ng-required="true"
 							ng-model="tempQuestion.option1">
 					</div>
@@ -56,9 +56,9 @@
 					<div layout="row">
 						2.
 						<md-checkbox name="answer" ng-true-value="'option2'"
-							ng-model="tempQuestion.correctAns" ng-click=" "> </md-checkbox>
-						<label>Option 2<span style="color: red"
-							ng-show="questionForm.option2.$error.required" class="mandatory">*</span></label>
+							ng-model="tempQuestion.correctAns"><label>Option 2<span style="color: red"
+							ng-show="questionForm.option2.$error.required" class="mandatory">*</span></label> </md-checkbox>
+						
 						<input name="option2" id="option2" ng-required="true"
 							ng-model="tempQuestion.option2">
 					</div>
@@ -72,9 +72,9 @@
 					<div layout="row">
 						3.
 						<md-checkbox name="answer" ng-true-value="'option3'"
-							ng-model="tempQuestion.correctAns" ng-click=" "> </md-checkbox>
-						<label>Option 3<span style="color: red"
-							ng-show="questionForm.option3.$error.required" class="mandatory">*</span></label>
+							ng-model="tempQuestion.correctAns"><label>Option 3<span style="color: red"
+							ng-show="questionForm.option3.$error.required" class="mandatory">*</span></label> </md-checkbox>
+						
 						<input name="option3" id="option3" ng-required="true"
 							ng-model="tempQuestion.option3">
 					</div>
@@ -88,9 +88,9 @@
 					<div layout="row">
 						4.
 						<md-checkbox name="answer" ng-true-value="'option4'"
-							ng-model="tempQuestion.correctAns" ng-click=" "> </md-checkbox>
-						<label>Option 4<span style="color: red"
-							ng-show="questionForm.option4.$error.required" class="mandatory">*</span></label>
+							ng-model="tempQuestion.correctAns"><label>Option 4<span style="color: red"
+							ng-show="questionForm.option4.$error.required" class="mandatory">*</span></label> </md-checkbox>
+						
 						<input name="option4" id="option4" ng-required="true"
 							ng-model="tempQuestion.option4">
 					</div>
