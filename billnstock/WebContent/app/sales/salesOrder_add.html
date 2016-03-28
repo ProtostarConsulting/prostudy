@@ -7,52 +7,54 @@
 				<u>Sales Order</u>
 			</h3>
 			<div layout="row" layout-xs="column">
- 
-				<md-autocomplete flex required
-				md-input-name="autocompleteField"
-				md-input-minlength="2"
-				md-input-maxlength="18"
-				md-no-cache=true
-				md-selected-item="salesOrder.customer"
-				md-search-text="searchTextInput"
-				md-items="item in querySearch(searchTextInput)"
-				md-item-text="item.firstName"
-				md-floating-label="Customer Name">
-					<md-item-template>
-						<span md-highlight-text="searchTextInput">{{item.firstName}}</span>
-					</md-item-template>
-					<div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
-						<div ng-message="required">
-							You <b>must</b> have a favorite state.
-						</div>
-						<div ng-message="minlength">
-							Your entry is not long enough.
-						</div>
-						<div ng-message="maxlength">
-							Your entry is too long.
-						</div>
+
+				<md-autocomplete flex required md-input-name="autocompleteField"
+					md-input-minlength="2" md-input-maxlength="18" md-no-cache=true
+					md-selected-item="salesOrder.customer"
+					md-search-text="searchTextInput"
+					md-items="item in querySearch(searchTextInput)"
+					md-item-text="item.firstName" md-floating-label="Customer Name">
+				<md-item-template> <span
+					md-highlight-text="searchTextInput">{{item.firstName}}</span> </md-item-template>
+				<div ng-messages="searchForm.autocompleteField.$error"
+					ng-if="searchForm.autocompleteField.$touched">
+					<div ng-message="required">
+						You <b>must</b> have a favorite state.
 					</div>
+					<div ng-message="minlength">Your entry is not long enough.</div>
+					<div ng-message="maxlength">Your entry is too long.</div>
+				</div>
 				</md-autocomplete>
 
 
-						
+
 				<md-input-container flex> <label>Customer
 					Referance ID </label> <input ng-model="salesOrder.customerRefId"> </md-input-container>
 			</div>
 
 			<div layout="row" layout-xs="column">
+				SO Date:
+				<md-datepicker flex ng-model="salesOrder.salesOrderDate"
+					md-placeholder="Enter SO Date"></md-datepicker>
+				Quotation Date:
+				<md-datepicker flex ng-model="salesOrder.quotationDate"
+					md-placeholder="Enter Quotation Date"></md-datepicker>
+					
+						Delivery Date:
+				<md-datepicker ng-model="salesOrder.deliveryDate"
+					md-placeholder="Enter Delivery Date"></md-datepicker>
 
-   	 	 Quotation Date:<md-datepicker flex ng-model="salesOrder.quotationDate" md-placeholder="Enter Quotation Date"></md-datepicker>	
- 		 SO Date:  <md-datepicker flex ng-model="salesOrder.salesOrderDate" md-placeholder="Enter SO Date"></md-datepicker>	
- 			</div>
+				Due Date:
+				<md-datepicker ng-model="salesOrder.dueDate"
+					md-placeholder="Enter Due Date"></md-datepicker>
+			</div>
 
 			<div layout="row" layout-xs="column">
-			
-				<md-input-container flex> <label>To 
-					</label> <textarea name="to" ng-model="salesOrder.to"></textarea>
-				</md-input-container>
-				<md-input-container flex> <label>Ship To 
-					</label> <textarea name="shipTo" ng-model="salesOrder.shipTo"></textarea>
+
+				<md-input-container flex> <label>To </label> <textarea
+					name="to" ng-model="salesOrder.to"></textarea> </md-input-container>
+				<md-input-container flex> <label>Ship
+					To </label> <textarea name="shipTo" ng-model="salesOrder.shipTo"></textarea>
 				</md-input-container>
 			</div>
 
@@ -69,24 +71,25 @@
 				<md-input-container flex> <label>Shipping
 					Terms </label> <input ng-model="salesOrder.shippingTerms"> </md-input-container>
 
-<!-- 				<md-input-container flex> <label>Delivery
-					Date </label> <input ng-model="salesOrder.deliveryDate"> </md-input-container>
- -->
- 
- 				 <md-datepicker ng-model="salesOrder.deliveryDate" md-placeholder="Enter Delivery Date"></md-datepicker>	
- 				 
+
 				<md-input-container flex> <label>Payment
 					Terms </label> <input ng-model="salesOrder.paymentTerms"> </md-input-container>
+				<!-- 				<md-input-container flex> <label>Delivery
+					Date </label> <input ng-model="salesOrder.deliveryDate"> </md-input-container>
+ -->
+
 				<!-- 
 				<md-input-container flex> <label>Due Date
 				</label> <input ng-model="salesOrder.dueDate"> </md-input-container>
  -->
 
-				<md-datepicker ng-model="salesOrder.dueDate"
-					md-placeholder="Enter Due Date"></md-datepicker>
-			</div>
 
-
+				<!-- 	    <md-datepicker ng-model="accountIncome.fromDate" md-placeholder="Enter From Date"></md-datepicker>	
+		
+		<md-datepicker ng-model="accountIncome.toDate" md-placeholder="Enter To Date"></md-datepicker>	
+ -->
+			</div>		
+			
 			<div layout="row" layout-align="center start"
 				style="margin-top: 20px; margin-bottom: 20px;">
 				<md-divider flex></md-divider>

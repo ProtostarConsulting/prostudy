@@ -13,7 +13,8 @@ app
 					$scope.invoiceObj = {
 						salesOrderId : '',
 						customer : '',
-						invoiceDate : $filter("date")(Date.now(), 'dd-MM-yyyy'),
+			//			invoiceDate : $filter("date")(Date.now(), 'dd-MM-yyyy'),
+						invoiceDate : new Date,
 						invoiceDueDate : new Date(),
 						invoiceLineItemList : [],
 						subTotal : '',
@@ -39,7 +40,7 @@ app
 
 								});
 						$log.debug("No4");
-
+						window.history.back();	
 						$scope.invoiceObj = {};
 					}
 

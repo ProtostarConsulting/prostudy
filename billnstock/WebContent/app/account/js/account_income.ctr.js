@@ -12,8 +12,8 @@ app
 							toDate : ''
 						};
 						
-						 $("#allInvoices").show();	
-						 $("#filteredInvoices").hide();
+				//		 $("#allInvoices").show();	
+				//		 $("#filteredInvoices").hide();
 						 
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
@@ -57,14 +57,25 @@ app
 						
 						for (i = 0; i < $scope.invoiceData.length; i++) {
 							
-							var getFrom = $scope.accountIncome.fromDate;						
+/*							var getFrom = $scope.accountIncome.fromDate;						
 							var getTo = $scope.accountIncome.toDate;
 								
 							$scope.from = getFrom.getDate()+"-"+getFrom.getMonth()+"-"+getFrom.getFullYear();
 							$scope.To = getTo.getDate()+"-"+getTo.getMonth()+"-"+getTo.getFullYear();
+*/							
+							var getFrom = new Date($scope.invoiceData[i].invoiceDate);
 							
-							if ($scope.invoiceData[i].invoiceDate >= $scope.from
-									&& $scope.invoiceData[i].invoiceDate <= $scope.To) {
+							var getFrom1 = getFrom.getDate();
+						
+							
+							var getFrom = $scope.invoiceData[i].invoiceDate;
+							$scope.from = getFrom.getUTCDate();
+							
+							
+							
+							
+							if ($scope.invoiceData[i].invoiceDate >= $scope.accountIncome.fromDate
+									&& $scope.invoiceData[i].invoiceDate <= $scope.accountIncome.toDate) {
 								
 								$scope.income.filteredData.push($scope.invoiceData[i]);
 	//							$scope.income.filteredDataIncome = ($scope.income.filteredDataIncome + (parseInt($scope.invoiceData[i].finalTotal)));
@@ -84,8 +95,8 @@ app
 
 						$log.debug("filteredDatatotal:"+ ($scope.filteredDatatotal));	
 						
-						 $("#allInvoices").hide();	
-						 $("#filteredInvoices").show();
+			//			 $("#allInvoices").hide();	
+			//			 $("#filteredInvoices").show();
 					}
 					
 					$scope.filteredData = [];

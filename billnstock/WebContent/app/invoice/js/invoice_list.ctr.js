@@ -44,10 +44,10 @@ app
 					$log.debug("$scope.sendToUpdate:"
 							+ angular.toJson($scope.sendToUpdate));
 
-					$scope.updateInvoice = function(a, b) {						
+					$scope.updateInvoice = function(invoiceId,account) {						
 						$scope.sendToUpdate = [];
-						$scope.sendToUpdate.push(a);
-						$scope.sendToUpdate.push(b);
+						$scope.sendToUpdate.push(invoiceId);
+						$scope.sendToUpdate.push(account);
 						$scope.valueToUpdate = {
 								id : $scope.sendToUpdate[0],
 								status:$scope.sendToUpdate[1]
@@ -56,6 +56,9 @@ app
 						var invoiceService = appEndpointSF.getInvoiceService();
 						invoiceService.updateInvoice($scope.valueToUpdate).then(function() {
 						});
+						
+						$scope.showSimpleToast();
+						window.history.back();
 					}
 
 					/* Setup menu */
@@ -91,6 +94,13 @@ app
 						window.frames["print_frame"].window.focus();
 						window.frames["print_frame"].window.print();
 					}
+					
+					
+					$scope.showSimpleToast = function() {
+						$mdToast.show($mdToast.simple().content(
+								'Invoice Satus Changed!').position("top")
+								.hideDelay(3000));
+					};
 					
 					$scope.back = function() {
 						 window.history.back();

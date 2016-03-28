@@ -59,6 +59,26 @@
 
 			<table style="line-height: 20px;">
 
+
+			<tbody>
+				<tr>
+					<td style="width: 20%"><b>Customer Name :</b>
+						{{invoiceDetail.customer.firstName}}</td>
+					<td style="width: 20%"><label>Invoice ID :</label>
+						{{invoiceDetail.id}}</td>
+					<td style="width: 20%"><label>Date :</label>
+						{{invoiceDetail.invoiceDate}}</td>
+				</tr>
+				
+				<tr>
+					<td style="width: 20%"><b>Sales Order No. :</b>
+						{{invoiceDetail.salesOrderId.id}}</td>
+				</tr>
+				
+				<tr>
+					<td><label>Customer Address :</label>
+						{{invoiceDetail.customer.address}}</td>
+
 				<tbody>
 					<tr>
 						<td style="width: 20%; text-align:right"><b>Invoice ID :</b></td>
@@ -66,6 +86,7 @@
 						<td style="width: 20%; text-align:right"><b>Date :</b></td>
 						<td style="width: 20%">{{invoiceDetail.invoiceDate}}</td>
 					</tr>
+
 
 					<tr>
 						<td style="width: 25%; text-align:right"><b>Customer Name :</b></td>

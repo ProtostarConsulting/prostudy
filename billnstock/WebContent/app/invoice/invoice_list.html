@@ -2,12 +2,6 @@
 <h3>
 	<u>Invoice List</u>
 </h3>
-<div>
-	<section layout="row" layout-align="end end" flex>
-		<md-button class="md-raised md-primary" ng-click="back()">ADD
-		NEW</md-button>
-	</section>
-</div>
 <div layout layout-sm="column">
 	<md-input-container flex> <label>Search</label> <input
 		ng-model="searchText"> </md-input-container>
@@ -21,7 +15,7 @@
 			<tr>
 				<th name="Sr.No" order-by="sr_No"></th>
 
-				<th name="Customer Name" order-by="customerName"></th>
+				<th name="Customer Name" order-by="firstName"></th>
 				<th name="Final Total" order-by="finalTotal"></th>
 				<th name="Update Status"></th>
 				<th name="Action"></th>
@@ -34,7 +28,7 @@
 				ng-repeat="invoice in invoiceData | filter: searchText | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
 				<!-- <a ng-href="#/invoice.list/{{invoiceId.id}}">{{invoice.finalTotal}}</a> -->
 				<td>{{$index+1}}</td>
-				<td>{{invoice.customer.customerName}}</td>
+				<td>{{invoice.customer.firstName}}</td>
 				<td>{{invoice.finalTotal}}</td>
 
 				<td><md-input-container flex> <md-select

@@ -3,7 +3,7 @@
 <div id="invoiceDiv">
 	<form>
 		<div>
-				<u>Purchase Order</u>
+			<u>Purchase Order</u>
 			</h3>
 			<div layout="row" layout-align="center start"
 				style="margin-top: 20px; margin-bottom: 20px;">
@@ -11,68 +11,58 @@
 			</div>
 
 			<div layout="row" layout-xs="column">
-<!-- 				<md-input-container flex> <label>P.O.No
-				</label> <input ng-model="purchaseOrderObj.purchaseOrderNo"> </md-input-container>
- -->				
-<!-- 					<md-input-container flex> <md-select
-					ng-model="purchaseOrderObj.customer" placeholder="Customer Name"
-					ng-change="CustomerddlChange($index, customer)"> <md-option
-					ng-value="cust" ng-repeat="cust in customersforinvoice">{{cust.customerName
-				}}</md-option> </md-select> </md-input-container>
- -->
- 				<md-autocomplete flex required
-				md-input-name="autocompleteField"
-				md-input-minlength="2"
-				md-input-maxlength="18"
-				md-no-cache=true
-				md-selected-item="purchaseOrderObj.customer"
-				md-search-text="searchTextInput"
-				md-items="item in querySearch(searchTextInput)"
-				md-item-text="item.customerName"
-				md-floating-label="Customer Name">
-					<md-item-template>
-						<span md-highlight-text="searchTextInput">{{item.customerName}}</span>
-					</md-item-template>
-					<div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
-						<div ng-message="required">
-							You <b>must</b> have a favorite state.
-						</div>
-						<div ng-message="minlength">
-							Your entry is not long enough.
-						</div>
-						<div ng-message="maxlength">
-							Your entry is too long.
-						</div>
+
+				<md-autocomplete flex required md-input-name="autocompleteField"
+					md-input-minlength="2" md-input-maxlength="18" md-no-cache=true
+					md-selected-item="purchaseOrderObj.customer"
+					md-search-text="searchTextInput"
+					md-items="item in querySearch(searchTextInput)"
+					md-item-text="item.firstName" md-floating-label="Customer Name">
+				<md-item-template> <span
+					md-highlight-text="searchTextInput">{{item.firstName}}</span> </md-item-template>
+				<div ng-messages="searchForm.autocompleteField.$error"
+					ng-if="searchForm.autocompleteField.$touched">
+					<div ng-message="required">
+						You <b>must</b> have a favorite state.
 					</div>
+					<div ng-message="minlength">Your entry is not long enough.</div>
+					<div ng-message="maxlength">Your entry is too long.</div>
+				</div>
 				</md-autocomplete>
- 
- 			</div>
 
-			<div layout="row" layout-xs="column">
-				<md-input-container flex> <label>To </label> 
-				<textarea ng-model="purchaseOrderObj.to" rows="4" cols="1"></textarea> </md-input-container>
+				<md-datepicker ng-model="purchaseOrderObj.poDate"
+					md-placeholder="Select PO Date"></md-datepicker>
 
-				<md-input-container flex> <label>Ship To </label> <textarea
-					ng-model="purchaseOrderObj.shipTo" rows="4" cols="1"></textarea> </md-input-container>
+				<md-datepicker ng-model="purchaseOrderObj.poDueDate"
+					md-placeholder="Select Due Date"></md-datepicker>
 			</div>
 
 			<div layout="row" layout-xs="column">
-<!-- 				<md-input-container flex> <label>P.O.Date
+				<md-input-container flex> <label>To </label> <textarea
+					ng-model="purchaseOrderObj.to" rows="4" cols="1"></textarea> </md-input-container>
+
+				<md-input-container flex> <label>Ship
+					To </label> <textarea ng-model="purchaseOrderObj.shipTo" rows="4" cols="1"></textarea>
+				</md-input-container>
+			</div>
+
+			<div layout="row" layout-xs="column">
+				<!-- 				<md-input-container flex> <label>P.O.Date
 				</label> <input ng-model="purchaseOrderObj.poDate"> </md-input-container>
- -->				
-				 <md-datepicker ng-model="purchaseOrderObj.poDate" md-placeholder="Enter Due Date"></md-datepicker>	
- 
+ -->
+
+
 				<md-input-container flex> <label>Requisitioner
 				</label> <input ng-model="purchaseOrderObj.requisitioner"> </md-input-container>
-				
-				<md-input-container flex> <label>Shipped Via
-				</label> <input ng-model="purchaseOrderObj.shippedVia"> </md-input-container>
-				
-				<md-input-container flex> <label>F.O.B.Point	
+
+				<md-input-container flex> <label>Shipped
+					Via </label> <input ng-model="purchaseOrderObj.shippedVia"> </md-input-container>
+
+				<md-input-container flex> <label>F.O.B.Point
 				</label> <input ng-model="purchaseOrderObj.fOBPoint"> </md-input-container>
-				
+
 				<md-input-container flex> <label>Terms
-				</label> <input ng-model="purchaseOrderObj.terms"> </md-input-container>						
+				</label> <input ng-model="purchaseOrderObj.terms"> </md-input-container>
 			</div>
 
 		</div>
@@ -84,17 +74,18 @@
 		<table md-data-table md-progress="deferred">
 			<thead md-order="query.order" md-trigger="onOrderChange">
 				<tr>
-					<th name="Sr_No" order-by="srNo"></th>
-					<th name="Item Name" order-by="itemName"></th>
-					<th name="Quantity" order-by="qty"></th>
-					<th name="Price" order-by="price"></th>
-					<th name="Total" order-by="total"></th>
+					<th name="Sr_No"></th>
+					<th name="Item Name"></th>
+					<th name="Quantity"></th>
+					<th name="Price"></th>
+					<th name="Total"></th>
 					<th name="Actions"></th>
 				</tr>
 			</thead>
 
 			<tbody>
-				<tr ng-repeat="item in purchaseOrderObj.pOLineItemList| orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit">
+				<tr
+					ng-repeat="item in purchaseOrderObj.pOLineItemList>
 
 					<td>{{ item.srNo }}</td>
 					<td><md-input-container flex> <md-select
@@ -102,14 +93,14 @@
 							ng-change="lineItemStockChange($index, selectedStockItem)">
 						<md-option ng-value="item" ng-repeat="item in stockforPO">{{item.itemName
 						}}</md-option> </md-select> </md-input-container></td>
-<!-- 					<td><md-input-container flex> <label>Item Name
+					<!-- 					<td><md-input-container flex> <label>Item Name
 						</label> <input ng-model="item.itemName" 
 							ng-change="calSubTotal()"> </md-input-container></td>	 -->
 					<td><md-input-container flex> <label>Quantity
 						</label> <input ng-model="item.qty" type="number"
 							ng-change="calSubTotal()"> </md-input-container></td>
 					<td><md-input-container flex> <label>Price
-						</label> <input ng-model="item.price" ng-change="calSubTotal()" ></md-input-container></td>
+						</label> <input ng-model="item.price" ng-change="calSubTotal()"></md-input-container></td>
 					<td><md-input-container flex> <label>Price
 						</label> <b>{{item.qty * item.price}} </b></td>
 					<td>
@@ -139,17 +130,16 @@
 					<td><label><u>Tax Details</u> </label></td>
 					<td></td>
 					<td><md-input-container flex> <md-select
-							ng-model="purchaseOrderObj.selectedTaxItem" placeholder="Tax Type"
+							ng-model="purchaseOrderObj.selectedTaxItem"
+							placeholder="Tax Type"
 							ng-change="lineItemTaxChange($index, selectedTaxItem)">
-					
-						<md-option ng-value="taxValue"
-							ng-repeat="taxValue in taxforPO">{{taxValue.taxCodeName}}</md-option>
+
+						<md-option ng-value="taxValue" ng-repeat="taxValue in taxforPO">{{taxValue.taxCodeName}}</md-option>
 						</md-select> </md-input-container></td>
-						
+
 					<td><md-input-container flex> <label>Tax
-						</label> <b> {{purchaseOrderObj.selectedTaxItem.taxPercenatge}}%
-						</b> </md-input-container></td>
-					
+						</label> <b> {{purchaseOrderObj.selectedTaxItem.taxPercenatge}}% </b> </md-input-container></td>
+
 					<td><md-input-container flex> <b>{{purchaseOrderObj.taxTotal}}</b>
 						</md-input-container></td>
 				</tr>

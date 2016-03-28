@@ -19,6 +19,7 @@ app
 						to : '',
 						shipTo : '',
 						poDate : '',
+						poDueDate:"",
 						requisitioner : '',
 						shippedVia : '',
 						fOBPoint : '',
@@ -256,7 +257,7 @@ app
 					function createFilterFor(query) {
 						var lowercaseQuery = angular.lowercase(query);
 						return function filterFn(cus) {
-							return (angular.lowercase(cus.customerName).indexOf(lowercaseQuery) === 0);
+							return (angular.lowercase(cus.firstName).indexOf(lowercaseQuery) === 0);
 						};
 					}
 					

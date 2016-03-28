@@ -31,8 +31,11 @@
 				<div ng-message="maxlength">Your entry is too long.</div>
 			</div>
 			</md-autocomplete>
-			<md-datepicker ng-model="invoiceObj.invoiceDueDate"
-				md-placeholder="Enter Due Date"></md-datepicker>
+			Invoice Date:<md-datepicker ng-model="invoiceObj.invoiceDate"
+				md-placeholder="Select Date"></md-datepicker>
+				
+			Due Date:<md-datepicker ng-model="invoiceObj.invoiceDueDate"
+				md-placeholder="Select Date"></md-datepicker>
 		</div>
 		<div layout="row" layout-xs="column">
 

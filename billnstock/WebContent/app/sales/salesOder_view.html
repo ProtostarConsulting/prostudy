@@ -1,9 +1,8 @@
 <head>
 <style>
-#hidetr{
-display:none;
+#hidetr {
+	display: none;
 }
-
 </style>
 </head>
 <md-content>
@@ -22,25 +21,27 @@ display:none;
 </md-content>
 <div>
 	<section layout="row" layout-align="end end" flex>
-		<md-button class="md-raised md-primary" ng-click="back()">BACK TO LIST
-		</md-button>
+		<md-button class="md-raised md-primary" ng-click="back()">BACK
+		TO LIST </md-button>
 	</section>
 </div>
 <md-content>
 <div id="salesOrderDiv">
 
-		<table ng-show="myValue" class="ng-hide">
-			<tbody>
-				<tr><td style="width: 20%"><img alt="Logo" src="img/images/protostar_logo_pix_313_132.jpg"></td>
-					<td style="width: 60%">
-						<h2 style= "color:green">Protostar Consulting Services</h2>						
-					</td>
-					<td style="width: 20%"><label style= "color:blue"><u>Address</u><br>E-101,
-							Manimangar Appartment<br>Kasarwadi-414141.<br>Ph.(020)4141414.<br>info@protostar.co.in
-					</label></td>
-				</tr>
-			</tbody>
-		</table>
+	<table ng-show="myValue" class="ng-hide">
+		<tbody>
+			<tr>
+				<td style="width: 20%"><img alt="Logo"
+					src="img/images/protostar_logo_pix_313_132.jpg"></td>
+				<td style="width: 60%">
+					<h2 style="color: green">Protostar Consulting Services</h2>
+				</td>
+				<td style="width: 20%"><label style="color: blue"><u>Address</u><br>E-101,
+						Manimangar Appartment<br>Kasarwadi-414141.<br>Ph.(020)4141414.<br>info@protostar.co.in
+				</label></td>
+			</tr>
+		</tbody>
+	</table>
 	<h3>Sales Order</h3>
 	<div layout="row" layout-align="center start"
 		style="margin-top: 20px; margin-bottom: 20px;">
@@ -52,18 +53,21 @@ display:none;
 
 			<tbody>
 				<tr>
-					<td style="width: 20%"><b>S.O.No :</b>
-						{{sODetail.id}}</td>
+					<td style="width: 20%"><b>S.O.No :</b> {{sODetail.id}}</td>
 					<td style="width: 20%"><b>Customer Name :</b>
-						{{sODetail.customer.customerName}}</td>
+						{{sODetail.customer.firstName}}</td>
 					<td style="width: 20%"><b>Referance By :</b>
 						{{sODetail.customerRefId}}</td>
 				</tr>
 				<tr>
 					<td style="width: 20%"><b>Quotation Date :</b>
-						{{sODetail.quotationDate}}</td>
+						{{sODetail.quotationDate | formatDate}}</td>
 					<td style="width: 20%"><b>Sales Order Date :</b>
-						{{sODetail.salesOrderDate}}</td>
+						{{sODetail.salesOrderDate | formatDate}}</td>
+					<td style="width: 20%"><b>Delivery Date :</b><br>
+						{{sODetail.deliveryDate | formatDate}}</td>
+					<td style="width: 20%"><b>Due Date :</b><br>
+						{{sODetail.dueDate | formatDate}}</td>
 				</tr>
 				<tr>
 					<td style="width: 50%" colspan="2"><b>To :</b><br>
@@ -80,12 +84,9 @@ display:none;
 						{{sODetail.shippedVia}}</td>
 					<td style="width: 20%"><b>Shipping Terms :</b><br>
 						{{sODetail.shippingTerms}}</td>
-					<td style="width: 20%"><b>Delivery Date :</b><br>
-						{{sODetail.deliveryDate}}</td>
 					<td style="width: 20%"><b>Payment Terms :</b><br>
 						{{sODetail.paymentTerms}}</td>
-					<td style="width: 20%"><b>Due Date :</b><br>
-						{{sODetail.dueDate}}</td>
+
 				</tr>
 
 			</tbody>

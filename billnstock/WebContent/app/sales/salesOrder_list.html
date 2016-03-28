@@ -28,9 +28,9 @@
 				ng-repeat="sOList in salesOrderList | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
 
 				<td>{{sOList.id}}</td>
-				<td>{{sOList.customer.customerName}}</td>
-				<td>{{sOList.quotationDate}}</td>
-				<td>{{sOList.salesOrderDate}}</td>
+				<td>{{sOList.customer.firstName}}</td>
+				<td>{{sOList.quotationDate | formatDate}}</td>
+				<td>{{sOList.salesOrderDate | formatDate}}</td>
 				<td>{{sOList.finalTotal}}</td>
 				<td><section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary"
