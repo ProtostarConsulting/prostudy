@@ -17,11 +17,10 @@ public class PurchaseOrderEntity {
 	@Id
 	@Index
 	private Long id;
-	@Index
-	private Long purchaseOrderNo;	
 	private String to;
 	private String shipTo;
-	private String poDate;
+	private Date poDate;
+	private Date poDueDate;
 	private String requisitioner;
 	private String shippedVia;
 	private String fOBPoint;
@@ -71,22 +70,17 @@ public class PurchaseOrderEntity {
 		this.id = id;
 	}
 	
-	public Long getPurchaseOrderNo() {
-		return purchaseOrderNo;
+	public String getShipTo() {
+		return shipTo;
 	}
-	public void setPurchaseOrderNo(Long purchaseOrderNo) {
-		this.purchaseOrderNo = purchaseOrderNo;
+	public void setTo(String to) {
+		this.to = to;
 	}
 
 	public String getTo() {
 		return to;
 	}
-	public void setTo(String to) {
-		this.to = to;
-	}
-	public String getShipTo() {
-		return shipTo;
-	}
+
 	public void setShipTo(String shipTo) {
 		this.shipTo = shipTo;
 	}
@@ -148,13 +142,18 @@ public class PurchaseOrderEntity {
 	public void setFinalTotal(double finalTotal) {
 		this.finalTotal = finalTotal;
 	}
-	public String getPoDate() {
+	public Date getPoDate() {
 		return poDate;
 	}
-	public void setPoDate(String poDate) {
+	public void setPoDate(Date poDate) {
 		this.poDate = poDate;
 	}
+	public Date getPoDueDate() {
+		return poDueDate;
+	}
+	public void setPoDueDate(Date poDueDate) {
+		this.poDueDate = poDueDate;
+	}
 
-	
 	
 }

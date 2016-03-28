@@ -19,12 +19,12 @@ public class InvoiceEntity {
 	private Long id;
 
 	@Index
-	private String invoiceDate;
+	private Date invoiceDate;
 	@Index
-	private String invoiceDueDate;
-	private String itemName;
-	private String rate;
-	private String qty;
+	private Date invoiceDueDate;
+//	private String itemName;
+//	private String rate;
+//	private String qty;
 	private String subTotal;
 	private String taxTotal;
 	private String finalTotal;
@@ -94,7 +94,7 @@ public class InvoiceEntity {
 	
 	
 
-	public String getItemName() {
+	/*public String getItemName() {
 		return itemName;
 	}
 
@@ -117,7 +117,7 @@ public class InvoiceEntity {
 	public void setQty(String qty) {
 		this.qty = qty;
 	}
-
+*/
 	public String getSubTotal() {
 		return subTotal;
 	}
@@ -166,19 +166,19 @@ public class InvoiceEntity {
 		this.status = status;
 	}
 
-	public String getInvoiceDate() {
+	public Date getInvoiceDate() {
 		return invoiceDate;
 	}
 
-	public void setInvoiceDate(String invoiceDate) {
+	public void setInvoiceDate(Date invoiceDate) {
 		this.invoiceDate = invoiceDate;
 	}
 
-	public String getInvoiceDueDate() {
+	public Date getInvoiceDueDate() {
 		return invoiceDueDate;
 	}
 
-	public void setInvoiceDueDate(String invoiceDueDate) {
+	public void setInvoiceDueDate(Date invoiceDueDate) {
 		this.invoiceDueDate = invoiceDueDate;
 	}
 	

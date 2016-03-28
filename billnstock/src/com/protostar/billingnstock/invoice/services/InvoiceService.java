@@ -21,6 +21,13 @@ public class InvoiceService {
 	@ApiMethod(name = "addInvoice")
 	public void addInvoice(InvoiceEntity invoiceEntity) {
 		  
+/*		
+		Date date = new Date();
+		  String DATE_FORMAT = "dd/MM/yyyy";
+		  SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+
+		  invoiceEntity.setInvoiceDate(sdf.format(date));
+*/		  
 		ofy().save().entity(invoiceEntity).now();
 
 		System.out.println(invoiceEntity.getInvoiceLineItemList());
@@ -82,7 +89,7 @@ public class InvoiceService {
 							.getInvoiceDate());
 					invoiceEntity.setInvoiceLineItemList(invoiceList.get(i)
 							.getInvoiceLineItemList());
-					invoiceEntity.setItemName(invoiceList.get(i).getItemName());
+//					invoiceEntity.setItemName(invoiceList.get(i).getItemName());
 					invoiceEntity.setLoggedInUser(invoiceList.get(i)
 							.getLoggedInUser());
 					invoiceEntity.setNote(invoiceList.get(i).getNote());
@@ -92,8 +99,8 @@ public class InvoiceService {
 							.getSalesOrderId());
 					invoiceEntity.setSelectedTaxItem(invoiceList.get(i)
 							.getSelectedTaxItem());
-					invoiceEntity.setQty(invoiceList.get(i).getQty());
-					invoiceEntity.setRate(invoiceList.get(i).getRate());
+//					invoiceEntity.setQty(invoiceList.get(i).getQty());
+//					invoiceEntity.setRate(invoiceList.get(i).getRate());
 
 					ofy().save().entity(invoiceEntity).now();
 				} else {

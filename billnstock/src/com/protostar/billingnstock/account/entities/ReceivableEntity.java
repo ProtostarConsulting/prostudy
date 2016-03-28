@@ -1,5 +1,7 @@
 package com.protostar.billingnstock.account.entities;
 
+import java.util.Date;
+
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
@@ -20,18 +22,10 @@ public class ReceivableEntity {
 	@Index
 	Ref<Customer> customer;
 	private Long invoiceId;
-	private String receivableDate;
-	public String getReceivableDate() {
-		return receivableDate;
-	}
-
-	public void setReceivableDate(String receivableDate) {
-		this.receivableDate = receivableDate;
-	}
-
-	private String invoiceDate;
+	private Date receivableDate;
+	private Date invoiceDate;
 	private String finalTotal;
-	private String invoiceDueDate;
+	private Date invoiceDueDate;
 	private String status = "NotPaid";
 	
 	public String getStatus() {
@@ -69,17 +63,25 @@ public class ReceivableEntity {
 	public void setInvoiceId(Long invoiceId) {
 		this.invoiceId = invoiceId;
 	}
-	public String getInvoiceDate() {
+	public Date getInvoiceDate() {
 		return invoiceDate;
 	}
-	public void setInvoiceDate(String invoiceDate) {
-		this.invoiceDate = invoiceDate;
+	public void setInvoiceDate(Date date) {
+		this.invoiceDate = date;
 	}
 	
-	public String getInvoiceDueDate() {
+	public Date getReceivableDate() {
+		return receivableDate;
+	}
+
+	public void setReceivableDate(Date receivableDate) {
+		this.receivableDate = receivableDate;
+	}
+
+	public Date getInvoiceDueDate() {
 		return invoiceDueDate;
 	}
-	public void setInvoiceDueDate(String invoiceDueDate) {
+	public void setInvoiceDueDate(Date invoiceDueDate) {
 		this.invoiceDueDate = invoiceDueDate;
 	}
 	

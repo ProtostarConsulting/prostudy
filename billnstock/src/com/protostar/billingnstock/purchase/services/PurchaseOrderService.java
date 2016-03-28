@@ -22,12 +22,12 @@ public class PurchaseOrderService {
 		@ApiMethod(name="addPurchaseOrder")
 		public void addPurchaseOrder(PurchaseOrderEntity purchaseOrderEntity){
 			
-			Date date = new Date();
+/*			Date date = new Date();
 			  String DATE_FORMAT = "dd-MM-yyyy";
 			  SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
 
 			  purchaseOrderEntity.setPoDate(sdf.format(date));
-			  
+*/			  
 			Key<PurchaseOrderEntity> now=ofy().save().entity(purchaseOrderEntity).now();
 		}
 		

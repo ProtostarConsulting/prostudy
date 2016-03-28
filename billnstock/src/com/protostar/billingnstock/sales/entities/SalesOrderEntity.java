@@ -1,5 +1,6 @@
 package com.protostar.billingnstock.sales.entities;
 
+import java.util.Date;
 import java.util.List;
 
 import com.googlecode.objectify.Ref;
@@ -16,19 +17,17 @@ public class SalesOrderEntity {
 	@Id
 	@Index
 	private Long id;
-	@Index
-	private Long salesOrderId;
 	private String customerRefId ;
-	private String quotationDate ;
-	private String salesOrderDate ;
+	private Date quotationDate ;
+	private Date salesOrderDate ;
 	private String to;
 	private String shipTo;
 	private String salesPerson;
 	private String shippedVia;
 	private String shippingTerms;
-	private String deliveryDate;
+	private Date deliveryDate;
 	private String paymentTerms;
-	private String dueDate;
+	private Date dueDate;
 	private String taxCodeName;
 	private double taxPercenatge ;
 	private double taxTotal;
@@ -109,30 +108,22 @@ public class SalesOrderEntity {
 		this.id = id;
 	}
 	
-
-
-	public Long getSalesOrderId() {
-		return salesOrderId;
-	}
-	public void setSalesOrderId(Long salesOrderId) {
-		this.salesOrderId = salesOrderId;
-	}
 	public String getCustomerRefId() {
 		return customerRefId;
 	}
 	public void setCustomerRefId(String customerRefId) {
 		this.customerRefId = customerRefId;
 	}
-	public String getQuotationDate() {
+	public Date getQuotationDate() {
 		return quotationDate;
 	}
-	public void setQuotationDate(String quotationDate) {
+	public void setQuotationDate(Date quotationDate) {
 		this.quotationDate = quotationDate;
 	}
-	public String getSalesOrderDate() {
+	public Date getSalesOrderDate() {
 		return salesOrderDate;
 	}
-	public void setSalesOrderDate(String salesOrderDate) {
+	public void setSalesOrderDate(Date salesOrderDate) {
 		this.salesOrderDate = salesOrderDate;
 	}
 	public String getTo() {
@@ -165,10 +156,10 @@ public class SalesOrderEntity {
 	public void setShippingTerms(String shippingTerms) {
 		this.shippingTerms = shippingTerms;
 	}
-	public String getDeliveryDate() {
+	public Date getDeliveryDate() {
 		return deliveryDate;
 	}
-	public void setDeliveryDate(String deliveryDate) {
+	public void setDeliveryDate(Date deliveryDate) {
 		this.deliveryDate = deliveryDate;
 	}
 	public String getPaymentTerms() {
@@ -177,10 +168,10 @@ public class SalesOrderEntity {
 	public void setPaymentTerms(String paymentTerms) {
 		this.paymentTerms = paymentTerms;
 	}
-	public String getDueDate() {
+	public Date getDueDate() {
 		return dueDate;
 	}
-	public void setDueDate(String dueDate) {
+	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
 	}
 	public double getSubTotal() {
