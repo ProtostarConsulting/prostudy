@@ -18,45 +18,53 @@
 
 	<form name="loginForm" ng-model="loginForm">
 		<div layout="column" layout-align="center center">
+			<table>
+				<tbody>
+					<tr>
+						<td colspan="2"><md-input-container flex>
+							<label>User Email-id<span style="color: red"
+								ng-show="loginForm.email_id.$error.required" class="mandatory">*</span>
+							</label> <input type="email" id="email_id" name="email_id"
+								ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+								ng-model="tempUser.email_id" ng-required="true">
+							<div ng-messages="loginForm.email_id.$error"
+								ng-if="loginForm.email_id.$submitted || loginForm.email_id.$touched ">
+								<div ng-message="required">Email-Id should not Empty.</div>
+								<div ng-message="pattern">Please Enter Valid Email Id.</div>
+							</div>
+							</md-input-container></td>
+					</tr>
+					<tr>
+						<td><md-input-container flex> <label>Password<span
+								style="color: red" ng-show="loginForm.password.$error.required"
+								class="mandatory">*</span></label> <input ng-model="tempUser.password"
+								type="{{inputType}}" name="password" id="password"
+								ng-required="true"> </md-input-container></td>
+						<td><md-icon
+								md-svg-icon="img/icons/ic_visibility_black_24px.svg"
+								ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()"> <md-tooltip>Show
+							Password</md-tooltip> </md-icon>
+							<div ng-messages="loginForm.password.$error"
+								ng-if="loginForm.password.$submitted || loginForm.password.$touched">
+								<div ng-message="required">Password should not Empty.</div>
+							</div></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<div>
+								<span style="color: red" id="errmsg">{{errmsg}}</span>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 
-			<md-input-container flex> <label>User
-				Email-id<span style="color: red"
-				ng-show="loginForm.email_id.$error.required" class="mandatory">*</span>
-			</label> <input type="email" id="email_id" name="email_id" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" 
-				ng-model="tempUser.email_id" ng-required="true"	>
-			<div ng-messages="loginForm.email_id.$error"
-				ng-if="loginForm.email_id.$submitted || loginForm.email_id.$touched ">
-				<div ng-message="required">Email-Id should not Empty.</div>
-				<div ng-message="pattern">Please Enter Valid Email Id.</div>
-			</div>
-
-			</md-input-container>
-
-			<md-input-container flex> <label>Password<span
-				style="color: red" ng-show="loginForm.password.$error.required"
-				class="mandatory">*</span></label> <input ng-model="tempUser.password"
-				type="{{inputType}}" name="password" id="password" ng-required="true">				
-				
-				<md-icon
-				md-svg-icon="img/icons/ic_visibility_black_24px.svg" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">	
-				<md-tooltip>Show Password</md-tooltip>			
-				</md-icon>
-			<div ng-messages="loginForm.password.$error"
-				ng-if="loginForm.password.$submitted || loginForm.password.$touched">
-				<div ng-message="required">Password should not Empty.</div>
-			</div>
-			</md-input-container>			
-	<div>
-	<span style="color: red" id="errmsg">{{errmsg}}</span>	
-	</div>
-	
-	
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 			<div layout="row" layout-align="centre centre" layout-sm="column">
 				<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
-				<md-button class="md-raised md-primary" ng-click="login()" ng-disabled="loginForm.$invalid">
-				LOGIN </md-button>
+				<md-button class="md-raised md-primary" ng-click="login()"
+					ng-disabled="loginForm.$invalid"> LOGIN </md-button>
 			</div>
 		</div>
 	</form>
