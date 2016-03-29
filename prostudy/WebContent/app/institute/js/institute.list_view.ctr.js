@@ -17,6 +17,7 @@ angular.module("prostudyApp").controller(
 			
 			$scope.flag = false;
 			$scope.flag3 = false;
+			$scope.flag4 = true;
 			$scope.isGoogleUser = false;
 			$scope.checkConfirmPassword = appEndpointSF.getUtilityService().checkConfirmPassword;
 			

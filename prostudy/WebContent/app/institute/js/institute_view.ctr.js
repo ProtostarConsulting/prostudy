@@ -41,6 +41,7 @@ angular.module("prostudyApp").controller(
 			$scope.isGoogleUser = false;
 			$scope.flag = true;
 			$scope.flag3 = false;
+			$scope.flag4 = true;
 
 			$scope.newField = {};
 			$scope.editingStd = false;

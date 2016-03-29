@@ -9,8 +9,8 @@ angular.module("prostudyApp").controller(
 
 			$scope.flag1 = true;
 			$scope.flag2 = true;
-			
 			$scope.flag3 = true;
+			$scope.flag4 = false;
 			
 			$scope.myExams = [];
 			$scope.selectedStudents = [];
@@ -185,7 +185,7 @@ angular.module("prostudyApp").controller(
 					});
 				}, function() {
 					
-					$scope.status = $state.go("institute.addAdmins",{
+					$scope.status = $state.go("institute.addTeachers",{
 						currentInstID : $scope.currentInstID
 					});
 				});
