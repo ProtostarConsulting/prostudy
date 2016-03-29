@@ -16,6 +16,7 @@ angular.module("prostudyApp").controller(
 			$scope.selectedSubject;
 
 			$scope.isGoogleUser = false;
+			$scope.flag3 = true;
 		
 			$scope.selectedStandards = [];
 			$scope.selectedDivisions = [];
@@ -29,9 +30,6 @@ angular.module("prostudyApp").controller(
 			$scope.stdList;
 			$scope.divList;
 			$scope.subList;
-			
-			
-			 $scope.isGoogleUser;			
 			
 			$scope.currentInstID = $stateParams.currentInstID;
 

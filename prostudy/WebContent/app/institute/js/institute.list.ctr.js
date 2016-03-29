@@ -3,7 +3,7 @@ angular.module("prostudyApp").controller(
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, $q, $sce, tableTestDataFactory, appEndpointSF, $state,
 				$filter) {
-
+			
 			$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content('Institute Saved!')
 						.position("top").hideDelay(3000));
@@ -16,6 +16,7 @@ angular.module("prostudyApp").controller(
 				InstituteService.getInstitutes()
 						.then(function(instituteList) {
 							$scope.institutes = instituteList;
+							
 							
 						});
 			}

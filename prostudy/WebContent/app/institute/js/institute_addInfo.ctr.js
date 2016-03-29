@@ -10,6 +10,7 @@ angular.module("prostudyApp").controller(
 			$scope.flag1 = true;
 			$scope.flag2 = true;
 			
+			$scope.flag3 = true;
 			
 			$scope.myExams = [];
 			$scope.selectedStudents = [];
@@ -32,7 +33,8 @@ angular.module("prostudyApp").controller(
 			$scope.flag = false;
 
 			$scope.isGoogleUser = false;
-
+			
+		
 			$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content('Institute Saved!')
 						.position("top").hideDelay(3000));
@@ -55,9 +57,9 @@ angular.module("prostudyApp").controller(
 
 			$scope.currentInstID = $stateParams.currentInstID;
 
-			$scope.isDisabled = false;
+			$scope.isDisabled;
 			$scope.disableButton = function() {
-				$scope.isDisabled = true;
+				$scope.isDisabled = !$scope.isDisabled;
 			}
 
 			$scope.tempStudent = objectFactory.newInstituteUser("Student",$scope.currentInstID,$scope.isGoogleUser);
@@ -87,19 +89,9 @@ angular.module("prostudyApp").controller(
 
 			};
 
-			$scope.query = {
-				order : 'description',
-				limit : 5,
-				page : 1
-			};
-
+			
 			$scope.currentStdID = $stateParams.currentStdID;
 			$scope.currentDivID = $stateParams.currentDivID;
-
-			$scope.isDisabled = false;
-			$scope.disableButton = function() {
-				$scope.isDisabled = true;
-			}
 
 			$scope.standard = {
 
@@ -124,32 +116,7 @@ angular.module("prostudyApp").controller(
 
 			};
 
-			$scope.query = {
-				order : 'description',
-				limit : 5,
-				page : 1
-			};
-
-			$scope.onpagechange = function(page, limit) {
-				var deferred = $q.defer();
-
-				$timeout(function() {
-					deferred.resolve();
-				}, 2000);
-
-				return deferred.promise;
-			};
-
-			$scope.onorderchange = function(order) {
-				var deferred = $q.defer();
-
-				$timeout(function() {
-					deferred.resolve();
-				}, 2000);
-
-				return deferred.promise;
-			};
-
+		
 			$scope.tempInstitute = {
 				id : "",
 				instituteId : "",
@@ -162,7 +129,7 @@ angular.module("prostudyApp").controller(
 			$scope.institutes = [];
 
 			$scope.addInstitute = function() {
-
+				$scope.flag4 = false;
 				var InstituteService = appEndpointSF.getInstituteService();
 
 				InstituteService.addInstitute($scope.tempInstitute,
@@ -185,14 +152,14 @@ angular.module("prostudyApp").controller(
 
 					};
 				});
-
+				
 			}
 
 			$scope.showConfirm = function(ev) {
 				$scope.flag1 = false;
-				
+				$log.debug("$scope.isDisabled :"+$scope.isDisabled)
 				$scope.addInstituteAdmins();
-				$scope.flag2 = false;
+				//$scope.flag2 = false;
 				var confirm = $mdDialog.confirm().title(
 						'Do you want to continue ?').ariaLabel('Lucky day')
 						.targetEvent(ev).ok('YES').cancel('NO');
@@ -201,8 +168,27 @@ angular.module("prostudyApp").controller(
 						currentInstID : $scope.currentInstID
 					});
 				}, function() {
-					$scope.flag = true;
+					//$scope.flag = true;
 					$scope.status = $state.go("institute");
+				});
+				$scope.disableButton();
+			};
+			
+			$scope.showsubConfirm = function(ev) {
+				
+				$scope.addInstituteSubjects();
+				var confirm = $mdDialog.confirm().title(
+						'Do you want to add more standard ?').ariaLabel('Lucky day')
+						.targetEvent(ev).ok('YES').cancel('NO');
+				$mdDialog.show(confirm).then(function() {
+					$scope.status = $state.go("institute.addStandards", {
+						currentInstID : $scope.currentInstID
+					});
+				}, function() {
+					
+					$scope.status = $state.go("institute.addAdmins",{
+						currentInstID : $scope.currentInstID
+					});
 				});
 				
 			};
@@ -291,9 +277,7 @@ angular.module("prostudyApp").controller(
 							});
 				}
 
-				$state.go("institute.addAdmins", {
-					currentInstID : $scope.currentInstID
-				});
+				
 			}
 
 			$scope.getInstitutes = function() {
@@ -308,5 +292,7 @@ angular.module("prostudyApp").controller(
 			$scope.cancelButton = function() {
 				$state.go("^", {});
 			}
+			
+			
 
 		});

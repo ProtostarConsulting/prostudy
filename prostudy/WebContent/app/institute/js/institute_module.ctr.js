@@ -2,7 +2,10 @@ angular.module("prostudyApp").controller(
 		"instituteModuleCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, objectFactory, appEndpointSF) {
-
+		
+		     
+			$scope.curUser = appEndpointSF.getLocalUserService()
+			.getLoggedinUser();
 			$log.debug("Inside instituteModuleCtr");
 
 			$scope.testGAPICall = function() {
@@ -19,7 +22,8 @@ angular.module("prostudyApp").controller(
 						});
 
 			};
-
+			
+	
 			/* Setup page menu */
 			$scope.toggleRight = buildToggler('right');
 			/**

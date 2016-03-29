@@ -5,15 +5,18 @@ angular.module("prostudyApp").controller(
 				$filter, $stateParams, objectFactory) {
 
 			$scope.selectedInstituteID = $stateParams.selectedInstituteID;
+			
 			$scope.currentInstID = $stateParams.selectedInstituteID;
 			$scope.selectedStdID = $stateParams.selectedStdID;
 			$scope.selectedDivID = $stateParams.selectedDivID; 
+			
 			
 			$scope.selectedStdName = $stateParams.selectedStdName;
 			$scope.selectedDivName = $stateParams.selectedDivName;
 			$scope.selectedSubName = $stateParams.selectedSubName;
 			
 			$scope.flag = false;
+			$scope.flag3 = false;
 			$scope.isGoogleUser = false;
 
 			$log.debug("$scope.currentInstID :" + $scope.currentInstID);
@@ -30,6 +33,15 @@ angular.module("prostudyApp").controller(
 			$scope.divList;
 			$scope.subList;
 			$scope.std;
+			
+			$scope.newField = {};
+	        $scope.editingStd = false;
+	        
+	        $scope.newDiv = {};
+	        $scope.editingDiv = false;
+
+	        $scope.newSub = {};
+	        $scope.editingSub = false;
 
 			$scope.showUpdateSavedToast = function() {
 				$mdToast.show($mdToast.simple().content('Institute Updated!')
@@ -168,7 +180,7 @@ angular.module("prostudyApp").controller(
 
 			$scope.showselectedInstitute = function() {
 				var InstituteService = appEndpointSF.getInstituteService();
-				InstituteService.getInstituteById($scope.selectedInstituteID)
+				InstituteService.getInstituteById($scope.currentInstID)
 						.then(function(institutes) {
 							$scope.Institute = institutes;
 						});
@@ -189,7 +201,7 @@ angular.module("prostudyApp").controller(
 			$scope.getUserByInstitute = function() {
 
 				var UserService = appEndpointSF.getUserService();
-				UserService.getUserByInstitute($scope.selectedInstituteID)
+				UserService.getUserByInstitute($scope.currentInstID)
 						.then(function(userList) {
 							$scope.users = userList;
 
@@ -210,12 +222,23 @@ angular.module("prostudyApp").controller(
 			}
 
 			$scope.getUserByInstitute();
+			
+			$scope.getUserByClass = function() {
 
+				var UserService = appEndpointSF
+						.getUserService();
+				UserService.getUserByClass($scope.selectedStdName,$scope.selectedDivName,$scope.selectedSubName).then(
+						function(studentList) {
+							$scope.students = studentList;
+							
+						});
+			}
+			
 			$scope.viewStandardByInstitute = function() {
 
 				var StandardService = appEndpointSF.getStandardService();
 				StandardService.getStandardByInstitute(
-						$scope.selectedInstituteID).then(
+						$scope.currentInstID).then(
 						function(standardList) {
 
 							$scope.viewstdList = standardList;
@@ -304,6 +327,174 @@ angular.module("prostudyApp").controller(
 				$scope.subjects.splice(0,$scope.subjects.length);
 			}
 			
+			// Update Standard
+			
+			$scope.editStd = function(field) {
+		        $scope.editingStd = $scope.viewstdList.indexOf(field);
+		        $scope.newField = angular.copy(field);
+		      
+		    }
+		    
+		    $scope.saveField = function(index) {
+		        if ($scope.editingStd !== false) {
+		            $scope.viewstdList[$scope.editingStd] = $scope.newField;
+		            $scope.editingStd = false;
+		        }       
+		    };
+		    
+		    $scope.cancel = function(index) {
+		    	
+		        if ($scope.editingStd !== false) {
+		            $scope.viewstdList[$scope.editingStd] = $scope.newField;
+		            $scope.editingStd = false;
+		        }       
+		    };
+		    
+			$scope.updateStandard = function() {
+				
+				var StandardService = appEndpointSF.getStandardService();
+				
+				$log.debug("$scope.selectedStdID :"+$scope.selectedStdID);
+				for(var i=0;i<$scope.viewstdList.length;i++)
+				{
+					if($scope.selectedStdID == $scope.viewstdList[i].id)
+					{
+						 $scope.updatedval = $scope.viewstdList[i]
+					}
+					
+				}
+				StandardService.editStandard($scope.updatedval).then(function(msgBean) {
+					$log.debug("msgBean :"+angular.toJson(msgBean));
+				
+					
+				});
+				
+			}
+			
+			// End of Update Standard
+			
+			// Update Division
+			
+			
+			$scope.editDiv = function(field) {
+		        $scope.editingDiv = $scope.viewDivList.indexOf(field);
+		        $scope.newDIv = angular.copy(field);
+		       
+		    }
+		    
+		    $scope.saveDiv = function(index) {
+		        if ($scope.editingDiv !== false) {
+		            $scope.viewDivList[$scope.editingDiv] = $scope.newDIv;
+		            $scope.editingDiv = false;
+		        }       
+		    };
+		    
+		    $scope.cancelDiv = function(index) {
+		    	
+		        if ($scope.editingDiv !== false) {
+		            $scope.viewDivList[$scope.editingDiv] = $scope.newDIv;
+		            $scope.editingDiv = false;
+		        }       
+		    };
+		    
+			$scope.updateDivision = function() {
+				
+				var DivisionService = appEndpointSF.getDivisionService();
+				
+				$scope.selectedDivisionId = $stateParams.selectedDivisionId;  
+				for(var i=0;i<$scope.viewDivList.length;i++)
+				{
+					if($scope.selectedDivisionId == $scope.viewDivList[i].id)
+					{
+						 $scope.updatedval = $scope.viewDivList[i]
+					}
+					
+				}
+				
+				DivisionService.editDivision($scope.updatedval).then(function(msgBean) {
+					$log.debug("msgBean :"+angular.toJson(msgBean));
+					$log.debug("Inside Ctr updateDivision");
+					
+				});
+				
+			}
+			
+			// End of Update Division
+			
+			// Update Subject
+			
+			$scope.editSub = function(field) {
+		        $scope.editingSub = $scope.viewSubList.indexOf(field);
+		        $scope.newSub = angular.copy(field);
+		        $log.debug("$scope.newSub :"+angular.toJson($scope.newSub));
+		    }
+		    
+		    $scope.saveSub = function(index) {
+		        if ($scope.editingSub !== false) {
+		            $scope.viewSubList[$scope.editingSub] = $scope.newSub;
+		            $scope.editingSub = false;
+		        }       
+		    };
+		    
+		    $scope.cancelSub = function(index) {
+		    	 $log.debug("$scope.newSub :"+angular.toJson($scope.newSub));
+		        if ($scope.editingSub !== false) {
+		            $scope.viewSubList[$scope.editingSub] = $scope.newSub;
+		            $scope.editingSub = false;
+		        }       
+		    };
+		    
+			$scope.updateSubject = function() {
+				
+				var SubjectService = appEndpointSF.getSubjectService();
+				
+				$scope.selectedSubjectId = $stateParams.selectedSubjectId;  
+				for(var i=0;i<$scope.viewSubList.length;i++)
+				{
+					if($scope.selectedSubjectId == $scope.viewSubList[i].id)
+					{
+						 $scope.updatedval = $scope.viewSubList[i]
+					}
+					
+				}
+				SubjectService.editSubject($scope.updatedval).then(function(msgBean) {
+					$log.debug("msgBean :"+angular.toJson(msgBean));
+					$log.debug("Inside Ctr updatesubject");
+					
+				});
+				
+			}
+			
+			// End of Update Subject
+			
+			$scope.query = {
+					order : 'description',
+					limit : 5,
+					page : 1
+				};
+				$scope.onpagechange = function(page, limit) {
+					var deferred = $q.defer();
+					$timeout(function() {
+						deferred.resolve();
+					}, 2000);
+
+					return deferred.promise;
+				};
+
+				$scope.onorderchange = function(order) {
+					var deferred = $q.defer();
+
+					$timeout(function() {
+						deferred.resolve();
+					}, 2000);
+
+					return deferred.promise;
+				};
+				$scope.cancelButton = function() {
+					$log.debug("inside cancelButton");
+					$state.go('^', {});
+				};
+				$scope.selected = [];
 
 			$scope.cancelButton = function() {
 				$log.debug("inside cancelButton");
