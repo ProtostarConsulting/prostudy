@@ -19,6 +19,15 @@ public class BusinessEntity {
 	private Integer totalUser = 1;
 	
 	private Address address;
+	private String status="Active" ;
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	
 	public Long getId() {
 		return id;

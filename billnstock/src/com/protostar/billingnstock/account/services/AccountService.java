@@ -34,8 +34,7 @@ public class AccountService {
 		
 		List<AccountEntity> accountList=ofy().load().type(AccountEntity.class).list();
 		List<AccountEntity> filteredAccounts = new ArrayList<AccountEntity>();
-		
-		
+				
 		for(int i=0;i<accountList.size();i++)
 		{				
 			 if(accountList.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id))
@@ -66,7 +65,7 @@ public class AccountService {
 	@ApiMethod(name = "addPayable")
 	public void addPayable(PayableEntity payableEntity) {
 			
-		Date date = new Date();
+		/*Date date = new Date();
 		  String DATE_FORMAT = "dd-MM-yyyy";
 		  SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
 
@@ -74,7 +73,7 @@ public class AccountService {
 		  payableEntity.setInvoiceDueDate(sdf.format(date));
 		  payableEntity.setPayableDate(sdf.format(date));
 		  payableEntity.setPurchaseOrderDate(sdf.format(date));
-		
+*/		
 		ofy().save().entity(payableEntity).now();
 	
 	}

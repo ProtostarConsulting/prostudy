@@ -30,7 +30,13 @@ public class setupService {
 	public BusinessEntity updateBusiness(BusinessEntity business) {
 		Key<BusinessEntity> now = ofy().save().entity(business).now();
 		return business;
-		
+
+	}
+	
+	@ApiMethod(name = "updateUserStatus")
+	public void updateUserStatus(UserEntity userEntity) {
+	
+		ofy().save().entity(userEntity).now();
 
 	}
 

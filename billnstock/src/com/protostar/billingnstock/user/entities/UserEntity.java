@@ -18,6 +18,16 @@ public class UserEntity {
 
 	private String firstName;
 	private String lastName;
+	
+	private String status="active" ;
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	@Index
 	private String email_id;

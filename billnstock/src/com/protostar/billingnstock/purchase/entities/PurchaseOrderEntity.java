@@ -27,6 +27,7 @@ public class PurchaseOrderEntity {
 	private String terms;
 	private String subTotal;
 	private double finalTotal ;
+	private double taxTotal;
 	
 	Ref<Customer> customer;	
 	public Customer getCustomer() {
@@ -154,6 +155,10 @@ public class PurchaseOrderEntity {
 	public void setPoDueDate(Date poDueDate) {
 		this.poDueDate = poDueDate;
 	}
-
-	
+	public double getTaxTotal() {
+		return taxTotal;
+	}
+	public void setTaxTotal(double taxTotal) {
+		this.taxTotal = taxTotal;
+	}	
 }
