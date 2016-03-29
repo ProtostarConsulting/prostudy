@@ -55,8 +55,6 @@
 					number should be 10 digits</span>
 			</div>
 			</md-input-container>
-
-
 		</div>
 	</div>
 
@@ -83,7 +81,7 @@
 		<label>Password<span style="color: red"
 			ng-show="instituteAdminForm.password.$error.required"
 			class="mandatory">*</span></label> <input name="password" type="password"
-			ng-model="tempAdmin.password" ng-required="!tempAdmin.isGoogleUser">
+			ng-model="tempAdmin.password" ng-required="!tempAdmin.isGoogleUser" ng-blur="checkConfirmPassword(tempAdmin.password, tempAdmin.confirmpassword)">
 		<div ng-messages="instituteAdminForm.password.$error"
 			ng-if="instituteAdminForm.password.$submitted || instituteAdminForm.password.$touched">
 			<div ng-message="required">Please Enter Password.</div>
@@ -94,13 +92,14 @@
 		<label>Confirm Password<span style="color: red"
 			ng-show="instituteAdminForm.Confirmpassword.$error.required"
 			class="mandatory">*</span></label> <input name="Confirmpassword"
-			type="Confirmpassword" ng-model="Confirmpassword"
-			ng-required="!tempAdmin.isGoogleUser">
+			type="password" ng-model="tempAdmin.confirmpassword"
+			ng-required="!tempAdmin.isGoogleUser"  ng-blur="checkConfirmPassword(tempAdmin.password, tempAdmin.confirmpassword)">
 		
 		<div ng-messages="instituteAdminForm.Confirmpassword.$error"
 			ng-if="instituteAdminForm.Confirmpassword.$submitted || instituteAdminForm.Confirmpassword.$touched">
-			<div ng-message="required">Password do not match</div>
+			<div ng-message="required">Please Enter Confirm Password.</div>
 		</div>
+		<span style="color: red" id="err">{{checkConfirmPassword(tempAdmin.password, tempAdmin.confirmpassword)}}</span> 
 		</md-input-container>
 	</div>
 

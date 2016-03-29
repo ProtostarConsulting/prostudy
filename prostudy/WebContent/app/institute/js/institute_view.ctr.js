@@ -7,6 +7,26 @@ angular.module("prostudyApp").controller(
 
 			$scope.curUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
+				
+					$scope.currentInstID = $scope.curUser.instituteID;
+					$scope.checkConfirmPassword = appEndpointSF.getUtilityService().checkConfirmPassword;
+					
+					$scope.selectedStandard;
+					$scope.selectedDivision;
+					$scope.selectedSubject;
+					
+					$scope.selectedStdName = $stateParams.selectedStdName;
+					$scope.selectedDivName = $stateParams.selectedDivName;
+					$scope.selectedSubName = $stateParams.selectedSubName;
+					
+					$scope.isGoogleUser = false;
+					$scope.flag=true;
+					
+					$scope.newField = {};
+			        $scope.editingStd = false;
+			        
+			        $scope.newDiv = {};
+			        $scope.editingDiv = false;
 
 			$scope.currentInstID = $scope.curUser.instituteID;
 

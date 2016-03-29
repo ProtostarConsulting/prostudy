@@ -83,7 +83,7 @@
 			class="mandatory">*</span>
 		</label> <input name="password" type="password"
 			ng-model="tempStudent.password"
-			ng-required="!tempStudent.isGoogleUser">
+			ng-required="!tempStudent.isGoogleUser" ng-blur="checkConfirmPassword(tempStudent.password, tempStudent.confirmpassword)">
 		<div ng-messages="instituteStudentForm.password.$error"
 			ng-if="instituteStudentForm.password.$submitted || instituteStudentForm.password.$touched">
 			<div ng-message="required">Please Enter Password.</div>
@@ -94,13 +94,14 @@
 		<label>Confirm Password<span style="color: red"
 			ng-show="instituteStudentForm.Confirmpassword.$error.required"
 			class="mandatory">*</span></label> <input name="Confirmpassword"
-			type="Confirmpassword" ng-model="Confirmpassword"
-			ng-required="!tempStudent.isGoogleUser">
+			type="password" ng-model="tempStudent.confirmpassword"
+			ng-required="!tempStudent.isGoogleUser" ng-blur="checkConfirmPassword(tempStudent.password, tempStudent.confirmpassword)">
 
 		<div ng-messages="instituteStudentForm.Confirmpassword.$error"
 			ng-if="instituteStudentForm.Confirmpassword.$submitted || instituteStudentForm.Confirmpassword.$touched">
-			<div ng-message="required">Password do not match</div>
+			<div ng-message="required">Please Enter Confirm Password.</div>
 		</div>
+		<span style="color: red" id="err">{{checkConfirmPassword(tempStudent.password, tempStudent.confirmpassword)}}</span> 
 		</md-input-container>
 	</div>
 

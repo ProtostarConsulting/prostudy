@@ -33,8 +33,7 @@ angular.module("prostudyApp").controller(
 			$scope.flag = false;
 
 			$scope.isGoogleUser = false;
-			
-		
+			$scope.checkConfirmPassword = appEndpointSF.getUtilityService().checkConfirmPassword;
 			$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content('Institute Saved!')
 						.position("top").hideDelay(3000));

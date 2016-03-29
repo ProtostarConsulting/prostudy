@@ -18,7 +18,8 @@ angular.module("prostudyApp").controller(
 			$scope.flag = false;
 			$scope.flag3 = false;
 			$scope.isGoogleUser = false;
-
+			$scope.checkConfirmPassword = appEndpointSF.getUtilityService().checkConfirmPassword;
+			
 			$log.debug("$scope.currentInstID :" + $scope.currentInstID);
 
 			$scope.adminList = [];
