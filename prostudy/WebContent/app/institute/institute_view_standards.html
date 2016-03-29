@@ -6,10 +6,10 @@
 	
 <div ng-init="viewStandardByInstitute()">
 	<md-content layout-padding> <md-data-table-container>
-	<table md-data-table md-row-select="selected" md-progress="deferred">
+	<table md-data-table  md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onorderchange">
 			<tr>
-				<th name="STANDARD ID" order-by="id"></th>
+				
 				<th name="STANDARD NAME" order-by="name"></th>
 
 
@@ -20,7 +20,7 @@
 				ng-repeat="standard in viewstdList | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: {name: searchCategory}"
 				data-ng-class="{danger:!standard.active}">
 
-				<td>{{standard.id}}</td>
+				
 				<td><span data-ng-hide="editMode">{{standard.name}}</span> <input
 					type="text" data-ng-show="editMode" data-ng-model="standard.name" 
 					data-ng-required /></td>
@@ -34,10 +34,15 @@
 						class="md-raised md-primary">View Divisions</md-button></td>
 
 						
-				<td><a ui-sref="institute.view.view_standards({selectedStdID: standard.id})"><md-button data-ng-hide="editMode"
+				<td ng-show="flag==true"><a ui-sref="institute.view.view_standards({selectedStdID: standard.id})"><md-button data-ng-hide="editMode"
 						data-ng-click="editMode = true;editStd(standard)"
-						class="md-raised md-primary">Edit </md-button> </a></td>
-
+						class="md-raised md-primary" ng-show="false">Edit </md-button> </a></td>
+						
+				<td ng-show="flag==false"><a ui-sref="institute.list_view.view_standards({selectedStdID: standard.id})"><md-button data-ng-hide="editMode"
+						data-ng-click="editMode = true;editStd(standard)"
+						class="md-raised md-primary" ng-show="false">Edit </md-button> </a></td>
+						
+				
 
 				<td><md-button data-ng-show="editMode"
 						data-ng-click="editMode = false; updateStandard()" class="md-raised md-primary">Save</md-button></td>

@@ -57,17 +57,16 @@
 
 		<div layout="row" layout-align="end end" layout-sm="column" flex>
 
-			<md-button class="md-raised md-primary" 
+			<md-button class="md-raised md-primary" ng-show="flag3 == true"
 				ng-disabled="selectedSubjects.length==0"
-				ng-click="addInstituteSubjects({currentInstID: currentInstID , currentStdID: currentStdID, currentDivID: currentDivID})">Add
+				ng-click="showsubConfirm($event)">Add
+			Subjects </md-button>
+			
+			<md-button class="md-raised md-primary" ng-show="flag3 == false"
+				ng-disabled="selectedSubjects.length==0"
+				ng-click="addInstituteSubjects()">Add
 			Subjects </md-button>
 
-
-			<a ui-sref="institute.addStandards({currentInstID: currentInstID})"><md-button
-					class="md-raised md-primary" ng-click="">Add more
-				Standard</md-button> </a> 
-				<!-- <a ui-sref="institute.addAdmins({currentInstID: currentInstID})"><md-button
-					class="md-raised md-primary" ng-click="">Skip</md-button> </a> -->
 
 		</div>
 	</form>

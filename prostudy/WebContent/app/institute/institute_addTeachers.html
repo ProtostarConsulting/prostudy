@@ -108,7 +108,7 @@
 			ng-disabled="instituteTeacherForm.$invalid"
 			ng-click="addInstituteTeachers()">Add Teacher </md-button>
 
-		<a ui-sref="institute.addStudents({currentInstID: currentInstID})"><md-button
+		<a ui-sref="institute.addStudents({currentInstID: currentInstID})"><md-button ng-show="flag3==true"
 				class="md-raised md-primary" ng-click="">Skip</md-button> </a>
 	</div>
 

@@ -28,8 +28,10 @@
 				<td><a ui-sref="institute.list_view.editUser({selectedID : a.id, currentInstID : currentInstID})"><md-button ng-show="flag==false"
 							class="md-raised md-primary" ng-click="">Edit</md-button></a></td>
 							
-				<td><a ui-sref="institute.view.viewUser({selectedID : a.id})"><md-button
+				<td><a ui-sref="institute.view.viewUser({selectedID : a.id})"><md-button ng-show="flag==true"
 							class="md-raised md-primary" ng-click="">View</md-button></a></td>
+							
+				
 			</tr>
 		</tbody>
 	</table>
@@ -49,3 +51,5 @@
 	<div ui-view></div>
 	</md-content>
 </div>
+
+

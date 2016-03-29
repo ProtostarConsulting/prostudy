@@ -6,7 +6,7 @@
 	
 <div>
 	<md-content layout-padding> <md-data-table-container>
-	<table md-data-table md-row-select="selected" md-progress="deferred">
+	<table md-data-table  md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onorderchange">
 			<tr>
 				<th name="TEACHER NAME" order-by="firstName"></th>
@@ -30,7 +30,7 @@
 							
 				
 							
-				<td><a ui-sref="institute.view.viewUser({selectedID : a.id})"><md-button
+				<td><a ui-sref="institute.view.viewUser({selectedID : a.id})"><md-button ng-show="flag==true"
 							class="md-raised md-primary" ng-click="">View</md-button></a></td>
 			</tr>
 		</tbody>
