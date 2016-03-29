@@ -36,7 +36,7 @@
 					ng-repeat="payble in payables | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
 
 					<td>{{payble.customer.firstName}}</td>
-					<td>{{payble.payableDate}}</td>
+					<td>{{payble.invoiceDueDate | formatDate}}</td>
 					<td>{{payble.finalTotal}}</td>
 				</tr>
 			</tbody>

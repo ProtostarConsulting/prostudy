@@ -84,18 +84,16 @@
 			</thead>
 
 			<tbody>
-				<tr
-					ng-repeat="item in purchaseOrderObj.pOLineItemList>
+				<tr ng-repeat="item in purchaseOrderObj.pOLineItemList">
 
 					<td>{{ item.srNo }}</td>
+
 					<td><md-input-container flex> <md-select
 							ng-model="selectedStockItem" placeholder="Item Name"
 							ng-change="lineItemStockChange($index, selectedStockItem)">
 						<md-option ng-value="item" ng-repeat="item in stockforPO">{{item.itemName
 						}}</md-option> </md-select> </md-input-container></td>
-					<!-- 					<td><md-input-container flex> <label>Item Name
-						</label> <input ng-model="item.itemName" 
-							ng-change="calSubTotal()"> </md-input-container></td>	 -->
+
 					<td><md-input-container flex> <label>Quantity
 						</label> <input ng-model="item.qty" type="number"
 							ng-change="calSubTotal()"> </md-input-container></td>

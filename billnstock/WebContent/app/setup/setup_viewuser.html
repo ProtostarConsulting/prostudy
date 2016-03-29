@@ -112,10 +112,11 @@
         </fieldset>
       </div>
     </div>
-		<section layout="row" layout-xs="column" layout-align="left left">
-			<md-button class="md-raised md-primary" ng-click="updateuser()">Update</md-button>
-
-		</section>
+		
 	</div>
 </form>
 </md-content>
+
+<section layout="row" layout-xs="column" layout-align="left left">
+	<md-button class="md-raised md-primary" ng-click="updateuser()" ng-show="selected[0]">Change Password</md-button>
+	</section>

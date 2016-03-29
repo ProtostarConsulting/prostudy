@@ -1,4 +1,4 @@
-
+<!-- 
 
 <md-content layout-padding>
 
@@ -19,8 +19,7 @@
 				ng-repeat="user in userslist | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
 				<td>{{user.firstName}}</td>
 				<td>{{user.lastName}}</td>
-				<td>{{user.email_id}}</td>
-				
+				<td>{{user.email_id}}</td>	
 				<td>
 					<section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary"
@@ -36,9 +35,293 @@
 		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
 </div>
 
-<!-- vals: {{customers}}
+vals: {{customers}}
 <md-button ui-sref="customer.list" ng-click="getAllemp()" class="md-primary">
 		Customer List in side List view 
-	</md-button>-->
+	</md-button>
 
 </md-content>
+
+<section layout="row" layout-xs="column" layout-align="left left" ng-show="selected[0]">
+
+<p>Selected Value: <span class="radioValue">{{ stateValue }}</span> </p>
+    <md-radio-group ng-model="stateValue">
+      <md-radio-button value="active" class="md-primary">Active</md-radio-button>
+      <md-radio-button value="inactive"  class="md-primary"> inactive </md-radio-button>
+      <md-radio-button value="suspend" class="md-primary">suspend</md-radio-button>
+    </md-radio-group>
+    </br>
+
+	<md-button class="md-raised md-primary" ng-click="updateUserStatus(selected[0],stateValue)" >Change Status</md-button>
+	</section>
+ -->
+
+
+
+
+
+
+<md-content layout-padding>
+
+<div ng-cloak>
+	<h3 class="md-display-10">Users</h3>
+	<md-content> <md-tabs md-dynamic-height md-border-bottom>
+	<md-tab label="Active"> <md-content class="md-padding">
+
+	<div layout layout-sm="column">
+		<md-input-container flex> <label>Search</label> <input
+			ng-model="searchText"> </md-input-container>
+	</div>
+
+
+	<div>
+		<md-data-table-container>
+
+		<table md-data-table md-row-select="selected" md-progress="deferred">
+			<thead md-order="query.order" md-trigger="onOrderChange">
+				<tr>
+					<th name="First Name" order-by="fName"></th>
+					<th name="Last Name" order-by="lName"></th>
+					<th name="Email" order-by="email"></th>
+					<th name="Edit" order-by="Edit"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr md-auto-select
+					ng-repeat="user in activeUsers | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
+					<td>{{user.firstName}}</td>
+					<td>{{user.lastName}}</td>
+					<td>{{user.email_id}}</td>
+					<td>
+						<section layout="row" layout-sm="column">
+							<md-button class="md-raised md-primary"
+								ui-sref="setup.userview({selecteduserNo:user.id})">View
+							user</md-button>
+						</section>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+			md-total={{users.length}} md-trigger="onpagechange"></md-data-table-pagination>
+		</md-data-table-container>
+	</div>
+
+	<!-- 	vals: {{customers}} <md-button ui-sref="customer.list"
+		ng-click="getAllemp()" class="md-primary"> Customer List
+	in side List view </md-button> </md-content> -->
+
+	<section layout="row" layout-xs="column" layout-align="left left"
+		ng-show="selected[0]">
+
+<!-- 		<p>
+			Selected Value: <span class="radioValue">{{ stateValue }}</span>
+		</p>
+ -->
+ 		<md-radio-group ng-model="stateValue"> 
+<!-- 			<md-radio-button value="active" class="md-primary">Active</md-radio-button>  -->
+			<md-radio-button value="inactive" class="md-primary"> Inactive </md-radio-button> 
+			<md-radio-button value="suspend" class="md-primary">Suspend</md-radio-button> 
+		</md-radio-group>
+		</br>
+
+<!-- 		<md-button class="md-raised md-primary"
+			ng-click="updateUserStatus(selected[0],stateValue)">Change
+		Status</md-button> -->
+	</section>
+	
+	<md-button class="md-raised md-primary"
+			ng-click="updateUserStatus(selected[0],stateValue)">Change
+		Status</md-button>
+				<md-button class="md-raised md-primary"	ng-click='ShowHide()'>Change Password
+		</md-button>
+</div>
+
+		<div layout layout-sm="column" ng-hide="IsHidden">
+			<md-input-container flex  ng-hide="suspendedUsers.isGoogleUser"> 
+					
+			
+			   <md-button class="md-primary md-raised" ng-click="showAdvanced($event)">
+      Custom Dialog
+    </md-button>
+			 </md-input-container>
+				<md-input-container flex  ng-show="suspendedUsers.isGoogleUser"> 
+				<a target="_blank" href="https://www.google.com/settings/passwordchange">Link Change Password</a>
+			 </md-input-container>
+			
+		</div>
+	</md-content> </md-tab> 
+	
+	
+	
+	
+	
+	
+	<md-tab label="Inactive"> <md-content class="md-padding">
+	<!-- 	<h3 class="md-display-10">Day</h3> -->
+	<div layout layout-sm="column">
+		<md-input-container flex> <label>Search</label> <input
+			ng-model="searchText"> </md-input-container>
+	</div>
+	<div>
+		<md-data-table-container>
+
+		<table md-data-table md-row-select="selected" md-progress="deferred">
+			<thead md-order="query.order" md-trigger="onOrderChange">
+				<tr>
+					<th name="First Name" order-by="fName"></th>
+					<th name="Last Name" order-by="lName"></th>
+					<th name="Email" order-by="email"></th>
+					<th name="Edit" order-by="Edit"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr md-auto-select
+					ng-repeat="user in inActiveUsers | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
+					<td>{{user.firstName}}</td>
+					<td>{{user.lastName}}</td>
+					<td>{{user.email_id}}</td>
+					<td>
+						<section layout="row" layout-sm="column">
+							<md-button class="md-raised md-primary"
+								ui-sref="setup.userview({selecteduserNo:user.id})">View
+							user</md-button>
+						</section>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+			md-total={{users.length}} md-trigger="onpagechange"></md-data-table-pagination>
+		</md-data-table-container>
+	</div>
+
+	<section layout="row" layout-xs="column" layout-align="left left"
+		ng-show="selected[0]">
+
+<!-- 		<p>
+			Selected Value: <span class="radioValue">{{ stateValue }}</span>
+		</p>
+ -->
+ 		<md-radio-group ng-model="stateValue"> 
+			<md-radio-button value="active" class="md-primary">Active</md-radio-button> 
+<!-- 			<md-radio-button value="inactive" class="md-primary"> Inactive </md-radio-button>  -->
+			<md-radio-button value="suspend" class="md-primary">Suspend</md-radio-button> 
+		</md-radio-group>
+		</br>
+
+<!-- 		<md-button class="md-raised md-primary"
+			ng-click="updateUserStatus(selected[0],stateValue)">Change
+		Status</md-button>
+ -->	</section>
+	
+	<md-button class="md-raised md-primary"
+			ng-click="updateUserStatus(selected[0],stateValue)">Change
+		Status</md-button>
+				<md-button class="md-raised md-primary"	ng-click='ShowHide()'>Change Password
+		</md-button>
+</div>
+
+		<div layout layout-sm="column" ng-hide="IsHidden">
+			<md-input-container flex  ng-hide="suspendedUsers.isGoogleUser"> 
+					
+			
+			   <md-button class="md-primary md-raised" ng-click="showAdvanced($event)">
+      Custom Dialog
+    </md-button>
+			 </md-input-container>
+				<md-input-container flex  ng-show="suspendedUsers.isGoogleUser"> 
+				<a target="_blank" href="https://www.google.com/settings/passwordchange">Link Change Password</a>
+			 </md-input-container>
+			
+		</div>
+	</md-content> </md-tab> 
+	
+	
+	
+	<md-tab label="Suspended"> <md-content class="md-padding">
+	<!-- 	<h3 class="md-display-10">Month</h3> -->
+	
+		<div layout layout-sm="column">
+		<md-input-container flex> <label>Search</label> <input
+			ng-model="searchText"> </md-input-container>
+	</div>
+	
+	<div>
+		<md-data-table-container>
+
+		<table md-data-table md-row-select="selected" md-progress="deferred">
+			<thead md-order="query.order" md-trigger="onOrderChange">
+				<tr>
+					<th name="First Name" order-by="fName"></th>
+					<th name="Last Name" order-by="lName"></th>
+					<th name="Email" order-by="email"></th>
+					<th name="Edit" order-by="Edit"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr md-auto-select
+					ng-repeat="user in suspendedUsers | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
+					<td>{{user.firstName}}</td>
+					<td>{{user.lastName}}</td>
+					<td>{{user.email_id}}</td>
+					<td>
+						<section layout="row" layout-sm="column">
+							<md-button class="md-raised md-primary"
+								ui-sref="setup.userview({selecteduserNo:user.id})">View
+							user</md-button>
+						</section>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+			md-total={{suspendedUsers.length}} md-trigger="onpagechange"></md-data-table-pagination>
+		</md-data-table-container>
+	</div>
+
+<div ng-show="selected[0]">
+	<section layout="row" layout-xs="column" layout-align="left left"
+		>
+
+<!-- 		<p>
+			Selected Value: <span class="radioValue">{{ stateValue }}</span>
+		</p>
+ -->
+ 		<md-radio-group ng-model="stateValue"> 
+			<md-radio-button value="active" class="md-primary">Active</md-radio-button> 
+			<md-radio-button value="inactive" class="md-primary"> Inactive </md-radio-button> 
+<!-- 			<md-radio-button value="suspend" class="md-primary">Suspend</md-radio-button>  -->
+		</md-radio-group>
+		</br>
+
+	</section>
+		<md-button class="md-raised md-primary"
+			ng-click="updateUserStatus(selected[0],stateValue)">Change
+		Status</md-button>
+				<md-button class="md-raised md-primary"	ng-click='ShowHide()'>Change Password
+		</md-button>
+</div>
+
+		<div layout layout-sm="column" ng-hide="IsHidden">
+			<md-input-container flex  ng-hide="suspendedUsers.isGoogleUser"> 
+					
+			
+			   <md-button class="md-primary md-raised" ng-click="showAdvanced($event)">
+      Custom Dialog
+    </md-button>
+			 </md-input-container>
+				<md-input-container flex  ng-show="suspendedUsers.isGoogleUser"> 
+				<a target="_blank" href="https://www.google.com/settings/passwordchange">Link Change Password</a>
+			 </md-input-container>
+			
+		</div>
+	</md-content>
+	
++++++++++++++++++++++++++++

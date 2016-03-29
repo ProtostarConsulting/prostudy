@@ -32,6 +32,27 @@ angular
 					$scope.businesslist = [];
 					$scope.getBusinessList();
 
+					$scope.selected = [];
+					
+					$scope.updateBusiStatus = function(selected,stateValue) {
+						
+						$scope.update.push(selected);
+						$scope.selected.status = stateValue;
+						
+					//	$scope.update.id = selected.id;
+					//	$scope.update.status = stateVale;
+						
+						var UserService = appEndpointSF.getUserService();
+
+			//			$scope.user.businessAccount = $scope.business;
+			//			$scope.user.authority = $scope.selection;
+						UserService.updateBusiStatus($scope.selected[0]).then(
+								function(msgBean) {
+									$scope.showSimpleToast(msgBean.msg);
+
+								});
+
+					}
 					$scope.getUsersByBusinessId = function() {
 						$log.debug("Inside Ctr $scope.getuserById");
 						var UserService = appEndpointSF.getUserService();
@@ -58,7 +79,7 @@ angular
 						authority : []
 					}
 					$scope.items = [ "stock", "sales", "hr", "crm", "customer",
-										"invoice", "purchase", "employee", "admin" ];
+							"invoice", "purchase", "employee", "admin" ];
 					$scope.selection = [];
 					$scope.toggleSelection = function toggleSelection(itemName) {
 						var idx = $scope.selection.indexOf(itemName);
@@ -80,19 +101,21 @@ angular
 					$scope.getbusinessById = function() {
 						var UserService = appEndpointSF.getUserService();
 						if (typeof $scope.BNo != 'undefined') {
-							UserService.getbusinessById($scope.BNo).then(
-									function(busi) {
-										$scope.business = busi.result;
-										
-										if($scope.business.accounttype.maxuser == $scope.business.totalUser-1){
-											$("#hideSpan").show();
-											$log.debug("#hideSpan");
-										}else{
-											$("#hideSpan").hide();
-											$("#hideDiv").hide();
-										}
-										
-									});
+							UserService
+									.getbusinessById($scope.BNo)
+									.then(
+											function(busi) {
+												$scope.business = busi.result;
+
+												if ($scope.business.accounttype.maxuser == $scope.business.totalUser - 1) {
+													$("#hideSpan").show();
+													$log.debug("#hideSpan");
+												} else {
+													$("#hideSpan").hide();
+													$("#hideDiv").hide();
+												}
+
+											});
 						}
 
 					}
@@ -100,19 +123,18 @@ angular
 
 					$scope.adduser = function() {
 						var UserService = appEndpointSF.getUserService();
-						/*UserService
-								.getbusinessById($scope.BNo).then(function(busi) {*/
-											$scope.user.businessAccount = $scope.business;
-											$scope.user.authority = $scope.selection;
-											UserService
-													.addUser($scope.user)
-													.then(
-															function(msgBean) {
-																$scope
-																		.showSimpleToast(msgBean.msg);
+						/*
+						 * UserService
+						 * .getbusinessById($scope.BNo).then(function(busi) {
+						 */
+						$scope.user.businessAccount = $scope.business;
+						$scope.user.authority = $scope.selection;
+						UserService.addUser($scope.user).then(
+								function(msgBean) {
+									$scope.showSimpleToast(msgBean.msg);
 
-															});
-										//});
+								});
+						// });
 
 					}
 
@@ -163,38 +185,44 @@ angular
 						}
 					}
 
-	
-					
-					
-					
-					//check email already exists
-								
-								$scope.Checkemail=function(emailid){
-									var proadminService = appEndpointSF.getproadminService();
-									proadminService.getAllemp().then(function(empList) {
-										$scope.user11 = empList.items;
-										for(i=0;i<$scope.user11.length;i++){
-										 if ($scope.user11[i].email_id == emailid){
-											 $scope.userexists="user already exists"
-												 angular.element(document.getElementById('fname'))[0].disabled = true;
-											 angular.element(document.getElementById('lname'))[0].disabled = true;
-												 break;
-											
-										 }else{
-											 $scope.userexists="";
-											 angular.element(document.getElementById('fname'))[0].disabled = false;
-											 angular.element(document.getElementById('lname'))[0].disabled = false;
+					// check email already exists
 
-										 }
-										}
-									});
-									
-									}
-								$scope.user11=[];
-								$scope.userexist="";
+					$scope.Checkemail = function(emailid) {
+						var proadminService = appEndpointSF
+								.getproadminService();
+						proadminService
+								.getAllemp()
+								.then(
+										function(empList) {
+											$scope.user11 = empList.items;
+											for (i = 0; i < $scope.user11.length; i++) {
+												if ($scope.user11[i].email_id == emailid) {
+													$scope.userexists = "user already exists"
+													angular
+															.element(document
+																	.getElementById('fname'))[0].disabled = true;
+													angular
+															.element(document
+																	.getElementById('lname'))[0].disabled = true;
+													break;
 
-					
-					
+												} else {
+													$scope.userexists = "";
+													angular
+															.element(document
+																	.getElementById('fname'))[0].disabled = false;
+													angular
+															.element(document
+																	.getElementById('lname'))[0].disabled = false;
+
+												}
+											}
+										});
+
+					}
+					$scope.user11 = [];
+					$scope.userexist = "";
+
 					$scope.toggleRight = buildToggler('right');
 
 					function buildToggler(navID) {

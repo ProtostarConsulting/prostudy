@@ -176,8 +176,6 @@ angular
 					}
 					}
 					
-					
-					
 
 					// -------------------------------------------------------
 					$scope.toggleRight = buildToggler('right');

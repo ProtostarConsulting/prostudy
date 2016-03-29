@@ -50,6 +50,18 @@ function googleEndpointSF($log, $q) {
 		$log.debug("No3");
 		return deferred.promise;
 	}
+	
+	UserService.updateBusiSatus = function(update) {
+		var deferred = $q.defer();
+		gapi.client.userService.updateBusiSatus(update).execute(function() {
+			deferred.resolve({
+				"msg" : "Business Status Successfully Updated"
+			});
+		});
+		return deferred.promise;
+	}
+	
+
 
 	UserService.login = function(email, pass) {
 		$log.debug("No2");
@@ -357,6 +369,18 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
+	
+	setupService.updateUserStatus = function(update) {
+		var deferred = $q.defer();
+		gapi.client.setupService.updateUserStatus(update).execute(function() {
+			deferred.resolve({
+				"msg" : "User Status Successfully Updated"
+			});
+		});
+		return deferred.promise;
+	}
+	
+	
 	setupService.getAllUserOfOrg = function(id) {
 		var deferred = $q.defer();
 		gapi.client.setupService.getAllUserOfOrg({

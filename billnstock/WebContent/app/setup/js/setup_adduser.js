@@ -106,6 +106,13 @@ angular
 						}
 
 					}
+					
+					
+					
+
+					
+					
+					
 //----------------------view user separate the controller----------------
 	/*				$scope.getuserById = function() {
 						$log.debug("Inside Ctr $scope.getuserById");

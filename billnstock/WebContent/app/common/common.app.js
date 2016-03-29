@@ -10,7 +10,7 @@ app.constant('monthList', ["January", "February", "March", "April",
 
 app.filter('formatDate', function ($filter) {
 	   return function (inputDate) {
-		   return $filter('date')(inputDate, 'yyyy-MM-dd HH:mm');		
+		   return $filter('date')(inputDate, 'dd-MM-yyyy HH:mm');		
 	   };
 	});
 
@@ -319,11 +319,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/setup/setup_module.html',
 		controller : 'setup',
 
-	}).state('setup.user', {
+	/*}).state('setup.user', {
 		url : "/user",
 		templateUrl : '/app/setup/setup_userlist.html',
 		controller : 'setup',
-
+*/
 	}).state('setup.useradd', {
 		url : "/useradd",
 		templateUrl : '/app/setup/setup_adduser.html',

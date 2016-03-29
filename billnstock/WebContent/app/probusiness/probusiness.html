@@ -43,6 +43,17 @@
 <md-button ui-sref="customer.list" ng-click="getAllemp()" class="md-primary">
 		Customer List in side List view 
 	</md-button>-->
-
-	
 </md-content>
+
+<section layout="row" layout-xs="column" layout-align="left left" ng-show="selected[0]">
+
+<p>Selected Value: <span class="radioValue">{{ stateValue }}</span> </p>
+    <md-radio-group ng-model="stateValue">
+      <md-radio-button value="active" class="md-primary">Active</md-radio-button>
+      <md-radio-button value="inactive"  class="md-primary"> inactive </md-radio-button>
+      <md-radio-button value="suspend" class="md-primary">suspend</md-radio-button>
+    </md-radio-group>
+    </br>
+
+	</section>
+	<md-button class="md-raised md-primary" ng-click="updateBusiStatus(selected[0],stateValue)" >Change Status</md-button>

@@ -43,25 +43,25 @@
 				<tr>
 					<td style="width: 20%"><b>P.O.No :</b>
 						{{pODetail.id}}</td>
+						
+						<td style="width: 20%"><label>P.O.Date :</label> {{pODetail.poDate | formatDate}}</td>
 				</tr>
 				<tr>
-					<td style="width: 50%"  colspan="2"><label>To :</label><br>
+					<td style="width: 50%"  colspan="2"><label>To :</label>
 						{{pODetail.to}}</td>
-					<td style="width: 50%" colspan="3"><label>Ship To :</label><br>
+					<td style="width: 50%" colspan="3"><label>Ship To :</label>
 						{{pODetail.shipTo}}</td>
 				</tr>
 				<tr>
-					<td style="width: 20%"><label>P.O.Date :</label><br> {{pODetail.poDate}}</td>
-
-					<td style="width: 20%"><label>Requisitioner :</label><br>
+					<td style="width: 20%"><label>Requisitioner :</label>
 						{{pODetail.requisitioner}}</td>
 
-					<td style="width: 20%"><label>Shipped Via :</label><br>
+					<td style="width: 20%"><label>Shipped Via :</label>
 						{{pODetail.shippedVia}}</td>
 
-					<td style="width: 20%"><label>F.O.B.Point :</label><br> {{pODetail.fOBPoint}}</td>
+					<td style="width: 20%"><label>F.O.B.Point :</label> {{pODetail.fOBPoint}}</td>
 
-					<td style="width: 20%"><label>Terms :</label><br> {{pODetail.terms}}</td>
+					<td style="width: 20%"><label>Terms :</label> {{pODetail.terms}}</td>
 
 
 				</tr>
@@ -73,7 +73,7 @@
 			<md-divider flex></md-divider>
 		</div>
 		<table>
-			<thead>
+			<thead  style="background-color: gray">
 				<tr>
 					<th style="width: 3%">Sr.No.</th>
 					<th style="width: 50%">Item Name</th>
@@ -85,7 +85,7 @@
 			<tbody>
 				<tr ng-repeat="invoiceLineItem in pODetail.pOLineItemList">
 
-					<td>{{ invoiceLineItem.srNo }}</td>
+					<td>{{ $index+1 }}</td>
 					<td>{{invoiceLineItem.itemName}}</td>
 					<td>{{invoiceLineItem.qty}}</td>
 					<td>{{invoiceLineItem.price}}</td>
@@ -102,21 +102,21 @@
 				</tr>
 
 				<tr>
-					<td>-</td>
+					<td colspan="5"><b><u>Tax Details</u> </b></td>
+				</tr>
+				<tr style="background-color: gray">
 					<td></td>
 					<td></td>
-					<td></td>
-					<td></td>
+					<td><b>Tax Type </b></td>
+					<td><b>Tax </b></td>
+					<td style="text-align: left"><b>Tax Total </b></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td><label><u>Tax Details</u> </label></td>
-					<td><md-input-container flex> <label>Tax
-							Type </label> </md-input-container>{{pODetail.selectedTaxItem.taxCodeName}}</td>
-					<td><md-input-container flex> <label>Tax
-						</label> </md-input-container> {{pODetail.selectedTaxItem.taxPercenatge}}%</td>
-					<td><md-input-container flex> <label>Tax
-							Total </label> </md-input-container>{{pODetail.taxTotal}}</td>
+					<td></td>
+					<td>{{pODetail.selectedTaxItem.taxCodeName}}</td>
+					<td>{{pODetail.selectedTaxItem.taxPercenatge}}%</td>
+					<td>{{pODetail.taxTotal | currency :"": 2}}</td>
 				</tr>
 				<tr>
 					<td>-</td>
