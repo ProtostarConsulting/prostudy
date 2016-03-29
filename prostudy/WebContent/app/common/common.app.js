@@ -168,6 +168,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/editInstitute",
 		templateUrl : '/app/institute/institute_editInstitute.html',
 		controller : 'instituteListViewCtr'
+	}).state('institute.list_view.studentByStd', {
+		url : "/viewStudentByStd/:selectedStdName/:selectedDivName/:selectedSubName",
+		templateUrl : '/app/institute/institute_view_studentByStd.html',
+		controller : 'instituteListViewCtr',
 	}).state('institute.list_view.view_admin', {
 		url : "/view_admin",
 		templateUrl : '/app/institute/institute_view_admins.html',
