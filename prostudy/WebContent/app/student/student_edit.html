@@ -1,27 +1,28 @@
 
 
-<div layout="column" layout-padding layout-align="centre centre"
-	layout-xs="column">
+<div layout="column" layout-padding layout-align="centre centre" layout-xs="column">
 	<div>
-		<h3><b>Edit Student</b></h3>
+		<h3>
+			<b>Edit Student</b>
+		</h3>
 	</div>
-<form name="studentEditForm" ng-model="studentEditForm"
+	<form name="studentEditForm" ng-model="studentEditForm"
 		ng-submit="studentEditForm.$valid " novalidate>
-	<div ng-repeat="stud in student track by stud.id |  filter:searchText">
-		<div layout="column" layout-align="" layout-xs="column">
+		<div ng-repeat="stud in student track by stud.id |  filter:searchText">
+			<div layout="column" layout-align="" layout-xs="column">
 
-			<div layout="row" layout-align="centre centre" layout-xs="column">
+				<div layout="row" layout-align="centre centre" layout-xs="column">
 
-				<md-input-container> <label>Student ID
+					<md-input-container flex> <label>Student ID
 					</label> <input name="studID" id="studID" ng-model="stud.id" readonly>
 					</md-input-container>
 
-					<md-input-container> <label>PRN No.</label> <input
+					<md-input-container flex> <label>PRN No.</label> <input
 						name="prn" id="prn" ng-model="stud.prn" readonly> </md-input-container>
-			</div>
-			
-			<div layout="row" layout-xs="column">
-				<md-input-container> <label>First Name<span
+				</div>
+
+				<div layout="row" layout-xs="column">
+					<md-input-container flex> <label>First Name<span
 						style="color: red"
 						ng-show="studentEditForm.firstName.$error.required"
 						class="mandatory">*</span></label> <input name="firstName" id="firstName"
@@ -32,7 +33,7 @@
 					</div>
 					</md-input-container>
 
-					<md-input-container> <label>Last Name<span
+					<md-input-container flex> <label>Last Name<span
 						style="color: red"
 						ng-show="studentEditForm.lastName.$error.required"
 						class="mandatory">*</span></label> <input name="lastName" id="lastName"
@@ -43,10 +44,10 @@
 					</div>
 					</md-input-container>
 
-			</div>
-			<div layout="row" layout-xs="column">
+				</div>
+				<div layout="row" layout-xs="column">
 
-				<md-input-container> <label>Address<span
+					<md-input-container flex> <label>Address<span
 						style="color: red"
 						ng-show="studentEditForm.address.$error.required"
 						class="mandatory">*</span></label> <input name="address" id="address"
@@ -57,7 +58,7 @@
 					</div>
 					</md-input-container>
 
-					<md-input-container> <label>Contact<span
+					<md-input-container flex> <label>Contact<span
 						style="color: red"
 						ng-show="studentEditForm.contact.$error.required"
 						class="mandatory">*</span></label> <input name="contact"
@@ -71,9 +72,9 @@
 							number should be 10 digits</span>
 					</div>
 					</md-input-container>
-			</div>
-			<div layout="row" layout-xs="column">
-<md-input-container> <label>Email-id<span
+				</div>
+				<div layout="row" layout-xs="column">
+					<md-input-container flex> <label>Email-id<span
 						style="color: red"
 						ng-show="studentEditForm.email_id.$error.required"
 						class="mandatory">*</span></label> <input type="email" name="email_id"
@@ -86,30 +87,30 @@
 
 
 
-					<md-input-container> <label>Standard</label> <input
+					<md-input-container flex> <label>Standard</label> <input
 						name="standard" id="standard" ng-model="stud.standard" readonly>
 					</md-input-container>
-				
-			</div>
-			<div layout="row" layout-xs="column">
 
-				<md-input-container> <label>Division</label> <input
+				</div>
+				<div layout="row" layout-xs="column">
+
+					<md-input-container flex> <label>Division</label> <input
 						name="division" id="division" ng-model="stud.division" readonly>
 					</md-input-container>
 
-					<md-input-container> <label>Subject</label> <input
+					<md-input-container flex> <label>Subject</label> <input
 						name="subject" id="subject" ng-model="stud.subject" readonly>
 					</md-input-container>
+				</div>
+			</div>
+
+			<div layout="row" layout-align="center center" layout-xs="column">
+				<md-button class="md-raised md-primary" ng-click="updateUser()">Update
+				Profile</md-button>
+				<md-button class="md-raised md-primary" ng-click="skip()">Skip</md-button>
 			</div>
 		</div>
-
-		<div layout="row" layout-align="center end" layout-xs="column">
-			<md-button class="md-raised md-primary" ng-click="updateUser()">Update
-			Profile</md-button>
-			<md-button class="md-raised md-primary" ng-click="skip()">Skip</md-button>
-		</div>
-</div>
-	</form>	
+	</form>
 </div>
 
 

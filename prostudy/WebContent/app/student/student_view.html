@@ -1,46 +1,58 @@
 
-<div layout="column" flex
+<div layout="column" layout-align="centre centre" layout-xs="column"
 	ng-repeat="stud in student | filter:searchText">
 
+	<div layout="row" layout-xs="column">
+		<md-input-container flex> <label>Student
+			ID </label> <input name="studID" id="studID" ng-model="stud.id" readonly>
+		</md-input-container>
 
-	<md-input-container> <label>Student ID </label> <input
-		name="studID" id="studID" ng-model="stud.id" readonly> </md-input-container>
+		<md-input-container flex> <label>PRN No.</label>
+		<input name="prn" id="prn" ng-model="stud.prn" readonly> </md-input-container>
+	</div>
 
-	<md-input-container> <label>PRN No.</label> <input
-		name="prn" id="prn" ng-model="stud.prn" readonly> </md-input-container>
+	<div layout="row" layout-xs="column">
+		<md-input-container flex> <label>First
+			Name</label> <input name="firstName" id="firstName" ng-model="stud.firstName"
+			readonly> </md-input-container>
 
-	<md-input-container> <label>First Name</label> <input
-		name="firstName" id="firstName" ng-model="stud.firstName" readonly>
-	</md-input-container>
+		<md-input-container flex> <label>Last
+			Name</label> <input name="lastName" id="lastName" ng-model="stud.lastName"
+			readonly> </md-input-container>
+	</div>
 
-	<md-input-container> <label>Last Name</label> <input
-		name="lastName" id="lastName" ng-model="stud.lastName" readonly>
-	</md-input-container>
+	<div layout="row" layout-xs="column">
+		<md-input-container flex> <label>Address</label>
+		<input name="address" id="address" ng-model="stud.address" readonly>
+		</md-input-container>
 
-	<md-input-container> <label>Address</label> <input
-		name="address" id="address" ng-model="stud.address" readonly>
-	</md-input-container>
+		<md-input-container flex> <label>Contact</label>
+		<input name="contact" id="contact" ng-model="stud.contact" readonly>
+		</md-input-container>
+	</div>
 
-	<md-input-container> <label>Contact</label> <input
-		name="contact" id="contact" ng-model="stud.contact" readonly>
-	</md-input-container>
+	<div layout="row" layout-xs="column">
+		<md-input-container flex> <label>Email ID</label>
+		<input name="email_id" id="email_id" ng-model="stud.email_id" readonly>
+		</md-input-container>
 
-	<md-input-container> <label>Email ID</label> <input
-		name="email_id" id="email_id" ng-model="stud.email_id" readonly>
-	</md-input-container>
+		<md-input-container flex> <label>Standard</label>
+		<input name="standard" id="standard" ng-model="stud.standard" readonly>
+		</md-input-container>
+	</div>
 
-	<md-input-container> <label>Standard</label> <input
-		name="standard" id="standard" ng-model="stud.standard" readonly>
-	</md-input-container>
+	<div layout="row" layout-xs="column">
+		<md-input-container flex> <label>Division</label>
+		<input name="division" id="division" ng-model="stud.division" readonly>
+		</md-input-container>
 
-	<md-input-container> <label>Division</label> <input
-		name="division" id="division" ng-model="stud.division" readonly>
-	</md-input-container>
-
-	<md-input-container> <label>Subject</label> <input
-		name="subject" id="subject" ng-model="stud.subject" readonly>
-	</md-input-container>
+		<md-input-container flex> <label>Subject</label>
+		<input name="subject" id="subject" ng-model="stud.subject" readonly>
+		</md-input-container>
+	</div>
 
 </div>
 
-<md-button class="md-raised" ng-click="cancel()"> Cancel </md-button>
+<div layout="row" layout-align="center center" layout-xs="column">
+	<md-button class="md-raised" ng-click="cancel()"> Cancel </md-button>
+</div>
