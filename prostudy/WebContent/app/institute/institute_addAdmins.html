@@ -115,12 +115,12 @@
 			ng-disabled="instituteAdminForm.$invalid"
 			ng-click="showConfirm($event)">Add Admin to Institute</md-button>
 	
-		<md-button class="md-raised md-primary" 
+		 <md-button class="md-raised md-primary" ng-show="flag4==true"
 			ng-disabled="instituteAdminForm.$invalid"
 			ng-click="addInstituteAdmins()">Add Admins to Institute</md-button>
 			
-	<a ui-sref="institute.addTeachers({currentInstID: currentInstID})"><md-button ng-show="flag3==true"
-					class="md-raised md-primary" ng-click="">Skip</md-button> </a>
+		<!-- <a ui-sref="institute.addTeachers({currentInstID: currentInstID})"><md-button ng-show="flag==true"
+					class="md-raised md-primary" ng-click="">Skip</md-button> </a> -->
 					
 	</div>
 
