@@ -39,15 +39,16 @@
 								style="color: red" ng-show="loginForm.password.$error.required"
 								class="mandatory">*</span></label> <input ng-model="tempUser.password"
 								type="{{inputType}}" name="password" id="password"
-								ng-required="true"> </md-input-container></td>
+								ng-required="true"> 
+								<div ng-messages="loginForm.password.$error"
+								ng-if="loginForm.password.$submitted || loginForm.password.$touched">
+								<div ng-message="required">Password should not Empty.</div>
+							</div></md-input-container></td>
 						<td><md-icon
 								md-svg-icon="img/icons/ic_visibility_black_24px.svg"
 								ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()"> <md-tooltip>Show
 							Password</md-tooltip> </md-icon>
-							<div ng-messages="loginForm.password.$error"
-								ng-if="loginForm.password.$submitted || loginForm.password.$touched">
-								<div ng-message="required">Password should not Empty.</div>
-							</div> </td>
+							 </td>
 					</tr>
 					<tr>
 						<td colspan="2">
