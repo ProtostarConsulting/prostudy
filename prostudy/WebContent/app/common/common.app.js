@@ -324,14 +324,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/add",
 		templateUrl : "/app/chapter/chapter_add.html",
 		controller : 'chapterAddCtr'
+	}).state('chapter.list', {
+		url : "/list",
+		templateUrl : "/app/chapter/chapter_list.html",
+		controller : 'chapterListCtr'
+	}).state('chapter.edit', {
+		url : "/edit/:selectedChapterId",
+		templateUrl : "/app/chapter/chapter_edit.html",
+		controller : 'chapterListCtr'
 	}).state('chapter.view', {
 		url : "/view/:selectedChapterId",
 		templateUrl : "/app/chapter/chapter_view.html",
 		controller : 'chapterViewCtr'
-	}).state('chapter.edit', {
-		url : "/list/:selectedChapterId",
-		templateUrl : "/app/chapter/chapter_edit.html",
-		controller : 'chapterEditCtr'
 	}).state('book', {
 		url : "/book",
 		templateUrl : "/app/book/book_module.html",
@@ -345,7 +349,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : "/app/book/book_list.html",
 		controller : 'bookListCtr'
 	}).state('book.chapterList', {
-		url : "/chapterList/:selectedBookId",
+		url : "/chapterList/:selectedBookId/:flag",
 		templateUrl : "/app/book/book_chapterList.html",
 		controller : 'book_chapterListCtr'
 	}).state('book.chapterList.addcomment', {
@@ -384,10 +388,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/newUserStudent",
 		templateUrl : '/app/login/newUser.html',
 		controller : 'newUserStudentCtr'
-	}).state('myBooks', {
+	}).state('favourite', {
+		url : "/favourite",
+		templateUrl : '/app/favourite/favourite_module.html',
+		controller : 'favouriteModuleCtr'
+	}).state('favourite.myBooks', {
 		url : "/myBooks",
-		templateUrl : '/app/myBooks/myBooks_module.html',
-		controller : 'myBooksModuleCtr'
+		templateUrl : '/app/favourite/myBooks.html',
+		controller : 'myBooksCtr'
 	}).state('myPracticeExams', {
 		url : "/myPracticeExams",
 		templateUrl : '/app/myPracticeExams/myPracticeExams_module.html',
