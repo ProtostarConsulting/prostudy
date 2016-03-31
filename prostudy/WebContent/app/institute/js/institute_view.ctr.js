@@ -3,7 +3,7 @@ angular.module("prostudyApp").controller(
 		"instituteViewCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, $q, $sce, tableTestDataFactory, appEndpointSF, $state,
-				$stateParams, $filter, objectFactory, $mdDialog) {
+				$stateParams, $filter, objectFactory, $mdDialog, $mdMedia) {
 
 			$scope.curUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
@@ -530,7 +530,51 @@ angular.module("prostudyApp").controller(
 
 						});
 			}
-
+			
+			$scope.showAdvanced = function(ev) {
+			    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+			    $mdDialog.show({
+			      controller: DialogController,
+			      templateUrl: '/app/institute/changePwd.html',
+			      parent: angular.element(document.body),
+			      targetEvent: ev,
+			      clickOutsideToClose:true,
+			      fullscreen: useFullScreen
+			    })
+			    .then(function(answer) {
+			      $scope.status = 'You said the information was "' + answer + '".';
+			    }, function() {
+			      $scope.status = 'You cancelled the dialog.';
+			    });
+			    $scope.$watch(function() {
+			      return $mdMedia('xs') || $mdMedia('sm');
+			    }, function(wantsFullScreen) {
+			      $scope.customFullscreen = (wantsFullScreen === true);
+			    });
+			  };
+			  
+			  function DialogController($scope, $mdDialog) {
+				
+				  $scope.hide = function() {
+				    $mdDialog.hide();
+				  };
+				  $scope.cancel = function() {
+				    $mdDialog.cancel();
+				  };
+				  $scope.answer = function(answer) {
+				    $mdDialog.hide(answer);
+				  };
+				  
+				  $scope.inputType = 'password';
+					$scope.hoverIn = function() {						
+						      $scope.inputType = 'text';
+					}					
+					$scope.hoverOut = function() {
+						 $scope.inputType = 'password';
+					}
+				}
+			  
+			  
 			$scope.query = {
 				order : 'description',
 				limit : 5,

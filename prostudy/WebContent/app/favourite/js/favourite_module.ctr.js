@@ -1,30 +1,11 @@
 angular.module("prostudyApp").controller(
-		"instituteModuleCtr",
+		"favouriteModuleCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, objectFactory, appEndpointSF) {
 		
 		     
-			$scope.curUser = appEndpointSF.getLocalUserService()
-			.getLoggedinUser();
-			$log.debug("Inside instituteModuleCtr");
+			console.log("in side favouriteModuleCtr");
 			
-			$scope.check = function()
-			{
-				 var str = $scope.curUser.email_id;
-				 var val1 = str.search("protostarcs.com");
-				 var val2 = str.search("protostar.co.in");
-				 if(val1 > 0 || val2 > 0)
-					{
-					 	return true;
-					}
-				 else
-					 {
-					 	return false;
-					 }
-				
-			}
-		
-
 			$scope.testGAPICall = function() {
 				console.log("in side testGAPICall");
 				var cars = appEndpointSF.getQuestionService().getCars()

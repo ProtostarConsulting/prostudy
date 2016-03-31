@@ -22,34 +22,42 @@
 				<td>{{a.email_id}}</td>
 				<td>{{a.address}}</td>
 				<td>{{a.contact}}</td>
-				<td><a ui-sref="institute.view.editUser({selectedID : a.id, currentInstID : currentInstID})"><md-button ng-show="flag==true"
-							class="md-raised md-primary" ng-click="">Edit</md-button></a></td>
-							
-				<td><a ui-sref="institute.list_view.editUser({selectedID : a.id, currentInstID : currentInstID})"><md-button ng-show="flag==false"
-							class="md-raised md-primary" ng-click="">Edit</md-button></a></td>
-							
-				<td><a ui-sref="institute.view.viewUser({selectedID : a.id})"><md-button ng-show="flag==true"
-							class="md-raised md-primary" ng-click="">View</md-button></a></td>
-							
-				
+
+				<td><md-button class="md-primary md-raised"
+						ng-click="showAdvanced($event)"> Change password</md-button></td>
+						
+				<td><a
+					ui-sref="institute.view.editUser({selectedID : a.id, currentInstID : currentInstID})"><md-button
+							ng-show="flag==true" class="md-raised md-primary" ng-click="">Edit</md-button></a></td>
+
+				<td><a
+					ui-sref="institute.list_view.editUser({selectedID : a.id, currentInstID : currentInstID})"><md-button
+							ng-show="flag==false" class="md-raised md-primary" ng-click="">Edit</md-button></a></td>
+
+				<td><a ui-sref="institute.view.viewUser({selectedID : a.id})"><md-button
+							ng-show="flag==true" class="md-raised md-primary" ng-click="">View</md-button></a></td>
+
+
+
+
 			</tr>
 		</tbody>
 	</table>
 	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
 		md-total={{adminList.length}} md-trigger="onpagechange"></md-data-table-pagination>
-	</md-data-table-container> 
-	
-		<md-button ng-show="flag==true"
+	</md-data-table-container> <md-button ng-show="flag==true"
 		ui-sref="institute.view.view_admins.addadmins({currentInstID: currentInstID})"
-		class="md-raised md-primary">Add Admins</md-button> 
-		
-		<md-button
+		class="md-raised md-primary">Add Admins</md-button> <md-button
 		ng-show="flag==false"
 		ui-sref="institute.list_view.view_admin.addadmins({currentInstID: currentInstID})"
 		class="md-raised md-primary">Add Admins</md-button>
 
 	<div ui-view></div>
 	</md-content>
+	
+	....... {{status}}
+	......{{newPassword}}
+	......{{cPassword}}
 </div>
 
 
