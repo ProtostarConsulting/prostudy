@@ -7,6 +7,12 @@ angular.module("prostudyApp").controller(
 			console.log("Inside chapterAddCtr");
 			$scope.curUser = appEndpointSF.getLocalUserService()
 			.getLoggedinUser();
+			
+			$scope.showSavedToast = function() {
+				$mdToast.show($mdToast.simple().content('Chapter Saved!')
+						.position("top").hideDelay(3000));
+
+			};
 
 			$scope.boards = [ {} ];
 			$scope.boards = boardList;
@@ -29,17 +35,6 @@ angular.module("prostudyApp").controller(
 				standard : "",
 				division :"",
 				subject : ""
-			};
-
-			$scope.chapters = [];
-
-			$scope.curUser = appEndpointSF.getLocalUserService()
-					.getLoggedinUser();
-
-			$scope.showSavedToast = function() {
-				$mdToast.show($mdToast.simple().content('Chapter Saved!')
-						.position("top").hideDelay(3000));
-
 			};
 
 			$scope.getStandardByInstitute = function() {
@@ -95,45 +90,30 @@ angular.module("prostudyApp").controller(
 			}
 
 			$scope.addChapter = function() {
-				$log.debug("No1");
-
-			};// end of showSavedToast
-
-			$scope.addChapter = function() {
-				$log.debug("No1");
-
+				
 				var ChapterService = appEndpointSF.getChapterService();
-
 				ChapterService.addChapter($scope.tempChapter).then(
 						function(msgBean) {
-							$log.debug("No6");
-							$log.debug("Inside Ctr addChapter");
-							$log.debug("msgBean.msg:" + msgBean.msg);
-
 							$scope.showSavedToast();
-
-							$log.debug("tempChapter" + $scope.tempChapter);
 							$scope.tempChapter = {
-
 								id : "",
 								chapter_name : "",
 								chapter_content : "",
 								board : "",
-
 								standard : "",
 								division : "",
 								subject : "",
 
-							};// After Click Submit button,htmlform to be set
-							// as blank
+							};
 						});
-				$log.debug("No4");
-			}// end of addChapter
+				$state.go('book');
+				
+			}
 
 			$scope.cancelButton = function() {
 			
 				$state.go('^', {});
-			};// end of cancelButton
+			};
 
-		});// end of chapterAddCtr
+		});
 
