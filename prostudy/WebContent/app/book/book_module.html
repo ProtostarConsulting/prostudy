@@ -29,6 +29,16 @@
 			</md-toolbar> <md-content layout-padding> <md-button
 				ng-click="close()" class="md-primary"> Close Sidenav
 			Right </md-button>
+			
+			<div layout="column">
+			 <md-button ui-sref="chapter.add"
+				ng-click="close()" class="md-primary">  Chapter ADD
+			</md-button> 
+			
+			<md-button ui-sref="chapter.list"
+				ng-click="close()" class="md-primary">  Chapter List
+			</md-button>
+			</div>
 
 			<div layout="column">
 				<md-button ui-sref="book.add" ng-click="close()" class="md-primary">
@@ -45,7 +55,15 @@
 	</div>
 
 	<div ui-view>
-		
+
+		<div layout="column" layout-align="start start"> 
+			<md-button ui-sref="chapter.add" ng-click="close()"
+				class="md-primary"> Chapter ADD </md-button>
+
+			<md-button ui-sref="chapter.list" ng-click="close()"
+				class="md-primary"> Chapter List </md-button>
+		</div>
+
 		<div layout="column" layout-align="start start">
 			<md-button ui-sref="book.add" ng-click="close()" class="md-primary">
 			Book ADD </md-button>

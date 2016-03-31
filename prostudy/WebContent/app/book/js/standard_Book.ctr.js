@@ -1,7 +1,7 @@
 angular.module("prostudyApp").controller(
 		"standardBookCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $stateParams, appEndpointSF, $state, $sce) {
+				$log, $stateParams, appEndpointSF, $state, $sce, $q) {
 
 			console.log("Inside standardBookCtr");
 
@@ -50,12 +50,37 @@ angular.module("prostudyApp").controller(
 
 						});
 
-			};// end of $scope.getBookByStandard
+			};
 
 			$scope.cancelButton = function() {
 				$log.debug("inside cancelButton");
 				$state.go('^', {});
-			};// end of cancelButton
+			};
 
-		});// end of standardCtr
+			$scope.query = {
+					order : 'description',
+					limit : 5,
+					page : 1
+				};
+
+				$scope.onpagechange = function(page, limit) {
+					var deferred = $q.defer();
+
+					$timeout(function() {
+						deferred.resolve();
+					}, 2000);
+
+					return deferred.promise;
+				};
+
+				$scope.onorderchange = function(order) {
+					var deferred = $q.defer();
+
+					$timeout(function() {
+						deferred.resolve();
+					}, 2000);
+
+					return deferred.promise;
+				};
+		});
 

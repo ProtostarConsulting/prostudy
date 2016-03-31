@@ -1,23 +1,21 @@
-<md-content>
+<div>
 
-<div class="table-responsive-vertical shadow-z-1">
-	<table id="chapterTable" class="table table-hover table-mc-light-blue">
-		<thead>
+	<md-content> <md-input-container flex>
+	<label>Search By Chapter name</label> <input ng-model="searchCategory">
+	</md-input-container> <md-data-table-container>
+
+	<table md-data-table md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onorderchange">
 			<tr>
-				<th>Chapter ID</th>
-				<th>Chapter</th>
+				<th name="Chapter Name" order-by="chapter_name"></th>
 
 			</tr>
 		</thead>
 
 		<tbody>
+			<tr md-auto-select
+				ng-repeat="chapter in Chapters  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: {chapter_name: searchCategory}  ">
 
-			<tr ng-repeat="chapter in Chapters">
-
-				<td>
-					<div>{{chapter.id}}</div>
-
-				</td>
 
 				<td ng-click="showChapterContent()"><a href="#"
 					ui-sref="book.view({selectedBookId : selectedBookId, selectedChapterId : chapter.id})"><b>{{chapter.chapter_name}}</b></a>
@@ -26,22 +24,31 @@
 
 			</tr>
 		</tbody>
+
 	</table>
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{Chapters.length}} md-trigger="onpagechange"></md-data-table-pagination>
 
-	<div>
-		<table>
-			<tr>
-				<td><md-button class="md-raised md-primary" ui-sref="book.list">Back
-					To Book</md-button></td>
-				
-			</tr>
-		</table>
-
-
-	</div>
-	<a
-		ui-sref="book.chapterList.addcomment({selectedBookId : selectedBookId})"><b>Add
-			Comment</b></a>
-	<div ui-view></div>
+	</md-data-table-container>
 </div>
-</md-content>
+
+<div layout="row" layout-align="center center">
+	<md-button class="md-raised md-primary" ng-hide="flag"
+		ui-sref="book.list">Back To Book</md-button>
+	</td>
+
+	<md-button class="md-raised md-primary" ng-show="flag"
+		ui-sref="favourite.myBooks">Back To MyBook</md-button>
+	</td>
+</div>
+
+<div ng-show="!flag">
+<a
+	ui-sref="book.chapterList.addcomment({selectedBookId : selectedBookId})"><b>Add
+		Comment</b></a>
+		
+</div>
+<div ui-view></div>
+
+
+

@@ -1,47 +1,65 @@
-angular
-		.module("prostudyApp")
-		.controller("book_chapterListCtr",
-				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $log, $stateParams, appEndpointSF, $state,
-						$sce) {
-					console.log("Inside book_chapterListCtr");
+angular.module("prostudyApp").controller(
+		"book_chapterListCtr",
+		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
+				$log, $stateParams, appEndpointSF, $state, $sce, $q) {
 
-					$scope.curUser = appEndpointSF.getUserService()
-							.getLoggedinUser();
+			$scope.curUser = appEndpointSF.getUserService().getLoggedinUser();
+			
+			$scope.flag = $stateParams.flag;
+			
+			$log.debug("flag :"+$scope.flag);
+			$scope.showSavedToast = function() {
+				$mdToast.show($mdToast.simple().content(
+						'Book added in My Books!').position("top").hideDelay(
+						3000));
+			};
 
-					$scope.showSavedToast = function() {
-						$mdToast.show($mdToast.simple().content(
-								'Book added in My Books!').position("top").hideDelay(
-								3000));
-					};
-					
-					$scope.Chapters = [];
+			$scope.Chapters = [];
 
-				
-					$log.debug("$stateParams:", $stateParams);
-					$log.debug("$stateParams.selectedBookId:",$stateParams.selectedBookId);
-					$scope.selectedBookId = $stateParams.selectedBookId;
-					
-					$scope.showBookContents = function() {
-						var BookService = appEndpointSF.getBookService();
-						$log.debug("$scope.selectedBookId:"+ $scope.selectedBookId);
-						BookService.getBookbyID($scope.selectedBookId)
-								.then(
-										function(bookList) {
-										$scope.Chapters = bookList.chapters;										
-										$log.debug("$scope.selectedChapter :" +angular.toJson($scope.selectedChapter));
-										$log.debug("$scope.bookList :" +angular.toJson(bookList));
-										});
+			$scope.selectedBookId = $stateParams.selectedBookId;
 
-					};
+			$scope.showBookContents = function() {
+				var BookService = appEndpointSF.getBookService();
 
-					
-					$scope.showBookContents();
+				BookService.getBookbyID($scope.selectedBookId).then(
+						function(bookList) {
+							$scope.Chapters = bookList.chapters;
 
-					$scope.cancelButton = function() {
-						$log.debug("inside cancelButton");
-						$state.go('^', {});
-					};
+						});
 
-				});
+			};
 
+			$scope.showBookContents();
+
+			$scope.cancelButton = function() {
+
+				$state.go('^', {});
+			};
+			
+			$scope.query = {
+					order : 'description',
+					limit : 5,
+					page : 1
+				};
+
+				$scope.onpagechange = function(page, limit) {
+					var deferred = $q.defer();
+
+					$timeout(function() {
+						deferred.resolve();
+					}, 2000);
+
+					return deferred.promise;
+				};
+
+				$scope.onorderchange = function(order) {
+					var deferred = $q.defer();
+
+					$timeout(function() {
+						deferred.resolve();
+					}, 2000);
+
+					return deferred.promise;
+				};
+
+		});

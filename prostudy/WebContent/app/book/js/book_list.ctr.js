@@ -1,10 +1,11 @@
 angular.module("prostudyApp").controller(
 		"bookListCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $stateParams, appEndpointSF, $state, $sce) {
+				$log, $stateParams, appEndpointSF, $state, $sce, $q) {
 
 			$scope.curUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
+			
 			
 			$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content(
@@ -103,6 +104,31 @@ angular.module("prostudyApp").controller(
 				$log.debug("inside cancelButton");
 				$state.go('^', {});
 			};
+			
+			$scope.query = {
+					order : 'description',
+					limit : 5,
+					page : 1
+				};
 
-		});// end of bookListCtr
+				$scope.onpagechange = function(page, limit) {
+					var deferred = $q.defer();
 
+					$timeout(function() {
+						deferred.resolve();
+					}, 2000);
+
+					return deferred.promise;
+				};
+
+				$scope.onorderchange = function(order) {
+					var deferred = $q.defer();
+
+					$timeout(function() {
+						deferred.resolve();
+					}, 2000);
+
+					return deferred.promise;
+				};
+
+		});

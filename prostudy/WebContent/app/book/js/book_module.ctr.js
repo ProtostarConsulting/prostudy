@@ -3,8 +3,6 @@ angular.module("prostudyApp").controller(
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, objectFactory, appEndpointSF) {
 
-			$log.debug("Inside bookModuleCtr");
-			
 			$scope.testGAPICall = function() {
 				console.log("in side testGAPICall");
 				var cars = appEndpointSF.getQuestionService().getCars()
