@@ -57,42 +57,44 @@
 			</md-toolbar> <md-content layout="column" ng-controller="LeftCtrl"> <md-button
 				class="md-primary" ng-click="close()" hide-gt-md> Close
 			Sidenav </md-button> <md-button ui-sref="home" ng-click="close()"
-				class="md-primary" show-gt-md> Home </md-button> <md-button
-				ui-sref="student"
-				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher'  || curUser.role == 'Student'"
-				ng-click="close()" class="md-primary" show-gt-md>
-			Student </md-button> <md-button ui-sref="exam"
-				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-				ng-click="close()" class="md-primary" show-gt-md> Exam </md-button>
-			<md-button ui-sref="institute"
+				class="md-primary" show-gt-md> Home </md-button>
+				
+				<md-button ui-sref="institute"
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
 				ng-click="close()" class="md-primary" show-gt-md>
-			Institute </md-button> <md-button ui-sref="report"
-				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'" ng-click="close()"
-				class="md-primary" show-gt-md> Report </md-button> <md-button
-				ui-sref="chapter"
-				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-				ng-click="close()" class="md-primary" show-gt-md>Chapter
-			</md-button> 
+			Institute </md-button>
 			
-			   <md-button ui-sref="book"
+				<md-button ui-sref="student" ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher'  || curUser.role == 'Student'"
+				ng-click="close()" class="md-primary" show-gt-md>
+			Student </md-button>
+			
+			<md-button ui-sref="attendance" ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
+				ng-click="close()" class="md-primary" show-gt-md>Attendance </md-button> 
+			
+				 <md-button ui-sref="exam" ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
+				ng-click="close()" class="md-primary" show-gt-md> Exam </md-button>
+				
+				<md-button ui-sref="book"
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
 				ng-click="close()" class="md-primary" show-gt-md>Book </md-button>
-				 
-				<md-button ui-sref="myBooks" ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || 'Student'"
-				ng-click="close()" class="md-primary" show-gt-md> MyBooks </md-button> 
+				
+				
+				<md-button ui-sref="favourite"
+				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
+				ng-click="close()" class="md-primary" show-gt-md>Favourite </md-button>
+				
+				 <md-button ui-sref="report"
+				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'" ng-click="close()"
+				class="md-primary" show-gt-md> Report </md-button> 
+			
+				
 				
 				<md-button
 				ui-sref="syllabus" ng-click="close()" class="md-primary" show-gt-md>Syllabus</md-button>
-		
-
-			<md-button ui-sref="myPracticeExams" ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'" ng-click="close()"
-				class="md-primary" show-gt-md> My Practice Exams </md-button> <md-button
+				 <md-button
 				aria-label="Login" ng-hide="curUser == null" ng-click="loginClick()">
-			<a ui-sref="updatemyprofile">Edit profile </a> </md-button> <md-button
-				ui-sref="attendance"
-				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-				ng-click="close()" class="md-primary" show-gt-md>Attendance </md-button> 
+			<a ui-sref="updatemyprofile">Edit profile </a> </md-button> 
+			
 			<md-button
 				ui-sref="certificateMgmt"
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
@@ -241,8 +243,9 @@
 
 	<script src="/app/chapter/js/chapter_module.ctr.js"></script>
 	<script src="/app/chapter/js/chapter_add.ctr.js"></script>
+	<script src="/app/chapter/js/chapter_list.ctr.js"></script>
 	<script src="/app/chapter/js/chapter_view.ctr.js"></script>
-	<script src="/app/chapter/js/chapter_edit.ctr.js"></script>
+
 
 	<script src="/app/book/js/book_module.ctr.js"></script>
 	<script src="/app/book/js/book_add.ctr.js"></script>
@@ -255,8 +258,6 @@
 	<script src="/app/book/js/standard_Book.ctr.js"></script>
 	<script src="/app/book/js/standard_chapterList.ctr.js"></script>
 	<script src="/app/book/js/standard_viewChapterContent.ctr.js"></script>
-
-	<script src="/app/myBooks/js/myBooks_module.ctr.js"></script>
 
 
 	<script src="/app/student/js/student_module.ctr.js"></script>
@@ -292,9 +293,6 @@
 	<script src="/app/examdemo/js/examdemo_science.ctr.js"></script>
 	<script src="/app/examdemo/js/examdemo_math.ctr.js"></script>
 
-	<script src="/app/myprofile/js/myprofile_update.ctr.js"></script>
-
-
 	<script src="/app/institute/js/institute_module.ctr.js"></script>
 	<script src="/app/institute/js/institute_view.ctr.js"></script>
 	<script src="/app/institute/js/institute_addInfo.ctr.js"></script>
@@ -304,13 +302,14 @@
 	<script src="/app/institute/js/institute_viewUser.ctr.js"></script>
 	<script src="/app/institute/js/institute.list_view.ctr.js"></script>
 	
-
 	<script src="/app/report/js/report_module.ctr.js"></script>
 	<script src="/app/report/js/display_report.ctr.js"></script>
 
-
+	<script src="/app/myprofile/js/myprofile_update.ctr.js"></script>
 	<script src="/app/myPracticeExams/js/myPracticeExams_module.ctr.js"></script>
-
+	
+	<script src="/app/favourite/js/favourite_module.ctr.js"></script>
+	<script src="/app/favourite/js/myBooks.ctr.js"></script>
 
 	<script src="/app/test/js/table.demo.data.service.js"></script>
 	<script src="/app/demo/js/table.demo.withservice.ctr2.js"></script>
