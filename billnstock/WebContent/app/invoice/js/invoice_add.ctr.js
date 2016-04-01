@@ -14,8 +14,8 @@ app
 						salesOrderId : '',
 						customer : '',
 			//			invoiceDate : $filter("date")(Date.now(), 'dd-MM-yyyy'),
-						invoiceDate : new Date,
-						invoiceDueDate : new Date(),
+						invoiceDate : '',
+						invoiceDueDate : '',
 						invoiceLineItemList : [],
 						subTotal : '',
 						taxCodeName : '',
@@ -24,13 +24,13 @@ app
 						finalTotal : '',
 						note:''	,
 						account:"",
-						loggedInUser:""
+						business:""
 					};
 
 					$scope.addInvoice = function() {
 						$log.debug("No1");
 						var InvoiceService = appEndpointSF.getInvoiceService();
-						$scope.invoiceObj.loggedInUser =$scope.curUser;
+						$scope.invoiceObj.business =$scope.curUser.businessAccount;
 						
 						InvoiceService.addInvoice($scope.invoiceObj).then(
 								function(msgBean) {

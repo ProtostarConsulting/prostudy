@@ -36,7 +36,7 @@ app
 					$scope.addPurchaseOrder = function() {
 						var purchaseService = appEndpointSF
 								.getPurchaseOrderService();
-						$scope.purchaseOrderObj.loggedInUser = $scope.curUser;
+						$scope.purchaseOrderObj.business = $scope.curUser.businessAccount;
 
 						purchaseService.addPurchaseOrder(
 								$scope.purchaseOrderObj).then(

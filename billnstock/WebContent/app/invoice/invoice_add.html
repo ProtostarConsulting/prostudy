@@ -5,6 +5,7 @@
 </h3>
 <div>
 	<form ng-submit="$event.preventDefault()" name="searchForm">
+	[<span style="color: red;">Field Marked as asterik (*) are mandetory</span>]
 		<div flex layout="row" layout-xs="column">
 			<!-- 			<md-input-container flex> <md-select
 				ng-model="invoiceObj.customer" placeholder="Customer Name"
@@ -13,7 +14,7 @@
 			}}</md-option> </md-select> </md-input-container>
  -->
 
-			<md-autocomplete flex required ng-model="invoiceObj.customer"
+			<span style="color: red;">*</span><md-autocomplete flex required ng-model="invoiceObj.customer"
 				md-input-name="autocompleteField" md-input-minlength="2"
 				md-input-maxlength="18" md-no-cache=true
 				md-selected-item="invoiceObj.customer"
@@ -31,11 +32,14 @@
 				<div ng-message="maxlength">Your entry is too long.</div>
 			</div>
 			</md-autocomplete>
-			Invoice Date:<md-datepicker ng-model="invoiceObj.invoiceDate"
+			Invoice Date:<span style="color: red;">*</span>
+			<md-datepicker ng-model="invoiceObj.invoiceDate"
+				md-placeholder="Select Date" ng-required="true"></md-datepicker>
+
+			Due Date:<span style="color: red;">*</span>
+			<md-datepicker ng-model="invoiceObj.invoiceDueDate"
 				md-placeholder="Select Date"></md-datepicker>
 				
-			Due Date:<md-datepicker ng-model="invoiceObj.invoiceDueDate"
-				md-placeholder="Select Date"></md-datepicker>
 		</div>
 		<div layout="row" layout-xs="column">
 
@@ -56,15 +60,10 @@
 
 			<md-input-container flex> <md-select
 				ng-model="invoiceObj.salesOrderId" placeholder="Sales Order No"
-				ng-change="SOddlChange($index, selectedSOId)" name="soId"
-				ng-required="true"> <md-option ng-value="SO"
-				ng-repeat="SO in SOforinvoice">{{SO.id }}</md-option> </md-select>
+				ng-change="SOddlChange($index, selectedSOId)" name="soId">
+			<md-option ng-value="SO" ng-repeat="SO in SOforinvoice">{{SO.id
+			}}</md-option> </md-select>
 
-			<div ng-messages="searchForm.soId.$error"
-				ng-if="searchForm.soId.$submitted || searchForm.account.$touched">
-				<div ng-message="required">Please Select Sales Order
-					(Example.:ABC)</div>
-			</div>
 			</md-input-container>
 		</div>
 

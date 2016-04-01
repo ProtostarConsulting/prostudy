@@ -15,12 +15,12 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 		mobile : "",
 		email : "",
 		address : "",
-		userBusiness : ""
+		business : ""
 	};
 
 	$scope.addCustomer = function() {
 		$log.debug("No1");
-		$scope.cust.userBusiness = $scope.curUser.businessAccount;
+		$scope.cust.business = $scope.curUser.businessAccount;
 		var customerService = appEndpointSF.getCustomerService();
 		customerService.addCustomer($scope.cust).then(function(msgBean) {
 			$log.debug("No6");

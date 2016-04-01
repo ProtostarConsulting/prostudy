@@ -17,12 +17,12 @@ app.controller("accountPayableCtr", function($scope, $window, $mdToast,
 		invoiceDueDate : '',
 		purchaseOrderId : '',
 		purchaseOrderDate : '',
-		loggedInUser : ''
+		business : ''
 	};
 
 	$scope.addPayable = function() {
 		
-		$scope.accountPayable.loggedInUser = $scope.curUser;
+		$scope.accountPayable.business = $scope.curUser.businessAccount;
 		var payableService = appEndpointSF.getAccountService();
 		
 		payableService.addPayable($scope.accountPayable).then(function(msgBean) {
@@ -53,23 +53,7 @@ app.controller("accountPayableCtr", function($scope, $window, $mdToast,
 		$mdToast.show($mdToast.simple().content('Account Data Saved!')
 				.position("top").hideDelay(3000));
 	};
-/*
-	$scope.getAllCustomersByCurrUser = function() {
-		$log.debug("Inside Ctr $scope.getAllCustomers");
-		var customerService = appEndpointSF.getCustomerService();
-
-		customerService.getAllCustomersByCurrUser(
-				$scope.curUser.businessAccount.id).then(
-				function(custList) {
-					$scope.customersforPayable = custList;
-					$log.debug("$scope.customersforPayable:"
-							+ angular.toJson($scope.customersforaccount));
-				});
-	}
-
-	$scope.customersforPayable = [];
-	$scope.getAllCustomersByCurrUser();
-*/	
+	
 	$scope.CustomerddlChange = function (index, selectedcustomerName){
 		$log.debug("##Came to CustomerddlChange...");
 	}	

@@ -3,13 +3,7 @@
 <h3>
 	<u>Customer List</u>
 </h3>
-<!-- <div>
-	<section layout="row" layout-align="end end" flex>
-		<md-button class="md-raised md-primary" ng-click="back()">ADD
-		NEW</md-button>
-	</section>
-</div>
- -->
+
 <div layout layout-sm="column">
 	<md-input-container flex> <label>Search</label> <input
 		ng-model="searchText"> </md-input-container>
@@ -57,7 +51,7 @@
 		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
 </div>
 
-<div layout="row" layout-xs="column">
+<div id="display" layout="row" layout-xs="column" ng-hide="true" ng-show="selected.length == 1">
 
 	<md-button id="invoiceBtn" class="md-raised md-primary" type="submit" ng-click="userInvoices">Invoice</md-button>
 

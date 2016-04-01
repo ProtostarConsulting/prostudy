@@ -17,12 +17,13 @@ angular.module("stockApp").controller(
 			$scope.tax = {
 					taxCodeName:'',
 					taxPercenatge:'',
-					taxVisibility:true
+					active:true,
+					business:""
 			}
 			
 			$scope.addTax = function() {
 				$log.debug("No1");
-				$scope.tax.loggedInUser =$scope.curUser;
+				$scope.tax.business =$scope.curUser.businessAccount;
 				
 				var taxService = appEndpointSF.getTaxService();
 

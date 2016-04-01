@@ -3,7 +3,7 @@ angular
 		.controller(
 				"probusinessCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $stateParams, $log, objectFactory,
+						$mdUtil, $stateParams,$mdMedia,$mdDialog, $log, objectFactory,
 						appEndpointSF) {
 
 					$scope.businessNo = $stateParams.businessNo;
@@ -25,40 +25,82 @@ angular
 									$log.debug("Inside Ctr getAllleads");
 									$scope.businesslist = businessList.items;
 
+									for (var i = 0; i < $scope.businesslist.length; i++) {
+										if ($scope.businesslist[i].status == "active") {
+											$scope.activeBusiness
+													.push($scope.businesslist[i]);
+											console
+													.log("Active Users"
+															+ angular
+																	.toJson($scope.activeBusiness));
+										} else if ($scope.businesslist[i].status == "inactive") {
+											$scope.inActiveBusiness
+													.push($scope.businesslist[i]);
+											console
+													.log("In-Active Users"
+															+ angular
+																	.toJson($scope.inActiveBusiness));
+										}
+										if ($scope.businesslist[i].status == "suspended") {
+											$scope.suspendedBusiness
+													.push($scope.businesslist[i]);
+											console
+													.log("Suspended Users"
+															+ angular
+																	.toJson($scope.suspendedBusiness));
+										}
+									}
 								});
 
 					}
 
+					$scope.activeBusiness = [];
+					$scope.inActiveBusiness = [];
+					$scope.suspendedBusiness = [];
+					
 					$scope.businesslist = [];
 					$scope.getBusinessList();
 
 					$scope.selected = [];
-					
-					$scope.updateBusiStatus = function(selected,stateValue) {
-						
-						$scope.update.push(selected);
-						$scope.selected.status = stateValue;
-						
-					//	$scope.update.id = selected.id;
-					//	$scope.update.status = stateVale;
-						
-						var UserService = appEndpointSF.getUserService();
 
-			//			$scope.user.businessAccount = $scope.business;
-			//			$scope.user.authority = $scope.selection;
+					
+					$scope.selected = [];
+
+					$scope.inactiveUserStatus = function() {
+						var inactive = "inactive"
+						$scope.selected[0].status = inactive;
+						var UserService = appEndpointSF.getUserService();
 						UserService.updateBusiStatus($scope.selected[0]).then(
 								function(msgBean) {
 									$scope.showSimpleToast(msgBean.msg);
-
 								});
-
 					}
+					$scope.suspendUserStatus = function() {
+						var suspended = "suspended"
+						$scope.selected[0].status = suspended;
+						var UserService = appEndpointSF.getUserService();
+						UserService.updateBusiStatus($scope.selected[0]).then(
+								function(msgBean) {
+									$scope.showSimpleToast(msgBean.msg);
+								});
+					}
+					$scope.activeUserStatus = function() {
+						var active = "active"
+						$scope.selected[0].status = active;
+						var UserService = appEndpointSF.getUserService();
+						UserService.updateBusiStatus($scope.selected[0]).then(
+								function(msgBean) {
+									$scope.showSimpleToast(msgBean.msg);
+								});
+					}
+
+					
 					$scope.getUsersByBusinessId = function() {
 						$log.debug("Inside Ctr $scope.getuserById");
 						var UserService = appEndpointSF.getUserService();
 						UserService.getUsersByBusinessId($scope.businessNo)
 								.then(function(userList) {
-									$log.debug("Inside Ctr getAllleads");
+							
 									$scope.userlist = userList.items;
 
 								});

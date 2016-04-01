@@ -28,12 +28,12 @@ app.controller("salesOrderAddCtr", function($scope, $window, $mdToast, $timeout,
 			taxPercenatge : '',
 			taxTotal : 0,
 			finalTotal : '',
-			loggedInUser:""
+			business:""
 		};
 		
 		$scope.addSalesOrder = function() {
 			var salesOrderService = appEndpointSF.getSalesOrderService();	
-			$scope.salesOrder.loggedInUser =$scope.curUser;
+			$scope.salesOrder.business =$scope.curUser.businessAccount;
 			
 			salesOrderService.addSalesOrder($scope.salesOrder).then(function(msgBean) {
 				$scope.showSimpleToast(msgBean.msg);

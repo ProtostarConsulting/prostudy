@@ -28,8 +28,7 @@
 			<tr md-auto-select
 				ng-repeat="pOItem in purchaseOrderList | filter: searchText | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
 				<!-- <a ng-href="#/invoice.list/{{invoiceId.id}}">{{invoice.finalTotal}}</a> -->
-				<td>{{$index+1}}</td>
-				<td>{{pOItem.id}}</td>
+				<td>{{pOItem.customer.firstName}}</td>
 				<td>{{pOItem.poDate | formatDate}}</td>
 				<td>{{pOItem.finalTotal}}</td>
 				<td>

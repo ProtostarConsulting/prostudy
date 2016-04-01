@@ -51,9 +51,9 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 	
-	UserService.updateBusiSatus = function(update) {
+	UserService.updateBusiStatus = function(update) {
 		var deferred = $q.defer();
-		gapi.client.userService.updateBusiSatus(update).execute(function() {
+		gapi.client.userService.updateBusiStatus(update).execute(function() {
 			deferred.resolve({
 				"msg" : "Business Status Successfully Updated"
 			});
@@ -1109,10 +1109,10 @@ function googleEndpointSF($log, $q) {
 		return InvoiceService;
 	}
 
-	InvoiceService.updateInvoice = function(valueToUpdate) {
+	InvoiceService.updateInvoiceStatus = function(valueToUpdateStatus) {
 		var deferred = $q.defer();
 
-		gapi.client.invoiceService.updateInvoice(valueToUpdate).execute(
+		gapi.client.invoiceService.updateInvoiceStatus(valueToUpdateStatus).execute(
 				function(resp) {
 					$log.debug("UpdateInvoice#resp at enpoint:" + resp);
 					deferred.resolve(resp);

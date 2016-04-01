@@ -40,14 +40,14 @@ app
 					$scope.invoiceData = [];
 					$scope.getAllInvoice();
 
-					$scope.accountforinvoice = [ "Paid", "NotPaid" ];
+					$scope.stutusValues = [ "Paid", "NotPaid" ];
 					$log.debug("$scope.sendToUpdate:"
 							+ angular.toJson($scope.sendToUpdate));
 
-					$scope.updateInvoice = function(invoiceId,account) {						
+					$scope.updateInvoice = function(invoiceId,status) {						
 						$scope.sendToUpdate = [];
 						$scope.sendToUpdate.push(invoiceId);
-						$scope.sendToUpdate.push(account);
+						$scope.sendToUpdate.push(status);
 						$scope.valueToUpdate = {
 								id : $scope.sendToUpdate[0],
 								status:$scope.sendToUpdate[1]
@@ -61,6 +61,29 @@ app
 						window.history.back();
 					}
 
+					$scope.selected = [];
+
+					$scope.updatePaidStatus = function() {
+						var paid = "Paid"
+						$scope.selected[0].status = paid;
+						var invoiceService = appEndpointSF.getInvoiceService();
+						invoiceService.updateInvoiceStatus($scope.selected[0]).then(
+								function(msgBean) {
+									$scope.showSimpleToast(msgBean.msg);
+								});
+					}
+					
+					$scope.updateNotPaidStatus = function() {
+						var notPaid = "NotPaid"
+						$scope.selected[0].status = notPaid;
+						var invoiceService = appEndpointSF.getInvoiceService();
+						invoiceService.updateInvoiceStatus($scope.selected[0]).then(
+								function(msgBean) {
+									$scope.showSimpleToast(msgBean.msg);
+								});
+					}
+					
+					
 					/* Setup menu */
 					$scope.toggleRight = buildToggler('right');
 					/**

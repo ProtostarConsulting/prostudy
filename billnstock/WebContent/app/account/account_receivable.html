@@ -22,7 +22,7 @@
 				md-input-minlength="2"
 				md-input-maxlength="18"
 				md-no-cache=true
-				md-selected-item="accountPayable.customer"
+				md-selected-item="accountReveivable.customer"
 				md-search-text="searchTextInput"
 				md-items="item in querySearch(searchTextInput)"
 				md-item-text="item.firstName"
@@ -49,6 +49,8 @@
 		<md-input-container flex> <label>Mobile
 			No. </label> <input ng-model="accountReveivable.customer.mobile" >
 		</md-input-container>
+		
+		   		<md-datepicker flex ng-model="accountReveivable.receivableDate" md-placeholder="Recievable Date"></md-datepicker>	
 	</div>
 
 	<div layout="row" layout-xs="column">

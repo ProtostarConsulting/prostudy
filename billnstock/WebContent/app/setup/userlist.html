@@ -113,47 +113,66 @@ vals: {{customers}}
 		ng-click="getAllemp()" class="md-primary"> Customer List
 	in side List view </md-button> </md-content> -->
 
-	<section layout="row" layout-xs="column" layout-align="left left"
-		ng-show="selected[0]">
+<div id="changeState" ng-show="selected.length == 1">
+<!-- 	<section layout="row" layout-xs="column" layout-align="left left"
+		>
 
-<!-- 		<p>
-			Selected Value: <span class="radioValue">{{ stateValue }}</span>
-		</p>
- -->
+
  		<md-radio-group ng-model="stateValue"> 
-<!-- 			<md-radio-button value="active" class="md-primary">Active</md-radio-button>  -->
 			<md-radio-button value="inactive" class="md-primary"> Inactive </md-radio-button> 
 			<md-radio-button value="suspend" class="md-primary">Suspend</md-radio-button> 
 		</md-radio-group>
 		</br>
-
-<!-- 		<md-button class="md-raised md-primary"
-			ng-click="updateUserStatus(selected[0],stateValue)">Change
-		Status</md-button> -->
 	</section>
-	
-	<md-button class="md-raised md-primary"
-			ng-click="updateUserStatus(selected[0],stateValue)">Change
-		Status</md-button>
-				<md-button class="md-raised md-primary"	ng-click='ShowHide()'>Change Password
+ -->	
+	<md-button class="md-raised md-primary" 
+			ng-click="inactiveUserStatus()">Inactive
 		</md-button>
+		
+	<md-button class="md-raised md-primary" ng-model="suspend" value="suspend"
+			ng-click="suspendUserStatus()">Suspend
+		</md-button>
+
+ <md-button class="md-primary md-raised" ng-hide="selected[0].isGoogleUser" ng-click="notGoogleUser($event)" >
+      Change Password
+    </md-button>
+    
+     <md-button class="md-primary md-raised" ng-hide="selected[0].isGoogleUser" ng-click="changePassword($event)">
+      Change Password1
+    </md-button>
+<!-- 		
+	<md-button class="md-raised md-primary"	ng-click='ShowHide()'>Change Password
+		</md-button>
+ -->
+<!--     <md-button class="md-primary md-raised" ng-hide="selected[0].isGoogleUser" ng-click="notGoogleUser($event)" >
+      Change Password
+    </md-button>
+ -->
+ <!--     
+     <md-button class="md-primary md-raised" ng-show="selected[0].isGoogleUser" ng-click="googleUser($event)" >
+      Confirm Dialog1
+    </md-button>
+ -->    
 </div>
 
-		<div layout layout-sm="column" ng-hide="IsHidden">
-			<md-input-container flex  ng-hide="suspendedUsers.isGoogleUser"> 
-					
-			
+<div layout layout-sm="column" ng-hide="IsHidden">
+			<md-input-container flex  ng-hide="selected[0].isGoogleUser"> 	
 			   <md-button class="md-primary md-raised" ng-click="showAdvanced($event)">
-      Custom Dialog
-    </md-button>
+     							 Custom Dialog
+    		   </md-button>
 			 </md-input-container>
-				<md-input-container flex  ng-show="suspendedUsers.isGoogleUser"> 
+			 
+				<md-input-container flex  ng-show="selected[0].isGoogleUser"> 
 				<a target="_blank" href="https://www.google.com/settings/passwordchange">Link Change Password</a>
 			 </md-input-container>
 			
-		</div>
-	</md-content> </md-tab> 
-	
+</div>
+
+		</md-content> </md-tab> 
+
+
+		
+
 	
 	
 	
@@ -199,34 +218,45 @@ vals: {{customers}}
 			md-total={{users.length}} md-trigger="onpagechange"></md-data-table-pagination>
 		</md-data-table-container>
 	</div>
+	
+<div ng-show="selected.length == 1">
+<!-- 	<section layout="row" layout-xs="column" layout-align="left left">
 
-	<section layout="row" layout-xs="column" layout-align="left left"
-		ng-show="selected[0]">
-
-<!-- 		<p>
-			Selected Value: <span class="radioValue">{{ stateValue }}</span>
-		</p>
- -->
  		<md-radio-group ng-model="stateValue"> 
 			<md-radio-button value="active" class="md-primary">Active</md-radio-button> 
-<!-- 			<md-radio-button value="inactive" class="md-primary"> Inactive </md-radio-button>  -->
+			<md-radio-button value="inactive" class="md-primary"> Inactive </md-radio-button> 
 			<md-radio-button value="suspend" class="md-primary">Suspend</md-radio-button> 
 		</md-radio-group>
 		</br>
-
-<!-- 		<md-button class="md-raised md-primary"
+	</section>
+ -->	
+<!-- 	<md-button class="md-raised md-primary"
 			ng-click="updateUserStatus(selected[0],stateValue)">Change
 		Status</md-button>
- -->	</section>
-	
-	<md-button class="md-raised md-primary"
-			ng-click="updateUserStatus(selected[0],stateValue)">Change
-		Status</md-button>
-				<md-button class="md-raised md-primary"	ng-click='ShowHide()'>Change Password
+ -->
+ 
+ 	<md-button class="md-raised md-primary" 
+			ng-click="activeUserStatus()">Active
 		</md-button>
-</div>
+		
+	<md-button class="md-raised md-primary" ng-model="suspend" value="suspend"
+			ng-click="suspendUserStatus()">Suspend
+ 		</md-button>
 
-		<div layout layout-sm="column" ng-hide="IsHidden">
+  <md-button class="md-primary md-raised" ng-hide="selected[0].isGoogleUser">
+      Change Password
+    </md-button>
+    
+<!-- 				<md-button class="md-raised md-primary"	ng-click='ShowHide()'>Change Password
+		</md-button>
+		 -->
+<!-- 		 <md-button class="md-primary md-raised" ng-hide="selected[0].isGoogleUser" ng-click="notGoogleUser($event)" >
+      Change Password
+    </md-button>
+  -->   
+</div>
+<!-- 
+<div layout layout-sm="column" ng-hide="IsHidden">
 			<md-input-container flex  ng-hide="suspendedUsers.isGoogleUser"> 
 					
 			
@@ -239,8 +269,13 @@ vals: {{customers}}
 			 </md-input-container>
 			
 		</div>
-	</md-content> </md-tab> 
+ -->		
+</md-content> </md-tab> 
+
+
+		
 	
+
 	
 	
 	<md-tab label="Suspended"> <md-content class="md-padding">
@@ -286,42 +321,42 @@ vals: {{customers}}
 		</md-data-table-container>
 	</div>
 
-<div ng-show="selected[0]">
-	<section layout="row" layout-xs="column" layout-align="left left"
-		>
-
-<!-- 		<p>
-			Selected Value: <span class="radioValue">{{ stateValue }}</span>
-		</p>
- -->
+<div ng-show="selected.length == 1">
+<!-- 	<section layout="row" layout-xs="column" layout-align="left left">
  		<md-radio-group ng-model="stateValue"> 
 			<md-radio-button value="active" class="md-primary">Active</md-radio-button> 
 			<md-radio-button value="inactive" class="md-primary"> Inactive </md-radio-button> 
-<!-- 			<md-radio-button value="suspend" class="md-primary">Suspend</md-radio-button>  -->
+			<md-radio-button value="suspend" class="md-primary">Suspend</md-radio-button> 
 		</md-radio-group>
-		</br>
-
 	</section>
 		<md-button class="md-raised md-primary"
 			ng-click="updateUserStatus(selected[0],stateValue)">Change
 		Status</md-button>
-				<md-button class="md-raised md-primary"	ng-click='ShowHide()'>Change Password
+ -->
+ 
+  	<md-button class="md-raised md-primary" 
+			ng-click="activeUserStatus()">Active
 		</md-button>
-</div>
+		
+	<md-button class="md-raised md-primary" ng-model="suspend" value="suspend"
+			ng-click="inactiveUserStatus()">Inactive
+		</md-button>
 
-		<div layout layout-sm="column" ng-hide="IsHidden">
-			<md-input-container flex  ng-hide="suspendedUsers.isGoogleUser"> 
-					
-			
-			   <md-button class="md-primary md-raised" ng-click="showAdvanced($event)">
-      Custom Dialog
+  <md-button class="md-primary md-raised" ng-hide="selected[0].isGoogleUser">
+      Change Password
     </md-button>
-			 </md-input-container>
-				<md-input-container flex  ng-show="suspendedUsers.isGoogleUser"> 
-				<a target="_blank" href="https://www.google.com/settings/passwordchange">Link Change Password</a>
-			 </md-input-container>
-			
-		</div>
+    
+<!--  				<md-button class="md-raised md-primary"	ng-click='ShowHide()'>Change Password
+		</md-button>
+ -->
+<!-- 
+ <md-button class="md-primary md-raised" ng-hide="selected[0].isGoogleUser" ng-click="notGoogleUser($event)" >
+      Change Password
+    </md-button>
+ -->
+   </div>
+
 	</md-content>
-	
-+++++++++++++++++++++++++++
+</md-tab>
+*********
+</div></md-content>

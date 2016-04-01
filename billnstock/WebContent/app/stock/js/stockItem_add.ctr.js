@@ -19,12 +19,12 @@ angular.module("stockApp").controller(
 				price : "",
 				thresholdValue : '',
 				notes : '',
-				userBusiness : ""
+				business : ""
 			};
 			$scope.addStock = function() {
 				$log.debug("No1");
 				var stockService = appEndpointSF.getStockService();
-				$scope.stock.userBusiness = $scope.curUser.businessAccount;
+				$scope.stock.business = $scope.curUser.businessAccount;
 
 				stockService.addStock($scope.stock).then(function(msgBean) {
 					$scope.showSimpleToast();

@@ -32,24 +32,7 @@ app.controller(
 			
 			
 			$scope.selected = [];
-			$scope.myFunction = function(){
-				if($scope.selected.length>0){
-					$log.debug("More Record Found");
-					$("#invoiceBtn").hide();
-					$("#pOBtn").hide();
-					$("#sOBtn").hide();
-				}
-				else{
-					$("#invoiceBtn").show();
-					$("#pOBtn").show();
-					$("#sOBtn").show();
-					
-				}
 			
-		}
-		
-
-		
 			$scope.toggleRight = buildToggler('right');
 
 			function buildToggler(navID) {

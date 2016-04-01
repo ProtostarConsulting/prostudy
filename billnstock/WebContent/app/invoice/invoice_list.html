@@ -14,12 +14,9 @@
 		<thead md-order="query.order" md-trigger="onorderchange">
 			<tr>
 				<th name="Sr.No" order-by="sr_No"></th>
-
 				<th name="Customer Name" order-by="firstName"></th>
 				<th name="Final Total" order-by="finalTotal"></th>
-				<th name="Update Status"></th>
 				<th name="Action"></th>
-
 			</tr>
 		</thead>
 
@@ -31,19 +28,19 @@
 				<td>{{invoice.customer.firstName}}</td>
 				<td>{{invoice.finalTotal}}</td>
 
-				<td><md-input-container flex> <md-select
-						ng-model="account" placeholder="Account Name"
-						ng-change="AccountNameddlChange($index, selectedAccount)">
-					<md-option ng-value="Account"
-						ng-repeat="Account in accountforinvoice" required>{{Account
-					}}</md-option> </md-select> </md-input-container></td>
-				<td>
+				<!-- <td><md-input-container flex> <md-select
+						ng-model="status" placeholder="Status"
+						ng-change="StatusddlChange($index, selectedStatus)">
+					<md-option ng-value="status"
+						ng-repeat="status in stutusValues" required>{{status
+					}}</md-option> </md-select> </md-input-container></td> -->
+				<!-- <td>
 					<section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary"
 							
-							ng-show="account" ng-click="updateInvoice(invoice.id,account)">Update</md-button>
+							ng-show="status" ng-click="updateInvoice(invoice.id,status)">Update</md-button>
 					</section>
-				</td>
+				</td> -->
 				<!-- ui-sref="invoice.list({UpdateInvoiceNo : invoice.id , status : account })" -->
 				<td>
 					<section layout="row" layout-sm="column">
@@ -64,5 +61,15 @@
  --> <md-data-table-pagination md-limit="query.limit"
 		md-page="query.page" md-total={{invoiceData.length}}
 		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
+</div>
+
+<div ng-show="selected.length == 1">
+
+	<md-button class="md-raised md-primary" 
+		ng-click="updatePaidStatus()">Paid</md-button>
+		
+			<md-button class="md-raised md-primary" 
+		ng-click="updateNotPaidStatus()">Not Paid</md-button>
+
 </div>
 </md-content>

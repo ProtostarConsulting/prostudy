@@ -14,16 +14,19 @@ app.controller(
 			
 			$scope.accountReveivable = {
 					customer:[],
+					business : '',
 					invoiceId : '',
-					invoiceDate : '',
+					receivableDate: new Date(),
+					invoiceDate : new Date(),
+					invoiceDueDate : new Date(),
 					finalTotal : '',
-					invoiceDueDate : '',
-					loggedInUser : ''
+					status:"NotPaid"
+					
 				};
 			
 			$scope.addReceivable = function() {
 				$log.debug("No1");
-				$scope.accountReveivable.loggedInUser =$scope.curUser;
+				$scope.accountReveivable.business =$scope.curUser.businessAccount;
 				var accountService = appEndpointSF.getAccountService();
 				accountService.addReceivable($scope.accountReveivable).then(
 						function(msgBean) {

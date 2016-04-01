@@ -17,13 +17,13 @@ app.controller("warehouseAddCtr", function($scope, $window, $mdToast, $timeout,
 		pin : "",
 		state : "",
 		country : "",
-		loggedInUser : ""
+		business : ""
 	};
 	
 	
 	$scope.addWarehouse = function() {
 		$log.debug("No1");
-		$scope.warehouse.loggedInUser = $scope.curUser;
+		$scope.warehouse.business = $scope.curUser.businessAccount;
 		var WarehouseManagementService = appEndpointSF.getWarehouseManagementService();
 		WarehouseManagementService.addWarehouse($scope.warehouse).then(function(msgBean) {
 		});

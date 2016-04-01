@@ -15,12 +15,12 @@ app.controller(
 			$scope.account = {
 				accountName : "",
 				description : "",
-				loggedInUser:""
+				business:""
 			};
 			
 			$scope.addAccount = function() {
 				$log.debug("No1");
-				$scope.account.loggedInUser =$scope.curUser;
+				$scope.account.business =$scope.curUser.businessAccount;
 				var accountService = appEndpointSF.getAccountService();
 				accountService.addAccount($scope.account).then(
 						function(msgBean) {

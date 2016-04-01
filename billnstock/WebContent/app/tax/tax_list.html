@@ -27,7 +27,7 @@
 
 				<td>{{tax.taxCodeName}}</td>
 				<td>{{tax.taxPercenatge}}</td>
-				<td>{{tax.taxVisibility}}</td>
+				<td>{{tax.active}}</td>
 
 			</tr>
 		</tbody>
@@ -76,11 +76,10 @@
 			</div>
 			</md-input-container>
 
-
 		</div>
 
 		<label>Tax Visibility </label>
-		<md-checkbox ng-model="selected[0].taxVisibility" ng-true-value="true"
+		<md-checkbox ng-model="selected[0].active" ng-true-value="true"
 			ng-false-value="false" id="changer"> </md-checkbox>
 
 		<div layout="row" layout-xs="column">
