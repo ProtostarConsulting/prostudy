@@ -7,11 +7,11 @@ import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
 import com.protostar.billingnstock.warehouse.entities.WarehouseEntity;
+import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
-public class StockItemEntity {
-	@Id
-	private Long id;
+public class StockItemEntity extends BaseEntity{
+	
 	@Index
 	private String itemName;
 	private String category;
@@ -23,30 +23,11 @@ public class StockItemEntity {
 	Ref<WarehouseEntity> warehouse;
 
 	public WarehouseEntity getWarehouse() {
-		return warehouse.get();
+		return warehouse==null?null:warehouse.get();
 	}
 
 	public void setWarehouse(WarehouseEntity warehouse) {
 		this.warehouse = Ref.create(warehouse);
-	}
-
-	@Index
-	Ref<BusinessEntity> userBusiness;
-	
-	public BusinessEntity getUserBusiness() {
-		return userBusiness.get();
-	}
-
-	public void setUserBusiness(BusinessEntity userBusiness) {
-		this.userBusiness = Ref.create(userBusiness);
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getCategory() {

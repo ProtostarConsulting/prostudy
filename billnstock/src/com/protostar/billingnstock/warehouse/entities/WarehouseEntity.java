@@ -1,19 +1,11 @@
 package com.protostar.billingnstock.warehouse.entities;
 
-import java.util.List;
-
-import javax.management.loading.PrivateClassLoader;
-
-import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
-import com.googlecode.objectify.annotation.Id;
-import com.protostar.billingnstock.user.entities.UserEntity;
+import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
-public class WarehouseEntity {
+public class WarehouseEntity extends BaseEntity{
 
-	@Id
-	private Long id;
 	private String warehouseName; 
 	private String description ;
 	private String address1 ;
@@ -22,23 +14,6 @@ public class WarehouseEntity {
 	private String pin ;
 	private String state; 
 	private String country; 
-
-	Ref<UserEntity> loggedInUser;
-
-	public UserEntity getLoggedInUser() {
-		return loggedInUser.get();
-	}
-
-	public void setLoggedInUser(UserEntity loggedInUser) {
-		this.loggedInUser = Ref.create(loggedInUser);
-	}
-
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getWarehouseName() {
 		return warehouseName;

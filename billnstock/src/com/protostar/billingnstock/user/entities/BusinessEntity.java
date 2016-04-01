@@ -19,7 +19,7 @@ public class BusinessEntity {
 	private Integer totalUser = 1;
 	
 	private Address address;
-	private String status="Active" ;
+	private String status="active" ;
 
 	public String getStatus() {
 		return status;

@@ -12,12 +12,15 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
+import com.googlecode.objectify.Ref;
 import com.protostar.billingnstock.account.entities.AccountEntity;
 import com.protostar.billingnstock.account.entities.PayableEntity;
 import com.protostar.billingnstock.account.entities.ReceivableEntity;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.invoice.entities.InvoiceEntity;
+import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
+import com.protostar.billnstock.entity.BaseEntity;
 
 @Api(name = "accountService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.stock.cust.services", ownerName = "com.protostar.billingnstock.stock.cust.services", packagePath = ""))
 public class AccountService {
@@ -30,23 +33,16 @@ public class AccountService {
 	}
 
 	@ApiMethod(name = "getAllAccountsByBusiness")
-	public List<AccountEntity> getAllAccountsByBusiness(@Named("id") Long id) {
+	public List<AccountEntity> getAllAccountsByBusiness(@Named("id") Long busId) {
 		
-		List<AccountEntity> accountList=ofy().load().type(AccountEntity.class).list();
-		List<AccountEntity> filteredAccounts = new ArrayList<AccountEntity>();
-				
-		for(int i=0;i<accountList.size();i++)
-		{				
-			 if(accountList.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id))
-			 {
-				 System.out.println("Got the record:" + accountList.get(i) );
-				 filteredAccounts.add(accountList.get(i));
-			 }
-			 System.out.println("Recored found:" + accountList.get(i).getLoggedInUser().getId());
-		}
+		List<AccountEntity> filteredAccounts = ofy()
+				.load()
+				.type(AccountEntity.class)
+				.filter("business",
+						Ref.create(Key.create(BusinessEntity.class, busId)))
+				.list();
 		
 		return filteredAccounts;
-
 	}
 
 	@ApiMethod(name = "getCustomerByID")
@@ -65,35 +61,19 @@ public class AccountService {
 	@ApiMethod(name = "addPayable")
 	public void addPayable(PayableEntity payableEntity) {
 			
-		/*Date date = new Date();
-		  String DATE_FORMAT = "dd-MM-yyyy";
-		  SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
-
-		  payableEntity.setInvoiceDate(sdf.format(date));
-		  payableEntity.setInvoiceDueDate(sdf.format(date));
-		  payableEntity.setPayableDate(sdf.format(date));
-		  payableEntity.setPurchaseOrderDate(sdf.format(date));
-*/		
 		ofy().save().entity(payableEntity).now();
 	
 	}
 
 	@ApiMethod(name = "getAllPayablesByBusiness")
-	public List<PayableEntity> getAllPayablesByBusiness(@Named("id") Long id) {
+	public List<PayableEntity> getAllPayablesByBusiness(@Named("id") Long busId) {
 		
-		List<PayableEntity> payableList=ofy().load().type(PayableEntity.class).list();
-		List<PayableEntity> filteredPayables = new ArrayList<PayableEntity>();
-		
-		
-		for(int i=0;i<payableList.size();i++)
-		{				
-			 if(payableList.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id))
-			 {
-				 System.out.println("Got the record:" + payableList.get(i) );
-				 filteredPayables.add(payableList.get(i));
-			 }
-			 System.out.println("Recored found:" + payableList.get(i).getLoggedInUser().getId());
-		}
+		List<PayableEntity> filteredPayables = ofy()
+				.load()
+				.type(PayableEntity.class)
+				.filter("business",
+						Ref.create(Key.create(BusinessEntity.class, busId)))
+				.list();
 		
 		return filteredPayables;
 
@@ -104,30 +84,21 @@ public class AccountService {
 	@ApiMethod(name = "addReceivable")
 	public void addReceivable(ReceivableEntity receivableEntity) {
 			
-		Key<ReceivableEntity> payables = ofy().save().entity(receivableEntity).now();
+		ofy().save().entity(receivableEntity).now();
 	
 	}
+	
+	@ApiMethod(name = "getAllReceivablesByBusiness", path = "getAllReceivablesByBusiness")
+	public List<ReceivableEntity> getAllReceivablesByBusiness(@Named("id") Long busId) {
+		
+		List<ReceivableEntity> filteredReceivables = ofy()
+				.load()
+				.type(ReceivableEntity.class)
+				.filter("business",
+						Ref.create(Key.create(BusinessEntity.class, busId)))
+				.list();
 
-	@ApiMethod(name = "getAllReceivablesByBusiness", path = "Somepath_realted_to_your_service")
-	public List<ReceivableEntity> getAllReceivablesByBusiness(@Named("id") Long id) {
-		
-		
-		List<ReceivableEntity> receivableList=ofy().load().type(ReceivableEntity.class).list();
-		List<ReceivableEntity> filteredReceivables = new ArrayList<ReceivableEntity>();
-		
-		
-		for(int i=0;i<receivableList.size();i++)
-		{				
-			 if(receivableList.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id) && receivableList.get(i).getStatus().equals("NotPaid"))
-			 {
-				 System.out.println("Got the record:" + receivableList.get(i) );
-				 filteredReceivables.add(receivableList.get(i));
-			 }
-			 System.out.println("Recored found:" + receivableList.get(i).getLoggedInUser().getId());
-		}
-		
 		return filteredReceivables;
-
 	}
-	
-}// end of CustomerService
+
+}

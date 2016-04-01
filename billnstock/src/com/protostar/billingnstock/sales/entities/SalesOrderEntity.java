@@ -9,6 +9,7 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.tax.entities.TaxEntity;
+import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
 
 @Entity
@@ -91,14 +92,15 @@ public class SalesOrderEntity {
 		this.selectedTaxItem = selectedTaxItem;
 	}
 */
-	@Index
-	Ref<UserEntity> loggedInUser;
-	public UserEntity getLoggedInUser() {
-		return loggedInUser.get();
+	@Index	
+	Ref<BusinessEntity> business;
+	
+	public BusinessEntity getBusiness() {
+		return business.get();
 	}
 
-	public void setLoggedInUser(UserEntity loggedInUser) {
-		this.loggedInUser = Ref.create(loggedInUser);
+	public void setBusiness(BusinessEntity business) {
+		this.business = Ref.create(business);
 	}
 	
 	public Long getId() {

@@ -1,40 +1,17 @@
 package com.protostar.billingnstock.account.entities;
 
-import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
-import com.googlecode.objectify.annotation.Index;
-import com.protostar.billingnstock.user.entities.BusinessEntity;
-import com.protostar.billingnstock.user.entities.UserEntity;
+import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
-public class AccountEntity {
+public class AccountEntity extends BaseEntity{
 
-	@Id
-	private Long id;
+
 	private String accountName;
 	private Long accountNo;
 	private String description;
 	
-
-	@Index
-	Ref<UserEntity> loggedInUser;
-	public UserEntity getLoggedInUser() {
-		return loggedInUser.get();
-	}
-
-	public void setLoggedInUser(UserEntity loggedInUser) {
-		this.loggedInUser = Ref.create(loggedInUser);
-	}
-
-	public Long getId() {
-		return id;
-	}
-	
-	public void setId(Long Id) {
-		this.id = Id;
-	}
-
 	public Long getAccountNo() {
 		return accountNo;
 	}

@@ -1,17 +1,12 @@
 package com.protostar.billingnstock.cust.entities;
 
-import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
-import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
-import com.protostar.billingnstock.user.entities.BusinessEntity;
-import com.protostar.billingnstock.user.entities.UserEntity;
+import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
-public class Customer {
+public class Customer extends BaseEntity{
 
-	@Id
-	private Long id;
 	@Index
 	private String firstName;
 	private String lastName;
@@ -19,24 +14,7 @@ public class Customer {
 	private String email;
 	private String address;
 	
-	@Index
-	Ref<BusinessEntity> userBusiness;
-	
-	public BusinessEntity getUserBusiness() {
-		return userBusiness.get();
-	}
 
-	public void setUserBusiness(BusinessEntity userBusiness) {
-		this.userBusiness = Ref.create(userBusiness);
-	}
-
-	public Long getId() {
-		return id;
-	}
-	
-	public void setId(Long Id) {
-		this.id = Id;
-	}
 	public String getFirstName() {
 		return firstName;
 	}

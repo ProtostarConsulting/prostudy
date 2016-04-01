@@ -1,44 +1,22 @@
 package com.protostar.billingnstock.tax.entities;
 
-import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
-import com.googlecode.objectify.annotation.Index;
-import com.protostar.billingnstock.user.entities.BusinessEntity;
-import com.protostar.billingnstock.user.entities.UserEntity;
+import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
-public class TaxEntity {
-	@Id
-	private Long id;
+public class TaxEntity extends BaseEntity{
+
 	private String taxCodeName;
 	private double taxPercenatge;
-	private boolean taxVisibility=true;
-
-	public boolean isTaxVisibility() {
-		return taxVisibility;
-	}
-
-	public void setTaxVisibility(boolean taxVisibility) {
-		this.taxVisibility = taxVisibility;
-	}
-
-	@Index
-	Ref<UserEntity> loggedInUser;
-	public UserEntity getLoggedInUser() {
-		return loggedInUser.get();
-	}
-
-	public void setLoggedInUser(UserEntity loggedInUser) {
-		this.loggedInUser = Ref.create(loggedInUser);
-	}
+	private boolean active=true;
 	
-	public Long getId() {
-		return id;
+	public boolean isActive() {
+		return active;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public String getTaxCodeName() {

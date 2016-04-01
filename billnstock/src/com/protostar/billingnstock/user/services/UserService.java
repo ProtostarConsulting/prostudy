@@ -41,6 +41,10 @@ public class UserService {
 
 	}
 	
+	@ApiMethod(name = "updateBusiStatus", path="Somepath_realted_to_your_service")
+	public void updateBusiStatus(BusinessEntity businessEntity) {
+		ofy().save().entity(businessEntity).now();
+	}
 	@ApiMethod(name = "getbusinessById")
 	public BusinessEntity getbusinessById(@Named("id") Long id) {
 		return ofy().load().type(BusinessEntity.class).id(id).now();

@@ -11,20 +11,19 @@ import com.protostar.billingnstock.account.entities.AccountEntity;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.sales.entities.SalesOrderEntity;
 import com.protostar.billingnstock.tax.entities.TaxEntity;
+import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
+import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
-public class InvoiceEntity {
-	@Id
+public class InvoiceEntity extends BaseEntity{
+/*	@Id
 	private Long id;
-
+*/
 	@Index
 	private Date invoiceDate;
 	@Index
 	private Date invoiceDueDate;
-//	private String itemName;
-//	private String rate;
-//	private String qty;
 	private String subTotal;
 	private String taxTotal;
 	private String finalTotal;
@@ -38,9 +37,7 @@ public class InvoiceEntity {
 	
 	@Index
 	Ref<Customer> customer;
-	@Index
-	Ref<UserEntity> loggedInUser;
-	
+
 	public Customer getCustomer() {
 		return customer.get();
 	}
@@ -56,19 +53,8 @@ public class InvoiceEntity {
 		this.selectedTaxItem = Ref.create(selectedTaxItem);
 	}
 	
-	public UserEntity getLoggedInUser() {
-		return loggedInUser.get();
-	}
-
-	public void setLoggedInUser(UserEntity loggedInUser) {
-		this.loggedInUser = Ref.create(loggedInUser);
-	}
-		
-
-
-
 	public SalesOrderEntity getSalesOrderId() {
-		return salesOrderId.get();
+		return salesOrderId==null?null:salesOrderId.get();
 	}
 
 	public void setSalesOrderId(SalesOrderEntity salesOrderId) {
@@ -92,32 +78,7 @@ public class InvoiceEntity {
 		this.invoiceLineItemList = invoiceLineItemList;
 	}
 	
-	
 
-	/*public String getItemName() {
-		return itemName;
-	}
-
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
-	}
-
-	public String getRate() {
-		return rate;
-	}
-
-	public void setRate(String rate) {
-		this.rate = rate;
-	}
-
-	public String getQty() {
-		return qty;
-	}
-
-	public void setQty(String qty) {
-		this.qty = qty;
-	}
-*/
 	public String getSubTotal() {
 		return subTotal;
 	}
@@ -141,7 +102,7 @@ public class InvoiceEntity {
 	public void setFinalTotal(String finalTotal) {
 		this.finalTotal = finalTotal;
 	}
-
+/*
 	public Long getId() {
 		return id;
 	}
@@ -149,7 +110,7 @@ public class InvoiceEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+*/
 	public String getNote() {
 		return note;
 	}

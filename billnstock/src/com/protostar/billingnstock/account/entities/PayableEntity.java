@@ -5,19 +5,22 @@ import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.cust.entities.Customer;
-import com.protostar.billingnstock.user.entities.UserEntity;
+import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
-public class PayableEntity {
+public class PayableEntity extends BaseEntity{
 
-	@Id
-	private Long id;
-	@Index
-	Ref<UserEntity> loggedInUser;
 	@Index
 	Ref<Customer> customer;
 	private Long invoiceId;
 	private String payableDate;
+	private String invoiceDate;
+	private String finalTotal;
+	private String invoiceDueDate;
+	private Long purchaseOrderId;
+	private String purchaseOrderDate;
+	
+
 	public String getPayableDate() {
 		return payableDate;
 	}
@@ -25,16 +28,7 @@ public class PayableEntity {
 	public void setPayableDate(String payableDate) {
 		this.payableDate = payableDate;
 	}
-
-	private String invoiceDate;
-	private String finalTotal;
-	private String invoiceDueDate;
-	private Long purchaseOrderId;
-	private String purchaseOrderDate;
 	
-	
-	
-
 	public Customer getCustomer() {
 		return customer.get();
 	}
@@ -43,21 +37,6 @@ public class PayableEntity {
 		this.customer = Ref.create(customer);
 	}
 
-	public UserEntity getLoggedInUser() {
-		return loggedInUser.get();
-	}
-
-	public void setLoggedInUser(UserEntity loggedInUser) {
-		this.loggedInUser = Ref.create(loggedInUser);
-	}
-
-	public Long getId() {
-		return id;
-	}
-	
-	public void setId(Long Id) {
-		this.id = Id;
-	}
 	public Long getInvoiceId() {
 		return invoiceId;
 	}

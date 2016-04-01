@@ -9,14 +9,13 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.tax.entities.TaxEntity;
+import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
+import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
-public class PurchaseOrderEntity {
+public class PurchaseOrderEntity extends BaseEntity{
 
-	@Id
-	@Index
-	private Long id;
 	private String to;
 	private String shipTo;
 	private Date poDate;
@@ -52,23 +51,6 @@ public class PurchaseOrderEntity {
 	}
 	public void setSelectedTaxItem(TaxEntity selectedTaxItem) {
 		this.selectedTaxItem = Ref.create(selectedTaxItem);
-	}
-	
-	@Index
-	Ref<UserEntity> loggedInUser;
-	public UserEntity getLoggedInUser() {
-		return loggedInUser.get();
-	}
-
-	public void setLoggedInUser(UserEntity loggedInUser) {
-		this.loggedInUser = Ref.create(loggedInUser);
-	}
-	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
 	}
 	
 	public String getShipTo() {

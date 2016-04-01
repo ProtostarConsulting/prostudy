@@ -10,7 +10,9 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
+import com.googlecode.objectify.Ref;
 import com.protostar.billingnstock.stock.entities.StockItemEntity;
+import com.protostar.billingnstock.user.entities.BusinessEntity;
 
 @Api(name = "stockService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.stock.services", ownerName = "com.protostar.billingnstock.stock.services", packagePath = ""))
 public class StockItemService {
@@ -20,41 +22,42 @@ public class StockItemService {
 
 		Key<StockItemEntity> now = ofy().save().entity(stockItemEntity).now();
 	}
-	
+
 	@ApiMethod(name = "getStockById")
 	public StockItemEntity getStockById(@Named("id") Long id) {
 
-		StockItemEntity stock = ofy().load().type(StockItemEntity.class).id(id).now();
-		
+		StockItemEntity stock = ofy().load().type(StockItemEntity.class).id(id)
+				.now();
+
 		return stock;
 	}
 
 	@ApiMethod(name = "getAllStock")
-	public List<StockItemEntity> getAllStock(@Named("id") Long id) {
+	public List<StockItemEntity> getAllStock(@Named("id") Long busId) {
 
-		List<StockItemEntity> stocks = ofy().load().type(StockItemEntity.class)
+		List<StockItemEntity> filteredStocks = ofy()
+				.load()
+				.type(StockItemEntity.class)
+				.filter("business",
+						Ref.create(Key.create(BusinessEntity.class, busId)))
 				.list();
-		List<StockItemEntity> filteredStocks = new ArrayList<StockItemEntity>();
 
-		for (int i = 0; i < stocks.size(); i++) {
-			if (stocks.get(i).getUserBusiness().getId().equals(id)) {
-				System.out.println("Got the record:" + stocks.get(i));
-				filteredStocks.add(stocks.get(i));
-			}
-
-		}
 		return filteredStocks;
 	}
 
-	@ApiMethod(name = "getReportByThreshold", path = "Somepath_realted_to_your_service")
+	@ApiMethod(name = "getReportByThreshold", path = "getReportByThreshold")
 	public List<StockItemEntity> getReportByThreshold(@Named("id") Long id) {
 
+		
+	//	List<StockItemEntity> thresholdStocks = ofy().load().type(StockItemEntity.class).filter("qty <=" thresholdValue).list();
+		
+		
 		List<StockItemEntity> stocks = ofy().load().type(StockItemEntity.class)
 				.list();
 		List<StockItemEntity> filteredThresholdStocks = new ArrayList<StockItemEntity>();
 
 		for (int i = 0; i < stocks.size(); i++) {
-			if ((stocks.get(i).getUserBusiness().getId().equals(id))
+			if ((stocks.get(i).getBusiness().getId().equals(id))
 					&& (stocks.get(i).getQty() <= stocks.get(i)
 							.getThresholdValue())) {
 

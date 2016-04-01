@@ -10,8 +10,10 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
+import com.googlecode.objectify.Ref;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.invoice.entities.InvoiceEntity;
+import com.protostar.billingnstock.user.entities.BusinessEntity;
 
 @Api(name = "customerService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.stock.cust.services", ownerName = "com.protostar.billingnstock.stock.cust.services", packagePath = ""))
 public class CustomerService {
@@ -25,26 +27,16 @@ public class CustomerService {
 	}
 
 	@ApiMethod(name = "getAllCustomersByBusiness")
-	public List<Customer> getAllCustomersByBusiness(@Named("id") Long id) {
+	public List<Customer> getAllCustomersByBusiness(@Named("id") Long busiId) {
 		
-		List<Customer> customer=ofy().load().type(Customer.class).list();
-		List<Customer> filteredCustomers = new ArrayList<Customer>();
-		
-		
-		for(int i=0;i<customer.size();i++)
-		{				
-			 if(customer.get(i).getUserBusiness().getId().equals(id))
-			 {
-				 System.out.println("Got the record:" + customer.get(i) );
-				 filteredCustomers.add(customer.get(i));
-			 }
-			 
-//			 System.out.println("id:" + id);
-//			 System.out.println("Recored found:" + customer.get(i).getCurrentUser().getId());
-		}
-		
+		List<Customer> filteredCustomers = ofy()
+				.load()
+				.type(Customer.class)
+				.filter("business",
+						Ref.create(Key.create(BusinessEntity.class, busiId)))
+				.list();
+							
 		return filteredCustomers;
-	//	return ofy().load().type(Customer.class).list();
 	}
 
 	@ApiMethod(name = "getCustomerByID")
@@ -52,16 +44,12 @@ public class CustomerService {
 
 		Customer customerById = ofy().load().type(Customer.class).id(Id).now();
 
-		System.out.println("Searched Recored is:"
-				+ customerById.getFirstName());
-
 		return customerById;
 	}
 
 	@ApiMethod(name = "updateCustomer")
 	public void updateCustomer(Customer customer) {
 			
-		
 		Key<Customer> cust = ofy().save().entity(customer).now();
 	
 	}

@@ -32,7 +32,7 @@ public class SalesOrderService {
 			
 			for(int i=0;i<SOList.size();i++)
 			{				
-				 if(SOList.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id))
+				 if(SOList.get(i).getBusiness().getId().equals(id))
 				 {
 					 System.out.println("Got the record:" + SOList.get(i) );
 					 filteredSO.add(SOList.get(i));

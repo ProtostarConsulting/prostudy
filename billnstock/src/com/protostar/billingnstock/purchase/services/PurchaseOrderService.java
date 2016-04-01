@@ -12,53 +12,48 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
+import com.googlecode.objectify.Ref;
 import com.protostar.billingnstock.invoice.entities.InvoiceEntity;
 import com.protostar.billingnstock.purchase.entities.PurchaseOrderEntity;
 import com.protostar.billingnstock.sales.entities.SalesOrderEntity;
+import com.protostar.billingnstock.user.entities.BusinessEntity;
 
 @Api(name = "purchaseOrderService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.purchase.services", ownerName = "com.protostar.billingnstock.purchase.services", packagePath = ""))
 public class PurchaseOrderService {
 
-		@ApiMethod(name="addPurchaseOrder")
-		public void addPurchaseOrder(PurchaseOrderEntity purchaseOrderEntity){
-			
-/*			Date date = new Date();
-			  String DATE_FORMAT = "dd-MM-yyyy";
-			  SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+	@ApiMethod(name = "addPurchaseOrder")
+	public void addPurchaseOrder(PurchaseOrderEntity purchaseOrderEntity) {
 
-			  purchaseOrderEntity.setPoDate(sdf.format(date));
-*/			  
-			Key<PurchaseOrderEntity> now=ofy().save().entity(purchaseOrderEntity).now();
-		}
-		
-		@ApiMethod(name="getAllPurchaseOrder")
-		public List<PurchaseOrderEntity> getAllPurchaseOrder(@Named("id") Long id){
-			
-			List<PurchaseOrderEntity> POList=ofy().load().type(PurchaseOrderEntity.class).list();
-			List<PurchaseOrderEntity> filteredPO = new ArrayList<PurchaseOrderEntity>();
-			
-			
-			for(int i=0;i<POList.size();i++)
-			{				
-				 if(POList.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id))
-				 {
-					 System.out.println("Got the record:" + POList.get(i) );
-					 filteredPO.add(POList.get(i));
-				 }
-				 
-	//			 System.out.println("id:" + id);
-			}
-			System.out.println("filteredPO:" + filteredPO.size());
-			return filteredPO;			
-		}
-		
-		
-		@ApiMethod(name = "getPOByID")
-		public PurchaseOrderEntity getPOByID(@Named("id") Long id) {
+		/*
+		 * Date date = new Date(); String DATE_FORMAT = "dd-MM-yyyy";
+		 * SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+		 * 
+		 * purchaseOrderEntity.setPoDate(sdf.format(date));
+		 */
+		Key<PurchaseOrderEntity> now = ofy().save().entity(purchaseOrderEntity)
+				.now();
+	}
 
-			PurchaseOrderEntity POById = ofy().load().type(PurchaseOrderEntity.class).id(id).now();
-			System.out.println("getPOByID Recored is:"+ POById);
-			
-			return POById;
-		}
+	@ApiMethod(name = "getAllPurchaseOrder")
+	public List<PurchaseOrderEntity> getAllPurchaseOrder(@Named("id") Long busId) {
+
+		List<PurchaseOrderEntity> filteredPO = ofy()
+				.load()
+				.type(PurchaseOrderEntity.class)
+				.filter("business",
+						Ref.create(Key.create(BusinessEntity.class, busId)))
+				.list();
+
+		return filteredPO;
+	}
+
+	@ApiMethod(name = "getPOByID")
+	public PurchaseOrderEntity getPOByID(@Named("id") Long id) {
+
+		PurchaseOrderEntity POById = ofy().load()
+				.type(PurchaseOrderEntity.class).id(id).now();
+		System.out.println("getPOByID Recored is:" + POById);
+
+		return POById;
+	}
 }

@@ -10,8 +10,11 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
+import com.googlecode.objectify.Ref;
 import com.protostar.billingnstock.sales.entities.SalesOrderEntity;
 import com.protostar.billingnstock.tax.entities.TaxEntity;
+import com.protostar.billingnstock.user.entities.BusinessEntity;
+import com.protostar.billingnstock.warehouse.entities.WarehouseEntity;
 
 @Api(name = "taxService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.tax.services", ownerName = "com.protostar.billingnstock.tax.services", packagePath = ""))
 public class TaxService {
@@ -21,69 +24,60 @@ public class TaxService {
 		Key<TaxEntity> now = ofy().save().entity(taxEntity).now();
 
 	}
-	
-	@ApiMethod(name="getAllTaxes")
-	public List<TaxEntity> getAllTaxes(@Named("id") Long id){
-	
-		List<TaxEntity> taxList=ofy().load().type(TaxEntity.class).list();
+
+	@ApiMethod(name = "getAllTaxes")
+	public List<TaxEntity> getAllTaxes(@Named("id") Long busId) {
+
+		List<TaxEntity> filteredTax = ofy()
+				.load()
+				.type(TaxEntity.class)
+				.filter("business",
+						Ref.create(Key.create(BusinessEntity.class, busId)))
+				.list();
+
+		return filteredTax;
+
+	}
+
+	@ApiMethod(name = "updateTax")
+	public void updateTax(TaxEntity taxEntity) {
+		Key<TaxEntity> now = ofy().save().entity(taxEntity).now();
+	}
+
+	/*
+	 * @ApiMethod(name="disableTax") public void disableTax(TaxEntity
+	 * taxEntity){
+	 * 
+	 * if(taxEntity.isActive()==true) { taxEntity.setActive(false); }
+	 * 
+	 * Key<TaxEntity> now = ofy().save().entity(taxEntity).now(); }
+	 */
+	@ApiMethod(name = "getTaxesByVisibility", path = "getTaxesByVisibility")
+	public List<TaxEntity> getTaxesByVisibility(@Named("id") Long busId) {
+/*
+		List<TaxEntity> filteredWarehouses = ofy()
+				.load()
+				.type(TaxEntity.class)
+				.filter("business",
+						Ref.create(Key.create(BusinessEntity.class, busId)))
+				.filter("active", true).list();
+*/		
+		List<TaxEntity> taxList = ofy().load().type(TaxEntity.class).list();
 		List<TaxEntity> filteredTax = new ArrayList<TaxEntity>();
-		
-		
-		for(int i=0;i<taxList.size();i++)
-		{				
-			 if(taxList.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id))
-			 {
-				 System.out.println("Got the record:" + taxList.get(i) );
-				 filteredTax.add(taxList.get(i));
-			 }
-			 
-			 System.out.println("id:" + id);
+
+		for (int i = 0; i < taxList.size(); i++) {
+			if (taxList.get(i).getBusiness().getId().equals(busId)) {
+				if (taxList.get(i).isActive() == true) {
+					System.out.println("Got the record:" + taxList.get(i));
+					filteredTax.add(taxList.get(i));
+				}
+			}
 		}
 		System.out.println("filteredTax:" + filteredTax.getClass());
 		return filteredTax;
-		
+
 	}
-	
-	@ApiMethod(name="updateTax")
-	public void updateTax(TaxEntity taxEntity){
-		Key<TaxEntity> now = ofy().save().entity(taxEntity).now();
-	}
-	
-	@ApiMethod(name="disableTax")
-	public void disableTax(TaxEntity taxEntity){
-		
-		if(taxEntity.isTaxVisibility()==true)
-		{
-			taxEntity.setTaxVisibility(false);
-		}
-		
-		Key<TaxEntity> now = ofy().save().entity(taxEntity).now();
-	}
-	
-	@ApiMethod(name="getTaxesByVisibility", path="Somepath_realted_to_your_service")
-	public List<TaxEntity> getTaxesByVisibility(@Named("id") Long id){
-	
-		List<TaxEntity> taxList=ofy().load().type(TaxEntity.class).list();
-		List<TaxEntity> filteredTax = new ArrayList<TaxEntity>();
-				
-		for(int i=0;i<taxList.size();i++)
-		{				
-			 if(taxList.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id))
-			 {
-				 if(taxList.get(i).isTaxVisibility()==true)
-				 {
-					 System.out.println("Got the record:" + taxList.get(i) );
-					 filteredTax.add(taxList.get(i));					 
-				 }
-			 }
-		}
-		System.out.println("filteredTax:" + filteredTax.getClass());
-		return filteredTax;
-		
-	}
-	
-	 
-	 
+
 	/*
 	 * @ApiMethod(name="addTax") public ServerMsg addTaxServices(TaxEntity
 	 * taxEntity) { //MyBean myBean = new MyBean();
