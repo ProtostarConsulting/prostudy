@@ -47,7 +47,7 @@ public class PurchaseOrderEntity extends BaseEntity{
 
 	Ref<TaxEntity> selectedTaxItem;
 	public TaxEntity getSelectedTaxItem() {
-		return selectedTaxItem.get();
+		return selectedTaxItem == null?null:selectedTaxItem.get();
 	}
 	public void setSelectedTaxItem(TaxEntity selectedTaxItem) {
 		this.selectedTaxItem = Ref.create(selectedTaxItem);

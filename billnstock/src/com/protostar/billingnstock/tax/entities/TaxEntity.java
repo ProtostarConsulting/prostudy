@@ -2,6 +2,7 @@ package com.protostar.billingnstock.tax.entities;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
@@ -9,6 +10,7 @@ public class TaxEntity extends BaseEntity{
 
 	private String taxCodeName;
 	private double taxPercenatge;
+	@Index
 	private boolean active=true;
 	
 	public boolean isActive() {

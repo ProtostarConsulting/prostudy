@@ -31,7 +31,7 @@ public class InvoiceEntity extends BaseEntity{
 	private String status = "NotPaid";
 	
 	private List<InvoiceLineItem> invoiceLineItemList;
-	Ref<SalesOrderEntity>salesOrderId;
+	Ref<SalesOrderEntity> salesOrderId;
 	Ref<AccountEntity> account;
 	Ref<TaxEntity> selectedTaxItem;
 	
@@ -47,7 +47,7 @@ public class InvoiceEntity extends BaseEntity{
 	}
 	
 	public TaxEntity getSelectedTaxItem() {
-		return selectedTaxItem.get();
+		return selectedTaxItem==null?null:selectedTaxItem.get();
 	}
 	public void setSelectedTaxItem(TaxEntity selectedTaxItem) {
 		this.selectedTaxItem = Ref.create(selectedTaxItem);
@@ -62,7 +62,7 @@ public class InvoiceEntity extends BaseEntity{
 	}
 
 	public AccountEntity getAccount() {
-		return account.get();
+		return account==null?null:account.get();
 	}
 
 	public void setAccount(AccountEntity account) {

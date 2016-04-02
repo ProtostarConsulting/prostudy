@@ -28,9 +28,7 @@ public class TaxService {
 	@ApiMethod(name = "getAllTaxes")
 	public List<TaxEntity> getAllTaxes(@Named("id") Long busId) {
 
-		List<TaxEntity> filteredTax = ofy()
-				.load()
-				.type(TaxEntity.class)
+		List<TaxEntity> filteredTax = ofy().load().type(TaxEntity.class)
 				.filter("business",
 						Ref.create(Key.create(BusinessEntity.class, busId)))
 				.list();
@@ -54,26 +52,13 @@ public class TaxService {
 	 */
 	@ApiMethod(name = "getTaxesByVisibility", path = "getTaxesByVisibility")
 	public List<TaxEntity> getTaxesByVisibility(@Named("id") Long busId) {
-/*
-		List<TaxEntity> filteredWarehouses = ofy()
-				.load()
-				.type(TaxEntity.class)
+
+		
+		List<TaxEntity> filteredTax = ofy().load().type(TaxEntity.class)
 				.filter("business",
 						Ref.create(Key.create(BusinessEntity.class, busId)))
 				.filter("active", true).list();
-*/		
-		List<TaxEntity> taxList = ofy().load().type(TaxEntity.class).list();
-		List<TaxEntity> filteredTax = new ArrayList<TaxEntity>();
-
-		for (int i = 0; i < taxList.size(); i++) {
-			if (taxList.get(i).getBusiness().getId().equals(busId)) {
-				if (taxList.get(i).isActive() == true) {
-					System.out.println("Got the record:" + taxList.get(i));
-					filteredTax.add(taxList.get(i));
-				}
-			}
-		}
-		System.out.println("filteredTax:" + filteredTax.getClass());
+		
 		return filteredTax;
 
 	}
