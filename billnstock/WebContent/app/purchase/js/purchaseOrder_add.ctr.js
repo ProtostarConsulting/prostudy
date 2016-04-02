@@ -34,6 +34,10 @@ app
 					};
 
 					$scope.addPurchaseOrder = function() {
+						if ($scope.purchaseOrderObj.pOLineItemList.length == 0) {
+							console.log("Please select atleast one item");
+							$scope.errorMsg = "Please select atleast one item.";
+						} else {
 						var purchaseService = appEndpointSF
 								.getPurchaseOrderService();
 						$scope.purchaseOrderObj.business = $scope.curUser.businessAccount;
@@ -50,7 +54,7 @@ app
 
 						$scope.purchaseOrderObj = {};
 					}
-
+					}
 /*					$scope.getAllPurchaseOrder = function() {
 						$log.debug("Inside Ctr $scope.getAllPurchaseOrder");
 						var purchaseService = appEndpointSF

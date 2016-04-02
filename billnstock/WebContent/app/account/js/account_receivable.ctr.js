@@ -16,9 +16,9 @@ app.controller(
 					customer:[],
 					business : '',
 					invoiceId : '',
-					receivableDate: new Date(),
-					invoiceDate : new Date(),
-					invoiceDueDate : new Date(),
+					receivableDate: '',
+					invoiceDate : '',
+					invoiceDueDate : '',
 					finalTotal : '',
 					status:"NotPaid"
 					

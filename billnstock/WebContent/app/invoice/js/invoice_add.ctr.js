@@ -4,16 +4,18 @@ app
 				"invoiceAddCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $state, $http, $stateParams,
-						$routeParams, $filter,$q, objectFactory, appEndpointSF) {
+						$routeParams, $filter, $q, objectFactory, appEndpointSF) {
 
 					$scope.curUser = appEndpointSF.getLocalUserService()
-					.getLoggedinUser();
-					$log.debug("$scope.curUser++++++++"+angular.toJson($scope.curUser));
-					
+							.getLoggedinUser();
+					$log.debug("$scope.curUser++++++++"
+							+ angular.toJson($scope.curUser));
+
 					$scope.invoiceObj = {
-						salesOrderId : '',
+						salesOrderId : null,
 						customer : '',
-			//			invoiceDate : $filter("date")(Date.now(), 'dd-MM-yyyy'),
+						// invoiceDate : $filter("date")(Date.now(),
+						// 'dd-MM-yyyy'),
 						invoiceDate : '',
 						invoiceDueDate : '',
 						invoiceLineItemList : [],
@@ -22,26 +24,30 @@ app
 						taxPercenatge : '',
 						taxTotal : 0,
 						finalTotal : '',
-						note:''	,
-						account:"",
-						business:""
+						note : '',
+						account : "",
+						business : ""
 					};
 
 					$scope.addInvoice = function() {
-						$log.debug("No1");
-						var InvoiceService = appEndpointSF.getInvoiceService();
-						$scope.invoiceObj.business =$scope.curUser.businessAccount;
-						
-						InvoiceService.addInvoice($scope.invoiceObj).then(
-								function(msgBean) {
-									
+						if ($scope.invoiceObj.invoiceLineItemList.length == 0) {
+							console.log("Please select atleast one item");
+							$scope.errorMsg = "Please select atleast one item.";
+						} else {
+							var InvoiceService = appEndpointSF
+									.getInvoiceService();
+							$scope.invoiceObj.business = $scope.curUser.businessAccount;
 
-									$scope.showSimpleToast();
+							InvoiceService.addInvoice($scope.invoiceObj).then(
+									function(msgBean) {
 
-								});
-						$log.debug("No4");
-						window.history.back();	
-						$scope.invoiceObj = {};
+										$scope.showSimpleToast();
+
+									});
+							$log.debug("No4");
+							window.history.back();
+							$scope.invoiceObj = {};
+						}
 					}
 
 					$scope.addItem = function() {
@@ -55,7 +61,6 @@ app
 
 						$scope.invoiceObj.invoiceLineItemList.push(item);
 					};
-					
 
 					$scope.lineItemStockChange = function(index, stockItem) {
 						$log.debug("##Came to lineItemStockChange...");
@@ -100,12 +105,12 @@ app
 						$scope.calfinalTotal();
 					};
 
-					$scope.CustomerddlChange = function(index,
-							customer) {
+					$scope.CustomerddlChange = function(index, customer) {
 						$log.debug("##Came to CustomerddlChange...");
-					//	$scope.SelectedCustomerAddress = $scope.invoiceObj.customerName.customerAddress;
-					//	$log.debug("##SelectedCustomerAddress##"+SelectedCustomerAddress);
-					//	lineSelectedItem.price = stockItem.price;
+						// $scope.SelectedCustomerAddress =
+						// $scope.invoiceObj.customerName.customerAddress;
+						// $log.debug("##SelectedCustomerAddress##"+SelectedCustomerAddress);
+						// lineSelectedItem.price = stockItem.price;
 
 					};
 
@@ -114,11 +119,11 @@ app
 
 					};
 
-					$scope.AccountNameddlChange = function(index, selectedAccount) {
+					$scope.AccountNameddlChange = function(index,
+							selectedAccount) {
 						$log.debug("##Came to AcountNameddlChange...");
 
 					};
-
 
 					$scope.removeItem = function(index) {
 						$scope.invoiceObj.invoiceLineItemList.splice(index, 1);
@@ -152,31 +157,31 @@ app
 								'Customer Data Saved!').position("top")
 								.hideDelay(3000));
 					};
-					
-/*					$scope.getAllCustomersByCurrUser = function() {
-						$log.debug("Inside Ctr $scope.getAllCustomers");
-						var customerService = appEndpointSF.getCustomerService();
 
-						customerService.getAllCustomersByCurrUser($scope.curUser.businessAccount.id).then(
-								function(custList) {
-									$log.debug("Inside Ctr getAllCustomers");
-									$scope.customersforinvoice = custList;
-									$log.debug("Inside Ctr $scope.customers:"
-											+ angular.toJson($scope.customersforinvoice));
-								});
-					}
-
-					$scope.customersforinvoice = [];
-					$scope.getAllCustomersByCurrUser();
-*/
+					/*
+					 * $scope.getAllCustomersByCurrUser = function() {
+					 * $log.debug("Inside Ctr $scope.getAllCustomers"); var
+					 * customerService = appEndpointSF.getCustomerService();
+					 * 
+					 * customerService.getAllCustomersByCurrUser($scope.curUser.businessAccount.id).then(
+					 * function(custList) { $log.debug("Inside Ctr
+					 * getAllCustomers"); $scope.customersforinvoice = custList;
+					 * $log.debug("Inside Ctr $scope.customers:" +
+					 * angular.toJson($scope.customersforinvoice)); }); }
+					 * 
+					 * $scope.customersforinvoice = [];
+					 * $scope.getAllCustomersByCurrUser();
+					 */
 					$scope.getAllStock = function() {
 						$log.debug("Inside Ctr $scope.getAllStock");
 						var stockService = appEndpointSF.getStockService();
 
-						stockService.getAllStock($scope.curUser.businessAccount.id).then(function(stockList) {
-							$log.debug("Inside Ctr getAllStock");
-							$scope.stockforinvoice = stockList;
-						});
+						stockService.getAllStock(
+								$scope.curUser.businessAccount.id).then(
+								function(stockList) {
+									$log.debug("Inside Ctr getAllStock");
+									$scope.stockforinvoice = stockList;
+								});
 					}
 
 					// $scope.stockData = [];
@@ -186,10 +191,12 @@ app
 						$log.debug("Inside Ctr $scope.getAllTaxes");
 						var taxService = appEndpointSF.getTaxService();
 
-						taxService.getTaxesByVisibility($scope.curUser.businessAccount.id).then(function(taxList) {
-							$log.debug("Inside Ctr getAllTaxes");
-							$scope.taxforinvoice = taxList;
-						});
+						taxService.getTaxesByVisibility(
+								$scope.curUser.businessAccount.id).then(
+								function(taxList) {
+									$log.debug("Inside Ctr getAllTaxes");
+									$scope.taxforinvoice = taxList;
+								});
 					}
 					// $scope.taxData = [];
 					$scope.getTaxesByVisibility();
@@ -199,7 +206,8 @@ app
 						var salesService = appEndpointSF.getSalesOrderService();
 
 						salesService
-								.getAllSalesOrder($scope.curUser.businessAccount.id)
+								.getAllSalesOrder(
+										$scope.curUser.businessAccount.id)
 								.then(
 										function(salesOrderList) {
 											$log
@@ -216,21 +224,26 @@ app
 					// $scope.SOforinvoice = [];
 					$scope.getAllSalesOrder();
 
-					
 					$scope.getAllAccountsByBusiness = function() {
 						var accountService = appEndpointSF.getAccountService();
 
-						accountService.getAllAccountsByBusiness($scope.curUser.businessAccount.id).then(
-								function(accountList) {
-									$log.debug("Inside Ctr getAllAccountsByBusiness");
-									$scope.accountforinvoice = accountList;							
-									$log.debug("Inside Ctr $scope.accounts:"
-											+ angular.toJson($scope.account));
-								});
+						accountService
+								.getAllAccountsByBusiness(
+										$scope.curUser.businessAccount.id)
+								.then(
+										function(accountList) {
+											$log
+													.debug("Inside Ctr getAllAccountsByBusiness");
+											$scope.accountforinvoice = accountList;
+											$log
+													.debug("Inside Ctr $scope.accounts:"
+															+ angular
+																	.toJson($scope.account));
+										});
 					}
 					$scope.accountforinvoice = [];
 					$scope.getAllAccountsByBusiness();
-					
+
 					var printDivCSS = new String(
 							'<link href="/lib/base/css/angular-material.min.css"" rel="stylesheet" type="text/css">'
 									+ '<link href="/lib/base/css/bootstrap.min.css"" rel="stylesheet" type="text/css">')
@@ -243,7 +256,7 @@ app
 						window.frames["print_frame"].window.focus();
 						window.frames["print_frame"].window.print();
 					}
-			
+
 					// list of `state` value/display objects
 					loadAll();
 					$scope.invoiceObj.customer = null;
@@ -251,7 +264,8 @@ app
 
 					$scope.querySearch = function(query) {
 						var results = query ? $scope.customersforinvoice
-								.filter(createFilterFor(query)) : $scope.customersforinvoice;
+								.filter(createFilterFor(query))
+								: $scope.customersforinvoice;
 						var deferred = $q.defer();
 						$timeout(function() {
 							deferred.resolve(results);
@@ -262,13 +276,17 @@ app
 					 * Build `states` list of key/value pairs
 					 */
 					function loadAll() {
-						
-							var customerService = appEndpointSF.getCustomerService();
-							customerService.getAllCustomersByBusiness($scope.curUser.businessAccount.id).then(
-									function(custList) {
-										$scope.customersforinvoice = custList.items;	
-									});
-						$scope.customersforinvoice = [];						
+
+						var customerService = appEndpointSF
+								.getCustomerService();
+						customerService
+								.getAllCustomersByBusiness(
+										$scope.curUser.businessAccount.id)
+								.then(
+										function(custList) {
+											$scope.customersforinvoice = custList.items;
+										});
+						$scope.customersforinvoice = [];
 					}
 					/**
 					 * Create filter function for a query string
@@ -276,9 +294,9 @@ app
 					function createFilterFor(query) {
 						var lowercaseQuery = angular.lowercase(query);
 						return function filterFn(cus) {
-							return (angular.lowercase(cus.firstName).indexOf(lowercaseQuery) === 0);
+							return (angular.lowercase(cus.firstName).indexOf(
+									lowercaseQuery) === 0);
 						};
 					}
-
 
 				});

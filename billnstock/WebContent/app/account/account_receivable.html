@@ -3,8 +3,9 @@
 <h3>
 	<u>Create Account Receivable</u>
 </h3>
-<form name="payableForm">
-
+<form name="receivableForm">
+[<span style="color: red;">Field Marked as asterik (*) are
+		mandetory</span>]
 	<h3>Account Receivable</h3>
 	<div layout="row" layout-xs="column">
 
@@ -16,38 +17,32 @@
 			ng-repeat="accountReveivable in customersforaccount">{{accountReveivable.customerName
 		}}</md-option> </md-select> </md-input-container>
  -->
- 
- 	<md-autocomplete flex required
-				md-input-name="autocompleteField"
-				md-input-minlength="2"
-				md-input-maxlength="18"
-				md-no-cache=true
+ 			<span style="color: red;">*</span>
+						
+			<md-autocomplete flex required ng-model="accountReveivable.customer"
+				md-input-name="autocompleteField" md-input-minlength="2"
+				md-input-maxlength="18" md-no-cache=true
 				md-selected-item="accountReveivable.customer"
 				md-search-text="searchTextInput"
 				md-items="item in querySearch(searchTextInput)"
-				md-item-text="item.firstName"
-				md-floating-label="Customer Name">
-					<md-item-template>
-						<span md-highlight-text="searchTextInput">{{item.firstName}}</span>
-					</md-item-template>
-					<div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
-						<div ng-message="required">
-							You <b>must</b> have a favorite state.
-						</div>
-						<div ng-message="minlength">
-							Your entry is not long enough.
-						</div>
-						<div ng-message="maxlength">
-							Your entry is too long.
-						</div>
-					</div>
-				</md-autocomplete>
-					
+				md-item-text="item.firstName" md-floating-label="Customer Name">
+			<md-item-template> <span
+				md-highlight-text="searchTextInput">{{item.firstName}}</span> </md-item-template>
+			<div ng-messages="receivableForm.autocompleteField.$error"
+				ng-if="receivableForm.autocompleteField.$touched">
+				<div ng-message="required">
+					You <b>must</b> have to enter Customer Name.
+				</div>
+				<div ng-message="minlength">Your entry is not long enough.</div>
+				<div ng-message="maxlength">Your entry is too long.</div>
+			</div>
+			</md-autocomplete>
+ 					
 		<md-input-container flex> <label>Customer
-			Email Id </label> <input ng-model="accountReveivable.customer.email"> </md-input-container>
+			Email Id </label> <input ng-model="accountReveivable.customer.email" disabled="disabled"> </md-input-container>
 
 		<md-input-container flex> <label>Mobile
-			No. </label> <input ng-model="accountReveivable.customer.mobile" >
+			No. </label> <input ng-model="accountReveivable.customer.mobile" disabled="disabled">
 		</md-input-container>
 		
 		   		<md-datepicker flex ng-model="accountReveivable.receivableDate" md-placeholder="Recievable Date"></md-datepicker>	
@@ -64,8 +59,20 @@
    	</div>
 
 	<div layout="row" layout-xs="column">
-		<md-input-container flex> <label>Amount
+<!-- 		<md-input-container flex> <label>Amount
 			 </label> <input ng-model="accountReveivable.finalTotal">
+		</md-input-container>
+ -->		
+		
+				<md-input-container flex> <label>Amount <span
+			style="color: red;">*</span>
+		</label> <input ng-model="accountReveivable.finalTotal" name="finalTotal"
+			ng-required="true">
+
+		<div ng-messages="receivableForm.finalTotal.$error"
+			ng-if="receivableForm.finalTotal.$submitted || receivableForm.finalTotal.$touched">
+			<div ng-message="required">Please Enter Amount</div>
+		</div>
 		</md-input-container>
 
 <!-- 		<md-input-container flex> <label>Due Date
@@ -77,7 +84,7 @@
 
 	<section layout="row" layout-sm="column" layout-align="left left">
 		<md-button class="md-raised md-primary"
-			ng-disabled="custForm.$invalid" ng-click="addReceivable()">Add</md-button>
+			ng-disabled="receivableForm.$invalid" ng-click="addReceivable()">Add</md-button>
 	</section>
 </form>
 </md-content>

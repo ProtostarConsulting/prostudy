@@ -12,11 +12,12 @@ app.controller("accountPayableCtr", function($scope, $window, $mdToast,
 	$scope.accountPayable = {
 		customer:[],
 		invoiceId : '',
-		invoiceDate : '',
+		invoiceDate : new Date(),
 		finalTotal : '',
-		invoiceDueDate : '',
+		payableDate: new Date(),
+		invoiceDueDate : new Date(),
 		purchaseOrderId : '',
-		purchaseOrderDate : '',
+		purchaseOrderDate : new Date(),
 		business : ''
 	};
 

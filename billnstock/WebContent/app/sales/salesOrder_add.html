@@ -1,25 +1,31 @@
 
 <md-content layout-padding>
 <div id="invoiceDiv">
-	<form ng-submit="$event.preventDefault()" name="searchForm">
+
+	<form ng-submit="$event.preventDefault()" name="sOForm">
+		[<span style="color: red;">Field Marked as asterik (*) are
+			mandetory</span>]
 		<div>
 			<h3>
 				<u>Sales Order</u>
 			</h3>
 			<div layout="row" layout-xs="column">
+				<span style="color: red;">*</span>
 
-				<md-autocomplete flex required md-input-name="autocompleteField"
-					md-input-minlength="2" md-input-maxlength="18" md-no-cache=true
+				<md-autocomplete flex required ng-model="salesOrder.customer"
+					md-input-name="autocompleteField" md-input-minlength="2"
+					md-input-maxlength="18" md-no-cache=true
 					md-selected-item="salesOrder.customer"
 					md-search-text="searchTextInput"
 					md-items="item in querySearch(searchTextInput)"
-					md-item-text="item.firstName" md-floating-label="Customer Name">
-				<md-item-template> <span
-					md-highlight-text="searchTextInput">{{item.firstName}}</span> </md-item-template>
-				<div ng-messages="searchForm.autocompleteField.$error"
-					ng-if="searchForm.autocompleteField.$touched">
+					md-item-text="item.firstName" md-floating-label="Customer Name"
+					ng-required="true"> <md-item-template>
+				<span md-highlight-text="searchTextInput">{{item.firstName}}</span>
+				</md-item-template>
+				<div ng-messages="sOForm.autocompleteField.$error"
+					ng-if="sOForm.autocompleteField.$touched">
 					<div ng-message="required">
-						You <b>must</b> have a favorite state.
+						You <b>must</b> have to enter Customer Name.
 					</div>
 					<div ng-message="minlength">Your entry is not long enough.</div>
 					<div ng-message="maxlength">Your entry is too long.</div>
@@ -33,18 +39,18 @@
 			</div>
 
 			<div layout="row" layout-xs="column">
-				SO Date:
+				<span style="color: red;">*</span>SO Date:
 				<md-datepicker flex ng-model="salesOrder.salesOrderDate"
 					md-placeholder="Enter SO Date"></md-datepicker>
-				Quotation Date:
+				<span style="color: red;">*</span>Quotation Date:
 				<md-datepicker flex ng-model="salesOrder.quotationDate"
 					md-placeholder="Enter Quotation Date"></md-datepicker>
-					
-						Delivery Date:
+
+				<span style="color: red;">*</span>Delivery Date:
 				<md-datepicker ng-model="salesOrder.deliveryDate"
 					md-placeholder="Enter Delivery Date"></md-datepicker>
 
-				Due Date:
+				<span style="color: red;">*</span>Due Date:
 				<md-datepicker ng-model="salesOrder.dueDate"
 					md-placeholder="Enter Due Date"></md-datepicker>
 			</div>
@@ -88,13 +94,13 @@
 		
 		<md-datepicker ng-model="accountIncome.toDate" md-placeholder="Enter To Date"></md-datepicker>	
  -->
-			</div>		
-			
+			</div>
+
 			<div layout="row" layout-align="center start"
 				style="margin-top: 20px; margin-bottom: 20px;">
 				<md-divider flex></md-divider>
 			</div>
-
+			<span style="color: red">{{errorMsg}}</span>
 			<table md-data-table md-progress="deferred">
 				<thead md-order="query.order" md-trigger="onOrderChange">
 					<tr>
@@ -135,7 +141,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td><section layout="row" layout-sm="column"
+						<td><span style="color: red;">*</span><section layout="row" layout-sm="column"
 								layout-align="left left">
 								<md-button class="md-raised md-primary" ng-click="addItem()">Add
 								Item</md-button>
@@ -186,7 +192,8 @@
 		<div layout layout-sm="column">
 			<section layout="row" layout-sm="column">
 				<md-button class="md-raised md-primary" id="addSalesOrder"
-					ng-click="addSalesOrder()">Create sales Order</md-button>
+					ng-disabled="sOForm.$invalid" ng-click="addSalesOrder()">Create
+				sales Order</md-button>
 			</section>
 		</div>
 

@@ -4,8 +4,9 @@
 	<u>Generate Invoice</u>
 </h3>
 <div>
-	<form ng-submit="$event.preventDefault()" name="searchForm">
-	[<span style="color: red;">Field Marked as asterik (*) are mandetory</span>]
+	<form ng-submit="$event.preventDefault()" name="invoiceAdd">
+		[<span style="color: red;">Field Marked as asterik (*) are
+			mandetory</span>]
 		<div flex layout="row" layout-xs="column">
 			<!-- 			<md-input-container flex> <md-select
 				ng-model="invoiceObj.customer" placeholder="Customer Name"
@@ -14,7 +15,9 @@
 			}}</md-option> </md-select> </md-input-container>
  -->
 
-			<span style="color: red;">*</span><md-autocomplete flex required ng-model="invoiceObj.customer"
+			<span style="color: red;">*</span>
+						
+			<md-autocomplete flex required ng-model="invoiceObj.customer"
 				md-input-name="autocompleteField" md-input-minlength="2"
 				md-input-maxlength="18" md-no-cache=true
 				md-selected-item="invoiceObj.customer"
@@ -23,8 +26,8 @@
 				md-item-text="item.firstName" md-floating-label="Customer Name">
 			<md-item-template> <span
 				md-highlight-text="searchTextInput">{{item.firstName}}</span> </md-item-template>
-			<div ng-messages="searchTextInput.autocompleteField.$error"
-				ng-if="searchTextInput.autocompleteField.$touched">
+			<div ng-messages="invoiceAdd.autocompleteField.$error"
+				ng-if="invoiceAdd.autocompleteField.$touched">
 				<div ng-message="required">
 					You <b>must</b> have to enter Customer Name.
 				</div>
@@ -32,6 +35,8 @@
 				<div ng-message="maxlength">Your entry is too long.</div>
 			</div>
 			</md-autocomplete>
+			
+			
 			Invoice Date:<span style="color: red;">*</span>
 			<md-datepicker ng-model="invoiceObj.invoiceDate"
 				md-placeholder="Select Date" ng-required="true"></md-datepicker>
@@ -39,7 +44,7 @@
 			Due Date:<span style="color: red;">*</span>
 			<md-datepicker ng-model="invoiceObj.invoiceDueDate"
 				md-placeholder="Select Date"></md-datepicker>
-				
+
 		</div>
 		<div layout="row" layout-xs="column">
 
@@ -51,8 +56,8 @@
 				ng-repeat="Account in accountforinvoice" ng-selected="$first">{{Account.accountName}}</md-option>
 			</md-select>
 
-			<div ng-messages="searchForm.account.$error"
-				ng-if="searchForm.account.$submitted || searchForm.account.$touched">
+			<div ng-messages="invoiceAdd.account.$error"
+				ng-if="invoiceAdd.account.$submitted || invoiceAdd.account.$touched">
 				<div ng-message="required">Please Select Account
 					(Example.:ABC)</div>
 			</div>
@@ -62,9 +67,7 @@
 				ng-model="invoiceObj.salesOrderId" placeholder="Sales Order No"
 				ng-change="SOddlChange($index, selectedSOId)" name="soId">
 			<md-option ng-value="SO" ng-repeat="SO in SOforinvoice">{{SO.id
-			}}</md-option> </md-select>
-
-			</md-input-container>
+			}}</md-option> </md-select> </md-input-container>
 		</div>
 
 
@@ -80,6 +83,7 @@
 		</div>
 
 		<h1>Invoice</h1>
+		<span style="color: red">{{errorMsg}}</span>
 		<table md-data-table md-progress="deferred">
 			<thead md-order="query.order" md-trigger="onOrderChange">
 				<tr>
@@ -166,7 +170,7 @@
 <div layout layout-sm="column">
 	<section layout="row" layout-sm="column">
 		<md-button class="md-raised md-primary" id="addInvoice"
-			ng-disabled="searchForm.$invalid" ng-click="addInvoice()">Save
+			ng-disabled="invoiceAdd.$invalid" ng-click="addInvoice()">Save
 		Invoice</md-button>
 	</section>
 </div>
