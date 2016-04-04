@@ -5,7 +5,7 @@ app
 				"accountReceivableListCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $stateParams, objectFactory,
-						appEndpointSF,monthList) {
+						appEndpointSF, monthList) {
 
 					$log.debug("Inside accountReceivableListCtr");
 
@@ -24,22 +24,21 @@ app
 					};
 
 					$scope.getAllReceivablesByBusiness = function() {
-						var payableService = appEndpointSF.getAccountService();
+						var receivableService = appEndpointSF
+								.getAccountService();
 
-						payableService
+						receivableService
 								.getAllReceivablesByBusiness(
 										$scope.curUser.businessAccount.id)
 								.then(
 										function(accountList) {
 
 											$scope.receivables = accountList;
-											$log
-													.debug("Inside Ctr $scope.receivables:"
-															+ angular
-																	.toJson($scope.receivables));
 
 											$scope.totalReceivable = 0;
 											for (var i = 0; i < $scope.receivables.length; i++) {
+												$scope.receivables[i].invoiceDueDate = new Date(
+														$scope.receivables[i].invoiceDueDate);
 												$scope.totalReceivable = $scope.totalReceivable
 														+ (parseInt($scope.receivables[i].finalTotal));
 											}
@@ -53,45 +52,112 @@ app
 					$scope.receivables = [];
 					$scope.getAllReceivablesByBusiness();
 
-					$scope.ReceivablesAtDate = {
-						atDate : '',
-						filteredByAtDate : []
-					};
-					$scope.showReceivablesByDate = function(atDate) {
+					/*
+					 * $scope.ReceivablesAtDate = { atDate : '',
+					 * filteredByAtDate : [] };
+					 * 
+					 */
+					$scope.filteredByAtDate = [];
+/*					$scope.getByDate = function(atDate) {
 						for (var i = 0; i < $scope.receivables.length; i++) {
-							if ($scope.receivables[i].invoiceDueDate == $scope.ReceivablesAtDate.atDate) {
-								$scope.ReceivablesAtDate.filteredByAtDate
+							if ($scope.receivables[i].invoiceDueDate == atDate) {
+								$scope.filteredByAtDate
 										.push($scope.receivables[i]);
 							}
-							$log
-									.debug("$scope.ReceivablesAtDate.filteredByAtDate:"
-											+ $scope.ReceivablesAtDate.filteredByAtDate);
+							$log.debug("$scope.filteredByAtDate:"
+									+ $scope.filteredByAtDate);
 
 						}
 					}
-
-/*					$scope.months = [ "January", "February", "March", "April",
-							"May", "June", "July", "Augast", "September",
-							"October", "November", "December" ];
 */
-					
+					$scope.getBeforeDate = function(date) {
+
+					}
+
+					$scope.getAfterDate = function(date) {
+
+					}
+
+					$scope.getBetweenTwoDates = function(from, to) {
+
+						$scope.fRBetweenTwoDates = [];
+						
+						var a = from.getTime();
+						var b = to.getTime();
+						if (a > b) {
+							$scope.errorMsg = "From date must be less than To Date. please select correct date.";
+						} else {
+							for (var i = 0; i < $scope.receivables.length; i++) {
+
+								if ($scope.receivables[i].invoiceDueDate >= from
+										&& $scope.receivables[i].invoiceDueDate < to) {
+									$scope.fRBetweenTwoDates
+											.push($scope.receivables[i]);
+								}
+							}
+						}
+					}
+
+					$scope.RPBetweenTwoDates = [];
+
+					$scope.getByDate = function() {
+
+						var fromDate = new Date($scope.atDate
+								.getFullYear(), $scope.atDate
+								.getMonth(), $scope.atDate
+								.getDate());
+						var toDate = new Date($scope.atDate
+								.getFullYear(), $scope.atDate
+								.getMonth(), $scope.atDate
+								.getDate());
+
+						toDate.setDate(toDate.getDate() + 1);
+
+						$scope.filteredByAtDate = $scope
+								.getBetweenDate(fromDate, toDate);
+						$log.debug("$scope.filteredByAtDate:"
+								+ $scope.filteredByAtDate);
+					}
+
+					$scope.filteredListByDate =[];
+					$scope.getBetweenDate = function(fromDate, toDate) {
+						var filteredList = [];
+						for (var i = 0; i < $scope.receivables.length; i++) {
+
+							if ($scope.receivables[i].invoiceDueDate >= fromDate
+									&& $scope.receivables[i].invoiceDueDate < toDate)
+								$scope.filteredListByDate.push($scope.receivables[i]);
+						}
+						return filteredList;
+					}
+
 					$scope.months = monthList;
-					
+
 					$scope.MonthsddlChange = function(index, selectedMonth) {
 						$log.debug("##Came to MonthsddlChange...");
 						$scope.countMonth = 0;
 						for (var i = 0; i < $scope.months.length; i++) {
 							if ($scope.months[i] == selectedMonth) {
-								$scope.countIndex = $scope.months.indexOf($scope.months[i]) + 1;
-								$log.debug("##$scope.indexOf..."+$scope.countIndex);
-							} 
+								$scope.countIndex = $scope.months
+										.indexOf($scope.months[i]) + 1;
+								$log.debug("##$scope.indexOf..."
+										+ $scope.countIndex);
+							}
 						}
 					};
+
 					
-					$scope.showReceivablesByMonth = function(month) {
-						$scope.month = month;
-						$scope.month
+					
+					$scope.getByMonth = function(month) {
+						$scope.filteredReceivablesMonth = [];
 						for (var i = 0; i < $scope.receivables.length; i++) {
+							var a = $scope.receivables[i].invoiceDueDate;
+
+							if ($scope.countIndex == a.getMonth() + 1) {
+								$scope.filteredReceivablesMonth
+										.push($scope.receivables[i]);
+								// $scope.fPBetweenTwoDates.push($scope.payables[i]);
+							}
 
 						}
 					}

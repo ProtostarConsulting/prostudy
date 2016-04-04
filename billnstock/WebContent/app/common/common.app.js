@@ -3,22 +3,36 @@ var app = angular.module("stockApp", [ 'ngMaterial', 'ngMessages', "xeditable",
 		'ngStorage', 'ngRoute', 'ngFileUpload', 'ngAnimate', 'ui.grid',
 		'ui.grid.selection', 'ui.grid.exporter', 'directive.g+signin' ]);
 
+app.constant('monthList', [ "January", "February", "March", "April", "May",
+		"June", "July", "Augast", "September", "October", "November",
+		"December" ]);
 
-app.constant('monthList', ["January", "February", "March", "April",
-            				"May", "June", "July", "Augast", "September",
-           				"October", "November", "December"]);
+app.filter('formatDate', function($filter) {
+	return function(inputDate) {
+		return $filter('date')(inputDate, 'dd-MM-yyyy HH:mm');
+	};
+});
+/*
+app.factory('MathService', function() {
+	var factory = {};
+	factory.multiply = function(a, b) {
+		return a * b
+	}
+	return factory;
+});
 
-app.filter('formatDate', function ($filter) {
-	   return function (inputDate) {
-		   return $filter('date')(inputDate, 'dd-MM-yyyy HH:mm');		
-	   };
-	});
-
+app.service('CalcService', function(MathService){
+	
+	this.square = function(a) {
+		return MathService.multiply(a,a);
+		}
+		});
+*/
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('light-blue')
 			.accentPalette('pink');
 });
-	  
+
 app.config(function($logProvider) {
 	// $logProvider.debugEnabled(false);
 	$logProvider.debugEnabled(true);// this is default
@@ -147,7 +161,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/account/account_receivableList.html',
 		controller : 'accountReceivableListCtr'
 	})
-	
+
 	.state('warehouse', {
 		url : "/warehouse",
 		templateUrl : '/app/warehouse/warehouse_module.html',
@@ -165,7 +179,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/warehouse/warehouse_edit.html',
 		controller : 'warehouseEditCtr'
 	})
-	
+
 	.state('report', {
 		url : "/report",
 		templateUrl : '/app/report/report_module.html',
@@ -319,11 +333,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/setup/setup_module.html',
 		controller : 'setup',
 
-	/*}).state('setup.user', {
-		url : "/user",
-		templateUrl : '/app/setup/setup_userlist.html',
-		controller : 'setup',
-*/
+	/*
+	 * }).state('setup.user', { url : "/user", templateUrl :
+	 * '/app/setup/setup_userlist.html', controller : 'setup',
+	 */
 	}).state('setup.useradd', {
 		url : "/useradd",
 		templateUrl : '/app/setup/setup_adduser.html',
@@ -356,8 +369,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 	})/*
 		 * .state('login', { url : "/login", templateUrl :
-		 * '/app/login/login.html', controller : 'login',
-		 *  })
+		 * '/app/login/login.html', controller : 'login', })
 		 */.state('homecall', {
 		url : "/home/:userauthoritys",
 		templateUrl : '/home.html',
@@ -419,15 +431,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'probusinessCtr'
 	}).state('probusiness.editBusiness', {
 		url : "/editBusiness/:businessNo/:businessName",
-		/*templateUrl : '/app/probusiness/editProBusiness.html',
-		controller : 'probusinessCtr'*/
+		/*
+		 * templateUrl : '/app/probusiness/editProBusiness.html', controller :
+		 * 'probusinessCtr'
+		 */
 		templateUrl : '/app/setup/setup_module.html',
 		controller : 'setup'
-	})/*.state('probusiness.userview', {
-		url : "/userview/:selecteduserNo",
-		templateUrl : '/app/probusiness/userview.html',
-		controller : 'probusinessCtr'
-	})*/.state('probusiness.userview', {
+	})/*
+		 * .state('probusiness.userview', { url : "/userview/:selecteduserNo",
+		 * templateUrl : '/app/probusiness/userview.html', controller :
+		 * 'probusinessCtr' })
+		 */.state('probusiness.userview', {
 		url : "/userview/:selecteduserNo",
 		templateUrl : '/app/setup/setup_viewuser.html',
 		controller : 'setup.viewuser',
