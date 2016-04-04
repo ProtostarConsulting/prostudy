@@ -35,7 +35,7 @@ app
 					};
 
 					$scope.addSalesOrder = function() {
-						if ($scope.salesOrder.sOLineItemList.length == 0) {
+						if ($scope.salesOrder.sOLineItemList.length == 0 || $scope.salesOrder.sOLineItemList.itemName == null) {
 							console.log("Please select atleast one item");
 							$scope.errorMsg = "Please select atleast one item.";
 						} else {

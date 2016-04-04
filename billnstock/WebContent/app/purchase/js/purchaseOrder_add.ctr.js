@@ -34,7 +34,7 @@ app
 					};
 
 					$scope.addPurchaseOrder = function() {
-						if ($scope.purchaseOrderObj.pOLineItemList.length == 0) {
+						if ($scope.purchaseOrderObj.pOLineItemList.length == 0 || $scope.purchaseOrderObj.pOLineItemList.itemName == null) {
 							console.log("Please select atleast one item");
 							$scope.errorMsg = "Please select atleast one item.";
 						} else {
@@ -55,31 +55,6 @@ app
 						$scope.purchaseOrderObj = {};
 					}
 					}
-/*					$scope.getAllPurchaseOrder = function() {
-						$log.debug("Inside Ctr $scope.getAllPurchaseOrder");
-						var purchaseService = appEndpointSF
-								.getPurchaseOrderService();
-
-						purchaseService
-								.getAllPurchaseOrder()
-								.then(
-										function(purchaseOrderList) {
-											$log
-													.debug("Inside Ctr getAllPurchaseOrder");
-											$scope.purchaseOrderList = purchaseOrderList;
-											$log
-													.debug("@@@@@@@getAllPurchaseOrder"
-															+ angular
-																	.toJson($scope.purchaseOrderList));
-											$scope.temppurchaseOrder = $scope.purchaseOrderList.length + 1;
-											$scope.purchaseOrderObj.purchaseOrderNo = $scope.temppurchaseOrder;
-										});
-					}
-
-					$scope.purchaseOrderList = [];
-					$scope.temppurchaseOrder;
-					$scope.getAllPurchaseOrder();
-*/				
 
 					$scope.addItem = function() {
 						var item = {
