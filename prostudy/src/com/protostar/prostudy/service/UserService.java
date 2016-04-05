@@ -9,6 +9,8 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
+import com.protostar.prostudy.entity.ChapterEntity;
+import com.protostar.prostudy.entity.RoleSecEntity;
 import com.protostar.prostudy.entity.UserEntity;
 import com.protostar.prostudy.until.data.UtilityService;
 
@@ -78,7 +80,7 @@ public class UserService {
 
 	}
 
-	@ApiMethod(name = "getUserByClass", path = "Somepath_realted_to_your_service")
+	@ApiMethod(name = "getUserByClass", path = "getUserByClass")
 	public List<UserEntity> getUserByClass(@Named("standard") String standard,
 			@Named("division") String division, @Named("subject") String subject) {
 		List<UserEntity> list = ofy().load().type(UserEntity.class)
@@ -89,17 +91,27 @@ public class UserService {
 	}
 	
 	
-	/*@ApiMethod(name = "getStudnetBySubject", path = "Somepath_realted_to_your_service")
-	public List<UserEntity> getStudnetBySubject(@Named("subID") String subID,
-			@Named("division") String division, @Named("subject") String subject, String Temp) {
-		
-		List<StudSubEntity> listTemp= ofy().load().type(StudSubEntity.class)
-		.filter("subID", subID);
-		
-		List<UserEntity> list = ofy().load().type(UserEntity.class).ids(listTemp.get);
+	@ApiMethod(name = "addOrUpdateRoleSec", path="addOrUpdateRoleSec")
+	public void addOrUpdateRoleSec(RoleSecEntity roleSec) {	
+		Key<RoleSecEntity> now = ofy().save().entity(roleSec).now();
+		System.out.println("roleSec :"+now);				
+	}
+	
+	@ApiMethod(name = "getRoleSecList", path="getRoleSecList")
+	public List<RoleSecEntity> getRoleSecList() {
+		return ofy().load().type(RoleSecEntity.class).list();
+	}
 
-		return list;
-	}*/
+	@ApiMethod(name = "getAuthorityByRole")
+	public List<RoleSecEntity> getAuthorityByRole(
+			@Named("role") String role) {
+	
+		List<RoleSecEntity> moduleList = ofy().load()
+				.type(RoleSecEntity.class).filter("role", role)
+				.list();
+		return moduleList;
+
+	}
 
 	
 	
