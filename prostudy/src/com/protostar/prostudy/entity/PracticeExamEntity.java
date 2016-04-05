@@ -17,8 +17,10 @@ public class PracticeExamEntity {
 	private String board;
 	private String standard;
 	private String division;
+
 	@Index
 	private String category;
+
 	private String subject;
 	private String instructions;
 	private List<QuestionEntity> questions;
@@ -26,7 +28,7 @@ public class PracticeExamEntity {
 	
 	private Integer likes;	
 	private Integer dislikes;
-	
+
 	public String getDivision() {
 		return division;
 	}
