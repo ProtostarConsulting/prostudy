@@ -19,12 +19,13 @@
 	<!--</md-card>-->
 </div>
 </md-content>
-<div>
+<!-- <div>
 	<section layout="row" layout-align="end end" flex>
 		<md-button class="md-raised md-primary" ng-click="back()">BACK
 		TO LIST </md-button>
 	</section>
 </div>
+ -->
 <md-content>
 <div id="salesOrderDiv">
 
@@ -96,7 +97,7 @@
 			<md-divider flex></md-divider>
 		</div>
 		<table>
-			<thead>
+			<thead style="background-color: gray">
 				<tr>
 					<th style="width: 3%">Sr.No.</th>
 					<th style="width: 50%">Item Name</th>
@@ -108,7 +109,7 @@
 			<tbody>
 				<tr ng-repeat="sOLineItem in sODetail.sOLineItemList">
 
-					<td>{{ sOLineItem.srNo }}</td>
+					<td>{{$index+1 }}</td>
 					<td>{{sOLineItem.itemName}}</td>
 					<td>{{sOLineItem.qty}}</td>
 					<td>{{sOLineItem.price}}</td>
@@ -125,21 +126,24 @@
 				</tr>
 
 				<tr>
-					<td>-</td>
+					<td colspan="5"><br></td>
+				</tr>
+				<tr>
+					<td colspan="5"><b><u>Tax Details</u> </b></td>
+				</tr>
+				<tr style="background-color: gray">
 					<td></td>
 					<td></td>
-					<td></td>
-					<td></td>
+					<td><b>Tax Type </b></td>
+					<td><b>Tax% </b></td>
+					<td style="text-align: left"><b>Tax Total </b></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td><b><u>Tax Details</u> </b></td>
-					<td><md-input-container flex> <b>Tax
-							Type </b> </md-input-container>{{sODetail.selectedTaxItem.taxCodeName}}</td>
-					<td><md-input-container flex> <b>Tax
-						</b> </md-input-container> {{sODetail.selectedTaxItem.taxPercenatge}}%</td>
-					<td><md-input-container flex> <b>Tax
-							Total </b> </md-input-container>{{sODetail.taxTotal}}</td>
+					<td></td>
+					<td>{{sODetail.selectedTaxItem.taxCodeName}}</td>
+					<td>{{sODetail.selectedTaxItem.taxPercenatge}}%</td>
+					<td>{{sODetail.taxTotal | currency : 2}}</td>
 				</tr>
 				<tr>
 					<td>-</td>
@@ -154,17 +158,23 @@
 					<td></td>
 					<td><b><u>Final Total</u> </b></td>
 					<td><md-input-container flex>
-						{{sODetail.finalTotal}}</md-input-container></td>
+						{{sODetail.finalTotal | currency :"INR ": 2}}</md-input-container></td>
 				</tr>
 				<tr>
-					<td></td>
-
+					<td colspan="5"><br></td>
+				</tr>
+				<tr>
+					<td colspan="5" style="text-align: right">
+						<div>
+							<b> <u>{{"Rupees :" + finalTotalInWord + " Only"}}</u> </b>
+						</div>
+					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 
-	<b><u>Note</u>:</b>This is electronically generated invoice. <br>
+	<b><u>Note</u>:</b>This is electronically generated Sales Order. <br>
 
 	<iframe name="print_frame" width="0" height="0" frameborder="0"
 		src="about:blank"></iframe>

@@ -17,6 +17,10 @@ app.controller("purchaseOrderViewCtr", function($scope, $window, $mdToast, $time
 				.getPOByID($scope.purchaseOrderNo)
 				.then(function(pODetails) {
 							$scope.pODetail = pODetails;
+							
+							$scope.pODetail.finalTotal = Math.round($scope.pODetail.finalTotal);
+							$scope.finalTotalInWord = NumToWord($scope.pODetail.finalTotal);
+							
 							$log
 									.debug("getPOByID at controller===="
 											+ angular

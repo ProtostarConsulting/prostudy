@@ -3,12 +3,13 @@
 <h3>
 	<u>Account List</u>
 </h3>
-<div>
+<!-- <div>
 	<section layout="row" layout-align="end end" flex>
 		<md-button class="md-raised md-primary" ng-click="back()">ADD
 		NEW</md-button>
 	</section>
 </div>
+ -->
 <div layout layout-sm="column">
 	<md-input-container flex> <label>Search</label> <input
 		ng-model="searchText"> </md-input-container>
@@ -18,8 +19,8 @@
 	<table md-data-table md-row-select="selected" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onOrderChange">
 			<tr>
-				<th name="Account Id" order-by="id"></th>
 				<th name="Account Name" order-by="accountName"></th>
+				<th name="Account No" order-by="accountNo"></th>
 				<th name="Description" order-by="description"></th>
 			</tr>
 		</thead>
@@ -27,8 +28,9 @@
 		<tbody>
 			<tr md-auto-select
 				ng-repeat="account in accounts | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
-				<td>{{account.id}}</td>
+
 				<td>{{account.accountName}}</td>
+				<td>{{account.accountNo}}</td>
 				<td>{{account.description}}</td>
 
 				<td>

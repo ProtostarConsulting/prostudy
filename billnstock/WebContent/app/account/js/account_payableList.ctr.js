@@ -9,6 +9,12 @@ app
 						$mdUtil, $log, $stateParams, objectFactory,
 						appEndpointSF, monthList,CalcService) {
 
+					  $scope.query = {
+						         order: 'name',
+						         limit: 5,
+						         page: 1
+						       };
+					  
 					$log.debug("Inside accountAddCtr");
 
 					$scope.curUser = appEndpointSF.getLocalUserService()

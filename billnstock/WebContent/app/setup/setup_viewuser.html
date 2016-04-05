@@ -4,14 +4,16 @@
 
 
 	<div id="addField">
-	<div layout-sm="column" layout-align="start start" flex>
+		<div layout-sm="column" layout-align="start start" flex>
 
-		<md-button class="md-icon-button" aria-label="prev"
-			ng-click="back()"> <md-tooltip> get back to user list</md-tooltip> <md-icon
-			md-svg-icon="img/icons/ic_reply_black_24px.svg"
-			aria-label="Prev Week"></md-icon> </md-button>
+			<md-button class="md-icon-button" aria-label="prev" ng-click="back()">
+			<md-tooltip> get back to user list</md-tooltip> <md-icon
+				md-svg-icon="img/icons/ic_reply_black_24px.svg"
+				aria-label="Prev Week"></md-icon> </md-button>
 
-	</div><br><br>
+		</div>
+		<br>
+		<br>
 		<div layout layout-xs="column">
 			<md-input-container flex> <label>User Id
 			</label> <input ng-model="userL.id" disabled> </md-input-container>
@@ -26,22 +28,14 @@
 				Name </label> <input ng-model="userL.lastName"> </md-input-container>
 		</div>
 		<div layout layout-sm="column" layout-align="end end">
-			<a href='' ng-click='ShowHide()'>Change Password +/-</a><br>
-			<br>
+			<a href='' ng-click='ShowHide()'>Change Password +/-</a><br> <br>
 		</div>
 		<div layout layout-sm="column" ng-hide="IsHidden">
-			<md-input-container flex  ng-hide="userL.isGoogleUser"> 
+			<md-input-container flex ng-hide="userL.isGoogleUser">
 			<!-- <label style="color: blue">Enter New Password <span style="color: red;">*</span> </label>
 			 <input	type="password" style="color: red" ng-model="userL.password">
-			 -->
-			
-			
-			   <md-button class="md-primary md-raised" ng-click="showAdvanced($event)">
-      Custom Dialog
-    </md-button>
-			
-			
-			<!-- <div layout layout-sm="column" layout-align="center center"
+			 --> <md-button class="md-primary md-raised"
+				ng-click="showAdvanced($event)"> Custom Dialog </md-button> <!-- <div layout layout-sm="column" layout-align="center center"
 			ng-hide="savemsg">
 			<md-input-container> <label> Enter new
 				Password </label> <span style="color: red"
@@ -82,41 +76,34 @@
 			entered don't match..</div>
 		<div layout="row" layout-sm="column" layout-align="center center"
 			ng-show="savemsg" style="color: Blue">password updated
-			successfully updated.</div> -->
-			
-			
-			
-			
-			
-			
-			
-			 </md-input-container>
-				<md-input-container flex  ng-show="userL.isGoogleUser"> 
-				<a target="_blank" href="https://www.google.com/settings/passwordchange">Link Change Password</a>
-			 </md-input-container>
-			
+			successfully updated.</div> --> </md-input-container>
+			<md-input-container flex ng-show="userL.isGoogleUser">
+			<a target="_blank"
+				href="https://www.google.com/settings/passwordchange">Link
+				Change Password</a> </md-input-container>
+
 		</div>
-		<b>Authority given==={{userL.authority}}</b><br>
-		<br>
+		<b>Authority given==={{userL.authority}}</b><br> <br>
 		<div flex="100" flex-gt-sm="50" layout="column">
-      <div>
-           <fieldset class="standard" >
-         <!--  <legend></legend> -->
-          <div layout="row" layout-wrap flex>
-            <div flex="50" ng-repeat="item in items">
-              <md-checkbox ng-checked="selection[$index]"  ng-click="toggleSelection($index)"><!-- "" -->
-                {{ item }}
-              </md-checkbox>
-            </div>
-          </div>
-        </fieldset>
-      </div>
-    </div>
-		
+			<div>
+				<fieldset class="standard">
+					<!--  <legend></legend> -->
+					<div layout="row" layout-wrap flex>
+						<div flex="50" ng-repeat="item in items">
+							<md-checkbox ng-checked="selection[$index]"
+								ng-click="toggleSelection($index)"><!-- "" --> {{
+							item }} </md-checkbox>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+
 	</div>
 </form>
+<section layout="row" layout-xs="column" layout-align="left left">
+	<md-button class="md-raised md-primary" ng-click="updateuser()">Update
+	User</md-button>
+</section>
 </md-content>
 
-<section layout="row" layout-xs="column" layout-align="left left">
-	<md-button class="md-raised md-primary" ng-click="updateuser()" ng-show="selected[0]">Change Password</md-button>
-	</section>

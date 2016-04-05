@@ -14,8 +14,9 @@ angular
 					$scope.selecteduserNo = $stateParams.selecteduserNo;
 					$scope.id;
 
-					$scope.items = [ "stock", "sales", "hr", "crm", "customer",
-							"invoice", "purchase", "employee", "admin" ];
+					$scope.items = [ "customer","account","stock", "salesOrder", "purchaseOrder", "invoice",
+							"warehouse", "hr", "crm", "employee",
+							"admin" ];
 					$scope.selection = [];
 
 					$scope.curuser = appEndpointSF.getLocalUserService()
@@ -96,13 +97,14 @@ angular
 										{
 											controller : DialogController,
 											templateUrl : '/app/profile/changepassword.html',
-											parent : angular.element(document.body),
+											parent : angular
+													.element(document.body),
 											targetEvent : ev,
 											clickOutsideToClose : true,
 											fullscreen : useFullScreen,
-											locals: {
-												curuser: $scope.curuser
-										     }
+											locals : {
+												curuser : $scope.curuser
+											}
 										})
 								.then(
 										function(answer) {
@@ -112,13 +114,13 @@ angular
 										function() {
 											$scope.status = 'You cancelled the dialog.';
 										});
-						$scope.updatepass=function(){
+						$scope.updatepass = function() {
 							$log.debug("change pass");
 						}
 					};
 
 					function DialogController($scope, $mdDialog, curuser) {
-						
+
 						alert(angular.toJson(curuser));
 						$scope.hide = function() {
 							$mdDialog.hide();
@@ -154,28 +156,29 @@ angular
 						$scope.setpassinput2 = function() {
 							$scope.inputType2 = 'password';
 						}
-						$scope.changepass=function(){
-							
+						$scope.changepass = function() {
+
 							if ($scope.password == $scope.confirmpassword) {
-								$scope.savemsg=true;
-								$scope.checkpass=false;
+								$scope.savemsg = true;
+								$scope.checkpass = false;
 							} else {
-								$scope.checkpass=true;
-								$scope.savemsg=false;
+								$scope.checkpass = true;
+								$scope.savemsg = false;
 							}
-							
-							if($scope.savemsg==true){
-								//$scope.updatepass();
-					/*		$scope.userL.password=$scope.password;	
-							var UserService = appEndpointSF.getUserService();
-							UserService.updateUser($scope.userL).then(function(msgBean) {
-								$scope.showSimpleToast(msgBean.msg);
-															
-							});*/ 
+
+							if ($scope.savemsg == true) {
+								// $scope.updatepass();
+								/*
+								 * $scope.userL.password=$scope.password; var
+								 * UserService = appEndpointSF.getUserService();
+								 * UserService.updateUser($scope.userL).then(function(msgBean) {
+								 * $scope.showSimpleToast(msgBean.msg);
+								 * 
+								 * });
+								 */
 							}
+						}
 					}
-					}
-					
 
 					// -------------------------------------------------------
 					$scope.toggleRight = buildToggler('right');

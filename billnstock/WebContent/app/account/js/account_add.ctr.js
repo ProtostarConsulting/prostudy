@@ -5,6 +5,12 @@ app.controller(
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log,$stateParams, objectFactory, appEndpointSF) {
 
+			 $scope.query = {
+					    order: 'name',
+					    limit: 5,
+					    page: 1
+					  };
+			 
 			$log.debug("Inside accountAddCtr");
 
 			$scope.curUser = appEndpointSF.getLocalUserService()

@@ -34,7 +34,7 @@ app
 					};
 
 					$scope.addPurchaseOrder = function() {
-						if ($scope.purchaseOrderObj.pOLineItemList.length == 0 || $scope.purchaseOrderObj.pOLineItemList.itemName == null) {
+						if ($scope.purchaseOrderObj.pOLineItemList.length == 0 || $scope.purchaseOrderObj.pOLineItemList.itemName == "") {
 							console.log("Please select atleast one item");
 							$scope.errorMsg = "Please select atleast one item.";
 						} else {

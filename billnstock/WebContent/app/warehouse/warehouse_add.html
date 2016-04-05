@@ -71,7 +71,7 @@
 
 		<md-input-container flex> <label>PIN <span
 			style="color: red;">*</span></label> <input type="number" name="pin"
-			ng-model="warehouse.pin" ng-minlength="5" ng-maxlength="5"
+			ng-model="warehouse.pin" ng-minlength="5" ng-maxlength="6"
 			ng-required="true">
 
 		<div ng-messages="warehouseForm.pin.$error"
@@ -81,7 +81,7 @@
 
 			<span class="help-block"
 				ng-show="((warehouseForm.pin.$error.minlength || warehouseForm.pin.$error.maxlength) && warehouseForm.pin.$dirty) ">PIN
-				Number should be 5 digits(Example.:01234)</span>
+				Number should be 6 digits(Example.:01234)</span>
 		</div>
 		</md-input-container>
 	</div>

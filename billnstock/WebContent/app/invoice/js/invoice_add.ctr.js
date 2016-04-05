@@ -30,7 +30,7 @@ app
 					};
 
 					$scope.addInvoice = function() {
-						if ($scope.invoiceObj.invoiceLineItemList.length == 0 || $scope.invoiceObj.invoiceLineItemList.itemName == null) {
+						if ($scope.invoiceObj.invoiceLineItemList.length == 0 || $scope.invoiceObj.invoiceLineItemList.itemName == "") {
 							console.log("Please select atleast one item");
 							$scope.errorMsg = "Please select atleast one item.";
 						} else {

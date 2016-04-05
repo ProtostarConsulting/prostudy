@@ -132,7 +132,7 @@
 				<tr md-auto-select
 					ng-repeat="receivable in filteredReceivablesMonth | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
 					<td>{{receivable.id}}</td>
-					<td>{{receivable.customer.customerName}}</td>
+					<td>{{receivable.customer.firstName}}</td>
 					<td>{{receivable.invoiceDueDate}}</td>
 					<td>{{receivable.finalTotal}}</td>
 				</tr>

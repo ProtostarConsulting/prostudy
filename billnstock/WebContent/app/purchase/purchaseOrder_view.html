@@ -83,13 +83,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="invoiceLineItem in pODetail.pOLineItemList">
+				<tr ng-repeat="pOLineItem in pODetail.pOLineItemList">
 
 					<td>{{ $index+1 }}</td>
-					<td>{{invoiceLineItem.itemName}}</td>
-					<td>{{invoiceLineItem.qty}}</td>
-					<td>{{invoiceLineItem.price}}</td>
-					<td>{{invoiceLineItem.qty * invoiceLineItem.price}}</td>
+					<td>{{pOLineItem.itemName}}</td>
+					<td>{{pOLineItem.qty}}</td>
+					<td>{{pOLineItem.price}}</td>
+					<td>{{pOLineItem.qty * pOLineItem.price}}</td>
 
 
 				</tr>
@@ -131,17 +131,23 @@
 					<td></td>
 					<td><label><u>Final Total</u> </label></td>
 					<td><md-input-container flex>
-						{{pODetail.finalTotal}}</md-input-container></td>
+						{{pODetail.finalTotal | currency :"INR ": 2 }}</md-input-container></td>
 				</tr>
 				<tr>
-					<td></td>
-
+					<td colspan="5"><br></td>
+				</tr>
+				<tr>
+					<td colspan="5" style="text-align: right">
+						<div>
+							<b> <u>{{"Rupees :" + finalTotalInWord + " Only"}}</u> </b>
+						</div>
+					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 
-	<b><u>Note</u>:</b>This is electronically generated invoice. <br>
+	<b><u>Note</u>:</b>This is electronically generated Purchase Order. <br>
 
 	<iframe name="print_frame" width="0" height="0" frameborder="0"
 		src="about:blank"></iframe>

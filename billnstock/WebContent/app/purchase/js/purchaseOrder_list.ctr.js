@@ -4,7 +4,12 @@ app.controller("purchaseOrderListCtr", function($scope, $window, $mdToast, $time
 		$mdSidenav, $mdUtil, $log, $state, $http, $stateParams, $routeParams,
 		$filter, objectFactory, appEndpointSF) {
 
-	
+	  $scope.query = {
+			    order: 'name',
+			    limit: 5,
+			    page: 1
+			  };
+	  
 	$scope.curUser = appEndpointSF.getLocalUserService()
 	.getLoggedinUser();
 	$log.debug("$scope.curUser++++++++"+angular.toJson($scope.curUser));

@@ -18,6 +18,10 @@ app.controller("salesOrderViewCtr", function($scope, $window, $mdToast, $timeout
 				.getSOByID($scope.selectedSalesOrderNo)
 				.then(function(sOList) {
 							$scope.sODetail = sOList;
+							
+							$scope.sODetail.finalTotal = Math.round($scope.sODetail.finalTotal);
+							$scope.finalTotalInWord = NumToWord($scope.sODetail.finalTotal);
+							
 							$log
 									.debug("$scope.showSales Order ===="
 											+ angular
