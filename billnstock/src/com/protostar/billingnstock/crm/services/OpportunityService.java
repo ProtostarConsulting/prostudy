@@ -10,8 +10,10 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
+import com.googlecode.objectify.Ref;
 import com.protostar.billingnstock.crm.entities.Lead;
 import com.protostar.billingnstock.crm.entities.Opportunity;
+import com.protostar.billingnstock.user.entities.BusinessEntity;
 
 @Api(name = "opportunityService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.crm.services", ownerName = "com.protostar.billingnstock.crm.services", packagePath = ""))
 public class OpportunityService {
@@ -24,23 +26,10 @@ public class OpportunityService {
 
 	@ApiMethod(name = "getAllopportunity")
 	public List<Opportunity> getAllopportunity(@Named("id") Long id) {
-	
-		List<Opportunity> opportunity =ofy().load().type(Opportunity.class).list();
-		  
-			List<Opportunity> filteredopportunity= new ArrayList<Opportunity>();
-
-			for (int i = 0; i < opportunity.size(); i++) {
-				if (opportunity.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id)){
-					
-					filteredopportunity.add(opportunity.get(i));
-				} else {
-					
-					System.out.println("Recored No found:");
-				}
-			}
-			return filteredopportunity;
-		 
-		
+		List<Opportunity> filteredopportunity = ofy().load().type(Opportunity.class)
+				.filter("business",Ref.create(Key.create(BusinessEntity.class, id)))
+				.list();
+		return filteredopportunity;
 		
 	}
 
@@ -49,11 +38,6 @@ public class OpportunityService {
 		Opportunity opportunity = ofy().load().type(Opportunity.class).id(selectedid).now();
 		return opportunity;
 	}
-	/*
-	 * @ApiMethod(name="addupdatetask") public void addupdatetask(Lead lead) {
-	 * Key<Lead> now = ofy().save().entity(lead).now();
-	 * 
-	 * }
-	 */
+	
 
 }// end of InternetService

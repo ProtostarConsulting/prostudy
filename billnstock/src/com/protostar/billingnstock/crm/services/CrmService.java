@@ -10,8 +10,11 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
+import com.googlecode.objectify.Ref;
 import com.protostar.billingnstock.crm.entities.Contact;
 import com.protostar.billingnstock.crm.entities.Lead;
+import com.protostar.billingnstock.user.entities.BusinessEntity;
+import com.protostar.billingnstock.user.entities.UserEntity;
 
 
 
@@ -31,23 +34,12 @@ public class CrmService
 	@ApiMethod(name="getAllleads") 
 	
 	 public List<Lead> getAllleads(@Named("id") Long id) {
-	  
-	  List<Lead> lead =ofy().load().type(Lead.class).list();
-	  
-		List<Lead> filteredlead= new ArrayList<Lead>();
-
-		for (int i = 0; i < lead.size(); i++) {
-			if (lead.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id)){
-				
-				filteredlead.add(lead.get(i));
-			} else {
-				
-				System.out.println("Recored No found:");
-			}
-		}
+		List<Lead> filteredlead = ofy().load().type(Lead.class)
+				.filter("business",Ref.create(Key.create(BusinessEntity.class, id)))
+				.list();
 		return filteredlead;
-	 
-	 }
+	  
+	  }
 	
 	@ApiMethod(name="getLeadById") 
 	 public Lead getLeadById(@Named("id") Long selectedid) {
@@ -74,22 +66,11 @@ public class CrmService
 	@ApiMethod(name="getAllcontact") 
 	 public List<Contact> getAllcontact(@Named("id") Long id) {
 	
-	  
-	  List<Contact> contact =ofy().load().type(Contact.class).list();
-	  
-			List<Contact> filteredcontact= new ArrayList<Contact>();
-
-			for (int i = 0; i < contact.size(); i++) {
-				if (contact.get(i).getLoggedInUser().getBusinessAccount().getId().equals(id)){
-					
-					filteredcontact.add(contact.get(i));
-				} else {
-					
-					System.out.println("Recored No found:");
-				}
-			}
-			return filteredcontact;
-	  
+		List<Contact> filteredContact = ofy().load().type(Contact.class)
+				.filter("business",Ref.create(Key.create(BusinessEntity.class, id)))
+				.list();
+		return filteredContact;
+  
 	  
 	 }
 	

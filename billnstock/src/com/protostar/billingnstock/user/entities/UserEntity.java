@@ -13,7 +13,7 @@ public class UserEntity {
 
 	@Id
 	private Long id;
-
+	@Index
 	private Ref<BusinessEntity> businessAccount;
 
 	private String firstName;

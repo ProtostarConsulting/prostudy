@@ -27,7 +27,16 @@ public class SalSlip {
 	
 	@Index
 	private Ref<SalStruct> salarystruct;
+	@Index
+	private Ref<BusinessEntity> business;
 	
+	
+	public BusinessEntity getBusiness() {
+		return business.get();
+	}
+	public void setBusiness(BusinessEntity business) {
+		this.business = Ref.create(business);
+	}
 
 	@Index
 	private String month;

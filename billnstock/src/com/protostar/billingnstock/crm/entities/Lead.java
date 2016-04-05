@@ -6,6 +6,7 @@ import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
+import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
 
 @Entity
@@ -18,7 +19,16 @@ public class Lead {
 
 	@Index
 	private String lid;
-
+	@Index
+	private Ref<BusinessEntity> business;
+	
+	
+	public BusinessEntity getBusiness() {
+		return business.get();
+	}
+	public void setBusiness(BusinessEntity business) {
+		this.business = Ref.create(business);
+	}
 	
 	private String company;
 	private Integer phone;
