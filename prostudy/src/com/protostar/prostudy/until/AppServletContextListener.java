@@ -18,6 +18,7 @@ import com.protostar.prostudy.entity.InstituteEntity;
 import com.protostar.prostudy.entity.PracticeExamEntity;
 import com.protostar.prostudy.entity.PracticeExamResultEntity;
 import com.protostar.prostudy.entity.QuestionEntity;
+import com.protostar.prostudy.entity.RoleSecEntity;
 import com.protostar.prostudy.entity.StandardEntity;
 import com.protostar.prostudy.entity.StudSubEntity;
 import com.protostar.prostudy.entity.StudentEntity;
@@ -66,6 +67,7 @@ public class AppServletContextListener implements ServletContextListener {
 		  ObjectifyService.register(YearCounterEntity.class);
 		
 		  ObjectifyService.register(StudSubEntity.class);
+		  ObjectifyService.register(RoleSecEntity.class);
 
 
 	}
