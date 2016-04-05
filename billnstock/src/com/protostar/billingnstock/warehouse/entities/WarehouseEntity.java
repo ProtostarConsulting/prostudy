@@ -3,6 +3,7 @@ package com.protostar.billingnstock.warehouse.entities;
 import com.googlecode.objectify.annotation.Entity;
 import com.protostar.billnstock.entity.BaseEntity;
 
+
 @Entity
 public class WarehouseEntity extends BaseEntity{
 
