@@ -19,8 +19,9 @@
 	<div ng-show="loading">Loading... </div>	
 	<md-content ng-hide="loading"> <!-- Top Navigation Pane --> <md-toolbar>
 	<div class="md-toolbar-tools">
-		<span hide-sm>ProStudy - Where learning meets teaching, self
-			study, tutorials and practice!</span><span hide-gt-sm>ProStudy</span>
+		<span ng-show="curUser==null">ProStudy - Where learning meets teaching, self
+			study, tutorials and practice!</span>
+			<span ng-show="curUser!=null">ProStudy -{{curUser.instituteID}}</span>
 		<!-- fill up the space between left and right area -->
 		<span flex></span>
 		<section layout="row">
@@ -59,6 +60,9 @@
 			Sidenav </md-button> <md-button ui-sref="home" ng-click="close()"
 				class="md-primary" show-gt-md> Home </md-button>
 				
+				<md-button ui-sref="authority" ng-click="close()" class="md-primary" show-gt-md>
+				Authority </md-button>
+				
 				<md-button ui-sref="institute"
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
 				ng-click="close()" class="md-primary" show-gt-md>
@@ -71,8 +75,10 @@
 			<md-button ui-sref="attendance" ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
 				ng-click="close()" class="md-primary" show-gt-md>Attendance </md-button> 
 			
-				 <md-button ui-sref="exam" ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-				ng-click="close()" class="md-primary" show-gt-md> Exam </md-button>
+				 <!-- <md-button ui-sref="exam" ng-show="exam in roleSecEntity.modules"
+				ng-click="close()" class="md-primary" show-gt-md> Exam </md-button> -->
+				
+				<md-button ui-sref="exam" ng-click="close()" class="md-primary" show-gt-md> Exam </md-button>
 				
 				<md-button ui-sref="book"
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
@@ -240,6 +246,10 @@
 	<script src="/app/login/js/login_module.ctr.js"></script>
 	<script src="/app/login/js/newUser_student.ctr.js"></script>
 	<script src="/home.ctr.js"></script>
+	
+	<script src="/app/authority/js/authority_module.ctr.js"></script>
+	<script src="/app/authority/js/authority_add.ctr.js"></script>
+	<script src="/app/authority/js/authority_view.ctr.js"></script>
 
 	<script src="/app/chapter/js/chapter_module.ctr.js"></script>
 	<script src="/app/chapter/js/chapter_add.ctr.js"></script>
