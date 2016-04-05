@@ -24,6 +24,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/home",
 		templateUrl : '/home.html',
 		controller : 'homeCtr'
+	}).state('authority', {
+		url : "/authority",
+		templateUrl : '/app/authority/authority_module.html',
+		controller : 'authorityModuleCtr'
+	}).state('authority.add', {
+		url : "/addauthority",
+		templateUrl : '/app/authority/authority_add.html',
+		controller : 'authorityAddCtr'
+	}).state('authority.view', {
+		url : "/viewauthority",
+		templateUrl : '/app/authority/authority_view.html',
+		controller : 'authorityViewCtr'
 	}).state('exam', {
 		url : "/exam",
 		templateUrl : '/app/exam/exam_module.html',
@@ -377,7 +389,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/login/login_module.html',
 		controller : 'loginModuleCtr'
 	}).state('updatemyprofile', {
-		url : "/updatemyprofile",
+		url : "/updatemyprofile/:flag",
 		templateUrl : '/app/myprofile/myprofile_update.html',
 		controller : 'updateMyProfileCtr'
 	}).state('newUserTeacher', {

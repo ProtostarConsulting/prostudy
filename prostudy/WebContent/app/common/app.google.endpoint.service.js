@@ -131,6 +131,37 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
+	
+	UserService.addOrUpdateRoleSec = function(roleSec) {
+
+		var deferred = $q.defer();
+		gapi.client.userService.addOrUpdateRoleSec(roleSec).execute(function(resp) {
+			deferred.resolve(resp);		
+		});
+
+		return deferred.promise;
+	}
+	
+	UserService.getRoleSecList = function() {
+		var deferred = $q.defer();
+		gapi.client.userService.getRoleSecList().execute(function(resp) {
+				deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
+	UserService.getAuthorityByRole = function(role) {
+		
+		var deferred = $q.defer();
+
+		gapi.client.userService.getAuthorityByRole({
+			'role' : role
+		}).execute(function(resp) {
+			deferred.resolve(resp.items);
+		});
+		
+		return deferred.promise;
+	}
 
 	// end of
 	// UserService-----------------------------------------------------------------------------------------------------------------
