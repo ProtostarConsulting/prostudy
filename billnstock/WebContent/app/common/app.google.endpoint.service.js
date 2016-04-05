@@ -545,9 +545,9 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	hrService.countOfRecordsiInganeratedslip = function() {
+	hrService.countOfRecordsiInganeratedslip = function(orgid) {
 		var deferred = $q.defer();
-		gapi.client.hrService.countofrecord().execute(function(resp) {
+		gapi.client.hrService.countofrecord({'id':orgid}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;

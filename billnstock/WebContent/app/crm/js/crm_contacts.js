@@ -11,7 +11,14 @@ angular.module("stockApp").controller(
 			$scope.curUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
 			
+			$scope.query = {
+			         order: 'name',
+			         limit: 5,
+			         page: 1
+			       };
+			
 			$scope.contact = {
+					business:"",
 				loggedInUser : "",
 				cid : "",
 				fName : "",
@@ -27,12 +34,13 @@ angular.module("stockApp").controller(
 
 			$scope.addcontact = function() {
 				$scope.contact.loggedInUser=$scope.curUser;
+				$scope.contact.business=$scope.curUser.businessAccount;
 				var leadService = appEndpointSF.getleadService();
 				leadService.addcontact($scope.contact).then(function(msgBean) {
 					$log.debug("Inside Ctr addlead");
 					$log.debug("msgBean.msg:" + msgBean.msg);
 					$scope.showSimpleToast(msgBean.msg);
-					// $scope.getAllleads();
+					$scope.getAllcontact();
 				});
 
 				$scope.contact = {};

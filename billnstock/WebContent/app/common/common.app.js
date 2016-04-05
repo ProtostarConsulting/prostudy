@@ -259,11 +259,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'hrCtr.addupdatesalstruct',
 	}).state('hr.salslip', {
 		url : "/Salaryslip",
-		templateUrl : '/app/hr/employee_salslip.html',
+		templateUrl : '/app/hr/empsalslipstructlist.html',
 		controller : 'hrCtr.empsalslipstruct',
 	}).state('hr.gSalSlip', {
-		url : "/gSalSlip/:selectedempstructno",
-		templateUrl : '/app/hr/ganerate_salaryslip.html',
+		url : "/viewSalSlip/:selectedempstructno",
+		templateUrl : '/app/hr/view_salarystruct.html',
 		controller : 'hrCtr.empsalslipstruct',
 	}).state('hr.generatesalslip', {
 		url : "/generatesalslip",
@@ -272,14 +272,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('hr.printgeneratesalslip', {
 		url : "/selectedlist",
 		templateUrl : '/app/hr/slected_Employeesalaryslip.html',
-		controller : 'hrCtr.emplist_to_ganeratesalslip',
+		controller : 'hrctr.selected_Employeesalaryslip',
 		params : {
 			ganeratedsalslip : ""
 		}
 	}).state('hr.print', {
 		url : "/print/:printempidsalslip",
 		templateUrl : '/app/hr/print_salaryslip.html',
-		controller : 'hrCtr.emplist_to_ganeratesalslip',
+		controller : 'hrctr.selected_Employeesalaryslip',
 	}).state('crm', {
 		url : "/crm",
 		templateUrl : '/app/crm/crm_module.html',

@@ -8,6 +8,12 @@ angular
 					
 					$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 					
+					$scope.query = {
+					         order: 'name',
+					         limit: 5,
+					         page: 1
+					       };
+					
 					$scope.emp = {
 							empid : "",
 							empName : "",

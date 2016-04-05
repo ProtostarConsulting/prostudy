@@ -24,7 +24,7 @@
 				placeholder="Lead/Customer" id="selectedfrom"
 				ng-model="opportunity.name"  ng-required="true"> <md-option
 				ng-repeat="list in leadorcustlist">
-			{{list.customerName}}{{list.name}} </md-option> </md-select>
+			{{list.firstName}}{{list.name}} </md-option> </md-select>
 			
 			<div ng-messages="oppform.ldcu.$error"
 				ng-if="oppform.ldcu.$submitted || oppform.ldcu.$touched">

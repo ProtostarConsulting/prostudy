@@ -13,6 +13,13 @@ angular
 					$scope.selectedopportunityNo = $stateParams.selectedopportunityNo;
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
+					
+					$scope.query = {
+					         order: 'name',
+					         limit: 5,
+					         page: 1
+					       };
+					
 					var d = new Date();
 					var year = d.getFullYear();
 					var month = d.getMonth() + 1;
@@ -26,6 +33,7 @@ angular
 					$scope.taskType = [ "Phone Call", "Email", "Visit" ];
 
 					$scope.opportunity = {
+							business:"",
 						loggedInUser : "",
 						oid : "",
 						from : "",
@@ -71,10 +79,10 @@ angular
 							$log.debug("============" + temp);
 							var customerService = appEndpointSF
 									.getCustomerService();
-							customerService.getAllCustomersByCurrUser(
+							customerService.getAllCustomersByBusiness(
 									$scope.curUser.businessAccount.id).then(
 									function(custList) {
-										$scope.leadorcustlist = custList;
+										$scope.leadorcustlist = custList.items;
 									});
 
 						}
@@ -87,6 +95,8 @@ angular
 						$scope.opportunity.loggedInUser = $scope.curUser;
 						$scope.opportunity.from = $scope.f;	
 						$scope.opportunity.tasks = $scope.task;
+						$scope.opportunity.business=$scope.curUser.businessAccount;
+						
 						var opportunityService = appEndpointSF
 								.getopportunityService();
 
@@ -149,7 +159,7 @@ angular
 					$scope.updateopportunity = function() {
 
 						var opportunityService = appEndpointSF
-								.getopportunityService();
+								.getopportunityService();	
 						opportunityService.updateopportunity(
 								$scope.opportunityL).then(function(msgBean) {
 							$log.debug("Inside CtropportunityL");
@@ -177,7 +187,6 @@ angular
 						opportunityService.addupdatetask($scope.opportunityL)// $scope.task,
 																				// oppid
 						.then(function(msgBean) {
-
 							$scope.showSimpleToast(msgBean.msg);
 							$scope.getopportunityById();
 						});

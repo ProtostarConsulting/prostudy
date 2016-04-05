@@ -11,7 +11,14 @@ angular
 					};
 					$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 					
+					$scope.query = {
+					         order: 'name',
+					         limit: 5,
+					         page: 1
+					       };
+					
 					$scope.lead ={
+							business:"",
 							loggedInUser:"",
 							lid:"",
 							name:"",
@@ -35,7 +42,7 @@ angular
 					$scope.addlead = function() {
 						$scope.lead.tasks= $scope.task ;
 						$scope.lead.loggedInUser=$scope.curUser;
-						
+						$scope.lead.business=$scope.curUser.businessAccount;
 						var leadService = appEndpointSF.getleadService();
 						
 						leadService.addlead($scope.lead).then(function(msgBean) {

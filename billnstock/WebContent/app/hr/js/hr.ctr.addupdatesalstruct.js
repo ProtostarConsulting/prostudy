@@ -22,6 +22,7 @@ angular
 					
 					
 					$scope.salstruct = {
+							business:"",
 						empAccount : "",
 						grosssal : 0,
 						monthly : 0,
@@ -53,34 +54,7 @@ angular
 						ldother2amt : 0
 					};
 
-					$scope.getAllemps = function() {
-						$log.debug("Inside Ctr $scope.getAllemps");
-						var hrService = appEndpointSF.gethrService();
-
-						hrService.getAllemp($scope.curUser.businessAccount.id)
-								.then(function(empList) {
-									$log.debug("Inside Ctr getAllemps");
-									$scope.emps = empList.items;
-
-								});
-					}
-
-					$scope.emps = [];
-					$scope.cempid;
-					$scope.getAllemps();
-
-					$scope.updateempname = function(empid) {
-						$scope.getAllemps();
-						for (i = 0; i < $scope.emps.length; i++) {
-							if (empid == $scope.emps[i].empid) {
-								$scope.curemp = $scope.emps[i];
-								$scope.salstruct.empAccount.empName = $scope.emps[i].empName;
-							}
-
-						}
-
-					}
-
+				
 					$scope.addsalstruct = function() {
 						var setupService = appEndpointSF.getsetupService();
 						if (typeof $scope.selectedUserId != 'undefined') {
@@ -89,7 +63,8 @@ angular
 												
 												$scope.userL = userList.result;
 												$scope.salstruct.empAccount = $scope.userL;
-
+												$scope.salstruct.business=$scope.userL.businessAccount;
+												
 												var hrService = appEndpointSF.gethrService();
 												hrService.addsalstruct($scope.salstruct)
 														.then(function(msgBean) {

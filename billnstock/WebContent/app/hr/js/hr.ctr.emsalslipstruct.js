@@ -8,6 +8,12 @@ angular
 					$scope.selectedempstructno = $stateParams.selectedempstructno;
 					$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 					
+					$scope.query = {
+					         order: 'name',
+					         limit: 5,
+					         page: 1
+					       };
+					
 					$scope.selected = [];
 					$scope.salstruct = {
 							empAccount:"",
@@ -60,7 +66,7 @@ angular
 					
 				$scope.viewfindsalstruct = function() {
 							var hrService = appEndpointSF.gethrService();
-
+				if (typeof $scope.selectedempstructno != 'undefined') {
 						hrService
 								.viewfindsalstruct($scope.selectedempstructno)
 								.then(
@@ -71,6 +77,7 @@ angular
 											$scope.viewsalstruct = $scope.viewslist;
 										
 										});
+							}
 					}
 
 					$scope.viewslist = [];

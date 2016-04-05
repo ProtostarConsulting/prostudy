@@ -9,6 +9,16 @@ angular.module("stockApp").controller(
 			};
 			$scope.selectedleadNo = $stateParams.selectedleadNo;
 			$log.debug("$scope.selectedleadNo========="+$scope.selectedleadNo);
+			
+			
+			
+			 $scope.query = {
+			         order: 'name',
+			         limit: 5,
+			         page: 1
+			       };
+			 
+			 
 			$scope.taskType = [ "Phone Call", "Email", "Visit" ];
 			var d = new Date();
 			var year = d.getFullYear();
@@ -78,7 +88,9 @@ angular.module("stockApp").controller(
 			$scope.addupdatetask = function(leadid) {
 			/*	$scope.objlead=$scope.leads;
 				$scope.objlead.tasks.push($scope.task);*/
+				if(typeof $scope.task.type !='undefined' && $scope.task.type !=""){
 				$scope.leads.tasks.push($scope.task);
+				}
 				var leadService = appEndpointSF.getleadService();
 
 				leadService.addupdatetask($scope.leads).then(
