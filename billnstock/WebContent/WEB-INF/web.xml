@@ -10,8 +10,10 @@
 		<servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
 		<init-param>
 			<param-name>services</param-name>
+
 				<param-value>com.protostar.billingnstock.account.services.AccountService,com.protostar.billingnstock.assetmanagement.services.AssetService,com.protostar.billingnstock.crm.services.CrmService,com.protostar.billingnstock.crm.services.OpportunityService,com.protostar.billingnstock.cust.services.CustomerService,com.protostar.billingnstock.hr.services.HrService,com.protostar.billingnstock.invoice.services.InvoiceService,com.protostar.billingnstock.proadmin.services.ProAdminService,com.protostar.billingnstock.purchase.services.PurchaseOrderService,com.protostar.billingnstock.sales.services.SalesOrderService,com.protostar.billingnstock.setup.services.setupService,com.protostar.billingnstock.stock.services.StockItemService,com.protostar.billingnstock.tax.services.TaxService,com.protostar.billingnstock.user.services.UserService,com.protostar.billingnstock.warehouse.services.WarehouseService,com.protostar.billnstock.service.ExamService,com.protostar.billnstock.service.QuestionService,com.protostar.billnstock.service.TestService</param-value>
-		</init-param>
+
+				</init-param>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>SystemServiceServlet</servlet-name>
@@ -30,4 +32,38 @@
         com.protostar.billnstock.until.data.AppServletContextListener
     </listener-class>
     </listener>
-</web-app>
+ <!--  <servlet>
+    <description/>
+    <display-name>UploadServlet</display-name>
+    <servlet-name>UploadServlet</servlet-name>
+    <servlet-class>com.protostar.billingnstock.document.UploadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadServlet</servlet-name>
+    <url-pattern>/UploadServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description/>
+    <display-name>Serve</display-name>
+    <servlet-name>Serve</servlet-name>
+    <servlet-class>com.protostar.billingnstock.document.Serve</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Serve</servlet-name>
+    <url-pattern>/serve</url-pattern>
+  </servlet-mapping>
+  <servlet>
+ 
+  
+    <description/>
+    <display-name>email</display-name>
+    <servlet-name>email</servlet-name>
+    <servlet-class>com.protostar.billingnstock.email.email</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>email</servlet-name>
+    <url-pattern>/email</url-pattern>
+  </servlet-mapping>
+ -->
+ 
+ </web-app>
