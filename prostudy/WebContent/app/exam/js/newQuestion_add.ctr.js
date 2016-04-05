@@ -29,7 +29,7 @@ angular.module("prostudyApp").controller(
 			$scope.question = [];
 			
 			$scope.addQuestion = function() {
-				$log.debug("No1");
+				
 				var QuestionService = appEndpointSF.getQuestionService();
 				QuestionService.addQuestion($scope.tempQuestion).then(
 						function(addedQ) {
@@ -42,7 +42,7 @@ angular.module("prostudyApp").controller(
 						
 							if($scope.sourceSate == null)
 								{
-								$state.go("exam.questionlist",{});
+								$state.go('exam');
 								}
 							else if($scope.sourceSate){
 								
@@ -50,7 +50,7 @@ angular.module("prostudyApp").controller(
 							}
 								
 						});
-				$log.debug("No4");
+				
 			}
 
 			$scope.getQuestion = function() {

@@ -1,21 +1,15 @@
 <div layout="column">
 
 	<section layout="row">
-		<!-- View Specific Toolbar-->
-		<div flex="30">
-			<h3 class="md-toolbar-tools">Exam Section</h3>
-		</div>
+		
+		
 		<div class="md-toolbar-tools">
 			<span flex></span>
 
 			<section layout="row">
 
 				<div hide-sm layout="row" layout-align="end start">
-					<md-button ui-sref="exam.addnewquestion" ng-click="close()"
-					class="md-primary">
-						Add New Question
-					</md-button>
-
+					
 					<md-button aria-label="Search" ng-click="showSearch = !showSearch">
 						<ng-md-icon icon="search"></ng-md-icon>
 					</md-button>
@@ -68,8 +62,7 @@
 				Close Sidenav Right
 			</md-button>
 
-			<p hide-md show-gt-md></p>
-
+			<div layout="column" layout-align="start start">
 			<md-button ui-sref="exam.addnewquestion" ng-click="close()"
 			class="md-primary">
 				Add New Question
@@ -94,6 +87,7 @@
 			class="md-primary">
 				View Practise Exam Result
 			</md-button>
+			</div>
 
 		</md-content>
 	</md-sidenav>

@@ -5,7 +5,7 @@ angular
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $q, appEndpointSF, $state, $stateParams,$sce, $filter,boardList) {
 					
-			$scope.curUser = appEndpointSF.getLocalUserService()
+					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
 					$log.debug("$scope.curUser :"
 							+ angular.toJson($scope.curUser));
@@ -127,16 +127,14 @@ angular
 							$scope.tempPracticeExam.questions
 									.push($scope.selected[i]);
 						}
-						$log.debug("$scope.tempPracticeExam"+angular.toJson($scope.tempPracticeExam));
-						practiceExamService
-								.addPracticeExam($scope.tempPracticeExam)
-								.then(
-										function(msgBean) {
+						
+						practiceExamService.addPracticeExam($scope.tempPracticeExam).then(function(msgBean) 
+								{
 											$scope.showSavedToast();
 											$scope.tempPracticeExam = {	};
 										});
 					
-						$state.go('exam.listpracticeexam', {});
+						$state.go('exam');
 					}
 
 					$scope.query = {

@@ -4,41 +4,17 @@ angular.module("prostudyApp").controller(
 				$log, $q, $sce, tableTestDataFactory, appEndpointSF, $state,
 				$filter) {
 
-			$scope.count = 0;
-
 			$scope.curUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
-		
-			$scope.query = {
-				order : 'description',
-				limit : 5,
-				page : 1
-			};
 
 			$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content(
 						'Added Exam to MyExams!').position("top").hideDelay(
 						3000));
 			};
-			$scope.onpagechange = function(page, limit) {
-				var deferred = $q.defer();
 
-				$timeout(function() {
-					deferred.resolve();
-				}, 2000);
-
-				return deferred.promise;
-			};
-
-			$scope.onorderchange = function(order) {
-				var deferred = $q.defer();
-
-				$timeout(function() {
-					deferred.resolve();
-				}, 2000);
-
-				return deferred.promise;
-			};
+			$scope.count = 0;
+			$scope.selected = [];
 
 			$scope.getPracticeExamByInstitute = function() {
 
@@ -51,19 +27,21 @@ angular.module("prostudyApp").controller(
 						});
 			}
 			$scope.getPracticeExamByInstitute();
-			
-			$scope.isContainsTest = function(testid) { 
-				if (typeof $scope.curUser.myExams === 'undefined'){
-					$scope.curUser.myExams = [];}
-				else{
-				for (var i = 0; i < $scope.curUser.myExams.length; i++) {
-				  if (angular.equals($scope.curUser.myExams[i].id,testid)) { return true; } }
+
+			$scope.isContainsTest = function(testid) {
+				if (typeof $scope.curUser.myExams === 'undefined') {
+					$scope.curUser.myExams = [];
+				} else {
+					for (var i = 0; i < $scope.curUser.myExams.length; i++) {
+						if (angular
+								.equals($scope.curUser.myExams[i].id, testid)) {
+							return true;
+						}
+					}
 				}
-				   return false; 
-				   };
-				
-			
-			
+				return false;
+			};
+
 			$scope.addTestToMyList = function(selectedMyExamId) {
 
 				var practiceTest = null;
@@ -94,7 +72,7 @@ angular.module("prostudyApp").controller(
 				});
 
 			}
-		
+
 			$scope.like = function(selectedMyExamId) {
 
 				for (i = 0; i < $scope.practiceExams.length; i++) {
@@ -139,5 +117,31 @@ angular.module("prostudyApp").controller(
 						});
 
 			}
+
+			$scope.query = {
+				order : 'description',
+				limit : 5,
+				page : 1
+			};
+
+			$scope.onpagechange = function(page, limit) {
+				var deferred = $q.defer();
+
+				$timeout(function() {
+					deferred.resolve();
+				}, 2000);
+
+				return deferred.promise;
+			};
+
+			$scope.onorderchange = function(order) {
+				var deferred = $q.defer();
+
+				$timeout(function() {
+					deferred.resolve();
+				}, 2000);
+
+				return deferred.promise;
+			};
 
 		});
