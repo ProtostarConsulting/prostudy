@@ -73,20 +73,32 @@
 				<md-select required name="role" ng-model="tempUser.role"
 					placeholder="User role" ng-disabled="curUser.role"> <md-option>Admin</md-option>
 				<md-option>Student</md-option> <md-option>Teacher</md-option> </md-select>
+				
 				<div ng-messages="profileForm.role.$error" ng-if="!showHints">
 					<div ng-message="required">User Role is required.</div>
 				</div>
 				</md-input-container>
+
+				</div>
+				</div>
+
 			</div>
 		</div>
 
-		<div layout="row" layout-align="center end" layout-xs="column">
+		
+		<div layout="row" layout-align="center end">
+
+			<td><md-button class="md-primary md-raised"
+					ng-click="showAdvanced($event)" ng-hide="flag"> Change password</md-button></td>
 			<md-button class="md-raised md-primary" ng-click="updateUser()">Update
 			Profile</md-button>
 			<md-button class="md-raised md-primary" ng-click="skip()">Skip</md-button>
+
 		</div>
+	</form>
 
 	</form>	
+
 </div>
 
 
