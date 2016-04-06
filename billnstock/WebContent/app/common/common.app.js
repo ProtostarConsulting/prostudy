@@ -13,24 +13,26 @@ app.filter('formatDate', function($filter) {
 	};
 });
 /*
-app.factory('MathService', function() {
-	var factory = {};
-	factory.multiply = function(a, b) {
-		return a * b
-	}
-	return factory;
-});
-
-app.service('CalcService', function(MathService){
-	
-	this.square = function(a) {
-		return MathService.multiply(a,a);
-		}
-		});
-*/
+ * app.factory('MathService', function() { var factory = {}; factory.multiply =
+ * function(a, b) { return a * b } return factory; });
+ * 
+ * app.service('CalcService', function(MathService){
+ * 
+ * this.square = function(a) { return MathService.multiply(a,a); } });
+ */
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('light-blue')
 			.accentPalette('pink');
+	$mdThemingProvider.theme('lime').primaryPalette('lime').accentPalette(
+			'orange').warnPalette('blue');
+	$mdThemingProvider.theme('cyan').primaryPalette('cyan').accentPalette(
+			'orange').warnPalette('blue');
+	$mdThemingProvider.theme('green').primaryPalette('green').accentPalette(
+			'grey').warnPalette('blue');
+
+	// This is the absolutely vital part, without this, changes will not cascade
+	// down through the DOM.
+	$mdThemingProvider.alwaysWatchTheme(true);
 });
 
 app.config(function($logProvider) {
@@ -360,6 +362,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('setup.changeplan', {
 		url : "/changePaln",
 		templateUrl : '/app/setup/changeplan.html',
+		controller : 'setup.changeplan',
+
+	}).state('setup.changetheme', {
+		url : "/changetheme",
+		templateUrl : '/app/setup/setup_changetheme.html',
 		controller : 'setup.changeplan',
 
 	}).state('setup.userlist', {

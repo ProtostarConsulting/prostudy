@@ -22,7 +22,7 @@
 <link href="app/invoice/css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/header.css" rel="stylesheet" type="text/css" />
 </head>
-<body layout="column" ng-cloak>
+<body layout="column" ng-cloak md-theme="{{theme}}" md-theme-watch="true">
 
 	<div ng-show="loading">Loading...</div>
 	<md-content ng-hide="loading"> <!-- Top Navigation Pane -->
@@ -369,6 +369,8 @@
 	<script src="/app/setup/js/setup_adduser.js"></script>
 	<script src="/app/setup/js/setup_viewuser.js"></script>
 	<script src="/app/setup/js/setup_changePlan.js"></script>
+	<script src="/app/setup/js/setup.changetheme.js"></script>
+	
 	
 	<!--  profile js -->
 	<script src="/app/profile/js/profilemodule.js"></script>

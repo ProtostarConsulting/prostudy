@@ -239,6 +239,13 @@ angular
 					 */
 					$scope.initGAPI();
 					
+					$scope.theme = 'default';
+
+					$scope.themeList = [ 'default', 'cyan', 'lime', 'green' ];
+					$scope.nextTheme = function(themeName) {
+						$scope.theme = themeName
+					}
+					
 					
 
 				}).controller(
