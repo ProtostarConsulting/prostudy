@@ -2,11 +2,11 @@
 	<form name="ChangeTheme">
 
 		<div>
-			<span class="md-title">Change Application Theme to One of the avaliable themes below</span>			
+			<span class="md-title">Change cpplication theme to one of the avaliable themes below</span>
 		</div>
-		<section layout="row" layout-sm="column" layout-align="left left">
+		<section layout="row" layout-sm="column" layout-align="left left" flex>
 			<md-button ng-repeat="themeName in themeList"  class="md-raised md-primary md-hue-2" ng-click="nextTheme(themeName)">
-				{{themeName}} Theme
+				{{themeName}}
 			</md-button>
 		</section>
 	</form>

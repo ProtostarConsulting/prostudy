@@ -7,19 +7,18 @@ angular
 
 					console.log("Inside indexCtr");
 					$scope.loading = true;
-					
+
 					$scope.showCSSToast = function() {
 						$mdToast.show($mdToast.simple().content(
-								'Changes Saved Successfully.').position("top").hideDelay(
-								3000));
+								'Changes Saved Successfully.').position("top")
+								.hideDelay(3000));
 					};
 
 					$scope.showNRSSToast = function() {
 						$mdToast.show($mdToast.simple().content(
-								'New Record Saved Successfully.').position("top").hideDelay(
-								3000));
+								'New Record Saved Successfully.').position(
+								"top").hideDelay(3000));
 					};
-					
 
 					// ------------------------------------------login
 					// user---------------------
@@ -28,7 +27,7 @@ angular
 					$scope.googleUserDetails = "";
 					$scope.googleUser = 'null';
 					$scope.businessAccountName = "";
-					$scope.eid=null;
+					$scope.eid = null;
 					$scope.test;
 					$scope.loginClick = function() {
 						$state.go("login");
@@ -48,9 +47,7 @@ angular
 						isGoogleUser : true,
 						authority : []
 					}
-					
-					
-					
+
 					$scope.login = function() {
 						var UserService = appEndpointSF.getUserService();
 						UserService
@@ -64,10 +61,11 @@ angular
 														.saveLoggedInUser(
 																result.result);
 												$scope.curUser = result.result;
-														//$scope.businessAccountName = $scope.curUser.businessAccount.businessName;
+												// $scope.businessAccountName =
+												// $scope.curUser.businessAccount.businessName;
 												$window.location.reload();
 												$state.go("home");
-											
+
 											} else {
 												$log.debug("User Not logged  "
 														+ $scope.user.email_id);
@@ -139,7 +137,7 @@ angular
 																		.getLocalUserService()
 																		.saveLoggedInUser(
 																				loggedInUser);
-																
+
 																// $scope.businessAccountName
 																// = "XYZ Firm";
 																$state
@@ -147,26 +145,30 @@ angular
 																return;
 															}
 
-															var auth=$scope.curUser.authority;	
-															$scope.test=$scope.curUser.email_id;
-														    $scope.eid=$scope.test.substring($scope.test.indexOf("@")+1);
-														    if($scope.eid=="protostarcs.com" || $scope.eid=="protostar.co.in")
-														    	if(auth.indexOf("protostarcs.com") !=-1 || auth.indexOf("protostar.co.in")!=-1)
-														    	{}else{$scope.curUser.authority.push($scope.eid);}
-															
-														});
-					
+															var auth = $scope.curUser.authority;
+															$scope.test = $scope.curUser.email_id;
+															$scope.eid = $scope.test
+																	.substring($scope.test
+																			.indexOf("@") + 1);
+															if ($scope.eid == "protostarcs.com"
+																	|| $scope.eid == "protostar.co.in")
+																if (auth
+																		.indexOf("protostarcs.com") != -1
+																		|| auth
+																				.indexOf("protostar.co.in") != -1) {
+																} else {
+																	$scope.curUser.authority
+																			.push($scope.eid);
+																}
 
-														
-														
+														});
+
 										$log
 												.debug("Forwarding to home state...");
 										$state.go("home");
 
 									});
-					
-					
-					
+
 					$log.debug('$scope.curUser'
 							+ angular.toJson($scope.curUser));
 
@@ -238,15 +240,17 @@ angular
 					 * $scope.customerList = {};
 					 */
 					$scope.initGAPI();
-					
+
 					$scope.theme = 'default';
 
-					$scope.themeList = [ 'default', 'cyan', 'lime', 'green' ];
+					$scope.themeList = [ 'default', 'red', 'pink', 'purple',
+							'deep-purple', 'indigo', 'blue', 'light-blue',
+							'cyan', 'teal', 'green', 'light-green', 'lime',
+							'yellow', 'amber', 'orange', 'deep-orange',
+							'brown', 'grey', 'blue-grey' ];
 					$scope.nextTheme = function(themeName) {
 						$scope.theme = themeName
 					}
-					
-					
 
 				}).controller(
 				'AppCtrl',

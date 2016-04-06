@@ -21,14 +21,53 @@ app.filter('formatDate', function($filter) {
  * this.square = function(a) { return MathService.multiply(a,a); } });
  */
 app.config(function($mdThemingProvider) {
+
+	/*
+	 * Available palettes: red, pink, purple, deep-purple, indigo, blue,
+	 * light-blue, cyan, teal, green, light-green, lime, yellow, amber, orange,
+	 * deep-orange, brown, grey, blue-grey
+	 */
 	$mdThemingProvider.theme('default').primaryPalette('light-blue')
 			.accentPalette('pink');
-	$mdThemingProvider.theme('lime').primaryPalette('lime').accentPalette(
+	$mdThemingProvider.theme('red').primaryPalette('red').accentPalette(
 			'orange').warnPalette('blue');
-	$mdThemingProvider.theme('cyan').primaryPalette('cyan').accentPalette(
+	$mdThemingProvider.theme('pink').primaryPalette('pink').accentPalette(
 			'orange').warnPalette('blue');
-	$mdThemingProvider.theme('green').primaryPalette('green').accentPalette(
+	$mdThemingProvider.theme('purple').primaryPalette('purple').accentPalette(
 			'grey').warnPalette('blue');
+	$mdThemingProvider.theme('deep-purple').primaryPalette('deep-purple').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('indigo').primaryPalette('indigo').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('blue').primaryPalette('blue').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('light-blue').primaryPalette('light-blue').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('cyan').primaryPalette('cyan').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('teal').primaryPalette('teal').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('green').primaryPalette('green').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('light-green').primaryPalette('light-green').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('lime').primaryPalette('lime').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('yellow').primaryPalette('yellow').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('amber').primaryPalette('amber').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('orange').primaryPalette('orange').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('deep-orange').primaryPalette('deep-orange').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('brown').primaryPalette('brown').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('grey').primaryPalette('grey').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('blue-grey').primaryPalette('blue-grey').accentPalette(
+	'grey').warnPalette('blue');
+	
 
 	// This is the absolutely vital part, without this, changes will not cascade
 	// down through the DOM.
