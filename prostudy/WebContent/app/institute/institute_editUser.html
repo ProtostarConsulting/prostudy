@@ -41,20 +41,11 @@
 			</md-input-container>
 		</div>
 
-
-
-
 		<div layout="row" layout-align="centre centre" layout-xs="column">
 
-			<md-input-container flex> <label>Address<span
-				style="color: red" ng-show="userEditForm.address.$error.required"
-				class="mandatory">*</span></label> <input name="address" id="address"
-				ng-model="item.address" required name="address">
-			<div ng-messages="userEditForm.address.$error"
-				ng-if="userEditForm.address.$submitted || userEditForm.address.$touched">
-				<div ng-message="required">Please Enter Your Address.</div>
-			</div>
-			</md-input-container>
+			<md-input-container flex> <label>Address</label>
+			<input name="address" id="address" ng-model="item.address"
+				name="address"> </md-input-container>
 
 			<md-input-container flex> <label>Contact<span
 				style="color: red" ng-show="userEditForm.contact.$error.required"
@@ -71,7 +62,6 @@
 			</md-input-container>
 		</div>
 
-
 		<div layout="row" layout-align="centre centre" layout-xs="column">
 			<md-input-container flex> <label>Email-id<span
 				style="color: red" ng-show="userEditForm.email_id.$error.required"
@@ -83,36 +73,38 @@
 			</div>
 			</md-input-container>
 
-			<md-input-container flex ng-hide ="changeRole()"> <label>Role<span
-				style="color: red" ng-show="userEditForm.role.$error.required"
-				class="mandatory">*</span></label> <md-select required name="role"
-				ng-model="item.role" placeholder="User role"> <md-option>Admin</md-option>
-			<md-option>Student</md-option> <md-option>Teacher</md-option> </md-select> </md-input-container>
+			<md-input-container flex ng-hide="changeRole()">
+			<label>Role<span style="color: red"
+				ng-show="userEditForm.role.$error.required" class="mandatory">*</span></label>
+			<md-select required name="role" ng-model="item.role"
+				placeholder="User role"> <md-option>Admin</md-option> <md-option>Student</md-option>
+			<md-option>Teacher</md-option> </md-select> </md-input-container>
 
-			</div>
-			
-			
-			<div layout="row" layout-align="centre centre" layout-xs="column">
-				<md-input-container ng-show="item.role == 'Student'" flex="35">
-				<label>Standard</label> <input name="standard" id="standard"
-					ng-model="item.standard" readonly> </md-input-container>
+		</div>
+		<div layout="row" layout-align="centre centre" layout-xs="column">
+			<md-input-container ng-show="item.role == 'Student'" flex="35">
+			<label>Standard</label> <input name="standard" id="standard"
+				ng-model="item.standard" readonly> </md-input-container>
 
-				<md-input-container ng-show="item.role == 'Student'" flex="35">
-				<label>Division</label> <input name="division" id="division"
-					ng-model="item.division" readonly> </md-input-container>
-
-				<md-input-container ng-show="item.role == 'Student'" flex="35">
-				<label>Subject</label> <input name="subject" id="subject"
-					ng-model="item.subject" readonly> </md-input-container>
-			</div>
+			<md-input-container ng-show="item.role == 'Student'" flex="35">
+			<label>Division</label> <input name="division" id="division"
+				ng-model="item.division" readonly> </md-input-container>
 		</div>
 
-		<div layout="row" layout-align="center center">
-			<md-button class="md-raised md-primary" ng-click="updateUser()"
-				ng-disabled="userEditForm.$invalid">Save</md-button>
-			<md-button class="md-raised" ng-click="cancel()"> Cancel
-			</md-button>
+		<div layout="row" layout-xs="column" ng-show="item.role == 'Student'">
+			<label>Division Subjects: </label>
+			<md-checkbox name="subject" ng-repeat="subject in subjectList"
+				ng-click="toggleSelection($index)"
+				ng-checked="selectedSubjectsIndx[$index]">
+			{{subject.name}}</md-checkbox>
 		</div>
+	</div>
+
+	<div layout="row" layout-align="center center">
+		<md-button class="md-raised md-primary" ng-click="updateUser()"
+			ng-disabled="userEditForm.$invalid">Save</md-button>
+		<md-button class="md-raised" ng-click="cancel()"> Cancel </md-button>
+	</div>
 </form>
 
 

@@ -29,12 +29,23 @@ angular.module("prostudyApp").controller(
 											if($scope.selectedID == $scope.users[i].id)
 												{
 													$scope.user.push($scope.users[i]);
+													if($scope.user.role="Student")
+													{$scope.getSubjectsByStudentID();}
 												}
 										}
 									
 								});
 			}
 			$scope.getUsers();
+			$scope.subjects=[];
+			$scope.getSubjectsByStudentID = function() {
+				var SubjectService = appEndpointSF.getSubjectService();
+				SubjectService.getSubjectsByStudentID($scope.selectedID).then(
+						function(subList) {
+							$scope.subjects = subList;							
+						});
+			}
+			
 			
 			$scope.cancel = function() {
 				$state.go("^", {});

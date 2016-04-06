@@ -8,30 +8,13 @@ angular.module("prostudyApp").controller(
 						'Institute Student Added!').position("top").hideDelay(
 						3000));
 			};
-			
-			
-			
-			$scope.selectedStandard;
-			$scope.selectedDivision;
-			$scope.selectedSubject;
-
+			$scope.curUser = appEndpointSF.getLocalUserService()
+			.getLoggedinUser();			
 			$scope.isGoogleUser = false;
-			$scope.flag3 = true;
-		
-			$scope.selectedStandards = [];
-			$scope.selectedDivisions = [];
-			$scope.selectedSubjects = [];
+			$scope.flag3 = true;	
 			
-			$scope.standards = [];
-			$scope.divisions = [];
-			$scope.subjects = [];
-
-			$scope.selectedStdID;
-			$scope.stdList;
-			$scope.divList;
-			$scope.subList;
 			
-			$scope.currentInstID = $stateParams.currentInstID;
+			$scope.currentInstID = $scope.curUser.instituteID;
 
 			$log.debug("$scope.currentInstIDStud:" + $scope.currentInstID);
 
@@ -42,22 +25,20 @@ angular.module("prostudyApp").controller(
 			$scope.disableButton = function() {
 				$scope.isDisabled = true;
 			}
-	
-			
 			$scope.tempStudent = {
 					'instituteID' : $scope.currentInstID,
-					'institute' : $scope.name,
-					'firstName' : $scope.firstName,
-					'lastName' : $scope.lastName,
-					'email_id' : $scope.email_id,
-					'address' : $scope.address,
-					'contact' : $scope.contact,
+					'institute' : "",
+					'firstName' : "",
+					'lastName' :"" ,
+					'email_id' :"" ,
+					'address' :"",
+					'contact' :"",
 					'role' : "Student",
 					'standard' : "" ,
 					'division' : "",
 					'subject' : "",
-					'password' : $scope.password,
-					'isGoogleUser' : $scope.isGoogleUser
+					'password' :"",
+					'isGoogleUser' : $scope.isGoogleUser					
 				};
 				
 			$scope.standard= {
@@ -108,93 +89,19 @@ angular.module("prostudyApp").controller(
 				}, 2000);
 
 				return deferred.promise;
-			};
+			};			
 			
-			$scope.showMsg = function() {
-				alert('INSTITUTE DETAILS SAVED SUCCESSFULLLY...');
-			};
-
 			$scope.addInstituteStudents = function() {
 				var UserService = appEndpointSF.getUserService();
 				
 					UserService.addUser($scope.tempStudent).then(function(msgBean) {
-					
+						$scope.email_id=msgBean.email_id;
+					$log.debug("$scope.email_id"+$scope.email_id);
+						$state.go("institute.studFillbasics", {currstud:$scope.email_id});
 				});
-				$scope.showStudentSavedToast();
-				$scope.showMsg();
-				$state.go("institute");
+				$scope.showStudentSavedToast();				
 
-			}
-			
+			}		
 
-			$scope.getStandardByInstitute = function() {
-
-				var StandardService = appEndpointSF
-						.getStandardService();
-				StandardService.getStandardByInstitute($scope.currentInstID).then(
-						function(standardList) {
-							for(var i=0; i< standardList.length; i++)
-								{
-									$scope.standards.push(standardList[i].name);
-									
-								}
-							$scope.stdList = standardList;
-							
-						});
-			}
-			
-			$scope.getStandardByInstitute();
-			
-			$scope.getDivisionByStandard = function() {
-			
-				for(var i=0;i< $scope.stdList.length;i++)
-				{
-					if($scope.tempStudent.standard == $scope.stdList[i].name)
-					{
-						$scope.selectedStdID = $scope.stdList[i].id;
-					}
-				}
-				var DivisionService = appEndpointSF
-						.getDivisionService();
-				DivisionService.getDivisionByStandard($scope.selectedStdID).then(
-						function(divisionList) {
-							for(var i=0; i< divisionList.length; i++)
-							{
-								$scope.divisions.push(divisionList[i].name);
-							}
-							$scope.divList = divisionList;
-						});
-			}
-			
-			$scope.getSubjectByDivision = function() {
-				
-				for(var i=0;i<$scope.divList.length;i++)
-				{
-					if($scope.tempStudent.division == $scope.divList[i].name)
-					{
-						$scope.selectedDivID = $scope.divList[i].id;
-					}
-				}
-				var SubjectService = appEndpointSF.getSubjectService();
-				SubjectService.getSubjectByDivision($scope.selectedDivID).then(
-						function(subjectList) {
-							for(var i=0; i< subjectList.length; i++)
-							{
-								$scope.subjects.push(subjectList[i].name);
-							}
-
-						});
-				$scope.subjects.splice(0,$scope.subjects.length);
-			}
-			
-			 $scope.selected = [];
-		      $scope.toggle = function (subject, list) {
-		        var idx = list.indexOf(subject);
-		        if (idx > -1) list.splice(idx, 1);
-		        else list.push(subject);
-		      };
-		      $scope.exists = function (subject, list) {
-		        return list.indexOf(subject) > -1;
-		      };
 			
 		});

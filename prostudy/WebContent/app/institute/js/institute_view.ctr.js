@@ -180,20 +180,17 @@ angular.module("prostudyApp").controller(
 						});
 
 			}
-
 			$scope.addInstituteStudents = function() {
-
 				var UserService = appEndpointSF.getUserService();
+				
 				UserService.addUser($scope.tempStudent).then(function(msgBean) {
-					$log.debug("msgBean.id:" + msgBean.id);
-					
-
-				});
-
-				$scope.showStudentSavedToast();
+					$scope.email_id=msgBean.email_id;
+					$scope.showStudentSavedToast();
+					$state.go("institute.studFillbasics", {currstud:$scope.email_id});
+			});			
 			
-				$scope.cancelButton();
-			}
+		}			
+		
 
 			$scope.addInstituteStandards = function() {
 				var StandardService = appEndpointSF.getStandardService();
@@ -562,5 +559,6 @@ angular.module("prostudyApp").controller(
 				$state.go('^', {});
 			};
 			$scope.selected = [];
+
 
 		});

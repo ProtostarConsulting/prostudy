@@ -109,7 +109,6 @@ angular.module("prostudyApp").controller(
 						});
 
 			}
-
 			$scope.addInstituteDivisions = function() {
 				var DivisionService = appEndpointSF.getDivisionService();
 
@@ -164,22 +163,18 @@ angular.module("prostudyApp").controller(
 				$scope.showTeacherSavedToast();
 				$scope.cancelButton();
 			}
-
 			$scope.addInstituteStudents = function() {
-
-				var UserService = appEndpointSF.getUserService();
-				UserService.addUser($scope.tempStudent).then(function(msgBean) {
-					$log.debug("msgBean.id:" + msgBean.id);
-					/*$scope.tempStudSub.studID = msgBean.id;
-					$scope.tempStudSub.name = $scope.selected;*/
-
-				});
-
+			var UserService = appEndpointSF.getUserService();
+			$scope.tempStudent.instituteID=$scope.selectedInstituteID;
+			
+			UserService.addUser($scope.tempStudent).then(function(msgBean) {
+				$scope.email_id=msgBean.email_id;
 				$scope.showStudentSavedToast();
-				// $scope.addStudSubject();
-				$scope.cancelButton();
-			}
+				$state.go("institute.studFillbasics", {currstud:$scope.email_id});
+		});
+		
 
+	}		
 			$scope.showselectedInstitute = function() {
 				var InstituteService = appEndpointSF.getInstituteService();
 				InstituteService.getInstituteById($scope.currentInstID)

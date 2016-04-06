@@ -65,11 +65,12 @@
 		<md-input-container flex> <label>Email-id<span
 			style="color: red"
 			ng-show="instituteTeacherForm.email_id.$error.required"
-			class="mandatory">*</span></label> <input ng-model="tempTeacher.email_id"
+			class="mandatory">*</span></label> <input ng-model="tempTeacher.email_id" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
 			type="email" name="email_id" ng-required="true">
 		<div ng-messages="instituteTeacherForm.email_id.$error"
 			ng-if="instituteTeacherForm.email_id.$submitted || instituteTeacherForm.email_id.$touched">
-			<div ng-message="required">Please Enter Student Valid email_id.</div>
+			<div ng-message="required">Email-Id should not Empty.</div>
+				<div ng-message="pattern">Please Enter Valid Email-Id.</div>
 		</div>
 		</md-input-container>
 	</div>
@@ -98,7 +99,7 @@
 			ng-if="instituteTeacherForm.Confirmpassword.$submitted || instituteTeacherForm.Confirmpassword.$touched">
 			<div ng-message="required">Please Enter Confirm Password.</div>
 		</div>
-			<span style="color: red" id="err">{{checkConfirmPassword(tempTeacher.password, tempTeacher.confirmpassword)}}</span> 
+			<span style="color: red" id="err" ng-show="tempTeacher.confirmpassword">{{checkConfirmPassword(tempTeacher.password, tempTeacher.confirmpassword)}}</span> 
 		</md-input-container>
 	</div>
 

@@ -66,11 +66,12 @@
 		<md-input-container flex> <label>Email-id<span
 			style="color: red"
 			ng-show="instituteStudentForm.email_id.$error.required"
-			class="mandatory">*</span></label> <input type="email" name="email_id"
+			class="mandatory">*</span></label> <input type="email" name="email_id" 	ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
 			ng-model="tempStudent.email_id" ng-required="true">
 		<div ng-messages="instituteStudentForm.email_id.$error"
 			ng-if="instituteStudentForm.email_id.$submitted || instituteStudentForm.email_id.$touched">
-			<div ng-message="required">Please Enter your Email-Id.</div>
+				<div ng-message="required">Email-Id should not Empty.</div>
+				<div ng-message="pattern">Please Enter Valid Email-Id.</div>
 		</div>
 		</md-input-container>
 	</div>
@@ -101,67 +102,9 @@
 			ng-if="instituteStudentForm.Confirmpassword.$submitted || instituteStudentForm.Confirmpassword.$touched">
 			<div ng-message="required">Please Enter Confirm Password.</div>
 		</div>
-		<span style="color: red" id="err">{{checkConfirmPassword(tempStudent.password, tempStudent.confirmpassword)}}</span> 
+		<span style="color: red" id="err" ng-show="tempStudent.confirmpassword">{{checkConfirmPassword(tempStudent.password, tempStudent.confirmpassword)}}</span> 
 		</md-input-container>
-	</div>
-
-
-	<div layout="row" layout-xs="column">
-
-
-		<md-input-container flex> <label>Standard<span
-			style="color: red"
-			ng-show="instituteStudentForm.standard.$error.required"
-			class="mandatory">*</span></label> <md-select name="standard"
-			ng-model="tempStudent.standard" ng-change="getDivisionByStandard()"
-			ng-required="true"> <md-option ng-value="standard"
-			ng-repeat="standard in standards track by $index ">{{standard}}</md-option>
-		</md-select>
-		<div ng-messages="instituteStudentForm.standard.$error"
-			ng-if="instituteStudentForm.standard.$submitted || instituteStudentForm.standard.$touched">
-			<div ng-message="required">Please Select Standard.</div>
-		</div>
-		</md-input-container>
-
-		<md-input-container flex> <label>Division<span
-			style="color: red"
-			ng-show="instituteStudentForm.division.$error.required"
-			class="mandatory">*</span></label> <md-select name="division"
-			ng-model="tempStudent.division" ng-change="getSubjectByDivision()"
-			ng-required="true"> <md-option ng-value="division"
-			ng-repeat="division in divisions track by $index ">{{division}}</md-option>
-		</md-select>
-		<div ng-messages="instituteStudentForm.division.$error"
-			ng-if="instituteStudentForm.division.$submitted || instituteStudentForm.division.$touched">
-			<div ng-message="required">Please Select Division.</div>
-		</div>
-		</md-input-container>
-
-		<!-- <md-input-container flex="35"> <label>Subject<span
-			style="color: red"
-			ng-show="instituteStudentForm.subject.$error.required"
-			class="mandatory">*</span></label> <md-select name="subject"
-			ng-model="tempStudent.subject" ng-change="" ng-required="true">
-		<md-option ng-value="subject"
-			ng-repeat="subject in subjects track by $index ">{{subject}}</md-option>
-		</md-select>
-		<div ng-messages="instituteStudentForm.subject.$error"
-			ng-if="instituteStudentForm.subject.$submitted || instituteStudentForm.subject.$touched">
-			<div ng-message="required">Please Select Subject.</div>
-		</div>
-		</md-input-container> -->
-	</div>
-
-	<div layout-align="center center">
-	<label>Select subjects</label>
-	</div>
-	
-	<div layout="row" layout-align="center center" layout-xs="column" flex ng-repeat="subject in subjects">
-		<md-checkbox ng-model="selected" 
-			ng-click="toggle(subject, selected)"> {{subject}}</md-checkbox>
-	</div>
-	
-	
+	</div>	
 
 	<div layout="row" layout-align="center center">
 		<md-button class="md-raised md-primary"
