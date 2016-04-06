@@ -367,7 +367,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('setup.changetheme', {
 		url : "/changetheme",
 		templateUrl : '/app/setup/setup_changetheme.html',
-		controller : 'setup.changeplan',
+		controller : 'setup.changetheme',
 
 	}).state('setup.userlist', {
 		url : "/userlist",
