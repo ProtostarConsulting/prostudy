@@ -4,7 +4,6 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 	// When app is in test mode, it will return service from local db store.
 	// Else actual google end points.
 
-
 	// var isTestMode = true;
 	var isTestMode = false;
 
@@ -23,7 +22,7 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 		else
 			return googleEndpointSF.getUserService();
 	};
-	
+
 	endpointFactory.getCertificateService = function() {
 
 		if (isTestMode)
@@ -31,7 +30,7 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 		else
 			return googleEndpointSF.getCertificateService();
 	};
-	
+
 	endpointFactory.getStandardService = function() {
 
 		if (isTestMode)
@@ -39,7 +38,7 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 		else
 			return googleEndpointSF.getStandardService();
 	};
-	
+
 	endpointFactory.getDivisionService = function() {
 
 		if (isTestMode)
@@ -47,7 +46,7 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 		else
 			return googleEndpointSF.getDivisionService();
 	};
-	
+
 	endpointFactory.getSubjectService = function() {
 
 		if (isTestMode)
@@ -55,7 +54,7 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 		else
 			return googleEndpointSF.getSubjectService();
 	};
-	
+
 	endpointFactory.getStudSubService = function() {
 
 		if (isTestMode)
@@ -149,13 +148,12 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 		apisToLoad = 4; // must match number of calls to
 
 		gapi.client.load('userService', 'v0.1', function() {
-			$log.debug("userService Loaded......");			
+			$log.debug("userService Loaded......");
 
 		}, apiRoot);
 
 		gapi.client.load('chapterService', 'v0.1', function() {
 			$log.debug("chapterService Loaded....");
-
 
 		}, apiRoot);
 
@@ -166,73 +164,61 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 
 		gapi.client.load('studentService', 'v0.1', function() {
 			$log.debug("StudentService Loaded....");
-		
 
 		}, apiRoot);
 
 		gapi.client.load('questionService', 'v0.1', function() {
 			$log.debug("QuestionService Loaded....");
-			
 
 		}, apiRoot);
 
 		gapi.client.load('practiceExamService', 'v0.1', function() {
 			$log.debug("PracticeExamService Loaded....");
-			
 
 		}, apiRoot);
-		
 
 		gapi.client.load('syllabusService', 'v0.1', function() {
 			$log.debug("syllabusService Loaded......");
-			
 
 		}, apiRoot);
-		
 
 		gapi.client.load('practiceExamResultService', 'v0.1', function() {
 			$log.debug("PracticeExamResultService Loaded......");
-			
 
 		}, apiRoot);
 
 		gapi.client.load('instituteService', 'v0.1', function() {
 			$log.debug("InstituteService Loaded......");
-			
 
 		}, apiRoot);
-		
+
 		gapi.client.load('attendanceService', 'v0.1', function() {
 			$log.debug("AttendanceService Loaded......");
-			
 
 		}, apiRoot);
-		
+
 		gapi.client.load('standardService', 'v0.1', function() {
 			$log.debug("StandardService Loaded......");
-			
 
 		}, apiRoot);
-		
+
 		gapi.client.load('divisionService', 'v0.1', function() {
 			$log.debug("DivisionService Loaded......");
-			
 
 		}, apiRoot);
-		
+
 		gapi.client.load('subjectService', 'v0.1', function() {
 			$log.debug("SubjectService Loaded......");
-			
 
 		}, apiRoot);
-		
+
 		gapi.client.load('certificateService', 'v0.1', function() {
 			$log.debug("CertificateService Loaded......");
 			endpointFactory.is_service_ready = true;
 			deferred.resolve();
 
 		}, apiRoot);
-		
+
 		gapi.client.load('studSubService', 'v0.1', function() {
 			$log.debug("StudSubService Loaded......");
 			endpointFactory.is_service_ready = true;
@@ -243,31 +229,36 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 
 	};
 
-	
 	endpointFactory.getUtilityService = function() {
-		
-		return {
-			checkConfirmPassword: function(pwd, cpwd) {	
-				
-				if(pwd!="undefined" && cpwd!="undefined")
-				{					
-				if(pwd==cpwd)
-				{
-					return null;
-				}
-				else 
-				{
-				 return "Password Does Not Match.";						
-				}	
-				}
-			}
-			
-		};
-		
-		
-	};
 
-	
-	
+		return {
+			checkConfirmPassword : function(pwd, cpwd) {
+
+				if (pwd != "undefined" && cpwd != "undefined") {
+					if (pwd == cpwd) {
+						return null;
+					} else {
+						return "Password Does Not Match.";
+					}
+				}
+			},
+
+			objectArrayContains : function(array, value) {
+				var foundIndex = -1;
+				for (i = 0; i < array.length; i++) {
+					if (value.id === array[i].id) {
+						foundIndex = i;
+						break;
+					}
+				}
+
+				return foundIndex > -1;
+
+			}
+
+		}
+
+	}
+
 	return endpointFactory;
 }

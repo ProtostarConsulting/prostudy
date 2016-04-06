@@ -152,7 +152,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/institute/addStudents/:currentInstID",
 		templateUrl : '/app/institute/institute_addStudents.html',
 		controller : 'instituteAddStudCtr'
-	}).state('institute.addStandards', {
+	})
+	.state('institute.studFillbasics', {
+		url : "/institute/fillbasics",
+		templateUrl : '/app/institute/institute_student_fillbasics.html',
+		controller : 'instituteStudentFillbasicsCtr',
+		params : {
+			currstud : null			
+		}
+	})
+	.state('institute.addStandards', {
 		url : "/institute/addStandards/:currentInstID",
 		templateUrl : '/app/institute/institute_addStandards.html',
 		controller : 'instituteAddInfoCtr'
@@ -169,9 +178,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/institute/institute_list.html',
 		controller : 'instituteListCtr'
 	}).state('institute.view', {
-		url : "/view/:currentInstID",
+		url : "/view",
 		templateUrl : '/app/institute/institute_view.html',
-		controller : 'instituteViewCtr'
+		controller : 'instituteViewCtr'			
 	}).state('institute.list_view', {
 		url : "/list_view/:selectedInstituteID",
 		templateUrl : '/app/institute/institute_list_view.html',
@@ -417,21 +426,30 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/student/student_module.html',
 		controller : 'studentModuleCtr'
 	}).state('student.add', {
-		url : "/add",
-		templateUrl : '/app/student/student_add.html',
-		controller : 'studentPageCtr'
+		url : "/addstudent",
+		templateUrl : '/app/institute/institute_addStudents.html',
+		controller : 'instituteAddStudCtr'
 	}).state('student.list', {
 		url : "/list",
 		templateUrl : '/app/student/student_list.html',
 		controller : 'studentListPageCtr'
 	}).state('student.edit', {
-		url : "/edit/:selectedID",
-		templateUrl : '/app/student/student_edit.html',
-		controller : 'studentEditCtr'
+		url : "/edit",
+		templateUrl : '/app/institute/institute_editUser.html',
+		controller : 'userEditCtr',
+		params : {
+			selectedStudEmailId : null	,
+			currentInstID : null,
+			selectedID : null
+		}
 	}).state('student.view', {
-		url : "/view/:selectedID",
+		url : "/view",
 		templateUrl : '/app/student/student_view.html',
-		controller : 'studentViewCtr'
+		controller : 'studentViewCtr',
+		params : {
+			selectedStudEmailId : null,
+			selectedID : null
+		}	
 	}).state('syllabus', {
 		url : "/syllabus",
 		templateUrl : '/app/syllabus/syllabus_module.html',
