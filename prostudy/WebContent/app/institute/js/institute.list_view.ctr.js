@@ -492,10 +492,7 @@ angular.module("prostudyApp").controller(
 
 					return deferred.promise;
 				};
-				$scope.cancelButton = function() {
-					$log.debug("inside cancelButton");
-					$state.go('^', {});
-				};
+				
 				$scope.selected = [];
 
 			$scope.cancelButton = function() {
