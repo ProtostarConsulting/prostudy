@@ -1,12 +1,11 @@
 package com.protostar.billnstock.entity;
 
-import java.io.Serializable;
+public class Address {
+	public enum AddressType {
+		COMMUNICATION, PERMANANT
+	};
 
-public class Address implements Serializable {
-
-	private static final long serialVersionUID = 1L;
-
-	private String addressType = "Default";
+	private AddressType addressType = AddressType.COMMUNICATION;
 	private String line1;
 	private String line2;
 	private String city;
@@ -68,11 +67,11 @@ public class Address implements Serializable {
 		this.pin = pin;
 	}
 
-	public String getAddressType() {
+	public AddressType getAddressType() {
 		return addressType;
 	}
 
-	public void setAddressType(String addressType) {
+	public void setAddressType(AddressType addressType) {
 		this.addressType = addressType;
 	}
 
