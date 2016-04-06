@@ -33,8 +33,8 @@ public class StudSubService {
 	 }	
 	@ApiMethod(name = "getStudSubByStudIdAndSubId", path="getStudSubByStudIdAndSubId")
 	 public StudSubEntity getStudSubByStudIdAndSubId(@Named("studID") Long studID,@Named("subID") Long subID) {	
-	  List<StudSubEntity> subList = ofy().load().type(StudSubEntity.class).filter("studID", Ref.create(Key.create(UserEntity.class, studID))).filter("subID", Ref.create(Key.create(SubjectEntity.class, subID))).list();
-	 	  return subList.get(0);	  
+	  StudSubEntity studSub = ofy().load().type(StudSubEntity.class).filter("studID", Ref.create(Key.create(UserEntity.class, studID))).filter("subID", Ref.create(Key.create(SubjectEntity.class, subID))).first().now();
+	 	  return studSub;	  
 	 }	
 	@ApiMethod(name = "removeStudSubject", path="removeStudSubject")
 	public void removeStudSubject(StudSubEntity studsub) {

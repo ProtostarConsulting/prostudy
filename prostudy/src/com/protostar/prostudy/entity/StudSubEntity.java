@@ -11,9 +11,9 @@ public class StudSubEntity {
 	@Id
 	private Long id;
 	@Index
-	Ref<UserEntity> studID;
+	private Ref<UserEntity> studID;
 	@Index
-	Ref<SubjectEntity> subID;
+	private Ref<SubjectEntity> subID;
 	
 	@Index
 	private boolean active;
