@@ -25,9 +25,9 @@
 				<td>{{student.email_id}}</td>
 				<td>{{student.address}}</td>
 				<td>{{student.contact}}</td>
-				<td><a ui-sref="student.edit({selectedID : student.id})"><md-button class="md-raised md-primary" ng-click=""
+				<td><a ui-sref="student.edit({selectedStudEmailId : student.email_id,currentInstID:curUser.instituteID,selectedID:student.id})"><md-button class="md-raised md-primary" ng-click=""
 					>Edit</md-button></a></td>
-				<td><a ui-sref="student.view({selectedID : student.id})"><md-button class="md-raised md-primary" ng-click=""
+				<td><a ui-sref="student.view({selectedStudEmailId : student.email_id})"><md-button class="md-raised md-primary" ng-click=""
 					>View</md-button></a></td>
 			</tr>
 		</tbody>

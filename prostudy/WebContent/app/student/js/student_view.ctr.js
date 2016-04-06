@@ -1,45 +1,34 @@
 angular.module("prostudyApp").controller(
 		"studentViewCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, objectFactory, appEndpointSF, tableTestDataFactory,$state,
-				appEndpointSF,$stateParams) {
+				$log, objectFactory, appEndpointSF, tableTestDataFactory,
+				$state, $timeout, appEndpointSF, $stateParams) {
 
-			$scope.curUser = appEndpointSF.getLocalUserService()
-					.getLoggedinUser();
+			$scope.selectedStudEmailId = $stateParams.selectedStudEmailId;
+			$scope.subjects = [];
 
-			$scope.showSavedToast = function() {
-				$mdToast.show($mdToast.simple().content('Student Data Saved!')
-						.position("top").hideDelay(3000));
-			};
-					   
-			
-			$scope.selectedID = $stateParams.selectedID;
-			$scope.student = [];
-			
-			$scope.getStudents = function() {
+			$scope.getStudent = function() {
 
 				var UserService = appEndpointSF.getUserService();
-				UserService.getUserByInstitute($scope.curUser.instituteID)
-						.then(
-								function(studentList) {
-									$scope.Students = studentList;
-									for(i=0;i<$scope.Students.length;i++)
-										{
-											if($scope.selectedID == $scope.Students[i].id)
-												{
-													$scope.student.push($scope.Students[i]);
-												}
-										}
-									
-								});
+				UserService.getUserByEmailID($scope.selectedStudEmailId).then(
+						function(student) {
+							$scope.student = student;
+							$scope.getSubjectsByStudentID();
+						});
 			}
-			$scope.getStudents();
-			
+			$scope.getStudent();
+
+			$scope.getSubjectsByStudentID = function() {
+				var SubjectService = appEndpointSF.getSubjectService();
+				SubjectService.getSubjectsByStudentID($scope.student.id).then(
+						function(subList) {
+							$scope.subjects = subList;
+							$scope.checked = true;
+						});
+			}
+
 			$scope.cancel = function() {
 				$state.go("^", {});
 			}
-			
-			
-			
 
 		});
