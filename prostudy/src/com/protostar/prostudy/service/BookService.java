@@ -51,7 +51,7 @@ public class BookService {
 		return bookByStandardId;
 	}
 
-	@ApiMethod(name = "getBooksByInstitute", path = "Somepath_realted_to_your_service")
+	@ApiMethod(name = "getBooksByInstitute", path = "getBooksByInstitute")
 	public List<BookEntity> getBooksByInstitute(
 			@Named("instituteID") Long instituteID) {
 		System.out.println("inside getBooksByInstitute");
