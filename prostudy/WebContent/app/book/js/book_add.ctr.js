@@ -4,7 +4,7 @@ angular.module("prostudyApp").controller(
 				$log, $q, tableTestDataFactory, $state, appEndpointSF, $sce,
 				boardList) {
 
-			console.log("Inside bookAddCtr");
+			
 			$scope.curUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
 
@@ -105,10 +105,8 @@ angular.module("prostudyApp").controller(
 
 				BookService.addBook($scope.tempBook).then(function(msgBean) {
 
-					$log.debug("msgBean.msg:" + msgBean.msg);
 					$scope.showSavedToast();
 
-					$log.debug("tempBook" + angular.toJson($scope.tempBook));
 					$scope.tempBook = {
 
 						id : "",
@@ -125,28 +123,19 @@ angular.module("prostudyApp").controller(
 					};
 
 				});
-				$log.debug("No4");
+				
+				
+				$state.go('book');
 			}
 
 			$scope.chapters = [];
-
-			/*
-			 * $scope.getChaptersByInstitute = function() {
-			 * 
-			 * var ChapterService = appEndpointSF.getChapterService();
-			 * ChapterService.getChaptersByInstitute(
-			 * $scope.curUser.instituteID).then(function(chapterList) {
-			 * $scope.chapters = chapterList;
-			 * 
-			 * }); } $scope.getChaptersByInstitute();
-			 */
 
 			$scope.getChaptersByClass = function() {
 
 				var ChapterService = appEndpointSF.getChapterService();
 				ChapterService.getChaptersByClass($scope.tempBook.standard,
-						$scope.tempBook.division, $scope.tempBook.subject).then(
-						function(chapterList) {
+						$scope.tempBook.division, $scope.tempBook.subject)
+						.then(function(chapterList) {
 							$scope.chapters = chapterList;
 
 						});
