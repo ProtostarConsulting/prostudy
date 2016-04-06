@@ -1,66 +1,73 @@
-var app= angular.module("stockApp");
+var app = angular.module("stockApp");
 
-app.controller(
-		"customerListCtr",
-		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log,$stateParams, objectFactory, appEndpointSF) {
+app.controller("customerListCtr", function($scope, $window, $mdToast, $timeout,
+		$mdSidenav, $mdUtil, $log, $stateParams, objectFactory, appEndpointSF) {
 
-			$log.debug("Inside customerListCtr");
+	$log.debug("Inside customerListCtr");
 
-			  $scope.query = {
-				         order: 'name',
-				         limit: 5,
-				         page: 1
-				       };
-			  
-			$scope.curUser = appEndpointSF.getLocalUserService()
-			.getLoggedinUser();
-			$log.debug("$scope.curUser++++++++"+angular.toJson($scope.curUser));
+	$scope.query = {
+		order : 'name',
+		limit : 5,
+		page : 1
+	};
 
-//			$scope.cust.businessAccount =$scope.curUser.businessAccount;
-			
-			$scope.getAllCustomersByBusiness = function() {
-	
-				var customerService = appEndpointSF.getCustomerService();
+	$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
+	$log.debug("$scope.curUser++++++++" + angular.toJson($scope.curUser));
 
-				customerService.getAllCustomersByBusiness($scope.curUser.businessAccount.id).then(
-						function(custList) {
-							$log.debug("Inside Ctr getAllCustomers");
-							$scope.customers = custList.items;
-							$log.debug("Inside Ctr $scope.customers:"
-									+ angular.toJson($scope.customers));
-						});
-			}
+	// $scope.cust.businessAccount =$scope.curUser.businessAccount;
 
-			$scope.customers = [];
-			$scope.getAllCustomersByBusiness();
-			
-			
-			$scope.selected = [];
-			
-			$scope.toggleRight = buildToggler('right');
+	$scope.getAllCustomersByBusiness = function() {
 
-			function buildToggler(navID) {
-				var debounceFn = $mdUtil.debounce(function() {
-					$mdSidenav(navID).toggle().then(function() {
-						$log.debug("toggle " + navID + " is done");
-					});
-				}, 200);
-				return debounceFn;
-			}
+		var customerService = appEndpointSF.getCustomerService();
 
-			$scope.close = function() {
-				$mdSidenav('right').close().then(function() {
-					$log.debug("close RIGHT is done");
+		customerService.getAllCustomersByBusiness(
+				$scope.curUser.businessAccount.id).then(
+				function(custList) {
+					$log.debug("Inside Ctr getAllCustomers");
+					$scope.customers = custList.items;
+					$log.debug("Inside Ctr $scope.customers:"
+							+ angular.toJson($scope.customers));
 				});
-			};
-			
-			$scope.showSimpleToast = function() {
-				$mdToast.show($mdToast.simple().content('Customer Data Saved!')
-						.position("top").hideDelay(3000));
-			};
+	}
+
+	$scope.waitForServiceLoad = function() {
+		if (appEndpointSF.is_service_ready) {
+			$scope.getAllCustomersByBusiness();
+		} else {
+			$log.debug("Services Not Loaded, watiting...");
+			$timeout($scope.waitForServiceLoad, 1000);
+		}
+	}
 	
-			$scope.back = function() {
-				 window.history.back();
-			}
+
+	$scope.customers = [];
+	$scope.selected = [];	
+	$scope.waitForServiceLoad();
+	
+	
+	$scope.toggleRight = buildToggler('right');
+
+	function buildToggler(navID) {
+		var debounceFn = $mdUtil.debounce(function() {
+			$mdSidenav(navID).toggle().then(function() {
+				$log.debug("toggle " + navID + " is done");
+			});
+		}, 200);
+		return debounceFn;
+	}
+
+	$scope.close = function() {
+		$mdSidenav('right').close().then(function() {
+			$log.debug("close RIGHT is done");
 		});
+	};
+
+	$scope.showSimpleToast = function() {
+		$mdToast.show($mdToast.simple().content('Customer Data Saved!')
+				.position("top").hideDelay(3000));
+	};
+
+	$scope.back = function() {
+		window.history.back();
+	}
+});
