@@ -12,6 +12,7 @@ public class DivisionEntity {
 	private Long id;
 	@Index
 	private Long standardID;
+	@Index
 	private String name;
 	
 	public Long getId() {
@@ -31,9 +32,5 @@ public class DivisionEntity {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	
-	
-	
-
+	}	
 }

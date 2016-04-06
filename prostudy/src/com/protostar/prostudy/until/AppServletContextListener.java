@@ -64,8 +64,7 @@ public class AppServletContextListener implements ServletContextListener {
 		  ObjectifyService.register(DivisionEntity.class);			 
 		  ObjectifyService.register(SubjectEntity.class);		  
 		  ObjectifyService.register(CertificateEntity.class);
-		  ObjectifyService.register(YearCounterEntity.class);
-		
+		  ObjectifyService.register(YearCounterEntity.class);		
 		  ObjectifyService.register(StudSubEntity.class);
 		  ObjectifyService.register(RoleSecEntity.class);
 

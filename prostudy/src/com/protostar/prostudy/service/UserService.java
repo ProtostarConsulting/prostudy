@@ -21,14 +21,14 @@ public class UserService {
 	public UserEntity addUser(UserEntity usr) {
 		String nextPRN = UtilityService.getNextPRN(usr.getRole());
 		usr.setPRN(nextPRN);
-		
+
 		UserEntity now = usr;
 		ofy().save().entity(usr).now();
-		System.out.println("now_user :"+now);
+		System.out.println("now_user :" + now);
 		return now;
-		
+
 	}
-	
+
 	@ApiMethod(name = "updateUser")
 	public void updateUser(UserEntity usr) {
 		Key<UserEntity> now = ofy().save().entity(usr).now();
@@ -44,6 +44,13 @@ public class UserService {
 		List<UserEntity> list = ofy().load().type(UserEntity.class)
 				.filter("email_id", email).list();
 		return (list == null || list.size() == 0) ? null : list.get(0);
+	}
+
+	@ApiMethod(name = "checkAlreadyExist",path="checkAlreadyExist")
+	public UserEntity checkAlreadyExist(@Named("email_id") String email) {
+		List<UserEntity> list = ofy().load().type(UserEntity.class)
+				.filter("email_id", email).list();
+		return (list == null || list.size() == 0) ?  null : list.get(0);
 	}
 
 	@ApiMethod(name = "getUserByInstitute")
@@ -68,7 +75,7 @@ public class UserService {
 			if (foundUser.getPassword().equals(pass)) {
 				System.out.println("Pass matched:");
 				return foundUser;
-			} else {				
+			} else {
 				System.out.println("Pass NOT matched:");
 				return null;
 			}
@@ -89,8 +96,7 @@ public class UserService {
 
 		return list;
 	}
-	
-	
+
 	@ApiMethod(name = "addOrUpdateRoleSec", path="addOrUpdateRoleSec")
 	public void addOrUpdateRoleSec(RoleSecEntity roleSec) {	
 		Key<RoleSecEntity> now = ofy().save().entity(roleSec).now();
@@ -101,6 +107,7 @@ public class UserService {
 	public List<RoleSecEntity> getRoleSecList() {
 		return ofy().load().type(RoleSecEntity.class).list();
 	}
+ 
 
 	@ApiMethod(name = "getAuthorityByRole")
 	public List<RoleSecEntity> getAuthorityByRole(
@@ -112,7 +119,4 @@ public class UserService {
 		return moduleList;
 
 	}
-
-	
-	
 }

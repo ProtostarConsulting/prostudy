@@ -11,6 +11,7 @@ public class StandardEntity {
 	private Long id;
 	@Index
 	private Long instituteID;
+	@Index
 	private String name;
 
 	public Long getId() {

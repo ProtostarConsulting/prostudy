@@ -10,6 +10,7 @@ import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
 import com.protostar.prostudy.entity.DivisionEntity;
+import com.protostar.prostudy.entity.SubjectEntity;
 
 
 @Api(name = "divisionService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
@@ -23,11 +24,26 @@ public class DivisionService {
 		return now;
 	}
 
-	@ApiMethod(name = "getDivision")
+	@ApiMethod(name = "getDivisions")
 	public List<DivisionEntity> getStandard() {
 		return ofy().load().type(DivisionEntity.class).list();
 	}
-	
+	@ApiMethod(name = "getDivisionById")
+	public DivisionEntity getDivisionById(@Named("id") Long id) {
+		DivisionEntity div = ofy().load().type(DivisionEntity.class)
+				.id(id).now();
+		return div;
+	}
+
+	@ApiMethod(name = "getSubjectsByDivName", path="getSubjectsByDivName")
+	public List<SubjectEntity> getSubjectsByDivName(@Named("name") String divname) {
+		List<DivisionEntity> div = ofy().load().type(DivisionEntity.class)
+				.filter("name", divname).list();
+		SubjectService subjectService=new SubjectService();
+		List<SubjectEntity> subList = subjectService.getSubjectByDivision(div.get(0).getId());	
+		
+		return subList;
+	}
 	@ApiMethod(name = "getDivisionByStandard")
 	 public List<DivisionEntity> getDivisionByStandard(@Named("standardID") Long standardID) {
 		System.out.println("inside getDivisionByStandard");
