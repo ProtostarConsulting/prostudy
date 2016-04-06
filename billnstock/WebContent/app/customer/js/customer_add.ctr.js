@@ -27,9 +27,13 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 			$log.debug("Inside Ctr addCustomer");
 			$log.debug("msgBean.msg:" + msgBean.msg);
 			$scope.showSimpleToast();
+			
 
 		});
 		$log.debug("No4");
+		$scope.custForm.$setPristine();
+		$scope.custForm.$setValidity();
+		$scope.custForm.$setUntouched();
 		$scope.cust = {};
 		//$scope.clearAll();
 		
