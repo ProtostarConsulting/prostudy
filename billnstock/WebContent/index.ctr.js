@@ -26,7 +26,7 @@ angular
 					$scope.curUser = null;
 					$scope.googleUserDetails = "";
 					$scope.googleUser = 'null';
-					$scope.businessAccountName = "";
+					$scope.businessName = "";
 					$scope.eid = null;
 					$scope.test;
 					$scope.loginClick = function() {
@@ -39,7 +39,7 @@ angular
 							.getLoggedinUser();
 
 					$scope.user = {
-						businessAccount : "",
+						business : "",
 						email_id : "",
 						firstName : "",
 						lastName : "",
@@ -61,8 +61,8 @@ angular
 														.saveLoggedInUser(
 																result.result);
 												$scope.curUser = result.result;
-												// $scope.businessAccountName =
-												// $scope.curUser.businessAccount.businessName;
+												// $scope.businessName =
+												// $scope.curUser.business.businessName;
 												$window.location.reload();
 												$state.go("home");
 
@@ -138,10 +138,10 @@ angular
 																		.saveLoggedInUser(
 																				loggedInUser);
 
-																// $scope.businessAccountName
+																// $scope.businessName
 																// = "XYZ Firm";
 																$state
-																		.go("needBusinessAccount");
+																		.go("needbusiness");
 																return;
 															}
 
