@@ -53,23 +53,7 @@ angular
 					}
 					$scope.getBusinessById();
 				
-				$scope.getCurUserByEmailId = function() {
-						var setupService = appEndpointSF.getsetupService();
-						setupService
-								.getCurUserByEmailId($scope.curuser.email_id)
-								.then(
-										function(user) {
-											$scope.business = user.items[0].business;
-										
-											$log
-													.debug("$scope.business.id"
-															+ angular
-															.toJson($scope.business));
-										});
-					}
-					$scope.business = {};
-					$scope.getCurUserByEmailId();
-
+			
 					// set toggled value onclick on check box and push in
 					// selection array only tru or false value
 					$scope.toggleSelection = function toggleSelection(index) {
@@ -138,7 +122,7 @@ angular
 
 					}
 
-				// -------------------Checkemail
+				// -------------------Check email------------------------------------
 					$scope.Checkemail = function(emailid) {
 						var proadminService = appEndpointSF
 								.getproadminService();

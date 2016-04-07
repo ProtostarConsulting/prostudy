@@ -15,16 +15,36 @@ angular
 					$scope.id;
 
 				
+					$scope.getBusinessById=function(){
+						if(typeof $scope.businessNo == "undefined"){
+							$scope.Bid=$scope.curuser.business.id;
+						}else{
+							$scope.Bid=$scope.businessNo;
+						}
+						var UserService = appEndpointSF	.getUserService();
+							UserService.getbusinessById($scope.Bid).then(function(Business) {
+										$scope.business=Business;
+										$scope.getAllUserOfOrg();
+							});
+						
+					}
+					$scope.getBusinessById();
+					$scope.business={};
+					
+					
+					
 					$scope.getAllUserOfOrg = function() {
 						var setupService = appEndpointSF.getsetupService();
-						if (typeof $scope.curuser.business.id != 'undefined') {
+						if (typeof $scope.business.id != 'undefined') {
 							setupService
 									.getAllUserOfOrg(
-											$scope.curuser.business.id)
+											$scope.business.id)
 									.then(
 											function(users) {
 												$scope.userslist = users.items;
-
+												$scope.activeUsers = [];
+												$scope.inActiveUsers = [];
+												$scope.suspendedUsers = [];
 												for (var i = 0; i < $scope.userslist.length; i++) {
 													if ($scope.userslist[i].status == "active") {
 														$scope.activeUsers
@@ -78,7 +98,8 @@ angular
 											clickOutsideToClose : true,
 											fullscreen : useFullScreen,
 											locals : {
-												curuser : $scope.curuser
+												curuser : $scope.curuser,
+												user:$scope.selected[0]
 											}
 										})
 								.then(
@@ -94,9 +115,10 @@ angular
 						}
 					};
 
-					function DialogController($scope, $mdDialog, curuser) {
+					function DialogController($scope, $mdDialog, curuser,user) {
 
-						alert(angular.toJson(curuser));
+						//alert(angular.toJson(curuser));
+						alert(angular.toJson(user));
 						$scope.hide = function() {
 							$mdDialog.hide();
 						};
@@ -142,15 +164,14 @@ angular
 							}
 
 							if ($scope.savemsg == true) {
-								// $scope.updatepass();
-								/*
-								 * $scope.userL.password=$scope.password; var
-								 * UserService = appEndpointSF.getUserService();
-								 * UserService.updateUser($scope.userL).then(function(msgBean) {
-								 * $scope.showSimpleToast(msgBean.msg);
-								 * 
-								 * });
-								 */
+							   	$scope.userL=user;
+								  $scope.userL.password=$scope.password; 
+								  var UserService = appEndpointSF.getUserService();
+								 UserService.updateUser($scope.userL).then(function(msgBean) {
+								 $scope.showSimpleToast(msgBean.msg);
+								  
+								  });
+								 
 							}
 						}
 					}
@@ -181,6 +202,7 @@ angular
 						setupService.updateUserStatus($scope.selected[0]).then(
 								function(msgBean) {
 									$scope.showSimpleToast(msgBean.msg);
+									$scope.getAllUserOfOrg();
 								});
 					}
 					$scope.suspendUserStatus = function() {
@@ -190,6 +212,7 @@ angular
 						setupService.updateUserStatus($scope.selected[0]).then(
 								function(msgBean) {
 									$scope.showSimpleToast(msgBean.msg);
+									$scope.getAllUserOfOrg();
 								});
 					}
 					$scope.activeUserStatus = function() {
@@ -199,6 +222,7 @@ angular
 						setupService.updateUserStatus($scope.selected[0]).then(
 								function(msgBean) {
 									$scope.showSimpleToast(msgBean.msg);
+									$scope.getAllUserOfOrg();
 								});
 					}
 
@@ -217,7 +241,9 @@ angular
 											clickOutsideToClose : true,
 											fullscreen : useFullScreen,
 											locals : {
-												curuser : $scope.curuser
+												curuser : $scope.curuser,
+												user:$scope.selected[0]
+								
 											}
 										})
 								.then(
@@ -264,7 +290,8 @@ angular
 																clickOutsideToClose : true,
 																fullscreen : useFullScreen,
 																locals : {
-																	curuser : $scope.curuser
+																	curuser : $scope.curuser,
+																	user:$scope.selected[0]
 																}
 															})
 													.then(

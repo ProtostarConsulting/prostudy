@@ -14,6 +14,21 @@ angular.module("stockApp").controller(
 			$scope.curuser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
 
+			$scope.getBusinessById=function(){
+				if(typeof $scope.businessNo == "undefined"){
+					$scope.Bid=$scope.curuser.business.id;
+				}else{
+					$scope.Bid=$scope.businessNo;
+				}
+				var UserService = appEndpointSF	.getUserService();
+					UserService.getbusinessById($scope.Bid).then(function(Business) {
+								$scope.business=Business;
+					});
+				
+			}
+			$scope.getBusinessById();
+			$scope.business={};
+			
 			/* get Account Type */
 			
 			$scope.getallAccountType = function() {
@@ -31,10 +46,10 @@ angular.module("stockApp").controller(
 				var proadminService = appEndpointSF.getproadminService();
 				proadminService.getAccountTypeById($scope.accounttype).then(
 						function(accountType) {
-							$scope.curuser.business.accounttype= accountType.result;
+							$scope.business.accounttype= accountType.result;
 							var UserService = appEndpointSF.getUserService();
 							//addbusiness use in number of place don't update service method
-							UserService.addBusiness($scope.curuser.business).then(
+							UserService.addBusiness($scope.business).then(
 									function(business) {
 										$scope.showSimpleToast("Account Plan Updated Sucessfully");
 									});

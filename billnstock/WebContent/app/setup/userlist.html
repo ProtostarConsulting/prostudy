@@ -27,15 +27,18 @@
 
 			<tbody>
 				<tr md-auto-select
-					ng-repeat="user in activeUsers | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
+					ng-repeat="user in activeUsers | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
 					<td>{{user.firstName}}</td>
 					<td>{{user.lastName}}</td>
 					<td>{{user.email_id}}</td>
 					<td>
-						<section layout="row" layout-sm="column">
-							<md-button class="md-raised md-primary"
+						<section layout="row" layout-sm="column" >
+							<md-button class="md-raised md-primary" ng-hide="businessNo"
 								ui-sref="setup.userview({selecteduserNo:user.id})">View
-							user</md-button>
+							user setup</md-button>
+							<md-button class="md-raised md-primary" ng-show="businessNo"
+								ui-sref="proAdmin.editBusiness.userview({selecteduserNo:user.id})">View
+							user probusiness</md-button>
 						</section>
 					</td>
 				</tr>

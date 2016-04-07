@@ -41,8 +41,9 @@ angular.module("stockApp").controller(
 				});
 			}
 			$scope.accountlist = [];
-			$scope.getallAccountType();
-
+			
+			
+			
 			$scope.getAccountTypeById = function() {
 				var proadminService = appEndpointSF.getproadminService();
 				if (typeof $scope.typeid != 'undefined') {
@@ -53,7 +54,7 @@ angular.module("stockApp").controller(
 				}
 			}
 			$scope.accounttype = [];
-			$scope.getAccountTypeById();
+		
 
 			$scope.updateAccountType = function() {
 				$scope.AccountType.loggedInUser = $scope.curUser;
@@ -66,6 +67,22 @@ angular.module("stockApp").controller(
 						});
 			}
 
+			//-------------------use to lode service------------------------------ 
+			
+			$scope.waitForServiceLoad = function() {
+				if (appEndpointSF.is_service_ready) {
+					$scope.getallAccountType();
+					$scope.getAccountTypeById();
+				} else {
+					$log.debug("Services Not Loaded, watiting...");
+					$timeout($scope.waitForServiceLoad, 1000);
+				}
+			}
+			$scope.waitForServiceLoad();
+			
+			//-----------------------------------------------------------------------			
+			
+			
 			$scope.toggleRight = buildToggler('right');
 
 			function buildToggler(navID) {

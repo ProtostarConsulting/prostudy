@@ -18,22 +18,28 @@ angular
 					$scope.curuser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
 
+					$scope.getBusinessById=function(){
+						if(typeof $scope.businessNo == "undefined"){
+							$scope.Bid=$scope.curuser.business.id;
+						}else{
+							$scope.Bid=$scope.businessNo;
+						}
+						var UserService = appEndpointSF	.getUserService();
+							UserService.getbusinessById($scope.Bid).then(function(Business) {
+										$scope.business=Business;
+							});
+						
+					}
+					$scope.getBusinessById();
+					$scope.business={};
+					
 					$scope.updateBusiness = function() {
 						var setupService = appEndpointSF.getsetupService();
 						var UserService = appEndpointSF.getUserService();
 						setupService
-								.updateBusiness($scope.curuser.business)
-								.then(
-										function(respbusiness) {
-											UserService
-													.addUser($scope.curuser)
-													.then(
-															function(msg) {
-																$scope
-																		.showSimpleToast("Business updated Sucessfully");
-
-															});
-
+								.updateBusiness($scope.business)
+								.then(function(msgBean) {
+								$scope.showSimpleToast(msgBean.msg);
 										});
 					}
 

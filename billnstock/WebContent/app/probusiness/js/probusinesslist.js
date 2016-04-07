@@ -73,6 +73,7 @@ angular
 						UserService.updateBusiStatus($scope.selected[0]).then(
 								function(msgBean) {
 									$scope.showSimpleToast(msgBean.msg);
+									$scope.getBusinessList();
 								});
 					}
 					$scope.suspendUserStatus = function() {
@@ -82,6 +83,7 @@ angular
 						UserService.updateBusiStatus($scope.selected[0]).then(
 								function(msgBean) {
 									$scope.showSimpleToast(msgBean.msg);
+									$scope.getBusinessList();
 								});
 					}
 					$scope.activeUserStatus = function() {
@@ -91,6 +93,7 @@ angular
 						UserService.updateBusiStatus($scope.selected[0]).then(
 								function(msgBean) {
 									$scope.showSimpleToast(msgBean.msg);
+									$scope.getBusinessList();
 								});
 					}
 

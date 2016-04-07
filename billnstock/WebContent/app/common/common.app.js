@@ -435,18 +435,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/login",
 		templateUrl : '/app/login/login_module.html',
 		controller : 'indexCtr'
-	}).state('needBusinessAccount', {
+	}).state('needbusiness', {
 		url : "/NeedBusinessAccount",
 		templateUrl : '/app/login/needBusinessAccount.html',
-		controller : 'needBusinessAccountCtr'
+		controller : 'needbusinessCtr'
 	}).state('newBusinessAccount', {
 		url : "/NewBusinessAccount",
 		templateUrl : '/app/login/newBusinessAccount.html',
-		controller : 'newBusinessAccountCtr'
+		controller : 'newbusinessCtr'
 	}).state('createBusinessAccount', {
 		url : "/CreateBusiness",
 		templateUrl : '/app/login/createBusinessAccount.html',
-		controller : 'needBusinessAccountCtr'
+		controller : 'needbusinessCtr'
 	}).state('newUserTeacher', {
 		url : "/newUserTeacher",
 		templateUrl : '/app/login/newUser.html',
@@ -467,47 +467,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/search",
 		templateUrl : '/app/store/search_neareststore.html',
 		controller : 'storeAddCtr'
-	}).state('probusiness', {
-		url : "/probusiness",
-		templateUrl : '/app/probusiness/proBusinessModule.html',
-		controller : 'probusinessCtr'
-	}).state('probusiness.list', {
-		url : "/businesslist",
-		templateUrl : '/app/probusiness/probusiness.html',
-		controller : 'probusinessCtr'
-	}).state('probusiness.editBusiness', {
-		url : "/editBusiness/:businessNo/:businessName",
-		templateUrl : '/app/probusiness/setup_module.html', // use probsiness setup module beacause navigate diff address
-		controller : 'setup'
-	}).state('probusiness.editBusiness.useradd', {
-		url : "/useradd/:businessNo",
-		templateUrl : '/app/setup/setup_adduser.html',
-		controller : 'setup.adduser',
-
-	}).state('probusiness.editBusiness.businesssetup', {
-		url : "/businesssetup/:businessNo",
-		templateUrl : '/app/setup/EditBusiness.html',
-		controller : 'editBusiness',
-
-	}).state('probusiness.editBusiness.changeplan', {
-		url : "/changePaln/:businessNo",
-		templateUrl : '/app/setup/changeplan.html',
-		controller : 'setup.changeplan',
-
-	}).state('probusiness.editBusiness.userlist', {
-		url : "/userlist/:businessNo",
-		templateUrl : '/app/setup/userlist.html',
-		controller : 'userlist',
-
-	}).state('probusiness.userview', {
-		url : "/userview/:selecteduserNo",
-		templateUrl : '/app/setup/setup_viewuser.html',
-		controller : 'setup.viewuser',
-
-	}).state('probusiness.adduser', {
-		url : "/adduser/:BNo",
-		templateUrl : '/app/probusiness/adduser.html',
-		controller : 'probusinessCtr'
 	}).state('user_prof_detail', {
 		url : "/profile",
 		templateUrl : '/app/profile/profileModule.html',
@@ -576,6 +535,47 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/initsetup",
 		templateUrl : '/app/Initsetup/initsetup.html',
 		controller : 'initsetup',
+	})/*.state('proAdmin.probusiness', {
+		url : "/probusiness",
+		templateUrl : '/app/probusiness/proBusinessModule.html',
+		controller : 'probusinessCtr'
+	})*/.state('proAdmin.probusiness', {
+		url : "/businesslist",
+		templateUrl : '/app/probusiness/probusiness.html',
+		controller : 'probusinessCtr'
+	}).state('proAdmin.editBusiness', {
+		url : "/editBusiness/:businessNo/:businessName",
+		templateUrl : '/app/probusiness/setup_module.html', // use probsiness setup module beacause navigate diff address
+		controller : 'setup'
+	}).state('proAdmin.editBusiness.useradd', {
+		url : "/useradd/:businessNo",
+		templateUrl : '/app/setup/setup_adduser.html',
+		controller : 'setup.adduser',
+
+	}).state('proAdmin.editBusiness.businesssetup', {
+		url : "/businesssetup/:businessNo",
+		templateUrl : '/app/setup/EditBusiness.html',
+		controller : 'editBusiness',
+
+	}).state('proAdmin.editBusiness.changeplan', {
+		url : "/changePaln/:businessNo",
+		templateUrl : '/app/setup/changeplan.html',
+		controller : 'setup.changeplan',
+
+	}).state('proAdmin.editBusiness.userlist', {
+		url : "/userlist/:businessNo",
+		templateUrl : '/app/setup/userlist.html',
+		controller : 'userlist',
+
+	}).state('proAdmin.editBusiness.userview', {
+		url : "/userview/:selecteduserNo",
+		templateUrl : '/app/setup/setup_viewuser.html',
+		controller : 'setup.viewuser',
+
+	}).state('proAdmin.probusiness.adduser', {
+		url : "/adduser/:BNo",
+		templateUrl : '/app/probusiness/adduser.html',
+		controller : 'probusinessCtr'
 	});
 
 });
