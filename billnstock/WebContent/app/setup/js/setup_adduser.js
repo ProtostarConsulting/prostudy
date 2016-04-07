@@ -11,7 +11,7 @@ angular
 								.position("top").hideDelay(3000));
 					};
 
-					$scope.selecteduserNo = $stateParams.selecteduserNo;
+					$scope.businessNo = $stateParams.businessNo;
 					$scope.id;
 
 					$scope.items = [ "customer","account", "stock", "salesOrder", "purchaseOrder", "invoice",
@@ -19,39 +19,52 @@ angular
 							"admin" ];
 					$scope.selection = [];
 
-					$scope.curuser = appEndpointSF.getLocalUserService()
-							.getLoggedinUser();
+					$scope.curuser = appEndpointSF.getLocalUserService().getLoggedinUser();
+					
+					// use to set all item false to set
+					for ( var item in $scope.items) {
+						$scope.selection
+								.push($scope.curuser.authority[0]
+										.indexOf(item) > -1);
+					}
+					
+					
+					$scope.getBusinessById=function(){
+						if(typeof $scope.businessNo == "undefined"){
+							$scope.Bid=$scope.curuser.businessAccount.id;
+						}else{
+							$scope.Bid=$scope.businessNo;
+						}
+						var UserService = appEndpointSF	.getUserService();
+							UserService.getbusinessById($scope.Bid).then(function(Business) {
+										$scope.business=Business;
+										$scope.id = $scope.business.id;
+										if ($scope.business.accounttype.maxuser == $scope.business.totalUser - 1) {
+											$("#hideSpan").show();
+											$log.debug("#hideSpan");
+										} else {
+											$("#hideSpan").hide();
+											$("#hideDiv").hide();
+										}
 
-					$scope.getCurUserByEmailId = function() {
+					
+								});
+						
+					}
+					$scope.getBusinessById();
+				
+				$scope.getCurUserByEmailId = function() {
 						var setupService = appEndpointSF.getsetupService();
 						setupService
 								.getCurUserByEmailId($scope.curuser.email_id)
 								.then(
 										function(user) {
 											$scope.business = user.items[0].businessAccount;
-											$scope.id = $scope.business.id;
+										
 											$log
 													.debug("$scope.business.id"
 															+ angular
-																	.toJson($scope.business));
-
-											// use to set all item false to set
-											// authority to all new user new
-											// Authority
-											for ( var item in $scope.items) {
-												$scope.selection
-														.push(user.items[0].authority
-																.indexOf(item) > -1);
-											}
-
-											if ($scope.business.accounttype.maxuser == $scope.business.totalUser - 1) {
-												$("#hideSpan").show();
-												$log.debug("#hideSpan");
-											} else {
-												$("#hideSpan").hide();
-												$("#hideDiv").hide();
-											}
-
+															.toJson($scope.business));
 										});
 					}
 					$scope.business = {};
@@ -83,7 +96,7 @@ angular
 					}
 
 					$scope.adduser = function(busi) {
-						$scope.user.businessAccount = busi;
+						$scope.user.businessAccount = $scope.business;
 						// use selection array true false value and push that
 						// numbered item on authority
 						$scope.user.authority = [];
@@ -125,36 +138,7 @@ angular
 
 					}
 
-					// ----------------------view user separate the
-					// controller----------------
-					/*
-					 * $scope.getuserById = function() { $log.debug("Inside Ctr
-					 * $scope.getuserById"); var setupService =
-					 * appEndpointSF.getsetupService(); if (typeof
-					 * $scope.selecteduserNo != "undefined") { setupService
-					 * .getuserById($scope.selecteduserNo) .then(
-					 * function(userList) { $log.debug("Inside Ctr
-					 * getAllleads"); $scope.userL = userList.result; //push the
-					 * authoried item index in true in selection array for ( var
-					 * i in $scope.items) {
-					 * $scope.selection.push($scope.userL.authority.indexOf($scope.items[i]) >
-					 * -1); }
-					 * 
-					 * }); } }
-					 * 
-					 * $scope.userL = {}; $scope.getuserById();
-					 * 
-					 * $scope.updateuser = function() { $scope.userL.authority =
-					 * []; for (var i = 0; i < $scope.selection.length; i++) {
-					 * if ($scope.selection[i])
-					 * $scope.userL.authority.push($scope.items[i]); } var
-					 * UserService = appEndpointSF.getUserService();
-					 * UserService.updateUser($scope.userL).then(
-					 * function(msgBean) { $scope.showSimpleToast(msgBean.msg);
-					 * }); }
-					 */
-					// ------------------------------------------------------------
-					// -------------------Checkemail
+				// -------------------Checkemail
 					$scope.Checkemail = function(emailid) {
 						var proadminService = appEndpointSF
 								.getproadminService();

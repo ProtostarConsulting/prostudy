@@ -9,6 +9,8 @@ angular.module("stockApp").controller(
 						.position("top").hideDelay(3000));
 			};
 
+			$scope.businessNo = $stateParams.businessNo;
+			
 			$scope.curuser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
 

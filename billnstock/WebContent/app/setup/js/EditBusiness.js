@@ -1,7 +1,7 @@
 angular
 		.module("stockApp")
 		.controller(
-				"setup",
+				"editBusiness",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $stateParams, $mdMedia, $mdDialog, $log,
 						objectFactory, appEndpointSF) {
@@ -10,12 +10,33 @@ angular
 						$mdToast.show($mdToast.simple().content(msgBean)
 								.position("top").hideDelay(3000));
 					};
+					$scope.selecteduserNo = $stateParams.selecteduserNo;
 					$scope.businessNo = $stateParams.businessNo;
-							
-					$scope.curuser = appEndpointSF.getLocalUserService().getLoggedinUser();
+					$scope.id;
 
 				
-					
+					$scope.curuser = appEndpointSF.getLocalUserService()
+							.getLoggedinUser();
+
+					$scope.updateBusiness = function() {
+						var setupService = appEndpointSF.getsetupService();
+						var UserService = appEndpointSF.getUserService();
+						setupService
+								.updateBusiness($scope.curuser.businessAccount)
+								.then(
+										function(respbusiness) {
+											UserService
+													.addUser($scope.curuser)
+													.then(
+															function(msg) {
+																$scope
+																		.showSimpleToast("Business updated Sucessfully");
+
+															});
+
+										});
+					}
+
 				
 					// ----------hide and show ---------------------------
 

@@ -10,7 +10,7 @@ angular
 						$mdToast.show($mdToast.simple().content(msgBean)
 								.position("top").hideDelay(3000));
 					};
-
+					$scope.businessNo = $stateParams.businessNo;
 					$scope.selecteduserNo = $stateParams.selecteduserNo;
 					$scope.id;
 
