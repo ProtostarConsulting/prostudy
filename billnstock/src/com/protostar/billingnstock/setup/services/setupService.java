@@ -46,7 +46,7 @@ public class setupService {
 		List<UserEntity> filtereduser = new ArrayList<UserEntity>();
 
 		for (int i = 0; i < user.size(); i++) {
-			if (user.get(i).getBusinessAccount().getId().equals(id)) {
+			if (user.get(i).getBusiness().getId().equals(id)) {
 						filtereduser.add(user.get(i));
 			} 
 		}

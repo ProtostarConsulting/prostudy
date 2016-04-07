@@ -42,7 +42,7 @@ public class AssetService {
 		List<Asset> filteredasset = new ArrayList<Asset>();
 
 		for (int i = 0; i < asset.size(); i++) {
-			if (asset.get(i).getLoggedInUser().getBusinessAccount().getId()
+			if (asset.get(i).getLoggedInUser().getBusiness().getId()
 					.equals(assetid)) {
 				filteredasset.add(asset.get(i));
 			} else {

@@ -14,7 +14,7 @@ public class UserEntity {
 	@Id
 	private Long id;
 	@Index
-	private Ref<BusinessEntity> businessAccount;
+	private Ref<BusinessEntity> business;
 
 	private String firstName;
 	private String lastName;
@@ -94,12 +94,12 @@ public class UserEntity {
 		this.email_id = email_id;
 	}
 
-	public BusinessEntity getBusinessAccount() {
-		return businessAccount.get();
+	public BusinessEntity getBusiness() {
+		return business.get();
 	}
 
-	public void setBusinessAccount(BusinessEntity businessAccount) {
-		this.businessAccount = Ref.create(businessAccount);
+	public void setBusiness(BusinessEntity business) {
+		this.business = Ref.create(business);
 	}
 
 	public Address getAddress() {

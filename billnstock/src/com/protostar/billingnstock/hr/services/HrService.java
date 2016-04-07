@@ -159,7 +159,7 @@ SalStruct filteredsalstruct = ofy().load().type(SalStruct.class).filter("empAcco
 
 		for (int i = 0; i < salslipdata.size(); i++) {
 			if (salslipdata.get(i).getSalarystruct().getEmpAccount()
-					.getBusinessAccount().getId().equals(id)) {
+					.getBusiness().getId().equals(id)) {
 
 				filteredsalslipdata.add(salslipdata.get(i));
 			} else {

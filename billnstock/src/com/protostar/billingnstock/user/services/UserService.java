@@ -28,14 +28,14 @@ public class UserService {
 		int count = 1;
 		List<UserEntity> list = ofy().load().type(UserEntity.class).list();
 		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getBusinessAccount().getId()
-					.equals(usr.getBusinessAccount().getId())) {
+			if (list.get(i).getBusiness().getId()
+					.equals(usr.getBusiness().getId())) {
 				count++;
 			}
 		}
 		
 		BusinessEntity businessEntity = new BusinessEntity();
-		businessEntity = usr.getBusinessAccount();
+		businessEntity = usr.getBusiness();
 		businessEntity.setTotalUser(count);
 		ofy().save().entity(businessEntity).now();
 
@@ -135,7 +135,7 @@ public class UserService {
 		ofy().save().entity(businessEntity).now();
 
 		UserEntity userEntity = new UserEntity();
-		userEntity.setBusinessAccount(businessEntity);
+		userEntity.setBusiness(businessEntity);
 		/*userEntity.setEmail_id(business.getAdminEmailId());
 		userEntity.setFirstName(business.getAdminFirstName());
 		userEntity.setLastName(business.getAdminLastName());*/
@@ -155,7 +155,7 @@ public class UserService {
 		List<UserEntity> filtereduser = new ArrayList<UserEntity>();
 		
 		for(int i=0;i<list.size();i++){
-			if(list.get(i).getBusinessAccount().getId().equals(id)){
+			if(list.get(i).getBusiness().getId().equals(id)){
 				filtereduser.add(list.get(i));
 			}
 		}

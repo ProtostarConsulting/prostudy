@@ -14,14 +14,14 @@ public class Employee {
 	private Long id;
 	
 
-	private Ref<BusinessEntity> businessAccount;
+	private Ref<BusinessEntity> business;
 	
-	public BusinessEntity getBusinessAccount() {
-		return businessAccount.get();
+	public BusinessEntity getbusiness() {
+		return business.get();
 	}
 
-	public void setBusinessAccount(BusinessEntity businessAccount) {
-		this.businessAccount = Ref.create(businessAccount);
+	public void setbusiness(BusinessEntity business) {
+		this.business = Ref.create(business);
 	}
 
 	

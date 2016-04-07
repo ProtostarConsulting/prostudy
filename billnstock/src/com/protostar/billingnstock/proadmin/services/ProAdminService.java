@@ -57,7 +57,7 @@ public class ProAdminService {
 		ofy().save().entity(businessEntity).now();
 
 		UserEntity userEntity = new UserEntity();
-		userEntity.setBusinessAccount(businessEntity);
+		userEntity.setBusiness(businessEntity);
 		userEntity.setEmail_id("ganesh.lawande@protostar.co.in");
 		userEntity.setFirstName("ganesh");
 		userEntity.setLastName("Lawande");
@@ -68,7 +68,7 @@ public class ProAdminService {
 		//------------------------------
 			
 		UserEntity userEntity1 = new UserEntity();
-		userEntity1.setBusinessAccount(businessEntity);
+		userEntity1.setBusiness(businessEntity);
 		userEntity1.setEmail_id("pushpak.pimpale@protostarcs.com");
 		userEntity1.setFirstName("pushpak");
 		userEntity1.setLastName("pimpale");
