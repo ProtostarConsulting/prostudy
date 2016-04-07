@@ -85,7 +85,7 @@ angular
 						$log.debug("Inside Ctr $scope.getAllempsSalStruct");
 						var hrService = appEndpointSF.gethrService();
 
-						hrService.getAllempsSalStruct($scope.curUser.businessAccount.id).then(
+						hrService.getAllempsSalStruct($scope.curUser.business.id).then(
 								function(empSalstructList) {
 									$log.debug("Inside Ctr getAllemps");
 									$scope.empSalStruct = empSalstructList.items;
@@ -149,7 +149,7 @@ angular
 						var date = new Date();
 						var hrService = appEndpointSF.gethrService();
 						hrService
-								.countOfRecordsiInganeratedslip($scope.curUser.businessAccount.id)
+								.countOfRecordsiInganeratedslip($scope.curUser.business.id)
 								.then(function(printSalSelectedSlipList) {
 											$scope.printGSalStruct = printSalSelectedSlipList.items;
 											$scope.salslip.salslip_id=$scope.printGSalStruct.length+1;

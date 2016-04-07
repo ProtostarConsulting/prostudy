@@ -35,7 +35,7 @@ app
 
 						payableService
 								.getAllPayablesByBusiness(
-										$scope.curUser.businessAccount.id)
+										$scope.curUser.business.id)
 								.then(
 										function(accountList) {
 

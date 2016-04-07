@@ -14,14 +14,14 @@ app.controller("customerListCtr", function($scope, $window, $mdToast, $timeout,
 	$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 	$log.debug("$scope.curUser++++++++" + angular.toJson($scope.curUser));
 
-	// $scope.cust.businessAccount =$scope.curUser.businessAccount;
+	// $scope.cust.business =$scope.curUser.business;
 
 	$scope.getAllCustomersByBusiness = function() {
 
 		var customerService = appEndpointSF.getCustomerService();
 
 		customerService.getAllCustomersByBusiness(
-				$scope.curUser.businessAccount.id).then(
+				$scope.curUser.business.id).then(
 				function(custList) {
 					$log.debug("Inside Ctr getAllCustomers");
 					$scope.customers = custList.items;

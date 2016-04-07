@@ -63,7 +63,7 @@ angular
 												
 												$scope.userL = userList.result;
 												$scope.salstruct.empAccount = $scope.userL;
-												$scope.salstruct.business=$scope.userL.businessAccount;
+												$scope.salstruct.business=$scope.userL.business;
 												
 												var hrService = appEndpointSF.gethrService();
 												hrService.addsalstruct($scope.salstruct)

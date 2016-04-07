@@ -9,7 +9,7 @@ angular
 					$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 					
 					$scope.emp = {
-							businessAccount:"",
+							business:"",
 							empid : "",
 							empName : "",
 							email : "",
@@ -19,7 +19,7 @@ angular
 						};
 
 					$scope.addemp = function() {
-						$scope.emp.businessAccount =$scope.curUser.businessAccount;
+						$scope.emp.business =$scope.curUser.business;
 						var hrService = appEndpointSF.gethrService();
 						hrService.addemp($scope.emp).then(function(msgBean) {
 
@@ -36,7 +36,7 @@ angular
 						$log.debug("Inside Ctr $scope.getAllemps");
 						var hrService = appEndpointSF.gethrService();
 
-						hrService.getAllemp($scope.curUser.businessAccount.id).then(function(empList) {
+						hrService.getAllemp($scope.curUser.business.id).then(function(empList) {
 							$log.debug("Inside Ctr getAllemps");
 							$scope.emps = empList;
 							$log.debug("$scope.emps====="+angular.toJson($scope.emps.items));

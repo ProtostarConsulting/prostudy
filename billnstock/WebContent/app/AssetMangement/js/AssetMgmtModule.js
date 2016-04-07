@@ -34,7 +34,7 @@ angular.module("stockApp").controller(
 			}
 			$scope.getallAsset = function() {
 				var assetService = appEndpointSF.getAssetManagementService();
-				assetService.getallAsset($scope.curUser.businessAccount.id)
+				assetService.getallAsset($scope.curUser.business.id)
 						.then(
 								function(assetList) {
 									$scope.assetlist = $scope

@@ -112,7 +112,7 @@ angular
 
 					// -------------------------------------------------------------------------------------
 					$scope.user = {
-						businessAccount : "",
+						business : "",
 						email_id : "",
 						firstName : "",
 						lastName : "",
@@ -169,7 +169,7 @@ angular
 						 * UserService
 						 * .getbusinessById($scope.BNo).then(function(busi) {
 						 */
-						$scope.user.businessAccount = $scope.business;
+						$scope.user.business = $scope.business;
 						$scope.user.authority = $scope.selection;
 						UserService.addUser($scope.user).then(
 								function(msgBean) {

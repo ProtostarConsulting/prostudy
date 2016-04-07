@@ -16,7 +16,7 @@ angular.module("stockApp").controller(
 				
 				var stockService = appEndpointSF.getStockService();
 				
-				stockService.getReportByThreshold($scope.curUser.businessAccount.id).then(
+				stockService.getReportByThreshold($scope.curUser.business.id).then(
 						function(stockByThreshold) {
 							$scope.thresholdStock = stockByThreshold;
 							$log.debug("$scope.thresholdStock:"

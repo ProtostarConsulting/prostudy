@@ -22,7 +22,7 @@ angular
 						var setupService = appEndpointSF.getsetupService();
 						var UserService = appEndpointSF.getUserService();
 						setupService
-								.updateBusiness($scope.curuser.businessAccount)
+								.updateBusiness($scope.curuser.business)
 								.then(
 										function(respbusiness) {
 											UserService

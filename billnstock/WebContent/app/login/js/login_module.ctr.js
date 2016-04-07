@@ -11,7 +11,7 @@ angular.module("stockApp").controller(
 			
 
 			$scope.user = {
-					businessAccount : "",
+					business : "",
 					email_id : "",
 					firstName : "",
 					lastName : "",

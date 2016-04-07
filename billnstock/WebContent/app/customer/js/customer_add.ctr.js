@@ -20,7 +20,7 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 
 	$scope.addCustomer = function() {
 		$log.debug("No1");
-		$scope.cust.business = $scope.curUser.businessAccount;
+		$scope.cust.business = $scope.curUser.business;
 		var customerService = appEndpointSF.getCustomerService();
 		customerService.addCustomer($scope.cust).then(function(msgBean) {
 			$log.debug("No6");

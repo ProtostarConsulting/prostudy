@@ -42,7 +42,7 @@ angular
 					$scope.addlead = function() {
 						$scope.lead.tasks= $scope.task ;
 						$scope.lead.loggedInUser=$scope.curUser;
-						$scope.lead.business=$scope.curUser.businessAccount;
+						$scope.lead.business=$scope.curUser.business;
 						var leadService = appEndpointSF.getleadService();
 						
 						leadService.addlead($scope.lead).then(function(msgBean) {
@@ -61,7 +61,7 @@ angular
 						$log.debug("Inside Ctr $scope.getAlllead");
 						var leadService = appEndpointSF.getleadService();
 
-						leadService.getAllleads($scope.curUser.businessAccount.id).then(function(leadList) {
+						leadService.getAllleads($scope.curUser.business.id).then(function(leadList) {
 							$log.debug("Inside Ctr getAllleads");
 							$scope.leads = leadList.items;
 							$log.debug("Inside Ctr getAllleads===="+angular.toJson($scope.leads ));

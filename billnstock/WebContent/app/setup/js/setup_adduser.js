@@ -31,7 +31,7 @@ angular
 					
 					$scope.getBusinessById=function(){
 						if(typeof $scope.businessNo == "undefined"){
-							$scope.Bid=$scope.curuser.businessAccount.id;
+							$scope.Bid=$scope.curuser.business.id;
 						}else{
 							$scope.Bid=$scope.businessNo;
 						}
@@ -59,7 +59,7 @@ angular
 								.getCurUserByEmailId($scope.curuser.email_id)
 								.then(
 										function(user) {
-											$scope.business = user.items[0].businessAccount;
+											$scope.business = user.items[0].business;
 										
 											$log
 													.debug("$scope.business.id"
@@ -86,7 +86,7 @@ angular
 					// -------------------------------------------------------------------------
 
 					$scope.user = {
-						businessAccount : "",
+						business : "",
 						email_id : "",
 						firstName : "",
 						lastName : "",
@@ -96,7 +96,7 @@ angular
 					}
 
 					$scope.adduser = function(busi) {
-						$scope.user.businessAccount = $scope.business;
+						$scope.user.business = $scope.business;
 						// use selection array true false value and push that
 						// numbered item on authority
 						$scope.user.authority = [];
@@ -106,14 +106,14 @@ angular
 						}
 
 						var setupService = appEndpointSF.getsetupService();
-						if (typeof $scope.curuser.businessAccount.id != 'undefined') {
+						if (typeof $scope.curuser.business.id != 'undefined') {
 							setupService
 									.getAllUserOfOrg(
-											$scope.curuser.businessAccount.id)
+											$scope.curuser.business.id)
 									.then(
 											function(users) {
 												$scope.userslist = users.items.length;
-												if ($scope.userslist < $scope.curuser.businessAccount.accounttype.maxuser) {
+												if ($scope.userslist < $scope.curuser.business.accounttype.maxuser) {
 
 													var UserService = appEndpointSF
 															.getUserService();

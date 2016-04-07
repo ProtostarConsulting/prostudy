@@ -25,7 +25,7 @@ app
 						var invoiceService = appEndpointSF.getInvoiceService();
 						invoiceService
 								.getAllInvoice(
-										$scope.curUser.businessAccount.id)
+										$scope.curUser.business.id)
 								.then(
 										function(invoiceList) {
 											$log

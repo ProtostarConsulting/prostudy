@@ -19,7 +19,7 @@ app.controller("salesOrderListCtr", function($scope, $window, $mdToast, $timeout
 		$log.debug("Inside Ctr $scope.getAllSalesOrder");
 		var salesOrderService = appEndpointSF.getSalesOrderService();
 
-		salesOrderService.getAllSalesOrder($scope.curUser.businessAccount.id).then(
+		salesOrderService.getAllSalesOrder($scope.curUser.business.id).then(
 				function(salesOrderList) {
 					$log.debug("Inside Ctr getAllSalesOrder");
 					$scope.salesOrderList = salesOrderList;

@@ -31,10 +31,10 @@ angular.module("stockApp").controller(
 				var proadminService = appEndpointSF.getproadminService();
 				proadminService.getAccountTypeById($scope.accounttype).then(
 						function(accountType) {
-							$scope.curuser.businessAccount.accounttype= accountType.result;
+							$scope.curuser.business.accounttype= accountType.result;
 							var UserService = appEndpointSF.getUserService();
 							//addbusiness use in number of place don't update service method
-							UserService.addBusiness($scope.curuser.businessAccount).then(
+							UserService.addBusiness($scope.curuser.business).then(
 									function(business) {
 										$scope.showSimpleToast("Account Plan Updated Sucessfully");
 									});

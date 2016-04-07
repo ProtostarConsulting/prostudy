@@ -68,7 +68,7 @@ angular
 							$log.debug("============" + temp);
 							var leadService = appEndpointSF.getleadService();
 							leadService.getAllleads(
-									$scope.curUser.businessAccount.id).then(
+									$scope.curUser.business.id).then(
 									function(leadList) {
 										$scope.leadorcustlist = leadList.items;
 									});
@@ -80,7 +80,7 @@ angular
 							var customerService = appEndpointSF
 									.getCustomerService();
 							customerService.getAllCustomersByBusiness(
-									$scope.curUser.businessAccount.id).then(
+									$scope.curUser.business.id).then(
 									function(custList) {
 										$scope.leadorcustlist = custList.items;
 									});
@@ -95,7 +95,7 @@ angular
 						$scope.opportunity.loggedInUser = $scope.curUser;
 						$scope.opportunity.from = $scope.f;	
 						$scope.opportunity.tasks = $scope.task;
-						$scope.opportunity.business=$scope.curUser.businessAccount;
+						$scope.opportunity.business=$scope.curUser.business;
 						
 						var opportunityService = appEndpointSF
 								.getopportunityService();
@@ -118,7 +118,7 @@ angular
 								.getopportunityService();
 						opportunityService
 								.getAllopportunity(
-										$scope.curUser.businessAccount.id)
+										$scope.curUser.business.id)
 								.then(
 										function(opportunityList) {
 											$log

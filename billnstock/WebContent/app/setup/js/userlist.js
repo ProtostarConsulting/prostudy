@@ -17,10 +17,10 @@ angular
 				
 					$scope.getAllUserOfOrg = function() {
 						var setupService = appEndpointSF.getsetupService();
-						if (typeof $scope.curuser.businessAccount.id != 'undefined') {
+						if (typeof $scope.curuser.business.id != 'undefined') {
 							setupService
 									.getAllUserOfOrg(
-											$scope.curuser.businessAccount.id)
+											$scope.curuser.business.id)
 									.then(
 											function(users) {
 												$scope.userslist = users.items;

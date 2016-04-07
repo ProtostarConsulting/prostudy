@@ -12,13 +12,13 @@ app.controller(
 			.getLoggedinUser();
 			$log.debug("$scope.curUser++++++++"+angular.toJson($scope.curUser));
 			2
-//			$scope.cust.businessAccount =$scope.curUser.businessAccount;
+//			$scope.cust.business =$scope.curUser.business;
 			
 			$scope.getAllWarehouseByBusiness = function() {
 				$log.debug("Inside function $scope.getAllWarehouseByBusiness");
 				var warehouseService = appEndpointSF.getWarehouseManagementService();
 
-				warehouseService.getAllWarehouseByBusiness($scope.curUser.businessAccount.id).then(
+				warehouseService.getAllWarehouseByBusiness($scope.curUser.business.id).then(
 						function(warehouseList) {
 							$scope.warehouses = warehouseList;
 							$log.debug("Inside Ctr $scope.warehouses:"

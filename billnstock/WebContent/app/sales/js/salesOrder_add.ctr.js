@@ -41,7 +41,7 @@ app
 						} else {
 							var salesOrderService = appEndpointSF
 									.getSalesOrderService();
-							$scope.salesOrder.business = $scope.curUser.businessAccount;
+							$scope.salesOrder.business = $scope.curUser.business;
 
 							salesOrderService.addSalesOrder($scope.salesOrder)
 									.then(function(msgBean) {
@@ -151,7 +151,7 @@ app
 						var stockService = appEndpointSF.getStockService();
 
 						stockService.getAllStock(
-								$scope.curUser.businessAccount.id).then(
+								$scope.curUser.business.id).then(
 								function(stockList) {
 									$log.debug("Inside Ctr getAllStock");
 									$scope.stockforPO = stockList;
@@ -168,7 +168,7 @@ app
 						var taxService = appEndpointSF.getTaxService();
 
 						taxService.getTaxesByVisibility(
-								$scope.curUser.businessAccount.id).then(
+								$scope.curUser.business.id).then(
 								function(taxList) {
 									$log.debug("Inside Ctr getAllTaxes");
 									$scope.taxforPO = taxList;
@@ -203,7 +203,7 @@ app
 								.getCustomerService();
 						customerService
 								.getAllCustomersByBusiness(
-										$scope.curUser.businessAccount.id)
+										$scope.curUser.business.id)
 								.then(
 										function(custList) {
 											$scope.customersforinvoice = custList.items;

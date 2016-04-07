@@ -54,7 +54,7 @@ angular
 						$log.debug("Inside Ctr $scope.getAllempsSalStruct");
 						var hrService = appEndpointSF.gethrService();
 
-						hrService.getAllempsSalStruct($scope.curUser.businessAccount.id).then(
+						hrService.getAllempsSalStruct($scope.curUser.business.id).then(
 								function(empSalstructList) {
 									$log.debug("Inside Ctr getAllemps");
 									$scope.empSalStruct = empSalstructList.items;

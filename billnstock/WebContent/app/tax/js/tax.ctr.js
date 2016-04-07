@@ -29,7 +29,7 @@ angular.module("stockApp").controller(
 			
 			$scope.addTax = function() {
 				$log.debug("No1");
-				$scope.tax.business =$scope.curUser.businessAccount;
+				$scope.tax.business =$scope.curUser.business;
 				
 				var taxService = appEndpointSF.getTaxService();
 
@@ -45,7 +45,7 @@ angular.module("stockApp").controller(
 				$log.debug("Inside Ctr $scope.getAllTaxes");
 				var taxService = appEndpointSF.getTaxService();
 
-				taxService.getAllTaxes($scope.curUser.businessAccount.id).then(
+				taxService.getAllTaxes($scope.curUser.business.id).then(
 						function(taxList) {
 							$scope.taxData = taxList;
 							$log.debug("Inside Ctr $scope.taxData:"

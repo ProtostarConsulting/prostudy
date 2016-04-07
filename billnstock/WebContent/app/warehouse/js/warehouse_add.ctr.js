@@ -23,7 +23,7 @@ app.controller("warehouseAddCtr", function($scope, $window, $mdToast, $timeout,
 	
 	$scope.addWarehouse = function() {
 		$log.debug("No1");
-		$scope.warehouse.business = $scope.curUser.businessAccount;
+		$scope.warehouse.business = $scope.curUser.business;
 		var WarehouseManagementService = appEndpointSF.getWarehouseManagementService();
 		WarehouseManagementService.addWarehouse($scope.warehouse).then(function(msgBean) {
 		});

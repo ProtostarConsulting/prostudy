@@ -23,7 +23,7 @@ app.controller("accountPayableCtr", function($scope, $window, $mdToast,
 
 	$scope.addPayable = function() {
 		
-		$scope.accountPayable.business = $scope.curUser.businessAccount;
+		$scope.accountPayable.business = $scope.curUser.business;
 		var payableService = appEndpointSF.getAccountService();
 		
 		payableService.addPayable($scope.accountPayable).then(function(msgBean) {
@@ -79,7 +79,7 @@ app.controller("accountPayableCtr", function($scope, $window, $mdToast,
 	function loadAll() {
 		
 			var customerService = appEndpointSF.getCustomerService();
-			customerService.getAllCustomersByBusiness($scope.curUser.businessAccount.id).then(
+			customerService.getAllCustomersByBusiness($scope.curUser.business.id).then(
 					function(custList) {
 						$scope.customersforinvoice = custList.items;	
 					});			

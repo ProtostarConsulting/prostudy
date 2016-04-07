@@ -49,7 +49,7 @@ angular
 						}
 
 						hrService
-								.displyOnlySelected($scope.currmonth,$scope.curUser.businessAccount.id)
+								.displyOnlySelected($scope.currmonth,$scope.curUser.business.id)
 								.then(
 										function(getDisplyOnlySelected) {
 											$scope.displyselected = getDisplyOnlySelected.items;

@@ -34,7 +34,7 @@ angular.module("stockApp").controller(
 
 			$scope.addcontact = function() {
 				$scope.contact.loggedInUser=$scope.curUser;
-				$scope.contact.business=$scope.curUser.businessAccount;
+				$scope.contact.business=$scope.curUser.business;
 				var leadService = appEndpointSF.getleadService();
 				leadService.addcontact($scope.contact).then(function(msgBean) {
 					$log.debug("Inside Ctr addlead");
@@ -48,7 +48,7 @@ angular.module("stockApp").controller(
 
 			$scope.getAllcontact = function() {
 				var leadService = appEndpointSF.getleadService();
-				leadService.getAllcontact($scope.curUser.businessAccount.id).then(function(contactList) {
+				leadService.getAllcontact($scope.curUser.business.id).then(function(contactList) {
 					$log.debug("Inside Ctr getAllleads");
 					$scope.contacts = contactList.items;
 					$scope.cleadid = $scope.contacts.length + 1;

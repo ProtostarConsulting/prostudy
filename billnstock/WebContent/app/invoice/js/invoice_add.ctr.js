@@ -36,7 +36,7 @@ app
 						} else {
 							var InvoiceService = appEndpointSF
 									.getInvoiceService();
-							$scope.invoiceObj.business = $scope.curUser.businessAccount;
+							$scope.invoiceObj.business = $scope.curUser.business;
 
 							InvoiceService.addInvoice($scope.invoiceObj).then(
 									function(msgBean) {
@@ -163,7 +163,7 @@ app
 					 * $log.debug("Inside Ctr $scope.getAllCustomers"); var
 					 * customerService = appEndpointSF.getCustomerService();
 					 * 
-					 * customerService.getAllCustomersByCurrUser($scope.curUser.businessAccount.id).then(
+					 * customerService.getAllCustomersByCurrUser($scope.curUser.business.id).then(
 					 * function(custList) { $log.debug("Inside Ctr
 					 * getAllCustomers"); $scope.customersforinvoice = custList;
 					 * $log.debug("Inside Ctr $scope.customers:" +
@@ -177,7 +177,7 @@ app
 						var stockService = appEndpointSF.getStockService();
 
 						stockService.getAllStock(
-								$scope.curUser.businessAccount.id).then(
+								$scope.curUser.business.id).then(
 								function(stockList) {
 									$log.debug("Inside Ctr getAllStock");
 									$scope.stockforinvoice = stockList;
@@ -192,7 +192,7 @@ app
 						var taxService = appEndpointSF.getTaxService();
 
 						taxService.getTaxesByVisibility(
-								$scope.curUser.businessAccount.id).then(
+								$scope.curUser.business.id).then(
 								function(taxList) {
 									$log.debug("Inside Ctr getAllTaxes");
 									$scope.taxforinvoice = taxList;
@@ -207,7 +207,7 @@ app
 
 						salesService
 								.getAllSalesOrder(
-										$scope.curUser.businessAccount.id)
+										$scope.curUser.business.id)
 								.then(
 										function(salesOrderList) {
 											$log
@@ -229,7 +229,7 @@ app
 
 						accountService
 								.getAllAccountsByBusiness(
-										$scope.curUser.businessAccount.id)
+										$scope.curUser.business.id)
 								.then(
 										function(accountList) {
 											$log
@@ -281,7 +281,7 @@ app
 								.getCustomerService();
 						customerService
 								.getAllCustomersByBusiness(
-										$scope.curUser.businessAccount.id)
+										$scope.curUser.business.id)
 								.then(
 										function(custList) {
 											$scope.customersforinvoice = custList.items;

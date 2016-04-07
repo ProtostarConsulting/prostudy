@@ -40,7 +40,7 @@ app
 						} else {
 						var purchaseService = appEndpointSF
 								.getPurchaseOrderService();
-						$scope.purchaseOrderObj.business = $scope.curUser.businessAccount;
+						$scope.purchaseOrderObj.business = $scope.curUser.business;
 
 						purchaseService.addPurchaseOrder(
 								$scope.purchaseOrderObj).then(
@@ -164,7 +164,7 @@ app
 						$log.debug("Inside Ctr $scope.getAllCustomers");
 						var customerService = appEndpointSF.getCustomerService();
 
-						customerService.getAllCustomersByCurrUser($scope.curUser.businessAccount.id).then(
+						customerService.getAllCustomersByCurrUser($scope.curUser.business.id).then(
 								function(custList) {
 									$log.debug("Inside Ctr getAllCustomers");
 									$scope.customersforinvoice = custList;
@@ -180,7 +180,7 @@ app
 						$log.debug("Inside Ctr $scope.getAllStock");
 						var stockService = appEndpointSF.getStockService();
 
-						stockService.getAllStock($scope.curUser.businessAccount.id).then(
+						stockService.getAllStock($scope.curUser.business.id).then(
 								function(stockList) {
 									$log.debug("Inside Ctr getAllStock");
 									$scope.stockforPO = stockList;
@@ -196,7 +196,7 @@ app
 						$log.debug("Inside Ctr $scope.getAllTaxes");
 						var taxService = appEndpointSF.getTaxService();
 
-						taxService.getTaxesByVisibility($scope.curUser.businessAccount.id).then(
+						taxService.getTaxesByVisibility($scope.curUser.business.id).then(
 								function(taxList) {
 									$log.debug("Inside Ctr getAllTaxes");
 									$scope.taxforPO = taxList;
@@ -227,7 +227,7 @@ app
 					function loadAll() {
 						
 							var customerService = appEndpointSF.getCustomerService();
-							customerService.getAllCustomersByBusiness($scope.curUser.businessAccount.id).then(
+							customerService.getAllCustomersByBusiness($scope.curUser.business.id).then(
 									function(custList) {
 										$scope.customersforPO = custList.items;	
 									});			

@@ -16,7 +16,7 @@ angular.module("stockApp").controller(
 				
 				var stockService = appEndpointSF.getStockService();
 				
-				stockService.getReportByThreshold($scope.curUser.businessAccount.id).then(
+				stockService.getReportByThreshold($scope.curUser.business.id).then(
 						function(stockByThreshold) {
 							$scope.thresholdStock = stockByThreshold;
 							$log.debug("$scope.thresholdStock:"
@@ -31,7 +31,7 @@ angular.module("stockApp").controller(
 			
 			$scope.getAllStock = function() {
 				var stockService = appEndpointSF.getStockService();
-				stockService.getAllStock($scope.curUser.businessAccount.id).then(
+				stockService.getAllStock($scope.curUser.business.id).then(
 						function(stockList) {
 							$scope.stockData = stockList;
 							$log.debug("Inside Ctr $scope.stockData:"
@@ -46,7 +46,7 @@ angular.module("stockApp").controller(
 				$log.debug("Inside function $scope.getAllWarehouseByBusiness");
 				var warehouseService = appEndpointSF.getWarehouseManagementService();
 
-				warehouseService.getAllWarehouseByBusiness($scope.curUser.businessAccount.id).then(
+				warehouseService.getAllWarehouseByBusiness($scope.curUser.business.id).then(
 						function(warehouseList) {
 							$scope.warehouses = warehouseList;
 							$log.debug("Inside Ctr $scope.warehouses:"

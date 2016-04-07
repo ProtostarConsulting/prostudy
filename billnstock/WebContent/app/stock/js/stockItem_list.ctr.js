@@ -31,7 +31,7 @@ angular.module("stockApp").controller(
 				$log.debug("Inside Ctr $scope.getAllStock");
 				var stockService = appEndpointSF.getStockService();
 
-				stockService.getAllStock($scope.curUser.businessAccount.id).then(
+				stockService.getAllStock($scope.curUser.business.id).then(
 						function(stockList) {
 							$log.debug("Inside Ctr getAllStock");
 							$scope.stockData = stockList;

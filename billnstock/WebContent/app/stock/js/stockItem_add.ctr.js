@@ -24,7 +24,7 @@ angular.module("stockApp").controller(
 			$scope.addStock = function() {
 				$log.debug("No1");
 				var stockService = appEndpointSF.getStockService();
-				$scope.stock.business = $scope.curUser.businessAccount;
+				$scope.stock.business = $scope.curUser.business;
 
 				stockService.addStock($scope.stock).then(function(msgBean) {
 					$scope.showSimpleToast();
@@ -37,7 +37,7 @@ angular.module("stockApp").controller(
 			$scope.updateStock = function() {
 				$log.debug("No1");
 				var stockService = appEndpointSF.getStockService();
-				$scope.stock.userBusiness = $scope.curUser.businessAccount;
+				$scope.stock.userBusiness = $scope.curUser.business;
 
 				stockService.addStock($scope.stock).then(function(msgBean) {
 					$scope.showSimpleToast();
@@ -53,7 +53,7 @@ angular.module("stockApp").controller(
 						.getWarehouseManagementService();
 
 				warehouseService.getAllWarehouseByBusiness(
-						$scope.curUser.businessAccount.id).then(
+						$scope.curUser.business.id).then(
 						function(warehouseList) {
 							$scope.warehouses = warehouseList;
 							$log.debug("$scope.warehouses:"

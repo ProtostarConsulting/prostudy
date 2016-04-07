@@ -26,7 +26,7 @@ app.controller(
 			
 			$scope.addAccount = function() {
 				$log.debug("No1");
-				$scope.account.business =$scope.curUser.businessAccount;
+				$scope.account.business =$scope.curUser.business;
 				var accountService = appEndpointSF.getAccountService();
 				accountService.addAccount($scope.account).then(
 						function(msgBean) {
@@ -37,7 +37,7 @@ app.controller(
 			$scope.getAllAccountsByBusiness = function() {
 				var accountService = appEndpointSF.getAccountService();
 
-				accountService.getAllAccountsByBusiness($scope.curUser.businessAccount.id).then(
+				accountService.getAllAccountsByBusiness($scope.curUser.business.id).then(
 						function(accountList) {
 							$log.debug("Inside Ctr getAllAccountsByBusiness");
 							$scope.accounts = accountList;							

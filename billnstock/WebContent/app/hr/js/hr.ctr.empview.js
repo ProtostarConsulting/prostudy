@@ -55,7 +55,7 @@ angular
 						}
 
 						hrService
-								.getallsalslip($scope.curryear,$scope.curUser.businessAccount.id)
+								.getallsalslip($scope.curryear,$scope.curUser.business.id)
 								 .then(
 										function(empsalslips) {
 											$scope.empSalSlip1 = empsalslips.items;

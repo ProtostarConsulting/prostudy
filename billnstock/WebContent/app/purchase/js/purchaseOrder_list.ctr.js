@@ -37,7 +37,7 @@ app.controller("purchaseOrderListCtr", function($scope, $window, $mdToast, $time
 		$log.debug("Inside Ctr $scope.getAllPurchaseOrder");
 		var purchaseService = appEndpointSF.getPurchaseOrderService();
 
-		purchaseService.getAllPurchaseOrder($scope.curUser.businessAccount.id).then(
+		purchaseService.getAllPurchaseOrder($scope.curUser.business.id).then(
 				function(purchaseOrderList) {
 					$log.debug("Inside Ctr getAllPurchaseOrder");
 					$scope.purchaseOrderList = purchaseOrderList;

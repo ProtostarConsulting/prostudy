@@ -26,7 +26,7 @@ app.controller(
 			
 			$scope.addReceivable = function() {
 				$log.debug("No1");
-				$scope.accountReveivable.business =$scope.curUser.businessAccount;
+				$scope.accountReveivable.business =$scope.curUser.business;
 				var accountService = appEndpointSF.getAccountService();
 				accountService.addReceivable($scope.accountReveivable).then(
 						function(msgBean) {
@@ -40,7 +40,7 @@ app.controller(
 			$scope.getAllAccountsByBusiness = function() {
 				var accountService = appEndpointSF.getAccountService();
 
-				accountService.getAllAccountsByBusiness($scope.curUser.businessAccount.id).then(
+				accountService.getAllAccountsByBusiness($scope.curUser.business.id).then(
 						function(accountList) {
 							$log.debug("Inside Ctr getAllAccountsByBusiness");
 							$scope.accounts = accountList;							
@@ -94,7 +94,7 @@ app.controller(
 			function loadAll() {
 				
 					var customerService = appEndpointSF.getCustomerService();
-					customerService.getAllCustomersByBusiness($scope.curUser.businessAccount.id).then(
+					customerService.getAllCustomersByBusiness($scope.curUser.business.id).then(
 							function(custList) {
 								$scope.customersforinvoice = custList.items;	
 							});			

@@ -49,7 +49,7 @@ angular
 						$log.debug("Inside Ctr $scope.getAllemps");
 						var hrService = appEndpointSF.gethrService();
 
-						hrService.getAllemp($scope.curUser.businessAccount.id)
+						hrService.getAllemp($scope.curUser.business.id)
 								.then(function(empList) {
 									$log.debug("Inside Ctr getAllemps");
 									$scope.emps = empList.items;
@@ -158,7 +158,7 @@ angular
 
 						var hrService = appEndpointSF.gethrService();
 						var allStates;
-						hrService.getAllemp($scope.curUser.businessAccount.id)
+						hrService.getAllemp($scope.curUser.business.id)
 								.then(function(empList) {
 									$scope.employees = empList.items;
 

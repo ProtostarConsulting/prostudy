@@ -1,5 +1,5 @@
 angular.module("stockApp").controller(
-		"needBusinessAccountCtr",
+		"needbusinessCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, $q, $location, objectFactory, appEndpointSF,
 				tableTestDataFactory, $state) {
@@ -19,7 +19,7 @@ angular.module("stockApp").controller(
 				accounttype:""
 			}
 			$scope.userEntity={
-					businessAccount:"",
+					business:"",
 					email_id : $scope.curuser.email_id,
 					firstName : $scope.curuser.firstName,
 					lastName : $scope.curuser.lastName,	
@@ -38,7 +38,7 @@ angular.module("stockApp").controller(
 									var UserService = appEndpointSF.getUserService();
 										UserService.addBusiness($scope.business).then(
 												function(business) {
-													$scope.userEntity.businessAccount=business.result;
+													$scope.userEntity.business=business.result;
 													$scope.userEntity.authority.push("admin");
 													UserService.addUser($scope.userEntity).then(function(msg){
 												    $scope.showSavedToast("Business Added Sucessfully");
