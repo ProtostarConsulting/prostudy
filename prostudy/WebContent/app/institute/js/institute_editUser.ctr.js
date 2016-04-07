@@ -39,8 +39,7 @@ angular
 											$scope.users = userList;
 											
 											for (i = 0; i < $scope.users.length; i++) {
-												if ($scope.selectedID == $scope.users[i].id) {
-													$log.debug("==id="+$scope.user[0]);
+												if ($scope.selectedID == $scope.users[i].id) {													
 													$scope.user.push($scope.users[i]);
 													$scope.role = $scope.users[i].role;												
 													
@@ -49,8 +48,8 @@ angular
 											$log.debug("$scope.user[0]"+$scope.user[0]);
 											if($scope.user[0].role=="Student")
 											{
-												$scope.getSubjectsByDivName();
-											$scope.getSubjectsByStudentID();
+											$scope.getSubjectsByDivName();
+											$scope.getSubjectsByStudentID();											
 											}
 
 										});
@@ -94,6 +93,7 @@ angular
 							return $scope.flag1 = true;
 						}
 					}
+					$scope.subjectList=[];
 					$scope.getSubjectsByDivName = function() {
 
 						var DivisionService = appEndpointSF
@@ -166,16 +166,16 @@ angular
 								$scope.studID = $scope.user[0].id;
 								$scope.subID=$scope.subjectList[i].id;
 								$log.debug("$scope.studID:"+$scope.studID +" $scope.subID"+
-										$scope.subID);
-								
+										$scope.subID);						
 								
 								
 								$log.debug("To Mark this subject as Inactive:"
 										+ $scope.subjectList[i].name+ $scope.subjectList[i].id);
 							
-								$scope.getStudSubByStudIdAndSubId();									
+							$scope.getStudSubByStudIdAndSubId();	
 								
-								$log.debug("$scope.selectedStudSub"+$scope.selectedStudSub);															
+							$log.debug(" after got $scope.selectedStudSub"
+									+ $scope.selectedStudSub);																						
 								
 							}
 						}
@@ -198,7 +198,7 @@ angular
 						StudSubService.getStudSubByStudIdAndSubId($scope.studID,$scope.subID).then(
 										function(studsub) {	
 											
-											$scope.selectedStudSub=studsub;											
+											$scope.selectedStudSub=studsub;													
 											if($scope.selectedStudSub!=undefined)
 											{$scope.removeStudSubject();}											
 										});
