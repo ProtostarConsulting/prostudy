@@ -32,22 +32,22 @@
 				<i>{{item.note}}</i>
 			</p>
 
-			<div>
+			<div layout="column">
 				<md-checkbox name="answer"
-					ng-model="selected[item.quesId + item.option1]"
-					ng-click="toggleSelection(item.quesId,1)">
+					ng-model="selected[item.id + item.option1]"
+					ng-click="toggleSelection(item.id,1)">
 				{{item.option1 }}</md-checkbox>
 				<md-checkbox name="answer"
-					ng-model="selected[item.quesId + item.option2]"
-					ng-click="toggleSelection(item.quesId,2)">
+					ng-model="selected[item.id + item.option2]"
+					ng-click="toggleSelection(item.id,2)">
 				{{item.option2 }}</md-checkbox>
 				<md-checkbox name="answer"
-					ng-model="selected[item.quesId + item.option3]"
-					ng-click="toggleSelection(item.quesId,3)">
+					ng-model="selected[item.id + item.option3]"
+					ng-click="toggleSelection(item.id,3)">
 				{{item.option3 }}</md-checkbox>
 				<md-checkbox name="answer"
-					ng-model="selected[item.quesId + item.option4]"
-					ng-click="toggleSelection(item.quesId,4)">
+					ng-model="selected[item.id + item.option4]"
+					ng-click="toggleSelection(item.id,4)">
 				{{item.option4 }}</md-checkbox>
 
 
@@ -55,7 +55,7 @@
 		</div>
 	</div>
 
-	<!-- <div>selected option:{{selection}}</div> -->
+	 <div>selected option:{{selection}}</div> 
 
 	<div layout-sm="column">
 		<div layout="row" layout-align="center end">

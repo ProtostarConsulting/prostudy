@@ -12,12 +12,9 @@ angular
 								.hideDelay(3000));
 					};
 
-					$log.debug("Inside userQuesAnsViewCtr.........");
+					
 					$scope.selectedExamId = $stateParams.selectedExamId;
-					$log.debug("$stateParams:", $stateParams);
-					$log.debug("$stateParams.selectedExamId:",
-							$stateParams.selectedExamId);
-
+					
 					$scope.curuser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
 
@@ -34,22 +31,15 @@ angular
 					} ];
 
 					$scope.showselectedExam = function() {
-						var PracticeExamService = appEndpointSF
-								.getPracticeExamService();
+						var PracticeExamService = appEndpointSF.getPracticeExamService();
 
-						PracticeExamService
-								.getPracticeExamById($scope.selectedExamId)
+						PracticeExamService.getPracticeExamById($scope.selectedExamId)
 								.then(
 										function(practiceTest) {
 											$scope.Test = practiceTest;
 											$scope.Test.questions.description = $sce
 													.trustAsHtml($scope.Test.questions.description);
 											$scope.newQues = $scope.Test.questions;
-
-											$log
-													.debug("$scope.newQues :"
-															+ angular
-																	.toJson($scope.newQues));
 
 											$scope.newQues[0].qId = 1;
 											for (var i = 1; i < $scope.newQues.length; i++) {
@@ -73,15 +63,15 @@ angular
 								.then(
 										function(practiceExamResultList) {
 
-											$scope.examResults = practiceExamResultList;
+			 								$scope.examResults = practiceExamResultList;
 
 										});
 					}
 
 					$scope.isUserSelection = function(index, currOption) {
 
-						$log.debug("results :" + index);
-						$log.debug("currOption :" + currOption);
+						$log.debug("results11111111 :" + index);
+						$log.debug("currOption11111 :" + currOption);
 
 						var currentQ = $scope.Test.questions[index];
 						var currentExamResult = $scope.examResults[1];// write

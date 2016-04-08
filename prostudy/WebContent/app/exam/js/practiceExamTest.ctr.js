@@ -14,15 +14,15 @@ angular
 
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
-					$log.debug("$scope.curUser....................."
-							+ angular.toJson($scope.curUser));
-
+					
 					// Code for timer
 					var date = new Date();
 
 					$scope.counter = 200;
 					$scope.startTime = null;
 					$scope.endTime = null;
+					$scope.examResults;
+					$scope.selectedID;
 
 					$scope.currentPage = 0;
 					$scope.totalPages = 0;
@@ -72,12 +72,11 @@ angular
 						}
 					});// End of timer
 
-					$scope.toggleSelection = function toggleSelection(id,
-							optionId) {
+					$scope.toggleSelection = function toggleSelection(id,optionId) {
 						var idx = $scope.selection.indexOf(id, optionId);
 						$scope.userAnsList.push({
 							qID : id,
-							userOption : optionId
+							userOption : 'option'+optionId
 						});
 						if (idx > -1) {
 							$scope.selection.splice(idx, 1);
@@ -95,24 +94,16 @@ angular
 
 						for (var i = 0; i < $scope.userAnsList.length; i++) {
 
-							/*
-							 * if
-							 * ($scope.getCorrectAnsByQID($scope.userAnsList[i].qID) ==
-							 * $scope.userAnsList[i].userOption) {
-							 * $scope.tempPracticeExamResult.score++; }
-							 */
 							if ($scope.userAnsList[i].userOption == $scope.Test.questions[i].correctAns) {
 								$scope.tempPracticeExamResult.score++;
 							}
 
 						}
-						$scope.stopTimer();
 						$scope.addPracticeExamResult();
-
-						$state.go('userQuesAnsView', {
-							selectedExamId : $scope.Test.id,
-							selectedResultId : $scope.examResults.ID
-						});
+						$scope.stopTimer();
+						
+						$log.debug("$scope.selectedID" +$scope.selectedID);
+						$state.go('userQuesAnsView', {selectedExamId : $scope.Test.id, selectedResultId : $scope.selectedID});
 
 					}
 
@@ -122,8 +113,7 @@ angular
 
 							if ($scope.Test.questions[i].id == qID) {
 								return $scope.Test.questions[i].correctAns;
-								$log.debug("Correct ans :"
-										+ $scope.Test.questions[i].correctAns);
+								
 							}
 						}
 						return -1;
@@ -140,8 +130,7 @@ angular
 										- $scope.itemsPerPage,
 								($scope.currentPage * $scope.itemsPerPage));
 						console.log("slice =" + $scope.array);
-						console.log("Questions ="
-								+ $scope.Test.questions[0].option1);
+						
 
 						if ($scope.currentPage == $scope.totalPages) {
 							$scope.isDisabledNext = true;
@@ -153,7 +142,7 @@ angular
 					}// end of onNext
 
 					$scope.onButtonClick = function(index) {
-						console.log("$index" + index);
+					
 						$scope.currentPage = index;
 						$scope.count = $scope.currentPage;
 
@@ -161,8 +150,7 @@ angular
 								($scope.currentPage * $scope.itemsPerPage)
 										- $scope.itemsPerPage,
 								($scope.currentPage * $scope.itemsPerPage));
-						console.log("$scope.currentPage=" + $scope.currentPage);
-
+						
 						if ($scope.currentPage == $scope.totalPages) {
 							$scope.isDisabledNext = true;
 
@@ -180,13 +168,12 @@ angular
 
 					$scope.onPrevious = function() {
 						$scope.currentPage--;
-						console.log("Previous" + $scope.currentPage);
+						
 						$scope.array = $scope.Test.questions.slice(
 								($scope.currentPage * $scope.itemsPerPage)
 										- $scope.itemsPerPage,
 								($scope.currentPage * $scope.itemsPerPage));
-						console.log("$scope.currentPage=" + $scope.currentPage);
-
+						
 						if ($scope.currentPage <= 1) {
 							$scope.isDisabledPrevious = true;
 
@@ -213,10 +200,7 @@ angular
 					}
 					$scope.getPracticeExamByInstitute();
 
-					$log.debug("$stateParams:", $stateParams);
-					$log.debug("$stateParams.selectedExamId:",
-							$stateParams.selectedExamId);
-
+					
 					$scope.selectedExamId = $stateParams.selectedExamId;
 
 					$scope.showselectedExam = function() {
@@ -232,8 +216,7 @@ angular
 											$scope.buttonLimit = function(count) {
 												$scope.totalPages = Math
 														.ceil($scope.Test.questions.length / 4);
-												$log.debug("$scope.totalPages"
-														+ $scope.totalPages);
+												
 												return Array.apply(0,
 														Array(+count)).map(
 														function(value, index) {
@@ -243,8 +226,6 @@ angular
 											}// end of buttonlimit
 
 											$scope.newQues = $scope.Test.questions;
-
-											$log.debug("$scope.newQues :"+ angular.toJson($scope.newQues));
 
 											$scope.newQues[0].qId = 1;
 											for (var i = 1; i < $scope.newQues.length; i++) {
@@ -263,13 +244,7 @@ angular
 
 					}// End of showselectedExam
 
-					/*
-					 * for(var i=0;i<$scope.Test.questions.length;i++) {
-					 * if($scope.Test.questions[i].id ==
-					 * $scope.examResults[i].userAns.qID) {
-					 * $scope.Test.questions[i].userOption =
-					 * $scope.examResults[i].userAns.userOption; } }
-					 */
+					
 
 					$scope.questions = [];
 					$scope.practiceTest = [];
@@ -277,15 +252,6 @@ angular
 					$scope.selection = [];
 					$scope.userAns = [];
 
-					/*
-					 * $scope.toggleSelection = function toggleSelection(id,
-					 * optionId) {
-					 * 
-					 * if($scope.isQuestionAnswered(id)){
-					 * $scope.removeUserQuestionAnswered(id); }
-					 * 
-					 * $scope.userAnsList.push({qID: id, userOption:optionId}); };
-					 */
 
 					$scope.getPracticeExamResultbyID = function() {
 
@@ -320,16 +286,10 @@ angular
 					}
 
 					$scope.addPracticeExamResult = function() {
-						var PracticeExamResultService = appEndpointSF
-								.getPracticeExamResultService();
+						var PracticeExamResultService = appEndpointSF.getPracticeExamResultService();
 
-						PracticeExamResultService.addPracticeExamResult(
-										$scope.tempPracticeExamResult)
-								.then(
-										function(msgBean) {
-
-											$log.debug("No6");
-											$log.debug("Inside Ctr practiceExamTestCtr");
+						PracticeExamResultService.addPracticeExamResult($scope.tempPracticeExamResult).then(function(msgBean) {
+											$scope.selectedID = msgBean.id;
 											$scope.showSavedToast();
 											
 										});

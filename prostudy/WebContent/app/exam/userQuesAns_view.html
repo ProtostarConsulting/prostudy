@@ -10,7 +10,7 @@
 			<i>{{item.note}}</i>
 		</p>
 
-		<div >
+		<div layout="column">
 			<md-checkbox  ng-checked="isUserSelection($index, 1)">
 			{{item.option1}} {{isAnsCorrect($index, 1)?"Correct":""}}</md-checkbox>
 			<md-checkbox  ng-checked="isUserSelection($index, 2)">
