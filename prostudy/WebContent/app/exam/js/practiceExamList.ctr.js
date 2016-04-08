@@ -27,21 +27,12 @@ angular.module("prostudyApp").controller(
 						});
 			}
 			$scope.getPracticeExamByInstitute();
-
-			$scope.isContainsTest = function(testid) {
-				if (typeof $scope.curUser.myExams === 'undefined') {
-					$scope.curUser.myExams = [];
-				} else {
-					for (var i = 0; i < $scope.curUser.myExams.length; i++) {
-						if (angular
-								.equals($scope.curUser.myExams[i].id, testid)) {
-							return true;
-						}
-					}
-				}
-				return false;
-			};
-
+	
+			if (typeof $scope.curUser.myExams === 'undefined') {
+				$scope.curUser.myExams = [];
+			}
+			$scope.isContainsTest = appEndpointSF.getUtilityService().objectArrayContains;
+			
 			$scope.addTestToMyList = function(selectedMyExamId) {
 
 				var practiceTest = null;
