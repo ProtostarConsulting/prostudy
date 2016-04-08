@@ -44,8 +44,8 @@ angular.module("prostudyApp").controller(
 			//$scope.tempStudent.email_id="ash@gmail.com"
 			//if($scope.tempStudent.email_id!=undefined)
 			
-		//	$scope.xx=$scope.checkUserAlreadyExist("ash@gmail.com");
-		//	$log.debug("xx1:" + $scope.xx);
+			$scope.xx=$scope.checkUserAlreadyExist("ash@gmail.com");
+			$log.debug("xx1:" + $scope.xx);
 		
 
 			$scope.currentStdID = $stateParams.currentStdID;
@@ -113,7 +113,7 @@ angular.module("prostudyApp").controller(
 					UserService.addUser($scope.tempStudent).then(function(msgBean) {
 						$scope.email_id=msgBean.email_id;
 					$log.debug("$scope.email_id"+$scope.email_id);
-						$state.go("institute.studFillbasics", {currstud:$scope.email_id});
+						$state.go("institute.studFillbasics", {currstud:$scope.email_id,currentInstID:$scope.currentInstID});
 				});
 				$scope.showStudentSavedToast();				
 

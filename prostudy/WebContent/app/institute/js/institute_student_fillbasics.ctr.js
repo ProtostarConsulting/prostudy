@@ -6,7 +6,7 @@ angular.module("prostudyApp")
 				appEndpointSF,$stateParams) {
 			
 			$scope.currStudEmailId = $stateParams.currstud;			
-
+		
 			$scope.curUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
 			
