@@ -35,7 +35,7 @@ public class HrService {
 		List<UserEntity> filteredemp = ofy()
 				.load()
 				.type(UserEntity.class)
-				.filter("businessAccount",
+				.filter("business",
 						Ref.create(Key.create(BusinessEntity.class, busId)))
 				.list();
 		return filteredemp;

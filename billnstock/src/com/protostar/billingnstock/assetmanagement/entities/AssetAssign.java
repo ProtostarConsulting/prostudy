@@ -3,12 +3,14 @@ package com.protostar.billingnstock.assetmanagement.entities;
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.user.entities.UserEntity;
 
 @Entity
 public class AssetAssign {
 
 	private Ref<UserEntity> userEntity;
+	@Index
 	private Ref<Asset> assetEntity ;
 	
 	@Id

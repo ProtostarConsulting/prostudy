@@ -13,6 +13,7 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
+import com.googlecode.objectify.Ref;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
 import com.protostar.billingnstock.user.entities.tempBusinessEntity;
@@ -25,14 +26,10 @@ public class UserService {
 	@ApiMethod(name = "addUser")
 	public void addUser(UserEntity usr) {
 		Key<UserEntity> now = ofy().save().entity(usr).now();
-		int count = 1;
-		List<UserEntity> list = ofy().load().type(UserEntity.class).list();
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getBusiness().getId()
-					.equals(usr.getBusiness().getId())) {
-				count++;
-			}
-		}
+		int count; 
+		List<UserEntity> filtereduser = ofy().load().type(UserEntity.class)
+				.filter("business",Ref.create(Key.create(BusinessEntity.class, usr.getBusiness().getId()))).list();
+		count=filtereduser.size()+1;
 		
 		BusinessEntity businessEntity = new BusinessEntity();
 		businessEntity = usr.getBusiness();
@@ -108,16 +105,9 @@ public class UserService {
 		Key<BusinessEntity> now = ofy().save().entity(business).now();
 		
 		return business;
-
-		
-/*		user.setBusinessAccount(business);
-		user.setIsGoogleUser(true);
-		user.setAuthority(Arrays.asList("admin"));
-		ofy().save().entity(user).now();
-*/
 	}
 
-	@ApiMethod(name = "addNewBusiness")
+/*	@ApiMethod(name = "addNewBusiness")
 	public void addNewBusiness(tempBusinessEntity business) {
 
 		Date date = new Date();
@@ -125,9 +115,6 @@ public class UserService {
 		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
 
 		BusinessEntity businessEntity = new BusinessEntity();
-		/*businessEntity.setAdminFirstName(business.getAdminFirstName());
-		businessEntity.setAdminEmailId(business.getAdminEmailId());
-		businessEntity.setAdminLastName(business.getAdminLastName());*/
 		businessEntity.setBusinessName(business.getBusinessName());
 		businessEntity.setAccounttype(business.getAccounttype());
 		businessEntity.setRegisterDate(sdf.format(date));
@@ -136,9 +123,6 @@ public class UserService {
 
 		UserEntity userEntity = new UserEntity();
 		userEntity.setBusiness(businessEntity);
-		/*userEntity.setEmail_id(business.getAdminEmailId());
-		userEntity.setFirstName(business.getAdminFirstName());
-		userEntity.setLastName(business.getAdminLastName());*/
 		userEntity.setIsGoogleUser(business.getIsGoogleUser());
 		userEntity.setAuthority(Arrays.asList("admin"));
 		userEntity.setPassword(business.getPassword());
@@ -146,19 +130,13 @@ public class UserService {
 		ofy().save().entity(userEntity).now();
 
 	}
-
+*/
 	
 	@ApiMethod(name = "getUsersByBusinessId")
 	public List<UserEntity> getUsersByBusinessId(@Named("id") Long id) {
-		List<UserEntity> list =  ofy().load().type(UserEntity.class).list();
 		
-		List<UserEntity> filtereduser = new ArrayList<UserEntity>();
-		
-		for(int i=0;i<list.size();i++){
-			if(list.get(i).getBusiness().getId().equals(id)){
-				filtereduser.add(list.get(i));
-			}
-		}
+		List<UserEntity> filtereduser = ofy().load().type(UserEntity.class)
+				.filter("business",Ref.create(Key.create(BusinessEntity.class, id))).list();
 		
 		return filtereduser;
 		
