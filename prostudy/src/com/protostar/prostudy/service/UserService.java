@@ -46,13 +46,6 @@ public class UserService {
 		return (list == null || list.size() == 0) ? null : list.get(0);
 	}
 
-	@ApiMethod(name = "checkUserAlreadyExist",path="checkUserAlreadyExist")
-	public UserEntity checkUserAlreadyExist(@Named("email_id") String email) {
-		List<UserEntity> list = ofy().load().type(UserEntity.class)
-				.filter("email_id", email).list();
-		return (list == null || list.size() == 0) ?  null : list.get(0);
-	}
-
 	@ApiMethod(name = "getUserByInstitute")
 	public List<UserEntity> getUserByInstitute(
 			@Named("instituteID") Long instituteID) {
