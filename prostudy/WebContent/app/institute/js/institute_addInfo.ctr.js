@@ -6,7 +6,9 @@ angular.module("prostudyApp").controller(
 			$scope.selectedStandard;
 			$scope.selectedDivision;
 			$scope.selectedSubject;
-
+			
+			$scope.currentInstID = $stateParams.currentInstID;
+			
 			$scope.flag1 = true;
 			$scope.flag2 = true;
 			$scope.flag3 = true;
@@ -54,8 +56,7 @@ angular.module("prostudyApp").controller(
 						3000));
 			};
 
-			$scope.currentInstID = $stateParams.currentInstID;
-
+		
 			$scope.isDisabled;
 			$scope.disableButton = function() {
 				$scope.isDisabled = !$scope.isDisabled;

@@ -4,9 +4,8 @@ angular.module("prostudyApp").controller(
 				$log, $q, $sce, tableTestDataFactory, appEndpointSF, $state,
 				$filter, $stateParams, objectFactory) {
 
-			$scope.selectedInstituteID = $stateParams.selectedInstituteID;
-			
-			$scope.currentInstID = $stateParams.selectedInstituteID;
+			$scope.selectedInstituteID = $stateParams.selectedInstituteID;			
+		
 			$scope.selectedStdID = $stateParams.selectedStdID;
 			$scope.selectedDivID = $stateParams.selectedDivID; 
 			
@@ -21,7 +20,7 @@ angular.module("prostudyApp").controller(
 			$scope.isGoogleUser = false;
 			$scope.checkConfirmPassword = appEndpointSF.getUtilityService().checkConfirmPassword;
 			
-			$log.debug("$scope.currentInstID :" + $scope.currentInstID);
+		
 
 			$scope.adminList = [];
 			$scope.teacherList = [];
@@ -70,13 +69,13 @@ angular.module("prostudyApp").controller(
 						.hideDelay(3000));
 			};
 
-			$scope.tempStudent = objectFactory.newInstituteUser("Student",$scope.currentInstID,$scope.isGoogleUser);
-			$scope.tempTeacher = objectFactory.newInstituteUser("Teacher",$scope.currentInstID,$scope.isGoogleUser);
-			$scope.tempAdmin = objectFactory.newInstituteUser("Admin",$scope.currentInstID,$scope.isGoogleUser);
+			$scope.tempStudent = objectFactory.newInstituteUser("Student",$scope.selectedInstituteID,$scope.isGoogleUser);
+			$scope.tempTeacher = objectFactory.newInstituteUser("Teacher",$scope.selectedInstituteID,$scope.isGoogleUser);
+			$scope.tempAdmin = objectFactory.newInstituteUser("Admin",$scope.selectedInstituteID,$scope.isGoogleUser);
 
 			$scope.standard = {
 
-				instituteID : $scope.currentInstID,
+				instituteID : $scope.selectedInstituteID,
 				name : ""
 			};
 
@@ -170,14 +169,14 @@ angular.module("prostudyApp").controller(
 			UserService.addUser($scope.tempStudent).then(function(msgBean) {
 				$scope.email_id=msgBean.email_id;
 				$scope.showStudentSavedToast();
-				$state.go("institute.studFillbasics", {currstud:$scope.email_id});
+				$state.go("institute.studFillbasics", {currstud:$scope.email_id,currentInstID:$scope.selectedInstituteID});
 		});
 		
 
 	}		
 			$scope.showselectedInstitute = function() {
 				var InstituteService = appEndpointSF.getInstituteService();
-				InstituteService.getInstituteById($scope.currentInstID)
+				InstituteService.getInstituteById($scope.selectedInstituteID)
 						.then(function(institutes) {
 							$scope.Institute = institutes;
 						});
@@ -194,11 +193,11 @@ angular.module("prostudyApp").controller(
 
 				$state.go("institute.list_view");
 			}
-
+			$scope.users=[];
 			$scope.getUserByInstitute = function() {
 
 				var UserService = appEndpointSF.getUserService();
-				UserService.getUserByInstitute($scope.currentInstID)
+				UserService.getUserByInstitute($scope.selectedInstituteID)
 						.then(function(userList) {
 							$scope.users = userList;
 
@@ -235,7 +234,7 @@ angular.module("prostudyApp").controller(
 
 				var StandardService = appEndpointSF.getStandardService();
 				StandardService.getStandardByInstitute(
-						$scope.currentInstID).then(
+						$scope.selectedInstituteID).then(
 						function(standardList) {
 
 							$scope.viewstdList = standardList;
@@ -268,7 +267,7 @@ angular.module("prostudyApp").controller(
 
 				var StandardService = appEndpointSF
 						.getStandardService();
-				StandardService.getStandardByInstitute($scope.currentInstID).then(
+				StandardService.getStandardByInstitute($scope.selectedInstituteID).then(
 						function(standardList) {
 							for(var i=0; i< standardList.length; i++)
 								{

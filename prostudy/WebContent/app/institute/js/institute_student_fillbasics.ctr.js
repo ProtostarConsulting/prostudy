@@ -4,17 +4,27 @@ angular.module("prostudyApp")
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, objectFactory, appEndpointSF, tableTestDataFactory,$state,
 				appEndpointSF,$stateParams) {
+			
+			$scope.currStudEmailId = $stateParams.currstud;			
 
 			$scope.curUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
 			
-			$scope.currStudEmailId = $stateParams.currstud;
-			$log.debug("$scope.currStudEmailId "+$scope.currStudEmailId );
+			$scope.currentInstID=$scope.curUser.instituteID;
+			
+			if($stateParams.currentInstID)
+			{
+				$scope.currentInstID = $stateParams.currentInstID;
+				$log.debug("$scope.currentInstID"+$scope.currentInstID);
+				
+			}
+			
 			$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content('Student Data Saved!')
 						.position("top").hideDelay(3000));
 			};
-					  			
+					
+			
 			$scope.standards = [];
 			$scope.divisions = [];
 			$scope.subjects = [];			
@@ -29,7 +39,7 @@ angular.module("prostudyApp")
 
 				var StandardService = appEndpointSF
 						.getStandardService();
-				StandardService.getStandardByInstitute($scope.curUser.instituteID).then(
+				StandardService.getStandardByInstitute($scope.currentInstID).then(
 						function(standardList) {
 							$scope.stdList = standardList;							
 							for(var i=0; i< $scope.stdList.length; i++)
