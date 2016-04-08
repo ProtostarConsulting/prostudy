@@ -23,19 +23,12 @@ angular.module("prostudyApp").controller(
 						});
 			}
 			$scope.getBooksByInstitute();
-			$scope.isContainsBook = function(bookid) {
-				if (typeof $scope.curUser.myBooks === 'undefined') {
-					$scope.curUser.myBooks = [];
-				} else {
-					for (var i = 0; i < $scope.curUser.myBooks.length; i++) {
-						if (angular.equals($scope.curUser.myBooks[i].id, bookid)) {
-							return true;
-						}
-					}
-				}
-				return false;
-			};
-
+			
+			if (typeof $scope.curUser.myBooks === 'undefined') {
+				$scope.curUser.myBooks = [];
+			} 
+			$scope.isContainsBook = appEndpointSF.getUtilityService().objectArrayContains;
+		
 			$scope.addBookToMyList = function(selectedBookId) {
 				var selectedBook = null;
 				for (var i = 0; i < $scope.books.length; i++) {
