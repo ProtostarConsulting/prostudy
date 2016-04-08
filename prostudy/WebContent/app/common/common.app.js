@@ -149,16 +149,20 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/institute/institute_addTeachers.html',
 		controller : 'instituteAddInfoCtr'
 	}).state('institute.addStudents', {
-		url : "/institute/addStudents/:currentInstID",
+		url : "/institute/addStudents",
 		templateUrl : '/app/institute/institute_addStudents.html',
-		controller : 'instituteAddStudCtr'
+		controller : 'instituteAddStudCtr',
+		params : {
+			currentInstID : null		
+		}
 	})
 	.state('institute.studFillbasics', {
 		url : "/institute/fillbasics",
 		templateUrl : '/app/institute/institute_student_fillbasics.html',
 		controller : 'instituteStudentFillbasicsCtr',
 		params : {
-			currstud : null			
+			currstud : null	,
+			currentInstID: null
 		}
 	})
 	.state('institute.addStandards', {
