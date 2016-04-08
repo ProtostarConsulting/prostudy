@@ -58,21 +58,26 @@
 	</div>
 
 	<div layout="row" layout-xs="column">
-		
+
 		<md-input-container flex> <md-checkbox
 			ng-model="tempStudent.isGoogleUser" ng-true-value="true"
-			ng-false-value="false"><label>Is Google User</label> </md-checkbox></md-input-container>
+			ng-false-value="false">
+		<label>Is Google User</label> </md-checkbox></md-input-container>
 
 		<md-input-container flex> <label>Email-id<span
 			style="color: red"
 			ng-show="instituteStudentForm.email_id.$error.required"
-			class="mandatory">*</span></label> <input type="email" name="email_id" 	ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
-			ng-model="tempStudent.email_id" ng-required="true">
+			class="mandatory">*</span></label> <input type="email" name="email_id"
+			ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+			ng-model="tempStudent.email_id"
+			ng-blur="checkUserAlreadyExist(tempStudent.email_id)"
+			ng-required="true">
 		<div ng-messages="instituteStudentForm.email_id.$error"
 			ng-if="instituteStudentForm.email_id.$submitted || instituteStudentForm.email_id.$touched">
-				<div ng-message="required">Email-Id should not Empty.</div>
-				<div ng-message="pattern">Please Enter Valid Email-Id.</div>
-		</div>
+			<div ng-message="required">Email-Id should not Empty.</div>
+			<div ng-message="pattern">Please Enter Valid Email-Id.</div>
+		</div>	
+	<!--   <span style="color: red" id="error" ng-show="tempStudent.email_id">{{checkUserAlreadyExist(tempStudent.email_id)}}</span>  -->
 		</md-input-container>
 	</div>
 
@@ -84,7 +89,8 @@
 			class="mandatory">*</span>
 		</label> <input name="password" type="password"
 			ng-model="tempStudent.password"
-			ng-required="!tempStudent.isGoogleUser" ng-blur="checkConfirmPassword(tempStudent.password, tempStudent.confirmpassword)">
+			ng-required="!tempStudent.isGoogleUser"
+			ng-blur="checkConfirmPassword(tempStudent.password, tempStudent.confirmpassword)">
 		<div ng-messages="instituteStudentForm.password.$error"
 			ng-if="instituteStudentForm.password.$submitted || instituteStudentForm.password.$touched">
 			<div ng-message="required">Please Enter Password.</div>
@@ -96,24 +102,25 @@
 			ng-show="instituteStudentForm.Confirmpassword.$error.required"
 			class="mandatory">*</span></label> <input name="Confirmpassword"
 			type="password" ng-model="tempStudent.confirmpassword"
-			ng-required="!tempStudent.isGoogleUser" ng-blur="checkConfirmPassword(tempStudent.password, tempStudent.confirmpassword)">
+			ng-required="!tempStudent.isGoogleUser"
+			ng-blur="checkConfirmPassword(tempStudent.password, tempStudent.confirmpassword)">
 
 		<div ng-messages="instituteStudentForm.Confirmpassword.$error"
 			ng-if="instituteStudentForm.Confirmpassword.$submitted || instituteStudentForm.Confirmpassword.$touched">
 			<div ng-message="required">Please Enter Confirm Password.</div>
 		</div>
-		<span style="color: red" id="err" ng-show="tempStudent.confirmpassword">{{checkConfirmPassword(tempStudent.password, tempStudent.confirmpassword)}}</span> 
-		</md-input-container>
-	</div>	
+		<span style="color: red" id="err"
+			ng-show="tempStudent.confirmpassword">{{checkConfirmPassword(tempStudent.password,
+			tempStudent.confirmpassword)}}</span> </md-input-container>
+	</div>
 
 	<div layout="row" layout-align="center center">
 		<md-button class="md-raised md-primary"
 			ng-disabled="instituteStudentForm.$invalid"
 			ng-click="addInstituteStudents()">Add Student </md-button>
 
-		<a ui-sref="institute"><md-button ng-show="flag3==true" class="md-raised md-primary"
-				ng-click="showMsg()">Skip</md-button> </a>
-
+		<a ui-sref="institute"><md-button ng-show="flag3==true"
+				class="md-raised md-primary" ng-click="showMsg()">Skip</md-button> </a>
 
 	</div>
 
