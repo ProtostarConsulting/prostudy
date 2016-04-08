@@ -7,81 +7,9 @@ angular.module("stockApp").controller(
 						.position("top").hideDelay(3000));
 			};
 
-			$scope.typeid = $stateParams.typeid;
 
-			$scope.curuser = appEndpointSF.getLocalUserService()
-					.getLoggedinUser();
 
-			$scope.AccountType = {
-
-				/*loggedInUser : "",*/
-				accountName : "",
-				description : "",
-				maxuser : "",
-				paymentDesc : ""
-			}
-
-			$scope.addAccountType = function() {
-				/*$scope.AccountType.loggedInUser = $scope.curUser;*/
-
-				var proadminService = appEndpointSF.getproadminService();
-				proadminService.addAccountType($scope.AccountType).then(
-						function(msgBean) {
-							$scope.showSimpleToast(msgBean.msg);
-
-						});
-
-				$scope.AccountType = {};
-			}
-
-			$scope.getallAccountType = function() {
-				var proadminService = appEndpointSF.getproadminService();
-				proadminService.getallAccountType().then(function(assetList) {
-					$scope.accountlist = assetList.items;
-				});
-			}
-			$scope.accountlist = [];
-			
-			
-			
-			$scope.getAccountTypeById = function() {
-				var proadminService = appEndpointSF.getproadminService();
-				if (typeof $scope.typeid != 'undefined') {
-					proadminService.getAccountTypeById($scope.typeid).then(
-							function(assetList) {
-								$scope.accounttype = assetList.result;
-							});
-				}
-			}
-			$scope.accounttype = [];
-		
-
-			$scope.updateAccountType = function() {
-				$scope.AccountType.loggedInUser = $scope.curUser;
-
-				var proadminService = appEndpointSF.getproadminService();
-				proadminService.updateAccountType($scope.accounttype).then(
-						function(msgBean) {
-							$scope.showSimpleToast(msgBean.msg);
-
-						});
-			}
-
-			//-------------------use to lode service------------------------------ 
-			
-			$scope.waitForServiceLoad = function() {
-				if (appEndpointSF.is_service_ready) {
-					$scope.getallAccountType();
-					$scope.getAccountTypeById();
-				} else {
-					$log.debug("Services Not Loaded, watiting...");
-					$timeout($scope.waitForServiceLoad, 1000);
-				}
-			}
-			$scope.waitForServiceLoad();
-			
-			//-----------------------------------------------------------------------			
-			
+	
 			
 			$scope.toggleRight = buildToggler('right');
 

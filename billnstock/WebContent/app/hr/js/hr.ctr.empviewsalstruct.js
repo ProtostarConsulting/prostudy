@@ -25,8 +25,20 @@ angular
 						}
 					}
 					$scope.empDetail = [];
-					$scope.showEmp();
+					
 
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.showEmp();
+							
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					$scope.waitForServiceLoad();
+					
+					
 					$scope.updateemp = function() {
 							
 						var hrService = appEndpointSF.gethrService();

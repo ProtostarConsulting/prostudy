@@ -28,11 +28,9 @@ angular
 							});
 						
 					}
-					$scope.getBusinessById();
+				
 					$scope.business={};
-					
-					
-					
+									
 					$scope.getAllUserOfOrg = function() {
 						var setupService = appEndpointSF.getsetupService();
 						if (typeof $scope.business.id != 'undefined') {
@@ -80,9 +78,18 @@ angular
 					$scope.suspendedUsers = [];
 
 					$scope.userslist = [];
-					$scope.getAllUserOfOrg();
+					
 
-				
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.getAllUserOfOrg();
+							$scope.getBusinessById();
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					$scope.waitForServiceLoad();
 
 					$scope.showAdvanced = function(ev) {
 						var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))

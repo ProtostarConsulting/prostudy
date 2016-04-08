@@ -32,7 +32,7 @@ angular
 					}
 				
 					$scope.months = [];
-					$scope.getlastmonth();
+				
 
 					
 						$scope.displyOnlySelected = function(abc) {
@@ -62,7 +62,7 @@ angular
 					}
 					$scope.displyselected = [];
 
-					$scope.displyOnlySelected();
+			
 
 					var printDivCSS = new String(
 							'<link href="/lib/base/css/angular-material.min.css"" rel="stylesheet" type="text/css">'
@@ -94,7 +94,20 @@ angular
 					}
 					}
 					$scope.printslectedslip = [];
-					$scope.printslip();
+					
+					
+					
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.getlastmonth();
+							$scope.displyOnlySelected();
+							$scope.printslip();
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					$scope.waitForServiceLoad();
 
 					$scope.toggleRight = buildToggler('right');
 

@@ -93,8 +93,17 @@ angular
 								});
 					}
 					$scope.empSalStruct = [];
-					$scope.getAllempsSalStruct();
-					
+				
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.getAllempsSalStruct();
+						
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					$scope.waitForServiceLoad();
 
 					$scope.getlastmonth = function() {
 						var date = new Date();
@@ -159,8 +168,17 @@ angular
 					}
 					$scope.printGSalStruct = [];
 					$scope.gcode = [];
-					$scope.printganeratesalslip();
-
+				
+					$scope.waitForServiceLoad1 = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.printganeratesalslip();
+						
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad1, 1000);
+						}
+					}
+					$scope.waitForServiceLoad1();
 
 					$scope.toggleRight = buildToggler('right');
 

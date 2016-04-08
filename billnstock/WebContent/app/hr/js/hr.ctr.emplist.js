@@ -36,7 +36,16 @@ angular
 					}
 					
 					$scope.emps = [];
-				$scope.getAllemps();
+				
+				$scope.waitForServiceLoad = function() {
+					if (appEndpointSF.is_service_ready) {
+						$scope.getAllemps();
+					} else {
+						$log.debug("Services Not Loaded, watiting...");
+						$timeout($scope.waitForServiceLoad, 1000);
+					}
+				}
+				$scope.waitForServiceLoad();
 					
 					
 					$scope.toggleRight = buildToggler('right');

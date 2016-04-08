@@ -113,7 +113,7 @@ angular
 						$scope.opportunity.date = $scope.curdate;
 					}
 
-					$scope.getAllopportunity = function() {
+					/*$scope.getAllopportunity = function() {
 						var opportunityService = appEndpointSF
 								.getopportunityService();
 						opportunityService
@@ -196,7 +196,7 @@ angular
 					}
 
 					// --------------------------------------
-
+*/
 					$scope.toggleRight = buildToggler('right');
 
 					function buildToggler(navID) {

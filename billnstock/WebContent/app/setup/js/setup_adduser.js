@@ -51,7 +51,16 @@ angular
 								});
 						
 					}
-					$scope.getBusinessById();
+					$scope.business={};
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+										$scope.getBusinessById();
+							} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					$scope.waitForServiceLoad();
 				
 			
 					// set toggled value onclick on check box and push in
@@ -79,7 +88,7 @@ angular
 						authority : []
 					}
 
-					$scope.adduser = function(busi) {
+					$scope.adduser = function() {
 						$scope.user.business = $scope.business;
 						// use selection array true false value and push that
 						// numbered item on authority

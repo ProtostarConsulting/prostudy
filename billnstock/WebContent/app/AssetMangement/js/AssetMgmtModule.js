@@ -9,50 +9,8 @@ angular.module("stockApp").controller(
 
 			$scope.printempidsalslip = $stateParams.printempidsalslip;
 
-			$scope.curuser = appEndpointSF.getLocalUserService()
-					.getLoggedinUser();
+		
 
-			$scope.Asset = {
-				loggedInUser : "",
-				assetName : "",
-				category : "",
-				value : "",
-				purchasedate : new Date,
-				expirydate : new Date
-			}
-
-			$scope.addAsset = function() {
-				$scope.Asset.loggedInUser = $scope.curUser;
-				
-				var assetService = appEndpointSF.getAssetManagementService();
-				assetService.addAsset($scope.Asset).then(function(msgBean) {
-					$scope.showSimpleToast(msgBean.msg);
-					// $scope.getAllemps();
-				});
-
-				$scope.Asset = {};
-			}
-			$scope.getallAsset = function() {
-				var assetService = appEndpointSF.getAssetManagementService();
-				assetService.getallAsset($scope.curUser.business.id)
-						.then(
-								function(assetList) {
-									$scope.assetlist = $scope
-											.initDateFields(assetList.items);
-								});
-
-			}
-
-			$scope.initDateFields = function(assetlist) {
-				for (var asset in assetlist) {
-					asset.purchasedate = new Date(asset.purchasedate);
-					asset.expirydate = new Date(asset.expirydate);
-				}
-				return assetlist;
-			}
-
-			$scope.assetlist = [];
-			$scope.getallAsset();
 
 			$scope.toggleRight = buildToggler('right');
 

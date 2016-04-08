@@ -59,11 +59,17 @@ angular
 					$scope.suspendedBusiness = [];
 					
 					$scope.businesslist = [];
-					$scope.getBusinessList();
-
-					$scope.selected = [];
-
 					
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.getBusinessList();
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					$scope.waitForServiceLoad();
+
 					$scope.selected = [];
 
 					$scope.inactiveUserStatus = function() {
@@ -98,20 +104,7 @@ angular
 					}
 
 					
-					$scope.getUsersByBusinessId = function() {
-						$log.debug("Inside Ctr $scope.getuserById");
-						var UserService = appEndpointSF.getUserService();
-						UserService.getUsersByBusinessId($scope.businessNo)
-								.then(function(userList) {
-							
-									$scope.userlist = userList.items;
-
-								});
-
-					}
-
-					$scope.userlist = [];
-					$scope.getUsersByBusinessId();
+			
 
 					// -------------------------------------------------------------------------------------
 					$scope.user = {
@@ -267,6 +260,12 @@ angular
 					}
 					$scope.user11 = [];
 					$scope.userexist = "";
+					
+					
+					
+					
+					
+					
 
 					$scope.toggleRight = buildToggler('right');
 

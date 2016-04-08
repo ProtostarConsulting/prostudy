@@ -33,8 +33,18 @@ angular
 					}
 
 					$scope.asset = [];
-					$scope.getselectedasset();
+			
 
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.getselectedasset();
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					$scope.waitForServiceLoad();
+					
 					$scope.updateAsset = function() {
 						var assetService = appEndpointSF
 								.getAssetManagementService();
@@ -58,7 +68,16 @@ angular
 					}
 
 					$scope.emps = [];
-					$scope.getAllemps();
+					
+					$scope.waitForServiceLoad1 = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.getAllemps();
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					$scope.waitForServiceLoad1();
 
 					$scope.Assignasset = {
 						assetEntity : "",
@@ -112,8 +131,19 @@ angular
 					}
 					$scope.assetdetail = [];
 					$scope.activeassetdetail = [];
-					$scope.getselectedassetdetail();
-
+			
+					
+					$scope.waitForServiceLoad2 = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.getselectedassetdetail();
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					$scope.waitForServiceLoad2();
+					
+					
 					$scope.releaseAsset = function(id) {
 
 						var assetService = appEndpointSF
@@ -129,8 +159,18 @@ angular
 					//auto complate
 					// list of `state` value/display objects
 					$scope.employees = [];
-					loadAll();
-
+					
+					$scope.waitForServiceLoad3 = function() {
+						if (appEndpointSF.is_service_ready) {
+							loadAll();
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 2000);
+						}
+					}
+					$scope.waitForServiceLoad3();
+					
+					
 					$scope.selectedItem = null;
 					$scope.searchText = null;
 

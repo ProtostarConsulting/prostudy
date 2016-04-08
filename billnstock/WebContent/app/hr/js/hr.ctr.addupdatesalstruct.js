@@ -6,6 +6,12 @@ angular
 						$mdUtil, $stateParams, $log, objectFactory,
 						appEndpointSF) {
 
+					
+					$scope.showSimpleToast = function(msgBean) {
+						$mdToast.show($mdToast.simple().content(msgBean)
+								.position("top").hideDelay(3000));
+					};
+					
 					$scope.selectedUserId = $stateParams.selectedUserId;
 					$scope.selectedUserName = $stateParams.selectedUserName;
 
@@ -128,8 +134,16 @@ angular
 						}
 
 					$scope.slist = [];
-					$scope.findsalstruct();
-					
+				
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.findsalstruct();
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					$scope.waitForServiceLoad();
 					
 					
 				/*	$scope.findsalstruct = function(empid) {

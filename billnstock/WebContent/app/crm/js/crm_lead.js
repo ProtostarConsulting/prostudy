@@ -57,7 +57,7 @@ angular
 					}
 					
 					
-					$scope.getAllleads = function() {
+				/*	$scope.getAllleads = function() {
 						$log.debug("Inside Ctr $scope.getAlllead");
 						var leadService = appEndpointSF.getleadService();
 
@@ -73,7 +73,7 @@ angular
 					
 					$scope.leads = [];
 					$scope.getAllleads();
-					
+					*/
 					
 					
 					$scope.toggleRight = buildToggler('right');

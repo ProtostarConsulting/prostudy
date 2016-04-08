@@ -324,7 +324,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('crm', {
 		url : "/crm",
 		templateUrl : '/app/crm/crm_module.html',
-		controller : 'hrCtr.empview',
+		controller : 'crm',
 	}).state('crm.customer', {
 		url : "/customer",
 		templateUrl : '/app/customer/customer_module.html',
@@ -332,7 +332,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('crm.lead', {
 		url : "/lead",
 		templateUrl : '/app/crm/lead_list.html',
-		controller : 'lead',
+		controller : 'leadList',
 	}).state('crm.lead_add', {
 		url : "/add",
 		templateUrl : '/app/crm/crm_lead.html',
@@ -344,7 +344,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('crm.contacts', {
 		url : "/contact",
 		templateUrl : '/app/crm/contact_list.html',
-		controller : 'contacts',
+		controller : 'contactsList',
 	}).state('crm.addcontact', {
 		url : "/addContact",
 		templateUrl : '/app/crm/crm_contacts.html',
@@ -352,12 +352,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('crm.viewContact', {
 		url : "/viewContact/:selectedcontactNo",
 		templateUrl : '/app/crm/crm_contacts_view.html',
-		controller : 'contacts',
+		controller : 'contactsList',
 
 	}).state('crm.opportunity', {
 		url : "/opportunity",
 		templateUrl : '/app/crm/opportunity_list.html',
-		controller : 'opportunity',
+		controller : 'opportunityList',
 
 	}).state('crm.addopprtunity', {
 		url : "/addopportunity",
@@ -367,7 +367,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('crm.opportunityView', {
 		url : "/opportunityView/:selectedopportunityNo",
 		templateUrl : '/app/crm/crm_opportunity_view.html',
-		controller : 'opportunity',
+		controller : 'opportunityList',
 
 	}).state('setup', {
 		url : "/setup",
@@ -502,11 +502,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('AssetMangement.add', {
 		url : "/AddAsset",
 		templateUrl : '/app/AssetMangement/AddAsset.html',
-		controller : 'AssetMangementCtr',
+		controller : 'AddAsset',
 	}).state('AssetMangement.list', {
 		url : "/ListAsset",
 		templateUrl : '/app/AssetMangement/ListAsset.html',
-		controller : 'AssetMangementCtr',
+		controller : 'ListAsset',
 	}).state('AssetMangement.editasset', {
 		url : "/editasset/:selectedasetNo",
 		templateUrl : '/app/AssetMangement/assignupdateuser.html',
@@ -522,15 +522,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('proAdmin.addAccount', {
 		url : "/addAccountType",
 		templateUrl : '/app/ProAdmin/AddAccountType.html',
-		controller : 'proadminctr',
+		controller : 'AddAccountType',
 	}).state('proAdmin.listAccount', {
 		url : "/listAccountType",
 		templateUrl : '/app/ProAdmin/ListAccountType.html',
-		controller : 'proadminctr',
+		controller : 'ListAccountType',
 	}).state('proAdmin.editAccoutType', {
 		url : "/EditAccoutType/:typeid",
 		templateUrl : '/app/ProAdmin/EditAccoutType.html',
-		controller : 'proadminctr',
+		controller : 'ListAccountType',
 	}).state('initsetup', {
 		url : "/initsetup",
 		templateUrl : '/app/Initsetup/initsetup.html',

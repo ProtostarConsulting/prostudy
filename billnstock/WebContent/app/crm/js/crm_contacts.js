@@ -46,49 +46,7 @@ angular.module("stockApp").controller(
 				$scope.contact = {};
 			}
 
-			$scope.getAllcontact = function() {
-				var leadService = appEndpointSF.getleadService();
-				leadService.getAllcontact($scope.curUser.business.id).then(function(contactList) {
-					$log.debug("Inside Ctr getAllleads");
-					$scope.contacts = contactList.items;
-					$scope.cleadid = $scope.contacts.length + 1;
-					$scope.contact.cid = $scope.cleadid;
-
-				});
-			}
-			
-			$scope.contacts = [];
-			$scope.getAllcontact();
-
-			$scope.getContactById = function() {
-				$log.debug("Inside Ctr $scope.getAlllead");
-				var leadService = appEndpointSF.getleadService();
-				$scope.ctaskid;
-				if (typeof $scope.selectedcontactNo != "undefined") {
-				leadService.getContactById($scope.selectedcontactNo).then(
-						function(contactList) {
-							$log.debug("Inside Ctr getAllleads");
-							$scope.contactL = contactList.result;
-
-						});
-
-			}
-			}
-			$scope.contactL = [];
-			$scope.getContactById();
-
-			$scope.updatecontact = function() {
-
-				var leadService = appEndpointSF.getleadService();
-				leadService.updatecontact($scope.contactL).then(
-						function(msgBean) {
-							$log.debug("Inside Ctr updateemp");
-							$log.debug("msgBean.msg:" + msgBean.msg);
-							$scope.showSimpleToast(msgBean.msg);
-							// $scope.empDetail = [];
-						});
-			}
-
+		
 			$scope.toggleRight = buildToggler('right');
 
 			function buildToggler(navID) {

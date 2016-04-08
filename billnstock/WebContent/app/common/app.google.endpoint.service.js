@@ -173,7 +173,7 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	UserService.addNewBusiness = function(business) {
+	/*UserService.addNewBusiness = function(business) {
 		var deferred = $q.defer();
 		gapi.client.userService.addNewBusiness(business).execute(function() {
 			deferred.resolve({
@@ -181,7 +181,7 @@ function googleEndpointSF($log, $q) {
 			});
 		});
 		return deferred.promise;
-	}
+	}*/
 	// ---------------------------assetService--------------------------------
 
 	var assetService = {};

@@ -30,8 +30,17 @@ angular
 						}
 					}
 					$scope.empDetail = [];
-					$scope.showEmp();
-
+				
+					$scope.waitForServiceLoad1 = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.showEmp();
+							
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					$scope.waitForServiceLoad1();
 					$scope.updateemp = function() {
 
 						var hrService = appEndpointSF.gethrService();
@@ -74,7 +83,19 @@ angular
 					}
 					$scope.empSalSlip1 = [];
 					$scope.empSalSlip = [];
-					$scope.getallsalslip();
+				
+					
+					$scope.waitForServiceLoad2 = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.getallsalslip();
+							
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					$scope.waitForServiceLoad2();
+					
 
 					var printDivCSS = new String(
 							'<link href="/lib/base/css/angular-material.min.css"" rel="stylesheet" type="text/css">'
@@ -120,7 +141,15 @@ angular
 					}
 
 					$scope.years = [];
-					$scope.getlastyear();
+					$scope.waitForServiceLoad3 = function() {
+						if (appEndpointSF.is_service_ready) {
+								$scope.getlastyear();
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					$scope.waitForServiceLoad3();
 
 					$scope.toggleRight = buildToggler('right');
 

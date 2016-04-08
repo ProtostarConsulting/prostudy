@@ -26,7 +26,7 @@ angular.module("stockApp").controller(
 					});
 				
 			}
-			$scope.getBusinessById();
+		
 			$scope.business={};
 			
 			/* get Account Type */
@@ -38,8 +38,18 @@ angular.module("stockApp").controller(
 				});
 			}
 			$scope.accountlist = [];
-			$scope.getallAccountType();
 
+
+			$scope.waitForServiceLoad = function() {
+				if (appEndpointSF.is_service_ready) {
+					$scope.getBusinessById();
+					$scope.getallAccountType();
+				} else {
+					$log.debug("Services Not Loaded, watiting...");
+					$timeout($scope.waitForServiceLoad, 1000);
+				}
+			}
+			$scope.waitForServiceLoad();
 			
 			$scope.updatePlan = function() {
 				

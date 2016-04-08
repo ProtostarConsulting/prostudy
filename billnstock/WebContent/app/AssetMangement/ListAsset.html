@@ -9,7 +9,7 @@
 	<table md-data-table  md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onOrderChange">
 			<tr>
-		    	<th name="id" order-by="id"></th>
+		    	
 				<th name="Asset Name" order-by="assetName"></th>
 				<!-- <th name="Category" order-by="category"></th>
 				<th name="Value" order-by="value"></th> -->
@@ -23,7 +23,7 @@
 		<tbody>
 			<tr md-auto-select
 				ng-repeat="asset in assetlist | orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit"">
-				<td>{{asset.id}}</td>
+			
 				<td>{{asset.assetName}}</td>
 				<!-- <td>{{asset.category}}</td>
 				<td>{{asset.value}}</td> -->

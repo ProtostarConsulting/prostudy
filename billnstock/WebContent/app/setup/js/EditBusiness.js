@@ -30,8 +30,21 @@ angular
 							});
 						
 					}
-					$scope.getBusinessById();
 					$scope.business={};
+					
+					
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							
+							$scope.getBusinessById();
+							
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					$scope.waitForServiceLoad();
+					
 					
 					$scope.updateBusiness = function() {
 						var setupService = appEndpointSF.getsetupService();
