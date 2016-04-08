@@ -34,21 +34,11 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		gapi.client.userService.getUserByEmailID({
 			'email_id' : email_id
 		}).execute(function(resp) {
-			$log.debug("resp:" + angular.toJson(resp));
+			$log.debug("resp# #:" + angular.toJson(resp));
 			deferred.resolve(resp.result);
 		});
 		return deferred.promise;
-	}	
-	UserService.checkAlreadyExist = function(email_id) {
-		var deferred = $q.defer();
-		gapi.client.userService.checkAlreadyExist({
-			'email_id' : email_id
-		}).execute(function(resp) {
-			$log.debug("resp:" + angular.toJson(resp));
-			deferred.resolve(resp.result);
-		});
-		return deferred.promise;
-	}
+	}		
 	
 	UserService.getUserByInstitute = function(instituteID) {
 		var deferred = $q.defer();
@@ -393,16 +383,15 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
-	StudSubService.getStudSubByStudIdAndSubId = function(studID,subId) {
+	StudSubService.getStudSubByStudIdAndSubId = function(studID,subID) {
 		var deferred = $q.defer();
-		gapi.client.studSubService.getStudSubByStudIdAndSubId({'studID' : studID,'subID':subId}).execute(function(resp)
-			{		
+		gapi.client.studSubService.getStudSubByStudIdAndSubId({'studID' : studID,'subID':subID}).execute(function(resp)
+			{
 			$log.debug("(resp.items:"+ angular.toJson(resp));
-				deferred.resolve(resp.items);
+			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
-	}
-
+	}	
 	
 	StudSubService.removeStudSubject = function(studSubject) {
 		var deferred = $q.defer();
