@@ -1207,12 +1207,12 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
-	InvoiceService.getAllInvoiceByCustId = function(id) {
+	InvoiceService.getInvoiceListByCustId = function(id) {
 		var deferred = $q.defer();
-		gapi.client.invoiceService.getAllInvoiceByCustId({
+		gapi.client.invoiceService.getInvoiceListByCustId({
 			"id" : id
 		}).execute(function(resp) {
-			$log.debug("getAllInvoiceByCustId at enpoint" + resp.items);
+			$log.debug("getInvoiceListByCustId at enpoint" + resp.items);
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
@@ -1268,6 +1268,17 @@ function googleEndpointSF($log, $q) {
 			"id" : id
 		}).execute(function(resp) {
 			$log.debug("getSOByID at enpoint" + angular.toJson(resp));
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
+	SalesOrderService.getSOListByID = function(id) {
+		var deferred = $q.defer();
+		gapi.client.salesOrderService.getSOListByID({
+			"id" : id
+		}).execute(function(resp) {
+			$log.debug("getSOListByID at enpoint" + angular.toJson(resp));
 			deferred.resolve(resp);
 		});
 		return deferred.promise;

@@ -20,10 +20,8 @@ app.controller("salesOrderListCtr", function($scope, $window, $mdToast,
 
 		salesOrderService.getAllSalesOrder($scope.curUser.business.id).then(
 				function(salesOrderList) {
-					$log.debug("Inside Ctr getAllSalesOrder");
 					$scope.salesOrderList = salesOrderList;
-					$log.debug("@@@@@@@getAllSalesOrder:"
-							+ angular.toJson($scope.salesOrderList));
+					$log.debug("$scope.salesOrderList"+$scope.salesOrderList);
 				});
 	}
 
@@ -66,4 +64,11 @@ app.controller("salesOrderListCtr", function($scope, $window, $mdToast,
 	$scope.back = function() {
 		window.history.back();
 	}
+	
+	$log.debug("$stateParams:", $stateParams);
+	$log.debug("$stateParams.selectedCustomerId:",
+			$stateParams.selectedCustomerId);
+
+	$scope.customerId = $stateParams.selectedCustomerId;
+	$log.debug("$scope.customerId"+angular.toJson($scope.customerId));
 });

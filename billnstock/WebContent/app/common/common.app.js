@@ -174,7 +174,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/invoice/invoice_add.html',
 		controller : 'invoiceAddCtr'
 	}).state('invoice.list', {
-		url : "/list",
+		url : "/list/:selectedCustomerId",
 		templateUrl : '/app/invoice/invoice_list.html',
 		controller : 'invoiceListCtr',
 	}).state('invoice.view', {

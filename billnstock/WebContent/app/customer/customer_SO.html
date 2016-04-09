@@ -1,58 +1,43 @@
 
 <md-content layout-padding>
-<h3>
-	<u>Customer View</u>
-</h3>
-<div>
-	<section layout="row" layout-align="end end" flex>
-		<md-button class="md-raised md-primary" ng-click="back()">BACK
-		TO LIST</md-button>
-	</section>
+
+<div layout layout-sm="column">
+	<md-input-container flex> <label>Search</label> <input
+		ng-model="searchText"> </md-input-container>
 </div>
 
+<div>
+	<md-data-table-container>
+	<table md-data-table md-row-select="selected" md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onOrderChange">
+			<tr>
+				
+				<th name="Customer Name" order-by="customerName"></th>
+				<th name="Quotation Date" order-by="quotationDate"></th>
+				<th name="Sales Order Date" order-by="salesOrderDate"></th>
+				<th name="Amount" order-by="finalTotal"></th>
+			</tr>
+		</thead>
 
-<div id="addField">
-	
-	<div>{{custInvoiceData.customer.id}}</div>
-	<div>{{custInvoiceData.customer.customerName}}</div>
-	<div>{{custInvoiceData.customer.mobile}}</div>
-	<div>{{custInvoiceData.customer.email}}</div>
-	<div>{{custInvoiceData.customer.customerAddress}}</div>
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="sOList in customerSalesOrder | filter: searchText | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
 
-
-	<div>
-		<md-data-table-container>
-		<table md-data-table md-row-select="selected" md-progress="deferred">
-			<thead md-order="query.order" md-trigger="onOrderChange">
-				<tr>
-					<th name="Sr.No"></th>
-					<th name="Invoice Id" order-by="customerName"></th>
-					<th name="Invoice Date" order-by="mobile"></th>
-					<th name="Amount" order-by="email"></th>
-					<th name="Action"></th>
-				</tr>
-			</thead>
-
-			<tbody>
-				<tr md-auto-select
-					ng-repeat="invoice in custInvoiceData | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
-
-					<td>{{$index+1}}</td>
-					<td>{{invoice.id}}</td>
-					<td>{{invoice.invoiceDate}}</td>
-					<td>{{invoice.finalTotal}}</td>
-
-
-					<td><section layout="row" layout-sm="column">
-							<md-button class="md-raised md-primary"
-								ui-sref="invoice.view({selectedInvoiceNo: invoice.id})">View
-							Invoice</md-button>
-						</section></td>
-					<td>
-				</tr>
-			</tbody>
-		</table>
-		<!-- 		<md-data-table-toolbar class="alternate" ng-show="selected.length">
+				
+				<td>{{sOList.customer.firstName}}</td>
+				<td>{{sOList.quotationDate | formatDate}}</td>
+				<td>{{sOList.salesOrderDate | formatDate}}</td>
+				<td>{{sOList.finalTotal}}</td>
+				<td><section layout="row" layout-sm="column">
+						<md-button class="md-raised md-primary"
+							ui-sref="salesOrder.view({selectedSOId: sOList.id})">
+						View SO</md-button>
+					</section></td>
+				<td>
+			</tr>
+		</tbody>
+	</table>
+	<!-- 		<md-data-table-toolbar class="alternate" ng-show="selected.length">
 			<div>
 				{{selected.length}} {{selected.length > 1 ? 'stockData' : 'stock'}} selected
 			</div>
@@ -61,10 +46,9 @@
 			</div>
 		</md-data-table-toolbar>
  --> <md-data-table-pagination md-limit="query.limit"
-			md-page="query.page" md-total={{customers.length}}
-			md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
-	</div>
-
+		md-page="query.page" md-total={{salesOrder.length}}
+		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
 </div>
-
-</md-input-container> </md-content>
+<!-- vals: {{customers}}
+<md-button ui-sref="customer.list" ng-click="getAllCustomers()" class="md-primary">
+		Customer List in side List view --> </md-button> </md-content>

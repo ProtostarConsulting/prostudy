@@ -11,9 +11,7 @@ app.controller("customerListCtr", function($scope, $window, $mdToast, $timeout,
 		page : 1
 	};
 	$scope.selected = [];
-
-	$log.debug("$scope.selected[0].id ==="+$scope.selected[0]);
-	
+		
 	$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 	$log.debug("$scope.curUser++++++++" + angular.toJson($scope.curUser));
 
@@ -71,4 +69,56 @@ app.controller("customerListCtr", function($scope, $window, $mdToast, $timeout,
 	$scope.back = function() {
 		window.history.back();
 	}
+	
+	$scope.getSOListByID = function() {
+		var salesOrderService = appEndpointSF.getSalesOrderService();
+
+		salesOrderService.getSOListByID($scope.selected[0].id).then(
+				function(sOListByID) {
+					$scope.sOListByID = sOListByID;
+					$log.debug("$scope.getSOByID:"
+							+ angular.toJson($scope.sOListByID));
+				});
+	}
+	
+	$scope.waitForServiceLoad = function() {
+		if (appEndpointSF.is_service_ready) {
+			if ($scope.customers != "") {
+				$scope.getSOByID();
+			}
+		} else {
+			$log.debug("Services Not Loaded, watiting...");
+			$timeout($scope.waitForServiceLoad, 1000);
+		}
+	}
+
+	$scope.sOListByID = [];
+	$scope.waitForServiceLoad();
+	
+/*	
+	$scope.getInvoiceListByCustId = function() {
+		var invoiceService = appEndpointSF.getInvoiceService();
+
+		invoiceService.getInvoiceListByCustId($scope.customerId).then(
+				function(invoiceListByID) {
+					$scope.invoiceListByID = invoiceListByID;
+					$log.debug("$scope.invoiceListByID:"
+							+ angular.toJson($scope.invoiceListByID));
+				});
+	}
+	
+	$scope.waitForServiceLoad = function() {
+		if (appEndpointSF.is_service_ready) {
+			if ($scope.selectedSupplierNo != "") {
+				$scope.getInvoiceListByCustId();
+			}
+		} else {
+			$log.debug("Services Not Loaded, watiting...");
+			$timeout($scope.waitForServiceLoad, 1000);
+		}
+	}
+
+	$scope.invoiceListByID = [];
+	$scope.waitForServiceLoad();
+*/
 });
