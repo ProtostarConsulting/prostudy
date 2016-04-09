@@ -96,36 +96,21 @@ angular.module("prostudyApp").controller(
 			$scope.addBook = function() {
 
 				$scope.tempBook.user = $scope.curUser;
-
 				for (i = 0; i < $scope.selectedChapters.length; i++) {
 					$scope.tempBook.chapters.push($scope.selectedChapters[i]);
 				}
-
 				var BookService = appEndpointSF.getBookService();
-
 				BookService.addBook($scope.tempBook).then(function(msgBean) {
 
-					$scope.showSavedToast();
+				$scope.showSavedToast();
+				$scope.bookForm.$setPristine();
+				$scope.bookForm.$setValidity();
+				$scope.bookForm.$setUntouched();
 
-					$scope.tempBook = {
-
-						id : "",
-						bookId : "",
-						book_name : "",
-						author : "",
-						board : "",
-						standard : "",
-						division : "",
-						subject : "",
-						chapters : [],
-						user : "",
-						comments : []
-					};
+				$scope.tempBook = {};
 
 				});
 				
-				
-				$state.go('book');
 			}
 
 			$scope.chapters = [];
