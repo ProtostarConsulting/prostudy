@@ -9,6 +9,7 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
+import com.protostar.prostudy.entity.InstituteEntity;
 import com.protostar.prostudy.entity.PracticeExamResultEntity;
 import com.protostar.prostudy.entity.UserEntity;
 
@@ -17,10 +18,12 @@ import com.protostar.prostudy.entity.UserEntity;
 public class PracticeExamResultService {
 
 	@ApiMethod(name = "addPracticeExamResult")
-	public void addPracticeExamResult(PracticeExamResultEntity res) {
-		Key<PracticeExamResultEntity> now = ofy().save().entity(res).now();
+	public PracticeExamResultEntity addPracticeExamResult(PracticeExamResultEntity res) {
+		PracticeExamResultEntity now = res;
+		ofy().save().entity(res).now();
+		return now;
 	}
-
+	
 	@ApiMethod(name = "getPracticeExamResult")
 	public List<PracticeExamResultEntity> getPracticeExamResult() {
 		return ofy().load().type(PracticeExamResultEntity.class).list();
