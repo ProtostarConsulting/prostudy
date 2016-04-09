@@ -5,7 +5,7 @@ app
 				"purchaseOrderAddCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $state, $http, $stateParams,
-						$routeParams, $filter,$q, objectFactory, appEndpointSF) {
+						$routeParams, $filter, $q, objectFactory, appEndpointSF) {
 
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
@@ -15,11 +15,11 @@ app
 					$scope.purchaseOrderObj = {
 
 						// purchaseOrderNo: '',
-						customer : '',
+						supplier : '',
 						to : '',
 						shipTo : '',
-						poDate : '',
-						poDueDate:"",
+						poDate : new Date(),
+						poDueDate : "",
 						requisitioner : '',
 						shippedVia : '',
 						fOBPoint : '',
@@ -30,30 +30,34 @@ app
 						taxPercenatge : '',
 						taxTotal : 0,
 						finalTotal : '',
-						loggedInUser : ""
+						business : ""
 					};
 
 					$scope.addPurchaseOrder = function() {
-						if ($scope.purchaseOrderObj.pOLineItemList.length == 0 || $scope.purchaseOrderObj.pOLineItemList.itemName == "") {
+						if ($scope.purchaseOrderObj.pOLineItemList.length == 0
+								|| $scope.purchaseOrderObj.pOLineItemList.itemName == "") {
 							console.log("Please select atleast one item");
 							$scope.errorMsg = "Please select atleast one item.";
 						} else {
-						var purchaseService = appEndpointSF
-								.getPurchaseOrderService();
-						$scope.purchaseOrderObj.business = $scope.curUser.business;
+							var purchaseService = appEndpointSF
+									.getPurchaseOrderService();
+							$scope.purchaseOrderObj.business = $scope.curUser.business;
 
-						purchaseService.addPurchaseOrder(
-								$scope.purchaseOrderObj).then(
-								function(msgBean) {
+							purchaseService
+									.addPurchaseOrder($scope.purchaseOrderObj)
+									.then(
+											function(msgBean) {
 
-									$log.debug("Inside Ctr addPurchaseOrder");
-									$log.debug("msgBean.msg:" + msgBean.msg);
-									$scope.showSimpleToast();
-//									$scope.getAllPurchaseOrder();
-								});
+												$log
+														.debug("Inside Ctr addPurchaseOrder");
+												$log.debug("msgBean.msg:"
+														+ msgBean.msg);
+												$scope.showSimpleToast();
+												// $scope.getAllPurchaseOrder();
+											});
 
-						$scope.purchaseOrderObj = {};
-					}
+							$scope.purchaseOrderObj = {};
+						}
 					}
 
 					$scope.addItem = function() {
@@ -104,11 +108,6 @@ app
 						lineSelectedItem.itemName = stockItem.itemName;
 						lineSelectedItem.subTotal = stockItem.subTotal;
 
-						// $scope.purchaseOrderObj.itemName
-						// =$scope.purchaseOrderObj.stockItem.itemName;
-						// $scope.purchaseOrderObj.taxPercenatge
-						// =$scope.purchaseOrderObj.stockItem.taxPercenatge;
-
 						$scope.calSubTotal();
 						$scope.calfinalTotal();
 					};
@@ -121,11 +120,6 @@ app
 
 					$scope.lineItemTaxChange = function(index, selectedTaxItem) {
 						$log.debug("##Came to lineItemTaxChange...");
-
-						// $scope.purchaseOrderObj.taxCodeName
-						// =$scope.purchaseOrderObj.selectedTaxItem.taxCodeName;
-						// $scope.purchaseOrderObj.taxPercenatge
-						// =$scope.purchaseOrderObj.selectedTaxItem.taxPercenatge;
 
 						$scope.purchaseOrderObj.taxTotal = ($scope.purchaseOrderObj.selectedTaxItem.taxPercenatge / 100)
 								* ($scope.purchaseOrderObj.subTotal)
@@ -160,43 +154,40 @@ app
 								.hideDelay(3000));
 					};
 
-/*					$scope.getAllCustomersByCurrUser = function() {
-						$log.debug("Inside Ctr $scope.getAllCustomers");
-						var customerService = appEndpointSF.getCustomerService();
-
-						customerService.getAllCustomersByCurrUser($scope.curUser.business.id).then(
-								function(custList) {
-									$log.debug("Inside Ctr getAllCustomers");
-									$scope.customersforinvoice = custList;
-									$log.debug("Inside Ctr $scope.customers:"
-											+ angular.toJson($scope.customersforinvoice));
-								});
-					}
-
-					$scope.customersforinvoice = [];
-					$scope.getAllCustomersByCurrUser();
-*/
 					$scope.getAllStock = function() {
 						$log.debug("Inside Ctr $scope.getAllStock");
 						var stockService = appEndpointSF.getStockService();
 
-						stockService.getAllStock($scope.curUser.business.id).then(
-								function(stockList) {
-									$log.debug("Inside Ctr getAllStock");
-									$scope.stockforPO = stockList;
-									$log.debug("@@@ $scope.stockforPO==="
-											+ $scope.stockforPO);
-								});
+						stockService
+								.getAllStock($scope.curUser.business.id)
+								.then(
+										function(stockList) {
+											$log
+													.debug("Inside Ctr getAllStock");
+											$scope.stockforPO = stockList;
+											$log
+													.debug("@@@ $scope.stockforPO==="
+															+ $scope.stockforPO);
+										});
 					}
 
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.getAllStock();
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
 					$scope.stockforPO = [];
-					$scope.getAllStock();
+					$scope.waitForServiceLoad();
 
 					$scope.getTaxesByVisibility = function() {
 						$log.debug("Inside Ctr $scope.getAllTaxes");
 						var taxService = appEndpointSF.getTaxService();
 
-						taxService.getTaxesByVisibility($scope.curUser.business.id).then(
+						taxService.getTaxesByVisibility(
+								$scope.curUser.business.id).then(
 								function(taxList) {
 									$log.debug("Inside Ctr getAllTaxes");
 									$scope.taxforPO = taxList;
@@ -204,40 +195,68 @@ app
 											+ $scope.taxforPO);
 								});
 					}
-					$scope.taxforPO = [];
-					$scope.getTaxesByVisibility();
 					
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.getTaxesByVisibility();
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					
+					$scope.taxforPO = [];
+					$scope.waitForServiceLoad();
+
+/*					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							loadAll();
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					
+					$scope.waitForServiceLoad();
+*/
 					// list of `state` value/display objects
-					$scope.customersforPO = [];
+					$scope.supplierList = [];
 					loadAll();
-					$scope.purchaseOrderObj.customer = null;
+					$scope.supplier = null;
 					$scope.searchTextInput = null;
 
 					$scope.querySearch = function(query) {
-						var results = query ? $scope.customersforPO
-								.filter(createFilterFor(query)) : $scope.customersforPO;
+						var results = query ? $scope.supplierList
+								.filter(createFilterFor(query))
+								: $scope.supplierList;
 						var deferred = $q.defer();
 						$timeout(function() {
 							deferred.resolve(results);
-					//		$scope.salesOrder.customer = results;
+							// $scope.salesOrder.customer = results;
 						}, Math.random() * 1000, false);
 						return deferred.promise;
 					}
-				
+
 					function loadAll() {
-						
-							var customerService = appEndpointSF.getCustomerService();
-							customerService.getAllCustomersByBusiness($scope.curUser.business.id).then(
-									function(custList) {
-										$scope.customersforPO = custList.items;	
-									});			
+
+						var supplierService = appEndpointSF
+								.getSupplierService();
+
+						supplierService.getAllSuppliersByBusiness(
+								$scope.curUser.business.id).then(
+								function(supplierList) {
+
+									$scope.supplierList = supplierList;
+
+								});
 					}
 
 					function createFilterFor(query) {
 						var lowercaseQuery = angular.lowercase(query);
-						return function filterFn(cus) {
-							return (angular.lowercase(cus.firstName).indexOf(lowercaseQuery) === 0);
+						return function filterFn(supp) {
+							return (angular.lowercase(supp.supplierName)
+									.indexOf(lowercaseQuery) === 0);
 						};
 					}
-					
+
 				});

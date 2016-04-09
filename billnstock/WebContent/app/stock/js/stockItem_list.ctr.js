@@ -39,8 +39,19 @@ angular.module("stockApp").controller(
 									+ angular.toJson($scope.stockData));
 						});
 			}
+			
+			$scope.waitForServiceLoad = function() {
+				if (appEndpointSF.is_service_ready) {
+					$scope.getAllStock();
+				} else {
+					$log.debug("Services Not Loaded, watiting...");
+					$timeout($scope.waitForServiceLoad, 1000);
+				}
+			}
 			$scope.stockData = [];
-			$scope.getAllStock();
+			$scope.waitForServiceLoad();
+			
+			
 				
 			$scope.filteredStock = [];
 			for(var i=0; i<$scope.stockData.length;i++){

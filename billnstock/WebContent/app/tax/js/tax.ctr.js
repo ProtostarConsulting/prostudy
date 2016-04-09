@@ -53,8 +53,19 @@ angular.module("stockApp").controller(
 						});
 			}
 
+			$scope.waitForServiceLoad = function() {
+				if (appEndpointSF.is_service_ready) {
+					$scope.getAllTaxes();
+				} else {
+					$log.debug("Services Not Loaded, watiting...");
+					$timeout($scope.waitForServiceLoad, 1000);
+				}
+			}
 			$scope.taxData = [];
-			$scope.getAllTaxes();
+			$scope.waitForServiceLoad();
+			
+			
+			
 
 			$scope.selected = [];		
 			

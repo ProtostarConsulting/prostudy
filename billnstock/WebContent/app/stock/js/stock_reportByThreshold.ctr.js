@@ -25,8 +25,17 @@ angular.module("stockApp").controller(
 				
 			}
 			
+			$scope.waitForServiceLoad = function() {
+				if (appEndpointSF.is_service_ready) {
+					$scope.getReportByThreshold();
+				} else {
+					$log.debug("Services Not Loaded, watiting...");
+					$timeout($scope.waitForServiceLoad, 1000);
+				}
+			}
 			$scope.thresholdStock = [];
-			$scope.getReportByThreshold();
+			$scope.waitForServiceLoad();
+			
 					
 //			 Setup menu 
 			$scope.toggleRight = buildToggler('right');

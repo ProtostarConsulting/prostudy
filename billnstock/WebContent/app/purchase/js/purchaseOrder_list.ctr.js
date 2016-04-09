@@ -47,9 +47,22 @@ app.controller("purchaseOrderListCtr", function($scope, $window, $mdToast, $time
 				});
 	}
 
+	$scope.waitForServiceLoad = function() {
+		if (appEndpointSF.is_service_ready) {
+			$scope.getAllPurchaseOrder();
+		} else {
+			$log.debug("Services Not Loaded, watiting...");
+			$timeout($scope.waitForServiceLoad, 1000);
+		}
+	}
+	
 	$scope.purchaseOrderList = [];
 //	$scope.temppurchaseOrder;
-	$scope.getAllPurchaseOrder();
+	$scope.waitForServiceLoad();
+	
+	
+//	$scope.temppurchaseOrder;
+	
 
 	/* Setup menu */
 	$scope.toggleRight = buildToggler('right');

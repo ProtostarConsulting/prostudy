@@ -53,9 +53,23 @@ app
 										});
 					}
 
-					$scope.payables = [];
-					$scope.getAllPayablesByBusiness();
+					
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.getAllPayablesByBusiness();
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					
 
+					$scope.payables = [];
+					$scope.selected = [];	
+					$scope.waitForServiceLoad();
+					
+					
+				
 					$scope.payblesAtDate = {
 						atDate : '',
 						filteredByAtDate : []

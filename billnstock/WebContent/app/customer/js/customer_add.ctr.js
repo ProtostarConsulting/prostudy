@@ -8,43 +8,52 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 	$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 	$log.debug("$scope.curUser++++++++" + angular.toJson($scope.curUser));
 
-	
-	$scope.cust = {
-		firstName : "",
-		lastName:"",
-		mobile : "",
-		email : "",
-		address : "",
-		business : ""
-	};
+	$log.debug("$stateParams:", $stateParams);
+	$log.debug("$stateParams.selectedCustomerId:",
+			$stateParams.selectedCustomerId);
 
+	$scope.customerId = $stateParams.selectedCustomerId;
+
+	$scope.getCustomerByID = function() {
+
+		var customerService = appEndpointSF.getCustomerService();
+
+		customerService.getCustomerByID($scope.customerId).then(
+				function(custList) {
+					$scope.customer = custList;
+					$log.debug("Inside Ctr $scope.customers:"
+							+ angular.toJson($scope.customers));
+				});
+	}
+
+	$scope.waitForServiceLoad = function() {
+		if (appEndpointSF.is_service_ready) {
+			if ($scope.selectedSupplierNo != "") {
+				$scope.getCustomerByID();
+			}
+		} else {
+			$log.debug("Services Not Loaded, watiting...");
+			$timeout($scope.waitForServiceLoad, 1000);
+		}
+	}
+
+	$scope.customer = [];
+	$scope.waitForServiceLoad();
+	
 	$scope.addCustomer = function() {
 		$log.debug("No1");
-		$scope.cust.business = $scope.curUser.business;
+		$scope.customer.business = $scope.curUser.business;
 		var customerService = appEndpointSF.getCustomerService();
-		customerService.addCustomer($scope.cust).then(function(msgBean) {
-			$log.debug("No6");
-			$log.debug("Inside Ctr addCustomer");
-			$log.debug("msgBean.msg:" + msgBean.msg);
-			$scope.showSimpleToast();
-			
+		customerService.addCustomer($scope.customer).then(function(msgBean) {
 
+			$scope.showSimpleToast();
 		});
-		$log.debug("No4");
 		$scope.custForm.$setPristine();
 		$scope.custForm.$setValidity();
 		$scope.custForm.$setUntouched();
-		$scope.cust = {};
-		//$scope.clearAll();
-		
+		$scope.customer = {};
 	}
 
-	$scope.clearAll = function(){
-		$scope.customerName = "";
-		$scope.mobile = "";
-		$scopeemail = "";
-		$scopeaddress = "";
-	}
 	$scope.toggleRight = buildToggler('right');
 
 	function buildToggler(navID) {
@@ -66,7 +75,5 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 		$mdToast.show($mdToast.simple().content('Customer Data Saved!')
 				.position("top").hideDelay(3000));
 	}
-	
-	
-	
+
 });

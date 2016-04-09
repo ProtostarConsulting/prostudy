@@ -31,9 +31,16 @@
 				<td>{{customer.address}}</td>
 				<td><section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary"
+							ui-sref="customer.add({selectedCustomerId: customer.id})">
+						Edit</md-button>
+					</section></td>
+				<!-- 
+				<td><section layout="row" layout-sm="column">
+						<md-button class="md-raised md-primary"
 							ui-sref="customer.edit({selectedCustomerId: customer.id})">
 						Edit</md-button>
 					</section></td>
+ -->
 				<td>
 			</tr>
 		</tbody>
@@ -51,15 +58,16 @@
 		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
 </div>
 
-<div id="display" layout="row" layout-xs="column" ng-hide="true" ng-show="selected.length == 1">
+<div id="display" layout="row" layout-xs="column" ng-hide="true"
+	ng-show="selected.length == 1">
 
-	<md-button id="invoiceBtn" class="md-raised md-primary" type="submit" ng-click="userInvoices">Invoice</md-button>
+	<md-button id="invoiceBtn" class="md-raised md-primary"
+		ui-sref="invoice.list({selectedCustomerId: selected[0].id})">Invoice</md-button>
 
-	<md-button id="pOBtn" class="md-raised md-primary" type="submit" ng-click="userPO">Purchase
-	Orders</md-button>
-
-	<md-button id="sOBtn" class="md-raised md-primary" type="submit" ng-click="userSO">Sales
+	<md-button id="sOBtn" class="md-raised md-primary"
+		ui-sref="salesOrder.SalesOrderList({selectedCustomerId: customer.id})">Sales
 	Order</md-button>
 
 </div>
+{{selected}}
 </md-content>

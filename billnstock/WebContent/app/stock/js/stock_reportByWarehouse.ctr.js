@@ -10,7 +10,7 @@ angular.module("stockApp").controller(
 	$log.debug("$scope.curUser++++++++"
 			+ angular.toJson($scope.curUser));
 	
-			
+/*			
 			$scope.getReportByThreshold = function(){
 				$log.debug("Inside Ctr $scope.getReportByThreshold");
 				
@@ -25,8 +25,19 @@ angular.module("stockApp").controller(
 				
 			}
 			
+			$scope.waitForServiceLoad = function() {
+				if (appEndpointSF.is_service_ready) {
+					$scope.getReportByThreshold();
+				} else {
+					$log.debug("Services Not Loaded, watiting...");
+					$timeout($scope.waitForServiceLoad, 1000);
+				}
+			}
 			$scope.thresholdStock = [];
-			$scope.getReportByThreshold();
+			$scope.waitForServiceLoad();
+			
+*/			
+			
 				
 			
 			$scope.getAllStock = function() {
@@ -39,7 +50,18 @@ angular.module("stockApp").controller(
 
 						});
 			}
-			$scope.getAllStock();
+			
+			$scope.waitForServiceLoad = function() {
+				if (appEndpointSF.is_service_ready) {
+					$scope.getAllStock();
+				} else {
+					$log.debug("Services Not Loaded, watiting...");
+					$timeout($scope.waitForServiceLoad, 1000);
+				}
+			}
+			$scope.stockData = [];
+			$scope.waitForServiceLoad();
+			
 			
 			
 			$scope.getAllWarehouseByBusiness = function() {
@@ -54,7 +76,18 @@ angular.module("stockApp").controller(
 						});
 			}
 
-			$scope.getAllWarehouseByBusiness();
+			
+			$scope.waitForServiceLoad = function() {
+				if (appEndpointSF.is_service_ready) {
+					$scope.getAllWarehouseByBusiness();
+				} else {
+					$log.debug("Services Not Loaded, watiting...");
+					$timeout($scope.waitForServiceLoad, 1000);
+				}
+			}
+			$scope.warehouses = [];
+			$scope.waitForServiceLoad();
+			
 			
 			
 			$scope.warehouseDDLChange = function(index, selectedWarehouse) {

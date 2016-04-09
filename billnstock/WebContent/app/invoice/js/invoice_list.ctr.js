@@ -18,6 +18,38 @@ app
 					$log.debug("$scope.curUser++++++++"
 							+ angular.toJson($scope.curUser));
 
+					$log.debug("$stateParams:", $stateParams);
+					$log.debug("$stateParams.selectedCustomerId:",
+							$stateParams.selectedCustomerId);
+
+					$scope.customerId = $stateParams.selectedCustomerId;
+
+					$scope.getinvoiceByID = function() {
+						var invoiceService = appEndpointSF.getInvoiceService();
+
+						invoiceService.getinvoiceByID($scope.customerId).then(
+								function(invoiceListByID) {
+									$scope.invoiceListByID = invoiceListByID;
+									$log.debug("$scope.invoiceListByID:"
+											+ angular.toJson($scope.customers));
+								});
+					}
+					
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							if ($scope.selectedSupplierNo != "") {
+								$scope.getinvoiceByID();
+							}
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+
+					$scope.invoiceListByID = [];
+					$scope.waitForServiceLoad();
+
+					
 					$scope.updateInvoiceObj = {
 
 						id : '',
@@ -44,9 +76,22 @@ app
 										});
 					}
 
-					$scope.invoiceData = [];
-					$scope.getAllInvoice();
+					
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.getAllInvoice();
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					
 
+					$scope.invoiceData = [];
+					$scope.selected = [];	
+					$scope.waitForServiceLoad();
+					
+					
 					$scope.stutusValues = [ "Paid", "NotPaid" ];
 					$log.debug("$scope.sendToUpdate:"
 							+ angular.toJson($scope.sendToUpdate));

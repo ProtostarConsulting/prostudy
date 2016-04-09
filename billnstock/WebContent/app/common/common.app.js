@@ -9,9 +9,16 @@ app.constant('monthList', [ "January", "February", "March", "April", "May",
 
 app.filter('formatDate', function($filter) {
 	return function(inputDate) {
-		return $filter('date')(inputDate, 'dd-MM-yyyy HH:mm');
+		return $filter('date')(inputDate, 'dd-MM-yyyy');
 	};
 });
+/*
+app.filter('formatDate1', function($filter) {
+	return function(inputDate) {
+		return $filter('date')(inputDate, 'dd-MM-yyyy');
+	};
+});
+*/
 /*
  * app.factory('MathService', function() { var factory = {}; factory.multiply =
  * function(a, b) { return a * b } return factory; });
@@ -106,18 +113,43 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/stock/stock_module.html',
 		controller : 'stockModuleCtr'
 	}).state('stock.stockItemAdd', {
-		url : "/stockItemAdd",
+		url : "/stockItemAdd/:selectedStocksId",
 		templateUrl : '/app/stock/stockItem_add.html',
 		controller : 'stockAddCtr'
 	}).state('stock.stockItemList', {
 		url : "/stockItemList",
 		templateUrl : '/app/stock/stockItem_list.html',
 		controller : 'stockListCtr'
-	}).state('stock.edit', {
+	})
+	
+	
+	.state('stock.warehouseAdd', {
+		url : "/warehouseAdd/:selectedWarehouseId",
+		templateUrl : '/app/stock/warehouse_add.html',
+		controller : 'warehouseAddCtr'
+	}).state('stock.warehouseList', {
+		url : "/warehouseList",
+		templateUrl : '/app/stock/warehouse_list.html',
+		controller : 'warehouseListCtr'
+	})
+/*	.state('stock.warehouseEdit', {
+		url : "/warehouseEdit/:selectedWarehouseId",
+		templateUrl : '/app/stock/warehouse_edit.html',
+		controller : 'warehouseEditCtr'
+	})
+*/	
+/*	.state('stock.warehouseAdd', {
+		url : "/warehouseAdd/:selectedWarehouseId",
+		templateUrl : '/app/stock/warehouse_add.html',
+		controller : 'warehouseAddCtr'
+	})
+*/	
+	
+/*	.state('stock.edit', {
 		url : "/edit/:selectedStocksId",
 		templateUrl : '/app/stock/stockItem_edit.html',
 		controller : 'stockEditCtr'
-	}).state('stock.reportByThreshold', {
+	})*/.state('stock.reportByThreshold', {
 		url : "/reportByThreshold",
 		templateUrl : '/app/stock/stock_reportByThreshold.html',
 		controller : 'stockReportByThresholdCtr'
@@ -141,10 +173,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/add",
 		templateUrl : '/app/invoice/invoice_add.html',
 		controller : 'invoiceAddCtr'
-	}).state('invoice.add1', {
-		url : "/add1",
-		templateUrl : '/app/invoice/invoice_add11111.html',
-		controller : 'invoiceAddCtr'
 	}).state('invoice.list', {
 		url : "/list",
 		templateUrl : '/app/invoice/invoice_list.html',
@@ -158,14 +186,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/customer/customer_module.html',
 		controller : 'customerModuleCtr'
 	}).state('customer.add', {
-		url : "/add",
+		url : "/add/:selectedCustomerId",
 		templateUrl : '/app/customer/customer_add.html',
 		controller : 'customerAddCtr'
-	}).state('customer.edit', {
+	})/*.state('customer.edit', {
 		url : "/view/:selectedCustomerId",
 		templateUrl : '/app/customer/customer_edit.html',
 		controller : 'customerEditCtr'
-	}).state('customer.list', {
+	})*/.state('customer.list', {
 		url : "/list",
 		templateUrl : '/app/customer/customer_list.html',
 		controller : 'customerListCtr'
@@ -203,7 +231,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'accountReceivableListCtr'
 	})
 
-	.state('warehouse', {
+/*	.state('warehouse', {
 		url : "/warehouse",
 		templateUrl : '/app/warehouse/warehouse_module.html',
 		controller : 'warehouseModuleCtr'
@@ -220,7 +248,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/warehouse/warehouse_edit.html',
 		controller : 'warehouseEditCtr'
 	})
-
+*/
 	.state('report', {
 		url : "/report",
 		templateUrl : '/app/report/report_module.html',
@@ -245,7 +273,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'salesOrderAddCtr'
 
 	}).state('salesOrder.SalesOrderList', {
-		url : "/SalesOrderList",
+		url : "/SalesOrderList:/selectedCustomerId",
 		templateUrl : '/app/sales/salesOrder_list.html',
 		controller : 'salesOrderListCtr'
 
@@ -273,6 +301,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/POview/:selectedPONo",
 		templateUrl : '/app/purchase/purchaseOrder_view.html',
 		controller : 'purchaseOrderViewCtr'
+
+	}).state('purchaseOrder.supplierAdd', {
+		url : "/supplierAdd/:selectedSupplierNo",
+		templateUrl : '/app/purchase/supplier_add.html',
+		controller : 'supplierAddCtr'
+	})
+	
+	.state('purchaseOrder.supplierList', {
+		url : "supplierList",
+		templateUrl : '/app/purchase/supplier_list.html',
+		controller : 'supplierListCtr'
 
 	}).state('hr', {
 		url : "/hr",

@@ -55,9 +55,23 @@ app
 										});
 					}
 
-					$scope.receivables = [];
-					$scope.getAllReceivablesByBusiness();
+					
+			//		$scope.getAllReceivablesByBusiness();
 
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.getAllReceivablesByBusiness();
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					
+
+					$scope.receivables = [];
+					$scope.selected = [];	
+					$scope.waitForServiceLoad();
+					
 					/*
 					 * $scope.ReceivablesAtDate = { atDate : '',
 					 * filteredByAtDate : [] };

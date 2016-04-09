@@ -10,11 +10,12 @@ app.controller("customerListCtr", function($scope, $window, $mdToast, $timeout,
 		limit : 5,
 		page : 1
 	};
+	$scope.selected = [];
 
+	$log.debug("$scope.selected[0].id ==="+$scope.selected[0]);
+	
 	$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 	$log.debug("$scope.curUser++++++++" + angular.toJson($scope.curUser));
-
-	// $scope.cust.business =$scope.curUser.business;
 
 	$scope.getAllCustomersByBusiness = function() {
 

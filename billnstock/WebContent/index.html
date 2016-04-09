@@ -112,7 +112,7 @@
 				<md-button ui-sref="login" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('login') > -1" ng-click="close()" class="md-primary" show-gt-md>LOGIN</md-button>
 				<!-- <md-button ui-sref="probusiness" ng-show="curUser.authority.indexOf('protostarcs.com') > -1 || curUser.authority.indexOf('protostar.co.in') > -1" ng-click="close()" class="md-primary" show-gt-md>ProBusiness</md-button> -->
 				<md-button ui-sref="AssetMangement" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('AssetMangement') > -1" ng-click="close()"class="md-primary" show-gt-md>Asset Mangement</md-button> 
-				<md-button ui-sref="warehouse" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('warehouse') > -1" ng-click="close()" class="md-primary" show-gt-md>Warehouse Management</md-button> 
+<!-- 				<md-button ui-sref="warehouse" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('warehouse') > -1" ng-click="close()" class="md-primary" show-gt-md>Warehouse Management</md-button>  -->
 				<md-button ui-sref="document" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('document') > -1" class="md-primary" show-gt-md>Document</md-button>
 				<md-button ui-sref="email" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('email') > -1" class="md-primary" show-gt-md>email</md-button>
 				<!-- <md-button ui-sref="proAdmin" ng-show="(userDoamin=='protostarcs.com' || userDoamin=='protostar.co.in') && user == 'admin'" ng-click="close()"  class="md-primary" show-gt-md>Protostar Admin </md-button> --> 			
@@ -246,7 +246,7 @@
 	<script src="/app/customer/js/customer_module.ctr.js"></script>
 	<script src="/app/customer/js/customer_add.ctr.js"></script>
 	<script src="/app/customer/js/customer_list.ctr.js"></script>
-	<script src="/app/customer/js/customer_edit.ctr.js"></script>
+<!-- 	<script src="/app/customer/js/customer_edit.ctr.js"></script> -->
 	<!-- 	Complete Customre js  -->
 
 	<!-- 	Account js  -->
@@ -261,11 +261,11 @@
 	<!-- 	Complete Account js  -->
 
 	<!-- 	Warehouse js  -->
-	<script src="/app/warehouse/js/warehouse_module.ctr.js"></script>
+<!-- 	<script src="/app/warehouse/js/warehouse_module.ctr.js"></script>
 	<script src="/app/warehouse/js/warehouse_add.ctr.js"></script>
 	<script src="/app/warehouse/js/warehouse_list.ctr.js"></script>
 	<script src="/app/warehouse/js/warehouse_edit.ctr.js"></script>
-	<!-- 	Complete Warehouse js  -->
+ -->	<!-- 	Complete Warehouse js  -->
 
 	<!-- 	Invoice js  -->
 	<script src="/app/invoice/js/invoice_module.ctr.js"></script>
@@ -277,10 +277,18 @@
 	<!-- 	Stock js  -->
 	<script src="/app/stock/js/stock_module.ctr.js"></script>
 	<script src="/app/stock/js/stockItem_add.ctr.js"></script>
-	<script src="/app/stock/js/stockItem_edit.ctr.js"></script>
+<!-- 	<script src="/app/stock/js/stockItem_edit.ctr.js"></script> -->
 	<script src="/app/stock/js/stockItem_list.ctr.js"></script>
 	<script src="/app/stock/js/stock_reportByThreshold.ctr.js"></script>
 	<script src="/app/stock/js/stock_reportByWarehouse.ctr.js"></script>
+	
+	<!-- 	Warehouse js  -->
+<!-- 	<script src="/app/stock/js/warehouse_module.ctr.js"></script> -->
+	<script src="/app/stock/js/warehouse_add.ctr.js"></script>
+	<script src="/app/stock/js/warehouse_list.ctr.js"></script>
+<!-- 	<script src="/app/stock/js/warehouse_edit.ctr.js"></script> -->
+	<!-- 	Complete Warehouse js  -->
+	
 	<!-- 	Complete Stock js  -->
 
 	<!--<script src="/app/invoice/js/invoice.ctr.js"></script>
@@ -311,6 +319,9 @@
 	<script src="/app/purchase/js/purchaseOrder_list.ctr.js"></script>
 	<script src="/app/purchase/js/purchaseOrder_view.ctr.js"></script>
 	<script src="/app/purchase/js/purchaseOrder_module.ctr.js"></script>
+	
+	<script src="/app/purchase/js/supplier_add.ctr.js"></script>
+	<script src="/app/purchase/js/supplier_list.ctr.js"></script>
 	<!-- 	Complete Purchase Order js  -->
 
 	<!-- 	hr js  -->

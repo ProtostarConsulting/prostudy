@@ -8,11 +8,11 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 	//	var isTestMode = true;
 	var isTestMode = false;
 
-
 	var endpointFactory = {};
 	endpointFactory.is_service_ready = false;
 	// This will call the function to load services
 	
+		 
 	// -----------------------------------user login-----------------
 	
 	endpointFactory.getLocalUserService = function() {
@@ -34,6 +34,16 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 		else
 			return googleEndpointSF.getCustomerService();
 	};
+	
+// -----------------------------------Supplier-----------------
+	
+	endpointFactory.getSupplierService = function() {
+		if (isTestMode)
+			return localDBServiceFactory.getSupplierService();
+		else
+			return googleEndpointSF.getSupplierService();
+	};
+	
 	// ----------------------------------------------------
 	endpointFactory.getAccountService = function() {
 		if (isTestMode)
@@ -175,6 +185,10 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 
 		gapi.client.load('customerService', 'v0.1', function() {
 			$log.debug("customerService Loaded....");
+		}, apiRoot);
+		
+		gapi.client.load('supplierService', 'v0.1', function() {
+			$log.debug("supplierService Loaded....");
 		}, apiRoot);
 		
 		gapi.client.load('warehouseManagementService', 'v0.1', function() {

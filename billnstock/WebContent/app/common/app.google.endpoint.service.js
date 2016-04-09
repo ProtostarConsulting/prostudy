@@ -896,8 +896,55 @@ function googleEndpointSF($log, $q) {
 
 	// End of CustomerService
 
+	
 	// =====================================================================================================================================
-	// Add Customer Service
+	// Add Supplier Service
+
+	var SupplierService = {};
+
+	serviceFactory.getSupplierService = function() {
+		return SupplierService;
+	}
+
+	SupplierService.addSupplier = function(cust) {
+		var deferred = $q.defer();
+
+		gapi.client.supplierService.addSupplier(cust).execute(function(resp) {
+			$log.debug("addSupplier#resp at enpoint:" + resp);
+			deferred.resolve(resp);
+		});
+
+		return deferred.promise;
+	}
+
+	SupplierService.getAllSuppliersByBusiness = function(id) {
+		var deferred = $q.defer();
+		gapi.client.supplierService.getAllSuppliersByBusiness({
+			"id" : id
+		}).execute(
+				function(resp) {
+					$log.debug("getAllSuppliersByBusiness#resp at enpoint:"
+							+ angular.toJson(resp));
+					deferred.resolve(resp.items);
+				});
+		return deferred.promise;
+	}
+
+	SupplierService.getSupplierByID = function(Id) {
+		var deferred = $q.defer();
+		gapi.client.supplierService.getSupplierByID({
+			"id" : Id
+		}).execute(function(resp) {
+			$log.debug("getSupplierByID at enpoint" + resp);
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
+	// End of SupplierService
+	
+	// =====================================================================================================================================
+	// Add Account Service
 
 	var AccountService = {};
 

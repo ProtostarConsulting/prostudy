@@ -160,8 +160,19 @@ app
 								});
 					}
 
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.getAllStock();
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					
 					$scope.stockData = [];
-					$scope.getAllStock();
+					$scope.waitForServiceLoad();
+				
+
 
 					$scope.getAllTaxes = function() {
 						$log.debug("Inside Ctr $scope.getAllTaxes");
@@ -176,8 +187,18 @@ app
 											+ $scope.taxforPO);
 								});
 					}
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.getAllTaxes();
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					
 					$scope.taxData = [];
-					$scope.getAllTaxes();
+					$scope.waitForServiceLoad();
+										
 
 					// list of `state` value/display objects
 					$scope.customersforinvoice = [];

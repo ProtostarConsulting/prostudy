@@ -1,18 +1,17 @@
 app = angular.module("stockApp");
-app.controller("salesOrderListCtr", function($scope, $window, $mdToast, $timeout,
-		$mdSidenav, $mdUtil, $log, $state, $http, $stateParams, $routeParams,
-		$filter, objectFactory, appEndpointSF) {
+app.controller("salesOrderListCtr", function($scope, $window, $mdToast,
+		$timeout, $mdSidenav, $mdUtil, $log, $state, $http, $stateParams,
+		$routeParams, $filter, objectFactory, appEndpointSF) {
 
-	  $scope.query = {
-			    order: 'name',
-			    limit: 5,
-			    page: 1
-			  };
-	  
-	$scope.curUser = appEndpointSF.getLocalUserService()
-	.getLoggedinUser();
-	$log.debug("$scope.curUser++++++++"+angular.toJson($scope.curUser));
-	
+	$scope.query = {
+		order : 'name',
+		limit : 5,
+		page : 1
+	};
+
+	$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
+	$log.debug("$scope.curUser++++++++" + angular.toJson($scope.curUser));
+
 	$scope.salesOrder = {};
 
 	$scope.getAllSalesOrder = function() {
@@ -23,17 +22,25 @@ app.controller("salesOrderListCtr", function($scope, $window, $mdToast, $timeout
 				function(salesOrderList) {
 					$log.debug("Inside Ctr getAllSalesOrder");
 					$scope.salesOrderList = salesOrderList;
-					$log.debug("@@@@@@@getAllSalesOrder:"+angular.toJson($scope.salesOrderList));
-//					$scope.tempSalesOrder = $scope.salesOrderList.length +1;
-//					$log.debug("@@@@@@@getAllSalesOrder!!!!!!!!!!!!!!:"+angular.toJson($scope.tempSalesOrder));
-//					$scope.salesOrder.salesOrderId = $scope.tempSalesOrder;
+					$log.debug("@@@@@@@getAllSalesOrder:"
+							+ angular.toJson($scope.salesOrderList));
 				});
 	}
 
-//	$scope.salesOrderList = [];
-	$scope.tempSalesOrder;
-	$scope.getAllSalesOrder();
+	$scope.waitForServiceLoad = function() {
+		if (appEndpointSF.is_service_ready) {
+			$scope.getAllSalesOrder();
+		} else {
+			$log.debug("Services Not Loaded, watiting...");
+			$timeout($scope.waitForServiceLoad, 1000);
+		}
+	}
 
+	$scope.salesOrderList = [];
+	$scope.selected = [];
+	$scope.waitForServiceLoad();
+	
+	
 
 	/* Setup menu */
 	$scope.toggleRight = buildToggler('right');
@@ -55,8 +62,8 @@ app.controller("salesOrderListCtr", function($scope, $window, $mdToast, $timeout
 			$log.debug("close RIGHT is done");
 		});
 	};
-	
+
 	$scope.back = function() {
-		 window.history.back();
+		window.history.back();
 	}
 });

@@ -16,7 +16,7 @@
  -->
 
 			<span style="color: red;">*</span>
-						
+
 			<md-autocomplete flex required ng-model="invoiceObj.customer"
 				md-input-name="autocompleteField" md-input-minlength="2"
 				md-input-maxlength="18" md-no-cache=true
@@ -35,15 +35,11 @@
 				<div ng-message="maxlength">Your entry is too long.</div>
 			</div>
 			</md-autocomplete>
-			
-			
+
+
 			Invoice Date:<span style="color: red;">*</span>
 			<md-datepicker ng-model="invoiceObj.invoiceDate"
 				md-placeholder="Select Date" ng-required="true"></md-datepicker>
-
-			Due Date:<span style="color: red;">*</span>
-			<md-datepicker ng-model="invoiceObj.invoiceDueDate"
-				md-placeholder="Select Date"></md-datepicker>
 
 		</div>
 		<div layout="row" layout-xs="column">
@@ -75,6 +71,10 @@
 
 			<md-input-container flex> <label>Note </label> <textarea
 				ng-model="invoiceObj.note" rows="2" cols="1"></textarea> </md-input-container>
+
+			Due Date:<span style="color: red;">*</span>
+			<md-datepicker ng-model="invoiceObj.invoiceDueDate"
+				md-placeholder="Select Date"></md-datepicker>
 		</div>
 
 		<div layout="row" layout-align="center start"

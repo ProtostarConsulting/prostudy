@@ -2,10 +2,11 @@
 <md-content layout-padding>
 <div id="invoiceDiv">
 	<form name="pOForm">
-			[<span style="color: red;">Field Marked as asterik (*) are
+		[<span style="color: red;">Field Marked as asterik (*) are
 			mandetory</span>]
 		<div>
-			<u>Purchase Order</u>
+			<h3>
+				<u>Purchase Order</u>
 			</h3>
 			<div layout="row" layout-align="center start"
 				style="margin-top: 20px; margin-bottom: 20px;">
@@ -13,29 +14,31 @@
 			</div>
 
 			<div layout="row" layout-xs="column">
-<span style="color: red;">*</span>
+				<span style="color: red;">*</span>
 				<md-autocomplete flex required md-input-name="autocompleteField"
 					md-input-minlength="2" md-input-maxlength="18" md-no-cache=true
-					md-selected-item="purchaseOrderObj.customer"
+					md-selected-item="purchaseOrderObj.supplier"
 					md-search-text="searchTextInput"
 					md-items="item in querySearch(searchTextInput)"
-					md-item-text="item.firstName" md-floating-label="Customer Name">
+					md-item-text="item.supplierName" md-floating-label="Supplier Name">
 				<md-item-template> <span
-					md-highlight-text="searchTextInput">{{item.firstName}}</span> </md-item-template>
+					md-highlight-text="searchTextInput">{{item.supplierName}}</span> </md-item-template>
 				<div ng-messages="searchForm.autocompleteField.$error"
 					ng-if="searchForm.autocompleteField.$touched">
 					<div ng-message="required">
-						You <b>must</b> have a favorite state.
+						You <b>must</b> have to enter Supplier Name.
 					</div>
 					<div ng-message="minlength">Your entry is not long enough.</div>
 					<div ng-message="maxlength">Your entry is too long.</div>
 				</div>
 				</md-autocomplete>
 
-				<span style="color: red;">*</span><md-datepicker ng-model="purchaseOrderObj.poDate"
+				<span style="color: red;">*</span>
+				<md-datepicker ng-model="purchaseOrderObj.poDate"
 					md-placeholder="Select PO Date"></md-datepicker>
 
-				<span style="color: red;">*</span><md-datepicker ng-model="purchaseOrderObj.poDueDate"
+				<span style="color: red;">*</span>
+				<md-datepicker ng-model="purchaseOrderObj.poDueDate"
 					md-placeholder="Select Due Date"></md-datepicker>
 			</div>
 
@@ -49,17 +52,14 @@
 			</div>
 
 			<div layout="row" layout-xs="column">
-				<!-- 				<md-input-container flex> <label>P.O.Date
-				</label> <input ng-model="purchaseOrderObj.poDate"> </md-input-container>
- -->
-
 
 				<md-input-container flex> <label>Requisitioner
 				</label> <input ng-model="purchaseOrderObj.requisitioner"> </md-input-container>
 
 				<md-input-container flex> <label>Shipped
 					Via </label> <input ng-model="purchaseOrderObj.shippedVia"> </md-input-container>
-
+			</div>
+			<div layout="row" layout-xs="column">
 				<md-input-container flex> <label>F.O.B.Point
 				</label> <input ng-model="purchaseOrderObj.fOBPoint"> </md-input-container>
 
@@ -72,7 +72,7 @@
 			style="margin-top: 20px; margin-bottom: 20px;">
 			<md-divider flex></md-divider>
 		</div>
-<span style="color: red">{{errorMsg}}</span>
+		<span style="color: red">{{errorMsg}}</span>
 		<table md-data-table md-progress="deferred">
 			<thead md-order="query.order" md-trigger="onOrderChange">
 				<tr>
@@ -114,8 +114,8 @@
 
 				</tr>
 				<tr>
-					<td><span style="color: red;">*</span><section layout="row" layout-sm="column"
-							layout-align="left left">
+					<td><span style="color: red;">*</span>
+						<section layout="row" layout-sm="column" layout-align="left left">
 							<md-button class="md-raised md-primary" ng-click="addItem()">Add
 							Item</md-button>
 
@@ -162,7 +162,8 @@
 		<div layout layout-sm="column">
 			<section layout="row" layout-sm="column">
 				<md-button class="md-raised md-primary" id="addPurchaseOrder"
-					ng-disabled="pOForm.$invalid" ng-click="addPurchaseOrder()">Save Purchase Order</md-button>
+					ng-disabled="pOForm.$invalid" ng-click="addPurchaseOrder()">Save
+				Purchase Order</md-button>
 			</section>
 		</div>
 	</form>

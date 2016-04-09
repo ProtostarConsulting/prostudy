@@ -16,7 +16,7 @@ app
 						customer : '',
 						// invoiceDate : $filter("date")(Date.now(),
 						// 'dd-MM-yyyy'),
-						invoiceDate : '',
+						invoiceDate : new Date(),
 						invoiceDueDate : '',
 						invoiceLineItemList : [],
 						subTotal : '',
@@ -45,8 +45,12 @@ app
 
 									});
 							$log.debug("No4");
-							window.history.back();
+							$scope.invoiceAdd.$setPristine();
+							$scope.invoiceAdd.$setValidity();
+							$scope.invoiceAdd.$setUntouched();
+							
 							$scope.invoiceObj = {};
+							window.history.back();
 						}
 					}
 

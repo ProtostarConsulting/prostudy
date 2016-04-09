@@ -1,7 +1,7 @@
 angular.module("stockApp").controller(
 		"stockAddCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $http, objectFactory, appEndpointSF) {
+				$log, $http, $stateParams, objectFactory, appEndpointSF) {
 
 			$log.debug("Inside customerCtr");
 
@@ -9,6 +9,38 @@ angular.module("stockApp").controller(
 					.getLoggedinUser();
 			$log.debug("$scope.curUser++++++++"
 					+ angular.toJson($scope.curUser));
+
+			$log.debug("$stateParams:", $stateParams);
+			$log.debug("$stateParams.selectedStocksId:",
+					$stateParams.selectedStocksId);
+
+			$scope.selectedStocksId = $stateParams.selectedStocksId;
+
+			$scope.getStockById = function() {
+				var stockService = appEndpointSF.getStockService();
+				stockService.getStockById($scope.selectedStocksId).then(
+						function(stock) {
+
+							$scope.stock = stock;
+							$log.debug("Inside Ctr $scope.stockData:"
+									+ angular.toJson($scope.stockData));
+
+						});
+			}
+
+			$scope.waitForServiceLoad = function() {
+				if (appEndpointSF.is_service_ready) {
+					if ($scope.selectedStocksId != "") {
+						$scope.getStockById();
+					}
+				} else {
+					$log.debug("Services Not Loaded, watiting...");
+					$timeout($scope.waitForServiceLoad, 1000);
+				}
+			}
+
+			$scope.stock = [];
+			$scope.waitForServiceLoad();
 
 			$scope.stock = {
 				id : "",
@@ -31,9 +63,12 @@ angular.module("stockApp").controller(
 
 				});
 				$log.debug("No4");
+				$scope.stockForm.$setPristine();
+				$scope.stockForm.$setValidity();
+				$scope.stockForm.$setUntouched();
 				$scope.stock = {};
 			}
-			
+
 			$scope.updateStock = function() {
 				$log.debug("No1");
 				var stockService = appEndpointSF.getStockService();
@@ -61,7 +96,16 @@ angular.module("stockApp").controller(
 						});
 			}
 
-			$scope.getAllWarehouseByBusiness();
+			$scope.waitForServiceLoad = function() {
+				if (appEndpointSF.is_service_ready) {
+					$scope.getAllWarehouseByBusiness();
+				} else {
+					$log.debug("Services Not Loaded, watiting...");
+					$timeout($scope.waitForServiceLoad, 1000);
+				}
+			}
+
+			$scope.waitForServiceLoad();
 
 			$scope.warehouseDDLChange = function(index, selectedWarehouse) {
 				$log.debug("##Came to warehouseDDLChange...");

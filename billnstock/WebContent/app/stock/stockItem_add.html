@@ -10,16 +10,16 @@
 				<md-select flex ng-model="selectedWarehouse"
 					placeholder="Warehouse Name"
 					ng-change="warehouseDDLChange($index, selectedWarehouse)">
-				<md-option ng-value="warehouse" ng-selected="$first" ng-repeat="warehouse in warehouses">{{warehouse.warehouseName
+				<md-option ng-value="warehouse" ng-selected="$first"
+					ng-repeat="warehouse in warehouses">{{warehouse.warehouseName
 				}}</md-option> </md-select>
 				<md-icon md-svg-src="img/icons/ic_queue_black_24px.svg"
-					ui-sref="warehouse.add" class="name"
+					ui-sref="stock.warehouseAdd" class="name"
 					style="color: Green; height: 40px; width: 40px"></md-icon>
 			</div>
 			<md-input-container flex> <label>Item
 				Name <span style="color: red;">*</span>
-			</label> <input name="itemName" ng-model="stock.itemName"
-				ng-required="true">
+			</label> <input name="itemName" ng-model="stock.itemName" ng-required="true">
 			<div ng-messages="stockForm.itemName.$error"
 				ng-if="stockForm.itemName.$submitted || stockForm.itemName.$touched">
 				<div ng-message="required">Please Enter Item
@@ -81,14 +81,17 @@
 		</div>
 
 		<section layout="row" layout-sm="column" layout-align="left left">
-			<md-button class="md-raised md-primary" ng-click="addStock()">
-			<md-icon md-svg-src="img/icons/ic_queue_black_24px.svg"
-				ui-sref="warehouse.add" class="name"
+			<md-button class="md-raised md-primary" ng-hide="stock.id" ng-click="addStock()">
+			<md-icon md-svg-src="img/icons/ic_queue_black_24px.svg" class="name"
 				style="color: Green; height: 20px; width: 20px"></md-icon>Add</md-button>
-			<!-- 			<md-button class="md-raised md-primary"
-				ng-click="">Cancel</md-button> -->
 		</section>
+
+		<section layout="row" layout-sm="column" layout-align="left left">
+			<md-button class="md-raised md-primary" ng-show="stock.id" ng-click="addStock()">
+			<md-icon md-svg-src="img/icons/ic_queue_black_24px.svg" class="name"
+				style="color: Green; height: 20px; width: 20px"></md-icon>Update</md-button>
+		</section>
+		
 	</div>
 </form>
-
 </md-content>

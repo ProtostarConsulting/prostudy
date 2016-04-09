@@ -9,6 +9,11 @@
 			<h3>
 				<u>Sales Order</u>
 			</h3>
+			<div align="right">
+				<span style="color: red;">*</span>SO Date:
+				<md-datepicker flex ng-model="salesOrder.salesOrderDate"
+					md-placeholder="Enter SO Date"></md-datepicker>
+			</div>
 			<div layout="row" layout-xs="column">
 				<span style="color: red;">*</span>
 
@@ -39,9 +44,7 @@
 			</div>
 
 			<div layout="row" layout-xs="column">
-				<span style="color: red;">*</span>SO Date:
-				<md-datepicker flex ng-model="salesOrder.salesOrderDate"
-					md-placeholder="Enter SO Date"></md-datepicker>
+
 				<span style="color: red;">*</span>Quotation Date:
 				<md-datepicker flex ng-model="salesOrder.quotationDate"
 					md-placeholder="Enter Quotation Date"></md-datepicker>
@@ -50,9 +53,7 @@
 				<md-datepicker ng-model="salesOrder.deliveryDate"
 					md-placeholder="Enter Delivery Date"></md-datepicker>
 
-				<span style="color: red;">*</span>Due Date:
-				<md-datepicker ng-model="salesOrder.dueDate"
-					md-placeholder="Enter Due Date"></md-datepicker>
+
 			</div>
 
 			<div layout="row" layout-xs="column">
@@ -70,30 +71,21 @@
 
 				<md-input-container flex> <label>Job </label> <input
 					ng-model="salesOrder.job"> </md-input-container>
-
+			</div>
+			<div layout="row" layout-xs="column">
 				<md-input-container flex> <label>Shipped
 					Via </label> <input ng-model="salesOrder.shippedVia"> </md-input-container>
 
 				<md-input-container flex> <label>Shipping
 					Terms </label> <input ng-model="salesOrder.shippingTerms"> </md-input-container>
-
-
+			</div>
+			<div layout="row" layout-xs="column" layout-align="start start">
 				<md-input-container flex> <label>Payment
 					Terms </label> <input ng-model="salesOrder.paymentTerms"> </md-input-container>
-				<!-- 				<md-input-container flex> <label>Delivery
-					Date </label> <input ng-model="salesOrder.deliveryDate"> </md-input-container>
- -->
 
-				<!-- 
-				<md-input-container flex> <label>Due Date
-				</label> <input ng-model="salesOrder.dueDate"> </md-input-container>
- -->
-
-
-				<!-- 	    <md-datepicker ng-model="accountIncome.fromDate" md-placeholder="Enter From Date"></md-datepicker>	
-		
-		<md-datepicker ng-model="accountIncome.toDate" md-placeholder="Enter To Date"></md-datepicker>	
- -->
+				<span style="color: red;">*</span>Due Date:
+				<md-datepicker ng-model="salesOrder.dueDate"
+					md-placeholder="Enter Due Date"></md-datepicker>
 			</div>
 
 			<div layout="row" layout-align="center start"
@@ -141,8 +133,8 @@
 						</td>
 					</tr>
 					<tr>
-						<td><span style="color: red;">*</span><section layout="row" layout-sm="column"
-								layout-align="left left">
+						<td><span style="color: red;">*</span>
+							<section layout="row" layout-sm="column" layout-align="left left">
 								<md-button class="md-raised md-primary" ng-click="addItem()">Add
 								Item</md-button>
 							</section></td>
