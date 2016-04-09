@@ -12,6 +12,8 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
+import com.googlecode.objectify.Ref;
+import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.sales.entities.SalesOrderEntity;
 
 @Api(name = "salesOrderService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.sales.services", ownerName = "com.protostar.billingnstock.sales.services", packagePath = ""))
@@ -23,7 +25,7 @@ public class SalesOrderService {
 			ofy().save().entity(salesOrderEntity).now();
 		}
 		
-		@ApiMethod(name="getAllSalesOrder")
+		@ApiMethod(name="getAllSalesOrder", path = "getAllSalesOrder")
 		public List<SalesOrderEntity> getAllSalesOrder(@Named("id") Long id){
 			
 			List<SalesOrderEntity> SOList=ofy().load().type(SalesOrderEntity.class).list();
@@ -48,12 +50,24 @@ public class SalesOrderService {
 		}
 
 		
-		@ApiMethod(name = "getSOByID")
-		public SalesOrderEntity getSOByID(@Named("id") Long id) {
-			SalesOrderEntity SalesOrderById = ofy().load().type(SalesOrderEntity.class).id(id).now();
+		@ApiMethod(name = "getSOByID", path = "getSOByID")
+		public SalesOrderEntity getSOByID(@Named("id") Long busiId) {
+			SalesOrderEntity SalesOrderById = ofy().load().type(SalesOrderEntity.class).id(busiId).now();
 
 			System.out.println("getSOByID Recored is:"+ SalesOrderById);
 			return SalesOrderById;
+		}
+		
+		@ApiMethod(name = "getSOListByID", path = "getSOListByID")
+		public List<SalesOrderEntity> getSOListByID(@Named("id") Long custId) {
+						
+			List<SalesOrderEntity> SOListById = ofy()
+					.load()
+					.type(SalesOrderEntity.class)
+					.filter("customer",
+							Ref.create(Key.create(Customer.class, custId)))
+					.list();
 
+			return SOListById;
 		}
 }
