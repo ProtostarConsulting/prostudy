@@ -45,11 +45,18 @@ public class UserService {
 				.filter("email_id", email).list();
 		return (list == null || list.size() == 0) ? null : list.get(0);
 	}
-
+	
+	@ApiMethod(name = "getUserByRole",path="getUserByRole")
+	public List<UserEntity> getUserByRole(@Named("role") String role, @Named("instituteID") Long instituteID) {
+		List<UserEntity> list = ofy().load().type(UserEntity.class)
+				.filter("role", role).filter("instituteID",instituteID).list();
+		return list;
+	}
+	
 	@ApiMethod(name = "getUserByInstitute")
 	public List<UserEntity> getUserByInstitute(
 			@Named("instituteID") Long instituteID) {
-		System.out.println("inside getUserByInstitute");
+	
 		List<UserEntity> userList = ofy().load().type(UserEntity.class)
 				.filter("instituteID", instituteID).list();
 		return userList;
@@ -103,12 +110,9 @@ public class UserService {
  
 
 	@ApiMethod(name = "getAuthorityByRole")
-	public List<RoleSecEntity> getAuthorityByRole(
-			@Named("role") String role) {
+	public List<RoleSecEntity> getAuthorityByRole(@Named("role") String role) {
 	
-		List<RoleSecEntity> moduleList = ofy().load()
-				.type(RoleSecEntity.class).filter("role", role)
-				.list();
+		List<RoleSecEntity> moduleList = ofy().load().type(RoleSecEntity.class).filter("role", role).list();
 		return moduleList;
 
 	}
