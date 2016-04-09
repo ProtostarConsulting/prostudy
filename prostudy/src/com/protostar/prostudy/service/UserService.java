@@ -2,7 +2,9 @@ package com.protostar.prostudy.service;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
@@ -11,6 +13,8 @@ import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
 import com.protostar.prostudy.entity.ChapterEntity;
 import com.protostar.prostudy.entity.RoleSecEntity;
+import com.protostar.prostudy.entity.StudSubEntity;
+import com.protostar.prostudy.entity.SubjectEntity;
 import com.protostar.prostudy.entity.UserEntity;
 import com.protostar.prostudy.until.data.UtilityService;
 
@@ -116,4 +120,25 @@ public class UserService {
 		return moduleList;
 
 	}
+	@ApiMethod(name = "getStudentsBySubjectID", path="getStudentsBySubjectID")
+	 public List<UserEntity> getStudentsBySubjectID(@Named("subID") Long subID) {
+		System.out.println("subID :"+subID);
+		StudSubService studSubService = new StudSubService();
+		
+		List<StudSubEntity> studSubEntityList = studSubService.getstudBySubId(subID);
+		
+		System.out.println("studSubEntityList :"+studSubEntityList);
+		List<Long> studIds = new ArrayList<Long>();
+		for(StudSubEntity ss: studSubEntityList){
+			studIds.add(ss.getStudID().getId());
+		}
+	   Map<Long, UserEntity> ids = ofy().load().type(UserEntity.class).ids(studIds.toArray(new Long[studIds.size()]));
+	   
+	   List<UserEntity> outPutList = new ArrayList<UserEntity>();
+		for(UserEntity stud: ids.values()){
+			outPutList.add(stud);
+		}
+	   return outPutList;
+	  
+	 }
 }
