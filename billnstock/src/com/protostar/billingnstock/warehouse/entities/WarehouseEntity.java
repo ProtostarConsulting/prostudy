@@ -12,7 +12,7 @@ public class WarehouseEntity extends BaseEntity{
 	private String address1 ;
 	private String address2 ;
 	private String city ;
-	private String pin ;
+	private Integer pin ;
 	private String state; 
 	private String country; 
 
@@ -56,11 +56,11 @@ public class WarehouseEntity extends BaseEntity{
 		this.city = city;
 	}
 
-	public String getPin() {
+	public Integer getPin() {
 		return pin;
 	}
 
-	public void setPin(String pin) {
+	public void setPin(Integer pin) {
 		this.pin = pin;
 	}
 

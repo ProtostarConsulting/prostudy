@@ -10,7 +10,7 @@ public class Customer extends BaseEntity{
 	@Index
 	private String firstName;
 	private String lastName;
-	private String mobile;
+	private Integer mobile;
 	private String email;
 	private String address;
 	
@@ -31,11 +31,11 @@ public class Customer extends BaseEntity{
 		this.lastName = lastName;
 	}
 
-	public String getMobile() {
+	public Integer getMobile() {
 		return mobile;
 	}
 
-	public void setMobile(String mobile) {
+	public void setMobile(Integer mobile) {
 		this.mobile = mobile;
 	}
 

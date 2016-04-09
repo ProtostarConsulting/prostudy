@@ -28,12 +28,13 @@ public class PurchaseOrderEntity extends BaseEntity{
 	private double finalTotal ;
 	private double taxTotal;
 	
-	Ref<Customer> customer;	
-	public Customer getCustomer() {
-		return customer.get();
+	Ref<SupplierEntity> supplier;
+	
+	public SupplierEntity getSupplier() {
+		return supplier.get();
 	}
-	public void setCustomer(Customer customer) {
-		this.customer = Ref.create(customer);
+	public void setSupplier(SupplierEntity supplier) {
+		this.supplier = Ref.create(supplier);
 	}
 	
 	private List<LineItemEntity> pOLineItemList;

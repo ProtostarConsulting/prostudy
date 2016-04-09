@@ -44,9 +44,6 @@ public class AccountService {
 
 		Customer customerById = ofy().load().type(Customer.class).id(Id).now();
 
-/*		System.out.println("Searched Recored is:"
-				+ customerById.getCustomerName());
-*/
 		return customerById;
 	}
 
