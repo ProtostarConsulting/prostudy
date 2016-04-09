@@ -41,6 +41,12 @@ public class StudSubService {
 		Key<StudSubEntity> now = ofy().save().entity(studsub).now();
 	}
 	
+	@ApiMethod(name = "getStudentBySubject", path="getStudBySubId")
+	 public List<StudSubEntity> getStudBySubId(@Named("subID") Long subID) {	
+	  List<StudSubEntity> studList = ofy().load().type(StudSubEntity.class).filter("subID", Ref.create(Key.create(SubjectEntity.class, subID))).list();
+	 	  return studList;	  
+	 }	
+	
 	
 	
 }
