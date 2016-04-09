@@ -77,7 +77,7 @@
 			<div ng-message="required">Email-Id should not Empty.</div>
 			<div ng-message="pattern">Please Enter Valid Email-Id.</div>
 		</div>	
-	<!--   <span style="color: red" id="error" ng-show="tempStudent.email_id">{{checkUserAlreadyExist(tempStudent.email_id)}}</span>  -->
+	   <span style="color: red" id="error" ng-show="tempStudent.email_id">{{checkUserAlreadyExist(tempStudent.email_id)}}</span>  
 		</md-input-container>
 	</div>
 
@@ -119,8 +119,8 @@
 			ng-disabled="instituteStudentForm.$invalid"
 			ng-click="addInstituteStudents()">Add Student </md-button>
 
-		<a ui-sref="institute"><md-button ng-show="flag3==true"
-				class="md-raised md-primary" ng-click="showMsg()">Skip</md-button> </a>
+		<!-- <a ui-sref="institute"><md-button ng-show="flag3==true"
+				class="md-raised md-primary" ng-click="showMsg()">Skip</md-button> </a> -->
 
 	</div>
 

@@ -14,6 +14,13 @@ angular.module("prostudyApp").controller(
 			$scope.selectedDivName = $stateParams.selectedDivName;
 			$scope.selectedSubName = $stateParams.selectedSubName;
 			
+			
+			$scope.selectedSubId = $stateParams.selectedSubId;
+			
+			
+			$scope.selectedSubjectId = $stateParams.selectedSubjectId;
+			
+			
 			$scope.flag = false;
 			$scope.flag3 = false;
 			$scope.flag4 = true;
@@ -219,7 +226,7 @@ angular.module("prostudyApp").controller(
 
 			$scope.getUserByInstitute();
 			
-			$scope.getUserByClass = function() {
+			/*$scope.getUserByClass = function() {
 
 				var UserService = appEndpointSF
 						.getUserService();
@@ -228,7 +235,7 @@ angular.module("prostudyApp").controller(
 							$scope.students = studentList;
 							
 						});
-			}
+			}*/
 			
 			$scope.viewStandardByInstitute = function() {
 
@@ -444,7 +451,7 @@ angular.module("prostudyApp").controller(
 				
 				var SubjectService = appEndpointSF.getSubjectService();
 				
-				$scope.selectedSubjectId = $stateParams.selectedSubjectId;  
+				//$scope.selectedSubjectId = $stateParams.selectedSubjectId;  
 				for(var i=0;i<$scope.viewSubList.length;i++)
 				{
 					if($scope.selectedSubjectId == $scope.viewSubList[i].id)
@@ -493,5 +500,15 @@ angular.module("prostudyApp").controller(
 				$log.debug("inside cancelButton");
 				$state.go('^', {});
 			};
+			$scope.getStudentsBySubjectID = function() {
+				var UserService = appEndpointSF.getUserService();
+				UserService.getStudentsBySubjectID($scope.selectedSubId)
+						.then(function(studList) {
+									$scope.studentList = studList;
+									$log.debug("$scope.studentList"+angular.toJson($scope.studentList));									
+								});
+			}
+			if($scope.selectedSubId!=undefined)
+			{$scope.getStudentsBySubjectID();}
 
 		});
