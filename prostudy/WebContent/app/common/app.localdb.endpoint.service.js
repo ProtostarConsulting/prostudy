@@ -58,7 +58,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			var chapterList = angular.fromJson($localStorage.dbAddChapter);
 			if (typeof chapterList === 'undefined')
 				chapterList = [];
-		//	$log.debug("   ----  ByID==" + selectedChapterId);
+			// $log.debug(" ---- ByID==" + selectedChapterId);
 			for (i = 0; i < chapterList.length; i++) {
 				if (selectedChapterId == chapterList[i].id) {
 					tempBookItem.push(chapterList[i]);
@@ -207,7 +207,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			var bookList = angular.fromJson($localStorage.dbAddBook);
 			if (typeof bookList === 'undefined')
 				bookList = [];
-		for (i = 0; i < bookList.length; i++) {
+			for (i = 0; i < bookList.length; i++) {
 				if (bookid == bookList[i].bookid) {
 					bookList[i].comments.push(comment);
 				}
@@ -215,7 +215,9 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 			$localStorage.dbAddBook = angular.toJson(bookList);
 
-			$log.debug("$localStorage.dbAddChapter: "+ $localStorage.dbAddBook);
+			$log
+					.debug("$localStorage.dbAddChapter: "
+							+ $localStorage.dbAddBook);
 
 			$log
 					.debug("$localStorage.dbAddChapter: "
@@ -279,16 +281,13 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 			var studList = angular.fromJson($localStorage.dbStudents);
 			if (typeof studList === 'undefined')
 				studList = [];
-			
-			for(var i=0;i<studList.length;i++)
-				{
-					if(selectedStudID == studList[i].ID)
-					{
-						studList[i].attendance = "Absent";	
-					}
+
+			for (var i = 0; i < studList.length; i++) {
+				if (selectedStudID == studList[i].ID) {
+					studList[i].attendance = "Absent";
 				}
-			
-			
+			}
+
 			$localStorage.dbStudents = angular.toJson(studList);
 			deferred.resolve({
 				"msg" : "Attendance Added Successfully."
@@ -298,8 +297,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 		return deferred.promise;
 	}
-	
-	
+
 	var PracticeExamService = {};
 
 	serviceFactory.getPracticeExamService = function() {
@@ -598,7 +596,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return InstituteService;
 	}
 
-	InstituteService.addInstitute = function(insti, admins,teachers, students) {
+	InstituteService.addInstitute = function(insti, admins, teachers, students) {
 
 		var deferred = $q.defer();
 		$timeout(function() {
@@ -898,6 +896,61 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		return deferred.promise;
 	}
 
+	UserService.addOrUpdateRoleSec = function(roleSec) {
+		var deferred = $q.defer();
+		$timeout(function() {
+			
+			var roleSecList = angular.fromJson($localStorage.dbRoleSec);
+			if (typeof roleSecList === 'undefined')
+				roleSecList = [];
+			
+			roleSec.roleSecId = roleSecList.length + 1;
+			roleSecList.push(roleSec);
+			$localStorage.dbRoleSec = angular.toJson(roleSecList);
+			deferred.resolve({
+				"msg" : "RoleSec added Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+	
+	UserService.getRoleSecList = function() {
+		var deferred = $q.defer();
+		$timeout(function() {
+			
+			var roleSecList = angular.fromJson($localStorage.dbRoleSec);
+			if (typeof roleSecList === 'undefined')
+				roleSecList = [];
+			deferred.resolve(roleSecList);
+		}, 1000);
+
+		return deferred.promise;
+
+	}
+	
+	UserService.updateRoleSecList = function(roleSec) {
+		var deferred = $q.defer();
+		$timeout(function() {
+
+			var roleSecList = angular.fromJson($localStorage.dbRoleSec);
+			if (typeof roleSecList === 'undefined')
+				roleSecList = [];
+			for (var i = 0; i < roleSecList.length; i++) {
+				if (roleSec.roleSecId == roleSecList[i].roleSecId)
+					roleSecList[i] = roleSec;
+			}
+			$localStorage.dbRoleSec = angular.toJson(roleSecList);
+			deferred.resolve({
+				"msg" : "Updated Successfully."
+			});
+
+		}, 1000);
+
+		return deferred.promise;
+	}
+
 	UserService.getUsers = function() {
 		var deferred = $q.defer();
 		$timeout(function() {
@@ -938,7 +991,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		$localStorage.loggedinUser = user;
 
 	}
-	
+
 	UserService.logout = function() {
 		$localStorage.loggedinUser = null;
 	}
@@ -991,17 +1044,18 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 		var deferred = $q.defer();
 		$timeout(function() {
-			var currUserObj = UserService.getUserById($localStorage.loggedinUser.userId);
 			var currUserObj = UserService
 					.getUserById($localStorage.loggedinUser.userId);
-			$log.debug("selectedBook------"+angular.toJson(selectedBook));
+			var currUserObj = UserService
+					.getUserById($localStorage.loggedinUser.userId);
+			$log.debug("selectedBook------" + angular.toJson(selectedBook));
 			currUserObj.book.push(selectedBook);
-			
+
 			UserService.updateProfile(currUserObj);
 
-			$log.debug("selectedBook :"+selectedBook);
+			$log.debug("selectedBook :" + selectedBook);
 
-			$log.debug("currUserObj------"+angular.toJson(currUserObj));
+			$log.debug("currUserObj------" + angular.toJson(currUserObj));
 
 			deferred.resolve({
 				"msg" : "MyBook added Successfully."
@@ -1010,7 +1064,6 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		}, 1000);
 		return deferred.promise;
 	}
-
 
 	UserService.getMyBooks = function() {
 		var deferred = $q.defer();
@@ -1123,7 +1176,7 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 		}
 
 		return foundExam;
-		}
+	}
 
 	UserService.getExambyID = function(selectedExamId) {
 
