@@ -101,7 +101,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/exam/exam_view.html',
 		controller : 'examCtr'
 	}).state('userQuesAnsView', {
-		url : "/userQuesAnsView/:selectedExamId",
+		url : "/userQuesAnsView/:selectedExamId/:selectedResultId",
 		templateUrl : '/app/exam/userQuesAns_view.html',
 		controller : 'userQuesAnsViewCtr'
 	}).state('exam.question', {
@@ -421,10 +421,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/myBooks",
 		templateUrl : '/app/favourite/myBooks.html',
 		controller : 'myBooksCtr'
-	}).state('myPracticeExams', {
+	}).state('favourite.myPracticeExams', {
 		url : "/myPracticeExams",
-		templateUrl : '/app/myPracticeExams/myPracticeExams_module.html',
-		controller : 'myPracticeExamsModuleCtr'
+		templateUrl : '/app/favourite/myPracticeExams.html',
+		controller : 'myPracticeExamsCtr'
 	}).state('student', {
 		url : "/student",
 		templateUrl : '/app/student/student_module.html',
