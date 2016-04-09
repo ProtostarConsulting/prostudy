@@ -155,8 +155,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		params : {
 			currentInstID : null		
 		}
-	})
-	.state('institute.studFillbasics', {
+	}).state('institute.studFillbasics', {
 		url : "/institute/fillbasics",
 		templateUrl : '/app/institute/institute_student_fillbasics.html',
 		controller : 'instituteStudentFillbasicsCtr',
@@ -193,10 +192,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/editInstitute",
 		templateUrl : '/app/institute/institute_editInstitute.html',
 		controller : 'instituteListViewCtr'
-	}).state('institute.list_view.studentByStd', {
-		url : "/viewStudentByStd/:selectedStdName/:selectedDivName/:selectedSubName",
-		templateUrl : '/app/institute/institute_view_studentByStd.html',
+	}).state('institute.list_view.studentBySubject', {
+		url : "/viewstudentBySubject",
+		templateUrl : '/app/institute/institute_view_studentsBySubject.html',
 		controller : 'instituteListViewCtr',
+		param:{
+			selectedStdName:null,
+			selectedDivName:null,
+			selectedSubId:null,
+			selectedSubName:null
+		}
 	}).state('institute.list_view.view_admin', {
 		url : "/view_admin",
 		templateUrl : '/app/institute/institute_view_admins.html',
@@ -237,8 +242,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/adddivisions/:currentInstID/:currentStdID",
 		templateUrl : '/app/institute/institute_addDivisions.html',
 		controller : 'instituteListViewCtr'
-	}).state('institute.list_view.view_subjects', {
-		url : "/view_subjects/:selectedStdID/:selectedDivID/:selectedSubjectId/:selectedStdName/:selectedDivName/",
+	})		
+	.state('institute.list_view.view_subjects', {
+		url : "/view_subjects/:selectedDivID/:selectedStdName/:selectedDivName/:selectedSubName",
 		templateUrl : '/app/institute/institute_view_subjects.html',
 		controller : 'instituteListViewCtr',
 	}).state('institute.list_view.view_subjects.addsubjects', {
@@ -301,11 +307,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/editInstitute",
 		templateUrl : '/app/institute/institute_editInstitute.html',
 		controller : 'instituteViewCtr'
-	}).state('institute.view.studentByStd', {
-		url : "/viewStudentByStd/:selectedStdName/:selectedDivName/:selectedSubName",
-		templateUrl : '/app/institute/institute_view_studentByStd.html',
-		controller : 'instituteViewCtr',
-	}).state('institute.view.studentByStd.addstudentsByStd', {
+	}).state('institute.view.studentBySubject', {
+		url : "/viewstudentBySubject/:selectedStdName/:selectedDivName/:selectedSubName",
+		templateUrl : '/app/institute/institute_view_studentsBySubject.html',
+		controller : 'instituteViewCtr'	
+	}).state('institute.view.studentBySubject.addstudentsByStd', {
 		url : "/addstudentsByStd",
 		templateUrl : '/app/institute/institute_addStudents.html',
 		controller : 'instituteViewCtr',
