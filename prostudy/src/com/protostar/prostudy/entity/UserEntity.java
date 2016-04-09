@@ -16,6 +16,7 @@ public class UserEntity {
 	private String lastName;
 	private String address;
 	private String contact;
+	@Index
 	private String role;
 	@Index
 	private String email_id;
