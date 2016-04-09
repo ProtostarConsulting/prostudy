@@ -8,10 +8,15 @@ angular.module("prostudyApp").controller(
 						'Institute Student Added!').position("top").hideDelay(
 						3000));
 			};
+			$scope.curUser = appEndpointSF.getLocalUserService()
+			.getLoggedinUser();			
+			$scope.isGoogleUser = false;
+			$scope.flag3 = true;	
+			$scope.checkUserAlreadyExist = appEndpointSF.getUtilityService().checkUserAlreadyExist;
+			$scope.checkConfirmPassword = appEndpointSF.getUtilityService().checkConfirmPassword;
+			
 			$scope.currentInstID = $scope.curUser.instituteID;
-			$log.debug("$scope.currentInstIDStud:" + $scope.currentInstID);
-			$log.debug("$scope.currentInstID by current user "+$scope.currentInstID);
-		
+					
 			if($stateParams.currentInstID)
 			{
 				$scope.currentInstID = $stateParams.currentInstID;
@@ -34,20 +39,6 @@ angular.module("prostudyApp").controller(
 					'isGoogleUser' : $scope.isGoogleUser					
 				};
 			
-			$scope.curUser = appEndpointSF.getLocalUserService()
-			.getLoggedinUser();			
-			$scope.isGoogleUser = false;
-			$scope.flag3 = true;	
-			$scope.checkUserAlreadyExist = appEndpointSF.getUtilityService().checkUserAlreadyExist;
-			$scope.checkConfirmPassword = appEndpointSF.getUtilityService().checkConfirmPassword;
-			
-			//$scope.tempStudent.email_id="ash@gmail.com"
-			//if($scope.tempStudent.email_id!=undefined)
-			
-			$scope.xx=$scope.checkUserAlreadyExist("ash@gmail.com");
-			$log.debug("xx1:" + $scope.xx);
-		
-
 			$scope.currentStdID = $stateParams.currentStdID;
 			$scope.currentDivID = $stateParams.currentDivID;
 
