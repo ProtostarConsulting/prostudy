@@ -11,9 +11,7 @@
 
 					<div layout="row" layout-align="end start" layout-sm="column" >
 						
-					<md-button aria-label="Search" ng-click="showSearch = !showSearch">
-					<ng-md-icon icon="search"></ng-md-icon> </md-button>
-
+					
 					<md-button aria-label="Open Settings" ng-click="toggleRight()">
 					<ng-md-icon icon="more_vert"></ng-md-icon> </md-button>
 
@@ -55,13 +53,13 @@
 		<div layout="column" layout-align="start start">
 		
 			<md-button ui-sref="institute.addInfo" ng-click="close()"
-				class="md-primary">Institute Registration</md-button>
+				class="md-primary" hide-xs>Institute Registration</md-button>
 				
 				<md-button ui-sref="institute.list" ng-click="close()" 
-				class="md-primary">Institute List</md-button> 
+				class="md-primary" hide-xs>Institute List</md-button> 
 				
 			<md-button ui-sref="institute.view()" ng-click="close()"
-							class="md-primary">Institute View</md-button>
+							class="md-primary" hide-xs>Institute View</md-button>
 		
 
 			

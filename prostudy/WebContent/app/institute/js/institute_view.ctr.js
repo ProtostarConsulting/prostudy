@@ -197,11 +197,10 @@ angular.module("prostudyApp").controller(
 
 				StandardService.addStandards($scope.standard).then(
 						function(msgBean) {
-							$log
-									.debug("msgBean.msg:"
-											+ angular.toJson(msgBean));
+							
 							$scope.currentStdID = msgBean.id;
 							$scope.showSavedToast();
+							$scope.standard = {};
 
 						});
 
@@ -212,9 +211,7 @@ angular.module("prostudyApp").controller(
 
 				DivisionService.addDivisions($scope.division).then(
 						function(msgBean) {
-							$log
-									.debug("msgBean.msg:"
-											+ angular.toJson(msgBean));
+							
 							$scope.currentDivID = msgBean.id;
 							$scope.division = {};
 							$scope.showSavedToast();

@@ -142,15 +142,9 @@ angular.module("prostudyApp").controller(
 					$state.go("institute.addAdmins", {
 						currentInstID : $scope.currentInstID
 					});
-					$scope.tempInstitute = {
-						id : "",
-						instituteId : "",
-						name : "",
-						desc : "",
-						address : "",
-						phone_no : "",
-
-					};
+					
+					
+					$scope.tempInstitute = {};
 				});
 				
 			}

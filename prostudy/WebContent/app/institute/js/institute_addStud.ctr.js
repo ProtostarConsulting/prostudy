@@ -8,6 +8,9 @@ angular.module("prostudyApp").controller(
 						'Institute Student Added!').position("top").hideDelay(
 						3000));
 			};
+
+			$scope.currentInstID = $stateParams.currentInstID;;
+
 			$scope.curUser = appEndpointSF.getLocalUserService()
 			.getLoggedinUser();			
 			$scope.isGoogleUser = false;
@@ -16,6 +19,7 @@ angular.module("prostudyApp").controller(
 			$scope.checkConfirmPassword = appEndpointSF.getUtilityService().checkConfirmPassword;
 			
 			$scope.currentInstID = $scope.curUser.instituteID;
+
 					
 			if($stateParams.currentInstID)
 			{
@@ -39,6 +43,15 @@ angular.module("prostudyApp").controller(
 					'isGoogleUser' : $scope.isGoogleUser					
 				};
 			
+
+			$scope.curUser = appEndpointSF.getLocalUserService()
+			.getLoggedinUser();			
+			$scope.isGoogleUser = false;
+			$scope.flag3 = true;	
+			$scope.checkUserAlreadyExist = appEndpointSF.getUtilityService().checkUserAlreadyExist;
+			$scope.checkConfirmPassword = appEndpointSF.getUtilityService().checkConfirmPassword;
+			
+
 			$scope.currentStdID = $stateParams.currentStdID;
 			$scope.currentDivID = $stateParams.currentDivID;
 
@@ -46,6 +59,18 @@ angular.module("prostudyApp").controller(
 			$scope.disableButton = function() {
 				$scope.isDisabled = true;
 			}
+			
+			$scope.addInstituteStudents = function() {
+				var UserService = appEndpointSF.getUserService();
+				
+					UserService.addUser($scope.tempStudent).then(function(msgBean) {
+						$scope.email_id=msgBean.email_id;
+					$log.debug("$scope.email_id"+$scope.email_id);
+						$state.go("institute.studFillbasics", {currstud:$scope.email_id,currentInstID:$scope.currentInstID});
+				});
+				$scope.showStudentSavedToast();				
+
+			}	
 			
 				
 			$scope.standard= {
@@ -98,17 +123,7 @@ angular.module("prostudyApp").controller(
 				return deferred.promise;
 			};			
 			
-			$scope.addInstituteStudents = function() {
-				var UserService = appEndpointSF.getUserService();
 				
-					UserService.addUser($scope.tempStudent).then(function(msgBean) {
-						$scope.email_id=msgBean.email_id;
-					$log.debug("$scope.email_id"+$scope.email_id);
-						$state.go("institute.studFillbasics", {currstud:$scope.email_id,currentInstID:$scope.currentInstID});
-				});
-				$scope.showStudentSavedToast();				
-
-			}		
 
 			
 		});

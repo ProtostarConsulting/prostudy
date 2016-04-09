@@ -13,8 +13,7 @@
 				<th name="STUDENT EMAIL-ID" order-by="email_id"></th>
 				<th name="STUDENT ADDRESS" order-by="address"></th>
 				<th name="STUDENT CONTACT" order-by="contact"></th>
-				<th name="STUDENT STANDARD" order-by="standard"></th>
-
+			
 			</tr>
 		</thead>
 		<tbody>
@@ -24,7 +23,7 @@
 				<td>{{student.email_id}}</td>
 				<td>{{student.address}}</td>
 				<td>{{student.contact}}</td>
-				<td>{{student.standard}}</td>
+				
 				<td><a
 					ui-sref="institute.view.editUser({selectedID : student.id, currentInstID : currentInstID})"><md-button
 							ng-show="flag==true" class="md-raised md-primary" ng-click="">Edit</md-button></a></td>
