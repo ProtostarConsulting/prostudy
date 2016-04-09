@@ -3,9 +3,6 @@ angular.module("prostudyApp").controller(
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, objectFactory, appEndpointSF) {
 		
-		     
-			console.log("in side favouriteModuleCtr");
-			
 			$scope.testGAPICall = function() {
 				console.log("in side testGAPICall");
 				var cars = appEndpointSF.getQuestionService().getCars()
@@ -24,10 +21,7 @@ angular.module("prostudyApp").controller(
 	
 			/* Setup page menu */
 			$scope.toggleRight = buildToggler('right');
-			/**
-			 * Build handler to open/close a SideNav; when animation finishes
-			 * report completion in console
-			 */
+			
 			function buildToggler(navID) {
 				var debounceFn = $mdUtil.debounce(function() {
 					$mdSidenav(navID).toggle().then(function() {
