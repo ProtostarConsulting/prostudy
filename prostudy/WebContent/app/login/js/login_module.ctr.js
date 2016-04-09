@@ -33,17 +33,16 @@ angular
 					$scope.users = [];
 
 					$scope.addUser = function() {
-						$log.debug("No1");
+						
 						var UserService = appEndpointSF.getUserService();
 						UserService.addUser($scope.tempUser).then(
 								function(msgBean) {
-									$log.debug("No6");
-									$log.debug("Inside Ctr addTeacher");
+									
 									$log.debug("msgBean.msg:" + msgBean.msg);
 									$scope.showSavedToast();
 
 								});
-						$log.debug("No4");
+						
 
 					}
 					$scope.login = function() {
