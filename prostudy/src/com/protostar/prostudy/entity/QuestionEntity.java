@@ -7,11 +7,18 @@ import com.googlecode.objectify.annotation.Index;
 
 @Entity
 public class QuestionEntity {
-
+	
 	@Id
 	private Long id;
 	@Index
 	private Long instituteID;
+	private String board;
+	@Index
+	private String standard;
+	@Index
+	private String division;
+	@Index
+	private String subject;
 	private String description;
 	private String note;
 	private String category;
@@ -20,6 +27,31 @@ public class QuestionEntity {
 	private String option3;
 	private String option4;
 	private String correctAns;
+	
+	public String getBoard() {
+		return board;
+	}
+	public void setBoard(String board) {
+		this.board = board;
+	}
+	public String getStandard() {
+		return standard;
+	}
+	public void setStandard(String standard) {
+		this.standard = standard;
+	}
+	public String getDivision() {
+		return division;
+	}
+	public void setDivision(String division) {
+		this.division = division;
+	}
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
 	public Long getId() {
 		return id;
 	}

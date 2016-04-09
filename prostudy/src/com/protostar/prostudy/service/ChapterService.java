@@ -56,9 +56,9 @@ public class ChapterService {
 	}
 	
 	@ApiMethod(name = "getChaptersByClass")
-	public List<ChapterEntity> getChaptersByClass(@Named("standard") String standard,
+	public List<ChapterEntity> getChaptersByClass(@Named("instituteID") Long instituteID,@Named("standard") String standard,
 			@Named("division") String division, @Named("subject") String subject) {
-		List<ChapterEntity> list = ofy().load().type(ChapterEntity.class)
+		List<ChapterEntity> list = ofy().load().type(ChapterEntity.class).filter("instituteID", instituteID)
 				.filter("standard", standard).filter("division", division)
 				.filter("subject", subject).list();
 
