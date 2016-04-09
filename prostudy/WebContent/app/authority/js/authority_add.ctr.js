@@ -12,7 +12,7 @@ angular.module("prostudyApp").controller(
 						.position("top").hideDelay(3000));
 			};
 
-			$scope.moduleList = [ "Home", "System Admin", "Exam", "Student",
+			$scope.moduleList = [ "Home", "Authority", "Exam", "Student", "Syllabus",
 					"Institute", "Attendance", "Book", "Favourite", "Report","Certificate Management","Admission Management"]
 
 			$scope.toggleSelection = function toggleSelection(index) {
@@ -25,6 +25,7 @@ angular.module("prostudyApp").controller(
 				role : "",
 				modules : []
 			}
+		
 
 			$scope.addOrUpdateRoleSec = function() {
 				$scope.RoleSecEntity.modules = [];
@@ -33,13 +34,15 @@ angular.module("prostudyApp").controller(
 						$scope.RoleSecEntity.modules.push($scope.moduleList[i]);
 				}
 
-				var UserService = appEndpointSF.getUserService();
+				var UserService = appEndpointSF.getLocalUserService();
 
 				UserService.addOrUpdateRoleSec($scope.RoleSecEntity).then(
 						function(msgBean) {
 							$scope.showSavedToast();
 							$scope.RoleSecEntity = {};
 						});
+				
+				$state.go("authority");
 
 			}
 
