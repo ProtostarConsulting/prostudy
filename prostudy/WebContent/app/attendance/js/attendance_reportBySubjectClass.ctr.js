@@ -172,6 +172,9 @@ angular
 											        ];
 						
 						drawChart();
+						$scope.attendanceReportClassForm.$setPristine();
+						$scope.attendanceReportClassForm.$setValidity();
+						$scope.attendanceReportClassForm.$setUntouched();
 						$scope.clear();
 					}
 					 
@@ -193,6 +196,7 @@ angular
 							
 							$scope.selectedInstitute = "";
 							$scope.selectedStandard = "";
+							$scope.selectedDivision = "";
 							$scope.selectedSubject = "";
 							$scope.newStudList.splice(0,$scope.newStudList.length);
 							$scope.newPresentCount = 0;
@@ -201,6 +205,32 @@ angular
 							absentCount = 0;
 						
 						}
+						
+						$scope.query = {
+								order : 'description',
+								limit : 5,
+								page : 1
+							};
+
+							$scope.onpagechange = function(page, limit) {
+								var deferred = $q.defer();
+
+								$timeout(function() {
+									deferred.resolve();
+								}, 2000);
+
+								return deferred.promise;
+							};
+
+							$scope.onorderchange = function(order) {
+								var deferred = $q.defer();
+
+								$timeout(function() {
+									deferred.resolve();
+								}, 2000);
+
+								return deferred.promise;
+							};
 				
 
 				      $scope.loadChart();

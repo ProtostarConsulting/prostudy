@@ -234,6 +234,9 @@ angular
 											        ];
 						
 						drawChart();
+						$scope.attendanceReportStudentForm.$setPristine();
+						$scope.attendanceReportStudentForm.$setValidity();
+						$scope.attendanceReportStudentForm.$setUntouched();
 						$scope.clear();
 					}
 					 
@@ -255,6 +258,7 @@ angular
 							
 							$scope.selectedStud = "";
 							$scope.selectedStandard = "";
+							$scope.selectedDivision = "";
 							$scope.selectedSubject = "";
 							$scope.newSelectedStudent.splice(0,$scope.newSelectedStudent.length);
 							$scope.newPresentCount = 0;
@@ -263,6 +267,32 @@ angular
 							absentCount = 0;
 						
 						}
+						
+						$scope.query = {
+								order : 'description',
+								limit : 5,
+								page : 1
+							};
+
+							$scope.onpagechange = function(page, limit) {
+								var deferred = $q.defer();
+
+								$timeout(function() {
+									deferred.resolve();
+								}, 2000);
+
+								return deferred.promise;
+							};
+
+							$scope.onorderchange = function(order) {
+								var deferred = $q.defer();
+
+								$timeout(function() {
+									deferred.resolve();
+								}, 2000);
+
+								return deferred.promise;
+							};
 				
 
 				      $scope.loadChart();
