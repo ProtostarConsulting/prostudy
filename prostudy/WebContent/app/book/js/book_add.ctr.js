@@ -118,7 +118,7 @@ angular.module("prostudyApp").controller(
 			$scope.getChaptersByClass = function() {
 
 				var ChapterService = appEndpointSF.getChapterService();
-				ChapterService.getChaptersByClass($scope.tempBook.standard,
+				ChapterService.getChaptersByClass($scope.curUser.instituteID,$scope.tempBook.standard,
 						$scope.tempBook.division, $scope.tempBook.subject)
 						.then(function(chapterList) {
 							$scope.chapters = chapterList;

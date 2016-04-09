@@ -1,22 +1,84 @@
 <h3 class="md-headline">Add Questions</h3>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 
 
 <form name="questionForm" ng-model="questionForm"
 	ng-submit="questionForm.$valid " novalidate>
 
+<div layout="column" layout-xs="column">
 
 	<div layout="row" layout-xs="column">
-		<md-input-container flex> <label>Note</label>
-		<input name="note" id="note" ng-model="tempQuestion.note"> </md-input-container>
+	
+		<md-input-container flex> <label>Standard<span
+			style="color: red"
+			ng-show="questionForm.standard.$error.required" class="mandatory">*</span></label>
+		<md-select name="standard" ng-model="tempQuestion.standard"
+			ng-change="getDivisionByStandard()" ng-required="true"> <md-option
+			ng-value="standard" ng-repeat="standard in standards">{{standard}}</md-option>
+		</md-select>
+		<div ng-messages="questionForm.standard.$error"
+			ng-if="questionForm.standard.$submitted || questionForm.standard.$touched">
+			<div ng-message="required">Please Select Standard.</div>
+		</div>
+		</md-input-container>
+
+		<md-input-container flex> <label>Division<span
+			style="color: red"
+			ng-show="questionForm.division.$error.required" class="mandatory">*</span></label>
+		<md-select name="division" ng-model="tempQuestion.division"
+			ng-change="getSubjectByDivision()" ng-required="true"> <md-option
+			ng-value="division" ng-repeat="division in divisions track by $index">{{division}}</md-option>
+		</md-select>
+		<div ng-messages="questionForm.division.$error"
+			ng-if="questionForm.division.$submitted || questionForm.division.$touched">
+			<div ng-message="required">Please Select Division.</div>
+		</div>
+		</md-input-container>
+
+		<md-input-container flex> <label>Subject<span
+			style="color: red" ng-show="questionForm.subject.$error.required"
+			class="mandatory">*</span></label> <md-select name="subject"
+			ng-model="tempQuestion.subject" ng-change="" ng-required="true">
+		<md-option ng-value="subject"
+			ng-repeat="subject in subjects track by $index ">{{subject}}</md-option>
+		</md-select>
+		<div ng-messages="questionForm.subject.$error"
+			ng-if="questionForm.subject.$submitted || questionForm.subject.$touched">
+			<div ng-message="required">Please Select Subject.</div>
+		</div>
+		</md-input-container>
+		
+	</div>
+
+	<div layout="row" layout-xs="column">
+	
+		<md-input-container flex> <label>Board<span
+			style="color: red" ng-show="questionForm.board.$error.required"
+			class="mandatory">*</span></label> <md-select name="board"
+			ng-model="tempQuestion.board" ng-required="true"> <md-option
+			ng-value="board" ng-repeat="board in boards">{{board}}</md-option> </md-select>
+		<div ng-messages="questionForm.board.$error"
+			ng-if="questionForm.board.$submitted || questionForm.board.$touched">
+			<div ng-message="required">Please Select Board.</div>
+		</div>
+		</md-input-container>
+	
+		<md-input-container flex> <label>Note</label> <input
+			name="note" id="note" ng-model="tempQuestion.note"> </md-input-container>
 
 		<md-input-container flex> <label>Category</label>
 		<input name="category" id="note" ng-model="tempQuestion.category">
 		</md-input-container>
 
+		
+
 	</div>
+
+	
+</div>
+
 
 	<div layout="row" layout-xs="column">
 
@@ -119,7 +181,7 @@
 
 
 
-<p>&nbsp;</p>
+	<p>&nbsp;</p>
 	<div layout="row" layout-align="center center">
 
 		<md-button class="md-raised md-primary" ng-click="addQuestion()"

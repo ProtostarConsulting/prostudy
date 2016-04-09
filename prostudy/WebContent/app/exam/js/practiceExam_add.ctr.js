@@ -102,17 +102,17 @@ angular
 						$scope.subjects.splice(0,$scope.subjects.length);
 					}
 					
-					$scope.getQuestionsByInstitute = function() {
+					
+					$scope.getQuesByClass = function() {
 
 						var QuestionService = appEndpointSF.getQuestionService();
-						QuestionService.getQuestionsByInstitute($scope.curUser.instituteID).then(
-								function(questionsList) {
+						QuestionService.getQuesByClass($scope.curUser.instituteID,$scope.tempPracticeExam.standard,
+								$scope.tempPracticeExam.division, $scope.tempPracticeExam.subject)
+								.then(function(questionsList) {
 									$scope.questions = questionsList;
 
 								});
 					}
-					
-					$scope.getQuestionsByInstitute(); 
 					
 					$scope.addPracticeExam = function() {
 						$scope.tempPracticeExam.instituteID = $scope.curUser.instituteID;

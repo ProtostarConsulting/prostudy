@@ -547,10 +547,11 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 	
-	ChapterService.getChaptersByClass = function(standard, division, subject) {
+	ChapterService.getChaptersByClass = function(instituteID, standard, division, subject) {
 
 		var deferred = $q.defer();
 		gapi.client.chapterService.getChaptersByClass({
+			'instituteID' : instituteID,
 			'standard' : standard,
 			'division' : division,
 			'subject' : subject
@@ -875,6 +876,20 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
+	
+	QuestionService.getQuesByClass = function(instituteID, standard, division, subject) {
+
+		var deferred = $q.defer();
+		gapi.client.questionService.getQuesByClass({
+			'instituteID' : instituteID,
+			'standard' : standard,
+			'division' : division,
+			'subject' : subject
+		}).execute(function(resp) {
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}	
 
 	QuestionService.updateQuestion = function(ques) {
 		var deferred = $q.defer();
