@@ -97,21 +97,19 @@ angular.module("prostudyApp").controller(
 			}
 			
 			$scope.addSyllabus = function() {
-				$log.debug("No1");
+			
 				var SyllabusService = appEndpointSF.getSyllabusService();
-
 				SyllabusService.addSyllabus($scope.tempSyllabus).then(
 						function(msgBean) {
-							$log.debug("No6");
-							$log.debug("Inside Ctr addSyllabus");
+							
 							$log.debug("msgBean.msg:" + msgBean.msg);
 							$scope.showSavedToast();
 							$scope.tempSyllabus = {};
 
 						});
-				$log.debug("No4");
-
+				
 			}
+			
 			$scope.cancelButton = function() {
 				$state.go("^", {});
 			}
