@@ -36,6 +36,8 @@ angular.module("prostudyApp").controller(
 			$scope.addTestToMyList = function(selectedMyExamId) {
 
 				var practiceTest = null;
+				if (typeof $scope.curUser.myExams === 'undefined')
+					$scope.curUser.myExams = [];
 
 				for (var i = 0; i < $scope.practiceTest.length; i++) {
 					if ($scope.practiceTest[i].id == selectedMyExamId) {
@@ -43,9 +45,6 @@ angular.module("prostudyApp").controller(
 						break;
 					}
 				}
-
-				if (typeof $scope.curUser.myExams === 'undefined')
-					$scope.curUser.myExams = [];
 
 				$scope.curUser.myExams.push(practiceTest);
 
@@ -57,7 +56,6 @@ angular.module("prostudyApp").controller(
 				var UserService = appEndpointSF.getUserService();
 				UserService.updateUser($scope.curUser).then(function(msgBean) {
 
-					$log.debug("msgBean.msg:" + msgBean.msg);
 					$scope.showSavedToast();
 
 				});

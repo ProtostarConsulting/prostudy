@@ -7,9 +7,7 @@ angular
 					
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
-					$log.debug("$scope.curUser :"
-							+ angular.toJson($scope.curUser));
-
+					
 					$scope.showSavedToast = function() {
 						$mdToast.show($mdToast.simple().content(
 								'Practice Exam Saved!').position("top")
@@ -22,7 +20,7 @@ angular
 					$scope.standards = [];
 					$scope.divisions = []; 
 					$scope.subjects = []; 
-							
+					$scope.selected = [];		
 
 					$scope.selectedStdID;
 					$scope.stdList;
@@ -31,8 +29,7 @@ angular
 
 					
 					$scope.tempPracticeExam = {
-						id:"",
-						instituteID :  $scope.curUser.instituteID,
+					
 						examtitle : "",
 						board : "",
 						standard : "",
@@ -41,9 +38,7 @@ angular
 						category : "",
 						instructions : "",
 						questions : [],
-						date : new Date(),
-						likes : 0,
-						dislikes : 0
+						
 					};
 					$scope.questions = [];
 					
@@ -117,24 +112,31 @@ angular
 								});
 					}
 					
-					$scope.getQuestionsByInstitute();
-
+					$scope.getQuestionsByInstitute(); 
+					
 					$scope.addPracticeExam = function() {
-				
-						var practiceExamService = appEndpointSF
-								.getPracticeExamService();
+						$scope.tempPracticeExam.instituteID = $scope.curUser.instituteID;
+						$scope.tempPracticeExam.date = new Date();
+						$scope.tempPracticeExam.likes = 0;
+						$scope.tempPracticeExam.dislikes = 0;
+						$scope.tempPracticeExam.questions = [];
+						var practiceExamService = appEndpointSF.getPracticeExamService();
 						for (var i = 0; i < $scope.selected.length; i++) {
-							$scope.tempPracticeExam.questions
-									.push($scope.selected[i]);
+							$scope.tempPracticeExam.questions.push($scope.selected[i]);
 						}
 						
 						practiceExamService.addPracticeExam($scope.tempPracticeExam).then(function(msgBean) 
 								{
 											$scope.showSavedToast();
+											$scope.practiceExamForm.$setPristine();
+											$scope.practiceExamForm.$setValidity();
+											$scope.practiceExamForm.$setUntouched();
 											$scope.tempPracticeExam = {	};
-										});
+											$scope.selected.splice(0,$scope.selected.length);
+											$scope.divisions.splice(0,$scope.divisions.length);
+								});
 					
-						$state.go('exam');
+						
 					}
 
 					$scope.query = {

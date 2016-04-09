@@ -1,8 +1,8 @@
+<h3 class="md-headline">Add Practice Exam</h3>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
 
-
-	<md-subheader class="md-primary">
-	<h4 class="md-headline">Add Practice Exam</h4>
-	</md-subheader>
+	
 
 	<form name="practiceExamForm" ng-model="practiceExamForm">
 
@@ -71,7 +71,7 @@
 					class="mandatory">*</span></label> <md-select name="division"
 					ng-model="tempPracticeExam.division"
 					ng-change="getSubjectByDivision()" ng-required="true">
-				<md-option ng-value="division" ng-repeat="division in divisions">{{division}}</md-option>
+				<md-option ng-value="division" ng-repeat="division in divisions track by $index">{{division}}</md-option>
 				</md-select>
 				<div ng-messages="practiceExamForm.division.$error"
 					ng-if="practiceExamForm.division.$submitted || practiceExamForm.division.$touched">

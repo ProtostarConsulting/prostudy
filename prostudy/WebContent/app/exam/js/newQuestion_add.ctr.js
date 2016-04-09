@@ -3,7 +3,7 @@ angular.module("prostudyApp").controller(
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, $q, appEndpointSF, $state, $stateParams) {
 
-			$scope.curuser = appEndpointSF.getLocalUserService()
+			$scope.curUser = appEndpointSF.getLocalUserService()
 			.getLoggedinUser();
 			
 			$scope.showSavedToast = function() {
@@ -15,7 +15,7 @@ angular.module("prostudyApp").controller(
 			$scope.sourceSate = $stateParams.sourceSate; 
 			$log.debug("$stateParams.sourceSate.examID:" + $scope.sourceSate);
 			$scope.tempQuestion = {
-				instituteID : $scope.curuser.instituteID,
+				
 				description : "",
 				note : "",
 				category :"",
@@ -30,19 +30,21 @@ angular.module("prostudyApp").controller(
 			
 			$scope.addQuestion = function() {
 				
+				$scope.tempQuestion.instituteID = $scope.curUser.instituteID;
 				var QuestionService = appEndpointSF.getQuestionService();
 				QuestionService.addQuestion($scope.tempQuestion).then(
 						function(addedQ) {
 							
-							$log.debug("Inside Ctr addNewQuestionCtr");
 							$scope.showSavedToast();
+							$scope.questionForm.$setPristine();
+							$scope.questionForm.$setValidity();
+							$scope.questionForm.$setUntouched();
 							$scope.tempQuestion = {	};							
 							
-							$log.debug("$scope.sourceSate:" + $scope.sourceSate);
 						
 							if($scope.sourceSate == null)
 								{
-								$state.go('exam');
+								//$state.go('exam');
 								}
 							else if($scope.sourceSate){
 								
