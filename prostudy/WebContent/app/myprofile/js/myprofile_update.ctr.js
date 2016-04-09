@@ -53,6 +53,7 @@ angular.module("prostudyApp").controller(
 			}
 
 			$scope.skip = function() {
+				$state.go("home");
 			}
 
 			$scope.showAdvanced = function(ev) {
