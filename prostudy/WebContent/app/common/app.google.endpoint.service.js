@@ -34,11 +34,38 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		gapi.client.userService.getUserByEmailID({
 			'email_id' : email_id
 		}).execute(function(resp) {
+
 			$log.debug("resp# #:" + angular.toJson(resp));
+
 			deferred.resolve(resp.result);
 		});
 		return deferred.promise;
-	}		
+
+	}	
+	
+	UserService.getUserByRole = function(role,instituteID) {
+		var deferred = $q.defer();
+		gapi.client.userService.getUserByRole({
+			'role' : role,
+			'instituteID' : instituteID
+		}).execute(function(resp) {
+			
+			deferred.resolve(resp.result);
+		});
+		return deferred.promise;
+	}	
+	
+	UserService.checkAlreadyExist = function(email_id) {
+		var deferred = $q.defer();
+		gapi.client.userService.checkAlreadyExist({
+			'email_id' : email_id
+		}).execute(function(resp) {
+			
+			deferred.resolve(resp.result);
+		});
+		return deferred.promise;
+	}
+
 	
 	UserService.getUserByInstitute = function(instituteID) {
 		var deferred = $q.defer();
@@ -65,12 +92,10 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	}
 
 	UserService.updateUser = function(user) {
-		
 		var deferred = $q.defer();
 		gapi.client.userService.updateUser(user).execute(function(resp) {		
 			deferred.resolve(resp.result);
 		});
-	
 		return deferred.promise;
 	}
 
@@ -303,7 +328,9 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 				});
 
 		return deferred.promise;
-	}	// end of DivisionService
+	}	
+	
+	// end of DivisionService
 
 	// start of SubjectService
 	var SubjectService = {};
@@ -365,6 +392,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	serviceFactory.getStudSubService = function() {
 		return StudSubService;
 	}	
+	
 	StudSubService.addStudSubject = function(data) {
 
 		var deferred = $q.defer();
@@ -383,7 +411,21 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
+
+	
+	StudSubService.getStudentBySubject = function(subID) {
+		var deferred = $q.defer();
+		gapi.client.studSubService.getStudentBySubject({'subID' : subID}).execute(function(resp)
+			{
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
+	
+
 	StudSubService.getStudSubByStudIdAndSubId = function(studID,subID) {
+
 		var deferred = $q.defer();
 		gapi.client.studSubService.getStudSubByStudIdAndSubId({'studID' : studID,'subID':subID}).execute(function(resp)
 			{
