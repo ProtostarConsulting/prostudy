@@ -48,7 +48,7 @@ public abstract class BaseEntity {
 
 
 	public BusinessEntity getBusiness() {
-		return business.get();
+		return business== null ? null : business.get();
 	}
 
 	public void setBusiness(BusinessEntity business) {
