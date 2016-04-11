@@ -6,14 +6,15 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
+import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
-public class Contact {
+public class Contact extends BaseEntity {
 
 	
 	private Ref<UserEntity> loggedInUser;
 	
-	@Id
+	/*@Id
 	private Long id;
 
 	public Long getId() {
@@ -33,7 +34,7 @@ public class Contact {
 	}
 	public void setBusiness(BusinessEntity business) {
 		this.business = Ref.create(business);
-	}
+	}*/
 	
 	@Index
 	private String cid;

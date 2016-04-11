@@ -8,14 +8,15 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
+import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
-public class Asset {
+public class Asset extends BaseEntity{
 
 	private Ref<UserEntity> loggedInUser;
 
-	@Id
-	private Long id;
+	/*@Id
+	private Long id;*/
 
 	private String assetName;
 	private String category;
@@ -24,7 +25,7 @@ public class Asset {
 	private Date purchasedate;
 	@Index
 	private Date expirydate;
-	@Index
+	/*@Index
 	private Ref<BusinessEntity> business;
 	
 	
@@ -34,7 +35,7 @@ public class Asset {
 	public void setBusiness(BusinessEntity business) {
 		this.business = Ref.create(business);
 	}
-	
+	*/
 	
 	public Date getPurchasedate() {
 		return purchasedate;
@@ -60,13 +61,13 @@ public class Asset {
 		this.loggedInUser = Ref.create(loggedInUser);
 	}
 
-	public Long getId() {
+	/*public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
+	}*/
 
 	public String getAssetName() {
 		return assetName;

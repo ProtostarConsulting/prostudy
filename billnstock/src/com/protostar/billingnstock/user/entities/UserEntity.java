@@ -7,14 +7,15 @@ import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 import com.protostar.billnstock.entity.Address;
+import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
-public class UserEntity {
+public class UserEntity extends BaseEntity{
 
-	@Id
+	/*@Id
 	private Long id;
 	@Index
-	private Ref<BusinessEntity> business;
+	private Ref<BusinessEntity> business;*/
 
 	private String firstName;
 	private String lastName;
@@ -62,9 +63,9 @@ public class UserEntity {
 		this.authority = authority;
 	}
 
-	public void setId(Long id) {
+	/*public void setId(Long id) {
 		this.id = id;
-	}
+	}*/
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -74,9 +75,9 @@ public class UserEntity {
 		this.lastName = lastName;
 	}
 
-	public Long getId() {
+	/*public Long getId() {
 		return id;
-	}
+	}*/
 
 	public String getFirstName() {
 		return firstName;
@@ -94,13 +95,13 @@ public class UserEntity {
 		this.email_id = email_id;
 	}
 
-	public BusinessEntity getBusiness() {
+	/*public BusinessEntity getBusiness() {
 		return business.get();
 	}
 
 	public void setBusiness(BusinessEntity business) {
 		this.business = Ref.create(business);
-	}
+	}*/
 
 	public Address getAddress() {
 		return address;

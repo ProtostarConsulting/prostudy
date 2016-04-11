@@ -149,25 +149,13 @@ SalStruct filteredsalstruct = ofy().load().type(SalStruct.class).filter("empAcco
 	public List<SalSlip> getallsalslip(@Named("year") String curryear,
 			@Named("id") Long id) {
 
-		List<SalSlip> salslipdata = ofy().load().type(SalSlip.class)
-				.filter("year", curryear).list();
-
-		// List<SalSlip> salslipdata =
-		// ofy().load().type(SalSlip.class).filter("salarystruct.empAccount.id",
-		// "6333186975989760").list();
-		List<SalSlip> filteredsalslipdata = new ArrayList<SalSlip>();
-
-		for (int i = 0; i < salslipdata.size(); i++) {
-			if (salslipdata.get(i).getSalarystruct().getEmpAccount()
-					.getBusiness().getId().equals(id)) {
-
-				filteredsalslipdata.add(salslipdata.get(i));
-			} else {
-
-				System.out.println("Recored No found:");
-			}
-		}
-		return filteredsalslipdata;
+		List<SalSlip> filteredSalslip = ofy().load().type(SalSlip.class)
+				.filter("business",Ref.create(Key.create(BusinessEntity.class, id))).filter("year",curryear)
+				.list();
+		return filteredSalslip;
+		
+			
+		
 
 	}
 

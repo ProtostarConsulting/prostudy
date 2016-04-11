@@ -8,18 +8,19 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
+import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
-public class Lead {
+public class Lead extends BaseEntity{
 
 	private Ref<UserEntity> loggedInUser;
 
-	@Id
+/*	@Id
 	private Long id;
-
+*/
 	@Index
 	private String lid;
-	@Index
+/*	@Index
 	private Ref<BusinessEntity> business;
 	
 	
@@ -28,7 +29,7 @@ public class Lead {
 	}
 	public void setBusiness(BusinessEntity business) {
 		this.business = Ref.create(business);
-	}
+	}*/
 	
 	private String company;
 	private Integer phone;
@@ -49,14 +50,14 @@ public class Lead {
 
 	private String name;
 
-	public Long getId() {
+	/*public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+*/
 	
 
 	public UserEntity getLoggedInUser() {

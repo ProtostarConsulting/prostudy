@@ -6,13 +6,14 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
+import com.protostar.billnstock.entity.BaseEntity;
 
 
 
 @Entity
-public class SalStruct {
+public class SalStruct extends BaseEntity{
 
-	@Id
+/*	@Id
 	private Long id;
 
 	public long getId() {
@@ -20,11 +21,11 @@ public class SalStruct {
 	}
 	public void setId(long id) {
 		this.id = id;
-	}
+	}*/
 	
 	@Index
 	private Ref<UserEntity> empAccount;
-	@Index
+	/*@Index
 	private Ref<BusinessEntity> business;
 	
 	
@@ -33,7 +34,7 @@ public class SalStruct {
 	}
 	public void setBusiness(BusinessEntity business) {
 		this.business = Ref.create(business);
-	}
+	}*/
 	
 	public UserEntity getEmpAccount() {
 		return empAccount.get();

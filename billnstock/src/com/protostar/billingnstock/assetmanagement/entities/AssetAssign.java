@@ -5,16 +5,17 @@ import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.user.entities.UserEntity;
+import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
-public class AssetAssign {
+public class AssetAssign extends BaseEntity {
 
 	private Ref<UserEntity> userEntity;
 	@Index
 	private Ref<Asset> assetEntity ;
 	
-	@Id
-	private Long id;
+	/*@Id
+	private Long id;*/
 	
 	private String status;
 	private String assignDate;
@@ -40,13 +41,13 @@ public class AssetAssign {
 		return status;
 	}
 
-	public Long getId() {
+	/*public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
+	}*/
 
 	public void setStatus(String status) {
 		this.status = status;

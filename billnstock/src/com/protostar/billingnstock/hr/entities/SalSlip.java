@@ -5,13 +5,14 @@ import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
+import com.protostar.billnstock.entity.BaseEntity;
 
 
 
 @Entity
-public class SalSlip {
+public class SalSlip extends BaseEntity{
 
-	@Id
+	/*@Id
 	private Long id;
 
 	public long getId() {
@@ -19,7 +20,7 @@ public class SalSlip {
 	}
 	public void setId(long id) {
 		this.id = id;
-	}
+	}*/
 	
 	private String ganeratedcode;
 	@Index
@@ -27,7 +28,7 @@ public class SalSlip {
 	
 	@Index
 	private Ref<SalStruct> salarystruct;
-	@Index
+	/*@Index
 	private Ref<BusinessEntity> business;
 	
 	
@@ -36,7 +37,7 @@ public class SalSlip {
 	}
 	public void setBusiness(BusinessEntity business) {
 		this.business = Ref.create(business);
-	}
+	}*/
 
 	@Index
 	private String month;
