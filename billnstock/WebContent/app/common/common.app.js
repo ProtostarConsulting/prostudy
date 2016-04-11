@@ -189,11 +189,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/add/:selectedCustomerId",
 		templateUrl : '/app/customer/customer_add.html',
 		controller : 'customerAddCtr'
-	})/*.state('customer.edit', {
-		url : "/view/:selectedCustomerId",
-		templateUrl : '/app/customer/customer_edit.html',
-		controller : 'customerEditCtr'
-	})*/.state('customer.list', {
+	}).state('customer.customerSOList', {
+		url : "/customerSOList/:selectedCustomerId",
+		templateUrl : '/app/customer/customer_SO.html',
+		controller : 'customerSOListCtr'
+	}).state('customer.customerInvoiceList', {
+		url : "/customerInvoiceList/:selectedCustomerId",
+		templateUrl : '/app/customer/customer_invoiceList.html',
+		controller : 'customerInvoiceListCtr'
+	}).state('customer.list', {
 		url : "/list",
 		templateUrl : '/app/customer/customer_list.html',
 		controller : 'customerListCtr'

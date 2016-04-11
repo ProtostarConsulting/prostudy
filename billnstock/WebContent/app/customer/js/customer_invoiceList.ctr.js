@@ -1,6 +1,6 @@
 var app = angular.module("stockApp");
 
-app.controller("customerListCtr", function($scope, $window, $mdToast, $timeout,
+app.controller("customerInvoiceListCtr", function($scope, $window, $mdToast, $timeout,
 		$mdSidenav, $mdUtil, $log, $stateParams, objectFactory, appEndpointSF) {
 
 	$log.debug("Inside customerListCtr");
@@ -12,37 +12,43 @@ app.controller("customerListCtr", function($scope, $window, $mdToast, $timeout,
 	};
 	$scope.selected = [];
 		
+	$log.debug("$stateParams:", $stateParams);
+	$log.debug("$stateParams.selectedCustomerId:",
+			$stateParams.selectedCustomerId);
+
+	$scope.customerId = $stateParams.selectedCustomerId;
+	
 	$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 	$log.debug("$scope.curUser++++++++" + angular.toJson($scope.curUser));
 
-	$scope.getAllCustomersByBusiness = function() {
+	
+	
+	$scope.getInvoiceListByCustId = function() {
+		var invoiceService = appEndpointSF.getInvoiceService();
 
-		var customerService = appEndpointSF.getCustomerService();
-
-		customerService.getAllCustomersByBusiness(
-				$scope.curUser.business.id).then(
-				function(custList) {
-					$log.debug("Inside Ctr getAllCustomers");
-					$scope.customers = custList.items;
-					$log.debug("Inside Ctr $scope.customers:"
-							+ angular.toJson($scope.customers));
-				});
+		invoiceService.getInvoiceListByCustId($scope.customerId).then(
+				function(invoiceListByID) {
+					$scope.invoiceListByID = invoiceListByID;
+					$scope.CustomerName = $scope.invoiceListByID[0].customer.firstName;
+					$log.debug("$scope.invoiceListByID:"
+							+ angular.toJson($scope.invoiceListByID));
+				    
+					})
 	}
-
+	
 	$scope.waitForServiceLoad = function() {
 		if (appEndpointSF.is_service_ready) {
-			$scope.getAllCustomersByBusiness();
+			if ($scope.customerId != undefined) {
+				$scope.getInvoiceListByCustId();
+			}
 		} else {
 			$log.debug("Services Not Loaded, watiting...");
 			$timeout($scope.waitForServiceLoad, 1000);
 		}
 	}
-	
 
-	$scope.customers = [];
-	$scope.selected = [];	
+	$scope.invoiceListByID = [];
 	$scope.waitForServiceLoad();
-	
 	
 	$scope.toggleRight = buildToggler('right');
 

@@ -1,6 +1,6 @@
 <md-content layout-padding>
 <h3>
-	<u>Invoice List</u>
+	{{CustomerName}} Invoices
 </h3>
 <div layout layout-sm="column">
 	<md-input-container flex> <label>Search</label> <input
@@ -22,7 +22,7 @@
 
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="invoice in customerInvoice | filter: searchText | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+				ng-repeat="invoice in invoiceListByID | filter: searchText | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
 				<!-- <a ng-href="#/invoice.list/{{invoiceId.id}}">{{invoice.finalTotal}}</a> -->
 				<td>{{$index+1}}</td>
 				<td>{{invoice.customer.firstName}}</td>

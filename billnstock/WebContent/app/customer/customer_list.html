@@ -17,7 +17,7 @@
 				<th name="Customer Name" order-by="firstName"></th>
 				<th name="Mobile" order-by="mobile"></th>
 				<th name="Email"></th>
-				<th name="Address"></th>
+				
 				<th name="Action"></th>
 			</tr>
 		</thead>
@@ -28,12 +28,16 @@
 				<td>{{customer.firstName}}</td>
 				<td>{{customer.mobile}}</td>
 				<td>{{customer.email}}</td>
-				<td>{{customer.address}}</td>
 				<td><section layout="row" layout-sm="column">
-						<md-button class="md-raised md-primary"
+						<md-button class="md-raised md-primary" ng-hide="selected.length == 1"
 							ui-sref="customer.edit({selectedCustomerId: customer.id})">
 						Edit</md-button>
-					</section></td>
+					</section> <md-button id="invoiceBtn" class="md-raised md-primary" ng-hide="true" ng-show="selected.length == 1"
+						ui-sref="customer.customerInvoiceList({selectedCustomerId: customer.id})">Invoice</md-button>
+
+					<md-button id="sOBtn" class="md-raised md-primary" ng-hide="true" ng-show="selected.length == 1"
+						ui-sref="customer.customerSOList({selectedCustomerId: customer.id})">SO
+					</md-button></td>
 				<td>
 			</tr>
 		</tbody>
@@ -51,15 +55,12 @@
 		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
 </div>
 
-<div id="display" layout="row" layout-xs="column" ng-hide="true" ng-show="selected.length == 1">
+<!-- <div id="display" layout="row" layout-xs="column" ng-hide="true" ng-show="selected.length == 1">
 
-	<md-button id="invoiceBtn" class="md-raised md-primary" type="submit" ng-click="userInvoices">Invoice</md-button>
+	<md-button id="invoiceBtn" class="md-raised md-primary" ng-click="getInvoiceListByCustId()">Invoice</md-button>
 
-	<md-button id="pOBtn" class="md-raised md-primary" type="submit" ng-click="userPO">Purchase
-	Orders</md-button>
-
-	<md-button id="sOBtn" class="md-raised md-primary" type="submit" ng-click="userSO">Sales
+	<md-button id="sOBtn" class="md-raised md-primary" ng-click="getSOListByID()">Sales
 	Order</md-button>
 
 </div>
-</md-content>
+ --></md-content>

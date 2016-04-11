@@ -1277,7 +1277,7 @@ function googleEndpointSF($log, $q) {
 			"id" : id
 		}).execute(function(resp) {
 			$log.debug("getSOListByID at enpoint" + angular.toJson(resp));
-			deferred.resolve(resp);
+			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
 	}

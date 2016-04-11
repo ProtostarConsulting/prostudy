@@ -1,6 +1,6 @@
 var app = angular.module("stockApp");
 
-app.controller("customerListCtr", function($scope, $window, $mdToast, $timeout,
+app.controller("customerSOListCtr", function($scope, $window, $mdToast, $timeout,
 		$mdSidenav, $mdUtil, $log, $stateParams, objectFactory, appEndpointSF) {
 
 	$log.debug("Inside customerListCtr");
@@ -12,36 +12,44 @@ app.controller("customerListCtr", function($scope, $window, $mdToast, $timeout,
 	};
 	$scope.selected = [];
 		
+	$log.debug("$stateParams:", $stateParams);
+	$log.debug("$stateParams.selectedCustomerId:",
+			$stateParams.selectedCustomerId);
+
+	$scope.customerId = $stateParams.selectedCustomerId;
+	
 	$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 	$log.debug("$scope.curUser++++++++" + angular.toJson($scope.curUser));
 
-	$scope.getAllCustomersByBusiness = function() {
+	
+	$scope.getSOListByID = function() {
+		var salesOrderService = appEndpointSF.getSalesOrderService();
 
-		var customerService = appEndpointSF.getCustomerService();
-
-		customerService.getAllCustomersByBusiness(
-				$scope.curUser.business.id).then(
-				function(custList) {
-					$log.debug("Inside Ctr getAllCustomers");
-					$scope.customers = custList.items;
-					$log.debug("Inside Ctr $scope.customers:"
-							+ angular.toJson($scope.customers));
+		salesOrderService.getSOListByID($scope.customerId).then(
+				function(sOListByID) {
+					$scope.sOListByID = sOListByID;
+					$scope.CustomerName = $scope.sOListByID[0].customer.firstName;
+					$log.debug("$scope.getSOByID:"
+							+ angular.toJson($scope.sOListByID));
 				});
 	}
-
+	
 	$scope.waitForServiceLoad = function() {
 		if (appEndpointSF.is_service_ready) {
-			$scope.getAllCustomersByBusiness();
+			if ($scope.customerId != undefined) {
+				$scope.getSOListByID();
+			}
 		} else {
 			$log.debug("Services Not Loaded, watiting...");
 			$timeout($scope.waitForServiceLoad, 1000);
 		}
 	}
-	
 
-	$scope.customers = [];
-	$scope.selected = [];	
+	$scope.sOListByID = [];
 	$scope.waitForServiceLoad();
+	
+	
+	
 	
 	
 	$scope.toggleRight = buildToggler('right');
@@ -69,4 +77,6 @@ app.controller("customerListCtr", function($scope, $window, $mdToast, $timeout,
 	$scope.back = function() {
 		window.history.back();
 	}
+
+
 });

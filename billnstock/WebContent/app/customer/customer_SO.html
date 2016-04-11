@@ -1,6 +1,8 @@
 
 <md-content layout-padding>
-
+<h3>
+	{{CustomerName}} Sales Orders
+</h3>
 <div layout layout-sm="column">
 	<md-input-container flex> <label>Search</label> <input
 		ng-model="searchText"> </md-input-container>
@@ -21,7 +23,7 @@
 
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="sOList in customerSalesOrder | filter: searchText | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
+				ng-repeat="sOList in sOListByID | filter: searchText | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
 
 				
 				<td>{{sOList.customer.firstName}}</td>
