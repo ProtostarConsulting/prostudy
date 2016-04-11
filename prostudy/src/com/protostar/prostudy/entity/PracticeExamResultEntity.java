@@ -11,6 +11,7 @@ import com.googlecode.objectify.annotation.Index;
 public class PracticeExamResultEntity {
 	
 	@Id
+	@Index
 	private Long id;
 	private String examTitle;
 	@Index
