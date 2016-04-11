@@ -193,15 +193,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/institute/institute_editInstitute.html',
 		controller : 'instituteListViewCtr'
 	}).state('institute.list_view.studentBySubject', {
-		url : "/viewstudentBySubject",
+		url : "/viewstudentBySubject/:selectedStdName/:selectedDivName/:selectedSubName/:selectedSubId",
 		templateUrl : '/app/institute/institute_view_studentsBySubject.html',
 		controller : 'instituteListViewCtr',
-		param:{
-			selectedStdName:null,
-			selectedDivName:null,
-			selectedSubId:null,
-			selectedSubName:null
-		}
 	}).state('institute.list_view.view_admin', {
 		url : "/view_admin",
 		templateUrl : '/app/institute/institute_view_admins.html',
@@ -296,7 +290,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/institute/institute_addDivisions.html',
 		controller : 'instituteViewCtr'
 	}).state('institute.view.view_subjects', {
-		url : "/view_subjects/:selectedStdID/:selectedDivID/:selectedSubjectId/:selectedStdName/:selectedDivName/",
+		url : "/view_subjects/:selectedStdID/:selectedDivID/:selectedSubjectId/:selectedStdName/:selectedDivName/:selectedSubId",
 		templateUrl : '/app/institute/institute_view_subjects.html',
 		controller : 'instituteViewCtr',
 	}).state('institute.view.view_subjects.addsubjects', {
@@ -308,7 +302,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/institute/institute_editInstitute.html',
 		controller : 'instituteViewCtr'
 	}).state('institute.view.studentBySubject', {
-		url : "/viewstudentBySubject/:selectedStdName/:selectedDivName/:selectedSubName",
+		url : "/viewstudentBySubject/:selectedStdName/:selectedDivName/:selectedSubName/:selectedSubId",
 		templateUrl : '/app/institute/institute_view_studentsBySubject.html',
 		controller : 'instituteViewCtr'	
 	}).state('institute.view.studentBySubject.addstudentsByStd', {
@@ -319,8 +313,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/editUser/:selectedID/:currentInstID",
 		templateUrl : '/app/institute/institute_editUser.html',
 		controller : 'userEditCtr',
-	}).state('institute.view.viewUser', {
-		url : "/viewUser/:selectedID",
+	})	.state('institute.view.viewUser', {
+		url : "/viewUser/:selectedID/:selectedInstituteID",
 		templateUrl : '/app/institute/institute_viewUser.html',
 		controller : 'userViewCtr',
 	}).state('attendance', {
