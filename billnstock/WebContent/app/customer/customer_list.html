@@ -30,7 +30,7 @@
 				<td>{{customer.email}}</td>
 				<td><section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary" ng-hide="selected.length == 1"
-							ui-sref="customer.edit({selectedCustomerId: customer.id})">
+							ui-sref="customer.add({selectedCustomerId: customer.id})">
 						Edit</md-button>
 					</section> <md-button id="invoiceBtn" class="md-raised md-primary" ng-hide="true" ng-show="selected.length == 1"
 						ui-sref="customer.customerInvoiceList({selectedCustomerId: customer.id})">Invoice</md-button>
@@ -62,5 +62,5 @@
 	<md-button id="sOBtn" class="md-raised md-primary" ng-click="getSOListByID()">Sales
 	Order</md-button>
 
-</div>
- --></md-content>
+</div> -->
+</md-content>

@@ -84,6 +84,8 @@
 
 		<h1>Invoice</h1>
 		<span style="color: red">{{errorMsg}}</span>
+		<span style="color: red">{{qtyErrorMsg}}</span>
+		<span style="color: red">{{qtyErrorMsg1}}</span>
 		<table md-data-table md-progress="deferred">
 			<thead md-order="query.order" md-trigger="onOrderChange">
 				<tr>
@@ -108,7 +110,7 @@
 						}}</md-option> </md-select> </md-input-container></td>
 
 					<td><md-input-container flex> <label>Quantity
-						</label> <input ng-model="item.qty" type="number"
+						</label> <input ng-model="item.qty" ng-change="checkStock(item,$event)" type="number"
 							ng-change="calSubTotal()"> </md-input-container></td>
 					<td><md-input-container flex> <label>Price
 						</label> <input ng-model="item.price" ng-change="calSubTotal()"></md-input-container></td>

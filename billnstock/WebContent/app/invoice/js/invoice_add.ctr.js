@@ -4,7 +4,8 @@ app
 				"invoiceAddCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $state, $http, $stateParams,
-						$routeParams, $filter, $q, objectFactory, appEndpointSF) {
+						$routeParams, $filter, $mdMedia, $mdDialog, $q,
+						objectFactory, appEndpointSF) {
 
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
@@ -30,7 +31,8 @@ app
 					};
 
 					$scope.addInvoice = function() {
-						if ($scope.invoiceObj.invoiceLineItemList.length == 0 || $scope.invoiceObj.invoiceLineItemList.itemName == "") {
+						if ($scope.invoiceObj.invoiceLineItemList.length == 0
+								|| $scope.invoiceObj.invoiceLineItemList.itemName == "") {
 							console.log("Please select atleast one item");
 							$scope.errorMsg = "Please select atleast one item.";
 						} else {
@@ -48,7 +50,7 @@ app
 							$scope.invoiceAdd.$setPristine();
 							$scope.invoiceAdd.$setValidity();
 							$scope.invoiceAdd.$setUntouched();
-							
+
 							$scope.invoiceObj = {};
 							window.history.back();
 						}
@@ -111,11 +113,6 @@ app
 
 					$scope.CustomerddlChange = function(index, customer) {
 						$log.debug("##Came to CustomerddlChange...");
-						// $scope.SelectedCustomerAddress =
-						// $scope.invoiceObj.customerName.customerAddress;
-						// $log.debug("##SelectedCustomerAddress##"+SelectedCustomerAddress);
-						// lineSelectedItem.price = stockItem.price;
-
 					};
 
 					$scope.SOddlChange = function(index, selectedSOId) {
@@ -162,27 +159,18 @@ app
 								.hideDelay(3000));
 					};
 
-					/*
-					 * $scope.getAllCustomersByCurrUser = function() {
-					 * $log.debug("Inside Ctr $scope.getAllCustomers"); var
-					 * customerService = appEndpointSF.getCustomerService();
-					 * 
-					 * customerService.getAllCustomersByCurrUser($scope.curUser.business.id).then(
-					 * function(custList) { $log.debug("Inside Ctr
-					 * getAllCustomers"); $scope.customersforinvoice = custList;
-					 * $log.debug("Inside Ctr $scope.customers:" +
-					 * angular.toJson($scope.customersforinvoice)); }); }
-					 * 
-					 * $scope.customersforinvoice = [];
-					 * $scope.getAllCustomersByCurrUser();
-					 */
+					$scope.showSimpleToastError = function() {
+						$mdToast.show($mdToast.simple().content(
+								'Stock not sufficient!').position("right")
+								.hideDelay(10000));
+					};
+
 					$scope.getAllStock = function() {
 						$log.debug("Inside Ctr $scope.getAllStock");
 						var stockService = appEndpointSF.getStockService();
 
-						stockService.getAllStock(
-								$scope.curUser.business.id).then(
-								function(stockList) {
+						stockService.getAllStock($scope.curUser.business.id)
+								.then(function(stockList) {
 									$log.debug("Inside Ctr getAllStock");
 									$scope.stockforinvoice = stockList;
 								});
@@ -190,6 +178,33 @@ app
 
 					// $scope.stockData = [];
 					$scope.getAllStock();
+
+					$scope.checkStock = function(item, $event) {
+						for (var i = 0; i <= $scope.stockforinvoice.length; i++) {
+							if ($scope.stockforinvoice[i].itemName == item.itemName) {
+								$scope.qtyErrorMsg = "";
+								if ($scope.stockforinvoice[i].qty < item.qty) {
+									$scope.qtyErrorMsg = "Quantity entered is not available in stock";
+									// $scope.showSimpleToastError();
+									$scope.dialogBox();
+								}
+							}
+						}
+					}
+
+					$scope.dialogBox = function(ev) {
+						$mdDialog
+								.show($mdDialog
+										.alert()
+										.targetEvent(ev)
+										.clickOutsideToClose(true)
+										.parent('body')
+										.title('Error')
+										.textContent(
+												'Quantity entered is not available in stock!')
+										.ok('OK'));
+						ev = null;
+					};
 
 					$scope.getTaxesByVisibility = function() {
 						$log.debug("Inside Ctr $scope.getAllTaxes");
@@ -202,7 +217,7 @@ app
 									$scope.taxforinvoice = taxList;
 								});
 					}
-					// $scope.taxData = [];
+					$scope.taxData = [];
 					$scope.getTaxesByVisibility();
 
 					$scope.getAllSalesOrder = function() {
@@ -210,8 +225,7 @@ app
 						var salesService = appEndpointSF.getSalesOrderService();
 
 						salesService
-								.getAllSalesOrder(
-										$scope.curUser.business.id)
+								.getAllSalesOrder($scope.curUser.business.id)
 								.then(
 										function(salesOrderList) {
 											$log
@@ -225,7 +239,7 @@ app
 										});
 					}
 
-					// $scope.SOforinvoice = [];
+					$scope.SOforinvoice = [];
 					$scope.getAllSalesOrder();
 
 					$scope.getAllAccountsByBusiness = function() {
