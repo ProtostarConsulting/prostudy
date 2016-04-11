@@ -99,7 +99,7 @@
 				<md-content layout="column" ng-controller="LeftCtrl"> <md-button class="md-primary" ng-click="close()" hide-gt-md> Close Sidenav </md-button> 
 				<md-button ui-sref="home" ng-show="curUser.authority.length > 0" ng-click="close()" class="md-primary" show-gt-md> Home</md-button> 
 				<md-button ui-sref="user_prof_detail" ng-show="curUser.authority.length > 0" ng-click="close()" class="md-primary"  show-gt-md>My Account </md-button> 
-				<md-button ui-sref="customer" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('customer') > -1" class="md-primary" show-gt-md> Customer </md-button>
+		<!-- 		<md-button ui-sref="customer" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('customer') > -1" class="md-primary" show-gt-md> Customer </md-button> -->
 				<md-button ui-sref="account" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('account') > -1" ng-click="close()" class="md-primary" show-gt-md>Account </md-button> 
 				<md-button ui-sref="stock" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('stock') > -1" ng-click="close()" ng-show="loader.stock" class="md-primary" show-gt-md>Stock </md-button>
 				<!-- <md-button ui-sref="stock" ng-click="close()" class="md-primary" show-gt-md> Stock </md-button>  -->
@@ -113,8 +113,8 @@
 				<!-- <md-button ui-sref="probusiness" ng-show="curUser.authority.indexOf('protostarcs.com') > -1 || curUser.authority.indexOf('protostar.co.in') > -1" ng-click="close()" class="md-primary" show-gt-md>ProBusiness</md-button> -->
 				<md-button ui-sref="AssetMangement" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('AssetMangement') > -1" ng-click="close()"class="md-primary" show-gt-md>Asset Mangement</md-button> 
 <!-- 				<md-button ui-sref="warehouse" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('warehouse') > -1" ng-click="close()" class="md-primary" show-gt-md>Warehouse Management</md-button>  -->
-				<md-button ui-sref="document" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('document') > -1" class="md-primary" show-gt-md>Document</md-button>
-				<md-button ui-sref="email" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('email') > -1" class="md-primary" show-gt-md>email</md-button>
+<!-- 				<md-button ui-sref="document" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('document') > -1" class="md-primary" show-gt-md>Document</md-button>
+				<md-button ui-sref="email" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('email') > -1" class="md-primary" show-gt-md>email</md-button> -->
 				<!-- <md-button ui-sref="proAdmin" ng-show="(userDoamin=='protostarcs.com' || userDoamin=='protostar.co.in') && user == 'admin'" ng-click="close()"  class="md-primary" show-gt-md>Protostar Admin </md-button> --> 			
 				<md-button ui-sref="proAdmin" ng-show="curUser.authority.indexOf('protostarcs.com') > -1 || curUser.authority.indexOf('protostar.co.in') > -1"  ng-click="close()" class="md-primary" show-gt-md>Protostar Admin </md-button> 
 			 </md-content>
@@ -243,11 +243,11 @@
 	<!-- <script src="/app/demo/js/drivefiles.js"></script> -->
 
 	<!-- 	Customer js  -->
-	<script src="/app/customer/js/customer_module.ctr.js"></script>
-	<script src="/app/customer/js/customer_add.ctr.js"></script>
-	<script src="/app/customer/js/customer_list.ctr.js"></script>
-	<script src="/app/customer/js/customer_invoiceList.ctr.js"></script>
-	<script src="/app/customer/js/customer_sOlist.ctr.js"></script>
+	<script src="/app/crm/js/customer_module.ctr.js"></script>
+	<script src="/app/crm/js/customer_add.ctr.js"></script>
+	<script src="/app/crm/js/customer_list.ctr.js"></script>
+	<script src="/app/crm/js/customer_invoiceList.ctr.js"></script>
+	<script src="/app/crm/js/customer_sOlist.ctr.js"></script>
 <!-- 	<script src="/app/customer/js/customer_edit.ctr.js"></script> -->
 	<!-- 	Complete Customre js  -->
 
