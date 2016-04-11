@@ -782,12 +782,22 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 
-	PracticeExamResultService.getPracticeExamResultbyID = function(email_id) {
+	PracticeExamResultService.getPracticeExamResultbyEmail = function(email_id) {
 		var deferred = $q.defer();
-		gapi.client.practiceExamResultService.getPracticeExamResultbyID({
+		gapi.client.practiceExamResultService.getPracticeExamResultbyEmail({
 			'email_id' : email_id
 		}).execute(function(resp) {
 			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+
+	PracticeExamResultService.getPracticeExamResultbyID = function(selectedID) {
+		var deferred = $q.defer();
+		gapi.client.practiceExamResultService.getPracticeExamResultbyID({
+			'id' : selectedID
+		}).execute(function(resp) {
+			deferred.resolve(resp);
 		});
 		return deferred.promise;
 	}
