@@ -513,19 +513,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('user_prof_detail.viewprofile', {
 		url : "/viewprofile",
 		templateUrl : '/app/profile/viewprofile.html',
-		controller : 'profileCtr'
+		controller : 'viewProfile'
 	}).state('user_prof_detail.changepassword', {
 		url : "/changepassword",
 		templateUrl : '/app/profile/changepassword.html',
-		controller : 'profileCtr'
+		controller : 'changepass'
 	}).state('user_prof_detail.getAllSlip', {
 		url : "/getAllSlip/:viewsalslips",
 		templateUrl : '/app/profile/getAllSalSlip.html',
-		controller : 'profileCtr'
+		controller : 'AllSalslip'
 	}).state('user_prof_detail.print', {
 		url : "/print/:printempidsalslip",
 		templateUrl : '/app/profile/print_salaryslip.html',
-		controller : 'profileCtr',
+		controller : 'AllSalslip',
 	}).state('document', {
 		url : "/document",
 		templateUrl : '/app/Document/index.jsp',
@@ -611,10 +611,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/setup/setup_viewuser.html',
 		controller : 'setup.viewuser',
 
-	}).state('proAdmin.probusiness.adduser', {
-		url : "/adduser/:BNo",
-		templateUrl : '/app/probusiness/adduser.html',
-		controller : 'probusinessCtr'
 	});
 
 });

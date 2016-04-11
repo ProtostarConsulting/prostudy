@@ -241,9 +241,7 @@ function googleEndpointSF($log, $q) {
 
 	assetService.getselectedassetdetail = function(id) {
 		var deferred = $q.defer();
-		gapi.client.assetService.getselectedassetdetail({
-			'id' : id
-		}).execute(function(resp) {
+		gapi.client.assetService.getselectedassetdetail({'id' : id}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
