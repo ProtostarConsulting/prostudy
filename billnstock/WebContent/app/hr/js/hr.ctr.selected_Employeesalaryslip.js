@@ -78,6 +78,8 @@ angular
 						window.frames["print_frame"].window.print();
 
 					}
+					
+					
 
 					$scope.printslip = function() {
 						var hrService = appEndpointSF.gethrService();
@@ -87,6 +89,7 @@ angular
 								.then(
 										function(getslip) {
 											$scope.printslectedslip.push(getslip.result);
+											$scope.netsalinword=NumToWord(($scope.printslectedslip[0].salarystruct.bmonthly+$scope.printslectedslip[0].salarystruct.hramonthly+$scope.printslectedslip[0].salarystruct.convmonthly)-($scope.printslectedslip[0].salarystruct.pf1+$scope.printslectedslip[0].salarystruct.pf1+$scope.printslectedslip[0].salarystruct.ldother1amt+$scope.printslectedslip[0].salarystruct.ldother2amt));
 											$log
 													.debug("$scope.printslectedslip=========="
 															+ angular.toJson($scope.printslectedslip));

@@ -412,6 +412,26 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/crm/crm_opportunity_view.html',
 		controller : 'opportunityList',
 
+	}).state('crm.customerList', {
+		url : "/customerList",
+		templateUrl : '/app/crm/customer_list.html',
+		controller : 'customerListCtr',
+
+	}).state('crm.addcustomer', {
+		url : "/customerAdd/:selectedCustomerId",
+		templateUrl : '/app/crm/customer_add.html',
+		controller : 'customerAddCtr',
+
+	}).state('crm.customerInvoiceList', {
+		url : "/crmCustomerInvoiceList/:selectedCustomerId",
+		templateUrl : '/app/crm/customer_invoiceList.html',
+		controller : 'customerInvoiceListCtr',
+		
+	}).state('crm.customerSOList', {
+		url : "/crmCustomerSOList/:selectedCustomerId",
+		templateUrl : '/app/crm/customer_SO.html',
+		controller : 'customerSOListCtr',
+			
 	}).state('setup', {
 		url : "/setup",
 		templateUrl : '/app/setup/setup_module.html',
@@ -528,8 +548,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'AllSalslip'
 	}).state('user_prof_detail.print', {
 		url : "/print/:printempidsalslip",
-		templateUrl : '/app/profile/print_salaryslip.html',
-		controller : 'AllSalslip',
+	/*	templateUrl : '/app/profile/print_salaryslip.html',
+		controller : 'AllSalslip',*/
+		templateUrl : '/app/hr/print_salaryslip.html',
+		controller : 'hrctr.selected_Employeesalaryslip',
 	}).state('document', {
 		url : "/document",
 		templateUrl : '/app/Document/index.jsp',

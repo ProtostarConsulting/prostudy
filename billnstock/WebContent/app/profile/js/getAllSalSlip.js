@@ -87,7 +87,7 @@ angular
 						}
 					}
 					$scope.waitForServiceLoad1();
-//--------------------------------------------------------------------------------------
+/*//--------------------------------------------------------------------------------------
 					var printDivCSS = new String(
 							'<link href="/lib/base/css/angular-material.min.css"" rel="stylesheet" type="text/css">'
 									+ '<link href="/lib/base/css/bootstrap.min.css"" rel="stylesheet" type="text/css">'
@@ -111,6 +111,7 @@ angular
 								.then(
 										function(getslip) {
 											$scope.printslectedslip.push(getslip.result);
+				$scope.netsalinword=NumToWord(($scope.printslectedslip[0].salarystruct.bmonthly+$scope.printslectedslip[0].salarystruct.hramonthly+$scope.printslectedslip[0].salarystruct.convmonthly)-($scope.printslectedslip[0].salarystruct.pf1+$scope.printslectedslip[0].salarystruct.pf1+$scope.printslectedslip[0].salarystruct.ldother1amt+$scope.printslectedslip[0].salarystruct.ldother2amt));
 											$log
 													.debug("$scope.printslectedslip=========="
 															+ angular.toJson($scope.printslectedslip));
@@ -129,7 +130,7 @@ angular
 					}
 					$scope.waitForServiceLoad2();
 		//----------------------------------------------------------------
-					
+*/					
 					
 					$scope.toggleRight = buildToggler('right');
 
