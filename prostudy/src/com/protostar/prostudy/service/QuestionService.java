@@ -57,7 +57,7 @@ public class QuestionService {
 		List<QuestionEntity> list = ofy().load().type(QuestionEntity.class).filter("instituteID", instituteID)
 				.filter("standard", standard).filter("division", division)
 				.filter("subject", subject).list();
-
+		System.out.println("inside getQuesByClass" +list);
 		return list;
 	}
 }

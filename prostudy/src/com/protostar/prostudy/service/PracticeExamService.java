@@ -31,7 +31,7 @@ public class PracticeExamService {
 
 	@ApiMethod(name = "getPracticeExamById")
 	public PracticeExamEntity getPracticeExamById(@Named("examId") Long examId) {
-		System.out.println("Inside getPracticeExamById ");
+		
 		PracticeExamEntity selected = ofy().load()
 				.type(PracticeExamEntity.class).id(examId).now();
 		return selected;

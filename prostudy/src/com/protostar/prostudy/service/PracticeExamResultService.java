@@ -30,11 +30,18 @@ public class PracticeExamResultService {
 	}
 
 	
-	@ApiMethod(name = "getPracticeExamResultbyID")
-	public List<PracticeExamResultEntity> getPracticeExamResultbyID(@Named("email_id") String email_id) {
+	@ApiMethod(name = "getPracticeExamResultbyEmail")
+	public List<PracticeExamResultEntity> getPracticeExamResultbyEmail(@Named("email_id") String email_id) {
 		List<PracticeExamResultEntity> list = ofy().load().type(PracticeExamResultEntity.class)
 				.filter("email_id", email_id).list();
 		return list;
+	}
+	
+	@ApiMethod(name = "getPracticeExamResultbyID")
+	public PracticeExamResultEntity getPracticeExamResultbyID(@Named("id") Long id) {
+		
+		PracticeExamResultEntity selected = ofy().load().type(PracticeExamResultEntity.class).id(id).now();
+		return selected;
 	}
 
 
