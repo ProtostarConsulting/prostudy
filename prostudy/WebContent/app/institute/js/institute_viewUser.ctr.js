@@ -11,8 +11,16 @@ angular.module("prostudyApp").controller(
 				$mdToast.show($mdToast.simple().content('Student Data Saved!')
 						.position("top").hideDelay(3000));
 			};
-					   
-			$scope.selectedInstituteID = $stateParams.selectedInstituteID;
+		  
+			$scope.curUser = appEndpointSF.getLocalUserService()
+			.getLoggedinUser();			
+			$scope.selectedInstituteID=$scope.curUser.instituteID;
+			
+			if($stateParams.selectedInstituteID)
+			{
+				$scope.selectedInstituteID = $stateParams.selectedInstituteID;
+			}
+			
 			$log.debug("$scope.selectedInstituteID :"+$scope.selectedInstituteID)
 			$scope.selectedID = $stateParams.selectedID;
 			$scope.user = [];
@@ -20,7 +28,7 @@ angular.module("prostudyApp").controller(
 			$scope.getUsers = function() {
 
 				var UserService = appEndpointSF.getUserService();
-				UserService.getUserByInstitute($scope.curUser.instituteID)
+				UserService.getUserByInstitute($scope.selectedInstituteID)
 						.then(
 								function(userList) {
 									$scope.users = userList;

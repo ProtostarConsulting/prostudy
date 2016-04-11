@@ -16,6 +16,7 @@ angular.module("prostudyApp").controller(
 			
 			
 			$scope.selectedSubId = $stateParams.selectedSubId;
+			$log.debug("$scope.selectedSubId : "+$scope.selectedSubId);
 			
 			
 			$scope.selectedSubjectId = $stateParams.selectedSubjectId;
@@ -504,8 +505,8 @@ angular.module("prostudyApp").controller(
 				var UserService = appEndpointSF.getUserService();
 				UserService.getStudentsBySubjectID($scope.selectedSubId)
 						.then(function(studList) {
-									$scope.studentList = studList;
-									$log.debug("$scope.studentList"+angular.toJson($scope.studentList));									
+									$scope.studentListBySubject = studList;
+									$log.debug("$scope.studentListBySubject"+angular.toJson($scope.studentListBySubject));									
 								});
 			}
 			if($scope.selectedSubId!=undefined)

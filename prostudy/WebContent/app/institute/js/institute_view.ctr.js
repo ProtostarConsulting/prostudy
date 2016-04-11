@@ -37,6 +37,8 @@ angular.module("prostudyApp").controller(
 			$scope.selectedStdName = $stateParams.selectedStdName;
 			$scope.selectedDivName = $stateParams.selectedDivName;
 			$scope.selectedSubName = $stateParams.selectedSubName;
+			$scope.selectedSubId = $stateParams.selectedSubId;
+			$log.debug("$scope.selectedSubId...."+$scope.selectedSubId);
 
 			$scope.isGoogleUser = false;
 			$scope.flag = true;
@@ -513,20 +515,6 @@ angular.module("prostudyApp").controller(
 
 				$state.go("institute.view");
 			}
-
-			$scope.getUserByClass = function() {
-
-				var UserService = appEndpointSF.getUserService();
-				UserService.getUserByClass($scope.selectedStdName,
-						$scope.selectedDivName, $scope.selectedSubName).then(
-						function(studentList) {
-							$scope.students = studentList;
-
-						});
-			}
-			
-			
-			  
 			  
 			$scope.query = {
 				order : 'description',
@@ -556,6 +544,18 @@ angular.module("prostudyApp").controller(
 				$state.go('^', {});
 			};
 			$scope.selected = [];
+			$scope.studentListBySubject=[];
+			
+			$scope.getStudentsBySubjectID = function() {
+				var UserService = appEndpointSF.getUserService();
+				UserService.getStudentsBySubjectID($scope.selectedSubId)
+						.then(function(studList) {
+									$scope.studentListBySubject = studList;
+																	
+								});
+			}
+			if($scope.selectedSubId!=undefined && $scope.selectedSubId!="")
+			{$scope.getStudentsBySubjectID();}
 
 
 		});

@@ -18,7 +18,7 @@
 <p>&nbsp;</p>
 
 
-<div layout="column" ng-init="getUserByClass()">
+<div layout="column">
 
 	<table md-data-table md-row-select="selected" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onorderchange">
@@ -33,7 +33,7 @@
 		</thead>
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="student in studentList track by $index | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText">
+				ng-repeat="student in studentListBySubject track by $index | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText">
 				<td>{{student.id}}</td>
 				<td>{{student.firstName}} {{student.lastName}}</td>
 				<td>{{student.email_id}}</td>
