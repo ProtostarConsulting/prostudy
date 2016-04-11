@@ -43,7 +43,7 @@ angular
 					} else {
 						$log.debug("Services Not Loaded, watiting...");
 						$timeout($scope.waitForServiceLoad, 1000);
-					}
+						}
 				}
 				$scope.waitForServiceLoad();
 					

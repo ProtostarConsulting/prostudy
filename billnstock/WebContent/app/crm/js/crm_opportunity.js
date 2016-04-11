@@ -108,12 +108,14 @@ angular
 									$scope.showSimpleToast(msgBean.msg);
 									$scope.getAllopportunity();
 								});
-
+						$scope.oppform.$setPristine();
+						  $scope.oppform.$setValidity();
+						  $scope.oppform.$setUntouched();
 						$scope.opportunity = {};
 						$scope.opportunity.date = $scope.curdate;
 					}
 
-					/*$scope.getAllopportunity = function() {
+					$scope.getAllopportunity = function() {
 						var opportunityService = appEndpointSF
 								.getopportunityService();
 						opportunityService
@@ -131,72 +133,18 @@ angular
 					}
 
 					$scope.opportunitys = [];
-					$scope.getAllopportunity();
-
-					$scope.getopportunityById = function() {
-						$log.debug("Inside Ctr $scope.getAlllead");
-						var opportunityService = appEndpointSF
-								.getopportunityService();
-						if (typeof $scope.selectedopportunityNo != "undefined") {
-						opportunityService
-								.getopportunityById(
-										$scope.selectedopportunityNo)
-								.then(
-										function(opportunityList) {
-											$log
-													.debug("Inside Ctr opportunityList");
-											$scope.opportunityL = opportunityList.result;
-											$scope.ctaskid = $scope.opportunityL.tasks.length + 1;
-											$scope.taskobj.id = $scope.ctaskid;
-											$scope.taskobj.date = $scope.curdate;
-										});
+					
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.getAllopportunity();
+							
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
 					}
-					}
+					$scope.waitForServiceLoad();
 
-					$scope.opportunityL = [];
-					$scope.getopportunityById();
-
-					$scope.updateopportunity = function() {
-
-						var opportunityService = appEndpointSF
-								.getopportunityService();	
-						opportunityService.updateopportunity(
-								$scope.opportunityL).then(function(msgBean) {
-							$log.debug("Inside CtropportunityL");
-							$log.debug("msgBean.msg:" + msgBean.msg);
-							$scope.showSimpleToast(msgBean.msg);
-							// $scope.empDetail =[];
-						});
-					}
-
-					// ----------hide and show ---------------------------
-					$scope.IsHidden = true;
-					$scope.ShowHide = function() {
-						$scope.IsHidden = $scope.IsHidden ? false : true;
-					}
-					// -----------------------------------------------------
-
-					// ------------------save task----------
-
-					$scope.addupdatetask = function(oppid) {
-
-						var opportunityService = appEndpointSF
-								.getopportunityService();
-						$scope.opportunityL.tasks.push($scope.taskobj);
-
-						opportunityService.addupdatetask($scope.opportunityL)// $scope.task,
-																				// oppid
-						.then(function(msgBean) {
-							$scope.showSimpleToast(msgBean.msg);
-							$scope.getopportunityById();
-						});
-
-						$scope.taskobj = {};
-						$scope.task.date = $scope.curdate;
-					}
-
-					// --------------------------------------
-*/
 					$scope.toggleRight = buildToggler('right');
 
 					function buildToggler(navID) {

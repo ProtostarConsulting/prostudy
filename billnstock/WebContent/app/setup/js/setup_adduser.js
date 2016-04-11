@@ -61,6 +61,7 @@ angular
 						}
 					}
 					$scope.waitForServiceLoad();
+					
 				
 			
 					// set toggled value onclick on check box and push in
@@ -128,9 +129,15 @@ angular
 											});
 
 						}
-
+						$scope.addform.$setPristine();
+						  $scope.addform.$setValidity();
+						  $scope.addform.$setUntouched();
+					
 					}
 
+			
+				
+					  
 				// -------------------Check email------------------------------------
 					$scope.Checkemail = function(emailid) {
 						var proadminService = appEndpointSF

@@ -28,7 +28,9 @@ angular.module("stockApp").controller(
 							$scope.showSimpleToast(msgBean.msg);
 
 						});
-
+				$scope.AccountTypeForm.$setPristine();
+				  $scope.AccountTypeForm.$setValidity();
+				  $scope.AccountTypeForm.$setUntouched();
 				$scope.AccountType = {};
 			}
 

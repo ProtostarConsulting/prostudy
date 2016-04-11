@@ -52,12 +52,14 @@ angular
 							$scope.showSimpleToast(msgBean.msg);
 							$scope.getAllleads();
 						});
-
+						$scope.leadform.$setPristine();
+						  $scope.leadform.$setValidity();
+						  $scope.leadform.$setUntouched();
 						$scope.lead = {};
 					}
 					
 					
-				/*	$scope.getAllleads = function() {
+			$scope.getAllleads = function() {
 						$log.debug("Inside Ctr $scope.getAlllead");
 						var leadService = appEndpointSF.getleadService();
 
@@ -72,9 +74,17 @@ angular
 					}
 					
 					$scope.leads = [];
-					$scope.getAllleads();
-					*/
-					
+				
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.getAllleads();
+							
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					$scope.waitForServiceLoad();
 					
 					$scope.toggleRight = buildToggler('right');
 

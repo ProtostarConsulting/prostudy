@@ -42,11 +42,36 @@ angular.module("stockApp").controller(
 					$scope.showSimpleToast(msgBean.msg);
 					$scope.getAllcontact();
 				});
-
+				$scope.contactform.$setPristine();
+				  $scope.contactform.$setValidity();
+				  $scope.contactform.$setUntouched();
 				$scope.contact = {};
 			}
 
-		
+			$scope.getAllcontact = function() {
+				var leadService = appEndpointSF.getleadService();
+				leadService.getAllcontact($scope.curUser.business.id).then(function(contactList) {
+					$log.debug("Inside Ctr getAllleads");
+					$scope.contacts = contactList.items;
+					$scope.cleadid = $scope.contacts.length + 1;
+					$scope.contact.cid = $scope.cleadid;
+
+				});
+			}
+			
+			$scope.contacts = [];
+			
+			$scope.waitForServiceLoad = function() {
+				if (appEndpointSF.is_service_ready) {
+					$scope.getAllcontact();
+					
+				} else {
+					$log.debug("Services Not Loaded, watiting...");
+					$timeout($scope.waitForServiceLoad, 1000);
+				}
+			}
+			$scope.waitForServiceLoad();
+
 			$scope.toggleRight = buildToggler('right');
 
 			function buildToggler(navID) {
