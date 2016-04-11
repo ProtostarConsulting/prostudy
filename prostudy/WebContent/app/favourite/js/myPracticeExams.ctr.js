@@ -5,6 +5,7 @@ angular.module("prostudyApp").controller(
 				tableTestDataFactory, $state) {
 
 			$scope.exams = [];
+			$scope.selected = [];
 			$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 					
 			$scope.getMyExamList = function() {
