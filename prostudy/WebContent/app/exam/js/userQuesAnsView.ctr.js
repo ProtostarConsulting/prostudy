@@ -12,8 +12,9 @@ angular
 								.hideDelay(3000));
 					};
 
-					
+					$scope.selectedResultId = $stateParams.selectedResultId;
 					$scope.selectedExamId = $stateParams.selectedExamId;
+					
 					
 					$scope.curuser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
@@ -21,7 +22,10 @@ angular
 					$scope.userAnsList = []; // {qID, userOption}
 					$scope.correctAns = [];
 					$scope.score = 0;
-
+					$scope.totalLength;
+					$scope.answeredLength;
+					$scope.remainingLength;
+				
 					$scope.selected = [];
 					$scope.Test = [];
 					$scope.examResults = [];
@@ -40,6 +44,7 @@ angular
 											$scope.Test.questions.description = $sce
 													.trustAsHtml($scope.Test.questions.description);
 											$scope.newQues = $scope.Test.questions;
+											$scope.totalLength = $scope.Test.questions.length;
 
 											$scope.newQues[0].qId = 1;
 											for (var i = 1; i < $scope.newQues.length; i++) {
@@ -50,52 +55,34 @@ angular
 
 										});
 
-					}// End of showselectedExam
+					}
 
 					$scope.getPracticeExamResultbyID = function() {
 
-						var PracticeExamResultService = appEndpointSF
-								.getPracticeExamResultService();
+						var PracticeExamResultService = appEndpointSF.getPracticeExamResultService();
 
-						PracticeExamResultService
-								.getPracticeExamResultbyID(
-										$scope.curUser.email_id)
+						PracticeExamResultService.getPracticeExamResultbyID($scope.selectedResultId)
 								.then(
 										function(practiceExamResultList) {
 
 			 								$scope.examResults = practiceExamResultList;
-
-										});
+			 								$scope.answeredLength = $scope.examResults.userAns.length;
+			 								
+			 							});
 					}
+					
+					
 
 					$scope.isUserSelection = function(index, currOption) {
 
-						$log.debug("results11111111 :" + index);
-						$log.debug("currOption11111 :" + currOption);
-
-						var currentQ = $scope.Test.questions[index];
-						var currentExamResult = $scope.examResults[1];// write
-						// logic
-						// got
-						// get
-						// correct
-						// exma
-						// result
-						// obj
-						var userOption = currentExamResult.userAns[index].userOption // write
-						// a
-						// method
-						// to
-						// get
-						// user
-						// select
-						// option
-						// for
-						// Q
-						// currentQ.id
-						// and
-						// currentExamResult.id
-						if (userOption == currOption)
+						$scope.currOption = 'option'+currOption;
+						$scope.getPracticeExamResultbyID();
+						$scope.showselectedExam();
+						
+						$scope.currentQ = $scope.Test.questions[index];
+						$scope.userOption = $scope.examResults.userAns[index].userOption 
+						
+						if ($scope.userOption == $scope.currOption)
 							return true;
 						else
 							return false;
@@ -104,9 +91,7 @@ angular
 
 					$scope.isAnsCorrect = function(index, currOption) {
 
-						$log.debug("results :" + index);
-						$log.debug("currOption :" + currOption);
-
+						
 						var currentQ = $scope.Test.questions[index];
 
 						if (currentQ.correctAns == currOption)
@@ -116,8 +101,7 @@ angular
 
 					}
 
-					$scope.getPracticeExamResultbyID();
-					$scope.showselectedExam();
+					
 
-				});// end of examDemoCtr
+				});
 

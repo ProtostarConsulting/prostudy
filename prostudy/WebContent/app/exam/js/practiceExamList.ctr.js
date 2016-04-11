@@ -28,9 +28,8 @@ angular.module("prostudyApp").controller(
 			}
 			$scope.getPracticeExamByInstitute();
 	
-			if (typeof $scope.curUser.myExams === 'undefined') {
-				$scope.curUser.myExams = [];
-			}
+			$scope.curUser.myExams = [];
+		
 			$scope.isContainsTest = appEndpointSF.getUtilityService().objectArrayContains;
 			
 			$scope.addTestToMyList = function(selectedMyExamId) {

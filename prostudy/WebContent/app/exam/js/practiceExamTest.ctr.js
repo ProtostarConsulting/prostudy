@@ -102,8 +102,8 @@ angular
 						$scope.addPracticeExamResult();
 						$scope.stopTimer();
 						
-						$log.debug("$scope.selectedID" +$scope.selectedID);
-						$state.go('userQuesAnsView', {selectedExamId : $scope.Test.id, selectedResultId : $scope.selectedID});
+						/*$log.debug("$scope.selectedID" +$scope.selectedID);
+						$state.go('userQuesAnsView', {selectedExamId : $scope.Test.id, selectedResultId : $scope.selectedID});*/
 
 					}
 
@@ -253,15 +253,11 @@ angular
 					$scope.userAns = [];
 
 
-					$scope.getPracticeExamResultbyID = function() {
+					$scope.getPracticeExamResultbyEmail = function() {
 
-						var PracticeExamResultService = appEndpointSF
-								.getPracticeExamResultService();
+						var PracticeExamResultService = appEndpointSF.getPracticeExamResultService();
 
-						PracticeExamResultService
-								.getPracticeExamResultbyID(
-										$scope.curUser.email_id)
-								.then(
+						PracticeExamResultService.getPracticeExamResultbyEmail($scope.curUser.email_id).then(
 										function(practiceExamResultList) {
 
 											$scope.examResults = practiceExamResultList;
@@ -290,13 +286,17 @@ angular
 
 						PracticeExamResultService.addPracticeExamResult($scope.tempPracticeExamResult).then(function(msgBean) {
 											$scope.selectedID = msgBean.id;
+											$log.debug("$scope.selectedID :" +$scope.selectedID);
+											$log.debug("$scope.Test.id :" +$scope.Test.id);
+											$state.go('userQuesAnsView', {selectedExamId : $scope.Test.id, selectedResultId : $scope.selectedID});
 											$scope.showSavedToast();
 											
 										});
-
+						
+						
 					}
 
-					$scope.getPracticeExamResultbyID();
+					$scope.getPracticeExamResultbyEmail();
 
 					$scope.showselectedExam();
 					
