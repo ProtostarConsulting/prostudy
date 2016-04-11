@@ -97,21 +97,19 @@ public class InvoiceService {
 	}
 
 	@ApiMethod(name = "getinvoiceByID")
-	public InvoiceEntity getinvoiceByID(@Named("id") Long id) {
+	public InvoiceEntity getinvoiceByID(@Named("id") Long invoiceId) {
 
 		InvoiceEntity invoiceByID = ofy().load().type(InvoiceEntity.class)
-				.id(id).now();
+				.id(invoiceId).now();
 
-		System.out.println("getinvoiceByID Recored is:" + id);
+		System.out.println("getinvoiceByID Recored is:" + invoiceId);
 
 		return invoiceByID;
 	}
 
-	@ApiMethod(name = "getAllInvoiceByCustId", path = "getAllInvoiceByCustId")
-	public List<InvoiceEntity> getAllInvoiceByCustId(@Named("id") Long custId) {
-		// long parseLong = Long.parseLong(id);
-
-		
+	@ApiMethod(name = "getInvoiceListByCustId", path = "getInvoiceListByCustId")
+	public List<InvoiceEntity> getInvoiceListByCustId(@Named("id") Long custId) {
+				
 		List<InvoiceEntity> filteredinvoice = ofy()
 				.load()
 				.type(InvoiceEntity.class)

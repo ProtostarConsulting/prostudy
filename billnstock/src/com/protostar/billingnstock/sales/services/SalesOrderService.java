@@ -14,6 +14,7 @@ import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Ref;
 import com.protostar.billingnstock.cust.entities.Customer;
+import com.protostar.billingnstock.invoice.entities.InvoiceEntity;
 import com.protostar.billingnstock.sales.entities.SalesOrderEntity;
 
 @Api(name = "salesOrderService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.sales.services", ownerName = "com.protostar.billingnstock.sales.services", packagePath = ""))
@@ -67,7 +68,8 @@ public class SalesOrderService {
 					.filter("customer",
 							Ref.create(Key.create(Customer.class, custId)))
 					.list();
-
+			
+			
 			return SOListById;
 		}
 }
