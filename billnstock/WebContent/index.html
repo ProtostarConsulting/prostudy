@@ -109,7 +109,7 @@
 				<md-button ui-sref="hr" id="hr" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('hr') > -1"ng-click="close()" ng-show="loader.hr" class="md-primary" show-gt-md> HR </md-button> 
 				<md-button ui-sref="crm" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('crm') > -1" ng-show="loader.crm" class="md-primary" show-gt-md>CRM</md-button>
 				<md-button ui-sref="setup" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('setup') > -1" ng-click="close()" class="md-primary" show-gt-md>SETUP </md-button>
-				<md-button ui-sref="login" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('login') > -1" ng-click="close()" class="md-primary" show-gt-md>LOGIN</md-button>
+				<!-- <md-button ui-sref="login" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('login') > -1" ng-click="close()" class="md-primary" show-gt-md>LOGIN</md-button> -->
 				<!-- <md-button ui-sref="probusiness" ng-show="curUser.authority.indexOf('protostarcs.com') > -1 || curUser.authority.indexOf('protostar.co.in') > -1" ng-click="close()" class="md-primary" show-gt-md>ProBusiness</md-button> -->
 				<md-button ui-sref="AssetMangement" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('AssetMangement') > -1" ng-click="close()"class="md-primary" show-gt-md>Asset Mangement</md-button> 
 <!-- 				<md-button ui-sref="warehouse" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('warehouse') > -1" ng-click="close()" class="md-primary" show-gt-md>Warehouse Management</md-button>  -->
@@ -393,7 +393,9 @@
 	
 	<!--  profile js -->
 	<script src="/app/profile/js/profilemodule.js"></script>
-	
+	<script src="/app/profile/js/getAllSalSlip.js"></script>
+	<script src="/app/profile/js/viewProfile.js"></script>
+	<script src="/app/profile/js/changePassword.js"></script>
 	<!-- login user -->
 
 	<script src="/app/login/js/login_module.ctr.js"></script>
