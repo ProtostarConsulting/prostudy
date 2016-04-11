@@ -62,7 +62,16 @@ angular
 					}
 
 					$scope.userL = {};
-					$scope.getuserById();
+					
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.getuserById();
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					$scope.waitForServiceLoad();
 
 					$scope.updateuser = function() {
 						$scope.userL.authority = [];
@@ -103,7 +112,7 @@ angular
 											clickOutsideToClose : true,
 											fullscreen : useFullScreen,
 											locals : {
-												curuser : $scope.curuser
+												curuser : $scope.userL
 											}
 										})
 								.then(
@@ -167,15 +176,13 @@ angular
 							}
 
 							if ($scope.savemsg == true) {
-								// $scope.updatepass();
-								/*
-								 * $scope.userL.password=$scope.password; var
-								 * UserService = appEndpointSF.getUserService();
-								 * UserService.updateUser($scope.userL).then(function(msgBean) {
-								 * $scope.showSimpleToast(msgBean.msg);
-								 * 
-								 * });
-								 */
+								$scope.updateuser=curuser;
+								  $scope.updateuser.password=$scope.password; 
+								  var UserService = appEndpointSF.getUserService();
+								 UserService.updateUser($scope.updateuser).then(function(msgBean) {
+								 $scope.showSimpleToast(msgBean.msg);
+								  
+								  });
 							}
 						}
 					}
