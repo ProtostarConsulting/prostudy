@@ -50,7 +50,7 @@ app.controller(
 			}
 
 			$scope.accounts = [];
-			$scope.getAllAccountsByBusiness();
+			
 			
 			$scope.toggleRight = buildToggler('right');
 
@@ -76,7 +76,7 @@ app.controller(
 			
 			// list of `state` value/display objects
 			$scope.customersforinvoice = [];
-			loadAll();
+	
 			$scope.accountReveivable.customer = null;
 			$scope.searchTextInput = null;
 
@@ -91,7 +91,7 @@ app.controller(
 				return deferred.promise;
 			}
 
-			function loadAll() {
+			function loadAllCustomers() {
 				
 					var customerService = appEndpointSF.getCustomerService();
 					customerService.getAllCustomersByBusiness($scope.curUser.business.id).then(
@@ -107,4 +107,14 @@ app.controller(
 				};
 			}
 
+			$scope.waitForServiceLoad = function() {
+				if (appEndpointSF.is_service_ready) {
+					loadAllCustomers();
+					$scope.getAllAccountsByBusiness();
+				} else {
+					$log.debug("Services Not Loaded, watiting...");
+					$timeout($scope.waitForServiceLoad, 1000);
+				}
+			}
+			$scope.waitForServiceLoad();
 		});

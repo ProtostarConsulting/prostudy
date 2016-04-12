@@ -17,14 +17,21 @@ app.controller("warehouseAddCtr", function($scope, $window, $mdToast, $timeout,
 		pin : "",
 		state : "",
 		country : "",
+		createdDate : new Date(),
+		modifiedDate : new Date(),
+		modifiedBy : '',
 		business : ""
 	};
 	
 		
 	$scope.addWarehouse = function() {
-		$log.debug("No1");
-		$scope.warehouse.business = $scope.curUser.business;
+		
 		var WarehouseManagementService = appEndpointSF.getWarehouseManagementService();
+		
+		$scope.warehouse.business = $scope.curUser.business;
+		$scope.warehouse.modifiedBy =$scope.curUser.email_id;
+		$scope.warehouse.createdDate =$scope.tempWarehouse.createdDate;
+		
 		WarehouseManagementService.addWarehouse($scope.warehouse).then(function(msgBean) {
 		});
 		$scope.warehouse = {};
@@ -49,6 +56,7 @@ app.controller("warehouseAddCtr", function($scope, $window, $mdToast, $timeout,
 						function(warehouse) {
 
 							$scope.warehouse = warehouse;
+							$scope.tempWarehouse = warehouse;
 							$log.debug("$scope.warehouse"+$scope.warehouse);
 							
 						});

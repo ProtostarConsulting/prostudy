@@ -61,7 +61,7 @@ app.controller("accountPayableCtr", function($scope, $window, $mdToast,
 	
 	// list of `state` value/display objects
 	$scope.customersforinvoice = [];
-	loadAll();
+
 	$scope.accountPayable.customer = null;
 	$scope.searchTextInput = null;
 
@@ -76,7 +76,7 @@ app.controller("accountPayableCtr", function($scope, $window, $mdToast,
 		return deferred.promise;
 	}
 
-	function loadAll() {
+	function loadAllCustomers() {
 		
 			var customerService = appEndpointSF.getCustomerService();
 			customerService.getAllCustomersByBusiness($scope.curUser.business.id).then(
@@ -92,4 +92,14 @@ app.controller("accountPayableCtr", function($scope, $window, $mdToast,
 		};
 	}
 
+	$scope.waitForServiceLoad = function() {
+		if (appEndpointSF.is_service_ready) {
+			loadAllCustomers();
+		} else {
+			$log.debug("Services Not Loaded, watiting...");
+			$timeout($scope.waitForServiceLoad, 1000);
+		}
+	}
+	$scope.waitForServiceLoad();
+	
 });

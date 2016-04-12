@@ -8,6 +8,21 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 	$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 	$log.debug("$scope.curUser++++++++" + angular.toJson($scope.curUser));
 
+	$scope.addCustomer = function() {
+		$log.debug("No1");
+		$scope.customer.business = $scope.curUser.business;
+		var customerService = appEndpointSF.getCustomerService();
+		customerService.addCustomer($scope.customer).then(function(msgBean) {
+
+			$scope.showSimpleToast();
+		});
+		$scope.custForm.$setPristine();
+		$scope.custForm.$setValidity();
+		$scope.custForm.$setUntouched();
+		$scope.customer = {};
+	}
+
+	
 	$log.debug("$stateParams:", $stateParams);
 	$log.debug("$stateParams.selectedCustomerId:",
 			$stateParams.selectedCustomerId);
@@ -40,20 +55,7 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 	$scope.customer = [];
 	$scope.waitForServiceLoad();
 	
-	$scope.addCustomer = function() {
-		$log.debug("No1");
-		$scope.customer.business = $scope.curUser.business;
-		var customerService = appEndpointSF.getCustomerService();
-		customerService.addCustomer($scope.customer).then(function(msgBean) {
-
-			$scope.showSimpleToast();
-		});
-		$scope.custForm.$setPristine();
-		$scope.custForm.$setValidity();
-		$scope.custForm.$setUntouched();
-		$scope.customer = {};
-	}
-
+	
 	$scope.toggleRight = buildToggler('right');
 
 	function buildToggler(navID) {

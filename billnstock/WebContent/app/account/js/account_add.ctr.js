@@ -21,18 +21,23 @@ app.controller(
 			$scope.account = {
 				accountName : "",
 				description : "",
-				createdDate :new Date(),
-				modifiedBy :new Date(),
+				createdDate : new Date(),
+				modifiedDate : new Date(),
+				modifiedBy : '',
 				business:""
 			};
 			
 			$scope.addAccount = function() {
 				$log.debug("No1");
 				$scope.account.business =$scope.curUser.business;
+				$scope.account.modifiedBy =$scope.curUser.email_id;
 				var accountService = appEndpointSF.getAccountService();
 				accountService.addAccount($scope.account).then(
 						function(msgBean) {
 						});
+				$scope.accountForm.$setPristine();
+				$scope.accountForm.$setValidity();
+				$scope.accountForm.$setUntouched();
 				$scope.account = {};
 			}
 	

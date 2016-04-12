@@ -10,38 +10,6 @@ angular.module("stockApp").controller(
 			$log.debug("$scope.curUser++++++++"
 					+ angular.toJson($scope.curUser));
 
-			$log.debug("$stateParams:", $stateParams);
-			$log.debug("$stateParams.selectedStocksId:",
-					$stateParams.selectedStocksId);
-
-			$scope.selectedStocksId = $stateParams.selectedStocksId;
-
-			$scope.getStockById = function() {
-				var stockService = appEndpointSF.getStockService();
-				stockService.getStockById($scope.selectedStocksId).then(
-						function(stock) {
-
-							$scope.stock = stock;
-							$log.debug("Inside Ctr $scope.stockData:"
-									+ angular.toJson($scope.stockData));
-
-						});
-			}
-
-			$scope.waitForServiceLoad = function() {
-				if (appEndpointSF.is_service_ready) {
-					if ($scope.selectedStocksId != "") {
-						$scope.getStockById();
-					}
-				} else {
-					$log.debug("Services Not Loaded, watiting...");
-					$timeout($scope.waitForServiceLoad, 1000);
-				}
-			}
-
-			$scope.stock = [];
-			$scope.waitForServiceLoad();
-
 			$scope.stock = {
 				id : "",
 				warehouse : "",
@@ -51,12 +19,19 @@ angular.module("stockApp").controller(
 				price : "",
 				thresholdValue : '',
 				notes : '',
+				createdDate : new Date(),
+				modifiedDate : new Date(),
+				modifiedBy : '',
 				business : ""
 			};
 			$scope.addStock = function() {
 				$log.debug("No1");
 				var stockService = appEndpointSF.getStockService();
-				$scope.stock.business = $scope.curUser.business;
+				if ($scope.selectedStocksId == undefined) {
+					$scope.stock.business = $scope.curUser.business;
+					$scope.stock.modifiedBy =$scope.curUser.email_id;
+					$scope.stock.createdDate =$scope.tempStock.createdDate;
+				}
 
 				stockService.addStock($scope.stock).then(function(msgBean) {
 					$scope.showSimpleToast();
@@ -68,7 +43,7 @@ angular.module("stockApp").controller(
 				$scope.stockForm.$setUntouched();
 				$scope.stock = {};
 			}
-
+/*
 			$scope.updateStock = function() {
 				$log.debug("No1");
 				var stockService = appEndpointSF.getStockService();
@@ -81,7 +56,7 @@ angular.module("stockApp").controller(
 				$log.debug("No4");
 				$scope.stock = {};
 			}
-
+*/
 			$scope.getAllWarehouseByBusiness = function() {
 				$log.debug("Inside function $scope.getAllWarehouseByBusiness");
 				var warehouseService = appEndpointSF
@@ -95,7 +70,7 @@ angular.module("stockApp").controller(
 									+ angular.toJson($scope.warehouses));
 						});
 			}
-
+/*
 			$scope.waitForServiceLoad = function() {
 				if (appEndpointSF.is_service_ready) {
 					$scope.getAllWarehouseByBusiness();
@@ -106,13 +81,47 @@ angular.module("stockApp").controller(
 			}
 
 			$scope.waitForServiceLoad();
-
+*/
 			$scope.warehouseDDLChange = function(index, selectedWarehouse) {
 				$log.debug("##Came to warehouseDDLChange...");
 
 				$scope.stock.warehouse = selectedWarehouse;
 			};
 
+			$log.debug("$stateParams:", $stateParams);
+			$log.debug("$stateParams.selectedStocksId:",
+					$stateParams.selectedStocksId);
+
+			$scope.selectedStocksId = $stateParams.selectedStocksId;
+
+			$scope.getStockById = function() {
+				var stockService = appEndpointSF.getStockService();
+				stockService.getStockById($scope.selectedStocksId).then(
+						function(stock) {
+
+							$scope.stock = stock;
+							$scope.tempStock = stock;
+							$log.debug("Inside Ctr $scope.stockData:"
+									+ angular.toJson($scope.stockData));
+
+						});
+			}
+
+			$scope.waitForServiceLoad = function() {
+				if (appEndpointSF.is_service_ready) {
+					if ($scope.selectedStocksId != undefined) {
+						$scope.getStockById();
+					}
+					$scope.getAllWarehouseByBusiness();
+				} else {
+					$log.debug("Services Not Loaded, watiting...");
+					$timeout($scope.waitForServiceLoad, 1000);
+				}
+			}
+
+			$scope.stock = [];
+			$scope.waitForServiceLoad();
+			
 			$scope.showSimpleToast = function() {
 				$mdToast.show($mdToast.simple().content('Stock Item Saved!')
 						.position("top").hideDelay(3000));

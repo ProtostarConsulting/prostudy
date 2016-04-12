@@ -27,6 +27,9 @@ app
 						finalTotal : '',
 						note : '',
 						account : "",
+						createdDate : new Date(),
+						modifiedDate : new Date(),
+						modifiedBy : '',
 						business : ""
 					};
 
@@ -39,7 +42,8 @@ app
 							var InvoiceService = appEndpointSF
 									.getInvoiceService();
 							$scope.invoiceObj.business = $scope.curUser.business;
-
+							$scope.invoiceObj.modifiedBy =$scope.curUser.email_id;
+							
 							InvoiceService.addInvoice($scope.invoiceObj).then(
 									function(msgBean) {
 
