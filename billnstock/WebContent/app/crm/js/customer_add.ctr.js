@@ -8,6 +8,8 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 	$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 	$log.debug("$scope.curUser++++++++" + angular.toJson($scope.curUser));
 	
+	$scope.customer={isCompany:false}
+	
 	$scope.addCustomer = function() {
 		$log.debug("No1");
 		$scope.customer.business = $scope.curUser.business;
