@@ -6,7 +6,29 @@
 [<span style="color: red;">Field Marked as asterik (*) are
 	mandetory</span>]
 <form name="custForm">
+<md-input-container flex >
+		 Is company 
+		<md-checkbox ng-model="customer.isCompany" ng-true-value="true"
+			ng-false-value="false"> </md-checkbox>
+		</md-input-container>	
+<div layout="row" layout-xs="column">
+		<md-input-container flex ng-show="customer.isCompany"> <label>Enter Company Name
+			 <span style="color: red;">*</span>
+		</label> <input name="companyName" ng-model="customer.companyName"
+			 ng-required="customer.isCompany">
+		<div ng-messages="custForm.companyName.$error"
+			ng-if="custForm.companyName.$submitted || custForm.companyName.$touched">
+			<div ng-message="required">Please Enter Company Name
+				Name(Example.:Protostar Consalting service)</div>
 
+			<!-- <span class="help-block"
+				ng-show="((custForm.firstName.$error.pattern) &&  custForm.firstName.$dirty) ">First
+				Name should be text only.(Example.:abc)</span> -->
+		</div>
+
+		</md-input-container>
+</div>
+<lable ng-show="customer.isCompany"> <b>Fill Contact Person Info</b></lable>
 	<div layout="row" layout-xs="column">
 		<md-input-container flex> <label>First
 			Name <span style="color: red;">*</span>
@@ -67,7 +89,10 @@
 	</div>
 
 	<div layout layout-sm="column">
-		<md-input-container flex> <label>Address
+		<md-input-container flex>  <label ng-show="customer.isCompany">Company Address
+			<span style="color: red;">*</span>
+		</label> 
+		<label ng-hide="customer.isCompany">Address
 			<span style="color: red;">*</span>
 		</label> <textarea name="address" ng-model="customer.address" ng-required="true"></textarea>
 		<div ng-messages="custForm.address.$error"
