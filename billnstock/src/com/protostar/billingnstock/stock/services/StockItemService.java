@@ -3,6 +3,7 @@ package com.protostar.billingnstock.stock.services;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.api.server.spi.config.Api;
@@ -20,7 +21,13 @@ public class StockItemService {
 	@ApiMethod(name = "addStock")
 	public void addStock(StockItemEntity stockItemEntity) {
 
-		Key<StockItemEntity> now = ofy().save().entity(stockItemEntity).now();
+		if (stockItemEntity.getId() == null) {
+			stockItemEntity.setCreatedDate(new Date());
+		//	stockItemEntity.setModifiedDate(new Date());
+		} else {
+			stockItemEntity.setModifiedDate(new Date());
+		}
+		ofy().save().entity(stockItemEntity).now();
 	}
 
 	@ApiMethod(name = "getStockById")
@@ -48,10 +55,10 @@ public class StockItemService {
 	@ApiMethod(name = "getReportByThreshold", path = "getReportByThreshold")
 	public List<StockItemEntity> getReportByThreshold(@Named("id") Long id) {
 
-		
-	//	List<StockItemEntity> thresholdStocks = ofy().load().type(StockItemEntity.class).filter("qty <=" thresholdValue).list();
-		
-		
+		// List<StockItemEntity> thresholdStocks =
+		// ofy().load().type(StockItemEntity.class).filter("qty <="
+		// thresholdValue).list();
+
 		List<StockItemEntity> stocks = ofy().load().type(StockItemEntity.class)
 				.list();
 		List<StockItemEntity> filteredThresholdStocks = new ArrayList<StockItemEntity>();

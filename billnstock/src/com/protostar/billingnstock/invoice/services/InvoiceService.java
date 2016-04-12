@@ -27,6 +27,13 @@ public class InvoiceService {
 	@ApiMethod(name = "addInvoice")
 	public void addInvoice(InvoiceEntity invoiceEntity) {
 
+		if (invoiceEntity.getId() == null) {
+			invoiceEntity.setCreatedDate(new Date());
+		//	stockItemEntity.setModifiedDate(new Date());
+		} else {
+			invoiceEntity.setModifiedDate(new Date());
+		}
+		
 		ofy().save().entity(invoiceEntity).now();
 
 		System.out.println(invoiceEntity.getInvoiceLineItemList());

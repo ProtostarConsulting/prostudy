@@ -20,32 +20,30 @@ import com.protostar.billingnstock.user.entities.BusinessEntity;
 
 @Api(name = "accountService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.stock.cust.services", ownerName = "com.protostar.billingnstock.stock.cust.services", packagePath = ""))
 public class AccountService {
-	
+
 	@ApiMethod(name = "addAccount")
 	public void addAccount(AccountEntity accountEntity) {
-				
-/*		
-		  Date date = new Date(); 
-		  String DATE_FORMAT = "yyyy.MM.dd G 'at' hh:mm:ss z";
-		  SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
-		  
-		  accountEntity.setCreatedDate(sdf.format(date));
-*/		 
-		
+
+		if (accountEntity.getId() == null) {
+			accountEntity.setCreatedDate(new Date());
+			accountEntity.setModifiedDate(new Date());
+		} else {
+			accountEntity.setModifiedDate(new Date());
+		}
 		ofy().save().entity(accountEntity).now();
-	
+
 	}
 
 	@ApiMethod(name = "getAllAccountsByBusiness")
 	public List<AccountEntity> getAllAccountsByBusiness(@Named("id") Long busId) {
-		
+
 		List<AccountEntity> filteredAccounts = ofy()
 				.load()
 				.type(AccountEntity.class)
 				.filter("business",
 						Ref.create(Key.create(BusinessEntity.class, busId)))
 				.list();
-		
+
 		return filteredAccounts;
 	}
 
@@ -57,41 +55,48 @@ public class AccountService {
 		return customerById;
 	}
 
-/*=============================================Account Payable Methods=================================================	*/
+	/*
+	 * =============================================Account Payable
+	 * Methods=================================================
+	 */
 
 	@ApiMethod(name = "addPayable")
 	public void addPayable(PayableEntity payableEntity) {
-			
+
 		ofy().save().entity(payableEntity).now();
-	
+
 	}
 
 	@ApiMethod(name = "getAllPayablesByBusiness")
 	public List<PayableEntity> getAllPayablesByBusiness(@Named("id") Long busId) {
-		
+
 		List<PayableEntity> filteredPayables = ofy()
 				.load()
 				.type(PayableEntity.class)
 				.filter("business",
 						Ref.create(Key.create(BusinessEntity.class, busId)))
 				.list();
-		
+
 		return filteredPayables;
 
 	}
-	
-	/*=============================================Account Receivable Methods=================================================	*/
-	
+
+	/*
+	 * =============================================Account Receivable
+	 * Methods=================================================
+	 */
+
 	@ApiMethod(name = "addReceivable")
 	public void addReceivable(ReceivableEntity receivableEntity) {
-			
+
 		ofy().save().entity(receivableEntity).now();
-	
+
 	}
-	
+
 	@ApiMethod(name = "getAllReceivablesByBusiness", path = "getAllReceivablesByBusiness")
-	public List<ReceivableEntity> getAllReceivablesByBusiness(@Named("id") Long busId) {
-		
+	public List<ReceivableEntity> getAllReceivablesByBusiness(
+			@Named("id") Long busId) {
+
 		List<ReceivableEntity> filteredReceivables = ofy()
 				.load()
 				.type(ReceivableEntity.class)

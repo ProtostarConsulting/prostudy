@@ -3,6 +3,7 @@ package com.protostar.billingnstock.warehouse.services;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.api.server.spi.config.Api;
@@ -21,6 +22,13 @@ public class WarehouseService {
 
 	@ApiMethod(name = "addWarehouse")
 	public void addWarehouse(WarehouseEntity warehouseEntity) {
+		
+		if (warehouseEntity.getId() == null) {
+			warehouseEntity.setCreatedDate(new Date());
+		//	stockItemEntity.setModifiedDate(new Date());
+		} else {
+			warehouseEntity.setModifiedDate(new Date());
+		}
 		ofy().save().entity(warehouseEntity).now();
 	}
 
