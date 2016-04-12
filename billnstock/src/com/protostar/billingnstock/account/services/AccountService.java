@@ -2,6 +2,8 @@ package com.protostar.billingnstock.account.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import com.google.api.server.spi.config.Api;
@@ -22,6 +24,14 @@ public class AccountService {
 	@ApiMethod(name = "addAccount")
 	public void addAccount(AccountEntity accountEntity) {
 				
+/*		
+		  Date date = new Date(); 
+		  String DATE_FORMAT = "yyyy.MM.dd G 'at' hh:mm:ss z";
+		  SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+		  
+		  accountEntity.setCreatedDate(sdf.format(date));
+*/		 
+		
 		ofy().save().entity(accountEntity).now();
 	
 	}

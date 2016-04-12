@@ -1,5 +1,6 @@
 package com.protostar.billingnstock.cust.entities;
 
+import com.google.api.server.spi.config.ApiCacheControl.Type;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Index;
 import com.protostar.billnstock.entity.BaseEntity;
@@ -10,7 +11,7 @@ public class Customer extends BaseEntity{
 	@Index
 	private String firstName;
 	private String lastName;
-	private Integer mobile;
+	private String mobile;
 	private String email;
 	private String address;
 	
@@ -31,11 +32,11 @@ public class Customer extends BaseEntity{
 		this.lastName = lastName;
 	}
 
-	public Integer getMobile() {
+	public String getMobile() {
 		return mobile;
 	}
 
-	public void setMobile(Integer mobile) {
+	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
 

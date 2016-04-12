@@ -21,8 +21,8 @@ public class SupplierEntity extends BaseEntity{
 	private String contactLName;
 	private String email;
 	private String address;
-	private Integer phone1 ;
-	private Integer mobile;
+	private String phone1 ;
+	private String mobile;
 	
 	
 	public String getSupplierName() {
@@ -55,16 +55,16 @@ public class SupplierEntity extends BaseEntity{
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public Integer getPhone1() {
+	public String getPhone1() {
 		return phone1;
 	}
-	public void setPhone1(Integer phone1) {
+	public void setPhone1(String phone1) {
 		this.phone1 = phone1;
 	}
-	public Integer getMobile() {
+	public String getMobile() {
 		return mobile;
 	}
-	public void setMobile(Integer mobile) {
+	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
 	
