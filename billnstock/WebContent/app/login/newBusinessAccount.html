@@ -18,9 +18,9 @@
 	<div layout layout-sm="column">
 		<md-input-container
 			md-is-error="Signin.businessName.$invalid && (Signin.$submitted || Signin.businessName.$dirty)"
-			flex> <label>Enter Business Name</label> <span
+			flex> <label>Enter Business Name <span
 			style="color: red" ng-show="Signin.businessName.$error.required"
-			class="mandatory">*</span> <input name="businessName"
+			class="mandatory">*</span> </label><input name="businessName"
 			ng-model="business.businessName" ng-required="true">
 			
 		<div ng-messages="Signin.businessName.$error"
@@ -38,9 +38,9 @@
 
 		<md-input-container
 			md-is-error="Signin.adminEmailId.$invalid && (Signin.$submitted || Signin.adminEmailId.$dirty)"
-			flex> <label>Admin Email id</label> <span
+			flex> <label>Admin Email id <span
 			style="color: red" ng-show="Signin.adminEmailId.$error.required"
-			class="mandatory">*</span> <input type="email" name="adminEmailId" id="adminEmailId"
+			class="mandatory">*</span> </label><input type="email" name="adminEmailId" id="adminEmailId"
 			ng-model="userEntity.email_id" ng-blur="Checkemail(userEntity.email_id)" ng-pattern="/^.+@.+\..+$/" ng-required="true"><span
 			style="color: red" >{{userexists}}</span>
 		<div ng-messages="Signin.adminEmailId.$error"
@@ -53,8 +53,8 @@
 		</md-input-container>
 
 		<md-input-container flex ng-hide="userEntity.isGoogleUser">
-		<label>Enter Password</label> <span style="color: red"
-			ng-show="Signin.password.$error.required" class="mandatory">*</span>
+		<label>Enter Password <span style="color: red"
+			ng-show="Signin.password.$error.required" class="mandatory">*</span></label> 
 		<input type="password" name="password" ng-model="userEntity.password"
 			ng-required="condition()">
 
@@ -68,9 +68,9 @@
 
 		<md-input-container
 			md-is-error="Signin.adminFirstName.$invalid && (Signin.$submitted || Signin.adminFirstName.$dirty)"
-			flex> <label>First Name</label> <span
+			flex> <label>First Name <span
 			style="color: red" ng-show="Signin.adminFirstName.$error.required"
-			class="mandatory">*</span> <input name="adminFirstName" id="adminFirstName"
+			class="mandatory">*</span> </label><input name="adminFirstName" id="adminFirstName"
 			ng-model="userEntity.firstName" ng-required="true">
 		<div ng-messages="Signin.adminFirstName.$error"
 			ng-if="Signin.adminFirstName.$touched">
@@ -82,9 +82,9 @@
 
 		<md-input-container
 			md-is-error="Signin.adminLastName.$invalid && (Signin.$submitted || Signin.adminLastName.$dirty)"
-			flex> <label>Last Name</label> <span
+			flex> <label>Last Name <span
 			style="color: red" ng-show="Signin.adminLastName.$error.required"
-			class="mandatory">*</span> <input id="adminLastName" name="adminLastName" 
+			class="mandatory">*</span> </label><input id="adminLastName" name="adminLastName" 
 			ng-model="userEntity.lastName" ng-required="true">
 
 		<div ng-messages="Signin.adminLastName.$error"
