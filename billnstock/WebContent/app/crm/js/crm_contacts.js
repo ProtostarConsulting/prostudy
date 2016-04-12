@@ -20,7 +20,6 @@ angular.module("stockApp").controller(
 			$scope.contact = {
 					business:"",
 				loggedInUser : "",
-				cid : "",
 				fName : "",
 				lName : "",
 				status : "",
