@@ -32,7 +32,7 @@ public class Lead extends BaseEntity{
 	}*/
 	
 	private String company;
-	private Integer phone;
+	private Long phone;
 	private String email;
 	private String designation;
 	private String address;
@@ -92,11 +92,11 @@ public class Lead extends BaseEntity{
 		this.company = company;
 	}
 
-	public Integer getPhone() {
+	public Long getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Integer phone) {
+	public void setPhone(Long phone) {
 		this.phone = phone;
 	}
 

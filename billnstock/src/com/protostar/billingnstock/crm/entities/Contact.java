@@ -36,13 +36,10 @@ public class Contact extends BaseEntity {
 		this.business = Ref.create(business);
 	}*/
 	
-	@Index
-	private String cid;
-
 	private String fName;
 	private String lName;
 	private String status;
-	private Integer phone;
+	private Long phone;
 	private String email;
 	private String uid;
 	private String supp;
@@ -52,19 +49,13 @@ public class Contact extends BaseEntity {
 	
 	
 	public UserEntity getLoggedInUser() {
-		return loggedInUser.get();
+		return loggedInUser== null ? null : loggedInUser.get();
 	}
 
 	public void setLoggedInUser(UserEntity loggedInUser) {
 		this.loggedInUser = Ref.create(loggedInUser);
 	}
-	public String getCid() {
-		return cid;
-	}
-
-	public void setCid(String cid) {
-		this.cid = cid;
-	}
+	
 
 	public String getfName() {
 		return fName;
@@ -90,11 +81,11 @@ public class Contact extends BaseEntity {
 		this.status = status;
 	}
 
-	public Integer getPhone() {
+	public Long getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Integer phone) {
+	public void setPhone(Long phone) {
 		this.phone = phone;
 	}
 
