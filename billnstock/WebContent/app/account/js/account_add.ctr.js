@@ -21,6 +21,8 @@ app.controller(
 			$scope.account = {
 				accountName : "",
 				description : "",
+				createdDate :new Date(),
+				modifiedBy :new Date(),
 				business:""
 			};
 			

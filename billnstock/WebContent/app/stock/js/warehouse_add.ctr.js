@@ -20,6 +20,20 @@ app.controller("warehouseAddCtr", function($scope, $window, $mdToast, $timeout,
 		business : ""
 	};
 	
+		
+	$scope.addWarehouse = function() {
+		$log.debug("No1");
+		$scope.warehouse.business = $scope.curUser.business;
+		var WarehouseManagementService = appEndpointSF.getWarehouseManagementService();
+		WarehouseManagementService.addWarehouse($scope.warehouse).then(function(msgBean) {
+		});
+		$scope.warehouse = {};
+		$scope.warehouseForm.$setPristine();
+		$scope.warehouseForm.$setValidity();
+		$scope.warehouseForm.$setUntouched();
+		window.history.back();
+	}
+
 	
 	$log.debug("$stateParams:", $stateParams);
 	$log.debug("$stateParams.selectedWarehouseId:",
@@ -42,7 +56,7 @@ app.controller("warehouseAddCtr", function($scope, $window, $mdToast, $timeout,
 
 	$scope.waitForServiceLoad = function() {
 		if (appEndpointSF.is_service_ready) {
-			if ($scope.selectedSupplierNo != "") {
+			if ($scope.selectedWarehouseId != undefined) {
 				$scope.getWarehouseById();
 			}
 		} else {
@@ -53,22 +67,7 @@ app.controller("warehouseAddCtr", function($scope, $window, $mdToast, $timeout,
 
 	$scope.warehouse = [];
 	$scope.waitForServiceLoad();
-
 	
-	
-	$scope.addWarehouse = function() {
-		$log.debug("No1");
-		$scope.warehouse.business = $scope.curUser.business;
-		var WarehouseManagementService = appEndpointSF.getWarehouseManagementService();
-		WarehouseManagementService.addWarehouse($scope.warehouse).then(function(msgBean) {
-		});
-		$scope.warehouse = {};
-		$scope.warehouseForm.$setPristine();
-		$scope.warehouseForm.$setValidity();
-		$scope.warehouseForm.$setUntouched();
-		window.history.back();
-	}
-
 	$scope.toggleRight = buildToggler('right');
 
 	function buildToggler(navID) {

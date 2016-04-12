@@ -89,7 +89,7 @@
 					<td></td>
 					<td></td>
 					<td><label><u>Sub Total</u> </label></td>
-					<td>{{invoiceDetail.subTotal}}</td>
+					<td style="text-align: right">{{invoiceDetail.subTotal}}</td>
 				</tr>
 
 				<tr>
@@ -107,7 +107,7 @@
 					<td></td>
 					<td>{{invoiceDetail.selectedTaxItem.taxCodeName}}</td>
 					<td>{{invoiceDetail.selectedTaxItem.taxPercenatge}}%</td>
-					<td>{{invoiceDetail.taxTotal | currency :"": 2}}</td>
+					<td style="text-align: right">{{invoiceDetail.taxTotal | currency :"": 2}}</td>
 				</tr>
 				<tr>
 					<td>-</td>
@@ -121,8 +121,8 @@
 					<td></td>
 					<td></td>
 					<td><label><u>Final Total</u> </label></td>
-					<td><md-input-container flex>
-						{{invoiceDetail.finalTotal | currency :"INR ": 2 }}</md-input-container></td>
+					<td style="text-align: right">
+						{{invoiceDetail.finalTotal | currency :"INR ": 2 }}</td>
 				</tr>
 				<tr>
 					<td colspan="5"><br></td>

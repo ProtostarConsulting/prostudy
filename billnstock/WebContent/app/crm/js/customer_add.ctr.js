@@ -7,38 +7,6 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 
 	$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 	$log.debug("$scope.curUser++++++++" + angular.toJson($scope.curUser));
-
-	$log.debug("$stateParams:", $stateParams);
-	$log.debug("$stateParams.selectedCustomerId:",
-			$stateParams.selectedCustomerId);
-
-	$scope.customerId = $stateParams.selectedCustomerId;
-
-	$scope.getCustomerByID = function() {
-
-		var customerService = appEndpointSF.getCustomerService();
-
-		customerService.getCustomerByID($scope.customerId).then(
-				function(custList) {
-					$scope.customer = custList;
-					$log.debug("Inside Ctr $scope.customers:"
-							+ angular.toJson($scope.customers));
-				});
-	}
-
-	$scope.waitForServiceLoad = function() {
-		if (appEndpointSF.is_service_ready) {
-			if ($scope.selectedSupplierNo != "") {
-				$scope.getCustomerByID();
-			}
-		} else {
-			$log.debug("Services Not Loaded, watiting...");
-			$timeout($scope.waitForServiceLoad, 1000);
-		}
-	}
-
-	$scope.customer = [];
-	$scope.waitForServiceLoad();
 	
 	$scope.addCustomer = function() {
 		$log.debug("No1");
@@ -54,6 +22,38 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 		$scope.customer = {};
 	}
 
+	
+	$log.debug("$stateParams:", $stateParams);
+	$log.debug("$stateParams.selectedCustomerId:",
+			$stateParams.selectedCustomerId);
+
+	$scope.customerId = $stateParams.selectedCustomerId;
+
+	$scope.getCustomerByID = function() {
+
+		var customerService = appEndpointSF.getCustomerService();
+
+		customerService.getCustomerByID($scope.customerId).then(
+				function(custList) {
+					$scope.customer = custList;
+					$scope.customer.mobile = parseInt($scope.customer.mobile);
+					$log.debug("Inside Ctr $scope.customers:"
+							+ angular.toJson($scope.customers));
+				});
+	}
+	$scope.customer = [];
+	$scope.waitForServiceLoad = function() {
+		if (appEndpointSF.is_service_ready) {
+			if ($scope.selectedSupplierNo != "") {
+				$scope.getCustomerByID();
+			}
+		} else {
+			$log.debug("Services Not Loaded, watiting...");
+			$timeout($scope.waitForServiceLoad, 1000);
+		}
+	}
+	$scope.waitForServiceLoad();
+	
 	$scope.toggleRight = buildToggler('right');
 
 	function buildToggler(navID) {

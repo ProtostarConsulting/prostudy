@@ -176,9 +176,6 @@ app
 								});
 					}
 
-					// $scope.stockData = [];
-					$scope.getAllStock();
-
 					$scope.checkStock = function(item, $event) {
 						for (var i = 0; i <= $scope.stockforinvoice.length; i++) {
 							if ($scope.stockforinvoice[i].itemName == item.itemName) {
@@ -218,7 +215,6 @@ app
 								});
 					}
 					$scope.taxData = [];
-					$scope.getTaxesByVisibility();
 
 					$scope.getAllSalesOrder = function() {
 						$log.debug("Inside Ctr $scope.getAllSalesOrder");
@@ -240,7 +236,6 @@ app
 					}
 
 					$scope.SOforinvoice = [];
-					$scope.getAllSalesOrder();
 
 					$scope.getAllAccountsByBusiness = function() {
 						var accountService = appEndpointSF.getAccountService();
@@ -260,7 +255,6 @@ app
 										});
 					}
 					$scope.accountforinvoice = [];
-					$scope.getAllAccountsByBusiness();
 
 					var printDivCSS = new String(
 							'<link href="/lib/base/css/angular-material.min.css"" rel="stylesheet" type="text/css">'
@@ -276,7 +270,7 @@ app
 					}
 
 					// list of `state` value/display objects
-					loadAll();
+
 					$scope.invoiceObj.customer = null;
 					$scope.searchTextInput = null;
 
@@ -293,7 +287,7 @@ app
 					/**
 					 * Build `states` list of key/value pairs
 					 */
-					function loadAll() {
+					function loadAllCustomers() {
 
 						var customerService = appEndpointSF
 								.getCustomerService();
@@ -316,5 +310,20 @@ app
 									lowercaseQuery) === 0);
 						};
 					}
+			
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							loadAllCustomers();
+							$scope.getAllStock();
+							$scope.getAllSalesOrder();
+							$scope.getTaxesByVisibility();
+							$scope.getAllAccountsByBusiness();
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+
+					$scope.waitForServiceLoad();
 
 				});

@@ -7,40 +7,6 @@ app.controller("supplierAddCtr", function($scope, $window, $mdToast, $timeout,
 	$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 	$log.debug("$scope.curUser++++++++" + angular.toJson($scope.curUser));
 
-	$log.debug("$stateParams:", $stateParams);
-	$log.debug("$stateParams.selectedSupplierNo:",
-			$stateParams.selectedSupplierNo);
-
-	$scope.selectedSupplierNo = $stateParams.selectedSupplierNo;
-
-	$scope.getSupplierByID = function() {
-
-		var supplierService = appEndpointSF.getSupplierService();
-
-		supplierService.getSupplierByID($scope.selectedSupplierNo).then(
-				function(supplierList) {
-					$scope.supplier = supplierList;
-					$log.debug("$scope.getSupplierByID:"
-							+ angular.toJson($scope.customers));
-				});
-	}
-
-//	$scope.getSupplierByID();
-	
-	$scope.waitForServiceLoad = function() {
-		if (appEndpointSF.is_service_ready) {
-			if ($scope.selectedSupplierNo != "") {
-				$scope.getSupplierByID();
-			}
-		} else {
-			$log.debug("Services Not Loaded, watiting...");
-			$timeout($scope.waitForServiceLoad, 1000);
-		}
-	}
-
-	$scope.supplier = [];
-	$scope.waitForServiceLoad();
-
 	$scope.supplier = {
 		supplierName : '',
 		contactFName : '',
@@ -60,13 +26,47 @@ app.controller("supplierAddCtr", function($scope, $window, $mdToast, $timeout,
 			$scope.showSimpleToast();
 			// $scope.getAllPurchaseOrder();
 		});
-
 		$scope.supplierForm.$setPristine();
 		$scope.supplierForm.$setValidity();
 		$scope.supplierForm.$setUntouched();
 		$scope.supplier = {};
 	}
 
+	$log.debug("$stateParams:", $stateParams);
+	$log.debug("$stateParams.selectedSupplierNo:",
+			$stateParams.selectedSupplierNo);
+
+	$scope.selectedSupplierNo = $stateParams.selectedSupplierNo;
+
+	$scope.getSupplierByID = function() {
+
+		var supplierService = appEndpointSF.getSupplierService();
+
+		supplierService.getSupplierByID($scope.selectedSupplierNo).then(
+				function(supplierList) {
+					$scope.supplier = supplierList;
+					$scope.supplier.mobile = parseInt($scope.supplier.mobile);
+					$scope.supplier.phone1 = parseInt($scope.supplier.phone1);
+					
+					$log.debug("$scope.getSupplierByID:"
+							+ angular.toJson($scope.customers));
+				});
+	}
+
+	$scope.waitForServiceLoad = function() {
+		if (appEndpointSF.is_service_ready) {
+			if ($scope.selectedSupplierNo != undefined) {
+				$scope.getSupplierByID();
+			}
+		} else {
+			$log.debug("Services Not Loaded, watiting...");
+			$timeout($scope.waitForServiceLoad, 1000);
+		}
+	}
+
+	$scope.supplier = [];
+	$scope.waitForServiceLoad();
+	
 	/* Setup menu */
 	$scope.toggleRight = buildToggler('right');
 	/**
