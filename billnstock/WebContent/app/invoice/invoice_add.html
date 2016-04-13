@@ -37,10 +37,10 @@
 			</md-autocomplete>
 
 
-			Invoice Date:<span style="color: red;">*</span>
+<!-- 			Invoice Date:<span style="color: red;">*</span>
 			<md-datepicker ng-model="invoiceObj.invoiceDate"
 				md-placeholder="Select Date" ng-required="true"></md-datepicker>
-
+ -->
 		</div>
 		<div layout="row" layout-xs="column">
 
@@ -112,10 +112,8 @@
 					<td><md-input-container flex> <label>Quantity
 						</label> <input ng-model="item.qty" ng-change="checkStock(item,$event)" type="number"
 							ng-change="calSubTotal()"> </md-input-container></td>
-					<td><md-input-container flex> <label>Price
-						</label> <input ng-model="item.price" ng-change="calSubTotal()"></md-input-container></td>
-					<td><md-input-container flex> <label>Price
-						</label> <b>{{item.qty * item.price}} </b></td>
+					<td><md-input-container flex><input ng-model="item.price" ng-change="calSubTotal()"></md-input-container></td>
+					<td><md-input-container flex>  <b>{{item.qty * item.price}} </b></td>
 					<td>
 						<section layout="row" layout-sm="column">
 							<md-button class="md-raised md-primary"
@@ -145,9 +143,9 @@
 						<md-option ng-value="taxValue"
 							ng-repeat="taxValue in taxforinvoice">{{taxValue.taxCodeName}}</md-option>
 						</md-select> </md-input-container></td>
-					<td><md-input-container flex> <label>Tax
+					<td><md-input-container flex> <label>Tax %
 						</label> <b> <input
-							ng-model="invoiceObj.selectedTaxItem.taxPercenatge" disabled>%
+							ng-model="invoiceObj.selectedTaxItem.taxPercenatge" disabled>
 						</b> </md-input-container></td>
 					<td><md-input-container flex> <b>{{invoiceObj.taxTotal}}</b>
 						</md-input-container></td>

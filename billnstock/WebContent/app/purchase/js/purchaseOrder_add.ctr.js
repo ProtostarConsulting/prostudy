@@ -5,7 +5,7 @@ app
 				"purchaseOrderAddCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $state, $http, $stateParams,
-						$routeParams, $filter, $q, objectFactory, appEndpointSF) {
+						$routeParams, $filter, $q, $mdMedia, $mdDialog, objectFactory, appEndpointSF) {
 
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
@@ -97,8 +97,8 @@ app
 					$scope.calfinalTotal = function() {
 						$log.debug("##Came to calfinalTotal...");
 
-						$scope.purchaseOrderObj.finalTotal = $scope.purchaseOrderObj.subTotal
-								+ $scope.purchaseOrderObj.taxTotal;
+						$scope.purchaseOrderObj.finalTotal = parseFloat($scope.purchaseOrderObj.subTotal)
+								+ parseFloat($scope.purchaseOrderObj.taxTotal);
 					}
 
 					$scope.lineItemStockChange = function(index, stockItem) {
@@ -124,6 +124,10 @@ app
 						$scope.purchaseOrderObj.taxTotal = ($scope.purchaseOrderObj.selectedTaxItem.taxPercenatge / 100)
 								* ($scope.purchaseOrderObj.subTotal)
 
+								$scope.purchaseOrderObj.taxTotal = parseFloat(
+								Math.round($scope.purchaseOrderObj.taxTotal * 100) / 100)
+								.toFixed(2);
+						
 						$scope.calfinalTotal();
 					};
 
@@ -171,16 +175,6 @@ app
 										});
 					}
 
-					$scope.waitForServiceLoad = function() {
-						if (appEndpointSF.is_service_ready) {
-							$scope.getAllStock();
-						} else {
-							$log.debug("Services Not Loaded, watiting...");
-							$timeout($scope.waitForServiceLoad, 1000);
-						}
-					}
-					$scope.stockforPO = [];
-					$scope.waitForServiceLoad();
 
 					$scope.getTaxesByVisibility = function() {
 						$log.debug("Inside Ctr $scope.getAllTaxes");
@@ -195,33 +189,11 @@ app
 											+ $scope.taxforPO);
 								});
 					}
-					
-					$scope.waitForServiceLoad = function() {
-						if (appEndpointSF.is_service_ready) {
-							$scope.getTaxesByVisibility();
-						} else {
-							$log.debug("Services Not Loaded, watiting...");
-							$timeout($scope.waitForServiceLoad, 1000);
-						}
-					}
-					
 					$scope.taxforPO = [];
-					$scope.waitForServiceLoad();
-
-/*					$scope.waitForServiceLoad = function() {
-						if (appEndpointSF.is_service_ready) {
-							loadAll();
-						} else {
-							$log.debug("Services Not Loaded, watiting...");
-							$timeout($scope.waitForServiceLoad, 1000);
-						}
-					}
 					
-					$scope.waitForServiceLoad();
-*/
 					// list of `state` value/display objects
 					$scope.supplierList = [];
-					loadAll();
+					
 					$scope.supplier = null;
 					$scope.searchTextInput = null;
 
@@ -232,12 +204,12 @@ app
 						var deferred = $q.defer();
 						$timeout(function() {
 							deferred.resolve(results);
-							// $scope.salesOrder.customer = results;
+							
 						}, Math.random() * 1000, false);
 						return deferred.promise;
 					}
 
-					function loadAll() {
+					function loadAllSuppliers() {
 
 						var supplierService = appEndpointSF
 								.getSupplierService();
@@ -259,4 +231,63 @@ app
 						};
 					}
 
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							$scope.getAllStock();
+							$scope.getTaxesByVisibility();
+							loadAllSuppliers();
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}	
+					$scope.waitForServiceLoad();
+					
+					
+					
+					$scope.addSupplier = function(ev) {
+						var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
+								&& $scope.customFullscreen;
+						$mdDialog
+								.show({
+									controller : DialogController,
+									templateUrl : '/app/purchase/supplier_add.html',
+									parent : angular.element(document.body),
+									targetEvent : ev,
+									clickOutsideToClose : true,
+									fullscreen : useFullScreen,
+									locals : {
+										curBusi : $scope.curUser.business,
+										supplier : $scope.supplier
+									}
+								})
+								.then(
+										function(answer) {
+											$scope.status = 'You said the information was "'
+													+ answer + '".';
+										},
+										function() {
+											$scope.status = 'You cancelled the dialog.';
+										});
+						
+					};
+
+					function DialogController($scope, $mdDialog, curBusi,
+							supplier) {
+
+						$scope.addSupplier = function() {
+							 $scope.supplier.business = curBusi;
+								var supplierService = appEndpointSF.getSupplierService();
+
+								supplierService.addSupplier($scope.supplier).then(function(msgBean) {
+							
+								});
+								$scope.hide();
+								//window.history.back();
+						}
+						
+						$scope.hide = function() {
+							$mdDialog.hide();
+						};
+					}
 				});

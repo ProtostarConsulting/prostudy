@@ -14,28 +14,30 @@
 			</div>
 
 			<div layout="row" layout-xs="column">
-				<span style="color: red;">*</span>
-				<md-autocomplete flex required md-input-name="autocompleteField"
-					md-input-minlength="2" md-input-maxlength="18" md-no-cache=true
-					md-selected-item="purchaseOrderObj.supplier"
-					md-search-text="searchTextInput"
-					md-items="item in querySearch(searchTextInput)"
-					md-item-text="item.supplierName" md-floating-label="Supplier Name">
-				<md-item-template> <span
-					md-highlight-text="searchTextInput">{{item.supplierName}}</span> </md-item-template>
-				<div ng-messages="searchForm.autocompleteField.$error"
-					ng-if="searchForm.autocompleteField.$touched">
-					<div ng-message="required">
-						You <b>must</b> have to enter Supplier Name.
+				<div layout="row" flex>
+					<span style="color: red;">*</span>
+					<md-autocomplete flex required md-input-name="autocompleteField"
+						md-input-minlength="2" md-input-maxlength="18" md-no-cache=true
+						md-selected-item="purchaseOrderObj.supplier"
+						md-search-text="searchTextInput"
+						md-items="item in querySearch(searchTextInput)"
+						md-item-text="item.supplierName" md-floating-label="Supplier Name">
+					<md-item-template> <span
+						md-highlight-text="searchTextInput">{{item.supplierName}}</span> </md-item-template>
+					<div ng-messages="searchForm.autocompleteField.$error"
+						ng-if="searchForm.autocompleteField.$touched">
+						<div ng-message="required">
+							You <b>must</b> have to enter Supplier Name.
+						</div>
+						<div ng-message="minlength">Your entry is not long enough.</div>
+						<div ng-message="maxlength">Your entry is too long.</div>
 					</div>
-					<div ng-message="minlength">Your entry is not long enough.</div>
-					<div ng-message="maxlength">Your entry is too long.</div>
-				</div>
-				</md-autocomplete>
+					</md-autocomplete>
+					<md-icon md-svg-src="img/icons/ic_queue_black_24px.svg"
+						ng-click="addSupplier()" class="name"
+						style="color: Green; height: 40px; width: 40px"></md-icon>
 
-				<span style="color: red;">*</span>
-				<md-datepicker ng-model="purchaseOrderObj.poDate"
-					md-placeholder="Select PO Date"></md-datepicker>
+				</div>
 
 				<span style="color: red;">*</span>
 				<md-datepicker ng-model="purchaseOrderObj.poDueDate"

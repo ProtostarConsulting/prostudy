@@ -1,17 +1,13 @@
 <div class="md-toolbar-tools">
 	<span flex></span>
-	<!--<md-card>-->
 	<section layout="row">
 
 		<md-button class="md-icon-button md-accent"
 			ng-click="printDiv('purchaseOerdeDiv')" aria-label="Favorite">
 		<md-icon md-svg-icon="img/icons/print.svg"></md-icon> </md-button>
-
 	</section>
-	<!--</md-card>-->
 </div>
-</md-content>
-<hr>
+
 <md-content>
 <div id="purchaseOerdeDiv">
 	<table ng-show="myValue" class="ng-hide">
@@ -91,7 +87,7 @@
 					<td></td>
 					<td></td>
 					<td><label><u>Sub Total</u> </label></td>
-					<td>{{pODetail.subTotal}}</td>
+					<td style="text-align: right">{{pODetail.subTotal}}</td>
 				</tr>
 
 				<tr>
@@ -109,7 +105,7 @@
 					<td></td>
 					<td>{{pODetail.selectedTaxItem.taxCodeName}}</td>
 					<td>{{pODetail.selectedTaxItem.taxPercenatge}}%</td>
-					<td>{{pODetail.taxTotal | currency :"": 2}}</td>
+					<td style="text-align: right">{{pODetail.taxTotal | currency :"": 2}}</td>
 				</tr>
 				<tr>
 					<td>-</td>
@@ -123,8 +119,8 @@
 					<td></td>
 					<td></td>
 					<td><label><u>Final Total</u> </label></td>
-					<td><md-input-container flex>
-						{{pODetail.finalTotal | currency :"INR ": 2 }}</md-input-container></td>
+					<td style="text-align: right">
+						{{pODetail.finalTotal | currency :"INR ": 2 }}</td>
 				</tr>
 				<tr>
 					<td colspan="5"><br></td>
@@ -141,7 +137,11 @@
 		</table>
 	</div>
 
-	<b><u>Note</u>:</b>This is electronically generated Purchase Order. <br>
+	<div style="position: fixed; bottom: 0;" ng-show="myValue"
+		class="ng-hide">
+		<b><u>Note</u>:</b>This is electronically generated Sales Order. Needs no
+		stamp or signature.
+	</div>
 
 	<iframe name="print_frame" width="0" height="0" frameborder="0"
 		src="about:blank"></iframe>

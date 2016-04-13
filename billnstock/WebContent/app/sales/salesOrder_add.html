@@ -9,83 +9,90 @@
 			<h3>
 				<u>Sales Order</u>
 			</h3>
-			<div align="right">
+			<!-- 			<div align="right">
 				<span style="color: red;">*</span>SO Date:
 				<md-datepicker flex ng-model="salesOrder.salesOrderDate"
 					md-placeholder="Enter SO Date"></md-datepicker>
 			</div>
+ -->
 			<div layout="row" layout-xs="column">
-				<span style="color: red;">*</span>
+				<div layout="row" flex>
+					<span style="color: red;">*</span>
 
-				<md-autocomplete flex required ng-model="salesOrder.customer"
-					md-input-name="autocompleteField" md-input-minlength="2"
-					md-input-maxlength="18" md-no-cache=true
-					md-selected-item="salesOrder.customer"
-					md-search-text="searchTextInput"
-					md-items="item in querySearch(searchTextInput)"
-					md-item-text="item.firstName" md-floating-label="Customer Name"
-					ng-required="true"> <md-item-template>
-				<span md-highlight-text="searchTextInput">{{item.firstName}}</span>
-				</md-item-template>
-				<div ng-messages="sOForm.autocompleteField.$error"
-					ng-if="sOForm.autocompleteField.$touched">
-					<div ng-message="required">
-						You <b>must</b> have to enter Customer Name.
+					<md-autocomplete flex required ng-model="salesOrder.customer"
+						md-input-name="autocompleteField" md-input-minlength="2"
+						md-input-maxlength="18" md-no-cache=true
+						md-selected-item="salesOrder.customer"
+						md-search-text="searchTextInput"
+						md-items="item in querySearch(searchTextInput)"
+						md-item-text="item.firstName" md-floating-label="Customer Name"
+						ng-required="true"> <md-item-template>
+					<span md-highlight-text="searchTextInput">{{item.firstName}}</span>
+					</md-item-template>
+					<div ng-messages="sOForm.autocompleteField.$error"
+						ng-if="sOForm.autocompleteField.$touched">
+						<div ng-message="required">
+							You <b>must</b> have to enter Customer Name.
+						</div>
+						<div ng-message="minlength">Your entry is not long enough.</div>
+						<div ng-message="maxlength">Your entry is too long.</div>
 					</div>
-					<div ng-message="minlength">Your entry is not long enough.</div>
-					<div ng-message="maxlength">Your entry is too long.</div>
+					</md-autocomplete>
+					<md-icon md-svg-src="img/icons/ic_queue_black_24px.svg"
+						ng-click="addCustomer()" class="name"
+						style="color: Green; height: 40px; width: 40px"></md-icon>
+
 				</div>
-				</md-autocomplete>
-
-
-
 				<md-input-container flex> <label>Customer
 					Referance ID </label> <input ng-model="salesOrder.customerRefId"> </md-input-container>
 			</div>
 
 			<div layout="row" layout-xs="column">
 
-				<span style="color: red;">*</span>Quotation Date:
-				<md-datepicker flex ng-model="salesOrder.quotationDate"
-					md-placeholder="Enter Quotation Date"></md-datepicker>
-
-				<span style="color: red;">*</span>Delivery Date:
-				<md-datepicker ng-model="salesOrder.deliveryDate"
-					md-placeholder="Enter Delivery Date"></md-datepicker>
-
-
-			</div>
-
-			<div layout="row" layout-xs="column">
-
 				<md-input-container flex> <label>To </label> <textarea
 					name="to" ng-model="salesOrder.to"></textarea> </md-input-container>
+
 				<md-input-container flex> <label>Ship
 					To </label> <textarea name="shipTo" ng-model="salesOrder.shipTo"></textarea>
 				</md-input-container>
 			</div>
 
 			<div layout="row" layout-xs="column">
+
 				<md-input-container flex> <label>Sales
 					Person </label> <input ng-model="salesOrder.salesPerson"> </md-input-container>
 
-				<md-input-container flex> <label>Job </label> <input
-					ng-model="salesOrder.job"> </md-input-container>
+				<span style="color: red;">*</span>Delivery Date:
+				<md-datepicker flex ng-model="salesOrder.deliveryDate"
+					md-placeholder="Enter Delivery Date"></md-datepicker>
 			</div>
+
 			<div layout="row" layout-xs="column">
 				<md-input-container flex> <label>Shipped
 					Via </label> <input ng-model="salesOrder.shippedVia"> </md-input-container>
 
+				<span style="color: red;">*</span>Quotation Date:
+				<md-datepicker flex ng-model="salesOrder.quotationDate"
+					md-placeholder="Enter Quotation Date"></md-datepicker>
+
+			</div>
+
+
+			<div layout="row" layout-xs="column">
 				<md-input-container flex> <label>Shipping
 					Terms </label> <input ng-model="salesOrder.shippingTerms"> </md-input-container>
+
+				<span style="color: red;">*</span>Due Date:
+				<md-datepicker flex ng-model="salesOrder.dueDate"
+					md-placeholder="Enter Due Date"></md-datepicker>
+
 			</div>
+
 			<div layout="row" layout-xs="column" layout-align="start start">
 				<md-input-container flex> <label>Payment
 					Terms </label> <input ng-model="salesOrder.paymentTerms"> </md-input-container>
 
-				<span style="color: red;">*</span>Due Date:
-				<md-datepicker ng-model="salesOrder.dueDate"
-					md-placeholder="Enter Due Date"></md-datepicker>
+
 			</div>
 
 			<div layout="row" layout-align="center start"
@@ -121,10 +128,11 @@
 						<td><md-input-container flex> <label>Quantity
 							</label> <input ng-model="item.qty" type="number"
 								ng-change="calSubTotal()"> </md-input-container></td>
-						<td><md-input-container flex> <label>Price
-							</label> <input ng-model="item.price" ng-change="calSubTotal()"></md-input-container></td>
+						<td><md-input-container flex> <input
+								ng-model="item.price" ng-change="calSubTotal()"></md-input-container></td>
 						<td><md-input-container flex> <label>Price
 							</label> <b>{{item.qty * item.price}} </b></td>
+
 						<td>
 							<section layout="row" layout-sm="column">
 								<md-button class="md-raised md-primary"
@@ -157,8 +165,8 @@
 						</label> <input ng-model="item.taxCodeName" 
 							ng-change="calSubTotal()"> </md-input-container></td>	 -->
 						<td><md-input-container flex> <label>Tax
-							</label> <b> <input
-								ng-model="salesOrder.selectedTaxItem.taxPercenatge">%
+								% </label> <b> <input
+								ng-model="salesOrder.selectedTaxItem.taxPercenatge">
 							</b> </md-input-container></td>
 						<td><md-input-container flex> <b>{{salesOrder.taxTotal}}</b>
 							</md-input-container></td>

@@ -94,23 +94,28 @@ app
 							$log.debug("subTotal :"
 									+ $scope.invoiceObj.subTotal);
 						}
-						$log.debug("$scope.invoiceObj 1 :"
-								+ $scope.invoiceObj.subTotal);
+
+						$scope.invoiceObj.subTotal = parseFloat(
+								Math.round(($scope.invoiceObj.subTotal) * 100) / 100)
+								.toFixed(2);
 						return $scope.invoiceObj.subTotal;
 					}
 
 					$scope.calfinalTotal = function() {
 						$log.debug("##Came to calSubTotal...");
 
-						$scope.invoiceObj.finalTotal = $scope.invoiceObj.subTotal
-								+ $scope.invoiceObj.taxTotal;
+					/*	$scope.invoiceObj.finalTotal = parseFloat($scope.invoiceObj.subTotal
+								+ $scope.invoiceObj.taxTotal).toFixed(2);
+					*/	
+						$scope.invoiceObj.finalTotal = parseFloat($scope.invoiceObj.subTotal)
+						+ parseFloat($scope.invoiceObj.taxTotal);
 					}
 
 					$scope.lineItemTaxChange = function(index, selectedTaxItem) {
 						$log.debug("##Came to lineItemTaxChange...");
 
-						$scope.invoiceObj.taxTotal = ($scope.invoiceObj.selectedTaxItem.taxPercenatge / 100)
-								* ($scope.invoiceObj.subTotal)
+						$scope.invoiceObj.taxTotal = parseFloat(($scope.invoiceObj.selectedTaxItem.taxPercenatge / 100)
+								* ($scope.invoiceObj.subTotal));
 
 						$scope.calfinalTotal();
 					};

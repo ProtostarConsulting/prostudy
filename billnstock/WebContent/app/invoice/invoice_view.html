@@ -82,14 +82,14 @@
 					<td>{{invoiceLineItem.itemName}}</td>
 					<td>{{invoiceLineItem.qty}}</td>
 					<td>{{invoiceLineItem.price}}</td>
-					<td>{{invoiceLineItem.qty * invoiceLineItem.price}}</td>
+					<td>{{invoiceLineItem.qty * invoiceLineItem.price | currency : 2}}</td>
 				</tr>
 				<tr>
 					<td></td>
 					<td></td>
 					<td></td>
 					<td><label><u>Sub Total</u> </label></td>
-					<td style="text-align: right">{{invoiceDetail.subTotal}}</td>
+					<td style="text-align: right">{{invoiceDetail.subTotal | currency : 2}}</td>
 				</tr>
 
 				<tr>

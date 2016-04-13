@@ -2,7 +2,7 @@ app = angular.module("stockApp");
 
 app.controller("supplierAddCtr", function($scope, $window, $mdToast, $timeout,
 		$mdSidenav, $mdUtil, $log, $state, $http, $stateParams, $routeParams,
-		$filter, $q, objectFactory, appEndpointSF) {
+		$filter, $q, $mdMedia, $mdDialog, objectFactory, appEndpointSF) {
 
 	$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 	$log.debug("$scope.curUser++++++++" + angular.toJson($scope.curUser));

@@ -4,7 +4,8 @@ app
 				"salesOrderAddCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $state, $http, $stateParams,
-						$routeParams, $filter, $q, objectFactory, appEndpointSF) {
+						$routeParams, $filter, $q, $mdMedia, $mdDialog,
+						objectFactory, appEndpointSF) {
 
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
@@ -12,7 +13,6 @@ app
 							+ angular.toJson($scope.curUser));
 
 					$scope.salesOrder = {
-						// salesOrderId : '',
 						customer : {},
 						customerRefId : '',
 						quotationDate : '',
@@ -30,12 +30,16 @@ app
 						taxCodeName : '',
 						taxPercenatge : '',
 						taxTotal : 0,
-						finalTotal : '',
+						finalTotal : 0,
+						createdDate : new Date(),
+						modifiedDate : new Date(),
+						modifiedBy : '',
 						business : ""
 					};
 
 					$scope.addSalesOrder = function() {
-						if ($scope.salesOrder.sOLineItemList.length == 0 || $scope.salesOrder.sOLineItemList.itemName == "") {
+						if ($scope.salesOrder.sOLineItemList.length == 0
+								|| $scope.salesOrder.sOLineItemList.itemName == "") {
 							console.log("Please select atleast one item");
 							$scope.errorMsg = "Please select atleast one item.";
 						} else {
@@ -76,20 +80,24 @@ app
 						for (var i = 0; i < $scope.salesOrder.sOLineItemList.length; i++) {
 							var line = $scope.salesOrder.sOLineItemList[i];
 							$scope.salesOrder.subTotal += (line.qty * line.price);
-
-							$log.debug("subTotal :"
-									+ $scope.salesOrder.subTotal);
 						}
-						$log.debug("$scope.salesOrder 1 :"
-								+ $scope.salesOrder.subTotal);
+
+						$scope.salesOrder.subTotal = parseFloat(
+								Math.round(($scope.salesOrder.subTotal) * 100) / 100)
+								.toFixed(2);
+
 						return $scope.salesOrder.subTotal;
 					}
 
 					$scope.calfinalTotal = function() {
 						$log.debug("##Came to calfinalTotal...");
 
-						$scope.salesOrder.finalTotal = $scope.salesOrder.subTotal
-								+ $scope.salesOrder.taxTotal;
+						$scope.salesOrder.finalTotal = parseFloat($scope.salesOrder.subTotal)
+								+ parseFloat($scope.salesOrder.taxTotal);
+
+						$scope.salesOrder.finalTotal = parseFloat(
+								($scope.salesOrder.finalTotal)).toFixed(2);
+
 					}
 
 					$scope.lineItemStockChange = function(index, stockItem) {
@@ -116,6 +124,9 @@ app
 						$scope.salesOrder.taxTotal = ($scope.salesOrder.selectedTaxItem.taxPercenatge / 100)
 								* ($scope.salesOrder.subTotal)
 
+						$scope.salesOrder.taxTotal = parseFloat(
+								Math.round($scope.salesOrder.taxTotal * 100) / 100)
+								.toFixed(2);
 						$scope.calfinalTotal();
 					};
 
@@ -150,29 +161,18 @@ app
 						$log.debug("Inside Ctr $scope.getAllStock");
 						var stockService = appEndpointSF.getStockService();
 
-						stockService.getAllStock(
-								$scope.curUser.business.id).then(
-								function(stockList) {
-									$log.debug("Inside Ctr getAllStock");
-									$scope.stockforPO = stockList;
-									$log.debug("@@@ $scope.stockforPO==="
-											+ $scope.stockforPO);
-								});
+						stockService
+								.getAllStock($scope.curUser.business.id)
+								.then(
+										function(stockList) {
+											$log
+													.debug("Inside Ctr getAllStock");
+											$scope.stockforPO = stockList;
+											$log
+													.debug("@@@ $scope.stockforPO==="
+															+ $scope.stockforPO);
+										});
 					}
-
-					$scope.waitForServiceLoad = function() {
-						if (appEndpointSF.is_service_ready) {
-							$scope.getAllStock();
-						} else {
-							$log.debug("Services Not Loaded, watiting...");
-							$timeout($scope.waitForServiceLoad, 1000);
-						}
-					}
-					
-					$scope.stockData = [];
-					$scope.waitForServiceLoad();
-				
-
 
 					$scope.getAllTaxes = function() {
 						$log.debug("Inside Ctr $scope.getAllTaxes");
@@ -187,22 +187,24 @@ app
 											+ $scope.taxforPO);
 								});
 					}
+
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
+							loadAllCustomers();
 							$scope.getAllTaxes();
+							$scope.getAllStock();
 						} else {
 							$log.debug("Services Not Loaded, watiting...");
 							$timeout($scope.waitForServiceLoad, 1000);
 						}
 					}
-					
+
 					$scope.taxData = [];
 					$scope.waitForServiceLoad();
-										
 
 					// list of `state` value/display objects
 					$scope.customersforinvoice = [];
-					loadAll();
+
 					$scope.salesOrder.customer = null;
 					$scope.searchTextInput = null;
 
@@ -213,13 +215,11 @@ app
 						var deferred = $q.defer();
 						$timeout(function() {
 							deferred.resolve(results);
-							// $scope.salesOrder.customer = results;
 						}, Math.random() * 1000, false);
 						return deferred.promise;
 					}
 
-					function loadAll() {
-
+					function loadAllCustomers() {
 						var customerService = appEndpointSF
 								.getCustomerService();
 						customerService
@@ -239,4 +239,44 @@ app
 						};
 					}
 
+					$scope.addCustomer = function(ev) {
+						var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
+								&& $scope.customFullscreen;
+						$mdDialog
+								.show({
+									controller : DialogController,
+									templateUrl : '/app/crm/customer_add.html',
+									parent : angular.element(document.body),
+									targetEvent : ev,
+									clickOutsideToClose : true,
+									fullscreen : useFullScreen,
+									locals : {
+										curBusi : $scope.curUser.business,
+										customer : $scope.customer
+									}
+								})
+								.then(
+										function(answer) {
+											$scope.status = 'You said the information was "'
+													+ answer + '".';
+										},
+										function() {
+											$scope.status = 'You cancelled the dialog.';
+										});
+						
+					};
+
+					function DialogController($scope, $mdDialog, curBusi,
+							customer) {
+
+						$scope.addCustomer = function() {
+							 $scope.customer.business = curBusi;
+							var customerService = appEndpointSF.getCustomerService();
+
+							customerService.addCustomer($scope.customer).then(
+									function(msgBean) {
+
+									});
+						}
+					}
 				});

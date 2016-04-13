@@ -57,19 +57,20 @@
 				</tr>
 				<tr>
 
-					<td style="width: 20%"><b>Job : {{sODetail.requisitioner}}</td>
+					
 					<td style="width: 20%"><b>Shipped Via :
 							{{sODetail.shippedVia}}</td>
 					<td style="width: 20%"><b>Shipping Terms :
 							{{sODetail.shippingTerms}}</td>
 					<td style="width: 20%"><b>Payment Terms :
 							{{sODetail.paymentTerms}}</td>
+							<td style="width: 20%"><b>Delivery Date :
+							{{sODetail.deliveryDate | formatDate}}</td>
 				</tr>
 				<tr>
 					<td style="width: 20%"></td>
 					<td style="width: 20%"></td>
-					<td style="width: 20%"><b>Delivery Date :
-							{{sODetail.deliveryDate | formatDate}}</td>
+					<td style="width: 20%"></td>
 
 					<td style="width: 20%"><b>Due Date : {{sODetail.dueDate |
 							formatDate}}</td>
@@ -98,8 +99,8 @@
 					<td>{{$index+1 }}</td>
 					<td>{{sOLineItem.itemName}}</td>
 					<td>{{sOLineItem.qty}}</td>
-					<td>{{sOLineItem.price}}</td>
-					<td>{{sOLineItem.qty * sOLineItem.price}}</td>
+					<td>{{sOLineItem.price | currency : 2}}</td>
+					<td>{{sOLineItem.qty * sOLineItem.price | currency : 2}}</td>
 
 
 				</tr>
@@ -108,7 +109,7 @@
 					<td></td>
 					<td></td>
 					<td><b><u>Sub Total</u> </b></td>
-					<td>{{sODetail.subTotal}}</td>
+					<td style="text-align: right;">{{sODetail.subTotal | currency : 2}}</td>
 				</tr>
 
 				<tr>
@@ -143,8 +144,8 @@
 					<td></td>
 					<td></td>
 					<td><b><u>Final Total</u> </b></td>
-					<td><md-input-container flex>
-						{{sODetail.finalTotal | currency :"INR ": 2}}</md-input-container></td>
+					<td style="text-align: right">
+						{{sODetail.finalTotal | currency :"INR ": 2}}</td>
 				</tr>
 				<tr>
 					<td colspan="5"><br></td>
@@ -161,7 +162,11 @@
 		</table>
 	</div>
 
-	<b><u>Note</u>:</b>This is electronically generated Sales Order. <br>
+	<div style="position: fixed; bottom: 0;" ng-show="myValue"
+		class="ng-hide">
+		<b><u>Note</u>:</b>This is electronically generated Sales Order. Needs no
+		stamp or signature.
+	</div>
 
 	<iframe name="print_frame" width="0" height="0" frameborder="0"
 		src="about:blank"></iframe>
