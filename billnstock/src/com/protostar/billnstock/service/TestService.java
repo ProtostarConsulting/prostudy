@@ -25,5 +25,7 @@ public class TestService
 	public List<ServerMsg> getTests(){		
 		return new ArrayList<ServerMsg>();		
 	}
+	
+	
 
 }
