@@ -17,6 +17,7 @@ import com.googlecode.objectify.Ref;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
 import com.protostar.billingnstock.user.entities.tempBusinessEntity;
+import com.protostar.billnstock.until.data.ServerMsg;
 
 //import com.protostar.prostudy.entity.BookEntity;
 
@@ -143,7 +144,20 @@ public class UserService {
 	}
 
 	
+	@ApiMethod(name="isUserExists")
+	public ServerMsg isUserExists(@Named("email_id") String emailID)	
+	{		
+		ServerMsg serverMsg = new ServerMsg();
+		List<UserEntity> list = ofy().load().type(UserEntity.class).filter("email_id", emailID).list();
+		
+		if(list.get(0).equals(null)){
+			serverMsg.setReturnBool(false);
+		}else{
+		serverMsg.setReturnBool(true);
+		}
 	
+		return serverMsg;
+	}
 	
 	@ApiMethod(name = "getBusinessList")
 	public List<BusinessEntity> getBusinessList() {

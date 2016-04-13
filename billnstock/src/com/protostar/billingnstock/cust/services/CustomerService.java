@@ -18,11 +18,12 @@ import com.protostar.billingnstock.user.entities.BusinessEntity;
 public class CustomerService {
 	
 	@ApiMethod(name = "addCustomer")
-	public void addCustomer(Customer customer) {
+	public Customer addCustomer(Customer customer) {
 		ofy().save().entity(customer).now();
 		
 		if(customer.getIsCompany()==true){
 		Contact addcontact=new Contact();
+		addcontact.setCustomer(customer);
 		addcontact.setfName(customer.getFirstName());
 		addcontact.setlName(customer.getLastName());
  		addcontact.setPhone(customer.getMobile());
@@ -30,6 +31,7 @@ public class CustomerService {
  		addcontact.setEmail(customer.getEmail());
  		ofy().save().entity(addcontact).now();
 		}
+		return customer;
 	}
 
 	@ApiMethod(name = "getAllCustomersByBusiness")

@@ -51,14 +51,14 @@ public class CrmService
 	@ApiMethod(name="addupdatetask")
 	public void addupdatetask(Lead lead)
 	{
-		  Key<Lead> now = ofy().save().entity(lead).now();
+	 ofy().save().entity(lead).now();
 	
 	}
 	
 	@ApiMethod(name="addcontact")
 	public void addcontact(Contact contact)
 	{
-		  Key<Contact> now = ofy().save().entity(contact).now();
+		ofy().save().entity(contact).now();
 	
 	}
 	

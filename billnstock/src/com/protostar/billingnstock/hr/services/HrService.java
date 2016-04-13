@@ -11,7 +11,8 @@ import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Ref;
-import com.protostar.billingnstock.account.entities.AccountEntity;
+import com.protostar.billingnstock.crm.entities.Contact;
+import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.hr.entities.Employee;
 import com.protostar.billingnstock.hr.entities.SalSlip;
 import com.protostar.billingnstock.hr.entities.SalStruct;
@@ -158,5 +159,16 @@ SalStruct filteredsalstruct = ofy().load().type(SalStruct.class).filter("empAcco
 		
 
 	}
+	
+	@ApiMethod(name = "getAllcompany")
+	public List<Customer> getAllcompany(@Named("id") Long id) {
+
+		List<Customer> filteredcontact = ofy().load().type(Customer.class)
+				.filter("business",Ref.create(Key.create(BusinessEntity.class,id))).list();
+		return filteredcontact;
+		
+		}
+	
+	
 
 }// end of InternetService

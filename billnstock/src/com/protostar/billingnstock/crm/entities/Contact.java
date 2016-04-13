@@ -2,9 +2,7 @@ package com.protostar.billingnstock.crm.entities;
 
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
-import com.googlecode.objectify.annotation.Id;
-import com.googlecode.objectify.annotation.Index;
-import com.protostar.billingnstock.user.entities.BusinessEntity;
+import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.user.entities.UserEntity;
 import com.protostar.billnstock.entity.BaseEntity;
 
@@ -13,7 +11,7 @@ public class Contact extends BaseEntity {
 
 	
 	private Ref<UserEntity> loggedInUser;
-	
+	private Ref<Customer> customer;
 	/*@Id
 	private Long id;
 
@@ -36,6 +34,7 @@ public class Contact extends BaseEntity {
 		this.business = Ref.create(business);
 	}*/
 	
+	
 	private String fName;
 	private String lName;
 	private String status;
@@ -55,6 +54,15 @@ public class Contact extends BaseEntity {
 	public void setLoggedInUser(UserEntity loggedInUser) {
 		this.loggedInUser = Ref.create(loggedInUser);
 	}
+	
+	public Customer getCustomer() {
+			return customer== null ? null : customer.get();
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer==null ? null : Ref.create(customer);
+	}
+
 	
 
 	public String getfName() {
