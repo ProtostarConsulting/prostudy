@@ -140,24 +140,19 @@ angular
 					  
 				// -------------------Check email------------------------------------
 					$scope.Checkemail = function(emailid) {
-						var proadminService = appEndpointSF
-								.getproadminService();
-						proadminService
-								.getAllemp()
-								.then(
-										function(empList) {
-											$scope.user11 = empList.items;
-											for (i = 0; i < $scope.user11.length; i++) {
-												if ($scope.user11[i].email_id == emailid) {
+				
+						var UserService = appEndpointSF	.getUserService();
+						UserService.isUserExists(emailid).then(function(responce) {
+											if (responce.result.returnBool== true) {
 													$scope.userexists = "user already exists"
+														$scope.user.firstName="";
+													$scope.user.lastName="";
 													angular
 															.element(document
 																	.getElementById('fname'))[0].disabled = true;
 													angular
 															.element(document
 																	.getElementById('lname'))[0].disabled = true;
-													break;
-
 												} else {
 													$scope.userexists = "";
 													angular
@@ -166,9 +161,10 @@ angular
 													angular
 															.element(document
 																	.getElementById('lname'))[0].disabled = false;
+													
 
 												}
-											}
+											
 										});
 
 					}

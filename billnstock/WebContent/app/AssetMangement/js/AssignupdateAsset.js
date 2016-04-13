@@ -74,7 +74,7 @@ angular
 							$scope.getAllemps();
 						} else {
 							$log.debug("Services Not Loaded, watiting...");
-							$timeout($scope.waitForServiceLoad, 1000);
+							$timeout($scope.waitForServiceLoad1, 1000);
 						}
 					}
 					$scope.waitForServiceLoad1();
@@ -138,7 +138,7 @@ angular
 							$scope.getselectedassetdetail();
 						} else {
 							$log.debug("Services Not Loaded, watiting...");
-							$timeout($scope.waitForServiceLoad, 1000);
+							$timeout($scope.waitForServiceLoad2, 1000);
 						}
 					}
 					$scope.waitForServiceLoad2();
@@ -165,7 +165,7 @@ angular
 							loadAll();
 						} else {
 							$log.debug("Services Not Loaded, watiting...");
-							$timeout($scope.waitForServiceLoad, 2000);
+							$timeout($scope.waitForServiceLoad3, 2000);
 						}
 					}
 					$scope.waitForServiceLoad3();

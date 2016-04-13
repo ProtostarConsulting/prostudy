@@ -2,7 +2,40 @@
 <md-content layout-padding>
 <form name="contactform">
 
+		
+		
 	<div id="addField">
+	
+	
+<div layout="column" >
+			<div layout-gt-sm="row">
+			<md-autocomplete flex required
+				md-input-name="autocompleteField"
+				md-input-minlength="2"
+				md-input-maxlength="18"
+				md-no-cache=true
+				md-selected-item="contact.customer"
+				md-search-text="searchText"
+				md-items="item in querySearch(searchText)"
+				md-item-text="item.companyName"
+				md-floating-label="Select Reference Company Customer">
+					<md-item-template>
+						<span md-highlight-text="searchText">{{item.companyName}}</span>
+					</md-item-template>
+					<div ng-messages="contactform.autocompleteField.$error" ng-if="contactform.autocompleteField.$touched">
+						<div ng-message="required">
+							You <b>must</b> have a favorite state.
+						</div>
+						<div ng-message="minlength">
+							Your entry is not long enough.
+						</div>
+						<div ng-message="maxlength">
+							Your entry is too long.
+						</div>
+					</div>
+				</md-autocomplete>
+			</div>
+</div>
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>First
 				Name <span style="color: red;">*</span>
@@ -41,7 +74,7 @@
 				ng-if="contactform.phone.$submitted || contactform.phone.$touched">
 				<div ng-message="required">Please Enter phone Number.</div>
 			</div>
-			<span class="help-block"
+			<span class="help-block"style="color: red;"
 				ng-show="((contactform.phone.$error.minlength || contactform.phone.$error.maxlength) && contactform.phone.$dirty) ">Mobile
 				Number should be 10 digits(Example.:0123456789)</span> </md-input-container>
 		</div>

@@ -172,6 +172,15 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
+	
+	UserService.isUserExists = function(emailid) {
+		var deferred = $q.defer();
+		gapi.client.userService.isUserExists({'email_id':emailid}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
 
 	/*UserService.addNewBusiness = function(business) {
 		var deferred = $q.defer();
@@ -605,6 +614,16 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
+	
+	hrService.getAllcompany= function(id) {
+		var deferred = $q.defer();
+		gapi.client.hrService.getAllcompany({'id' : id}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
+	
 	// ------------------------- CRM ---------------------------------
 	var crmService = {};
 
