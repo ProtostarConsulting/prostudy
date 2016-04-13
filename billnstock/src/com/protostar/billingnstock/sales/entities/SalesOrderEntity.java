@@ -11,13 +11,11 @@ import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.tax.entities.TaxEntity;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
+import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
-public class SalesOrderEntity {
+public class SalesOrderEntity extends BaseEntity {
 
-	@Id
-	@Index
-	private Long id;
 	private String customerRefId ;
 	private Date quotationDate ;
 	private Date salesOrderDate ;
@@ -72,44 +70,12 @@ public class SalesOrderEntity {
 		this.customer = Ref.create(customer);
 	}
 	
-
-	
 	public TaxEntity getSelectedTaxItem() {
 		return selectedTaxItem.get();
 	}
 	public void setSelectedTaxItem(TaxEntity selectedTaxItem) {
 		this.selectedTaxItem = Ref.create(selectedTaxItem);
-	}
-
-	
-	
-/*	private List<SelectedTaxEntity> selectedTaxItem;
-		
-	public List<SelectedTaxEntity> getSelectedTaxItem() {
-		return selectedTaxItem;
-	}
-	public void setSelectedTaxItem(List<SelectedTaxEntity> selectedTaxItem) {
-		this.selectedTaxItem = selectedTaxItem;
-	}
-*/
-	@Index	
-	Ref<BusinessEntity> business;
-	
-	public BusinessEntity getBusiness() {
-		return business.get();
-	}
-
-	public void setBusiness(BusinessEntity business) {
-		this.business = Ref.create(business);
-	}
-	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
+	}	
 	public String getCustomerRefId() {
 		return customerRefId;
 	}
