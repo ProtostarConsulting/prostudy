@@ -46,6 +46,7 @@ public class StudSubService {
 	 }	
 	@ApiMethod(name = "removeStudSubject", path="removeStudSubject")
 	public void removeStudSubject(StudSubEntity studsub) {
+		System.out.println("studsud@ ####"+studsub);		
 		Key<StudSubEntity> now = ofy().save().entity(studsub).now();
 	}
 	

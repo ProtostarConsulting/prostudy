@@ -3,6 +3,7 @@ package com.protostar.prostudy.service;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -11,11 +12,10 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
-import com.protostar.prostudy.entity.ChapterEntity;
 import com.protostar.prostudy.entity.RoleSecEntity;
 import com.protostar.prostudy.entity.StudSubEntity;
-import com.protostar.prostudy.entity.SubjectEntity;
 import com.protostar.prostudy.entity.UserEntity;
+import com.protostar.prostudy.until.data.ServerMsg;
 import com.protostar.prostudy.until.data.UtilityService;
 
 @Api(name = "userService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
@@ -30,7 +30,6 @@ public class UserService {
 		ofy().save().entity(usr).now();
 		System.out.println("now_user :" + now);
 		return now;
-
 	}
 
 	@ApiMethod(name = "updateUser")
@@ -49,6 +48,21 @@ public class UserService {
 				.filter("email_id", email).list();
 		return (list == null || list.size() == 0) ? null : list.get(0);
 	}
+
+	@ApiMethod(name="checkUserAlreadyExist")
+	 public ServerMsg checkUserAlreadyExist(@Named("email_id") String email_id) 
+	 {   
+	  ServerMsg serverMsg = new ServerMsg();
+	  List<UserEntity> list = ofy().load().type(UserEntity.class).filter("email_id", email_id).list();
+	 
+	  if(list == null || list.size()== 0)
+	  {	serverMsg.setBool(false); }
+	  else
+	  { serverMsg.setBool(true); }	
+	  
+	  return serverMsg;	 
+	 }
+	
 	
 	@ApiMethod(name = "getUserByRole",path="getUserByRole")
 	public List<UserEntity> getUserByRole(@Named("role") String role, @Named("instituteID") Long instituteID) {
@@ -86,9 +100,7 @@ public class UserService {
 		} else {
 			System.out.println("foundUser:" + foundUser);
 			return null;
-
 		}
-
 	}
 
 	@ApiMethod(name = "getUserByClass", path = "getUserByClass")
@@ -134,10 +146,13 @@ public class UserService {
 		}
 	   Map<Long, UserEntity> ids = ofy().load().type(UserEntity.class).ids(studIds.toArray(new Long[studIds.size()]));
 	   
-	   List<UserEntity> outPutList = new ArrayList<UserEntity>();
-		for(UserEntity stud: ids.values()){
-			outPutList.add(stud);
-		}
+	   Collection<UserEntity> values = ids.values();
+	   List<UserEntity> outPutList;
+	   if (values instanceof List)
+		   outPutList = (List)values;
+	   else
+		   outPutList = new ArrayList(values);
+	   
 	   return outPutList;
 	  
 	 }
