@@ -491,7 +491,21 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
-
+	
+	AttendanceService.getAttendanceByClass = function(instituteID,standard,division,subject) {
+		var deferred = $q.defer();
+		gapi.client.attendanceService.getAttendanceByClass({
+			'instituteID' : instituteID,
+			'standard' : standard,
+			'division' : division,
+			'subject' : subject	
+		}).execute(function(resp) {
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
+	
 	// End of AttendanceService
 
 	var ChapterService = {};
