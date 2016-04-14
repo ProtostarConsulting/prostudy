@@ -19,19 +19,37 @@ public class AttendanceService {
 	public void addAttendance(AttendanceEntity attendance) {
 		Key<AttendanceEntity> now = ofy().save().entity(attendance).now();
 	}
-	
+
 	@ApiMethod(name = "getAttendance")
 	public List<AttendanceEntity> getAttendance() {
 		return ofy().load().type(AttendanceEntity.class).list();
 	}
-	
+
 	@ApiMethod(name = "getAttendanceByInstitute")
-	 public List<AttendanceEntity> getAttendanceByInstitute(@Named("instituteID") Long instituteID) {
-		System.out.println("inside getAttendanceByInstitute");
-	  List<AttendanceEntity> attendanceList = ofy().load().type(AttendanceEntity.class).filter("instituteID", instituteID).list();
-	  return attendanceList;
-	  
-	 }
-	
+	public List<AttendanceEntity> getAttendanceByInstitute(
+			@Named("instituteID") Long instituteID) {
+
+		List<AttendanceEntity> attendanceList = ofy().load()
+				.type(AttendanceEntity.class)
+				.filter("instituteID", instituteID).list();
+		return attendanceList;
+
+	}
+
+	@ApiMethod(name = "getAttendanceByClass")
+	public List<AttendanceEntity> getAttendanceByClass(
+			@Named("instituteID") Long instituteID,
+			@Named("standard") String standard,
+			@Named("division") String division, @Named("subject") String subject) {
+
+		List<AttendanceEntity> attendanceList = ofy().load()
+				.type(AttendanceEntity.class)
+				.filter("instituteID", instituteID)
+				.filter("standard" , standard)
+				.filter("division", division)
+				.filter("subject" , subject).list();
+		return attendanceList;
+
+	}
 
 }
