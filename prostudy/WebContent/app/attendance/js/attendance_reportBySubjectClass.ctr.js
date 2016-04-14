@@ -13,6 +13,7 @@ angular
 					$scope.standards = [];
 					$scope.divisions = []; 
 					$scope.subjects = []; 
+					 $scope.newList = [];
 					
 					$scope.selectedStdID;
 					$scope.stdList;
@@ -96,8 +97,6 @@ angular
 					}
 					
 					
-					
-				
 					$scope.getAttendanceByClass = function() {
 
 						var AttendanceService = appEndpointSF.getAttendanceService();
@@ -105,6 +104,19 @@ angular
 								.then(
 										function(students) {
 											$scope.studentList = students;
+											
+											 for(var i=0; i<$scope.studentList.length; i++){
+										           $scope.isDistinct = false;
+										            for(var j=0; j<i; j++){
+										                if($scope.studentList[i].studID == $scope.studentList[j].studID){
+										                	$scope.isDistinct = true;
+										                    break;
+										                }
+										            }
+										            if(!$scope.isDistinct){
+										                $scope.newList.push($scope.studentList[i]);
+										            }
+										        }
 											
 											totalStudents = $scope.studentList.length;
 											for (var i = 0; i < $scope.studentList.length; i++) {
@@ -177,6 +189,7 @@ angular
 							$scope.selectedStandard = "";
 							$scope.selectedDivision = "";
 							$scope.selectedSubject = "";
+							$scope.newList.length = 0;
 							$scope.studentList.splice(0,$scope.studentList.length);
 							$scope.newPresentCount = 0;
 							$scope.newAbsentCount = 0;

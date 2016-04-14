@@ -69,7 +69,7 @@
 					class="mandatory">*</span></label><md-select name="student"
 					ng-model="selectedStud"
 					ng-change="getStudent()" ng-required="true"> <md-option ng-value="student"
-					ng-repeat="student in studentList">{{student.firstName}}{{student.lastName}}</md-option>
+					ng-repeat="student in newList">{{student.firstName}} {{student.lastName}}</md-option>
 				</md-select> <div ng-messages="attendanceReportStudentForm.student.$error"
 					ng-if="attendanceReportStudentForm.student.$submitted || attendanceReportStudentForm.student.$touched">
 					<div ng-message="required">Please Select Student.</div>

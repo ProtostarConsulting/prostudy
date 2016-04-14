@@ -70,7 +70,7 @@
 					</thead>
 					<tbody>
 						<tr md-auto-select
-							ng-repeat="item in studentList | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+							ng-repeat="item in newList | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
 							<td>{{item.firstName}} {{item.lastName}}</td>
 							<td>{{item.attendance}}</td>
 

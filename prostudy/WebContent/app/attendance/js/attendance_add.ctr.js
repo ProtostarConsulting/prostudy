@@ -42,10 +42,8 @@ angular
 
 					$scope.getStandardByInstitute = function() {
 						
-						var StandardService = appEndpointSF
-								.getStandardService();
-						StandardService
-								.getStandardByInstitute(
+						var StandardService = appEndpointSF.getStandardService();
+						StandardService.getStandardByInstitute(
 										$scope.curUser.instituteID)
 								.then(
 										function(standardList) {
@@ -120,11 +118,20 @@ angular
 						UserService.getStudentsBySubjectID($scope.subID).then(function(studentList) {
 									$scope.studArray = studentList;
 									
+									if($scope.studArray.length == 0)
+										{
+											alert("No Information to display please select proper data");
+											$scope.selectedStandard = "";
+											$scope.selectedDivision = "";
+											$scope.selectedSubject = "";
+											
+										}
+									
 									for (var i = 0; i < $scope.studArray.length; i++) 
 									 {
 										 $scope.attendanceRecordList.push($scope.getAttendanceRecord($scope.studArray[i].id,$scope.studArray[i].firstName,$scope.studArray[i].lastName));
 										 
-									  }
+									 }
 								
 								});
 						

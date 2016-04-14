@@ -62,7 +62,7 @@
 			<div layout="row" layout-sm="column" layout-align="center center" layout-sm="column">
 				<md-button
 					ng-repeat="attendanceRecord in attendanceRecordList track by $index"
-					type="button" ng-class="getButtonClass(attendanceRecord.studID)" ng-model="selectedStud"
+					type="button" class="md-raised md-primary" ng-model="selectedStud"
 					ng-click="toggleAttendance($index)">{{attendanceRecord.studID}}</md-button>
 
 			</div>
