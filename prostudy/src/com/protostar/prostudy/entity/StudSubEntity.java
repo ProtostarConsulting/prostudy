@@ -18,16 +18,17 @@ public class StudSubEntity {
 	private Ref<SubjectEntity> subID;
 	
 	@Index
-	private boolean active;
+	private Boolean active;
 
-	public boolean isActive() {
+	public Boolean getActive() {
 		return active;
 	}
 
-	public void setActive(boolean active) {
+	public void setActive(Boolean active) {
 		this.active = active;
 	}
 
+	
 	public UserEntity getStudID() {
 		return studID.get();
 	}
