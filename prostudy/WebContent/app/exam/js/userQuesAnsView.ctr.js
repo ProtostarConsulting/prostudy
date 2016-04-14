@@ -71,37 +71,9 @@ angular
 			 							});
 					}
 					
+					$scope.getPracticeExamResultbyID();
+					$scope.showselectedExam();
 					
-
-					$scope.isUserSelection = function(index, currOption) {
-
-						$scope.currOption = 'option'+currOption;
-						$scope.getPracticeExamResultbyID();
-						$scope.showselectedExam();
-						
-						$scope.currentQ = $scope.Test.questions[index];
-						$scope.userOption = $scope.examResults.userAns[index].userOption 
-						
-						if ($scope.userOption == $scope.currOption)
-							return true;
-						else
-							return false;
-
-					}
-
-					$scope.isAnsCorrect = function(index, currOption) {
-
-						
-						var currentQ = $scope.Test.questions[index];
-
-						if (currentQ.correctAns == currOption)
-							return true;
-						else
-							return false;
-
-					}
-
 					
-
-				});
+			});
 
