@@ -59,7 +59,21 @@ angular.module("prostudyApp").controller(
 									
 								});
 			}
-			$scope.getStudentsByInstitute();
+			
+			
+			$scope.waitForServiceLoad = function() {
+				  if (appEndpointSF.is_service_ready) {
+					  //give call to your services
+					  $scope.getStudentsByInstitute();
+				  } else {
+				    $log.debug("Services Not Loaded, watiting...");
+				   	$timeout($scope.waitForServiceLoad, 1000);
+				  }
+				 }
+				 
+
+			$scope.waitForServiceLoad();
+			
 			
 			
 		});
