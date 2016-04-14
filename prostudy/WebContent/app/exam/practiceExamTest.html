@@ -20,8 +20,11 @@
 		</div>
 
 	</div>
+	
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
 
-	<div layout="row" layout-sm="column" layout-wrap>
+	<div layout="row" layout-xs="column" layout-wrap>
 		<div flex="50" ng-repeat="item in array">
 			<div>
 				<md-content flex layout-padding> <b
@@ -55,25 +58,28 @@
 		</div>
 	</div>
 
-	 <div>selected option:{{selection}}</div> 
+	<p>&nbsp;</p>
 
 	<div layout-sm="column">
 		<div layout="row" layout-align="center end">
 			<div layout="row">
 				<div layout-align="start end" ng-init="isDisabled = false">
-					<md-button class="md-raised md-primary"
-						ng-disabled="isDisabledPrevious" ng-model="isDisabledPrevious"
-						ng-click="onPrevious()"> Previous </md-button>
+					<md-button ng-disabled="isDisabledPrevious" ng-model="isDisabledPrevious"
+						ng-click="onPrevious()"><ng-md-icon
+						icon="skip_previous"></ng-md-icon> </md-button>
 				</div>
 
 				<div layout-align="start end">
-					<md-button class="md-raised md-primary"
-						ng-disabled="isDisabledNext" ng-model="isDisabledNext"
-						ng-click="onNext()"> Next </md-button>
+					<md-button ng-disabled="isDisabledNext" ng-model="isDisabledNext"
+						ng-click="onNext()"><ng-md-icon
+						icon="skip_next"></ng-md-icon>  </md-button>
 
 				</div>
 			</div>
 		</div>
+		
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
 
 		<div layout="row" layout-align="center end">
 			<md-button class="md-raised md-primary" ng-click="checkAnswer()">submit</md-button>
