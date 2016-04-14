@@ -295,6 +295,8 @@ angular
 						
 						
 					}
+					
+					
 
 					$scope.getPracticeExamResultbyEmail();
 
