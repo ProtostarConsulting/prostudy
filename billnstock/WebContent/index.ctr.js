@@ -45,6 +45,7 @@ angular
 						lastName : "",
 						password : "",
 						isGoogleUser : true,
+						theme : "",
 						authority : []
 					}
 
@@ -60,10 +61,25 @@ angular
 														.getLocalUserService()
 														.saveLoggedInUser(
 																result.result);
-												$scope.curUser = result.result;
-												// $scope.businessName =
-												// $scope.curUser.business.businessName;
-												$window.location.reload();
+												// $scope.curUser =
+												// result.result;
+												// $window.location.reload();
+
+												$log
+														.debug("#### Now without reload.......");
+
+												$scope
+														.$emit(
+																'customLoginEvent',
+																{
+																	curUser : result.result
+																});
+												$scope
+														.$broadcast(
+																'customLoginEvent',
+																{
+																	curUser : result.result
+																});
 												$state.go("home");
 
 											} else {
@@ -71,8 +87,15 @@ angular
 														+ $scope.user.email_id);
 												$scope.loginMsg = "Authontication failed. username password not correct";
 											}
+
 										});
 					}
+
+					$scope.$on('customLoginEvent', function(event, args) {
+						$log.debug("In side customLogin");
+						$scope.curUser = args.curUser;
+						//$scope.theme = $scope.curUser.business.theme;
+					});
 
 					$scope
 							.$on(
@@ -145,6 +168,8 @@ angular
 																return;
 															}
 
+														//	$scope.theme = $scope.curUser.business.theme;
+
 															var auth = $scope.curUser.authority;
 															$scope.test = $scope.curUser.email_id;
 															$scope.eid = $scope.test
@@ -161,7 +186,6 @@ angular
 																			.push($scope.eid);
 																}
 
-														    
 														});
 
 										$log
@@ -243,13 +267,17 @@ angular
 					$scope.initGAPI();
 
 					$scope.theme = 'default';
-
+					if($scope.curUser!=undefined || $scope.curUser !==null){
+					$scope.theme = $scope.curUser.business.theme;
+					}
+					
 					$scope.themeList = [ 'default', 'red', 'pink', 'purple',
 							'deep-purple', 'indigo', 'blue', 'light-blue',
 							'cyan', 'teal', 'green', 'light-green', 'lime',
 							'yellow', 'amber', 'orange', 'deep-orange',
 							'brown', 'grey', 'blue-grey' ];
-					$scope.nextTheme = function(themeName) {
+
+					$scope.changeTheme = function(themeName) {
 						$scope.theme = themeName
 					}
 
