@@ -71,6 +71,7 @@ angular
 									}
 									$scope.divList = divisionList;
 								});
+						$scope.divisions.splice(0,$scope.divisions.length);
 					}
 					
 					$scope.getSubjectByDivision = function() {
@@ -97,38 +98,22 @@ angular
 					
 					
 				
-					$scope.getAttendanceByInstitute = function() {
+					$scope.getAttendanceByClass = function() {
 
-						var AttendanceService = appEndpointSF
-								.getAttendanceService();
-						AttendanceService
-								.getAttendanceByInstitute($scope.curUser.instituteID)
+						var AttendanceService = appEndpointSF.getAttendanceService();
+						AttendanceService.getAttendanceByClass($scope.curUser.instituteID,$scope.selectedStandard,$scope.selectedDivision,$scope.selectedSubject)
 								.then(
 										function(students) {
 											$scope.studentList = students;
-											$log.debug("$scope.studentList :"+angular.toJson($scope.studentList));
+											
+											totalStudents = $scope.studentList.length;
 											for (var i = 0; i < $scope.studentList.length; i++) {
-												
-													if ($scope.studentList[i].standard == $scope.selectedStandard) {
-														if($scope.studentList[i].division == $scope.selectedDivision){
-															if($scope.studentList[i].subject == $scope.selectedSubject){
-																
-																$scope.newStudList.push($scope.studentList[i]);
-																}
-															
-														}
-													}
-
-												}
-									
-											totalStudents = $scope.newStudList.length;
-											for (var i = 0; i < $scope.newStudList.length; i++) {
-												if ($scope.newStudList[i].attendance == true) {
-													$scope.present = $scope.newStudList[i];
+												if ($scope.studentList[i].attendance == true) {
+													$scope.present = $scope.studentList[i];
 													presentCount++;
 
 												} else {
-													$scope.absent = $scope.newStudList[i];
+													$scope.absent = $scope.studentList[i];
 													absentCount++;
 
 												}
@@ -139,13 +124,7 @@ angular
 											
 										});
 
-					/*	$scope.show = function() {
-							$state.go('attendance.reportDisplay', {
-								sourceSate : "attendance.report",
-								newPresentCount : newPresentCount,
-								newAbsentCount : newAbsentCount
-							});
-						};*/
+					
 					}
 					
 					
@@ -198,7 +177,7 @@ angular
 							$scope.selectedStandard = "";
 							$scope.selectedDivision = "";
 							$scope.selectedSubject = "";
-							$scope.newStudList.splice(0,$scope.newStudList.length);
+							$scope.studentList.splice(0,$scope.studentList.length);
 							$scope.newPresentCount = 0;
 							$scope.newAbsentCount = 0;
 							presentCount = 0;

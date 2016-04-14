@@ -33,7 +33,6 @@ angular
 					var totalCount;
 					$scope.newPresentCount = 0;
 					$scope.newAbsentCount = 0;
-					$scope.newStudList = [];
 					
 					$scope.allDates = [];
 					$scope.attendanceRecord = [];
@@ -69,8 +68,7 @@ angular
 								$scope.selectedStdID = $scope.stdList[i].id;
 							}
 						}
-						var DivisionService = appEndpointSF
-								.getDivisionService();
+						var DivisionService = appEndpointSF.getDivisionService();
 						DivisionService.getDivisionByStandard($scope.selectedStdID).then(
 								function(divisionList) {
 									for(var i=0; i< divisionList.length; i++)
@@ -79,6 +77,7 @@ angular
 									}
 									$scope.divList = divisionList;
 								});
+						$scope.divisions.splice(0,$scope.divisions.length);
 					}
 					
 					$scope.getSubjectByDivision = function() {
@@ -143,25 +142,11 @@ angular
 
 					$scope.getSelectedStudents = function() {
 
-						var AttendanceService = appEndpointSF
-								.getAttendanceService();
-						AttendanceService
-								.getAttendanceByInstitute($scope.curUser.instituteID)
+						var AttendanceService = appEndpointSF.getAttendanceService();
+						AttendanceService.getAttendanceByClass($scope.curUser.instituteID,$scope.selectedStandard,$scope.selectedDivision,$scope.selectedSubject)
 								.then(
 										function(students) {
 											$scope.studentList = students;
-											$log.debug("$scope.studentList :"+$scope.studentList.length);
-											for(var i=0;i<$scope.studentList.length;i++)
-											{
-												if($scope.selectedStandard == $scope.studentList[i].standard)
-												{
-													if($scope.selectedSubject == $scope.studentList[i].subject)
-													{
-														$scope.newStudList.push($scope.studentList[i])
-													}
-												}
-											}
-										
 											
 										});
 						$scope.getAllDates();
@@ -169,11 +154,11 @@ angular
 					
 					$scope.getStudent = function()
 					{
-						for(var j=0;j<$scope.newStudList.length;j++)
+						for(var j=0;j<$scope.studentList.length;j++)
 							{
-								if($scope.selectedStud.studID == $scope.newStudList[j].studID)
+								if($scope.selectedStud.studID == $scope.studentList[j].studID)
 								{
-									$scope.newSelectedStudent.push($scope.newStudList[j]);
+									$scope.newSelectedStudent.push($scope.studentList[j]);
 								
 								}
 							}

@@ -7,7 +7,7 @@
 		<form name="attendanceReportStudentForm"
 			ng-model="attendanceReportStudentForm">
 
-			<div layout="column" layout-align="center center" layout-sm="column">
+			<!-- <div layout="column" layout-align="center center" layout-sm="column">
 
 				<div>
 					From date :
@@ -21,7 +21,7 @@
 						md-placeholder="Enter date" required></md-datepicker>
 				</div>
 			</div>
-
+ -->
 			<div layout="column">
 				<md-input-container> <label>Standard<span
 					style="color: red"
@@ -69,7 +69,7 @@
 					class="mandatory">*</span></label><md-select name="student"
 					ng-model="selectedStud"
 					ng-change="getStudent()" ng-required="true"> <md-option ng-value="student"
-					ng-repeat="student in newStudList">{{student.firstName}}{{student.lastName}}</md-option>
+					ng-repeat="student in studentList">{{student.firstName}}{{student.lastName}}</md-option>
 				</md-select> <div ng-messages="attendanceReportStudentForm.student.$error"
 					ng-if="attendanceReportStudentForm.student.$submitted || attendanceReportStudentForm.student.$touched">
 					<div ng-message="required">Please Select Student.</div>
@@ -92,7 +92,7 @@
 				<table md-data-table class="md-primary" md-progress="deferred">
 					<thead md-order="query.order" md-trigger="onorderchange">
 						<tr>
-							<th order-by="studID" name="ID" unit=""></th>
+							<th order-by="firstName" name="Name" unit=""></th>
 							<th order-by="attendance" name="Attendance"></th>
 
 
@@ -101,7 +101,7 @@
 					<tbody>
 						<tr md-auto-select
 							ng-repeat="item in newSelectedStudent | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
-							<td>{{item.studID}}</td>
+							<td>{{item.firstName}} {{item.lastName}}</td>
 							<td>{{item.attendance}}</td>
 
 						</tr>

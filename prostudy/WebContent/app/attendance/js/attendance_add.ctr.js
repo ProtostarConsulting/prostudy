@@ -41,7 +41,7 @@ angular
 					$scope.lastName;
 
 					$scope.getStandardByInstitute = function() {
-
+						
 						var StandardService = appEndpointSF
 								.getStandardService();
 						StandardService
@@ -50,8 +50,7 @@ angular
 								.then(
 										function(standardList) {
 											for (var i = 0; i < standardList.length; i++) {
-												$scope.standards
-														.push(standardList[i].name);
+												$scope.standards.push(standardList[i].name);
 
 											}
 											$scope.stdList = standardList;
@@ -62,7 +61,7 @@ angular
 					$scope.getStandardByInstitute();
 
 					$scope.getDivisionByStandard = function() {
-
+						
 						for (var i = 0; i < $scope.stdList.length; i++) {
 							if ($scope.selectedStandard == $scope.stdList[i].name) {
 								$scope.selectedStdID = $scope.stdList[i].id;
@@ -80,10 +79,12 @@ angular
 											}
 											$scope.divList = divisionList;
 										});
+						
+						$scope.divisions.splice(0, $scope.divisions.length);
 					}
 
 					$scope.getSubjectByDivision = function() {
-
+						
 						for (var i = 0; i < $scope.divList.length; i++) {
 							if ($scope.selectedDivision == $scope.divList[i].name) {
 								$scope.selectedDivID = $scope.divList[i].id;
@@ -102,46 +103,40 @@ angular
 
 										});
 						$scope.subjects.splice(0, $scope.subjects.length);
+						
 					}
 					
 					
 					$scope.getStudentBySubject = function() {
-						$log.debug("$scope.newSubList :"+angular.toJson($scope.newSubList));
-
+						
+						$scope.attendanceRecordList.length = 0;
 						for (i = 0; i < $scope.newSubList.length; i++) {
 							if ($scope.selectedSubject == $scope.newSubList[i].name) {
 								$scope.subID = $scope.newSubList[i].id;
 							}
 						}
 
-						var StudSubService = appEndpointSF.getStudSubService();
-						StudSubService.getStudentBySubject($scope.subID).then(
-								function(studentList) {
-									$scope.newStudents = studentList;
-									for(i=0;i<$scope.newStudents.length;i++)
-										{
-											$scope.studArray.push($scope.newStudents[i].studID);
-										}
+						var UserService = appEndpointSF.getUserService();
+						UserService.getStudentsBySubjectID($scope.subID).then(function(studentList) {
+									$scope.studArray = studentList;
 									
 									for (var i = 0; i < $scope.studArray.length; i++) 
 									 {
-										 $scope.attendanceRecordList.push($scope.getAttendanceRecord($scope.studArray[i].id));
-										 $scope.firstName = $scope.studArray[i].firstName;
-										 $scope.lastName = $scope.studArray[i].lastName;
-									   }
+										 $scope.attendanceRecordList.push($scope.getAttendanceRecord($scope.studArray[i].id,$scope.studArray[i].firstName,$scope.studArray[i].lastName));
+										 
+									  }
 								
 								});
+						
 					}
 
-				
-				
-					$scope.getAttendanceRecord = function(studID) {
+					$scope.getAttendanceRecord = function(studID,firstName,lastName) {
 
 						return {
 							studID : studID,
 							instituteID : $scope.curUser.instituteID,
-							firstName : $scope.firstName,
-							lastName : $scope.lastName,
+							firstName : firstName,
+							lastName : lastName,
 							standard : $scope.selectedStandard,
 							division : $scope.selectedDivision,
 							subject : $scope.selectedSubject,
@@ -187,5 +182,7 @@ angular
 					$scope.cancel = function() {
 						$state.go('attendance');
 					}
+					
+					
 
 				});
