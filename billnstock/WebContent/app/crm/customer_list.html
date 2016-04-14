@@ -1,13 +1,12 @@
 
-<md-content layout-padding>
-<!-- <h3>
+<md-content layout-padding> <!-- <h3>
 	<u>Customer List</u>
 </h3> -->
-	<div >
-<section layout="row" layout-align="end end" flex>
-	<md-button class="md-raised md-primary"
-	ui-sref="crm.addcustomer">ADD NEW CUSTOMER</md-button>
-</section>
+<div>
+	<section layout="row" layout-align="end end" flex>
+		<md-button class="md-raised md-primary" ui-sref="crm.addcustomer">ADD
+		NEW CUSTOMER</md-button>
+	</section>
 </div>
 
 <div layout layout-sm="column">
@@ -21,9 +20,9 @@
 		<thead md-order="query.order" md-trigger="onOrderChange">
 			<tr>
 				<th name="Customer Name" order-by="firstName"></th>
-				<th name="Mobile" order-by="mobile"></th>
+				<th name="Type"></th>
+				<th name="Mobile" order-by="mobile"></th>				
 				<th name="Email"></th>
-				
 				<th name="Action"></th>
 			</tr>
 		</thead>
@@ -31,32 +30,35 @@
 		<tbody>
 			<tr md-auto-select
 				ng-repeat="customer in customers | orderBy: query.order | filter: searchText | limitTo: query.limit: (query.page - 1) * query.limit">
-				<td>{{customer.firstName}}</td>
+				<td>{{customer.isCompany? customer.companyName:
+					(customer.firstName + " " + customer.lastName)}}</td>
+				<td>{{customer.isCompany?"Firm":"Person"}}</td>
 				<td>{{customer.mobile}}</td>
 				<td>{{customer.email}}</td>
 				<td><section layout="row" layout-sm="column">
-						<md-button class="md-raised md-primary" 
+						<md-button class="md-raised md-primary"
 							ui-sref="crm.addcustomer({selectedCustomerId: customer.id})">
 						Edit</md-button>
-					</section> <md-button id="invoiceBtn" class="md-raised md-primary" ng-hide="true" ng-show="selected.length == 1"
-						ui-sref="crm.customerInvoiceList({selectedCustomerId: customer.id})">Invoice</md-button>
-
-					<md-button id="sOBtn" class="md-raised md-primary" ng-hide="true" ng-show="selected.length == 1"
-						ui-sref="crm.customerSOList({selectedCustomerId: customer.id})">SO
-					</md-button></td>
+					</section> </td>
 				<td>
 			</tr>
 		</tbody>
 	</table>
-	<!-- 		<md-data-table-toolbar class="alternate" ng-show="selected.length">
-			<div>
-				{{selected.length}} {{selected.length > 1 ? 'stockData' : 'stock'}} selected
-			</div>
-			<div>
-				{{selected}}
-			</div>
-		</md-data-table-toolbar>
- --> <md-data-table-pagination md-limit="query.limit"
+	
+<div  ng-show="selected.length == 1">
+<!-- use to show so and po -->
+
+
+<!-- 	<md-button id="invoiceBtn" class="md-raised md-primary"						
+						ui-sref="crm.customerInvoiceList({selectedCustomerId: customer.id})">Invoice</md-button>
+
+					<md-button id="sOBtn" class="md-raised md-primary" 					
+						ui-sref="crm.customerSOList({selectedCustomerId: customer.id})">SO
+					</md-button> -->
+					
+	</div>
+	
+	<md-data-table-pagination md-limit="query.limit"
 		md-page="query.page" md-total={{customers.length}}
 		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
 </div>

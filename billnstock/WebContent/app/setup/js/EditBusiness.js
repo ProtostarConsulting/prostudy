@@ -48,7 +48,6 @@ angular
 					
 					$scope.updateBusiness = function() {
 						var setupService = appEndpointSF.getsetupService();
-						var UserService = appEndpointSF.getUserService();
 						setupService
 								.updateBusiness($scope.business)
 								.then(function(msgBean) {

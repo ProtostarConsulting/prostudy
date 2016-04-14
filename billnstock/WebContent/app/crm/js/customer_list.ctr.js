@@ -23,7 +23,7 @@ app.controller("customerListCtr", function($scope, $window, $mdToast, $timeout,
 				$scope.curUser.business.id).then(
 				function(custList) {
 					$log.debug("Inside Ctr getAllCustomers");
-					$scope.customers = custList.items;
+					$scope.customers = custList.items;					
 					$log.debug("Inside Ctr $scope.customers:"
 							+ angular.toJson($scope.customers));
 				});

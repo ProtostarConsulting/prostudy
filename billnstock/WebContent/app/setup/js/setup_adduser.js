@@ -14,56 +14,55 @@ angular
 					$scope.businessNo = $stateParams.businessNo;
 					$scope.id;
 
-					$scope.items = [ "customer","account", "stock", "salesOrder", "purchaseOrder", "invoice",
-							 "warehouse", "hr", "crm", "employee",
-							"admin" ];
+					$scope.items = [ "customer", "account", "stock",
+							"salesOrder", "purchaseOrder", "invoice",
+							"warehouse", "hr", "crm", "employee", "admin" ];
 					$scope.selection = [];
 
-					$scope.curuser = appEndpointSF.getLocalUserService().getLoggedinUser();
-					
+					$scope.curuser = appEndpointSF.getLocalUserService()
+							.getLoggedinUser();
+
 					// use to set all item false to set
 					for ( var item in $scope.items) {
-						$scope.selection
-								.push($scope.curuser.authority[0]
-										.indexOf(item) > -1);
+						$scope.selection.push($scope.curuser.authority[0]
+								.indexOf(item) > -1);
 					}
-					
-					
-					$scope.getBusinessById=function(){
-						if(typeof $scope.businessNo == "undefined"){
-							$scope.Bid=$scope.curuser.business.id;
-						}else{
-							$scope.Bid=$scope.businessNo;
-						}
-						var UserService = appEndpointSF	.getUserService();
-							UserService.getbusinessById($scope.Bid).then(function(Business) {
-										$scope.business=Business;
-										$scope.id = $scope.business.id;
-										if ($scope.business.accounttype.maxuser == $scope.business.totalUser - 1) {
-											$("#hideSpan").show();
-											$log.debug("#hideSpan");
-										} else {
-											$("#hideSpan").hide();
-											$("#hideDiv").hide();
-										}
 
-					
-								});
-						
+					$scope.getBusinessById = function() {
+						if (typeof $scope.businessNo == "undefined") {
+							$scope.Bid = $scope.curuser.business.id;
+						} else {
+							$scope.Bid = $scope.businessNo;
+						}
+						var UserService = appEndpointSF.getUserService();
+						UserService
+								.getbusinessById($scope.Bid)
+								.then(
+										function(Business) {
+											$scope.business = Business;
+											$scope.id = $scope.business.id;
+											if ($scope.business.accounttype.maxuser == $scope.business.totalUser - 1) {
+												$("#hideSpan").show();
+												$log.debug("#hideSpan");
+											} else {
+												$("#hideSpan").hide();
+												$("#hideDiv").hide();
+											}
+
+										});
+
 					}
-					$scope.business={};
+					$scope.business = {};
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
-										$scope.getBusinessById();
-							} else {
+							$scope.getBusinessById();
+						} else {
 							$log.debug("Services Not Loaded, watiting...");
 							$timeout($scope.waitForServiceLoad, 1000);
 						}
 					}
 					$scope.waitForServiceLoad();
-					
-				
-			
+
 					// set toggled value onclick on check box and push in
 					// selection array only tru or false value
 					$scope.toggleSelection = function toggleSelection(index) {
@@ -89,6 +88,20 @@ angular
 						authority : []
 					}
 
+					$scope.checkDuplicateAndAddUser = function() {
+						var UserService = appEndpointSF.getUserService();
+						UserService
+								.isUserExists(emailid)
+								.then(
+										function(responce) {
+											if (responce.result.returnBool == false) {
+												$scope.adduser();
+											} else {
+												$scope.userexists = "user already exists";
+											}
+										});
+					}
+
 					$scope.adduser = function() {
 						$scope.user.business = $scope.business;
 						// use selection array true false value and push that
@@ -102,8 +115,7 @@ angular
 						var setupService = appEndpointSF.getsetupService();
 						if (typeof $scope.curuser.business.id != 'undefined') {
 							setupService
-									.getAllUserOfOrg(
-											$scope.curuser.business.id)
+									.getAllUserOfOrg($scope.curuser.business.id)
 									.then(
 											function(users) {
 												$scope.userslist = users.items.length;
@@ -130,41 +142,41 @@ angular
 
 						}
 						$scope.addform.$setPristine();
-						  $scope.addform.$setValidity();
-						  $scope.addform.$setUntouched();
-					
+						$scope.addform.$setValidity();
+						$scope.addform.$setUntouched();
+
 					}
 
-			
-				
-					  
-				// -------------------Check email------------------------------------
+					// -------------------Check
+					// email------------------------------------
 					$scope.Checkemail = function(emailid) {
-				
-						var UserService = appEndpointSF	.getUserService();
-						UserService.isUserExists(emailid).then(function(responce) {
-											if (responce.result.returnBool== true) {
-													$scope.userexists = "user already exists"
-														$scope.user.firstName="";
-													$scope.user.lastName="";
-													angular
-															.element(document
-																	.getElementById('fname'))[0].disabled = true;
-													angular
-															.element(document
-																	.getElementById('lname'))[0].disabled = true;
-												} else {
-													$scope.userexists = "";
-													angular
-															.element(document
-																	.getElementById('fname'))[0].disabled = false;
-													angular
-															.element(document
-																	.getElementById('lname'))[0].disabled = false;
-													
 
-												}
-											
+						var UserService = appEndpointSF.getUserService();
+						UserService
+								.isUserExists(emailid)
+								.then(
+										function(responce) {
+											if (responce.result.returnBool == true) {
+												$scope.userexists = "user already exists";
+												$scope.user.firstName = "";
+												$scope.user.lastName = "";
+												angular
+														.element(document
+																.getElementById('fname'))[0].disabled = true;
+												angular
+														.element(document
+																.getElementById('lname'))[0].disabled = true;
+											} else {
+												$scope.userexists = "";
+												angular
+														.element(document
+																.getElementById('fname'))[0].disabled = false;
+												angular
+														.element(document
+																.getElementById('lname'))[0].disabled = false;
+
+											}
+
 										});
 
 					}

@@ -78,7 +78,7 @@ angular
 					$scope.suspendedUsers = [];
 
 					$scope.userslist = [];
-					
+					$scope.activeselected=[];
 
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
@@ -91,6 +91,103 @@ angular
 					}
 					$scope.waitForServiceLoad();
 
+					
+					$scope.selected = [];
+
+					$scope.inactiveUserStatus = function(res) {
+						var inactive = "inactive";
+						var setupService = appEndpointSF.getsetupService();
+						if(res=='active'){
+						$scope.activeselected[0].status = inactive;
+							setupService.updateUserStatus($scope.activeselected[0]).then(
+								function(msgBean) {
+									$scope.showSimpleToast(msgBean.msg);
+									$scope.getAllUserOfOrg();
+								});
+						}else{
+							$scope.suspendselected[0].status = inactive;
+							setupService.updateUserStatus($scope.suspendselected[0]).then(
+									function(msgBean) {
+										$scope.showSimpleToast(msgBean.msg);
+										$scope.getAllUserOfOrg();
+									});
+						}
+					}
+					$scope.suspendUserStatus = function(res) {
+						var suspended = "suspended";
+						var setupService = appEndpointSF.getsetupService();
+						if(res=='active'){
+						$scope.activeselected[0].status = suspended;
+						setupService.updateUserStatus($scope.activeselected[0]).then(
+								function(msgBean) {
+									$scope.showSimpleToast(msgBean.msg);
+									$scope.getAllUserOfOrg();
+								});
+						}else{
+							$scope.inactiveselected[0].status = suspended;
+							setupService.updateUserStatus($scope.inactiveselected[0]).then(
+									function(msgBean) {
+										$scope.showSimpleToast(msgBean.msg);
+										$scope.getAllUserOfOrg();
+									});
+						}
+					}
+					$scope.activeUserStatus = function(res) {
+						var active = "active";
+						var setupService = appEndpointSF.getsetupService();		
+						if(res=='inactive'){		
+						$scope.inactiveselected[0].status = active;
+						setupService.updateUserStatus($scope.inactiveselected[0]).then(
+								function(msgBean) {
+									$scope.showSimpleToast(msgBean.msg);
+									$scope.getAllUserOfOrg();
+								});
+						}else{
+						$scope.suspendselected[0].status = active;
+						setupService.updateUserStatus($scope.suspendselected[0]).then(
+								function(msgBean) {
+									$scope.showSimpleToast(msgBean.msg);
+									$scope.getAllUserOfOrg();
+								});
+						}
+					}
+
+				
+					$scope.changePassword = function(ev) {
+						var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
+								&& $scope.customFullscreen;
+						$mdDialog
+								.show(
+										{
+											controller : DialogController,
+											templateUrl : '/app/profile/changepassword.html',
+											parent : angular
+													.element(document.body),
+											targetEvent : ev,
+											clickOutsideToClose : true,
+											fullscreen : useFullScreen,
+											locals : {
+												curuser : $scope.curuser,
+												user:$scope.activeselected[0]
+								
+											}
+										})
+								.then(
+										function(answer) {
+											$scope.status = 'You said the information was "'
+													+ answer + '".';
+										},
+										function() {
+											$scope.status = 'You cancelled the dialog.';
+										});
+						$scope.updatepass = function() {
+							$log.debug("change pass");
+						}
+						//window.history.back();
+
+					}
+
+			/*		
 					$scope.showAdvanced = function(ev) {
 						var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
 								&& $scope.customFullscreen;
@@ -106,7 +203,7 @@ angular
 											fullscreen : useFullScreen,
 											locals : {
 												curuser : $scope.curuser,
-												user:$scope.selected[0]
+												user:$scope.activeselected[0]
 											}
 										})
 								.then(
@@ -120,7 +217,7 @@ angular
 						$scope.updatepass = function() {
 							$log.debug("change pass");
 						}
-					};
+					};*/
 
 					function DialogController($scope, $mdDialog, curuser,user) {
 
@@ -200,123 +297,5 @@ angular
 						});
 					};
 
-					$scope.selected = [];
-
-					$scope.inactiveUserStatus = function() {
-						var inactive = "inactive"
-						$scope.selected[0].status = inactive;
-						var setupService = appEndpointSF.getsetupService();
-						setupService.updateUserStatus($scope.selected[0]).then(
-								function(msgBean) {
-									$scope.showSimpleToast(msgBean.msg);
-									$scope.getAllUserOfOrg();
-								});
-					}
-					$scope.suspendUserStatus = function() {
-						var suspended = "suspended"
-						$scope.selected[0].status = suspended;
-						var setupService = appEndpointSF.getsetupService();
-						setupService.updateUserStatus($scope.selected[0]).then(
-								function(msgBean) {
-									$scope.showSimpleToast(msgBean.msg);
-									$scope.getAllUserOfOrg();
-								});
-					}
-					$scope.activeUserStatus = function() {
-						var active = "active"
-						$scope.selected[0].status = active;
-						var setupService = appEndpointSF.getsetupService();
-						setupService.updateUserStatus($scope.selected[0]).then(
-								function(msgBean) {
-									$scope.showSimpleToast(msgBean.msg);
-									$scope.getAllUserOfOrg();
-								});
-					}
-
 				
-					$scope.changePassword = function(ev) {
-						var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
-								&& $scope.customFullscreen;
-						$mdDialog
-								.show(
-										{
-											controller : DialogController,
-											templateUrl : '/app/profile/changepassword.html',
-											parent : angular
-													.element(document.body),
-											targetEvent : ev,
-											clickOutsideToClose : true,
-											fullscreen : useFullScreen,
-											locals : {
-												curuser : $scope.curuser,
-												user:$scope.selected[0]
-								
-											}
-										})
-								.then(
-										function(answer) {
-											$scope.status = 'You said the information was "'
-													+ answer + '".';
-										},
-										function() {
-											$scope.status = 'You cancelled the dialog.';
-										});
-						$scope.updatepass = function() {
-							$log.debug("change pass");
-						}
-						//window.history.back();
-
-					}
-
-					$scope.notGoogleUser = function(ev) {
-						// Appending dialog to document.body to cover sidenav in
-						// docs app
-						var confirm = $mdDialog
-								.confirm()
-								.title('Would you like to change psssword?')
-								.textContent(
-										'Choose Alfa-Numeric combination for safe password.')
-								.ariaLabel('Lucky day').targetEvent(ev).ok(
-										'Yes').cancel('No');
-						$mdDialog
-								.show(confirm)
-								.then(
-										function() {
-											$scope.status = 'You decided Yes.';
-
-											var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
-													&& $scope.customFullscreen;
-											$mdDialog
-													.show(
-															{
-																controller : DialogController,
-																templateUrl : '/app/profile/changepassword.html',
-																parent : angular
-																		.element(document.body),
-																targetEvent : ev,
-																clickOutsideToClose : true,
-																fullscreen : useFullScreen,
-																locals : {
-																	curuser : $scope.curuser,
-																	user:$scope.selected[0]
-																}
-															})
-													.then(
-															function(answer) {
-																$scope.status = 'You said the information was "'
-																		+ answer
-																		+ '".';
-															},
-															function() {
-																$scope.status = 'You cancelled the dialog.';
-															});
-											$scope.updatepass = function() {
-												$log.debug("change pass");
-											}
-										//	window.history.back();
-										}, function() {
-											$scope.status = 'You decided No.';
-											//window.history.back();
-										});
-					};
 				});

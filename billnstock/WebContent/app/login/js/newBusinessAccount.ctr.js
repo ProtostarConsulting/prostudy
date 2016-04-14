@@ -88,23 +88,21 @@ angular.module("stockApp").controller(
 //check email already exists
 			
 			$scope.Checkemail=function(emailid){
-				var proadminService = appEndpointSF.getproadminService();
-				proadminService.getAllemp().then(function(empList) {
-					$scope.user11 = empList.items;
-					for(i=0;i<$scope.user11.length;i++){
-					 if ($scope.user11[i].email_id == emailid){
+				
+				var UserService = appEndpointSF	.getUserService();
+				UserService.isUserExists(emailid).then(function(responce) {
+									if (responce.result.returnBool== true) {
 						 $scope.userexists="user already exists"
 							 angular.element(document.getElementById('adminFirstName'))[0].disabled = true;
 						 angular.element(document.getElementById('adminLastName'))[0].disabled = true;
-							 break;
-						
+											
 					 }else{
 						 $scope.userexists="";
 						 angular.element(document.getElementById('adminFirstName'))[0].disabled = false;
 						 angular.element(document.getElementById('adminLastName'))[0].disabled = false;
 
 					 }
-					}
+					
 				});
 				
 				}

@@ -34,7 +34,6 @@ angular.module("stockApp").controller(
 			$scope.addcontact = function() {
 				$scope.contact.loggedInUser=$scope.curUser;
 				$scope.contact.business=$scope.curUser.business;
-				//$scope.contact.customer=$scope.selectedItem;
 				var leadService = appEndpointSF.getleadService();
 				leadService.addcontact($scope.contact).then(function(msgBean) {
 					$log.debug("Inside Ctr addlead");
