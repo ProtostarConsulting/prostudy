@@ -11,7 +11,7 @@
 				name<span style="color: red"
 				ng-show="instituteTeacherForm.firstName.$error.required"
 				class="mandatory">*</span>
-			</label> <input ng-model="tempTeacher.firstName" name="firstName"
+			</label> <input ng-model="tempTeacher.firstName" name="firstName" id="firstName"
 				ng-required="true">
 			<div ng-messages="instituteTeacherForm.firstName.$error"
 				ng-if="instituteTeacherForm.firstName.$submitted || instituteTeacherForm.firstName.$touched">
@@ -23,7 +23,7 @@
 				name<span style="color: red"
 				ng-show="instituteTeacherForm.lastName.$error.required"
 				class="mandatory">*</span>
-			</label> <input ng-model="tempTeacher.lastName" name="lastName"
+			</label> <input ng-model="tempTeacher.lastName" name="lastName" id="lastName"
 				ng-required="true">
 			<div ng-messages="instituteTeacherForm.lastName.$error"
 				ng-if="instituteTeacherForm.lastName.$submitted || instituteTeacherForm.lastName.$touched">
@@ -35,13 +35,13 @@
 
 		<div layout="row" layout-xs="column">
 			<md-input-container flex> <label>Address</label>
-			<input name="address" ng-model="tempTeacher.address"> </md-input-container>
+			<input name="address" ng-model="tempTeacher.address" id="address"> </md-input-container>
 
 			<md-input-container flex> <label>Contact<span
 				style="color: red"
 				ng-show="instituteTeacherForm.contact.$error.required"
 				class="mandatory">*</span></label> <input ng-model="tempTeacher.contact"
-				type="number" name="contact" ng-required="true" ng-minlength="10"
+				type="number" name="contact" ng-required="true" ng-minlength="10" id="contact"
 				ng-maxlength="10">
 			<div ng-messages="instituteTeacherForm.contact.$error"
 				ng-if="instituteTeacherForm.contact.$submitted || instituteTeacherForm.contact.$touched">
@@ -59,19 +59,20 @@
 	<div layout="row" layout-xs="column">
 	
 		<md-input-container flex> <md-checkbox
-			ng-model="tempTeacher.isGoogleUser" ng-true-value="true"
+			ng-model="tempTeacher.isGoogleUser" ng-true-value="true" id="isGoogleUser"
 			ng-false-value="false">	<label>Is Google User</label></md-checkbox> </md-input-container>
 
 		<md-input-container flex> <label>Email-id<span
 			style="color: red"
 			ng-show="instituteTeacherForm.email_id.$error.required"
 			class="mandatory">*</span></label> <input ng-model="tempTeacher.email_id" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
-			type="email" name="email_id" ng-required="true">
+			type="email" name="email_id" ng-required="true" ng-blur="checkUserAlreadyExist(tempTeacher.email_id)">
 		<div ng-messages="instituteTeacherForm.email_id.$error"
 			ng-if="instituteTeacherForm.email_id.$submitted || instituteTeacherForm.email_id.$touched">
 			<div ng-message="required">Email-Id should not Empty.</div>
 				<div ng-message="pattern">Please Enter Valid Email-Id.</div>
 		</div>
+		<span style="color: red" id="error">{{error}}</span> 
 		</md-input-container>
 	</div>
 
@@ -79,7 +80,7 @@
 		<md-input-container flex ng-hide="tempTeacher.isGoogleUser">
 		<label>Password<span style="color: red"
 			ng-show="instituteTeacherForm.password.$error.required"
-			class="mandatory">*</span></label> <input name="password"
+			class="mandatory">*</span></label> <input name="password" id="password"
 			ng-model="tempTeacher.password" type="password"
 			ng-required="!tempTeacher.isGoogleUser" ng-blur="checkConfirmPassword(tempTeacher.password, tempTeacher.confirmpassword)">
 		<div ng-messages="instituteTeacherForm.password.$error"
@@ -91,7 +92,7 @@
 		<md-input-container ng-hide="tempTeacher.isGoogleUser" flex>
 		<label>Confirm Password<span style="color: red"
 			ng-show="instituteTeacherForm.Confirmpassword.$error.required"
-			class="mandatory">*</span></label> <input name="Confirmpassword"
+			class="mandatory">*</span></label> <input name="Confirmpassword" id="Confirmpassword"
 			type="password" ng-model="tempTeacher.confirmpassword"
 			ng-required="!tempTeacher.isGoogleUser" ng-blur="checkConfirmPassword(tempTeacher.password, tempTeacher.confirmpassword)">
 
@@ -106,7 +107,7 @@
 
 	<div layout="row" layout-align="center center">
 	
-		<md-button class="md-raised md-primary"
+		<md-button class="md-raised md-primary" id="addButton"
 			ng-disabled="instituteTeacherForm.$invalid"
 			ng-click="addInstituteTeachers()">Add Teacher </md-button>
 

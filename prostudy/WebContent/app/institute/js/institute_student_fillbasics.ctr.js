@@ -50,7 +50,7 @@ angular.module("prostudyApp")
 						});
 			}
 			
-			$scope.getStandardByInstitute();
+			
 			
 			$scope.getDivisionByStandard = function() {
 				$scope.divisions=[];
@@ -116,7 +116,7 @@ angular.module("prostudyApp")
 							$log.debug("$scope.stud "+$scope.stud );
 						});
 			}	
-			$scope.getUserByEmailID();
+			
 
 			$scope.tempStudSub = {					
 					studID : "",
@@ -155,5 +155,19 @@ angular.module("prostudyApp")
 			$scope.cancelButton = function() {
 				$state.go("^", {});
 			}
-
+			$scope.waitForServiceLoad = function() {
+				  if (appEndpointSF.is_service_ready) {					  
+					  $scope.getUserByEmailID();
+						$scope.getStandardByInstitute();				  
+				  } 
+				  else {
+				   $log.debug("Services Not Loaded, watiting...");
+				   $timeout($scope.waitForServiceLoad, 1000);
+				  }
+				 }				  
+				 $scope.waitForServiceLoad();
+			
+			
+			
+			
 		});

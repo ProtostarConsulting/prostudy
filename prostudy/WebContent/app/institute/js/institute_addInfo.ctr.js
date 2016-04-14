@@ -281,7 +281,7 @@ angular.module("prostudyApp").controller(
 					$scope.institutes = instituteList;
 				});
 			}
-			$scope.getInstitutes();
+			
 			
 			$scope.query = {
 					order : 'description',
@@ -309,6 +309,50 @@ angular.module("prostudyApp").controller(
 			$scope.cancelButton = function() {
 				$state.go("^", {});
 			}
+			$scope.error="";	
+			$scope.checkUserAlreadyExist = function(email_id) 
+			{
+				if(email_id)
+					{
+				var UserService = appEndpointSF.getUserService();			
+				UserService.checkUserAlreadyExist(email_id).then(
+						function(response) {
+							if(response.bool==true)
+							{
+								$scope.error="User Already Exists";	
+								angular.element(document.getElementById('firstName'))[0].disabled = true;
+								angular.element(document.getElementById('lastName'))[0].disabled = true;
+								angular.element(document.getElementById('address'))[0].disabled = true;
+								angular.element(document.getElementById('contact'))[0].disabled = true;
+								angular.element(document.getElementById('password'))[0].disabled = true;
+								angular.element(document.getElementById('Confirmpassword'))[0].disabled = true;
+								angular.element(document.getElementById('addButton'))[0].disabled = true;
+							}
+							else
+								{$scope.error="";
+								angular.element(document.getElementById('firstName'))[0].disabled = false;
+								angular.element(document.getElementById('lastName'))[0].disabled = false;
+								angular.element(document.getElementById('address'))[0].disabled = false;
+								angular.element(document.getElementById('contact'))[0].disabled = false;
+								angular.element(document.getElementById('password'))[0].disabled = false;
+								angular.element(document.getElementById('Confirmpassword'))[0].disabled = false;
+								angular.element(document.getElementById('addButton'))[0].disabled = false;
+								
+								}
+						});		}	
+			}
+			
+			$scope.waitForServiceLoad = function() {
+				  if (appEndpointSF.is_service_ready) {					  
+					  $scope.getInstitutes();				  
+				  } 
+				  else {
+				   $log.debug("Services Not Loaded, watiting...");
+				   $timeout($scope.waitForServiceLoad, 1000);
+				  }
+				 }
+				  
+				 $scope.waitForServiceLoad();
 			
 			
 

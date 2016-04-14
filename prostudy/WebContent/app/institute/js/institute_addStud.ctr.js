@@ -9,13 +9,13 @@ angular.module("prostudyApp").controller(
 						3000));
 			};
 
-			$scope.currentInstID = $stateParams.currentInstID;;
+			//$scope.currentInstID = $stateParams.currentInstID;;
 
 			$scope.curUser = appEndpointSF.getLocalUserService()
 			.getLoggedinUser();			
 			$scope.isGoogleUser = false;
 			$scope.flag3 = true;	
-			$scope.checkUserAlreadyExist = appEndpointSF.getUtilityService().checkUserAlreadyExist;
+			
 			$scope.checkConfirmPassword = appEndpointSF.getUtilityService().checkConfirmPassword;
 			
 			$scope.currentInstID = $scope.curUser.instituteID;
@@ -25,8 +25,7 @@ angular.module("prostudyApp").controller(
 			{
 				$scope.currentInstID = $stateParams.currentInstID;
 				
-			}
-			
+			}			
 			$scope.tempStudent = {
 					'instituteID' : $scope.currentInstID,
 					'institute' : "",
@@ -42,15 +41,37 @@ angular.module("prostudyApp").controller(
 					'password' :"",
 					'isGoogleUser' : $scope.isGoogleUser					
 				};
-			
-
-			$scope.curUser = appEndpointSF.getLocalUserService()
-			.getLoggedinUser();			
-			$scope.isGoogleUser = false;
-			$scope.flag3 = true;	
-			$scope.checkUserAlreadyExist = appEndpointSF.getUtilityService().checkUserAlreadyExist;
-			$scope.checkConfirmPassword = appEndpointSF.getUtilityService().checkConfirmPassword;
-			
+					
+			$scope.error="";	
+			$scope.checkUserAlreadyExist = function() 
+			{
+				if($scope.tempStudent.email_id)
+					{
+				var UserService = appEndpointSF.getUserService();			
+				UserService.checkUserAlreadyExist($scope.tempStudent.email_id).then(
+						function(response) {
+							if(response.bool==true)
+							{
+								$scope.error="User Already Exists";	
+								angular.element(document.getElementById('firstName'))[0].disabled = true;
+								angular.element(document.getElementById('lastName'))[0].disabled = true;
+								angular.element(document.getElementById('address'))[0].disabled = true;
+								angular.element(document.getElementById('contact'))[0].disabled = true;
+								angular.element(document.getElementById('password'))[0].disabled = true;
+								angular.element(document.getElementById('Confirmpassword'))[0].disabled = true;
+								angular.element(document.getElementById('addButton'))[0].disabled = true;
+							}
+							else
+								{$scope.error="";
+								angular.element(document.getElementById('firstName'))[0].disabled = false;
+								angular.element(document.getElementById('lastName'))[0].disabled = false;
+								angular.element(document.getElementById('address'))[0].disabled = false;
+								angular.element(document.getElementById('contact'))[0].disabled = false;
+								angular.element(document.getElementById('password'))[0].disabled = false;
+								angular.element(document.getElementById('Confirmpassword'))[0].disabled = false;
+								angular.element(document.getElementById('addButton'))[0].disabled = false;}
+						});		}	
+			}		
 
 			$scope.currentStdID = $stateParams.currentStdID;
 			$scope.currentDivID = $stateParams.currentDivID;
@@ -122,7 +143,17 @@ angular.module("prostudyApp").controller(
 
 				return deferred.promise;
 			};			
-			
+			$scope.waitForServiceLoad = function() {
+				  if (appEndpointSF.is_service_ready) {					  
+								  
+				  } 
+				  else {
+				   $log.debug("Services Not Loaded, watiting...");
+				   $timeout($scope.waitForServiceLoad, 1000);
+				  }
+				 }
+				  
+				 $scope.waitForServiceLoad();
 				
 
 			

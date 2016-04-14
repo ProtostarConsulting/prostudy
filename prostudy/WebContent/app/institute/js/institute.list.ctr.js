@@ -3,22 +3,19 @@ angular.module("prostudyApp").controller(
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, $q, $sce, tableTestDataFactory, appEndpointSF, $state,
 				$filter) {
-			
+
 			$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content('Institute Saved!')
 						.position("top").hideDelay(3000));
 			};
-			
-			
+
 			$scope.getInstitutes = function() {
 
 				var InstituteService = appEndpointSF.getInstituteService();
-				InstituteService.getInstitutes()
-						.then(function(instituteList) {
-							$scope.institutes = instituteList;
-							
-							
-						});
+				InstituteService.getInstitutes().then(function(instituteList) {
+					$scope.institutes = instituteList;
+
+				});
 			}
 
 			$scope.query = {
@@ -46,9 +43,17 @@ angular.module("prostudyApp").controller(
 
 				return deferred.promise;
 			};
-			
-			
-			$scope.getInstitutes();
-			$scope.selected = [];
+
+			// $scope.selected = [];
+
+			$scope.waitForServiceLoad = function() {
+				if (appEndpointSF.is_service_ready) {
+					$scope.getInstitutes();
+				} else {
+					$log.debug("Services Not Loaded, watiting...");
+					$timeout($scope.waitForServiceLoad, 1000);
+				}
+			}
+			$scope.waitForServiceLoad();
 
 		});

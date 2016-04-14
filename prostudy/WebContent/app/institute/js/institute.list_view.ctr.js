@@ -7,28 +7,20 @@ angular.module("prostudyApp").controller(
 			$scope.selectedInstituteID = $stateParams.selectedInstituteID;			
 		
 			$scope.selectedStdID = $stateParams.selectedStdID;
-			$scope.selectedDivID = $stateParams.selectedDivID; 
-			
+			$scope.selectedDivID = $stateParams.selectedDivID; 		
 			
 			$scope.selectedStdName = $stateParams.selectedStdName;
 			$scope.selectedDivName = $stateParams.selectedDivName;
-			$scope.selectedSubName = $stateParams.selectedSubName;
+			$scope.selectedSubName = $stateParams.selectedSubName;			
 			
-			
-			$scope.selectedSubId = $stateParams.selectedSubId;
-			$log.debug("$scope.selectedSubId : "+$scope.selectedSubId);
-			
-			
-			$scope.selectedSubjectId = $stateParams.selectedSubjectId;
-			
+			$scope.selectedSubId = $stateParams.selectedSubId;						
+			$scope.selectedSubjectId = $stateParams.selectedSubjectId;			
 			
 			$scope.flag = false;
 			$scope.flag3 = false;
 			$scope.flag4 = true;
 			$scope.isGoogleUser = false;
-			$scope.checkConfirmPassword = appEndpointSF.getUtilityService().checkConfirmPassword;
-			
-		
+			$scope.checkConfirmPassword = appEndpointSF.getUtilityService().checkConfirmPassword;		
 
 			$scope.adminList = [];
 			$scope.teacherList = [];
@@ -76,7 +68,7 @@ angular.module("prostudyApp").controller(
 						'Added successfully!').position("top")
 						.hideDelay(3000));
 			};
-
+			
 			$scope.tempStudent = objectFactory.newInstituteUser("Student",$scope.selectedInstituteID,$scope.isGoogleUser);
 			$scope.tempTeacher = objectFactory.newInstituteUser("Teacher",$scope.selectedInstituteID,$scope.isGoogleUser);
 			$scope.tempAdmin = objectFactory.newInstituteUser("Admin",$scope.selectedInstituteID,$scope.isGoogleUser);
@@ -141,7 +133,6 @@ angular.module("prostudyApp").controller(
 							});
 					$scope.showSavedToast();
 					$scope.subjectList = [];
-					// $scope.selectedSubjects.splice(0,$scope.selectedSubjects.length);
 				}
 
 			}
@@ -150,8 +141,7 @@ angular.module("prostudyApp").controller(
 				var UserService = appEndpointSF.getUserService();
 
 				UserService.addUser($scope.tempAdmin).then(function(msgBean) {
-					$log.debug("msgBean.msg:" + msgBean.msg);
-
+					
 				});
 
 				$scope.showAdminSavedToast();
@@ -163,13 +153,12 @@ angular.module("prostudyApp").controller(
 				var UserService = appEndpointSF.getUserService();
 
 				UserService.addUser($scope.tempTeacher).then(function(msgBean) {
-					$log.debug("msgBean.msg:" + msgBean.msg);
-
-				});
+					});
 
 				$scope.showTeacherSavedToast();
 				$scope.cancelButton();
 			}
+			
 			$scope.addInstituteStudents = function() {
 			var UserService = appEndpointSF.getUserService();
 			$scope.tempStudent.instituteID=$scope.selectedInstituteID;
@@ -193,9 +182,7 @@ angular.module("prostudyApp").controller(
 			$scope.editInstitute = function() {
 				var InstituteService = appEndpointSF.getInstituteService();
 				InstituteService.editInstitute($scope.Institute).then(
-						function(msgBean) {
-
-							$log.debug("msgBean.msg:" + msgBean.msg);
+						function(msgBean) {							
 							$scope.showUpdateSavedToast();
 						});
 
@@ -225,18 +212,7 @@ angular.module("prostudyApp").controller(
 						});
 			}
 
-			$scope.getUserByInstitute();
-			
-			/*$scope.getUserByClass = function() {
-
-				var UserService = appEndpointSF
-						.getUserService();
-				UserService.getUserByClass($scope.selectedStdName,$scope.selectedDivName,$scope.selectedSubName).then(
-						function(studentList) {
-							$scope.students = studentList;
-							
-						});
-			}*/
+		
 			
 			$scope.viewStandardByInstitute = function() {
 
@@ -287,7 +263,7 @@ angular.module("prostudyApp").controller(
 						});
 			}
 			
-			$scope.getStandardByInstitute();
+			
 			
 			$scope.getDivisionByStandard = function() {
 			
@@ -329,9 +305,7 @@ angular.module("prostudyApp").controller(
 
 						});
 				$scope.subjects.splice(0,$scope.subjects.length);
-			}
-			
-			// Update Standard
+			}			
 			
 			$scope.editStd = function(field) {
 		        $scope.editingStd = $scope.viewstdList.indexOf(field);
@@ -356,9 +330,8 @@ angular.module("prostudyApp").controller(
 		    
 			$scope.updateStandard = function() {
 				
-				var StandardService = appEndpointSF.getStandardService();
-				
-				$log.debug("$scope.selectedStdID :"+$scope.selectedStdID);
+				var StandardService = appEndpointSF.getStandardService();				
+			
 				for(var i=0;i<$scope.viewstdList.length;i++)
 				{
 					if($scope.selectedStdID == $scope.viewstdList[i].id)
@@ -367,18 +340,10 @@ angular.module("prostudyApp").controller(
 					}
 					
 				}
-				StandardService.editStandard($scope.updatedval).then(function(msgBean) {
-					$log.debug("msgBean :"+angular.toJson(msgBean));
-				
-					
+				StandardService.editStandard($scope.updatedval).then(function(msgBean) {								
 				});
 				
 			}
-			
-			// End of Update Standard
-			
-			// Update Division
-			
 			
 			$scope.editDiv = function(field) {
 		        $scope.editingDiv = $scope.viewDivList.indexOf(field);
@@ -415,23 +380,15 @@ angular.module("prostudyApp").controller(
 					
 				}
 				
-				DivisionService.editDivision($scope.updatedval).then(function(msgBean) {
-					$log.debug("msgBean :"+angular.toJson(msgBean));
-					$log.debug("Inside Ctr updateDivision");
-					
+				DivisionService.editDivision($scope.updatedval).then(function(msgBean) {									
 				});
 				
-			}
-			
-			// End of Update Division
-			
-			// Update Subject
+			}			
 			
 			$scope.editSub = function(field) {
 		        $scope.editingSub = $scope.viewSubList.indexOf(field);
 		        $scope.newSub = angular.copy(field);
-		        $log.debug("$scope.newSub :"+angular.toJson($scope.newSub));
-		    }
+		      }
 		    
 		    $scope.saveSub = function(index) {
 		        if ($scope.editingSub !== false) {
@@ -441,7 +398,7 @@ angular.module("prostudyApp").controller(
 		    };
 		    
 		    $scope.cancelSub = function(index) {
-		    	 $log.debug("$scope.newSub :"+angular.toJson($scope.newSub));
+		    	
 		        if ($scope.editingSub !== false) {
 		            $scope.viewSubList[$scope.editingSub] = $scope.newSub;
 		            $scope.editingSub = false;
@@ -450,9 +407,8 @@ angular.module("prostudyApp").controller(
 		    
 			$scope.updateSubject = function() {
 				
-				var SubjectService = appEndpointSF.getSubjectService();
+				var SubjectService = appEndpointSF.getSubjectService();				
 				
-				//$scope.selectedSubjectId = $stateParams.selectedSubjectId;  
 				for(var i=0;i<$scope.viewSubList.length;i++)
 				{
 					if($scope.selectedSubjectId == $scope.viewSubList[i].id)
@@ -462,14 +418,10 @@ angular.module("prostudyApp").controller(
 					
 				}
 				SubjectService.editSubject($scope.updatedval).then(function(msgBean) {
-					$log.debug("msgBean :"+angular.toJson(msgBean));
-					$log.debug("Inside Ctr updatesubject");
-					
+										
 				});
 				
 			}
-			
-			// End of Update Subject
 			
 			$scope.query = {
 					order : 'description',
@@ -497,19 +449,62 @@ angular.module("prostudyApp").controller(
 				
 				$scope.selected = [];
 
-			$scope.cancelButton = function() {
-				$log.debug("inside cancelButton");
+			$scope.cancelButton = function() {				
 				$state.go('^', {});
 			};
 			$scope.getStudentsBySubjectID = function() {
 				var UserService = appEndpointSF.getUserService();
 				UserService.getStudentsBySubjectID($scope.selectedSubId)
 						.then(function(studList) {
-									$scope.studentListBySubject = studList;
-									$log.debug("$scope.studentListBySubject"+angular.toJson($scope.studentListBySubject));									
+									$scope.studentListBySubject = studList;																	
 								});
 			}
 			if($scope.selectedSubId!=undefined)
 			{$scope.getStudentsBySubjectID();}
-
+			
+			
+			$scope.error="";	
+			$scope.checkUserAlreadyExist = function(email_id) 
+			{
+				if(email_id)
+					{
+				var UserService = appEndpointSF.getUserService();			
+				UserService.checkUserAlreadyExist(email_id).then(
+						function(response) {
+							if(response.bool==true)
+							{
+								$scope.error="User Already Exists";	
+								angular.element(document.getElementById('firstName'))[0].disabled = true;
+								angular.element(document.getElementById('lastName'))[0].disabled = true;
+								angular.element(document.getElementById('address'))[0].disabled = true;
+								angular.element(document.getElementById('contact'))[0].disabled = true;
+								angular.element(document.getElementById('password'))[0].disabled = true;
+								angular.element(document.getElementById('Confirmpassword'))[0].disabled = true;
+								angular.element(document.getElementById('addButton'))[0].disabled = true;
+							}
+							else
+								{$scope.error="";
+								angular.element(document.getElementById('firstName'))[0].disabled = false;
+								angular.element(document.getElementById('lastName'))[0].disabled = false;
+								angular.element(document.getElementById('address'))[0].disabled = false;
+								angular.element(document.getElementById('contact'))[0].disabled = false;
+								angular.element(document.getElementById('password'))[0].disabled = false;
+								angular.element(document.getElementById('Confirmpassword'))[0].disabled = false;
+								angular.element(document.getElementById('addButton'))[0].disabled = false;
+								
+								}
+						});		}	
+			}
+			$scope.waitForServiceLoad = function() {
+				  if (appEndpointSF.is_service_ready) {					  
+					  $scope.getStandardByInstitute();
+						$scope.getUserByInstitute();
+				  } 
+				  else {
+				   $log.debug("Services Not Loaded, watiting...");
+				   $timeout($scope.waitForServiceLoad, 1000);
+				  }
+				 }				  
+				 $scope.waitForServiceLoad();
+			
 		});

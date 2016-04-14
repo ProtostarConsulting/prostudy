@@ -44,7 +44,7 @@ angular.module("prostudyApp").controller(
 									
 								});
 			}
-			$scope.getUsers();
+			
 			$scope.subjects=[];
 			$scope.getSubjectsByStudentID = function() {
 				var SubjectService = appEndpointSF.getSubjectService();
@@ -58,6 +58,16 @@ angular.module("prostudyApp").controller(
 			$scope.cancel = function() {
 				$state.go("^", {});
 			}
+			$scope.waitForServiceLoad = function() {
+				  if (appEndpointSF.is_service_ready) {					  
+					  $scope.getUsers();	  
+				  } 
+				  else {
+				   $log.debug("Services Not Loaded, watiting...");
+				   $timeout($scope.waitForServiceLoad, 1000);
+				  }
+				 }				  
+				 $scope.waitForServiceLoad();
 			
 
 			

@@ -12,7 +12,7 @@
 				name<span style="color: red"
 				ng-show="instituteStudentForm.firstName.$error.required"
 				class="mandatory">*</span>
-			</label> <input name="firstName" ng-model="tempStudent.firstName"
+			</label> <input name="firstName" id="firstName" ng-model="tempStudent.firstName"
 				ng-required="true">
 			<div ng-messages="instituteStudentForm.firstName.$error"
 				ng-if="instituteStudentForm.firstName.$submitted || instituteStudentForm.firstName.$touched">
@@ -24,7 +24,7 @@
 				name<span style="color: red"
 				ng-show="instituteStudentForm.lastName.$error.required"
 				class="mandatory">*</span>
-			</label> <input name="lastName" ng-model="tempStudent.lastName"
+			</label> <input name="lastName" ng-model="tempStudent.lastName" id="lastName"
 				ng-required="true">
 			<div ng-messages="instituteStudentForm.lastName.$error"
 				ng-if="instituteStudentForm.lastName.$submitted || instituteStudentForm.lastName.$touched">
@@ -37,12 +37,12 @@
 
 
 			<md-input-container flex> <label>Address</label>
-			<input name="address" ng-model="tempStudent.address"> </md-input-container>
+			<input name="address" ng-model="tempStudent.address" id="address"> </md-input-container>
 
 			<md-input-container flex> <label>Contact<span
 				style="color: red"
 				ng-show="instituteStudentForm.contact.$error.required"
-				class="mandatory">*</span></label> <input type="number" name="contact"
+				class="mandatory">*</span></label> <input type="number" name="contact" id="contact"
 				ng-model="tempStudent.contact" ng-required="true" ng-minlength="10"
 				ng-maxlength="10">
 			<div ng-messages="instituteStudentForm.contact.$error"
@@ -60,7 +60,7 @@
 	<div layout="row" layout-xs="column">
 
 		<md-input-container flex> <md-checkbox
-			ng-model="tempStudent.isGoogleUser" ng-true-value="true"
+			ng-model="tempStudent.isGoogleUser" ng-true-value="true" id="isGoogleUser" name="isGoogleUser"
 			ng-false-value="false">
 		<label>Is Google User</label> </md-checkbox></md-input-container>
 
@@ -77,7 +77,7 @@
 			<div ng-message="required">Email-Id should not Empty.</div>
 			<div ng-message="pattern">Please Enter Valid Email-Id.</div>
 		</div>	
-	   <span style="color: red" id="error" ng-show="tempStudent.email_id">{{checkUserAlreadyExist(tempStudent.email_id)}}</span>  
+	   <span style="color: red" id="error">{{error}}</span>  
 		</md-input-container>
 	</div>
 
@@ -87,7 +87,7 @@
 		<label>Password<span style="color: red"
 			ng-show="instituteStudentForm.password.$error.required"
 			class="mandatory">*</span>
-		</label> <input name="password" type="password"
+		</label> <input name="password" type="password" id="password"
 			ng-model="tempStudent.password"
 			ng-required="!tempStudent.isGoogleUser"
 			ng-blur="checkConfirmPassword(tempStudent.password, tempStudent.confirmpassword)">
@@ -100,7 +100,7 @@
 		<md-input-container ng-hide="tempStudent.isGoogleUser" flex>
 		<label>Confirm Password<span style="color: red"
 			ng-show="instituteStudentForm.Confirmpassword.$error.required"
-			class="mandatory">*</span></label> <input name="Confirmpassword"
+			class="mandatory">*</span></label> <input name="Confirmpassword" id="Confirmpassword"
 			type="password" ng-model="tempStudent.confirmpassword"
 			ng-required="!tempStudent.isGoogleUser"
 			ng-blur="checkConfirmPassword(tempStudent.password, tempStudent.confirmpassword)">
@@ -115,7 +115,7 @@
 	</div>
 
 	<div layout="row" layout-align="center center">
-		<md-button class="md-raised md-primary"
+		<md-button class="md-raised md-primary" id="addButton"
 			ng-disabled="instituteStudentForm.$invalid"
 			ng-click="addInstituteStudents()">Add Student </md-button>
 
