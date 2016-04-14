@@ -25,68 +25,37 @@ angular.module("prostudyApp").controller(
 				$scope.selection[index] = !$scope.selection[index];
 			};
 
-			/*
-			 * $scope.getAuthorityByRole = function() {
-			 * 
-			 * $scope.selection = []; var UserService =
-			 * appEndpointSF.getUserService();
-			 * UserService.getAuthorityByRole($scope.role)
-			 * .then(function(modules) { $scope.modules = modules[0]; for ( var
-			 * i in $scope.moduleList) {
-			 * $scope.selection.push($scope.modules.modules
-			 * .indexOf($scope.moduleList[i]) > -1); } }); }
-			 * 
-			 * $scope.UpdateRoleSec = function() { $scope.modules.modules = [];
-			 * for (var i = 0; i < $scope.selection.length; i++) { if
-			 * ($scope.selection[i])
-			 * $scope.modules.modules.push($scope.moduleList[i]); } var
-			 * UserService = appEndpointSF.getUserService();
-			 * 
-			 * UserService.addOrUpdateRoleSec($scope.modules).then(
-			 * function(msgBean) { $scope.showSavedToast();
-			 * 
-			 * });
-			 *  }
-			 */
-
 			$scope.getAuthorityByRole = function() {
 
 				$scope.selection = [];
-				var UserService = appEndpointSF.getLocalUserService();
-				UserService.getRoleSecList().then(
+				var UserService = appEndpointSF.getUserService();
+				UserService.getAuthorityByRole($scope.role).then(
 						function(modules) {
-							$scope.modules = modules;
-							for(i=0;i<$scope.modules.length;i++)
-							{
-								if($scope.role == $scope.modules[i].role)
-								{
-									$scope.newModule = $scope.modules[i];
-								}
-							}
-							
+							$scope.modules = modules[0];
 							for ( var i in $scope.moduleList) {
-								$scope.selection.push($scope.newModule.modules
+								$scope.selection.push($scope.modules.modules
 										.indexOf($scope.moduleList[i]) > -1);
 							}
 						});
 			}
 
 			$scope.UpdateRoleSec = function() {
-				$scope.newModule.modules = [];
+				$scope.modules.modules = [];
 				for (var i = 0; i < $scope.selection.length; i++) {
 					if ($scope.selection[i])
-						$scope.newModule.modules.push($scope.moduleList[i]);
+						$scope.modules.modules.push($scope.moduleList[i]);
 				}
-				var UserService = appEndpointSF.getLocalUserService();
+				var UserService = appEndpointSF.getUserService();
 
-				UserService.updateRoleSecList($scope.newModule).then(
+				UserService.addOrUpdateRoleSec($scope.modules).then(
 						function(msgBean) {
 							$scope.showSavedToast();
 
 						});
-				$state.go("authority");
-
+				$state.go('authority');
 			}
+
+	
 
 			$scope.cancelButton = function() {
 

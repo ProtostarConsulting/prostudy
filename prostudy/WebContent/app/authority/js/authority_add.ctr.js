@@ -27,14 +27,14 @@ angular.module("prostudyApp").controller(
 			}
 		
 
-			$scope.addOrUpdateRoleSec = function() {
+			$scope.addRoleSec = function() {
 				$scope.RoleSecEntity.modules = [];
 				for (var i = 0; i < $scope.selected.length; i++) {
 					if ($scope.selected[i])
 						$scope.RoleSecEntity.modules.push($scope.moduleList[i]);
 				}
 
-				var UserService = appEndpointSF.getLocalUserService();
+				var UserService = appEndpointSF.getUserService();
 
 				UserService.addOrUpdateRoleSec($scope.RoleSecEntity).then(
 						function(msgBean) {

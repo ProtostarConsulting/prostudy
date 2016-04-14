@@ -17,7 +17,7 @@
 
     <div layout="row" layout-wrap flex>
             <div flex="50" ng-repeat="item in moduleList">
-              <md-checkbox ng-checked="selected[$index]"  ng-click="toggleSelection($index)"><!-- "" -->
+              <md-checkbox ng-checked="selected[$index]"  ng-click="toggleSelection($index)">
                 {{ item }}
               </md-checkbox>
             </div>
@@ -27,7 +27,7 @@
 
 <div layout="column" layout-align="center center">
 
-	<md-button class="md-raised md-primary" ng-click="addOrUpdateRoleSec()">Add</md-button>
+	<md-button class="md-raised md-primary" ng-click="addRoleSec()">Add</md-button>
 </div>
 
 
