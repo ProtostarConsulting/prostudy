@@ -255,7 +255,6 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 				return foundIndex > -1;
 
 			}
-
 		}
 
 	}

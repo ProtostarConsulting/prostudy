@@ -42,6 +42,14 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 
 	}	
+	UserService.checkUserAlreadyExist = function(email_id) {
+		var deferred = $q.defer();
+		gapi.client.userService.checkUserAlreadyExist({'email_id' : email_id}).execute(function(resp) {			
+			deferred.resolve(resp.result);
+		});
+		return deferred.promise;
+
+	}
 	
 	UserService.getUserByRole = function(role,instituteID) {
 		var deferred = $q.defer();
@@ -446,13 +454,13 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	}	
 	
 	StudSubService.removeStudSubject = function(studSubject) {
-		var deferred = $q.defer();
+		var deferred = $q.defer();		
 		gapi.client.studSubService.removeStudSubject(studSubject).execute(
-				function(resp) {
+				function(resp) {				
 					deferred.resolve(resp);
 				});
 		return deferred.promise;
-	}
+	}	
 
 	// End of StudSubService
 	
