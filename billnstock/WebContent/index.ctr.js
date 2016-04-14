@@ -94,7 +94,7 @@ angular
 					$scope.$on('customLoginEvent', function(event, args) {
 						$log.debug("In side customLogin");
 						$scope.curUser = args.curUser;
-						//$scope.theme = $scope.curUser.business.theme;
+						$scope.theme = $scope.curUser.business.theme;
 					});
 
 					$scope
@@ -168,7 +168,7 @@ angular
 																return;
 															}
 
-														//	$scope.theme = $scope.curUser.business.theme;
+															$scope.theme = $scope.curUser.business.theme;
 
 															var auth = $scope.curUser.authority;
 															$scope.test = $scope.curUser.email_id;
