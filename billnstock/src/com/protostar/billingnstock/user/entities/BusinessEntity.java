@@ -20,6 +20,17 @@ public class BusinessEntity {
 	
 	private Address address;
 	private String status="active" ;
+	private String theme;
+	
+ 
+
+	public String getTheme() {
+		return theme;
+	}
+
+	public void setTheme(String theme) {
+		this.theme = theme;
+	}
 
 	public String getStatus() {
 		return status;
