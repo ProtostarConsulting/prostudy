@@ -17,7 +17,9 @@ public class AttendanceEntity {
 	private Long instituteID;
 	@Index  
 	private String standard;
+	@Index 
 	private String division;
+	@Index 
 	private String subject;
 	private String date;
 	private Boolean attendance;
