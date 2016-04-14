@@ -18,7 +18,7 @@
 		<tbody>
 			<tr md-auto-select
 				ng-repeat="a in teacherList  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit |  filter: {firstName: searchCategory}">
-				<td>{{a.firstName}}{{a.lastName}}</td>
+				<td>{{a.firstName}} {{a.lastName}}</td>
 				<td>{{a.email_id}}</td>
 				<td>{{a.address}}</td>
 				<td>{{a.contact}}</td>
@@ -29,9 +29,7 @@
 							ng-show="flag==false" class="md-raised md-primary" ng-click="">Edit</md-button></a></td>
 							
 				
-							
-				<td><a ui-sref="institute.view.viewUser({selectedID : a.id})"><md-button ng-show="flag==true"
-							class="md-raised md-primary" ng-click="">View</md-button></a></td>
+				
 			</tr>
 		</tbody>
 	</table>

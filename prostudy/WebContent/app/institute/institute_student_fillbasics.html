@@ -36,13 +36,19 @@
 			</div>
 			</md-input-container>
 		</div>
-		<div ng-show="gotSubject">
+		
+			<p>&nbsp;</p>
+		
+		<div layout="row" layout-align="center center" ng-show="gotSubject">
 			<label>Subjects</label>
 			<md-checkbox name="subject" ng-repeat="subject in subjects"
 				ng-model="selected[subject]" ng-click="toggleSelection(subject)">
 			{{subject.name}}</md-checkbox>
 		</div>
 	</div>
+	
+	<p>&nbsp;</p>
+	
 	<div layout="row" layout-align="center center">
 	<md-button class="md-raised md-primary" ng-click="updateUser()"
 			ng-disabled="studentBasicForm.$invalid">Submit </md-button>
