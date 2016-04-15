@@ -210,7 +210,10 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 		gapi.client.load('subjectService', 'v0.1', function() {
 			$log.debug("SubjectService Loaded......");
 
-		}, apiRoot);
+		}, apiRoot);	
+		
+		//This loads google chart api
+		google.charts.load('43', {packages: ['corechart']});
 
 		gapi.client.load('certificateService', 'v0.1', function() {
 			$log.debug("CertificateService Loaded......");
