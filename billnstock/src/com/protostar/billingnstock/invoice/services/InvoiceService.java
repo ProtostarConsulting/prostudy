@@ -67,7 +67,9 @@ public class InvoiceService {
 		receivableEntity.setInvoiceDueDate(invoiceEntity.getInvoiceDueDate());
 		receivableEntity.setInvoiceId(invoiceEntity.getId());
 		receivableEntity.setBusiness(invoiceEntity.getBusiness());
-
+		receivableEntity.setCreatedDate(invoiceEntity.getCreatedDate());
+		receivableEntity.setModifiedDate(invoiceEntity.getModifiedDate());
+		receivableEntity.setModifiedBy(invoiceEntity.getModifiedBy());
 		ofy().save().entity(receivableEntity).now();
 	}
 

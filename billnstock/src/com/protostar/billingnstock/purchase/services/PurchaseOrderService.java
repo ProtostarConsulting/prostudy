@@ -18,7 +18,7 @@ import com.protostar.billingnstock.user.entities.BusinessEntity;
 public class PurchaseOrderService {
 
 	@ApiMethod(name = "addPurchaseOrder")
-	public void addPurchaseOrder(PurchaseOrderEntity purchaseOrderEntity) {
+	public PurchaseOrderEntity addPurchaseOrder(PurchaseOrderEntity purchaseOrderEntity) {
 
 		if (purchaseOrderEntity.getId() == null) {
 			purchaseOrderEntity.setCreatedDate(new Date());
@@ -27,8 +27,9 @@ public class PurchaseOrderService {
 			purchaseOrderEntity.setModifiedDate(new Date());
 		}
 		
-		Key<PurchaseOrderEntity> now = ofy().save().entity(purchaseOrderEntity)
+		ofy().save().entity(purchaseOrderEntity)
 				.now();
+		return purchaseOrderEntity;
 	}
 
 	@ApiMethod(name = "getAllPurchaseOrder")

@@ -63,6 +63,13 @@ public class AccountService {
 	@ApiMethod(name = "addPayable")
 	public void addPayable(PayableEntity payableEntity) {
 
+		if (payableEntity.getId() == null) {
+			payableEntity.setCreatedDate(new Date());
+			payableEntity.setModifiedDate(new Date());
+		} else {
+			payableEntity.setModifiedDate(new Date());
+		}
+		
 		ofy().save().entity(payableEntity).now();
 
 	}
@@ -82,13 +89,18 @@ public class AccountService {
 	}
 
 	/*
-	 * =============================================Account Receivable
-	 * Methods=================================================
+	 =========================Account Receivable Methods======================
 	 */
 
 	@ApiMethod(name = "addReceivable")
 	public void addReceivable(ReceivableEntity receivableEntity) {
 
+		if (receivableEntity.getId() == null) {
+			receivableEntity.setCreatedDate(new Date());
+			receivableEntity.setModifiedDate(new Date());
+		} else {
+			receivableEntity.setModifiedDate(new Date());
+		}
 		ofy().save().entity(receivableEntity).now();
 
 	}

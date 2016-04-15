@@ -11,7 +11,6 @@ import com.protostar.billnstock.entity.BaseEntity;
 @Entity
 public class ReceivableEntity extends BaseEntity {
 
-	
 	@Index
 	private Long invoiceId;
 	private Date receivableDate;
@@ -22,15 +21,15 @@ public class ReceivableEntity extends BaseEntity {
 
 	@Index
 	Ref<Customer> customer;
+
 	public Customer getCustomer() {
-		return customer.get();
+		return customer == null ? null : customer.get();
 	}
 
 	public void setCustomer(Customer customer) {
 		this.customer = Ref.create(customer);
 	}
 
-	
 	public String getStatus() {
 		return status;
 	}

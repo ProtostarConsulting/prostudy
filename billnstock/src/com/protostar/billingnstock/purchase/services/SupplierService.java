@@ -19,9 +19,10 @@ import com.protostar.billingnstock.user.entities.BusinessEntity;
 public class SupplierService {
 
 	@ApiMethod(name = "addSupplier")
-	public void addSupplier(SupplierEntity supplierEntity) {
+	public SupplierEntity addSupplier(SupplierEntity supplierEntity) {
 
 		ofy().save().entity(supplierEntity).now();
+		return supplierEntity;
 	}
 
 	@ApiMethod(name = "getAllSuppliersByBusiness")
