@@ -258,7 +258,8 @@ app
 									fullscreen : useFullScreen,
 									locals : {
 										curBusi : $scope.curUser.business,
-										supplier : $scope.supplier
+										supplier : $scope.supplier,
+										curUser :  $scope.curUser
 									}
 								})
 								.then(
@@ -272,11 +273,13 @@ app
 						
 					};
 
-					function DialogController($scope, $mdDialog, curBusi,
+					function DialogController($scope, $mdDialog, curBusi,curUser,
 							supplier) {
 
 						$scope.addSupplier = function() {
-							 $scope.supplier.business = curBusi;
+							 $scope.supplier.business = curUser.business;
+							 $scope.supplier.createdDate = new Date();
+							 $scope.supplier.modifiedBy = curUser.email_id;
 								var supplierService = appEndpointSF.getSupplierService();
 
 								supplierService.addSupplier($scope.supplier).then(function(msgBean) {

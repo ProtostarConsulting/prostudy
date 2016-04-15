@@ -8,7 +8,7 @@
 		mandetory</span>]
 	<h3>Account Receivable</h3>
 	<div layout="row" layout-xs="column">
-
+		<div layout="row" flex>
 <!-- 		Customer Name:
 		<md-input-container flex> <md-select
 			ng-model="accountReveivable.customer" placeholder="Customer Name"
@@ -37,7 +37,10 @@
 				<div ng-message="maxlength">Your entry is too long.</div>
 			</div>
 			</md-autocomplete>
- 					
+ 					<md-icon md-svg-src="img/icons/ic_queue_black_24px.svg"
+				ng-click="addCustomer()" class="name"
+				style="color: Green; height: 40px; width: 40px"></md-icon>
+		</div>
 		<md-input-container flex> <label>Customer
 			Email Id </label> <input ng-model="accountReveivable.customer.email" disabled="disabled"> </md-input-container>
 
@@ -45,7 +48,7 @@
 			No. </label> <input ng-model="accountReveivable.customer.mobile" disabled="disabled">
 		</md-input-container>
 		
-		   		<md-datepicker flex ng-model="accountReveivable.receivableDate" md-placeholder="Recievable Date"></md-datepicker>	
+<!-- 		   		<md-datepicker flex ng-model="accountReveivable.receivableDate" md-placeholder="Recievable Date"></md-datepicker>	 -->
 	</div>
 
 	<div layout="row" layout-xs="column">

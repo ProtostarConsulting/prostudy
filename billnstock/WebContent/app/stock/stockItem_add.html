@@ -14,8 +14,8 @@
 					ng-repeat="warehouse in warehouses">{{warehouse.warehouseName
 				}}</md-option> </md-select>
 				<md-icon md-svg-src="img/icons/ic_queue_black_24px.svg"
-					ui-sref="stock.warehouseAdd" class="name"
-					style="color: Green; height: 40px; width: 40px"></md-icon>
+						ng-click="addWarehouse()" class="name"
+						style="color: Green; height: 35px; width: 35px"></md-icon>
 			</div>
 			<md-input-container flex> <label>Item
 				Name <span style="color: red;">*</span>
@@ -26,6 +26,7 @@
 					Name(Example.:John)</div>
 			</div>
 			</md-input-container>
+				
 		</div>
 
 		<div layout="row" layout-xs="column">

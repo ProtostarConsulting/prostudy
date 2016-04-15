@@ -1,7 +1,7 @@
 angular.module("stockApp").controller(
 		"stockAddCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $http, $stateParams, objectFactory, appEndpointSF) {
+				$log, $http, $stateParams,$mdMedia, $mdDialog, objectFactory, appEndpointSF) {
 
 			$log.debug("Inside customerCtr");
 
@@ -27,7 +27,7 @@ angular.module("stockApp").controller(
 			$scope.addStock = function() {
 				$log.debug("No1");
 				var stockService = appEndpointSF.getStockService();
-				if ($scope.selectedStocksId == undefined) {
+				if ($scope.selectedStocksId == "") {
 					$scope.stock.business = $scope.curUser.business;
 					$scope.stock.modifiedBy =$scope.curUser.email_id;
 					$scope.stock.createdDate =$scope.tempStock.createdDate;
@@ -144,4 +144,53 @@ angular.module("stockApp").controller(
 					$log.debug("close RIGHT is done");
 				});
 			};
+			
+			$scope.addWarehouse = function(ev) {
+				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
+						&& $scope.customFullscreen;
+				$mdDialog
+						.show({
+							controller : DialogController,
+							templateUrl : '/app/stock/warehouse_add.html',
+							parent : angular.element(document.body),
+							targetEvent : ev,
+							clickOutsideToClose : true,
+							fullscreen : useFullScreen,
+							locals : {
+								curBusi : $scope.curUser.business,
+								warehouse : $scope.warehouse,
+								curUser :  $scope.curUser
+							}
+						})
+						.then(
+								function(answer) {
+									$scope.status = 'You said the information was "'
+											+ answer + '".';
+								},
+								function() {
+									$scope.status = 'You cancelled the dialog.';
+								});
+				
+			};
+
+			function DialogController($scope, $mdDialog, curBusi,curUser,
+					warehouse) {
+
+				$scope.addWarehouse = function() {
+					 $scope.warehouse.business = curUser.business;
+					 $scope.warehouse.createdDate = new Date();
+					 $scope.warehouse.modifiedBy = curUser.email_id;
+					var warehouseService = appEndpointSF.getWarehouseManagementService();
+
+					warehouseService.addWarehouse($scope.warehouse).then(
+							function(msgBean) {
+
+							});
+					$scope.hide();
+				}
+				
+				$scope.hide = function() {
+					$mdDialog.hide();
+				};
+			}
 		});

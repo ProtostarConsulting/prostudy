@@ -1,7 +1,7 @@
 var app = angular.module("stockApp");
 
 app.controller("accountPayableCtr", function($scope, $window, $mdToast,
-		$timeout, $mdSidenav, $mdUtil, $log, $stateParams,$q, objectFactory,
+		$timeout, $mdSidenav, $mdUtil, $log, $stateParams,$q,$mdMedia, $mdDialog, objectFactory,
 		appEndpointSF) {
 
 	$log.debug("Inside accountAddCtr");
@@ -101,5 +101,54 @@ app.controller("accountPayableCtr", function($scope, $window, $mdToast,
 		}
 	}
 	$scope.waitForServiceLoad();
+	
+	
+	$scope.addCustomer = function(ev) {
+		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
+				&& $scope.customFullscreen;
+		$mdDialog
+				.show({
+					controller : DialogController,
+					templateUrl : '/app/crm/customer_add.html',
+					parent : angular.element(document.body),
+					targetEvent : ev,
+					clickOutsideToClose : true,
+					fullscreen : useFullScreen,
+					locals : {
+						curBusi : $scope.curUser.business,
+						customer : $scope.customer
+					}
+				})
+				.then(
+						function(answer) {
+							$scope.status = 'You said the information was "'
+									+ answer + '".';
+						},
+						function() {
+							$scope.status = 'You cancelled the dialog.';
+						});
+		
+	};
+
+	function DialogController($scope, $mdDialog, curBusi,
+			customer) {
+
+		$scope.addCustomer = function() {
+			 $scope.customer.business = curUser.business;
+			 $scope.customer.createdDate = new Date();
+			 $scope.customer.modifiedBy = curUser.email_id;
+			var customerService = appEndpointSF.getCustomerService();
+
+			customerService.addCustomer($scope.customer).then(
+					function(msgBean) {
+
+					});
+			$scope.hide();
+		}
+		
+		$scope.hide = function() {
+			$mdDialog.hide();
+		};
+	}
 	
 });

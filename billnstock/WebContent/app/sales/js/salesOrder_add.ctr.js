@@ -277,6 +277,11 @@ app
 									function(msgBean) {
 
 									});
+							$scope.hide();
 						}
+						
+						$scope.hide = function() {
+							$mdDialog.hide();
+						};
 					}
 				});

@@ -335,4 +335,54 @@ app
 
 					$scope.waitForServiceLoad();
 
+					
+					$scope.addCustomer = function(ev) {
+						var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
+								&& $scope.customFullscreen;
+						$mdDialog
+								.show({
+									controller : DialogController,
+									templateUrl : '/app/crm/customer_add.html',
+									parent : angular.element(document.body),
+									targetEvent : ev,
+									clickOutsideToClose : true,
+									fullscreen : useFullScreen,
+									locals : {
+										curUser :  $scope.curUser,
+										customer : $scope.customer
+									}
+								})
+								.then(
+										function(answer) {
+											$scope.status = 'You said the information was "'
+													+ answer + '".';
+										},
+										function() {
+											$scope.status = 'You cancelled the dialog.';
+										});
+						
+					};
+
+					function DialogController($scope, $mdDialog, curUser,
+							customer) {
+
+						$scope.addCustomer = function() {
+							 $scope.customer.business = curUser.business;
+							 $scope.customer.createdDate = new Date();
+							 $scope.customer.modifiedBy = curUser.email_id;
+							 
+							var customerService = appEndpointSF.getCustomerService();
+
+							customerService.addCustomer($scope.customer).then(
+									function(msgBean) {
+
+									});
+							$scope.hide();
+						}
+						
+						$scope.hide = function() {
+							$mdDialog.hide();
+						};
+					}
+					
 				});

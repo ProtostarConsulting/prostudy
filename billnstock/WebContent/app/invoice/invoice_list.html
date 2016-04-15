@@ -23,7 +23,7 @@
 		<tbody>
 			<tr md-auto-select
 				ng-repeat="invoice in invoiceData | filter: searchText | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
-				<!-- <a ng-href="#/invoice.list/{{invoiceId.id}}">{{invoice.finalTotal}}</a> -->
+				
 				<td>{{$index+1}}</td>
 				<td>{{invoice.customer.firstName}}</td>
 				<td>{{invoice.finalTotal}}</td>
