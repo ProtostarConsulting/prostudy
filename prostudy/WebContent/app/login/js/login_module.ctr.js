@@ -11,7 +11,7 @@ angular
 								'New Teacher Registered!').position("top")
 								.hideDelay(3000));
 					};
-					$scope.curUser = null;
+					
 					$scope.flag = false;
 
 					$scope.tempUser = {
@@ -45,6 +45,7 @@ angular
 						
 
 					}
+					
 					$scope.login = function() {
 						var UserService = appEndpointSF.getUserService();
 						UserService
@@ -61,7 +62,9 @@ angular
 
 												$log.debug("User logged in successfully: "
 																+ $scope.tempUser.email_id);
-												$window.location.reload();
+												//$window.location.reload();
+												$scope.$emit('customLoginEvent', { curUser: result.result });
+									            $scope.$broadcast('customLoginEvent', { curUser: result.result });
 												$state.go("home");
 
 											} else {
@@ -81,6 +84,42 @@ angular
 
 										});
 					}
+					
+					/*$scope.login = function() {
+						var UserService = appEndpointSF.getUserService();
+						UserService
+								.login($scope.tempUser.email_id,
+										$scope.tempUser.password)
+								.then(
+										function(result) {
+											if (result.result.email_id) {
+												appEndpointSF.getLocalUserService().saveLoggedInUser(
+																result.result);
+												
+												$log.debug("User logged in successfully: "
+																+ $scope.tempUser.email_id);
+												$window.location.reload();
+												$scope.$emit('customLoginEvent', { curUser: result.result });
+									            $scope.$broadcast('customLoginEvent', { curUser: result.result });
+												$state.go("home");
+
+											} else {
+
+												UserService.getUserByEmailID($scope.tempUser.email_id)
+														.then(
+																function(user) {
+																	$scope.user = user;																	
+																	if ($scope.user.email_id==$scope.tempUser.email_id) {																
+																		document.getElementById("errmsg").innerHTML = "Password Does Not Match.";
+																	} else {
+																		document.getElementById("errmsg").innerHTML = "You are not registered user.";
+																	}
+																});											
+												$scope.loginMsg = "Login failed.";
+											}
+
+										});
+					}*/
 					
 					$scope.cancelButton = function() {
 						$state.go("home", {});
