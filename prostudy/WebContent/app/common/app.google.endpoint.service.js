@@ -419,6 +419,15 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 					deferred.resolve(resp);
 				});
 		return deferred.promise;
+	}	
+	
+	StudSubService.getAllStudSubList = function() {
+		var deferred = $q.defer();
+		gapi.client.studSubService.getAllStudSubList().execute(function(resp)
+			{
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
 	}
 	
 	StudSubService.getSubByStudId = function(studID) {
@@ -455,7 +464,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	
 	StudSubService.removeStudSubject = function(studSubject) {
 		var deferred = $q.defer();		
-		gapi.client.studSubService.removeStudSubject(studSubject).execute(
+		gapi.client.studSubService.addStudSubject(studSubject).execute(
 				function(resp) {				
 					deferred.resolve(resp);
 				});
