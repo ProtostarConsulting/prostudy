@@ -9,12 +9,12 @@ angular
 
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
-					
+
 					$scope.tempStudSub = {
-							studID : "",
-							subID : "",
-							active : true
-						};
+						studID : "",
+						subID : "",
+						active : true
+					};
 
 					$scope.showSavedToast = function() {
 						$mdToast.show($mdToast.simple().content(
@@ -22,8 +22,8 @@ angular
 								3000));
 					};
 					$scope.currentInstID = $stateParams.currentInstID;
-					$scope.selectedID = $stateParams.selectedID;				
-					
+					$scope.selectedID = $stateParams.selectedID;
+
 					$scope.user = [];
 					$scope.flag1;
 					$scope.role;
@@ -36,25 +36,25 @@ angular
 								.then(
 										function(userList) {
 											$scope.users = userList;
-											
+
 											for (i = 0; i < $scope.users.length; i++) {
-												if ($scope.selectedID == $scope.users[i].id) {													
-													$scope.user.push($scope.users[i]);
-													$scope.role = $scope.users[i].role;												
-													
+												if ($scope.selectedID == $scope.users[i].id) {
+													$scope.user
+															.push($scope.users[i]);
+													$scope.role = $scope.users[i].role;
+
 												}
 											}
-											$log.debug("$scope.user[0]"+$scope.user[0]);
-											if($scope.user[0].role=="Student")
-											{
-											$scope.getSubjectsByDivName();
-											$scope.getSubjectsByStudentID();	
-											$scope.getSubByStudId();
+											$log.debug("$scope.user[0]"
+													+ $scope.user[0]);
+											if ($scope.user[0].role == "Student") {
+												$scope.getSubjectsByDivName();
+												$scope.getSubjectsByStudentID();
+												$scope.getSubByStudId();
 											}
 
 										});
 					}
-					
 
 					$scope.updateUser = function() {
 						$scope.checkForSubjectChange();
@@ -66,13 +66,13 @@ angular
 								});
 
 					}
-					
+
 					$scope.cancel = function() {
 						$state.go("^", {});
 					}
 
 					$scope.changeRole = function() {
-						
+
 						if ($scope.curUser.role == $scope.role) {
 							return $scope.flag1 = true;
 
@@ -80,25 +80,26 @@ angular
 								&& $scope.curUser.role == "Teacher"
 								|| $scope.curUser.role == "Student") {
 							return $scope.flag1 = true;
-						} 
-						
+						}
+
 						else if ($scope.role == "Student"
 								&& $scope.curUser.role == "Teacher"
 								|| $scope.curUser.role == "Admin") {
 							return $scope.flag1 = false;
 						}
-						
+
 						else if ($scope.role == "Teacher"
 								&& $scope.curUser.role == "Student") {
 							return $scope.flag1 = true;
 						}
 					}
-					$scope.subjectList=[];
+					$scope.subjectList = [];
 					$scope.getSubjectsByDivName = function() {
 
 						var DivisionService = appEndpointSF
 								.getDivisionService();
-						$log.debug("$scope.user[0].division"+$scope.user[0].division);
+						$log.debug("$scope.user[0].division"
+								+ $scope.user[0].division);
 						DivisionService
 								.getSubjectsByDivName($scope.user[0].division)
 								.then(
@@ -107,7 +108,7 @@ angular
 											for (var i = 0; i < $scope.subjectList.length; i++) {
 												$scope.selectedSubjectsIndx
 														.push(false);
-											}											
+											}
 										});
 					}
 
@@ -129,99 +130,111 @@ angular
 										});
 					}
 					$scope.selectedSubjectsIndx = [];
-				
+
 					$scope.toggleSelection = function toggleSelection(index) {
 						$scope.selectedSubjectsIndx[index] = !$scope.selectedSubjectsIndx[index];
 					};
-					
+
 					$scope.checkForSubjectChange = function() {
 						var StudSubService = appEndpointSF.getStudSubService();
 						$scope.tempStudSub.studID = $scope.user[0];
 
 						for (var i = 0; i < $scope.selectedSubjectsIndx.length; i++) {
-							
-							// If subject is selected now , which was not earlier and now Added.
+
+							// If subject is selected now , which was not
+							// earlier and now Added.
 							if ($scope.selectedSubjectsIndx[i]
 									&& !appEndpointSF.getUtilityService()
 											.objectArrayContains(
 													$scope.selectedSubjectList,
 													$scope.subjectList[i])) {
 								$scope.tempStudSub.subID = $scope.subjectList[i];
+								
 								StudSubService
-										.addStudSubject($scope.tempStudSub)
-										.then(
-												function(msgBean) {
-													$scope.selectedSubjectList
-															.push($scope.subjectList[i]);
-												});
+								.addStudSubject($scope.tempStudSub)
+								.then(
+										function(msgBean) {
+											$scope.selectedSubjectList
+													.push($scope.subjectList[i]);
+										});
 							}
+								
 
 							// If subject was selected earlier and now removed.
 							if (!$scope.selectedSubjectsIndx[i]
 									&& appEndpointSF.getUtilityService()
 											.objectArrayContains(
 													$scope.selectedSubjectList,
-													$scope.subjectList[i])) {						
-								
-								
+													$scope.subjectList[i])) {
+
 								$log.debug("To Mark this subject as Inactive:"
-										+ $scope.subjectList[i].name+ $scope.subjectList[i].id);
-								
-								
-								for(var j=0;j<$scope.selectedStudSubList.length;j++)
-									{
-									if ($scope.selectedStudSubList[j].subID.id==$scope.subjectList[i].id)
-										{										
-										$scope.tempStudSub=$scope.selectedStudSubList[j];
-											$scope.removeStudSubject();
-											break;
-										}
-									}		
+										+ $scope.subjectList[i].name
+										+ $scope.subjectList[i].id);
+
+								for (var j = 0; j < $scope.selectedStudSubList.length; j++) {
+									if ($scope.selectedStudSubList[j].subID.id == $scope.subjectList[i].id) {
+										var studSubToRemove = $scope.selectedStudSubList[j];
+										studSubToRemove.active = false;
+										$scope.removeStudSubject(studSubToRemove);
+										break;
+									}
+								}
 							}
 						}
 					}
-					
-				//	$scope.selStudSub=[];
-					//Function for If subject was selected earlier and now removed.
-					
-					
-					$scope.removeStudSubject = function()
-					{
-						$scope.tempStudSub.active=false;
-						$scope.tempStudSub.id=5277655813324800;					
-					$log.debug("# $scope.selStudSub js..................... #"+angular.toJson($scope.tempStudSub));
-					var StudSubService = appEndpointSF.getStudSubService();		
-					StudSubService.removeStudSubject($scope.tempStudSub)
-						.then(
-								function(msgBean) {	
-									$log.debug("#match after remove #");
-								});
-					}
-					
-					
-					$scope.selectedStudSubList=[];
-					$scope.getSubByStudId = function() {
 
+					// $scope.selStudSub=[];
+					// Function for If subject was selected earlier and now
+					// removed.
+
+					$scope.removeStudSubject = function(studSubToRemove) {
+						//studSubToRemove.active = false;
+
+						
 						var StudSubService = appEndpointSF.getStudSubService();
-						StudSubService.getSubByStudId($scope.user[0].id).then(
-										function(studsub) {												
-											$scope.selectedStudSubList=studsub;		
-											$log.debug("$scope.selectedStudSubList"+angular.toJson($scope.selectedStudSubList));											
+						StudSubService
+								.addStudSubject(studSubToRemove)
+								.then(
+										function(msgBean) {
+											$log.debug("#removeStudSubject Successful #");
 										});
 					}
 
+					$scope.selectedStudSubList = [];
+					$scope.getSubByStudId = function() {
+
+						var StudSubService = appEndpointSF.getStudSubService();
+						StudSubService
+								.getSubByStudId($scope.user[0].id)
+								.then(
+										function(studsub) {
+											$scope.selectedStudSubList = studsub;											
+										});
+					}
+					$scope.allStudSubList = [];
+					$scope.getAllStudSubList = function() {
+
+						var StudSubService = appEndpointSF.getStudSubService();
+						StudSubService.getAllStudSubList()
+								.then(		function(studsub) {
+											$scope.allStudSubList = studsub;	
+											$log.debug("allStudSubList "+angular.toJson($scope.allStudSubList));
+										});
+					}
+					
+					
+					
+
 					$scope.waitForServiceLoad = function() {
-						  if (appEndpointSF.is_service_ready) {					  
-							  $scope.getUsers();		  
-						  } 
-						  else {
-						   $log.debug("Services Not Loaded, watiting...");
-						   $timeout($scope.waitForServiceLoad, 1000);
-						  }
-						 }
-						  
-						 $scope.waitForServiceLoad();					
-					
-					
+						if (appEndpointSF.is_service_ready) {
+							$scope.getUsers();
+							$scope.getAllStudSubList();
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+
+					$scope.waitForServiceLoad();
 
 				});
