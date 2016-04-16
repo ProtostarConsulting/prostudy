@@ -14,7 +14,7 @@ angular
 
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
-					
+
 					// Code for timer
 					var date = new Date();
 
@@ -72,11 +72,12 @@ angular
 						}
 					});// End of timer
 
-					$scope.toggleSelection = function toggleSelection(id,optionId) {
+					$scope.toggleSelection = function toggleSelection(id,
+							optionId) {
 						var idx = $scope.selection.indexOf(id, optionId);
 						$scope.userAnsList.push({
 							qID : id,
-							userOption : 'option'+optionId
+							userOption : 'option' + optionId
 						});
 						if (idx > -1) {
 							$scope.selection.splice(idx, 1);
@@ -101,9 +102,13 @@ angular
 						}
 						$scope.addPracticeExamResult();
 						$scope.stopTimer();
-						
-						/*$log.debug("$scope.selectedID" +$scope.selectedID);
-						$state.go('userQuesAnsView', {selectedExamId : $scope.Test.id, selectedResultId : $scope.selectedID});*/
+
+						/*
+						 * $log.debug("$scope.selectedID" +$scope.selectedID);
+						 * $state.go('userQuesAnsView', {selectedExamId :
+						 * $scope.Test.id, selectedResultId :
+						 * $scope.selectedID});
+						 */
 
 					}
 
@@ -113,7 +118,7 @@ angular
 
 							if ($scope.Test.questions[i].id == qID) {
 								return $scope.Test.questions[i].correctAns;
-								
+
 							}
 						}
 						return -1;
@@ -130,7 +135,6 @@ angular
 										- $scope.itemsPerPage,
 								($scope.currentPage * $scope.itemsPerPage));
 						console.log("slice =" + $scope.array);
-						
 
 						if ($scope.currentPage == $scope.totalPages) {
 							$scope.isDisabledNext = true;
@@ -142,7 +146,7 @@ angular
 					}// end of onNext
 
 					$scope.onButtonClick = function(index) {
-					
+
 						$scope.currentPage = index;
 						$scope.count = $scope.currentPage;
 
@@ -150,7 +154,7 @@ angular
 								($scope.currentPage * $scope.itemsPerPage)
 										- $scope.itemsPerPage,
 								($scope.currentPage * $scope.itemsPerPage));
-						
+
 						if ($scope.currentPage == $scope.totalPages) {
 							$scope.isDisabledNext = true;
 
@@ -168,12 +172,12 @@ angular
 
 					$scope.onPrevious = function() {
 						$scope.currentPage--;
-						
+
 						$scope.array = $scope.Test.questions.slice(
 								($scope.currentPage * $scope.itemsPerPage)
 										- $scope.itemsPerPage,
 								($scope.currentPage * $scope.itemsPerPage));
-						
+
 						if ($scope.currentPage <= 1) {
 							$scope.isDisabledPrevious = true;
 
@@ -189,18 +193,14 @@ angular
 
 						var PracticeExamService = appEndpointSF
 								.getPracticeExamService();
-						PracticeExamService
-								.getPracticeExamByInstitute(
-										$scope.curUser.instituteID)
-								.then(
-										function(practiceExamList) {
-											$scope.practiceTest = practiceExamList;
-											
-										});
-					}
-					$scope.getPracticeExamByInstitute();
+						PracticeExamService.getPracticeExamByInstitute(
+								$scope.curUser.instituteID).then(
+								function(practiceExamList) {
+									$scope.practiceTest = practiceExamList;
 
-					
+								});
+					}
+
 					$scope.selectedExamId = $stateParams.selectedExamId;
 
 					$scope.showselectedExam = function() {
@@ -212,11 +212,11 @@ angular
 								.then(
 										function(practiceTest) {
 											$scope.Test = practiceTest;
-											
+
 											$scope.buttonLimit = function(count) {
 												$scope.totalPages = Math
 														.ceil($scope.Test.questions.length / 4);
-												
+
 												return Array.apply(0,
 														Array(+count)).map(
 														function(value, index) {
@@ -244,20 +244,21 @@ angular
 
 					}// End of showselectedExam
 
-					
-
 					$scope.questions = [];
 					$scope.practiceTest = [];
 					$scope.Test = [];
 					$scope.selection = [];
 					$scope.userAns = [];
 
-
 					$scope.getPracticeExamResultbyEmail = function() {
 
-						var PracticeExamResultService = appEndpointSF.getPracticeExamResultService();
+						var PracticeExamResultService = appEndpointSF
+								.getPracticeExamResultService();
 
-						PracticeExamResultService.getPracticeExamResultbyEmail($scope.curUser.email_id).then(
+						PracticeExamResultService
+								.getPracticeExamResultbyEmail(
+										$scope.curUser.email_id)
+								.then(
 										function(practiceExamResultList) {
 
 											$scope.examResults = practiceExamResultList;
@@ -282,27 +283,39 @@ angular
 					}
 
 					$scope.addPracticeExamResult = function() {
-						var PracticeExamResultService = appEndpointSF.getPracticeExamResultService();
+						var PracticeExamResultService = appEndpointSF
+								.getPracticeExamResultService();
 
-						PracticeExamResultService.addPracticeExamResult($scope.tempPracticeExamResult).then(function(msgBean) {
-											$scope.selectedID = msgBean.id;
-											$log.debug("$scope.selectedID :" +$scope.selectedID);
-											$log.debug("$scope.Test.id :" +$scope.Test.id);
-											$state.go('userQuesAnsView', {selectedExamId : $scope.Test.id, selectedResultId : $scope.selectedID});
-											$scope.showSavedToast();
-											
-										});
-						
-						
+						PracticeExamResultService.addPracticeExamResult(
+								$scope.tempPracticeExamResult).then(
+								function(msgBean) {
+									$scope.selectedID = msgBean.id;
+									$log.debug("$scope.selectedID :"
+											+ $scope.selectedID);
+									$log.debug("$scope.Test.id :"
+											+ $scope.Test.id);
+									$state.go('userQuesAnsView', {
+										selectedExamId : $scope.Test.id,
+										selectedResultId : $scope.selectedID
+									});
+									$scope.showSavedToast();
+
+								});
+
 					}
-					
-					
 
-					$scope.getPracticeExamResultbyEmail();
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
 
-					$scope.showselectedExam();
-					
-					$scope.getPracticeExamByInstitute();
+							$scope.getPracticeExamByInstitute();
+							$scope.getPracticeExamResultbyEmail();
+							$scope.showselectedExam();
+							$scope.getPracticeExamByInstitute();
+						} else {
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+
+					$scope.waitForServiceLoad();
 
 				});
-

@@ -13,12 +13,12 @@ angular.module("prostudyApp").controller(
 			};
 
 			
-			$scope.getPracticeExamResultbyID = function() {
+			$scope.getPracticeExamResultbyEmail = function() {
 
 				var PracticeExamResultService = appEndpointSF
 						.getPracticeExamResultService();
 
-				PracticeExamResultService.getPracticeExamResultbyID($scope.curUser.email_id)
+				PracticeExamResultService.getPracticeExamResultbyEmail($scope.curUser.email_id)
 						.then(
 								function(practiceExamResultList) {
 
@@ -27,7 +27,15 @@ angular.module("prostudyApp").controller(
 							});
 			}
 			
-
-			$scope.getPracticeExamResultbyID();
+			$scope.waitForServiceLoad = function() {
+				  if (appEndpointSF.is_service_ready) {					  
+					  $scope.getPracticeExamResultbyEmail(); 
+				  } 
+				  else {				 
+				   $timeout($scope.waitForServiceLoad, 1000);
+				  }
+				 }
+				  
+				 $scope.waitForServiceLoad();
 
 		});

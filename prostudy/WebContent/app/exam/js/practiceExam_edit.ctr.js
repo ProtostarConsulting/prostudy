@@ -83,7 +83,7 @@ angular
 								});
 					}
 
-					$scope.getQuestion();
+					
 
 					$scope.Test = [];
 
@@ -103,7 +103,7 @@ angular
 						}
 					}
 
-					$scope.showselectedExam();
+					
 					$scope.addQuestion = function() {
 
 						$state.go('exam.addnewquestion', {
@@ -162,7 +162,7 @@ angular
 										});
 					}
 
-					$scope.getStandardByInstitute();
+					
 
 					$scope.getDivisionByStandard = function() {
 
@@ -225,5 +225,18 @@ angular
 
 						return deferred.promise;
 					};
+					$scope.waitForServiceLoad = function() {
+						  if (appEndpointSF.is_service_ready) {	
+							  $scope.getQuestion();
+							  $scope.showselectedExam();
+							  $scope.getStandardByInstitute(); 		  
+						  } 
+						  else {
+						   $log.debug("Services Not Loaded, watiting...");
+						   $timeout($scope.waitForServiceLoad, 1000);
+						  }
+						 }
+						  
+						 $scope.waitForServiceLoad();	
 
 				});// end of editPracticeExamCtr

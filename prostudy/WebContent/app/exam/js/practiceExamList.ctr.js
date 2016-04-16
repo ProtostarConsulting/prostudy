@@ -26,10 +26,9 @@ angular.module("prostudyApp").controller(
 							$scope.practiceExams = practiceExamList;
 						});
 			}
-			$scope.getPracticeExamByInstitute();
-	
-			$scope.curUser.myExams = [];
-		
+			
+			$scope.curUser.myExams=[];
+			
 			$scope.isContainsTest = appEndpointSF.getUtilityService().objectArrayContains;
 			
 			$scope.addTestToMyList = function(selectedMyExamId) {
@@ -131,5 +130,15 @@ angular.module("prostudyApp").controller(
 
 				return deferred.promise;
 			};
+			$scope.waitForServiceLoad = function() {
+				  if (appEndpointSF.is_service_ready) {					  
+					  $scope.getPracticeExamByInstitute();  
+				  } 
+				  else {				 
+				   $timeout($scope.waitForServiceLoad, 1000);
+				  }
+				 }
+				  
+				 $scope.waitForServiceLoad();
 
 		});

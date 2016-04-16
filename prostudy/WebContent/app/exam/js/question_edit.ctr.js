@@ -24,9 +24,6 @@ angular
 									$scope.question = Question;
 								});
 					}
-					if (!$stateParams.selectedQuestion) {
-						$scope.getQuestionByID();
-					}
 
 					$scope.updateQuestion = function() {
 
@@ -57,5 +54,19 @@ angular
 					$scope.cancelButton = function() {
 						$state.go("exam.questionlist", {});
 					}
+
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+
+							if (!$stateParams.selectedQuestion) {
+								$scope.getQuestionByID();
+							}
+
+						} else {
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+
+					$scope.waitForServiceLoad();
 
 				});// end of editQuestionCtr

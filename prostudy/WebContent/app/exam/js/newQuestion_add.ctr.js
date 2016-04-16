@@ -58,7 +58,7 @@ angular.module("prostudyApp").controller(
 						});
 			}
 			
-			$scope.getStandardByInstitute();
+		
 			
 			$scope.getDivisionByStandard = function() {
 			
@@ -156,5 +156,17 @@ angular.module("prostudyApp").controller(
 
 			};
 
+			$scope.waitForServiceLoad = function() {
+				  if (appEndpointSF.is_service_ready) {					  
+						$scope.getStandardByInstitute();
+		  
+				  } 
+				  else {
+				   $log.debug("Services Not Loaded, watiting...");
+				   $timeout($scope.waitForServiceLoad, 1000);
+				  }
+				 }
+				  
+				 $scope.waitForServiceLoad();	
 
 		});
