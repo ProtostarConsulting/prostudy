@@ -18,6 +18,13 @@ angular
 					$scope.loginClick = function() {
 						$state.go("login");
 					};
+					
+					$scope.$on('customLoginEvent', function(event, args) {
+					      $log.debug("In side customLogin on Index Page");
+					      $scope.curUser = args.curUser;
+					      
+					});
+					
 
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
@@ -86,6 +93,8 @@ angular
 																		.getLocalUserService()
 																		.saveLoggedInUser(
 																				loggedInUser);
+																
+																$scope.curUser = loggedInUser;
 
 																$state
 																		.go(
@@ -102,9 +111,7 @@ angular
 
 									});
 
-					$log.debug('$scope.curUser'
-							+ angular.toJson($scope.curUser));
-
+				
 					$scope.getAuthority = function() {
 
 						$scope.selection = [];
@@ -114,13 +121,10 @@ angular
 								.then(
 										function(modules) {
 											$scope.modules = modules;
-											$log
-													.debug('$scope.modules :'
-															+ angular
-																	.toJson($scope.modules));
+											$log.debug('$scope.modules :'
+															+ angular.toJson($scope.modules));
 											for (i = 0; i < $scope.modules.length; i++) {
-												$log
-														.debug('$scope.modules.modules :'
+												$log.debug('$scope.modules.modules :'
 																+ angular
 																		.toJson($scope.modules[i].modules));
 											}
