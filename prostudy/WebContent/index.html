@@ -19,9 +19,11 @@
 	<div ng-show="loading">Loading... </div>	
 	<md-content ng-hide="loading"> <!-- Top Navigation Pane --> <md-toolbar>
 	<div class="md-toolbar-tools">
-		<span ng-show="curUser==null">ProStudy - Where learning meets teaching, self
-			study, tutorials and practice!</span>
-			<span ng-show="curUser!=null">ProStudy -{{curUser.instituteID}}</span>
+	<span ng-show="curUser==null">ProStudy - Where learning meets teaching, self
+   study, tutorials and practice!</span> 
+   <span ng-show="curUser!=null">ProStudy - {{institute.name}}</span>
+	
+
 		<!-- fill up the space between left and right area -->
 		<span flex></span>
 		<section layout="row">
@@ -270,7 +272,8 @@
 	<script src="/app/book/js/standard_viewChapterContent.ctr.js"></script>
 
 
-	<script src="/app/student/js/student_module.ctr.js"></script>		
+	<script src="/app/student/js/student_module.ctr.js"></script>	
+	<script src="/app/student/js/student.list.ctr.js"></script>
 	<script src="/app/institute/js/student_view.ctr.js"></script>
 	
 	<script src="/app/attendance/js/attendance_module.ctr.js"></script>
@@ -314,10 +317,10 @@
 	<script src="/app/report/js/display_report.ctr.js"></script>
 
 	<script src="/app/myprofile/js/myprofile_update.ctr.js"></script>
-	<script src="/app/myPracticeExams/js/myPracticeExams_module.ctr.js"></script>
-	
+	<script src="/app/myPracticeExams/js/myPracticeExams_module.ctr.js"></script>	
 	<script src="/app/favourite/js/favourite_module.ctr.js"></script>
 	<script src="/app/favourite/js/myBooks.ctr.js"></script>
+	<script src="/app/favourite/js/myPracticeExams.ctr.js"></script>
 
 	<script src="/app/test/js/table.demo.data.service.js"></script>
 	<script src="/app/demo/js/table.demo.withservice.ctr2.js"></script>
