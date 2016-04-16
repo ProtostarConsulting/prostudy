@@ -19,11 +19,14 @@ public class StudSubService {
 	
 	
 	@ApiMethod(name = "addStudSubject")
-	public StudSubEntity addStudSubject(StudSubEntity data) {
-		data.setActive(true);
+	public StudSubEntity addStudSubject(StudSubEntity data) {		
 		Key<StudSubEntity> now2 = ofy().save().entity(data).now();
 		data.setId(now2.getId());
 		return data;
+	}
+	@ApiMethod(name = "getAllStudSubList")
+	public List<StudSubEntity> getAllStudSubList() {
+		return ofy().load().type(StudSubEntity.class).list();
 	}
 
 	@ApiMethod(name = "getSubByStudId", path="getSubByStudId")
@@ -44,12 +47,7 @@ public class StudSubService {
 	  StudSubEntity studSub = ofy().load().type(StudSubEntity.class).filter("studID", Ref.create(Key.create(UserEntity.class, studID))).filter("subID", Ref.create(Key.create(SubjectEntity.class, subID))).first().now();
 	 	  return studSub;	  
 	 }	
-	@ApiMethod(name = "removeStudSubject", path="removeStudSubject")
-	public void removeStudSubject(StudSubEntity studsub) {
-		System.out.println("studsud@ ####"+studsub);		
-		Key<StudSubEntity> now = ofy().save().entity(studsub).now();
-	}
-	
+		
 	@ApiMethod(name = "getStudentBySubject", path="getStudBySubId")
 	 public List<StudSubEntity> getStudBySubId(@Named("subID") Long subID) {	
 	  List<StudSubEntity> studList = ofy().load().type(StudSubEntity.class).filter("subID", Ref.create(Key.create(SubjectEntity.class, subID))).list();
