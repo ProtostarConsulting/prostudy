@@ -1,10 +1,14 @@
 
 <div layout="column" layout-padding layout-align="centre centre"
 	layout-xs="column">
-	<div>
+	<div ng-hide="!flag" >
 		<h3>Welcome {{tempUser.firstName.toUpperCase( )}}
 			{{tempUser.lastName.toUpperCase( )}} , Please Complete Your Rest Of
 			Profile.....</h3>
+	</div>
+	<div ng-hide="flag">
+		<h3>{{tempUser.firstName.toUpperCase( )}}
+			{{tempUser.lastName.toUpperCase( )}} , Upadte Your Profile.....</h3>
 	</div>
 
 	<form name="profileForm" ng-model="profileForm"
