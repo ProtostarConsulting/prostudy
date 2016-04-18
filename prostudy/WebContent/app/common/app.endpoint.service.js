@@ -104,7 +104,13 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 		else
 			return googleEndpointSF.getStudentService();
 	};
-
+	endpointFactory.getPaymentService = function() {
+		if (isTestMode)
+			return localDBServiceFactory.getPaymentService();
+		else
+			return googleEndpointSF.getPaymentService();
+	};
+	
 	endpointFactory.getInstituteService = function() {
 		if (isTestMode)
 			return localDBServiceFactory.getInstituteService();
@@ -164,6 +170,13 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 
 		gapi.client.load('studentService', 'v0.1', function() {
 			$log.debug("StudentService Loaded....");
+
+		}, apiRoot);
+		
+		gapi.client.load('paymentService', 'v0.1', function() {
+			$log.debug("paymentService Loaded....");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
 
 		}, apiRoot);
 

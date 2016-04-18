@@ -4,6 +4,7 @@ var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
 		'directive.g+signin' ]);
 
 app.constant('boardList', ["State Board", "CBSE", "ICSE"]);
+app.constant('installmentList', [1,2,3]);
 
 app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette(
@@ -246,7 +247,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/institute/institute_addSubjects.html',
 		controller : 'instituteListViewCtr'
 	}).state('institute.list_view.editUser', {
-		url : "/editUser/:selectedID/:currentInstID",
+		url : "/editUser/:selectedEmailID/:currentInstID",
 		templateUrl : '/app/institute/institute_editUser.html',
 		controller : 'userEditCtr',
 	}).state('institute.view.view_admins', {
@@ -310,7 +311,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/institute/institute_addStudents.html',
 		controller : 'instituteViewCtr',
 	}).state('institute.view.editUser', {
-		url : "/editUser/:selectedID/:currentInstID",
+		url : "/editUser/:selectedEmailID/:currentInstID",
 		templateUrl : '/app/institute/institute_editUser.html',
 		controller : 'userEditCtr',
 	})	.state('institute.view.viewUser', {
@@ -442,9 +443,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/institute/institute_editUser.html',
 		controller : 'userEditCtr',
 		params : {
-			selectedStudEmailId : null	,
-			currentInstID : null,
-			selectedID : null
+			selectedEmailID : null	,
+			currentInstID : null			
 		}
 	}).state('student.view', {
 		url : "/view",
@@ -454,7 +454,38 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			selectedStudEmailId : null,
 			selectedID : null
 		}	
-	}).state('syllabus', {
+	}).state('student.addstudentpayment', {
+		url : "/addstudentpayment",
+		templateUrl : '/app/student/student_addpayment.html',
+		controller : 'studentAddPaymentCtr',
+		params : {
+			selectedStud : null
+		}
+	}).state('student.studentpaymentlist', {
+		url : "/studentPaymentlist",
+		templateUrl : '/app/student/student_paymentlist.html',
+		controller : 'studentPaymentListCtr',
+	})
+	.state('student.studentInstallmentedit', {
+		url : "/studentInstallmentedit",
+		templateUrl : '/app/student/student_installmentedit.html',
+		controller : 'studentInstallmentEditCtr',
+		params : {
+			selectedInstallment : null,
+			selectedPaymentId : null
+		}
+	})
+	.state('student.studentinstallmentlist', {
+		url : "/studentinstallmentlist/:selectedPaymentId",
+		templateUrl : '/app/student/student_installmentlist.html',
+		controller : 'studentInstallmentListCtr',
+	})
+	
+	
+	
+	
+	
+	.state('syllabus', {
 		url : "/syllabus",
 		templateUrl : '/app/syllabus/syllabus_module.html',
 		controller : 'syllabusModuleCtr'

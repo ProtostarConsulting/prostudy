@@ -438,6 +438,15 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
+	
+	StudSubService.getAllSubByStudId = function(studID) {
+		var deferred = $q.defer();
+		gapi.client.studSubService.getAllSubByStudId({'studID' : studID}).execute(function(resp)
+			{
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
 
 	
 	StudSubService.getStudentBySubject = function(subID) {
@@ -456,7 +465,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		var deferred = $q.defer();
 		gapi.client.studSubService.getStudSubByStudIdAndSubId({'studID' : studID,'subID':subID}).execute(function(resp)
 			{
-			$log.debug("(resp.items:"+ angular.toJson(resp));
+			
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
@@ -848,7 +857,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		gapi.client.instituteService.addInstitute(insti).execute(
 				function(resp) {
 					deferred.resolve(resp);
-					$log.debug("resp :" + angular.toJson(resp));
+					
 				});
 		return deferred.promise;
 	}
@@ -866,7 +875,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		gapi.client.instituteService.getInstituteById({
 			'id' : selectedInstituteId
 		}).execute(function(resp) {
-			$log.debug("resp:" + angular.toJson(resp));
+			
 			deferred.resolve(resp.result);
 		});
 		return deferred.promise;
@@ -997,6 +1006,74 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	}
 
 	// End of StudentService
+
+	// start of PaymentService
+	var PaymentService = {};
+
+	serviceFactory.getPaymentService = function() {
+		return PaymentService;
+	}
+
+	PaymentService.addStudentPayment = function(inst) {
+
+		var deferred = $q.defer();	
+		
+		gapi.client.paymentService.addStudentPayment(inst).execute(function(resp) {
+			$log.debug("resp :" + angular.toJson(resp));
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
+	PaymentService.getPaymentByID = function(id) {
+		var deferred = $q.defer();
+		gapi.client.paymentService.getPaymentByID({
+			'id' : id
+		}).execute(function(resp) {
+		deferred.resolve(resp.result);
+		$log.debug("resp installment :" + angular.toJson(resp.result));
+		});
+		return deferred.promise;
+		
+	}	
+	PaymentService.getPayments = function() {
+		var deferred = $q.defer();
+		gapi.client.paymentService.getPayments().execute(function(resp) {
+		deferred.resolve(resp.items);
+		$log.debug("resp payment :" + angular.toJson(resp));
+		});
+	
+		return deferred.promise;
+	}
+	
+	PaymentService.updatePayment = function(payment) {
+
+		var deferred = $q.defer();
+		gapi.client.paymentService.updatePayment(payment).execute(
+				function(resp) {				
+					$log.debug("resp:" + angular.toJson(resp));
+					deferred.resolve(resp);
+				});
+
+		return deferred.promise;
+	}
+
+/*	PaymentService.getPaymentByStudent = function(studId) {
+		var deferred = $q.defer();
+		gapi.client.paymentService.getPaymentByStudent({
+			'studId' : studId
+		}).execute(function(resp) {
+		deferred.resolve(resp.items);
+		$log.debug("resp payment :" + angular.toJson(resp));
+		});
+		return deferred.promise;
+	}*/
+	
+	// End of PaymentService
+	
+	
+	
+	
 
 	return serviceFactory;
 }
