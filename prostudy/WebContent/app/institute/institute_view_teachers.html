@@ -22,10 +22,10 @@
 				<td>{{a.email_id}}</td>
 				<td>{{a.address}}</td>
 				<td>{{a.contact}}</td>
-				<td><a ui-sref="institute.view.editUser({selectedID : a.id, currentInstID : currentInstID})"><md-button
+				<td><a ui-sref="institute.view.editUser({selectedEmailID : a.email_id, currentInstID : currentInstID})"><md-button
 							ng-show="flag==true" class="md-raised md-primary" ng-click="">Edit</md-button></a></td>
 							
-				<td><a ui-sref="institute.list_view.editUser({selectedID : a.id, currentInstID : currentInstID})"><md-button
+				<td><a ui-sref="institute.list_view.editUser({selectedEmailID : a.email_id, currentInstID : currentInstID})"><md-button
 							ng-show="flag==false" class="md-raised md-primary" ng-click="">Edit</md-button></a></td>
 							
 				

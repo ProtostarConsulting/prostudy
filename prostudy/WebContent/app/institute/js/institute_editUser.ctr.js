@@ -23,43 +23,44 @@ angular
 					};
 					$scope.currentInstID = $stateParams.currentInstID;
 					$scope.selectedID = $stateParams.selectedID;
+					
+					$scope.selectedEmailID = $stateParams.selectedEmailID;				
+					$log.debug("$scope.selectedEmailID"+$scope.selectedEmailID);
 
-					$scope.user = [];
+					
 					$scope.flag1;
 					$scope.role;
-
-					$scope.getUsers = function() {
+					
+					
+					$scope.getUser = function() {
 
 						var UserService = appEndpointSF.getUserService();
-						UserService
-								.getUserByInstitute($scope.currentInstID)
-								.then(
-										function(userList) {
-											$scope.users = userList;
-
-											for (i = 0; i < $scope.users.length; i++) {
-												if ($scope.selectedID == $scope.users[i].id) {
-													$scope.user
-															.push($scope.users[i]);
-													$scope.role = $scope.users[i].role;
-
-												}
-											}
-											$log.debug("$scope.user[0]"
-													+ $scope.user[0]);
-											if ($scope.user[0].role == "Student") {
+						UserService.getUserByEmailID($scope.selectedEmailID).then(
+								function(user) {
+									$scope.user = user;
+									
+									$scope.role = $scope.user.role;
+									if($scope.user.role=="Student")
+									{																	
 												$scope.getSubjectsByDivName();
 												$scope.getSubjectsByStudentID();
 												$scope.getSubByStudId();
-											}
-
-										});
+												$scope.getAllSubByStudId();
+											
+									}
+								});
 					}
 
+			
 					$scope.updateUser = function() {
-						$scope.checkForSubjectChange();
+						
+						if($scope.user.role=="Student")
+						{
+							$scope.checkForSubjectChange();
+						}						
+					
 						var UserService = appEndpointSF.getUserService();
-						UserService.updateUser($scope.user[0]).then(
+						UserService.updateUser($scope.user).then(
 								function(msgBean) {
 									$scope.showSavedToast();
 									$state.go("^", {});
@@ -98,10 +99,9 @@ angular
 
 						var DivisionService = appEndpointSF
 								.getDivisionService();
-						$log.debug("$scope.user[0].division"
-								+ $scope.user[0].division);
+						
 						DivisionService
-								.getSubjectsByDivName($scope.user[0].division)
+								.getSubjectsByDivName($scope.user.division)
 								.then(
 										function(subList) {
 											$scope.subjectList = subList;
@@ -115,7 +115,7 @@ angular
 					$scope.getSubjectsByStudentID = function() {
 						var SubjectService = appEndpointSF.getSubjectService();
 						SubjectService
-								.getSubjectsByStudentID($scope.user[0].id)
+								.getSubjectsByStudentID($scope.user.id)
 								.then(
 										function(subList) {
 											$scope.selectedSubjectList = subList;
@@ -137,40 +137,61 @@ angular
 
 					$scope.checkForSubjectChange = function() {
 						var StudSubService = appEndpointSF.getStudSubService();
-						$scope.tempStudSub.studID = $scope.user[0];
+						$scope.tempStudSub.studID = $scope.user;
 
 						for (var i = 0; i < $scope.selectedSubjectsIndx.length; i++) {
 
-							// If subject is selected now , which was not
-							// earlier and now Added.
+							/* If subject is selected now , which was not earlier and now Added.*/
 							if ($scope.selectedSubjectsIndx[i]
 									&& !appEndpointSF.getUtilityService()
 											.objectArrayContains(
 													$scope.selectedSubjectList,
 													$scope.subjectList[i])) {
-								$scope.tempStudSub.subID = $scope.subjectList[i];
-								
-								StudSubService
-								.addStudSubject($scope.tempStudSub)
-								.then(
+								$scope.tempStudSub.subID = $scope.subjectList[i];	
+						
+							if($scope.allStudSubListOfStudent.length > 0)
+							{
+									for (var k = 0; k < $scope.allStudSubListOfStudent.length; k++) {									
+									
+											$scope.isExist=false;									
+									
+										if ($scope.allStudSubListOfStudent[k].subID.id == $scope.tempStudSub.subID.id && $scope.allStudSubListOfStudent[k].studID.id == $scope.tempStudSub.studID.id) {
+										
+											$scope.isExist=true;
+											var studSubToRemove = $scope.allStudSubListOfStudent[k];
+											studSubToRemove.active=true;
+											$scope.removeStudSubject(studSubToRemove);
+											break;
+										}						
+									}		
+									if($scope.isExist==false && k==$scope.allStudSubListOfStudent.length)	
+									{
+									StudSubService.addStudSubject($scope.tempStudSub).then(function(msgBean) {
+											$scope.selectedSubjectList
+													.push($scope.subjectList[i]);
+										});		
+							
+									}														
+									
+							}else
+								{  										
+								StudSubService.addStudSubject($scope.tempStudSub).then(
 										function(msgBean) {
 											$scope.selectedSubjectList
 													.push($scope.subjectList[i]);
-										});
+										});		
+							
 							}
-								
+			
+							}
 
-							// If subject was selected earlier and now removed.
+						/* If subject was selected earlier and now removed.*/
 							if (!$scope.selectedSubjectsIndx[i]
 									&& appEndpointSF.getUtilityService()
 											.objectArrayContains(
 													$scope.selectedSubjectList,
 													$scope.subjectList[i])) {
-
-								$log.debug("To Mark this subject as Inactive:"
-										+ $scope.subjectList[i].name
-										+ $scope.subjectList[i].id);
-
+								
 								for (var j = 0; j < $scope.selectedStudSubList.length; j++) {
 									if ($scope.selectedStudSubList[j].subID.id == $scope.subjectList[i].id) {
 										var studSubToRemove = $scope.selectedStudSubList[j];
@@ -183,12 +204,10 @@ angular
 						}
 					}
 
-					// $scope.selStudSub=[];
-					// Function for If subject was selected earlier and now
-					// removed.
+				
+					/* Function for If subject was selected earlier and now removed.*/
 
-					$scope.removeStudSubject = function(studSubToRemove) {
-						//studSubToRemove.active = false;
+					$scope.removeStudSubject = function(studSubToRemove) {	
 
 						
 						var StudSubService = appEndpointSF.getStudSubService();
@@ -196,7 +215,7 @@ angular
 								.addStudSubject(studSubToRemove)
 								.then(
 										function(msgBean) {
-											$log.debug("#removeStudSubject Successful #");
+											
 										});
 					}
 
@@ -205,30 +224,29 @@ angular
 
 						var StudSubService = appEndpointSF.getStudSubService();
 						StudSubService
-								.getSubByStudId($scope.user[0].id)
+								.getSubByStudId($scope.user.id)
 								.then(
 										function(studsub) {
 											$scope.selectedStudSubList = studsub;											
 										});
 					}
-					$scope.allStudSubList = [];
-					$scope.getAllStudSubList = function() {
+		
+					
+					$scope.getAllSubByStudId = function() {
 
 						var StudSubService = appEndpointSF.getStudSubService();
-						StudSubService.getAllStudSubList()
+						StudSubService.getAllSubByStudId($scope.user.id)
 								.then(		function(studsub) {
-											$scope.allStudSubList = studsub;	
-											$log.debug("allStudSubList "+angular.toJson($scope.allStudSubList));
+											$scope.allStudSubListOfStudent = studsub;	
+											
 										});
 					}
 					
-					
-					
-
+				
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
-							$scope.getUsers();
-							$scope.getAllStudSubList();
+							$scope.getUser();							
+							
 						} else {
 							$log.debug("Services Not Loaded, watiting...");
 							$timeout($scope.waitForServiceLoad, 1000);
@@ -238,3 +256,5 @@ angular
 					$scope.waitForServiceLoad();
 
 				});
+
+
