@@ -14,7 +14,9 @@ import com.protostar.prostudy.entity.CertificateEntity;
 import com.protostar.prostudy.entity.ChapterEntity;
 import com.protostar.prostudy.entity.CommentEntity;
 import com.protostar.prostudy.entity.DivisionEntity;
+import com.protostar.prostudy.entity.InstallmentEntity;
 import com.protostar.prostudy.entity.InstituteEntity;
+import com.protostar.prostudy.entity.PaymentEntity;
 import com.protostar.prostudy.entity.PracticeExamEntity;
 import com.protostar.prostudy.entity.PracticeExamResultEntity;
 import com.protostar.prostudy.entity.QuestionEntity;
@@ -45,6 +47,8 @@ public class AppServletContextListener implements ServletContextListener {
 		  ObjectifyService.register(CarAddress.class);
 		  ObjectifyService.register(CarOwner.class);  
 		  ObjectifyService.register(StudentEntity.class);  
+		  ObjectifyService.register(InstallmentEntity.class);
+		  ObjectifyService.register(PaymentEntity.class);
 		  ObjectifyService.register(QuestionEntity.class);
 		  ObjectifyService.register(PracticeExamEntity.class);
 		  ObjectifyService.register(BookEntity.class);
