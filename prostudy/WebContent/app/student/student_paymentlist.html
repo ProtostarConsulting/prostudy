@@ -1,0 +1,46 @@
+ <md-content>
+		<md-subheader class="md-primary">
+		<h3 class="md-headline">Payment List</h3>
+		</md-subheader>
+	<div>
+		<div>
+			<md-input-container flex>
+				<label>Search By PaymentDescription</label>
+				<input ng-model="searchPaymentDescription">
+			</md-input-container>
+		</div>
+		<md-data-table-container>
+			<table md-data-table  md-progress="deferred">
+				<thead md-order="query.order" md-trigger="onorderchange">
+					<tr>
+						<th name="PaymentId"   order-by="id"></th>
+						<th name="StudentId"  order-by="studId"></th>
+						<th name="Payment Description"  order-by="paymentDescription"></th>
+						<th name="Payment Year"  order-by="paymentYear"></th>
+						<th name="TotalFees"  order-by="totalFees"></th>
+						<th name="NoOfInstallments"  order-by="noofinstallments"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr md-auto-select ng-repeat="payment in payments | filter: { paymentDescription : searchPaymentDescription} | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+						<!-- <td>{{payment.id}}	</td>	 -->	
+						<td>{{$index+1}}</td>				
+					 	<td>{{payment.studId}}</td>
+					 	<td>{{payment.paymentDescription}}</td>
+					 	<td>{{payment.paymentYear}}</td>
+					 	<td>{{payment.totalFees}}</td>									
+						<td>{{payment.noofinstallments}}</td>
+						<td><a ui-sref="student.studentinstallmentlist({selectedPaymentId:payment.id})"><md-button
+									class="md-raised md-primary" ng-click="getPaymentByID()">View</md-button> </a></td>
+					</tr>
+				</tbody>
+			</table>
+
+		</md-data-table-container>
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total={{payments.length}} md-trigger="onpagechange"></md-data-table-pagination>
+
+	</div>
+
+		
+</md-content>
+ 
