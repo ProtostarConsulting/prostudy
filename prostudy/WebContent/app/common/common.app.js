@@ -67,8 +67,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			selectedQuestionId : null,
 			selectedQuestion : null
 		}
-		})
-	.state('exam.addpracticeexam', {
+	}).state('exam.addpracticeexam', {
 		url : "/addpracticeexam",
 		templateUrl : '/app/exam/practiceExam_add.html',
 		controller : 'addPracticeExamCtr'
@@ -102,7 +101,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/exam/exam_view.html',
 		controller : 'examCtr'
 	}).state('userQuesAnsView', {
-		url : "/userQuesAnsView/:selectedExamId/:selectedResultId",
+		url : "/userQuesAnsView/:selectedExamId/:selectedResultId/:flag",
 		templateUrl : '/app/exam/userQuesAns_view.html',
 		controller : 'userQuesAnsViewCtr'
 	}).state('exam.question', {
@@ -373,7 +372,21 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('book.list', {
 		url : "/list",
 		templateUrl : "/app/book/book_list.html",
-		controller : 'bookListCtr'
+		controller : 'bookListCtr',
+		params : {
+			standard : null	,
+			division : null,
+			subject : null
+		}
+	}).state('book.edit', {
+		url : "/edit/:selectedBookId",
+		templateUrl : "/app/book/book_edit.html",
+		controller : 'bookEditCtr',
+		params : {
+			standard : null	,
+			division : null,
+			subject : null
+		}
 	}).state('book.chapterList', {
 		url : "/chapterList/:selectedBookId/:flag",
 		templateUrl : "/app/book/book_chapterList.html",
