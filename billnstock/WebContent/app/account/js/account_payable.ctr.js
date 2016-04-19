@@ -30,6 +30,9 @@ app.controller("accountPayableCtr", function($scope, $window, $mdToast,
 			$scope.showSimpleToast();
 		});
 		
+		$scope.payableForm.$setPristine();
+		$scope.payableForm.$setValidity();
+		$scope.payableForm.$setUntouched();
 		$scope.accountPayable = {};
 	}
 	

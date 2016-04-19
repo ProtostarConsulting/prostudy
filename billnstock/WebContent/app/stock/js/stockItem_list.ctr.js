@@ -17,7 +17,7 @@ angular.module("stockApp").controller(
 					+ angular.toJson($scope.curUser));
 
 			$scope.selected = [];
-			$scope.updateStock = function() {
+/*			$scope.updateStock = function() {
 				var stockService = appEndpointSF.getStockService();
 
 				stockService.updateStock($scope.stock).then(
@@ -26,7 +26,7 @@ angular.module("stockApp").controller(
 							$scope.showSimpleToast();
 						});
 			}
-
+*/
 			$scope.getAllStock = function() {
 				$log.debug("Inside Ctr $scope.getAllStock");
 				var stockService = appEndpointSF.getStockService();

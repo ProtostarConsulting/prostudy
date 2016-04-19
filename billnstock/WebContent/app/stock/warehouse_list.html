@@ -32,17 +32,15 @@
 							ui-sref="stock.warehouseAdd({selectedWarehouseId: warehouse.id})">
 						Edit</md-button>
 					</section></td>
-
-<!-- 				<td><section layout="row" layout-sm="column">
-						<md-button class="md-raised md-primary"
-							ui-sref="stock.warehouseEdit({selectedWarehouseId: warehouse.id})">
-						Edit</md-button>
-					</section></td>
- -->				<td>
+				<td>
 			</tr>
 		</tbody>
 	</table>
-	<!-- 		<md-data-table-toolbar class="alternate" ng-show="selected.length">
+	<md-data-table-pagination md-limit="query.limit"
+		md-page="query.page" md-total={{warehouses.length}}
+		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
+		
+		<!-- 		<md-data-table-toolbar class="alternate" ng-show="selected.length">
 			<div>
 				{{selected.length}} {{selected.length > 1 ? 'stockData' : 'stock'}} selected
 			</div>
@@ -50,9 +48,7 @@
 				{{selected}}
 			</div>
 		</md-data-table-toolbar>
- --> <md-data-table-pagination md-limit="query.limit"
-		md-page="query.page" md-total={{warehouses.length}}
-		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
+ -->
 </div>
 
 </md-content>

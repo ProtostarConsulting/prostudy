@@ -30,7 +30,10 @@ angular.module("stockApp").controller(
 				if ($scope.selectedStocksId == "") {
 					$scope.stock.business = $scope.curUser.business;
 					$scope.stock.modifiedBy =$scope.curUser.email_id;
+					if ($scope.selectedStocksId != "") {
 					$scope.stock.createdDate =$scope.tempStock.createdDate;
+					}
+					
 				}
 
 				stockService.addStock($scope.stock).then(function(msgBean) {
@@ -70,18 +73,7 @@ angular.module("stockApp").controller(
 									+ angular.toJson($scope.warehouses));
 						});
 			}
-/*
-			$scope.waitForServiceLoad = function() {
-				if (appEndpointSF.is_service_ready) {
-					$scope.getAllWarehouseByBusiness();
-				} else {
-					$log.debug("Services Not Loaded, watiting...");
-					$timeout($scope.waitForServiceLoad, 1000);
-				}
-			}
 
-			$scope.waitForServiceLoad();
-*/
 			$scope.warehouseDDLChange = function(index, selectedWarehouse) {
 				$log.debug("##Came to warehouseDDLChange...");
 
@@ -102,14 +94,14 @@ angular.module("stockApp").controller(
 							$scope.stock = stock;
 							$scope.tempStock = stock;
 							$log.debug("Inside Ctr $scope.stockData:"
-									+ angular.toJson($scope.stockData));
+									+ $scope.stockData);
 
 						});
 			}
 
 			$scope.waitForServiceLoad = function() {
 				if (appEndpointSF.is_service_ready) {
-					if ($scope.selectedStocksId != undefined) {
+					if ($scope.selectedStocksId != "") {
 						$scope.getStockById();
 					}
 					$scope.getAllWarehouseByBusiness();
@@ -145,6 +137,12 @@ angular.module("stockApp").controller(
 				});
 			};
 			
+			$scope.query = {
+					order : 'name',
+					limit : 5,
+					page : 1
+				};
+			
 			$scope.addWarehouse = function(ev) {
 				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
 						&& $scope.customFullscreen;
@@ -170,7 +168,6 @@ angular.module("stockApp").controller(
 								function() {
 									$scope.status = 'You cancelled the dialog.';
 								});
-				
 			};
 
 			function DialogController($scope, $mdDialog, curBusi,curUser,
@@ -183,12 +180,13 @@ angular.module("stockApp").controller(
 					var warehouseService = appEndpointSF.getWarehouseManagementService();
 
 					warehouseService.addWarehouse($scope.warehouse).then(
-							function(msgBean) {
-
+							function(warehouse) {
+								$scope.selectedWarehouse = warehouse.warehouseName;
+								$log.debug("$scope.selectedWarehouse"+$scope.selectedWarehouse);
+								console.log("####################");
 							});
 					$scope.hide();
-				}
-				
+				}	
 				$scope.hide = function() {
 					$mdDialog.hide();
 				};

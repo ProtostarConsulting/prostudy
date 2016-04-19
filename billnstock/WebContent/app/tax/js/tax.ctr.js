@@ -37,7 +37,9 @@ angular.module("stockApp").controller(
 					$scope.showSimpleToast();
 
 				});
-				$log.debug("No4");
+				$scope.taxForm.$setPristine();
+				$scope.taxForm.$setValidity();
+				$scope.taxForm.$setUntouched();
 				$scope.tax = {};
 			}
 

@@ -7,7 +7,11 @@ app.controller(
 
 			$log.debug("Inside warehouseListCtr");
 
-			
+			$scope.query = {
+					order : 'name',
+					limit : 5,
+					page : 1
+				};
 			$scope.curUser = appEndpointSF.getLocalUserService()
 			.getLoggedinUser();
 			$log.debug("$scope.curUser++++++++"+angular.toJson($scope.curUser));

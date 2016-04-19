@@ -34,13 +34,8 @@ app
 										$scope.curUser.business.id)
 								.then(
 										function(invoiceList) {
-											$log
-													.debug("Inside Ctr getAllInvoice");
+						
 											$scope.invoiceData = invoiceList;
-											$log
-													.debug("Inside Ctr $scope.invoiceData:"
-															+ angular
-																	.toJson($scope.invoiceData));
 										});
 					}
 

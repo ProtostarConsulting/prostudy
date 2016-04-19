@@ -32,9 +32,9 @@ app.controller(
 							$scope.showSimpleToast();
 
 						});
-				$scope.accountForm.$setPristine();
-				$scope.accountForm.$setValidity();
-				$scope.accountForm.$setUntouched();
+				$scope.receivableForm.$setPristine();
+				$scope.receivableForm.$setValidity();
+				$scope.receivableForm.$setUntouched();
 				$scope.account = {};
 			}
 	

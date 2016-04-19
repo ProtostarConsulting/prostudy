@@ -64,7 +64,7 @@ app.controller("warehouseAddCtr", function($scope, $window, $mdToast, $timeout,
 
 	$scope.waitForServiceLoad = function() {
 		if (appEndpointSF.is_service_ready) {
-			if ($scope.selectedWarehouseId != undefined) {
+			if ($scope.selectedWarehouseId != "") {
 				$scope.getWarehouseById();
 			}
 		} else {

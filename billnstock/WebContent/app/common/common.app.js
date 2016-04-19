@@ -181,6 +181,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/view/:selectedInvoiceNo",
 		templateUrl : '/app/invoice/invoice_view.html',
 		controller : 'invoiceViewCtr',
+	}).state('invoice.edit', {
+		url : "/edit/:selectedInvoiceNo",
+		templateUrl : '/app/invoice/invoice_edit.html',
+		controller : 'invoiceEditCtr',
+	}).state('invoice.settings', {
+		url : "/settings",
+		templateUrl : '/app/invoice/invoice_settings.html',
+		controller : 'invoiceSettingsCtr',
 	}).state('customer', {
 		url : "/customer",
 		templateUrl : '/app/customer/customer_module.html',

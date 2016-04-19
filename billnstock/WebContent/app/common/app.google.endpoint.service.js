@@ -1194,11 +1194,6 @@ function googleEndpointSF($log, $q) {
 			deferred.resolve(resp);
 		});
 
-		/*
-		 * gapi.client.stockService.updateStock(invoice).execute( function(resp) {
-		 * $log.debug("updateStock#resp at enpoint:" + resp);
-		 * deferred.resolve(resp); });
-		 */
 		return deferred.promise;
 	}
 
@@ -1235,9 +1230,33 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
+	InvoiceService.addInvoiceSettings = function(settings) {
+		var deferred = $q.defer();
+
+		gapi.client.invoiceService.addInvoiceSettings(settings).execute(function(resp) {
+			$log.debug("addInvoiceSettings#resp at enpoint:" + resp);
+			deferred.resolve(resp);
+		});
+
+		return deferred.promise;
+	}
+	
+	InvoiceService.getInvoiceSettingsByBiz = function(id) {
+		var deferred = $q.defer();
+		gapi.client.invoiceService.getInvoiceSettingsByBiz({
+			"id" : id
+		}).execute(
+				function(resp) {
+					$log.debug("getInvoiceSettingsByBiz#resp at enpoint:"
+							+ angular.toJson(resp.items));
+					deferred.resolve(resp.items);
+				});
+		return deferred.promise;
+	}
+	
 	InvoiceService.getAllPayableInvoices = function(id) {
 		var deferred = $q.defer();
-		gapi.client.InvoiceService.getAllPayableInvoices({
+		gapi.client.invoiceService.getAllPayableInvoices({
 			"id" : id
 		}).execute(
 				function(resp) {
