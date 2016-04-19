@@ -3,10 +3,12 @@ angular
 		.controller("standard_chapterListCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $stateParams, appEndpointSF, $state,
-						$sce) {
+						$sce, $q) {
 					console.log("Inside standard_chapterListCtr");
 
-			
+					$scope.book_ChapterDetails = [];
+					$scope.chapters = [];
+					
 					$scope.selectedChapter = {
 						id : "",
 						chapterId :"",
@@ -17,31 +19,52 @@ angular
 						subject : "",
 					};
 
-					$log.debug("$stateParams:", $stateParams);
-					$log.debug("$stateParams.selectedBookId:",$stateParams.selectedBookId);
 					$scope.selectedBookId = $stateParams.selectedBookId;
 					
 					$scope.showBookContents = function() {
 						var BookService = appEndpointSF.getBookService();
-						$log.debug("$scope.selectedBookId:"+ $scope.selectedBookId);
+						
 						BookService.getBookbyID($scope.selectedBookId)
 								.then(
 										function(bookList) {
-										$scope.book_ChapterDetails = bookList[0];										
-
+																		
 										$scope.book_ChapterDetails = bookList.chapters;
-											
 										$scope.selectedChapter = $scope.book_ChapterDetails;
-											$log.debug("$scope.selectedChapter :-"+ angular.toJson($scope.selectedChapter));
+										$scope.chapters.push($scope.selectedChapter[0]);
 
 										});
 
-					};// end of $scope.showBookDetails
+					};
 
-					$scope.book_ChapterDetails = [];
+					
 					$scope.showBookContents();
 
-		
+					$scope.query = {
+							order : 'description',
+							limit : 5,
+							page : 1
+						};
 
-				});// end of book_chapterListCtr
+						$scope.onpagechange = function(page, limit) {
+							var deferred = $q.defer();
+
+							$timeout(function() {
+								deferred.resolve();
+							}, 2000);
+
+							return deferred.promise;
+						};
+
+						$scope.onorderchange = function(order) {
+							var deferred = $q.defer();
+
+							$timeout(function() {
+								deferred.resolve();
+							}, 2000);
+
+							return deferred.promise;
+						};
+
+
+				});
 

@@ -8,7 +8,7 @@
 	<label>Search By Book name</label> <input ng-model="searchCategory">
 	</md-input-container> <md-data-table-container>
 
-	<table md-data-table md-progress="deferred">
+	<table md-data-table md-progress="deferred" md-row-select="selected">
 		<thead md-order="query.order" md-trigger="onorderchange">
 			<tr>
 				<th name="Book Name" order-by="book_name"></th>
@@ -47,6 +47,13 @@
 		md-total={{books.length}} md-trigger="onpagechange"></md-data-table-pagination>
 
 	</md-data-table-container>
+	
+	<div layout="row" layout-align="center center">
+
+	   <a ui-sref="book.edit({selectedBookId: selected[0].id, standard: selected[0].standard, division: selected[0].division, subject: selected[0].subject})"><md-button
+				ng-show="selected.length == 1" class="md-raised md-primary" ng-click="">Edit </md-button> </a>
+
+	</div>
 </div>
 
 

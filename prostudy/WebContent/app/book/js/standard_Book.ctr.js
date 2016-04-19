@@ -34,19 +34,15 @@ angular.module("prostudyApp").controller(
 			$scope.getBookByStandard = function(standard) {
 
 				$scope.selectedStd = standard;
-				$log.debug("Inside getBookByStandard");
-
 				var BookService = appEndpointSF.getBookService();
 
 				BookService.getBookByStandard(standard).then(
 						function(stdBookList) {
 
 							$scope.stdBooks = stdBookList;
-							$log.debug("$scope.stdBooks :-"
-									+ angular.toJson($scope.stdBooks));
-
+							
 							$scope.std = $scope.stdBooks.standard;
-							$log.debug("$scope.std :-" + ($scope.std));
+						
 
 						});
 

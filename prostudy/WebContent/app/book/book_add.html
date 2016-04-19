@@ -101,7 +101,8 @@
 	<p>&nbsp;</p>
 
 	<table>
-		<tr>
+		<tr layout-xs="column">
+		
 			<td><label for="aChapters">Available Chapters</label> <select
 				size="5" multiple ng-model="available"
 				ng-options="chapter as chapter.chapter_name for chapter in chapters"
