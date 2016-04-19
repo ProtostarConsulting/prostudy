@@ -18,6 +18,7 @@ import com.protostar.billingnstock.account.entities.ReceivableEntity;
 import com.protostar.billingnstock.account.services.AccountService;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.invoice.entities.InvoiceEntity;
+import com.protostar.billingnstock.invoice.entities.InvoiceSettingsEntity;
 import com.protostar.billingnstock.stock.entities.StockItemEntity;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
 
@@ -29,11 +30,11 @@ public class InvoiceService {
 
 		if (invoiceEntity.getId() == null) {
 			invoiceEntity.setCreatedDate(new Date());
-		//	stockItemEntity.setModifiedDate(new Date());
+			// stockItemEntity.setModifiedDate(new Date());
 		} else {
 			invoiceEntity.setModifiedDate(new Date());
 		}
-		
+
 		ofy().save().entity(invoiceEntity).now();
 
 		System.out.println(invoiceEntity.getInvoiceLineItemList());
@@ -118,14 +119,43 @@ public class InvoiceService {
 
 	@ApiMethod(name = "getInvoiceListByCustId", path = "getInvoiceListByCustId")
 	public List<InvoiceEntity> getInvoiceListByCustId(@Named("id") Long custId) {
-				
+
 		List<InvoiceEntity> filteredinvoice = ofy()
 				.load()
 				.type(InvoiceEntity.class)
 				.filter("customer",
-						Ref.create(Key.create(Customer.class, custId)))
-				.list();
-		
+						Ref.create(Key.create(Customer.class, custId))).list();
+
 		return filteredinvoice;
 	}
+
+/*	====================================INVOICE SETTINGS================================================*/
+	@ApiMethod(name = "addInvoiceSettings")
+	public InvoiceSettingsEntity addInvoiceSettings(InvoiceSettingsEntity invoiceSettingsEntity) {
+
+		if (invoiceSettingsEntity.getId() == null) {
+			invoiceSettingsEntity.setCreatedDate(new Date());
+			invoiceSettingsEntity.setModifiedDate(new Date());
+		} else {
+			invoiceSettingsEntity.setModifiedDate(new Date());
+		}
+		ofy().save().entity(invoiceSettingsEntity).now();
+		return invoiceSettingsEntity;
+	}
+	
+	
+	@ApiMethod(name = "getInvoiceSettingsByBiz", path="getInvoiceSettingsByBiz")
+	public List<InvoiceSettingsEntity> getInvoiceSettingsByBiz(@Named("id") Long id) {
+
+		List<InvoiceSettingsEntity> filteredSettings = ofy()
+				.load()
+				.type(InvoiceSettingsEntity.class)
+				.filter("business",
+						Ref.create(Key.create(BusinessEntity.class, id)))
+				.list();
+
+		return filteredSettings;
+
+	}
+	
 }

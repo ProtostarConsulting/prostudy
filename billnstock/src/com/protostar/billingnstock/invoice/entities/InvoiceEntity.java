@@ -17,9 +17,6 @@ import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
 public class InvoiceEntity extends BaseEntity{
-/*	@Id
-	private Long id;
-*/
 	@Index
 	private Date invoiceDate;
 	@Index
@@ -27,10 +24,17 @@ public class InvoiceEntity extends BaseEntity{
 	private String subTotal;
 	private String taxTotal;
 	private String finalTotal;
-	private String note;
+	private String noteToCustomer;
 	private String status = "NotPaid";
 	
+	private String discount;
+	private float discAmount;
+	private Long pOrder;
+	private float serviceSubTotal;
+	
 	private List<InvoiceLineItem> invoiceLineItemList;
+	private List<InvoiceServiceLineItemList> invoiceServiceLineItemList;
+	
 	Ref<SalesOrderEntity> salesOrderId;
 	Ref<AccountEntity> account;
 	Ref<TaxEntity> selectedTaxItem;
@@ -78,6 +82,15 @@ public class InvoiceEntity extends BaseEntity{
 		this.invoiceLineItemList = invoiceLineItemList;
 	}
 	
+	public List<InvoiceServiceLineItemList> getInvoiceServiceLineItemList() {
+		return invoiceServiceLineItemList;
+	}
+
+	public void setInvoiceServiceLineItemList(
+			List<InvoiceServiceLineItemList> invoiceServiceLineItemList) {
+		this.invoiceServiceLineItemList = invoiceServiceLineItemList;
+	}
+	
 
 	public String getSubTotal() {
 		return subTotal;
@@ -102,21 +115,13 @@ public class InvoiceEntity extends BaseEntity{
 	public void setFinalTotal(String finalTotal) {
 		this.finalTotal = finalTotal;
 	}
-/*
-	public Long getId() {
-		return id;
+
+	public String getNoteToCustomer() {
+		return noteToCustomer;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-*/
-	public String getNote() {
-		return note;
-	}
-
-	public void setNote(String note) {
-		this.note = note;
+	public void setNoteToCustomer(String noteToCustomer) {
+		this.noteToCustomer = noteToCustomer;
 	}
 
 	public String getStatus() {
@@ -142,6 +147,40 @@ public class InvoiceEntity extends BaseEntity{
 	public void setInvoiceDueDate(Date invoiceDueDate) {
 		this.invoiceDueDate = invoiceDueDate;
 	}
+
+	public String getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(String discount) {
+		this.discount = discount;
+	}
+
+	public float getDiscAmount() {
+		return discAmount;
+	}
+
+	public void setDiscAmount(float discAmount) {
+		this.discAmount = discAmount;
+	}
+
+	public Long getpOrder() {
+		return pOrder;
+	}
+
+	public void setpOrder(Long pOrder) {
+		this.pOrder = pOrder;
+	}
+
+	public float getServiceSubTotal() {
+		return serviceSubTotal;
+	}
+
+	public void setServiceSubTotal(float serviceSubTotal) {
+		this.serviceSubTotal = serviceSubTotal;
+	}
 	
+
+
 
 }// end of InvoiceEntity

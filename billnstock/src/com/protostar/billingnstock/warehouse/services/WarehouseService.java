@@ -21,7 +21,7 @@ import com.protostar.billingnstock.warehouse.entities.WarehouseEntity;
 public class WarehouseService {
 
 	@ApiMethod(name = "addWarehouse")
-	public void addWarehouse(WarehouseEntity warehouseEntity) {
+	public WarehouseEntity addWarehouse(WarehouseEntity warehouseEntity) {
 		
 		if (warehouseEntity.getId() == null) {
 			warehouseEntity.setCreatedDate(new Date());
@@ -30,6 +30,7 @@ public class WarehouseService {
 			warehouseEntity.setModifiedDate(new Date());
 		}
 		ofy().save().entity(warehouseEntity).now();
+		return warehouseEntity;
 	}
 
 	@ApiMethod(name = "getWarehouseById")
