@@ -4,24 +4,11 @@
 
 <form name="chapterForm" ng-model="chapterForm">
 
-	<div layout="row" layout-sm="column">
+	<div layout="column" layout-xs="column">
 
-		<div layout="column" flex>
-		
-			<md-input-container> <label>Board<span
-				style="color: red" ng-show="chapterForm.board.$error.required"
-				class="mandatory">*</span></label> <md-select name="board"
-				ng-model="tempChapter.board" "
-						ng-required="true">
-			<md-option ng-value="board" ng-repeat="board in boards">{{board}}</md-option>
-			</md-select>
-			<div ng-messages="chapterForm.board.$error"
-				ng-if="chapterForm.board.$submitted || chapterForm.board.$touched">
-				<div ng-message="required">Please Select Board.</div>
-			</div>
-			</md-input-container>
+		<div layout="row" layout-xs="column" >
 
-			<md-input-container> <label>Standard<span
+			<md-input-container flex> <label>Standard<span
 				style="color: red" ng-show="chapterForm.standard.$error.required"
 				class="mandatory">*</span></label> <md-select name="standard"
 				ng-model="tempChapter.standard" ng-change="getDivisionByStandard()"
@@ -33,7 +20,7 @@
 			</div>
 			</md-input-container>
 
-			<md-input-container> <label>Division<span
+			<md-input-container flex> <label>Division<span
 				style="color: red" ng-show="chapterForm.division.$error.required"
 				class="mandatory">*</span></label> <md-select name="division"
 				ng-model="tempChapter.division" ng-change="getSubjectByDivision()"
@@ -43,9 +30,9 @@
 				ng-if="chapterForm.division.$submitted || chapterForm.division.$touched">
 				<div ng-message="required">Please Select Division.</div>
 			</div>
-			</md-input-container>
+			</md-input-container flex>
 
-			<md-input-container> <label>Subject<span
+			<md-input-container flex> <label>Subject<span
 				style="color: red" ng-show="chapterForm.subject.$error.required"
 				class="mandatory">*</span></label> <md-select name="subject"
 				ng-model="tempChapter.subject" ng-change="" ng-required="true">
@@ -55,6 +42,23 @@
 			<div ng-messages="chapterForm.subject.$error"
 				ng-if="chapterForm.subject.$submitted || chapterForm.subject.$touched">
 				<div ng-message="required">Please Select Subject.</div>
+			</div>
+			</md-input-container>
+			
+		</div>
+		
+		<div layout="row" layout-xs="column" flex>
+
+			<md-input-container flex> <label>Board<span
+				style="color: red" ng-show="chapterForm.board.$error.required"
+				class="mandatory">*</span></label> <md-select name="board"
+				ng-model="tempChapter.board" "
+						ng-required="true">
+			<md-option ng-value="board" ng-repeat="board in boards">{{board}}</md-option>
+			</md-select>
+			<div ng-messages="chapterForm.board.$error"
+				ng-if="chapterForm.board.$submitted || chapterForm.board.$touched">
+				<div ng-message="required">Please Select Board.</div>
 			</div>
 			</md-input-container>
 
@@ -68,8 +72,9 @@
 				<div ng-message="required">Please Enter Book name.</div>
 			</div>
 			</md-input-container>
+		</div>
 
-			<md-input-container> <label>Chapter
+			<md-input-container flex> <label>Chapter
 				Content<span style="color: red"
 				ng-show="chapterForm.chapter_content.$error.required"
 				class="mandatory">*</span>
@@ -81,10 +86,6 @@
 			</div>
 			</md-input-container>
 
-
-
-
-		</div>
 
 	</div>
 
