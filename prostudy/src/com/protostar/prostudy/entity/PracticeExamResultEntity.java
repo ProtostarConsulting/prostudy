@@ -25,9 +25,18 @@ public class PracticeExamResultEntity {
 	private String startTime;
 	private String endTime;
 	private String score;
+	
+	private Long testID;
+	
 	private List<userAnsEntity> userAns;   
 	private List<QuestionEntity> test;
 	
+	public Long getTestID() {
+		return testID;
+	}
+	public void setTestID(Long testID) {
+		this.testID = testID;
+	}
 	public String getEmail_id() {
 		return email_id;
 	}
