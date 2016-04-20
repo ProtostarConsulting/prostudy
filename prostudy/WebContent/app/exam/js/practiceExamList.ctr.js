@@ -26,8 +26,7 @@ angular.module("prostudyApp").controller(
 							$scope.practiceExams = practiceExamList;
 						});
 			}
-			
-			$scope.curUser.myExams=[];
+					
 			
 			$scope.isContainsTest = appEndpointSF.getUtilityService().objectArrayContains;
 			
@@ -37,9 +36,9 @@ angular.module("prostudyApp").controller(
 				if (typeof $scope.curUser.myExams === 'undefined')
 					$scope.curUser.myExams = [];
 
-				for (var i = 0; i < $scope.practiceTest.length; i++) {
-					if ($scope.practiceTest[i].id == selectedMyExamId) {
-						practiceTest = $scope.practiceTest[i];
+				for (var i = 0; i < $scope.practiceExams.length; i++) {
+					if ($scope.practiceExams[i].id == selectedMyExamId) {
+						practiceTest = $scope.practiceExams[i];
 						break;
 					}
 				}
