@@ -93,15 +93,14 @@
 				
 				 <md-button ui-sref="report"
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'" ng-click="close()"
-				class="md-primary" show-gt-md> Report </md-button> 
-			
-				
+				class="md-primary" show-gt-md> Report </md-button> 	
+					
 				
 				<md-button
 				ui-sref="syllabus" ng-click="close()" class="md-primary" show-gt-md>Syllabus</md-button>
-				 <md-button ui-sref="updatemyprofile"
-				aria-label="Login" ng-hide="curUser == null" ng-click="loginClick()">
-			Edit profile </md-button> 
+				
+				 <md-button ui-sref="updatemyprofile" ng-click="close()" ng-hide="curUser == null"
+				class="md-primary" show-gt-md>Edit profile </md-button> 		
 			
 			<md-button
 				ui-sref="certificateMgmt"
