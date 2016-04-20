@@ -33,9 +33,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		var deferred = $q.defer();
 		gapi.client.userService.getUserByEmailID({
 			'email_id' : email_id
-		}).execute(function(resp) {
-
-			$log.debug("resp# #:" + angular.toJson(resp));
+		}).execute(function(resp) {		
 
 			deferred.resolve(resp.result);
 		});
