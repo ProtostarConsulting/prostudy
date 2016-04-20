@@ -34,7 +34,13 @@ angular.module("stockApp").controller(
 			$scope.getallAccountType = function() {
 				var proadminService = appEndpointSF.getproadminService();
 				proadminService.getallAccountType().then(function(assetList) {
-					$scope.accountlist = assetList.items;
+					$scope.accountlist1 = assetList.items;
+					for(i=0;i<$scope.accountlist1.length;i++){
+						if($scope.business.accounttype.maxuser<=$scope.accountlist1[i].maxuser){
+							$scope.accountlist.push($scope.accountlist1[i]);
+						}
+					}
+					
 				});
 			}
 			$scope.accountlist = [];
