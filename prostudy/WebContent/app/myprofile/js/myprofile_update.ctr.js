@@ -13,36 +13,61 @@ angular.module("prostudyApp").controller(
 			};
 			$scope.curUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
-			$log.debug("$scope.curUser : " + angular.toJson($scope.curUser));
+			
+			$scope.getUser = function() {
 
-			$scope.tempUser = $scope.curuser;
-
-			$scope.getInstitutes = function() {
-				var InstituteService = appEndpointSF.getInstituteService();
-				InstituteService.getInstitutes().then(function(instituteList) {
-					$log.debug("Inside Ctr getInstitutes");
-					$scope.institutes = instituteList;
-					$log.debug("$scope.institutes :" + $scope.institutes);
-				});
+				var UserService = appEndpointSF.getUserService();
+				UserService.getUserByEmailID($scope.curUser.email_id).then(
+						function(user) {
+							$scope.user = user;		
+							
+							if($scope.user.id!=undefined)
+							{
+							
+							$scope.tempUser = {
+									id : $scope.user.id,
+									instituteID:$scope.user.instituteID,
+									prn:$scope.user.prn,
+									isGoogleUser:$scope.user.isGoogleUser,						
+									firstName : $scope.user.firstName,
+									lastName : $scope.user.lastName,
+									email_id : $scope.user.email_id,
+									address : $scope.user.address,
+									contact : $scope.user.contact,
+									role : $scope.user.role,
+									password :$scope.user.password
+								};	
+							}
+							else
+								{
+								
+								$scope.tempUser = {
+										id : $scope.curUser.id,
+										instituteID:$scope.curUser.instituteID,
+										prn:$scope.curUser.prn,
+										firstName : $scope.curUser.firstName,
+										lastName : $scope.curUser.lastName,
+										email_id : $scope.curUser.email_id,
+										address : $scope.curUser.address,
+										contact : $scope.curUser.contact,
+										role : $scope.curUser.role,
+										password : $scope.curUser.password,
+										myExams :[],
+										myBooks : [],
+										
+									};
+								}
+						});
 			}
-			$scope.getInstitutes();
-
-			$scope.tempUser = {
-				id : $scope.curUser.id,
-				firstName : $scope.curUser.firstName,
-				lastName : $scope.curUser.lastName,
-				email_id : $scope.curUser.email_id,
-				address : $scope.curUser.address,
-				contact : $scope.curUser.contact,
-				role : $scope.curUser.role,
-				password : "",
-				myExams : [],
-				myBooks : [],
-
-			};
-
+			
 			$scope.updateUser = function() {
-
+				if($scope.user.role=="Student")
+				{
+				$scope.tempUser.myExams = $scope.user.myExams;
+				$scope.tempUser.myBooks = $scope.user.myBooks;
+				$scope.tempUser.standard =$scope.user.standard;
+				$scope.tempUser.division = $scope.user.division;					
+				}				
 				var UserService = appEndpointSF.getUserService();
 				UserService.updateUser($scope.tempUser).then(function(msgBean) {
 					$scope.showSavedToast();
@@ -67,7 +92,7 @@ angular.module("prostudyApp").controller(
 					clickOutsideToClose : true,
 					fullscreen : useFullScreen,
 					locals : {
-						curUser : $scope.curUser
+						curUser : $scope.user
 					}
 				}).then(
 						function(answer) {
@@ -149,4 +174,20 @@ angular.module("prostudyApp").controller(
 				}
 			}
 
+			$scope.waitForServiceLoad = function() {
+				
+				$log.debug("inside, watiting...");
+				if (appEndpointSF.is_service_ready) {
+					
+					$scope.getUser();					
+				
+					
+				} else {
+					$log.debug("Services Not Loaded, watiting...");
+					$timeout($scope.waitForServiceLoad, 1000);
+				}
+			}
+
+			$scope.waitForServiceLoad();
+			
 		});
