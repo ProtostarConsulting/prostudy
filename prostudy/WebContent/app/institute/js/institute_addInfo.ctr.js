@@ -306,9 +306,11 @@ angular.module("prostudyApp").controller(
 
 					return deferred.promise;
 				};
+				
 			$scope.cancelButton = function() {
 				$state.go("^", {});
 			}
+			
 			$scope.error="";	
 			$scope.checkUserAlreadyExist = function(email_id) 
 			{
