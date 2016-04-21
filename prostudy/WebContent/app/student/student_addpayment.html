@@ -1,9 +1,11 @@
+<h3 class="md-headline">Add Student Fees</h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
 <div layout="column" layout-padding>
 	<md-content>
 	<section>
-		<md-subheader class="md-primary">
-		<h3 class="md-headline">Add Student Fees</h3>
-		</md-subheader>
+
 		<form name="studentFeesForm" ng-model="studentFeesForm">
 
 			<div layout="column" layout-sm="column">
@@ -80,9 +82,19 @@
 					</table>
 					</md-data-table-container>
 				</div>
-				<md-button class="md-raised md-primary"
-					ng-click="addStudentPayment()">Submit Payment </md-button>
+
 			</div>
+
+			<div layout="row" layout-align="center center" layout-xs="column">
+
+				<md-button class="md-raised md-primary"
+				ng-click="addStudentPayment()">Submit Payment </md-button>
+
+				<md-button class="md-raised " ng-click="cancelButton()">Cancel</md-button>
+
+			</div>
+
+			
 </div>
 
 </form>

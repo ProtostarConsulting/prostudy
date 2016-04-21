@@ -83,5 +83,9 @@ angular
 								});
 						$state.go("student.list", {});
 					}
+					
+					$scope.cancelButton = function() {
+						$state.go("^", {});
+					}
 
 				});
