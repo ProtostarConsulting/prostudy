@@ -32,13 +32,13 @@
 			<div layout="column" layout-align="start start">
 			
 			<md-button ui-sref="favourite.myBooks" ng-click="close()"
-				class="md-primary">MyBooks</md-button> 
+				class="md-primary">Books</md-button> 
 				
 			<md-button ui-sref="favourite.myPracticeExams" ng-click="close()"
-				class="md-primary">My Practice Exams</md-button> 
+				class="md-primary">Practice Exams</md-button> 
 
 				
-			<md-button ui-sref="exam.practiceExamResultView" ng-click="close()" 
+			<md-button ui-sref="favourite.practiceExamResultView({selectedStudEmail: curuser.email_id})" ng-click="close()" 
 			class="md-primary">
 				 Practise Exam Result
 			</md-button>
@@ -56,13 +56,13 @@
 		<div layout="column" layout-align="start start" >
 		
 			<md-button ui-sref="favourite.myBooks" ng-click="close()" 
-				class="md-primary" hide-xs>MyBooks</md-button>
+				class="md-primary" hide-xs>Books</md-button>
 				
 			<md-button ui-sref="favourite.myPracticeExams" ng-click="close()" 
-				class="md-primary" hide-xs>My Practice Exams</md-button> 
+				class="md-primary" hide-xs>Practice Exams</md-button> 
 
 				
-			<md-button ui-sref="exam.practiceExamResultView" ng-click="close()" 
+			<md-button ui-sref="favourite.practiceExamResultView({selectedStudEmail: curuser.email_id})" ng-click="close()" 
 			class="md-primary" hide-xs>
 				Practise Exam Result
 			</md-button>

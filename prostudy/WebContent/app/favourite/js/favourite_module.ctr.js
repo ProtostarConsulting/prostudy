@@ -2,6 +2,8 @@ angular.module("prostudyApp").controller(
 		"favouriteModuleCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, objectFactory, appEndpointSF) {
+			
+			$scope.curuser=appEndpointSF.getLocalUserService().getLoggedinUser();
 		
 			$scope.testGAPICall = function() {
 				console.log("in side testGAPICall");
