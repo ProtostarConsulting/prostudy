@@ -6,6 +6,7 @@
 	<md-input-container flex> <label>Search By
 		Name</label> <input ng-model="searchName"> </md-input-container>
 </div>
+
 <div>
 	<md-data-table-container>
 	<table md-data-table md-row-select="selected" class="md-primary"
@@ -43,6 +44,12 @@
 		<a ui-sref="student.addstudentpayment({selectedStud:selected[0]})"><md-button
 				ng-show="selected.length == 1" class="md-raised md-primary" ng-click="">Add Payment
 						</md-button> </a>
+						
+		<a ui-sref="favourite.practiceExamResultView({selectedStudEmail:selected[0].email_id})"><md-button
+				ng-show="selected.length == 1" class="md-raised md-primary" ng-click="">Exam Details
+						</md-button> </a>
+						
+		
 							
 	
 
