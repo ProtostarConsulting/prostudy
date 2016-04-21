@@ -35,7 +35,7 @@ angular.module("prostudyApp").controller(
 				};	
 			
 			
-			$scope.curUser=appEndpointSF.getLocalUserService().getLoggedinUser();
+			//$scope.curUser=appEndpointSF.getLocalUserService().getLoggedinUser();
 			$scope.students = [];
 		
 			$scope.getStudentsByInstitute = function() {

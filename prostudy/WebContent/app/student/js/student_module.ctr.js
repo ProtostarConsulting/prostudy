@@ -5,7 +5,7 @@ angular.module("prostudyApp").controller(
 
 			$log.debug("Inside studentModuleCtr");
 
-			
+			$scope.studFlag = true;
 
 			
 			/* Setup menu */
