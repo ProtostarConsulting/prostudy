@@ -73,15 +73,12 @@ angular
 
 
 					
-					$scope.toggleSelection = function toggleSelection(id,
-							optionId) {
-						var idx = $scope.selection.indexOf(id, optionId);
-						$scope.userAnsList.push({
-							qID : id,
-							userOption : 'option' + optionId
-						});
+					$scope.toggleSelection = function toggleSelection(index,id,optionId) {
+						
+						var idx = $scope.selection.indexOf(index, id, optionId);
+						
 						if (idx > -1) {
-							$scope.selection.splice(idx, 1);
+							$scope.selection.splice(index, 1);
 
 						} else {
 							$scope.selection.push(optionId);
