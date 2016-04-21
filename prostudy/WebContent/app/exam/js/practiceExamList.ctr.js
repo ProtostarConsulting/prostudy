@@ -27,7 +27,10 @@ angular.module("prostudyApp").controller(
 						
 						});
 			}
-					
+			if (typeof $scope.curUser.myExams === 'undefined')
+				{
+				$scope.curUser.myExams = [];	
+				}
 			
 			$scope.isContainsTest = appEndpointSF.getUtilityService().objectArrayContains;
 			
