@@ -41,10 +41,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/exam",
 		templateUrl : '/app/exam/exam_module.html',
 		controller : 'examModuleCtr'
-	}).state('exam.practiceExamResultView', {
-		url : "/practiceExamResultView",
-		templateUrl : '/app/exam/practiceExamResult_view.html',
-		controller : 'practiceExamResultCtr'
 	}).state('exam.addnewquestion', {
 		url : "/addnewquestion",
 		templateUrl : '/app/exam/newQuestion_add.html',
@@ -439,6 +435,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/myPracticeExams",
 		templateUrl : '/app/favourite/myPracticeExams.html',
 		controller : 'myPracticeExamsCtr'
+	}).state('favourite.practiceExamResultView', {
+		url : "/practiceExamResultView/:selectedStudEmail",
+		templateUrl : '/app/favourite/practiceExamResult_view.html',
+		controller : 'practiceExamResultCtr'
 	}).state('student', {
 		url : "/student",
 		templateUrl : '/app/student/student_module.html',
