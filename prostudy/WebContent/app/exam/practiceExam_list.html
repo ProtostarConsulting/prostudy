@@ -17,6 +17,7 @@
 				<th order-by="examtitle" name="Exam Title"></th>
 				<th order-by="date" name="Created on Date"></th>
 				<th order-by="category" name="Category"></th>
+				
 			</tr>
 		</thead>
 		<tbody>
@@ -27,8 +28,9 @@
 				<td>{{test.examtitle}}</td>
 				<td>{{test.date}}</td>
 				<td>{{test.category}}</td>
+				
 
-				<td><md-button
+			<td><md-button
 						ng-click="like(test.id)"> <ng-md-icon icon="thumb_up"></ng-md-icon>{{test.likes}}</md-button></td>
 
 				<td><md-button
@@ -36,7 +38,7 @@
 						icon="thumb_down"></ng-md-icon>{{test.dislikes}}</md-button></td>
 						
 				<td><md-button ng-click="addTestToMyList(test.id)" ng-disabled="isContainsTest(curUser.myExams,test)"> <ng-md-icon
-						icon="my_library_add"></ng-md-icon> <md-tooltip>Add To MyPractice Exam</md-tooltip></md-button></td>
+						icon="my_library_add"></ng-md-icon> <md-tooltip>Add To MyPractice Exam</md-tooltip></md-button></td> 
 
 				
 			</tr>
@@ -50,14 +52,10 @@
 	<div layout="row" layout-align="center center">
 
 		<a ui-sref="exam.practiceexamtest({selectedExamId: selected[0].id})"><md-button
-				ng-show="selected.length == 1" class="md-raised md-primary"
-				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher'  || curUser.role == 'Student'"
-				ng-click="">Start</md-button> </a>
+				ng-show="selected.length == 1" class="md-raised md-primary" ng-click="">Start</md-button> </a>
 				
 	   <a ui-sref="exam.editpracticeexam({selectedExamId: selected[0].id})"><md-button
-				ng-show="selected.length == 1" class="md-raised md-primary"
-				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-				ng-click="">Edit </md-button> </a>
+				ng-show="selected.length == 1" class="md-raised md-primary" ng-click="">Edit </md-button> </a>
 
 	</div>
 </div>

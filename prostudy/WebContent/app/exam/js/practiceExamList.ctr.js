@@ -24,6 +24,7 @@ angular.module("prostudyApp").controller(
 						$scope.curUser.instituteID).then(
 						function(practiceExamList) {
 							$scope.practiceExams = practiceExamList;
+						
 						});
 			}
 					

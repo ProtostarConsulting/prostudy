@@ -14,8 +14,8 @@ angular
 
 					$scope.selectedResultId = $stateParams.selectedResultId;
 					$scope.selectedExamId = $stateParams.selectedExamId;
-					
-					
+					$scope.flag = $stateParams.flag;
+
 					$scope.curuser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
 
@@ -25,7 +25,7 @@ angular
 					$scope.totalLength;
 					$scope.answeredLength;
 					$scope.remainingLength;
-				
+
 					$scope.selected = [];
 					$scope.Test = [];
 					$scope.examResults = [];
@@ -35,9 +35,11 @@ angular
 					} ];
 
 					$scope.showselectedExam = function() {
-						var PracticeExamService = appEndpointSF.getPracticeExamService();
+						var PracticeExamService = appEndpointSF
+								.getPracticeExamService();
 
-						PracticeExamService.getPracticeExamById($scope.selectedExamId)
+						PracticeExamService
+								.getPracticeExamById($scope.selectedExamId)
 								.then(
 										function(practiceTest) {
 											$scope.Test = practiceTest;
@@ -59,21 +61,31 @@ angular
 
 					$scope.getPracticeExamResultbyID = function() {
 
-						var PracticeExamResultService = appEndpointSF.getPracticeExamResultService();
+						var PracticeExamResultService = appEndpointSF
+								.getPracticeExamResultService();
 
-						PracticeExamResultService.getPracticeExamResultbyID($scope.selectedResultId)
+						PracticeExamResultService
+								.getPracticeExamResultbyID(
+										$scope.selectedResultId)
 								.then(
 										function(practiceExamResultList) {
 
-			 								$scope.examResults = practiceExamResultList;
-			 								$scope.answeredLength = $scope.examResults.userAns.length;
-			 								
-			 							});
+											$scope.examResults = practiceExamResultList;
+											$scope.answeredLength = $scope.examResults.userAns.length;
+
+										});
 					}
-					
+
 					$scope.getPracticeExamResultbyID();
 					$scope.showselectedExam();
-					
-					
-			});
 
+					$scope.cancelButton = function() {
+						if ($scope.flag == "true") {
+							$state.go("exam");
+						} else {
+							$state.go("favourite");
+						}
+
+					}
+
+				});

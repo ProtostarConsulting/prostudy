@@ -79,6 +79,7 @@ angular.module("prostudyApp").controller(
 							}
 							$scope.divList = divisionList;
 						});
+				$scope.divisions.splice(0,$scope.divisions.length);
 			}
 			
 			$scope.getSubjectByDivision = function() {

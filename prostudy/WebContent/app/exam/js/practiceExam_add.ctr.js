@@ -79,6 +79,8 @@ angular
 									}
 									$scope.divList = divisionList;
 								});
+						
+						$scope.divisions.splice(0,$scope.divisions.length);
 					}
 					
 					$scope.getSubjectByDivision = function() {
@@ -110,6 +112,8 @@ angular
 								$scope.tempPracticeExam.division, $scope.tempPracticeExam.subject)
 								.then(function(questionsList) {
 									$scope.questions = questionsList;
+									
+									
 
 								});
 					}

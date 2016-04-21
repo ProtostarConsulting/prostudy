@@ -27,20 +27,14 @@ angular
 
 					$scope.updateQuestion = function() {
 
-						var QuestionService = appEndpointSF
-								.getQuestionService();
-						QuestionService
-								.updateQuestion($scope.question)
-								.then(
+						var QuestionService = appEndpointSF.getQuestionService();
+						QuestionService.updateQuestion($scope.question).then(
 										function(updatedQ) {
 											$scope.showSavedToast();
 											if ($scope.sourceSate == null) {
-												$state.go("exam.questionlist",
-														{});
+												$state.go("exam.questionlist",{});
 											} else if ($scope.sourceSate) {
-												$state
-														.go(
-																$scope.sourceSate,
+												$state.go($scope.sourceSate,
 																{
 																	updatedQ : updatedQ,
 																	selectedExamId : $stateParams.selectedExamId,

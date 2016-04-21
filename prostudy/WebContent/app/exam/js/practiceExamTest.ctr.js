@@ -4,7 +4,7 @@ angular
 				"practiceExamTestCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $q, $sce, tableTestDataFactory,
-						appEndpointSF, $state, $filter, $stateParams) {
+						appEndpointSF, $state, $filter, $stateParams, $mdDialog) {
 
 					$scope.showSavedToast = function() {
 						$mdToast.show($mdToast.simple()
@@ -17,6 +17,8 @@ angular
 
 					// Code for timer
 					var date = new Date();
+					
+					$scope.flag = true;
 
 					$scope.counter = 200;
 					$scope.startTime = null;
@@ -51,18 +53,15 @@ angular
 
 					$scope.startTimer = function() {
 						mytimeout = $timeout($scope.onTimeout, 1000);
-						$scope.tempPracticeExamResult.startTime = $filter(
-								'date')(new Date(), 'hh:mm:ss a');
-						$log.debug("start time....................."
-								+ $scope.startTime);
+						$scope.tempPracticeExamResult.startTime = $filter('date')(new Date(), 'hh:mm:ss a');
+						
 					};
 
 					$scope.stopTimer = function() {
 						var date = new Date();
 						$scope.$broadcast('timer-stopped', $scope.counter);
 						$timeout.cancel(mytimeout);
-						$scope.tempPracticeExamResult.endTime = $filter('date')
-								(new Date(), 'hh:mm:ss a');
+						$scope.tempPracticeExamResult.endTime = $filter('date')(new Date(), 'hh:mm:ss a');
 					};
 
 					$scope.$on('timer-stopped', function(event, remaining) {
@@ -72,6 +71,8 @@ angular
 						}
 					});// End of timer
 
+
+					
 					$scope.toggleSelection = function toggleSelection(id,
 							optionId) {
 						var idx = $scope.selection.indexOf(id, optionId);
@@ -81,12 +82,28 @@ angular
 						});
 						if (idx > -1) {
 							$scope.selection.splice(idx, 1);
+
 						} else {
 							$scope.selection.push(optionId);
+							$scope.userAnsList.push({
+								qID : id,
+								userOption : 'option'+optionId
+							});
 						}
+						
+						/*for(i=0;i <$scope.selection.length; i++)
+							{
+								if(index+1 == $scope.selection[i])
+								{
+									
+									$scope.selection.splice(index, 1);
+								}
+							}
+						*/
 
 					};
-
+					
+					
 					$scope.userAnsList = []; // {qID, userOption}
 					$scope.correctAns = [];
 					$scope.score = 0;
@@ -100,8 +117,9 @@ angular
 							}
 
 						}
-						$scope.addPracticeExamResult();
 						$scope.stopTimer();
+						$scope.addPracticeExamResult();
+					
 
 						/*
 						 * $log.debug("$scope.selectedID" +$scope.selectedID);
@@ -207,8 +225,7 @@ angular
 						var PracticeExamService = appEndpointSF
 								.getPracticeExamService();
 
-						PracticeExamService
-								.getPracticeExamById($scope.selectedExamId)
+						PracticeExamService.getPracticeExamById($scope.selectedExamId)
 								.then(
 										function(practiceTest) {
 											$scope.Test = practiceTest;
@@ -278,13 +295,17 @@ angular
 						endTime : "",
 						score : $scope.score,
 						userAns : $scope.userAnsList,
+						testID : "",
 						test : ""
 
 					}
 
 					$scope.addPracticeExamResult = function() {
-						var PracticeExamResultService = appEndpointSF
-								.getPracticeExamResultService();
+
+						$scope.tempPracticeExamResult.testID = $scope.selectedExamId;
+						var PracticeExamResultService = appEndpointSF.getPracticeExamResultService();
+
+				
 
 						PracticeExamResultService.addPracticeExamResult(
 								$scope.tempPracticeExamResult).then(
@@ -302,7 +323,27 @@ angular
 
 								});
 
+
 					}
+					
+					 $scope.showConfirm = function(ev) {
+						  
+						 	$scope.checkAnswer();
+						    var confirm = $mdDialog.confirm()
+						          .title('Are you sure you want to submit test now ?')
+						          .targetEvent(ev)
+						          .ok('YES')
+						          .cancel('NO');
+						    $mdDialog.show(confirm).then(function() {
+						    			$state.go('userQuesAnsView', {selectedExamId : $scope.Test.id, selectedResultId : $scope.selectedID, flag: $scope.flag});
+						    }, function() {
+						      
+						    });
+						  };
+
+					
+
+
 
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
@@ -310,11 +351,12 @@ angular
 							$scope.getPracticeExamByInstitute();
 							$scope.getPracticeExamResultbyEmail();
 							$scope.showselectedExam();
-							$scope.getPracticeExamByInstitute();
+							
 						} else {
 							$timeout($scope.waitForServiceLoad, 1000);
 						}
 					}
+
 
 					$scope.waitForServiceLoad();
 
