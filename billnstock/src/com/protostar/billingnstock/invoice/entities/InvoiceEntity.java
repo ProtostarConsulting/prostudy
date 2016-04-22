@@ -29,11 +29,13 @@ public class InvoiceEntity extends BaseEntity{
 	
 	private String discount;
 	private float discAmount;
+	private float discValue;
+	
 	private Long pOrder;
 	private float serviceSubTotal;
 	
 	private List<InvoiceLineItem> invoiceLineItemList;
-	private List<InvoiceServiceLineItemList> invoiceServiceLineItemList;
+	private List<ServiceLineItemList> serviceLineItemList;
 	
 	Ref<SalesOrderEntity> salesOrderId;
 	Ref<AccountEntity> account;
@@ -82,15 +84,14 @@ public class InvoiceEntity extends BaseEntity{
 		this.invoiceLineItemList = invoiceLineItemList;
 	}
 	
-	public List<InvoiceServiceLineItemList> getInvoiceServiceLineItemList() {
-		return invoiceServiceLineItemList;
+
+	public List<ServiceLineItemList> getServiceLineItemList() {
+		return serviceLineItemList;
 	}
 
-	public void setInvoiceServiceLineItemList(
-			List<InvoiceServiceLineItemList> invoiceServiceLineItemList) {
-		this.invoiceServiceLineItemList = invoiceServiceLineItemList;
+	public void setServiceLineItemList(List<ServiceLineItemList> serviceLineItemList) {
+		this.serviceLineItemList = serviceLineItemList;
 	}
-	
 
 	public String getSubTotal() {
 		return subTotal;
@@ -180,7 +181,11 @@ public class InvoiceEntity extends BaseEntity{
 		this.serviceSubTotal = serviceSubTotal;
 	}
 	
+	public float getDiscValue() {
+		return discValue;
+	}
 
-
-
+	public void setDiscValue(float discValue) {
+		this.discValue = discValue;
+	}
 }// end of InvoiceEntity

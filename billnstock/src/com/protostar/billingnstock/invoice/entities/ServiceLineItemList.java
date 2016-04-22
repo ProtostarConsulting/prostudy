@@ -1,6 +1,6 @@
 package com.protostar.billingnstock.invoice.entities;
 
-public class InvoiceServiceLineItemList {
+public class ServiceLineItemList {
 	
 	private String serviceName;
 	private Integer sQty;

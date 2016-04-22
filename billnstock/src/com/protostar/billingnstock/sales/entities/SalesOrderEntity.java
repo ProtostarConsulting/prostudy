@@ -5,12 +5,9 @@ import java.util.List;
 
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
-import com.googlecode.objectify.annotation.Id;
-import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.cust.entities.Customer;
+import com.protostar.billingnstock.invoice.entities.ServiceLineItemList;
 import com.protostar.billingnstock.tax.entities.TaxEntity;
-import com.protostar.billingnstock.user.entities.BusinessEntity;
-import com.protostar.billingnstock.user.entities.UserEntity;
 import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
@@ -32,6 +29,10 @@ public class SalesOrderEntity extends BaseEntity {
 	private double taxTotal;
 	private double subTotal ;
 	private double finalTotal;
+	
+	private float serviceSubTotal;
+	private List<ServiceLineItemList> serviceLineItemList;
+	
 	private List<LineStockItem> sOLineItemList;
 	Ref<TaxEntity> selectedTaxItem;
 	
@@ -148,31 +149,24 @@ public class SalesOrderEntity extends BaseEntity {
 	public void setSubTotal(double subTotal) {
 		this.subTotal = subTotal;
 	}
-/*	public String getTaxCodeName() {
-		return taxCodeName;
-	}
-	public void setTaxCodeName(String taxCodeName) {
-		this.taxCodeName = taxCodeName;
-	}
-	public double getTaxPercenatge() {
-		return taxPercenatge;
-	}
-	public void setTaxPercenatge(double taxPercenatge) {
-		this.taxPercenatge = taxPercenatge;
-	}
-	public double getTaxTotal() {
-		return taxTotal;
-	}
-	public void setTaxTotal(double taxTotal) {
-		this.taxTotal = taxTotal;
-	}
-*/	public double getFinalTotal() {
+	public double getFinalTotal() {
 		return finalTotal;
 	}
 	public void setFinalTotal(double finalTotal) {
 		this.finalTotal = finalTotal;
 	}
 	
+	public float getServiceSubTotal() {
+		return serviceSubTotal;
+	}
+	public void setServiceSubTotal(float serviceSubTotal) {
+		this.serviceSubTotal = serviceSubTotal;
+	}
 	
-	
+	public List<ServiceLineItemList> getServiceLineItemList() {
+		return serviceLineItemList;
+	}
+	public void setServiceLineItemList(List<ServiceLineItemList> serviceLineItemList) {
+		this.serviceLineItemList = serviceLineItemList;
+	}
 }
