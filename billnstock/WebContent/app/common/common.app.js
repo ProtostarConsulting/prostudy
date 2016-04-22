@@ -241,26 +241,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/accountReceivableList",
 		templateUrl : '/app/account/account_receivableList.html',
 		controller : 'accountReceivableListCtr'
+	}).state('account.fileUpload', {
+		url : "/fileUpload",
+		templateUrl : '/app/demo/fileUpload.html',
+		controller : 'AppController'
 	})
 
-/*	.state('warehouse', {
-		url : "/warehouse",
-		templateUrl : '/app/warehouse/warehouse_module.html',
-		controller : 'warehouseModuleCtr'
-	}).state('warehouse.add', {
-		url : "/add",
-		templateUrl : '/app/warehouse/warehouse_add.html',
-		controller : 'warehouseAddCtr'
-	}).state('warehouse.list', {
-		url : "/list",
-		templateUrl : '/app/warehouse/warehouse_list.html',
-		controller : 'warehouseListCtr'
-	}).state('warehouse.edit', {
-		url : "/edit/:selectedWarehouseId",
-		templateUrl : '/app/warehouse/warehouse_edit.html',
-		controller : 'warehouseEditCtr'
-	})
-*/
+
 	.state('report', {
 		url : "/report",
 		templateUrl : '/app/report/report_module.html',
@@ -285,7 +272,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'salesOrderAddCtr'
 
 	}).state('salesOrder.SalesOrderList', {
-		url : "/SalesOrderList:/selectedCustomerId",
+		url : "/SalesOrderList",
 		templateUrl : '/app/sales/salesOrder_list.html',
 		controller : 'salesOrderListCtr'
 
@@ -293,6 +280,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/SalesOrderview/:selectedSOId",
 		templateUrl : '/app/sales/salesOder_view.html',
 		controller : 'salesOrderViewCtr'
+			
+	}).state('salesOrder.edit', {
+		url : "/edit/:selectedSOId",
+		templateUrl : '/app/sales/salesOrder_edit.html',
+		controller : 'salesOrderEditCtr'		
 
 	}).state('purchaseOrder', {
 		url : "/purchaseOrder",

@@ -30,27 +30,28 @@ app
 						createdDate : new Date(),
 						modifiedDate : new Date(),
 						modifiedBy : '',
-						
-						serviceName :'',
+
+						serviceName : '',
 						discount : '',
+						discValue : '',
 						discAmount : '0',
 						pOrder : '',
-						serviceSubTotal :'',
-						invoiceServiceLineItemList : [],
+						serviceSubTotal : 0,
+						serviceLineItemList : [],
 						business : ""
 					};
 
 					$scope.addInvoice = function() {
 						if ($scope.invoiceObj.invoiceLineItemList.length == 0
-								|| $scope.invoiceObj.invoiceLineItemList.itemName == "") {
+								&& $scope.invoiceObj.serviceLineItemList.length == 0) {
 							console.log("Please select atleast one item");
 							$scope.errorMsg = "Please select atleast one item.";
 						} else {
 							var InvoiceService = appEndpointSF
 									.getInvoiceService();
 							$scope.invoiceObj.business = $scope.curUser.business;
-							$scope.invoiceObj.modifiedBy =$scope.curUser.email_id;
-							
+							$scope.invoiceObj.modifiedBy = $scope.curUser.email_id;
+							$scope.invoiceObj.discValue = $scope.discAmount;
 							InvoiceService.addInvoice($scope.invoiceObj).then(
 									function(msgBean) {
 
@@ -98,87 +99,101 @@ app
 							var line = $scope.invoiceObj.invoiceLineItemList[i];
 							$scope.invoiceObj.subTotal += (line.qty * line.price);
 
-							
 						}
 
 						$scope.invoiceObj.subTotal = parseFloat(
 								Math.round(($scope.invoiceObj.subTotal) * 100) / 100)
 								.toFixed(2);
-						
+
 						$scope.calfinalTotal();
-						
+
 						return $scope.invoiceObj.subTotal;
 					}
 
-					
 					$scope.calfinalTotal = function() {
 						$log.debug("##Came to calSubTotal...");
 
 						$scope.tempDiscAmount = 0;
 						var finalTotal = 0;
 						var disc = 0;
-						if($scope.lineSelectedDiscount != ""){
-						if($scope.lineSelectedDiscount == "Fixed"){
-							
-							$scope.tempDiscAmount = $scope.discAmount;
-													
-						}else{							
-							disc = parseInt($scope.discAmount);
-							finalTotal = parseFloat($scope.invoiceObj.subTotal)
-							+ parseFloat($scope.invoiceObj.taxTotal)+ parseFloat($scope.invoiceObj.serviceSubTotal);
-							
-							$scope.tempDiscAmount = (disc /100)*finalTotal;
-							
-						//	$scope.discAmount = $scope.tempDiscAmount;
-							$scope.invoiceObj.discAmount = $scope.tempDiscAmount;
-											
-						}
-						$scope.invoiceObj.finalTotal = (parseFloat($scope.invoiceObj.subTotal)
-						+ parseFloat($scope.invoiceObj.taxTotal)+ parseFloat($scope.invoiceObj.serviceSubTotal)) - parseFloat($scope.tempDiscAmount).toFixed(2);
-						}
-/*						$scope.invoiceObj.finalTotal = (parseFloat($scope.invoiceObj.subTotal)
-								+ parseFloat($scope.invoiceObj.taxTotal)+ parseFloat($scope.invoiceObj.serviceSubTotal)).toFixed(2);
-*/					}
+						if ($scope.lineSelectedDiscount != undefined) {
+							if ($scope.lineSelectedDiscount == "Fixed") {
 
-					$scope.lineItemTaxChange = function(index, selectedTaxItem, $event) {
+								$scope.tempDiscAmount = $scope.discAmount;
+								$scope.invoiceObj.discAmount = $scope.tempDiscAmount;
+
+							} else {
+								disc = parseInt($scope.discAmount);
+								finalTotal = parseFloat($scope.invoiceObj.subTotal)
+										+ parseFloat($scope.invoiceObj.taxTotal)
+										+ parseFloat($scope.invoiceObj.serviceSubTotal);
+
+								$scope.tempDiscAmount = (disc / 100)
+										* finalTotal;
+
+								$scope.invoiceObj.discAmount = $scope.tempDiscAmount;
+
+							}
+							$scope.invoiceObj.finalTotal = (parseFloat($scope.invoiceObj.subTotal)
+									+ parseFloat($scope.invoiceObj.taxTotal) + parseFloat($scope.invoiceObj.serviceSubTotal))
+									- parseFloat($scope.tempDiscAmount)
+											.toFixed(2);
+						} else {
+							var a = parseInt($scope.invoiceObj.subTotal);
+							var b = $scope.invoiceObj.taxTotal;
+							var c = parseFloat($scope.invoiceObj.serviceSubTotal);
+
+							$scope.invoiceObj.finalTotal = a + b + c;
+							$scope.invoiceObj.finalTotal = (parseFloat($scope.invoiceObj.subTotal)
+									+ $scope.invoiceObj.taxTotal + parseFloat($scope.invoiceObj.serviceSubTotal))
+									.toFixed(2);
+							$scope.invoiceObj.finalTotal = a + b + c;
+						}
+					}
+					$scope.lineItemTaxChange = function(index, selectedTaxItem,
+							$event) {
 						$log.debug("##Came to lineItemTaxChange...");
-					
+
 						$scope.invoiceObj.taxTotal = parseFloat(($scope.invoiceObj.selectedTaxItem.taxPercenatge / 100)
 								* ($scope.invoiceObj.subTotal));
-						
-						$scope.calfinalTotal();						
+
+						$scope.calfinalTotal();
 					};
-			
-					
+
 					$scope.removeItem = function(index) {
 						$scope.invoiceObj.invoiceLineItemList.splice(index, 1);
 						$scope.calSubTotal();
 						$scope.calfinalTotal();
 					};
-					
-/*	====================================Services Provided===================================				*/
+
+					/*
+					 * ====================================Services
+					 * Provided===================================
+					 */
 					$scope.addService = function() {
 						var service = {
-							srNo : $scope.invoiceObj.invoiceServiceLineItemList.length + 1,
+							srNo : $scope.invoiceObj.serviceLineItemList.length + 1,
 							serviceName : "",
 							sQty : 1,
 							sPrice : "",
-							serviceSubTotal : ""
+							serviceSubTotal : 0
 						};
 
-						$scope.invoiceObj.invoiceServiceLineItemList.push(service);
+						$scope.invoiceObj.serviceLineItemList
+								.push(service);
 					};
-					
+
 					$scope.removeService = function(index) {
-						$scope.invoiceObj.invoiceServiceLineItemList.splice(index, 1);
+						$scope.invoiceObj.serviceLineItemList.splice(
+								index, 1);
 					};
 
 					$scope.calServiceSubTotal = function() {
 						$log.debug("##Came to calSubTotal...");
 						$scope.invoiceObj.serviceSubTotal = 0;
 
-						for (var i = 0; i < $scope.invoiceObj.invoiceServiceLineItemList.length; i++) {
-							var line = $scope.invoiceObj.invoiceServiceLineItemList[i];
+						for (var i = 0; i < $scope.invoiceObj.serviceLineItemList.length; i++) {
+							var line = $scope.invoiceObj.serviceLineItemList[i];
 							$scope.invoiceObj.serviceSubTotal += (line.sQty * line.sPrice);
 
 							$log.debug("subTotal :"
@@ -188,21 +203,22 @@ app
 						$scope.invoiceObj.subTotal = parseFloat(
 								Math.round(($scope.invoiceObj.subTotal) * 100) / 100)
 								.toFixed(2);
-						
+
 						$scope.calfinalTotal();
-						
+
 						return $scope.invoiceObj.subTotal;
 					}
-					
-					$scope.discountType = ["%", "Fixed"];
-					$scope.lineItemDiscountChange = function(index, selectedDiscount) {
+
+					$scope.discountType = [ "%", "Fixed" ];
+					$scope.lineItemDiscountChange = function(index,
+							selectedDiscount) {
 						$log.debug("##Came to lineItemStockChange...");
 						$scope.lineSelectedDiscount = selectedDiscount;
 						$scope.invoiceObj.discount = selectedDiscount;
-					//	$scope.calSubTotal();
-					//	$scope.calfinalTotal();
+						// $scope.calSubTotal();
+						// $scope.calfinalTotal();
 					};
-					
+
 					/* Setup menu */
 					$scope.toggleRight = buildToggler('right');
 					/**
@@ -340,7 +356,7 @@ app
 						window.frames["print_frame"].window.print();
 					}
 
-// FOR CUSTOMER
+					// FOR CUSTOMER
 
 					$scope.invoiceObj.customer = null;
 					$scope.searchTextInput = null;
@@ -381,79 +397,64 @@ app
 									lowercaseQuery) === 0);
 						};
 					}
-			
-					
-					
-					
-// FOR STOCK
 
-/*				//	$scope.invoiceObj.customer = null;
-					$scope.searchTextInput = null;
+					// FOR STOCK
 
-					$scope.querySearch = function(query) {
-						var results = query ? $scope.stockforinvoice
-								.filter(createFilterFor(query))
-								: $scope.stockforinvoice;
-						var deferred = $q.defer();
-						$timeout(function() {
-							deferred.resolve(results);
-						}, Math.random() * 1000, false);
-						return deferred.promise;
-					}
-					*//**
-					 * Build `states` list of key/value pairs
-					 *//*
-					function loadAllStock() {
-
-						var stockService = appEndpointSF.getStockService();
-
-						stockService.getAllStock($scope.curUser.business.id)
-								.then(function(stockList) {
-									
-									$scope.stockforinvoice = stockList;
-								});
-						$scope.stockforinvoice = [];
-					}
-					*//**
-					 * Create filter function for a query string
-					 *//*
-					function createFilterFor(query) {
-						var lowercaseQuery = angular.lowercase(query);
-						return function filterFn(stk) {
-							return (angular.lowercase(stk.itemName).indexOf(
-									lowercaseQuery) === 0);
-						};
-					}
-			
-*/					
-/*		
-					$scope.getInvoiceSettingsByBiz = function() {
-						
-						var invoiceService = appEndpointSF.getInvoiceService();
-
-						invoiceService.getInvoiceSettingsByBiz(
-										$scope.curUser.business.id)
-								.then(
-										function(settingsList) {
-											
-											$scope.invoiceObj = settingsList;
-											$log
-													.debug("Inside Ctr $scope.settingsList:"
-															+ $scope.invoiceObj);
-										//	return $scope.settingsObj;
-										});
-					}
-*/					
+					/*
+					 * // $scope.invoiceObj.customer = null;
+					 * $scope.searchTextInput = null;
+					 * 
+					 * $scope.querySearch = function(query) { var results =
+					 * query ? $scope.stockforinvoice
+					 * .filter(createFilterFor(query)) : $scope.stockforinvoice;
+					 * var deferred = $q.defer(); $timeout(function() {
+					 * deferred.resolve(results); }, Math.random() * 1000,
+					 * false); return deferred.promise; }
+					 *//**
+						 * Build `states` list of key/value pairs
+						 */
+					/*
+					 * function loadAllStock() {
+					 * 
+					 * var stockService = appEndpointSF.getStockService();
+					 * 
+					 * stockService.getAllStock($scope.curUser.business.id)
+					 * .then(function(stockList) {
+					 * 
+					 * $scope.stockforinvoice = stockList; });
+					 * $scope.stockforinvoice = []; }
+					 *//**
+						 * Create filter function for a query string
+						 */
+					/*
+					 * function createFilterFor(query) { var lowercaseQuery =
+					 * angular.lowercase(query); return function filterFn(stk) {
+					 * return (angular.lowercase(stk.itemName).indexOf(
+					 * lowercaseQuery) === 0); }; }
+					 * 
+					 */
+					/*
+					 * $scope.getInvoiceSettingsByBiz = function() {
+					 * 
+					 * var invoiceService = appEndpointSF.getInvoiceService();
+					 * 
+					 * invoiceService.getInvoiceSettingsByBiz(
+					 * $scope.curUser.business.id) .then( function(settingsList) {
+					 * 
+					 * $scope.invoiceObj = settingsList; $log .debug("Inside Ctr
+					 * $scope.settingsList:" + $scope.invoiceObj); // return
+					 * $scope.settingsObj; }); }
+					 */
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
 							loadAllCustomers();
-						//	loadAllStock();
+							// loadAllStock();
 							$scope.getAllStock();
 							$scope.getAllSalesOrder();
 							$scope.getTaxesByVisibility();
 							$scope.getAllAccountsByBusiness();
-						//	$scope.getInvoiceSettingsByBiz();
-							
+							// $scope.getInvoiceSettingsByBiz();
+
 						} else {
 							$log.debug("Services Not Loaded, watiting...");
 							$timeout($scope.waitForServiceLoad, 1000);
@@ -462,7 +463,6 @@ app
 
 					$scope.waitForServiceLoad();
 
-					
 					$scope.addCustomer = function(ev) {
 						var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
 								&& $scope.customFullscreen;
@@ -475,7 +475,7 @@ app
 									clickOutsideToClose : true,
 									fullscreen : useFullScreen,
 									locals : {
-										curUser :  $scope.curUser,
+										curUser : $scope.curUser,
 										customer : $scope.customer
 									}
 								})
@@ -487,18 +487,19 @@ app
 										function() {
 											$scope.status = 'You cancelled the dialog.';
 										});
-						
+
 					};
 
 					function DialogController($scope, $mdDialog, curUser,
 							customer) {
 
 						$scope.addCustomer = function() {
-							 $scope.customer.business = curUser.business;
-							 $scope.customer.createdDate = new Date();
-							 $scope.customer.modifiedBy = curUser.email_id;
-							 
-							var customerService = appEndpointSF.getCustomerService();
+							$scope.customer.business = curUser.business;
+							$scope.customer.createdDate = new Date();
+							$scope.customer.modifiedBy = curUser.email_id;
+
+							var customerService = appEndpointSF
+									.getCustomerService();
 
 							customerService.addCustomer($scope.customer).then(
 									function(msgBean) {
@@ -506,10 +507,10 @@ app
 									});
 							$scope.hide();
 						}
-						
+
 						$scope.hide = function() {
 							$mdDialog.hide();
 						};
 					}
-					
+
 				});

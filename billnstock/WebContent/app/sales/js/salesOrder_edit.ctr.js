@@ -1,7 +1,7 @@
 app = angular.module("stockApp");
 app
 		.controller(
-				"salesOrderAddCtr",
+				"salesOrderEditCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $state, $http, $stateParams,
 						$routeParams, $filter, $q, $mdMedia, $mdDialog,
@@ -12,7 +12,7 @@ app
 					$log.debug("$scope.curUser++++++++"
 							+ angular.toJson($scope.curUser));
 
-					$scope.salesOrder = {
+					$scope.salesOrderObjEdit = {
 						customer : {},
 						customerRefId : '',
 						quotationDate : '',
@@ -45,72 +45,113 @@ app
 						business : ""
 					};
 
-					$scope.addSalesOrder = function() {
-						if ($scope.salesOrder.sOLineItemList.length == 0
-								|| $scope.salesOrder.sOLineItemList.itemName == "") {
+					
+					$log.debug("$stateParams:", $stateParams);
+					$log.debug("$stateParams.selectedSOId:",
+							$stateParams.selectedSOId);
+
+					$scope.selectedSalesOrderNo = $stateParams.selectedSOId;
+
+					$scope.getSOByID = function() {
+						var salesService = appEndpointSF.getSalesOrderService();
+
+						salesService
+								.getSOByID($scope.selectedSalesOrderNo)
+								.then(
+										function(sOList) {
+											$scope.salesOrderObjEdit = sOList;
+
+					/*						$scope.salesOrderObjEdit.finalTotal = Math
+													.round($scope.sODetail.finalTotal);
+					*/						$scope.salesOrderObjEdit.dueDate = new Date($scope.salesOrderObjEdit.dueDate)
+											$scope.salesOrderObjEdit.quotationDate = new Date($scope.salesOrderObjEdit.quotationDate)
+											$scope.salesOrderObjEdit.deliveryDate = new Date($scope.salesOrderObjEdit.deliveryDate)
+												
+											
+											var tempArray = $scope.salesOrderObjEdit.sOLineItemList;
+
+											if (tempArray != undefined) {
+												if ($scope.salesOrderObjEdit.sOLineItemList.length > 0) {
+													for (var i = 0; i < $scope.salesOrderObjEdit.sOLineItemList.length; i++) {
+														var a = parseInt($scope.salesOrderObjEdit.sOLineItemList[i].qty);
+														$scope.salesOrderObjEdit.sOLineItemList[i].qty = a;
+													}
+												}
+											}
+										});
+
+					}
+					$scope.salesOrderObjEdit = [];
+					
+					$scope.updateSalesOrder = function() {
+						if ($scope.salesOrderObjEdit.sOLineItemList.length == 0
+								|| $scope.salesOrderObjEdit.sOLineItemList.itemName == "") {
 							console.log("Please select atleast one item");
 							$scope.errorMsg = "Please select atleast one item.";
 						} else {
 							var salesOrderService = appEndpointSF
 									.getSalesOrderService();
-							$scope.salesOrder.business = $scope.curUser.business;
+							$scope.salesOrderObjEdit.business = $scope.curUser.business;
 
-							salesOrderService.addSalesOrder($scope.salesOrder)
+							salesOrderService.addSalesOrder($scope.salesOrderObjEdit)
 									.then(function(msgBean) {
 										$scope.showSimpleToast(msgBean.msg);
 									});
 
-							$scope.salesOrder = {};
+							$scope.salesOrderObjEdit = {};
 						}
 					}
 					$scope.addItem = function() {
 						var item = {
-							srNo : $scope.salesOrder.sOLineItemList.length + 1,
+							srNo : $scope.salesOrderObjEdit.sOLineItemList.length + 1,
 							itemName : "",
 							qty : 1,
 							price : "",
 							subTotal : ""
 						};
 
-						$scope.salesOrder.sOLineItemList.push(item);
+						$scope.salesOrderObjEdit.sOLineItemList.push(item);
 					};
 
 					$scope.removeItem = function(index) {
-						$scope.salesOrder.sOLineItemList.splice(index, 1);
+						$scope.salesOrderObjEdit.sOLineItemList.splice(index, 1);
 						$scope.calSubTotal();
 						$scope.calfinalTotal();
 					};
 
 					$scope.calSubTotal = function() {
 						$log.debug("##Came to calSubTotal...");
-						$scope.salesOrder.subTotal = 0;
+						$scope.salesOrderObjEdit.subTotal = 0;
 
-						for (var i = 0; i < $scope.salesOrder.sOLineItemList.length; i++) {
-							var line = $scope.salesOrder.sOLineItemList[i];
-							$scope.salesOrder.subTotal += (line.qty * line.price);
+						for (var i = 0; i < $scope.salesOrderObjEdit.sOLineItemList.length; i++) {
+							var line = $scope.salesOrderObjEdit.sOLineItemList[i];
+							$scope.salesOrderObjEdit.subTotal += (line.qty * line.price);
 						}
 
-						$scope.salesOrder.subTotal = parseFloat(
-								Math.round(($scope.salesOrder.subTotal) * 100) / 100)
+						$scope.salesOrderObjEdit.subTotal = parseFloat(
+								Math.round(($scope.salesOrderObjEdit.subTotal) * 100) / 100)
 								.toFixed(2);
 
-						return $scope.salesOrder.subTotal;
+						$scope.calfinalTotal();
+						
+						return $scope.salesOrderObjEdit.subTotal;
+						
 					}
 
 					$scope.calfinalTotal = function() {
 						$log.debug("##Came to calfinalTotal...");
 
-						$scope.salesOrder.finalTotal = parseFloat($scope.salesOrder.subTotal)
-								+ parseFloat($scope.salesOrder.taxTotal) + $scope.salesOrder.serviceSubTotal;
+						$scope.salesOrderObjEdit.finalTotal = parseFloat($scope.salesOrderObjEdit.subTotal)
+								+ parseFloat($scope.salesOrderObjEdit.taxTotal) + $scope.salesOrderObjEdit.serviceSubTotal;
 
-						$scope.salesOrder.finalTotal = parseFloat(
-								($scope.salesOrder.finalTotal)).toFixed(2);
+						$scope.salesOrderObjEdit.finalTotal = parseFloat(
+								($scope.salesOrderObjEdit.finalTotal)).toFixed(2);
 
 					}
 
 					$scope.lineItemStockChange = function(index, stockItem) {
 						$log.debug("##Came to lineItemStockChange...");
-						var lineSelectedItem = $scope.salesOrder.sOLineItemList[index];
+						var lineSelectedItem = $scope.salesOrderObjEdit.sOLineItemList[index];
 						lineSelectedItem.price = stockItem.price;
 						lineSelectedItem.itemName = stockItem.itemName;
 						lineSelectedItem.subTotal = stockItem.subTotal;
@@ -126,14 +167,14 @@ app
 					$scope.lineItemTaxChange = function(index, selectedTaxItem) {
 						$log.debug("##Came to lineItemTaxChange...");
 
-						$scope.salesOrder.taxCodeName = $scope.salesOrder.selectedTaxItem.taxCodeName;
-						$scope.salesOrder.taxPercenatge = $scope.salesOrder.selectedTaxItem.taxPercenatge;
+						$scope.salesOrderObjEdit.taxCodeName = $scope.salesOrderObjEdit.selectedTaxItem.taxCodeName;
+						$scope.salesOrderObjEdit.taxPercenatge = $scope.salesOrderObjEdit.selectedTaxItem.taxPercenatge;
 
-						$scope.salesOrder.taxTotal = ($scope.salesOrder.selectedTaxItem.taxPercenatge / 100)
-								* ($scope.salesOrder.subTotal)
+						$scope.salesOrderObjEdit.taxTotal = ($scope.salesOrderObjEdit.selectedTaxItem.taxPercenatge / 100)
+								* ($scope.salesOrderObjEdit.subTotal)
 
-						$scope.salesOrder.taxTotal = parseFloat(
-								Math.round($scope.salesOrder.taxTotal * 100) / 100)
+						$scope.salesOrderObjEdit.taxTotal = parseFloat(
+								Math.round($scope.salesOrderObjEdit.taxTotal * 100) / 100)
 								.toFixed(2);
 						$scope.calfinalTotal();
 					};
@@ -145,41 +186,41 @@ app
 					 */
 					$scope.addService = function() {
 						var service = {
-							srNo : $scope.salesOrder.serviceLineItemList.length + 1,
+							srNo : $scope.salesOrderObjEdit.serviceLineItemList.length + 1,
 							serviceName : "",
 							sQty : 1,
 							sPrice : "",
 							serviceSubTotal : 0
 						};
 
-						$scope.salesOrder.serviceLineItemList
+						$scope.salesOrderObjEdit.serviceLineItemList
 								.push(service);
 					};
 
 					$scope.removeService = function(index) {
-						$scope.salesOrder.serviceLineItemList.splice(
+						$scope.salesOrderObjEdit.serviceLineItemList.splice(
 								index, 1);
 					};
 
 					$scope.calServiceSubTotal = function() {
 						$log.debug("##Came to calSubTotal...");
-						$scope.salesOrder.serviceSubTotal = 0;
+						$scope.salesOrderObjEdit.serviceSubTotal = 0;
 
-						for (var i = 0; i < $scope.salesOrder.serviceLineItemList.length; i++) {
-							var line = $scope.salesOrder.serviceLineItemList[i];
-							$scope.salesOrder.serviceSubTotal += (line.sQty * line.sPrice);
+						for (var i = 0; i < $scope.salesOrderObjEdit.serviceLineItemList.length; i++) {
+							var line = $scope.salesOrderObjEdit.serviceLineItemList[i];
+							$scope.salesOrderObjEdit.serviceSubTotal += (line.sQty * line.sPrice);
 
 							$log.debug("subTotal :"
-									+ $scope.salesOrder.serviceSubTotal);
+									+ $scope.salesOrderObjEdit.serviceSubTotal);
 						}
 
-						$scope.salesOrder.subTotal = parseFloat(
-								Math.round(($scope.salesOrder.subTotal) * 100) / 100)
+						$scope.salesOrderObjEdit.subTotal = parseFloat(
+								Math.round(($scope.salesOrderObjEdit.subTotal) * 100) / 100)
 								.toFixed(2);
 
 						$scope.calfinalTotal();
 
-						return $scope.salesOrder.subTotal;
+						return $scope.salesOrderObjEdit.subTotal;
 					}
 
 					$scope.discountType = [ "%", "Fixed" ];
@@ -187,7 +228,7 @@ app
 							selectedDiscount) {
 						$log.debug("##Came to lineItemStockChange...");
 						$scope.lineSelectedDiscount = selectedDiscount;
-						$scope.salesOrder.discount = selectedDiscount;
+						$scope.salesOrderObjEdit.discount = selectedDiscount;
 						// $scope.calSubTotal();
 						// $scope.calfinalTotal();
 					};
@@ -256,6 +297,7 @@ app
 							loadAllCustomers();
 							$scope.getAllTaxes();
 							$scope.getAllStock();
+							$scope.getSOByID();
 						} else {
 							$log.debug("Services Not Loaded, watiting...");
 							$timeout($scope.waitForServiceLoad, 1000);
@@ -268,7 +310,7 @@ app
 					// list of `state` value/display objects
 					$scope.customersforinvoice = [];
 
-					$scope.salesOrder.customer = null;
+					$scope.salesOrderObjEdit.customer = null;
 					$scope.searchTextInput = null;
 
 					$scope.querySearch = function(query) {

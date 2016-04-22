@@ -29,10 +29,17 @@
 				<td>{{sOList.salesOrderDate | formatDate}}</td>
 				<td>{{sOList.finalTotal}}</td>
 				<td><section layout="row" layout-sm="column">
-						<md-button class="md-raised md-primary"
+						<md-button class="md-raised md-primary" ng-hide="selected.length == 1"
 							ui-sref="salesOrder.view({selectedSOId: sOList.id})">
 						View SO</md-button>
-					</section></td>
+					</section>
+					
+					
+						<md-button class="md-raised md-primary" ng-show="selected.length == 1"
+							ui-sref="salesOrder.edit({selectedSOId: sOList.id})">
+						Edit</md-button>
+					
+					</td>
 				<td>
 			</tr>
 		</tbody>
