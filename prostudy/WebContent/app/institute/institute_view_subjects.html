@@ -27,35 +27,35 @@
 					
 				<td><a
 					ui-sref="institute.view.studentBySubject({selectedSubName : subject.name, selectedStdName:selectedStdName, selectedDivName:selectedDivName,selectedSubId : subject.id})"><md-button
-							class="md-raised md-primary" ng-show="flag==true">View Student</md-button></a></td>
+							 ng-show="flag==true"><md-icon md-svg-src="img/icons/view.svg"></md-icon> <md-tooltip>View Student </md-tooltip></md-button></a></td>
 							
 				<td><a
 					ui-sref="institute.list_view.studentBySubject({selectedSubId : subject.id, selectedStdName:selectedStdName, selectedDivName:selectedDivName,selectedSubName:subject.name})"><md-button
-							class="md-raised md-primary" ng-show="flag==false">View Student</md-button></a></td>
+							ng-show="flag==false"><md-icon md-svg-src="img/icons/view.svg"></md-icon> <md-tooltip>View Student </md-tooltip></md-button></a></td>
 
 				<td ng-show="flag==true"><a
 					ui-sref="institute.view.view_subjects({selectedSubjectId: subject.id, selectedSubName : subject.name, selectedStdName:selectedStdName, selectedDivName:selectedDivName})"><md-button
 							data-ng-hide="editMode"
 							data-ng-click="editMode = true;editSub(subject)"
-							class="md-raised md-primary">Edit </md-button></a></td>
+							><md-icon md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit </md-tooltip> </md-button></a></td>
 							
 				<td ng-show="flag==false"><a
 					ui-sref="institute.list_view.view_subjects({selectedSubjectId: subject.id, selectedSubName : subject.name})"><md-button
 							data-ng-hide="editMode"
 							data-ng-click="editMode = true;editSub(subject)"
-							class="md-raised md-primary">Edit </md-button></a></td>
+							><md-icon md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit </md-tooltip> </md-button></a></td>
 							
 			
 
 
 				<td><md-button data-ng-show="editMode"
 						data-ng-click="editMode = false; updateSubject()"
-						class="md-raised md-primary">Save</md-button></td>
+						><md-icon md-svg-src="img/icons/save.svg"></md-icon> <md-tooltip>Save </md-tooltip></md-button></td>
 
 
 				<td><md-button type="submit" data-ng-show="editMode"
 						data-ng-click="editMode = false; cancelSub()"
-						class="md-raised md-primary">Cancel</md-button></td>
+						><md-icon md-svg-src="img/icons/cancel.svg"></md-icon> <md-tooltip>Cancel </md-tooltip></md-button></td>
 
 				
 

@@ -1,6 +1,6 @@
 <h3 class="md-headline">Practice Exam List</h3>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 
 <div>
@@ -17,7 +17,7 @@
 				<th order-by="examtitle" name="Exam Title"></th>
 				<th order-by="date" name="Created on Date"></th>
 				<th order-by="category" name="Category"></th>
-				
+
 			</tr>
 		</thead>
 		<tbody>
@@ -28,19 +28,21 @@
 				<td>{{test.examtitle}}</td>
 				<td>{{test.date}}</td>
 				<td>{{test.category}}</td>
-				
 
-			<td><md-button
-						ng-click="like(test.id)"> <ng-md-icon icon="thumb_up"></ng-md-icon>{{test.likes}}</md-button></td>
+				<td><md-button ng-click="addTestToMyList(test.id)"
+						ng-disabled="isContainsTest(curUser.myExams,test)"> <md-icon
+						md-svg-src="img/icons/add_fav.svg"></md-icon> <md-tooltip>Add
+					To MyPractice Exam</md-tooltip></md-button></td>
 
-				<td><md-button
-						ng-click="dislike(test.id)"> <ng-md-icon
+				<td><md-button ng-click="like(test.id)"> <ng-md-icon
+						icon="thumb_up"></ng-md-icon>{{test.likes}}</md-button></td>
+
+				<td><md-button ng-click="dislike(test.id)"> <ng-md-icon
 						icon="thumb_down"></ng-md-icon>{{test.dislikes}}</md-button></td>
-						
-				<td><md-button ng-click="addTestToMyList(test.id)" ng-disabled="isContainsTest(curUser.myExams,test)"> <ng-md-icon
-						icon="my_library_add"></ng-md-icon> <md-tooltip>Add To MyPractice Exam</md-tooltip></md-button></td> 
 
 				
+
+
 			</tr>
 		</tbody>
 	</table>
@@ -52,10 +54,14 @@
 	<div layout="row" layout-align="center center">
 
 		<a ui-sref="exam.practiceexamtest({selectedExamId: selected[0].id})"><md-button
-				ng-show="selected.length == 1" class="md-fab md-primary md-hue-2" ng-click=""><md-icon md-svg-src="img/icons/start.svg"></md-icon> <md-tooltip>Start</md-tooltip></md-button> </a>
-				
-	   <a ui-sref="exam.editpracticeexam({selectedExamId: selected[0].id})"><md-button
-				ng-show="selected.length == 1" class="md-fab md-primary md-hue-2" ng-click=""><md-icon md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit</md-tooltip> </md-button> </a>
+				ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
+				ng-click="">
+			<md-icon md-svg-src="img/icons/start.svg"></md-icon> <md-tooltip>Start</md-tooltip></md-button>
+		</a> <a ui-sref="exam.editpracticeexam({selectedExamId: selected[0].id})"><md-button
+				ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
+				ng-click="">
+			<md-icon md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit</md-tooltip>
+			</md-button> </a>
 
 	</div>
 </div>

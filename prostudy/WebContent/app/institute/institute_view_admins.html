@@ -26,11 +26,11 @@
 
 				<td><a
 					ui-sref="institute.view.editUser({selectedEmailID : a.email_id, currentInstID : currentInstID})"><md-button
-							ng-show="flag==true" class="md-raised md-primary" ng-click="">Edit</md-button></a></td>
+							ng-show="flag==true"  ng-click=""><md-icon md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit </md-tooltip></md-button></a></td>
 
 				<td><a
 					ui-sref="institute.list_view.editUser({selectedEmailID : a.email_id, currentInstID : currentInstID})"><md-button
-							ng-show="flag==false" class="md-raised md-primary" ng-click="">Edit</md-button></a></td>
+							ng-show="flag==false"  ng-click=""><md-icon md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit </md-tooltip></md-button></a></td>
 
 				
 			</tr>

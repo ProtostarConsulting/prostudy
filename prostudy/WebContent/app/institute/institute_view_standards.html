@@ -28,29 +28,29 @@
 
 				<td><md-button ng-show="flag==true"
 						ui-sref="institute.view.view_divisions({selectedStdID : standard.id, selectedStdName : standard.name})"
-						class="md-raised md-primary">View Divisions</md-button></td>
+						><md-icon md-svg-src="img/icons/view.svg"></md-icon> <md-tooltip>View Divisions </md-tooltip></md-button></td>
 						
 				<td><md-button ng-show="flag==false"
 						ui-sref="institute.list_view.view_divisions({selectedStdID : standard.id, selectedStdName : standard.name})"
-						class="md-raised md-primary">View Divisions</md-button></td>
+						><md-icon md-svg-src="img/icons/view.svg"></md-icon> <md-tooltip>View Divisions </md-tooltip></md-button></td>
 
 						
 				<td ng-show="flag==true"><a ui-sref="institute.view.view_standards({selectedStdID: standard.id})"><md-button data-ng-hide="editMode"
 						data-ng-click="editMode = true;editStd(standard)"
-						class="md-raised md-primary" ng-show="false">Edit </md-button> </a></td>
+						 ng-show="false"><md-icon md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit </md-tooltip> </md-button> </a></td>
 						
 				<td ng-show="flag==false"><a ui-sref="institute.list_view.view_standards({selectedStdID: standard.id})"><md-button data-ng-hide="editMode"
 						data-ng-click="editMode = true;editStd(standard)"
-						class="md-raised md-primary" ng-show="false">Edit </md-button> </a></td>
+						 ng-show="false"><md-icon md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit </md-tooltip> </md-button> </a></td>
 						
 				
 
 				<td><md-button data-ng-show="editMode"
-						data-ng-click="editMode = false; updateStandard()" class="md-raised md-primary">Save</md-button></td>
+						data-ng-click="editMode = false; updateStandard()"><md-icon md-svg-src="img/icons/save.svg"></md-icon> <md-tooltip>Save </md-tooltip></md-button></td>
 
 
 				<td><md-button type="submit" data-ng-show="editMode"
-					data-ng-click="editMode = false; cancel()" class="md-raised md-primary">Cancel</md-button></td>
+					data-ng-click="editMode = false; cancel()"><md-icon md-svg-src="img/icons/cancel.svg"></md-icon> <md-tooltip>Cancel </md-tooltip></md-button></td>
 			</tr>
 		</tbody>
 	</table>

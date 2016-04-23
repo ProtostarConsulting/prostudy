@@ -28,8 +28,7 @@
 				<td>{{book.author}}</td>
 
 				<td><md-button ng-click="addBookToMyList(book.id)"
-						ng-disabled="isContainsBook(curUser.myBooks,book)"> <ng-md-icon
-						icon="my_library_add"></ng-md-icon> <md-tooltip>Add
+						ng-disabled="isContainsBook(curUser.myBooks,book)"><md-icon md-svg-src="img/icons/add_fav.svg"></md-icon> <md-tooltip>Add
 					To MyBooks</md-tooltip></md-button></td>
 
 				<td><md-button ng-click="like(book.id)"> <ng-md-icon

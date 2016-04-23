@@ -8,10 +8,10 @@
 
  
   <md-data-table-container>
-	<table md-data-table md-row-select="selected" md-progress="deferred">
+	<table md-data-table  md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onorderchange">
 			<tr>				
-				<th name="Exam ID" order-by="id"></th>
+				
 				<th name="Exam Title" order-by="examtitle"></th>
 				
 			</tr>
@@ -20,7 +20,7 @@
 		<tbody>
 			<tr md-auto-select ng-repeat="exam in exams | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit |  filter: {examtitle: searchCategory}">
 			
-			<td>{{exam.id}}</td>
+			
             <td><a ui-sref="exam.practiceexamtest({selectedExamId : exam.id})"><b>{{exam.examtitle}}</b></a></td>  
           	</tr>				
 		</tbody>		
