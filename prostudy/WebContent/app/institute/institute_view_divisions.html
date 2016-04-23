@@ -62,16 +62,23 @@
 	<div layout="row" layout-align="centre centre" layout-sm="column" flex>
 		
 		<md-button ng-show="flag==true" ui-sref="institute.view.view_divisions.adddivisions"
-		class="md-raised md-primary">Add Division</md-button>
+		class="md-fab md-primary md-hue-2"><md-icon
+				md-svg-src="img/icons/add.svg"></md-icon> <md-tooltip>Add
+			Division</md-tooltip></md-button>
 		
 		<md-button ng-show="flag==false" ui-sref="institute.list_view.view_divisions.adddivisions"
-		class="md-raised md-primary">Add Division</md-button>
+		class="md-fab md-primary md-hue-2"><md-icon
+				md-svg-src="img/icons/add.svg"></md-icon> <md-tooltip>Add
+			Division</md-tooltip></md-button>
 		
 		<a ui-sref="institute.view.view_standards({selectedStdID : selectedStdID})"><md-button ng-show="flag==true"
-				class="md-raised md-primary">Back </md-button> </a>
+				class="md-fab md-primary md-hue-2"><md-icon
+				md-svg-src="img/icons/back.svg"></md-icon> <md-tooltip>Back
+			</md-tooltip></md-button> </a>
 				
 		<a ui-sref="institute.list_view.view_standards({selectedStdID : selectedStdID})"><md-button ng-show="flag==false"
-				class="md-raised md-primary">Back </md-button> </a>
+				class="md-fab md-primary md-hue-2"><md-icon
+				md-svg-src="img/icons/back.svg"></md-icon> <md-tooltip>Back</md-tooltip> </md-button> </a>
 	</div>
 	
 
@@ -80,4 +87,7 @@
 	<div ui-view></div>
 	</md-content>
 </div>
+
+
+
 

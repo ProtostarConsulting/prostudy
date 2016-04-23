@@ -44,6 +44,8 @@
 							data-ng-hide="editMode"
 							data-ng-click="editMode = true;editSub(subject)"
 							class="md-raised md-primary">Edit </md-button></a></td>
+							
+			
 
 
 				<td><md-button data-ng-show="editMode"
@@ -70,17 +72,23 @@
 	<div layout="row" layout-align="centre centre" layout-sm="column" flex>
 	
 		<md-button ng-show="flag==true" ui-sref="institute.view.view_subjects.addsubjects"
-		class="md-raised md-primary">Add Subject</md-button>
+		class="md-fab md-primary md-hue-2"><md-icon
+				md-svg-src="img/icons/add.svg"></md-icon> <md-tooltip>Add
+			Subject</md-tooltip></md-button>
 	
 		<md-button ng-show="flag==false" ui-sref="institute.list_view.view_subjects.addsubjects"
-		class="md-raised md-primary">Add Subject</md-button>
+		class="md-fab md-primary md-hue-2"><md-icon
+				md-svg-src="img/icons/add.svg"></md-icon> <md-tooltip>Add
+			Subject</md-tooltip></md-button>
 				
 	
 		<a ui-sref="institute.view.view_standards"><md-button ng-show="flag==true"
-				class="md-raised md-primary">Back </md-button> </a>
+				class="md-fab md-primary md-hue-2"><md-icon
+				md-svg-src="img/icons/back.svg"></md-icon> <md-tooltip>Back</md-tooltip> </md-button> </a>
 				
 		<a ui-sref="institute.list_view.view_standards"><md-button ng-show="flag==false"
-				class="md-raised md-primary">Back </md-button> </a>
+				class="md-fab md-primary md-hue-2"><md-icon
+				md-svg-src="img/icons/back.svg"></md-icon> <md-tooltip>Back</md-tooltip> </md-button> </a>
 				
 	</div>
 

@@ -125,9 +125,7 @@ angular
 												$scope.email_id = msgBean.email_id;
 												$log.debug("$scope.email_id"
 														+ $scope.email_id);
-												$state
-														.go(
-																"institute.studFillbasics",
+												$state.go("institute.studFillbasics",
 																{
 																	currstud : $scope.email_id,
 																	currentInstID : $scope.currentInstID

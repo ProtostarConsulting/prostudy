@@ -28,7 +28,7 @@
 					<td>{{institute.desc}}</td>
 					<td>{{institute.phone_no}}</td>
 					<td>{{institute.address}}</td>
-					
+
 
 				</tr>
 			</tbody>
@@ -42,12 +42,16 @@
 		<div layout="row" layout-align="center center">
 			<a
 				ui-sref="institute.list_view({selectedInstituteID: selected[0].id})"><md-button
-					ng-show="selected.length == 1" class="md-raised md-primary"
-					ng-click="">VIEW</md-button> </a>
+					ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
+					ng-click="">
+				<md-icon md-svg-src="img/icons/view.svg"></md-icon> <md-tooltip>VIEW</md-tooltip></md-button>
+			</a>
 
 		</div>
-		
+
 	</div>
-	
+
+
+
 </form>
 </md-content>

@@ -39,13 +39,19 @@
 		md-total={{teacherList.length}} md-trigger="onpagechange"></md-data-table-pagination>
 		
 	</md-data-table-container> <md-button ng-show="flag==true" ui-sref="institute.view.view_teachers.addteachers"
-		class="md-raised md-primary">Add Teachers</md-button>
+		class="md-fab md-primary md-hue-2"><md-icon
+				md-svg-src="img/icons/add.svg"></md-icon> <md-tooltip>Add
+			Teacher</md-tooltip></md-button>
 		
 		
 	</md-data-table-container> <md-button ng-show="flag==false" ui-sref="institute.list_view.view_teachers.addteachers"
-		class="md-raised md-primary">Add Teachers</md-button>
+		class="md-fab md-primary md-hue-2"><md-icon
+				md-svg-src="img/icons/add.svg"></md-icon> <md-tooltip>Add
+			Teacher</md-tooltip></md-button>
 		
 	
 	<div ui-view></div>
 	</md-content>
 </div>
+
+
