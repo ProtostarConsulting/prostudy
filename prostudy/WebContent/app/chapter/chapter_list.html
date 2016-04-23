@@ -41,8 +41,8 @@
 					{{chapter.subject}}
 				</td>
 
-				<td><a ui-sref="chapter.edit({selectedChapterId: chapter.id})"><md-button class="md-raised md-primary"
-						ng-hide="editingData[chapter.id]" ng-click="modify(chapter)">Edit</md-button></a>
+				<td><a ui-sref="chapter.edit({selectedChapterId: chapter.id})"><md-button 
+						ng-hide="editingData[chapter.id]" ng-click="modify(chapter)"><md-icon md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit </md-tooltip></md-button></a>
 
 				</td>
 
