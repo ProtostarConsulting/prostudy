@@ -1028,12 +1028,22 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		gapi.client.paymentService.getPaymentByID({
 			'id' : id
 		}).execute(function(resp) {
-		deferred.resolve(resp.result);
-		$log.debug("resp installment :" + angular.toJson(resp.result));
+		deferred.resolve(resp.result);		
 		});
 		return deferred.promise;
 		
 	}	
+	PaymentService.getPaymentByStudID = function(studId) {
+		var deferred = $q.defer();
+		gapi.client.paymentService.getPaymentByStudID({
+			'studId' : studId
+		}).execute(function(resp) {
+		deferred.resolve(resp.result);
+		$log.debug("resp payment :" + angular.toJson(resp.result));
+		});
+		return deferred.promise;
+		
+	}
 	PaymentService.getPayments = function() {
 		var deferred = $q.defer();
 		gapi.client.paymentService.getPayments().execute(function(resp) {

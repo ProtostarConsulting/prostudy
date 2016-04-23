@@ -554,6 +554,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/gfe",
 		templateUrl : '/app/gfe/gfe_module.html',
 		controller : 'gfeModuleCtr'
+	})	.state('gfe.classroomNewCourse', {
+		url : "/classroomNewCourse",
+		templateUrl : '/app/gfe/classroom_new_course.html',
+		controller : 'classroomNewCourseCtr'
 	}).state('gfe.classroomCourseList', {
 		url : "/classroomCourseList",
 		templateUrl : '/app/gfe/classroom_list.html',
