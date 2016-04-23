@@ -50,7 +50,7 @@
 	<div layout="row" layout-align="center center">
 
 	   <a ui-sref="book.edit({selectedBookId: selected[0].id, standard: selected[0].standard, division: selected[0].division, subject: selected[0].subject})"><md-button
-				ng-show="selected.length == 1" class="md-raised md-primary" ng-click="">Edit </md-button> </a>
+				ng-show="selected.length == 1" class="md-fab md-primary md-hue-2" ng-click=""><md-icon md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit </md-tooltip></md-button> </a>
 
 	</div>
 </div>
