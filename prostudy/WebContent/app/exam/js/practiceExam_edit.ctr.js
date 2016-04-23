@@ -26,16 +26,15 @@ angular
 					$scope.stdList;
 					$scope.divList;
 					$scope.subList;
+					
+					$scope.flag = true;
 
 					$scope.selectedExamId = $stateParams.selectedExamId;
 
 					$scope.showselectedExam = function() {
-						var PracticeExamService = appEndpointSF
-								.getPracticeExamService();
+						var PracticeExamService = appEndpointSF.getPracticeExamService();
 
-						PracticeExamService
-								.getPracticeExamById($scope.selectedExamId)
-								.then(
+						PracticeExamService.getPracticeExamById($scope.selectedExamId).then(
 										function(practiceTest) {
 											$scope.Test = practiceTest;
 
@@ -45,8 +44,7 @@ angular
 													if (typeof $scope.Test.questions === 'undefined')
 														$scope.Test.questions = [];
 
-													$scope.Test.questions
-															.push($stateParams.addedQ);
+													$scope.Test.questions.push($stateParams.addedQ);
 													$scope.updateExam();
 												}
 											}
@@ -108,10 +106,16 @@ angular
 
 						$state.go('exam.addnewquestion', {
 							sourceSate : "exam.editpracticeexam",
-							selectedExamId : $stateParams.selectedExamId
+							selectedExamId : $stateParams.selectedExamId,
+							selectedStd : $scope.Test.standard,
+							selectedDiv : $scope.Test.division,
+							selectedSub : $scope.Test.subject,
+							selectedBoard : $scope.Test.board,
+							flag : true
 						});
 
 					}
+					
 					$scope.editQuestion = function() {
 
 						$state.go('exam.editquestion', {

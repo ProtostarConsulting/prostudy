@@ -1,3 +1,6 @@
+<h3 class="md-headline">Edit Practice Exam</h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 <form name="practiceExamEditForm" ng-model="practiceExamEditForm"
 	ng-submit="practiceExamEditForm.$valid " novalidate>
@@ -7,7 +10,7 @@
 		<div layout="column" layout-xs="column">
 
 			<div layout="row" layout-xs="column">
-			
+
 				<md-input-container flex> <label>Exam
 					Title<span style="color: red"
 					ng-show="practiceExamEditForm.examtitle.$error.required"
@@ -69,10 +72,7 @@
 					<td>{{question.option4}}</td>
 					<td>{{question.correctAns}}</td>
 
-					<td><md-button ng-show="selectedQ.length >0"
-							class="md-raised md-primary" ng-click="editQuestion()">Edit</md-button></td>
-					<td><md-button ng-show="selectedQ.length > 0"
-							class="md-raised md-primary" ng-click="remove($index)">Remove</md-button></td>
+
 				</tr>
 			</tbody>
 		</table>
@@ -81,19 +81,40 @@
 		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
 			md-total={{Test.questions.length}} md-trigger="onpagechange"></md-data-table-pagination>
 
-	</div>
-	
-	<div layout="row" layout-sm="column" layout-align="center center">
-		<md-button class="md-raised md-primary" ng-click="addQuestion()">Add
-		Question</md-button>
-	</div>
+		<p>&nbsp;</p>
 
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
+		<div layout="row" layout-align="center center">
 
-	<div layout="row" layout-sm="column" layout-align="center center">
-		<md-button class="md-raised md-primary" ng-click="updateExam(Test.id)" ng-disabled="practiceExamEditForm.$invalid">
-		Update Test </md-button>
-		<md-button class="md-raised" ng-click="cancel()"> cancel</md-button>
-	</div>
+			<md-button ng-show="selectedQ.length == 1"
+				class="md-fab md-primary md-hue-2" ng-click="editQuestion()">
+			<md-icon md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit</md-tooltip></md-button>
+
+			<md-button ng-show="selectedQ.length == 1"
+				class="md-fab md-primary md-hue-2" ng-click="remove($index)">
+			<md-icon md-svg-src="img/icons/remove.svg"></md-icon> <md-tooltip>Remove</md-tooltip>
+			</md-button>
+
+		</div>
+
+		<p>&nbsp;</p>
+
+		<div layout="row" layout-sm="column" layout-align="end center">
+
+			<md-button class="md-fab md-primary md-hue-2"
+				aria-label="Add Question" ng-click="addQuestion()"> <md-icon
+				md-svg-src="img/icons/add.svg"></md-icon> <md-tooltip>Add
+			Question</md-tooltip> </md-button>
+
+		</div>
+
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+
+		<div layout="row" layout-sm="column" layout-align="center center">
+			<md-button class="md-raised md-primary"
+				ng-click="updateExam(Test.id)"
+				ng-disabled="practiceExamEditForm.$invalid"> Update Test
+			</md-button>
+			<md-button class="md-raised" ng-click="cancel()"> cancel</md-button>
+		</div>
 </form>

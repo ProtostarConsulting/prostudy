@@ -13,7 +13,7 @@
 		</div>
 
 		<md-data-table-container>
-			<table md-data-table md-progress="deferred">
+			<table md-data-table md-row-select="selected" md-progress="deferred">
 				<thead md-order="query.order" md-trigger="onorderchange">
 					<tr>
 						<th name="Question Desc"   order-by="description"></th>
@@ -70,19 +70,26 @@
 						</div>
 						</td>
 
-						<td><a
-							ui-sref="exam.editquestion({selectedQuestionId: question.id})"><md-button
-									class="md-raised md-primary" ng-click="">Edit </md-button> </a></td>
+					
 						
 					</tr>
 				</tbody>
 		
 			</table>
 
-		</md-data-table-container>
+	
 		<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total={{questions.length}} md-trigger="onpagechange"></md-data-table-pagination>
-
+			</md-data-table-container>
 	</div>
+	
+		<div layout="row" layout-align="center center">
+			<a ui-sref="exam.editquestion({selectedQuestionId: selected[0].id})"><md-button
+					ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
+					ng-click="">
+				<md-icon md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit</md-tooltip></md-button>
+			</a>
+
+		</div>
 		
 </md-content>
  
