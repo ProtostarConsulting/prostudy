@@ -42,12 +42,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/exam/exam_module.html',
 		controller : 'examModuleCtr'
 	}).state('exam.addnewquestion', {
-		url : "/addnewquestion",
+		url : "/addnewquestion/:flag",
 		templateUrl : '/app/exam/newQuestion_add.html',
 		controller : 'addNewQuestionCtr',
 		params : {
 			sourceSate : null,
-			selectedExamId : null
+			selectedExamId : null,
+			selectedStd : null,
+			selectedDiv : null,
+			selectedSub : null,
+			selectedBoard : null
 		}
 	}).state('exam.questionlist', {
 		url : "/question_list",
@@ -62,6 +66,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			selectedExamId : null,
 			selectedQuestionId : null,
 			selectedQuestion : null
+			
 		}
 	}).state('exam.addpracticeexam', {
 		url : "/addpracticeexam",
@@ -85,7 +90,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			selectedExamId : null,
 			selectedQuestionId : null,
 			addFlag : null,
-			editFlag : null
+			editFlag : null,
+			selectedStd : null,
+			selectedDiv : null,
+			selectedSub : null,
+			selectedBoard :null
 		}
 	
 	}).state('exam.practiceexamtest', {
