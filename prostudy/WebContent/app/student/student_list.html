@@ -39,14 +39,14 @@
 	<div layout="row" layout-align="center center">
 	
 		<a ui-sref="student.edit({selectedEmailID : selected[0].email_id, currentInstID:curUser.instituteID, selectedID:selected[0].id})"><md-button
-				ng-show="selected.length == 1" class="md-raised md-primary" ng-click="">Edit</md-button></a>
+				ng-show="selected.length == 1" class="md-fab md-primary md-hue-2" ng-click=""><md-icon md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit </md-tooltip></md-button></a>
 				
 		<a ui-sref="student.addstudentpayment({selectedStud:selected[0]})"><md-button
-				ng-show="selected.length == 1" class="md-raised md-primary" ng-click="">Add Payment
+				ng-show="selected.length == 1" class="md-fab md-primary md-hue-2" ng-click=""><md-icon md-svg-src="img/icons/payment.svg"></md-icon> <md-tooltip>Add Payment</md-tooltip>
 						</md-button> </a>
 						
 		<a ui-sref="favourite.practiceExamResultView({selectedStudEmail:selected[0].email_id})"><md-button
-				ng-show="selected.length == 1" class="md-raised md-primary" ng-click="">Exam Details
+				ng-show="selected.length == 1" class="md-fab md-primary md-hue-2" ng-click=""><md-icon md-svg-src="img/icons/result.svg"></md-icon> <md-tooltip>Exam Details </md-tooltip>
 						</md-button> </a>
 						
 		
@@ -58,3 +58,4 @@
 </div>
 
 
+		
