@@ -30,6 +30,8 @@ angular
 						});
 					}
 
+					
+					
 					$scope.viewClassStudents = function() {
 						$log.debug("Inside viewClassStudents..");
 						$scope.userType = "Student";
