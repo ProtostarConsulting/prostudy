@@ -160,7 +160,7 @@ angular.module("prostudyApp").controller(
 				}
 
 				$scope.updatePass = function() {
-					alert(angular.toJson(curUser));
+				
 					$log.debug("curUser.password :"+curUser.password)
 					curUser.password = $scope.cPassword;
 					var UserService = appEndpointSF.getUserService();
@@ -173,7 +173,21 @@ angular.module("prostudyApp").controller(
 
 				}
 			}
+			
+			$scope.showConfirm = function(ev) {
+			    
+					 var confirm = $mdDialog.confirm()
+			          .title('Profile Updated Successfully !')
+			          .targetEvent(ev)
+			          .ok('OK')
+			          
+			          $mdDialog.show(confirm).then(function() {
+			          
+			    });
+			          $scope.updateUser();
+			  };
 
+		
 			$scope.waitForServiceLoad = function() {
 				
 				$log.debug("inside, watiting...");
@@ -191,3 +205,4 @@ angular.module("prostudyApp").controller(
 			$scope.waitForServiceLoad();
 			
 		});
+
