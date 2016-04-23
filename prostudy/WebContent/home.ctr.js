@@ -2,12 +2,9 @@ angular.module("prostudyApp").controller(
 		"homeCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, $q, $location, objectFactory, appEndpointSF,
-				tableTestDataFactory) {
-
-						
-		
-							
-							$scope.showSimpleToast = function() {
+				tableTestDataFactory,$timeout, $interval) {
+			
+					$scope.showSimpleToast = function() {
 								$mdToast.show($mdToast.simple().content(
 										'Customer Saved!').position("top")
 										.hideDelay(3000));
