@@ -27,7 +27,7 @@ angular.module("prostudyApp").controller(
 			$scope.getStandardByInstitute();
 
 			$scope.getButtonClass = function(standard) {
-				return $scope.selectedStd == standard? "md-raised md-warn": "md-raised md-primary";
+				return $scope.selectedStd == standard? "md-fab": "md-fab md-primary md-hue-2";
 
 			}
 
