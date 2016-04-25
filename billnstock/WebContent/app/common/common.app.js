@@ -471,6 +471,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/setup/setup_changetheme.html',
 		controller : 'setup.changetheme',
 
+	})
+	.state('setup.setlogo', {
+		url : "/setLogo",
+		/*templateUrl : '/app/setup/uplode.jsp',*/
+		templateUrl : '/app/setup/setup_setLogo.html',
+		/*templateUrl : '/app/setup/sendemail.html',*/
+		controller : 'setup.setLogo',
+
 	}).state('setup.userlist', {
 		url : "/userlist",
 		templateUrl : '/app/setup/userlist.html',

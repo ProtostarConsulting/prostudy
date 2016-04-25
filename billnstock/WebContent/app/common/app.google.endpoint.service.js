@@ -131,7 +131,7 @@ function googleEndpointSF($log, $q) {
 
 	UserService.getbusinessById = function(id) {
 		var deferred = $q.defer();
-		gapi.client.userService.getbusinessById({
+		gapi.client.userService.getBusinessById({
 			'id' : id
 		}).execute(function(resp) {
 			$log.debug("getUser #resp :" + resp);
@@ -1423,6 +1423,25 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 	// End of WarehouseService
+	/* =============================================================================================================================== */
+
+	// Start of UploddeurlServices 
+	
+	
+	var uploadUrlService = {};
+	serviceFactory.getuploadURLService = function() {
+		return uploadUrlService;
+	}
+	uploadUrlService.getLogUploadURL = function(id) {
+		var deferred = $q.defer();
+		gapi.client.uploadUrlService.getLogUploadURL().execute(function(resp) {
+			$log.debug("getURL at enpoint" + angular.toJson(resp));
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
+	
 
 	/* =============================================================================================================================== */
 

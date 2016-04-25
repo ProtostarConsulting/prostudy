@@ -159,6 +159,13 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getproadminService();
 	};
 	// ----------------------------------------------------
+	endpointFactory.getuploadURLService = function() {
+		if (isTestMode)
+			return localDBServiceFactory.getuploadURLService();
+		else
+			return googleEndpointSF.getuploadURLService();
+	};
+	// ----------------------------------------------------
 
 
 	endpointFactory.loadAppGoogleServices = function(deferred) {
@@ -253,11 +260,15 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			  }, apiRoot);
 		 
 		 
+		 gapi.client.load('uploadUrlService', 'v0.1', function() {
+			   $log.debug("uploadUrlService Loaded......");	 
+			  }, apiRoot);
+		 
+		 
 		 gapi.client.load('proadminService', 'v0.1', function() {
 			   $log.debug("proadminService Loaded......");
 			   endpointFactory.is_service_ready = true;
 			   deferred.resolve();
-
 			  }, apiRoot);
 		 
 		 gapi.load('auth', {
