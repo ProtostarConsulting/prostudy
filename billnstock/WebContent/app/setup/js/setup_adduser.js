@@ -121,29 +121,26 @@ angular
 												$scope.userslist = users.items.length;
 												if ($scope.userslist < $scope.curuser.business.accounttype.maxuser) {
 
-													var UserService = appEndpointSF
-															.getUserService();
-													UserService
-															.addUser(
-																	$scope.user)
-															.then(
-																	function(
-																			msgBean) {
-																		$scope
-																				.showSimpleToast(msgBean.msg);
+													var UserService = appEndpointSF.getUserService();
+													UserService.addUser($scope.user)
+															.then(function(msgBean) {
+																		$scope.showSimpleToast(msgBean.msg);
 																	});
 													$scope.user = {};
 												} else {
-													$scope
-															.showSimpleToast("userlimit is low");
+													$scope.showSimpleToast("userlimit is low");
 												}
 
 											});
 
 						}
+				   
 						$scope.addform.$setPristine();
 						$scope.addform.$setValidity();
 						$scope.addform.$setUntouched();
+						
+						
+						
 
 					}
 
