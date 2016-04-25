@@ -2,8 +2,6 @@ package com.protostar.billingnstock.invoice.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,9 +11,7 @@ import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Ref;
-import com.googlecode.objectify.cmd.Query;
 import com.protostar.billingnstock.account.entities.ReceivableEntity;
-import com.protostar.billingnstock.account.services.AccountService;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.invoice.entities.InvoiceEntity;
 import com.protostar.billingnstock.invoice.entities.InvoiceSettingsEntity;

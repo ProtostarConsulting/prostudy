@@ -3,6 +3,7 @@ package com.protostar.billingnstock.user.entities;
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.proadmin.entities.AccountType;
 import com.protostar.billnstock.entity.Address;
 
@@ -21,8 +22,19 @@ public class BusinessEntity {
 	private Address address;
 	private String status="active" ;
 	private String theme;
+
+	@Index
+	private String LogBlobKey;
 	
  
+
+	public String getLogBlobKey() {
+		return LogBlobKey;
+	}
+
+	public void setLogBlobKey(String logBlobKey) {
+		LogBlobKey = logBlobKey;
+	}
 
 	public String getTheme() {
 		return theme;

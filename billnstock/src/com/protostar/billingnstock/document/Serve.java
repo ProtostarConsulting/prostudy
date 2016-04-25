@@ -29,6 +29,7 @@ public class Serve extends HttpServlet {
 	    System.out.println("user="+user);
         blobstoreService.serve(blobKey, response);
         
+        
 	}
 
 }

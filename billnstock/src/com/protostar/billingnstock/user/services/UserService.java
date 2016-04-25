@@ -2,22 +2,25 @@ package com.protostar.billingnstock.user.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import javax.mail.MessagingException;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
+import com.google.appengine.api.blobstore.BlobstoreService;
+import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Ref;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
 import com.protostar.billingnstock.user.entities.UserEntity;
-import com.protostar.billingnstock.user.entities.tempBusinessEntity;
 import com.protostar.billnstock.until.data.ServerMsg;
+
 
 //import com.protostar.prostudy.entity.BookEntity;
 
@@ -25,7 +28,7 @@ import com.protostar.billnstock.until.data.ServerMsg;
 public class UserService {
 
 	@ApiMethod(name = "addUser")
-	public void addUser(UserEntity usr) {
+	public void addUser(UserEntity usr) throws MessagingException, IOException {
 		Key<UserEntity> now = ofy().save().entity(usr).now();
 		int count; 
 		List<UserEntity> filtereduser = ofy().load().type(UserEntity.class)
@@ -36,15 +39,14 @@ public class UserService {
 		businessEntity = usr.getBusiness();
 		businessEntity.setTotalUser(count);
 		ofy().save().entity(businessEntity).now();
-
-	}
-	
+		
+	   } 
 	@ApiMethod(name = "updateBusiStatus", path="Somepath_realted_to_your_service")
 	public void updateBusiStatus(BusinessEntity businessEntity) {
 		ofy().save().entity(businessEntity).now();
 	}
-	@ApiMethod(name = "getbusinessById")
-	public BusinessEntity getbusinessById(@Named("id") Long id) {
+	@ApiMethod(name = "getBusinessById")
+	public BusinessEntity getBusinessById(@Named("id") Long id) {
 		return ofy().load().type(BusinessEntity.class).id(id).now();
 
 	}
@@ -150,7 +152,8 @@ public class UserService {
 		ServerMsg serverMsg = new ServerMsg();
 		List<UserEntity> list = ofy().load().type(UserEntity.class).filter("email_id", emailID).list();
 		
-		if(list.get(0).equals(null)){
+		/*if(list.get(0).equals(null)){*/
+		if(list.size()== 0){
 			serverMsg.setReturnBool(false);
 		}else{
 		serverMsg.setReturnBool(true);
@@ -163,5 +166,15 @@ public class UserService {
 	public List<BusinessEntity> getBusinessList() {
 		return ofy().load().type(BusinessEntity.class).list();
 	}
+	
+	@ApiMethod(name = "getLogUploadURL")
+	public ServerMsg getLogUploadURL() {
+		 BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+		 String createUploadUrl = blobstoreService.createUploadUrl("/UploadServlet");
+		 ServerMsg serverMsg = new ServerMsg();
+		 serverMsg.setMsg(createUploadUrl);		 
+		return serverMsg;
+	}
+	
 
 }
