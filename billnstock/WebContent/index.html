@@ -3,7 +3,14 @@
 <head>
 <title>ProERP</title>
 <meta name="viewport" content="initial-scale=1" />
+<!--send mail files  -->
 
+<link rel="stylesheet"
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<!--end send mail  -->
 <link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
 <link rel="stylesheet" href="/lib/base/css/googleapi.roboto.css">
 <link rel="stylesheet" href="/lib/base/css/font-awesome.css">
@@ -16,21 +23,27 @@
 <link rel="stylesheet" href="/lib/base/css/ui-grid.css">
 <link rel="stylesheet" href="http://ui-grid.info/release/ui-grid.css"
 	type="text/css">
-	<link rel="stylesheet" href="/app/setup/css/checkbox.css">
+<link rel="stylesheet" href="/app/setup/css/checkbox.css">
 <!-- <link rel="stylesheet" href="main.css" type="text/css">
  -->
 <link href="app/invoice/css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/header.css" rel="stylesheet" type="text/css" />
 </head>
-<body layout="column" ng-cloak md-theme="{{theme}}" md-theme-watch="true">
+<body layout="column" ng-cloak md-theme="{{theme}}"
+	md-theme-watch="true">
 
 	<div ng-show="loading">Loading...</div>
 	<md-content ng-hide="loading"> <!-- Top Navigation Pane -->
 	<md-toolbar>
 	<div class="md-toolbar-tools">
-		<span hide-sm>ProERP - {{curUser.businessAccount.businessName}}<!--  Manage your business paperless, anytime,
-			& anywhere! -->
-		</span> <span hide-gt-sm>ProERP</span>
+		<!-- <span hide-sm>ProERP - {{curUser.businessAccount.businessName}} Manage your business paperless, anytime,
+			& anywhere!
+		</span> <span hide-gt-sm>ProERP</span> -->
+
+		<md-card class="md-media-sm card-media"> <img
+			ng-src="{{logBaseURL}}" class="md-card-image" alt="Washed Out">
+		</md-card>
+
 		<!-- fill up the space between left and right area -->
 		<span flex></span>
 		<section layout="row">
@@ -56,14 +69,12 @@
 					ng-show="curUser == null" ng-click="loginClick()">
 				Login </md-button>
 
-{{ googleUser.getName().firstName}}
+				{{ googleUser.getName().firstName}}
 				<md-button aria-label="Open Settings"
 					ng-click="showListBottomSheet($event)"> <md-tooltip>
-				{{ googleUser.getName() + "|" + googleUser.getEmail()}} </md-tooltip> 
-
-				<img ng-show="true" ngf-src="googleUser.getImageUrl()"
-					class=circular>
-					</md-button>
+				{{ googleUser.getName() + "|" + googleUser.getEmail()}} </md-tooltip> <img
+					ng-show="true" ngf-src="googleUser.getImageUrl()" class=circular>
+				</md-button>
 				<md-button aria-label="Logout" ng-hide="curUser == null"
 					ng-click="signOut()"> Logout <md-tooltip>
 				{{ googleUser.getName() + "|" + googleUser.getEmail()}} </md-tooltip> </md-button>
@@ -96,28 +107,52 @@
 
 
 			<div>
-				<md-content layout="column" ng-controller="LeftCtrl"> <md-button class="md-primary" ng-click="close()" hide-gt-md> Close Sidenav </md-button> 
-				<md-button ui-sref="home" ng-show="curUser.authority.length > 0" ng-click="close()" class="md-primary" show-gt-md> Home</md-button> 
-				<md-button ui-sref="user_prof_detail" ng-show="curUser.authority.length > 0" ng-click="close()" class="md-primary"  show-gt-md>My Profile </md-button> 
-		<!-- 		<md-button ui-sref="customer" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('customer') > -1" class="md-primary" show-gt-md> Customer </md-button> -->
-				<md-button ui-sref="account" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('account') > -1" ng-click="close()" class="md-primary" show-gt-md>Account </md-button> 
-				<md-button ui-sref="stock" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('stock') > -1" ng-click="close()" ng-show="loader.stock" class="md-primary" show-gt-md>Stock </md-button>
-				<!-- <md-button ui-sref="stock" ng-click="close()" class="md-primary" show-gt-md> Stock </md-button>  -->
-				<md-button ui-sref="invoice" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('invoice') > -1" ng-click="close()"	class="md-primary" show-gt-md> Invoice </md-button>
-				<md-button	ui-sref="salesOrder" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('salesOrder') > -1" ng-click="close()" class="md-primary" show-gt-md> Sales
-				</md-button> <md-button ui-sref="purchaseOrder"	ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('purchaseOrder') > -1" ng-click="close()"	class="md-primary" show-gt-md> Purchase </md-button>
-				<md-button ui-sref="hr" id="hr" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('hr') > -1"ng-click="close()" ng-show="loader.hr" class="md-primary" show-gt-md> HR </md-button> 
-				<md-button ui-sref="crm" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('crm') > -1" ng-show="loader.crm" class="md-primary" show-gt-md>CRM</md-button>
-				<md-button ui-sref="setup" ng-show="curUser.authority.indexOf('admin') > -1" ng-click="close()" class="md-primary" show-gt-md>SETUP </md-button>
-				<!-- <md-button ui-sref="login" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('login') > -1" ng-click="close()" class="md-primary" show-gt-md>LOGIN</md-button> -->
+				<md-content layout="column" ng-controller="LeftCtrl"> <md-button
+					class="md-primary" ng-click="close()" hide-gt-md> Close
+				Sidenav </md-button> <md-button ui-sref="home"
+					ng-show="curUser.authority.length > 0" ng-click="close()"
+					class="md-primary" show-gt-md> Home</md-button> <md-button
+					ui-sref="user_prof_detail" ng-show="curUser.authority.length > 0"
+					ng-click="close()" class="md-primary" show-gt-md>My
+				Profile </md-button> <!-- 		<md-button ui-sref="customer" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('customer') > -1" class="md-primary" show-gt-md> Customer </md-button> -->
+				<md-button ui-sref="account"
+					ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('account') > -1"
+					ng-click="close()" class="md-primary" show-gt-md>Account
+				</md-button> <md-button ui-sref="stock"
+					ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('stock') > -1"
+					ng-click="close()" ng-show="loader.stock" class="md-primary"
+					show-gt-md>Stock </md-button> <!-- <md-button ui-sref="stock" ng-click="close()" class="md-primary" show-gt-md> Stock </md-button>  -->
+				<md-button ui-sref="invoice"
+					ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('invoice') > -1"
+					ng-click="close()" class="md-primary" show-gt-md>
+				Invoice </md-button> <md-button ui-sref="salesOrder"
+					ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('salesOrder') > -1"
+					ng-click="close()" class="md-primary" show-gt-md> Sales
+				</md-button> <md-button ui-sref="purchaseOrder"
+					ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('purchaseOrder') > -1"
+					ng-click="close()" class="md-primary" show-gt-md>
+				Purchase </md-button> <md-button ui-sref="hr" id="hr"
+					ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('hr') > -1"
+					ng-click="close()" ng-show="loader.hr" class="md-primary"
+					show-gt-md> HR </md-button> <md-button ui-sref="crm"
+					ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('crm') > -1"
+					ng-show="loader.crm" class="md-primary" show-gt-md>CRM</md-button>
+				<md-button ui-sref="setup"
+					ng-show="curUser.authority.indexOf('admin') > -1"
+					ng-click="close()" class="md-primary" show-gt-md>SETUP
+				</md-button> <!-- <md-button ui-sref="login" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('login') > -1" ng-click="close()" class="md-primary" show-gt-md>LOGIN</md-button> -->
 				<!-- <md-button ui-sref="probusiness" ng-show="curUser.authority.indexOf('protostarcs.com') > -1 || curUser.authority.indexOf('protostar.co.in') > -1" ng-click="close()" class="md-primary" show-gt-md>ProBusiness</md-button> -->
-				<md-button ui-sref="AssetMangement" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('AssetMangement') > -1" ng-click="close()"class="md-primary" show-gt-md>Asset Mangement</md-button> 
-<!-- 				<md-button ui-sref="warehouse" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('warehouse') > -1" ng-click="close()" class="md-primary" show-gt-md>Warehouse Management</md-button>  -->
-<!-- 				<md-button ui-sref="document" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('document') > -1" class="md-primary" show-gt-md>Document</md-button>
+				<md-button ui-sref="AssetMangement"
+					ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('AssetMangement') > -1"
+					ng-click="close()" class="md-primary" show-gt-md>Asset
+				Mangement</md-button> <!-- 				<md-button ui-sref="warehouse" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('warehouse') > -1" ng-click="close()" class="md-primary" show-gt-md>Warehouse Management</md-button>  -->
+				<!-- 				<md-button ui-sref="document" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('document') > -1" class="md-primary" show-gt-md>Document</md-button>
 				<md-button ui-sref="email" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('email') > -1" class="md-primary" show-gt-md>email</md-button> -->
-				<!-- <md-button ui-sref="proAdmin" ng-show="(userDoamin=='protostarcs.com' || userDoamin=='protostar.co.in') && user == 'admin'" ng-click="close()"  class="md-primary" show-gt-md>Protostar Admin </md-button> --> 			
-				<md-button ui-sref="proAdmin" ng-show="curUser.authority.indexOf('protostarcs.com') > -1 || curUser.authority.indexOf('protostar.co.in') > -1"  ng-click="close()" class="md-primary" show-gt-md>Protostar Admin </md-button> 
-			 </md-content>
+				<!-- <md-button ui-sref="proAdmin" ng-show="(userDoamin=='protostarcs.com' || userDoamin=='protostar.co.in') && user == 'admin'" ng-click="close()"  class="md-primary" show-gt-md>Protostar Admin </md-button> -->
+				<md-button ui-sref="proAdmin"
+					ng-show="curUser.authority.indexOf('protostarcs.com') > -1 || curUser.authority.indexOf('protostar.co.in') > -1"
+					ng-click="close()" class="md-primary" show-gt-md>Protostar
+				Admin </md-button> </md-content>
 			</div>
 			</md-sidenav>
 	</md-content>
@@ -230,7 +265,7 @@
 	<script src="https://apis.google.com/js/api.js"></script>
 	<!-- App JS Dependencies -->
 	<script src="/app/common/common.app.js"></script>
-		<script src="/app/common/commonServices.js"></script>
+	<script src="/app/common/commonServices.js"></script>
 
 	<!-- Load other view/service/controllers files-->
 	<script src="/app/common/app.object.service.js"></script>
@@ -248,7 +283,7 @@
 	<script src="/app/crm/js/customer_list.ctr.js"></script>
 	<script src="/app/crm/js/customer_invoiceList.ctr.js"></script>
 	<script src="/app/crm/js/customer_sOlist.ctr.js"></script>
-<!-- 	<script src="/app/customer/js/customer_edit.ctr.js"></script> -->
+	<!-- 	<script src="/app/customer/js/customer_edit.ctr.js"></script> -->
 	<!-- 	Complete Customre js  -->
 
 	<!-- 	Account js  -->
@@ -264,36 +299,37 @@
 	<!-- 	Complete Account js  -->
 
 	<!-- 	Warehouse js  -->
-<!-- 	<script src="/app/warehouse/js/warehouse_module.ctr.js"></script>
+	<!-- 	<script src="/app/warehouse/js/warehouse_module.ctr.js"></script>
 	<script src="/app/warehouse/js/warehouse_add.ctr.js"></script>
 	<script src="/app/warehouse/js/warehouse_list.ctr.js"></script>
 	<script src="/app/warehouse/js/warehouse_edit.ctr.js"></script>
- -->	<!-- 	Complete Warehouse js  -->
+ -->
+	<!-- 	Complete Warehouse js  -->
 
 	<!-- 	Invoice js  -->
 	<script src="/app/invoice/js/invoice_module.ctr.js"></script>
 	<script src="/app/invoice/js/invoice_add.ctr.js"></script>
 	<script src="/app/invoice/js/invoice_list.ctr.js"></script>
 	<script src="/app/invoice/js/invoice_view.ctr.js"></script>
-		<script src="/app/invoice/js/invoice_edit.ctr.js"></script>
+	<script src="/app/invoice/js/invoice_edit.ctr.js"></script>
 	<script src="/app/invoice/js/invoice_settings.ctr.js"></script>
 	<!-- 	Complete Invoice js  -->
 
 	<!-- 	Stock js  -->
 	<script src="/app/stock/js/stock_module.ctr.js"></script>
 	<script src="/app/stock/js/stockItem_add.ctr.js"></script>
-<!-- 	<script src="/app/stock/js/stockItem_edit.ctr.js"></script> -->
+	<!-- 	<script src="/app/stock/js/stockItem_edit.ctr.js"></script> -->
 	<script src="/app/stock/js/stockItem_list.ctr.js"></script>
 	<script src="/app/stock/js/stock_reportByThreshold.ctr.js"></script>
 	<script src="/app/stock/js/stock_reportByWarehouse.ctr.js"></script>
-	
+
 	<!-- 	Warehouse js  -->
-<!-- 	<script src="/app/stock/js/warehouse_module.ctr.js"></script> -->
+	<!-- 	<script src="/app/stock/js/warehouse_module.ctr.js"></script> -->
 	<script src="/app/stock/js/warehouse_add.ctr.js"></script>
 	<script src="/app/stock/js/warehouse_list.ctr.js"></script>
-<!-- 	<script src="/app/stock/js/warehouse_edit.ctr.js"></script> -->
+	<!-- 	<script src="/app/stock/js/warehouse_edit.ctr.js"></script> -->
 	<!-- 	Complete Warehouse js  -->
-	
+
 	<!-- 	Complete Stock js  -->
 
 	<!--<script src="/app/invoice/js/invoice.ctr.js"></script>
@@ -325,7 +361,7 @@
 	<script src="/app/purchase/js/purchaseOrder_list.ctr.js"></script>
 	<script src="/app/purchase/js/purchaseOrder_view.ctr.js"></script>
 	<script src="/app/purchase/js/purchaseOrder_module.ctr.js"></script>
-	
+
 	<script src="/app/purchase/js/supplier_add.ctr.js"></script>
 	<script src="/app/purchase/js/supplier_list.ctr.js"></script>
 	<!-- 	Complete Purchase Order js  -->
@@ -365,7 +401,7 @@
 	<script src="/app/hr/js/hr.ctr.selected_Employeesalaryslip.js"></script>
 	<!-- complete	hr js  -->
 
-<!-- CRM Js -->
+	<!-- CRM Js -->
 	<script src="/app/crm/js/crm_lead.js"></script>
 	<script src="/app/crm/js/crm_lead_view.js"></script>
 	<script src="/app/crm/js/crm_contacts.js"></script>
@@ -394,9 +430,9 @@
 	<script src="/app/setup/js/userlist.js"></script>
 
 	<script src="/app/setup/js/setup_changetheme.js"></script>
+	<script src="/app/setup/js/setup_setLogo.js"></script>
 
-	
-	
+
 	<!--  profile js -->
 	<script src="/app/profile/js/profilemodule.js"></script>
 	<script src="/app/profile/js/getAllSalSlip.js"></script>
@@ -430,7 +466,7 @@
 
 	<script src="/app/setup/js/setup_module.js"></script>
 	<script src="/app/setup/js/setup_headerfooter.js"></script>
-		<script src="/app/setup/js/EditBusiness.js"></script>
+	<script src="/app/setup/js/EditBusiness.js"></script>
 
 	<!-- login -->
 	<script src="/app/login1/js/login.js"></script>
@@ -444,14 +480,14 @@
 	<script src="/app/AssetMangement/js/AssignupdateAsset.js"></script>
 	<script src="/app/AssetMangement/js/AddAsset.js"></script>
 	<script src="/app/AssetMangement/js/ListAsset.js"></script>
-	
+
 	<!-- use for ganerating pdf -->
 	<!--    <script type="text/javascript" src="/app/hr/js/jspdf.min.js"></script>
 
 <!-- pro Admin -->
 	<script src="/app/ProAdmin/js/ProAdmin.js"></script>
 	<script src="/app/ProAdmin/js/AddAccountType.js"></script>
-<script src="/app/ProAdmin/js/ListAccountType.js"></script>
+	<script src="/app/ProAdmin/js/ListAccountType.js"></script>
 	<!-- setup module js -->
 
 
@@ -487,6 +523,15 @@
 	<!--    <script type="text/javascript" src="/app/hr/js/jspdf.min.js"></script>
         <script src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>  -->
 
+
+	<!--send mail files  -->
+
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script
+		src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+	<!--end send mail  -->
 	<script src="index.ctr.js"></script>
 
 </body>

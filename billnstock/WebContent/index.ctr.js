@@ -8,13 +8,13 @@ angular
 					console.log("Inside indexCtr");
 					$scope.loading = true;
 
-					$scope.showCSSToast = function() {
+					$scope.showUpdateToast = function() {
 						$mdToast.show($mdToast.simple().content(
 								'Changes Saved Successfully.').position("top")
 								.hideDelay(3000));
 					};
 
-					$scope.showNRSSToast = function() {
+					$scope.showAddToast = function() {
 						$mdToast.show($mdToast.simple().content(
 								'New Record Saved Successfully.').position(
 								"top").hideDelay(3000));
@@ -37,7 +37,9 @@ angular
 					// getch and set values.
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
-
+					//http://localhost:8888/serve?blob-key=sC_5uJK83qYiubjEWAz5zA
+					$scope.logBaseURL ;
+					
 					$scope.user = {
 						business : "",
 						email_id : "",
@@ -94,8 +96,15 @@ angular
 					$scope.$on('customLoginEvent', function(event, args) {
 						$log.debug("In side customLogin");
 						$scope.curUser = args.curUser;
-						$scope.theme = $scope.curUser.business.theme;
+						$scope.initCommonSetting();
 					});
+					
+					
+					$scope.initCommonSetting = function(){
+						$scope.theme = $scope.curUser.business.theme;
+						$scope.logBaseURL  ='//' + window.location.host + '/serve?blob-key='+ $scope.curUser.business.logBlobKey;
+						
+					}
 
 					$scope
 							.$on(
@@ -104,8 +113,7 @@ angular
 										// User successfully authorized the G+
 										// App!
 										$log.debug('Signed in!');
-										var profile = authResult
-												.getBasicProfile();
+										var profile = authResult.getBasicProfile();
 										$scope.googleUser = profile;
 
 										$log.debug('ID: ' + profile.getId());
@@ -168,7 +176,7 @@ angular
 																return;
 															}
 
-															$scope.theme = $scope.curUser.business.theme;
+															$scope.initCommonSetting();
 
 															var auth = $scope.curUser.authority;
 															$scope.test = $scope.curUser.email_id;
@@ -269,6 +277,7 @@ angular
 					$scope.theme = 'default';
 					if($scope.curUser!=undefined || $scope.curUser !==null){
 					$scope.theme = $scope.curUser.business.theme;
+					$scope.logBaseURL = '//' + window.location.host + '/serve?blob-key='+ $scope.curUser.business.logBlobKey;
 					}
 					
 					$scope.themeList = [ 'default', 'red', 'pink', 'purple',
