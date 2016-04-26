@@ -89,7 +89,7 @@ angular
 								.then(
 										function(getslip) {
 											$scope.printslectedslip.push(getslip.result);
-											$scope.netsalinword=NumToWord(($scope.printslectedslip[0].salarystruct.bmonthly+$scope.printslectedslip[0].salarystruct.hramonthly+$scope.printslectedslip[0].salarystruct.convmonthly)-($scope.printslectedslip[0].salarystruct.pf1+$scope.printslectedslip[0].salarystruct.pf1+$scope.printslectedslip[0].salarystruct.ldother1amt+$scope.printslectedslip[0].salarystruct.ldother2amt));
+											$scope.netsalinword=NumToWord(($scope.printslectedslip[0].salarystruct.bmonthly+$scope.printslectedslip[0].salarystruct.hramonthly+$scope.printslectedslip[0].salarystruct.convmonthly+$scope.printslectedslip[0].salarystruct.samonthly+$scope.printslectedslip[0].salarystruct.ccamonthly)-($scope.printslectedslip[0].salarystruct.pf1+$scope.printslectedslip[0].salarystruct.pf1+$scope.printslectedslip[0].salarystruct.ldother1amt+$scope.printslectedslip[0].salarystruct.ldother2amt));
 											$log
 													.debug("$scope.printslectedslip=========="
 															+ angular.toJson($scope.printslectedslip));
