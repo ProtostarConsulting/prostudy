@@ -64,107 +64,107 @@ display:none;
 							<table width="100%">
 								<tr height="10px">
 									<td width="50%"><b>Employee id = </b>{{emp.salarystruct.empAccount.email_id}}</td>
-									<td width="50%"><b>Employee Name = </b>{{emp.salarystruct.empAccount.firstName}} {{emp.salarystruct.empAccount.lastName}}</td>
+									<td width="50%"><b>Employee Name = </b>{{emp.salarystruct.empAccount.firstName}}
+										{{emp.salarystruct.empAccount.lastName}}</td>
 								</tr>
 
 								<tr height="10px">
 									<td width="50%"><b>Month and Year = </b>{{emp.month}}</td>
 									<td width="50%"></td>
 								</tr>
-								
+
 
 							</table>
-				<br>
-				<br>
+							<br> <br>
 
 
-				<table border="1" width="100%">
-					<tr>
-						<td width="25%"><b>Earnings</b></td>
-						<td width="25%"></td>
-						<td width="25%"><b>Deduction</b></td>
-						<td width="25%"></td>
-					</tr>
-					<tr>
-						<td width="25%">Basic & DA</td>
-						<td width="25%">{{emp.salarystruct.bmonthly}}</td>
-						<td width="25%">Provident Fund</td>
-						<td width="25%"></td>
-					</tr>
-					<tr>
-						<td width="25%">HRA</td>
-						<td width="25%">{{emp.salarystruct.hramonthly}}</td>
-						<td width="25%">ESI</td>
-						<td width="25%"></td>
-					</tr>
-					<tr>
-						<td width="25%">Conveyance</td>
-						<td width="25%">{{emp.salarystruct.convmonthly}}</td>
-						<td width="25%">Loan</td>
-						<td width="25%"></td>
-					</tr>
-					<tr>
-						<td width="25%"></td>
-						<td width="25%"></td>
-						<td width="25%">Profession Tax</td>
-						<td width="25%">{{emp.salarystruct.pf1+emp.salarystruct.pf1}}</td>
-					</tr>
-					<tr>
-						<td width="25%"></td>
-						<td width="25%"></td>
-						<td width="25%">TSD/IT</td>
-						<td width="25%"></td>
-					</tr>
-					<tr>
-								<td width="25%"></td>
-								<td width="25%"></td>
-								<td width="25%">Other 1</td>
-								<td width="25%">{{emp.salarystruct.ldother1amt}}</td>
-							</tr>
-							<tr>
-								<td width="25%"></td>
-								<td width="25%"></td>
-								<td width="25%">Other 2</td>
-								<td width="25%">{{emp.salarystruct.ldother2amt}}</td>
-							</tr>
-					<tr>
-						<td width="25%"></td>
-						<td width="25%"></td>
-						<td width="25%"></td>
-						<td width="25%">-</td>
-					</tr>
-					<tr>
-						<td width="25%">Total Addition</td>
-						<td width="25%">{{emp.salarystruct.bmonthly+emp.salarystruct.hramonthly+emp.salarystruct.convmonthly}}</td>
-						<td width="25%">Total Deduction</td>
-						<td width="25%">{{emp.salarystruct.pf1+emp.salarystruct.pf1+emp.salarystruct.ldother1amt+emp.salarystruct.ldother2amt}}</td>
-					</tr>
-					<tr>
-						<td width="25%"></td>
-						<td width="25%"></td>
-						<td width="25%"><b>NET Salary</b></td>
-						<td width="25%">{{(emp.salarystruct.bmonthly+emp.salarystruct.hramonthly+emp.salarystruct.convmonthly)-(emp.salarystruct.pf1+emp.salarystruct.pf1+emp.salarystruct.ldother1amt+emp.salarystruct.ldother2amt)}}</td>
-					</tr>
-				
+							<table border="1" width="100%">
+								<tr>
+									<td width="25%"><b>Earnings</b></td>
+									<td width="25%"></td>
+									<td width="25%"><b>Deduction</b></td>
+									<td width="25%"></td>
+								</tr>
+								<tr>
+									<td width="25%">Basic</td>
+									<td width="25%">{{emp.salarystruct.bmonthly}}</td>
+									<td width="25%">Provident Fund</td>
+									<td width="25%"></td>
+								</tr>
+								<tr>
+									<td width="25%">HRA</td>
+									<td width="25%">{{emp.salarystruct.hramonthly}}</td>
+									<td width="25%">ESI</td>
+									<td width="25%"></td>
+								</tr>
+								<tr>
+									<td width="25%">Conveyance</td>
+									<td width="25%">{{emp.salarystruct.convmonthly}}</td>
+									<td width="25%">Loan</td>
+									<td width="25%"></td>
+								</tr>
+								<tr>
+									<td width="25%">City Compensatory All</td>
+									<td width="25%">{{emp.salarystruct.ccamonthly}}</td>
+									<td width="25%">Profession Tax</td>
+									<td width="25%">{{emp.salarystruct.pf1+emp.salarystruct.pf1}}</td>
+								</tr>
+								<tr>
+									<td width="25%">Special Allowance</td>
+									<td width="25%">{{emp.salarystruct.samonthly}}</td>
+									<td width="25%">TSD/IT</td>
+									<td width="25%"></td>
+								</tr>
+								<tr>
+									<td width="25%"></td>
+									<td width="25%"></td>
+									<td width="25%">Other 1</td>
+									<td width="25%">{{emp.salarystruct.ldother1amt}}</td>
+								</tr>
+								<tr>
+									<td width="25%"></td>
+									<td width="25%"></td>
+									<td width="25%">Other 2</td>
+									<td width="25%">{{emp.salarystruct.ldother2amt}}</td>
+								</tr>
+								<tr>
+									<td width="25%"></td>
+									<td width="25%"></td>
+									<td width="25%"></td>
+									<td width="25%">-</td>
+								</tr>
+								<tr>
+									<td width="25%">Total Addition</td>
+									<td width="25%">{{emp.salarystruct.bmonthly+emp.salarystruct.hramonthly+emp.salarystruct.convmonthly+emp.salarystruct.samonthly+emp.salarystruct.ccamonthly
+										}}</td>
+									<td width="25%">Total Deduction</td>
+									<td width="25%">{{emp.salarystruct.pf1+emp.salarystruct.pf1+emp.salarystruct.ldother1amt+emp.salarystruct.ldother2amt}}</td>
+								</tr>
+								<tr>
+									<td width="25%"></td>
+									<td width="25%"></td>
+									<td width="25%"><b>NET Salary</b></td>
+									<td width="25%">{{(emp.salarystruct.bmonthly+emp.salarystruct.hramonthly+emp.salarystruct.convmonthly+emp.salarystruct.samonthly+emp.salarystruct.ccamonthly)-(emp.salarystruct.pf1+emp.salarystruct.pf1+emp.salarystruct.ldother1amt+emp.salarystruct.ldother2amt)}}</td>
+								</tr>
 
-				</table>
-				<br>
-				<b>Salary in Word :{{netsalinword}} </b>
-				<br>
-				<b>Name Of Bank :</b>
-				<br>
-				<b>Signature of Employee :</b>
-				
-				<br><br><br>
-				<p align="left">
-					<b>Generated on : {{date}}</b><br>
-					<b>Verified by : Pushpak Pimpale (Finance Manager)</b>
-				</p>
-					<p align="Center"><br><br><br>
-					<b>this Document is Electronically Generated. Hence need no Signature or Stamp.</b>
-				</p>
-				</div>
-				</td>
+
+							</table>
+							<br> <b>Salary in Word :{{netsalinword}} </b> <br> <b>Name
+								Of Bank :</b> <br> <b>Signature of Employee :</b> <br>
+							<br>
+							<br>
+							<p align="left">
+								<b>Generated on : {{date}}</b><br> <b>Verified by :
+									Pushpak Pimpale (Finance Manager)</b>
+							</p>
+							<p align="Center">
+								<br>
+								<br>
+								<br> <b>this Document is Electronically Generated.
+									Hence need no Signature or Stamp.</b>
+							</p>
+						</div>
+					</td>
 
 
 				</tr>
