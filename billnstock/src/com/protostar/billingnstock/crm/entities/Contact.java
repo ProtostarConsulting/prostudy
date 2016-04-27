@@ -2,6 +2,7 @@ package com.protostar.billingnstock.crm.entities;
 
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.user.entities.UserEntity;
 import com.protostar.billnstock.entity.BaseEntity;
@@ -11,6 +12,7 @@ public class Contact extends BaseEntity {
 
 	
 	private Ref<UserEntity> loggedInUser;
+	@Index
 	private Ref<Customer> customer;
 	/*@Id
 	private Long id;
