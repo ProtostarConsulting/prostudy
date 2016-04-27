@@ -388,6 +388,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/contact",
 		templateUrl : '/app/crm/contact_list.html',
 		controller : 'contactsList',
+	}).state('crm.listOfContact', {    //view contact in customer form
+		url : "/ViewContact/:selectedCustomerId",
+		templateUrl : '/app/crm/ViewContact_list.html',
+		controller : 'ViewContactsList',
 	}).state('crm.addcontact', {
 		url : "/addContact",
 		templateUrl : '/app/crm/crm_contacts.html',

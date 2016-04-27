@@ -263,69 +263,69 @@ angular
 */
 					$scope.updatesalstruct = function(grossal) {
 						// $log.debug("grossal =" + grossal);
-						$scope.salstruct.monthly = grossal / 12;
-						$scope.salstruct.byearly = grossal * 0.30;
-						$scope.salstruct.bmonthly = $scope.salstruct.monthly * 0.30;
-						$scope.salstruct.hrayearly = grossal * 0.20;
-						$scope.salstruct.hramonthly = $scope.salstruct.monthly * 0.20;
-						$scope.salstruct.ccayearly = grossal * 0.30;
-						$scope.salstruct.ccamonthly = $scope.salstruct.monthly * 0.30;
+						$scope.salstruct.monthly = parseFloat((grossal / 12).toFixed(2));
+						$scope.salstruct.byearly =parseFloat((grossal * 0.30).toFixed(2));
+						$scope.salstruct.bmonthly = parseFloat(($scope.salstruct.monthly * 0.30).toFixed(2));
+						$scope.salstruct.hrayearly = parseFloat((grossal * 0.20).toFixed(2));
+						$scope.salstruct.hramonthly = parseFloat(($scope.salstruct.monthly * 0.20).toFixed(2));
+						$scope.salstruct.ccayearly = parseFloat((grossal * 0.30).toFixed(2));
+						$scope.salstruct.ccamonthly = parseFloat(($scope.salstruct.monthly * 0.30).toFixed(2));
 
 						if ((($scope.salstruct.hrayearly * .012) / 12) < 780) {
-							$scope.salstruct.ec12Byearly = $scope.salstruct.hrayearly * 0.12;
+							$scope.salstruct.ec12Byearly =  parseFloat(($scope.salstruct.hrayearly * 0.12).toFixed(2));
 						} else {
-							$scope.salstruct.ec12Byearly = 780 * 12;
+							$scope.salstruct.ec12Byearly = parseFloat((780 * 12).toFixed(2));
 						}
 
 						$scope.salstruct.convyearly = 9600;
 						$scope.salstruct.convmonthly = 800;
-						$scope.salstruct.sayearly = grossal
+						$scope.salstruct.sayearly = parseFloat((grossal
 								- ($scope.salstruct.byearly
 										+ $scope.salstruct.hrayearly
 										+ $scope.salstruct.ccayearly
-										+ $scope.salstruct.ec12Byearly + $scope.salstruct.convyearly);
-						$scope.salstruct.grandtotal = $scope.salstruct.byearly
+										+ $scope.salstruct.ec12Byearly + $scope.salstruct.convyearly)).toFixed(2));
+						$scope.salstruct.grandtotal = parseFloat(($scope.salstruct.byearly
 								+ $scope.salstruct.hrayearly
 								+ $scope.salstruct.ccayearly
 								+ $scope.salstruct.ec12Byearly
 								+ $scope.salstruct.convyearly
-								+ $scope.salstruct.sayearly;
-						$scope.salstruct.samonthly = $scope.salstruct.monthly
+								+ $scope.salstruct.sayearly).toFixed(2));
+						$scope.salstruct.samonthly = parseFloat(($scope.salstruct.monthly
 								- ($scope.salstruct.bmonthly
 										+ $scope.salstruct.hramonthly
-										+ $scope.salstruct.ccamonthly + $scope.salstruct.convmonthly);
-						$scope.salstruct.bgrandtotal = $scope.salstruct.bmonthly
+										+ $scope.salstruct.ccamonthly + $scope.salstruct.convmonthly)).toFixed(2));
+						$scope.salstruct.bgrandtotal = parseFloat(($scope.salstruct.bmonthly
 								+ $scope.salstruct.hramonthly
 								+ $scope.salstruct.ccamonthly
 								+ $scope.salstruct.convmonthly
-								+ $scope.salstruct.samonthly;
+								+ $scope.salstruct.samonthly).toFixed(2));
 						$scope.salstruct.ptaxyearly = 2500;
-						$scope.salstruct.ptaxgrandtotal = $scope.salstruct.pf1
+						$scope.salstruct.ptaxgrandtotal = parseFloat(($scope.salstruct.pf1
 								+ $scope.salstruct.pf2
-								+ $scope.salstruct.ptaxyearly;
-						$scope.salstruct.netsalgrandtotal = $scope.salstruct.grandtotal
-								- $scope.salstruct.ptaxgrandtotal;
+								+ $scope.salstruct.ptaxyearly).toFixed(2));
+						$scope.salstruct.netsalgrandtotal = parseFloat(($scope.salstruct.grandtotal
+								- $scope.salstruct.ptaxgrandtotal).toFixed(2));
 
-						$scope.salstruct.netsalgrandtotalmonthly = $scope.salstruct.netsalgrandtotal / 12;
+						$scope.salstruct.netsalgrandtotalmonthly = parseFloat(($scope.salstruct.netsalgrandtotal / 12).toFixed(2));
 
-						$scope.salstruct.ctc = $scope.salstruct.addprobonus
-								+ $scope.salstruct.grandtotal;
+						$scope.salstruct.ctc = parseFloat(($scope.salstruct.addprobonus
+								+ $scope.salstruct.grandtotal).toFixed(2));
 
-						$scope.salstruct.mctc = $scope.salstruct.ctc / 12;
+						$scope.salstruct.mctc = parseFloat(($scope.salstruct.ctc / 12).toFixed(2));
 
 					}
 
 					$scope.updateCTC = function(ctc) {
-						$scope.salstruct.ctc = $scope.salstruct.addprobonus
-								+ $scope.salstruct.grandtotal;
-						$scope.salstruct.mctc = $scope.salstruct.ctc / 12;
+						$scope.salstruct.ctc = parseFloat(($scope.salstruct.addprobonus
+								+ $scope.salstruct.grandtotal).toFixed(2));
+						$scope.salstruct.mctc = parseFloat(($scope.salstruct.ctc / 12).toFixed(2));
 					}
 					$scope.updateptaxgrandtotal = function(ptaxgtot) {
 
-						$scope.salstruct.ptaxgrandtotal = $scope.salstruct.pf2
+						$scope.salstruct.ptaxgrandtotal = parseFloat(($scope.salstruct.pf2
 								+ $scope.salstruct.ptaxyearly
-								+ $scope.salstruct.pf1;
-						$scope.salstruct.mctc = $scope.salstruct.ctc / 12;
+								+ $scope.salstruct.pf1).toFixed(2));
+						$scope.salstruct.mctc = parseFloat(($scope.salstruct.ctc / 12).toFixed(2));
 					}
 
 					$scope.toggleRight = buildToggler('right');

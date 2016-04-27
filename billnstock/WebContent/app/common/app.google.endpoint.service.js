@@ -715,6 +715,14 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
+	
+	crmService.getContactByCustomerId = function(CustId) {
+		var deferred = $q.defer();
+		gapi.client.crmService.getContactByCustomerId({'id':CustId}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
 
 	// opportunity service
 

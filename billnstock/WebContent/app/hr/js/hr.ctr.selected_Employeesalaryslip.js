@@ -89,7 +89,10 @@ angular
 								.then(
 										function(getslip) {
 											$scope.printslectedslip.push(getslip.result);
-											$scope.netsalinword=NumToWord(($scope.printslectedslip[0].salarystruct.bmonthly+$scope.printslectedslip[0].salarystruct.hramonthly+$scope.printslectedslip[0].salarystruct.convmonthly+$scope.printslectedslip[0].salarystruct.samonthly+$scope.printslectedslip[0].salarystruct.ccamonthly)-($scope.printslectedslip[0].salarystruct.pf1+$scope.printslectedslip[0].salarystruct.pf1+$scope.printslectedslip[0].salarystruct.ldother1amt+$scope.printslectedslip[0].salarystruct.ldother2amt));
+											$scope.netsalinword=NumToWord(Math.round(($scope.printslectedslip[0].salarystruct.bmonthly+$scope.printslectedslip[0].salarystruct.hramonthly+$scope.printslectedslip[0].salarystruct.convmonthly+$scope.printslectedslip[0].salarystruct.samonthly+$scope.printslectedslip[0].salarystruct.ccamonthly)-($scope.printslectedslip[0].salarystruct.pf1+$scope.printslectedslip[0].salarystruct.pf1+$scope.printslectedslip[0].salarystruct.ldother1amt+$scope.printslectedslip[0].salarystruct.ldother2amt)));
+											$scope.TotalAddition=parseFloat(($scope.printslectedslip[0].salarystruct.bmonthly+$scope.printslectedslip[0].salarystruct.hramonthly+$scope.printslectedslip[0].salarystruct.convmonthly+$scope.printslectedslip[0].salarystruct.samonthly+$scope.printslectedslip[0].salarystruct.ccamonthly).toFixed(2));
+											$scope.TotalDeduction=parseFloat(($scope.printslectedslip[0].salarystruct.pf1+$scope.printslectedslip[0].salarystruct.pf1+$scope.printslectedslip[0].salarystruct.ldother1amt+$scope.printslectedslip[0].salarystruct.ldother2amt).toFixed(2));
+											$scope.NETSalary=parseFloat((($scope.printslectedslip[0].salarystruct.bmonthly+$scope.printslectedslip[0].salarystruct.hramonthly+$scope.printslectedslip[0].salarystruct.convmonthly+$scope.printslectedslip[0].salarystruct.samonthly+$scope.printslectedslip[0].salarystruct.ccamonthly)-($scope.printslectedslip[0].salarystruct.pf1+$scope.printslectedslip[0].salarystruct.pf1+$scope.printslectedslip[0].salarystruct.ldother1amt+$scope.printslectedslip[0].salarystruct.ldother2amt)).toFixed(2));
 											$log
 													.debug("$scope.printslectedslip=========="
 															+ angular.toJson($scope.printslectedslip));

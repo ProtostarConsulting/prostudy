@@ -5,7 +5,7 @@
 <div>
 	<section layout="row" layout-align="end end" flex>
 		<md-button class="md-raised md-primary" ui-sref="crm.addcustomer">ADD
-		NEW CUSTOMER</md-button>
+		NEW </md-button>
 	</section>
 </div>
 
@@ -21,7 +21,7 @@
 			<tr>
 				<th name="Customer Name" order-by="firstName"></th>
 				<th name="Type"></th>
-				<th name="Mobile" order-by="mobile"></th>				
+				<th name="Mobile" order-by="mobile"></th>
 				<th name="Email"></th>
 				<th name="Action"></th>
 			</tr>
@@ -39,28 +39,29 @@
 						<md-button class="md-raised md-primary"
 							ui-sref="crm.addcustomer({selectedCustomerId: customer.id})">
 						Edit</md-button>
-					</section> </td>
+					</section></td>
 				<td>
 			</tr>
 		</tbody>
 	</table>
-	
-<div  ng-show="selected.length == 1">
-<!-- use to show so and po -->
+	<div flex>
+			<md-button id="invoiceBtn" class="md-raised md-primary" ng-show="selected.length == 1 && selected[0].isCompany == true "
+				ui-sref="crm.listOfContact({selectedCustomerId: selected[0].id})">View
+			Contact</md-button>
 
+		<!-- use to show so and po -->
+			<md-button id="invoiceBtn" class="md-raised md-primary" ng-show="selected.length == 1"
+				ui-sref="crm.customerInvoiceList({selectedCustomerId:  selected[0].id})">Invoice</md-button>
 
-<!-- 	<md-button id="invoiceBtn" class="md-raised md-primary"						
-						ui-sref="crm.customerInvoiceList({selectedCustomerId: customer.id})">Invoice</md-button>
+			<md-button id="sOBtn" class="md-raised md-primary" ng-show="selected.length == 1"
+				ui-sref="crm.customerSOList({selectedCustomerId:  selected[0].id})">SO
+			</md-button>
 
-					<md-button id="sOBtn" class="md-raised md-primary" 					
-						ui-sref="crm.customerSOList({selectedCustomerId: customer.id})">SO
-					</md-button> -->
-					
 	</div>
-	
-	<md-data-table-pagination md-limit="query.limit"
-		md-page="query.page" md-total={{customers.length}}
-		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
+
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{customers.length}} md-trigger="onpagechange"></md-data-table-pagination>
+	</md-data-table-container>
 </div>
 
 <!-- <div id="display" layout="row" layout-xs="column" ng-hide="true" ng-show="selected.length == 1">
