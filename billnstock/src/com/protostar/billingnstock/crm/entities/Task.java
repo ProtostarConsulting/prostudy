@@ -1,5 +1,7 @@
 package com.protostar.billingnstock.crm.entities;
 
+import java.util.Date;
+
 
 
 
@@ -18,7 +20,7 @@ public class Task {
 	
 	//private String id ;
 	private String type;
-	private String date;
+	private Date date;
 	private String note;
 	private String status;
 	private String description;
@@ -37,10 +39,10 @@ public class Task {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	public String getNote() {
