@@ -41,7 +41,7 @@ angular.module("stockApp").controller(
 														$scope.userEntity.business=business.result;
 														$scope.userEntity.authority.push("admin");
 														UserService.addUser($scope.userEntity).then(function(msg){
-													    $scope.showSimpleToast("Business Added Sucessfully");
+														$scope.showAddToast();
 														$state.go("login");
 
 														});

@@ -50,7 +50,7 @@ angular
 								.getAssetManagementService();
 						assetService.updateAsset($scope.asset).then(
 								function(msgBean) {
-									$scope.showSimpleToast(msgBean.msg);
+									$scope.showUpdateToast();
 
 								});
 					}

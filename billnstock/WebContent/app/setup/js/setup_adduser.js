@@ -124,7 +124,7 @@ angular
 													var UserService = appEndpointSF.getUserService();
 													UserService.addUser($scope.user)
 															.then(function(msgBean) {
-																		$scope.showSimpleToast(msgBean.msg);
+																$scope.showAddToast();
 																	});
 													$scope.user = {};
 												} else {

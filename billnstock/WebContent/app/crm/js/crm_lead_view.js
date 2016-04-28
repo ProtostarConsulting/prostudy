@@ -28,8 +28,7 @@ angular.module("stockApp").controller(
 			}
 
 			var day = d.getDate();
-			$scope.curdate = year + "-" + month + "-" + day;
-
+			
 			$scope.lead = {
 				id : "",
 				name : "",
@@ -46,7 +45,7 @@ angular.module("stockApp").controller(
 				id : "",
 				description : "",
 				type : "",
-				date : $scope.curdate,
+				date : new Date,
 				note : "",
 				status : ""
 			}
@@ -65,18 +64,20 @@ angular.module("stockApp").controller(
 				leadService.getLeadById($scope.selectedleadNo).then(
 						function(leadList) {
 							$log.debug("Inside Ctr getAllleads");
-							$scope.leads = leadList;
+							$scope.leads = $scope.initDateFields(leadList);
 							$scope.ctaskid = $scope.leads.tasks;
 							$scope.task.id = $scope.ctaskid.length + 1;
-							$scope.task.date= $scope.curdate;
+							//$scope.task.date= $scope.curdate;
 						});
 				
-				/*for(i=0;i<$scope.ctaskid;i++){
-					if($scope.leads.tasks[i].status=="inactive"){
-					$scope.activetask.push($scope.leads.task[i]);
-					$log.debug("********************==="+$scope.activetask);
-					}
-					}*/
+			}
+			
+			$scope.initDateFields = function(leadList) {
+				for (var lead in leadList.tasks) {
+					lead.date = new Date(lead.date);
+				
+				}
+				return leadList;
 			}
 
 			$scope.leads = [];
@@ -95,6 +96,17 @@ angular.module("stockApp").controller(
 
 		//------------------save task----------
 
+			$scope.updateLead=function(){
+				var leadService = appEndpointSF.getleadService();
+				leadService.addupdatetask($scope.leads).then(
+						function(msgBean) {
+
+							$log.debug("Inside Ctr addlead");
+							$log.debug("msgBean.msg:" + msgBean.msg);
+							$scope.showUpdateToast();
+							$scope.getLeadById();
+						});
+			}
 			$scope.addupdatetask = function(leadid) {
 			/*	$scope.objlead=$scope.leads;
 				$scope.objlead.tasks.push($scope.task);*/
@@ -108,7 +120,7 @@ angular.module("stockApp").controller(
 
 							$log.debug("Inside Ctr addlead");
 							$log.debug("msgBean.msg:" + msgBean.msg);
-							$scope.showSimpleToast(msgBean.msg);
+							$scope.showUpdateToast();
 							$scope.getLeadById();
 						});
 				

@@ -132,7 +132,7 @@ angular.module("stockApp").controller(
 							$log.debug("No6");
 							$log.debug("Inside Ctr updateSyllabus");
 							$log.debug("msgBean.msg:" + msgBean.msg);
-							$scope.showSavedToast();
+							$scope.showUpdateToast();
 					});
 				$log.debug("Select profile updated");
 				

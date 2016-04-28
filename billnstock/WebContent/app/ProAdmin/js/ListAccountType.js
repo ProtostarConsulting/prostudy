@@ -41,7 +41,7 @@ angular.module("stockApp").controller(
 				var proadminService = appEndpointSF.getproadminService();
 				proadminService.updateAccountType($scope.accounttype).then(
 						function(msgBean) {
-							$scope.showSimpleToast(msgBean.msg);
+							$scope.showUpdateToast();
 
 						});
 			}

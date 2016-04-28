@@ -25,7 +25,7 @@ angular.module("stockApp").controller(
 				var proadminService = appEndpointSF.getproadminService();
 				proadminService.addAccountType($scope.AccountType).then(
 						function(msgBean) {
-							$scope.showSimpleToast(msgBean.msg);
+							$scope.showAddToast();
 
 						});
 				$scope.AccountTypeForm.$setPristine();

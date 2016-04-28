@@ -76,7 +76,7 @@ angular
 														.then(function(msgBean) {
 																	$log.debug("Inside Ctr salstruct");
 																	$log.debug("msgBean.msg:"+ msgBean.msg);
-																	$scope.showSimpleToast(msgBean.msg);
+																	$scope.showAddToast();
 																	//$scope.getAllemps();
 																	$scope.salstruct = {};
 																});
@@ -94,7 +94,7 @@ angular
 													.debug("Inside Ctr update emp salstruct ");
 											$log.debug("msgBean.msg:"
 													+ msgBean.msg);
-											$scope.showSimpleToast(msgBean.msg);
+										$scope.showUpdateToast();
 											//$scope.salstruct = [];
 										});
 					}

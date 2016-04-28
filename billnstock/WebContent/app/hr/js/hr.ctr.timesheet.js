@@ -78,7 +78,7 @@ angular.module("stockApp").controller(
 				$scope.TimesheetEntity.toDate = $scope.gettoandformDate(6);
 				hrService.addtimesheet($scope.TimesheetEntity).then(
 						function(msgBean) {
-							$scope.showSimpleToast(msgBean.msg);
+							$scope.showAddToast();
 
 						});
 			}

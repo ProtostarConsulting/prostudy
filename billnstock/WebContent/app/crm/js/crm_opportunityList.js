@@ -134,7 +134,7 @@ angular
 								$scope.opportunityL).then(function(msgBean) {
 							$log.debug("Inside CtropportunityL");
 							$log.debug("msgBean.msg:" + msgBean.msg);
-							$scope.showSimpleToast(msgBean.msg);
+							$scope.showUpdateToast();
 							// $scope.empDetail =[];
 						});
 					}
@@ -157,7 +157,7 @@ angular
 						opportunityService.addupdatetask($scope.opportunityL)// $scope.task,
 																				// oppid
 						.then(function(msgBean) {
-							$scope.showSimpleToast(msgBean.msg);
+							$scope.showUpdateToast();
 							$scope.getopportunityById();
 						});
 

@@ -25,7 +25,7 @@ angular
 
 							$log.debug("Inside Ctr addemp");
 							$log.debug("msgBean.msg:" + msgBean.msg);
-							$scope.showSimpleToast(msgBean.msg);
+							$scope.showAddToast();
 							$scope.getAllemps();
 						});
 

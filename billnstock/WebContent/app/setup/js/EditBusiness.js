@@ -51,7 +51,7 @@ angular
 						setupService
 								.updateBusiness($scope.business)
 								.then(function(msgBean) {
-								$scope.showSimpleToast(msgBean.msg);
+									$scope.showUpdateToast();
 										});
 					}
 

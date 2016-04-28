@@ -67,7 +67,7 @@ angular.module("stockApp").controller(
 							//addbusiness use in number of place don't update service method
 							UserService.addBusiness($scope.business).then(
 									function(business) {
-										$scope.showSimpleToast("Account Plan Updated Sucessfully");
+										$scope.showUpdateToast();
 									});
 						});
 

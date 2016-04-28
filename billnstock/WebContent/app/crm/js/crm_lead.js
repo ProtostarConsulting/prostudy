@@ -49,7 +49,7 @@ angular
 
 							$log.debug("Inside Ctr addlead");
 							$log.debug("msgBean.msg:" + msgBean.msg);
-							$scope.showSimpleToast(msgBean.msg);
+							$scope.showAddToast();
 							$scope.getAllleads();
 						});
 						$scope.leadform.$setPristine();

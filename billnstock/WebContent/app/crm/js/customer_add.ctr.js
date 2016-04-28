@@ -5,6 +5,8 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 
 	$log.debug("Inside customerAddCtr");
 
+	$scope.customerId = $stateParams.selectedCustomerId;
+
 	$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 	$log.debug("$scope.curUser++++++++" + angular.toJson($scope.curUser));
 	
@@ -15,8 +17,12 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 		$scope.customer.business = $scope.curUser.business;
 		var customerService = appEndpointSF.getCustomerService();
 		customerService.addCustomer($scope.customer).then(function(msgBean) {
-
-			$scope.showSimpleToast();
+			if($scope.customerId !=""){
+				$scope.showUpdateToast();
+			}else{
+				
+				$scope.showAddToast();
+			}
 		});
 		$scope.custForm.$setPristine();
 		$scope.custForm.$setValidity();
@@ -29,7 +35,6 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 	$log.debug("$stateParams.selectedCustomerId:",
 			$stateParams.selectedCustomerId);
 
-	$scope.customerId = $stateParams.selectedCustomerId;
 
 	$scope.getCustomerByID = function() {
 

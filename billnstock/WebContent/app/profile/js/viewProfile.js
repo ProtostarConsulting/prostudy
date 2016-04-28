@@ -41,7 +41,7 @@ angular
 					$scope.updateuser = function() {
 						var UserService = appEndpointSF.getUserService();
 						UserService.updateUser($scope.userL).then(function(msgBean) {
-							$scope.showSimpleToast(msgBean.msg); 
+							$scope.showUpdateToast();
 						});
 					}
 					

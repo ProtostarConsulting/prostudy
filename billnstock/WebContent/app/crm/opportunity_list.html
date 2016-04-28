@@ -10,6 +10,10 @@
 	ui-sref="crm.addopprtunity">ADD NEW</md-button>
 </section>
 </div>
+<div layout layout-sm="column">
+	<md-input-container flex> <label>Search</label> <input
+		ng-model="searchText"> </md-input-container>
+</div>
 	<table md-data-table md-row-select="selected" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onOrderChange">
 			<tr>
@@ -22,7 +26,7 @@
 
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="opportunity in opportunitys | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
+				ng-repeat="opportunity in opportunitys | orderBy: query.order | filter : searchText | limitTo: query.limit: (query.page - 1) * query.limit"">
 				<td>{{opportunity.oid}}</td>
 				<td>{{opportunity.from}}</td>
 				<td>{{opportunity.name}}</td>

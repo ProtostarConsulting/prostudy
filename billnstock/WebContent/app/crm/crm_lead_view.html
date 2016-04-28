@@ -1,39 +1,38 @@
 
 <md-content layout-padding>
 <form name="leadform">
-	<div layout layout-sm="column">
+	<div layout layout-xs="column">
 		<md-input-container flex>
-		<section layout="row" layout-sm="column" layout-align="end end">
+		<section layout="row" layout-xs="column" layout-align="end end">
 			<a ng-href='#' ng-click="convertocustomer(leads.id)">Convert to
 				Customer</a>
 		</section>
 		</md-input-container>
 	</div>
 	<div id="addField">
-		<div layout layout-sm="column">
+		<div layout layout-xs="column">
 			<md-input-container flex> <label>Lead id
 			</label> <input ng-model="leads.lid" disabled> </md-input-container>
 
 			<md-input-container flex> <label>Person
-				Name <span style="color: red;">*</span>  </label> <input name = "name" ng-model="leads.name" ng-required="true"> 
-				
-				<div ng-messages="leadform.name.$error"
+				Name <span style="color: red;">*</span>
+			</label> <input name="name" ng-model="leads.name" ng-required="true">
+
+			<div ng-messages="leadform.name.$error"
 				ng-if="leadform.name.$submitted || leadform.name.$touched">
 				<div ng-message="required">Please Enter Employee Name.</div>
 			</div>
-				<!-- <span class="help-block"  style="color: red"
+			<!-- <span class="help-block"  style="color: red"
 				ng-show="((leadform.name.$error.pattern) && leadform.name.$dirty) ">
-				Enter should be text only.(Example.:abc)</span> -->
-				
-				</md-input-container>
+				Enter should be text only.(Example.:abc)</span> --> </md-input-container>
 		</div>
-		<!-- <div layout layout-sm="column">
+		<!-- <div layout layout-xs="column">
 			<md-input-container flex> <label>Company
 			</label> <input ng-model="leads.company"> </md-input-container>
 			<md-input-container flex> <label>Phone </label>
 			<input ng-model="leads.phone"> </md-input-container>
 		</div>
-		<div layout layout-sm="column">
+		<div layout layout-xs="column">
 			<md-input-container flex> <label>Email </label>
 			<input ng-model="leads.email"> </md-input-container>
 			<md-input-container flex> <label>Designation</label>
@@ -43,49 +42,57 @@
 			<md-input-container flex> <label>Address
 			</label> <textarea ng-model="leads.address" rows="2" cols="1"></textarea></md-input-container>
 		</div> -->
-		<div layout layout-sm="column">
-			<md-input-container flex> <label>Company  <span style="color: red;">*</span>
+		<div layout layout-xs="column">
+			<md-input-container flex> <label>Company
+				<span style="color: red;">*</span>
 			</label> <input name="company" ng-model="leads.company" ng-required="true">
-				<div ng-messages="leadform.company.$error"
+			<div ng-messages="leadform.company.$error"
 				ng-if="leadform.company.$submitted || leadform.company.$touched">
 				<div ng-message="required">Please Enter Company Name.</div>
 			</div>
-			 </md-input-container>
-			<md-input-container flex> <label>Phone  <span style="color: red;">*</span>  </label>
-			<input type="number" name="phone" ng-minlength="10" ng-maxlength="11" ng-model="leads.phone" ng-required="true">
+			</md-input-container>
+			<md-input-container flex> <label>Phone <span
+				style="color: red;">*</span>
+			</label> <input type="number" name="phone" ng-minlength="10"
+				ng-maxlength="11" ng-model="leads.phone" ng-required="true">
 			<div ng-messages="leadform.phone.$error"
 				ng-if="leadform.phone.$submitted || leadform.phone.$touched">
 				<div ng-message="required">Please Enter Phone Name.</div>
 			</div>
 			<span class="help-block" style="color: red"
 				ng-show="((leadform.phone.$error.minlength || leadform.phone.$error.maxlength) && leadform.phone.$dirty) ">Mobile
-				Number should be 10 digits(Example.:0123456789)</span>
-			</md-input-container>
+				Number should be 10 digits(Example.:0123456789)</span> </md-input-container>
 		</div>
-		<div layout layout-sm="column">
-			<md-input-container flex> <label>Email  <span style="color: red;">*</span></label>
-			<input type="email" name="email" ng-model="leads.email" ng-pattern="/^.+@.+\..+$/" ng-required="true">
+		<div layout layout-xs="column">
+			<md-input-container flex> <label>Email <span
+				style="color: red;">*</span></label> <input type="email" name="email"
+				ng-model="leads.email" ng-pattern="/^.+@.+\..+$/" ng-required="true">
 			<div ng-messages="leadform.email.$error"
 				ng-if="leadform.email.$submitted || leadform.email.$touched">
 				<div ng-message="required">Please Enter Email id.</div>
-				
+
 				<span class="help-block" style="color: red"
-				ng-show="((leadform.email.$error.pattern) && leadform.email.$dirty) ">
-				Enter Valid Email Format </span>
+					ng-show="((leadform.email.$error.pattern) && leadform.email.$dirty) ">
+					Enter Valid Email Format </span>
 			</div>
-			 </md-input-container>
-			<md-input-container flex> <label>Designation  <span style="color: red;">*</span></label>
-			<input name="designation" ng-model="leads.designation" ng-required="true"> 
+			</md-input-container>
+			<md-input-container flex> <label>Designation
+				<span style="color: red;">*</span>
+			</label> <input name="designation" ng-model="leads.designation"
+				ng-required="true">
 			<div ng-messages="leadform.designation.$error"
 				ng-if="leadform.designation.$submitted || leadform.designation.$touched">
-				<div ng-show="leadform.designation.$error.pattern" ng-message="required">Please Enter Designation Name.</div>
+				<div ng-show="leadform.designation.$error.pattern"
+					ng-message="required">Please Enter Designation Name.</div>
 			</div>
-			
+
 			</md-input-container>
 		</div>
-		<div> 
-			<md-input-container flex> <label>Address  <span style="color: red;">*</span>
-			</label> <textarea name ="address"ng-model="leads.address" rows="4" cols="50" ng-required="true">
+		<div>
+			<md-input-container flex> <label>Address
+				<span style="color: red;">*</span>
+			</label> <textarea name="address" ng-model="leads.address" rows="4" cols="50"
+				ng-required="true">
 			</textarea>
 			<div ng-messages="leadform.address.$error"
 				ng-if="leadform.address.$submitted || leadform.address.$touched">
@@ -93,18 +100,26 @@
 			</div>
 			</md-input-container>
 		</div>
+		<div layout layout-sm="column">
+			<section layout="row" layout-sm="column" layout-align="left left">
+				<md-button class="md-raised md-primary" ng-click="updateLead()">update</md-button>
+
+			</section>
+		</div>
 
 		<!---------------------------------------------------------->
 
-		<div>
-			<a href='' ng-click='ShowHide()'>Follow up +/-</a>
+		<div layout="row" layout-xs="column" layout-align="end end">
+			<a href='' ng-click='ShowHide()'>Follow up <lable
+					ng-show="IsHidden">+</lable>
+				<lable ng-hide="IsHidden">-</lable></a>
 		</div>
 		<div ng-hide="IsHidden">
 			<md-data-table-container>
 			<table md-data-table md-progress="deferred">
 				<thead md-order="query.order" md-trigger="onOrderChange">
 					<tr>
-						<th name="Date" order-by="discussion Date"></th>
+						<th name="Due Date" order-by="discussion Date"></th>
 						<th name="Type" order-by="description Type"></th>
 						<th name="previous discussion" order-by="previous discussion"></th>
 
@@ -113,7 +128,7 @@
 				<tbody>
 					<tr md-auto-select
 						ng-repeat="t in leads.tasks | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
-						<td width="20%" align="left">{{t.date}}</td>
+						<td width="20%" align="left">{{t.date | formatDate}}</td>
 						<td width="20%" align="left">{{t.type}}</td>
 						<td width="60%" align="left">{{t.description}}</td>
 
@@ -125,46 +140,52 @@
 				md-total={{leads.tasks.length}} md-trigger="onpagechange"></md-data-table-pagination>
 			</md-data-table-container>
 		</div>
-		<br>
-		<br>
+		<br> <br>
 
-		<!-- 	<div layout layout-sm="column">
+		<!-- 	<div layout layout-xs="column">
 			<md-input-container flex> <label>Previous
 				task </label> <textarea ng-model="leads.task.description" rows="4" cols="1"> </textarea></md-input-container>
 		</div> -->
 
 
-		<div layout layout-sm="column">
+		<div layout layout-xs="column">
 			<md-input-container flex> <label>Task
 				Id:-</label> <input ng-model="task.id" disabled> </md-input-container>
 			<md-input-container flex> <md-select
 				placeholder="Task Type" ng-model="task.type"> <md-option
 				ng-repeat="type in taskType"> {{type}} </md-option> </md-select></md-input-container>
-			<md-input-container flex> <label>Date </label> <input
-				ng-model="task.date" disabled> </md-input-container>
+
+
+			<div layout layout-xs="column">
+				<md-datepicker flex name="DueDate" date-format="MM/dd/yyyy"
+					ng-model="task.date" md-placeholder="Enter Due Date"></md-datepicker>
+			</div>
+
 		</div>
-		<div layout layout-sm="column">
+		<div layout layout-xs="column">
 			<md-input-container flex> <label>description
 			</label> <textarea ng-model="task.description" rows="2" cols="1"> </textarea></md-input-container>
 		</div>
-		<div layout layout-sm="column">
+		<div layout layout-xs="column">
 			<md-input-container flex> <label>Note </label> <textarea
 				ng-model="task.note" rows="4" cols="1"> </textarea></md-input-container>
 		</div>
 		<div>
-			<md-checkbox ng-model="task.status" ng-true-value="'active'" ng-false-value="'inactive'">
-			Close </md-checkbox>
+			<md-checkbox ng-model="task.status" ng-true-value="'active'"
+				ng-false-value="'inactive'"> Close </md-checkbox>
 
 		</div>
-	</div>
-	<div layout layout-sm="column">
-		<md-input-container flex>
-		<section layout="row" layout-sm="column" layout-align="left left">
-			<md-button class="md-raised md-primary"
-				ng-click="addupdatetask(leads.id)">Add/Update Task</md-button>
 
-		</section>
-		</md-input-container>
+		<div layout layout-xs="column">
+			<md-input-container flex>
+			<section layout="row" layout-xs="column" layout-align="left left">
+				<md-button class="md-raised md-primary"
+					ng-click="addupdatetask(leads.id)">Add/Update Task</md-button>
+
+			</section>
+			</md-input-container>
+		</div>
+
 	</div>
 </form>
 </md-content>

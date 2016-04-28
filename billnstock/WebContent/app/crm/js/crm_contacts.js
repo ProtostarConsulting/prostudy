@@ -38,7 +38,7 @@ angular.module("stockApp").controller(
 				leadService.addcontact($scope.contact).then(function(msgBean) {
 					$log.debug("Inside Ctr addlead");
 					$log.debug("msgBean.msg:" + msgBean.msg);
-					$scope.showSimpleToast(msgBean.msg);
+					$scope.showAddToast(); 
 					$scope.getAllcontact();
 				});
 				$scope.contactform.$setPristine();

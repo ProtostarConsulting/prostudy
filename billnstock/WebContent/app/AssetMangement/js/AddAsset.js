@@ -27,8 +27,7 @@ angular.module("stockApp").controller(
 				$scope.Asset.business=$scope.curUser.business;
 				var assetService = appEndpointSF.getAssetManagementService();
 				assetService.addAsset($scope.Asset).then(function(msgBean) {
-					$scope.showSimpleToast(msgBean.msg);
-					// $scope.getAllemps();
+						$scope.showAddToast();
 				});
 
 				$scope.Asset = {};

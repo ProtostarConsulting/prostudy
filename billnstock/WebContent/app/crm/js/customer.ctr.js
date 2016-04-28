@@ -7,10 +7,7 @@ app.controller(
 
 			$log.debug("Inside customerCtr");
 
-			$scope.showSimpleToast = function() {
-				$mdToast.show($mdToast.simple().content('Customer Data Saved!')
-						.position("top").hideDelay(3000));
-			};
+		
 
 			// $scope.cust = objectFactory.newCustomer();		
 			
@@ -30,7 +27,7 @@ app.controller(
 							$log.debug("No6");
 							$log.debug("Inside Ctr addCustomer");
 							$log.debug("msgBean.msg:" + msgBean.msg);
-							$scope.showSimpleToast();
+							$scope.showAddToast();
 
 						});
 				$log.debug("No4");

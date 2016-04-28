@@ -69,10 +69,7 @@ app.controller("customerSOListCtr", function($scope, $window, $mdToast, $timeout
 		});
 	};
 
-	$scope.showSimpleToast = function() {
-		$mdToast.show($mdToast.simple().content('Customer Data Saved!')
-				.position("top").hideDelay(3000));
-	};
+	
 
 	$scope.back = function() {
 		window.history.back();

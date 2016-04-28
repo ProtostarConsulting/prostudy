@@ -10,15 +10,7 @@ angular
 						
 						
 					}
-					
-					
-					
-					
-					
-					
-					
-					
-					$scope.toggleRight = buildToggler('right');
+				$scope.toggleRight = buildToggler('right');
 
 					function buildToggler(navID) {
 						var debounceFn = $mdUtil.debounce(function() {

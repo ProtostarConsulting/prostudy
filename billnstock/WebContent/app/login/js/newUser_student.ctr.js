@@ -34,7 +34,7 @@ angular.module("stockApp").controller(
 					$log.debug("No6");
 					$log.debug("Inside Ctr addStudent");
 					$log.debug("msgBean.msg:" + msgBean.msg);
-					$scope.showSavedToast(msgBean.msg);
+					$scope.showAddToast();
 					$scope.tempUser = {
 													
 						};

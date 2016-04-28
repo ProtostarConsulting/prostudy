@@ -90,7 +90,7 @@ angular.module("stockApp").controller(
 						function(msgBean) {
 							$log.debug("Inside Ctr updateemp");
 							$log.debug("msgBean.msg:" + msgBean.msg);
-							$scope.showSimpleToast(msgBean.msg);
+							$scope.showUpdateToast();
 							// $scope.empDetail = [];
 						});
 			}
