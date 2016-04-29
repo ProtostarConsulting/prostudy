@@ -48,10 +48,10 @@ app
 								.then(
 										function(settingsList) {
 											
-											$scope.settingsObj1 = settingsList.items;
+											$scope.settingsObj = settingsList;
 											$log
 													.debug("Inside Ctr $scope.settingsObj:"
-															+ $scope.settingsObj.noteToCustomer);
+															+ $scope.settingsObj);
 											return $scope.settingsObj;
 										});
 					}

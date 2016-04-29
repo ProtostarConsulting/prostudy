@@ -120,7 +120,7 @@ app
 							if ($scope.lineSelectedDiscount == "Fixed") {
 
 								$scope.tempDiscAmount = $scope.discAmount;
-								$scope.invoiceObj.discAmount = $scope.tempDiscAmount;
+								$scope.invoiceObj.discAmount = ($scope.tempDiscAmount).toFixed(2);
 
 							} else {
 								disc = parseInt($scope.discAmount);
@@ -128,8 +128,8 @@ app
 										+ parseFloat($scope.invoiceObj.taxTotal)
 										+ parseFloat($scope.invoiceObj.serviceSubTotal);
 
-								$scope.tempDiscAmount = (disc / 100)
-										* finalTotal;
+								$scope.tempDiscAmount = ((disc / 100)
+										* finalTotal).toFixed(2);
 
 								$scope.invoiceObj.discAmount = $scope.tempDiscAmount;
 
@@ -179,13 +179,11 @@ app
 							serviceSubTotal : 0
 						};
 
-						$scope.invoiceObj.serviceLineItemList
-								.push(service);
+						$scope.invoiceObj.serviceLineItemList.push(service);
 					};
 
 					$scope.removeService = function(index) {
-						$scope.invoiceObj.serviceLineItemList.splice(
-								index, 1);
+						$scope.invoiceObj.serviceLineItemList.splice(index, 1);
 					};
 
 					$scope.calServiceSubTotal = function() {
@@ -343,6 +341,22 @@ app
 					}
 					$scope.accountforinvoice = [];
 
+					$scope.getInvoiceSettingsByBiz = function() {
+
+						var invoiceService = appEndpointSF.getInvoiceService();
+
+						invoiceService.getInvoiceSettingsByBiz(
+								$scope.curUser.business.id).then(
+								function(settingsList) {
+
+									$scope.settingsObj = settingsList;
+									$scope.invoiceObj.noteToCustomer = $scope.settingsObj.noteToCustomer;
+									$log.debug("Inside Ctr $scope.invoiceObj.noteToCustomer:"
+											+ $scope.invoiceObj.noteToCustomer);
+									return $scope.settingsObj;
+								});
+					}
+
 					var printDivCSS = new String(
 							'<link href="/lib/base/css/angular-material.min.css"" rel="stylesheet" type="text/css">'
 									+ '<link href="/lib/base/css/bootstrap.min.css"" rel="stylesheet" type="text/css">')
@@ -398,53 +412,20 @@ app
 						};
 					}
 
-					// FOR STOCK
+					$scope.getAllWarehouseByBusiness = function() {
+						$log.debug("Inside function $scope.getAllWarehouseByBusiness");
+						var warehouseService = appEndpointSF
+								.getWarehouseManagementService();
 
-					/*
-					 * // $scope.invoiceObj.customer = null;
-					 * $scope.searchTextInput = null;
-					 * 
-					 * $scope.querySearch = function(query) { var results =
-					 * query ? $scope.stockforinvoice
-					 * .filter(createFilterFor(query)) : $scope.stockforinvoice;
-					 * var deferred = $q.defer(); $timeout(function() {
-					 * deferred.resolve(results); }, Math.random() * 1000,
-					 * false); return deferred.promise; }
-					 *//**
-						 * Build `states` list of key/value pairs
-						 */
-					/*
-					 * function loadAllStock() {
-					 * 
-					 * var stockService = appEndpointSF.getStockService();
-					 * 
-					 * stockService.getAllStock($scope.curUser.business.id)
-					 * .then(function(stockList) {
-					 * 
-					 * $scope.stockforinvoice = stockList; });
-					 * $scope.stockforinvoice = []; }
-					 *//**
-						 * Create filter function for a query string
-						 */
-					/*
-					 * function createFilterFor(query) { var lowercaseQuery =
-					 * angular.lowercase(query); return function filterFn(stk) {
-					 * return (angular.lowercase(stk.itemName).indexOf(
-					 * lowercaseQuery) === 0); }; }
-					 * 
-					 */
-					/*
-					 * $scope.getInvoiceSettingsByBiz = function() {
-					 * 
-					 * var invoiceService = appEndpointSF.getInvoiceService();
-					 * 
-					 * invoiceService.getInvoiceSettingsByBiz(
-					 * $scope.curUser.business.id) .then( function(settingsList) {
-					 * 
-					 * $scope.invoiceObj = settingsList; $log .debug("Inside Ctr
-					 * $scope.settingsList:" + $scope.invoiceObj); // return
-					 * $scope.settingsObj; }); }
-					 */
+						warehouseService.getAllWarehouseByBusiness(
+								$scope.curUser.business.id).then(
+								function(warehouseList) {
+									$scope.warehouses = warehouseList;
+									$log.debug("$scope.warehouses:"
+											+ angular.toJson($scope.warehouses));
+								});
+					}
+							
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
 							loadAllCustomers();
@@ -453,7 +434,8 @@ app
 							$scope.getAllSalesOrder();
 							$scope.getTaxesByVisibility();
 							$scope.getAllAccountsByBusiness();
-							// $scope.getInvoiceSettingsByBiz();
+							$scope.getInvoiceSettingsByBiz();
+							$scope.getAllWarehouseByBusiness();
 
 						} else {
 							$log.debug("Services Not Loaded, watiting...");
@@ -463,6 +445,7 @@ app
 
 					$scope.waitForServiceLoad();
 
+					//For Add Customer from Invoice Page through popup	
 					$scope.addCustomer = function(ev) {
 						var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
 								&& $scope.customFullscreen;
@@ -513,4 +496,59 @@ app
 						};
 					}
 
+				//For Add Stock from Invoice Page through popup	
+/*					$scope.addStock = function(ev) {
+						var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
+								&& $scope.customFullscreen;
+						$mdDialog
+								.show({
+									controller : DialogController,
+									templateUrl : '/app/stock/stockItem_add.html',
+									parent : angular.element(document.body),
+									targetEvent : ev,
+									clickOutsideToClose : true,
+									fullscreen : useFullScreen,
+									locals : {
+										curUser : $scope.curUser,
+										stock : $scope.stock,
+										warehouses : $scope.warehouses
+									}
+								})
+								.then(
+										function(answer) {
+											$scope.status = 'You said the information was "'
+													+ answer + '".';
+										},
+										function() {
+											$scope.status = 'You cancelled the dialog.';
+										});
+
+					};
+
+					function DialogController($scope, $mdDialog, curUser,
+							stock, warehouses) {
+
+						$scope.addStock = function() {
+							$scope.stock.business = curUser.business;
+							$scope.stock.createdDate = new Date();
+							$scope.stock.modifiedBy = curUser.email_id;
+
+							var customerService = appEndpointSF
+									.getCustomerService();
+
+							customerService.addStock($scope.stock).then(
+									function(msgBean) {
+
+									});
+							$scope.hide();
+						}
+
+						$scope.hide = function() {
+							$mdDialog.hide();
+						};
+					}
+*/					
 				});
+
+
+

@@ -186,18 +186,22 @@
 							ng-change="calSubTotal()"> </md-input-container></td>	 -->
 						<td><md-input-container flex> <label>Quantity
 							</label> <input ng-model="item.qty" type="number"
-								ng-change="calSubTotal()"> </md-input-container></td>
+								ng-change="calSubTotal()" > </md-input-container></td>
 						<td><md-input-container flex> <input
 								ng-model="item.price" ng-change="calSubTotal()"></md-input-container></td>
-						<td><md-input-container flex> <label>Price
-							</label> <b>{{item.qty * item.price}} </b></td>
+						<td><b>{{item.qty * item.price}} </b></td>
 
 						<td>
-							<section layout="row" layout-sm="column">
+<!-- 							<section layout="row" layout-sm="column">
 								<md-button class="md-raised md-primary"
 									ng-click="removeItem($index)">Remove Item</md-button>
 							</section>
-						</td>
+ -->
+ <md-icon
+							md-svg-src="img/icons/ic_delete_forever_black_24px.svg"
+							ng-click="removeItem($index)" class="name"
+							style="color: Green; height: 40px; width: 40px"></md-icon>
+													</td>
 					</tr>
 					<tr>
 						<td><span style="color: red;">*</span>
@@ -258,7 +262,6 @@
 
 	</form>
 </div>
-<b><u>Note</u>:</b>This is electronically generated invoice. <br>
 
 <iframe name="print_frame" width="0" height="0" frameborder="0"
 	src="about:blank"></iframe> </md-content>

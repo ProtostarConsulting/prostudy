@@ -26,11 +26,11 @@ app
 						paymentTerms : '',
 						dueDate : '',
 						sOLineItemList : [],
-						subTotal : '',
+						subTotal : 0.00,
 						taxCodeName : '',
 						taxPercenatge : '',
-						taxTotal : 0,
-						finalTotal : 0,
+						taxTotal : 0.00,
+						finalTotal : 0.00,
 						createdDate : new Date(),
 						modifiedDate : new Date(),
 						modifiedBy : '',
@@ -38,9 +38,9 @@ app
 						serviceName : '',
 						discount : '',
 						discValue : '',
-						discAmount : '0',
+						discAmount : 0.00,
 						pOrder : '',
-						serviceSubTotal : 0,
+						serviceSubTotal : 0.00,
 						serviceLineItemList : [],
 						business : ""
 					};
@@ -94,6 +94,8 @@ app
 								Math.round(($scope.salesOrder.subTotal) * 100) / 100)
 								.toFixed(2);
 
+						$scope.calfinalTotal();
+						
 						return $scope.salesOrder.subTotal;
 					}
 

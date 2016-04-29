@@ -1256,8 +1256,8 @@ function googleEndpointSF($log, $q) {
 		}).execute(
 				function(resp) {
 					$log.debug("getInvoiceSettingsByBiz#resp at enpoint:"
-							+ angular.toJson(resp.items));
-					deferred.resolve(resp.items);
+							+ angular.toJson(resp));
+					deferred.resolve(resp);
 				});
 		return deferred.promise;
 	}

@@ -10,7 +10,7 @@
 				<md-select flex ng-model="selectedWarehouse"
 					placeholder="Warehouse Name"
 					ng-change="warehouseDDLChange($index, selectedWarehouse)">
-				<md-option ng-value="warehouse" ng-selected="$first"
+				<md-option ng-value="warehouse" ng-selected="selectedWarehouse"
 					ng-repeat="warehouse in warehouses">{{warehouse.warehouseName
 				}}</md-option> </md-select>
 				<md-icon md-svg-src="img/icons/ic_queue_black_24px.svg"

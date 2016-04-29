@@ -81,9 +81,9 @@
 			<md-option ng-value="discount" ng-repeat="discount in discountType">{{discount
 			}}</md-option> </md-select> </md-input-container>
 
-			<md-input-container flex="25">
-			</label> <input ng-model="discAmount" ng-blur="calfinalTotal()"
-				name="discAmount"> </md-input-container>
+			<md-input-container flex="25"> </label> <input
+				ng-model="discAmount" ng-blur="calfinalTotal()" name="discAmount">
+			</md-input-container>
 		</div>
 
 		<div layout="row" layout-xs="column">
@@ -183,7 +183,23 @@
 							ng-model="selectedStockItem" placeholder="Item Name"
 							ng-change="lineItemStockChange($index, selectedStockItem)">
 						<md-option ng-value="item" ng-repeat="item in stockforinvoice">{{item.itemName
-						}}</md-option> </md-select> </md-input-container></td>
+						}}</md-option> </md-select> </md-input-container> 
+						
+						<md-icon md-svg-src="img/icons/ic_queue_black_24px.svg"
+							ng-click="addStock()" class="name"
+							style="color: Green; height: 25px; width: 25px"></md-icon>New 
+							
+							
+							
+<!-- 							<md-button
+							class="md-raised md-primary" id="addInvoice"><md-icon md-svg-src="img/icons/ic_queue_black_24px.svg"
+				ng-click="addCustomer()" class="name"
+				style="color: Green; height: 25px; width: 25px"></md-icon>New
+						</md-button>
+						
+-->					
+						
+						</td>
 
 					<td><md-input-container flex> <label>Quantity
 						</label> <input ng-model="item.qty" ng-change="checkStock(item,$event)"
@@ -218,8 +234,10 @@
 				<tr>
 					<td><label><u>Tax Details</u> </label></td>
 					<td></td>
-					<td><md-input-container flex ng-hide="invoiceObj.invoiceLineItemList.length==0"> <md-select
-							ng-model="invoiceObj.selectedTaxItem" placeholder="Tax Type"
+					<td><md-input-container flex
+							ng-hide="invoiceObj.invoiceLineItemList.length==0">
+						<md-select ng-model="invoiceObj.selectedTaxItem"
+							placeholder="Tax Type"
 							ng-change="lineItemTaxChange($index, selectedTaxItem, $event)">
 						<md-option ng-value="taxValue"
 							ng-repeat="taxValue in taxforinvoice">{{taxValue.taxCodeName}}</md-option>

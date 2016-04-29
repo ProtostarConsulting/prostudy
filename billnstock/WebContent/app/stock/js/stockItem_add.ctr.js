@@ -46,20 +46,7 @@ angular.module("stockApp").controller(
 				$scope.stockForm.$setUntouched();
 				$scope.stock = {};
 			}
-/*
-			$scope.updateStock = function() {
-				$log.debug("No1");
-				var stockService = appEndpointSF.getStockService();
-				$scope.stock.userBusiness = $scope.curUser.business;
 
-				stockService.addStock($scope.stock).then(function(msgBean) {
-					$scope.showSimpleToast();
-
-				});
-				$log.debug("No4");
-				$scope.stock = {};
-			}
-*/
 			$scope.getAllWarehouseByBusiness = function() {
 				$log.debug("Inside function $scope.getAllWarehouseByBusiness");
 				var warehouseService = appEndpointSF

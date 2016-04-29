@@ -13,12 +13,9 @@ app.filter('formatDate', function($filter) {
 	};
 });
 /*
-app.filter('formatDate1', function($filter) {
-	return function(inputDate) {
-		return $filter('date')(inputDate, 'dd-MM-yyyy');
-	};
-});
-*/
+ * app.filter('formatDate1', function($filter) { return function(inputDate) {
+ * return $filter('date')(inputDate, 'dd-MM-yyyy'); }; });
+ */
 /*
  * app.factory('MathService', function() { var factory = {}; factory.multiply =
  * function(a, b) { return a * b } return factory; });
@@ -42,39 +39,38 @@ app.config(function($mdThemingProvider) {
 			'orange').warnPalette('blue');
 	$mdThemingProvider.theme('purple').primaryPalette('purple').accentPalette(
 			'grey').warnPalette('blue');
-	$mdThemingProvider.theme('deep-purple').primaryPalette('deep-purple').accentPalette(
-	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('deep-purple').primaryPalette('deep-purple')
+			.accentPalette('grey').warnPalette('blue');
 	$mdThemingProvider.theme('indigo').primaryPalette('indigo').accentPalette(
-	'grey').warnPalette('blue');
+			'grey').warnPalette('blue');
 	$mdThemingProvider.theme('blue').primaryPalette('blue').accentPalette(
-	'grey').warnPalette('blue');
-	$mdThemingProvider.theme('light-blue').primaryPalette('light-blue').accentPalette(
-	'grey').warnPalette('blue');
+			'grey').warnPalette('blue');
+	$mdThemingProvider.theme('light-blue').primaryPalette('light-blue')
+			.accentPalette('grey').warnPalette('blue');
 	$mdThemingProvider.theme('cyan').primaryPalette('cyan').accentPalette(
-	'grey').warnPalette('blue');
+			'grey').warnPalette('blue');
 	$mdThemingProvider.theme('teal').primaryPalette('teal').accentPalette(
-	'grey').warnPalette('blue');
+			'grey').warnPalette('blue');
 	$mdThemingProvider.theme('green').primaryPalette('green').accentPalette(
-	'grey').warnPalette('blue');
-	$mdThemingProvider.theme('light-green').primaryPalette('light-green').accentPalette(
-	'grey').warnPalette('blue');
+			'grey').warnPalette('blue');
+	$mdThemingProvider.theme('light-green').primaryPalette('light-green')
+			.accentPalette('grey').warnPalette('blue');
 	$mdThemingProvider.theme('lime').primaryPalette('lime').accentPalette(
-	'grey').warnPalette('blue');
+			'grey').warnPalette('blue');
 	$mdThemingProvider.theme('yellow').primaryPalette('yellow').accentPalette(
-	'grey').warnPalette('blue');
+			'grey').warnPalette('blue');
 	$mdThemingProvider.theme('amber').primaryPalette('amber').accentPalette(
-	'grey').warnPalette('blue');
+			'grey').warnPalette('blue');
 	$mdThemingProvider.theme('orange').primaryPalette('orange').accentPalette(
-	'grey').warnPalette('blue');
-	$mdThemingProvider.theme('deep-orange').primaryPalette('deep-orange').accentPalette(
-	'grey').warnPalette('blue');
+			'grey').warnPalette('blue');
+	$mdThemingProvider.theme('deep-orange').primaryPalette('deep-orange')
+			.accentPalette('grey').warnPalette('blue');
 	$mdThemingProvider.theme('brown').primaryPalette('brown').accentPalette(
-	'grey').warnPalette('blue');
+			'grey').warnPalette('blue');
 	$mdThemingProvider.theme('grey').primaryPalette('grey').accentPalette(
-	'grey').warnPalette('blue');
-	$mdThemingProvider.theme('blue-grey').primaryPalette('blue-grey').accentPalette(
-	'grey').warnPalette('blue');
-	
+			'grey').warnPalette('blue');
+	$mdThemingProvider.theme('blue-grey').primaryPalette('blue-grey')
+			.accentPalette('grey').warnPalette('blue');
 
 	// This is the absolutely vital part, without this, changes will not cascade
 	// down through the DOM.
@@ -121,8 +117,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/stock/stockItem_list.html',
 		controller : 'stockListCtr'
 	})
-	
-	
+
 	.state('stock.warehouseAdd', {
 		url : "/warehouseAdd/:selectedWarehouseId",
 		templateUrl : '/app/stock/warehouse_add.html',
@@ -132,24 +127,21 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/stock/warehouse_list.html',
 		controller : 'warehouseListCtr'
 	})
-/*	.state('stock.warehouseEdit', {
-		url : "/warehouseEdit/:selectedWarehouseId",
-		templateUrl : '/app/stock/warehouse_edit.html',
-		controller : 'warehouseEditCtr'
-	})
-*/	
-/*	.state('stock.warehouseAdd', {
-		url : "/warehouseAdd/:selectedWarehouseId",
-		templateUrl : '/app/stock/warehouse_add.html',
-		controller : 'warehouseAddCtr'
-	})
-*/	
-	
-/*	.state('stock.edit', {
-		url : "/edit/:selectedStocksId",
-		templateUrl : '/app/stock/stockItem_edit.html',
-		controller : 'stockEditCtr'
-	})*/.state('stock.reportByThreshold', {
+	/*
+	 * .state('stock.warehouseEdit', { url :
+	 * "/warehouseEdit/:selectedWarehouseId", templateUrl :
+	 * '/app/stock/warehouse_edit.html', controller : 'warehouseEditCtr' })
+	 */
+	/*
+	 * .state('stock.warehouseAdd', { url :
+	 * "/warehouseAdd/:selectedWarehouseId", templateUrl :
+	 * '/app/stock/warehouse_add.html', controller : 'warehouseAddCtr' })
+	 */
+
+	/*
+	 * .state('stock.edit', { url : "/edit/:selectedStocksId", templateUrl :
+	 * '/app/stock/stockItem_edit.html', controller : 'stockEditCtr' })
+	 */.state('stock.reportByThreshold', {
 		url : "/reportByThreshold",
 		templateUrl : '/app/stock/stock_reportByThreshold.html',
 		controller : 'stockReportByThresholdCtr'
@@ -197,15 +189,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/add/:selectedCustomerId",
 		templateUrl : '/app/customer/customer_add.html',
 		controller : 'customerAddCtr'
-	})/*.state('customer.customerSOList', {
-		url : "/customerSOList/:selectedCustomerId",
-		templateUrl : '/app/customer/customer_SO.html',
-		controller : 'customerSOListCtr'
-	}).state('customer.customerInvoiceList', {
-		url : "/customerInvoiceList/:selectedCustomerId",
-		templateUrl : '/app/customer/customer_invoiceList.html',
-		controller : 'customerInvoiceListCtr'
-	})*/.state('customer.list', {
+	})/*
+		 * .state('customer.customerSOList', { url :
+		 * "/customerSOList/:selectedCustomerId", templateUrl :
+		 * '/app/customer/customer_SO.html', controller : 'customerSOListCtr'
+		 * }).state('customer.customerInvoiceList', { url :
+		 * "/customerInvoiceList/:selectedCustomerId", templateUrl :
+		 * '/app/customer/customer_invoiceList.html', controller :
+		 * 'customerInvoiceListCtr' })
+		 */.state('customer.list', {
 		url : "/list",
 		templateUrl : '/app/customer/customer_list.html',
 		controller : 'customerListCtr'
@@ -247,7 +239,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'AppController'
 	})
 
-
 	.state('report', {
 		url : "/report",
 		templateUrl : '/app/report/report_module.html',
@@ -280,11 +271,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/SalesOrderview/:selectedSOId",
 		templateUrl : '/app/sales/salesOder_view.html',
 		controller : 'salesOrderViewCtr'
-			
+
 	}).state('salesOrder.edit', {
 		url : "/edit/:selectedSOId",
 		templateUrl : '/app/sales/salesOrder_edit.html',
-		controller : 'salesOrderEditCtr'		
+		controller : 'salesOrderEditCtr'
 
 	}).state('purchaseOrder', {
 		url : "/purchaseOrder",
@@ -306,12 +297,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/purchase/purchaseOrder_view.html',
 		controller : 'purchaseOrderViewCtr'
 
+	}).state('purchaseOrder.POedit', {
+		url : "/POedit/:selectedPONo",
+		templateUrl : '/app/purchase/purchaseOrder_edit.html',
+		controller : 'purchaseOrderEditCtr'
+
 	}).state('purchaseOrder.supplierAdd', {
 		url : "/supplierAdd/:selectedSupplierNo",
 		templateUrl : '/app/purchase/supplier_add.html',
 		controller : 'supplierAddCtr'
 	})
-	
+
 	.state('purchaseOrder.supplierList', {
 		url : "supplierList",
 		templateUrl : '/app/purchase/supplier_list.html',
@@ -430,12 +426,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/crmCustomerInvoiceList/:selectedCustomerId",
 		templateUrl : '/app/crm/customer_invoiceList.html',
 		controller : 'customerInvoiceListCtr',
-		
+
 	}).state('crm.customerSOList', {
 		url : "/crmCustomerSOList/:selectedCustomerId",
 		templateUrl : '/app/crm/customer_SO.html',
 		controller : 'customerSOListCtr',
-			
+
 	}).state('setup', {
 		url : "/setup",
 		templateUrl : '/app/setup/setup_module.html',
@@ -488,7 +484,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/setup/userlist.html',
 		controller : 'userlist',
 
-	})  /*
+	}) /*
 		 * .state('login', { url : "/login", templateUrl :
 		 * '/app/login/login.html', controller : 'login', })
 		 */.state('homecall', {
@@ -560,8 +556,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'AllSalslip'
 	}).state('user_prof_detail.print', {
 		url : "/print/:printempidsalslip",
-	/*	templateUrl : '/app/profile/print_salaryslip.html',
-		controller : 'AllSalslip',*/
+		/*
+		 * templateUrl : '/app/profile/print_salaryslip.html', controller :
+		 * 'AllSalslip',
+		 */
 		templateUrl : '/app/hr/print_salaryslip.html',
 		controller : 'hrctr.selected_Employeesalaryslip',
 	}).state('document', {
@@ -612,17 +610,20 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/initsetup",
 		templateUrl : '/app/Initsetup/initsetup.html',
 		controller : 'initsetup',
-	})/*.state('proAdmin.probusiness', {
-		url : "/probusiness",
-		templateUrl : '/app/probusiness/proBusinessModule.html',
-		controller : 'probusinessCtr'
-	})*/.state('proAdmin.probusiness', {
+	})/*
+		 * .state('proAdmin.probusiness', { url : "/probusiness", templateUrl :
+		 * '/app/probusiness/proBusinessModule.html', controller :
+		 * 'probusinessCtr' })
+		 */.state('proAdmin.probusiness', {
 		url : "/businesslist",
 		templateUrl : '/app/probusiness/probusiness.html',
 		controller : 'probusinessCtr'
 	}).state('proAdmin.editBusiness', {
 		url : "/editBusiness/:businessNo/:businessName",
-		templateUrl : '/app/probusiness/setup_module.html', // use probsiness setup module beacause navigate diff address
+		templateUrl : '/app/probusiness/setup_module.html', // use probsiness
+		// setup module
+		// beacause navigate
+		// diff address
 		controller : 'setup'
 	}).state('proAdmin.editBusiness.useradd', {
 		url : "/useradd/:businessNo",
