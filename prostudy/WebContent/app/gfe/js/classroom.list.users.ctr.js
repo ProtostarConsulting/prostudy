@@ -4,8 +4,9 @@ angular
 				"classroomCourseUserListCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $q, $stateParams, tableTestDataFactory, appEndpointSF) {
-					console.log("Inside classroomCourseUserListCtr");
-
+					
+					$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
+					
 					$scope.userType = "";
 					$scope.userList = [];
 					
@@ -16,7 +17,7 @@ angular
 					$scope.loading = false;
 					
 					$scope.viewClassTeachers = function() {
-						$log.debug("Inside viewClassTeachers..");
+						
 						$scope.userType = "Teacher";
 						var request = gapi.client.classroom.courses.teachers
 								.list({
@@ -33,7 +34,7 @@ angular
 					
 					
 					$scope.viewClassStudents = function() {
-						$log.debug("Inside viewClassStudents..");
+						
 						$scope.userType = "Student";
 						var request = gapi.client.classroom.courses.students
 								.list({
@@ -46,10 +47,34 @@ angular
 							$log.debug("resp:" + angular.toJson(resp));
 						});
 					}
+					$scope.deleteUser = function(courseId,userId,userType) {
+						
+						if(userType==="Teacher")
+						{
+							
+						var request = gapi.client.classroom.courses.teachers.delete({
+									courseId : courseId,
+									userId : userId
+								});
+
+						}
+						else if(userType==="Student")
+							{
+							
+							var request = gapi.client.classroom.courses.students.delete({
+								courseId : courseId,
+								userId : userId
+							});
+							}
+						request.execute(function(resp) {
+							$scope.showSavedToast();
+							$log.debug("resp:" + angular.toJson(resp));
+						});
+					}
 
 					$scope.showSavedToast = function() {
 						$mdToast.show($mdToast.simple().content(
-								'classroomtListCtr Saved!').position("top")
+								'User Deleted!').position("top")
 								.hideDelay(3000));
 					};
 

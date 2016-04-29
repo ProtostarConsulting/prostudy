@@ -16,8 +16,11 @@ angular
 					var CLIENT_ID = '759880535753-3h86dfhcao97655vcnooobn17l4flp8q.apps.googleusercontent.com';
 
 					var SCOPES = [
+					       
 							"https://www.googleapis.com/auth/classroom.courses",
-							"https://www.googleapis.com/auth/userinfo.profile",
+							"https://www.googleapis.com/auth/userinfo.profile",							
+							"https://www.googleapis.com/auth/classroom.profile.emails",
+							"https://www.googleapis.com/auth/classroom.profile.photos",
 							"https://www.googleapis.com/auth/plus.me",
 							"https://www.googleapis.com/auth/userinfo.email",
 							"https://www.googleapis.com/auth/admin.directory.user",
@@ -86,7 +89,7 @@ angular
 					 * Load Classroom API client library.
 					 */
 					$scope.loadClassroomApi = function() {
-						gapi.client.load('gmail', 'v1', function(){});
+						gapi.client.load('gmail', 'v1', function(){});					
 						gapi.client.load('classroom', 'v1', $scope.listCourses);
 						gapi.client
 								.load(
@@ -122,7 +125,7 @@ angular
 						$log.debug("Inside listCourses..");
 						$scope.loading = true;
 						var request = gapi.client.classroom.courses.list({
-							pageSize : 20
+							pageSize : 50
 						});
 
 						request.execute(function(resp) {

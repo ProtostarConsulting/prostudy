@@ -1,0 +1,49 @@
+<h3 class="md-headline">Add New {{userType}}</h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+<form name="newUserForm" ng-model="newUserForm">
+
+	<div layout="column" layout-align="" layout-xs="column">
+
+		<div layout="row" layout-align="centre centre" layout-xs="column">
+			<md-input-container flex> <label>CourseId</label>
+			<input name="selectedCourseId" id="selectedCourseId"
+				ng-model="selectedCourseId" ng-required="true" readonly> </md-input-container>
+		</div>
+		<div layout="row" layout-align="centre centre" layout-xs="column">
+			<md-input-container flex> <label>First
+				Name </label> <input name="givenName" id="givenName"
+				ng-model="name.givenName" ng-required="true"> </md-input-container>
+
+			<md-input-container flex> <label>Last
+				Name </label> <input name="familyName" id="familyName"
+				ng-model="name.familyName" ng-required="true"> </md-input-container>
+		</div>
+
+		<div layout="row" layout-align="centre centre" layout-xs="column">
+
+			<md-input-container flex> <label>Email-Id
+			</label> <input type="email" name="emailAddress" id="emailAddress"
+				ng-model="profile.emailAddress" ng-required="true"> </md-input-container>
+
+
+			<md-input-container flex> <label>Permissions
+			</label> <md-select ng-model="pp"> <md-option
+				ng-value="perm" ng-repeat="perm in permissionList">{{perm}}</md-option>
+			</md-select> </md-input-container>
+		</div>
+	</div>
+
+	<div layout="row" layout-align="center center">
+		<md-button ng-show="userType==='Teacher'" class="md-raised md-primary"
+			ng-click="createTeacher()">Add New Teacher </md-button>
+		<md-button ng-show="userType==='Student'" class="md-raised md-primary"
+			ng-click="createStudent()">Add New Student </md-button>
+		<md-button class="md-raised " ng-click="cancel()"> Cancel
+		</md-button>
+	</div>
+
+</form>
+

@@ -2,9 +2,7 @@
 
 		<section layout="row">
 			<!-- View Specific Toolbar-->
-			<div flex="30">
-				<h3 class="md-toolbar-tools">GfE Integration Module</h3>
-			</div>
+		
 			<div class="md-toolbar-tools">
 				<!--<md-card>-->
 				<span flex></span>
@@ -51,14 +49,12 @@
 					<md-button ng-click="close()" class="md-primary">
 						Current Module Action 2
 					</md-button>
-					<md-button ui-sref="student.add"
-					ng-click="close()" class="md-primary">
-						New Student
-					</md-button>
-					<md-button
-					ui-sref="gfe.classroomCourseList" ng-click="close()" class="md-primary">
-						Classes List
-					</md-button>
+					
+					<md-button ui-sref="gfe.classroomCourseList" ng-click="close()"
+				class="md-primary" hide-xs>Courses/Classes List</md-button>
+
+			<md-button ui-sref="gfe.classroomNewCourse" ng-click="close()"
+				class="md-primary" hide-xs>Add New Course</md-button>
 					
 					
 				</md-content>
@@ -70,9 +66,14 @@
 	</div>
 	<!-- We'll also add some navigation: -->
 
-	<a ui-sref="gfe.x">Do X</a>
-	<a ui-sref="gfe.classroomCourseList">Courses/Classes List</a>
-	<a ui-sref="gfe.classroomNewCourse" class="md-raised md-primary" >	Add New Course 	</a>
-	
+	<div layout="column" layout-align="start start">
 
+			<md-button ui-sref="gfe.classroomCourseList" ng-click="close()"
+				class="md-primary" hide-xs>Courses/Classes List</md-button>
+
+			<md-button ui-sref="gfe.classroomNewCourse" ng-click="close()"
+				class="md-primary" hide-xs>Add New Course</md-button>
+
+		</div>
+	
 </div>

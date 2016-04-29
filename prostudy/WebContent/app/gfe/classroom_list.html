@@ -52,10 +52,17 @@
 
 <div ng-show="selected.length == 1">
 		
-		<md-button  ui-sref="gfe.classroomCourseUserListCtr({selectedCourseId: selected[0].id, userType : 'Teacher'})" class="md-raised md-primary" >
+		<md-button  ui-sref="gfe.classroomCourseAddNewUser({selectedCourseId: selected[0].id, userType : 'Teacher'})" class="md-raised md-primary" >
+			Add Class Teacher
+		</md-button>
+		<md-button  ui-sref="gfe.classroomCourseAddNewUser({selectedCourseId: selected[0].id, userType : 'Student'})" class="md-raised md-primary" >
+			Add Class Student 
+		</md-button> 		
+		
+		<md-button  ui-sref="gfe.classroomCourseUserList({selectedCourseId: selected[0].id, userType : 'Teacher'})" class="md-raised md-primary" >
 			View Class Teachers 
 		</md-button>
-		<md-button ui-sref="gfe.classroomCourseUserListCtr({selectedCourseId: selected[0].id, userType: 'Student'})" class="md-raised md-primary" >
+		<md-button ui-sref="gfe.classroomCourseUserList({selectedCourseId: selected[0].id, userType: 'Student'})" class="md-raised md-primary" >
 			View Class Students
 		</md-button>
 </div>
