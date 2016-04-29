@@ -1,0 +1,19 @@
+
+<div layout="column" ng-cloak class="md-inline-form">
+	<form  name="imageform"  method="post"
+		enctype="multipart/form-data">
+
+		<md-input-container class="md-block"> <label>Upload
+			Logo</label> <input name="myFile" type="file"> </md-input-container>
+
+		<md-input-container class="md-block"> <input
+			type="button" value="Submit" ng-click="uplodeimage()"> </md-input-container>
+		<input type="hidden" name="bizID" id="bizID" value={{bizID}}>
+
+
+<!-- <div class="dropzone" data-width="960" data-height="540" data-resize="true" data-url="canvas.php" style="width: 100%;">
+  <input type="file" name="thumb" />
+</div> -->
+	</form>
+
+</div>

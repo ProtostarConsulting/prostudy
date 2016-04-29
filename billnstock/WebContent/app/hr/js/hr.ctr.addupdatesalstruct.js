@@ -85,6 +85,7 @@ angular
 
 					}
 					$scope.updatesalinfo = function() {
+						$scope.salstruct.modifiedBy=$scope.curUser.email_id;
 						var hrService = appEndpointSF.gethrService();
 						hrService
 								.updatesalinfo($scope.salstruct)
