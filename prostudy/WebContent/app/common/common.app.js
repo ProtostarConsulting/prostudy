@@ -571,14 +571,33 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/classroomCourseList",
 		templateUrl : '/app/gfe/classroom_list.html',
 		controller : 'classroomCourseListCtr'
-	}).state('gfe.classroomCourseUserListCtr', {
-		url : "/classroomCourseUserListCtr",
+	}).state('gfe.classroomCourseUserList', {
+		url : "/classroomCourseUserList",
 		templateUrl : '/app/gfe/classroom_list.users.html',
 		controller : 'classroomCourseUserListCtr',
 		params : {
 			userType : null,
 			selectedCourseId : null
 		}
+	}).state('gfe.classroomCourseAddNewUser', {
+		url : "/classroomCourseAddNewUser/:selectedCourseId",
+		templateUrl : '/app/gfe/classroom_new_user.html',
+		controller : 'classroomNewUserCtr',
+		params : {
+			userType : null,
+			selectedCourseId : null
+		}
+	}).state('gfe.classroomCourseViewUser', {
+		url : "/classroomCourseViewUser",
+		templateUrl : '/app/gfe/classroom_course_viewUser.html',
+		controller : 'classroomViewUserCtr'	,
+		params : {
+			selectedUserId : null,
+			selectedCourseId : null,
+			userType:null
+		}
+			
+			
 	});
 
 });
