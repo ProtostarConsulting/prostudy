@@ -5,8 +5,7 @@ angular.module("stockApp").controller(
 
 			$log.debug("Inside customerCtr");
 
-			$scope.curUser = appEndpointSF.getLocalUserService()
-					.getLoggedinUser();
+			$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 			$log.debug("$scope.curUser++++++++"
 					+ angular.toJson($scope.curUser));
 
@@ -27,7 +26,7 @@ angular.module("stockApp").controller(
 			$scope.addStock = function() {
 				$log.debug("No1");
 				var stockService = appEndpointSF.getStockService();
-				if ($scope.selectedStocksId == "") {
+				if ($scope.selectedStocksId == undefined) {
 					$scope.stock.business = $scope.curUser.business;
 					$scope.stock.modifiedBy =$scope.curUser.email_id;
 					if ($scope.selectedStocksId != "") {
@@ -37,10 +36,12 @@ angular.module("stockApp").controller(
 				}
 
 				stockService.addStock($scope.stock).then(function(msgBean) {
-					$scope.showSimpleToast();
-
 				});
-				$log.debug("No4");
+				if ($scope.selectedStocksId == "") {
+				$scope.showAddToast();
+				}else{
+					$scope.showUpdateToast();
+				}
 				$scope.stockForm.$setPristine();
 				$scope.stockForm.$setValidity();
 				$scope.stockForm.$setUntouched();

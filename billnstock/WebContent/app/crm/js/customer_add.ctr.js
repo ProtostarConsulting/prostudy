@@ -10,12 +10,26 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 	$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 	$log.debug("$scope.curUser++++++++" + angular.toJson($scope.curUser));
 	
-	$scope.customer={isCompany:false}
+	$scope.customer={isCompany:false,
+			createdDate : new Date(),
+			modifiedDate : new Date(),
+			modifiedBy : ''
+			}
 	
 	$scope.addCustomer = function() {
 		$log.debug("No1");
 		$scope.customer.business = $scope.curUser.business;
 		var customerService = appEndpointSF.getCustomerService();
+		
+		if ($scope.selectedCustomerId == undefined) {
+			$scope.customer.business = $scope.curUser.business;
+			$scope.customer.modifiedBy =$scope.curUser.email_id;
+		//	$scope.customer.createdDate =$scope.tempCustomer.createdDate;
+			if ($scope.selectedCustomerId != undefined) {
+			$scope.customer.modifiedDate =$scope.tempCustomer.modifiedDate;
+			}
+			
+		}	
 		customerService.addCustomer($scope.customer).then(function(msgBean) {
 			if($scope.customerId !=""){
 				$scope.showUpdateToast();
@@ -24,6 +38,11 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 				$scope.showAddToast();
 			}
 		});
+		if ($scope.selectedCustomerId == "") {
+			$scope.showAddToast();
+			}else{
+				$scope.showUpdateToast();
+			}
 		$scope.custForm.$setPristine();
 		$scope.custForm.$setValidity();
 		$scope.custForm.$setUntouched();
@@ -43,6 +62,7 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 		customerService.getCustomerByID($scope.customerId).then(
 				function(custList) {
 					$scope.customer = custList;
+					$scope.tempCustomer = $scope.customer;
 					$scope.customer.mobile = parseInt($scope.customer.mobile);
 					$log.debug("Inside Ctr $scope.customers:"
 							+ angular.toJson($scope.customers));

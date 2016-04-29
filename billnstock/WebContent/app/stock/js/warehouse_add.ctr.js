@@ -28,17 +28,31 @@ app.controller("warehouseAddCtr", function($scope, $window, $mdToast, $timeout,
 		
 		var WarehouseManagementService = appEndpointSF.getWarehouseManagementService();
 		
+		if ($scope.selectedWarehouseId == undefined) {
+			$scope.warehouse.business = $scope.curUser.business;
+			$scope.warehouse.modifiedBy =$scope.curUser.email_id;
+			if ($scope.selectedWarehouseId != "") {
+			$scope.warehouse.createdDate =$scope.tempWarehouse.createdDate;
+			}
+			
+		}
+/*		
 		$scope.warehouse.business = $scope.curUser.business;
 		$scope.warehouse.modifiedBy =$scope.curUser.email_id;
 		$scope.warehouse.createdDate =$scope.tempWarehouse.createdDate;
-		
+*/		
 		WarehouseManagementService.addWarehouse($scope.warehouse).then(function(msgBean) {
 		});
+		if ($scope.selectedWarehouseId == "") {
+			$scope.showAddToast();
+			}else{
+				$scope.showUpdateToast();
+			}
 		$scope.warehouse = {};
 		$scope.warehouseForm.$setPristine();
 		$scope.warehouseForm.$setValidity();
 		$scope.warehouseForm.$setUntouched();
-		window.history.back();
+		
 	}
 
 	
