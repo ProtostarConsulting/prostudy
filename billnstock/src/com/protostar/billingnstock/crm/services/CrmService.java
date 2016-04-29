@@ -49,7 +49,7 @@ public class CrmService {
 
 	@ApiMethod(name = "addupdatetask")
 	public void addupdatetask(Lead lead) {
-		lead.setModifiedBy(lead.getLoggedInUser().getEmail_id());
+		//lead.setModifiedBy(lead.getLoggedInUser().getEmail_id());
 		lead.setModifiedDate(new Date());
 		ofy().save().entity(lead).now();
 
@@ -57,9 +57,17 @@ public class CrmService {
 
 	@ApiMethod(name = "addcontact")
 	public void addcontact(Contact contact) {
+		contact.setCreatedDate(new Date());
 		ofy().save().entity(contact).now();
 
 	}
+	@ApiMethod(name = "updatecontact")
+	public void updatecontact(Contact contact) {
+		contact.setModifiedDate(new Date());
+		ofy().save().entity(contact).now();
+
+	}
+	
 
 	@ApiMethod(name = "getAllcontact")
 	public List<Contact> getAllcontact(@Named("id") Long id) {
