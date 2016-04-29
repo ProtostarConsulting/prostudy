@@ -2,6 +2,7 @@ package com.protostar.billingnstock.cust.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.util.Date;
 import java.util.List;
 
 import com.google.api.server.spi.config.Api;
@@ -19,6 +20,15 @@ public class CustomerService {
 	
 	@ApiMethod(name = "addCustomer")
 	public Customer addCustomer(Customer customer) {
+		
+
+		if (customer.getId() == null) {
+			customer.setCreatedDate(new Date());
+		//	Customer.setModifiedDate(new Date());
+		} else {
+			customer.setModifiedDate(new Date());
+		}
+		
 		ofy().save().entity(customer).now();
 		
 		if(customer.getIsCompany()==true){
