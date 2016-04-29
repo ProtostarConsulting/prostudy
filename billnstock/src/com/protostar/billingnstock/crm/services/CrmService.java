@@ -2,7 +2,7 @@ package com.protostar.billingnstock.crm.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.api.server.spi.config.Api;
@@ -15,7 +15,6 @@ import com.protostar.billingnstock.crm.entities.Contact;
 import com.protostar.billingnstock.crm.entities.Lead;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
-import com.protostar.billingnstock.user.entities.UserEntity;
 
 @Api(name = "crmService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.crm.services", ownerName = "com.protostar.billingnstock.crm.services", packagePath = ""))
 public class CrmService {
@@ -23,6 +22,7 @@ public class CrmService {
 	@SuppressWarnings("unused")
 	@ApiMethod(name = "addlead")
 	public void addlead(Lead lead) {
+		lead.setCreatedDate(new Date());		
 		Key<Lead> now = ofy().save().entity(lead).now();
 
 	}
@@ -49,6 +49,8 @@ public class CrmService {
 
 	@ApiMethod(name = "addupdatetask")
 	public void addupdatetask(Lead lead) {
+		lead.setModifiedBy(lead.getLoggedInUser().getEmail_id());
+		lead.setModifiedDate(new Date());
 		ofy().save().entity(lead).now();
 
 	}
