@@ -40,8 +40,10 @@
 
 
 
-		<div>
-			<a href='' ng-click='ShowHide()'>Follow up +/-</a>
+		<div layout="row" layout-xs="column" layout-align="end end">
+			<a href='' ng-click='ShowHide()'>Follow up <lable
+					ng-show="IsHidden">+</lable>
+				<lable ng-hide="IsHidden">-</lable></a>
 		</div>
 		<div ng-hide="IsHidden">
 			<md-data-table-container>
