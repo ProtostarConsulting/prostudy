@@ -29,6 +29,7 @@ public class UserService {
 
 	@ApiMethod(name = "addUser")
 	public void addUser(UserEntity usr) throws MessagingException, IOException {
+		usr.setCreatedDate(new Date());
 		Key<UserEntity> now = ofy().save().entity(usr).now();
 		int count; 
 		List<UserEntity> filtereduser = ofy().load().type(UserEntity.class)
@@ -53,6 +54,7 @@ public class UserService {
 
 	@ApiMethod(name = "updateUser")
 	public void updateUser(UserEntity usr) {
+		usr.setModifiedDate(new Date());
 		Key<UserEntity> now = ofy().save().entity(usr).now();
 	}
 	
