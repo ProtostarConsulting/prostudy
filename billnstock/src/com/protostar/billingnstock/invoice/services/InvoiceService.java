@@ -141,14 +141,13 @@ public class InvoiceService {
 	
 	
 	@ApiMethod(name = "getInvoiceSettingsByBiz", path="getInvoiceSettingsByBiz")
-	public List<InvoiceSettingsEntity> getInvoiceSettingsByBiz(@Named("id") Long id) {
+	public InvoiceSettingsEntity getInvoiceSettingsByBiz(@Named("id") Long id) {
 
-		List<InvoiceSettingsEntity> filteredSettings = ofy()
+		InvoiceSettingsEntity filteredSettings = ofy()
 				.load()
 				.type(InvoiceSettingsEntity.class)
 				.filter("business",
-						Ref.create(Key.create(BusinessEntity.class, id)))
-				.list();
+						Ref.create(Key.create(BusinessEntity.class, id))).first().now();
 
 		return filteredSettings;
 
