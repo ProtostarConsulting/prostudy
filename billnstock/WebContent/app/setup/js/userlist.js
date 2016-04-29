@@ -267,8 +267,9 @@ angular
 								$scope.savemsg = false;
 							}
 
-							if ($scope.savemsg == true) {
+							if ($scope.savemsg == true) {								
 							   	$scope.userL=user;
+							   	/*$scope.userL.modifiedBy=user.email_id;*/
 								  $scope.userL.password=$scope.password; 
 								  var UserService = appEndpointSF.getUserService();
 								 UserService.updateUser($scope.userL).then(function(msgBean) {

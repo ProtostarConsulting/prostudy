@@ -74,6 +74,7 @@ angular
 					$scope.waitForServiceLoad();
 
 					$scope.updateuser = function() {
+						$scope.userL.modifiedBy=$scope.curUser.email_id;
 						$scope.userL.authority = [];
 						for (var i = 0; i < $scope.selection.length; i++) {
 							if ($scope.selection[i])
@@ -166,7 +167,6 @@ angular
 							$scope.inputType2 = 'password';
 						}
 						$scope.changepass = function() {
-
 							if ($scope.password == $scope.confirmpassword) {
 								$scope.savemsg = true;
 								$scope.checkpass = false;
@@ -177,6 +177,7 @@ angular
 
 							if ($scope.savemsg == true) {
 								$scope.updateuser=curuser;
+								/*$scope.updateuser.modifiedBy=curuser.email_id;*/
 								  $scope.updateuser.password=$scope.password; 
 								  var UserService = appEndpointSF.getUserService();
 								 UserService.updateUser($scope.updateuser).then(function(msgBean) {

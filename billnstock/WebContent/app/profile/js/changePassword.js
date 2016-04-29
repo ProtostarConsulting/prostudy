@@ -52,6 +52,7 @@ angular
 							}
 							
 							if($scope.savemsg==true){
+							/*$scope.userL.modifiedBy=$scope.curUser.email_id;*/
 							$scope.userL.password=$scope.password;
 							var UserService = appEndpointSF.getUserService();
 							UserService.updateUser($scope.userL).then(function(msgBean) {
