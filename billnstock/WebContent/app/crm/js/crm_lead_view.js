@@ -10,9 +10,9 @@ angular.module("stockApp").controller(
 			$scope.selectedleadNo = $stateParams.selectedleadNo;
 			$log.debug("$scope.selectedleadNo========="+$scope.selectedleadNo);
 			
-			
-			
-			 $scope.query = {
+			$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
+	
+			$scope.query = {
 			         order: 'name',
 			         limit: 5,
 			         page: 1
@@ -97,6 +97,8 @@ angular.module("stockApp").controller(
 		//------------------save task----------
 
 			$scope.updateLead=function(){
+				
+				$scope.leads.modifiedBy=$scope.curUser.email_id;
 				var leadService = appEndpointSF.getleadService();
 				leadService.addupdatetask($scope.leads).then(
 						function(msgBean) {
@@ -110,6 +112,7 @@ angular.module("stockApp").controller(
 			$scope.addupdatetask = function(leadid) {
 			/*	$scope.objlead=$scope.leads;
 				$scope.objlead.tasks.push($scope.task);*/
+				$scope.leads.modifiedBy=$scope.curUser.email_id;
 				if(typeof $scope.task.type !='undefined' && $scope.task.type !=""){
 				$scope.leads.tasks.push($scope.task);
 				}

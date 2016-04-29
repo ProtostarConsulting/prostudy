@@ -127,7 +127,8 @@ angular
 					$scope.waitForServiceLoad1();
 
 					$scope.updateopportunity = function() {
-
+						$scope.opportunityL.modifiedBy=$scope.curUser.email_id;
+						
 						var opportunityService = appEndpointSF
 								.getopportunityService();	
 						opportunityService.updateopportunity(
@@ -149,7 +150,9 @@ angular
 					// ------------------save task----------
 
 					$scope.addupdatetask = function(oppid) {
-
+						
+						$scope.opportunityL.modifiedBy=$scope.curUser.email_id;
+						
 						var opportunityService = appEndpointSF
 								.getopportunityService();
 						$scope.opportunityL.tasks.push($scope.taskobj);

@@ -84,7 +84,7 @@ angular.module("stockApp").controller(
 			$scope.waitForServiceLoad1();
 
 			$scope.updatecontact = function() {
-
+				$scope.contactL.modifiedBy=$scope.curUser.email_id;
 				var leadService = appEndpointSF.getleadService();
 				leadService.updatecontact($scope.contactL).then(
 						function(msgBean) {

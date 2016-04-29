@@ -708,7 +708,7 @@ function googleEndpointSF($log, $q) {
 	}
 	crmService.updatecontact = function(contact) {
 		var deferred = $q.defer();
-		gapi.client.crmService.addcontact(contact).execute(function() {
+		gapi.client.crmService.updatecontact(contact).execute(function() {
 			deferred.resolve({
 				"msg" : "contact Updated Successfully."
 			});
@@ -776,7 +776,7 @@ function googleEndpointSF($log, $q) {
 
 	opportunityService.updateopportunity = function(opportunity) {
 		var deferred = $q.defer();
-		gapi.client.opportunityService.addopportunity(opportunity).execute(
+		gapi.client.opportunityService.updateopportunity(opportunity).execute(
 				function() {
 					deferred.resolve({
 						"msg" : "opportunity updated Successfully."
