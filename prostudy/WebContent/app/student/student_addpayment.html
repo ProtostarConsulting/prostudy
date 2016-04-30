@@ -11,7 +11,8 @@
 			<div layout="column" layout-sm="column">
 				<div layout="row" layout-sm="column">
 					<md-input-container flex> <label>Student
-						Id</label> <input ng-model="selectedStud.id" readonly> </md-input-container>
+						PRN NO</label> <input ng-model="selectedStud.prn" readonly> </md-input-container>
+					
 					<md-input-container flex> <label>Student
 						FirstName</label> <input ng-model="selectedStud.firstName" readonly>
 					</md-input-container>
@@ -31,18 +32,12 @@
 					</md-input-container>
 				</div>
 				<div layout="row" layout-sm="column">
-					<md-input-container flex> <label>Student
-						InstituteId</label> <input ng-model="selectedStud.instituteID" readonly>
-					</md-input-container>
-					<md-input-container flex> <label>Student
-						PRN NO</label> <input ng-model="selectedStud.prn" readonly> </md-input-container>
+					
+					
 					<md-input-container flex> <label>Payment
 						Description</label> <input ng-model="tempPayment.paymentDescription">
 					</md-input-container>
-				</div>
-
-				<div layout="row" layout-sm="column">
-					<md-input-container flex> <label>Total
+						<md-input-container flex> <label>Total
 						Fees</label> <input type="number" ng-model="tempPayment.totalFees">
 					</md-input-container>
 					<md-input-container flex> <label>No of
@@ -51,6 +46,8 @@
 						ng-value="installment" ng-repeat="installment in installmentList">{{installment}}</md-option>
 					</md-select> </md-input-container>
 				</div>
+
+				
 				<div layout="row" layout-sm="column" ng-show="flag">
 					<md-data-table-container>
 					<table md-data-table md-progress="deferred">

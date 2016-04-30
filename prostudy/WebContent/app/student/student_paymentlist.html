@@ -15,7 +15,7 @@
 		<thead md-order="query.order" md-trigger="onorderchange">
 			<tr>
 				<th name="PaymentId" order-by="id"></th>
-				<th name="StudentId" order-by="studId"></th>
+			
 				<th name="Payment Description" order-by="paymentDescription"></th>
 				<th name="Payment Year" order-by="paymentYear"></th>
 				<th name="TotalFees" order-by="totalFees"></th>
@@ -27,14 +27,14 @@
 				ng-repeat="payment in payments | filter: { paymentDescription : searchPaymentDescription} | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
 				<!-- <td>{{payment.id}}	</td>	 -->
 				<td>{{$index+1}}</td>
-				<td>{{payment.studId}}</td>
+				
 				<td>{{payment.paymentDescription}}</td>
 				<td>{{payment.paymentYear}}</td>
 				<td>{{payment.totalFees}}</td>
 				<td>{{payment.noofinstallments}}</td>
 				<td></td>
 			</tr>
-		</tbody>
+		</tbody>    
 	</table>
 
 	</md-data-table-container>
@@ -46,7 +46,7 @@
 <div layout="row" layout-align="center center">
 
 	<a
-		ui-sref="student.studentinstallmentlist({selectedPaymentId:payment.id})"><md-button
+		ui-sref="student.studentinstallmentlist({selectedPaymentId:selected[0].id})"><md-button
 			ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
 			ng-click="getPaymentByID()">
 		<md-icon md-svg-src="img/icons/view.svg"></md-icon> <md-tooltip>VIEW</md-tooltip></md-button>
