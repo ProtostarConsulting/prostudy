@@ -63,8 +63,7 @@ angular.module("prostudyApp").controller(
 							$scope.RoleSecEntity = {};
 						});
 				
-				//$state.go("authority");
-
+				
 			}
 			
 			
