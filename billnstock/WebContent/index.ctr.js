@@ -136,6 +136,8 @@ angular
 														profile.getEmail())
 												.then(
 														function(loggedInUser) {
+															
+															loggedInUser.imageURl = $scope.googleUser.getImageUrl();
 															appEndpointSF
 																	.getLocalUserService()
 																	.saveLoggedInUser(
@@ -146,6 +148,7 @@ angular
 																					.toJson(loggedInUser));
 
 															$scope.curUser = loggedInUser;
+															
 
 															if (loggedInUser.id == undefined) {
 

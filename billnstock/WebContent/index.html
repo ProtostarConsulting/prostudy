@@ -40,9 +40,12 @@
 			& anywhere!
 		</span> <span hide-gt-sm>ProERP</span> -->
 
-		<md-card class="md-media-sm card-media"> <img
-			ng-src="{{logBaseURL}}" class="md-card-image" alt="Washed Out">
-		</md-card>
+		<!-- <md-card class="md-media-sm card-media"> <img
+			ng-src="{{logBaseURL}}" class="md-card-image" alt="Compnay Logo" height="80px" width="100px">
+		</md-card> -->
+		<div>
+		<img ng-src="{{logBaseURL}}" class="md-card-image" alt="Compnay Logo" height="60" width="120"/>
+	</div>
 
 		<!-- fill up the space between left and right area -->
 		<span flex></span>
@@ -69,15 +72,15 @@
 					ng-show="curUser == null" ng-click="loginClick()">
 				Login </md-button>
 
-				{{ googleUser.getName().firstName}}
+				{{ curUser.firstName}}
 				<md-button aria-label="Open Settings"
 					ng-click="showListBottomSheet($event)"> <md-tooltip>
-				{{ googleUser.getName() + "|" + googleUser.getEmail()}} </md-tooltip> <img
-					ng-show="true" ngf-src="googleUser.getImageUrl()" class=circular>
+				{{ curUser.firstName + " " +  curUser.lastName + "|" + curUser.email_id}} </md-tooltip> <img
+					ng-show="true" ngf-src="curUser.imageURl" class=circular>
 				</md-button>
 				<md-button aria-label="Logout" ng-hide="curUser == null"
 					ng-click="signOut()"> Logout <md-tooltip>
-				{{ googleUser.getName() + "|" + googleUser.getEmail()}} </md-tooltip> </md-button>
+				{{ curUser.firstName + " " +  curUser.lastName + "|" + curUser.email_id}} </md-tooltip> </md-button>
 
 				<!--	<md-button aria-label="Logout" ng-click="showSearch = !showSearch">
 				<ng-md-icon icon="logout"></ng-md-icon> </md-button>
