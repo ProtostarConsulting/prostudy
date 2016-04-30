@@ -119,19 +119,21 @@ public class UserService {
 		System.out.println("roleSec :"+now);				
 	}
 	
-	@ApiMethod(name = "getRoleSecList", path="getRoleSecList")
-	public List<RoleSecEntity> getRoleSecList() {
-		return ofy().load().type(RoleSecEntity.class).list();
+	@ApiMethod(name = "getRoleSecListByInstitute", path="getRoleSecListByInstitute")
+	public List<RoleSecEntity> getRoleSecListByInstitute(@Named("instituteID") Long instituteID) {
+		List<RoleSecEntity> moduleList = ofy().load().type(RoleSecEntity.class).filter("instituteID",instituteID).list();
+		return moduleList;
 	}
  
 
 	@ApiMethod(name = "getAuthorityByRole")
-	public List<RoleSecEntity> getAuthorityByRole(@Named("role") String role) {
+	public List<RoleSecEntity> getAuthorityByRole(@Named("role") String role, @Named("instituteID") Long instituteID) {
 	
-		List<RoleSecEntity> moduleList = ofy().load().type(RoleSecEntity.class).filter("role", role).list();
+		List<RoleSecEntity> moduleList = ofy().load().type(RoleSecEntity.class).filter("role", role).filter("instituteID",instituteID).list();
 		return moduleList;
 
 	}
+	
 	@ApiMethod(name = "getStudentsBySubjectID", path="getStudentsBySubjectID")
 	 public List<UserEntity> getStudentsBySubjectID(@Named("subID") Long subID) {
 		System.out.println("subID :"+subID);

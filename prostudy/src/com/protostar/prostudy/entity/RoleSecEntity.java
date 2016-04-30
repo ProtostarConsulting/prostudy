@@ -13,9 +13,17 @@ public class RoleSecEntity {
 	private Long id;
 	@Index
 	private String role;
+	@Index
+	private Long instituteID;
+	
 	private List<String> modules;
 	
-	
+	public Long getInstituteID() {
+		return instituteID;
+	}
+	public void setInstituteID(Long instituteID) {
+		this.instituteID = instituteID;
+	}
 	public Long getId() {
 		return id;
 	}

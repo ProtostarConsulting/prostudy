@@ -9,6 +9,7 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
+import com.protostar.prostudy.entity.BookEntity;
 import com.protostar.prostudy.entity.InstituteEntity;
 
 @Api(name = "instituteService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
@@ -39,6 +40,12 @@ public class InstituteService {
 		Key<InstituteEntity> now = ofy().save().entity(insti).now();
 	}
 	
+	@ApiMethod(name = "updateInstitute")
+	public void updateInstitute(InstituteEntity insti) {
+		
+		Key<InstituteEntity> now = ofy().save().entity(insti).now();
+		
+	}
 
 	
 	

@@ -14,8 +14,17 @@ public class InstituteEntity {
 	private String desc;
 	private String address;
 	private String phone_no;
+	private String theme;
 
-	
+
+	public String getTheme() {
+		return theme;
+	}
+
+	public void setTheme(String theme) {
+		this.theme = theme;
+	}
+
 	public Long getID() {
 		return id;
 	}
