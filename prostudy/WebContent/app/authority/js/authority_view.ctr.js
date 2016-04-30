@@ -29,7 +29,7 @@ angular.module("prostudyApp").controller(
 
 				$scope.selection = [];
 				var UserService = appEndpointSF.getUserService();
-				UserService.getAuthorityByRole($scope.role).then(
+				UserService.getAuthorityByRole($scope.role,$scope.curUser.instituteID).then(
 						function(modules) {
 							$scope.modules = modules[0];
 							for ( var i in $scope.moduleList) {
