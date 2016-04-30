@@ -1,13 +1,21 @@
 <md-content layout-padding>
-	<form name="ChangeTheme">
+<form name="ChangeTheme">
 
-		<div>
-			<span class="md-title">Change application theme to one of the availaible themes below</span>
-		</div>
-		<section layout="row" layout-sm="column" layout-align="left left" flex>
-			<md-button ng-repeat="themeName in themeList"  class="md-raised md-primary md-hue-2" ng-click="checkTheme(themeName)">
-				{{themeName}}
-			</md-button>
-		</section>
-	</form>
+	<div>
+		<span class="md-title">Change your application theme</span>
+	</div>
+	
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	
+	<div layout="row" layout-align="left left" layout-wrap flex>
+		<md-button ng-repeat="themeName in themeList"
+			class="md-raised md-primary md-hue-2"
+			ng-click="checkTheme(themeName)"> {{themeName}} </md-button>
+	</div>
+</form>
 </md-content>
+
+
+
+
