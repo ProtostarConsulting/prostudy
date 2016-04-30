@@ -98,8 +98,7 @@ angular
 																
 																$scope.curUser = loggedInUser;
 
-																$state
-																		.go(
+																$state.go(
 																				"updatemyprofile",
 																				{
 																					flag : $scope.flag
@@ -121,14 +120,10 @@ angular
 						UserService.getRoleSecListByInstitute($scope.curUser.instituteID).then(
 										function(modules) {
 											$scope.modules = modules;
-											$log.debug('$scope.modules :'+ angular.toJson($scope.modules));
-											for (i = 0; i < $scope.modules.length; i++) {
-												$log.debug('$scope.modules.modules :'
-																+ angular.toJson($scope.modules[i].modules));
-											}
+											
 
 										});
-					}
+					}   
 
 					$scope.getInstituteById = function() {
 
