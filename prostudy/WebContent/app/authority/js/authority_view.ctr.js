@@ -17,7 +17,7 @@ angular.module("prostudyApp").controller(
 						.hideDelay(3000));
 			};
 
-			$scope.moduleList = [ "Home", "Authority", "Exam", "Student",
+			$scope.moduleList = [ "Authority", "Exam", "Student",
 					"Institute", "Attendance", "Book", "Favourite", "Report",
 					"Certificate Management", "Admission Management" ]
 

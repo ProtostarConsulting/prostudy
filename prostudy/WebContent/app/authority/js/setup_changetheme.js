@@ -27,9 +27,10 @@ angular.module("prostudyApp").controller(
 					var InstituteService = appEndpointSF.getInstituteService();
 					InstituteService.updateInstitute($scope.Institute).then(
 							function(msgBean) {
-							//	$scope.showSimpleToast(msgBean.msg);
+							
 							});
 					$scope.changeTheme(themeName);
+					$state.go("home");
 				}
 			}
 
