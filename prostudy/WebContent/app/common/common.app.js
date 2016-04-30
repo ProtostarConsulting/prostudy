@@ -6,9 +6,63 @@ var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
 app.constant('boardList', ["State Board", "CBSE", "ICSE"]);
 app.constant('installmentList', [1,2,3]);
 
-app.config(function($mdThemingProvider) {
+/*app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette(
 			'red').warnPalette('pink').backgroundPalette('grey');
+});*/
+
+app.config(function($mdThemingProvider) {
+
+	/*
+	 * Available palettes: red, pink, purple, deep-purple, indigo, blue,
+	 * light-blue, cyan, teal, green, light-green, lime, yellow, amber, orange,
+	 * deep-orange, brown, grey, blue-grey
+	 */
+	$mdThemingProvider.theme('default').primaryPalette('light-blue')
+			.accentPalette('pink');
+	$mdThemingProvider.theme('red').primaryPalette('red').accentPalette(
+			'orange').warnPalette('blue');
+	$mdThemingProvider.theme('pink').primaryPalette('pink').accentPalette(
+			'orange').warnPalette('blue');
+	$mdThemingProvider.theme('purple').primaryPalette('purple').accentPalette(
+			'grey').warnPalette('blue');
+	$mdThemingProvider.theme('deep-purple').primaryPalette('deep-purple').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('indigo').primaryPalette('indigo').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('blue').primaryPalette('blue').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('light-blue').primaryPalette('light-blue').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('cyan').primaryPalette('cyan').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('teal').primaryPalette('teal').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('green').primaryPalette('green').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('light-green').primaryPalette('light-green').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('lime').primaryPalette('lime').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('yellow').primaryPalette('yellow').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('amber').primaryPalette('amber').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('orange').primaryPalette('orange').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('deep-orange').primaryPalette('deep-orange').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('brown').primaryPalette('brown').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('grey').primaryPalette('grey').accentPalette(
+	'grey').warnPalette('blue');
+	$mdThemingProvider.theme('blue-grey').primaryPalette('blue-grey').accentPalette(
+	'grey').warnPalette('blue');
+	
+
+	// This is the absolutely vital part, without this, changes will not cascade
+	// down through the DOM.
+	$mdThemingProvider.alwaysWatchTheme(true);
 });
 
 app.config(function($logProvider) {
@@ -29,14 +83,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/authority",
 		templateUrl : '/app/authority/authority_module.html',
 		controller : 'authorityModuleCtr'
-	}).state('authority.add', {
-		url : "/addauthority",
-		templateUrl : '/app/authority/authority_add.html',
-		controller : 'authorityAddCtr'
 	}).state('authority.view', {
 		url : "/viewauthority",
 		templateUrl : '/app/authority/authority_view.html',
 		controller : 'authorityViewCtr'
+	}).state('authority.changeTheme', {
+		url : "/changeTheme/:currentInstID",
+		templateUrl : '/app/authority/setup_changetheme.html',
+		controller : 'changeThemeCtr'
 	}).state('exam', {
 		url : "/exam",
 		templateUrl : '/app/exam/exam_module.html',
@@ -141,6 +195,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/institute",
 		templateUrl : '/app/institute/institute_module.html',
 		controller : 'instituteModuleCtr'
+	}).state('institute.addauthority', {
+		url : "/addauthority/:currentInstID",
+		templateUrl : '/app/institute/authority_add.html',
+		controller : 'authorityAddCtr'
 	}).state('institute.addInfo', {
 		url : "/institute/addInfo",
 		templateUrl : '/app/institute/institute_addInfo.html',
@@ -487,8 +545,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/studentPaymentlist",
 		templateUrl : '/app/student/student_paymentlist.html',
 		controller : 'studentPaymentListCtr',
-	})
-	.state('student.studentInstallmentedit', {
+	}).state('student.studentInstallmentedit', {
 		url : "/studentInstallmentedit",
 		templateUrl : '/app/student/student_installmentedit.html',
 		controller : 'studentInstallmentEditCtr',
@@ -496,18 +553,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			selectedInstallment : null,
 			selectedPaymentId : null
 		}
-	})
-	.state('student.studentinstallmentlist', {
+	}).state('student.studentinstallmentlist', {
 		url : "/studentinstallmentlist/:selectedPaymentId",
 		templateUrl : '/app/student/student_installmentlist.html',
 		controller : 'studentInstallmentListCtr',
-	})
-	
-	
-	
-	
-	
-	.state('syllabus', {
+	}).state('syllabus', {
 		url : "/syllabus",
 		templateUrl : '/app/syllabus/syllabus_module.html',
 		controller : 'syllabusModuleCtr'
