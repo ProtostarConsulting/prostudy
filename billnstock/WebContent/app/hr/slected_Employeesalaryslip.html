@@ -4,7 +4,7 @@
 	<md-input-container flex> <md-select
 		ng-model="months[0]" id="selectedmonth"
 		ng-change="displyOnlySelected(months[0])"> <md-option
-		ng-value="month" ng-repeat="month in months">{{month}}</md-option> </md-select>
+		ng-value="month" ng-repeat="month in months track by $index">{{month}}</md-option> </md-select>
 	</md-input-container>
 </div>
 <div>

@@ -108,15 +108,16 @@ angular
 					$scope.getlastmonth = function() {
 						var date = new Date();
 						for (var i = 0; i < 3; i++) {
-							$scope.months.push(monthNames[date.getMonth()]
-									+ ' ' + date.getFullYear());
-							// Subtract a month each time
+							$scope.months.push(monthNames[date.getMonth()]+ ' ' + date.getFullYear());
 							date.setMonth(date.getMonth() - 1);
 						}
 					}
 				
 					$scope.months = [];
 					$scope.getlastmonth();
+					
+					
+					
 
 					$scope.ganeratesalslip = function() {
 						//$scope.printganeratesalslip();

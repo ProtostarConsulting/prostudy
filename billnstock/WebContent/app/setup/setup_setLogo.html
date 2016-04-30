@@ -1,19 +1,36 @@
 
-<div layout="column" ng-cloak class="md-inline-form">
-	<form  name="imageform"  method="post"
-		enctype="multipart/form-data">
+<div layout="row" ng-cloak class="md-inline-form">
 
-		<md-input-container class="md-block"> <label>Upload
-			Logo</label> <input name="myFile" type="file"> </md-input-container>
+	<md-content layout="column">
+	<span class="md-headline">Current Logo</span>
+		<div style="height: 80px; width:120px; height: auto; float: left; margin: 3px;  padding: 3px;">
+			<img ng-src="{{logBaseURL}}" class="md-card-image" alt="Compnay Logo" style=" max-width: 100%;  height: auto;" />
+		</div>
+	<form name="imageform" method="post" enctype="multipart/form-data">
+		
+		<p style="font-size: .8em; width: 100%; text-align: center;">
+			Upload logo height/width of 80px/120px only.</p>
+		<div class="md-block">
+			<label>Upload Logo:</label> <input name="myFile" type="file"
+				class="md-raised md-primary">
+		</div>
 
-		<md-input-container class="md-block"> <input
-			type="button" value="Submit" ng-click="uplodeimage()"> </md-input-container>
+		<div>
+			<md-button ng-click="uplodeimage()" class="md-raised md-primary"
+				show-gt-md> Submit </md-button>
+		</div>
 		<input type="hidden" name="bizID" id="bizID" value={{bizID}}>
 
 
-<!-- <div class="dropzone" data-width="960" data-height="540" data-resize="true" data-url="canvas.php" style="width: 100%;">
+
+
+		<!-- <div class="dropzone" data-width="960" data-height="540" data-resize="true" data-url="canvas.php" style="width: 100%;">
   <input type="file" name="thumb" />
 </div> -->
 	</form>
 
+	<div>
+		<!-- This is temp second column -->
+	</div>
+	</md-content>
 </div>
