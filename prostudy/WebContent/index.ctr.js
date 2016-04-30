@@ -11,6 +11,10 @@ angular
 					$scope.googleUserDetails = "";
 					$scope.googleUser = 'null';
 					$scope.flag = true;
+					$scope.theme;
+					
+					$scope.institute = [];
+					
 					$scope.tempUser = {
 						email_id : '',
 						password : ''
@@ -26,11 +30,9 @@ angular
 					});
 					
 
-					$scope.curUser = appEndpointSF.getLocalUserService()
-							.getLoggedinUser();
+					$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 
-					$scope
-							.$on(
+					$scope.$on(
 									'event:google-plus-signin-success',
 									function(event, authResult) {
 
@@ -112,21 +114,17 @@ angular
 									});
 
 				
-					$scope.getAuthority = function() {
+					$scope.getRoleSecListByInstitute = function() {
 
 						$scope.selection = [];
 						var UserService = appEndpointSF.getUserService();
-						UserService
-								.getRoleSecList()
-								.then(
+						UserService.getRoleSecListByInstitute($scope.curUser.instituteID).then(
 										function(modules) {
 											$scope.modules = modules;
-											$log.debug('$scope.modules :'
-															+ angular.toJson($scope.modules));
+											$log.debug('$scope.modules :'+ angular.toJson($scope.modules));
 											for (i = 0; i < $scope.modules.length; i++) {
 												$log.debug('$scope.modules.modules :'
-																+ angular
-																		.toJson($scope.modules[i].modules));
+																+ angular.toJson($scope.modules[i].modules));
 											}
 
 										});
@@ -139,6 +137,7 @@ angular
 								.then(
 										function(institute) {
 											$scope.institute = institute;
+											$scope.theme = $scope.institute.theme;
 
 										});
 
@@ -147,8 +146,9 @@ angular
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
 
-							$scope.getAuthority();
-							$scope.getInstituteById(); 
+							$scope.getRoleSecListByInstitute();
+							$scope.getInstituteById();
+							
 
 						} else {
 							$log.debug("Services Not Loaded, watiting...");
@@ -214,6 +214,19 @@ angular
 					// initialize local objects
 
 					$scope.initGAPI();
+					
+					
+
+					$scope.themeList = [ 'default', 'red', 'pink', 'purple',
+							'deep-purple', 'indigo', 'blue', 'light-blue',
+							'cyan', 'teal', 'green', 'light-green', 'lime',
+							'yellow', 'amber', 'orange', 'deep-orange',
+							'brown', 'grey', 'blue-grey' ];
+
+					$scope.changeTheme = function(themeName) {
+						$scope.theme = themeName
+					}
+					
 
 					$scope.safeApply = function(fn) {
 						var phase = this.$root.$$phase;
