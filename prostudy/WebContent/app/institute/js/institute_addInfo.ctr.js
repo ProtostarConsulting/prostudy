@@ -149,24 +149,7 @@ angular.module("prostudyApp").controller(
 				
 			}
 
-			$scope.showConfirm = function(ev) {
-				$scope.flag1 = false;
-				$log.debug("$scope.isDisabled :"+$scope.isDisabled)
-				$scope.addInstituteAdmins();
-				//$scope.flag2 = false;
-				var confirm = $mdDialog.confirm().title(
-						'Do you want to continue ?').ariaLabel('Lucky day')
-						.targetEvent(ev).ok('YES').cancel('NO');
-				$mdDialog.show(confirm).then(function() {
-					$scope.status = $state.go("institute.addStandards", {
-						currentInstID : $scope.currentInstID
-					});
-				}, function() {
-					//$scope.flag = true;
-					$scope.status = $state.go("institute");
-				});
-				$scope.disableButton();
-			};
+			
 			
 			$scope.showsubConfirm = function(ev) {
 				
@@ -205,12 +188,9 @@ angular.module("prostudyApp").controller(
 			$scope.addInstituteAdmins = function() {
 				var UserService = appEndpointSF.getUserService();
 
-				if ($scope.flag1 == true) {
-					$state.go("institute.addTeachers", {
+					$state.go("institute.addauthority", {
 						currentInstID : $scope.currentInstID
 					});
-
-				}
 
 				UserService.addUser($scope.tempAdmin).then(function(msgBean) {
 
@@ -312,6 +292,7 @@ angular.module("prostudyApp").controller(
 			}
 			
 			$scope.error="";	
+			
 			$scope.checkUserAlreadyExist = function(email_id) 
 			{
 				if(email_id)
