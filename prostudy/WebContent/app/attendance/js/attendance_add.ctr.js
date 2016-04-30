@@ -89,8 +89,7 @@ angular
 							}
 						}
 						var SubjectService = appEndpointSF.getSubjectService();
-						SubjectService
-								.getSubjectByDivision($scope.selectedDivID)
+						SubjectService.getSubjectByDivision($scope.selectedDivID)
 								.then(
 										function(subjectList) {
 
