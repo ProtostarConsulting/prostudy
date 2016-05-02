@@ -87,31 +87,31 @@ display:none;
 								</tr>
 								<tr>
 									<td width="25%">Basic</td>
-									<td width="25%">{{emp.salarystruct.bmonthly}}</td>
+									<td width="25%">{{emp.bmonthly}}</td>
 									<td width="25%">Provident Fund</td>
 									<td width="25%"></td>
 								</tr>
 								<tr>
 									<td width="25%">HRA</td>
-									<td width="25%">{{emp.salarystruct.hramonthly}}</td>
+									<td width="25%">{{emp.hramonthly}}</td>
 									<td width="25%">ESI</td>
 									<td width="25%"></td>
 								</tr>
 								<tr>
 									<td width="25%">Conveyance</td>
-									<td width="25%">{{emp.salarystruct.convmonthly}}</td>
+									<td width="25%">{{emp.convmonthly}}</td>
 									<td width="25%">Loan</td>
 									<td width="25%"></td>
 								</tr>
 								<tr>
 									<td width="25%">City Compensatory All</td>
-									<td width="25%">{{emp.salarystruct.ccamonthly}}</td>
+									<td width="25%">{{emp.ccamonthly}}</td>
 									<td width="25%">Profession Tax</td>
-									<td width="25%">{{emp.salarystruct.pf1+emp.salarystruct.pf1}}</td>
+									<td width="25%">{{emp.pf1+emp.pf1}}</td>
 								</tr>
 								<tr>
 									<td width="25%">Special Allowance</td>
-									<td width="25%">{{emp.salarystruct.samonthly}}</td>
+									<td width="25%">{{emp.samonthly}}</td>
 									<td width="25%">TSD/IT</td>
 									<td width="25%"></td>
 								</tr>
@@ -119,13 +119,13 @@ display:none;
 									<td width="25%"></td>
 									<td width="25%"></td>
 									<td width="25%">Other 1</td>
-									<td width="25%">{{emp.salarystruct.ldother1amt}}</td>
+									<td width="25%">{{emp.ldother1amt}}</td>
 								</tr>
 								<tr>
 									<td width="25%"></td>
 									<td width="25%"></td>
 									<td width="25%">Other 2</td>
-									<td width="25%">{{emp.salarystruct.ldother2amt}}</td>
+									<td width="25%">{{emp.ldother2amt}}</td>
 								</tr>
 								<tr>
 									<td width="25%"></td>
@@ -135,16 +135,16 @@ display:none;
 								</tr>
 								<tr>
 									<td width="25%">Total Addition</td>
-									<td width="25%">{{TotalAddition}}<!-- {{emp.salarystruct.bmonthly+emp.salarystruct.hramonthly+emp.salarystruct.convmonthly+emp.salarystruct.samonthly+emp.salarystruct.ccamonthly
+									<td width="25%">{{TotalAddition}}<!-- {{emp.bmonthly+emp.hramonthly+emp.convmonthly+emp.samonthly+emp.ccamonthly
 										}} --></td>
 									<td width="25%">Total Deduction</td>
-									<td width="25%">{{TotalDeduction}}<!-- {{emp.salarystruct.pf1+emp.salarystruct.pf1+emp.salarystruct.ldother1amt+emp.salarystruct.ldother2amt}} --></td>
+									<td width="25%">{{TotalDeduction}}<!-- {{emp.pf1+emp.pf1+emp.ldother1amt+emp.ldother2amt}} --></td>
 								</tr>
 								<tr>
 									<td width="25%"></td>
 									<td width="25%"></td>
 									<td width="25%"><b>NET Salary</b></td>
-									<td width="25%">{{NETSalary}}<!-- {{(emp.salarystruct.bmonthly+emp.salarystruct.hramonthly+emp.salarystruct.convmonthly+emp.salarystruct.samonthly+emp.salarystruct.ccamonthly)-(emp.salarystruct.pf1+emp.salarystruct.pf1+emp.salarystruct.ldother1amt+emp.salarystruct.ldother2amt)}} --></td>
+									<td width="25%">{{NETSalary}}<!-- {{(emp.bmonthly+emp.hramonthly+emp.convmonthly+emp.samonthly+emp.ccamonthly)-(emp.pf1+emp.pf1+emp.ldother1amt+emp.ldother2amt)}} --></td>
 								</tr>
 
 

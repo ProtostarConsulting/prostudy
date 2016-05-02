@@ -10,16 +10,21 @@ angular.module("stockApp").controller(
 					.getLoggedinUser();
 
 			$scope.checkTheme = function(themeName) {
-				var change = confirm("Are you sure to chane thim");
-				if (change == true) {
-					$scope.curUser.business.theme=themeName;
-					var setupService = appEndpointSF.getsetupService();
-					setupService.updateBusiness($scope.curUser.business).then(
-							function(msgBean) {
-							//	$scope.showSimpleToast(msgBean.msg);
-							});
-					$scope.changeTheme(themeName);
-				}
+				//var change = confirm("Are you sure to chane thim");
+				$scope.changeTheme(themeName);
+			
 			}
+			
+			
+				$scope.saveTheme=function(themeName){
+					$scope.curUser.business.theme=themeName;
+						var setupService = appEndpointSF.getsetupService();
+						setupService.updateBusiness($scope.curUser.business).then(
+								function(msgBean) {
+									$scope.showUpdateToast();
+								});
+										
+					
+					}			
 
 		});

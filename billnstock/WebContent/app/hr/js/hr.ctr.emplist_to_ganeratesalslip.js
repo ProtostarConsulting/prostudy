@@ -130,9 +130,43 @@ angular
 									.then(function(structlist) {
 												$scope.selectedSalSlip = structlist.result;
 												$scope.salslip.salarystruct = $scope.selectedSalSlip;
+												
 												$scope.salslip.business=$scope.selectedSalSlip.business;
 												$scope.salslip.salslip_id = Number($scope.salslip.salslip_id) + 1;
 												$scope.salslip.month = $scope.selectmonth;
+												
+												//$scope.salslip.empName= $scope.selectedSalSlip.empName; 
+												$scope.salslip.grosssal= $scope.selectedSalSlip.grosssal; 
+												$scope.salslip.monthly = $scope.selectedSalSlip.monthly;
+												$scope.salslip.byearly= $scope.selectedSalSlip.byearly;
+												$scope.salslip.bmonthly =$scope.selectedSalSlip.bmonthly;
+												$scope.salslip.hrayearly =$scope.selectedSalSlip.hrayearly;
+												$scope.salslip.hramonthly =$scope.selectedSalSlip.hramonthly;
+												$scope.salslip.ccayearly =$scope.selectedSalSlip.ccayearly;
+												$scope.salslip.ccamonthly =$scope.selectedSalSlip.ccamonthly;
+												$scope.salslip.ec12Byearly= $scope.selectedSalSlip.ec12Byearly;
+												$scope.salslip.convyearly =$scope.selectedSalSlip.convyearly;
+												$scope.salslip.convmonthly=$scope.selectedSalSlip.convmonthly;
+												$scope.salslip.sayearly =$scope.selectedSalSlip.sayearly;
+												$scope.salslip.grandtotal=$scope.selectedSalSlip.grandtotal; 
+												$scope.salslip.samonthly =$scope.selectedSalSlip.samonthly;
+												$scope.salslip.bgrandtotal=$scope.selectedSalSlip.bgrandtotal; 
+												$scope.salslip.ptaxyearly =$scope.selectedSalSlip.ptaxyearly;
+												$scope.salslip.pf1 =$scope.selectedSalSlip.pf1;
+												$scope.salslip.pf2 =$scope.selectedSalSlip.pf2;
+												$scope.salslip.ptaxgrandtotal =$scope.selectedSalSlip.ptaxgrandtotal;
+												$scope.salslip.netsalgrandtotalmonthly=$scope.selectedSalSlip.netsalgrandtotalmonthly; 
+												$scope.salslip.netsalgrandtotal =$scope.selectedSalSlip.netsalgrandtotal;
+												$scope.salslip.addprobonus= $scope.selectedSalSlip.addprobonus;
+												$scope.salslip.ctc =$scope.selectedSalSlip.ctc;
+												$scope.salslip.mctc=$scope.selectedSalSlip.mctc;
+												$scope.salslip.ldother1dis=$scope.selectedSalSlip.ldother1dis;
+												$scope.salslip.ldother2dis=$scope.selectedSalSlip.ldother2dis;
+												$scope.salslip.ldother1amt=$scope.selectedSalSlip.ldother1amt;
+												$scope.salslip.ldother2amt=$scope.selectedSalSlip.ldother2amt;
+												
+												
+												
 												hrService.addgsalslip($scope.salslip).then(
 																function(gsalslip) {
 																	$scope.ganeratedsalslip.push(gsalslip.result);
