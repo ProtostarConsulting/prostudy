@@ -1,76 +1,79 @@
-angular
-		.module("prostudyApp")
+angular.module("prostudyApp")
 		.controller(
 				"classroomNewUserCtr",
-				function($scope, $window, $mdToast, $timeout, $mdSidenav,$stateParams,
-						$mdUtil, $log, $q, tableTestDataFactory, appEndpointSF,$state) {		
-					
-					
-					$scope.selectedCourseId = $stateParams.selectedCourseId;					
+				function($scope, $window, $mdToast, $timeout, $mdSidenav,
+						$stateParams, $mdUtil, $log, $q, tableTestDataFactory,
+						appEndpointSF, $state) {
+
+					$scope.selectedCourseId = $stateParams.selectedCourseId;
 					$scope.userType = $stateParams.userType;
-					
-					$scope.permissionList=["PERMISSION_UNSPECIFIED","CREATE_COURSE"];
-					
-					$scope.name={
-						  'givenName': "",
-						  'familyName': "",
-						  'fullName':""
-						}
 
-					$scope.profile={
+					$scope.GlobalPermission = {
+						'permission' : ""
+					}
 
-							'id' : "",
-							'name' : $scope.name,
-							'emailAddress' : ""	,
-							'photoUrl':"",
-							'permissions':""		
-							
+					$scope.name = {
+						'givenName' : "",
+						'familyName' : "",
+						'fullName' : ""
+					}
+
+					$scope.profile = {
+
+						'id' : "",
+						'name' : $scope.name,
+						'emailAddress' : "",
+						'photoUrl' : "",
+						'permissions' : []
+
 					}
 					$scope.tempUser = {
 						'courseId' : $scope.selectedCourseId,
 						'userId' : "",
 						'profile' : $scope.profile
-					};					
-				
-				
+					};
+
 					$scope.createTeacher = function() {
-						
-						$scope.tempUser.userId=$scope.profile.emailAddress;					
-						$scope.tempUser.profile.name.fullName=$scope.name.givenName+" "+$scope.name.familyName;
-						
-						$scope.tempUser.profile.permissions=$scope.pp;
-						$log.debug("Inside $scope.tempUser .."+angular.toJson($scope.tempUser));
-						var request = gapi.client.classroom.courses.teachers.create($scope.tempUser);
+
+						$scope.tempUser.userId = $scope.profile.emailAddress;
+
+						$log.debug("Inside $scope.tempUser .."
+								+ angular.toJson($scope.tempUser));
+						var request = gapi.client.classroom.courses.teachers
+								.create($scope.tempUser);
 
 						request.execute(function(resp) {
 							$log.debug("resp:" + angular.toJson(resp));
-							$scope.showSavedToast();
-							$log.debug("After createUser..");				
+							$scope.showTeacherAddedToast();
 						});
 					}
 
 					$scope.createStudent = function() {
-						
-						$log.debug("Inside createStudent..");
-						$scope.tempUser.profile.name.fullName=$scope.name.givenName+" "+$scope.name.familyName;
-						$scope.tempUser.userId=$scope.profile.emailAddress;
-						$log.debug("Inside $scope.tempUser .."+angular.toJson($scope.tempUser));
-						var request = gapi.client.classroom.courses.students.create($scope.tempUser);
+						$scope.tempUser.userId = $scope.profile.emailAddress;
+
+						$log.debug("Inside $scope.tempUser .."
+								+ angular.toJson($scope.tempUser));
+						var request = gapi.client.classroom.courses.students
+								.create($scope.tempUser);
 
 						request.execute(function(resp) {
 							$log.debug("resp:" + angular.toJson(resp));
-							$scope.showSavedToast();
-							$log.debug("After createStudent..");				
+							$scope.showStudentAddedToast();
 						});
 					}
-					
-			
-					$scope.showSavedToast = function() {
+
+					$scope.showTeacherAddedToast = function() {
 						$mdToast.show($mdToast.simple().content(
-								'New Course Saved!').position("top").hideDelay(
-								3000));
+								'New Teacher Added!').position("top")
+								.hideDelay(3000));
 					};
-					
+					$scope.showStudentAddedToast = function() {
+						$mdToast.show($mdToast.simple().content(
+								'New Student Added!').position("top")
+								.hideDelay(3000));
+					};
+					$scope.cancelButton = function() {
+						$state.go("gfe.classroomCourseList", {});
+					}
 
 				});
-

@@ -14,7 +14,9 @@
 	<md-data-table-toolbar ng-show="!selected.length">
 		<h2 class="md-title">Courses List</h2>
 	</md-data-table-toolbar>
-
+<div>
+	<md-input-container flex> <label>Search Course By Name</label> <input ng-model="searchName"> </md-input-container>
+</div>
 	<md-data-table-toolbar class="alternate" ng-show="selected.length">
 		<div>
 			{{selected.length}} {{selected.length > 1 ? 'Courses' : 'Course'}} selected
@@ -34,13 +36,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr md-auto-select  ng-repeat="course in classroomCourses | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+					<tr md-auto-select  ng-repeat="course in classroomCourses | orderBy: query.order | filter: {name: searchName}| limitTo: query.limit: (query.page - 1) * query.limit">
 
 						<td>{{course.name}}</td>
 						<td>{{course.creationTime}}</td>
 						<td>{{course.enrollmentCode}}</td>
 						<td>{{course.courseState}}</td>
-
+					
 					</tr>
 				</tbody>
 			</table>
@@ -52,6 +54,18 @@
 
 <div ng-show="selected.length == 1">
 		
+		<div layout="row" layout-align="centre centre" layout-xs="column">
+		<md-button  ui-sref="gfe.classroomCourseView({selectedCourseId: selected[0].id})" class="md-raised md-primary" >
+			View Course
+		</md-button>
+		<md-button  ui-sref="gfe.classroomCourseUpdate({selectedCourseId: selected[0].id})" class="md-raised md-primary" >
+			Update Course
+		</md-button>
+		<md-button  class="md-raised md-primary" ng-click="deleteCourse(selected[0].id)">
+			Delete Course
+		</md-button>
+		</div>
+		<div layout="row" layout-align="centre centre" layout-xs="column">
 		<md-button  ui-sref="gfe.classroomCourseAddNewUser({selectedCourseId: selected[0].id, userType : 'Teacher'})" class="md-raised md-primary" >
 			Add Class Teacher
 		</md-button>
@@ -64,6 +78,7 @@
 		</md-button>
 		<md-button ui-sref="gfe.classroomCourseUserList({selectedCourseId: selected[0].id, userType: 'Student'})" class="md-raised md-primary" >
 			View Class Students
-		</md-button>
+		</md-button>	
+		</div>			
 </div>
 

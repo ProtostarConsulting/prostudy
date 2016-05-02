@@ -1,38 +1,47 @@
-<div ng-show="loading">
-	Loading...
-</div>
+<div ng-show="loading">Loading...</div>
 <div ng-hide="loading">
-    <md-data-table-toolbar >
-		<h2 class="md-title">{{userType}} List</h2>
+	<md-data-table-toolbar>
+	<h2 class="md-title">{{userType}} List</h2>
 	</md-data-table-toolbar>
 
-	
+	<div>
+		<md-input-container flex> <label>Search
+			{{userType}} By Name</label> <input ng-model="searchUser"> </md-input-container>
+	</div>
 	</md-data-table-toolbar>
 	<div>
 		<md-data-table-container>
-			<table md-data-table class="md-primary"  md-progress="deferred">
-				<thead md-order="query.order" md-trigger="onorderchange">
-					<tr>
-						<th order-by="profile.name.fullName" name="Name" unit=""></th>
-						<th order-by="courseId" name="courseId" unit=""></th>
-						<th order-by="userId" name="userId"></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr md-auto-select  ng-repeat="user in userList | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+		<table md-data-table class="md-primary" md-row-select="selected"
+			md-progress="deferred">
+			<thead md-order="query.order" md-trigger="onorderchange">
+				<tr>
+					<th order-by="profile.name.fullName" name="Name" unit=""></th>
+					<th order-by="courseId" name="courseId" unit=""></th>
+					<th order-by="userId" name="userId"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr md-auto-select
+					ng-repeat="user in userList | orderBy: query.order| filter: {$: searchUser} | limitTo: query.limit: (query.page - 1) * query.limit">
 
-						<td>{{user.profile.name.fullName}}</td>
-						<td>{{user.courseId}}</td>
-						<td>{{user.userId}}</td>
-						<td><a ui-sref="gfe.classroomCourseViewUser({selectedCourseId:user.courseId,selectedUserId: user.userId,userType:userType})"><md-button
-									class="md-raised md-primary" ng-click="">View User </md-button> </a></td>
-						<td><a><md-button ng-show="curUser.role == 'Admin'"
-									class="md-raised md-primary" ng-click="deleteUser(user.courseId,user.userId,userType)">Delete User </md-button> </a></td>
-					</tr>
-				</tbody>
-			</table>
+					<td>{{user.profile.name.fullName}}</td>
+					<td>{{user.courseId}}</td>
+					<td>{{user.userId}}</td>					
+				</tr>
+			</tbody>
+		</table>
 		</md-data-table-container>
-		<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total={{userList.length}} md-trigger="onpagechange"></md-data-table-pagination>
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+			md-total={{userList.length}} md-trigger="onpagechange"></md-data-table-pagination>
 	</div>
 </div>
+<div ng-show="selected.length == 1">
+	<a	ui-sref="gfe.classroomCourseViewUser({selectedCourseId:selected[0].courseId,selectedUserId: selected[0].userId,userType:userType})">
+		<md-button class="md-raised md-primary" ng-click="">View {{userType}} </md-button>
+	</a> <a><md-button ng-show="curUser.role == 'Admin'"
+			class="md-raised md-primary"
+			ng-click="deleteUser(selected[0].id,user.userId,userType)">Delete {{userType}} </md-button> </a>
+
+</div>
+
 

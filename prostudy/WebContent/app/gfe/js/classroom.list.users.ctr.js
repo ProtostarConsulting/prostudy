@@ -9,6 +9,7 @@ angular
 					
 					$scope.userType = "";
 					$scope.userList = [];
+					$scope.selected=[];
 					
 					$scope.selectedCourseId = $stateParams.selectedCourseId;
 					$scope.userType = $stateParams.userType;
@@ -85,7 +86,7 @@ angular
 					
 					
 					// Table generic functions
-					$scope.selected = [];
+				
 					$scope.query = {
 						order : 'fullName',
 						limit : 10,
