@@ -646,9 +646,22 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			selectedCourseId : null,
 			userType:null
 		}
-			
-			
-	});
+	})
+	.state('gfe.classroomCourseUpdate', {
+		url : "/classroomCourseUpdate",
+		templateUrl : '/app/gfe/classroom_course_update.html',
+		controller : 'classroomCourseUpdateCtr'	,	
+		params : {
+			selectedCourseId : null			
+		}
+	}).state('gfe.classroomCourseView', {
+		url : "/classroomCourseView",
+		templateUrl : '/app/gfe/classroom_course_view.html',
+		controller : 'classroomCourseViewCtr'	,	
+		params : {
+			selectedCourseId : null			
+		}
+	});	
 
 });
 
