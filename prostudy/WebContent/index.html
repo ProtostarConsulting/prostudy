@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/lib/base/css/md-data-table.min.css">
 <link rel="stylesheet" href="/lib/base/css/textAngular.css">
 </head>
-<body layout="column" ng-cloak>
+<body layout="column" ng-cloak md-theme="{{theme}}">
 	<!-- <div layout="column" layout-fill> -->
 	<div ng-show="loading">Loading...</div>
 	<md-content ng-hide="loading"> <!-- Top Navigation Pane -->
@@ -73,11 +73,16 @@
 			Student </md-button> <md-button ui-sref="attendance"
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
 				ng-click="close()" class="md-primary" show-gt-md>Attendance
-			</md-button> <!-- <md-button ui-sref="exam" ng-show="exam in roleSecEntity.modules"
-				ng-click="close()" class="md-primary" show-gt-md> Exam </md-button> -->
+			</md-button> <md-button ui-sref="exam"
+				ng-show="(curUser.role == modules[0].role && modules[0].modules.indexOf('Exam') > -1) ||
+ (curUser.role == modules[1].role && modules[1].modules.indexOf('Exam') > -1) ||
+  (curUser.role == modules[2].role && modules[2].modules.indexOf('Exam') > -1)"
+				ng-click="close()" class="md-primary" show-gt-md> Exam </md-button>
 
-			<md-button ui-sref="exam" ng-click="close()" class="md-primary"
-				show-gt-md> Exam </md-button> <md-button ui-sref="book"
+
+			<!-- <md-button ui-sref="exam" ng-click="close()" class="md-primary"
+				show-gt-md> Exam </md-button>  -->
+			<md-button ui-sref="book"
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
 				ng-click="close()" class="md-primary" show-gt-md>Book </md-button> <md-button
 				ui-sref="favourite"
@@ -237,8 +242,9 @@
 	<script src="/home.ctr.js"></script>
 
 	<script src="/app/authority/js/authority_module.ctr.js"></script>
-	<script src="/app/authority/js/authority_add.ctr.js"></script>
+	<script src="/app/institute/js/authority_add.ctr.js"></script>
 	<script src="/app/authority/js/authority_view.ctr.js"></script>
+	<script src="/app/authority/js/setup_changetheme.js"></script>
 
 	<script src="/app/chapter/js/chapter_module.ctr.js"></script>
 	<script src="/app/chapter/js/chapter_add.ctr.js"></script>
@@ -337,9 +343,12 @@
 	<script src="/app/gfe/js/gfe_module.ctr.js"></script>
 	<script src="/app/gfe/js/classroom.list.ctr.js"></script>
 	<script src="/app/gfe/js/classroom.list.users.ctr.js"></script>
-	<script src="/app/gfe/js/classroom_new_course.ctr.js"></script> 
+	<script src="/app/gfe/js/classroom_new_course.ctr.js"></script>
+	<script src="/app/gfe/js/classroom_course_update.ctr.js"></script>
+	<script src="/app/gfe/js/classroom_course_view.ctr.js"></script>
 	<script src="/app/gfe/js/classroom_new_user.ctr.js"></script>
 	<script src="/app/gfe/js/classroom_course_viewUser.ctr.js"></script>
+	
 
 
 </body>
