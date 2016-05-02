@@ -13,28 +13,10 @@ import com.protostar.billnstock.entity.BaseEntity;
 @Entity
 public class SalStruct extends BaseEntity{
 
-/*	@Id
-	private Long id;
 
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}*/
-	
 	@Index
 	private Ref<UserEntity> empAccount;
-	/*@Index
-	private Ref<BusinessEntity> business;
 	
-	
-	public BusinessEntity getBusiness() {
-		return business.get();
-	}
-	public void setBusiness(BusinessEntity business) {
-		this.business = Ref.create(business);
-	}*/
 	
 	public UserEntity getEmpAccount() {
 		return empAccount.get();

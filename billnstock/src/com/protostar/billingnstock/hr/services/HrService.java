@@ -105,6 +105,8 @@ SalStruct filteredsalstruct = ofy().load().type(SalStruct.class).filter("empAcco
 	@ApiMethod(name = "addgsalslip")
 	public SalSlip addgsalslip(SalSlip salslip) {
 		SalSlip salslips = salslip;
+				
+		
 		@SuppressWarnings("unused")
 		Key<SalSlip> now = ofy().save().entity(salslip).now();
 
