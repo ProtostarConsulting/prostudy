@@ -21,8 +21,21 @@ public class InvoiceEntity extends BaseEntity{
 	private Date invoiceDate;
 	@Index
 	private Date invoiceDueDate;
-	private String subTotal;
-	private String taxTotal;
+	private float productSubTotal;
+	
+	private float serviceSubTotal;
+	private float productTaxTotal;
+	private float serviceTaxTotal;
+	private float serviceTotal;
+	
+	public float getServiceTotal() {
+		return serviceTotal;
+	}
+
+	public void setServiceTotal(float serviceTotal) {
+		this.serviceTotal = serviceTotal;
+	}
+
 	private String finalTotal;
 	private String noteToCustomer;
 	private String status = "NotPaid";
@@ -32,7 +45,7 @@ public class InvoiceEntity extends BaseEntity{
 	private float discValue;
 	
 	private Long pOrder;
-	private float serviceSubTotal;
+	
 	
 	private List<InvoiceLineItem> invoiceLineItemList;
 	private List<ServiceLineItemList> serviceLineItemList;
@@ -40,7 +53,10 @@ public class InvoiceEntity extends BaseEntity{
 	Ref<SalesOrderEntity> salesOrderId;
 	Ref<AccountEntity> account;
 	Ref<TaxEntity> selectedTaxItem;
+	Ref<TaxEntity> selectedServiceTax;
 	
+	
+
 	@Index
 	Ref<Customer> customer;
 
@@ -57,6 +73,14 @@ public class InvoiceEntity extends BaseEntity{
 	}
 	public void setSelectedTaxItem(TaxEntity selectedTaxItem) {
 		this.selectedTaxItem = Ref.create(selectedTaxItem);
+	}
+	
+	public TaxEntity getSelectedServiceTax() {
+		return selectedServiceTax.get();
+	}
+
+	public void setSelectedServiceTax(TaxEntity selectedServiceTax) {
+		this.selectedServiceTax = Ref.create(selectedServiceTax);
 	}
 	
 	public SalesOrderEntity getSalesOrderId() {
@@ -93,20 +117,30 @@ public class InvoiceEntity extends BaseEntity{
 		this.serviceLineItemList = serviceLineItemList;
 	}
 
-	public String getSubTotal() {
-		return subTotal;
+
+	public float getProductSubTotal() {
+		return productSubTotal;
 	}
 
-	public void setSubTotal(String subTotal) {
-		this.subTotal = subTotal;
+	public void setProductSubTotal(float productSubTotal) {
+		this.productSubTotal = productSubTotal;
 	}
 
-	public String getTaxTotal() {
-		return taxTotal;
+
+	public float getProductTaxTotal() {
+		return productTaxTotal;
 	}
 
-	public void setTaxTotal(String taxTotal) {
-		this.taxTotal = taxTotal;
+	public void setProductTaxTotal(float productTaxTotal) {
+		this.productTaxTotal = productTaxTotal;
+	}
+
+	public float getServiceTaxTotal() {
+		return serviceTaxTotal;
+	}
+
+	public void setServiceTaxTotal(float serviceTaxTotal) {
+		this.serviceTaxTotal = serviceTaxTotal;
 	}
 
 	public String getFinalTotal() {
