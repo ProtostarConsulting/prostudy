@@ -93,7 +93,7 @@ public class BusinessEntity {
 	}
 
 	public Address getAddress() {
-		return address;
+		return address== null ? null : address;
 	}
 
 	public void setAddress(Address address) {

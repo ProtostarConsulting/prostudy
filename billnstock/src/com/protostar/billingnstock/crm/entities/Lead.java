@@ -35,7 +35,7 @@ public class Lead extends BaseEntity{
 	private Long phone;
 	private String email;
 	private String designation;
-	private String address;
+	/*private String address;*/
 	
 
 	public String getLid() {
@@ -116,12 +116,12 @@ public class Lead extends BaseEntity{
 		this.designation = designation;
 	}
 
-	public String getAddress() {
+	/*public String getAddress() {
 		return address;
 	}
 
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
+*/
 }

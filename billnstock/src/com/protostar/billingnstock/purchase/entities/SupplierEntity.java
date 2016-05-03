@@ -1,16 +1,6 @@
 package com.protostar.billingnstock.purchase.entities;
 
-import java.util.Date;
-import java.util.List;
-
-import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
-import com.googlecode.objectify.annotation.Id;
-import com.googlecode.objectify.annotation.Index;
-import com.protostar.billingnstock.cust.entities.Customer;
-import com.protostar.billingnstock.tax.entities.TaxEntity;
-import com.protostar.billingnstock.user.entities.BusinessEntity;
-import com.protostar.billingnstock.user.entities.UserEntity;
 import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
@@ -20,7 +10,7 @@ public class SupplierEntity extends BaseEntity{
 	private String contactFName;
 	private String contactLName;
 	private String email;
-	private String address;
+	/*private String address;*/
 	private String phone1 ;
 	private String mobile;
 	
@@ -49,12 +39,12 @@ public class SupplierEntity extends BaseEntity{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getAddress() {
+/*	public String getAddress() {
 		return address;
 	}
 	public void setAddress(String address) {
 		this.address = address;
-	}
+	}*/
 	public String getPhone1() {
 		return phone1;
 	}

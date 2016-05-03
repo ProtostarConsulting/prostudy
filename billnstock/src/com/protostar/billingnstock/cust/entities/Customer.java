@@ -12,7 +12,7 @@ public class Customer extends BaseEntity{
 	private String lastName;
 	private Long mobile;
 	private String email;
-	private String address;
+	/*private String address;*/
 	private String companyName;
 	private Boolean isCompany=false;
 	
@@ -63,14 +63,14 @@ public class Customer extends BaseEntity{
 		this.email = email;
 	}
 
-	public String getAddress() {
+	/*public String getAddress() {
 		return address;
 	}
 
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
+*/
 	
 
 	/*
