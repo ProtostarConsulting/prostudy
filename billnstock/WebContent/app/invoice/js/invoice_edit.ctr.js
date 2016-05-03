@@ -37,7 +37,7 @@ app
 						discAmount : 0,
 						pOrder : '',
 						serviceSubTotal : 0,
-						invoiceServiceLineItemList : [],
+						serviceLineItemList : [],
 						business : ""
 					};
 
@@ -90,14 +90,12 @@ app
 
 							InvoiceService.addInvoice($scope.invoiceObjEdit).then(
 									function(msgBean) {
-
-										$scope.showSimpleToast();
-
 									});
+							$scope.showUpdateToast();
 							$scope.invoiceEdit.$setPristine();
 							$scope.invoiceEdit.$setValidity();
 							$scope.invoiceEdit.$setUntouched();
-
+						
 							$scope.invoiceObjEdit = {};
 
 						}
@@ -220,13 +218,13 @@ app
 					 */
 					$scope.addService = function() {
 
-						var tempArray = $scope.invoiceObjEdit.invoiceServiceLineItemList;
+						var tempArray = $scope.invoiceObjEdit.serviceLineItemList;
 						if (tempArray == undefined) {
 
-							$scope.invoiceObjEdit['invoiceServiceLineItemList'] = invoiceServiceLineItemList;
+							$scope.invoiceObjEdit['serviceLineItemList'] = serviceLineItemList;
 
 							var service = {
-								srNo : $scope.invoiceObjEdit.invoiceServiceLineItemList.length + 1,
+								srNo : $scope.invoiceObjEdit.serviceLineItemList.length + 1,
 								serviceName : "",
 								sQty : 1,
 								sPrice : "",
@@ -234,28 +232,32 @@ app
 							};
 						} else {
 							var service = {
-								srNo : $scope.invoiceObjEdit.invoiceServiceLineItemList.length + 1,
+								srNo : $scope.invoiceObjEdit.serviceLineItemList.length + 1,
 								serviceName : "",
 								sQty : 1,
 								sPrice : "",
 								serviceSubTotal : 0
 							};
 						}
-						$scope.invoiceObjEdit.invoiceServiceLineItemList
+						$scope.invoiceObjEdit.serviceLineItemList
 								.push(service);
 					};
 
 					$scope.removeService = function(index) {
-						$scope.invoiceObjEdit.invoiceServiceLineItemList.splice(
+						$scope.invoiceObjEdit.serviceLineItemList.splice(
 								index, 1);
+						$scope.calServiceSubTotal();
+						$scope.calSubTotal();
+						$scope.calfinalTotal();
+						
 					};
 
 					$scope.calServiceSubTotal = function() {
 						$log.debug("##Came to calSubTotal...");
 						$scope.invoiceObjEdit.serviceSubTotal = 0;
 
-						for (var i = 0; i < $scope.invoiceObjEdit.invoiceServiceLineItemList.length; i++) {
-							var line = $scope.invoiceObjEdit.invoiceServiceLineItemList[i];
+						for (var i = 0; i < $scope.invoiceObjEdit.serviceLineItemList.length; i++) {
+							var line = $scope.invoiceObjEdit.serviceLineItemList[i];
 							$scope.invoiceObjEdit.serviceSubTotal += (line.sQty * line.sPrice);
 
 							$log.debug("subTotal :"

@@ -17,31 +17,31 @@
 
 
 			<span style="color: red;">*</span>
-
-			<md-autocomplete flex required ng-model="invoiceObj.customer"
-				md-input-name="autocompleteField" md-input-minlength="2"
-				md-input-maxlength="18" md-no-cache=true
-				md-selected-item="invoiceObj.customer"
-				md-search-text="searchTextInput"
-				md-items="item in querySearch(searchTextInput)"
-				md-item-text="item.firstName" md-floating-label="Customer Name">
-			<md-item-template> <span
-				md-highlight-text="searchTextInput">{{item.firstName}}</span> </md-item-template>
-			<div ng-messages="invoiceAdd.autocompleteField.$error"
-				ng-if="invoiceAdd.autocompleteField.$touched">
-				<div ng-message="required">
-					You <b>must</b> have to enter Customer Name.
+			<div layout="row" flex>
+				<md-autocomplete flex required ng-model="invoiceObj.customer"
+					md-input-name="autocompleteField" md-input-minlength="2"
+					md-input-maxlength="18" md-no-cache=true
+					md-selected-item="invoiceObj.customer"
+					md-search-text="searchTextInput"
+					md-items="item in querySearch(searchTextInput)"
+					md-item-text="item.firstName" md-floating-label="Customer Name">
+				<md-item-template> <span
+					md-highlight-text="searchTextInput">{{item.firstName}}</span> </md-item-template>
+				<div ng-messages="invoiceAdd.autocompleteField.$error"
+					ng-if="invoiceAdd.autocompleteField.$touched">
+					<div ng-message="required">
+						You <b>must</b> have to enter Customer Name.
+					</div>
+					<div ng-message="minlength">Your entry is not long enough.</div>
+					<div ng-message="maxlength">Your entry is too long.</div>
 				</div>
-				<div ng-message="minlength">Your entry is not long enough.</div>
-				<div ng-message="maxlength">Your entry is too long.</div>
+				</md-autocomplete>
+
+
+				<md-icon md-svg-src="img/icons/ic_queue_black_24px.svg"
+					ng-click="addCustomer()" class="name"
+					style="color: Green; height: 40px; width: 40px"></md-icon>
 			</div>
-			</md-autocomplete>
-
-
-			<md-icon md-svg-src="img/icons/ic_queue_black_24px.svg"
-				ng-click="addCustomer()" class="name"
-				style="color: Green; height: 40px; width: 40px"></md-icon>
-
 			Due Date:<span style="color: red;">*</span>
 			<md-datepicker flex ng-model="invoiceObj.invoiceDueDate"
 				md-placeholder="Select Date"></md-datepicker>
@@ -82,7 +82,7 @@
 			}}</md-option> </md-select> </md-input-container>
 
 			<md-input-container flex="25"> </label> <input
-				ng-model="discAmount" ng-blur="calfinalTotal()" name="discAmount">
+				ng-model="discAmount" ng-change="calfinalTotal()" name="discAmount">
 			</md-input-container>
 		</div>
 
@@ -129,17 +129,18 @@
 
 					<td><md-input-container flex> <label>Quantity
 						</label> <input ng-model="service.sQty" type="number"
-							ng-blur="calServiceSubTotal()"> </md-input-container></td>
+							ng-change="calServiceSubTotal()"> </md-input-container></td>
 					<td><md-input-container flex> <input
 							ng-model="service.sPrice" ng-change="calServiceSubTotal()"></md-input-container></td>
 					<td><md-input-container flex> <b>{{service.sQty
-							* service.sPrice}} </b></td>
+							* service.sPrice | currency:"":"2"}} </b></td>
 					<td><md-icon
 							md-svg-src="img/icons/ic_delete_forever_black_24px.svg"
 							ng-click="removeService($index)" class="name"
 							style="color: Green; height: 40px; width: 40px"></md-icon></td>
-
+					<td></td>
 				</tr>
+								
 				<tr>
 					<td><section layout="row" layout-sm="column"
 							layout-align="left left">
@@ -148,9 +149,44 @@
 						</section></td>
 					<td></td>
 					<td></td>
-					<td><label><u>Sub Total</u> </label></td>
-					<td><md-input-container flex> <b>{{invoiceObj.serviceSubTotal}}</b>
+					<td><label><u>Service Sub Total</u> </label></td>
+					<td><md-input-container flex> <b>{{invoiceObj.serviceSubTotal | currency:"":"2"}}</b>
 						</md-input-container></td>
+					<td></td>
+				</tr>
+				
+				<tr>
+					<td><label><u>Service Tax</u> </label></td>
+					<td></td>
+					<td><md-input-container flex
+							ng-hide="invoiceObj.serviceLineItemList.length==0">
+						<md-select ng-model="invoiceObj.selectedServiceTax" placeholder="select Tax"
+							ng-change="serviceTaxChange($index, selectedServiceTax, $event)"> <md-option ng-value="taxValue"
+							ng-repeat="taxValue in taxforinvoice">{{taxValue.taxCodeName}}</md-option>
+						</md-select> </md-input-container></td>
+					<td>{{invoiceObj.selectedServiceTax.taxPercenatge}}</td>
+					<td><md-input-container flex> <b>{{invoiceObj.servicetaxTotal | currency:"":"2"}}</b>
+						</md-input-container></td>
+					<td></td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><label><u>Service Total</u> </label></td>
+					<td><md-input-container flex> <b>{{invoiceObj.serviceTotal | currency:"":"2"}}</b>
+						</md-input-container></td>
+					<td></td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
 				</tr>
 			</tbody>
 		</table>
@@ -183,31 +219,23 @@
 							ng-model="selectedStockItem" placeholder="Item Name"
 							ng-change="lineItemStockChange($index, selectedStockItem)">
 						<md-option ng-value="item" ng-repeat="item in stockforinvoice">{{item.itemName
-						}}</md-option> </md-select> </md-input-container> 
-						
-						<md-icon md-svg-src="img/icons/ic_queue_black_24px.svg"
+						}}</md-option> </md-select> </md-input-container> <md-icon md-svg-src="img/icons/ic_queue_black_24px.svg"
 							ng-click="addStock()" class="name"
-							style="color: Green; height: 25px; width: 25px"></md-icon>New 
-							
-							
-							
-<!-- 							<md-button
+							style="color: Green; height: 25px; width: 25px"></md-icon>New <!-- 							<md-button
 							class="md-raised md-primary" id="addInvoice"><md-icon md-svg-src="img/icons/ic_queue_black_24px.svg"
 				ng-click="addCustomer()" class="name"
 				style="color: Green; height: 25px; width: 25px"></md-icon>New
 						</md-button>
 						
--->					
-						
-						</td>
+--></td>
 
 					<td><md-input-container flex> <label>Quantity
-						</label> <input ng-model="item.qty" ng-change="checkStock(item,$event)"
-							type="number" ng-blur="calSubTotal()"> </md-input-container></td>
+						</label> <input ng-model="item.qty" ng-blur="checkStock(item,$event)"
+							type="number" ng-change="calProductSubTotal()"> </md-input-container></td>
 					<td><md-input-container flex> <input
-							ng-model="item.price" ng-change="calSubTotal()"></md-input-container></td>
+							ng-model="item.price" ng-change="calProductSubTotal()"></md-input-container></td>
 					<td><md-input-container flex> <b>{{item.qty
-							* item.price}} </b></td>
+							* item.price | currency:"":"2"}} </b></td>
 					<td>
 						<!-- 						<section layout="row" layout-sm="column">
 							<md-button class="md-raised md-primary"
@@ -227,36 +255,46 @@
 						</section></td>
 					<td></td>
 					<td></td>
-					<td><label><u>Sub Total</u> </label></td>
-					<td><md-input-container flex> <b>{{invoiceObj.subTotal}}</b>
+					<td><label><u>Product Sub Total</u> </label></td>
+					<td><md-input-container flex> <b>{{invoiceObj.productSubTotal | currency:"":"2"}}</b>
 						</md-input-container></td>
+					<td></td>
 				</tr>
 				<tr>
-					<td><label><u>Tax Details</u> </label></td>
+					<td><label><u>Product Tax</u> </label></td>
 					<td></td>
 					<td><md-input-container flex
 							ng-hide="invoiceObj.invoiceLineItemList.length==0">
 						<md-select ng-model="invoiceObj.selectedTaxItem"
-							placeholder="Tax Type"
+							placeholder="select Tax"
 							ng-change="lineItemTaxChange($index, selectedTaxItem, $event)">
 						<md-option ng-value="taxValue"
 							ng-repeat="taxValue in taxforinvoice">{{taxValue.taxCodeName}}</md-option>
 						</md-select> </md-input-container></td>
-					<td><md-input-container flex> <label>Tax
-							% </label> <b> <input
-							ng-model="invoiceObj.selectedTaxItem.taxPercenatge" disabled>
-						</b> </md-input-container></td>
-					<td><md-input-container flex> <b>{{invoiceObj.taxTotal}}</b>
+					<td>{{invoiceObj.selectedTaxItem.taxPercenatge}}</td>
+					<td><md-input-container flex> <b>{{invoiceObj.productTaxTotal | currency:"":"2"}}</b>
 						</md-input-container></td>
+					<td></td>
 				</tr>
 
 				<tr>
 					<td></td>
 					<td></td>
 					<td></td>
+					<td><label><u>Product Total</u> </label></td>
+					<td><md-input-container flex> <b>{{invoiceObj.productTotal | currency:"":"2"}}</b>
+						</md-input-container></td>
+					<td></td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
 					<td><label><u>Discount</u> </label></td>
 					<td><md-input-container flex> <b>
-							{{tempDiscAmount}}</b> </md-input-container></td>
+							{{tempDiscAmount | currency:"":"2"}}</b> </md-input-container></td>
+					<td></td>
 				</tr>
 
 				<tr>
@@ -265,12 +303,18 @@
 					<td></td>
 					<td><label><u>Final Total</u> </label></td>
 					<td><md-input-container flex> <b>
-							{{invoiceObj.finalTotal}}</b> </md-input-container></td>
+							{{invoiceObj.finalTotal | currency:"":"2"}}</b> </md-input-container></td>
+					<td></td>
 				</tr>
 				<tr>
 					<td></td>
-
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
 				</tr>
+
 			</tbody>
 		</table>
 	</form>

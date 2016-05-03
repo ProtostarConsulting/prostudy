@@ -32,7 +32,6 @@ angular.module("stockApp").controller(
 					if ($scope.selectedStocksId != "") {
 					$scope.stock.createdDate =$scope.tempStock.createdDate;
 					}
-					
 				}
 
 				stockService.addStock($scope.stock).then(function(msgBean) {
@@ -102,10 +101,7 @@ angular.module("stockApp").controller(
 			$scope.stock = [];
 			$scope.waitForServiceLoad();
 			
-			$scope.showSimpleToast = function() {
-				$mdToast.show($mdToast.simple().content('Stock Item Saved!')
-						.position("top").hideDelay(3000));
-			};
+			
 
 			// Setup menu
 			$scope.toggleRight = buildToggler('right');

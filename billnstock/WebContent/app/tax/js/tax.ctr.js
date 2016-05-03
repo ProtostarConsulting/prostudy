@@ -37,6 +37,8 @@ angular.module("stockApp").controller(
 					$scope.showSimpleToast();
 
 				});
+				$scope.showAddToast();
+					
 				$scope.taxForm.$setPristine();
 				$scope.taxForm.$setValidity();
 				$scope.taxForm.$setUntouched();
@@ -78,7 +80,7 @@ angular.module("stockApp").controller(
 						function(msgBean) {							
 							$scope.showSimpleToastUpdateTax();
 					  		$scope.getAllTaxes();
-					  		window.history.back();
+					  		$scope.showUpdateToast();
 						});
 			}
 		

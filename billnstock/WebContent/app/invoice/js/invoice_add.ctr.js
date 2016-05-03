@@ -20,10 +20,13 @@ app
 						invoiceDate : new Date(),
 						invoiceDueDate : '',
 						invoiceLineItemList : [],
-						subTotal : '',
+						productSubTotal : '',
+						serviceSubTotal : '',
+						serviceTotal : '',
 						taxCodeName : '',
 						taxPercenatge : '',
-						taxTotal : 0,
+						productTaxTotal : 0,
+						serviceTaxTotal : 0,
 						finalTotal : '',
 						noteToCustomer : '',
 						account : "",
@@ -38,6 +41,7 @@ app
 						pOrder : '',
 						serviceSubTotal : 0,
 						serviceLineItemList : [],
+						selectedServiceTax :'',
 						business : ""
 					};
 
@@ -53,12 +57,8 @@ app
 							$scope.invoiceObj.modifiedBy = $scope.curUser.email_id;
 							$scope.invoiceObj.discValue = $scope.discAmount;
 							InvoiceService.addInvoice($scope.invoiceObj).then(
-									function(msgBean) {
-
-										$scope.showSimpleToast();
-
-									});
-							$log.debug("No4");
+									function(msgBean) {});
+							$scope.showAddToast();
 							$scope.invoiceAdd.$setPristine();
 							$scope.invoiceAdd.$setValidity();
 							$scope.invoiceAdd.$setUntouched();
@@ -74,7 +74,7 @@ app
 							itemName : "",
 							qty : 1,
 							price : "",
-							subTotal : ""
+							productSubTotal : ""
 						};
 
 						$scope.invoiceObj.invoiceLineItemList.push(item);
@@ -85,47 +85,83 @@ app
 						var lineSelectedItem = $scope.invoiceObj.invoiceLineItemList[index];
 						lineSelectedItem.price = stockItem.price;
 						lineSelectedItem.itemName = stockItem.itemName;
-						lineSelectedItem.subTotal = stockItem.subTotal;
+						lineSelectedItem.productSubTotal = stockItem.productSubTotal;
 
-						$scope.calSubTotal();
+						$scope.calProductSubTotal();
+					//	$scope.calSubTotal();
 						$scope.calfinalTotal();
 					};
 
-					$scope.calSubTotal = function() {
+					
+					$scope.calProductSubTotal = function() {
 						$log.debug("##Came to calSubTotal...");
-						$scope.invoiceObj.subTotal = 0;
+						$scope.invoiceObj.productSubTotal = 0;
 
 						for (var i = 0; i < $scope.invoiceObj.invoiceLineItemList.length; i++) {
 							var line = $scope.invoiceObj.invoiceLineItemList[i];
-							$scope.invoiceObj.subTotal += (line.qty * line.price);
+							$scope.invoiceObj.productSubTotal += (line.qty * line.price);
+							$scope.invoiceObj.productSubTotal = $scope.invoiceObj.productSubTotal;
+						}
+
+						$scope.invoiceObj.productSubTotal = parseFloat(
+								Math.round(($scope.invoiceObj.productSubTotal) * 100) / 100)
+								.toFixed(2);
+
+						$scope.invoiceObj.productTotal = parseFloat($scope.invoiceObj.productSubTotal) + $scope.invoiceObj.productTaxTotal;
+						
+						$scope.calfinalTotal();
+
+						return $scope.invoiceObj.productSubTotal;
+					}
+					
+/*					$scope.calSubTotal = function() {
+						$log.debug("##Came to calSubTotal...");
+						$scope.invoiceObj.productSubTotal = 0;
+
+						for (var i = 0; i < $scope.invoiceObj.invoiceLineItemList.length; i++) {
+							var line = $scope.invoiceObj.invoiceLineItemList[i];
+							$scope.invoiceObj.productSubTotal += (line.qty * line.price);
 
 						}
 
-						$scope.invoiceObj.subTotal = parseFloat(
-								Math.round(($scope.invoiceObj.subTotal) * 100) / 100)
+						$scope.invoiceObj.productSubTotal = parseFloat(
+								Math.round(($scope.invoiceObj.productSubTotal) * 100) / 100)
 								.toFixed(2);
 
 						$scope.calfinalTotal();
 
-						return $scope.invoiceObj.subTotal;
+						return $scope.invoiceObj.productSubTotal;
 					}
-
+*/
 					$scope.calfinalTotal = function() {
 						$log.debug("##Came to calSubTotal...");
 
 						$scope.tempDiscAmount = 0;
 						var finalTotal = 0;
 						var disc = 0;
+						$scope.invoiceObj.finalTotal = 0;
+						
 						if ($scope.lineSelectedDiscount != undefined) {
 							if ($scope.lineSelectedDiscount == "Fixed") {
 
 								$scope.tempDiscAmount = $scope.discAmount;
-								$scope.invoiceObj.discAmount = ($scope.tempDiscAmount).toFixed(2);
+								$scope.invoiceObj.discAmount = parseFloat(($scope.tempDiscAmount)).toFixed(2);
+								
+								if($scope.invoiceObj.productTotal == undefined){
+									$scope.invoiceObj.finalTotal = (parseFloat($scope.invoiceObj.serviceTotal))
+											- parseFloat($scope.discAmount)
+													.toFixed(2);
+								}else{
+								$scope.invoiceObj.finalTotal = (parseFloat($scope.invoiceObj.productTotal)
+										+ parseFloat($scope.invoiceObj.serviceTotal))
+										- parseFloat($scope.discAmount)
+												.toFixed(2);
+								}
 
 							} else {
 								disc = parseInt($scope.discAmount);
-								finalTotal = parseFloat($scope.invoiceObj.subTotal)
-										+ parseFloat($scope.invoiceObj.taxTotal)
+								finalTotal = parseFloat($scope.invoiceObj.productSubTotal)
+										+ parseFloat($scope.invoiceObj.productTaxTotal)
 										+ parseFloat($scope.invoiceObj.serviceSubTotal);
 
 								$scope.tempDiscAmount = ((disc / 100)
@@ -134,35 +170,56 @@ app
 								$scope.invoiceObj.discAmount = $scope.tempDiscAmount;
 
 							}
-							$scope.invoiceObj.finalTotal = (parseFloat($scope.invoiceObj.subTotal)
-									+ parseFloat($scope.invoiceObj.taxTotal) + parseFloat($scope.invoiceObj.serviceSubTotal))
+							if($scope.invoiceObj.productTotal == undefined){
+								$scope.invoiceObj.finalTotal = (parseFloat($scope.invoiceObj.serviceTotal))
+										- parseFloat($scope.tempDiscAmount)
+												.toFixed(2);
+							}else{
+							$scope.invoiceObj.finalTotal = (parseFloat($scope.invoiceObj.productTotal)
+									+ parseFloat($scope.invoiceObj.serviceTotal))
 									- parseFloat($scope.tempDiscAmount)
 											.toFixed(2);
+							}
 						} else {
-							var a = parseInt($scope.invoiceObj.subTotal);
-							var b = $scope.invoiceObj.taxTotal;
-							var c = parseFloat($scope.invoiceObj.serviceSubTotal);
+							var a = parseInt($scope.invoiceObj.productSubTotal);
+							var b = $scope.invoiceObj.productTaxTotal;
+							var c = parseFloat($scope.invoiceObj.serviceTotal);
 
-							$scope.invoiceObj.finalTotal = a + b + c;
-							$scope.invoiceObj.finalTotal = (parseFloat($scope.invoiceObj.subTotal)
-									+ $scope.invoiceObj.taxTotal + parseFloat($scope.invoiceObj.serviceSubTotal))
+/*							$scope.invoiceObj.finalTotal = a + b + c;
+							$scope.invoiceObj.finalTotal = (parseFloat($scope.invoiceObj.productSubTotal)
+									+ $scope.invoiceObj.productTaxTotal + parseFloat($scope.invoiceObj.serviceSubTotal))
 									.toFixed(2);
+									
+									
+*/							
+							if($scope.invoiceObj.serviceLineItemList.length == 0){
+								$scope.invoiceObj.serviceTotal = 0;
+								$scope.serviceTaxChange = "";
+							}
+							
 							$scope.invoiceObj.finalTotal = a + b + c;
-						}
+
+/*							$scope.invoiceObj.finalTotal = parseFloat($scope.invoiceObj.serviceSubTotal) + 
+															parseInt($scope.invoiceObj.productSubTotal) - 
+															parseFloat($scope.tempDiscAmount);  
+*/						}
 					}
 					$scope.lineItemTaxChange = function(index, selectedTaxItem,
 							$event) {
 						$log.debug("##Came to lineItemTaxChange...");
 
-						$scope.invoiceObj.taxTotal = parseFloat(($scope.invoiceObj.selectedTaxItem.taxPercenatge / 100)
-								* ($scope.invoiceObj.subTotal));
+						$scope.invoiceObj.productTaxTotal = parseFloat(($scope.invoiceObj.selectedTaxItem.taxPercenatge / 100)
+								* ($scope.invoiceObj.productSubTotal));
 
 						$scope.calfinalTotal();
 					};
 
+					
+					
 					$scope.removeItem = function(index) {
 						$scope.invoiceObj.invoiceLineItemList.splice(index, 1);
-						$scope.calSubTotal();
+						$scope.calProductSubTotal();
+					//	$scope.calSubTotal();
 						$scope.calfinalTotal();
 					};
 
@@ -184,8 +241,30 @@ app
 
 					$scope.removeService = function(index) {
 						$scope.invoiceObj.serviceLineItemList.splice(index, 1);
+						
+						if($scope.invoiceObj.serviceLineItemList.length == 0){
+							$scope.invoiceObj.serviceTotal = 0;
+							$scope.serviceTaxChange = "";
+						}
+						
+						$scope.calServiceSubTotal();
+					//	$scope.serviceTaxChange();
+						$scope.calfinalTotal();
+						
+						
 					};
 
+					$scope.serviceTaxChange = function(index, selectedServiceTax,
+							$event) {
+						$log.debug("##Came to lineItemTaxChange...");
+
+						$scope.invoiceObj.servicetaxTotal = parseFloat(($scope.invoiceObj.selectedServiceTax.taxPercenatge / 100)
+								* ($scope.invoiceObj.serviceSubTotal));
+
+						$scope.invoiceObj.serviceTotal = $scope.invoiceObj.serviceSubTotal + $scope.invoiceObj.servicetaxTotal;
+						$scope.calfinalTotal();
+					};
+					
 					$scope.calServiceSubTotal = function() {
 						$log.debug("##Came to calSubTotal...");
 						$scope.invoiceObj.serviceSubTotal = 0;
@@ -193,18 +272,16 @@ app
 						for (var i = 0; i < $scope.invoiceObj.serviceLineItemList.length; i++) {
 							var line = $scope.invoiceObj.serviceLineItemList[i];
 							$scope.invoiceObj.serviceSubTotal += (line.sQty * line.sPrice);
-
-							$log.debug("subTotal :"
-									+ $scope.invoiceObj.serviceSubTotal);
+							$scope.invoiceObj.serviceTotal = $scope.invoiceObj.serviceSubTotal;
 						}
 
-						$scope.invoiceObj.subTotal = parseFloat(
-								Math.round(($scope.invoiceObj.subTotal) * 100) / 100)
+						$scope.invoiceObj.productSubTotal = parseFloat(
+								Math.round(($scope.invoiceObj.productSubTotal) * 100) / 100)
 								.toFixed(2);
 
 						$scope.calfinalTotal();
 
-						return $scope.invoiceObj.subTotal;
+						return $scope.invoiceObj.productSubTotal;
 					}
 
 					$scope.discountType = [ "%", "Fixed" ];
@@ -522,7 +599,6 @@ app
 										function() {
 											$scope.status = 'You cancelled the dialog.';
 										});
-
 					};
 
 					function DialogController($scope, $mdDialog, curUser,

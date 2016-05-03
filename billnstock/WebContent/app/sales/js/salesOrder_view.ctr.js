@@ -26,12 +26,16 @@ app
 											$scope.sODetail.finalTotal = Math
 													.round($scope.sODetail.finalTotal);
 											$scope.finalTotalInWord = NumToWord($scope.sODetail.finalTotal);
-
-											$log
-													.debug("$scope.showSales Order ===="
-															+ angular
-																	.toJson($scope.sODetail));
 										});
+						
+						if($scope.sODetail.sOLineItemList == undefined){
+							
+							$("#productDiv").hide();
+						}
+						else if($scope.sODetail.serviceLineItemList == undefined){
+							
+							$("#serviceDiv").hide();
+						}
 
 					}
 					$scope.sODetail = [];

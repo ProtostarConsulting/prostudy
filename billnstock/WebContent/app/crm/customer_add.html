@@ -6,16 +6,14 @@
 [<span style="color: red;">Field Marked as asterik (*) are
 	mandetory</span>]
 <form name="custForm">
-<md-input-container flex>
-		 Is company 
-		<md-checkbox ng-model="customer.isCompany" ng-true-value="true"
-			ng-false-value="false"> </md-checkbox>
-		</md-input-container>	
-<div layout="row" layout-xs="column">
-		<md-input-container flex ng-show="customer.isCompany"> <label>Enter Company Name
-			 <span style="color: red;">*</span>
+	<md-input-container flex> Is company <md-checkbox
+		ng-model="customer.isCompany" ng-true-value="true"
+		ng-false-value="false"> </md-checkbox> </md-input-container>
+	<div layout="row" layout-xs="column">
+		<md-input-container flex ng-show="customer.isCompany">
+		<label>Enter Company Name <span style="color: red;">*</span>
 		</label> <input name="companyName" ng-model="customer.companyName"
-			 ng-required="customer.isCompany">
+			ng-required="customer.isCompany">
 		<div ng-messages="custForm.companyName.$error"
 			ng-if="custForm.companyName.$submitted || custForm.companyName.$touched">
 			<div ng-message="required">Please Enter Company Name
@@ -27,13 +25,15 @@
 		</div>
 
 		</md-input-container>
-</div>
-<lable ng-show="customer.isCompany"> <h3 class="md-subhead">Enter Primary Contact Details</h3></lable>
+	</div>
+	<lable ng-show="customer.isCompany">
+	<h3 class="md-subhead">Enter Primary Contact Details</h3>
+	</lable>
 	<div layout="row" layout-xs="column">
 		<md-input-container flex> <label>First
 			Name <span style="color: red;">*</span>
 		</label> <input name="firstName" ng-model="customer.firstName"
-			 ng-required="true">
+			ng-required="true">
 		<div ng-messages="custForm.firstName.$error"
 			ng-if="custForm.firstName.$submitted || custForm.firstName.$touched">
 			<div ng-message="required">Please Enter First
@@ -49,7 +49,7 @@
 		<md-input-container flex> <label>Last
 			Name <span style="color: red;">*</span>
 		</label> <input name="lastName" ng-model="customer.lastName"
-			 ng-required="true">
+			ng-required="true">
 		<div ng-messages="custForm.lastName.$error"
 			ng-if="custForm.lastName.$submitted || custForm.lastName.$touched">
 			<div ng-message="required">Please Enter Last
@@ -79,7 +79,8 @@
 
 		<md-input-container flex> <label>Email <span
 			style="color: red;">*</span></label> <input type="email" name="email"
-			ng-model="customer.email" ng-required="true" ng-pattern="/^.+@.+\..+$/">
+			ng-model="customer.email" ng-required="true"
+			ng-pattern="/^.+@.+\..+$/">
 		<div ng-messages="custForm.email.$error"
 			ng-if="custForm.email.$submitted || custForm.email.$touched">
 			<div ng-message="required">Please Enter Email
@@ -88,13 +89,26 @@
 		</md-input-container>
 	</div>
 
+	<h3 class="md-subhead">Address</h3>
 	<div layout layout-sm="column">
-		<md-input-container flex>  <label ng-show="customer.isCompany">Company Address
-			<span style="color: red;">*</span>
-		</label> 
-		<label ng-hide="customer.isCompany">Address
-			<span style="color: red;">*</span>
-		</label> <textarea name="address" ng-model="customer.address" ng-required="true"></textarea>
+
+
+		<md-input-container flex> <label
+			ng-show="customer.isCompany">Company Address <span
+			style="color: red;">*</span>
+		</label> <label ng-hide="customer.isCompany">Line1 <span
+			style="color: red;">*</span>
+		</label> <textarea name="address" ng-model="customer.address"
+			ng-required="true"></textarea>
+		<div ng-messages="custForm.address.$error"
+			ng-if="custForm.address.$submitted || custForm.address.$touched">
+			<div ng-message="required">Please Enter Address</div>
+		</div>
+		</md-input-container>
+		<md-input-container flex> <label
+			ng-hide="customer.isCompany">Line2 <span style="color: red;">*</span>
+		</label> <textarea name="address" ng-model="customer.address"
+			ng-required="true"></textarea>
 		<div ng-messages="custForm.address.$error"
 			ng-if="custForm.address.$submitted || custForm.address.$touched">
 			<div ng-message="required">Please Enter Address</div>
@@ -102,19 +116,21 @@
 		</md-input-container>
 	</div>
 
-<!-- 	<section layout="row" layout-sm="column" layout-align="left left">
+	<!-- 	<section layout="row" layout-sm="column" layout-align="left left">
 		<md-button ng-disabled="custForm.$invalid"
 			class="md-raised md-primary" type="submit">Add</md-button>
 	</section>
- -->	
-	
-		<section layout="row" layout-sm="column" layout-align="left left">
+ -->
+
+	<section layout="row" layout-sm="column" layout-align="left left">
 		<md-button ng-disabled="custForm.$invalid"
-			class="md-raised md-primary" ng-hide="customer.id" ng-click="addCustomer()">Add</md-button>
+			class="md-raised md-primary" ng-hide="customer.id"
+			ng-click="addCustomer()">Add</md-button>
 	</section>
-	
-		<section layout="row" layout-sm="column" layout-align="left left">
+
+	<section layout="row" layout-sm="column" layout-align="left left">
 		<md-button ng-disabled="custForm.$invalid"
-			class="md-raised md-primary" ng-hide="customer.id == null" ng-click="addCustomer()">Update</md-button>
+			class="md-raised md-primary" ng-hide="customer.id == null"
+			ng-click="addCustomer()">Update</md-button>
 	</section>
 </form>

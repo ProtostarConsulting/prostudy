@@ -1221,7 +1221,7 @@ function googleEndpointSF($log, $q) {
 		gapi.client.invoiceService.getinvoiceByID({
 			"id" : id
 		}).execute(function(resp) {
-			$log.debug("getinvoiceByID at enpoint" + angular.toJson(resp));
+		//	$log.debug("getinvoiceByID at enpoint" + angular.toJson(resp));
 			deferred.resolve(resp);
 		});
 		return deferred.promise;

@@ -82,7 +82,7 @@
 				ng-selected="invoiceObjEdit.discount">{{discount }}</md-option> </md-select> </md-input-container>
 
 			<md-input-container flex="25"> </label> <input
-				ng-model="invoiceObjEdit.discAmount" ng-blur="calfinalTotal()"
+				ng-model="invoiceObjEdit.discValue" ng-blur="calfinalTotal()"
 				name="discAmount"> </md-input-container>
 		</div>
 
@@ -121,7 +121,7 @@
 			</thead>
 
 			<tbody>
-				<tr ng-repeat="service in invoiceObjEdit.invoiceServiceLineItemList">
+				<tr ng-repeat="service in invoiceObjEdit.serviceLineItemList">
 
 					<td>{{ $index+1 }}</td>
 					<td><md-input-container flex> <label>Service
@@ -133,7 +133,7 @@
 					<td><md-input-container flex> <input
 							ng-model="service.sPrice" ng-change="calServiceSubTotal()"></md-input-container></td>
 					<td><md-input-container flex> <b>{{service.sQty
-							* service.sPrice}} </b></td>
+							* service.sPrice | currency:"":2}} </b></td>
 					<td><md-icon
 							md-svg-src="img/icons/ic_delete_forever_black_24px.svg"
 							ng-click="removeService($index)" class="name"
@@ -148,8 +148,8 @@
 						</section></td>
 					<td></td>
 					<td></td>
-					<td><label><u>Sub Total</u> </label></td>
-					<td><md-input-container flex> <b>{{invoiceObjEdit.serviceSubTotal}}</b>
+					<td><label><u>Service Total</u> </label></td>
+					<td><md-input-container flex> <b>{{invoiceObjEdit.serviceSubTotal | currency:"":2}}</b>
 						</md-input-container></td>
 				</tr>
 				<tr>
@@ -196,7 +196,7 @@
 					<td><md-input-container flex> <input
 							ng-model="item.price" ng-change="calSubTotal()"></md-input-container></td>
 					<td><md-input-container flex> <b>{{item.qty
-							* item.price}} </b></td>
+							* item.price | currency:"":2}} </b></td>
 					<td>
 						<!-- 						<section layout="row" layout-sm="column">
 							<md-button class="md-raised md-primary"
@@ -217,7 +217,7 @@
 					<td></td>
 					<td></td>
 					<td><label><u>Sub Total</u> </label></td>
-					<td><md-input-container flex> <b>{{invoiceObjEdit.subTotal}}</b>
+					<td><md-input-container flex> <b>{{invoiceObjEdit.subTotal | currency:"":2}}</b>
 						</md-input-container></td>
 				</tr>
 				<tr>
@@ -230,11 +230,8 @@
 							ng-repeat="taxValue in taxforinvoice"
 							ng-selected="taxValue.taxCodeName">{{taxValue.taxCodeName}}</md-option>
 						</md-select> </md-input-container></td>
-					<td><md-input-container flex> <label>Tax
-							% </label> <b> <input
-							ng-model="invoiceObjEdit.selectedTaxItem.taxPercenatge" disabled>
-						</b> </md-input-container></td>
-					<td><md-input-container flex> <b>{{invoiceObjEdit.taxTotal}}</b>
+					<td>{{invoiceObjEdit.selectedTaxItem.taxPercenatge}}%</td>
+					<td><md-input-container flex> <b>{{invoiceObjEdit.taxTotal | currency:"":2}}</b>
 						</md-input-container></td>
 				</tr>
 
@@ -244,7 +241,7 @@
 					<td></td>
 					<td><label><u>Discount</u> </label></td>
 					<td><md-input-container flex> <b>
-							{{invoiceObjEdit.discAmount}}</b> </md-input-container></td>
+							{{invoiceObjEdit.discAmount | currency:"":2}}</b> </md-input-container></td>
 				</tr>
 
 				<tr>
@@ -253,7 +250,7 @@
 					<td></td>
 					<td><label><u>Final Total</u> </label></td>
 					<td><md-input-container flex> <b>
-							{{invoiceObjEdit.finalTotal}}</b> </md-input-container></td>
+							{{invoiceObjEdit.finalTotal | currency:"":2}}</b> </md-input-container></td>
 				</tr>
 				<tr>
 					<td>-</td>

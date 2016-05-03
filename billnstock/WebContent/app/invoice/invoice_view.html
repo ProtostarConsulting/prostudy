@@ -1,8 +1,8 @@
 <md-content>
 <div class="md-toolbar-tools">
-<h3>
-	<u>Invoice View</u>
-</h3>
+	<h3>
+		<u>Invoice View</u>
+	</h3>
 	<span flex></span>
 	<section layout="row">
 		<md-button class="md-icon-button md-accent"
@@ -34,7 +34,9 @@
 			<md-divider flex></md-divider>
 			</div>-->
 		<hr>
-<h4 style="text-align: center;"><u>Invoice</u></h4>
+		<h4 style="text-align: center;">
+			<u>Invoice</u>
+		</h4>
 		<table style="line-height: 20px;">
 
 
@@ -55,9 +57,12 @@
 
 					<td style="width: 20%"><b>Sales Order No. :</b>
 						{{invoiceDetail.salesOrderId.id}}</td>
+
+					<td style="width: 20%"><b>Discount :</b>
+						{{invoiceDetail.discValue}}</td>
 				</tr>
 				<tr>
-					<td colspan="3" style="width: 20%"><label>Note :</label>{{invoiceDetail.note}}</td>
+					<td colspan="3" style="width: 20%"><label>Note :</label>{{invoiceDetail.noteToCustomer}}</td>
 				</tr>
 		</table>
 		<div layout="row" layout-align="center start"
@@ -65,69 +70,144 @@
 			<md-divider flex></md-divider>
 		</div>
 		<hr>
-		<table>
-			<thead style="background-color: gray">
-				<tr>
-					<th style="width: 3%">Sr.No.</th>
-					<th style="width: 50%">Item Name</th>
-					<th style="width: 10%">Quantity</th>
-					<th style="width: 20%">Price</th>
-					<th style="width: 17%">Total</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="invoiceLineItem in invoiceDetail.invoiceLineItemList">
 
-					<td>{{ $index+1 }}</td>
-					<td>{{invoiceLineItem.itemName}}</td>
-					<td>{{invoiceLineItem.qty}}</td>
-					<td>{{invoiceLineItem.price}}</td>
-					<td>{{invoiceLineItem.qty * invoiceLineItem.price | currency : 2}}</td>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td><label><u>Sub Total</u> </label></td>
-					<td style="text-align: right">{{invoiceDetail.subTotal | currency : 2}}</td>
-				</tr>
+		<div id="serviceDiv">
+			<h3>Services Provided</h3>
+			<table>
+				<thead style="background-color: gray">
+					<tr>
+						<th style="width: 3%">Sr.No.</th>
+						<th style="width: 50%">Item Name</th>
+						<th style="width: 10%">Quantity</th>
+						<th style="width: 20%">Price</th>
+						<th style="width: 17%">Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr
+						ng-repeat="serviceLineItem in invoiceDetail.serviceLineItemList">
 
-				<tr>
-					<td colspan="5"><b><u>Tax Details</u> </b></td>
-				</tr>
-				<tr style="background-color: gray">
-					<td></td>
-					<td></td>
-					<td><b>Tax Type </b></td>
-					<td><b>Tax </b></td>
-					<td style="text-align: left"><b>Tax Total </b></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td>{{invoiceDetail.selectedTaxItem.taxCodeName}}</td>
-					<td>{{invoiceDetail.selectedTaxItem.taxPercenatge}}%</td>
-					<td style="text-align: right">{{invoiceDetail.taxTotal | currency :"": 2}}</td>
-				</tr>
-				<tr>
-					<td>-</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td><label><u>Final Total</u> </label></td>
-					<td style="text-align: right">
-						{{invoiceDetail.finalTotal | currency :"INR ": 2 }}</td>
-				</tr>
-				<tr>
-					<td colspan="5"><br></td>
-				</tr>
-				<tr>
+						<td>{{ $index+1 }}</td>
+						<td>{{serviceLineItem.serviceName}}</td>
+						<td>{{serviceLineItem.sQty}}</td>
+						<td>{{serviceLineItem.sPrice | currency :"": 2}}</td>
+						<td>{{serviceLineItem.sQty * serviceLineItem.sPrice |
+							currency :"": 2 }}</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><label><u>Service Sub Total</u> </label></td>
+						<td style="text-align: right">{{invoiceDetail.serviceSubTotal
+							| currency :"": 2}}</td>
+					</tr>
+					<tr>
+						<td colspan="5"><b><u>Service Tax</u> </b></td>
+					</tr>
+					<tr style="background-color: gray">
+						<td></td>
+						<td></td>
+						<td><b>Tax Type </b></td>
+						<td><b>Tax </b></td>
+						<td style="text-align: left"><b>Tax Total </b></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td>{{invoiceDetail.selectedServiceTax.taxCodeName}}</td>
+						<td>{{invoiceDetail.selectedServiceTax.taxPercenatge}}%</td>
+						<td>{{invoiceDetail.serviceTaxTotal | currency :"": 2}}</td>
+					</tr>
+
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><label><u>Service Total</u> </label></td>
+						<td style="text-align: right">{{invoiceDetail.serviceTotal | currency :"": 2}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<hr>
+		</div>
+
+		<div id="productDiv">
+			<h3>Product/Item Sold</h3>
+			<table>
+				<thead style="background-color: gray">
+					<tr>
+						<th style="width: 3%">Sr.No.</th>
+						<th style="width: 50%">Item Name</th>
+						<th style="width: 10%">Quantity</th>
+						<th style="width: 20%">Price</th>
+						<th style="width: 17%">Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr
+						ng-repeat="invoiceLineItem in invoiceDetail.invoiceLineItemList">
+
+						<td>{{ $index+1 }}</td>
+						<td>{{invoiceLineItem.itemName}}</td>
+						<td>{{invoiceLineItem.qty}}</td>
+						<td>{{invoiceLineItem.price | currency :"": 2}}</td>
+						<td>{{invoiceLineItem.qty * invoiceLineItem.price | currency
+							:"": 2}}</td>
+					</tr>
+					
+					
+					<tr>
+						<td colspan="5"><b><u>Product Tax</u> </b></td>
+					</tr>
+					<tr style="background-color: gray">
+						<td></td>
+						<td></td>
+						<td><b>Tax Type </b></td>
+						<td><b>Tax </b></td>
+						<td style="text-align: left"><b>Tax Total </b></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td>{{invoiceDetail.selectedTaxItem.taxCodeName}}</td>
+						<td>{{invoiceDetail.selectedTaxItem.taxPercenatge}}%</td>
+						<td>{{invoiceDetail.productTaxTotal | currency :"": 2}}</td>
+					</tr>
+					<tr>
+						<td>-</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>-</td>
+						<td></td>
+						<td></td>
+						<td><label><u>Product Sub Total</u> </label></td>
+						<td>{{invoiceDetail.productSubTotal | currency :"": 2}}</td>
+					</tr>
+					<tr>
+						<td>-</td>
+						<td></td>
+						<td></td>
+						<td><label><u>Discount</u> </label></td>
+						<td>{{invoiceDetail.discAmount | currency :"": 2}}</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><label><u>Final Total</u> </label></td>
+						<td style="text-align: right">{{invoiceDetail.finalTotal |
+							currency :"INR ": 2 }}</td>
+					</tr>
+					<tr>
+						<td colspan="5"><br></td>
+					</tr>
+
+					<!-- 				<tr>
 					<td colspan="5" style="text-align: right">
 						<div>
 							<b> <u>{{"Rupees :" + finalTotalInWord + " Only"}}</u>
@@ -135,11 +215,16 @@
 						</div>
 					</td>
 				</tr>
-			</tbody>
-		</table>
-
+ -->
+				</tbody>
+			</table>
+		</div>
 	</div>
+	<hr>
 
+	<div style="text-align: right">
+		<b> <u>{{"Rupees :" + finalTotalInWord + " Only"}}</u>
+	</div>
 	<div style="position: fixed; bottom: 0;" ng-show="myValue"
 		class="ng-hide">
 		<b><u>Note</u>:</b>This is electronically generated invoice. Needs no

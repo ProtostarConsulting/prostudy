@@ -39,10 +39,15 @@ app
 											$scope.invoiceDetail = invoiceList;
 											$scope.invoiceDetail.finalTotal = Math.round($scope.invoiceDetail.finalTotal);
 											$scope.finalTotalInWord = NumToWord($scope.invoiceDetail.finalTotal);
-											$log
-													.debug("$scope.showBill:invoiceDetail ===="
-															+ angular
-																	.toJson($scope.invoiceDetail));
+											
+											if($scope.invoiceDetail.invoiceLineItemList == undefined){
+												
+												$("#productDiv").hide();
+											}
+											else if($scope.invoiceDetail.serviceLineItemList == undefined){
+												
+												$("#serviceDiv").hide();
+											}
 										});
 
 					}
