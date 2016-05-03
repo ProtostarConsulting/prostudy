@@ -35,11 +35,6 @@
     			</div>
     			<div layout="row" >
     				<md-input-container flex>
-      				<label>Country</label>
-      				<input name="country" ng-model="Address.country" >
-    				</md-input-container>
-    				
-    				<md-input-container flex>
       				<label>State <span style="color: red;">*</span></label>
       				<input name="state" ng-model="Address.state" ng-required="true" >
       				<div ng-messages="editBusiness.state.$error"
@@ -47,6 +42,13 @@
 					<div ng-message="required">Please Enter State Name.</div>
 					</div>
     				</md-input-container>
+    				
+    				<md-input-container flex>
+      				<label>Country</label>
+      				<input name="country" ng-model="Address.country" >
+    				</md-input-container>
+    				
+    				
     			</div>
     			<div layout="row" >
     				<md-input-container flex>

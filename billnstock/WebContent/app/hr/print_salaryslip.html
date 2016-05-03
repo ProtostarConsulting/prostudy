@@ -39,10 +39,10 @@ display:none;
 					
 					</td>
 				<td style="width: 60%">
-					<h2 style="color: green">{{curUser.business.businessName}}</h2>
+					<h2 style="color: green">&nbsp;&nbsp;{{curUser.business.businessName}}</h2>
 				</td>
-				<td style="width: 20%"><label style="color: blue"><u>Address</u><br>E-101,
-						Manimangar Appartment<br>Kasarwadi-414141.<br>Ph.(020)4141414.<br>info@protostar.co.in
+				<td style="width: 20%"><label style="color: blue"><u>Address</u><br>
+				{{curUser.business.address.line1}} {{curUser.business.address.line2}}<br>{{curUser.business.address.state}}<br>{{curUser.business.address.city}}<br>{{curUser.business.address.pin}} {{curUser.business.address.country}}
 				</label></td>
 			</tr>
 		</tbody>
@@ -152,7 +152,7 @@ display:none;
 
 
 							</table>
-							<br> <b>Salary in Word :{{netsalinword | number:2}} </b> <br> <b>Name
+							<br> <b>Salary in Word :{{netsalinword }} </b> <br> <b>Name
 								Of Bank :</b> <br> <b>Signature of Employee :</b> <br>
 							<br>
 							<br>

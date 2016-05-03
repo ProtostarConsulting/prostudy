@@ -39,6 +39,8 @@ angular
 						var UserService = appEndpointSF	.getUserService();
 							UserService.getbusinessById($scope.Bid).then(function(Business) {
 										$scope.business=Business;
+										$scope.Address=$scope.business.address;
+										
 							});
 						
 					}
@@ -64,6 +66,8 @@ angular
 						setupService
 								.updateBusiness($scope.business)
 								.then(function(msgBean) {
+									$scope.curuser.business=$scope.business;
+									appEndpointSF.getLocalUserService().saveLoggedInUser($scope.curuser);
 									$scope.showUpdateToast();
 										});
 					}
