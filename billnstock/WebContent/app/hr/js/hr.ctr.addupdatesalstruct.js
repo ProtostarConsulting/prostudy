@@ -28,7 +28,7 @@ angular
 					
 					
 					$scope.salstruct = {
-							business:"",
+						business:"",
 						empAccount : "",
 						grosssal : 0,
 						monthly : 0,

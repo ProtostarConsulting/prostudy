@@ -18,6 +18,18 @@ angular
 					$scope.curuser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
 
+					
+					$scope.Address={
+							line1:"",
+							line2:"",
+							city:"",
+							state:"",
+							country:"",
+							pin:""
+					}
+					
+					
+					
 					$scope.getBusinessById=function(){
 						if(typeof $scope.businessNo == "undefined"){
 							$scope.Bid=$scope.curuser.business.id;
@@ -46,7 +58,8 @@ angular
 					$scope.waitForServiceLoad();
 					
 					
-					$scope.updateBusiness = function() {
+					$scope.updateBusiness = function() {						
+						$scope.business.address=$scope.Address;
 						var setupService = appEndpointSF.getsetupService();
 						setupService
 								.updateBusiness($scope.business)

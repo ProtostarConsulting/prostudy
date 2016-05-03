@@ -29,14 +29,17 @@ display:none;
 </md-content>
 <md-content layout-padding>
 
-<div  id="salSlipDiv"  >
+<div  id="salSlipDiv">
 	<table id="hidetr">
 		<tbody>
 			<tr>
-				<td style="width: 20%"><img alt="Logo"
-					src="img/images/protostar_logo_pix_313_132.jpg"></td>
+				<td style="width: 20%"><!-- <img alt="Logo"
+					src="img/images/protostar_logo_pix_313_132.jpg"> -->
+					<img ng-src="{{logBaseURL}}" class="md-card-image" alt="Compnay Logo" height="60px" width="120px"/>
+					
+					</td>
 				<td style="width: 60%">
-					<h2 style="color: green">Protostar Consulting Services</h2>
+					<h2 style="color: green">{{curUser.business.businessName}}</h2>
 				</td>
 				<td style="width: 20%"><label style="color: blue"><u>Address</u><br>E-101,
 						Manimangar Appartment<br>Kasarwadi-414141.<br>Ph.(020)4141414.<br>info@protostar.co.in
@@ -87,31 +90,31 @@ display:none;
 								</tr>
 								<tr>
 									<td width="25%">Basic</td>
-									<td width="25%">{{emp.bmonthly}}</td>
+									<td width="25%" align="right">{{emp.bmonthly | number:2}}</td>
 									<td width="25%">Provident Fund</td>
 									<td width="25%"></td>
 								</tr>
 								<tr>
 									<td width="25%">HRA</td>
-									<td width="25%">{{emp.hramonthly}}</td>
+									<td width="25%" align="right">{{emp.hramonthly | number:2}}</td>
 									<td width="25%">ESI</td>
 									<td width="25%"></td>
 								</tr>
 								<tr>
 									<td width="25%">Conveyance</td>
-									<td width="25%">{{emp.convmonthly}}</td>
+									<td width="25%" align="right">{{emp.convmonthly | number:2}}</td>
 									<td width="25%">Loan</td>
 									<td width="25%"></td>
 								</tr>
 								<tr>
 									<td width="25%">City Compensatory All</td>
-									<td width="25%">{{emp.ccamonthly}}</td>
+									<td width="25%" align="right">{{emp.ccamonthly | number:2}}</td>
 									<td width="25%">Profession Tax</td>
-									<td width="25%">{{emp.pf1+emp.pf1}}</td>
+									<td width="25%" align="right">{{emp.pf1+emp.pf1 | number:2}}</td>
 								</tr>
 								<tr>
 									<td width="25%">Special Allowance</td>
-									<td width="25%">{{emp.samonthly}}</td>
+									<td width="25%" align="right">{{emp.samonthly | number:2}}</td>
 									<td width="25%">TSD/IT</td>
 									<td width="25%"></td>
 								</tr>
@@ -119,13 +122,13 @@ display:none;
 									<td width="25%"></td>
 									<td width="25%"></td>
 									<td width="25%">Other 1</td>
-									<td width="25%">{{emp.ldother1amt}}</td>
+									<td width="25%" align="right">{{emp.ldother1amt | number:2}}</td>
 								</tr>
 								<tr>
 									<td width="25%"></td>
 									<td width="25%"></td>
 									<td width="25%">Other 2</td>
-									<td width="25%">{{emp.ldother2amt}}</td>
+									<td width="25%" align="right">{{emp.ldother2amt | number:2}}</td>
 								</tr>
 								<tr>
 									<td width="25%"></td>
@@ -135,21 +138,21 @@ display:none;
 								</tr>
 								<tr>
 									<td width="25%">Total Addition</td>
-									<td width="25%">{{TotalAddition}}<!-- {{emp.bmonthly+emp.hramonthly+emp.convmonthly+emp.samonthly+emp.ccamonthly
+									<td width="25%" align="right">{{TotalAddition | number:2 }}<!-- {{emp.bmonthly+emp.hramonthly+emp.convmonthly+emp.samonthly+emp.ccamonthly
 										}} --></td>
 									<td width="25%">Total Deduction</td>
-									<td width="25%">{{TotalDeduction}}<!-- {{emp.pf1+emp.pf1+emp.ldother1amt+emp.ldother2amt}} --></td>
+									<td width="25%" align="right">{{TotalDeduction | number:2}}<!-- {{emp.pf1+emp.pf1+emp.ldother1amt+emp.ldother2amt}} --></td>
 								</tr>
 								<tr>
 									<td width="25%"></td>
 									<td width="25%"></td>
 									<td width="25%"><b>NET Salary</b></td>
-									<td width="25%">{{NETSalary}}<!-- {{(emp.bmonthly+emp.hramonthly+emp.convmonthly+emp.samonthly+emp.ccamonthly)-(emp.pf1+emp.pf1+emp.ldother1amt+emp.ldother2amt)}} --></td>
+									<td width="25%" align="right">{{NETSalary}}<!-- {{(emp.bmonthly+emp.hramonthly+emp.convmonthly+emp.samonthly+emp.ccamonthly)-(emp.pf1+emp.pf1+emp.ldother1amt+emp.ldother2amt)}} --></td>
 								</tr>
 
 
 							</table>
-							<br> <b>Salary in Word :{{netsalinword}} </b> <br> <b>Name
+							<br> <b>Salary in Word :{{netsalinword | number:2}} </b> <br> <b>Name
 								Of Bank :</b> <br> <b>Signature of Employee :</b> <br>
 							<br>
 							<br>

@@ -14,6 +14,8 @@ angular
 					$scope.printempidsalslip = $stateParams.printempidsalslip;
 					$scope.ganeratedsalslip = $stateParams.ganeratedsalslip;
 					
+					$scope.logBaseURL  ='//' + window.location.host + '/serve?blob-key='+ $scope.curUser.business.logBlobKey;
+					
 					var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May",
 							"Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
 
@@ -70,13 +72,14 @@ angular
 									+ '<link href="/lib/base/css/bootstrap.min.css"" rel="stylesheet" type="text/css">')
 
 					$scope.printSalSlipDiv = function(salSlipDiv) {
+						
 						document.getElementById('hidetr').style.display = 'block';
 						window.frames["print_frame"].document.body.innerHTML = printDivCSS
 								+ document.getElementById(salSlipDiv).innerHTML;
 						window.frames["print_frame"].window.focus();
 						document.getElementById('hidetr').style.display = 'none';
 						window.frames["print_frame"].window.print();
-
+						
 					}
 					
 					
