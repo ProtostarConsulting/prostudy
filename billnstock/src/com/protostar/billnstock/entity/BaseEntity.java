@@ -1,10 +1,12 @@
 package com.protostar.billnstock.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
+import com.protostar.billingnstock.crm.entities.Task;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
 
@@ -14,6 +16,7 @@ public abstract class BaseEntity {
 	private Long id;
 	@Index
 	Ref<BusinessEntity> business;
+	private Address address;
 	private Date createdDate;
 	private Date modifiedDate;	
 	private String modifiedBy;
@@ -61,6 +64,14 @@ public abstract class BaseEntity {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Address getAddress() {
+			return address== null ? null : address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 }
