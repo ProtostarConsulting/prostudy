@@ -77,23 +77,32 @@
 		</div>
 		</md-input-container>
 
-		<md-input-container flex> <label>Email <span
+		<md-input-container flex ng-hide="customerId"> <label>Email <span
 			style="color: red;">*</span></label> <input type="email" name="email"
-			ng-model="customer.email" ng-required="true"
-			ng-pattern="/^.+@.+\..+$/">
+			ng-model="customer.email" 
+			ng-pattern="/^.+@.+\..+$/" ng-blur="Checkemail(customer.email)" ng-required="true" >
+		 		 <span style="color: red"> {{userexists}}</span>
 		<div ng-messages="custForm.email.$error"
 			ng-if="custForm.email.$submitted || custForm.email.$touched">
 			<div ng-message="required">Please Enter Email
 				id.(Example.:example@example.com)</div>
 		</div>
 		</md-input-container>
+		
+		<md-input-container flex ng-show="customerId"> 
+			<label ng-show="customerId">Email <span
+			style="color: red;">*</span></label><input type="email" name="email" ng-model="customer.email" disabled>
+	
+		</md-input-container>
+		
+		
 	</div>
 
 	<h3 class="md-subhead">Address</h3>
 	
 	<div layout="row">
 		<md-input-container flex> <label>Line1 <span
-			style="color: red;">*</span></label> <input name="line1"
+			style="color: red;">*</span></label> <input name="line1" id="line1"
 			ng-model="Address.line1" ng-required="true">
 		<div ng-messages="custForm.line1.$error"
 			ng-if="custForm.line1.$submitted || custForm.line1.$touched">
@@ -106,7 +115,7 @@
 	</div>
 	<div layout="row">
 		<md-input-container flex> <label>State <span
-			style="color: red;">*</span></label> <input name="state"
+			style="color: red;">*</span></label> <input name="state" id="state"
 			ng-model="Address.state" ng-required="true">
 		<div ng-messages="custForm.state.$error"
 			ng-if="custForm.state.$submitted || custForm.state.$touched">
@@ -121,7 +130,7 @@
 	</div>
 	<div layout="row">
 		<md-input-container flex> <label>City <span
-			style="color: red;">*</span></label> <input name="city"
+			style="color: red;">*</span></label> <input name="city" id="city"
 			ng-model="Address.city" ng-required="true">
 		<div ng-messages="custForm.city.$error"
 			ng-if="custForm.city.$submitted || custForm.city.$touched">

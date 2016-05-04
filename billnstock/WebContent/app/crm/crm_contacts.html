@@ -83,7 +83,9 @@
 			<md-input-container flex> <label>Email <span
 				style="color: red;">*</span></label> <input type="email"
 				ng-pattern="/^.+@.+\..+$/" name="email" ng-model="contact.email"
-				ng-required="true">
+				ng-required="true"  ng-blur="Checkemail(contact.email)">
+				 <span style="color: red"> {{userexists}}</span>
+				 
 			<div ng-messages="contactform.email.$error"
 				ng-if="contactform.email.$submitted || contactform.email.$touched">
 				<div ng-message="required">Please Enter Email id.</div>
@@ -98,7 +100,7 @@
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>user Id
 				<span style="color: red;">*</span>
-			</label> <input name="uid" ng-model="contact.uid" ng-required="true">
+			</label> <input id="uid" name="uid" ng-model="contact.uid" ng-required="true">
 			<div ng-messages="contactform.uid.$error"
 				ng-if="contactform.uid.$submitted || contactform.uid.$touched">
 				<div ng-message="required">Please Enter user id.</div>
@@ -107,7 +109,7 @@
 			</md-input-container>
 			<md-input-container flex> <label>Supplier
 				<span style="color: red;">*</span>
-			</label> <input name="supp" ng-model="contact.supp" ng-required="true">
+			</label> <input id="supp" name="supp" ng-model="contact.supp" ng-required="true">
 
 			<div ng-messages="contactform.supp.$error"
 				ng-if="contactform.supp.$submitted || contactform.supp.$touched">
@@ -118,7 +120,7 @@
 		<div layout layout-sm="column">
 			<md-input-container flex> <label>Customer
 				<span style="color: red;">*</span>
-			</label> <input name="cust" ng-model="contact.cust" ng-required="true">
+			</label> <input id="cust" name="cust" ng-model="contact.cust" ng-required="true">
 
 			<div ng-messages="contactform.cust.$error"
 				ng-if="contactform.cust.$submitted || contactform.cust.$touched">
@@ -127,7 +129,7 @@
 			</md-input-container>
 			<md-input-container flex> <label>Sales </span>
 				Partner <span style="color: red;">*</label> <input
-				name="salespartner" ng-model="contact.salespartner"
+				id="salespartner" name="salespartner" ng-model="contact.salespartner"
 				ng-required="true">
 
 			<div ng-messages="contactform.salespartner.$error"
