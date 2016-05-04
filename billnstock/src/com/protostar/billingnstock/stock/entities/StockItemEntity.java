@@ -19,7 +19,11 @@ public class StockItemEntity extends BaseEntity{
 	private double price;
 	private String notes;
 	private int thresholdValue;
+	private String section;
+	private String rack;
+	private String slot;
 
+	
 	Ref<WarehouseEntity> warehouse;
 
 	public WarehouseEntity getWarehouse() {
@@ -77,4 +81,30 @@ public class StockItemEntity extends BaseEntity{
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
+	
+	public String getSection() {
+		return section;
+	}
+
+	public void setSection(String section) {
+		this.section = section;
+	}
+
+	public String getRack() {
+		return rack;
+	}
+
+	public void setRack(String rack) {
+		this.rack = rack;
+	}
+
+	public String getSlot() {
+		return slot;
+	}
+
+	public void setSlot(String slot) {
+		this.slot = slot;
+	}
+
+	
 }// end of StockServicesEntity

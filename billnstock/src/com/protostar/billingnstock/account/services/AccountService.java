@@ -17,6 +17,7 @@ import com.protostar.billingnstock.account.entities.PayableEntity;
 import com.protostar.billingnstock.account.entities.ReceivableEntity;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
+import com.twilio.sdk.resource.instance.Account;
 
 @Api(name = "accountService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.stock.cust.services", ownerName = "com.protostar.billingnstock.stock.cust.services", packagePath = ""))
 public class AccountService {
@@ -47,6 +48,14 @@ public class AccountService {
 		return filteredAccounts;
 	}
 
+	@ApiMethod(name = "getAccountById")
+	public AccountEntity getAccountById(@Named("id") Long accountId) {
+
+		AccountEntity accountById = ofy().load().type(AccountEntity.class).id(accountId).now();
+
+		return accountById;
+	}
+	
 	@ApiMethod(name = "getCustomerByID")
 	public Customer getCustomerByID(@Named("Id") Long Id) {
 

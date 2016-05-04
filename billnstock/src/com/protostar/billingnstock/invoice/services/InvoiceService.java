@@ -24,6 +24,41 @@ public class InvoiceService {
 	@ApiMethod(name = "addInvoice")
 	public void addInvoice(InvoiceEntity invoiceEntity) {
 
+		
+		if (invoiceEntity.getId()!= null) {
+
+			ReceivableEntity receiveByID = ofy().load().type(ReceivableEntity.class)
+					.id(invoiceEntity.getId()).now();
+			
+			receiveByID.setCustomer(invoiceEntity.getCustomer());
+			receiveByID.setFinalTotal(invoiceEntity.getFinalTotal());
+			receiveByID.setInvoiceDate(invoiceEntity.getInvoiceDate());
+			receiveByID.setInvoiceDueDate(invoiceEntity
+					.getInvoiceDueDate());
+			receiveByID.setInvoiceId(invoiceEntity.getId());
+			receiveByID.setBusiness(invoiceEntity.getBusiness());
+			receiveByID.setCreatedDate(invoiceEntity.getCreatedDate());
+			receiveByID.setModifiedDate(invoiceEntity.getModifiedDate());
+			receiveByID.setModifiedBy(invoiceEntity.getModifiedBy());
+			ofy().save().entity(receiveByID).now();
+			
+			
+		} else {
+			ReceivableEntity receivableEntity = new ReceivableEntity();
+
+			receivableEntity.setCustomer(invoiceEntity.getCustomer());
+			receivableEntity.setFinalTotal(invoiceEntity.getFinalTotal());
+			receivableEntity.setInvoiceDate(invoiceEntity.getInvoiceDate());
+			receivableEntity.setInvoiceDueDate(invoiceEntity
+					.getInvoiceDueDate());
+			receivableEntity.setInvoiceId(invoiceEntity.getId());
+			receivableEntity.setBusiness(invoiceEntity.getBusiness());
+			receivableEntity.setCreatedDate(invoiceEntity.getCreatedDate());
+			receivableEntity.setModifiedDate(invoiceEntity.getModifiedDate());
+			receivableEntity.setModifiedBy(invoiceEntity.getModifiedBy());
+			ofy().save().entity(receivableEntity).now();
+		}
+		
 		if (invoiceEntity.getId() == null) {
 			invoiceEntity.setCreatedDate(new Date());
 			// stockItemEntity.setModifiedDate(new Date());
@@ -56,18 +91,7 @@ public class InvoiceService {
 
 		/* For Add in ReceivableEntity */
 
-		ReceivableEntity receivableEntity = new ReceivableEntity();
-
-		receivableEntity.setCustomer(invoiceEntity.getCustomer());
-		receivableEntity.setFinalTotal(invoiceEntity.getFinalTotal());
-		receivableEntity.setInvoiceDate(invoiceEntity.getInvoiceDate());
-		receivableEntity.setInvoiceDueDate(invoiceEntity.getInvoiceDueDate());
-		receivableEntity.setInvoiceId(invoiceEntity.getId());
-		receivableEntity.setBusiness(invoiceEntity.getBusiness());
-		receivableEntity.setCreatedDate(invoiceEntity.getCreatedDate());
-		receivableEntity.setModifiedDate(invoiceEntity.getModifiedDate());
-		receivableEntity.setModifiedBy(invoiceEntity.getModifiedBy());
-		ofy().save().entity(receivableEntity).now();
+		
 	}
 
 	@ApiMethod(name = "updateInvoiceStatus")
@@ -125,9 +149,13 @@ public class InvoiceService {
 		return filteredinvoice;
 	}
 
-/*	====================================INVOICE SETTINGS================================================*/
+	/*
+	 * ====================================INVOICE
+	 * SETTINGS================================================
+	 */
 	@ApiMethod(name = "addInvoiceSettings")
-	public InvoiceSettingsEntity addInvoiceSettings(InvoiceSettingsEntity invoiceSettingsEntity) {
+	public InvoiceSettingsEntity addInvoiceSettings(
+			InvoiceSettingsEntity invoiceSettingsEntity) {
 
 		if (invoiceSettingsEntity.getId() == null) {
 			invoiceSettingsEntity.setCreatedDate(new Date());
@@ -138,19 +166,19 @@ public class InvoiceService {
 		ofy().save().entity(invoiceSettingsEntity).now();
 		return invoiceSettingsEntity;
 	}
-	
-	
-	@ApiMethod(name = "getInvoiceSettingsByBiz", path="getInvoiceSettingsByBiz")
+
+	@ApiMethod(name = "getInvoiceSettingsByBiz", path = "getInvoiceSettingsByBiz")
 	public InvoiceSettingsEntity getInvoiceSettingsByBiz(@Named("id") Long id) {
 
 		InvoiceSettingsEntity filteredSettings = ofy()
 				.load()
 				.type(InvoiceSettingsEntity.class)
 				.filter("business",
-						Ref.create(Key.create(BusinessEntity.class, id))).first().now();
+						Ref.create(Key.create(BusinessEntity.class, id)))
+				.first().now();
 
 		return filteredSettings;
 
 	}
-	
+
 }

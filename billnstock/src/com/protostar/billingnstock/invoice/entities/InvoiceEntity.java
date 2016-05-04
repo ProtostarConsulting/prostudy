@@ -27,15 +27,7 @@ public class InvoiceEntity extends BaseEntity{
 	private float productTaxTotal;
 	private float serviceTaxTotal;
 	private float serviceTotal;
-	
-	public float getServiceTotal() {
-		return serviceTotal;
-	}
-
-	public void setServiceTotal(float serviceTotal) {
-		this.serviceTotal = serviceTotal;
-	}
-
+	private Long productTotal;
 	private String finalTotal;
 	private String noteToCustomer;
 	private String status = "NotPaid";
@@ -222,4 +214,20 @@ public class InvoiceEntity extends BaseEntity{
 	public void setDiscValue(float discValue) {
 		this.discValue = discValue;
 	}
+	
+	public float getServiceTotal() {
+		return serviceTotal;
+	}
+
+	public void setServiceTotal(float serviceTotal) {
+		this.serviceTotal = serviceTotal;
+	}
+	public Long getProductTotal() {
+		return productTotal;
+	}
+
+	public void setProductTotal(Long productTotal) {
+		this.productTotal = productTotal;
+	}
+	
 }// end of InvoiceEntity
