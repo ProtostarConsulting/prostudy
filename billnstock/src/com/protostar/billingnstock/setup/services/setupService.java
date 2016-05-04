@@ -30,7 +30,6 @@ public class setupService {
 	public BusinessEntity updateBusiness(BusinessEntity business) {
 		Key<BusinessEntity> now = ofy().save().entity(business).now();
 		return business;
-
 	}
 	
 	@ApiMethod(name = "updateUserStatus")
@@ -55,11 +54,8 @@ public class setupService {
 	
 	@ApiMethod(name = "getuser")
 	public UserEntity getuser(@Named("id") Long id) {
-		
-		return ofy().load().type(UserEntity.class).id(id).now();
-		
-	}
-	
+			return ofy().load().type(UserEntity.class).id(id).now();
+		}
 	
 	/*@ApiMethod(name ="adduser")	
 	public void adduser(UserEntity user) {

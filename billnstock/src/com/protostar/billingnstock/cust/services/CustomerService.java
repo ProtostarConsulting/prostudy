@@ -5,6 +5,8 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 import java.util.Date;
 import java.util.List;
 
+import sun.java2d.loops.CustomComponent;
+
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
@@ -12,6 +14,7 @@ import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Ref;
 import com.protostar.billingnstock.crm.entities.Contact;
+import com.protostar.billingnstock.crm.services.CrmService;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
 
@@ -32,7 +35,9 @@ public class CustomerService {
 		ofy().save().entity(customer).now();
 		
 		if(customer.getIsCompany()==true){
-		Contact addcontact=new Contact();
+			CrmService crmserv=new CrmService();  //use get contact by email id validate email exist in customer and contact
+		Contact addcontact= (Contact) crmserv.getContactByEmailID(customer.getEmail());
+	
 		addcontact.setCustomer(customer);
 		addcontact.setfName(customer.getFirstName());
 		addcontact.setlName(customer.getLastName());

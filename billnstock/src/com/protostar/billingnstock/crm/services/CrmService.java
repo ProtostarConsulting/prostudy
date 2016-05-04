@@ -100,4 +100,12 @@ public class CrmService {
 		return contact;
 	}
 
+	@ApiMethod(name = "getContactByEmailID")
+	public Contact getContactByEmailID(@Named("email") String email) {
+		List<Contact> contact = ofy().load().type(Contact.class).filter("email",email).list();
+		
+		return (contact == null || contact.size() == 0) ? null : contact.get(0);
+	}
+
+	
 }// end of InternetService
