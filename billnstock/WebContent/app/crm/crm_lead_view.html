@@ -88,7 +88,7 @@
 
 			</md-input-container>
 		</div>
-		<div>
+	<!-- 	<div>
 			<md-input-container flex> <label>Address
 				<span style="color: red;">*</span>
 			</label> <textarea name="address" ng-model="leads.address" rows="4" cols="50"
@@ -99,7 +99,58 @@
 				<div ng-message="required">Please Enter Address.</div>
 			</div>
 			</md-input-container>
-		</div>
+		</div> -->
+		
+		
+			<h3 class="md-subhead">Address</h3><br>
+    			<div layout="row" >
+    				<md-input-container flex>
+      				<label>Line1 <span style="color: red;">*</span></label>
+      				<input name="line1" ng-model="Address.line1" ng-required="true">
+      				<div ng-messages="leadform.line1.$error"
+					ng-if="leadform.line1.$submitted || leadform.line1.$touched">
+					<div ng-message="required">Please Enter Address Name.</div>
+					</div>
+    				</md-input-container>
+    				
+    				<md-input-container flex>
+      				<label>Line2</label>
+      				<input name="line2" ng-model="Address.line2" >
+    				</md-input-container>
+    			</div>
+    			<div layout="row" >
+    				<md-input-container flex>
+      				<label>State <span style="color: red;">*</span></label>
+      				<input name="state" ng-model="Address.state" ng-required="true" >
+      				<div ng-messages="leadform.state.$error"
+					ng-if="leadform.state.$submitted || leadform.state.$touched">
+					<div ng-message="required">Please Enter State Name.</div>
+					</div>
+    				</md-input-container>
+    				
+    				<md-input-container flex>
+      				<label>Country</label>
+      				<input name="country" ng-model="Address.country" >
+    				</md-input-container>
+    				
+    				
+    			</div>
+    			<div layout="row" >
+    				<md-input-container flex>
+      				<label>City <span style="color: red;">*</span></label>
+      				<input name="city" ng-model="Address.city" ng-required="true" >
+      				<div ng-messages="leadform.city.$error"
+					ng-if="leadform.city.$submitted || leadform.city.$touched">
+					<div ng-message="required">Please Enter City Name.</div>
+					</div>
+    				</md-input-container>
+    				
+    				<md-input-container flex>
+      				<label>Pin</label>
+      				<input name="pin" ng-model="Address.pin" >
+    				</md-input-container>
+    			</div>
+		
 		<div layout layout-sm="column">
 			<section layout="row" layout-sm="column" layout-align="left left">
 				<md-button class="md-raised md-primary" ng-click="updateLead()">update</md-button>

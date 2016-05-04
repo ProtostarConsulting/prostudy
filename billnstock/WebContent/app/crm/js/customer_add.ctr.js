@@ -15,17 +15,25 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 			modifiedDate : new Date(),
 			modifiedBy : ''
 			}
+	$scope.Address={
+			line1:"",
+			line2:"",
+			city:"",
+			state:"",
+			country:"",
+			pin:""
+	}
 	
 	$scope.addCustomer = function() {
-		$log.debug("No1");
 		$scope.customer.business = $scope.curUser.business;
+		$scope.customer.address=$scope.Address;
 		var customerService = appEndpointSF.getCustomerService();
 		
-		if ($scope.selectedCustomerId == undefined) {
+		if ($scope.customerId == undefined) {
 			$scope.customer.business = $scope.curUser.business;
 			$scope.customer.modifiedBy =$scope.curUser.email_id;
 		//	$scope.customer.createdDate =$scope.tempCustomer.createdDate;
-			if ($scope.selectedCustomerId != undefined) {
+			if ($scope.customerId != undefined) {
 			$scope.customer.modifiedDate =$scope.tempCustomer.modifiedDate;
 			}
 			
@@ -38,21 +46,18 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 				$scope.showAddToast();
 			}
 		});
-		if ($scope.selectedCustomerId == "") {
-			$scope.showAddToast();
-			}else{
-				$scope.showUpdateToast();
-			}
+	
 		$scope.custForm.$setPristine();
 		$scope.custForm.$setValidity();
 		$scope.custForm.$setUntouched();
 		$scope.customer = {};
+		$scope.Address={}
 	}
 
 	
 	$log.debug("$stateParams:", $stateParams);
-	$log.debug("$stateParams.selectedCustomerId:",
-			$stateParams.selectedCustomerId);
+	$log.debug("$stateParams.customerId:",
+			$stateParams.customerId);
 
 
 	$scope.getCustomerByID = function() {
@@ -62,6 +67,7 @@ app.controller("customerAddCtr", function($scope, $window, $mdToast, $timeout,
 		customerService.getCustomerByID($scope.customerId).then(
 				function(custList) {
 					$scope.customer = custList;
+					$scope.Address=$scope.customer.address;
 					$scope.tempCustomer = $scope.customer;
 					$scope.customer.mobile = parseInt($scope.customer.mobile);
 					$log.debug("Inside Ctr $scope.customers:"

@@ -1,8 +1,8 @@
 
 <md-content layout-padding>
 
-<h3 class="md-headline">Customer Add</h3>
-
+<h3 class="md-headline" ng-hide="customerId">Customer Add</h3>
+<h3 class="md-headline" ng-show="customerId">Customer Edit</h3>
 [<span style="color: red;">Field Marked as asterik (*) are
 	mandetory</span>]
 <form name="custForm">
@@ -90,37 +90,49 @@
 	</div>
 
 	<h3 class="md-subhead">Address</h3>
-	<div layout layout-sm="column">
-
-
-		<md-input-container flex> <label
-			ng-show="customer.isCompany">Company Address <span
-			style="color: red;">*</span>
-		</label> <label ng-hide="customer.isCompany">Line1 <span
-			style="color: red;">*</span>
-		</label> <textarea name="address" ng-model="customer.address"
-			ng-required="true"></textarea>
-		<div ng-messages="custForm.address.$error"
-			ng-if="custForm.address.$submitted || custForm.address.$touched">
-			<div ng-message="required">Please Enter Address</div>
+	
+	<div layout="row">
+		<md-input-container flex> <label>Line1 <span
+			style="color: red;">*</span></label> <input name="line1"
+			ng-model="Address.line1" ng-required="true">
+		<div ng-messages="custForm.line1.$error"
+			ng-if="custForm.line1.$submitted || custForm.line1.$touched">
+			<div ng-message="required">Please Enter Address Name.</div>
 		</div>
 		</md-input-container>
-		<md-input-container flex> <label
-			ng-hide="customer.isCompany">Line2 <span style="color: red;">*</span>
-		</label> <textarea name="address" ng-model="customer.address"
-			ng-required="true"></textarea>
-		<div ng-messages="custForm.address.$error"
-			ng-if="custForm.address.$submitted || custForm.address.$touched">
-			<div ng-message="required">Please Enter Address</div>
+
+		<md-input-container flex> <label>Line2</label> <input
+			name="line2" ng-model="Address.line2"> </md-input-container>
+	</div>
+	<div layout="row">
+		<md-input-container flex> <label>State <span
+			style="color: red;">*</span></label> <input name="state"
+			ng-model="Address.state" ng-required="true">
+		<div ng-messages="custForm.state.$error"
+			ng-if="custForm.state.$submitted || custForm.state.$touched">
+			<div ng-message="required">Please Enter State Name.</div>
 		</div>
 		</md-input-container>
+
+		<md-input-container flex> <label>Country</label>
+		<input name="country" ng-model="Address.country"> </md-input-container>
+
+
+	</div>
+	<div layout="row">
+		<md-input-container flex> <label>City <span
+			style="color: red;">*</span></label> <input name="city"
+			ng-model="Address.city" ng-required="true">
+		<div ng-messages="custForm.city.$error"
+			ng-if="custForm.city.$submitted || custForm.city.$touched">
+			<div ng-message="required">Please Enter City Name.</div>
+		</div>
+		</md-input-container>
+
+		<md-input-container flex> <label>Pin</label> <input
+			name="pin" ng-model="Address.pin"> </md-input-container>
 	</div>
 
-	<!-- 	<section layout="row" layout-sm="column" layout-align="left left">
-		<md-button ng-disabled="custForm.$invalid"
-			class="md-raised md-primary" type="submit">Add</md-button>
-	</section>
- -->
 
 	<section layout="row" layout-sm="column" layout-align="left left">
 		<md-button ng-disabled="custForm.$invalid"

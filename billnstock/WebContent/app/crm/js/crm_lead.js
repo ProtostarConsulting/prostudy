@@ -16,7 +16,14 @@ angular
 					         limit: 5,
 					         page: 1
 					       };
-					
+					$scope.Address={
+							line1:"",
+							line2:"",
+							city:"",
+							state:"",
+							country:"",
+							pin:""
+					}
 					$scope.lead ={
 							business:"",
 							loggedInUser:"",
@@ -40,6 +47,7 @@ angular
 						}]
 					
 					$scope.addlead = function() {
+						$scope.lead.address=$scope.Address;
 						$scope.lead.tasks= $scope.task ;
 						$scope.lead.loggedInUser=$scope.curUser;
 						$scope.lead.business=$scope.curUser.business;
@@ -66,6 +74,7 @@ angular
 						leadService.getAllleads($scope.curUser.business.id).then(function(leadList) {
 							$log.debug("Inside Ctr getAllleads");
 							$scope.leads = leadList.items;
+							$scope.Address=$scope.leads.address;
 							$log.debug("Inside Ctr getAllleads===="+angular.toJson($scope.leads ));
 							$scope.cleadid = $scope.leads.length + 1;
 							$scope.lead.lid = $scope.cleadid;

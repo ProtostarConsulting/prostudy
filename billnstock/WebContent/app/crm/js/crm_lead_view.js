@@ -17,7 +17,14 @@ angular.module("stockApp").controller(
 			         limit: 5,
 			         page: 1
 			       };
-			 
+			$scope.Address={
+					line1:"",
+					line2:"",
+					city:"",
+					state:"",
+					country:"",
+					pin:""
+			}
 			 
 			$scope.taskType = [ "Phone Call", "Email", "Visit" ];
 			var d = new Date();
@@ -65,6 +72,7 @@ angular.module("stockApp").controller(
 						function(leadList) {
 							$log.debug("Inside Ctr getAllleads");
 							$scope.leads = $scope.initDateFields(leadList);
+							$scope.Address=$scope.leads.address;
 							$scope.ctaskid = $scope.leads.tasks;
 							$scope.task.id = $scope.ctaskid.length + 1;
 							//$scope.task.date= $scope.curdate;
@@ -97,7 +105,7 @@ angular.module("stockApp").controller(
 		//------------------save task----------
 
 			$scope.updateLead=function(){
-				
+				$scope.leads.address=$scope.Address;
 				$scope.leads.modifiedBy=$scope.curUser.email_id;
 				var leadService = appEndpointSF.getleadService();
 				leadService.addupdatetask($scope.leads).then(
