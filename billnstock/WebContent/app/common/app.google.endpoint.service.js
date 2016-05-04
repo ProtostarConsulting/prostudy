@@ -724,6 +724,17 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
+	
+	crmService.isContactExists = function(email) {
+		var deferred = $q.defer();
+		gapi.client.crmService.isContactExists({'email':email}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+
+	
+	
 	// opportunity service
 
 	var opportunityService = {};
@@ -919,6 +930,17 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
+	
+	CustomerService.isCustomerExists = function(email) {
+		var deferred = $q.defer();
+		gapi.client.customerService.isCustomerExists({
+			"email" : email
+		}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
 	// End of CustomerService
 
 	
