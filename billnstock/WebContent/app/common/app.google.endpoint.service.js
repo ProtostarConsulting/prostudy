@@ -988,6 +988,17 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
+	AccountService.getAccountById = function(Id) {
+		var deferred = $q.defer();
+		gapi.client.accountService.getAccountById({
+			"id" : Id
+		}).execute(function(resp) {
+			$log.debug("getAccountById at enpoint" + resp);
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
 	AccountService.getAllAccountsByBusiness = function(id) {
 		var deferred = $q.defer();
 		gapi.client.accountService.getAllAccountsByBusiness({

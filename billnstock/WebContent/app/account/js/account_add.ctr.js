@@ -1,95 +1,115 @@
-var app= angular.module("stockApp");
+var app = angular.module("stockApp");
 
-app.controller(
-		"accountAddCtr",
-		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log,$stateParams, objectFactory, appEndpointSF) {
+app.controller("accountAddCtr", function($scope, $window, $mdToast, $timeout,
+		$mdSidenav, $mdUtil, $log, $stateParams, objectFactory, appEndpointSF) {
 
-			 $scope.query = {
-					    order: 'name',
-					    limit: 5,
-					    page: 1
-					  };
-			 
-			$log.debug("Inside accountAddCtr");
+	$scope.query = {
+		order : 'name',
+		limit : 5,
+		page : 1
+	};
 
-			$scope.curUser = appEndpointSF.getLocalUserService()
-			.getLoggedinUser();
-			$log.debug("$scope.curUser++++++++"+angular.toJson($scope.curUser));
-			
-		    
-			$scope.account = {
-				accountName : "",
-				description : "",
-				createdDate : new Date(),
-				modifiedDate : new Date(),
-				modifiedBy : '',
-				business:""
-			};
-			
-			$scope.addAccount = function() {
-				$log.debug("No1");
-				$scope.account.business =$scope.curUser.business;
-				$scope.account.modifiedBy =$scope.curUser.email_id;
-				var accountService = appEndpointSF.getAccountService();
-				accountService.addAccount($scope.account).then(
-						function(msgBean) {
-						});
-				$scope.accountForm.$setPristine();
-				$scope.accountForm.$setValidity();
-				$scope.accountForm.$setUntouched();
-				$scope.account = {};
-			}
-	
-			$scope.getAllAccountsByBusiness = function() {
-				var accountService = appEndpointSF.getAccountService();
+	$log.debug("Inside accountAddCtr");
 
-				accountService.getAllAccountsByBusiness($scope.curUser.business.id).then(
+	$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
+	$log.debug("$scope.curUser++++++++" + angular.toJson($scope.curUser));
+
+	$scope.account = {
+		accountName : "",
+		description : "",
+		createdDate : new Date(),
+		modifiedDate : new Date(),
+		modifiedBy : '',
+		business : ""
+	};
+
+	$log.debug("$stateParams:", $stateParams);
+	$log.debug("$stateParams.selectedAccountId:",
+			$stateParams.selectedAccountId);
+
+	$scope.selectedAccountId = $stateParams.selectedAccountId;
+
+	$scope.getAccountById = function() {
+		var accountService = appEndpointSF.getAccountService();
+		accountService.getAccountById($scope.selectedAccountId).then(
+				function(account) {
+
+					$scope.account = account;
+					$scope.tempAccount = account;
+					$log.debug("$scope.account" + $scope.account);
+
+				});
+	}
+
+	$scope.addAccount = function() {
+		$log.debug("No1");
+		$scope.account.business = $scope.curUser.business;
+		$scope.account.modifiedBy = $scope.curUser.email_id;
+		var accountService = appEndpointSF.getAccountService();
+		accountService.addAccount($scope.account).then(function(msgBean) {
+		});
+		if ($scope.selectedAccountId == "") {
+			$scope.showAddToast();
+		} else {
+			$scope.showUpdateToast();
+		}
+		$scope.accountForm.$setPristine();
+		$scope.accountForm.$setValidity();
+		$scope.accountForm.$setUntouched();
+		$scope.account = {};
+	}
+
+	$scope.getAllAccountsByBusiness = function() {
+		var accountService = appEndpointSF.getAccountService();
+
+		accountService.getAllAccountsByBusiness($scope.curUser.business.id)
+				.then(
 						function(accountList) {
 							$log.debug("Inside Ctr getAllAccountsByBusiness");
-							$scope.accounts = accountList;							
+							$scope.accounts = accountList;
 							$log.debug("Inside Ctr $scope.accounts:"
 									+ angular.toJson($scope.accounts));
 						});
-			}
+	}
 
-			$scope.waitForServiceLoad = function() {
-				if (appEndpointSF.is_service_ready) {
-					$scope.getAllAccountsByBusiness();
-				} else {
-					$log.debug("Services Not Loaded, watiting...");
-					$timeout($scope.waitForServiceLoad, 1000);
-				}
+	$scope.waitForServiceLoad = function() {
+		if (appEndpointSF.is_service_ready) {
+			$scope.getAllAccountsByBusiness();
+			if ($scope.selectedAccountId != undefined) {
+				$scope.getAccountById();
 			}
+		} else {
+			$log.debug("Services Not Loaded, watiting...");
+			$timeout($scope.waitForServiceLoad, 1000);
+		}
+	}
 
-			$scope.accounts = [];
-			$scope.waitForServiceLoad();
-			
-			
-			
-			$scope.toggleRight = buildToggler('right');
+	$scope.accounts = [];
+	$scope.waitForServiceLoad();
 
-			function buildToggler(navID) {
-				var debounceFn = $mdUtil.debounce(function() {
-					$mdSidenav(navID).toggle().then(function() {
-						$log.debug("toggle " + navID + " is done");
-					});
-				}, 200);
-				return debounceFn;
-			}
+	$scope.toggleRight = buildToggler('right');
 
-			$scope.close = function() {
-				$mdSidenav('right').close().then(function() {
-					$log.debug("close RIGHT is done");
-				});
-			};
-			
-			$scope.showSimpleToast = function() {
-				$mdToast.show($mdToast.simple().content('Account Data Saved!')
-						.position("top").hideDelay(3000));
-			};	
-			
-			$scope.back = function() {
-				 window.history.back();
-			}
+	function buildToggler(navID) {
+		var debounceFn = $mdUtil.debounce(function() {
+			$mdSidenav(navID).toggle().then(function() {
+				$log.debug("toggle " + navID + " is done");
+			});
+		}, 200);
+		return debounceFn;
+	}
+
+	$scope.close = function() {
+		$mdSidenav('right').close().then(function() {
+			$log.debug("close RIGHT is done");
 		});
+	};
+
+	$scope.showSimpleToast = function() {
+		$mdToast.show($mdToast.simple().content('Account Data Saved!')
+				.position("top").hideDelay(3000));
+	};
+
+	$scope.back = function() {
+		window.history.back();
+	}
+});

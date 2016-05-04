@@ -5,32 +5,28 @@ angular.module("stockApp").controller(
 
 			$log.debug("Inside taxCtr");
 
-			 $scope.query = {
-					    order: 'name',
-					    limit: 5,
-					    page: 1
-					  };
-			 
-			$scope.curUser = appEndpointSF.getLocalUserService()
-			.getLoggedinUser();
-			$log.debug("$scope.curUser++++++++"+angular.toJson($scope.curUser));
-			
-			$scope.showSimpleToast = function() {
-				$mdToast.show($mdToast.simple().content('Tax Data Saved!')
-						.position("top").hideDelay(3000));
+			$scope.query = {
+				order : 'name',
+				limit : 5,
+				page : 1
 			};
 
+			$scope.curUser = appEndpointSF.getLocalUserService()
+					.getLoggedinUser();
+			$log.debug("$scope.curUser++++++++"
+					+ angular.toJson($scope.curUser));
+
 			$scope.tax = {
-					taxCodeName:'',
-					taxPercenatge:'',
-					active:true,
-					business:""
+				taxCodeName : '',
+				taxPercenatge : '',
+				active : true,
+				business : ""
 			}
-			
+
 			$scope.addTax = function() {
 				$log.debug("No1");
-				$scope.tax.business =$scope.curUser.business;
-				
+				$scope.tax.business = $scope.curUser.business;
+
 				var taxService = appEndpointSF.getTaxService();
 
 				taxService.addTax($scope.tax).then(function(msgBean) {
@@ -38,7 +34,7 @@ angular.module("stockApp").controller(
 
 				});
 				$scope.showAddToast();
-					
+
 				$scope.taxForm.$setPristine();
 				$scope.taxForm.$setValidity();
 				$scope.taxForm.$setUntouched();
@@ -67,28 +63,24 @@ angular.module("stockApp").controller(
 			}
 			$scope.taxData = [];
 			$scope.waitForServiceLoad();
-			
-			
-			
 
-			$scope.selected = [];		
-			
+			$scope.selected = [];
+
 			$scope.updateTax = function() {
 				var taxService = appEndpointSF.getTaxService();
 
 				taxService.updateTax($scope.selected[0]).then(
-						function(msgBean) {							
+						function(msgBean) {
 							$scope.showSimpleToastUpdateTax();
-					  		$scope.getAllTaxes();
-					  		$scope.showUpdateToast();
+							$scope.getAllTaxes();
+							$scope.showUpdateToast();
 						});
 			}
-		
-			$scope.cancelUpdate = function() {	
+
+			$scope.cancelUpdate = function() {
 				window.history.back();
 			}
-			
-	
+
 			// Setup menu
 			$scope.toggleRight = buildToggler('right');
 
@@ -105,15 +97,5 @@ angular.module("stockApp").controller(
 				$mdSidenav('right').close().then(function() {
 					$log.debug("close RIGHT is done");
 				});
-			};
-			
-			$scope.showSimpleToast = function() {
-				$mdToast.show($mdToast.simple().content('Tax Data Saved!')
-						.position("top").hideDelay(3000));
-			};
-			
-			$scope.showSimpleToastUpdateTax = function() {
-				$mdToast.show($mdToast.simple().content('Tax Updated!')
-						.position("top").hideDelay(3000));
 			};
 		});

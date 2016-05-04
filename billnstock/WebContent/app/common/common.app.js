@@ -206,7 +206,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/account/account_module.html',
 		controller : 'accountModuleCtr'
 	}).state('account.accountAdd', {
-		url : "/accountAdd",
+		url : "/accountAdd/:selectedAccountId",
 		templateUrl : '/app/account/account_add.html',
 		controller : 'accountAddCtr'
 	}).state('account.accountList', {

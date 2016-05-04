@@ -1,7 +1,10 @@
 
 <md-content layout-padding>
-<h3>
+<h3 class="md-headline" ng-hide="account.id">
 	<u>Create Account</u>
+</h3>
+<h3 class="md-headline" ng-show="account.id">
+	<u>Edit Account</u>
 </h3>
 <form name="accountForm">
 [<span style="color: red;">Field Marked as asterik (*) are mandetory</span>]
@@ -49,7 +52,12 @@
 
 	<section layout="row" layout-sm="column" layout-align="left left">
 		<md-button class="md-raised md-primary"
-			ng-disabled="accountForm.$invalid" ng-click="addAccount()">Add</md-button>
+			ng-disabled="accountForm.$invalid" ng-hide="account.id" ng-click="addAccount()">Add</md-button>
+	</section>
+	
+	<section layout="row" layout-sm="column" layout-align="left left">
+		<md-button class="md-raised md-primary"
+			ng-disabled="accountForm.$invalid" ng-show="account.id" ng-click="addAccount()">Update</md-button>
 	</section>
 	
 </form>

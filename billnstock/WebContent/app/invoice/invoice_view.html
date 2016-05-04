@@ -156,6 +156,13 @@
 							:"": 2}}</td>
 					</tr>
 					
+					<tr>
+						<td>-</td>
+						<td></td>
+						<td></td>
+						<td><label><u>Product Sub Total</u> </label></td>
+						<td style="text-align: right">{{invoiceDetail.productSubTotal | currency :"": 2}}</td>
+					</tr>
 					
 					<tr>
 						<td colspan="5"><b><u>Product Tax</u> </b></td>
@@ -185,15 +192,15 @@
 						<td>-</td>
 						<td></td>
 						<td></td>
-						<td><label><u>Product Sub Total</u> </label></td>
-						<td>{{invoiceDetail.productSubTotal | currency :"": 2}}</td>
+						<td><label><u>Product Total</u> </label></td>
+						<td style="text-align: right">{{invoiceDetail.productTotal | currency :"": 2}}</td>
 					</tr>
 					<tr>
 						<td>-</td>
 						<td></td>
 						<td></td>
 						<td><label><u>Discount</u> </label></td>
-						<td>{{invoiceDetail.discAmount | currency :"": 2}}</td>
+						<td style="text-align: right">{{invoiceDetail.discAmount | currency :"": 2}}</td>
 					</tr>
 					<tr>
 						<td></td>

@@ -33,6 +33,11 @@
 				<td>{{account.accountNo}}</td>
 				<td>{{account.description}}</td>
 
+				<td><section layout="row" layout-sm="column">
+						<md-button class="md-raised md-primary"
+							ui-sref="account.accountAdd({selectedAccountId: account.id})">
+						Edit</md-button>
+					</section></td>
 				<td>
 			</tr>
 

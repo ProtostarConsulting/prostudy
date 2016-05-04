@@ -1,7 +1,11 @@
 
 <md-content layout-padding>
-<h3>
-	<u>Add Warehouse</u>
+
+<h3 class="md-headline" ng-hide="warehouse.id">
+	<b>Add Warehouse</b>
+</h3>
+<h3 class="md-headline" ng-show="warehouse.id">
+	<b>edit Warehouse</b>
 </h3>
 <form name="warehouseForm">
 	[<span style="color: red;">Field Marked as asterik (*) are
@@ -94,6 +98,12 @@
 		<md-input-container flex> <label>Country
 		</label> <input name="country" ng-model="warehouse.country"> </md-input-container>
 	</div>
+
+
+<h3 class="md-subhead">
+	<b>Address</b>
+</h3>
+
 
 	<section layout="row" layout-sm="column" layout-align="left left">
 		<md-button ng-disabled="warehouseForm.$invalid"

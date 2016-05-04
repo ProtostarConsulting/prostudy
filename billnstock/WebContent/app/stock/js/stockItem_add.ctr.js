@@ -26,7 +26,7 @@ angular.module("stockApp").controller(
 			$scope.addStock = function() {
 				$log.debug("No1");
 				var stockService = appEndpointSF.getStockService();
-				if ($scope.selectedStocksId == undefined) {
+				if ($scope.selectedStocksId == "") {
 					$scope.stock.business = $scope.curUser.business;
 					$scope.stock.modifiedBy =$scope.curUser.email_id;
 					if ($scope.selectedStocksId != "") {

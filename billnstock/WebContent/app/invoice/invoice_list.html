@@ -23,19 +23,19 @@
 		<tbody>
 			<tr md-auto-select
 				ng-repeat="invoice in invoiceData | filter: searchText | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
-				
+
 				<td>{{$index+1}}</td>
 				<td>{{invoice.customer.firstName}}</td>
 				<td>{{invoice.finalTotal}}</td>
 				<td>
-					<section layout="row" layout-sm="column" ng-hide="selected.length==1">
+					<section layout="row" layout-sm="column">
 						<md-button class="md-raised md-primary"
 							ui-sref="invoice.view({selectedInvoiceNo: invoice.id})">View
 						Invoice</md-button>
-					</section>
-					
-					<md-button class="md-raised md-primary" ng-hide="true" ng-show="selected.length==1" 
-		ui-sref="invoice.edit({selectedInvoiceNo: invoice.id})">Edit</md-button>
+					</section> <!--  <md-button class="md-raised md-primary" ng-hide="true"
+						ng-show="selected.length==1"
+						ui-sref="invoice.edit({selectedInvoiceNo: invoice.id})">Edit</md-button>
+ -->
 				</td>
 			</tr>
 		</tbody>
@@ -51,13 +51,16 @@
 		md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
 </div>
 
-<div ng-show="selected.length == 1">
-		
-	<md-button class="md-raised md-primary" 
-		ng-click="updatePaidStatus()">Paid</md-button>
-		
-			<md-button class="md-raised md-primary" 
-		ng-click="updateNotPaidStatus()">Not Paid</md-button>
-
+<div flex ng-show="selected.length == 1">
+	<md-input-container flex> <md-button
+		class="md-raised md-primary"
+		ui-sref="invoice.edit({selectedInvoiceNo: selected[0].id})">Edit</md-button>
+</md-input-container>
+<md-input-container flex>
+	<md-button class="md-raised md-primary" ng-click="updatePaidStatus()">Paid</md-button>
+</md-input-container>
+<md-input-container flex>
+	<md-button class="md-raised md-primary"
+		ng-click="updateNotPaidStatus()">Not Paid</md-button> </md-input-container>
 </div>
 </md-content>

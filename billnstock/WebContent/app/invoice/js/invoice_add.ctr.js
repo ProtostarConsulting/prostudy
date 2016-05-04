@@ -114,25 +114,6 @@ app
 						return $scope.invoiceObj.productSubTotal;
 					}
 					
-/*					$scope.calSubTotal = function() {
-						$log.debug("##Came to calSubTotal...");
-						$scope.invoiceObj.productSubTotal = 0;
-
-						for (var i = 0; i < $scope.invoiceObj.invoiceLineItemList.length; i++) {
-							var line = $scope.invoiceObj.invoiceLineItemList[i];
-							$scope.invoiceObj.productSubTotal += (line.qty * line.price);
-
-						}
-
-						$scope.invoiceObj.productSubTotal = parseFloat(
-								Math.round(($scope.invoiceObj.productSubTotal) * 100) / 100)
-								.toFixed(2);
-
-						$scope.calfinalTotal();
-
-						return $scope.invoiceObj.productSubTotal;
-					}
-*/
 					$scope.calfinalTotal = function() {
 						$log.debug("##Came to calSubTotal...");
 
@@ -258,10 +239,10 @@ app
 							$event) {
 						$log.debug("##Came to lineItemTaxChange...");
 
-						$scope.invoiceObj.servicetaxTotal = parseFloat(($scope.invoiceObj.selectedServiceTax.taxPercenatge / 100)
+						$scope.invoiceObj.serviceTaxTotal = parseFloat(($scope.invoiceObj.selectedServiceTax.taxPercenatge / 100)
 								* ($scope.invoiceObj.serviceSubTotal));
 
-						$scope.invoiceObj.serviceTotal = $scope.invoiceObj.serviceSubTotal + $scope.invoiceObj.servicetaxTotal;
+						$scope.invoiceObj.serviceTotal = $scope.invoiceObj.serviceSubTotal + $scope.invoiceObj.serviceTaxTotal;
 						$scope.calfinalTotal();
 					};
 					

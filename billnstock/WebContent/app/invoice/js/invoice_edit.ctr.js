@@ -20,10 +20,13 @@ app
 						invoiceDate : new Date(),
 						invoiceDueDate : '',
 						invoiceLineItemList : [],
-						subTotal : '',
+						productSubTotal : '',
+						serviceSubTotal : '',
+						serviceTotal : '',
 						taxCodeName : '',
 						taxPercenatge : '',
-						taxTotal : 0,
+						productTaxTotal : 0,
+						serviceTaxTotal : 0,
 						finalTotal : '',
 						noteToCustomer : '',
 						account : "",
@@ -34,10 +37,11 @@ app
 						serviceName : '',
 						discount : '',
 						discValue : '',
-						discAmount : 0,
+						discAmount : '0',
 						pOrder : '',
 						serviceSubTotal : 0,
 						serviceLineItemList : [],
+						selectedServiceTax :'',
 						business : ""
 					};
 
@@ -140,7 +144,7 @@ app
 						$scope.calfinalTotal();
 					};
 
-					$scope.calSubTotal = function() {
+/*					$scope.calSubTotal = function() {
 						$log.debug("##Came to calSubTotal...");
 						$scope.invoiceObjEdit.subTotal = 0;
 
@@ -158,7 +162,29 @@ app
 
 						return $scope.invoiceObjEdit.subTotal;
 					}
+*/
+					
+					$scope.calProductSubTotal = function() {
+						$log.debug("##Came to calSubTotal...");
+						$scope.invoiceObjEdit.productSubTotal = 0;
 
+						for (var i = 0; i < $scope.invoiceObj.invoiceLineItemList.length; i++) {
+							var line = $scope.invoiceObjEdit.invoiceLineItemList[i];
+							$scope.invoiceObjEdit.productSubTotal += (line.qty * line.price);
+							$scope.invoiceObjEdit.productSubTotal = $scope.invoiceObjEdit.productSubTotal;
+						}
+
+						$scope.invoiceObjEdit.productSubTotal = parseFloat(
+								Math.round(($scope.invoiceObjEdit.productSubTotal) * 100) / 100)
+								.toFixed(2);
+
+						$scope.invoiceObjEdit.productTotal = parseFloat($scope.invoiceObjEdit.productSubTotal) + $scope.invoiceObjEdit.productTaxTotal;
+						
+						$scope.calfinalTotal();
+
+						return $scope.invoiceObjEdit.productSubTotal;
+					}
+					
 					$scope.calfinalTotal = function() {
 						$log.debug("##Came to calSubTotal...");
 
