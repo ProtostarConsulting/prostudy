@@ -41,6 +41,7 @@ public class Contact extends BaseEntity {
 	private String lName;
 	private String status;
 	private Long phone;
+	@Index
 	private String email;
 	private String uid;
 	private String supp;

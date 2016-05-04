@@ -11,6 +11,7 @@ public class Customer extends BaseEntity{
 	private String firstName;
 	private String lastName;
 	private Long mobile;
+	@Index
 	private String email;
 	/*private String address;*/
 	private String companyName;

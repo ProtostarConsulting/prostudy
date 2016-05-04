@@ -15,6 +15,7 @@ import com.protostar.billingnstock.crm.entities.Contact;
 import com.protostar.billingnstock.crm.entities.Lead;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
+import com.protostar.billnstock.until.data.ServerMsg;
 
 @Api(name = "crmService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.crm.services", ownerName = "com.protostar.billingnstock.crm.services", packagePath = ""))
 public class CrmService {
@@ -100,12 +101,27 @@ public class CrmService {
 		return contact;
 	}
 
-	@ApiMethod(name = "getContactByEmailID")
+	@ApiMethod(name = "getContactByEmailID",path="getContactByEmailID")
 	public Contact getContactByEmailID(@Named("email") String email) {
 		List<Contact> contact = ofy().load().type(Contact.class).filter("email",email).list();
 		
 		return (contact == null || contact.size() == 0) ? null : contact.get(0);
 	}
 
+	
+	
+	@ApiMethod(name = "isContactExists")
+	public ServerMsg isContactExists(@Named("email") String email) {
+		ServerMsg serverMsg = new ServerMsg();
+		List<Contact> customer = ofy().load().type(Contact.class).filter("email",email).list();
+		
+		if(customer.size()== 0){
+			serverMsg.setReturnBool(false);
+		}else{
+		serverMsg.setReturnBool(true);
+		}
+	
+		return serverMsg;
+	}
 	
 }// end of InternetService

@@ -17,6 +17,7 @@ import com.protostar.billingnstock.crm.entities.Contact;
 import com.protostar.billingnstock.crm.services.CrmService;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
+import com.protostar.billnstock.until.data.ServerMsg;
 
 @Api(name = "customerService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.stock.cust.services", ownerName = "com.protostar.billingnstock.stock.cust.services", packagePath = ""))
 public class CustomerService {
@@ -35,9 +36,11 @@ public class CustomerService {
 		ofy().save().entity(customer).now();
 		
 		if(customer.getIsCompany()==true){
-			CrmService crmserv=new CrmService();  //use get contact by email id validate email exist in customer and contact
+		CrmService crmserv=new CrmService();  //use get contact by email id validate email exist in customer and contact
 		Contact addcontact= (Contact) crmserv.getContactByEmailID(customer.getEmail());
-	
+		if(addcontact == null){
+		addcontact=new Contact();
+		}
 		addcontact.setCustomer(customer);
 		addcontact.setfName(customer.getFirstName());
 		addcontact.setlName(customer.getLastName());
@@ -69,6 +72,20 @@ public class CustomerService {
 		Customer customerById = ofy().load().type(Customer.class).id(Id).now();
 
 		return customerById;
+	}
+	
+	@ApiMethod(name = "isCustomerExists")
+	public ServerMsg isCustomerExists(@Named("email") String email) {
+		ServerMsg serverMsg = new ServerMsg();
+		List<Customer> customer = ofy().load().type(Customer.class).filter("email",email).list();
+		
+		if(customer.size()== 0){
+			serverMsg.setReturnBool(false);
+		}else{
+		serverMsg.setReturnBool(true);
+		}
+	
+		return serverMsg;
 	}
 
 	@ApiMethod(name = "updateCustomer")
