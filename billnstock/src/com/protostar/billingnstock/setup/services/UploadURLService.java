@@ -21,5 +21,14 @@ public class UploadURLService {
 		 serverMsg.setMsg(createUploadUrl);		 
 		return serverMsg;
 	}
+	
+	@ApiMethod(name = "getLogUploadFooterURL",path="getLogUploadFooterURL")
+	public ServerMsg getLogUploadFooterURL() {
+		 BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+		 String createUploadUrl = blobstoreService.createUploadUrl("/UplodeFooter");
+		 ServerMsg serverMsg = new ServerMsg();
+		 serverMsg.setMsg(createUploadUrl);		 
+		return serverMsg;
+	}
 
 }

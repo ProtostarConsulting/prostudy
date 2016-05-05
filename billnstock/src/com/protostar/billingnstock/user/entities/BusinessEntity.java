@@ -22,11 +22,29 @@ public class BusinessEntity {
 	private Address address;
 	private String status="active" ;
 	private String theme;
-
 	@Index
 	private String LogBlobKey;
+	@Index
+	private String footerBlobKey;	
+	private String disclaimer;
 	
  
+
+	public String getDisclaimer() {
+		return disclaimer;
+	}
+
+	public void setDisclaimer(String disclaimer) {
+		this.disclaimer = disclaimer;
+	}
+
+	public String getFooterBlobKey() {
+		return footerBlobKey;
+	}
+
+	public void setFooterBlobKey(String footerBlobKey) {
+		this.footerBlobKey = footerBlobKey;
+	}
 
 	public String getLogBlobKey() {
 		return LogBlobKey;
