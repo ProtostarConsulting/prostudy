@@ -661,6 +661,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		params : {
 			selectedCourseId : null			
 		}
+	})
+	.state('gfe.directoryNewUser', {
+		url : "/directoryNewUser",
+		templateUrl : '/app/gfe/directory_new_userAccount.html',
+		controller : 'directoryNewUserAccountCtr'
 	});	
 
 });
