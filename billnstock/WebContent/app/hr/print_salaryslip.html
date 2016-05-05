@@ -92,7 +92,7 @@ display:none;
 									<td width="25%">Basic</td>
 									<td width="25%" align="right">{{emp.bmonthly | number:2}}</td>
 									<td width="25%">Provident Fund</td>
-									<td width="25%"></td>
+									<td width="25%" align="right">{{emp.pf1+emp.pf1 | number:2}}</td>
 								</tr>
 								<tr>
 									<td width="25%">HRA</td>
@@ -110,7 +110,7 @@ display:none;
 									<td width="25%">City Compensatory All</td>
 									<td width="25%" align="right">{{emp.ccamonthly | number:2}}</td>
 									<td width="25%">Profession Tax</td>
-									<td width="25%" align="right">{{emp.pf1+emp.pf1 | number:2}}</td>
+									<td width="25%" align="right"></td>
 								</tr>
 								<tr>
 									<td width="25%">Special Allowance</td>
@@ -163,8 +163,9 @@ display:none;
 							<p align="Center">
 								<br>
 								<br>
-								<br> <b>this Document is Electronically Generated.
-									Hence need no Signature or Stamp.</b>
+								<br> <!-- <span ng-hide="curuser.business.disclaimer"><b>this Document is Electronically Generated.
+									Hence need no Signature or Stamp. </b></span> -->
+									<span ng-show="curuser.business.disclaimer"><b>{{curuser.business.disclaimer}}</b></span>
 							</p>
 						</div>
 					</td>
@@ -178,10 +179,10 @@ display:none;
 <!-- 	<div style="bottom:0;  postion :absolute"> -->
 
 <footer>
- <div layout="row" layout-align="center center" id="hidetr">
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
-					<img alt="Logo"
-					src="img/images/erpag_document_footer.JPG">
+ <div layout="row" layout-align="center center" id="hidetr" style="position:fixed; bottom:0; height:60px; width:800px;">
+				<!-- 	<img alt="Logo"
+					src="img/images/erpag_document_footer.JPG"> -->
+						<img alt="Logo" src="{{logFooterURL}}">
 		</div>
 		</footer>	
 </div>

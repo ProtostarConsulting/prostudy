@@ -370,10 +370,11 @@ function googleEndpointSF($log, $q) {
 
 	setupService.updateBusiness = function(business) {
 		var deferred = $q.defer();
-		gapi.client.setupService.updateBusiness(business).execute(function() {
-			deferred.resolve({
+		gapi.client.setupService.updateBusiness(business).execute(function(resp) {
+			deferred.resolve(resp);
+			/*deferred.resolve({
 				"msg" : "Business Updated Successfully"
-			});
+			});*/
 		});
 		return deferred.promise;
 	}
@@ -1473,7 +1474,7 @@ function googleEndpointSF($log, $q) {
 	serviceFactory.getuploadURLService = function() {
 		return uploadUrlService;
 	}
-	uploadUrlService.getLogUploadURL = function(id) {
+	uploadUrlService.getLogUploadURL = function() {
 		var deferred = $q.defer();
 		gapi.client.uploadUrlService.getLogUploadURL().execute(function(resp) {
 			$log.debug("getURL at enpoint" + angular.toJson(resp));
@@ -1482,6 +1483,13 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 	
+	uploadUrlService.getLogUploadFooterURL = function() {
+		var deferred = $q.defer();
+		gapi.client.uploadUrlService.getLogUploadFooterURL().execute(function(resp) {
+				deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
 	
 
 	/* =============================================================================================================================== */

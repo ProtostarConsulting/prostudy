@@ -451,10 +451,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/setup/setup_viewuser.html',
 		controller : 'setup.viewuser',
 
-	}).state('setup.printheaderfooter', {
-		url : "/printheaderfooter",
-		templateUrl : '/app/setup/setup_headerfooter.html',
-		controller : 'setup_headerfooter',
+	}).state('setup.footer', {
+		url : "/addfooter",
+		templateUrl : '/app/setup/setup_footer.html',
+		controller : 'setup_footer',
 
 	}).state('setup.businesssetup', {
 		url : "/businesssetup",
@@ -483,6 +483,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/userlist",
 		templateUrl : '/app/setup/userlist.html',
 		controller : 'userlist',
+
+	}).state('setup.disclaimer', {
+		url : "/disclaimer",
+		templateUrl : '/app/setup/disclaimer.html',
+		controller : 'disclaimer',
 
 	}) /*
 		 * .state('login', { url : "/login", templateUrl :

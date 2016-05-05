@@ -13,8 +13,11 @@ angular
 
 					$scope.printempidsalslip = $stateParams.printempidsalslip;
 					$scope.ganeratedsalslip = $stateParams.ganeratedsalslip;
+				
+					$scope.curuser = appEndpointSF.getLocalUserService().getLoggedinUser();
 					
-					$scope.logBaseURL  ='//' + window.location.host + '/serve?blob-key='+ $scope.curUser.business.logBlobKey;
+				
+					
 					
 					var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May",
 							"Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
@@ -96,6 +99,8 @@ angular
 											$scope.TotalAddition=parseFloat(($scope.printslectedslip[0].bmonthly+$scope.printslectedslip[0].hramonthly+$scope.printslectedslip[0].convmonthly+$scope.printslectedslip[0].samonthly+$scope.printslectedslip[0].ccamonthly).toFixed(2));
 											$scope.TotalDeduction=parseFloat(($scope.printslectedslip[0].pf1+$scope.printslectedslip[0].pf1+$scope.printslectedslip[0].ldother1amt+$scope.printslectedslip[0].ldother2amt).toFixed(2));
 											$scope.NETSalary=Math.round(parseFloat((($scope.printslectedslip[0].bmonthly+$scope.printslectedslip[0].hramonthly+$scope.printslectedslip[0].convmonthly+$scope.printslectedslip[0].samonthly+$scope.printslectedslip[0].ccamonthly)-($scope.printslectedslip[0].pf1+$scope.printslectedslip[0].pf1+$scope.printslectedslip[0].ldother1amt+$scope.printslectedslip[0].ldother2amt)).toFixed(2)));
+											$scope.logFooterURL = '//' + window.location.host + '/serve?blob-key='+ $scope.curUser.business.footerBlobKey;
+											$scope.logBaseURL  ='//' + window.location.host + '/serve?blob-key='+ $scope.curUser.business.logBlobKey;
 											$log
 													.debug("$scope.printslectedslip=========="
 															+ angular.toJson($scope.printslectedslip));

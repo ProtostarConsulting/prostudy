@@ -102,26 +102,57 @@ app
 
 					$scope.Checkemail = function(emailid) {
 
-						var customerService = appEndpointSF
-								.getCustomerService();
-						customerService
-								.isCustomerExists(emailid)
-								.then(
-										function(responce) {
+						var customerService = appEndpointSF.getCustomerService();
+						customerService.isCustomerExists(emailid).then(function(responce) {
 											if (responce.result.returnBool == true) {
-												$scope.userexists = "customer already exists";
-												$scope.user.firstName = "";
-												$scope.user.lastName = "";
-												angular
-														.element(document
-																.getElementById('line1'))[0].disabled = true;
-												angular
-														.element(document
-																.getElementById('state'))[0].disabled = true;
-												angular
-														.element(document
-																.getElementById('city'))[0].disabled = true;
+													$scope.userexists = "customer already exists";
+													$scope.user.firstName = "";
+													$scope.user.lastName = "";
+													angular
+															.element(document
+																	.getElementById('line1'))[0].disabled = true;
+													angular
+															.element(document
+																	.getElementById('state'))[0].disabled = true;
+													angular
+															.element(document
+																	.getElementById('city'))[0].disabled = true;
+												
 											} else {
+												if ($scope.customer.isCompany) {
+													//alert("check contact also");
+													var leadService = appEndpointSF.getleadService();
+													leadService.isContactExists(emailid)
+															.then(function(responce) {
+																		if (responce.result.returnBool == true) {
+
+																			$scope.userexists = "customer already exists";
+																			$scope.user.firstName = "";
+																			$scope.user.lastName = "";
+																			angular
+																					.element(document
+																							.getElementById('line1'))[0].disabled = true;
+																			angular
+																					.element(document
+																							.getElementById('state'))[0].disabled = true;
+																			angular
+																					.element(document
+																							.getElementById('city'))[0].disabled = true;
+																		} else {
+																			$scope.userexists = "";
+																			angular
+																					.element(document
+																							.getElementById('line1'))[0].disabled = false;
+																			angular
+																					.element(document
+																							.getElementById('state'))[0].disabled = false;
+																			angular
+																					.element(document
+																							.getElementById('city'))[0].disabled = false;
+
+																		}
+																	});
+												}else{
 												$scope.userexists = "";
 												angular
 														.element(document
@@ -132,7 +163,7 @@ app
 												angular
 														.element(document
 																.getElementById('city'))[0].disabled = false;
-
+												}
 											}
 
 										});
