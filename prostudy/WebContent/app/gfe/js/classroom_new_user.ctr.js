@@ -7,7 +7,8 @@ angular.module("prostudyApp")
 
 					$scope.selectedCourseId = $stateParams.selectedCourseId;
 					$scope.userType = $stateParams.userType;
-
+					   $scope.directoryUsers=[];
+					   
 					$scope.GlobalPermission = {
 						'permission' : ""
 					}
@@ -33,6 +34,34 @@ angular.module("prostudyApp")
 						'profile' : $scope.profile
 					};
 
+					$scope.listUsers=function () {
+					      var request = gapi.client.directory.users.list({	
+					    	  viewType:'admin_view',
+					    	  pageToken:'',
+					    	  sortOrder:'ascending' ,
+					    	  orderBy:'email',
+					    	  projection:'basic',
+					        domain:	'sgpcs.in'	        	
+					      });
+					     
+					      request.execute(function(resp) {
+					    	 
+					    	   var users = resp.users;
+					       
+					        if (users && users.length > 0) {
+					          for (i = 0; i < users.length; i++) {
+					            var user = users[i].primaryEmail;
+					            $scope.directoryUsers.push(user);
+					          }
+					        } else {
+					        	 $log.debug("Not Found");
+					        }
+					        $scope.loading = false;
+					        $log.debug("$scope.directoryUsers"+angular.toJson($scope.directoryUsers));
+							
+					      });
+					    }
+					
 					$scope.createTeacher = function() {
 
 						$scope.tempUser.userId = $scope.profile.emailAddress;
@@ -45,6 +74,7 @@ angular.module("prostudyApp")
 						request.execute(function(resp) {
 							$log.debug("resp:" + angular.toJson(resp));
 							$scope.showTeacherAddedToast();
+							$state.go("gfe.classroomCourseList",{});
 						});
 					}
 
@@ -59,6 +89,7 @@ angular.module("prostudyApp")
 						request.execute(function(resp) {
 							$log.debug("resp:" + angular.toJson(resp));
 							$scope.showStudentAddedToast();
+							$state.go("gfe.classroomCourseList",{});
 						});
 					}
 
@@ -75,5 +106,29 @@ angular.module("prostudyApp")
 					$scope.cancelButton = function() {
 						$state.go("gfe.classroomCourseList", {});
 					}
+					$scope.listUsers();
+					
+					 
+					   $scope.selectedItem;
+					   $scope.searchText = null;
 
+					   $scope.querySearch = function(query) {
+					    var results = query ? $scope.directoryUsers
+					      .filter(createFilterFor(query))
+					      :$scope.directoryUsers;
+					    var deferred = $q.defer();
+					    $timeout(function() {
+					     deferred.resolve(results);
+					    }, Math.random() * 1000, false);
+					    return deferred.promise;
+					   }
+					
+					   function createFilterFor(query) {
+					    var lowercaseQuery = angular.lowercase(query);
+					    return function filterFn(usr) {
+					     return (angular.lowercase(usr).indexOf(lowercaseQuery) === 0);
+					    };
+					   }
+					
+					
 				});

@@ -68,6 +68,9 @@ angular
 
 						});
 					}*/
+					$scope.cancelButton = function() {
+						$state.go("gfe.classroomCourseList", {});
+					}
 					$scope.showSavedToast = function() {
 						$mdToast.show($mdToast.simple().content(
 								'New Course Saved!').position("top").hideDelay(

@@ -2,14 +2,6 @@
 	Loading...
 </div>
 <div ng-hide="loading">
-	<div ng-hide="authorized">
-		<span>Authorize access to Classroom API</span>
-		<!--Button for the user to click to initiate auth sequence -->
-
-		<md-button class="md-raised md-primary" ng-click="handleAuthClick(event)">
-			Authorize Classroom Access
-		</md-button>
-	</div>
 	
 	<md-data-table-toolbar ng-show="!selected.length">
 		<h2 class="md-title">Courses List</h2>
@@ -21,7 +13,6 @@
 		<div>
 			{{selected.length}} {{selected.length > 1 ? 'Courses' : 'Course'}} selected
 		</div>
-
 	</md-data-table-toolbar>
 	<div>
 		<md-data-table-container>

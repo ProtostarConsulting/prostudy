@@ -1,4 +1,13 @@
-<div layout="column">
+<div ng-hide="authorized">
+<span>Authorize access to Classroom API</span>
+<md-button  class="md-raised md-primary" ng-click="handleAuthClick(event)">
+			Authorize API Access
+		</md-button>
+		</div>
+	<div ng-hide="!authorized">
+		
+		
+		<div layout="column">
 
 		<section layout="row">
 			<!-- View Specific Toolbar-->
@@ -55,7 +64,9 @@
 
 			<md-button ui-sref="gfe.classroomNewCourse" ng-click="close()"
 				class="md-primary" hide-xs>Add New Course</md-button>
-					
+				
+			<md-button ui-sref="gfe.directoryNewUser" ng-click="close()"
+				class="md-primary" hide-xs>Directory New User</md-button>
 					
 				</md-content>
 			</md-sidenav>
@@ -73,7 +84,14 @@
 
 			<md-button ui-sref="gfe.classroomNewCourse" ng-click="close()"
 				class="md-primary" hide-xs>Add New Course</md-button>
+				
+			<md-button ui-sref="gfe.directoryNewUser" ng-click="close()"
+				class="md-primary" hide-xs>Directory New User</md-button>
 
 		</div>
 	
 </div>
+		
+	</div>
+
+

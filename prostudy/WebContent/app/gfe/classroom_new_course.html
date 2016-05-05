@@ -11,7 +11,11 @@
 
 			<md-input-container flex> <label>Course
 				Name </label> <input name="name" id="name" ng-model="tempCourse.name"
-				ng-required="true"> </md-input-container>
+				ng-required="true">
+				<div ng-messages="newCourseForm.name.$error"
+				ng-if="newCourseForm.name.$submitted || newCourseForm.name.$touched">
+				<div ng-message="required">Please Enter Course Name.</div>
+			</div> </md-input-container>
 
 			<md-input-container flex> <label>Section</label>
 			<input name="section" ng-model="tempCourse.section" id="section"
@@ -59,8 +63,10 @@
 	</div>
 
 	<div layout="row" layout-align="center center">
-		<md-button class="md-raised md-primary" ng-click="createCourse()">Add
+		<md-button class="md-raised md-primary" ng-click="createCourse()" ng-disabled="newCourseForm.$invalid">Add
 		New Course </md-button>
+		<md-button class="md-raised " ng-click="cancelButton()()">
+			Cancel </md-button>
 
 	</div>
 
