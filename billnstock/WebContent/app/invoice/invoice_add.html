@@ -8,14 +8,6 @@
 		[<span style="color: red;">Field Marked as asterik (*) are
 			mandetory</span>]
 		<div flex layout="row" layout-xs="column">
-			<!-- 			<md-input-container flex> <md-select
-				ng-model="invoiceObj.customer" placeholder="Customer Name"
-				ng-change="CustomerddlChange($index, selectedcustomerName)">
-			<md-option ng-value="cust" ng-repeat="cust in customersforinvoice">{{cust.customerName
-			}}</md-option> </md-select> </md-input-container>
- -->
-
-
 			<span style="color: red;">*</span>
 			<div layout="row" flex>
 				<md-autocomplete flex required ng-model="invoiceObj.customer"
@@ -26,7 +18,7 @@
 					md-items="item in querySearch(searchTextInput)"
 					md-item-text="item.firstName" md-floating-label="Customer Name">
 				<md-item-template> <span
-					md-highlight-text="searchTextInput">{{item.firstName}}</span> </md-item-template>
+					md-highlight-text="searchTextInput">{{item.firstName +""+ item.lastName }}</span> </md-item-template>
 				<div ng-messages="invoiceAdd.autocompleteField.$error"
 					ng-if="invoiceAdd.autocompleteField.$touched">
 					<div ng-message="required">
@@ -37,7 +29,20 @@
 				</div>
 				</md-autocomplete>
 
-
+ <!-- 
+ <h2 class="md-title">Searching asynchronously.</h2>
+    <md-contact-chips
+        ng-model="ctrl.asyncContacts"
+        md-contacts="ctrl.delayedQuerySearch($query)"
+        md-contact-name="name"
+        md-contact-image="image"
+        md-contact-email="email"
+        md-require-match="true"
+        md-highlight-flags="i"
+        filter-selected="ctrl.filterSelected"
+        placeholder="To">
+    </md-contact-chips>
+ -->
 				<md-icon md-svg-src="img/icons/ic_queue_black_24px.svg"
 					ng-click="addCustomer()" class="name"
 					style="color: Green; height: 40px; width: 40px"></md-icon>
@@ -156,7 +161,7 @@
 				</tr>
 				
 				<tr>
-					<td><label><u>Service Tax</u> </label></td>
+					<td><label><u>Services Tax</u> </label></td>
 					<td></td>
 					<td><md-input-container flex
 							ng-hide="invoiceObj.serviceLineItemList.length==0">

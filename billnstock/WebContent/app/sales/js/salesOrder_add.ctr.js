@@ -26,21 +26,22 @@ app
 						paymentTerms : '',
 						dueDate : '',
 						sOLineItemList : [],
-						subTotal : 0.00,
+						subTotal : 0,
 						taxCodeName : '',
 						taxPercenatge : '',
-						taxTotal : 0.00,
-						finalTotal : 0.00,
+
+						productTaxTotal : 0,
+						serviceTaxTotal : 0,
+						productTotal : 0,
+						serviceTotal : 0,
+						productSubTotal : 0,
+						serviceSubTotal : 0,
+						finalTotal : 0,
+
 						createdDate : new Date(),
 						modifiedDate : new Date(),
 						modifiedBy : '',
-						
 						serviceName : '',
-						discount : '',
-						discValue : '',
-						discAmount : 0.00,
-						pOrder : '',
-						serviceSubTotal : 0.00,
 						serviceLineItemList : [],
 						business : ""
 					};
@@ -69,7 +70,7 @@ app
 							itemName : "",
 							qty : 1,
 							price : "",
-							subTotal : ""
+							productSubTotal : ""
 						};
 
 						$scope.salesOrder.sOLineItemList.push(item);
@@ -83,27 +84,25 @@ app
 
 					$scope.calSubTotal = function() {
 						$log.debug("##Came to calSubTotal...");
-						$scope.salesOrder.subTotal = 0;
+						$scope.salesOrder.productSubTotal = 0;
 
 						for (var i = 0; i < $scope.salesOrder.sOLineItemList.length; i++) {
 							var line = $scope.salesOrder.sOLineItemList[i];
-							$scope.salesOrder.subTotal += (line.qty * line.price);
+							$scope.salesOrder.productSubTotal += (line.qty * line.price);
 						}
 
-						$scope.salesOrder.subTotal = parseFloat(
-								Math.round(($scope.salesOrder.subTotal) * 100) / 100)
-								.toFixed(2);
-
+						$scope.salesOrder.productTotal = $scope.salesOrder.productSubTotal + $scope.salesOrder.productTaxTotal;
 						$scope.calfinalTotal();
-						
-						return $scope.salesOrder.subTotal;
+
+						return $scope.salesOrder.productSubTotal;
 					}
 
 					$scope.calfinalTotal = function() {
 						$log.debug("##Came to calfinalTotal...");
 
-						$scope.salesOrder.finalTotal = parseFloat($scope.salesOrder.subTotal)
-								+ parseFloat($scope.salesOrder.taxTotal) + $scope.salesOrder.serviceSubTotal;
+						$scope.salesOrder.finalTotal = parseInt($scope.salesOrder.productSubTotal)
+								+ parseFloat($scope.salesOrder.productTaxTotal)
+								+ parseFloat($scope.salesOrder.serviceTotal);
 
 						$scope.salesOrder.finalTotal = parseFloat(
 								($scope.salesOrder.finalTotal)).toFixed(2);
@@ -115,8 +114,10 @@ app
 						var lineSelectedItem = $scope.salesOrder.sOLineItemList[index];
 						lineSelectedItem.price = stockItem.price;
 						lineSelectedItem.itemName = stockItem.itemName;
-						lineSelectedItem.subTotal = stockItem.subTotal;
+						lineSelectedItem.productSubTotal = stockItem.productSubTotal;
 
+						$scope.salesOrder.productTotal = $scope.salesOrder.productSubTotal + $scope.salesOrder.productTaxTotal
+						
 						$scope.calSubTotal();
 						$scope.calfinalTotal();
 					};
@@ -131,16 +132,16 @@ app
 						$scope.salesOrder.taxCodeName = $scope.salesOrder.selectedTaxItem.taxCodeName;
 						$scope.salesOrder.taxPercenatge = $scope.salesOrder.selectedTaxItem.taxPercenatge;
 
-						$scope.salesOrder.taxTotal = ($scope.salesOrder.selectedTaxItem.taxPercenatge / 100)
-								* ($scope.salesOrder.subTotal)
+						$scope.salesOrder.productTaxTotal = ($scope.salesOrder.selectedTaxItem.taxPercenatge / 100)
+								* ($scope.salesOrder.productSubTotal)
 
-						$scope.salesOrder.taxTotal = parseFloat(
-								Math.round($scope.salesOrder.taxTotal * 100) / 100)
+						$scope.salesOrder.productTaxTotal = parseFloat(
+								Math
+										.round($scope.salesOrder.productTaxTotal * 100) / 100)
 								.toFixed(2);
 						$scope.calfinalTotal();
 					};
 
-					
 					/*
 					 * ====================================Services
 					 * Provided===================================
@@ -154,13 +155,25 @@ app
 							serviceSubTotal : 0
 						};
 
-						$scope.salesOrder.serviceLineItemList
-								.push(service);
+						$scope.salesOrder.serviceLineItemList.push(service);
 					};
 
 					$scope.removeService = function(index) {
-						$scope.salesOrder.serviceLineItemList.splice(
-								index, 1);
+						$scope.salesOrder.serviceLineItemList.splice(index, 1);
+					};
+
+					$scope.serviceTaxChange = function(index,
+							selectedServiceTax, $event) {
+						$log.debug("##Came to lineItemTaxChange...");
+
+						$scope.salesOrder.serviceTaxTotal = parseFloat(($scope.salesOrder.selectedServiceTax.taxPercenatge / 100)
+								* ($scope.salesOrder.serviceSubTotal));
+
+						$scope.salesOrder.serviceTotal = parseInt($scope.salesOrder.serviceSubTotal)
+								+ $scope.salesOrder.serviceTaxTotal;
+						
+						$scope.calServiceSubTotal();
+						$scope.calfinalTotal();
 					};
 
 					$scope.calServiceSubTotal = function() {
@@ -171,30 +184,23 @@ app
 							var line = $scope.salesOrder.serviceLineItemList[i];
 							$scope.salesOrder.serviceSubTotal += (line.sQty * line.sPrice);
 
-							$log.debug("subTotal :"
+							$log.debug("serviceSubTotal :"
 									+ $scope.salesOrder.serviceSubTotal);
 						}
 
-						$scope.salesOrder.subTotal = parseFloat(
-								Math.round(($scope.salesOrder.subTotal) * 100) / 100)
+						$scope.salesOrder.serviceSubTotal = parseFloat(
+								Math
+										.round(($scope.salesOrder.serviceSubTotal) * 100) / 100)
 								.toFixed(2);
+
+						$scope.salesOrder.serviceTotal = parseFloat($scope.salesOrder.serviceSubTotal)
+								+ $scope.salesOrder.serviceTaxTotal;
 
 						$scope.calfinalTotal();
 
-						return $scope.salesOrder.subTotal;
+						return $scope.salesOrder.serviceSubTotal;
 					}
 
-					$scope.discountType = [ "%", "Fixed" ];
-					$scope.lineItemDiscountChange = function(index,
-							selectedDiscount) {
-						$log.debug("##Came to lineItemStockChange...");
-						$scope.lineSelectedDiscount = selectedDiscount;
-						$scope.salesOrder.discount = selectedDiscount;
-						// $scope.calSubTotal();
-						// $scope.calfinalTotal();
-					};
-					
-					
 					/* Setup menu */
 					$scope.toggleRight = buildToggler('right');
 					/**
@@ -247,9 +253,9 @@ app
 								$scope.curUser.business.id).then(
 								function(taxList) {
 									$log.debug("Inside Ctr getAllTaxes");
-									$scope.taxforPO = taxList;
-									$log.debug("@@@ $scope.taxforPO==="
-											+ $scope.taxforPO);
+									$scope.taxforSO = taxList;
+									$log.debug("@@@ $scope.taxforSO==="
+											+ $scope.taxforSO);
 								});
 					}
 
@@ -328,15 +334,16 @@ app
 										function() {
 											$scope.status = 'You cancelled the dialog.';
 										});
-						
+
 					};
 
 					function DialogController($scope, $mdDialog, curBusi,
 							customer) {
 
 						$scope.addCustomer = function() {
-							 $scope.customer.business = curBusi;
-							var customerService = appEndpointSF.getCustomerService();
+							$scope.customer.business = curBusi;
+							var customerService = appEndpointSF
+									.getCustomerService();
 
 							customerService.addCustomer($scope.customer).then(
 									function(msgBean) {
@@ -344,7 +351,7 @@ app
 									});
 							$scope.hide();
 						}
-						
+
 						$scope.hide = function() {
 							$mdDialog.hide();
 						};

@@ -429,9 +429,95 @@ app
 					}
 
 					// FOR CUSTOMER
+/*
+					 var self = this;
+					    var pendingSearch, cancelSearch = angular.noop;
+					    var cachedQuery, lastSearch;
+					    self.allContacts = loadContacts();
+					    self.contacts = [self.allContacts[0]];
+					    self.asyncContacts = [];
+					    self.filterSelected = true;
+					    self.querySearch = querySearch;
+					    self.delayedQuerySearch = delayedQuerySearch;
+					    *//**
+					     * Search for contacts; use a random delay to simulate a remote call
+					     *//*
+					    function querySearch (criteria) {
+					      cachedQuery = cachedQuery || criteria;
+					      return cachedQuery ? self.allContacts.filter(createFilterFor(cachedQuery)) : [];
+					    }
+					    *//**
+					     * Async search for contacts
+					     * Also debounce the queries; since the md-contact-chips does not support this
+					     *//*
+					    function delayedQuerySearch(criteria) {
+					      cachedQuery = criteria;
+					      if ( !pendingSearch || !debounceSearch() )  {
+					        cancelSearch();
+					        return pendingSearch = $q(function(resolve, reject) {
+					          // Simulate async search... (after debouncing)
+					          cancelSearch = reject;
+					          $timeout(function() {
+					            resolve( self.querySearch() );
+					            refreshDebounce();
+					          }, Math.random() * 500, true)
+					        });
+					      }
+					      return pendingSearch;
+					    }
+					    function refreshDebounce() {
+					      lastSearch = 0;
+					      pendingSearch = null;
+					      cancelSearch = angular.noop;
+					    }
+					    *//**
+					     * Debounce if querying faster than 300ms
+					     *//*
+					    function debounceSearch() {
+					      var now = new Date().getMilliseconds();
+					      lastSearch = lastSearch || now;
+					      return ((now - lastSearch) < 300);
+					    }
+					    *//**
+					     * Create filter function for a query string
+					     *//*
+					    function createFilterFor(query) {
+					      var lowercaseQuery = angular.lowercase(query);
+					      return function filterFn(contact) {
+					        return (contact._lowername.indexOf(lowercaseQuery) != -1);;
+					      };
+					    }
+					    function loadContacts() {
+					      var contacts = [
+					        'Marina Augustine',
+					        'Oddr Sarno',
+					        'Nick Giannopoulos',
+					        'Narayana Garner',
+					        'Anita Gros',
+					        'Megan Smith',
+					        'Tsvetko Metzger',
+					        'Hector Simek',
+					        'Some-guy withalongalastaname'
+					      ];
+					      return contacts.map(function (c, index) {
+					        var cParts = c.split(' ');
+					        var contact = {
+					          name: c,
+					          email: cParts[0][0].toLowerCase() + '.' + cParts[1].toLowerCase() + '@example.com',
+					          image: 'http://lorempixel.com/50/50/people?' + index
+					        };
+					        contact._lowername = contact.name.toLowerCase();
+					        return contact;
+					      });
+					    }
+					  
 
+	*/				
+				
+					
+					
 					$scope.invoiceObj.customer = null;
-					$scope.searchTextInput = null;
+					//$scope.searchTextInput = null;
 
 					$scope.querySearch = function(query) {
 						var results = query ? $scope.customersforinvoice
@@ -457,7 +543,7 @@ app
 										function(custList) {
 											$scope.customersforinvoice = custList.items;
 										});
-						$scope.customersforinvoice = [];
+						
 					}
 					/**
 					 * Create filter function for a query string
@@ -465,11 +551,15 @@ app
 					function createFilterFor(query) {
 						var lowercaseQuery = angular.lowercase(query);
 						return function filterFn(cus) {
-							return (angular.lowercase(cus.firstName).indexOf(
+							var a = cus.firstName +""+ cus.lastName;
+							return (angular.lowercase(a).indexOf(
 									lowercaseQuery) === 0);
 						};
 					}
 
+					
+					
+					
 					$scope.getAllWarehouseByBusiness = function() {
 						$log.debug("Inside function $scope.getAllWarehouseByBusiness");
 						var warehouseService = appEndpointSF
@@ -487,7 +577,7 @@ app
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
 							loadAllCustomers();
-							// loadAllStock();
+					//		loadContacts();
 							$scope.getAllStock();
 							$scope.getAllSalesOrder();
 							$scope.getTaxesByVisibility();
@@ -604,7 +694,8 @@ app
 							$mdDialog.hide();
 						};
 					}
-*/					
+*/				
+				
 				});
 
 
