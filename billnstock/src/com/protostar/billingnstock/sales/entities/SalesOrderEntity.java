@@ -24,38 +24,33 @@ public class SalesOrderEntity extends BaseEntity {
 	private Date deliveryDate;
 	private String paymentTerms;
 	private Date dueDate;
-	private String taxCodeName;
-	private double taxPercenatge ;
-	private double taxTotal;
-	private double subTotal ;
+
+
 	private double finalTotal;
 	
+	private float productTaxTotal;
+	private float serviceTaxTotal;
+	private float productTotal;
+	private float serviceTotal;
+	private float productSubTotal;
 	private float serviceSubTotal;
+	
+	
 	private List<ServiceLineItemList> serviceLineItemList;
-	
 	private List<LineStockItem> sOLineItemList;
-	Ref<TaxEntity> selectedTaxItem;
 	
-	public String getTaxCodeName() {
-		return taxCodeName;
+	Ref<Customer> customer;	
+	Ref<TaxEntity> selectedTaxItem;
+	Ref<TaxEntity> selectedServiceTax;
+	
+	
+	public TaxEntity getSelectedServiceTax() {
+		return selectedServiceTax == null? null:selectedServiceTax.get();
 	}
-	public void setTaxCodeName(String taxCodeName) {
-		this.taxCodeName = taxCodeName;
+	public void setSelectedServiceTax(TaxEntity selectedServiceTax) {
+		this.selectedServiceTax = Ref.create(selectedServiceTax);
 	}
-	public double getTaxPercenatge() {
-		return taxPercenatge;
-	}
-	public void setTaxPercenatge(double taxPercenatge) {
-		this.taxPercenatge = taxPercenatge;
-	}
-	public double getTaxTotal() {
-		return taxTotal;
-	}
-	public void setTaxTotal(double taxTotal) {
-		this.taxTotal = taxTotal;
-	}
-
-
+	
 	public List<LineStockItem> getsOLineItemList() {
 		return sOLineItemList;
 	}
@@ -63,7 +58,7 @@ public class SalesOrderEntity extends BaseEntity {
 		this.sOLineItemList = sOLineItemList;
 	}
 
-	Ref<Customer> customer;	
+	
 	public Customer getCustomer() {
 		return customer.get();
 	}
@@ -143,12 +138,7 @@ public class SalesOrderEntity extends BaseEntity {
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
 	}
-	public double getSubTotal() {
-		return subTotal;
-	}
-	public void setSubTotal(double subTotal) {
-		this.subTotal = subTotal;
-	}
+	
 	public double getFinalTotal() {
 		return finalTotal;
 	}
@@ -168,5 +158,36 @@ public class SalesOrderEntity extends BaseEntity {
 	}
 	public void setServiceLineItemList(List<ServiceLineItemList> serviceLineItemList) {
 		this.serviceLineItemList = serviceLineItemList;
+	}
+	
+	public float getProductTaxTotal() {
+		return productTaxTotal;
+	}
+	public void setProductTaxTotal(float productTaxTotal) {
+		this.productTaxTotal = productTaxTotal;
+	}
+	public float getServiceTaxTotal() {
+		return serviceTaxTotal;
+	}
+	public void setServiceTaxTotal(float serviceTaxTotal) {
+		this.serviceTaxTotal = serviceTaxTotal;
+	}
+	public float getProductTotal() {
+		return productTotal;
+	}
+	public void setProductTotal(float productTotal) {
+		this.productTotal = productTotal;
+	}
+	public float getServiceTotal() {
+		return serviceTotal;
+	}
+	public void setServiceTotal(float serviceTotal) {
+		this.serviceTotal = serviceTotal;
+	}
+	public float getProductSubTotal() {
+		return productSubTotal;
+	}
+	public void setProductSubTotal(float productSubTotal) {
+		this.productSubTotal = productSubTotal;
 	}
 }
