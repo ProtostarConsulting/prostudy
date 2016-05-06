@@ -10,15 +10,17 @@ angular
 					.getUtilityService().checkConfirmPassword;
 					
 				$scope.tempUser={
+					'id':"",
 					'name': {
 					 'givenName': "",
 					 'familyName': ""
 					},
-					'primaryEmail': "",
-					'password': ""				
-					
+					'primaryEmail': "",					
+					'password': ""	,
+					'includeInGlobalAddressList': true			
 					}			
 		
+				
 				$scope.cancelButton = function() {
 					$state.go("^", {});
 				}

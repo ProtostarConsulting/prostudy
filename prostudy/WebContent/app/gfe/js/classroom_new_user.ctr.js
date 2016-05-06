@@ -41,7 +41,9 @@ angular.module("prostudyApp")
 					    	  sortOrder:'ascending' ,
 					    	  orderBy:'email',
 					    	  projection:'basic',
-					        domain:	'sgpcs.in'	        	
+					        domain:	'sgpcs.in',
+					        maxResults:500
+					        
 					      });
 					     
 					      request.execute(function(resp) {

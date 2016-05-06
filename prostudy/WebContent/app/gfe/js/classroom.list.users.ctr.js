@@ -23,7 +23,7 @@ angular
 						var request = gapi.client.classroom.courses.teachers
 								.list({
 									courseId : $scope.selectedCourseId,
-									pageSize : 20
+									pageSize : 100
 								});
 
 						request.execute(function(resp) {
