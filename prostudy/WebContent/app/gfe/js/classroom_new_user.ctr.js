@@ -58,9 +58,7 @@ angular.module("prostudyApp")
 					        } else {
 					        	 $log.debug("Not Found");
 					        }
-					        $scope.loading = false;
-					        $log.debug("$scope.directoryUsers"+angular.toJson($scope.directoryUsers));
-							
+					        $scope.loading = false;					      							
 					      });
 					    }
 					

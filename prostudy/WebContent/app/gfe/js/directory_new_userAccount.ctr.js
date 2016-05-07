@@ -20,17 +20,15 @@ angular
 					'includeInGlobalAddressList': true			
 					}			
 		
-				
 				$scope.cancelButton = function() {
-					$state.go("^", {});
+					$state.go("gfe.directoryUserList", {});
 				}
 				$scope.createNewUserAccount = function() {											
 					var request = gapi.client.directory.users.insert($scope.tempUser);				
-					request.execute(function(resp) {
-						
+					request.execute(function(resp) {						
 						$log.debug("resp:" + angular.toJson(resp));		
 						$scope.tempUser={};
-						$state.go("gfe",{});
+						$state.go("gfe.directoryUserList", {});
 					});
 				
 				}

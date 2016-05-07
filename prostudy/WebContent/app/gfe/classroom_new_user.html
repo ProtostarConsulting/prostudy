@@ -1,4 +1,4 @@
-<h3 class="md-headline">Add New {{userType}}</h3>
+<h3 class="md-headline">Add {{userType}}</h3>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
@@ -30,22 +30,17 @@
 				<div ng-message="minlength">Your entry is not long enough.</div>
 				<div ng-message="maxlength">Your entry is too long.</div>
 			</div>
-			</md-autocomplete>
-			
-			<!-- <md-input-container flex> <label>Permissions
-			</label> <md-select ng-model="perm"> <md-option
-				ng-value="perm" ng-repeat="perm in permissionList">{{perm}}</md-option>
-			</md-select> </md-input-container> -->
+			</md-autocomplete>		
 			
 		</div>
 
 		<div layout="row" layout-align="center center">
 			<md-button ng-show="userType==='Teacher'"
 				class="md-raised md-primary" ng-click="createTeacher()"
-				ng-disabled="newUserForm.$invalid">Add New Teacher </md-button>
+				ng-disabled="newUserForm.$invalid">Add Teacher </md-button>
 			<md-button ng-show="userType==='Student'"
 				class="md-raised md-primary" ng-click="createStudent()"
-				ng-disabled="newUserForm.$invalid">Add New Student </md-button>
+				ng-disabled="newUserForm.$invalid">Add Student </md-button>
 			<md-button class="md-raised " ng-click="cancelButton()()">
 			Cancel </md-button>
 		</div>

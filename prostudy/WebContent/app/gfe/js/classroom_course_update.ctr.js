@@ -37,8 +37,7 @@ angular
 						var request = gapi.client.classroom.courses
 								.update($scope.tempCourse);
 
-						request.execute(function(resp) {
-							
+						request.execute(function(resp) {							
 							$scope.showSavedToast();
 							$state.go("gfe.classroomCourseList",{});
 							
@@ -47,11 +46,11 @@ angular
 					
 					$scope.showSavedToast = function() {
 						$mdToast.show($mdToast.simple().content(
-								'New Course Saved!').position("top").hideDelay(
+								'Course Updated Successfully!').position("top").hideDelay(
 								3000));
 					};
 					$scope.cancelButton = function() {
-						$state.go("^", {});
+						$state.go("gfe.classroomCourseList", {});
 					}
 			
 					$scope.getCourse();
