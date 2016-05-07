@@ -1,4 +1,4 @@
-
+<!-- 
     <div class="container">
       <h1>Gmail API demo</h1>
 
@@ -83,3 +83,51 @@
         </div>
       </div>
     </div>
+ -->
+ 
+ 
+ 
+ 
+<!--  
+<md-content layout-padding>
+
+	<div id="authorize-div" style="display: none" >
+		    <span>Authorize access to Gmail API</span>
+		<md-button class="md-raised md-primary"  id="authorize-button"
+				 ng-click="handleAuthClick(event)">Authorize</md-button>
+	
+	</div>
+ <pre id="output"></pre>
+</md-content> -->
+
+<div ng-hide="authorized">
+<span>Authorize access to gmail API</span>
+<md-button  class="md-raised md-primary" ng-click="handleAuthClick(event)">
+   Authorize API Access
+  </md-button>
+  <md-button  class="md-raised md-primary" ng-click="sendEmailMessage()">
+   Send
+  </md-button>
+  </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

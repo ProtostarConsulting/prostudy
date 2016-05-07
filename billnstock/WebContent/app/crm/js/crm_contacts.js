@@ -142,7 +142,7 @@ angular
 						var lowercaseQuery = angular.lowercase(query);
 						return function filterFn(emp) {
 							return (angular.lowercase(emp.companyName).indexOf(
-									lowercaseQuery) === 0);
+									lowercaseQuery) >= 0);
 						};
 					}
 					// ////////////Auto complete code ends//////////////////////
