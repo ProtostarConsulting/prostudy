@@ -44,7 +44,8 @@
 			ng-src="{{logBaseURL}}" class="md-card-image" alt="Compnay Logo" height="80px" width="100px">
 		</md-card> -->
 		<div>
-		<img ng-src="{{logBaseURL}}" class="md-card-image" alt="Compnay Logo" height="60px" width="120px"/>
+		<img ng-show="curUser.business.logBlobKey" ng-src="{{logBaseURL}}" class="md-card-image"  height="60px" width="120px"/>
+		<img ng-hide="curUser.business.logBlobKey"  src="img/images/your_default_logo.jpg"  height="60px" width="120px"> 
 	</div>
 
 		<!-- fill up the space between left and right area -->
@@ -75,8 +76,12 @@
 				{{ curUser.firstName}}
 				<md-button aria-label="Open Settings"
 					ng-click="showListBottomSheet($event)"> <md-tooltip>
-				{{ curUser.firstName + " " +  curUser.lastName + "|" + curUser.email_id}} </md-tooltip> <img
-					ng-show="true" ngf-src="curUser.imageURl" class=circular>
+				{{ curUser.firstName + " " +  curUser.lastName + "|" + curUser.email_id}} </md-tooltip> 
+				
+				
+			<img ng-show="true" ng-show="curUser.imageURl" ngf-src="curUser.imageURl" class=circular>
+			 <img alt="Logo" ng-hide="curUser.imageURl" src="img/images/ic_person_black_24px.svg"  class=circular>
+				
 				</md-button>
 				<md-button aria-label="Logout" ng-hide="curUser == null"
 					ng-click="signOut()"> Logout <md-tooltip>
@@ -432,6 +437,7 @@
 	<script src="/app/setup/js/setup_changePlan.js"></script>
 	<script src="/app/setup/js/disclaimer.js"></script>
 	<script src="/app/setup/js/userlist.js"></script>
+	<script src="/app/setup/js/sendmail.js"></script>
 
 	<script src="/app/setup/js/setup_changetheme.js"></script>
 	<script src="/app/setup/js/setup_setLogo.js"></script>
@@ -535,6 +541,9 @@
 		src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script
 		src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+		
+	<script src="https://apis.google.com/js/client.js?onload=checkAuth"> </script>
+		
 	<!--end send mail  -->
 	<script src="index.ctr.js"></script>
 
