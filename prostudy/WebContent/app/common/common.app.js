@@ -661,11 +661,31 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		params : {
 			selectedCourseId : null			
 		}
-	})
-	.state('gfe.directoryNewUser', {
+	}).state('gfe.directoryNewUser', {
 		url : "/directoryNewUser",
 		templateUrl : '/app/gfe/directory_new_userAccount.html',
 		controller : 'directoryNewUserAccountCtr'
+	})
+	.state('gfe.directoryViewUser', {
+		url : "/directoryViewUser",
+		templateUrl : '/app/gfe/directory_view_userAccount.html',
+		controller : 'directoryViewUserAccountCtr',
+		params : {
+			selectedUserPrimaryEmail:null
+		}		
+	})
+	.state('gfe.directoryEditUser', {
+		url : "/directoryEditUser",
+		templateUrl : '/app/gfe/directory_edit_userAccount.html',
+		controller : 'directoryEditUserAccountCtr',
+			params : {
+				selectedUser:null				
+			}			
+	})
+	.state('gfe.directoryUserList', {
+		url : "/directoryUserList",
+		templateUrl : '/app/gfe/directory_user_list.html',
+		controller : 'directoryUserListCtr'
 	});	
 
 });
