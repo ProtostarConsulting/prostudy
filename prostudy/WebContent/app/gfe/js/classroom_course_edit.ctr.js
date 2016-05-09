@@ -1,7 +1,7 @@
 angular
 		.module("prostudyApp")
 		.controller(
-				"classroomCourseUpdateCtr",
+				"classroomCourseEditCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,$stateParams,
 						$mdUtil, $log, $q, tableTestDataFactory, appEndpointSF,$state) {
 					

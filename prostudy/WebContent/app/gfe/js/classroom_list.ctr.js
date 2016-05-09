@@ -2,7 +2,7 @@ angular
 		.module("prostudyApp")
 		.controller(
 				"classroomCourseListCtr",
-				function($scope, $window, $mdToast, $timeout, $mdSidenav,
+				function($scope, $window, $mdToast, $timeout, $mdSidenav,$state,
 						$mdUtil, $log, $q, tableTestDataFactory, appEndpointSF) {
 					console.log("Inside classroomtListCtr");					
 					
@@ -63,17 +63,22 @@ angular
 
 					$scope.deleteCourse = function(courseId) {
 						
-						$log.debug("Inside deleteCourse .."+courseId);
+						
 						var request = gapi.client.classroom.courses.delete({id:courseId});
 
 						request.execute(function(resp) {
 							$log.debug("resp:" + angular.toJson(resp));
 							$scope.showSavedToast();
+							$scope.loading = true;
+							$scope.classroomCourses=[];
+							$scope.selected = [];
+							$scope.searchName="";
+							$scope.listCourses();
 						});
 					}
 					$scope.showSavedToast = function() {
 						$mdToast.show($mdToast.simple().content(
-								'Slected Course Deleted!').position("top").hideDelay(
+								'Selected Course Deleted!').position("top").hideDelay(
 								3000));
 					};
 				});

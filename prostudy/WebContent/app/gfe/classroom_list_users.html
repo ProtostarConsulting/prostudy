@@ -15,18 +15,18 @@
 			md-progress="deferred">
 			<thead md-order="query.order" md-trigger="onorderchange">
 				<tr>
-					<th order-by="profile.name.fullName" name="Name" unit=""></th>
+					<th order-by="profile.name.fullName" name="Name" unit=""></th>					
+					<th order-by="emailAddress" name="EmailAddress"></th>
 					<th order-by="courseId" name="courseId" unit=""></th>
-					<th order-by="userId" name="userId"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr md-auto-select
 					ng-repeat="user in userList | orderBy: query.order| filter: {$: searchUser} | limitTo: query.limit: (query.page - 1) * query.limit">
 
-					<td>{{user.profile.name.fullName}}</td>
-					<td>{{user.courseId}}</td>
-					<td>{{user.userId}}</td>					
+					<td>{{user.profile.name.fullName}}</td>					
+					<td>{{user.profile.emailAddress}}</td>	
+					<td>{{user.courseId}}</td>				
 				</tr>
 			</tbody>
 		</table>
