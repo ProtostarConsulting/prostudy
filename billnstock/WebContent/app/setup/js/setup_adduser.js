@@ -74,7 +74,12 @@ angular
 				            });
 				          }*/
 
-				      
+					//----------hide and show ---------------------------
+
+					$scope.IsHidden = true;
+					$scope.ShowHide = function() {
+						$scope.IsHidden = $scope.IsHidden ? false : true;
+					}
 				      //-----------------end send mail-------------------
 
 					$scope.items = [ "customer", "account", "stock",
@@ -82,9 +87,18 @@ angular
 							"warehouse", "hr", "crm", "employee", "admin" ];
 					$scope.selection = [];
 
+		
 					$scope.curuser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
 
+		
+					$scope.BankDetail={
+						bankName:"",
+						bankIfscCode:"",	
+						bankMircCode:"",
+						bankAccountNo:"",
+								
+					}
 					// use to set all item false to set
 					for ( var item in $scope.items) {
 						$scope.selection.push($scope.curuser.authority[0]
@@ -142,6 +156,7 @@ angular
 					// -------------------------------------------------------------------------
 
 					$scope.user = {
+						bankDetail:"",
 						business : "",
 						email_id : "",
 						firstName : "",
@@ -167,6 +182,7 @@ angular
 
 					$scope.adduser = function() {
 						$scope.user.business = $scope.business;
+						$scope.user.bankDetail=$scope.BankDetail;
 						// use selection array true false value and push that
 						// numbered item on authority
 						$scope.user.authority = [];

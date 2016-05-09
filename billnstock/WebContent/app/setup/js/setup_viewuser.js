@@ -28,6 +28,13 @@ angular
 						$scope.selection[index] = !$scope.selection[index];
 					};
 
+					$scope.BankDetail={
+							bankName:"",
+							bankIfscCode:"",	
+							bankMircCode:"",
+							bankAccountNo:"",
+									
+						}
 					$scope.condition = function() {
 						if ($scope.user.isGoogleUser == false) {
 							return true;
@@ -49,6 +56,7 @@ angular
 												$log
 														.debug("Inside Ctr getAllleads");
 												$scope.userL = userList.result;
+												$scope.BankDetail=$scope.userL.bankDetail;
 												// push the authoried item index
 												// in true in selection array
 												for ( var i in $scope.items) {
@@ -75,6 +83,7 @@ angular
 
 					$scope.updateuser = function() {
 						$scope.userL.modifiedBy=$scope.curUser.email_id;
+						$scope.userL.bankDetail=$scope.BankDetail;
 						$scope.userL.authority = [];
 						for (var i = 0; i < $scope.selection.length; i++) {
 							if ($scope.selection[i])
@@ -131,7 +140,7 @@ angular
 
 					function DialogController($scope, $mdDialog, curuser) {
 
-						alert(angular.toJson(curuser));
+						//alert(angular.toJson(curuser));
 						$scope.hide = function() {
 							$mdDialog.hide();
 						};
