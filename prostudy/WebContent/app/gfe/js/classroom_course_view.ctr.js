@@ -31,7 +31,7 @@ angular
 						});
 					}	
 					$scope.cancelButton = function() {
-						$state.go("^", {});
+						$state.go("gfe.classroomCourseList",{});
 					}
 			
 					$scope.getCourse();

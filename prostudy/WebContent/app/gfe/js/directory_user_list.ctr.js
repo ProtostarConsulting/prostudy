@@ -2,10 +2,12 @@ angular
 		.module("prostudyApp")
 		.controller(
 				"directoryUserListCtr",
-				function($scope, $window, $mdToast, $timeout, $mdSidenav,$state,
+				function($scope, $window, $mdToast, $timeout, $mdSidenav,$state,$stateParams,
 						$mdUtil, $log, $q, tableTestDataFactory, appEndpointSF) {
 					console.log("Inside directoryUserListCtr");				
-								
+						
+					$scope.currentClassroomUserDomain = $stateParams.currentClassroomUserDomain;
+					
 				
 				$scope.directoryUserList=[];
 				$scope.selected = [];
@@ -46,7 +48,7 @@ angular
 					});
 				}
 				$scope.getDirectoryUserList= function() {											
-					var request = gapi.client.directory.users.list({domain:'sgpcs.in',maxResults:'500'});				
+					var request = gapi.client.directory.users.list({domain:$scope.currentClassroomUserDomain,maxResults:'500'});				
 					request.execute(function(resp) {
 						$scope.users=resp.users;
 						

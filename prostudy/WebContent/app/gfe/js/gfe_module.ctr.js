@@ -6,7 +6,7 @@ angular.module("prostudyApp").controller(
 			$log.debug("Inside gfeModuleCtr");			
 					$scope.authorized = false;
 					$scope.loading = false;
-					$scope.currentClassroomUser = null;
+					$scope.currentClassroomUserDomain = null;
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
 					
@@ -93,14 +93,8 @@ angular.module("prostudyApp").controller(
 													});
 											request
 													.execute(function(resp) {
-														$scope.currentClassroomUser = resp;
-														$log
-																.debug('Retrieved profile for:'
-																		+ resp.displayName);
-														$log
-																.debug("$scope.currentClassroomUser:"
-																		+ angular
-																				.toJson($scope.currentClassroomUser));
+														$scope.currentClassroomUserDomain = resp.emails[0].value.split("@")[1];
+													
 													});
 
 										});

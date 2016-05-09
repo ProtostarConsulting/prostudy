@@ -19,9 +19,9 @@
 			<thead md-order="query.order" md-trigger="onorderchange">
 				<tr>
 					<th order-by="name" name="Name" unit=""></th>
-					<th order-by="creationTime" name="Creation DateTime"></th>
+					<th order-by="courseState" name="CourseState"></th>					
 					<th order-by="enrollmentCode" name="Enrollment Code"></th>
-					<th order-by="courseState" name="CourseState"></th>
+					<th order-by="creationTime" name="Creation DateTime"></th>
 
 				</tr>
 			</thead>
@@ -30,9 +30,9 @@
 					ng-repeat="course in classroomCourses | orderBy: query.order | filter: {name: searchName}| limitTo: query.limit: (query.page - 1) * query.limit">
 
 					<td>{{course.name}}</td>
-					<td>{{course.creationTime}}</td>
-					<td>{{course.enrollmentCode}}</td>
 					<td>{{course.courseState}}</td>
+					<td>{{course.enrollmentCode}}</td>
+					<td>{{course.creationTime}}</td>
 
 				</tr>
 			</tbody>
@@ -51,8 +51,8 @@
 			ui-sref="gfe.classroomCourseView({selectedCourseId: selected[0].id})"
 			class="md-raised md-primary"> View Course </md-button>
 		<md-button
-			ui-sref="gfe.classroomCourseUpdate({selectedCourseId: selected[0].id})"
-			class="md-raised md-primary"> Update Course </md-button>
+			ui-sref="gfe.classroomCourseEdit({selectedCourseId: selected[0].id})"
+			class="md-raised md-primary">Edit Course </md-button>
 		<md-button class="md-raised md-primary"
 			ng-click="deleteCourse(selected[0].id)"> Delete Course </md-button>
 
