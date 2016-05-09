@@ -623,7 +623,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'classroomCourseListCtr'
 	}).state('gfe.classroomCourseUserList', {
 		url : "/classroomCourseUserList",
-		templateUrl : '/app/gfe/classroom_list.users.html',
+		templateUrl : '/app/gfe/classroom_list_users.html',
 		controller : 'classroomCourseUserListCtr',
 		params : {
 			userType : null,
@@ -647,10 +647,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			userType:null
 		}
 	})
-	.state('gfe.classroomCourseUpdate', {
-		url : "/classroomCourseUpdate",
-		templateUrl : '/app/gfe/classroom_course_update.html',
-		controller : 'classroomCourseUpdateCtr'	,	
+	.state('gfe.classroomCourseEdit', {
+		url : "/classroomCourseEdit",
+		templateUrl : '/app/gfe/classroom_course_edit.html',
+		controller : 'classroomCourseEditCtr'	,	
 		params : {
 			selectedCourseId : null			
 		}
@@ -664,7 +664,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('gfe.directoryNewUser', {
 		url : "/directoryNewUser",
 		templateUrl : '/app/gfe/directory_new_userAccount.html',
-		controller : 'directoryNewUserAccountCtr'
+		controller : 'directoryNewUserAccountCtr',
+		params : {
+			currentClassroomUserDomain : null			
+		}
 	})
 	.state('gfe.directoryViewUser', {
 		url : "/directoryViewUser",
@@ -685,7 +688,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	.state('gfe.directoryUserList', {
 		url : "/directoryUserList",
 		templateUrl : '/app/gfe/directory_user_list.html',
-		controller : 'directoryUserListCtr'
+		controller : 'directoryUserListCtr',
+		params : {
+			currentClassroomUserDomain : null			
+		}
+		
 	});	
 
 });
