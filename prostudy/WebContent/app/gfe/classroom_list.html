@@ -2,7 +2,7 @@
 <div ng-hide="loading">
 
 	<md-data-table-toolbar ng-show="!selected.length">
-	<h2 class="md-title">Courses List</h2>
+	<h3 class="md-headline">Courses List</h3>
 	</md-data-table-toolbar>
 	<div>
 		<md-input-container flex> <label>Search
@@ -19,10 +19,9 @@
 			<thead md-order="query.order" md-trigger="onorderchange">
 				<tr>
 					<th order-by="name" name="Name" unit=""></th>
-					<th order-by="courseState" name="CourseState"></th>					
+					<th order-by="courseState" name="CourseState"></th>
 					<th order-by="enrollmentCode" name="Enrollment Code"></th>
 					<th order-by="creationTime" name="Creation DateTime"></th>
-
 				</tr>
 			</thead>
 			<tbody>
@@ -33,7 +32,6 @@
 					<td>{{course.courseState}}</td>
 					<td>{{course.enrollmentCode}}</td>
 					<td>{{course.creationTime}}</td>
-
 				</tr>
 			</tbody>
 		</table>
@@ -53,6 +51,7 @@
 		<md-button
 			ui-sref="gfe.classroomCourseEdit({selectedCourseId: selected[0].id})"
 			class="md-raised md-primary">Edit Course </md-button>
+
 		<md-button class="md-raised md-primary"
 			ng-click="deleteCourse(selected[0].id)"> Delete Course </md-button>
 
@@ -61,17 +60,17 @@
 	</div>
 	<div layout="row" layout-align="centre centre" layout-xs="column">
 		<md-button
-			ui-sref="gfe.classroomCourseAddNewUser({selectedCourseId: selected[0].id, userType : 'Teacher'})"
+			ui-sref="gfe.classroomCourseAddNewUser({selectedCourseId: selected[0].id, userType : 'Teacher',courseName:selected[0].name})"
 			class="md-raised md-primary"> Add Class Teacher </md-button>
 		<md-button
-			ui-sref="gfe.classroomCourseAddNewUser({selectedCourseId: selected[0].id, userType : 'Student'})"
+			ui-sref="gfe.classroomCourseAddNewUser({selectedCourseId: selected[0].id, userType : 'Student',courseName:selected[0].name})"
 			class="md-raised md-primary"> Add Class Student </md-button>
 
 		<md-button
-			ui-sref="gfe.classroomCourseUserList({selectedCourseId: selected[0].id, userType : 'Teacher'})"
+			ui-sref="gfe.classroomCourseUserList({selectedCourseId: selected[0].id, userType : 'Teacher',courseName:selected[0].name})"
 			class="md-raised md-primary"> View Class Teachers </md-button>
 		<md-button
-			ui-sref="gfe.classroomCourseUserList({selectedCourseId: selected[0].id, userType: 'Student'})"
+			ui-sref="gfe.classroomCourseUserList({selectedCourseId: selected[0].id, userType: 'Student',courseName:selected[0].name})"
 			class="md-raised md-primary"> View Class Students </md-button>
 	</div>
 </div>

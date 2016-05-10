@@ -1,16 +1,15 @@
-<h3 class="md-headline">Add {{userType}}</h3>
+<h3 class="md-headline">Add {{userType}} to {{courseName}}</h3>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-
 
 <form name="newUserForm" ng-model="newUserForm">
 
 	<div layout="column" layout-align="" layout-xs="column">
 
 		<div layout="row" layout-align="centre centre" layout-xs="column">
-			<md-input-container flex> <label>CourseId</label>
-			<input name="selectedCourseId" id="selectedCourseId"
-				ng-model="selectedCourseId" ng-required="true" readonly> </md-input-container>
+			<md-input-container flex> <label>Course Name</label>
+			<input name="courseName" id="courseName"
+				ng-model="courseName" ng-required="true" readonly> </md-input-container>
 		</div>
 
 		<div layout="row" layout-align="centre centre" layout-xs="column">

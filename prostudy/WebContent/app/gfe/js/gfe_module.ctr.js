@@ -93,7 +93,7 @@ angular.module("prostudyApp").controller(
 													});
 											request
 													.execute(function(resp) {
-														$scope.currentClassroomUserDomain = resp.emails[0].value.split("@")[1];
+														$scope.currentUserDomain = resp.emails[0].value.split("@")[1];
 													
 													});
 

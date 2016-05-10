@@ -32,7 +32,7 @@
 
 		</div>
 		<div layout="row" layout-align="centre centre" layout-xs="column">
-			<md-input-container flex> <label>
+	<!-- 		<md-input-container flex> <label>
 				Primary Email-id<span style="color: red"
 				ng-show="newUserAccountForm.primaryEmail.$error.required"
 				class="mandatory">*</span>
@@ -46,7 +46,23 @@
 			</div>
 			</md-input-container>
 			
-			<md-input-container flex><input ng-model="currentClassroomUserDomain" readonly>
+			 -->
+			
+					<md-input-container flex> <label>
+				Primary Email-id<span style="color: red"
+				ng-show="newUserAccountForm.primaryEmail.$error.required"
+				class="mandatory">*</span>
+			</label> <input  name="primaryEmail" ng-pattern="/^[^\s]/"
+				
+				ng-model="tempUser.primaryEmail" ng-required="true">
+			<div ng-messages="newUserAccountForm.primaryEmail.$error"
+				ng-if="newUserAccountForm.primaryEmail.$submitted || newUserAccountForm.primaryEmail.$touched">
+				<div ng-message="required">Email-Id should not Empty.</div>
+				<div ng-message="pattern">Please Enter Valid Email-Id.</div>
+			</div>
+			</md-input-container>
+		
+			<md-input-container flex><input ng-model="currentUserDomain" readonly>
 			</md-input-container>
 
 

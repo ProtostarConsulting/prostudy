@@ -9,9 +9,9 @@ angular
 					$scope.checkConfirmPassword = appEndpointSF
 					.getUtilityService().checkConfirmPassword;
 					
-					$scope.currentClassroomUserDomain = $stateParams.currentClassroomUserDomain;
+					$scope.currentUserDomain = $stateParams.currentUserDomain;
 					
-					
+					$log.debug("$scope.currentUserDomain  -"+$scope.currentUserDomain);
 				$scope.tempUser={
 					'id':"",
 					'name': {
@@ -32,7 +32,11 @@ angular
 							'New User Account Added Successfully!').position("top")
 							.hideDelay(3000));
 				};
-				$scope.createNewUserAccount = function() {											
+				$scope.createNewUserAccount = function() {	
+					
+					
+					$scope.tempUser.primaryEmail=$scope.tempUser.primaryEmail+"@"+$scope.currentUserDomain;
+					
 					var request = gapi.client.directory.users.insert($scope.tempUser);				
 					request.execute(function(resp) {						
 						$log.debug("resp:" + angular.toJson(resp));		

@@ -6,7 +6,7 @@ angular
 						$mdUtil, $log, $q, $stateParams, tableTestDataFactory, appEndpointSF) {
 					
 					$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
-					
+					$scope.courseName = $stateParams.courseName;
 					$scope.userType = "";
 					$scope.userList = [];
 					$scope.selected=[];
@@ -28,7 +28,6 @@ angular
 
 						request.execute(function(resp) {
 							$scope.userList = resp.result.teachers?resp.result.teachers:[];
-							$log.debug("resp:" + angular.toJson(resp));
 						});
 					}
 
@@ -89,7 +88,7 @@ angular
 				
 					$scope.query = {
 						order : 'fullName',
-						limit : 10,
+						limit : 5,
 						page : 1
 					};
 

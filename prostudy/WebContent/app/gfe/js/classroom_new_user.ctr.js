@@ -6,6 +6,8 @@ angular.module("prostudyApp")
 						appEndpointSF, $state) {
 
 					$scope.selectedCourseId = $stateParams.selectedCourseId;
+					$scope.courseName = $stateParams.courseName;
+					
 					$scope.userType = $stateParams.userType;
 					   $scope.directoryUsers=[];
 					   

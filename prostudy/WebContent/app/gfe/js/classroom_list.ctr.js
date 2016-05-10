@@ -61,8 +61,7 @@ angular
 						return deferred.promise;
 					};
 
-					$scope.deleteCourse = function(courseId) {
-						
+					$scope.deleteCourse = function(courseId) {						
 						
 						var request = gapi.client.classroom.courses.delete({id:courseId});
 

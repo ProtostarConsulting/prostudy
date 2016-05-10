@@ -2,12 +2,27 @@ angular
 		.module("prostudyApp")
 		.controller(
 				"directoryUserListCtr",
-				function($scope, $window, $mdToast, $timeout, $mdSidenav,$state,$stateParams,
+				function($scope, $window, $mdToast, $timeout, $mdSidenav,$state,
 						$mdUtil, $log, $q, tableTestDataFactory, appEndpointSF) {
 					console.log("Inside directoryUserListCtr");				
 						
-					$scope.currentClassroomUserDomain = $stateParams.currentClassroomUserDomain;
+				
+					$scope.loadCurrentUserDomain = function() {
+					gapi.client
+					.load('plus',
+							'v1',
+							function() {
+								var request = gapi.client.plus.people
+										.get({
+											'userId' : 'me'
+										});
+								request.execute(function(resp) {
+											$scope.currentUserDomain = resp.emails[0].value.split("@")[1];											
+										$scope.getDirectoryUserList();
+										});
+							});
 					
+					}
 				
 				$scope.directoryUserList=[];
 				$scope.selected = [];
@@ -48,7 +63,7 @@ angular
 					});
 				}
 				$scope.getDirectoryUserList= function() {											
-					var request = gapi.client.directory.users.list({domain:$scope.currentClassroomUserDomain,maxResults:'500'});				
+					var request = gapi.client.directory.users.list({domain:$scope.currentUserDomain,maxResults:'500'});				
 					request.execute(function(resp) {
 						$scope.users=resp.users;
 						
@@ -76,8 +91,8 @@ angular
 				$scope.cancelButton = function() {
 					$state.go("^", {});
 				}
+				$scope.loadCurrentUserDomain();
 				
-				$scope.getDirectoryUserList();
 				
 			
 				});
