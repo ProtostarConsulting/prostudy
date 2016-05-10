@@ -34,9 +34,7 @@ angular
 				
 					$scope.updateCourse = function() {
 						
-						var request = gapi.client.classroom.courses
-								.update($scope.tempCourse);
-
+						var request = gapi.client.classroom.courses.update($scope.tempCourse);
 						request.execute(function(resp) {							
 							$scope.showSavedToast();
 							$state.go("gfe.classroomCourseList",{});

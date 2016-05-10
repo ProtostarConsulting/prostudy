@@ -4,9 +4,14 @@
 	<md-data-table-toolbar ng-show="!selected.length">
 	<h3 class="md-headline">Courses List</h3>
 	</md-data-table-toolbar>
-	<div>
+	<div layout="row" layout-align="centre centre" layout-xs="column">
 		<md-input-container flex> <label>Search
 			Course By Name</label> <input ng-model="searchName"> </md-input-container>
+			
+			<md-input-container flex> <label>Course
+				State</label> <md-select ng-model="courseState" ng-change="selectedCourseList()"> 
+				<md-option ng-value="courseState" ng-repeat="courseState in courseStateList">{{courseState}}</md-option>
+			</md-select> </md-input-container>
 	</div>
 	<md-data-table-toolbar class="alternate" ng-show="selected.length">
 	<div>{{selected.length}} {{selected.length > 1 ? 'Courses' :
@@ -26,7 +31,7 @@
 			</thead>
 			<tbody>
 				<tr md-auto-select
-					ng-repeat="course in classroomCourses | orderBy: query.order | filter: {name: searchName}| limitTo: query.limit: (query.page - 1) * query.limit">
+					ng-repeat="course in courseList | orderBy: query.order | filter: {name: searchName}| limitTo: query.limit: (query.page - 1) * query.limit">
 
 					<td>{{course.name}}</td>
 					<td>{{course.courseState}}</td>
@@ -37,7 +42,7 @@
 		</table>
 		</md-data-table-container>
 		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
-			md-total={{classroomCourses.length}} md-trigger="onpagechange"></md-data-table-pagination>
+			md-total={{courseList.length}} md-trigger="onpagechange"></md-data-table-pagination>
 	</div>
 </div>
 
@@ -51,6 +56,12 @@
 		<md-button
 			ui-sref="gfe.classroomCourseEdit({selectedCourseId: selected[0].id})"
 			class="md-raised md-primary">Edit Course </md-button>
+			
+			<md-button class="md-raised md-primary" ng-show="selected[0].courseState=='ARCHIVED'"
+			ng-click="changeCourseState('ACTIVE')">Change Course State to ACTIVE </md-button>
+			
+			<md-button class="md-raised md-primary" ng-show="selected[0].courseState==='ACTIVE'"
+			ng-click="changeCourseState('ARCHIVED')"> Change Course State to ARCHIVED </md-button>			
 
 		<md-button class="md-raised md-primary"
 			ng-click="deleteCourse(selected[0].id)"> Delete Course </md-button>

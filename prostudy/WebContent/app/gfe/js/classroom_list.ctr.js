@@ -6,11 +6,26 @@ angular
 						$mdUtil, $log, $q, tableTestDataFactory, appEndpointSF) {
 					console.log("Inside classroomtListCtr");					
 					
-					$scope.classroomCourses = [];					
+					$scope.courseStateList	=["ACTIVE","ARCHIVED","PROVISIONED","DECLINED" ];
+					$scope.courseState="ACTIVE";
+					$scope.classroomCourses = [];
+					$scope.courseList=[];
+					$scope.tempCourse = {
+							'name' : "",
+							'section' : "",
+							'descriptionHeading' : "",
+							'description' : "",
+							'room' : "",
+							'ownerId' : "me",
+							'enrollmentCode' : "",
+							'courseState':"",
+							'alternateLink' : ""
+						};
 				
 					$scope.listCourses = function() {
 						$log.debug("Inside listCourses..");
 						$scope.loading = true;
+						
 						var request = gapi.client.classroom.courses.list({
 							pageSize : 50
 						});
@@ -20,19 +35,40 @@ angular
 
 							if (courses.length > 0) {
 								for (i = 0; i < courses.length; i++) {
-									var course = courses[i];
-									
-									$scope.classroomCourses.push(course);
+									var course = courses[i];									
+									$scope.classroomCourses.push(course);									
 								}
+								$scope.selectedCourseList();
 							} else {
-								appendPre('No courses found.');
+								$log.debug('No courses found.');
 							}
 
 							$scope.loading = false;
 							$log.debug("Inside listCourses...Done loading...");
 
 						});
-					}
+						
+					}	
+					
+					$scope.selectedCourseList = function() {					
+					
+						$scope.courseList=[];
+							if ($scope.classroomCourses.length > 0) {
+								for (i = 0; i < $scope.classroomCourses.length; i++) {
+									
+									if($scope.classroomCourses[i].courseState===$scope.courseState)
+									{									
+									$scope.courseList.push($scope.classroomCourses[i]);
+									}
+								}								
+							} else {
+								$log.debug('No courses found.');
+							}
+							
+
+					}				
+					
+										
 					$scope.listCourses();
 					$scope.selected = [];
 					$scope.query = {
@@ -67,7 +103,7 @@ angular
 
 						request.execute(function(resp) {
 							$log.debug("resp:" + angular.toJson(resp));
-							$scope.showSavedToast();
+							$scope.showCourseDeletedToast();
 							$scope.loading = true;
 							$scope.classroomCourses=[];
 							$scope.selected = [];
@@ -75,7 +111,29 @@ angular
 							$scope.listCourses();
 						});
 					}
-					$scope.showSavedToast = function() {
+					
+					$scope.changeCourseState = function(courseState) {
+						$log.debug("$scope.selected[0] : "+ angular.toJson($scope.selected[0]));
+						$scope.tempCourse=$scope.selected[0];
+						$scope.tempCourse.courseState=courseState;
+						
+						$log.debug("tempCourse : "+angular.toJson($scope.tempCourse));
+						
+						var request = gapi.client.classroom.courses.update($scope.tempCourse);
+						
+						request.execute(function(resp) {							
+							$scope.showCourseStateChangedToast();
+							$state.go("gfe.classroomCourseList",{});
+							
+						});
+					}						
+					
+					$scope.showCourseStateChangedToast = function() {
+						$mdToast.show($mdToast.simple().content(
+								'Selected Course State Changed!').position("top").hideDelay(
+								3000));
+					};
+					$scope.showCourseDeletedToast = function() {
 						$mdToast.show($mdToast.simple().content(
 								'Selected Course Deleted!').position("top").hideDelay(
 								3000));
