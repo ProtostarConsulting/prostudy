@@ -2,6 +2,7 @@ package com.protostar.billingnstock.hr.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -104,9 +105,9 @@ SalStruct filteredsalstruct = ofy().load().type(SalStruct.class).filter("empAcco
 
 	@ApiMethod(name = "addgsalslip")
 	public SalSlip addgsalslip(SalSlip salslip) {
+		Date date = new Date();
 		SalSlip salslips = salslip;
-				
-		
+		salslip.setCreatedDate(date);
 		@SuppressWarnings("unused")
 		Key<SalSlip> now = ofy().save().entity(salslip).now();
 

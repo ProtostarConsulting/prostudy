@@ -13,7 +13,7 @@ import com.protostar.billnstock.until.data.ServerMsg;
 public class UploadURLService {
 
 	
-	@ApiMethod(name = "getLogUploadURL")
+	@ApiMethod(name = "getLogUploadURL",path="getLogUploadURL")
 	public ServerMsg getLogUploadURL() {
 		 BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
 		 String createUploadUrl = blobstoreService.createUploadUrl("/UploadServlet");
@@ -30,5 +30,14 @@ public class UploadURLService {
 		 serverMsg.setMsg(createUploadUrl);		 
 		return serverMsg;
 	}
+	@ApiMethod(name = "getExcelUploadURL",path="getExcelUploadURL")
+	public ServerMsg getExcelUploadURL() {
+		 BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+		 String createUploadUrl = blobstoreService.createUploadUrl("/UplodeExcelSheet");
+		 ServerMsg serverMsg = new ServerMsg();
+		 serverMsg.setMsg(createUploadUrl);		 
+		return serverMsg;
+	}
 
+	
 }
