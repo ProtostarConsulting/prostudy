@@ -1085,6 +1085,50 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 
+	
+/*	=================================================================================*/
+		
+		var PartnerSchoolService = {};
+
+	serviceFactory.getPartnerSchoolService = function() {
+		return PartnerSchoolService;
+	}
+
+	PartnerSchoolService.addPartnerSchool = function(partnerSchool) {
+		var deferred = $q.defer();
+		gapi.client.partnerSchoolService.addPartnerSchool(partnerSchool).execute(
+				function(resp) {
+					$log.debug("resp :" + angular.toJson(resp));
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+	}	
+	
+	PartnerSchoolService.getPartnerSchoolByInstitute = function(instituteID) {
+		var deferred = $q.defer();
+		gapi.client.partnerSchoolService.getPartnerSchoolByInstitute({
+			'instituteID' : instituteID
+		}).execute(function(resp) {
+			deferred.resolve(resp.items);
+			$log.debug("resp getPartnerSchoolByInstitute :" + angular.toJson(resp.result));
+		});
+		return deferred.promise;
+	}
+	
+	PartnerSchoolService.getPSchoolByPSID = function(id) {
+		var deferred = $q.defer();
+		gapi.client.partnerSchoolService.getPSchoolByPSID({
+			'id' : id
+		}).execute(function(resp) {
+			deferred.resolve(resp);
+			$log.debug("resp getPartnerSchoolByInstitute :" + angular.toJson(resp.result));
+		});
+		return deferred.promise;
+	}
+	
+
+/*	========================================================================================*/
+		
 	/*
 	 * PaymentService.getPaymentByStudent = function(studId) { var deferred =
 	 * $q.defer(); gapi.client.paymentService.getPaymentByStudent({ 'studId' :

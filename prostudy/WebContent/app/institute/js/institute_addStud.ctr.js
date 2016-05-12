@@ -184,9 +184,26 @@ angular
 
 						return deferred.promise;
 					};
+					
+					
+					$scope.getPartnerSchoolByInstitute = function() {
+						var PartnerSchoolService = appEndpointSF
+								.getPartnerSchoolService();
+
+						PartnerSchoolService.getPartnerSchoolByInstitute(
+								$scope.curUser.instituteID).then(
+								function(pSchoolList) {
+
+									$scope.pSchoolList = pSchoolList;
+								});
+					}
+					
+					
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
 
+							$scope.getPartnerSchoolByInstitute();
+							
 						} else {
 							$log.debug("Services Not Loaded, watiting...");
 							$timeout($scope.waitForServiceLoad, 1000);

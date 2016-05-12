@@ -61,7 +61,11 @@
 			</md-toolbar> <md-content layout="column" ng-controller="LeftCtrl"> <md-button
 				class="md-primary" ng-click="close()" hide-gt-md> Close
 			Sidenav </md-button> <md-button ui-sref="home" ng-click="close()"
-				class="md-primary" show-gt-md> Home </md-button> <md-button
+				class="md-primary" show-gt-md> Home </md-button>
+				<md-button
+				ui-sref="partnerSchool" ng-click="close()" class="md-primary" show-gt-md>
+			Partner School </md-button>
+			 <md-button
 				ui-sref="authority" ng-click="close()" class="md-primary" show-gt-md>
 			Authority </md-button> <md-button ui-sref="institute"
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
@@ -353,5 +357,11 @@
 	<script src="/app/gfe/js/directory_edit_userAccount.ctr.js"></script>
 	<script src="/app/gfe/js/directory_view_userAccount.ctr.js"></script>
 	
+<!-- 	Partner School -->
+	<script src="/app/partnerSchool/js/partnerSchool_module.ctr.js"></script>
+	<script src="/app/partnerSchool/js/partnerSchool_add.ctr.js"></script>
+	<script src="/app/partnerSchool/js/partnerSchool_list.ctr.js"></script>
+	
+<!-- 	Partner School -->
 </body>
 </html>

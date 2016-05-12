@@ -1,6 +1,6 @@
 <h3 class="md-headline">Student's Information</h3>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 <form name="instituteStudentForm" ng-model="instituteStudentForm">
 
@@ -12,8 +12,8 @@
 				name<span style="color: red"
 				ng-show="instituteStudentForm.firstName.$error.required"
 				class="mandatory">*</span>
-			</label> <input name="firstName" id="firstName" ng-model="tempStudent.firstName"
-				ng-required="true">
+			</label> <input name="firstName" id="firstName"
+				ng-model="tempStudent.firstName" ng-required="true">
 			<div ng-messages="instituteStudentForm.firstName.$error"
 				ng-if="instituteStudentForm.firstName.$submitted || instituteStudentForm.firstName.$touched">
 				<div ng-message="required">Please Enter Student FirstName.</div>
@@ -37,14 +37,15 @@
 
 
 			<md-input-container flex> <label>Address</label>
-			<input name="address" ng-model="tempStudent.address" id="address"> </md-input-container>
+			<input name="address" ng-model="tempStudent.address" id="address">
+			</md-input-container>
 
 			<md-input-container flex> <label>Contact<span
 				style="color: red"
 				ng-show="instituteStudentForm.contact.$error.required"
-				class="mandatory">*</span></label> <input type="number" name="contact" id="contact"
-				ng-model="tempStudent.contact" ng-required="true" ng-minlength="10"
-				ng-maxlength="10">
+				class="mandatory">*</span></label> <input type="number" name="contact"
+				id="contact" ng-model="tempStudent.contact" ng-required="true"
+				ng-minlength="10" ng-maxlength="10">
 			<div ng-messages="instituteStudentForm.contact.$error"
 				ng-if="instituteStudentForm.contact.$submitted || instituteStudentForm.contact.$touched">
 				<div ng-message="required">Please Enter Contact.</div>
@@ -60,8 +61,8 @@
 	<div layout="row" layout-xs="column">
 
 		<md-input-container flex> <md-checkbox
-			ng-model="tempStudent.isGoogleUser" ng-true-value="true" id="isGoogleUser" name="isGoogleUser"
-			ng-false-value="false">
+			ng-model="tempStudent.isGoogleUser" ng-true-value="true"
+			id="isGoogleUser" name="isGoogleUser" ng-false-value="false">
 		<label>Is Google User</label> </md-checkbox></md-input-container>
 
 		<md-input-container flex> <label>Email-id<span
@@ -76,9 +77,8 @@
 			ng-if="instituteStudentForm.email_id.$submitted || instituteStudentForm.email_id.$touched">
 			<div ng-message="required">Email-Id should not Empty.</div>
 			<div ng-message="pattern">Please Enter Valid Email-Id.</div>
-		</div>	
-	   <span style="color: red" id="error">{{error}}</span>  
-		</md-input-container>
+		</div>
+		<span style="color: red" id="error">{{error}}</span> </md-input-container>
 	</div>
 
 	<div layout="row" layout-xs="column">
@@ -100,8 +100,9 @@
 		<md-input-container ng-hide="tempStudent.isGoogleUser" flex>
 		<label>Confirm Password<span style="color: red"
 			ng-show="instituteStudentForm.Confirmpassword.$error.required"
-			class="mandatory">*</span></label> <input name="Confirmpassword" id="Confirmpassword"
-			type="password" ng-model="tempStudent.confirmpassword"
+			class="mandatory">*</span></label> <input name="Confirmpassword"
+			id="Confirmpassword" type="password"
+			ng-model="tempStudent.confirmpassword"
 			ng-required="!tempStudent.isGoogleUser"
 			ng-blur="checkConfirmPassword(tempStudent.password, tempStudent.confirmpassword)">
 
@@ -114,12 +115,26 @@
 			tempStudent.confirmpassword)}}</span> </md-input-container>
 	</div>
 
+	<div layout="row" layout-xs="column">
+		<md-input-container flex> <label>Level<span
+			style="color: red" ng-show="instituteStudentForm.level.$error.required"
+			class="mandatory">*</span></label> <md-select name="level"
+			ng-model="tempStudent.pSLevel" "
+						ng-required="true">
+		<md-option ng-value="pSLevel"
+			ng-repeat="pSLevel in pSchoolList">{{pSLevel.schoolName}}</md-option> </md-select>
+		<div ng-messages="instituteStudentForm.level.$error"
+			ng-if="instituteStudentForm.level.$submitted || instituteStudentForm.level.$touched">
+			<div ng-message="required">Please Select Board.</div>
+		</div>
+		</md-input-container>
+	</div>
 	<div layout="row" layout-align="center center">
 		<md-button class="md-raised md-primary" id="addButton"
 			ng-disabled="instituteStudentForm.$invalid"
 			ng-click="addInstituteStudents()">Add Student </md-button>
 
-		
+
 
 	</div>
 

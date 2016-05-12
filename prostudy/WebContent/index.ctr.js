@@ -13,6 +13,19 @@ angular
 					$scope.flag = true;
 					$scope.theme;
 					
+					
+					$scope.showUpdateToast = function() {
+						$mdToast.show($mdToast.simple().content(
+								'Changes Saved Successfully.').position("top")
+								.hideDelay(3000));
+					};
+
+					$scope.showAddToast = function() {
+						$mdToast.show($mdToast.simple().content(
+								'New Record Saved Successfully.').position(
+								"top").hideDelay(3000));
+					};
+					
 					$scope.institute = [];
 					
 					$scope.tempUser = {

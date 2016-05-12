@@ -5,7 +5,7 @@ var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
 
 app.constant('boardList', ["State Board", "CBSE", "ICSE"]);
 app.constant('installmentList', [1,2,3]);
-
+app.constant('partnerSchoolLevels', ["Primary", "Secondary", "Higher-Secondary", "School", "College"]);
 /*app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette(
 			'red').warnPalette('pink').backgroundPalette('grey');
@@ -690,7 +690,20 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	.state('gfe.directoryUserList', {
 		url : "/directoryUserList",
 		templateUrl : '/app/gfe/directory_user_list.html',
-		controller : 'directoryUserListCtr'				
+		controller : 'directoryUserListCtr'	
+	})		
+	.state('partnerSchool', {
+		url : "/partnerSchool",
+		templateUrl : '/app/partnerSchool/partnerSchool_module.html',
+		controller : 'partnerSchoolModuleCtr'
+	}).state('partnerSchool.addPartnerSchool', {
+		url : "/addPartnerSchool/:selectedPSchoolId",
+		templateUrl : '/app/partnerSchool/partnerSchool_add.html',
+		controller : 'partnerSchoolAddCtr'
+	}).state('partnerSchool.listPartnerSchool', {
+		url : "/listPartnerSchool",
+		templateUrl : '/app/partnerSchool/partnerSchool_list.html',
+		controller : 'partnerSchoolListCtr'	
 	});	
 
 });

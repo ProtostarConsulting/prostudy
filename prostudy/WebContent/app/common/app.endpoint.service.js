@@ -11,6 +11,14 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 	endpointFactory.is_service_ready = false;
 	// This will call the function to load services
 
+	endpointFactory.getPartnerSchoolService = function() {
+
+		if (isTestMode)
+			return localDBServiceFactory.getPartnerSchoolService();
+		else
+			return googleEndpointSF.getPartnerSchoolService();
+	};
+	
 	endpointFactory.getLocalUserService = function() {
 		return localDBServiceFactory.getUserService();
 	};
@@ -237,6 +245,13 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 
 		gapi.client.load('studSubService', 'v0.1', function() {
 			$log.debug("StudSubService Loaded......");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+		
+		gapi.client.load('partnerSchoolService', 'v0.1', function() {
+			$log.debug("partnerSchoolService Loaded......");
 			endpointFactory.is_service_ready = true;
 			deferred.resolve();
 
