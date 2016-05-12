@@ -1,5 +1,7 @@
-<h3 class="md-headline">View {{userType}} </h3>
-<p>&nbsp;</p>
+<div ng-show="loading">{{userType}} Loading...</div>
+<div ng-hide="loading">
+
+<h3 class="md-headline">View {{userType}} of {{courseName}} </h3>
 <p>&nbsp;</p>
 
 
@@ -7,8 +9,8 @@
 
 	<div layout="column" layout-align="" layout-xs="column">
 		<div layout="row" layout-align="centre centre" layout-xs="column">
-			<md-input-container flex> <label>CourseId</label>
-			<input name="courseId" id="courseId" ng-model="user.courseId"
+			<md-input-container flex> <label>Course Name</label>
+			<input name="courseName" id="courseName" ng-model="courseName"
 				ng-required="true" readonly> </md-input-container>
 
 			<md-input-container flex> <label>UserId</label>
@@ -47,4 +49,5 @@
 	</div>
 
 </form>
+</div>
 

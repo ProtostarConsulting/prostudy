@@ -4,14 +4,16 @@ angular
 				"directoryUserListCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,$state,
 						$mdUtil, $log, $q, tableTestDataFactory, appEndpointSF) {
-					console.log("Inside directoryUserListCtr");				
-						
-				
+							
+					$scope.loading = true;
+					$scope.flag = true;
+					
 					$scope.loadCurrentUserDomain = function() {
 					gapi.client
 					.load('plus',
 							'v1',
 							function() {
+						
 								var request = gapi.client.plus.people
 										.get({
 											'userId' : 'me'
@@ -54,19 +56,25 @@ angular
 				
 				
 				$scope.deleteUser = function(primaryEmail) {					
-					
+					$scope.flag = false;
+					$scope.deleting = true;					
+					$scope.loading = true;
 					var request = gapi.client.directory.users.delete({userKey:primaryEmail});
 
 					request.execute(function(resp) {
-						$log.debug("resp:" + angular.toJson(resp));
+						$scope.deleting = false;
+						
 						$scope.showUserDeletedToast();
+						$scope.selected = [];
+						$scope.getDirectoryUserList();
 					});
 				}
-				$scope.getDirectoryUserList= function() {											
+				$scope.getDirectoryUserList= function() {	
+					$scope.loading = true;
 					var request = gapi.client.directory.users.list({domain:$scope.currentUserDomain,maxResults:'500'});				
 					request.execute(function(resp) {
 						$scope.users=resp.users;
-						
+						$scope.loading = false;
 						if ($scope.users.length > 0) {
 							for (i = 0; i < $scope.users.length; i++) {
 								

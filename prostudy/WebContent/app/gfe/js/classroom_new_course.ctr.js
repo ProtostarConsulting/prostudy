@@ -22,12 +22,12 @@ angular
 					
 					$scope.createCourse = function() {
 						
-
+						$scope.creating = true;
 						var request = gapi.client.classroom.courses
 								.create($scope.tempCourse);
 
 						request.execute(function(resp) {
-						
+							$scope.creating = false;
 							$scope.showSavedToast();
 							$state.go("gfe.classroomCourseList",{});
 							//$scope.sendEmailMessage();

@@ -4,12 +4,13 @@ angular
 				"classroomCourseListCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,$state,
 						$mdUtil, $log, $q, tableTestDataFactory, appEndpointSF) {
-					console.log("Inside classroomtListCtr");					
+										
 					
 					$scope.courseStateList	=["ACTIVE","ARCHIVED","PROVISIONED","DECLINED" ];
 					$scope.courseState="ACTIVE";
 					$scope.classroomCourses = [];
 					$scope.courseList=[];
+					$scope.flag = true;
 					$scope.tempCourse = {
 							'name' : "",
 							'section' : "",
@@ -18,7 +19,7 @@ angular
 							'room' : "",
 							'ownerId' : "me",
 							'enrollmentCode' : "",
-							'courseState':"",
+							'courseState': " ",
 							'alternateLink' : ""
 						};
 				
@@ -97,31 +98,34 @@ angular
 						return deferred.promise;
 					};
 
-					$scope.deleteCourse = function(courseId) {						
-						
+					$scope.deleteCourse = function(courseId) {	
+						$scope.flag = false;
+						$scope.loading = true;
+						$scope.selected = [];
+						$scope.deleting = true;
 						var request = gapi.client.classroom.courses.delete({id:courseId});
 
 						request.execute(function(resp) {
 							$log.debug("resp:" + angular.toJson(resp));
 							$scope.showCourseDeletedToast();
-							$scope.loading = true;
+						
+							$scope.deleting = false;
 							$scope.classroomCourses=[];
-							$scope.selected = [];
+							
 							$scope.searchName="";
 							$scope.listCourses();
 						});
 					}
 					
 					$scope.changeCourseState = function(courseState) {
-						$log.debug("$scope.selected[0] : "+ angular.toJson($scope.selected[0]));
-						$scope.tempCourse=$scope.selected[0];
-						$scope.tempCourse.courseState=courseState;
 						
-						$log.debug("tempCourse : "+angular.toJson($scope.tempCourse));
+						$scope.selected[0].courseState=courseState;
+						$scope.tempCourse=angular.toJson($scope.selected[0]);
+					
+						var request = gapi.client.classroom.courses.update({id:$scope.selected[0].id},$scope.tempCourse);
 						
-						var request = gapi.client.classroom.courses.update($scope.tempCourse);
-						
-						request.execute(function(resp) {							
+						request.execute(function(resp) {
+							
 							$scope.showCourseStateChangedToast();
 							$state.go("gfe.classroomCourseList",{});
 							

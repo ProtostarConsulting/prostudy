@@ -45,20 +45,15 @@ angular.module("prostudyApp").controller(
 					
 					$scope.handleAuthResult = function(authResult) {
 						$log.debug("Inside handleAuthResult..");
-						// var authorizeDiv = document
-						// .getElementById('authorize-div');
+						
 						if (authResult && !authResult.error) {
-							// Hide auth UI, then load client library.
-							// authorizeDiv.style.display = 'none';
+							
 							$scope.authorized = true;
 							$scope.loadDirectoryApi();
-							$scope.loadClassroomApi(); // Do not auto load. Do
-							// it via user action
+							$scope.loadClassroomApi(); 
+							
 						} else {
-							// Show auth UI, allowing the user to initiate
-							// authorization by
-							// clicking authorize button.
-							// authorizeDiv.style.display = 'inline';
+							
 							$scope.authorized = false;
 						}
 					}

@@ -1,5 +1,7 @@
 
+<div ng-show="creating">New User Account Creating...</div>
 
+<div ng-hide="creating">
 <h3 class="md-headline">New User Account</h3>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -32,37 +34,22 @@
 
 		</div>
 		<div layout="row" layout-align="centre centre" layout-xs="column">
-	<!-- 		<md-input-container flex> <label>
+
+			<md-input-container flex> <label>
 				Primary Email-id<span style="color: red"
 				ng-show="newUserAccountForm.primaryEmail.$error.required"
 				class="mandatory">*</span>
-			</label> <input type="email" name="primaryEmail"
-				ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+			</label> <input name="primaryEmail" ng-pattern="/^[a-zA-Z0-9]*$/"
 				ng-model="tempUser.primaryEmail" ng-required="true">
 			<div ng-messages="newUserAccountForm.primaryEmail.$error"
 				ng-if="newUserAccountForm.primaryEmail.$submitted || newUserAccountForm.primaryEmail.$touched">
 				<div ng-message="required">Email-Id should not Empty.</div>
-				<div ng-message="pattern">Please Enter Valid Email-Id.</div>
+				<div ng-message="pattern">Email-Id should only contain
+					Alphanumeric, Not Symbols.</div>
 			</div>
 			</md-input-container>
-			
-			 -->
-			
-					<md-input-container flex> <label>
-				Primary Email-id<span style="color: red"
-				ng-show="newUserAccountForm.primaryEmail.$error.required"
-				class="mandatory">*</span>
-			</label> <input  name="primaryEmail" ng-pattern="/^[^\s]/"
-				
-				ng-model="tempUser.primaryEmail" ng-required="true">
-			<div ng-messages="newUserAccountForm.primaryEmail.$error"
-				ng-if="newUserAccountForm.primaryEmail.$submitted || newUserAccountForm.primaryEmail.$touched">
-				<div ng-message="required">Email-Id should not Empty.</div>
-				<div ng-message="pattern">Please Enter Valid Email-Id.</div>
-			</div>
-			</md-input-container>
-		
-			<md-input-container flex><input ng-model="currentUserDomain" readonly>
+
+			<md-input-container flex>@{{currentUserDomain}}
 			</md-input-container>
 
 
@@ -74,15 +61,15 @@
 				ng-show="newUserAccountForm.password.$error.required"
 				class="mandatory">*</span>
 			</label> <input name="password" type="password" id="password"
-				ng-model="tempUser.password" ng-minlength="8" 
-				ng-required="true"
+				ng-model="tempUser.password" ng-minlength="8" ng-required="true"
 				ng-blur="checkConfirmPassword(tempUser.password, confirmpassword)">
 			<div ng-messages="newUserAccountForm.password.$error"
 				ng-if="newUserAccountForm.password.$submitted || newUserAccountForm.password.$touched">
 				<div ng-message="required">Please Enter Password.</div>
-				
-			<span ng-show="((newUserAccountForm.password.$error.minlength) && newUserAccountForm.password.$dirty) ">
-			Password should greater than 8 characters.</span> 
+
+				<span
+					ng-show="((newUserAccountForm.password.$error.minlength) && newUserAccountForm.password.$dirty) ">
+					Password should greater than 8 characters.</span>
 			</div>
 			</md-input-container>
 
@@ -115,4 +102,5 @@
 	</div>
 
 </form>
+</div>
 

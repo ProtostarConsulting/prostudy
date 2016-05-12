@@ -1,7 +1,9 @@
+<div ng-show="loading && flag">Directory User List Loading...</div>
+<div ng-show="deleting ">Directory User Deleting...</div>
+<div ng-hide="loading">
+
 <h3 class="md-headline">Directory User List</h3>
 <p>&nbsp;</p>
-<p>&nbsp;</p>
-
 
 <div>
 	<md-input-container flex> <label>Search User By Email</label> <input ng-model="searchEmail"> </md-input-container>

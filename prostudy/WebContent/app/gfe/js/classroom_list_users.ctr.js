@@ -18,7 +18,8 @@ angular
 					$scope.loading = false;
 					
 					$scope.viewClassTeachers = function() {
-						
+						$scope.loading = true;
+						$scope.selected=[];
 						$scope.userType = "Teacher";
 						var request = gapi.client.classroom.courses.teachers
 								.list({
@@ -28,13 +29,15 @@ angular
 
 						request.execute(function(resp) {
 							$scope.userList = resp.result.teachers?resp.result.teachers:[];
+							$scope.loading = false;
 						});
 					}
 
 					
 					
 					$scope.viewClassStudents = function() {
-						
+						$scope.loading = true;
+						$scope.selected=[];
 						$scope.userType = "Student";
 						var request = gapi.client.classroom.courses.students
 								.list({
@@ -44,6 +47,7 @@ angular
 
 						request.execute(function(resp) {
 							$scope.userList = resp.result.students?resp.result.students:[];
+							$scope.loading = false;
 							$log.debug("resp:" + angular.toJson(resp));
 						});
 					}
@@ -84,8 +88,7 @@ angular
 						$scope.viewClassStudents();
 					
 					
-					// Table generic functions
-				
+									
 					$scope.query = {
 						order : 'fullName',
 						limit : 5,

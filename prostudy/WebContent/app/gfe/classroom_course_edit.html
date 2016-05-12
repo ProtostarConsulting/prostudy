@@ -1,6 +1,9 @@
-<h3 class="md-headline">Update Course {{tempCourse.name}}</h3>
+<h3 class="md-headline">Edit Course {{tempCourse.name}}</h3>
 <p>&nbsp;</p>
-<p>&nbsp;</p>
+<div ng-show="loading && flag">Course Loading...</div>
+<div ng-show="updating">Course Updating...</div>
+<div ng-hide="loading">
+
 
 <form name="updateCourseForm" ng-model="updateCourseForm">
 
@@ -66,4 +69,5 @@
 	</div> 
 
 </form>
+</div>
 

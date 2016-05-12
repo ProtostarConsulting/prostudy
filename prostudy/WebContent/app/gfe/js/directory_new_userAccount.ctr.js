@@ -4,14 +4,14 @@ angular
 				"directoryNewUserAccountCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,$state,$stateParams,
 						$mdUtil, $log, $q, tableTestDataFactory, appEndpointSF) {
-					console.log("Inside directoryNewUserAccountCtr");
+					
 					
 					$scope.checkConfirmPassword = appEndpointSF
 					.getUtilityService().checkConfirmPassword;
 					
 					$scope.currentUserDomain = $stateParams.currentUserDomain;
 					
-					$log.debug("$scope.currentUserDomain  -"+$scope.currentUserDomain);
+					
 				$scope.tempUser={
 					'id':"",
 					'name': {
@@ -35,11 +35,12 @@ angular
 				$scope.createNewUserAccount = function() {	
 					
 					
-					$scope.tempUser.primaryEmail=$scope.tempUser.primaryEmail+"@"+$scope.currentUserDomain;
-					
+					$scope.creating = true;	
+					$scope.tempUser.primaryEmail=$scope.tempUser.primaryEmail+"@"+$scope.currentUserDomain;					
 					var request = gapi.client.directory.users.insert($scope.tempUser);				
-					request.execute(function(resp) {						
-						$log.debug("resp:" + angular.toJson(resp));		
+					request.execute(function(resp) {	
+						$scope.creating = false;	
+						
 						$scope.tempUser={};
 						$scope.showNewUserAccountAddedToast();
 						$state.go("gfe.directoryUserList", {});
