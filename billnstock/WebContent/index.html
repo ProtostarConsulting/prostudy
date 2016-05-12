@@ -9,7 +9,10 @@
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
+<!--popover css  -->
+<link
+	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
+	rel="stylesheet">
 <!--end send mail  -->
 <link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
 <link rel="stylesheet" href="/lib/base/css/googleapi.roboto.css">
@@ -28,45 +31,8 @@
  -->
 <link href="app/invoice/css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/header.css" rel="stylesheet" type="text/css" />
-<style>
-.dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
 
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #3e8e41;
-}
 
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown a:hover {background-color: #f1f1f1}
-
-.show {display:block;}
-</style>
 </head>
 <body layout="column" ng-cloak md-theme="{{theme}}"
 	md-theme-watch="true">
@@ -83,9 +49,13 @@
 			ng-src="{{logBaseURL}}" class="md-card-image" alt="Compnay Logo" height="80px" width="100px">
 		</md-card> -->
 		<div>
-		<img ng-show="curUser.business.logBlobKey" ng-click="show_info()" ng-src="{{logBaseURL}}" class="md-card-image"  height="60px" width="120px"/>
-		<img ng-hide="curUser.business.logBlobKey" ng-click="show_info()" src="img/images/your_default_logo.jpg"  height="60px" width="120px"> 
+			<img ng-show="curUser.business.logBlobKey" ng-click="show_info()"
+				ng-src="{{logBaseURL}}" class="md-card-image" height="60px"
+				width="120px" /> <img ng-hide="curUser.business.logBlobKey"
+				ng-click="show_info()" src="img/images/your_default_logo.jpg"
+				height="60px" width="120px">
 		</div>
+
 
 		<!-- fill up the space between left and right area -->
 		<span flex></span>
@@ -113,24 +83,50 @@
 				Login </md-button>
 
 				{{ curUser.firstName}}
-				<md-button aria-label="Open Settings" 
-					ng-click="showListBottomSheet($event)"> <md-tooltip>
-				{{ curUser.firstName + " " +  curUser.lastName + "|" + curUser.email_id}} </md-tooltip> 
-								
-			<img ng-show="true" ng-show="curUser.imageURl" ngf-src="curUser.imageURl" class=circular>
-			 <img alt="Logo" ng-hide="curUser.imageURl" src="img/images/ic_person_black_24px.svg"  class=circular>
-				
-				</md-button>
-				<!-- <div id="myDropdown" class="dropdown-content">
-    					<a href="#home">Home</a>
-   					    <a href="#about">About</a>
-                        <a href="#contact">Contact</a>
-                </div> -->
+				<md-button popover-template="'popover.html'"
+					popover-placement="bottom" popover-trigger="click" >
+				<!-- <md-tooltip>
+				{{ curUser.firstName + " " +  curUser.lastName + "|" + curUser.email_id}} </md-tooltip>  -->
+
+				<img ng-show="true" ng-show="curUser.imageURl"
+					ngf-src="curUser.imageURl" class=circular> <img alt="Logo"
+					ng-hide="curUser.imageURl"
+					src="img/images/ic_person_black_24px.svg" class=circular> </md-button>
+
+				<script type="text/ng-template" id="popover.html">
+
+
+    		 <div flex hide-sm layout="row" >
+<div layout-align-xs ="start start">
+     		 <md-button >
+				<!-- <md-tooltip>
+				{{ curUser.firstName + " " +  curUser.lastName + "|" + curUser.email_id}} </md-tooltip>  -->
+
+				<img ng-show="true" ng-show="curUser.imageURl" ngf-src="curUser.imageURl" class=circular> 
+				<img alt="Logo" ng-hide="curUser.imageURl" src="img/images/ic_person_black_24px.svg" class=circular>
+
+				 </md-button>
+</div>
+<div  layout-align-xs ="center center">
+
+				<b>{{ curUser.firstName}}&nbsp;{{curUser.lastName}}</b><br>
+			<font size="1px">{{ curUser.email_id }} </font><br>
 				<md-button aria-label="Logout" ng-hide="curUser == null"
 					ng-click="signOut()"> Logout <md-tooltip>
-				{{ curUser.firstName + " " +  curUser.lastName + "|" + curUser.email_id}} </md-tooltip> </md-button>
+				{{ curUser.firstName + " " + curUser.lastName + "|" +
+				curUser.email_id}} </md-tooltip> </md-button>
+</div>
 
-					<!-- <md-button aria-label="Logout" ng-click="showSearch = !showSearch">
+
+     		</div>
+			    </script>
+			
+				<!-- <md-button aria-label="Logout" ng-hide="curUser == null"
+					ng-click="signOut()"> Logout <md-tooltip>
+				{{ curUser.firstName + " " + curUser.lastName + "|" +
+				curUser.email_id}} </md-tooltip> </md-button> -->
+
+				<!-- <md-button aria-label="Logout" ng-click="showSearch = !showSearch">
 				<ng-md-icon icon="logout"></ng-md-icon> </md-button>
 				 <md-button aria-label="Open Settings"
 					ng-click="showListBottomSheet($event)"> <ng-md-icon
@@ -584,9 +580,16 @@
 		src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script
 		src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+
+	<script src="https://apis.google.com/js/client.js?onload=checkAuth">
 		
-	<script src="https://apis.google.com/js/client.js?onload=checkAuth"> </script>
-		
+	</script>
+
+	<!--popover botstrap lib  -->
+	<script
+		src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.4.js"></script>
+
+	<!--end botstrap  -->
 	<!--end send mail  -->
 	<script src="index.ctr.js"></script>
 

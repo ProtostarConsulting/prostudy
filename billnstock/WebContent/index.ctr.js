@@ -19,7 +19,20 @@ angular
 								'New Record Saved Successfully.').position(
 								"top").hideDelay(3000));
 					};
+					
+					//use popover
+					$('[data-toggle="popover"]').popover({
+		                 trigger: 'manual',
+		                 placement: 'bottom',
+		                 html: true
+		              }).click(function (e) {
+		                 e.preventDefault();
+		                 // Exibe o popover.
+		                 $(this).popover('show');
 
+		                $('.popover').css('left', '63px'); 
+		              });
+					//end popover
 					// ------------------------------------------login
 					// user---------------------
 
