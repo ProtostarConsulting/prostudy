@@ -60,4 +60,14 @@
     <servlet-name>UplodeFooter</servlet-name>
     <url-pattern>/UplodeFooter</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UplodeExcelSheet</display-name>
+    <servlet-name>UplodeExcelSheet</servlet-name>
+    <servlet-class>com.protostar.billingnstock.document.UplodeExcelSheet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UplodeExcelSheet</servlet-name>
+    <url-pattern>/UplodeExcelSheet</url-pattern>
+  </servlet-mapping>
 </web-app>
