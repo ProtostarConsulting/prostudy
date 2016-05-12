@@ -1,0 +1,36 @@
+
+<div layout="row" ng-cloak class="md-inline-form">
+
+	<md-content layout="column">
+
+	<form name="excelform" method="post" enctype="multipart/form-data">
+	
+	<div ng-show="loding">
+Loding.....
+	</div>	
+<div ng-hide="loding">
+<input type="hidden" name="bizID" id="bizID" value={{bizID}}> 
+		<div class="md-block">
+			<label>Upload Excel Add User's:</label> <input name="myFile" type="file"
+				class="md-raised md-primary">	
+		</div>
+
+		<div>
+			<md-button ng-click="uplodeimage()" class="md-raised md-primary"
+				show-gt-md> Submit </md-button>
+		</div>
+
+
+</div>
+
+
+		<!-- <div class="dropzone" data-width="960" data-height="540" data-resize="true" data-url="canvas.php" style="width: 100%;">
+  <input type="file" name="thumb" />
+</div> -->
+	</form>
+
+	<div>
+		<!-- This is temp second column -->
+	</div>
+	</md-content>
+</div>

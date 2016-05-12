@@ -1,7 +1,7 @@
 var app = angular.module("stockApp", [ 'ngMaterial', 'ngMessages', "xeditable",
 		"ui.bootstrap", "ui.router", 'md.data.table', 'ngResource',
 		'ngStorage', 'ngRoute', 'ngFileUpload', 'ngAnimate', 'ui.grid',
-		'ui.grid.selection', 'ui.grid.exporter', 'directive.g+signin' ]);
+		'ui.grid.selection', 'ui.grid.exporter', 'directive.g+signin' ,'ui.bootstrap']);
 
 app.constant('monthList', [ "January", "February", "March", "April", "May",
 		"June", "July", "Augast", "September", "October", "November",

@@ -14,7 +14,12 @@ angular
 					$scope.businessNo = $stateParams.businessNo;
 					$scope.id;
 
-				
+					$scope.query = {
+					         order: 'name',
+					         limit: 5,
+					         page: 1
+					       };
+					
 					$scope.getBusinessById=function(){
 						if(typeof $scope.businessNo == "undefined"){
 							$scope.Bid=$scope.curuser.business.id;

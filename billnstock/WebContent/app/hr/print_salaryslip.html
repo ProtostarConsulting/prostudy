@@ -153,11 +153,11 @@ display:none;
 
 							</table>
 							<br> <b>Salary in Word :{{netsalinword }} </b> <br> <b>Name
-								Of Bank :</b> <br> <b>Signature of Employee :</b> <br>
+								Of Bank :{{emp.salarystruct.empAccount.bankDetail.bankName}} </b><br> <b>Signature of Employee :</b> <br>
 							<br>
 							<br>
 							<p align="left">
-								<b>Generated on : {{date}}</b><br> <b>Verified by :
+								<b>Generated on : {{emp.createdDate | formatDate}}</b><br> <b>Verified by :
 									Pushpak Pimpale (Finance Manager)</b>
 							</p>
 							<p align="Center">
