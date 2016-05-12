@@ -1,6 +1,7 @@
 package com.protostar.billingnstock.document;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.fileupload.util.Streams;
 
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreInputStream;
@@ -125,7 +125,7 @@ public class UplodeExcelSheet extends HttpServlet {
 				for (int row = 1; row < split2.length; row++) {
 
 					String[] split = split2[row].split(",");
-					if (split == null || split.length < 5) {
+					if (split == null || split.length < 6) {
 						continue;
 					}
 					System.out.println(" Row: " + row);
@@ -146,6 +146,7 @@ public class UplodeExcelSheet extends HttpServlet {
 					{ue.setIsGoogleUser(false);}
 					else{ue.setIsGoogleUser(true);}
 					ue.setPassword(split[4]);
+					ue.setAuthority(Arrays.asList("employee"));
 					us.addUser(ue);
 					Thread.sleep(2000);
 				}
