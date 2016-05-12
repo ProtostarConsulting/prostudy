@@ -21,7 +21,7 @@ angular
 					};
 					
 					//use popover
-					$('[data-toggle="popover"]').popover({
+					/*$('[data-toggle="popover"]').popover({
 		                 trigger: 'manual',
 		                 placement: 'bottom',
 		                 html: true
@@ -31,7 +31,10 @@ angular
 		                 $(this).popover('show');
 
 		                $('.popover').css('left', '63px'); 
-		              });
+		              });*/
+					/*$(document).ready(function(){
+					    $('[data-toggle="popover"]').popover();   
+					});*/
 					//end popover
 					// ------------------------------------------login
 					// user---------------------

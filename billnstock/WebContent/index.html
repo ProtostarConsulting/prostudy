@@ -32,7 +32,57 @@
 <link href="app/invoice/css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/header.css" rel="stylesheet" type="text/css" />
 
+<style>
+ /* .popover.bottom .arrow {
+    right:10px !important;
+}   */
 
+/* html {
+  padding: 20px;
+} */
+
+/* .blah {
+  width: 36px;
+  height: 36px;
+}
+*/
+/* .blah-right {
+  width: 36px;
+  height: 36px;
+  float: right;
+} */
+ 
+.popover {
+    float: right !important;
+ 
+}
+
+/* .popover {
+ // position: relative;
+  width: 200px;
+	height: 100px;
+	background-color: rgb(233, 212, 222);
+	border-radius: 4px;
+  top: 50px;
+  left: 50px;
+  box-shadow: 3px -2px 4px #AAA;
+    float: left;
+}
+
+
+.popover-arrow {
+//	position: absolute;
+	top: -18px;
+	left: 20px;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-bottom: 20px solid rgb(233, 212, 222);
+  width: 0;
+  height: 0;
+  
+  -webkit-filter: drop-shadow(0 -2px 2px #AAA);
+} */
+</style>
 </head>
 <body layout="column" ng-cloak md-theme="{{theme}}"
 	md-theme-watch="true">
@@ -83,20 +133,20 @@
 				Login </md-button>
 
 				{{ curUser.firstName}}
-				<md-button popover-template="'popover.html'"
-					popover-placement="bottom" popover-trigger="click" >
+				<md-button   popover-template="'popover.html'"
+					popover-placement="bottom" popover-trigger="focus" data-toggle="popover" data-trigger="focus" >
 				<!-- <md-tooltip>
 				{{ curUser.firstName + " " +  curUser.lastName + "|" + curUser.email_id}} </md-tooltip>  -->
 
-				<img ng-show="true" ng-show="curUser.imageURl"
-					ngf-src="curUser.imageURl" class=circular> <img alt="Logo"
+				<img  ng-show="true" ng-show="curUser.imageURl"
+					ngf-src="curUser.imageURl" class=circular> <img  alt="Logo"
 					ng-hide="curUser.imageURl"
 					src="img/images/ic_person_black_24px.svg" class=circular> </md-button>
 
 				<script type="text/ng-template" id="popover.html">
 
 
-    		 <div flex hide-sm layout="row" >
+    		 <div flex hide-sm layout="row">
 <div layout-align-xs ="start start">
      		 <md-button >
 				<!-- <md-tooltip>
@@ -254,6 +304,7 @@
 	<!-- All JS Dependencies -->
 	<!-- 	<script src="/lib/base/googleapi.client.js"></script> -->
 	<script src="/lib/base/jquery.min.js"></script>
+	 
 	<script src="/lib/base/bootstrap.min.js"></script>
 	<!--
 	<script type="text/javascript"
