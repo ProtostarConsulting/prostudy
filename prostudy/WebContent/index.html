@@ -73,15 +73,16 @@
 			Student </md-button> <md-button ui-sref="attendance"
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
 				ng-click="close()" class="md-primary" show-gt-md>Attendance
-			</md-button> <md-button ui-sref="exam"
+			 </md-button>
+			 <!-- <md-button ui-sref="exam"
 				ng-show="(curUser.role == modules[0].role && modules[0].modules.indexOf('Exam') > -1) ||
  (curUser.role == modules[1].role && modules[1].modules.indexOf('Exam') > -1) ||
   (curUser.role == modules[2].role && modules[2].modules.indexOf('Exam') > -1)"
-				ng-click="close()" class="md-primary" show-gt-md> Exam </md-button>
+				ng-click="close()" class="md-primary" show-gt-md> Exam </md-button> -->
 
 
-			<!-- <md-button ui-sref="exam" ng-click="close()" class="md-primary"
-				show-gt-md> Exam </md-button>  -->
+			 <md-button ui-sref="exam" ng-click="close()" class="md-primary"
+				show-gt-md> Exam </md-button>  
 			<md-button ui-sref="book"
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
 				ng-click="close()" class="md-primary" show-gt-md>Book </md-button> <md-button
