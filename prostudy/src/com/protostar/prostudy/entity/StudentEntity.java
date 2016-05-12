@@ -23,8 +23,15 @@ public class StudentEntity {
 	private String city;
 	private String state;
 	private String pin;
+	private String pSLevel;
 	
 
+	public String getpSLevel() {
+		return pSLevel;
+	}
+	public void setpSLevel(String pSLevel) {
+		this.pSLevel = pSLevel;
+	}
 	public Long getInstituteID() {
 		return instituteID;
 	}
