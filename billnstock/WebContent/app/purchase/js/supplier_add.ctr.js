@@ -13,15 +13,20 @@ app.controller("supplierAddCtr", function($scope, $window, $mdToast, $timeout,
 		contactLName : '',
 		phone1 : '',
 		mobile : '',
-		address : '',
+		address : [],
 		email : '',
 		business : ''
 	};
 
 	$scope.addSupplier = function() {
 		var supplierService = appEndpointSF.getSupplierService();
-		$scope.supplier.business = $scope.curUser.business;
+		// $scope.supplier.business = $scope.curUser.business;
 
+		if ($scope.selectedSupplierNo == "") {
+			$scope.supplier.business = $scope.curUser.business;
+			$scope.supplier.modifiedBy = $scope.curUser.email_id;
+		}
+		
 		supplierService.addSupplier($scope.supplier).then(function(msgBean) {
 			$scope.showSimpleToast();
 			// $scope.getAllPurchaseOrder();
@@ -45,6 +50,7 @@ app.controller("supplierAddCtr", function($scope, $window, $mdToast, $timeout,
 		supplierService.getSupplierByID($scope.selectedSupplierNo).then(
 				function(supplierList) {
 					$scope.supplier = supplierList;
+					$scope.tempSupplier = supplierList;
 					$scope.supplier.mobile = parseInt($scope.supplier.mobile);
 					$scope.supplier.phone1 = parseInt($scope.supplier.phone1);
 					

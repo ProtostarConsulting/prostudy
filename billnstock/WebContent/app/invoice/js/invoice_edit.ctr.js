@@ -55,7 +55,7 @@ app
 
 					$scope.showBill = function() {
 						var invoiceService = appEndpointSF.getInvoiceService();
-
+						
 						invoiceService
 								.getinvoiceByID($scope.selectedBillNo)
 								.then(
@@ -76,9 +76,23 @@ app
 													}
 												}
 											}
+											
+//											$log.debug("$scope.invoiceObjEdit.selectedServiceTax:" + $scope.invoiceObjEdit.selectedServiceTax);
+//											$scope.invoiceObjEdit.selectedServiceTax = $scope.getTaxObjByID($scope.invoiceObjEdit.selectedServiceTax.id);
+//											$log.debug("$scope.invoiceObjEdit.selectedServiceTax:" + $scope.invoiceObjEdit.selectedServiceTax);
 										});
 
 					}
+					
+					$scope.getTaxObjByID = function(id) {						
+						for(taxObj in $scope.taxforinvoice){
+							if(taxObj.id === id)
+								return taxObj;
+						}
+						
+						return null;
+					}
+					
 					$scope.invoiceObjEdit = [];
 
 					$scope.updateInvoice = function() {
@@ -139,9 +153,7 @@ app
 						lineSelectedItem.price = stockItem.price;
 						lineSelectedItem.itemName = stockItem.itemName;
 						lineSelectedItem.subTotal = stockItem.subTotal;
-
-						$scope.calSubTotal();
-						$scope.calfinalTotal();
+						$scope.reCalculateInvoice();
 					};
 
 /*					$scope.calSubTotal = function() {
@@ -180,8 +192,7 @@ app
 
 						$scope.invoiceObjEdit.productTotal = parseFloat($scope.invoiceObjEdit.productSubTotal) + $scope.invoiceObjEdit.productTaxTotal;
 						
-						$scope.calfinalTotal();
-
+						
 						return $scope.invoiceObjEdit.productSubTotal;
 					}
 					
@@ -221,21 +232,18 @@ app
 						if (tempArray != undefined) {
 							$scope.invoiceObjEdit.taxTotal = parseFloat(($scope.invoiceObjEdit.selectedTaxItem.taxPercenatge / 100)
 									* ($scope.invoiceObjEdit.subTotal));													
-						
-							$scope.calfinalTotal();
 						}
 						
 						$scope.invoiceObjEdit['selectedTaxItem'] = selectedTaxItem;
 						
 						$scope.invoiceObjEdit.taxTotal = parseFloat(($scope.invoiceObjEdit.selectedTaxItem.taxPercenatge / 100)
 								* ($scope.invoiceObjEdit.subTotal));
-						$scope.calfinalTotal();
+						$scope.reCalculateInvoice();
 					};
 
 					$scope.removeItem = function(index) {
 						$scope.invoiceObjEdit.invoiceLineItemList.splice(index, 1);
-						$scope.calSubTotal();
-						$scope.calfinalTotal();
+						$scope.reCalculateInvoice();
 					};
 
 					/*
@@ -272,10 +280,14 @@ app
 					$scope.removeService = function(index) {
 						$scope.invoiceObjEdit.serviceLineItemList.splice(
 								index, 1);
+						$scope.reCalculateInvoice();
+						
+					};
+					
+					$scope.reCalculateInvoice = function() {
 						$scope.calServiceSubTotal();
 						$scope.calSubTotal();
-						$scope.calfinalTotal();
-						
+						$scope.calfinalTotal();						
 					};
 
 					$scope.calServiceSubTotal = function() {
@@ -294,8 +306,7 @@ app
 								Math.round(($scope.invoiceObjEdit.subTotal) * 100) / 100)
 								.toFixed(2);
 
-						$scope.calfinalTotal();
-
+						
 						return $scope.invoiceObjEdit.subTotal;
 					}
 
@@ -328,12 +339,6 @@ app
 						$mdSidenav('right').close().then(function() {
 							$log.debug("close RIGHT is done");
 						});
-					};
-
-					$scope.showSimpleToast = function() {
-						$mdToast.show($mdToast.simple().content(
-								'Customer Data Saved!').position("top")
-								.hideDelay(3000));
 					};
 
 					$scope.showSimpleToastError = function() {
@@ -386,12 +391,11 @@ app
 
 						taxService.getTaxesByVisibility(
 								$scope.curUser.business.id).then(
-								function(taxList) {
-									$log.debug("Inside Ctr getAllTaxes");
+								function(taxList) {									
 									$scope.taxforinvoice = taxList;
 								});
 					}
-					$scope.taxData = [];
+					$scope.taxforinvoice = [];
 
 					$scope.getAllSalesOrder = function() {
 						$log.debug("Inside Ctr $scope.getAllSalesOrder");
@@ -535,6 +539,18 @@ app
 					 * Ctr $scope.settingsList:" + $scope.invoiceObjEdit); //
 					 * return $scope.settingsObj; }); }
 					 */
+					
+					$scope.serviceTaxChange = function(index, selectedServiceTax,
+							$event) {
+						$log.debug("##Came to lineItemTaxChange...");
+
+						$scope.invoiceObjEdit.serviceTaxTotal = parseFloat(($scope.invoiceObjEdit.selectedServiceTax.taxPercenatge / 100)
+								* ($scope.invoiceObjEdit.serviceSubTotal));
+
+						$scope.invoiceObjEdit.serviceTotal = $scope.invoiceObjEdit.serviceSubTotal + $scope.invoiceObjEdit.serviceTaxTotal;
+						$scope.calfinalTotal();
+					};
+					
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
 							loadAllCustomers();

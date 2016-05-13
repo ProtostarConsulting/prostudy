@@ -55,6 +55,7 @@ angular
 							.getLoggedinUser();
 					//http://localhost:8888/serve?blob-key=sC_5uJK83qYiubjEWAz5zA
 					$scope.logBaseURL ;
+					$scope.logFooterURL;
 					
 					$scope.user = {
 						business : "",
@@ -119,7 +120,7 @@ angular
 					$scope.initCommonSetting = function(){
 						$scope.theme = $scope.curUser.business.theme;
 						$scope.logBaseURL  ='//' + window.location.host + '/serve?blob-key='+ $scope.curUser.business.logBlobKey;
-						
+						$scope.logFooterURL = '//' + window.location.host + '/serve?blob-key='+ $scope.curUser.business.footerBlobKey;
 					}
 
 					$scope
@@ -311,6 +312,7 @@ angular
 					if($scope.curUser!=undefined || $scope.curUser !==null){
 					$scope.theme = $scope.curUser.business.theme;
 					$scope.logBaseURL = '//' + window.location.host + '/serve?blob-key='+ $scope.curUser.business.logBlobKey;
+					$scope.logFooterURL = '//' + window.location.host + '/serve?blob-key='+ $scope.curUser.business.footerBlobKey;
 					}
 					
 					$scope.themeList = [ 'default', 'red', 'pink', 'purple',

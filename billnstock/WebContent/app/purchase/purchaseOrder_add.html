@@ -104,15 +104,15 @@
 					<td><md-input-container flex> <label>Price
 						</label> <input ng-model="item.price" ng-change="calSubTotal()"></md-input-container></td>
 					<td><md-input-container flex> <label>Price
-						</label> <b>{{item.qty * item.price}} </b></td>
+						</label> <b>{{item.qty * item.price | number:2}} </b></td>
 					<td>
 						<section layout="row" layout-sm="column">
 							<md-button class="md-raised md-primary"
 								ng-click="removeItem($index)">Remove Item</md-button>
 
 						</section>
-
 					</td>
+					<td></td>
 
 				</tr>
 				<tr>
@@ -125,8 +125,9 @@
 					<td></td>
 					<td></td>
 					<td><label><u>Sub Total</u> </label></td>
-					<td><md-input-container flex> <b>{{purchaseOrderObj.subTotal}}</b>
+					<td><md-input-container flex> <b>{{purchaseOrderObj.subTotal | number:2}}</b>
 						</md-input-container></td>
+					<td></td>
 				</tr>
 				<tr>
 					<td><label><u>Tax Details</u> </label></td>
@@ -139,11 +140,12 @@
 						<md-option ng-value="taxValue" ng-repeat="taxValue in taxforPO">{{taxValue.taxCodeName}}</md-option>
 						</md-select> </md-input-container></td>
 
-					<td><md-input-container flex> <label>Tax
-						</label> <b> {{purchaseOrderObj.selectedTaxItem.taxPercenatge}}% </b> </md-input-container></td>
+					<td> <label>Tax
+						</label> <b> {{purchaseOrderObj.selectedTaxItem.taxPercenatge}}% </b> </td>
 
-					<td><md-input-container flex> <b>{{purchaseOrderObj.taxTotal}}</b>
+					<td><md-input-container flex> <b>{{purchaseOrderObj.taxTotal | number:2}}</b>
 						</md-input-container></td>
+					<td></td>
 				</tr>
 
 				<tr>
@@ -151,12 +153,17 @@
 					<td></td>
 					<td></td>
 					<td><label><u>Final Total</u> </label></td>
-					<td><md-input-container flex> <b>
-							{{purchaseOrderObj.finalTotal}}</b> </md-input-container></td>
+					<td> <b>
+							{{purchaseOrderObj.finalTotal | number:2}}</b> </td>
+					<td></td>
 				</tr>
 				<tr>
 					<td></td>
-
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
 				</tr>
 			</tbody>
 		</table>

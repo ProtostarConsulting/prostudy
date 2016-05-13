@@ -17,6 +17,23 @@
 		<table ng-show="myValue" class="ng-hide">
 			<tbody>
 				<tr>
+					<td style="width: 30%"><img ng-src="{{logBaseURL}}"
+						class="md-card-image" alt="Compnay Logo" height="60px"
+						width="120px" /></td>
+					<td style="width: 30%; color: red">{{invoiceDetail.business.businessName}}</td>
+					<td style="width: 10%"></td>
+					<td style="width: 30%"><b style="color: blue"><h3
+								style="color: green">
+								{{invoiceDetail.business.address.line1}} <br>
+								{{invoiceDetail.business.address.line2}} <br>
+								{{invoiceDetail.business.address.city}} <br>
+								{{invoiceDetail.business.address.pin}}</b></td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- 		<table ng-show="myValue" class="ng-hide">
+			<tbody>
+				<tr>
 					<td style="width: 20%"><img alt="Logo"
 						src="img/images/protostar_logo_pix_313_132.jpg"></td>
 
@@ -27,7 +44,7 @@
 				</tr>
 			</tbody>
 		</table>
-
+ -->
 		<!--
 			<div layout="row" layout-align="center start"
 			style="margin-top: 20px; margin-bottom: 20px;">
@@ -53,7 +70,9 @@
 
 				<tr>
 					<td><label>Customer Address :</label>
-						{{invoiceDetail.customer.address}}</td>
+						{{invoiceDetail.customer.address.line1}},{{invoiceDetail.customer.address.line2}},
+						{{invoiceDetail.customer.address.city}},{{invoiceDetail.customer.address.pin}},<br>
+					</td>
 
 					<td style="width: 20%"><b>Sales Order No. :</b>
 						{{invoiceDetail.salesOrderId.id}}</td>
@@ -73,14 +92,14 @@
 
 		<div id="serviceDiv">
 			<h3>Services Provided</h3>
-			<table>
-				<thead style="background-color: gray">
-					<tr>
-						<th style="width: 3%">Sr.No.</th>
-						<th style="width: 50%">Item Name</th>
-						<th style="width: 10%">Quantity</th>
-						<th style="width: 20%">Price</th>
-						<th style="width: 17%">Total</th>
+			<table  style="width: 100%">
+				<thead>
+					<tr style="background-color: gray">
+						<th style="width: 3%; text-align: left">Sr.No.</th>
+						<th style="width: 50%; text-align: left">Item Name</th>
+						<th style="width: 10%; text-align: right">Quantity</th>
+						<th style="width: 20%; text-align: right">Price</th>
+						<th style="width: 10%; text-align: right">Total</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -89,35 +108,43 @@
 
 						<td>{{ $index+1 }}</td>
 						<td>{{serviceLineItem.serviceName}}</td>
-						<td>{{serviceLineItem.sQty}}</td>
-						<td>{{serviceLineItem.sPrice | currency :"": 2}}</td>
-						<td>{{serviceLineItem.sQty * serviceLineItem.sPrice |
-							currency :"": 2 }}</td>
+						<td style="text-align: right">{{serviceLineItem.sQty}}</td>
+						<td style="text-align: right">{{serviceLineItem.sPrice |
+							currency :"": 2}}</td>
+						<td style="text-align: right">{{serviceLineItem.sQty *
+							serviceLineItem.sPrice | currency :"": 2 }}</td>
+					</tr>
+					<tr>
+						<td colspan="5"><b>_</b></td>
 					</tr>
 					<tr>
 						<td></td>
 						<td></td>
 						<td></td>
 						<td><label><u>Service Sub Total</u> </label></td>
-						<td style="text-align: right">{{invoiceDetail.serviceSubTotal
-							| currency :"": 2}}</td>
+						<td style="text-align: right"><b>{{invoiceDetail.serviceSubTotal
+								| currency :"": 2}} </b></td>
 					</tr>
 					<tr>
-						<td colspan="5"><b><u>Service Tax</u> </b></td>
+						<td colspan="5"><b>_</b></td>
+					</tr>
+					<tr>
+						<td colspan="5"><b><u>Services Tax</u> </b></td>
 					</tr>
 					<tr style="background-color: gray">
 						<td></td>
 						<td></td>
 						<td><b>Tax Type </b></td>
 						<td><b>Tax </b></td>
-						<td style="text-align: left"><b>Tax Total </b></td>
+						<td style="text-align: right"><b>Tax Total </b></td>
 					</tr>
 					<tr>
 						<td></td>
 						<td></td>
 						<td>{{invoiceDetail.selectedServiceTax.taxCodeName}}</td>
 						<td>{{invoiceDetail.selectedServiceTax.taxPercenatge}}%</td>
-						<td>{{invoiceDetail.serviceTaxTotal | currency :"": 2}}</td>
+						<td style="text-align: right">{{invoiceDetail.serviceTaxTotal
+							| currency :"": 2}}</td>
 					</tr>
 
 					<tr>
@@ -125,16 +152,17 @@
 						<td></td>
 						<td></td>
 						<td><label><u>Service Total</u> </label></td>
-						<td style="text-align: right">{{invoiceDetail.serviceTotal | currency :"": 2}}</td>
+						<td style="text-align: right">{{invoiceDetail.serviceTotal |
+							currency :"": 2}}</td>
 					</tr>
 				</tbody>
 			</table>
-			<hr>
+
 		</div>
 
 		<div id="productDiv">
 			<h3>Product/Item Sold</h3>
-			<table>
+			<table  style="width: 100%">
 				<thead style="background-color: gray">
 					<tr>
 						<th style="width: 3%">Sr.No.</th>
@@ -155,15 +183,16 @@
 						<td>{{invoiceLineItem.qty * invoiceLineItem.price | currency
 							:"": 2}}</td>
 					</tr>
-					
+
 					<tr>
 						<td>-</td>
 						<td></td>
 						<td></td>
 						<td><label><u>Product Sub Total</u> </label></td>
-						<td style="text-align: right">{{invoiceDetail.productSubTotal | currency :"": 2}}</td>
+						<td style="text-align: right">{{invoiceDetail.productSubTotal
+							| currency :"": 2}}</td>
 					</tr>
-					
+
 					<tr>
 						<td colspan="5"><b><u>Product Tax</u> </b></td>
 					</tr>
@@ -193,14 +222,16 @@
 						<td></td>
 						<td></td>
 						<td><label><u>Product Total</u> </label></td>
-						<td style="text-align: right">{{invoiceDetail.productTotal | currency :"": 2}}</td>
+						<td style="text-align: right">{{invoiceDetail.productTotal |
+							currency :"": 2}}</td>
 					</tr>
-					<tr>
+<!-- 					<tr>
 						<td>-</td>
 						<td></td>
 						<td></td>
 						<td><label><u>Discount</u> </label></td>
-						<td style="text-align: right">{{invoiceDetail.discAmount | currency :"": 2}}</td>
+						<td style="text-align: right">{{invoiceDetail.discAmount |
+							currency :"": 2}}</td>
 					</tr>
 					<tr>
 						<td></td>
@@ -213,30 +244,57 @@
 					<tr>
 						<td colspan="5"><br></td>
 					</tr>
+ -->				</tbody>
+			</table>
+		</div>
 
-					<!-- 				<tr>
-					<td colspan="5" style="text-align: right">
-						<div>
-							<b> <u>{{"Rupees :" + finalTotalInWord + " Only"}}</u>
-							</b>
-						</div>
-					</td>
-				</tr>
- -->
+		<div>
+			<table style="width: 100%">
+
+				<tbody>
+
+
+					<tr>
+						<td style="width: 3%"></td>
+						<td style="width: 50%"></td>
+						<td style="width: 10%"></td>
+						<td style="width: 20%"><label><u>Discount</u> </label></td>
+						<td style="width: 17%; text-align: right">{{invoiceDetail.discAmount
+							| currency :"": 2}}</td>
+					</tr>
+
+					<tr>
+						<td style="width: 3%"></td>
+						<td style="width: 50%"></td>
+						<td style="width: 10%"></td>
+						<td style="width: 20%"><label><u>Final Total</u> </label></td>
+						<td style="width: 17%; text-align: right">{{invoiceDetail.finalTotal
+							| currency :"INR ": 2 }}</td>
+					</tr>
+					<td colspan="5"><br></td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
+
 	<hr>
 
 	<div style="text-align: right">
 		<b> <u>{{"Rupees :" + finalTotalInWord + " Only"}}</u>
 	</div>
-	<div style="position: fixed; bottom: 0;" ng-show="myValue"
+	<!-- 	<div style="position: fixed; bottom: 0;" ng-show="myValue"
 		class="ng-hide">
 		<b><u>Note</u>:</b>This is electronically generated invoice. Needs no
 		stamp or signature.
 	</div>
+ -->
+	<div style="position: fixed; bottom: 0;" ng-show="myValue"
+		class="ng-hide">
+		<b><u>Note</u>:</b>This is electronically generated invoice. Needs no
+		stamp or signature. <img src="{{logFooterURL}}">
+	</div>
+
 	<iframe name="print_frame" width="0" height="0" frameborder="0"
 		src="about:blank"></iframe>
 </div>

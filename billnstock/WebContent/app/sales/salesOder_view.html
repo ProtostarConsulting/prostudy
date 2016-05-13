@@ -230,18 +230,6 @@
 							<td style="text-align: right">{{sODetail.finalTotal |
 								currency :"INR ": 2}}</td>
 						</tr>
-						<!-- 					<tr>
-						<td colspan="5"><br></td>
-					</tr>
-					<tr>
-						<td colspan="5" style="text-align: right">
-							<div>
-								<b> <u>{{"Rupees :" + finalTotalInWord + " Only"}}</u>
-								</b>
-							</div>
-						</td>
-					</tr>
- -->
 					</tbody>
 				</table>
 			</div>
@@ -250,12 +238,20 @@
 		<div style="text-align: right">
 			<b> <u>{{"Rupees :" + finalTotalInWord + " Only"}}</u>
 		</div>
+		
+
+		
 		<div style="position: fixed; bottom: 0;" ng-show="myValue"
 			class="ng-hide">
 			<b><u>Note</u>:</b>This is electronically generated Sales Order.
 			Needs no stamp or signature.
+			
+			<img src="{{logFooterURL}}">
 		</div>
+
+
 
 		<iframe name="print_frame" width="0" height="0" frameborder="0"
 			src="about:blank"></iframe>
+	</div>
 	</div>

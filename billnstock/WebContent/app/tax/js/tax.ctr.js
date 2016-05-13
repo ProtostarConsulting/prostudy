@@ -30,8 +30,7 @@ angular.module("stockApp").controller(
 				var taxService = appEndpointSF.getTaxService();
 
 				taxService.addTax($scope.tax).then(function(msgBean) {
-					$scope.showSimpleToast();
-
+					
 				});
 				$scope.showAddToast();
 
@@ -71,14 +70,17 @@ angular.module("stockApp").controller(
 
 				taxService.updateTax($scope.selected[0]).then(
 						function(msgBean) {
-							$scope.showSimpleToastUpdateTax();
-							$scope.getAllTaxes();
 							$scope.showUpdateToast();
+							$scope.getAllTaxes();
 						});
+				$scope.taxForm.$setPristine();
+				$scope.taxForm.$setValidity();
+				$scope.taxForm.$setUntouched();
+				$scope.selected[0] = "";
 			}
 
 			$scope.cancelUpdate = function() {
-				window.history.back();
+				$scope.selected[0] = "";
 			}
 
 			// Setup menu

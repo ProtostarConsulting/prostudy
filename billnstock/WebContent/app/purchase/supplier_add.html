@@ -1,7 +1,5 @@
 <form name="supplierForm">
-	<h3>
-		<u>Supplier</u>
-	</h3>
+	<h3>Supplier</h3>
 	<div layout="row" layout-xs="column">
 		<md-input-container flex> <label>Supplier
 			Name <span style="color: red;">*</span>
@@ -69,19 +67,53 @@
 
 	<div layout layout-sm="column">
 
+		<md-input-container flex> <label>Email</label> <input
+			type="email" name="email" ng-model="supplier.email"> </md-input-container>
+	</div>
 
-		<md-input-container flex> <label>Address
-			<span style="color: red;">*</span>
-		</label> <textarea name="address" ng-model="supplier.address"
-			ng-required="true"></textarea>
-		<div ng-messages="supplierForm.address.$error"
-			ng-if="supplierForm.address.$submitted || supplierForm.address.$touched">
-			<div ng-message="required">Please Enter Address</div>
+
+	<h3 class="md-subhead">Address</h3>
+
+	<div layout="row">
+		<md-input-container flex> <label>Line1 <span
+			style="color: red;">*</span></label> <input name="line1" id="line1"
+			ng-model="supplier.address.line1" ng-required="true">
+		<div ng-messages="supplierForm.line1.$error"
+			ng-if="supplierForm.line1.$submitted || supplierForm.line1.$touched">
+			<div ng-message="required">Please Enter Address Name.</div>
 		</div>
 		</md-input-container>
 
-		<md-input-container flex> <label>Email</label> <input
-			type="email" name="email" ng-model="supplier.email"> </md-input-container>
+		<md-input-container flex> <label>Line2</label> <input
+			name="line2" ng-model="supplier.address.line2"> </md-input-container>
+	</div>
+	<div layout="row">
+		<md-input-container flex> <label>State <span
+			style="color: red;">*</span></label> <input name="state" id="state"
+			ng-model="supplier.address.state" ng-required="true">
+		<div ng-messages="supplierForm.state.$error"
+			ng-if="supplierForm.state.$submitted || supplierForm.state.$touched">
+			<div ng-message="required">Please Enter State Name.</div>
+		</div>
+		</md-input-container>
+
+		<md-input-container flex> <label>Country</label>
+		<input name="country" ng-model="supplier.address.country"> </md-input-container>
+
+
+	</div>
+	<div layout="row">
+		<md-input-container flex> <label>City <span
+			style="color: red;">*</span></label> <input name="city" id="city"
+			ng-model="supplier.address.city" ng-required="true">
+		<div ng-messages="supplierForm.city.$error"
+			ng-if="supplierForm.city.$submitted || supplierForm.city.$touched">
+			<div ng-message="required">Please Enter City Name.</div>
+		</div>
+		</md-input-container>
+
+		<md-input-container flex> <label>Pin</label> <input
+			name="pin" ng-model="supplier.address.pin"> </md-input-container>
 	</div>
 
 
@@ -92,7 +124,7 @@
 	</section>
 
 	<section layout="row" layout-sm="column" layout-align="left left">
-		<md-button ng-disabled="supplierForm.$invalid"
+		<md-button 
 			class="md-raised md-primary" ng-hide="supplier.id == null"
 			ng-click="addSupplier()">Update</md-button>
 	</section>

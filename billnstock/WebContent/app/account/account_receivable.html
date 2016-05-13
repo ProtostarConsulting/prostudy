@@ -1,12 +1,16 @@
 
 <md-content layout-padding>
-<h3>
-	<u>Create Account Receivable</u>
+
+<h3 class="md-headline" ng-hide="accountReveivable.id">
+	<b>Add Account Receivable</b>
+</h3>
+<h3 class="md-headline" ng-show="accountReveivable.id">
+	<b>Edit Account Receivable</b>
 </h3>
 <form name="receivableForm">
 [<span style="color: red;">Field Marked as asterik (*) are
 		mandetory</span>]
-	<h3>Account Receivable</h3>
+
 	<div layout="row" layout-xs="column">
 		<div layout="row" flex>
 <!-- 		Customer Name:
@@ -85,9 +89,14 @@
     		<md-datepicker flex ng-model="accountReveivable.invoiceDueDate" md-placeholder="Invoice Due Date"></md-datepicker>	
     </div>
 
-	<section layout="row" layout-sm="column" layout-align="left left">
+	<section layout="row" layout-sm="column" layout-align="left left"  ng-hide="accountReveivable.id">
 		<md-button class="md-raised md-primary"
 			ng-disabled="receivableForm.$invalid" ng-click="addReceivable()">Add</md-button>
+	</section>
+	
+	<section layout="row" layout-sm="column" layout-align="left left" ng-hide="true" ng-show="accountReveivable.id">
+		<md-button class="md-raised md-primary"
+			ng-disabled="receivableForm.$invalid" ng-click="addReceivable()">Update</md-button>
 	</section>
 </form>
 </md-content>

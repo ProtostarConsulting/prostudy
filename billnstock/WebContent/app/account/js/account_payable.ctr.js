@@ -36,6 +36,29 @@ app.controller("accountPayableCtr", function($scope, $window, $mdToast,
 		$scope.accountPayable = {};
 	}
 	
+	
+	$log.debug("$stateParams:", $stateParams);
+	$log.debug("$stateParams.selectedPayableId:",
+			$stateParams.selectedPayableId);
+
+	$scope.selectedPayableId = $stateParams.selectedPayableId;
+
+	$scope.getPayableByID = function() {
+		var payableService = appEndpointSF.getAccountService();
+
+		payableService
+				.getPayableByID($scope.selectedPayableId)
+				.then(
+						function(payableResp) {	
+							$scope.accountPayable = payableResp;
+							$scope.accountPayable.invoiceDate = new Date(payableResp.invoiceDate);
+							$scope.accountPayable.payableDate = new Date(payableResp.payableDate);
+							$scope.accountPayable.invoiceDueDate = new Date(payableResp.invoiceDueDate);
+							$scope.accountPayable.purchaseOrderDate = new Date(payableResp.purchaseOrderDate);
+						});
+	}
+	$scope.accountPayable = [];
+		
 	$scope.toggleRight = buildToggler('right');
 
 	function buildToggler(navID) {
@@ -98,6 +121,7 @@ app.controller("accountPayableCtr", function($scope, $window, $mdToast,
 	$scope.waitForServiceLoad = function() {
 		if (appEndpointSF.is_service_ready) {
 			loadAllCustomers();
+			$scope.getPayableByID();
 		} else {
 			$log.debug("Services Not Loaded, watiting...");
 			$timeout($scope.waitForServiceLoad, 1000);

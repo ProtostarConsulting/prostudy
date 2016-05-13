@@ -25,15 +25,20 @@
 					<th name="Customer Name" order-by="customerName"></th>
 					<th name="Due Date" order-by="invoiceDueDate"></th>
 					<th name="Final Total" order-by="finalTotal"></th>
+					<th name="Action"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr md-auto-select
 					ng-repeat="receivable in receivables | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
-					
+
 					<td>{{receivable.customer.firstName}}</td>
 					<td>{{receivable.invoiceDueDate | formatDate}}</td>
 					<td>{{receivable.finalTotal}}</td>
+					<td><section layout="row" layout-sm="column">
+							<md-button class="md-raised md-primary"
+								ui-sref="account.accountReceivable({selectedReceivableId: receivable.id})">
+							Edit</md-button>
 				</tr>
 				<table>
 					<tr>
@@ -55,12 +60,12 @@
 	<div>
 
 		<div layout layout-sm="column">
-<!-- 			<md-input-container flex> <label>Enter
+			<!-- 			<md-input-container flex> <label>Enter
 				Date </label> <input ng-model="ReceivablesAtDate.atDate"
 				placeholder="Enter Date" ng-required="true"> </md-input-container>
  -->
-     		<md-datepicker flex ng-model="atDate" md-placeholder="Select Date"></md-datepicker>	
- 		</div>
+			<md-datepicker flex ng-model="atDate" md-placeholder="Select Date"></md-datepicker>
+		</div>
 		<div layout layout-sm="column">
 			<section layout="row" layout-sm="column">
 				<md-button class="md-raised md-primary" id="showReceivables"
@@ -71,7 +76,7 @@
 		<table md-data-table md-row-select="selected" md-progress="deferred">
 			<thead md-order="query.order" md-trigger="onOrderChange">
 				<tr>
-					
+
 					<th name="Customer Name" order-by="customerName"></th>
 					<th name="Due Date" order-by="invoiceDueDate"></th>
 					<th name="Final Total" order-by="finalTotal"></th>
@@ -80,7 +85,7 @@
 			<tbody>
 				<tr md-auto-select
 					ng-repeat="receivable in filteredListByDate | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
-					
+
 					<td>{{receivable.customer.firstName}}</td>
 					<td>{{receivable.invoiceDueDate | formatDate}}</td>
 					<td>{{receivable.finalTotal}}</td>
@@ -145,23 +150,17 @@
 		</table>
 
 		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
-			md-total={{filteredReceivablesMonth.length}} md-trigger="onpagechange"></md-data-table-pagination>
-		</md-data-table-container>
+			md-total={{filteredReceivablesMonth.length}}
+			md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
 	</div>
 
-</md-content>
-</md-tab>
-
-
-	<md-tab label="Between Two Dates"> <md-content class="md-padding">
-	<!-- 	<h3 class="md-display-10">Month</h3> -->
+	</md-content> </md-tab> <md-tab label="Between Two Dates"> <md-content
+		class="md-padding"> <!-- 	<h3 class="md-display-10">Month</h3> -->
 	<div>
 		<div>
-			<md-datepicker ng-model="from"
-				md-placeholder="Select Date"></md-datepicker>
-				
-			<md-datepicker ng-model="to"
-				md-placeholder="Select Date"></md-datepicker>	
+			<md-datepicker ng-model="from" md-placeholder="Select Date"></md-datepicker>
+
+			<md-datepicker ng-model="to" md-placeholder="Select Date"></md-datepicker>
 		</div>
 
 		<div layout layout-sm="column">
@@ -170,7 +169,7 @@
 					ng-click="getBetweenTwoDates(from,to)">Show</md-button>
 			</section>
 		</div>
-<span style="color:red">{{errorMsg}}</span>
+		<span style="color: red">{{errorMsg}}</span>
 		<md-data-table-container>
 		<table md-data-table md-row-select="selected" md-progress="deferred">
 			<thead md-order="query.order" md-trigger="onOrderChange">
@@ -194,8 +193,6 @@
 			md-total={{fRBetweenTwoDates.length}} md-trigger="onpagechange"></md-data-table-pagination>
 		</md-data-table-container>
 	</div>
-	</md-content> </md-tab>
-  </md-tabs>
- </md-content>
+	</md-content> </md-tab> </md-tabs> </md-content>
 
 </div>

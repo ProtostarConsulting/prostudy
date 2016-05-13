@@ -126,29 +126,25 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/warehouseList",
 		templateUrl : '/app/stock/warehouse_list.html',
 		controller : 'warehouseListCtr'
-	})
-	/*
-	 * .state('stock.warehouseEdit', { url :
-	 * "/warehouseEdit/:selectedWarehouseId", templateUrl :
-	 * '/app/stock/warehouse_edit.html', controller : 'warehouseEditCtr' })
-	 */
-	/*
-	 * .state('stock.warehouseAdd', { url :
-	 * "/warehouseAdd/:selectedWarehouseId", templateUrl :
-	 * '/app/stock/warehouse_add.html', controller : 'warehouseAddCtr' })
-	 */
-
-	/*
-	 * .state('stock.edit', { url : "/edit/:selectedStocksId", templateUrl :
-	 * '/app/stock/stockItem_edit.html', controller : 'stockEditCtr' })
-	 */.state('stock.reportByThreshold', {
+	
+	}).state('stock.reportByThreshold', {
 		url : "/reportByThreshold",
-		templateUrl : '/app/stock/stock_reportByThreshold.html',
+		templateUrl : '/app/report/stock_reportByThreshold.html',
 		controller : 'stockReportByThresholdCtr'
 	}).state('stock.reportByWarehouse', {
 		url : "/reportByWarehouse",
-		templateUrl : '/app/stock/stock_reportByWarehouse.html',
+		templateUrl : '/app/report/stock_reportByWarehouse.html',
 		controller : 'stockReportByWarehouseCtr'
+			
+	}).state('stock.reportByTaxPaid', {
+		url : "/reportByTaxPaid",
+		templateUrl : '/app/report/tax_reportByTaxPaid.html',
+		controller : 'ReportByTaxPaidCtr'	
+	}).state('stock.reportByTaxRecived', {
+		url : "/reportByTaxRecived",
+		templateUrl : '/app/report/tax_reportByTaxReceived.html',
+		controller : 'ReportByTaxReceivedCtr'
+			
 	}).state('stock.taxadd', {
 		url : "/tax/taxadd",
 		templateUrl : '/app/tax/tax_add.html',
@@ -218,7 +214,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/account/account_income.html',
 		controller : 'accountIncomeCtr'
 	}).state('account.accountPayable', {
-		url : "/accountPayable",
+		url : "/accountPayable/:selectedPayableId",
 		templateUrl : '/app/account/account_payable.html',
 		controller : 'accountPayableCtr'
 	}).state('account.accountPayableList', {
@@ -226,7 +222,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/account/account_payableList.html',
 		controller : 'accountPayableListCtr'
 	}).state('account.accountReceivable', {
-		url : "/accountReceivable",
+		url : "/accountReceivable/:selectedReceivableId",
 		templateUrl : '/app/account/account_receivable.html',
 		controller : 'accountReceivableCtr'
 	}).state('account.accountReceivableList', {
@@ -238,14 +234,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/demo/fileUpload.html',
 		controller : 'AppController'
 	})
-
 	.state('report', {
 		url : "/report",
 		templateUrl : '/app/report/report_module.html',
-		controller : 'reportCtr'
-	}).state('report.byThreshhold', {
-		url : "/byThreshhold",
-		templateUrl : '/app/report/report_bythreshold.html',
 		controller : 'reportCtr'
 	}).state('report.allcustomer', {
 		url : "/allcustomer",

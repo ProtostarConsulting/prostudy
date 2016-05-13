@@ -1,8 +1,12 @@
 
 <md-content layout-padding>
-<h3>
-	<u>Create Account Payable</u>
+<h3 class="md-headline" ng-hide="accountPayable.id">
+	<b>Add Account Payable</b>
 </h3>
+<h3 class="md-headline" ng-show="accountPayable.id">
+	<b>Edit Account Payable</b>
+</h3>
+
 <form name="payableForm">
 	[<span style="color: red;">Field Marked as asterik (*) are
 		mandetory</span>]
@@ -91,9 +95,13 @@
 			md-placeholder="Select Date" ng-required="false"></md-datepicker>
 	</div>
 
-	<section layout="row" layout-sm="column" layout-align="left left">
+	<section layout="row" layout-sm="column" layout-align="left left"  ng-hide="accountPayable.id">
 		<md-button class="md-raised md-primary"
 			ng-disabled="payableForm.$invalid" ng-click="addPayable()">Add</md-button>
+	</section>
+	<section layout="row" layout-sm="column" layout-align="left left" ng-hide="true" ng-show="accountPayable.id">
+		<md-button class="md-raised md-primary"
+			ng-disabled="payableForm.$invalid" ng-click="addPayable()">Update</md-button>
 	</section>
 
 </form>

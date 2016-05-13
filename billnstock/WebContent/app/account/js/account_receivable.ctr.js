@@ -17,8 +17,8 @@ app.controller(
 					business : '',
 					invoiceId : '',
 					receivableDate: new Date(),
-					invoiceDate : '',
-					invoiceDueDate : '',
+					invoiceDate : new Date(),
+					invoiceDueDate : new Date(),
 					finalTotal : '',
 					status:"NotPaid"					
 				};
@@ -38,6 +38,27 @@ app.controller(
 				$scope.account = {};
 			}
 	
+			
+			$log.debug("$stateParams:", $stateParams);
+			$log.debug("$stateParams.selectedReceivableId:",
+					$stateParams.selectedReceivableId);
+
+			$scope.selectedReceivableId = $stateParams.selectedReceivableId;
+
+			$scope.getReceivableByID = function() {
+				var accountService = appEndpointSF.getAccountService();
+
+				accountService
+						.getReceivableByID($scope.selectedReceivableId)
+						.then(
+								function(receivableResp) {	
+									$scope.accountReveivable = receivableResp;
+									$scope.accountReveivable.invoiceDate = new Date(receivableResp.invoiceDate);
+									$scope.accountReveivable.invoiceDueDate = new Date(receivableResp.invoiceDueDate);
+								});
+			}
+			$scope.accountReveivable = [];
+			
 			$scope.getAllAccountsByBusiness = function() {
 				var accountService = appEndpointSF.getAccountService();
 
@@ -110,6 +131,9 @@ app.controller(
 
 			$scope.waitForServiceLoad = function() {
 				if (appEndpointSF.is_service_ready) {
+					if($scope.selectedReceivableId != ""){
+						$scope.getReceivableByID();
+					}
 					loadAllCustomers();
 					$scope.getAllAccountsByBusiness();
 				} else {

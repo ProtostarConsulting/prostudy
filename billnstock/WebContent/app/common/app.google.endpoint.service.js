@@ -1060,6 +1060,17 @@ function googleEndpointSF($log, $q) {
 
 	}
 
+	AccountService.getPayableByID = function(Id) {
+		var deferred = $q.defer();
+		gapi.client.accountService.getPayableByID({
+			"id" : Id
+		}).execute(function(resp) {
+			$log.debug("getPayableByID at enpoint" + resp);
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
 	AccountService.addReceivable = function(receivable) {
 		var deferred = $q.defer();
 
@@ -1083,7 +1094,17 @@ function googleEndpointSF($log, $q) {
 					deferred.resolve(resp.items);
 				});
 		return deferred.promise;
-
+	}
+	
+	AccountService.getReceivableByID = function(Id) {
+		var deferred = $q.defer();
+		gapi.client.accountService.getReceivableByID({
+			"id" : Id
+		}).execute(function(resp) {
+			$log.debug("getReceivableByID at enpoint" + resp);
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
 	}
 	// End of AccountService
 
@@ -1250,6 +1271,17 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
+	InvoiceService.getReportByTaxReceived = function(id) {
+		var deferred = $q.defer();
+		gapi.client.invoiceService.getReportByTaxReceived({
+			"id" : id
+		}).execute(function(resp) {
+		//	$log.debug("getinvoiceByID at enpoint" + angular.toJson(resp));
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
 	InvoiceService.getinvoiceByID = function(id) {
 		var deferred = $q.defer();
 		gapi.client.invoiceService.getinvoiceByID({

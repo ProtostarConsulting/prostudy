@@ -38,6 +38,11 @@
 					<td>{{payble.customer.firstName}}</td>
 					<td>{{payble.payableDate | formatDate}}</td>
 					<td>{{payble.finalTotal}}</td>
+					<td><section layout="row" layout-sm="column">
+						<md-button class="md-raised md-primary"
+							ui-sref="account.accountPayable({selectedPayableId: payble.id})">
+						Edit</md-button>
+					</section></td>
 				</tr>
 			</tbody>
 		</table>

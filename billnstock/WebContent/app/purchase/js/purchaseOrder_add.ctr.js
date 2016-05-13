@@ -198,9 +198,11 @@ app
 					$scope.searchTextInput = null;
 
 					$scope.querySearch = function(query) {
-						var results = query ? $scope.supplierList
+/*						var results = query ? $scope.supplierList
 								.filter(createFilterFor(query))
 								: $scope.supplierList;
+*/								
+						var results = query ? $scope.supplierList.filter(createFilterFor(query)) : [];		
 						var deferred = $q.defer();
 						$timeout(function() {
 							deferred.resolve(results);
@@ -223,11 +225,14 @@ app
 								});
 					}
 
+					$scope.tempSupp = [];
+					
 					function createFilterFor(query) {
 						var lowercaseQuery = angular.lowercase(query);
 						return function filterFn(supp) {
+														
 							return (angular.lowercase(supp.supplierName)
-									.indexOf(lowercaseQuery) === 0);
+									.indexOf(lowercaseQuery) >= 0);
 						};
 					}
 
