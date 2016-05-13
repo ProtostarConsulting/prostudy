@@ -2,6 +2,7 @@ package com.protostar.billingnstock.invoice.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -120,7 +121,7 @@ public class InvoiceService {
 				.filter("business",
 						Ref.create(Key.create(BusinessEntity.class, id)))
 				.list();
-
+				
 		System.out.println("filteredinvoice:" + filteredinvoice.size());
 		return filteredinvoice;
 
@@ -137,6 +138,19 @@ public class InvoiceService {
 		return invoiceByID;
 	}
 
+	@ApiMethod(name="getReportByTaxReceived", path="getReportByTaxReceived")
+
+	public List<InvoiceEntity> getReportByTaxReceived(@Named("id") Long BizId)
+	{
+		
+		List<InvoiceEntity> filteredInvoice = ofy().load().type(InvoiceEntity.class).list();
+		
+		List<InvoiceEntity> invList =  new ArrayList<InvoiceEntity>() ;
+		
+		return filteredInvoice;
+		
+	}
+	
 	@ApiMethod(name = "getInvoiceListByCustId", path = "getInvoiceListByCustId")
 	public List<InvoiceEntity> getInvoiceListByCustId(@Named("id") Long custId) {
 

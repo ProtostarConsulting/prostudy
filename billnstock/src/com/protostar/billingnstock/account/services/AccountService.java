@@ -94,9 +94,15 @@ public class AccountService {
 				.list();
 
 		return filteredPayables;
-
 	}
 
+	@ApiMethod(name = "getPayableByID", path="getPayableByID")
+	public PayableEntity getPayableByID(@Named("id") Long payableId) {
+
+		PayableEntity payableById = ofy().load().type(PayableEntity.class).id(payableId).now();
+
+		return payableById;
+	}
 	/*
 	 =========================Account Receivable Methods======================
 	 */
@@ -128,4 +134,11 @@ public class AccountService {
 		return filteredReceivables;
 	}
 
+	@ApiMethod(name = "getReceivableByID", path="getReceivableByID")
+	public ReceivableEntity getReceivableByID(@Named("id") Long receivableId) {
+
+		ReceivableEntity receivableById = ofy().load().type(ReceivableEntity.class).id(receivableId).now();
+
+		return receivableById;
+	}
 }

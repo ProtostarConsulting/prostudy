@@ -2,6 +2,7 @@ package com.protostar.billingnstock.purchase.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.util.Date;
 import java.util.List;
 
 import com.google.api.server.spi.config.Api;
@@ -21,6 +22,12 @@ public class SupplierService {
 	@ApiMethod(name = "addSupplier")
 	public SupplierEntity addSupplier(SupplierEntity supplierEntity) {
 
+		if (supplierEntity.getId() == null) {
+			supplierEntity.setCreatedDate(new Date());
+		//	stockItemEntity.setModifiedDate(new Date());
+		} else {
+			supplierEntity.setModifiedDate(new Date());
+		}
 		ofy().save().entity(supplierEntity).now();
 		return supplierEntity;
 	}
