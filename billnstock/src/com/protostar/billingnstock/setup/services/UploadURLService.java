@@ -38,6 +38,14 @@ public class UploadURLService {
 		 serverMsg.setMsg(createUploadUrl);		 
 		return serverMsg;
 	}
+	@ApiMethod(name = "getExcelStockUploadURL",path="getExcelStockUploadURL")
+	public ServerMsg getExcelStockUploadURL() {
+		 BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+		 String createUploadUrl = blobstoreService.createUploadUrl("/ExcelStockUpload");
+		 ServerMsg serverMsg = new ServerMsg();
+		 serverMsg.setMsg(createUploadUrl);		 
+		return serverMsg;
+	}
 
 	
 }

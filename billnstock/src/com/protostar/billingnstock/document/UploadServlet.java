@@ -80,7 +80,7 @@ public class UploadServlet extends HttpServlet {
 			 getbusinessById.setLogBlobKey(blobKeys.get(0).getKeyString());
 			 ofy().save().entity(getbusinessById).now();
 			
-			 response.sendRedirect("http://localhost:8888/#/setup/setLogo");  
+			 response.sendRedirect("/#/setup/setLogo");  
 			 //response.sendRedirect("/serve?blob-key=" +
 			// blobKeys.get(0).getKeyString()+"&user="+user);
 		}

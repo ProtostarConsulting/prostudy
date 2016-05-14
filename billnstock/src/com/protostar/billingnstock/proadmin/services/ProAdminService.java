@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
@@ -17,6 +18,10 @@ import com.protostar.billingnstock.user.entities.UserEntity;
 
 @Api(name = "proadminService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.proadmin.services", ownerName = "com.protostar.billingnstock.proadmin.services", packagePath = ""))
 public class ProAdminService {
+
+	private static final Logger log = Logger.getLogger(ProAdminService.class
+			.getName());
+
 	@ApiMethod(name = "addAccountType")
 	public void addAccountType(AccountType account) {
 		ofy().save().entity(account).now();
@@ -25,31 +30,43 @@ public class ProAdminService {
 
 	@ApiMethod(name = "getallAccountType")
 	public List<AccountType> getallAccountType() {
-		return ofy().load().type(AccountType.class).list();
+		log.info("Inside getallAccountType.");
+		try {
+			return ofy().load().type(AccountType.class).list();
+		} catch (Exception e) {
+			log.info("Error Ocuured: " + e.getStackTrace());
+		}
+
+		return null;
+
 	}
 
 	@ApiMethod(name = "getAccountTypeById")
 	public AccountType getAccountTypeById(@Named("id") Long id) {
 		return ofy().load().type(AccountType.class).id(id).now();
 	}
+
 	@ApiMethod(name = "initsetupnext")
 	public void initsetupnext() {
 		Date date = new Date();
 		String DATE_FORMAT = "dd/MM/yyyy";
 		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
 
-		List<AccountType> accountt = ofy().load().type(AccountType.class).list();
-		AccountType filteredaccount=new AccountType();
+		List<AccountType> accountt = ofy().load().type(AccountType.class)
+				.list();
+		AccountType filteredaccount = new AccountType();
 		for (int i = 0; i < accountt.size(); i++) {
-			if(accountt.get(i).getAccountName().equals("Platinum")){
-				filteredaccount=accountt.get(i);
+			if (accountt.get(i).getAccountName().equals("Platinum")) {
+				filteredaccount = accountt.get(i);
 			}
 		}
-		
+
 		BusinessEntity businessEntity = new BusinessEntity();
-		/*businessEntity.setAdminFirstName("ganesh");
-		businessEntity.setAdminEmailId("ganesh.lawande@protostar.co.in");
-		businessEntity.setAdminLastName("Lawande");*/
+		/*
+		 * businessEntity.setAdminFirstName("ganesh");
+		 * businessEntity.setAdminEmailId("ganesh.lawande@protostar.co.in");
+		 * businessEntity.setAdminLastName("Lawande");
+		 */
 		businessEntity.setBusinessName("Protostar");
 		businessEntity.setAccounttype(filteredaccount);
 		businessEntity.setRegisterDate(sdf.format(date));
@@ -64,9 +81,9 @@ public class ProAdminService {
 		userEntity.setIsGoogleUser(true);
 		userEntity.setAuthority(Arrays.asList("admin"));
 		ofy().save().entity(userEntity).now();
-			
-		//------------------------------
-			
+
+		// ------------------------------
+
 		UserEntity userEntity1 = new UserEntity();
 		userEntity1.setBusiness(businessEntity);
 		userEntity1.setEmail_id("pushpak.pimpale@protostarcs.com");
@@ -75,16 +92,14 @@ public class ProAdminService {
 		userEntity1.setIsGoogleUser(true);
 		userEntity1.setAuthority(Arrays.asList("admin"));
 		ofy().save().entity(userEntity1).now();
-		
-		
-		/////////////////////
-		
-		
+
+		// ///////////////////
+
 	}
 
 	@ApiMethod(name = "initsetup")
 	public void initsetup() {
-		//try{
+		// try{
 		AccountType accounttype = new AccountType();
 		accounttype.setAccountName("Free");
 		accounttype.setDescription("Free for upto 2 users");
@@ -109,25 +124,22 @@ public class ProAdminService {
 		accounttype3.setMaxuser("500");
 		accounttype3.setPaymentDesc("Rs. 25,000 PM + Tax");
 		ofy().save().entity(accounttype3).now();
-		
-		//Thread.sleep(30000);
-		
-		//}
-		//catch(Exception e)
-		//{
-			
-		//}
-		////////////////////////// create 2 protostar user /////////////////////////
-		
-		
-		
-		
+
+		// Thread.sleep(30000);
+
+		// }
+		// catch(Exception e)
+		// {
+
+		// }
+		// //////////////////////// create 2 protostar user
+		// /////////////////////////
 
 	}
- @ApiMethod(name="getAllemp") 
-	 public List<UserEntity> getAllemp() { 
-		 return	 ofy().load().type(UserEntity.class).list();
-	 }
-	 
+
+	@ApiMethod(name = "getAllemp")
+	public List<UserEntity> getAllemp() {
+		return ofy().load().type(UserEntity.class).list();
+	}
 
 }// end of InternetService
