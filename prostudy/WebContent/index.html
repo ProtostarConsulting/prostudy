@@ -85,7 +85,11 @@
 
 
 			 <md-button ui-sref="exam" ng-click="close()" class="md-primary"
-				show-gt-md> Exam </md-button>  
+				show-gt-md> Exam </md-button> 
+			
+			<md-button ui-sref="scheduledExam" ng-click="close()" class="md-primary"
+				show-gt-md> Scheduled Exam </md-button> 
+				 
 			<md-button ui-sref="book"
 				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
 				ng-click="close()" class="md-primary" show-gt-md>Book </md-button> <md-button
@@ -300,7 +304,11 @@
 	<script src="/app/exam/js/practiceExam_edit.ctr.js"></script>
 	<script src="/app/exam/js/practiceExamList.ctr.js"></script>
 	<script src="/app/exam/js/userQuesAnsView.ctr.js"></script>
-
+	
+	<script src="/app/scheduledExam/js/scheduledExam_module.ctr.js"></script>
+	<script src="/app/scheduledExam/js/scheduledExam_add.ctr.js"></script>
+	<script src="/app/scheduledExam/js/scheduledExam_list.ctr.js"></script>
+	<script src="/app/scheduledExam/js/live_scheduledExamlist.ctr.js"></script>
 
 	<script src="/app/examdemo/js/examdemo_module.ctr.js"></script>
 	<script src="/app/examdemo/js/examdemo_science.ctr.js"></script>
