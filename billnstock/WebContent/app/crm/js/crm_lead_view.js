@@ -72,6 +72,7 @@ angular.module("stockApp").controller(
 						function(leadList) {
 							$log.debug("Inside Ctr getAllleads");
 							$scope.leads = $scope.initDateFields(leadList);
+							$scope.leads.phone=Number(leadList.phone);
 							$scope.Address=$scope.leads.address;
 							$scope.ctaskid = $scope.leads.tasks;
 							$scope.task.id = $scope.ctaskid.length + 1;
@@ -173,6 +174,13 @@ angular.module("stockApp").controller(
 
 			}
 */
+			
+			
+			$scope.convertocustomer=function(id){
+				
+				alert($scope.leads.id);
+			}
+			
 			$scope.toggleRight = buildToggler('right');
 
 			function buildToggler(navID) {

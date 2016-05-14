@@ -1529,7 +1529,13 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
-	
+	uploadUrlService.getExcelStockUploadURL = function() {
+		var deferred = $q.defer();
+		gapi.client.uploadUrlService.getExcelStockUploadURL().execute(function(resp) {
+				deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
 	
 
 	/* =============================================================================================================================== */

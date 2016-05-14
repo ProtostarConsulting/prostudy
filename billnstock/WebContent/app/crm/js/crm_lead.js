@@ -54,7 +54,6 @@ angular
 						var leadService = appEndpointSF.getleadService();
 						
 						leadService.addlead($scope.lead).then(function(msgBean) {
-
 							$log.debug("Inside Ctr addlead");
 							$log.debug("msgBean.msg:" + msgBean.msg);
 							$scope.showAddToast();

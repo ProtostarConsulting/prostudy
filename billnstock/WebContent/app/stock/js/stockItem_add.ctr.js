@@ -59,6 +59,7 @@ angular.module("stockApp").controller(
 							$log.debug("$scope.warehouses:"
 									+ angular.toJson($scope.warehouses));
 						});
+			//	$log.debug("$rootScope.selectedWarehouse:---"+angular.toJson($rootScope.selectedWarehouse));
 			}
 
 			$scope.warehouseDDLChange = function(index, selectedWarehouse) {
@@ -152,9 +153,10 @@ angular.module("stockApp").controller(
 								function() {
 									$scope.status = 'You cancelled the dialog.';
 								});
+			
 			};
 
-			function DialogController($scope, $mdDialog, curBusi,curUser,
+			function DialogController($scope, $mdDialog, curBusi,curUser, $state,
 					warehouse) {
 
 				$scope.addWarehouse = function() {
@@ -168,6 +170,8 @@ angular.module("stockApp").controller(
 								$scope.selectedWarehouse = warehouse.warehouseName;
 								$log.debug("$scope.selectedWarehouse"+$scope.selectedWarehouse);
 								console.log("####################");
+								$state.reload();
+								//$state.go("stock.stockItemAdd");
 							});
 					$scope.hide();
 				}	
@@ -175,4 +179,90 @@ angular.module("stockApp").controller(
 					$mdDialog.hide();
 				};
 			}
+			
+			
+			
+			// ----------------------UPLODE EXCEL FILE-------------------------------
+
+			$scope.UplodeExcel = function(ev) {
+				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
+						&& $scope.customFullscreen;
+				$mdDialog
+						.show(
+								{
+									controller : ExcelController,
+									templateUrl : '/app/stock/stock_UploadStockExcel.html',
+									parent : angular
+											.element(document.body),
+									targetEvent : ev,
+									clickOutsideToClose : true,
+									fullscreen : useFullScreen,
+									locals : {
+										curuser : $scope.curUser
+										
+									}
+								})
+						.then(
+								function(answer) {
+									$scope.status = 'You said the information was "'
+											+ answer + '".';
+								},
+								function() {
+									$scope.status = 'You cancelled the dialog.';
+								});
+				
+			};
+
+			function ExcelController($scope, $mdDialog, curuser) {
+			
+				$scope.loding=false;
+				$scope.bizID;
+				$scope.uplodeimage=function(){
+					$scope.WareHouseID = $scope.warehouseNmae.id;
+					 document.excelform.action = $scope.ExcelStockUploadURL;
+				      document.excelform.submit();
+				      $scope.loding=true;
+				}
+				$scope.getAllWarehouseByBusiness = function() {
+					$log.debug("Inside function $scope.getAllWarehouseByBusiness");
+					var warehouseService = appEndpointSF
+							.getWarehouseManagementService();
+
+					warehouseService.getAllWarehouseByBusiness(
+							curuser.business.id).then(
+							function(warehouseList) {
+								$scope.warehouses = warehouseList;
+								$scope.bizID=curuser.business.id;
+								$log.debug("$scope.warehouses:"
+										+ angular.toJson($scope.warehouses));
+							});
+				
+				}
+				
+				$scope.getExcelStockUploadURL=function(){
+					var uploadUrlService = appEndpointSF.getuploadURLService();
+					uploadUrlService.getExcelStockUploadURL()
+							.then(function(url) {
+								$scope.ExcelStockUploadURL=url.msg;
+							
+							});
+					
+				}
+				$scope.ExcelStockUploadURL;
+				
+				$scope.waitForServiceLoad = function() {
+					if (appEndpointSF.is_service_ready) {
+						$scope.getExcelStockUploadURL();
+						$scope.getAllWarehouseByBusiness();
+					} else {
+						$log.debug("Services Not Loaded, watiting...");
+						$timeout($scope.waitForServiceLoad, 1000);
+					}
+				}
+				$scope.waitForServiceLoad();
+				}
+
+			// -------------------------------------------------------
+			
+			
 		});

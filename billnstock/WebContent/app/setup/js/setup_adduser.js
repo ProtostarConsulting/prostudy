@@ -91,7 +91,8 @@ angular
 											clickOutsideToClose : true,
 											fullscreen : useFullScreen,
 											locals : {
-												curuser : $scope.curuser
+												curuser : $scope.curuser,
+												business:$scope.business
 											}
 										})
 								.then(
@@ -105,7 +106,7 @@ angular
 						
 					};
 
-					function DialogController($scope, $mdDialog, curuser) {
+					function DialogController($scope, $mdDialog, curuser,business) {
 						$scope.bizID;
 						$scope.loding=false;
 						$scope.uplodeimage=function(){
@@ -120,7 +121,7 @@ angular
 							uploadUrlService.getExcelUploadURL()
 									.then(function(url) {
 										$scope.ExcelUploadURL=url.msg;
-										$scope.bizID = curuser.business.id;
+										$scope.bizID = business.id;
 									});
 							
 							

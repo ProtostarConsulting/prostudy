@@ -1,5 +1,9 @@
 
 <md-content layout-padding>
+<section ng-hide="selectedStocksId" layout="row" layout-align="end end" flex>
+	<md-button class="md-raised md-primary" id="uplodeExcel"
+		ng-click="UplodeExcel($event)">UplodeExcel</md-button>
+</section>
 <h3 class="md-headline" ng-hide="stock.id">
 	<b>Add Stock</b>
 </h3>
@@ -83,7 +87,7 @@
 				<md-select flex ng-model="selectedWarehouse"
 					placeholder="Warehouse Name"
 					ng-change="warehouseDDLChange($index, selectedWarehouse)">
-				<md-option ng-value="warehouse" ng-selected="selectedWarehouse"
+				<md-option ng-value="warehouse" 
 					ng-repeat="warehouse in warehouses">{{warehouse.warehouseName
 				}}</md-option> </md-select>
 				<md-icon md-svg-src="img/icons/ic_queue_black_24px.svg"
@@ -92,7 +96,7 @@
 
 			</div>
 			<md-input-container flex> <label>Section
-				
+
 			</label> <input name="section" ng-model="stock.section"> </md-input-container>
 		</div>
 

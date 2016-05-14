@@ -20,7 +20,9 @@ angular
 								.getallAccountType()
 								.then(
 										function(assetList) {
-											$scope.accountlist = assetList.items.length;
+
+											$scope.accountlist = (assetList == undefined || assetList.items == undefined) ? 0
+													: assetList.items.length;
 											if ($scope.accountlist == 0) {
 												proadminService
 														.initsetup()
@@ -67,14 +69,16 @@ angular
 								.getallAccountType()
 								.then(
 										function(assetList) {
-											$scope.accountlist = assetList.items.length;
-											if ($scope.accountlist == 4) {
+											$scope.accountlist =  (assetList == undefined || assetList.items == undefined) ? 0: assetList.items.length;
+											
+											if ($scope.accountlist >= 4) {
 												proadminService
 														.getAllemp()
 														.then(
 																function(
 																		empList) {
-																	$scope.emps = empList.items.length;
+																	$scope.emps = (empList == undefined || empList.items == undefined) ? 0: empList.items.length;
+																	
 																	if ($scope.emps == 0) {
 																		proadminService
 																				.initsetupnext()
