@@ -11,12 +11,10 @@ public class StudentEntity {
 	private Long id;
 	@Index          
 	private Long instituteID;
-	
 	private String firstName;
 	private String lastName;
 	@Index
 	private String institute;
-	
 	private String standard;
 	private String phone_no;
 	private String email;

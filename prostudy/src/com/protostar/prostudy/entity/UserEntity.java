@@ -9,7 +9,7 @@ import com.googlecode.objectify.annotation.Index;
 @Entity
 public class UserEntity {
 
-	@Id 
+	@Id
 	@Index
 	private Long id;
 	private String firstName;
@@ -23,16 +23,26 @@ public class UserEntity {
 	@Index
 	private String PRN;
 	private Boolean isGoogleUser;
-	
+
 	private String password;
 	@Index
 	private String standard;
 	@Index
 	private String division;
-	
+
 	@Index
 	private Long instituteID;
-	
+
+	private String pSLevel;
+
+	public String getpSLevel() {
+		return pSLevel;
+	}
+
+	public void setpSLevel(String pSLevel) {
+		this.pSLevel = pSLevel;
+	}
+
 	private List<PracticeExamEntity> myExams;
 	private List<BookEntity> myBooks;
 
@@ -43,6 +53,7 @@ public class UserEntity {
 	public void setIsGoogleUser(Boolean isGoogleUser) {
 		this.isGoogleUser = isGoogleUser;
 	}
+
 	public List<PracticeExamEntity> getMyExams() {
 		return myExams;
 	}
@@ -59,7 +70,6 @@ public class UserEntity {
 		this.myBooks = myBooks;
 	}
 
-	
 	public String getDivision() {
 		return division;
 	}

@@ -11,6 +11,8 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
+import com.google.appengine.api.blobstore.BlobstoreService;
+import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.googlecode.objectify.Key;
 import com.protostar.prostudy.entity.RoleSecEntity;
 import com.protostar.prostudy.entity.StudSubEntity;
@@ -158,4 +160,14 @@ public class UserService {
 	   return outPutList;
 	  
 	 }
+	
+	@ApiMethod(name = "getLogUploadURL")
+	public ServerMsg getLogUploadURL() {
+		 BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+		 String createUploadUrl = blobstoreService.createUploadUrl("/UploadServlet");
+		 ServerMsg serverMsg = new ServerMsg();
+		 serverMsg.setMsg(createUploadUrl);		 
+		return serverMsg;
+	}
+	
 }
