@@ -87,14 +87,14 @@
 				Login </md-button>
 
 				{{ curUser.firstName}}
-				<md-button popover-template="'popover.html'"
-					popover-placement="bottom" popover-trigger="focus"
+				<md-button ng-show="curUser" popover-template="'popover.html'"
+					popover-placement="bottom" popover-trigger="focus" data-container="body"
 					data-toggle="popover" data-trigger="focus"> <!-- <md-tooltip>
 				{{ curUser.firstName + " " +  curUser.lastName + "|" + curUser.email_id}} </md-tooltip>  -->
 
 				<img ng-show="true" ng-show="curUser.imageURl"
-					ngf-src="curUser.imageURl" class=circular> <img alt="Logo"
-					ng-hide="curUser.imageURl"
+					ngf-src="curUser.imageURl" class=circular> 
+				<img alt="Logo" ng-hide="curUser.imageURl"
 					src="img/images/ic_person_black_24px.svg" class=circular> </md-button>
 
 				<script type="text/ng-template" id="popover.html">
