@@ -1,7 +1,7 @@
 <h3 class="md-headline">Edit Course {{tempCourse.name}}</h3>
 <p>&nbsp;</p>
-<div ng-show="loading && flag">Course Loading...</div>
-<div ng-show="updating">Course Updating...</div>
+
+<div ng-show="updating">Please Wait, Course Updating...</div>
 <div ng-hide="loading">
 
 
@@ -64,7 +64,7 @@
 	</div>
 
 	<div layout="row" layout-align="center center">
-		<md-button class="md-raised md-primary" ng-click="updateCourse()">Update Course </md-button>
+		<md-button class="md-raised md-primary" ng-click="updateCourse($event)">Update Course </md-button>
 	<md-button class="md-raised" ng-click="cancelButton()"> Cancel </md-button>
 	</div> 
 

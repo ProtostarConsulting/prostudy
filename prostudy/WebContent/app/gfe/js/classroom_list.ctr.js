@@ -2,7 +2,7 @@ angular
 		.module("prostudyApp")
 		.controller(
 				"classroomCourseListCtr",
-				function($scope, $window, $mdToast, $timeout, $mdSidenav,$state,
+				function($scope, $window, $mdToast, $timeout, $mdSidenav,$state,$mdDialog,
 						$mdUtil, $log, $q, tableTestDataFactory, appEndpointSF) {
 										
 					
@@ -64,8 +64,7 @@ angular
 								}								
 							} else {
 								$log.debug('No courses found.');
-							}
-							
+							}		
 
 					}				
 					
@@ -98,38 +97,65 @@ angular
 						return deferred.promise;
 					};
 
-					$scope.deleteCourse = function(courseId) {	
-						$scope.flag = false;
-						$scope.loading = true;
-						$scope.selected = [];
-						$scope.deleting = true;
-						var request = gapi.client.classroom.courses.delete({id:courseId});
+					$scope.deleteCourse = function(courseId,ev) {							
+						
+						var confirm = $mdDialog.confirm().title(
+						'Are you sure you want to delete this Course ?').ariaLabel('Lucky day')
+						.targetEvent(ev).ok('YES').cancel('NO');
+						$mdDialog.show(confirm).then(function() {
+					
 
-						request.execute(function(resp) {
-							$log.debug("resp:" + angular.toJson(resp));
-							$scope.showCourseDeletedToast();
-						
-							$scope.deleting = false;
-							$scope.classroomCourses=[];
-							
-							$scope.searchName="";
-							$scope.listCourses();
-						});
-					}
+					$scope.flag = false;
+					$scope.loading = true;
+					$scope.selected = [];
+					$scope.deleting = true;
+					var request = gapi.client.classroom.courses.delete({id:courseId});
+
+					request.execute(function(resp) {
+						$log.debug("resp:" + angular.toJson(resp));
+						$scope.showCourseDeletedToast();
 					
-					$scope.changeCourseState = function(courseState) {
+						$scope.deleting = false;
+						$scope.classroomCourses=[];
 						
-						$scope.selected[0].courseState=courseState;
-						$scope.tempCourse=angular.toJson($scope.selected[0]);
+						$scope.searchName="";
+						$scope.listCourses();
+					});
 					
-						var request = gapi.client.classroom.courses.update({id:$scope.selected[0].id},$scope.tempCourse);
+					
+					
+				}, function() {							
+					
+				});
+				
 						
-						request.execute(function(resp) {
-							
-							$scope.showCourseStateChangedToast();
-							$state.go("gfe.classroomCourseList",{});
-							
-						});
+					}				
+				
+					
+					$scope.changeCourseState = function(courseState,ev) {
+						
+						var confirm = $mdDialog.confirm().title(
+						'Are you sure you want to change Course State ?').ariaLabel('Lucky day')
+						.targetEvent(ev).ok('YES').cancel('NO');
+						$mdDialog.show(confirm).then(function() {
+					
+					$scope.selected[0].courseState=courseState;
+					$scope.tempCourse=angular.toJson($scope.selected[0]);
+				
+					var request = gapi.client.classroom.courses.update({id:$scope.selected[0].id},$scope.tempCourse);
+					
+					request.execute(function(resp) {
+						
+						$scope.showCourseStateChangedToast();
+						$state.go("gfe.classroomCourseList",{});
+						
+					});
+					
+					
+				}, function() {							
+					
+				});										
+				
 					}						
 					
 					$scope.showCourseStateChangedToast = function() {

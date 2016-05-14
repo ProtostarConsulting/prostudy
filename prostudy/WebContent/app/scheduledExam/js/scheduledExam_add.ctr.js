@@ -23,6 +23,8 @@ angular
 						instituteID : $scope.curUser.instituteID,
 						listOfQuestions : []
 					};
+					
+					
 					$scope.addScheduledExam = function() {
 						$scope.tempScheduledExam.listOfQuestions=$scope.selected;
 						$log.debug("$scope.tempScheduledExam   :: "+angular.toJson($scope.tempScheduledExam));

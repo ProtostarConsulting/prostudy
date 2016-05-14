@@ -1,4 +1,4 @@
-<div ng-show="loading">{{userType}}List of {{courseName}} Loading...</div>
+<div ng-show="loading">Please Wait, {{userType}}List of {{courseName}} Loading...</div>
 <div ng-hide="loading">
 	<md-data-table-toolbar>
 	<h3 class="md-headline">{{userType}} List of {{courseName}}</h3>
@@ -41,7 +41,7 @@
 		<md-button class="md-raised md-primary" ng-click="">View {{userType}} </md-button>
 	</a> <a><md-button ng-show="curUser.role == 'Admin'"
 			class="md-raised md-primary"
-			ng-click="deleteUser(selected[0].id,user.userId,userType)">Delete {{userType}} </md-button> </a>
+			ng-click="deleteUser(selected[0].id,user.userId,userType,$event)">Delete {{userType}} </md-button> </a>
 
 </div>
 

@@ -3,12 +3,8 @@ angular
 		.controller(
 				"classroomCourseViewCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,$stateParams,
-						$mdUtil, $log, $q, tableTestDataFactory, appEndpointSF,$state) {
+						$mdUtil, $log, $q, tableTestDataFactory, appEndpointSF,$state) {				
 					
-					$scope.selectedCourseId=$stateParams.selectedCourseId;
-					$scope.courseStateList	=["COURSE_STATE_UNSPECIFIED","ACTIVE","ARCHIVED","PROVISIONED","DECLINED" ];
-					
-					$scope.loading = false;	
 					
 					$scope.tempCourse = {
 							'name' : "",
@@ -21,22 +17,16 @@ angular
 							'courseState':"",
 							'alternateLink' : ""
 						};
-										
-					$scope.getCourse = function() {		
-						$scope.loading = true;	
-						var request = gapi.client.classroom.courses.get({
-							id : $scope.selectedCourseId					
-								});
+							
 					
-						request.execute(function(resp) {
-							$scope.tempCourse = resp.result;
-							$scope.loading = false;								
-						});
-					}	
+					$scope.tempCourse=$stateParams.selectedCourse;
+					
+					$scope.courseStateList	=["COURSE_STATE_UNSPECIFIED","ACTIVE","ARCHIVED","PROVISIONED","DECLINED" ];						
+				
 					$scope.cancelButton = function() {
 						$state.go("gfe.classroomCourseList",{});
 					}
 			
-					$scope.getCourse();
+					
 				});
 

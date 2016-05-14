@@ -652,22 +652,23 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		params : {
 			selectedUserId : null,
 			selectedCourseId : null,
-			userType:null
+			userType:null ,
+			selectedCourse:null
 		}
 	})
 	.state('gfe.classroomCourseEdit', {
 		url : "/classroomCourseEdit",
 		templateUrl : '/app/gfe/classroom_course_edit.html',
 		controller : 'classroomCourseEditCtr'	,	
-		params : {
-			selectedCourseId : null			
+		params : {			
+			selectedCourse:null
 		}
 	}).state('gfe.classroomCourseView', {
 		url : "/classroomCourseView",
 		templateUrl : '/app/gfe/classroom_course_view.html',
 		controller : 'classroomCourseViewCtr'	,	
-		params : {
-			selectedCourseId : null			
+		params : {			
+			selectedCourse:null
 		}
 	}).state('gfe.directoryNewUser', {
 		url : "/directoryNewUser",

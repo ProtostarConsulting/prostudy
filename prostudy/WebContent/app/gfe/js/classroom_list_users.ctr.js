@@ -2,7 +2,7 @@ angular
 		.module("prostudyApp")
 		.controller(
 				"classroomCourseUserListCtr",
-				function($scope, $window, $mdToast, $timeout, $mdSidenav,
+				function($scope, $window, $mdToast, $timeout, $mdSidenav,$mdDialog,
 						$mdUtil, $log, $q, $stateParams, tableTestDataFactory, appEndpointSF) {
 					
 					$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
@@ -51,29 +51,39 @@ angular
 							$log.debug("resp:" + angular.toJson(resp));
 						});
 					}
-					$scope.deleteUser = function(courseId,userId,userType) {
+					$scope.deleteUser = function(courseId,userId,userType,ev) {
 						
-						if(userType==="Teacher")
-						{
-							
-						var request = gapi.client.classroom.courses.teachers.delete({
-									courseId : courseId,
-									userId : userId
-								});
-
-						}
-						else if(userType==="Student")
-							{
-							
-							var request = gapi.client.classroom.courses.students.delete({
+						var confirm = $mdDialog.confirm().title(
+						'Are you sure you want to delete User ?').ariaLabel('Lucky day')
+						.targetEvent(ev).ok('YES').cancel('NO');
+				$mdDialog.show(confirm).then(function() {					
+					
+					if(userType==="Teacher")
+					{
+						
+					var request = gapi.client.classroom.courses.teachers.delete({
 								courseId : courseId,
 								userId : userId
 							});
-							}
-						request.execute(function(resp) {
-							$scope.showSavedToast();
-							$log.debug("resp:" + angular.toJson(resp));
+
+					}
+					else if(userType==="Student")
+						{
+						
+						var request = gapi.client.classroom.courses.students.delete({
+							courseId : courseId,
+							userId : userId
 						});
+						}
+					request.execute(function(resp) {
+						$scope.showSavedToast();
+						$log.debug("resp:" + angular.toJson(resp));
+					});
+					
+				}, function() {							
+					
+				});						
+					
 					}
 
 					$scope.showSavedToast = function() {

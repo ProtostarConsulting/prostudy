@@ -1,6 +1,6 @@
 
-<div ng-show="loading && flag">CourseList Loading...</div>
-<div ng-show="deleting">Course Deleting...</div>
+<div ng-show="loading && flag">Please Wait, CourseList Loading...</div>
+<div ng-show="deleting">Please Wait, Course Deleting...</div>
 <div ng-hide="loading">
 <md-data-table-toolbar ng-show="!selected.length">
 <h3 class="md-headline">Courses List</h3>
@@ -54,24 +54,22 @@
 
 	<div layout="row" layout-align="centre centre" layout-xs="column">
 		<md-button
-			ui-sref="gfe.classroomCourseView({selectedCourseId: selected[0].id})"
+			ui-sref="gfe.classroomCourseView({selectedCourse: selected[0]})"
 			class="md-raised md-primary"> View Course </md-button>
 		<md-button
-			ui-sref="gfe.classroomCourseEdit({selectedCourseId: selected[0].id})"
+			ui-sref="gfe.classroomCourseEdit({selectedCourse: selected[0]})"
 			class="md-raised md-primary">Edit Course </md-button>
 
 		<md-button class="md-raised md-primary"
 			ng-show="selected[0].courseState=='ARCHIVED'"
-			ng-click="changeCourseState('ACTIVE')">Change Course
-		State to ACTIVE </md-button>
+			ng-click="changeCourseState('ACTIVE',$event)">Course ACTIVE </md-button>
 
 		<md-button class="md-raised md-primary"
 			ng-show="selected[0].courseState==='ACTIVE'"
-			ng-click="changeCourseState('ARCHIVED')"> Change Course
-		State to ARCHIVED </md-button>
+			ng-click="changeCourseState('ARCHIVED',$event)"> ARCHIVE Course</md-button>
 
 		<md-button class="md-raised md-primary"
-			ng-click="deleteCourse(selected[0].id)"> Delete Course </md-button>
+			ng-click="deleteCourse(selected[0].id,$event)"> Delete Course </md-button>
 
 		<md-button class="md-raised md-primary"
 			ng-href="{{selected[0].alternateLink}}" target="_blank">Goto

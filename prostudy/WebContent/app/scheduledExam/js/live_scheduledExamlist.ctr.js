@@ -15,23 +15,17 @@ angular
 						var ScheduledExamService = appEndpointSF.getScheduledExamService();
 						ScheduledExamService.getScheduledExamByInstitute(
 								$scope.curUser.instituteID).then(
-								function(scheduledExamList) {
-									$scope.liveScheduledExams = scheduledExamList;
-									
-									/*var currentDate= new Date();
-									$log.debug("before "+currentDate);
-									$log.debug("before "+currentDate.toUTCString());
-									dateStr = dateStr.toString("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-									$log.debug("after dateStr"+dateStr);
+								function(scheduledExamList) {									
+								
 									for(var i=0;i< scheduledExamList.length;i++)
 									{
-										$log.debug("####@ "+i);
-									if (scheduledExamList[i].startdatentime <= currentDate.toUTCString() <= scheduledExamList[i].enddatentime)
-									{
-										$scope.liveScheduledExams.push(scheduledExamList[0]);
-										$log.debug("#### "+i);
+										
+									if (new Date(scheduledExamList[i].startdatentime) <=  new Date(scheduledExamList[i].enddatentime) && new Date(scheduledExamList[i].enddatentime) >= new Date() && new Date(scheduledExamList[i].startdatentime) <= new Date())
+									{										
+										$scope.liveScheduledExams.push(scheduledExamList[i]);
+										
 									}	
-										}		*/								
+										}						
 									
 								
 								});
