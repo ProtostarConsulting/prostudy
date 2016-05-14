@@ -11,6 +11,14 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 	endpointFactory.is_service_ready = false;
 	// This will call the function to load services
 
+	endpointFactory.getuploadURLService = function() {
+
+		if (isTestMode)
+			return localDBServiceFactory.getuploadURLService();
+		else
+			return googleEndpointSF.getuploadURLService();
+	};
+	
 	endpointFactory.getPartnerSchoolService = function() {
 
 		if (isTestMode)
@@ -267,6 +275,15 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 			deferred.resolve();
 
 		}, apiRoot);
+		
+		gapi.client.load('uploadUrlService', 'v0.1', function() {
+			$log.debug("uploadUrlService Loaded......");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+		
+		
 		return deferred.promise;
 
 	};

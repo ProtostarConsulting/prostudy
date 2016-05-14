@@ -1203,6 +1203,19 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	}
 	
 
+	var uploadUrlService = {};
+	serviceFactory.getuploadURLService = function() {
+		return uploadUrlService;
+	}
+	
+	uploadUrlService.getStudentCSVUploadURL = function() {
+		var deferred = $q.defer();
+		gapi.client.uploadUrlService.getStudentCSVUploadURL().execute(function(resp) {
+				deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
 /*	========================================================================================*/
 		
 	/*

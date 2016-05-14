@@ -557,6 +557,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/studentinstallmentlist/:selectedPaymentId",
 		templateUrl : '/app/student/student_installmentlist.html',
 		controller : 'studentInstallmentListCtr',
+	
+	}).state('student.scheduleStudentExam', {
+		url : "/scheduleStudentExam",
+		templateUrl : '/app/student/student_scheduleExam.html',
+		controller : 'studentscheduleExamCtr',
+	
 	}).state('syllabus', {
 		url : "/syllabus",
 		templateUrl : '/app/syllabus/syllabus_module.html',
@@ -704,6 +710,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/listPartnerSchool",
 		templateUrl : '/app/partnerSchool/partnerSchool_list.html',
 		controller : 'partnerSchoolListCtr'	
+	}).state('partnerSchool.listPartnerSchoolStudent', {
+		url : "/listPartnerSchoolStudent",
+		templateUrl : '/app/partnerSchool/partnerSchool_studentList.html',
+		controller : 'studentListPageCtr'	
 	})
 	.state('scheduledExam', {
 		url : "/scheduledExam",
