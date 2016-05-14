@@ -803,6 +803,82 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	}
 	// End of PracticeExamService
 
+	// start of ScheduledExamService
+	var ScheduledExamService = {};
+
+	serviceFactory.getScheduledExamService = function() {
+		return ScheduledExamService;
+	}
+
+	ScheduledExamService.addScheduledExam = function(exam) {
+		var deferred = $q.defer();
+		gapi.client.scheduledExamService.addScheduledExam(exam).execute(
+				function(resp) {
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+	}
+
+	ScheduledExamService.getScheduledExams = function() {
+		var deferred = $q.defer();
+		gapi.client.scheduledExamService.getScheduledExams().execute(
+				function(resp) {
+					deferred.resolve(resp.items);
+				});
+		return deferred.promise;
+	}
+	ScheduledExamService.getScheduledExamByInstitute = function(instituteID) {
+		var deferred = $q.defer();
+		gapi.client.scheduledExamService.getScheduledExamByInstitute({
+			'instituteID' : instituteID
+		}).execute(function(resp) {
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+
+	/*PracticeExamService.getPracticeExamById = function(selectedExamId) {
+		var deferred = $q.defer();
+		gapi.client.practiceExamService.getPracticeExamById({
+			'examId' : selectedExamId
+		}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+
+	
+
+	PracticeExamService.updatePracticeExam = function(exam) {
+		var deferred = $q.defer();
+		gapi.client.practiceExamService.updatePracticeExam(exam).execute(
+				function(resp) {
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+	}
+
+	PracticeExamService.likeCount = function(exam) {
+		var deferred = $q.defer();
+		gapi.client.practiceExamService.updatePracticeExam(exam).execute(
+				function(resp) {
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+	}
+
+	PracticeExamService.dislikeCount = function(exam) {
+		var deferred = $q.defer();
+		gapi.client.practiceExamService.updatePracticeExam(exam).execute(
+				function(resp) {
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+	}*/
+	// End of ScheduledExamService
+
+	
+	
 	// start of PracticeExamResultService
 
 	var PracticeExamResultService = {};

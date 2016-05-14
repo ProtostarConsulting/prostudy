@@ -704,6 +704,26 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/listPartnerSchool",
 		templateUrl : '/app/partnerSchool/partnerSchool_list.html',
 		controller : 'partnerSchoolListCtr'	
+	})
+	.state('scheduledExam', {
+		url : "/scheduledExam",
+		templateUrl : '/app/scheduledExam/scheduledExam_module.html',
+		controller : 'scheduledExamModuleCtr'				
+	})
+	.state('scheduledExam.add', {
+		url : "/add",
+		templateUrl : '/app/scheduledExam/scheduledExam_add.html',
+		controller : 'scheduledExamAddCtr'				
+	})
+	.state('scheduledExam.list', {
+		url : "/scheduledexamlist",
+		templateUrl : '/app/scheduledExam/scheduledExam_list.html',
+		controller : 'scheduledExamListCtr'				
+	})
+	.state('scheduledExam.liveexams', {
+		url : "/liveexams",
+		templateUrl : '/app/scheduledExam/live_scheduledExamlist.html',
+		controller : 'liveScheduledExamListCtr'				
 	});	
 
 });
@@ -720,4 +740,9 @@ app.filter('unique', function() {
 		}
 		return uniqueList;
 	};
+});
+app.filter('formatDate', function($filter) {
+	 return function(inputDate) {
+	  return $filter('date')(inputDate, 'dd-MM-yyyy');
+	 };
 });
