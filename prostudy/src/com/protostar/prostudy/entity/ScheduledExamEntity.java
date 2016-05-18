@@ -20,7 +20,7 @@ public class ScheduledExamEntity {
 	private Date enddatentime;	
 	@Index
 	private Long instituteID;
-	private List<QuestionEntity> listOfQuestions;
+	private List<QuestionEntity> listOfQuestion;
 	
 	public Long getId() {
 		return id;
@@ -60,11 +60,12 @@ public class ScheduledExamEntity {
 	public void setInstituteID(Long instituteID) {
 		this.instituteID = instituteID;
 	}
-	public List<QuestionEntity> getListOfQuestions() {
-		return listOfQuestions;
+	public List<QuestionEntity> getListOfQuestion() {
+		return listOfQuestion;
 	}
-	public void setListOfQuestions(List<QuestionEntity> listOfQuestions) {
-		this.listOfQuestions = listOfQuestions;
+	public void setListOfQuestion(List<QuestionEntity> listOfQuestion) {
+		this.listOfQuestion = listOfQuestion;
 	}
+	
 	
 	}
