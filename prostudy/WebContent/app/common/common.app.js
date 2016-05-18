@@ -715,26 +715,54 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/listPartnerSchoolStudent",
 		templateUrl : '/app/partnerSchool/partnerSchool_studentList.html',
 		controller : 'studentListPageCtr'	
-	})
-	.state('scheduledExam', {
+	}).state('scheduledExam', {
 		url : "/scheduledExam",
 		templateUrl : '/app/scheduledExam/scheduledExam_module.html',
 		controller : 'scheduledExamModuleCtr'				
+	})	
+	.state('scheduledExam.addQuestion', {
+		url : "/addQuestion",
+		templateUrl : '/app/scheduledQuestion/scheduledQuestion_new.html',
+		controller : 'scheduledQuestionNewCtr'				
+	}).state('scheduledExam.questionList', {
+		url : "/questionList",
+		templateUrl : '/app/scheduledQuestion/scheduledQuestion_list.html',
+		controller : 'scheduledQuestionListCtr'				
 	})
-	.state('scheduledExam.add', {
+	.state('scheduledExam.questionEdit', {
+		url : "/questionEdit",
+		templateUrl : '/app/scheduledQuestion/scheduledQuestion_edit.html',
+		controller : 'scheduledQuestionEditCtr'	,
+		params : {
+			selectedQuestionId:null				
+		}
+	}).state('scheduledExam.add', {
 		url : "/add",
 		templateUrl : '/app/scheduledExam/scheduledExam_add.html',
 		controller : 'scheduledExamAddCtr'				
 	})
-	.state('scheduledExam.list', {
+	.state('scheduledExam.edit', {
+		url : "/edit",
+		templateUrl : '/app/scheduledExam/scheduledExam_edit.html',
+		controller : 'editScheduledExamCtr'	,
+		params : {
+			selectedExamId:null				
+		}			
+	}).state('scheduledExam.list', {
 		url : "/scheduledexamlist",
 		templateUrl : '/app/scheduledExam/scheduledExam_list.html',
 		controller : 'scheduledExamListCtr'				
-	})
-	.state('scheduledExam.liveexams', {
+	}).state('scheduledExam.liveexams', {
 		url : "/liveexams",
 		templateUrl : '/app/scheduledExam/live_scheduledExamlist.html',
 		controller : 'liveScheduledExamListCtr'				
+	})	.state('scheduledExam.scheduledtest', {
+		url : "/scheduledtest",
+		templateUrl : '/app/scheduledExam/scheduledExamTest.html',
+		controller : 'scheduledExamTestCtr'	,
+		params : {
+			selectedExamId:null				
+		}			
 	});	
 
 });

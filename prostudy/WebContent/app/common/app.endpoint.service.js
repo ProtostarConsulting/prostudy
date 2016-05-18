@@ -106,6 +106,14 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 		else
 			return googleEndpointSF.getPracticeExamService();
 	};
+	
+	endpointFactory.getScheduledQuestionService = function() {
+		if (isTestMode)
+			return localDBServiceFactory.getScheduledQuestionService();
+		else
+			return googleEndpointSF.getScheduledQuestionService();
+	};
+	
 	endpointFactory.getScheduledExamService = function() {
 		if (isTestMode)
 			return localDBServiceFactory.getScheduledExamService();
@@ -209,6 +217,11 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 
 		gapi.client.load('practiceExamService', 'v0.1', function() {
 			$log.debug("PracticeExamService Loaded....");
+
+		}, apiRoot);	
+		
+		gapi.client.load('scheduledQuestionService', 'v0.1', function() {
+			$log.debug("ScheduledQuestionService Loaded....");
 
 		}, apiRoot);
 		gapi.client.load('scheduledExamService', 'v0.1', function() {

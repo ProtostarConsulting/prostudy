@@ -208,10 +208,8 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
-
-	// end of
-	// UserService-----------------------------------------------------------------------------------------------------------------
-
+	// end of UserService
+	/*------------------------------------------------------------------------------------------------------*/	
 	// start of CertificateService
 	var CertificateService = {};
 
@@ -249,7 +247,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 	// End of CertificateService
-
+	/*------------------------------------------------------------------------------------------------------*/	
 	// start of StandardService
 	var StandardService = {};
 
@@ -296,7 +294,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	}
 
 	// end of StandardService
-
+	/*------------------------------------------------------------------------------------------------------*/	
 	// start of DivisionService
 	var DivisionService = {};
 
@@ -352,7 +350,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	}
 
 	// end of DivisionService
-
+	/*------------------------------------------------------------------------------------------------------*/	
 	// start of SubjectService
 	var SubjectService = {};
 
@@ -407,7 +405,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	}
 
 	// end of SubjectService
-
+	/*------------------------------------------------------------------------------------------------------*/	
 	// start of StudSubService
 	var StudSubService = {};
 	serviceFactory.getStudSubService = function() {
@@ -484,7 +482,9 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	}
 
 	// End of StudSubService
-
+	
+	/*------------------------------------------------------------------------------------------------------*/	
+	
 	// start of AttendanceService
 	var AttendanceService = {};
 
@@ -535,7 +535,9 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	}
 
 	// End of AttendanceService
-
+	/*------------------------------------------------------------------------------------------------------*/
+	// Start of ChapterService
+	
 	var ChapterService = {};
 
 	serviceFactory.getChapterService = function() {
@@ -602,9 +604,11 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
-	} // end of
-		// ChapterService-----------------------------------------------------------------------------------
-
+	} 
+	// end of ChapterService
+	/*------------------------------------------------------------------------------------------------------*/
+	
+	// start of BookService
 	var BookService = {};
 
 	serviceFactory.getBookService = function() {
@@ -682,9 +686,9 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
-	}// -------end of
-		// BookService-------------------------------------------------------------------------------------------------
-
+	}
+	//end of BookService
+	/*------------------------------------------------------------------------------------------------------*/
 	// start of SyllabusService
 
 	var SyllabusService = {};
@@ -729,7 +733,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	}
 
 	// End of SyllabusService
-
+	/*------------------------------------------------------------------------------------------------------*/
 	// start of PracticeExamService
 	var PracticeExamService = {};
 
@@ -802,7 +806,62 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 	// End of PracticeExamService
+/*------------------------------------------------------------------------------------------------------*/
+	// start of ScheduledQuestionService
+	var ScheduledQuestionService = {};
 
+	serviceFactory.getScheduledQuestionService = function() {
+		return ScheduledQuestionService;
+	}
+	
+	ScheduledQuestionService.addQuestion = function(ques) {
+		var deferred = $q.defer();
+		gapi.client.scheduledQuestionService.addQuestion(ques).execute(
+				function(resp) {
+					
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+	}
+
+	ScheduledQuestionService.getQuestions = function() {
+		var deferred = $q.defer();
+		gapi.client.scheduledQuestionService.getQuestions().execute(
+				function(resp) {
+					deferred.resolve(resp.items);
+				});
+		return deferred.promise;
+	}
+	ScheduledQuestionService.getQuestionsByInstitute = function(instituteID) {
+		var deferred = $q.defer();
+		gapi.client.scheduledQuestionService.getQuestionsByInstitute({
+			'instituteID' : instituteID
+		}).execute(function(resp) {
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	ScheduledQuestionService.updateQuestion = function(ques) {
+		var deferred = $q.defer();
+		gapi.client.scheduledQuestionService.updateQuestion(ques).execute(
+				function(resp) {
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+	}
+
+	ScheduledQuestionService.getQuestionByID = function(id) {
+		var deferred = $q.defer();
+		gapi.client.scheduledQuestionService.getQuestionByID({
+			'id' : id
+		}).execute(function(resp) {
+			deferred.resolve(resp.result);
+		});
+		return deferred.promise;
+	}
+	
+	// end of ScheduledQuestionService
+	/*------------------------------------------------------------------------------------------------------*/
 	// start of ScheduledExamService
 	var ScheduledExamService = {};
 
@@ -814,6 +873,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		var deferred = $q.defer();
 		gapi.client.scheduledExamService.addScheduledExam(exam).execute(
 				function(resp) {
+					
 					deferred.resolve(resp);
 				});
 		return deferred.promise;
@@ -836,48 +896,38 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
-
-	/*PracticeExamService.getPracticeExamById = function(selectedExamId) {
+	ScheduledExamService.getScheduledExamById = function(selectedExamId) {
 		var deferred = $q.defer();
-		gapi.client.practiceExamService.getPracticeExamById({
-			'examId' : selectedExamId
+		gapi.client.scheduledExamService.getScheduledExamById({
+			'id' : selectedExamId
 		}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
 	}
 
-	
-
-	PracticeExamService.updatePracticeExam = function(exam) {
+	ScheduledExamService.updateScheduledExam = function(exam) {
 		var deferred = $q.defer();
-		gapi.client.practiceExamService.updatePracticeExam(exam).execute(
+		gapi.client.scheduledExamService.updateScheduledExam(exam).execute(
 				function(resp) {
-					deferred.resolve(resp);
+				deferred.resolve(resp);
 				});
 		return deferred.promise;
 	}
-
-	PracticeExamService.likeCount = function(exam) {
+	ScheduledExamService.getScheduledExamById = function(selectedExamId) {
 		var deferred = $q.defer();
-		gapi.client.practiceExamService.updatePracticeExam(exam).execute(
-				function(resp) {
-					deferred.resolve(resp);
-				});
+		gapi.client.scheduledExamService.getScheduledExamById({
+			'id' : selectedExamId
+		}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
 		return deferred.promise;
 	}
 
-	PracticeExamService.dislikeCount = function(exam) {
-		var deferred = $q.defer();
-		gapi.client.practiceExamService.updatePracticeExam(exam).execute(
-				function(resp) {
-					deferred.resolve(resp);
-				});
-		return deferred.promise;
-	}*/
+
 	// End of ScheduledExamService
 
-	
+	/*------------------------------------------------------------------------------------------------------*/
 	
 	// start of PracticeExamResultService
 
