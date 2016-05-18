@@ -37,6 +37,20 @@
 	</md-data-table-container>
 	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
 		md-total={{scheduledExams.length}} md-trigger="onpagechange"></md-data-table-pagination>
+		
+			<div layout="row" layout-align="center center">
+
+		<a ui-sref="scheduledExam.scheduledtest({selectedExamId: selected[0].id})"><md-button
+				ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
+				ng-click="">
+			<md-icon md-svg-src="img/icons/start.svg"></md-icon> <md-tooltip>Start</md-tooltip></md-button>
+		 </a> <a ui-sref="scheduledExam.edit({selectedExamId: selected[0].id})"><md-button
+				ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
+				ng-click="">
+			<md-icon md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit</md-tooltip>
+			</md-button> </a> 
+
+	</div>
 
 	
 </div>

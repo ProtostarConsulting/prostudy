@@ -14,6 +14,7 @@ angular
 								'ScheduledExam Saved!').position("top").hideDelay(
 								3000));
 					};	
+					$scope.model;
 					$scope.selected=[];
 					$scope.tempScheduledExam = {
 						examtitle : "",
@@ -21,17 +22,18 @@ angular
 						startdatentime : "",
 						enddatentime : "",
 						instituteID : $scope.curUser.instituteID,
-						listOfQuestions : []
+						listOfQuestion : []
 					};
 					
 					
 					$scope.addScheduledExam = function() {
-						$scope.tempScheduledExam.listOfQuestions=$scope.selected;
-						$log.debug("$scope.tempScheduledExam   :: "+angular.toJson($scope.tempScheduledExam));
+						
+						
+						$scope.tempScheduledExam.listOfQuestion=$scope.selected;
+						
 						var ScheduledExamService = appEndpointSF.getScheduledExamService();
 
-						ScheduledExamService
-								.addScheduledExam($scope.tempScheduledExam)
+						ScheduledExamService.addScheduledExam($scope.tempScheduledExam)
 								.then(
 										function(msgBean) {
 											
@@ -44,14 +46,39 @@ angular
 				
 					$scope.getQuestionsByInstitute = function() {
 
-						var QuestionService = appEndpointSF.getQuestionService();
-						QuestionService.getQuestionsByInstitute($scope.curUser.instituteID).then(
+						var ScheduledQuestionService = appEndpointSF.getScheduledQuestionService();
+						ScheduledQuestionService.getQuestionsByInstitute($scope.curUser.instituteID).then(
 								function(questionsList) {
 									$scope.questions = questionsList;
 
 								});
 					}
 
+					$scope.query = {
+							order : 'name',
+							limit : 5,
+							page : 1
+						};
+
+						$scope.onpagechange = function(page, limit) {
+							var deferred = $q.defer();
+
+							$timeout(function() {
+								deferred.resolve();
+							}, 2000);
+
+							return deferred.promise;
+						};
+
+						$scope.onorderchange = function(order) {
+							var deferred = $q.defer();
+
+							$timeout(function() {
+								deferred.resolve();
+							}, 2000);
+
+							return deferred.promise;
+						};
 					$scope.cancelButton = function() {
 						$state.go("scheduledExam", {});
 					}				
