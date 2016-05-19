@@ -29,7 +29,11 @@ angular
 
 						request.execute(function(resp) {
 							$scope.userList = resp.result.teachers?resp.result.teachers:[];
-							$scope.loading = false;
+							//$scope.loading = false;
+							$scope.$apply(function(){
+								$scope.loading = false;
+							});
+							
 						});
 					}
 
@@ -47,7 +51,10 @@ angular
 
 						request.execute(function(resp) {
 							$scope.userList = resp.result.students?resp.result.students:[];
-							$scope.loading = false;
+							//$scope.loading = false;
+							$scope.$apply(function(){
+								$scope.loading = false;
+							});
 							$log.debug("resp:" + angular.toJson(resp));
 						});
 					}

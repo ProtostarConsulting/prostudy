@@ -1,5 +1,5 @@
-<div ng-show="loading && flag">Please Wait, Directory User List Loading...</div>
-<div ng-show="deleting ">Please Wait, Directory User Deleting...</div>
+<div ng-show="loading">Please wait, school user list loading...</div>
+<div ng-show="deleting ">Please wait, user is deleting...</div>
 <div ng-hide="loading">
 
 <h3 class="md-headline">Directory User List</h3>
@@ -18,7 +18,7 @@
 			<table md-data-table class="md-primary" md-row-select="selected" md-progress="deferred">
 				<thead md-order="query.order" md-trigger="onorderchange">
 					<tr>
-						<th order-by="fullName" name="Users Full Name"></th>
+						<th order-by="name.fullName" name="Users Full Name"></th>
 						<th order-by="primaryEmail" name="Primary Email"></th>
 						<th order-by="isAdmin" name="isAdmin"></th>
 

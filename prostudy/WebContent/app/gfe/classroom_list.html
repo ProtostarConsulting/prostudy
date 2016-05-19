@@ -1,7 +1,6 @@
-
-<div ng-show="loading && flag">Please Wait, CourseList Loading...</div>
-<div ng-show="deleting">Please Wait, Course Deleting...</div>
-<div ng-hide="loading">
+<md-content ng-show="loading">Please wait, course list is loading...</md-content>
+<md-content ng-show="deleting">Please wait, course is deleting...</md-content>
+<md-content ng-hide="loading">
 <md-data-table-toolbar ng-show="!selected.length">
 <h3 class="md-headline">Courses List</h3>
 </md-data-table-toolbar>
@@ -90,5 +89,5 @@
 			ui-sref="gfe.classroomCourseUserList({selectedCourseId: selected[0].id, userType: 'Student',courseName:selected[0].name})"
 			class="md-raised md-primary"> View Class Students </md-button>
 	</div>
-</div>
+</md-content>
 

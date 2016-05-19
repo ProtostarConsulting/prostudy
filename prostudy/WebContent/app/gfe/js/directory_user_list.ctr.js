@@ -6,7 +6,6 @@ angular
 						$mdUtil, $log, $q, tableTestDataFactory, appEndpointSF) {
 							
 					$scope.loading = true;
-					$scope.flag = true;
 					
 					$scope.loadCurrentUserDomain = function() {
 					gapi.client
@@ -19,8 +18,22 @@ angular
 											'userId' : 'me'
 										});
 								request.execute(function(resp) {
-											$scope.currentUserDomain = resp.emails[0].value.split("@")[1];											
-										$scope.getDirectoryUserList();
+											$scope.currentUserDomain = resp.emails[0].value.split("@")[1];		
+											
+										
+										
+										if($scope.$parent.directoryUserListBackup === null){
+											$scope.getDirectoryUserList();
+										}
+										else{
+											$log.debug('Using Cached List of Dir Users ...');
+											$scope.directoryUserList = $scope.$parent.directoryUserListBackup;
+											$scope.$apply(function(){
+												$scope.loading = false;
+											});		
+										}
+										
+										
 										});
 							});
 					
@@ -56,17 +69,14 @@ angular
 				
 				
 				$scope.deleteUser = function(primaryEmail) {					
-					$scope.flag = false;
 					$scope.deleting = true;					
 					$scope.loading = true;
 					var request = gapi.client.directory.users.delete({userKey:primaryEmail});
 
-					request.execute(function(resp) {
-						$scope.deleting = false;
-						
+					request.execute(function(resp) {						
 						$scope.showUserDeletedToast();
 						$scope.selected = [];
-						$scope.getDirectoryUserList();
+						$scope.getDirectoryUserList();						
 					});
 				}
 				$scope.getDirectoryUserList= function() {	
@@ -74,7 +84,7 @@ angular
 					var request = gapi.client.directory.users.list({domain:$scope.currentUserDomain,maxResults:'500'});				
 					request.execute(function(resp) {
 						$scope.users=resp.users;
-						$scope.loading = false;
+						
 						if ($scope.users.length > 0) {
 							for (i = 0; i < $scope.users.length; i++) {
 								
@@ -83,8 +93,12 @@ angular
 						} else {
 							$log.debug('No users found.');
 						}						
-												
+						// $scope.loading = false;
+						$scope.$apply(function(){
+							$scope.loading = false;
+						});						
 						
+						$scope.$parent.directoryUserListBackup = $scope.directoryUserList;
 					});				
 				}
 				$scope.fitlerCompFn = function(actual, expected) {					

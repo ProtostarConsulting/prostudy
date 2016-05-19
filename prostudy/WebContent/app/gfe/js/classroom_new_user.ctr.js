@@ -60,7 +60,10 @@ angular.module("prostudyApp")
 					        } else {
 					        	 $log.debug("Not Found");
 					        }
-					        $scope.loading = false;					      							
+					      //$scope.loading = false;
+							$scope.$apply(function(){
+								$scope.loading = false;
+							});				      							
 					      });
 					    }
 					

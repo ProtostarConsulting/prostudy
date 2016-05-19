@@ -10,6 +10,8 @@ angular.module("prostudyApp").controller(
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
 					
+					$scope.courseListBackup = null;
+					$scope.directoryUserListBackup = null;
 					
 					var CLIENT_ID = '759880535753-3h86dfhcao97655vcnooobn17l4flp8q.apps.googleusercontent.com';
 

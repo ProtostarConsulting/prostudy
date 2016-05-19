@@ -9,8 +9,7 @@ angular
 					$scope.courseStateList	=["ACTIVE","ARCHIVED","PROVISIONED","DECLINED" ];
 					$scope.courseState="ACTIVE";
 					$scope.classroomCourses = [];
-					$scope.courseList=[];
-					$scope.flag = true;
+					$scope.courseList=[];					
 					$scope.tempCourse = {
 							'name' : "",
 							'section' : "",
@@ -22,7 +21,8 @@ angular
 							'courseState': " ",
 							'alternateLink' : ""
 						};
-				
+					
+					$log.debug("$scope.$parent.courseListBackup: " + $scope.$parent.courseListBackup);
 					$scope.listCourses = function() {
 						$log.debug("Inside listCourses..");
 						$scope.loading = true;
@@ -35,16 +35,22 @@ angular
 							var courses = resp.courses;						
 
 							if (courses.length > 0) {
-								for (i = 0; i < courses.length; i++) {
+								$scope.classroomCourses = courses;
+								$scope.$parent.courseListBackup = courses;
+								/*for (i = 0; i < courses.length; i++) {
 									var course = courses[i];									
 									$scope.classroomCourses.push(course);									
-								}
+								}*/
 								$scope.selectedCourseList();
 							} else {
 								$log.debug('No courses found.');
 							}
-
-							$scope.loading = false;
+							
+							//$scope.loading = false;
+							$scope.$apply(function(){
+								$scope.loading = false;
+							});
+							$log.debug("$scope.courseListBackup: " + $scope.courseListBackup);
 							$log.debug("Inside listCourses...Done loading...");
 
 						});
@@ -68,8 +74,24 @@ angular
 
 					}				
 					
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							if($scope.$parent.courseListBackup === null){
+								$scope.listCourses();
+							}
+							else{
+								$log.debug('Using Cached List of Courses...');
+								$scope.classroomCourses = $scope.$parent.courseListBackup;
+								$scope.selectedCourseList();
+							}
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+					
 										
-					$scope.listCourses();
+					$scope.waitForServiceLoad();
 					$scope.selected = [];
 					$scope.query = {
 						order : 'name',
@@ -105,7 +127,6 @@ angular
 						$mdDialog.show(confirm).then(function() {
 					
 
-					$scope.flag = false;
 					$scope.loading = true;
 					$scope.selected = [];
 					$scope.deleting = true;
