@@ -54,12 +54,64 @@ angular
 								});
 					}
 
+					$scope.getScheduledExamByInstitute = function() {
+
+						var ScheduledExamService = appEndpointSF
+								.getScheduledExamService();
+						ScheduledExamService.getScheduledExamByInstitute(
+								$scope.curUser.instituteID).then(
+								function(scheduledExamList) {
+									$scope.scheduledExams = scheduledExamList;
+
+								});
+					}
+					$scope.examtitle;
+					$scope.getStudentByExam = function() {
+
+						var ScheduledExamService = appEndpointSF
+								.getScheduledExamService();
+						ScheduledExamService.getStudentByExam(
+								$scope.examStudent).then(
+								function(examStudentList) {
+									$scope.examStudentList = examStudentList;
+
+								});
+					}
+
+					$scope.assignExamToStudentObj = {
+						selectedStudents : '',
+						selectedExam : ''
+					}
+
+					$scope.selected = "";
+					$scope.selectedExam = "";
+
+					$scope.assignExamToStudent = function() {
+						// $("studentListDiv").hide();
+						// $("assignExamDiv").show();
+						$scope.assignExamToStudentObj.selectedExam = $scope.selectedExam[0].id;
+						var ScheduledExamService = appEndpointSF
+								.getScheduledExamService();
+						ScheduledExamService.assignExamToStudent(
+								$scope.assignExamToStudentObj).then(
+								function(msgBean) {
+
+								});
+						$scope.tempScheduledExam = {};
+						// $state.go("", {});
+
+					}
+
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
-							// give call to your services
-							// $scope.getLogUploadURL();
-							$scope.getStudentsByInstitute();
-							$scope.getPartnerSchoolByInstitute();
+
+							if ($scope.examStudent != undefined) {
+								$scope.getStudentByExam();
+							} else {
+								$scope.getStudentsByInstitute();
+								$scope.getPartnerSchoolByInstitute();
+								$scope.getScheduledExamByInstitute();
+							}
 						} else {
 							$log.debug("Services Not Loaded, watiting...");
 							$timeout($scope.waitForServiceLoad, 1000);
@@ -67,14 +119,7 @@ angular
 					}
 
 					$scope.waitForServiceLoad();
-					/*
-					 * $scope.getLogUploadURL = function() { var
-					 * uploadUrlService = appEndpointSF .getuploadURLService();
-					 * uploadUrlService.getLogUploadURL().then(function(url) {
-					 * $scope.logUploadURL = url.msg; $scope.bizID =
-					 * $scope.curuser.business.id; });
-					 *  } $scope.logUploadURL;
-					 */
+
 					$scope.openPopUp = function(ev) {
 						var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
 								&& $scope.customFullscreen;
@@ -109,19 +154,19 @@ angular
 							document.uploadFileForm.action = $scope.StudentCSVUploadURL;
 							document.uploadFileForm.submit();
 						}
-						
-						$scope.getStudentCSVUploadURL=function(){
-							var uploadUrlService = appEndpointSF.getuploadURLService();
-							uploadUrlService.getStudentCSVUploadURL()
-									.then(function(url) {
-										$scope.StudentCSVUploadURL=url.msg;
+
+						$scope.getStudentCSVUploadURL = function() {
+							var uploadUrlService = appEndpointSF
+									.getuploadURLService();
+							uploadUrlService.getStudentCSVUploadURL().then(
+									function(url) {
+										$scope.StudentCSVUploadURL = url.msg;
 										$scope.bizID = curuser.business.id;
 									});
-							
-							
+
 						}
 						$scope.StudentCSVUploadURL;
-						
+
 						$scope.waitForServiceLoadCSV = function() {
 							if (appEndpointSF.is_service_ready) {
 								$scope.getStudentCSVUploadURL();

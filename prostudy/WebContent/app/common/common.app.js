@@ -561,7 +561,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('student.scheduleStudentExam', {
 		url : "/scheduleStudentExam",
 		templateUrl : '/app/student/student_scheduleExam.html',
-		controller : 'studentscheduleExamCtr',
+		controller : 'studentListPageCtr',
 	
 	}).state('syllabus', {
 		url : "/syllabus",

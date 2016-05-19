@@ -116,13 +116,13 @@
 	</div>
 
 	<div layout="row" layout-xs="column">
-		<md-input-container flex> <label>Level<span
+		<md-input-container flex> <label>School / College / Institute<span
 			style="color: red" ng-show="instituteStudentForm.level.$error.required"
 			class="mandatory">*</span></label> <md-select name="level"
-			ng-model="tempStudent.pSLevel "
+			ng-model="tempStudent.schoolName "
 						ng-required="true">
-		<md-option ng-value="pSLevel.pSLevel"
-			ng-repeat="pSLevel in pSchoolList">{{pSLevel.pSLevel}}</md-option> </md-select>
+		<md-option ng-value="schoolName.schoolName"
+			ng-repeat="schoolName in pSchoolList">{{schoolName.schoolName}}</md-option> </md-select>
 		<div ng-messages="instituteStudentForm.level.$error"
 			ng-if="instituteStudentForm.level.$submitted || instituteStudentForm.level.$touched">
 			<div ng-message="required">Please Select School Category.</div>

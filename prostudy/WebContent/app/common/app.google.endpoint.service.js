@@ -896,7 +896,32 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
+
+
+	
+	ScheduledExamService.assignExamToStudent = function(selected) {
+		var deferred = $q.defer();
+		gapi.client.scheduledExamService.assignExamToStudent(selected).execute(
+				function(resp) {
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+	}
+	
+	ScheduledExamService.getStudentByExam = function(selectedExam) {
+		var deferred = $q.defer();
+		gapi.client.scheduledExamService.getStudentByExam({
+			'selectedExam' : selectedExam
+		}).execute(function(resp) {
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
+	/*PracticeExamService.getPracticeExamById = function(selectedExamId) {
+
 	ScheduledExamService.getScheduledExamById = function(selectedExamId) {
+
 		var deferred = $q.defer();
 		gapi.client.scheduledExamService.getScheduledExamById({
 			'id' : selectedExamId
