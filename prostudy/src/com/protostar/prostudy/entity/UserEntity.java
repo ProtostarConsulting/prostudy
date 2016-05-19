@@ -32,15 +32,37 @@ public class UserEntity {
 
 	@Index
 	private Long instituteID;
+	private String schoolName;
+	
+	private List<SelectedStudents> selectedStudents;
+	@Index
+	private long selectedExam;
 
-	private String pSLevel;
 
-	public String getpSLevel() {
-		return pSLevel;
+	public long getSelectedExam() {
+		return selectedExam;
 	}
 
-	public void setpSLevel(String pSLevel) {
-		this.pSLevel = pSLevel;
+	public void setSelectedExam(long selectedExam) {
+		this.selectedExam = selectedExam;
+	}
+
+	
+
+	public List<SelectedStudents> getSelectedStudents() {
+		return selectedStudents;
+	}
+
+	public void setSelectedStudents(List<SelectedStudents> selectedStudents) {
+		this.selectedStudents = selectedStudents;
+	}
+
+	public String getSchoolName() {
+		return schoolName;
+	}
+
+	public void setSchoolName(String schoolName) {
+		this.schoolName = schoolName;
 	}
 
 	private List<PracticeExamEntity> myExams;

@@ -139,7 +139,7 @@ public class StudentCSVUpload extends HttpServlet {
 					else{ue.setIsGoogleUser(true);}
 					ue.setEmail_id(split[5]);
 					ue.setPassword(split[6]);
-					ue.setpSLevel(split[7]);
+					ue.setSchoolName(split[7]);
 				//	ue.setAuthority(Arrays.asList("employee"));
 					us.addUser(ue);
 					Thread.sleep(2000);
