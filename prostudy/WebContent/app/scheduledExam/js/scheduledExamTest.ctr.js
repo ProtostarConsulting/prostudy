@@ -18,7 +18,7 @@ angular
 					// Code for timer
 					var date = new Date();
 					
-					$scope.flag = true;
+					
 
 					$scope.counter = 200;
 					$scope.startTime = null;
@@ -36,8 +36,7 @@ angular
 					$scope.newQues = [ {
 						qId : ""
 					} ];
-					
-					/*var mytimeout = null;
+					var mytimeout = null;
 
 					$scope.onTimeout = function() {
 						if ($scope.counter === 0) {
@@ -54,7 +53,7 @@ angular
 
 					$scope.startTimer = function() {
 						mytimeout = $timeout($scope.onTimeout, 1000);
-						$scope.tempPracticeExamResult.startTime = $filter('date')(new Date(), 'hh:mm:ss a');
+						$scope.tempScheduledExamResult.startTime = $filter('date')(new Date(), 'hh:mm:ss a');
 						
 					};
 
@@ -62,7 +61,7 @@ angular
 						var date = new Date();
 						$scope.$broadcast('timer-stopped', $scope.counter);
 						$timeout.cancel(mytimeout);
-						$scope.tempPracticeExamResult.endTime = $filter('date')(new Date(), 'hh:mm:ss a');
+						$scope.tempScheduledExamResult.endTime = $filter('date')(new Date(), 'hh:mm:ss a');
 					};
 
 					$scope.$on('timer-stopped', function(event, remaining) {
@@ -72,7 +71,7 @@ angular
 						}
 					});// End of timer
 
-*/
+
 					
 					$scope.toggleSelection = function toggleSelection(index,id,optionId) {
 						
@@ -106,29 +105,22 @@ angular
 					$scope.correctAns = [];
 					$scope.score = 0;
 
-			/*		$scope.checkAnswer = function() {
+					$scope.checkAnswer = function() {
 
 						for (var i = 0; i < $scope.userAnsList.length; i++) {
 
 							if ($scope.userAnsList[i].userOption == $scope.Test.listOfQuestion[i].correctAns) {
-								$scope.tempPracticeExamResult.score++;
+								$scope.tempScheduledExamResult.score++;
 							}
 
 						}
 						$scope.stopTimer();
-						$scope.addPracticeExamResult();
-					
+					//	$scope.addScheduledExamResult();
+											
 
-						
-						 * $log.debug("$scope.selectedID" +$scope.selectedID);
-						 * $state.go('userQuesAnsView', {selectedExamId :
-						 * $scope.Test.id, selectedResultId :
-						 * $scope.selectedID});
-						 
+					}
 
-					}*/
-
-				/*	$scope.getCorrectAnsByQID = function(qID) {
+					$scope.getCorrectAnsByQID = function(qID) {
 
 						for (var i = 0; i < $scope.Test.listOfQuestion.length; i++) {
 
@@ -139,7 +131,7 @@ angular
 						}
 						return -1;
 					}
-*/
+
 					$scope.selected = [];
 
 					$scope.onNext = function() {
@@ -205,36 +197,35 @@ angular
 
 					$scope.score = 0;
 
-					/*$scope.getPracticeExamByInstitute = function() {
+					$scope.getScheduledExamByInstitute = function() {
 
-						var PracticeExamService = appEndpointSF
-								.getPracticeExamService();
-						PracticeExamService.getPracticeExamByInstitute(
+						var ScheduledExamService = appEndpointSF
+								.getScheduledExamService();
+						ScheduledExamService.getScheduledExamByInstitute(
 								$scope.curUser.instituteID).then(
-								function(practiceExamList) {
-									$scope.practiceTest = practiceExamList;
+								function(scheduledExamList) {
+									$scope.scheduledTest = scheduledExamList;
 
 								});
-					}*/
+					}
 
 					$scope.selectedExamId = $stateParams.selectedExamId;
 
-					$scope.getScheduledExamById = function() {
+					$scope.showselectedExam = function() {
 						var ScheduledExamService = appEndpointSF
 								.getScheduledExamService();
 
 						ScheduledExamService.getScheduledExamById($scope.selectedExamId)
 								.then(
-										function(scheduledTest) {
+										function(scheduledTest) {								
+											
+											
 											$scope.Test = scheduledTest;
 
-											$log.debug(" $scope.Test.listOfQuestion "+angular.toJson( $scope.Test.listOfQuestion));
-											
 											$scope.buttonLimit = function(count) {
 												$scope.totalPages = Math
 														.ceil($scope.Test.listOfQuestion.length / 4);
 
-												$log.debug("$scope.buttonLimit"+$scope.buttonLimit);
 												return Array.apply(0,
 														Array(+count)).map(
 														function(value, index) {
@@ -252,9 +243,9 @@ angular
 
 											}
 
-											//$scope.tempPracticeExamResult.examTitle = $scope.Test.examtitle;
+											$scope.tempScheduledExamResult.examTitle = $scope.Test.examtitle;
 
-											//$scope.tempPracticeExamResult.test = $scope.Test.listOfQuestion;
+											$scope.tempScheduledExamResult.test = $scope.Test.listOfQuestion;
 
 											$scope.onNext();
 											$scope.isDisabledPrevious = true;
@@ -262,29 +253,29 @@ angular
 
 					}// End of showselectedExam
 
-					$scope.listOfQuestion = [];
-					$scope.practiceTest = [];
+					$scope.questions = [];
+					$scope.scheduledTest = [];
 					$scope.Test = [];
 					$scope.selection = [];
 					$scope.userAns = [];
 
-					/*$scope.getPracticeExamResultbyEmail = function() {
+			/*		$scope.getScheduledExamResultbyEmail = function() {
 
-						var PracticeExamResultService = appEndpointSF
-								.getPracticeExamResultService();
+						var ScheduledExamResultService = appEndpointSF
+								.getScheduledExamResultService();
 
-						PracticeExamResultService
-								.getPracticeExamResultbyEmail(
+						ScheduledExamResultService
+								.getScheduledExamResultbyEmail(
 										$scope.curUser.email_id)
 								.then(
 										function(practiceExamResultList) {
 
 											$scope.examResults = practiceExamResultList;
-
+											$log.debug("$$$$$$$$$$$$$$$$$$$$$" +angular.toJson($scope.examResults));
 										});
-					}*/
-
-				/*	$scope.tempPracticeExamResult = {
+					}
+*/
+					$scope.tempScheduledExamResult = {
 
 						ID : "",
 						examTitle : "",
@@ -299,24 +290,23 @@ angular
 						testID : "",
 						test : ""
 
-					}*/
+					}
 
-				/*	$scope.addPracticeExamResult = function() {
+					$scope.addScheduledExamResult = function() {
 
-						$scope.tempPracticeExamResult.testID = $scope.selectedExamId;
-						var PracticeExamResultService = appEndpointSF.getPracticeExamResultService();
-
+						$scope.tempScheduledExamResult.testID = $scope.selectedExamId;
+						var ScheduledExamResultService = appEndpointSF.getScheduledExamResultService();
 				
 
-						PracticeExamResultService.addPracticeExamResult(
-								$scope.tempPracticeExamResult).then(
+						ScheduledExamResultService.addScheduledExamResult(
+								$scope.tempScheduledExamResult).then(
 								function(msgBean) {
 									$scope.selectedID = msgBean.id;
 									$log.debug("$scope.selectedID :"
 											+ $scope.selectedID);
 									$log.debug("$scope.Test.id :"
 											+ $scope.Test.id);
-									$state.go('userQuesAnsView', {
+									$state.go('scheduledExam.userQuesAnsView', {
 										selectedExamId : $scope.Test.id,
 										selectedResultId : $scope.selectedID
 									});
@@ -325,33 +315,35 @@ angular
 								});
 
 
-					}*/
+					}
 					
-				/*	 $scope.showConfirm = function(ev) {
+					
+					 $scope.showConfirm = function(ev) {
 						  
 						 	$scope.checkAnswer();
 						    var confirm = $mdDialog.confirm()
-						          .title('Are you sure you want to submit test now ?')
+						          .title('Are you sure you want to submit exam now ?')
 						          .targetEvent(ev)
 						          .ok('YES')
 						          .cancel('NO');
 						    $mdDialog.show(confirm).then(function() {
-						    			$state.go('userQuesAnsView', {selectedExamId : $scope.Test.id, selectedResultId : $scope.selectedID, flag: $scope.flag});
+						    	
+						    	
+						    	$scope.addScheduledExamResult();
+						    	
+						    			$state.go('scheduledExam.userQuesAnsView', {selectedExamId : $scope.Test.id, selectedResultId : $scope.selectedID});
 						    }, function() {
 						      
 						    });
 						  };
-*/
 					
-
-
 
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
 
-							//$scope.getPracticeExamByInstitute();
-							//$scope.getPracticeExamResultbyEmail();
-							$scope.getScheduledExamById();
+							$scope.getScheduledExamByInstitute();
+							//$scope.getScheduledExamResultbyEmail();
+							$scope.showselectedExam();
 							
 						} else {
 							$timeout($scope.waitForServiceLoad, 1000);

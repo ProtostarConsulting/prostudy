@@ -723,7 +723,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	.state('scheduledExam.addQuestion', {
 		url : "/addQuestion",
 		templateUrl : '/app/scheduledQuestion/scheduledQuestion_new.html',
-		controller : 'scheduledQuestionNewCtr'				
+		controller : 'scheduledQuestionNewCtr'	,
+			params : {
+				sourceSate : null,
+				selectedExamId : null,
+				flag : null				
+			}
 	}).state('scheduledExam.questionList', {
 		url : "/questionList",
 		templateUrl : '/app/scheduledQuestion/scheduledQuestion_list.html',
@@ -734,8 +739,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/scheduledQuestion/scheduledQuestion_edit.html',
 		controller : 'scheduledQuestionEditCtr'	,
 		params : {
+			sourceSate : null,
+			selectedExamId : null,
+			selectedQuestion : null,
 			selectedQuestionId:null				
 		}
+	
 	}).state('scheduledExam.add', {
 		url : "/add",
 		templateUrl : '/app/scheduledExam/scheduledExam_add.html',
@@ -746,8 +755,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/scheduledExam/scheduledExam_edit.html',
 		controller : 'editScheduledExamCtr'	,
 		params : {
-			selectedExamId:null				
-		}			
+			selectedExamId:null,
+			addedQ : null,
+			updatedQ : null,		
+			selectedQuestionId : null,
+			addFlag : null,
+			editFlag : null
+		}	
+
+	
 	}).state('scheduledExam.list', {
 		url : "/scheduledexamlist",
 		templateUrl : '/app/scheduledExam/scheduledExam_list.html',
@@ -763,7 +779,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		params : {
 			selectedExamId:null				
 		}			
-	});	
+	})
+	.state('scheduledExam.userQuesAnsView', {
+		url : "/userQuesAnsView/:selectedExamId/:selectedResultId",
+		templateUrl : '/app/scheduledExam/scheduledUserQuesAns_view.html',
+		controller : 'scheduledUserQuesAnsViewCtr'
+	})
+	.state('scheduledExam.scheduledExamResultView', {
+		url : "/scheduledExamResultView/:selectedStudEmail",
+		templateUrl : '/app/scheduledExam/schduledExamResult_view.html',
+		controller : 'scheduledExamResultCtr'
+	})
+	;	
 
 });
 

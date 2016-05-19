@@ -13,8 +13,6 @@ angular
 								'Question Saved!').position("top").hideDelay(
 								3000));
 					};
-
-
 					$scope.sourceSate = $stateParams.sourceSate;
 
 					$scope.flag = $stateParams.flag;
@@ -45,8 +43,8 @@ angular
 											$scope.questionForm.$setUntouched();
 											$scope.tempQuestion = {};											
 
-											/*if ($scope.sourceSate == null) {
-												// $state.go('exam');
+											if ($scope.sourceSate == null) {
+												
 											} else if ($scope.sourceSate) {
 
 											$state.go($scope.sourceSate,
@@ -55,7 +53,7 @@ angular
 																	selectedExamId : $stateParams.selectedExamId,
 																	addFlag : true
 																});
-											}*/
+											}
 
 										});
 
@@ -63,7 +61,7 @@ angular
 				
 
 					$scope.cancelButton = function() {
-						$state.go("exam", {});
+						$state.go("scheduledExam", {});
 					}
 
 					$scope.toggleSelection = function toggleSelection(id,

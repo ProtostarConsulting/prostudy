@@ -18,10 +18,15 @@
 					</md-input-container>
 				</div>
 				<div layout="row" layout-sm="column">
+				
+				
+				
 					<md-input-container flex> <label>Installment
-						Date</label> <input ng-model="selectedInstallment.date"> </md-input-container>
-					<md-input-container flex> <label>Notes</label>
-					<input ng-model="selectedInstallment.notes"> </md-input-container>
+						Date</label> </md-input-container>
+						<md-datepicker 	ng-model="selectedInstallment.date"	 ng-required="true"></md-datepicker>
+					
+					 <md-input-container flex> <label>Notes</label>
+					<input ng-model="selectedInstallment.notes"> </md-input-container> 
 				</div>
 
 

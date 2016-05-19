@@ -806,6 +806,54 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 	// End of PracticeExamService
+	/*------------------------------------------------------------------------------------------------------*/
+	// start of PracticeExamResultService
+
+	var PracticeExamResultService = {};
+
+	serviceFactory.getPracticeExamResultService = function() {
+		return PracticeExamResultService;
+	}
+
+	PracticeExamResultService.addPracticeExamResult = function(res) {
+		var deferred = $q.defer();
+		gapi.client.practiceExamResultService.addPracticeExamResult(res)
+				.execute(function(resp) {
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+	}
+
+	PracticeExamResultService.getPracticeExamResult = function() {
+		var deferred = $q.defer();
+		gapi.client.practiceExamResultService.getPracticeExamResult().execute(
+				function(resp) {
+					deferred.resolve(resp.items);
+				});
+		return deferred.promise;
+	}
+
+	PracticeExamResultService.getPracticeExamResultbyEmail = function(email_id) {
+		var deferred = $q.defer();
+		gapi.client.practiceExamResultService.getPracticeExamResultbyEmail({
+			'email_id' : email_id
+		}).execute(function(resp) {
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+
+	PracticeExamResultService.getPracticeExamResultbyID = function(selectedID) {
+		var deferred = $q.defer();
+		gapi.client.practiceExamResultService.getPracticeExamResultbyID({
+			'id' : selectedID
+		}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+
+	// End of PracticeExamResultService
 /*------------------------------------------------------------------------------------------------------*/
 	// start of ScheduledQuestionService
 	var ScheduledQuestionService = {};
@@ -896,32 +944,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
-
-
-	
-	ScheduledExamService.assignExamToStudent = function(selected) {
-		var deferred = $q.defer();
-		gapi.client.scheduledExamService.assignExamToStudent(selected).execute(
-				function(resp) {
-					deferred.resolve(resp);
-				});
-		return deferred.promise;
-	}
-	
-	ScheduledExamService.getStudentByExam = function(selectedExam) {
-		var deferred = $q.defer();
-		gapi.client.scheduledExamService.getStudentByExam({
-			'selectedExam' : selectedExam
-		}).execute(function(resp) {
-			deferred.resolve(resp.items);
-		});
-		return deferred.promise;
-	}
-	
-	/*PracticeExamService.getPracticeExamById = function(selectedExamId) {
-
 	ScheduledExamService.getScheduledExamById = function(selectedExamId) {
-
 		var deferred = $q.defer();
 		gapi.client.scheduledExamService.getScheduledExamById({
 			'id' : selectedExamId
@@ -951,38 +974,37 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 
 
 	// End of ScheduledExamService
-
 	/*------------------------------------------------------------------------------------------------------*/
 	
-	// start of PracticeExamResultService
+	// start of scheduledExamResultService
 
-	var PracticeExamResultService = {};
+	var ScheduledExamResultService = {};
 
-	serviceFactory.getPracticeExamResultService = function() {
-		return PracticeExamResultService;
+	serviceFactory.getScheduledExamResultService = function() {
+		return ScheduledExamResultService;
 	}
 
-	PracticeExamResultService.addPracticeExamResult = function(res) {
+	ScheduledExamResultService.addScheduledExamResult = function(res) {
 		var deferred = $q.defer();
-		gapi.client.practiceExamResultService.addPracticeExamResult(res)
+		gapi.client.scheduledExamResultService.addScheduledExamResult(res)
 				.execute(function(resp) {
 					deferred.resolve(resp);
 				});
 		return deferred.promise;
 	}
 
-	PracticeExamResultService.getPracticeExamResult = function() {
+	ScheduledExamResultService.getScheduledExamResult = function() {
 		var deferred = $q.defer();
-		gapi.client.practiceExamResultService.getPracticeExamResult().execute(
+		gapi.client.scheduledExamResultService.getScheduledExamResult().execute(
 				function(resp) {
 					deferred.resolve(resp.items);
 				});
 		return deferred.promise;
 	}
 
-	PracticeExamResultService.getPracticeExamResultbyEmail = function(email_id) {
+	ScheduledExamResultService.getScheduledExamResultbyEmail = function(email_id) {
 		var deferred = $q.defer();
-		gapi.client.practiceExamResultService.getPracticeExamResultbyEmail({
+		gapi.client.scheduledExamResultService.getScheduledExamResultbyEmail({
 			'email_id' : email_id
 		}).execute(function(resp) {
 			deferred.resolve(resp.items);
@@ -990,9 +1012,9 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 
-	PracticeExamResultService.getPracticeExamResultbyID = function(selectedID) {
+	ScheduledExamResultService.getScheduledExamResultbyID = function(selectedID) {
 		var deferred = $q.defer();
-		gapi.client.practiceExamResultService.getPracticeExamResultbyID({
+		gapi.client.scheduledExamResultService.getScheduledExamResultbyID({
 			'id' : selectedID
 		}).execute(function(resp) {
 			deferred.resolve(resp);
@@ -1000,8 +1022,8 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 
-	// End of PracticeExamResultService
-
+	// End of ScheduledExamResultService
+	/*------------------------------------------------------------------------------------------------------*/
 	// start of InstituteService
 
 	var InstituteService = {};
@@ -1058,7 +1080,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	}
 
 	// End of InstituteService
-
+	/*------------------------------------------------------------------------------------------------------*/
 	// start of QuestionService
 	var QuestionService = {};
 

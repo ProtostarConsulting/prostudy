@@ -32,11 +32,12 @@
 		</div>
 
 		<div layout="row" layout-align="" layout-xs="column">
-			<label>Scheduled Exam SelectStartDate <span
+		
+			<md-input-container flex><label>Scheduled Exam SelectStartDate <span
 				style="color: red"
 				ng-show="scheduledExamForm.startdatentime.$error.required"
 				class="mandatory">*</span>
-			</label>
+			</label></md-input-container>
 			<md-datepicker name="startdatentime"
 				ng-model="tempScheduledExam.startdatentime"
 				md-placeholder=" SelectStartDate" ng-required="true"></md-datepicker>
@@ -48,10 +49,10 @@
 			</div>
 
 
-			<label>Scheduled Exam SelectEndDate <span style="color: red"
+		<md-input-container flex>	<label>Scheduled Exam SelectEndDate <span style="color: red"
 				ng-show="scheduledExamForm.enddatentime.$error.required"
 				class="mandatory">*</span>
-			</label>
+			</label></md-input-container>
 			<md-datepicker name="enddatentime"
 				ng-model="tempScheduledExam.enddatentime"
 				md-placeholder=" SelectEndDate" ng-required="true"></md-datepicker>

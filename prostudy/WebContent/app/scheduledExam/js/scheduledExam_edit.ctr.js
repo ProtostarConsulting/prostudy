@@ -25,14 +25,17 @@ angular
 										function(ScheduledTest) {
 											$scope.Test = ScheduledTest;
 
+											$scope.Test.startdatentime=new Date($scope.Test.startdatentime);
+											$scope.Test.enddatentime=new Date($scope.Test.enddatentime);
+											
 											if ($stateParams.addFlag) {
 												if ($stateParams.addedQ !== undefined) {
 
-													if (typeof $scope.Test.questions === 'undefined')
-														$scope.Test.questions = [];
+													if (typeof $scope.Test.listOfQuestion === 'undefined')
+														$scope.Test.listOfQuestion = [];
 
-													$scope.Test.questions.push($stateParams.addedQ);
-													$scope.updateExam();
+													$scope.Test.listOfQuestion.push($stateParams.addedQ);
+													$scope.updateScheduledExam();
 												}
 											}
 
@@ -40,11 +43,11 @@ angular
 
 												if ($stateParams.updatedQ !== undefined) {
 
-													for (var i = 0; i < $scope.Test.questions.length; i++) {
+													for (var i = 0; i < $scope.Test.listOfQuestion.length; i++) {
 
-														if ($stateParams.selectedQuestionId == $scope.Test.questions[i].id) {
-															$scope.Test.questions[i] = $stateParams.updatedQ;
-															$scope.updateExam();
+														if ($stateParams.selectedQuestionId == $scope.Test.listOfQuestion[i].id) {
+															$scope.Test.listOfQuestion[i] = $stateParams.updatedQ;
+															$scope.updateScheduledExam();
 															break;
 														}
 
@@ -89,11 +92,11 @@ angular
 						}
 					}
 
-				/*	
+					
 					$scope.addQuestion = function() {
 
-						$state.go('exam.addnewquestion', {
-							sourceSate : "exam.editpracticeexam",
+						$state.go('scheduledExam.addQuestion', {
+							sourceSate : "scheduledExam.edit",
 							selectedExamId : $stateParams.selectedExamId,
 							
 							flag : true
@@ -103,8 +106,8 @@ angular
 					
 					$scope.editQuestion = function() {
 
-						$state.go('exam.editquestion', {
-							sourceSate : "exam.editpracticeexam",
+						$state.go('scheduledExam.questionEdit', {
+							sourceSate : "scheduledExam.edit",
 							selectedExamId : $stateParams.selectedExamId,
 							selectedQuestion : $scope.selectedQ[0],
 							selectedQuestionId : $scope.selectedQ[0].id
@@ -115,19 +118,19 @@ angular
 
 						var actualIndex = -1;
 
-						for (var i = 0; i < $scope.Test.questions.length; i++) {
-							if ($scope.selectedQ[0].id == $scope.Test.questions[i].id) {
+						for (var i = 0; i < $scope.Test.listOfQuestion.length; i++) {
+							if ($scope.selectedQ[0].id == $scope.Test.listOfQuestion[i].id) {
 								actualIndex = i;
 								break;
 							}
 						}
 						if (actualIndex > -1) {
-							$scope.Test.questions.splice(actualIndex, 1);
+							$scope.Test.listOfQuestion.splice(actualIndex, 1);
 							actualIndex = -1;
 							$scope.selectedQ = [];
 						}
 					};
-*/
+
 					$scope.cancel = function() {
 						$state.go('^');
 					};

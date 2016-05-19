@@ -120,7 +120,12 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 		else
 			return googleEndpointSF.getScheduledExamService();
 	};
-
+	endpointFactory.getScheduledExamResultService = function() {
+		if (isTestMode)
+			return localDBServiceFactory.getScheduledExamResultService();
+		else
+			return googleEndpointSF.getScheduledExamResultService();
+	};
 	endpointFactory.getAttendanceService = function() {
 		if (isTestMode)
 			return localDBServiceFactory.getAttendanceService();
@@ -229,7 +234,12 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 
 		}, apiRoot);
 		
+		gapi.client.load('scheduledExamResultService', 'v0.1', function() {
+			$log.debug("ScheduledExamResultService Loaded....");
 
+		}, apiRoot);
+		
+		
 		gapi.client.load('syllabusService', 'v0.1', function() {
 			$log.debug("syllabusService Loaded......");
 

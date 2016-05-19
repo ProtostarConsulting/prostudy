@@ -8,6 +8,8 @@ angular.module("prostudyApp").controller(
 			.getLoggedinUser();
 						
 			$scope.selectedInstallment = $stateParams.selectedInstallment;
+			$scope.selectedInstallment.date=new Date($scope.selectedInstallment.date);
+			
 			$scope.selectedPaymentId = $stateParams.selectedPaymentId;
 			
 			$scope.getPaymentByID = function() {
