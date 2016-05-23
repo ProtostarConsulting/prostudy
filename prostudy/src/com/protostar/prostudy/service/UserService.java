@@ -113,7 +113,12 @@ public class UserService {
 				.filter("subject", subject).list();
 
 		return list;
-	}
+	}	
+	@ApiMethod(name = "getStudentsByScheduledExamID", path="getStudentsByScheduledExamID")	
+	public List<UserEntity> getStudentsByScheduledExamID(@Named("selectedExam") Long exam) {		
+			List<UserEntity> list = ofy().load().type(UserEntity.class).filter("selectedExam", exam).list();
+			return list;		  
+	 }
 
 	@ApiMethod(name = "addOrUpdateRoleSec", path="addOrUpdateRoleSec")
 	public void addOrUpdateRoleSec(RoleSecEntity roleSec) {	
@@ -160,6 +165,10 @@ public class UserService {
 	   return outPutList;
 	  
 	 }
+	
+	
+	
+	
 	
 	@ApiMethod(name = "getLogUploadURL")
 	public ServerMsg getLogUploadURL() {

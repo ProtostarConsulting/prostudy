@@ -33,6 +33,13 @@ public class ScheduledExamResultService {
 		return list;
 	}
 	
+	@ApiMethod(name = "getScheduledExamResultListByExamId" , path="getScheduledExamResultListByExamId")
+	public List<ScheduledExamResultEntity> getScheduledExamResultListByExamId(@Named("testID") String testID) {
+		List<ScheduledExamResultEntity> list = ofy().load().type(ScheduledExamResultEntity.class)
+				.filter("testID", testID).list();
+		return list;
+	}
+	
 	@ApiMethod(name = "getScheduledExamResultbyID")
 	public ScheduledExamResultEntity getScheduledExamResultbyID(@Named("id") Long id) {
 		

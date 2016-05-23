@@ -24,6 +24,7 @@ public class ScheduledExamResultEntity {
 	private String endTime;
 	private String score;
 	
+	@Index
 	private Long testID;
 	
 	private List<userAnsEntity> userAns;   
