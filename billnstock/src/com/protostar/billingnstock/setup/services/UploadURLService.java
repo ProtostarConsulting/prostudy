@@ -16,7 +16,7 @@ public class UploadURLService {
 	@ApiMethod(name = "getLogUploadURL",path="getLogUploadURL")
 	public ServerMsg getLogUploadURL() {
 		 BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
-		 String createUploadUrl = blobstoreService.createUploadUrl("/UploadServlet");
+		 String createUploadUrl = blobstoreService.createUploadUrl("/UploadLogo");
 		 ServerMsg serverMsg = new ServerMsg();
 		 serverMsg.setMsg(createUploadUrl);		 
 		return serverMsg;
@@ -25,7 +25,7 @@ public class UploadURLService {
 	@ApiMethod(name = "getLogUploadFooterURL",path="getLogUploadFooterURL")
 	public ServerMsg getLogUploadFooterURL() {
 		 BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
-		 String createUploadUrl = blobstoreService.createUploadUrl("/UplodeFooter");
+		 String createUploadUrl = blobstoreService.createUploadUrl("/UploadFooter");
 		 ServerMsg serverMsg = new ServerMsg();
 		 serverMsg.setMsg(createUploadUrl);		 
 		return serverMsg;
@@ -33,7 +33,7 @@ public class UploadURLService {
 	@ApiMethod(name = "getExcelUploadURL",path="getExcelUploadURL")
 	public ServerMsg getExcelUploadURL() {
 		 BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
-		 String createUploadUrl = blobstoreService.createUploadUrl("/UplodeExcelSheet");
+		 String createUploadUrl = blobstoreService.createUploadUrl("/UploadExcelSheetAddUsers");
 		 ServerMsg serverMsg = new ServerMsg();
 		 serverMsg.setMsg(createUploadUrl);		 
 		return serverMsg;
@@ -42,6 +42,15 @@ public class UploadURLService {
 	public ServerMsg getExcelStockUploadURL() {
 		 BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
 		 String createUploadUrl = blobstoreService.createUploadUrl("/ExcelStockUpload");
+		 ServerMsg serverMsg = new ServerMsg();
+		 serverMsg.setMsg(createUploadUrl);		 
+		return serverMsg;
+	}
+	
+	@ApiMethod(name = "getCustomerExcelUploadURL",path="getCustomerExcelUploadURL")
+	public ServerMsg getCustomerExcelUploadURL() {
+		 BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+		 String createUploadUrl = blobstoreService.createUploadUrl("/ExcelCustomerUpload");
 		 ServerMsg serverMsg = new ServerMsg();
 		 serverMsg.setMsg(createUploadUrl);		 
 		return serverMsg;
