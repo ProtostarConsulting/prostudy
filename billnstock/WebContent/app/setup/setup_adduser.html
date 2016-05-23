@@ -93,6 +93,18 @@
 					<div ng-message="required">Please Enter Bank Name.</div>
 				</div>
 				</md-input-container>
+				<md-input-container flex> <label>Branch Name <span style="color: red"
+					ng-show="addform.branchName.$error.required" class="mandatory">*</span>
+				</label> <input id="branchName" name="branchName"
+					ng-model="BankDetail.branchName" ng-required="!IsHidden">
+				<div ng-messages="addform.branchName.$error"
+					ng-if="addform.branchName.$submitted || addform.branchName.$touched">
+					<div ng-message="required">Please Enter Branch Name.</div>
+				</div>
+				</md-input-container>
+
+			</div>
+			<div layout layout-xs="column">
 				<md-input-container flex> <label>bankAccountNo
 					<span style="color: red"
 					ng-show="addform.bankAccountNo.$error.required" class="mandatory">*</span>
@@ -103,9 +115,6 @@
 					<div ng-message="required">Please Enter Bank Name.</div>
 				</div>
 				</md-input-container>
-			</div>
-			<div layout layout-xs="column">
-
 				<md-input-container flex> <label>Bank
 					IFSC Code <span style="color: red"
 					ng-show="addform.bankIfscCode.$error.required" class="mandatory">*</span>
@@ -116,16 +125,7 @@
 					<div ng-message="required">Please Enter IFSC Code.</div>
 				</div>
 				</md-input-container>
-				<md-input-container flex> <label>Bank
-					MIRC Code <span style="color: red"
-					ng-show="addform.bankMircCode.$error.required" class="mandatory">*</span>
-				</label> <input id="bankMircCode" name="bankMircCode"
-					ng-model="BankDetail.bankMircCode" ng-required="!IsHidden">
-				<div ng-messages="addform.bankMircCode.$error"
-					ng-if="addform.bankMircCode.$submitted || addform.bankMircCode.$touched">
-					<div ng-message="required">Please Enter MIRC Code.</div>
-				</div>
-				</md-input-container>
+
 
 			</div>
 

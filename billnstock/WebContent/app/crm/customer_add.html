@@ -5,6 +5,11 @@
 <h3 class="md-headline" ng-show="customerId">Customer Edit</h3>
 [<span style="color: red;">Field Marked as asterik (*) are
 	mandetory</span>]
+<section layout="row" layout-align="end end" flex>
+	<md-button class="md-raised md-primary" id="uplodeExcel"
+		ng-click="UplodeExcel($event)">UplodeExcel</md-button>
+</section>
+
 <form name="custForm">
 	<md-input-container flex> Is company <md-checkbox
 		ng-model="customer.isCompany" ng-true-value="true"
@@ -77,29 +82,30 @@
 		</div>
 		</md-input-container>
 
-		<md-input-container flex ng-hide="customerId"> <label>Email <span
-			style="color: red;">*</span></label> <input type="email" name="email"
-			ng-model="customer.email" 
-			ng-pattern="/^.+@.+\..+$/" ng-blur="Checkemail(customer.email)" ng-required="true" >
-		 		 <span style="color: red"> {{userexists}}</span>
+		<md-input-container flex ng-hide="customerId"> <label>Email
+			<span style="color: red;">*</span>
+		</label> <input type="email" name="email" ng-model="customer.email"
+			ng-pattern="/^.+@.+\..+$/" ng-blur="Checkemail(customer.email)"
+			ng-required="true"> <span style="color: red">
+			{{userexists}}</span>
 		<div ng-messages="custForm.email.$error"
 			ng-if="custForm.email.$submitted || custForm.email.$touched">
 			<div ng-message="required">Please Enter Email
 				id.(Example.:example@example.com)</div>
 		</div>
 		</md-input-container>
-		
-		<md-input-container flex ng-show="customerId"> 
-			<label ng-show="customerId">Email <span
-			style="color: red;">*</span></label><input type="email" name="email" ng-model="customer.email" disabled>
-	
+
+		<md-input-container flex ng-show="customerId"> <label
+			ng-show="customerId">Email <span style="color: red;">*</span></label>
+		<input type="email" name="email" ng-model="customer.email" disabled>
+
 		</md-input-container>
-		
-		
+
+
 	</div>
 
 	<h3 class="md-subhead">Address</h3>
-	
+
 	<div layout="row">
 		<md-input-container flex> <label>Line1 <span
 			style="color: red;">*</span></label> <input name="line1" id="line1"

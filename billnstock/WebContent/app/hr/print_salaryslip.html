@@ -2,10 +2,9 @@
 
 <head>
 <style>
-#hidetr{
-display:none;
+#hidetr {
+	display: none;
 }
-
 </style>
 </head>
 <md-content>
@@ -29,21 +28,24 @@ display:none;
 </md-content>
 <md-content layout-padding>
 
-<div  id="salSlipDiv">
+<div id="salSlipDiv">
 	<table id="hidetr">
 		<tbody>
 			<tr>
-				<td style="width: 20%"><!-- <img alt="Logo"
-					src="img/images/protostar_logo_pix_313_132.jpg"> -->
-					<img ng-src="{{logBaseURL}}" class="md-card-image" alt="Compnay Logo" height="60px" width="120px"/>
-					
-					</td>
+				<td style="width: 20%">
+					<!-- <img alt="Logo"
+					src="img/images/protostar_logo_pix_313_132.jpg"> --> <img
+					ng-src="{{logBaseURL}}" class="md-card-image" alt="Compnay Logo"
+					height="60px" width="120px" />
+
+				</td>
 				<td style="width: 60%">
 					<h2 style="color: green">&nbsp;&nbsp;{{curUser.business.businessName}}</h2>
 				</td>
 				<td style="width: 20%"><label style="color: blue"><u>Address</u><br>
-				{{curUser.business.address.line1}} {{curUser.business.address.line2}}<br>{{curUser.business.address.state}}<br>{{curUser.business.address.city}}<br>{{curUser.business.address.pin}} {{curUser.business.address.country}}
-				</label></td>
+						{{curUser.business.address.line1}}
+						{{curUser.business.address.line2}}<br>{{curUser.business.address.state}}<br>{{curUser.business.address.city}}<br>{{curUser.business.address.pin}}
+						{{curUser.business.address.country}} </label></td>
 			</tr>
 		</tbody>
 
@@ -92,23 +94,27 @@ display:none;
 									<td width="25%">Basic</td>
 									<td width="25%" align="right">{{emp.bmonthly | number:2}}</td>
 									<td width="25%">Provident Fund</td>
-									<td width="25%" align="right">{{emp.pf1+emp.pf1 | number:2}}</td>
+									<td width="25%" align="right">{{emp.pf1+emp.pf1 |
+										number:2}}</td>
 								</tr>
 								<tr>
 									<td width="25%">HRA</td>
-									<td width="25%" align="right">{{emp.hramonthly | number:2}}</td>
+									<td width="25%" align="right">{{emp.hramonthly |
+										number:2}}</td>
 									<td width="25%">ESI</td>
 									<td width="25%"></td>
 								</tr>
 								<tr>
 									<td width="25%">Conveyance</td>
-									<td width="25%" align="right">{{emp.convmonthly | number:2}}</td>
+									<td width="25%" align="right">{{emp.convmonthly |
+										number:2}}</td>
 									<td width="25%">Loan</td>
 									<td width="25%"></td>
 								</tr>
 								<tr>
 									<td width="25%">City Compensatory All</td>
-									<td width="25%" align="right">{{emp.ccamonthly | number:2}}</td>
+									<td width="25%" align="right">{{emp.ccamonthly |
+										number:2}}</td>
 									<td width="25%">Profession Tax</td>
 									<td width="25%" align="right"></td>
 								</tr>
@@ -122,13 +128,15 @@ display:none;
 									<td width="25%"></td>
 									<td width="25%"></td>
 									<td width="25%">Other 1</td>
-									<td width="25%" align="right">{{emp.ldother1amt | number:2}}</td>
+									<td width="25%" align="right">{{emp.ldother1amt |
+										number:2}}</td>
 								</tr>
 								<tr>
 									<td width="25%"></td>
 									<td width="25%"></td>
 									<td width="25%">Other 2</td>
-									<td width="25%" align="right">{{emp.ldother2amt | number:2}}</td>
+									<td width="25%" align="right">{{emp.ldother2amt |
+										number:2}}</td>
 								</tr>
 								<tr>
 									<td width="25%"></td>
@@ -138,10 +146,14 @@ display:none;
 								</tr>
 								<tr>
 									<td width="25%">Total Addition</td>
-									<td width="25%" align="right">{{TotalAddition | number:2 }}<!-- {{emp.bmonthly+emp.hramonthly+emp.convmonthly+emp.samonthly+emp.ccamonthly
-										}} --></td>
+									<td width="25%" align="right">{{TotalAddition | number:2
+										}}<!-- {{emp.bmonthly+emp.hramonthly+emp.convmonthly+emp.samonthly+emp.ccamonthly
+										}} -->
+									</td>
 									<td width="25%">Total Deduction</td>
-									<td width="25%" align="right">{{TotalDeduction | number:2}}<!-- {{emp.pf1+emp.pf1+emp.ldother1amt+emp.ldother2amt}} --></td>
+									<td width="25%" align="right">{{TotalDeduction |
+										number:2}}<!-- {{emp.pf1+emp.pf1+emp.ldother1amt+emp.ldother2amt}} -->
+									</td>
 								</tr>
 								<tr>
 									<td width="25%"></td>
@@ -153,19 +165,17 @@ display:none;
 
 							</table>
 							<br> <b>Salary in Word :{{netsalinword }} </b> <br> <b>Name
-								Of Bank :{{emp.salarystruct.empAccount.bankDetail.bankName}} </b><br> <b>Signature of Employee :</b> <br>
-							<br>
-							<br>
+								Of Bank :{{emp.salarystruct.empAccount.bankDetail.bankName}} </b><br>
+							<b>Signature of Employee :</b> <br> <br> <br>
 							<p align="left">
-								<b>Generated on : {{emp.createdDate | formatDate}}</b><br> <b>Verified by :
-									Pushpak Pimpale (Finance Manager)</b>
+								<b>Generated on : {{emp.createdDate | formatDate}}</b><br>
+								<b>Verified by : Pushpak Pimpale (Finance Manager)</b>
 							</p>
 							<p align="Center">
-								<br>
-								<br>
-								<br> <!-- <span ng-hide="curuser.business.disclaimer"><b>this Document is Electronically Generated.
+								<br> <br> <br>
+								<!-- <span ng-hide="curuser.business.disclaimer"><b>this Document is Electronically Generated.
 									Hence need no Signature or Stamp. </b></span> -->
-									<span ng-show="curuser.business.disclaimer"><b>{{curuser.business.disclaimer}}</b></span>
+								<span ng-show="curuser.business.disclaimer"><b>{{curuser.business.disclaimer}}</b></span>
 							</p>
 						</div>
 					</td>
@@ -174,17 +184,19 @@ display:none;
 				</tr>
 			</tbody>
 		</table>
-		
-</table>
-<!-- 	<div style="bottom:0;  postion :absolute"> -->
 
-<footer>
- <div layout="row" layout-align="center center" id="hidetr" style="position:fixed; bottom:0; ">
-				<!-- 	<img alt="Logo"
+	</table>
+	<!-- 	<div style="bottom:0;  postion :absolute"> -->
+
+	<footer>
+		<div layout="row" layout-align="center center" id="hidetr"
+			style="position: fixed; bottom: 0;">
+			<!-- 	<img alt="Logo"
 					src="img/images/erpag_document_footer.JPG"> -->
-						<img alt="Logo" src="{{logFooterURL}}"  alt="Compnay Logo" height="80px" width="700px">
+			<img alt="Logo" src="{{logFooterURL}}" alt="Compnay Logo"
+				height="80px" width="700px">
 		</div>
-		</footer>	
+	</footer>
 </div>
 
 

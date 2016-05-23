@@ -1536,6 +1536,13 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
+	uploadUrlService.getCustomerExcelUploadURL = function() {
+		var deferred = $q.defer();
+		gapi.client.uploadUrlService.getCustomerExcelUploadURL().execute(function(resp) {
+				deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
 	
 
 	/* =============================================================================================================================== */

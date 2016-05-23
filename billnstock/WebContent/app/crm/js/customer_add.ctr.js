@@ -4,7 +4,7 @@ app
 		.controller(
 				"customerAddCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $log, $stateParams, objectFactory,
+						$mdUtil, $log, $stateParams, objectFactory,$mdMedia,$mdDialog,
 						appEndpointSF) {
 
 					$log.debug("Inside customerAddCtr");
@@ -171,6 +171,79 @@ app
 					}
 					$scope.user11 = [];
 					$scope.userexist = "";
+					
+					
+					
+					
+					
+					
+					// ----------------------UPLODE EXCEL FILE-------------------------------
+
+					$scope.UplodeExcel = function(ev) {
+						var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
+								&& $scope.customFullscreen;
+						$mdDialog
+								.show(
+										{
+											controller : DialogController,
+											templateUrl : '/app/crm/ExcelCustomerUpload.html',
+											parent : angular
+													.element(document.body),
+											targetEvent : ev,
+											clickOutsideToClose : true,
+											fullscreen : useFullScreen,
+											locals : {
+												curuser : $scope.curUser
+											
+											}
+										})
+								.then(
+										function(answer) {
+											$scope.status = 'You said the information was "'
+													+ answer + '".';
+										},
+										function() {
+											$scope.status = 'You cancelled the dialog.';
+										});
+						
+					};
+
+					function DialogController($scope, $mdDialog, curuser) {
+						$scope.bizID;
+						$scope.loding=false;
+						$scope.uplodecustomer=function(){
+							$scope.loding=true;
+							 document.excelform.action = $scope.CustomerExcelUploadURL;
+						      document.excelform.submit();
+						}
+						
+						
+						$scope.getExcelUploadURL=function(){
+							var uploadUrlService = appEndpointSF.getuploadURLService();
+							uploadUrlService.getCustomerExcelUploadURL()
+									.then(function(url) {
+										$scope.CustomerExcelUploadURL=url.msg;
+										$scope.bizID = curuser.business.id;
+									});
+							
+							
+						}
+						$scope.CustomerExcelUploadURL;
+						
+						$scope.waitForServiceLoad = function() {
+							if (appEndpointSF.is_service_ready) {
+								$scope.getExcelUploadURL();
+							} else {
+								$log.debug("Services Not Loaded, watiting...");
+								$timeout($scope.waitForServiceLoad, 1000);
+							}
+						}
+						$scope.waitForServiceLoad();
+						}
+
+					// -------------------------------------------------------
+					
+					
 
 					$scope.toggleRight = buildToggler('right');
 

@@ -71,7 +71,7 @@ angular
 										function(assetList) {
 											$scope.accountlist =  (assetList == undefined || assetList.items == undefined) ? 0: assetList.items.length;
 											
-											if ($scope.accountlist >= 4) {
+											if ($scope.accountlist == 4) {
 												proadminService
 														.getAllemp()
 														.then(

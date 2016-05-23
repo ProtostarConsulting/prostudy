@@ -164,7 +164,7 @@ angular
 					$scope.BankDetail={
 						bankName:"",
 						bankIfscCode:"",	
-						bankMircCode:"",
+						branchName:"",
 						bankAccountNo:"",
 								
 					}
