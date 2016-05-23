@@ -9,7 +9,7 @@ angular
 
 					$scope.showSavedToast = function() {
 						$mdToast.show($mdToast.simple().content(
-								'Institute Saved!').position("top").hideDelay(
+								'Scheduled Exam Assigned to Student!').position("top").hideDelay(
 								3000));
 					};
 					$scope.query = {
@@ -98,6 +98,7 @@ angular
 
 								});
 						$scope.tempScheduledExam = {};
+						$scope.showSavedToast();
 						// $state.go("", {});
 
 					}

@@ -53,7 +53,8 @@ angular
 
 					$scope.startTimer = function() {
 						mytimeout = $timeout($scope.onTimeout, 1000);
-						$scope.tempScheduledExamResult.startTime = $filter('date')(new Date(), 'hh:mm:ss a');
+						$scope.tempScheduledExamResult.startTime = new Date();
+						//$scope.tempScheduledExamResult.startTime = $filter('date')(new Date(), 'hh:mm:ss a');
 						
 					};
 
@@ -61,7 +62,8 @@ angular
 						var date = new Date();
 						$scope.$broadcast('timer-stopped', $scope.counter);
 						$timeout.cancel(mytimeout);
-						$scope.tempScheduledExamResult.endTime = $filter('date')(new Date(), 'hh:mm:ss a');
+						$scope.tempScheduledExamResult.endTime = new Date();
+						//$scope.tempScheduledExamResult.endTime = $filter('date')(new Date(), 'hh:mm:ss a');
 					};
 
 					$scope.$on('timer-stopped', function(event, remaining) {
