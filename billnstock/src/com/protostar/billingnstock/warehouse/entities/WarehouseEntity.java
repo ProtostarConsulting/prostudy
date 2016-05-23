@@ -1,12 +1,14 @@
 package com.protostar.billingnstock.warehouse.entities;
 
 import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Index;
 import com.protostar.billnstock.entity.BaseEntity;
 
 
 @Entity
 public class WarehouseEntity extends BaseEntity{
 
+	@Index
 	private String warehouseName; 
 	private String description ;
 	

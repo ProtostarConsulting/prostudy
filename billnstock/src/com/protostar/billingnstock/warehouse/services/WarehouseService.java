@@ -58,4 +58,16 @@ public class WarehouseService {
 
 		ofy().save().entity(warehouseEntity).now();
 	}
+
+	@ApiMethod(name = "getDefaultWarehouseByBizId",path="getDefaultWarehouseByBizId")
+	public WarehouseEntity getDefaultWarehouseByBizId(@Named("id") Long bizID) {
+		WarehouseEntity filteredWarehouses = ofy()
+				.load()
+				.type(WarehouseEntity.class)
+				.filter("business",Ref.create(Key.create(BusinessEntity.class, bizID)))
+				.filter("warehouseName","Default")
+				.first().now();
+
+		return filteredWarehouses;
+	}
 }

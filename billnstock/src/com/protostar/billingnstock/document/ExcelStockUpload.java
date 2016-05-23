@@ -73,11 +73,13 @@ public class ExcelStockUpload extends HttpServlet {
 						System.out.println("Got a form field: "+ item.getFieldName());
 						if(item.getFieldName().equals("WareHouseID")){
 							System.out.println("warehouse id=="+request.getParameter(item.getFieldName()));
-						WareHouseID=Long.parseLong(request.getParameter(item.getFieldName()));
+					if(!request.getParameter(item.getFieldName()).equals(""))
+							WareHouseID=Long.parseLong(request.getParameter(item.getFieldName()));
 						}
 						if(item.getFieldName().equals("bizID")){
 							System.out.println("bizID id=="+request.getParameter(item.getFieldName()));
-						bizID=Long.parseLong(request.getParameter(item.getFieldName()));
+							if(!request.getParameter(item.getFieldName()).equals(""))
+							bizID=Long.parseLong(request.getParameter(item.getFieldName()));
 						}
 					} else {
 
@@ -116,7 +118,19 @@ public class ExcelStockUpload extends HttpServlet {
 					 UserService us = new UserService();
 					BusinessEntity getbusinessById = us.getBusinessById(bizID);
 					WarehouseService wc=new WarehouseService();
-					WarehouseEntity we=wc.getWarehouseById(WareHouseID);
+					WarehouseEntity we;
+					if(WareHouseID != null){
+					we=wc.getWarehouseById(WareHouseID);
+					}else{
+						//check default is allready exits 
+						we=wc.getDefaultWarehouseByBizId(bizID);
+						if(we==null){
+						we=new WarehouseEntity();
+						we.setBusiness(getbusinessById);
+						we.setWarehouseName("Default");
+						we=wc.addWarehouse(we);
+						}
+					}
 					StockItemService ss=new StockItemService();
 
 					for (int row = 1; row < split2.length; row++) {
@@ -133,6 +147,8 @@ public class ExcelStockUpload extends HttpServlet {
 						System.out.println(" Col5: " + split[4]);
 						
 						//insert stocks
+						
+						
 						StockItemEntity si=new StockItemEntity();
 						
 						si.setItemName(split[0]);
