@@ -829,7 +829,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/list",
 		templateUrl : '/app/institute/institute_list.html',
 		controller : 'instituteListCtr'
-	});	
+	})
 
 	.state('scheduledExam.resultlist', {
 		url : "/resultlist/:selectedExamId",
@@ -842,11 +842,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'scheduledExamStudentListCtr'
 	})
 	
-	
-	;	
-
-
 });
+
+
+
 
 app.filter('unique', function() {
 	return function(input, key) {
