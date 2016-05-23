@@ -208,6 +208,20 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
+	UserService.getStudentsByScheduledExamID = function(exam) {
+		var deferred = $q.defer();
+
+		gapi.client.userService.getStudentsByScheduledExamID({
+			'selectedExam' : exam
+		}).execute(function(resp) {
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
+	
+	
+	
 	// end of UserService
 	/*------------------------------------------------------------------------------------------------------*/	
 	// start of CertificateService
@@ -972,6 +986,15 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 
+	
+	ScheduledExamService.assignExamToStudent = function(exam) {
+		var deferred = $q.defer();
+		gapi.client.scheduledExamService.assignExamToStudent(exam).execute(
+				function(resp) {
+				deferred.resolve(resp);
+				});
+		return deferred.promise;
+	}
 
 	// End of ScheduledExamService
 	/*------------------------------------------------------------------------------------------------------*/
@@ -1021,7 +1044,16 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
-
+	ScheduledExamResultService.getScheduledExamResultListByExamId = function(testID) {
+		var deferred = $q.defer();
+		gapi.client.scheduledExamResultService.getScheduledExamResultListByExamId({
+			'testID' : testID
+		}).execute(function(resp) {
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
 	// End of ScheduledExamResultService
 	/*------------------------------------------------------------------------------------------------------*/
 	// start of InstituteService

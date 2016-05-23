@@ -781,15 +781,34 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		}			
 	})
 	.state('scheduledExam.userQuesAnsView', {
-		url : "/userQuesAnsView/:selectedExamId/:selectedResultId",
+		url : "/userQuesAnsView",
 		templateUrl : '/app/scheduledExam/scheduledUserQuesAns_view.html',
-		controller : 'scheduledUserQuesAnsViewCtr'
+		controller : 'scheduledUserQuesAnsViewCtr',
+		params : {
+			
+			selectedExamId:null,
+			selectedEmailId:null,
+			selectedResultId:null
+		}	
+		
 	})
 	.state('scheduledExam.scheduledExamResultView', {
 		url : "/scheduledExamResultView/:selectedStudEmail",
 		templateUrl : '/app/scheduledExam/schduledExamResult_view.html',
 		controller : 'scheduledExamResultCtr'
 	})
+	.state('scheduledExam.resultlist', {
+		url : "/resultlist/:selectedExamId",
+		templateUrl : '/app/scheduledExam/schduledExamResult_list.html',
+		controller : 'scheduledExamResultListCtr'
+	})
+	.state('scheduledExam.studentlist', {
+		url : "/studentlist/:selectedExamId",
+		templateUrl : '/app/scheduledExam/scheduledExam_studentList.html',
+		controller : 'scheduledExamStudentListCtr'
+	})
+	
+	
 	;	
 
 });
