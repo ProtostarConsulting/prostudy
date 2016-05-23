@@ -218,7 +218,7 @@ angular.module("stockApp").controller(
 				$scope.loding=false;
 				$scope.bizID;
 				$scope.uplodeimage=function(){
-					$scope.WareHouseID = $scope.warehouseNmae.id;
+					//$scope.WareHouseID = $scope.warehouseNmae.id;
 					 document.excelform.action = $scope.ExcelStockUploadURL;
 				      document.excelform.submit();
 				      $scope.loding=true;
