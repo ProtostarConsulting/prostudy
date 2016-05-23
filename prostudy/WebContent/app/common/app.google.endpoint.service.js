@@ -1345,6 +1345,111 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 	
+	
+	
+	// --------------------pro adminservice---------------------
+
+	var protostarAdminService = {};
+	serviceFactory.getProtostarAdminService = function() {
+		return protostarAdminService;
+	}
+
+	protostarAdminService.addAccountType = function(account) {
+		var deferred = $q.defer();
+		gapi.client.protostarAdminService.addAccountType(account).execute(function() {
+			deferred.resolve({
+				"msg" : "Account Added Successfully."
+			});
+
+		});
+		return deferred.promise;
+	}
+
+	protostarAdminService.updateAccountType = function(account) {
+		var deferred = $q.defer();
+		gapi.client.protostarAdminService.addAccountType(account).execute(function() {
+			deferred.resolve({
+				"msg" : "Account Update Successfully."
+			});
+
+		});
+		return deferred.promise;
+	}
+
+	protostarAdminService.getallAccountType = function() {
+		var deferred = $q.defer();
+		gapi.client.protostarAdminService.getallAccountType().execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+
+	protostarAdminService.getAccountTypeById = function(id) {
+		var deferred = $q.defer();
+		gapi.client.protostarAdminService.getAccountTypeById({
+			'id' : id
+		}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+
+	protostarAdminService.initsetup = function() {
+		var deferred = $q.defer();
+		gapi.client.protostarAdminService.initsetup().execute(function(resp) {
+			deferred.resolve({
+				"msg" : resp
+			});
+		});
+		return deferred.promise;
+	}
+
+	protostarAdminService.initsetupnext = function() {
+		var deferred = $q.defer();
+		gapi.client.protostarAdminService.initsetupnext().execute(function(resp) {
+			deferred.resolve({
+				"msg" : resp
+			});
+		});
+		return deferred.promise;
+	}
+	protostarAdminService.getAllemp = function() {
+		var deferred = $q.defer();
+		gapi.client.protostarAdminService.getAllemp().execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+
+
+	// --------------------pro adminservice---------------------
+
+	var assignExamService = {};
+	serviceFactory.getAssignExamService = function() {
+		return assignExamService;
+	}
+
+	assignExamService.assignExamToStudent = function(assign) {
+		var deferred = $q.defer();
+		gapi.client.assignExamService.assignExamToStudent(assign).execute(function() {
+			deferred.resolve({
+				"msg" : "Exam Assigned Successfully."
+			});
+
+		});
+		return deferred.promise;
+	}
+	
+	assignExamService.getExamAssignedStudents = function(id) {
+		var deferred = $q.defer();
+		gapi.client.assignExamService.getExamAssignedStudents({
+			'id' : id
+		}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
 /*	========================================================================================*/
 		
 	/*

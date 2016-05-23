@@ -23,20 +23,20 @@
 			<thead md-order="query.order" md-trigger="onorderchange">
 
 				<tr>
-					<th order-by="firstName" name="firstName"></th>
-					<th order-by="email_id" name="Email-ID"></th>
-					<th order-by="address" name="Address"></th>
-					<th order-by="contact" name="Contact"></th>
+					<th name="Exam ID" ></th>
+					<th name="Student Name" ></th>
+					<th name="School Name"></th>
+					<th name="PRN"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr md-auto-select
-					ng-repeat="student in students | orderBy: query.order | filter: selectedExam | limitTo: query.limit: (query.page - 1) * query.limit">
+					ng-repeat="student in examStudentList1 | orderBy: query.order | filter: selectedExam | limitTo: query.limit: (query.page - 1) * query.limit">
 
-					<td>{{student.firstName}} {{student.lastName}}</td>
-					<td>{{student.email_id}}</td>
-					<td>{{student.address}}</td>
-					<td>{{student.contact}}</td>
+					<td>{{student.selectedExam}} </td>
+					<td>{{student.selectedStudents.firstName}}{{student.selectedStudents.lastName}}</td>
+					<td>{{student.selectedStudents.schoolName}}</td>
+					<td>{{student.selectedStudents.prn}}</td>
 
 				</tr>
 			</tbody>

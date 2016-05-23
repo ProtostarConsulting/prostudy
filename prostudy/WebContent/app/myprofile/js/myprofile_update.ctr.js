@@ -185,6 +185,8 @@ angular.module("prostudyApp").controller(
 			          
 			    });
 			          $scope.updateUser();
+			          $state.reload();
+			          $state.go("home");
 			  };
 
 		

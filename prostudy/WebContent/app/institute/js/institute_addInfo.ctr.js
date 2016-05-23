@@ -115,20 +115,20 @@ angular.module("prostudyApp").controller(
 				$scope.name = '';
 
 			};
-
-		
+			$scope.accounttype;
+			
 			$scope.tempInstitute = {
-				id : "",
-				instituteId : "",
 				name : "",
 				desc : "",
 				address : "",
 				phone_no : "",
+				accounttype :''
 
 			};
 			$scope.institutes = [];
 
 			$scope.addInstitute = function() {
+				
 				$scope.flag4 = false;
 				var InstituteService = appEndpointSF.getInstituteService();
 
@@ -149,7 +149,11 @@ angular.module("prostudyApp").controller(
 				
 			}
 
-			
+			$scope.accountDDLChange = function(index, selectedaccount) {
+				$log.debug("##Came to accountDDLChange...");
+
+				$scope.tempInstitute.accounttype = selectedaccount;
+			};
 			
 			$scope.showsubConfirm = function(ev) {
 				
@@ -325,9 +329,19 @@ angular.module("prostudyApp").controller(
 						});		}	
 			}
 			
+			$scope.getallAccountType = function() {
+				var protostarAdminService = appEndpointSF.getProtostarAdminService();
+				protostarAdminService.getallAccountType().then(function(accountsList) {
+					$scope.accountlist = accountsList.items;
+				
+				});
+			}
+			$scope.accountlist = [];
+			
 			$scope.waitForServiceLoad = function() {
 				  if (appEndpointSF.is_service_ready) {					  
-					  $scope.getInstitutes();				  
+					  $scope.getInstitutes();	
+					  $scope.getallAccountType();
 				  } 
 				  else {
 				   $log.debug("Services Not Loaded, watiting...");

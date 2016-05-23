@@ -79,18 +79,22 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/home",
 		templateUrl : '/home.html',
 		controller : 'homeCtr'
-	}).state('authority', {
-		url : "/authority",
-		templateUrl : '/app/authority/authority_module.html',
-		controller : 'authorityModuleCtr'
-	}).state('authority.view', {
+	}).state('setup', {
+		url : "/setup",
+		templateUrl : '/app/setup/setup_module.html',
+		controller : 'setupModuleCtr'
+	}).state('setup.authorityView', {
 		url : "/viewauthority",
 		templateUrl : '/app/authority/authority_view.html',
 		controller : 'authorityViewCtr'
-	}).state('authority.changeTheme', {
+	}).state('setup.changeTheme', {
 		url : "/changeTheme/:currentInstID",
 		templateUrl : '/app/authority/setup_changetheme.html',
 		controller : 'changeThemeCtr'
+	}).state('setup.instituteView', {
+		url : "/instituteView/:currentInstID",
+		templateUrl : '/app/institute/institute_view.html',
+		controller : 'instituteViewCtr'	
 	}).state('exam', {
 		url : "/exam",
 		templateUrl : '/app/exam/exam_module.html',
@@ -199,11 +203,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/addauthority/:currentInstID",
 		templateUrl : '/app/institute/authority_add.html',
 		controller : 'authorityAddCtr'
-	}).state('institute.addInfo', {
+	})
+/*	.state('institute.addInfo', {
 		url : "/institute/addInfo",
 		templateUrl : '/app/institute/institute_addInfo.html',
 		controller : 'instituteAddInfoCtr'
-	}).state('institute.addAdmins', {
+	})
+*/	
+	.state('institute.addAdmins', {
 		url : "/institute/addAdmins/:currentInstID",
 		templateUrl : '/app/institute/institute_addAdmins.html',
 		controller : 'instituteAddInfoCtr'
@@ -239,11 +246,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/institute/addSubjects/:currentInstID/:currentStdID/:currentDivID",
 		templateUrl : '/app/institute/institute_addSubjects.html',
 		controller : 'instituteAddInfoCtr'
-	}).state('institute.list', {
+	})
+/*	.state('institute.list', {
 		url : "/list",
 		templateUrl : '/app/institute/institute_list.html',
 		controller : 'instituteListCtr'
-	}).state('institute.view', {
+	})
+*/	
+	.state('institute.view', {
 		url : "/view",
 		templateUrl : '/app/institute/institute_view.html',
 		controller : 'instituteViewCtr'			
@@ -797,6 +807,30 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/scheduledExam/schduledExamResult_view.html',
 		controller : 'scheduledExamResultCtr'
 	})
+
+	
+	.state('initsetup', {
+		url : "/initsetup",
+		templateUrl : '/app/Initsetup/initsetup.html',
+		controller : 'initsetup',
+	})
+	
+	.state('proadmin', {
+		url : "/proadmin",
+		templateUrl : '/app/proadmin/proadmin_module.html',
+		controller : 'proAdminModuleCtr'
+	})
+	.state('proadmin.instituteAddInfo', {
+		url : "/addInfo",
+		templateUrl : '/app/institute/institute_addInfo.html',
+		controller : 'instituteAddInfoCtr'
+	})
+	.state('proadmin.instituteList', {
+		url : "/list",
+		templateUrl : '/app/institute/institute_list.html',
+		controller : 'instituteListCtr'
+	});	
+
 	.state('scheduledExam.resultlist', {
 		url : "/resultlist/:selectedExamId",
 		templateUrl : '/app/scheduledExam/schduledExamResult_list.html',
@@ -810,6 +844,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	
 	
 	;	
+
 
 });
 

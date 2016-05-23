@@ -12,8 +12,7 @@ angular
 					$scope.googleUser = 'null';
 					$scope.flag = true;
 					$scope.theme;
-					
-					
+
 					$scope.showUpdateToast = function() {
 						$mdToast.show($mdToast.simple().content(
 								'Changes Saved Successfully.').position("top")
@@ -25,9 +24,9 @@ angular
 								'New Record Saved Successfully.').position(
 								"top").hideDelay(3000));
 					};
-					
+
 					$scope.institute = [];
-					
+
 					$scope.tempUser = {
 						email_id : '',
 						password : ''
@@ -35,17 +34,18 @@ angular
 					$scope.loginClick = function() {
 						$state.go("login");
 					};
-					
+
 					$scope.$on('customLoginEvent', function(event, args) {
-					      $log.debug("In side customLogin on Index Page");
-					      $scope.curUser = args.curUser;
-					      
+						$log.debug("In side customLogin on Index Page");
+						$scope.curUser = args.curUser;
+
 					});
-					
 
-					$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
+					$scope.curUser = appEndpointSF.getLocalUserService()
+							.getLoggedinUser();
 
-					$scope.$on(
+					$scope
+							.$on(
 									'event:google-plus-signin-success',
 									function(event, authResult) {
 
@@ -108,10 +108,11 @@ angular
 																		.getLocalUserService()
 																		.saveLoggedInUser(
 																				loggedInUser);
-																
+
 																$scope.curUser = loggedInUser;
 
-																$state.go(
+																$state
+																		.go(
 																				"updatemyprofile",
 																				{
 																					flag : $scope.flag
@@ -125,30 +126,33 @@ angular
 
 									});
 
-				
 					$scope.getRoleSecListByInstitute = function() {
 
 						$scope.selection = [];
 						var UserService = appEndpointSF.getUserService();
-						UserService.getRoleSecListByInstitute($scope.curUser.instituteID).then(
-										function(modules) {
-											$scope.modules = modules;
-											
+						
+							UserService.getRoleSecListByInstitute(
+									$scope.curUser.instituteID).then(
+									function(modules) {
+										$scope.modules = modules;
 
-										});
-					}   
+									});
+						
+					}
 
 					$scope.getInstituteById = function() {
 
-						var InstituteService = appEndpointSF.getInstituteService();
-						InstituteService.getInstituteById($scope.curUser.instituteID)
-								.then(
-										function(institute) {
-											$scope.institute = institute;
-											$scope.theme = $scope.institute.theme;
+						var InstituteService = appEndpointSF
+								.getInstituteService();
+						
+						InstituteService.getInstituteById(
+								$scope.curUser.instituteID).then(
+								function(institute) {
+									$scope.institute = institute;
+									$scope.theme = $scope.institute.theme;
 
-										});
-
+								});
+						
 					}
 
 					$scope.waitForServiceLoad = function() {
@@ -156,7 +160,6 @@ angular
 
 							$scope.getRoleSecListByInstitute();
 							$scope.getInstituteById();
-							
 
 						} else {
 							$log.debug("Services Not Loaded, watiting...");
@@ -222,8 +225,6 @@ angular
 					// initialize local objects
 
 					$scope.initGAPI();
-					
-					
 
 					$scope.themeList = [ 'default', 'red', 'pink', 'purple',
 							'deep-purple', 'indigo', 'blue', 'light-blue',
@@ -234,7 +235,6 @@ angular
 					$scope.changeTheme = function(themeName) {
 						$scope.theme = themeName
 					}
-					
 
 					$scope.safeApply = function(fn) {
 						var phase = this.$root.$$phase;

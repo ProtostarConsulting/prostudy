@@ -68,8 +68,7 @@ angular
 					$scope.examtitle;
 					$scope.getStudentByExam = function() {
 
-						var ScheduledExamService = appEndpointSF
-								.getScheduledExamService();
+						var ScheduledExamService = appEndpointSF.getScheduledExamService();
 						ScheduledExamService.getStudentByExam(
 								$scope.examStudent).then(
 								function(examStudentList) {
@@ -78,6 +77,18 @@ angular
 								});
 					}
 
+					
+					$scope.getExamAssignedStudents = function() {
+
+						var AssignExamService = appEndpointSF.getAssignExamService();
+						AssignExamService.getExamAssignedStudents($scope.curUser.instituteID).then(
+								function(examStudentList) {
+									$scope.examStudentList1 = examStudentList.items;
+
+								});
+					}
+					
+					
 					$scope.assignExamToStudentObj = {
 						selectedStudents : '',
 						selectedExam : ''
@@ -89,10 +100,10 @@ angular
 					$scope.assignExamToStudent = function() {
 						// $("studentListDiv").hide();
 						// $("assignExamDiv").show();
-						$scope.assignExamToStudentObj.selectedExam = $scope.selectedExam[0].id;
-						var ScheduledExamService = appEndpointSF
-								.getScheduledExamService();
-						ScheduledExamService.assignExamToStudent(
+						$scope.assignExamToStudentObj.selectedExam = parseInt($scope.selectedExam[0].id);
+						var AssignExamService = appEndpointSF
+								.getAssignExamService();
+						AssignExamService.assignExamToStudent(
 								$scope.assignExamToStudentObj).then(
 								function(msgBean) {
 
@@ -112,6 +123,7 @@ angular
 								$scope.getStudentsByInstitute();
 								$scope.getPartnerSchoolByInstitute();
 								$scope.getScheduledExamByInstitute();
+								$scope.getExamAssignedStudents();
 							}
 						} else {
 							$log.debug("Services Not Loaded, watiting...");

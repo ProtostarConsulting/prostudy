@@ -5,7 +5,7 @@
 
 <div layout="column" layout-padding	layout-xs="column">
 
-<form name="instituteForm" ng-model="instituteForm">
+<form name="instituteForm">
 	<div layout="row" layout-xs="column" flex>
 	
 			<md-input-container  flex> <label>Institute
@@ -16,16 +16,19 @@
 					</div></md-input-container>
 	
 					<md-input-container  flex> <label>Institute
-				Description<span style="color:red" ng-show="instituteForm.desc.$error.required" class="mandatory">*</span></label> <input  name=" desc" ng-model="tempInstitute.desc" ng-required="true"><div ng-messages="instituteForm.desc.$error"
-						ng-if="instituteForm.desc.$submitted || instituteForm.desc.$touched">
-						<div ng-message="required">Please Enter Institute Description.</div>
-					</div> </md-input-container>
+				Description<span style="color:red" ng-show="instituteForm.desc.$error.required" class="mandatory">*</span></label> <input  name=" desc" ng-model="tempInstitute.desc" ng-required="true">
+			<div ng-messages="instituteForm.desc.$error"
+				ng-if="instituteForm.desc.$submitted || instituteForm.desc.$touched">
+				<div ng-message="required">Please Enter Institute Description.</div>
+			</div>
+			</md-input-container>
 	</div>
 
 
 	<div layout="row" layout-xs="column" flex>
 		<md-input-container  flex> <label>Institute
-			Address<span style="color:red" ng-show="instituteForm.address.$error.required" class="mandatory">*</span></label> <input name="address" ng-model="tempInstitute.address" ng-required="true"><div ng-messages="instituteForm.address.$error"
+			Address<span style="color:red" ng-show="instituteForm.address.$error.required" class="mandatory">*</span></label>
+			 <input name="address" ng-model="tempInstitute.address" ng-required="true"><div ng-messages="instituteForm.address.$error"
 						ng-if="instituteForm.address.$submitted || instituteForm.address.$touched">
 						<div ng-message="required">Please Enter Institute Address.</div>
 					</div> </md-input-container>
@@ -38,6 +41,17 @@
 				ng-show="((instituteForm.phone_no.$error.minlength || instituteForm.phone_no.$error.maxlength) && instituteForm.phone_no.$dirty) ">Phone Number should be 10 digits</span>
 					</div> </md-input-container>
 	</div>
+	
+
+	<div flex layout="row">
+				<md-select flex ng-model="selectedaccount"
+					placeholder="Plan"
+					ng-change="accountDDLChange($index, selectedaccount)">
+				<md-option ng-value="list" 
+					ng-repeat="list in accountlist">{{list.accountName}} ( {{list.description}} ) 
+				</md-option> </md-select>
+			</div>
+	
 </form>
 </div>
 

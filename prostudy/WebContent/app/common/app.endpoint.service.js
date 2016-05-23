@@ -11,6 +11,22 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 	endpointFactory.is_service_ready = false;
 	// This will call the function to load services
 
+	endpointFactory.getProtostarAdminService = function() {
+
+		if (isTestMode)
+			return localDBServiceFactory.getProtostarAdminService();
+		else
+			return googleEndpointSF.getProtostarAdminService();
+	};
+	
+	endpointFactory.getAssignExamService = function() {
+
+		if (isTestMode)
+			return localDBServiceFactory.getAssignExamService();
+		else
+			return googleEndpointSF.getAssignExamService();
+	};
+	
 	endpointFactory.getuploadURLService = function() {
 
 		if (isTestMode)
@@ -306,6 +322,19 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 
 		}, apiRoot);
 		
+		gapi.client.load('assignExamService', 'v0.1', function() {
+			$log.debug("assignExamService Loaded......");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
+		
+		gapi.client.load('protostarAdminService', 'v0.1', function() {
+			$log.debug("protostarAdminService Loaded......");
+			endpointFactory.is_service_ready = true;
+			deferred.resolve();
+
+		}, apiRoot);
 		
 		return deferred.promise;
 

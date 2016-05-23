@@ -60,60 +60,45 @@
 			<h1 class="md-toolbar-tools">Apps Module</h1>
 			</md-toolbar> <md-content layout="column" ng-controller="LeftCtrl"> <md-button
 				class="md-primary" ng-click="close()" hide-gt-md> Close
-			Sidenav </md-button> <md-button ui-sref="home" ng-click="close()"
-				class="md-primary" show-gt-md> Home </md-button>
-				<md-button
-				ui-sref="partnerSchool" ng-click="close()" class="md-primary" show-gt-md>
-			Partner School </md-button>
-			 <md-button
-				ui-sref="authority" ng-click="close()" class="md-primary" show-gt-md>
-			Authority </md-button> <md-button ui-sref="institute"
-				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-				ng-click="close()" class="md-primary" show-gt-md>
-			Institute </md-button> <md-button ui-sref="student"
-				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher'  || curUser.role == 'Student'"
-				ng-click="close()" class="md-primary" show-gt-md>
-			Student </md-button> <md-button ui-sref="attendance"
-				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-				ng-click="close()" class="md-primary" show-gt-md>Attendance
-			 </md-button>
-			 <!-- <md-button ui-sref="exam"
-				ng-show="(curUser.role == modules[0].role && modules[0].modules.indexOf('Exam') > -1) ||
- (curUser.role == modules[1].role && modules[1].modules.indexOf('Exam') > -1) ||
-  (curUser.role == modules[2].role && modules[2].modules.indexOf('Exam') > -1)"
-				ng-click="close()" class="md-primary" show-gt-md> Exam </md-button> -->
-
-
-			 <md-button ui-sref="exam" ng-click="close()" class="md-primary"
-				show-gt-md> Exam </md-button> 
+			Sidenav </md-button> 
 			
-			<md-button ui-sref="scheduledExam" ng-click="close()" class="md-primary"
-				show-gt-md> Scheduled Exam </md-button> 
-				 
-			<md-button ui-sref="book"
-				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-				ng-click="close()" class="md-primary" show-gt-md>Book </md-button> <md-button
-				ui-sref="favourite"
-				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-				ng-click="close()" class="md-primary" show-gt-md>Favourite
-			</md-button> <md-button ui-sref="report"
-				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-				ng-click="close()" class="md-primary" show-gt-md> Report
-			</md-button> <md-button ui-sref="syllabus" ng-click="close()" class="md-primary"
-				show-gt-md>Syllabus</md-button> <md-button ui-sref="updatemyprofile"
-				ng-click="close()" ng-hide="curUser == null" class="md-primary"
-				show-gt-md>Edit profile </md-button> <md-button
-				ui-sref="certificateMgmt"
-				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-				ng-click="close()" class="md-primary" show-gt-md>
-			Certificate Management </md-button> <md-button ui-sref="admissionMgmt"
-				ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'"
-				ng-click="close()" class="md-primary" show-gt-md>
-			Admission Management </md-button> <md-button ui-sref="gfe"
-				ng-show="curUser.role == 'Admin'" ng-click="close()"
-				class="md-primary" show-gt-md>Google Apps Integration</md-button> </md-content> </md-sidenav>
+			<md-button ui-sref="home" ng-click="close()" class="md-primary" show-gt-md> Home </md-button> 
+				
+			<md-button ui-sref="partnerSchool" ng-click="close()" class="md-primary" show-gt-md> Partner School </md-button> 
+				
+			<md-button ui-sref="setup" ng-click="close()" class="md-primary" show-gt-md>Setup </md-button> 
+						
+			<md-button ui-sref="proadmin" ng-click="close()" class="md-primary" show-gt-md> Pro Admin </md-button> 
+		
+			<md-button ui-sref="student" ng-click="close()" class="md-primary" show-gt-md>Student </md-button> 
+			
+			<md-button ui-sref="attendance" ng-click="close()" class="md-primary" show-gt-md>Attendance </md-button> 
 
+			<md-button ui-sref="exam" ng-click="close()" class="md-primary" show-gt-md> Exam </md-button> 
+			
+			<md-button ui-sref="scheduledExam" ng-click="close()" class="md-primary" show-gt-md>Scheduled Exam </md-button> 
+			
+			<md-button ui-sref="book" ng-click="close()" class="md-primary" show-gt-md>Book </md-button> 
+			
+			<md-button ui-sref="favourite" ng-click="close()" class="md-primary" show-gt-md>Favourite</md-button> 
+			
+			<md-button ui-sref="report" ng-click="close()" class="md-primary" show-gt-md> Report </md-button> 
+			
+			<md-button ui-sref="syllabus" ng-click="close()" class="md-primary" show-gt-md>Syllabus</md-button>
+		
+			<md-button ui-sref="updatemyprofile" ng-click="close()" ng-hide="curUser == null" class="md-primary" show-gt-md>Edit profile </md-button> 
+			
+			<md-button ui-sref="certificateMgmt" ng-click="close()"	class="md-primary" show-gt-md> Certificate Management </md-button> 
+			
+			<md-button ui-sref="admissionMgmt" ng-click="close()" class="md-primary" show-gt-md> Admission Management </md-button> 
+			
+			<md-button ui-sref="gfe" ng-show="curUser.role == 'Admin'" ng-click="close()" class="md-primary" show-gt-md>Google Apps Integration</md-button> 
+			
+			</md-content> 
+		
+		</md-sidenav>
 
+			<!-- ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'" -->
 
 			<md-content flex layout-padding>
 			<div class="md-toolbar-tools" hide-gt-md>
@@ -249,10 +234,10 @@
 	<script src="/app/login/js/newUser_student.ctr.js"></script>
 	<script src="/home.ctr.js"></script>
 
-	<script src="/app/authority/js/authority_module.ctr.js"></script>
+	<script src="/app/setup/js/setup_module.ctr.js"></script>
 	<script src="/app/institute/js/authority_add.ctr.js"></script>
-	<script src="/app/authority/js/authority_view.ctr.js"></script>
-	<script src="/app/authority/js/setup_changetheme.js"></script>
+	<script src="/app/setup/js/authority_view.ctr.js"></script>
+	<script src="/app/setup/js/setup_changetheme.js"></script>
 
 	<script src="/app/chapter/js/chapter_module.ctr.js"></script>
 	<script src="/app/chapter/js/chapter_add.ctr.js"></script>
@@ -283,7 +268,7 @@
 	<script src="/app/student/js/student_paymentlist.ctr.js"></script>
 	<script src="/app/student/js/student_installmentList.ctr.js"></script>
 	<script src="/app/student/js/student_installmentedit.ctr.js"></script>
-	
+
 	<script src="/app/student/js/student_scheduleExam.ctr.js"></script>
 
 
@@ -306,21 +291,21 @@
 	<script src="/app/exam/js/practiceExam_edit.ctr.js"></script>
 	<script src="/app/exam/js/practiceExamList.ctr.js"></script>
 	<script src="/app/exam/js/userQuesAnsView.ctr.js"></script>
-	
-	
-	
+
+
+
 	<script src="/app/scheduledQuestion/js/scheduledQuestion_new.ctr.js"></script>
 	<script src="/app/scheduledQuestion/js/scheduledQuestion_list.ctr.js"></script>
-	<script src="/app/scheduledQuestion/js/scheduledQuestion_edit.ctr.js"></script>	
-	
-	
+	<script src="/app/scheduledQuestion/js/scheduledQuestion_edit.ctr.js"></script>
+
+
 	<script src="/app/scheduledExam/js/scheduledExam_module.ctr.js"></script>
 	<script src="/app/scheduledExam/js/scheduledExam_add.ctr.js"></script>
 	<script src="/app/scheduledExam/js/scheduledExam_edit.ctr.js"></script>
 	<script src="/app/scheduledExam/js/scheduledExam_list.ctr.js"></script>
 	<script src="/app/scheduledExam/js/live_scheduledExamlist.ctr.js"></script>
 	<script src="/app/scheduledExam/js/scheduledExamTest.ctr.js"></script>
-	<script src="/app/scheduledExam/js/scheduledUserQuesAnsView.ctr.js"></script>
+	<!-- 	<script src="/app/scheduledExam/js/scheduledUserQuesAnsView.ctr.js"></script> -->
 	<script src="/app/scheduledExam/js/schduledExamResult_list.ctr.js"></script>
 	<script src="/app/scheduledExam/js/scheduledExam_studentList.ctr.js"></script>
 
@@ -378,12 +363,19 @@
 	<script src="/app/gfe/js/directory_user_list.ctr.js"></script>
 	<script src="/app/gfe/js/directory_edit_userAccount.ctr.js"></script>
 	<script src="/app/gfe/js/directory_view_userAccount.ctr.js"></script>
-	
-<!-- 	Partner School -->
+
+	<!-- 	Partner School -->
 	<script src="/app/partnerSchool/js/partnerSchool_module.ctr.js"></script>
 	<script src="/app/partnerSchool/js/partnerSchool_add.ctr.js"></script>
 	<script src="/app/partnerSchool/js/partnerSchool_list.ctr.js"></script>
+	<!-- 	Partner School -->
+
+	<!-- Start Init Setup -->
+	<script src="/app/initsetup/js/initsetup.ctr.js"></script>
+	<!-- End Init Setup -->
 	
-<!-- 	Partner School -->
+	<!-- Start ProAdmin -->
+	<script src="/app/proadmin/js/proadmin_module.ctr.js"></script>
+	<!-- End ProAdmin -->
 </body>
 </html>
