@@ -65,7 +65,7 @@
 		 <span flex></span>
 		<section layout="row">
 			<div  layout="row" layout-align="end start">
-				<md-button hide-xs class="md-icon-button md-accent" aria-label="Favorite">
+				<!-- <md-button hide-xs class="md-icon-button md-accent" aria-label="Favorite">
 				<md-icon md-font-icon="icon-home" ng-class="font.theme" class="step"></md-icon>
 				</md-button>
 
@@ -77,7 +77,7 @@
 				<md-icon md-svg-icon="img/icons/separator.svg"></md-icon> </md-button>
 				<md-button hide-xs class="md-icon-button" aria-label="More"
 					ng-click="toggleRight()"> <md-icon
-					md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
+					md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button> -->
 
 
 
@@ -85,12 +85,12 @@
 				<md-button aria-label="Login" ng-hide="curUser !== null"
 					ng-show="curUser == null" ng-click="loginClick()">
 				Login </md-button>
-				{{ curUser.firstName}}
+				<!-- {{ curUser.firstName}} -->
 				<md-button ng-show="curUser" popover-template="'popover.html'"
 					popover-placement="bottom" popover-trigger="focus"
 					data-container="body" data-toggle="popover" data-trigger="focus">
-				<!-- <md-tooltip>
-				{{ curUser.firstName + " " +  curUser.lastName + "|" + curUser.email_id}} </md-tooltip>  -->
+				<md-tooltip>
+				{{ curUser.firstName + " " +  curUser.lastName + "|" + curUser.email_id}} </md-tooltip> 
 
 				<img ng-show="true" ng-show="curUser.imageURl"
 					ngf-src="curUser.imageURl" class=circular> <img alt="Logo"
