@@ -1,8 +1,10 @@
 package com.protostar.prostudy.entity;
 
+import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
+import com.protostar.prostudy.protostarAdmin.entities.AccountType;
 
 @Entity
 public class InstituteEntity {
@@ -15,8 +17,46 @@ public class InstituteEntity {
 	private String address;
 	private String phone_no;
 	private String theme;
+	private String registerDate;
+	private Integer totalUser = 1;
+	private String status="active" ;
+	
+	Ref<AccountType> accounttype;
+		
 
+	public AccountType getAccounttype() {
+		return accounttype.get();
+	}
 
+	public void setAccounttype(AccountType accounttype) {
+		this.accounttype = Ref.create(accounttype);
+	}
+
+	public String getRegisterDate() {
+		return registerDate;
+	}
+
+	public void setRegisterDate(String registerDate) {
+		this.registerDate = registerDate;
+	}
+
+	public Integer getTotalUser() {
+		return totalUser;
+	}
+
+	public void setTotalUser(Integer totalUser) {
+		this.totalUser = totalUser;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	
 	public String getTheme() {
 		return theme;
 	}

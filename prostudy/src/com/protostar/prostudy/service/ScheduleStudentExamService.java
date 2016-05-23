@@ -8,18 +8,25 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
-import com.googlecode.objectify.Key;
-import com.protostar.prostudy.entity.InstituteEntity;
-import com.protostar.prostudy.entity.PracticeExamEntity;
 import com.protostar.prostudy.entity.ScheduleStudentExamEntity;
 
-@Api(name = "scheduleStudentExamService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
+@Api(name = "assignExamService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
 public class ScheduleStudentExamService {
 
-	@ApiMethod(name = "addScheduleStudentExam")
-	public void addScheduleStudentExam(ScheduleStudentExamEntity exam) {
+	@ApiMethod(name = "assignExamToStudent")
+	public void assignExamToStudent(ScheduleStudentExamEntity exam) {
 		
 		ofy().save().entity(exam).now();
+		
+	}	
+	
+	@ApiMethod(name = "getExamAssignedStudents")
+	public List<ScheduleStudentExamEntity> getExamAssignedStudents(@Named("id") Long id) {
+		
+		List<ScheduleStudentExamEntity> list = (List<ScheduleStudentExamEntity>) ofy().load()
+				.type(ScheduleStudentExamEntity.class).list();
+		
+		return list;
 		
 	}	
 

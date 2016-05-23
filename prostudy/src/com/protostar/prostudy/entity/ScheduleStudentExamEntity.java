@@ -13,43 +13,45 @@ public class ScheduleStudentExamEntity {
 	
 	@Id 
 	private Long id;
-//	Ref<UserEntity> studentID;
-//	Ref<ScheduledExamEntity> scheduledStudentExam;
-	ArrayList<User> selectedStudents;
-	ArrayList<ScheduleStudentExamEntity> selectedExams;
+//	ArrayList<UserEntity> selectedStudents;
+//	Ref<ScheduledExamEntity> selectedExams;
+	
+	private long selectedExam;
+	
+	private List<SelectedStudents> selectedStudents;
 	
 	
-	public ArrayList<User> getSelectedStudents() {
-		return selectedStudents;
-	}
-	public void setSelectedStudents(ArrayList<User> selectedStudents) {
-		this.selectedStudents = selectedStudents;
-	}
-	
-	public ArrayList<ScheduleStudentExamEntity> getSelectedExams() {
-		return selectedExams;
-	}
-	public void setSelectedExams(ArrayList<ScheduleStudentExamEntity> selectedExams) {
-		this.selectedExams = selectedExams;
-	}
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-/*	public UserEntity getStudentID() {
-		return studentID.get();
+/*	public ArrayList<UserEntity> getSelectedStudents() {
+		return selectedStudents;
 	}
-	public void setStudentID(UserEntity studentID) {
-		this.studentID = Ref.create(studentID);
+	public void setSelectedStudents(ArrayList<UserEntity> selectedStudents) {
+		this.selectedStudents = selectedStudents;
+	}*/
+/*	public ScheduledExamEntity getSelectedExams() {
+		return selectedExams.get();
 	}
-	public ScheduledExamEntity getScheduledStudentExam() {
-		return scheduledStudentExam.get();
+	public void setSelectedExams(ScheduledExamEntity selectedExams) {
+		this.selectedExams = Ref.create(selectedExams);
 	}
-	public void setScheduledStudentExam(ScheduledExamEntity scheduledStudentExam) {
-		this.scheduledStudentExam = Ref.create(scheduledStudentExam);
+*/
+	public long getSelectedExam() {
+		return selectedExam;
 	}
-*/	
+	public void setSelectedExam(long selectedExam) {
+		this.selectedExam = selectedExam;
+	}
+	public List<SelectedStudents> getSelectedStudents() {
+		return selectedStudents;
+	}
+	public void setSelectedStudents(List<SelectedStudents> selectedStudents) {
+		this.selectedStudents = selectedStudents;
+	}
+
 	
 }

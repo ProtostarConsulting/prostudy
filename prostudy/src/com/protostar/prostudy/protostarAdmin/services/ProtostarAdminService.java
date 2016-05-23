@@ -1,0 +1,139 @@
+package com.protostar.prostudy.protostarAdmin.services;
+
+import static com.googlecode.objectify.ObjectifyService.ofy;
+
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Logger;
+
+import com.google.api.server.spi.config.Api;
+import com.google.api.server.spi.config.ApiMethod;
+import com.google.api.server.spi.config.ApiNamespace;
+import com.google.api.server.spi.config.Named;
+import com.protostar.prostudy.entity.InstituteEntity;
+import com.protostar.prostudy.entity.UserEntity;
+import com.protostar.prostudy.protostarAdmin.entities.AccountType;
+
+@Api(name = "protostarAdminService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.protostarAdmin.services", ownerName = "com.protostar.prostudy.protostarAdmin.services", packagePath = ""))
+public class ProtostarAdminService {
+
+	private static final Logger log = Logger.getLogger(ProtostarAdminService.class
+			.getName());
+
+	@ApiMethod(name = "addAccountType")
+	public void addAccountType(AccountType account) {
+		ofy().save().entity(account).now();
+
+	}
+
+	@ApiMethod(name = "getallAccountType")
+	public List<AccountType> getallAccountType() {
+		log.info("Inside getallAccountType.");
+		try {
+			return ofy().load().type(AccountType.class).list();
+		} catch (Exception e) {
+			log.info("Error Ocuured: " + e.getStackTrace());
+		}
+
+		return null;
+
+	}
+
+	@ApiMethod(name = "getAccountTypeById")
+	public AccountType getAccountTypeById(@Named("id") Long id) {
+		return ofy().load().type(AccountType.class).id(id).now();
+	}
+
+	@ApiMethod(name = "initsetupnext")
+	public void initsetupnext() {
+		try {
+			Date date = new Date();
+			String DATE_FORMAT = "dd/MM/yyyy";
+			SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+
+			List<AccountType> accountt = ofy().load().type(AccountType.class)
+					.list();
+			AccountType filteredaccount = new AccountType();
+			for (int i = 0; i < accountt.size(); i++) {
+				if (accountt.get(i).getAccountName().equals("Platinum")) {
+					filteredaccount = accountt.get(i);
+				}
+			}
+
+			InstituteEntity instituteEntity = new InstituteEntity();
+			
+			instituteEntity.setName("Protostar");
+			instituteEntity.setAccounttype(filteredaccount);
+			instituteEntity.setRegisterDate(sdf.format(date));
+
+			ofy().save().entity(instituteEntity).now();
+
+			UserEntity userEntity = new UserEntity();
+			userEntity.setInstituteID(instituteEntity.getID());
+			userEntity.setEmail_id("ganesh.lawande@protostar.co.in");
+			userEntity.setFirstName("Ganesh");
+			userEntity.setLastName("Lawande");
+			userEntity.setIsGoogleUser(true);
+			userEntity.setAuthority(Arrays.asList("admin"));
+			ofy().save().entity(userEntity).now();
+
+			// ------------------------------
+
+			UserEntity userEntity1 = new UserEntity();
+			userEntity1.setInstituteID(instituteEntity.getID());
+			userEntity1.setEmail_id("aniketbhalsing1@gmail.com");
+			userEntity1.setFirstName("Aniket");
+			userEntity1.setLastName("Bhalsing");
+			userEntity1.setIsGoogleUser(true);
+			userEntity1.setAuthority(Arrays.asList("admin"));
+			ofy().save().entity(userEntity1).now();
+		} 
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@ApiMethod(name = "initsetup")
+	public void initsetup() {
+		try {
+			AccountType accounttype = new AccountType();
+			accounttype.setAccountName("Free");
+			accounttype.setDescription("Free for upto 250 users");
+			accounttype.setMaxuser("250");
+			accounttype.setPaymentDesc("Free no charges");
+			ofy().save().entity(accounttype).now();
+			AccountType accounttype1 = new AccountType();
+			accounttype1.setAccountName("Silver");
+			accounttype1.setDescription("Good for upto 500 users");
+			accounttype1.setMaxuser("500");
+			accounttype1.setPaymentDesc("Rs. 4000 PM + Tax");
+			ofy().save().entity(accounttype1).now();
+			AccountType accounttype2 = new AccountType();
+			accounttype2.setAccountName("Gold");
+			accounttype2.setDescription("Good for 500 to 750 users");
+			accounttype2.setMaxuser("750");
+			accounttype2.setPaymentDesc("Rs. 8000 PM + Tax");
+			ofy().save().entity(accounttype2).now();
+			AccountType accounttype3 = new AccountType();
+			accounttype3.setAccountName("Platinum");
+			accounttype3.setDescription("Good for 750 to 1000 users");
+			accounttype3.setMaxuser("1000");
+			accounttype3.setPaymentDesc("Rs. 25,000 PM + Tax");
+			ofy().save().entity(accounttype3).now();
+		} 
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@ApiMethod(name = "getAllemp")
+	public List<UserEntity> getAllemp() {
+		return ofy().load().type(UserEntity.class).list();
+	}
+
+}// end of InternetService

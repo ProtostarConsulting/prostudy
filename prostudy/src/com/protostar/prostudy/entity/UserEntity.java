@@ -2,6 +2,7 @@ package com.protostar.prostudy.entity;
 
 import java.util.List;
 
+import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
@@ -29,6 +30,7 @@ public class UserEntity {
 	private String standard;
 	@Index
 	private String division;
+	private List<String> authority;
 
 	@Index
 	private Long instituteID;
@@ -38,6 +40,25 @@ public class UserEntity {
 	@Index
 	private long selectedExam;
 
+/*	Ref<InstituteEntity> instituteEntity;
+	
+
+	public InstituteEntity getInstituteEntity() {
+		return instituteEntity.get();
+	}
+
+	public void setInstituteEntity(InstituteEntity instituteEntity) {
+		this.instituteEntity = Ref.create(instituteEntity);
+	}
+*/
+	
+	public List<String> getAuthority() {
+		return authority;
+	}
+
+	public void setAuthority(List<String> authority) {
+		this.authority = authority;
+	}
 
 	public long getSelectedExam() {
 		return selectedExam;

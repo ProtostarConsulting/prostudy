@@ -22,6 +22,7 @@ import com.protostar.prostudy.entity.PracticeExamEntity;
 import com.protostar.prostudy.entity.PracticeExamResultEntity;
 import com.protostar.prostudy.entity.QuestionEntity;
 import com.protostar.prostudy.entity.RoleSecEntity;
+import com.protostar.prostudy.entity.ScheduleStudentExamEntity;
 import com.protostar.prostudy.entity.ScheduledExamEntity;
 import com.protostar.prostudy.entity.ScheduledExamResultEntity;
 import com.protostar.prostudy.entity.ScheduledQuestionEntity;
@@ -33,6 +34,7 @@ import com.protostar.prostudy.entity.SyllabusEntity;
 import com.protostar.prostudy.entity.TeacherEntity;
 import com.protostar.prostudy.entity.UserEntity;
 import com.protostar.prostudy.entity.userAnsEntity;
+import com.protostar.prostudy.protostarAdmin.entities.AccountType;
 import com.protostar.prostudy.until.data.YearCounterEntity;
 
 public class AppServletContextListener implements ServletContextListener {
@@ -79,7 +81,10 @@ public class AppServletContextListener implements ServletContextListener {
 		  ObjectifyService.register(YearCounterEntity.class);		
 		  ObjectifyService.register(StudSubEntity.class);
 		  ObjectifyService.register(RoleSecEntity.class);
+		  
 		  ObjectifyService.register(PartnerSchoolEntity.class);
+		  ObjectifyService.register(AccountType.class);
+		  ObjectifyService.register(ScheduleStudentExamEntity.class);
 		  
 		  
 
