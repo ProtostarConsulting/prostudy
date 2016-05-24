@@ -29,9 +29,8 @@ public class InstituteService {
 
 	@ApiMethod(name = "getInstituteById")
 	public InstituteEntity getInstituteById(@Named("id") Long id) {
-		System.out.println("Inside getInstituteById ");
-		InstituteEntity selected = ofy().load()
-				.type(InstituteEntity.class).id(id).now();
+		System.out.println("Inside getInstituteById "+id);
+		InstituteEntity selected = ofy().load().type(InstituteEntity.class).id(id).now();
 		return selected;
 	}
 	
