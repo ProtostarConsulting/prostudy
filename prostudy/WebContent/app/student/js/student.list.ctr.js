@@ -9,8 +9,8 @@ angular
 
 					$scope.showSavedToast = function() {
 						$mdToast.show($mdToast.simple().content(
-								'Scheduled Exam Assigned to Student!').position("top").hideDelay(
-								3000));
+								'Scheduled Exam Assigned to Student!')
+								.position("top").hideDelay(3000));
 					};
 					$scope.query = {
 						order : 'description',
@@ -68,7 +68,8 @@ angular
 					$scope.examtitle;
 					$scope.getStudentByExam = function() {
 
-						var ScheduledExamService = appEndpointSF.getScheduledExamService();
+						var ScheduledExamService = appEndpointSF
+								.getScheduledExamService();
 						ScheduledExamService.getStudentByExam(
 								$scope.examStudent).then(
 								function(examStudentList) {
@@ -77,18 +78,26 @@ angular
 								});
 					}
 
-					
 					$scope.getExamAssignedStudents = function() {
 
-						var AssignExamService = appEndpointSF.getAssignExamService();
-						AssignExamService.getExamAssignedStudents($scope.curUser.instituteID).then(
-								function(examStudentList) {
-									$scope.examStudentList1 = examStudentList.items;
+						var AssignExamService = appEndpointSF
+								.getAssignExamService();
+						AssignExamService
+								.getExamAssignedStudents(
+										$scope.curUser.instituteID)
+								.then(
+										function(examStudentList) {
+											$scope.examStudentList1 = examStudentList.items;
+											$scope.examStudentListArray = $scope.examStudentList1.selectedStudents;
 
-								});
+											/*for (var i = 0; i < $scope.examStudentList1.length; i++) {
+
+												$scope.examStudentListArray.push($scope.examStudentList1[i].selectedStudents);
+											}*/
+										});
 					}
 					
-					
+					$scope.examStudentListArray = [];
 					$scope.assignExamToStudentObj = {
 						selectedStudents : '',
 						selectedExam : ''
@@ -114,6 +123,15 @@ angular
 
 					}
 
+					$scope.getExamOfStudent = function() {
+						var AssignExamService = appEndpointSF.getAssignExamService();
+						AssignExamService.getExamToStudent($scope.selectedExam).then(
+								function(msgBean) {
+
+								});
+						$scope.tempScheduledExam = {};
+						$scope.showSavedToast();
+					}
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
 
@@ -133,6 +151,62 @@ angular
 
 					$scope.waitForServiceLoad();
 
+					
+					$scope.assignExamToStudent = function(ev) {
+						var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
+								&& $scope.customFullscreen;
+						$mdDialog
+								.show({
+									controller : DialogController,
+									templateUrl : '/app/scheduledExam/scheduledExam_list.html',
+									parent : angular.element(document.body),
+									targetEvent : ev,
+									clickOutsideToClose : true,
+									fullscreen : useFullScreen,
+									locals : {
+									//	curBusi : $scope.curUser.business,
+									//	warehouse : $scope.warehouse,
+									//	curUser :  $scope.curUser
+									}
+								})
+								.then(
+										function(answer) {
+											$scope.status = 'You said the information was "'
+													+ answer + '".';
+										},
+										function() {
+											$scope.status = 'You cancelled the dialog.';
+										});
+					
+					};
+
+					function DialogController($scope, $mdDialog, curBusi,curUser, $state,
+							warehouse) {
+
+						$scope.assignExamToStudent = function() {
+	/*						 $scope.warehouse.business = curUser.business;
+							 $scope.warehouse.createdDate = new Date();
+							 $scope.warehouse.modifiedBy = curUser.email_id;
+							var warehouseService = appEndpointSF.getWarehouseManagementService();
+
+							warehouseService.assignExamToStudent($scope.warehouse).then(
+									function(warehouse) {
+										$scope.selectedWarehouse = warehouse.warehouseName;
+										$log.debug("$scope.selectedWarehouse"+$scope.selectedWarehouse);
+										console.log("####################");
+										$state.reload();
+										//$state.go("stock.stockItemAdd");
+									});
+*/							$scope.hide();
+						}	
+						$scope.hide = function() {
+							$mdDialog.hide();
+						};
+					}
+					
+					
+					
+					
 					$scope.openPopUp = function(ev) {
 						var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
 								&& $scope.customFullscreen;

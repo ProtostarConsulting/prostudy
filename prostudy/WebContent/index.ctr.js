@@ -11,8 +11,20 @@ angular
 					$scope.googleUserDetails = "";
 					$scope.googleUser = 'null';
 					$scope.flag = true;
-					$scope.theme;
+					$scope.theme = 'default';
 
+					
+					$scope.themeList = [ 'default', 'red', 'pink', 'purple',
+											'deep-purple', 'indigo', 'blue', 'light-blue',
+											'cyan', 'teal', 'green', 'light-green', 'lime',
+											'yellow', 'amber', 'orange', 'deep-orange',
+											'brown', 'grey', 'blue-grey' ];
+
+									$scope.changeTheme = function(themeName) {
+										$scope.theme = themeName
+									}
+
+									
 					$scope.showUpdateToast = function() {
 						$mdToast.show($mdToast.simple().content(
 								'Changes Saved Successfully.').position("top")
@@ -130,21 +142,21 @@ angular
 
 						$scope.selection = [];
 						var UserService = appEndpointSF.getUserService();
-						
-							UserService.getRoleSecListByInstitute(
-									$scope.curUser.instituteID).then(
-									function(modules) {
-										$scope.modules = modules;
 
-									});
-						
+						UserService.getRoleSecListByInstitute(
+								$scope.curUser.instituteID).then(
+								function(modules) {
+									$scope.modules = modules;
+
+								});
+
 					}
 
 					$scope.getInstituteById = function() {
 
 						var InstituteService = appEndpointSF
 								.getInstituteService();
-						
+
 						InstituteService.getInstituteById(
 								$scope.curUser.instituteID).then(
 								function(institute) {
@@ -152,7 +164,7 @@ angular
 									$scope.theme = $scope.institute.theme;
 
 								});
-						
+
 					}
 
 					$scope.waitForServiceLoad = function() {
@@ -204,8 +216,27 @@ angular
 					});
 
 					// $window.initGAPI = function() {}
+
+					
+					$scope.themeList = [ 'default', 'red', 'pink', 'purple',
+							'deep-purple', 'indigo', 'blue', 'light-blue',
+							'cyan', 'teal', 'green', 'light-green', 'lime',
+							'yellow', 'amber', 'orange', 'deep-orange',
+							'brown', 'grey', 'blue-grey' ];
+
+					$scope.changeTheme = function(themeName) {
+						$scope.theme = themeName
+					}
+
+					$scope.initCommonSetting = function() {
+						$scope.theme = $scope.curUser.business.theme;
+						
+					}
+
 					$scope.initGAPI = function() {
 						$log.debug("Came to initGAPI");
+
+					//	$scope.theme = $scope.curUser.theme;
 						// This will load all server side end points
 						// $scope.loadAppGoogleServices();
 						$timeout(
@@ -226,16 +257,7 @@ angular
 
 					$scope.initGAPI();
 
-					$scope.themeList = [ 'default', 'red', 'pink', 'purple',
-							'deep-purple', 'indigo', 'blue', 'light-blue',
-							'cyan', 'teal', 'green', 'light-green', 'lime',
-							'yellow', 'amber', 'orange', 'deep-orange',
-							'brown', 'grey', 'blue-grey' ];
-
-					$scope.changeTheme = function(themeName) {
-						$scope.theme = themeName
-					}
-
+					
 					$scope.safeApply = function(fn) {
 						var phase = this.$root.$$phase;
 						if (phase == '$apply' || phase == '$digest') {

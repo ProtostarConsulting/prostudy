@@ -11,7 +11,7 @@ angular.module("prostudyApp").controller(
 			$scope.curUser = appEndpointSF.getLocalUserService()
 			.getLoggedinUser();
 			
-			$scope.showselectedInstitute = function() {
+/*			$scope.showselectedInstitute = function() {
 				var InstituteService = appEndpointSF.getInstituteService();
 				InstituteService.getInstituteById($scope.curUser.instituteID)
 						.then(function(institutes) {
@@ -19,8 +19,13 @@ angular.module("prostudyApp").controller(
 						});
 			}
 			$scope.showselectedInstitute();
-
+*/
 			$scope.checkTheme = function(themeName) {
+					$scope.changeTheme(themeName);
+				}
+			
+			
+			$scope.updateTheme = function(themeName) {
 				var change = confirm("Are you sure to change theme ?");
 				if (change == true) {
 					$scope.Institute.theme=themeName;

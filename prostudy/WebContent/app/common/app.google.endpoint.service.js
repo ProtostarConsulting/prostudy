@@ -1450,6 +1450,16 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 	
+	assignExamService.getExamOfStudent = function(selectedExam) {
+		var deferred = $q.defer();
+		gapi.client.assignExamService.getExamOfStudent({
+			'selectedExam' : selectedExam
+		}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
 /*	========================================================================================*/
 		
 	/*
