@@ -29,5 +29,16 @@ public class ScheduleStudentExamService {
 		return list;
 		
 	}	
+	
+	
+	@ApiMethod(name = "getExamOfStudent")
+	public ScheduleStudentExamEntity getExamOfStudent(@Named("selectedExam") Long selectedExam) {
+		
+		ScheduleStudentExamEntity list =  ofy().load()
+				.type(ScheduleStudentExamEntity.class).id(selectedExam).now();
+		
+		return  list;
+		
+	}	
 
 }

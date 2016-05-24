@@ -22,7 +22,13 @@ public class SelectedStudents {
 	private String role;
 	private String schoolName;
 	private String standard;
-	
+	private long selectedExam;
+	public long getSelectedExam() {
+		return selectedExam;
+	}
+	public void setSelectedExam(long selectedExam) {
+		this.selectedExam = selectedExam;
+	}
 	
 	public long getId() {
 		return id;
