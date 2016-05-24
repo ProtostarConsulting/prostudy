@@ -11,6 +11,7 @@ angular
 							.getLoggedinUser();
 
 					$scope.partnerSchoolLevels = partnerSchoolLevels;
+					
 
 					$scope.partnerSchool = {
 						instituteID : '',
@@ -21,8 +22,7 @@ angular
 					};
 
 					$scope.selectedPSchoolId = $stateParams.selectedPSchoolId;
-					$log.debug("$scope.selectedPSchoolId :"
-							+ $scope.selectedPSchoolId);
+					$log.debug("$scope.selectedPSchoolId :"	+ $scope.selectedPSchoolId);
 
 					$scope.addPartnerSchool = function() {
 						$scope.partnerSchool.instituteID = $scope.curUser.instituteID;
