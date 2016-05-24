@@ -57,4 +57,15 @@ public class UploadURLService {
 	}
 
 	
+	
+	@ApiMethod(name = "getAccountExcelUploadURL",path="getAccountExcelUploadURL")
+	public ServerMsg getAccountExcelUploadURL() {
+		 BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+		 String createUploadUrl = blobstoreService.createUploadUrl("/ExcelAccountsUpload");
+		 ServerMsg serverMsg = new ServerMsg();
+		 serverMsg.setMsg(createUploadUrl);		 
+		return serverMsg;
+	}
+
+	
 }
