@@ -107,10 +107,10 @@
 	    </div>
 
  	    <div  layout-align-xs ="center center">
-			<b>{{ curUser.firstName}}&nbsp;{{curUser.lastName}}</b><br>
-    		<font size="1px">{{ curUser.email_id }} </font><br>
+			<b><font size="1px" color="Black">{{ curUser.firstName}}&nbsp;{{curUser.lastName}}</b><br>
+    		{{ curUser.email_id }} </font><br>
 			<md-button aria-label="Logout" ng-hide="curUser == null"
-			ng-click="signOut()"> Logout <md-tooltip>
+			ng-click="signOut()"> <font color="Black">Logout</font> <md-tooltip>
 			{{ curUser.firstName + " " + curUser.lastName + "|" +
 			curUser.email_id}} </md-tooltip> </md-button>
         </div>
