@@ -1,7 +1,7 @@
 var app = angular.module("stockApp");
 
 app.controller("accountAddCtr", function($scope, $window, $mdToast, $timeout,
-		$mdSidenav, $mdUtil, $log, $stateParams, objectFactory, appEndpointSF) {
+		$mdSidenav, $mdUtil, $log, $stateParams, objectFactory, appEndpointSF,$mdDialog,$mdMedia ) {
 
 	$scope.query = {
 		order : 'name',
@@ -98,6 +98,77 @@ app.controller("accountAddCtr", function($scope, $window, $mdToast, $timeout,
 		return debounceFn;
 	}
 
+	
+	
+	// ----------------------UPLODE EXCEL FILE-------------------------------
+
+	$scope.UplodeExcel = function(ev) {
+		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
+				&& $scope.customFullscreen;
+		$mdDialog
+				.show(
+						{
+							controller : DialogController,
+							templateUrl : '/app/account/UploadExcelAddAccount.html',
+							parent : angular
+									.element(document.body),
+							targetEvent : ev,
+							clickOutsideToClose : true,
+							fullscreen : useFullScreen,
+							locals : {
+								curuser : $scope.curUser
+							
+							}
+						})
+				.then(
+						function(answer) {
+							$scope.status = 'You said the information was "'
+									+ answer + '".';
+						},
+						function() {
+							$scope.status = 'You cancelled the dialog.';
+						});
+		
+	};
+
+	function DialogController($scope, $mdDialog, curuser) {
+		$scope.bizID;
+		$scope.loding=false;
+		$scope.uplodeimage=function(){
+			$scope.loding=true;
+			 document.excelform.action = $scope.AccountsExcelUploadURL;
+		      document.excelform.submit();
+		}
+		
+		
+		$scope.getExcelUploadURL=function(){
+			var uploadUrlService = appEndpointSF.getuploadURLService();
+			uploadUrlService.getAccountExcelUploadURL()
+					.then(function(url) {
+						$scope.AccountsExcelUploadURL=url.msg;
+						$scope.bizID = curuser.business.id;
+					});
+			
+			
+		}
+		$scope.AccountsExcelUploadURL;
+		
+		$scope.waitForServiceLoad = function() {
+			if (appEndpointSF.is_service_ready) {
+				$scope.getExcelUploadURL();
+			} else {
+				$log.debug("Services Not Loaded, watiting...");
+				$timeout($scope.waitForServiceLoad, 1000);
+			}
+		}
+		$scope.waitForServiceLoad();
+		}
+
+	// -------------------------------------------------------
+	
+	
+	
+	
 	$scope.close = function() {
 		$mdSidenav('right').close().then(function() {
 			$log.debug("close RIGHT is done");
