@@ -179,9 +179,9 @@ angular.module("prostudyApp").controller(
 				var UserService = appEndpointSF.getUserService();
 				
 				UserService.addUser($scope.tempStudent).then(function(msgBean) {
-					$scope.email_id=msgBean.email_id;
+					
 					$scope.showStudentSavedToast();
-					$state.go("institute.studFillbasics", {currstud:$scope.email_id});
+					$state.go("institute.studFillbasics", {currstud:msgBean});
 			});			
 			
 		}				
@@ -563,10 +563,25 @@ angular.module("prostudyApp").controller(
 								}
 						});		}	
 			}
+			
+			$scope.getPartnerSchoolByInstitute = function() {
+				var PartnerSchoolService = appEndpointSF
+						.getPartnerSchoolService();
+				
+				PartnerSchoolService.getPartnerSchoolByInstitute(
+						$scope.curUser.instituteID).then(
+						function(pSchoolList) {
+
+							$scope.pSchoolList = pSchoolList;
+							
+						});
+			}
+			
 			$scope.waitForServiceLoad = function() {
 				  if (appEndpointSF.is_service_ready) {					  
 					  $scope.getStandardByInstitute();
-						$scope.getUserByInstitute();			  
+						$scope.getUserByInstitute();
+						$scope.getPartnerSchoolByInstitute();		  
 				  } 
 				  else {
 				   $log.debug("Services Not Loaded, watiting...");

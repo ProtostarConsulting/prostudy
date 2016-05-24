@@ -5,8 +5,9 @@ angular.module("prostudyApp")
 				$log, objectFactory, appEndpointSF, tableTestDataFactory,$state,
 				appEndpointSF,$stateParams) {
 			
-			$scope.currStudEmailId = $stateParams.currstud;			
-		
+			$scope.stud = $stateParams.currstud;			
+			$log.debug("$scope.stud"+$scope.stud);
+				
 			$scope.curUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
 			
@@ -106,7 +107,7 @@ angular.module("prostudyApp")
 
 			};
 			
-			$scope.getUserByEmailID = function() {
+		/*	$scope.getUserByEmailID = function() {
 
 				var UserService = appEndpointSF.getUserService();
 				
@@ -115,7 +116,7 @@ angular.module("prostudyApp")
 							$scope.stud = currstud;	
 							$log.debug("$scope.stud "+$scope.stud );
 						});
-			}	
+			}*/	
 			
 
 			$scope.tempStudSub = {					
@@ -157,7 +158,7 @@ angular.module("prostudyApp")
 			}
 			$scope.waitForServiceLoad = function() {
 				  if (appEndpointSF.is_service_ready) {					  
-					  $scope.getUserByEmailID();
+				//	  $scope.getUserByEmailID();
 						$scope.getStandardByInstitute();				  
 				  } 
 				  else {

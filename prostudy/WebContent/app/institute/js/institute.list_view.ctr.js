@@ -3,6 +3,9 @@ angular.module("prostudyApp").controller(
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, $q, $sce, tableTestDataFactory, appEndpointSF, $state,
 				$filter, $stateParams, objectFactory) {
+			
+			$scope.curUser = appEndpointSF.getLocalUserService()
+			.getLoggedinUser();
 
 			$scope.selectedInstituteID = $stateParams.selectedInstituteID;			
 		
@@ -164,9 +167,9 @@ angular.module("prostudyApp").controller(
 			$scope.tempStudent.instituteID=$scope.selectedInstituteID;
 			
 			UserService.addUser($scope.tempStudent).then(function(msgBean) {
-				$scope.email_id=msgBean.email_id;
+			
 				$scope.showStudentSavedToast();
-				$state.go("institute.studFillbasics", {currstud:$scope.email_id,currentInstID:$scope.selectedInstituteID});
+				$state.go("institute.studFillbasics", {currstud:msgBean,currentInstID:$scope.selectedInstituteID});
 		});
 		
 
@@ -495,10 +498,26 @@ angular.module("prostudyApp").controller(
 								}
 						});		}	
 			}
+			
+
+			$scope.getPartnerSchoolByInstitute = function() {
+				var PartnerSchoolService = appEndpointSF
+						.getPartnerSchoolService();
+				
+				PartnerSchoolService.getPartnerSchoolByInstitute(
+						$scope.curUser.instituteID).then(
+						function(pSchoolList) {
+
+							$scope.pSchoolList = pSchoolList;
+							
+						});
+			}
+			
 			$scope.waitForServiceLoad = function() {
 				  if (appEndpointSF.is_service_ready) {					  
 					  $scope.getStandardByInstitute();
 						$scope.getUserByInstitute();
+						$scope.getPartnerSchoolByInstitute();
 				  } 
 				  else {
 				   $log.debug("Services Not Loaded, watiting...");
