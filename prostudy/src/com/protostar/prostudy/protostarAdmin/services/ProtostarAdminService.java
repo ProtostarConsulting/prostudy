@@ -70,25 +70,36 @@ public class ProtostarAdminService {
 
 			ofy().save().entity(instituteEntity).now();
 
-			UserEntity userEntity = new UserEntity();
-			userEntity.setInstituteID(instituteEntity.getID());
-			userEntity.setEmail_id("ganesh.lawande@protostar.co.in");
-			userEntity.setFirstName("Ganesh");
-			userEntity.setLastName("Lawande");
-			userEntity.setIsGoogleUser(true);
-			userEntity.setAuthority(Arrays.asList("admin"));
-			ofy().save().entity(userEntity).now();
-
-			// ------------------------------
-
 			UserEntity userEntity1 = new UserEntity();
 			userEntity1.setInstituteID(instituteEntity.getID());
-			userEntity1.setEmail_id("aniketbhalsing1@gmail.com");
-			userEntity1.setFirstName("Aniket");
-			userEntity1.setLastName("Bhalsing");
+			userEntity1.setEmail_id("ganesh.lawande@protostar.co.in");
+			userEntity1.setFirstName("Ganesh");
+			userEntity1.setLastName("Lawande");
 			userEntity1.setIsGoogleUser(true);
 			userEntity1.setAuthority(Arrays.asList("admin"));
 			ofy().save().entity(userEntity1).now();
+
+			// ------------------------------
+
+			UserEntity userEntity2 = new UserEntity();
+			userEntity2.setInstituteID(instituteEntity.getID());
+			userEntity2.setEmail_id("aniketbhalsing1@gmail.com");
+			userEntity2.setFirstName("Aniket");
+			userEntity2.setLastName("Bhalsing");
+			userEntity2.setIsGoogleUser(true);
+			userEntity2.setAuthority(Arrays.asList("admin"));
+			ofy().save().entity(userEntity2).now();
+			
+			// ------------------------------
+
+			UserEntity userEntity3 = new UserEntity();
+			userEntity3.setInstituteID(instituteEntity.getID());
+			userEntity3.setEmail_id("ashvinigokale@gmail.com");
+			userEntity3.setFirstName("Ashvini");
+			userEntity3.setLastName("Gokale");
+			userEntity3.setIsGoogleUser(true);
+			userEntity3.setAuthority(Arrays.asList("admin"));
+			ofy().save().entity(userEntity3).now();			
 		} 
 		catch (Exception e) {
 			// TODO Auto-generated catch block
