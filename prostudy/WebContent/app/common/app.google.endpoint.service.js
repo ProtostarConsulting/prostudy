@@ -217,10 +217,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
-	}
-	
-	
-	
+	}	
 	
 	// end of UserService
 	/*------------------------------------------------------------------------------------------------------*/	
@@ -421,6 +418,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	// end of SubjectService
 	/*------------------------------------------------------------------------------------------------------*/	
 	// start of StudSubService
+	
 	var StudSubService = {};
 	serviceFactory.getStudSubService = function() {
 		return StudSubService;
@@ -495,11 +493,10 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 
-	// End of StudSubService
-	
+	// End of StudSubService	
 	/*------------------------------------------------------------------------------------------------------*/	
-	
 	// start of AttendanceService
+	
 	var AttendanceService = {};
 
 	serviceFactory.getAttendanceService = function() {
@@ -619,10 +616,11 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	} 
-	// end of ChapterService
-	/*------------------------------------------------------------------------------------------------------*/
 	
+	// end of ChapterService
+	/*------------------------------------------------------------------------------------------------------*/	
 	// start of BookService
+	
 	var BookService = {};
 
 	serviceFactory.getBookService = function() {
@@ -1084,6 +1082,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 
 	InstituteService.getInstituteById = function(selectedInstituteId) {
 		var deferred = $q.defer();
+		$log.debug("selectedInstituteId...."+selectedInstituteId);
 		gapi.client.instituteService.getInstituteById({
 			'id' : selectedInstituteId
 		}).execute(function(resp) {
@@ -1183,7 +1182,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	}
 
 	// End of QuestionService
-
+	/*------------------------------------------------------------------------------------------------------*/
 	// start of StudentService
 	var StudentService = {};
 
@@ -1227,7 +1226,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	}
 
 	// End of StudentService
-
+	/*------------------------------------------------------------------------------------------------------*/
 	// start of PaymentService
 	var PaymentService = {};
 
@@ -1290,10 +1289,11 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 
+	// End of PaymentService
+	/*------------------------------------------------------------------------------------------------------*/
+	// End of PartnerSchoolService
 	
-/*	=================================================================================*/
-		
-		var PartnerSchoolService = {};
+	var PartnerSchoolService = {};
 
 	serviceFactory.getPartnerSchoolService = function() {
 		return PartnerSchoolService;
@@ -1303,7 +1303,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		var deferred = $q.defer();
 		gapi.client.partnerSchoolService.addPartnerSchool(partnerSchool).execute(
 				function(resp) {
-					$log.debug("resp :" + angular.toJson(resp));
+					
 					deferred.resolve(resp);
 				});
 		return deferred.promise;
@@ -1315,7 +1315,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 			'instituteID' : instituteID
 		}).execute(function(resp) {
 			deferred.resolve(resp.items);
-			$log.debug("resp getPartnerSchoolByInstitute :" + angular.toJson(resp.result));
+			
 		});
 		return deferred.promise;
 	}
@@ -1326,7 +1326,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 			'id' : id
 		}).execute(function(resp) {
 			deferred.resolve(resp);
-			$log.debug("resp getPartnerSchoolByInstitute :" + angular.toJson(resp.result));
+			
 		});
 		return deferred.promise;
 	}
@@ -1344,11 +1344,12 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
+		
+	//End of PartnerSchoolService
 	
+	/*------------------------------------------------------------------------------------------------------*/
+	//Start of protostarAdminService
 	
-	
-	// --------------------pro adminservice---------------------
-
 	var protostarAdminService = {};
 	serviceFactory.getProtostarAdminService = function() {
 		return protostarAdminService;
@@ -1420,10 +1421,11 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
+	//End of protostarAdminService
 
-
-	// --------------------pro adminservice---------------------
-
+	/*------------------------------------------------------------------------------------------------------*/
+	//Start of assignExamService
+	
 	var assignExamService = {};
 	serviceFactory.getAssignExamService = function() {
 		return assignExamService;
@@ -1449,6 +1451,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
+	//End of assignExamService
 	
 	assignExamService.getExamOfStudent = function(selectedExam) {
 		var deferred = $q.defer();
