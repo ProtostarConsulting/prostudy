@@ -32,13 +32,13 @@
   </listener>
   <servlet>
     <description></description>
-    <display-name>UploadServlet</display-name>
-    <servlet-name>UploadServlet</servlet-name>
-    <servlet-class>com.protostar.billingnstock.document.UploadServlet</servlet-class>
+    <display-name>UploadLogo</display-name>
+    <servlet-name>UploadLogo</servlet-name>
+    <servlet-class>com.protostar.billingnstock.document.UploadLogo</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>UploadServlet</servlet-name>
-    <url-pattern>/UploadServlet</url-pattern>
+    <servlet-name>UploadLogo</servlet-name>
+    <url-pattern>/UploadLogo</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -52,22 +52,52 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>UplodeFooter</display-name>
-    <servlet-name>UplodeFooter</servlet-name>
-    <servlet-class>com.protostar.billingnstock.document.UplodeFooter</servlet-class>
+    <display-name>UploadFooter</display-name>
+    <servlet-name>UploadFooter</servlet-name>
+    <servlet-class>com.protostar.billingnstock.document.UploadFooter</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>UplodeFooter</servlet-name>
-    <url-pattern>/UplodeFooter</url-pattern>
+    <servlet-name>UploadFooter</servlet-name>
+    <url-pattern>/UploadFooter</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>UplodeExcelSheet</display-name>
-    <servlet-name>UplodeExcelSheet</servlet-name>
-    <servlet-class>com.protostar.billingnstock.document.UplodeExcelSheet</servlet-class>
+    <display-name>UploadExcelSheetAddUsers</display-name>
+    <servlet-name>UploadExcelSheetAddUsers</servlet-name>
+    <servlet-class>com.protostar.billingnstock.document.UploadExcelSheetAddUsers</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>UplodeExcelSheet</servlet-name>
-    <url-pattern>/UplodeExcelSheet</url-pattern>
+    <servlet-name>UploadExcelSheetAddUsers</servlet-name>
+    <url-pattern>/UploadExcelSheetAddUsers</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ExcelStockUpload</display-name>
+    <servlet-name>ExcelStockUpload</servlet-name>
+    <servlet-class>com.protostar.billingnstock.document.ExcelStockUpload</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExcelStockUpload</servlet-name>
+    <url-pattern>/ExcelStockUpload</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ExcelCustomerUpload</display-name>
+    <servlet-name>ExcelCustomerUpload</servlet-name>
+    <servlet-class>com.protostar.billingnstock.document.ExcelCustomerUpload</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExcelCustomerUpload</servlet-name>
+    <url-pattern>/ExcelCustomerUpload</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ExcelAccountsUpload</display-name>
+    <servlet-name>ExcelAccountsUpload</servlet-name>
+    <servlet-class>com.protostar.billingnstock.document.ExcelAccountsUpload</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExcelAccountsUpload</servlet-name>
+    <url-pattern>/ExcelAccountsUpload</url-pattern>
   </servlet-mapping>
 </web-app>
