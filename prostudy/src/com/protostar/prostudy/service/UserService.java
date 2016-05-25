@@ -133,6 +133,14 @@ public class UserService {
 	}
  
 
+	@ApiMethod(name = "getCurrentUserRoleByInstitute", path="getCurrentUserRoleByInstitute")
+	public List<RoleSecEntity> getCurrentUserRoleByInstitute(@Named("instituteID") Long instituteID , @Named("role") String role) {
+		List<RoleSecEntity> moduleList = ofy().load().type(RoleSecEntity.class).filter("role", role).filter("instituteID",instituteID).list();
+		
+		
+		return moduleList;
+	}
+	
 	@ApiMethod(name = "getAuthorityByRole")
 	public List<RoleSecEntity> getAuthorityByRole(@Named("role") String role, @Named("instituteID") Long instituteID) {
 	
