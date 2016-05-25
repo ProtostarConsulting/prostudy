@@ -90,13 +90,16 @@ angular
 											$scope.examStudentList1 = examStudentList.items;
 											$scope.examStudentListArray = $scope.examStudentList1.selectedStudents;
 
-											/*for (var i = 0; i < $scope.examStudentList1.length; i++) {
-
-												$scope.examStudentListArray.push($scope.examStudentList1[i].selectedStudents);
-											}*/
+											/*
+											 * for (var i = 0; i <
+											 * $scope.examStudentList1.length;
+											 * i++) {
+											 * 
+											 * $scope.examStudentListArray.push($scope.examStudentList1[i].selectedStudents); }
+											 */
 										});
 					}
-					
+
 					$scope.examStudentListArray = [];
 					$scope.assignExamToStudentObj = {
 						selectedStudents : '',
@@ -124,9 +127,10 @@ angular
 					}
 
 					$scope.getExamOfStudent = function() {
-						var AssignExamService = appEndpointSF.getAssignExamService();
-						AssignExamService.getExamToStudent($scope.selectedExam).then(
-								function(msgBean) {
+						var AssignExamService = appEndpointSF
+								.getAssignExamService();
+						AssignExamService.getExamToStudent($scope.selectedExam)
+								.then(function(msgBean) {
 
 								});
 						$scope.tempScheduledExam = {};
@@ -151,24 +155,29 @@ angular
 
 					$scope.waitForServiceLoad();
 
-					
 					$scope.assignExamToStudent = function(ev) {
 						var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
 								&& $scope.customFullscreen;
 						$mdDialog
-								.show({
-									controller : DialogController,
-									templateUrl : '/app/scheduledExam/scheduledExam_list.html',
-									parent : angular.element(document.body),
-									targetEvent : ev,
-									clickOutsideToClose : true,
-									fullscreen : useFullScreen,
-									locals : {
-									//	curBusi : $scope.curUser.business,
-									//	warehouse : $scope.warehouse,
-									//	curUser :  $scope.curUser
-									}
-								})
+								.show(
+										{
+											controller : function($scope, scheduledExams){
+								               // $scope.scheduledExams = scheduledExams;
+								            },
+								            controllerAs : DialogController,
+											templateUrl : '/app/scheduledExam/scheduledExam_list.html',
+											parent : angular
+													.element(document.body),
+											targetEvent : ev,
+											clickOutsideToClose : true,
+											fullscreen : useFullScreen,
+											locals : {
+												// curBusi :
+												// $scope.curUser.business,
+												scheduledExams : $scope.scheduledExams,
+												curUser : $scope.curUser
+											}
+										})
 								.then(
 										function(answer) {
 											$scope.status = 'You said the information was "'
@@ -177,36 +186,30 @@ angular
 										function() {
 											$scope.status = 'You cancelled the dialog.';
 										});
-					
+
 					};
 
-					function DialogController($scope, $mdDialog, curBusi,curUser, $state,
-							warehouse) {
-
+					function DialogController($scope, $mdDialog, curUser,
+							$state,scheduledExams) {
+						 $scope.scheduledExams = scheduledExams;
 						$scope.assignExamToStudent = function() {
-	/*						 $scope.warehouse.business = curUser.business;
-							 $scope.warehouse.createdDate = new Date();
-							 $scope.warehouse.modifiedBy = curUser.email_id;
-							var warehouseService = appEndpointSF.getWarehouseManagementService();
+							
+							
+							var ScheduledExamService = appEndpointSF.getScheduledExamService();
+							ScheduledExamService
+									.getScheduledExamByInstitute(curUser.instituteID)
+									.then(
+											function(scheduledExamList) {
+												$scope.scheduledExams = scheduledExamList;
 
-							warehouseService.assignExamToStudent($scope.warehouse).then(
-									function(warehouse) {
-										$scope.selectedWarehouse = warehouse.warehouseName;
-										$log.debug("$scope.selectedWarehouse"+$scope.selectedWarehouse);
-										console.log("####################");
-										$state.reload();
-										//$state.go("stock.stockItemAdd");
-									});
-*/							$scope.hide();
-						}	
+											});
+							$scope.hide();
+						}
 						$scope.hide = function() {
 							$mdDialog.hide();
 						};
 					}
-					
-					
-					
-					
+
 					$scope.openPopUp = function(ev) {
 						var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
 								&& $scope.customFullscreen;
@@ -248,7 +251,7 @@ angular
 							uploadUrlService.getStudentCSVUploadURL().then(
 									function(url) {
 										$scope.StudentCSVUploadURL = url.msg;
-										$scope.bizID = curuser.business.id;
+									//	$scope.bizID = curuser.business.id;
 									});
 
 						}

@@ -64,35 +64,35 @@
 			
 			<md-button ui-sref="home" ng-click="close()" class="md-primary" show-gt-md> Home </md-button> 
 				
-			<md-button ui-sref="partnerSchool" ng-click="close()" class="md-primary" show-gt-md> Partner School </md-button> 
+			<md-button ui-sref="partnerSchool" ng-show="curUser.authority.indexOf('admin') > -1 || modules[0].modules.indexOf('partnerSchool') > -1" ng-click="close()" class="md-primary" show-gt-md> Partner School </md-button> 
 				
-			<md-button ui-sref="setup" ng-click="close()" class="md-primary" show-gt-md>Setup </md-button> 
+			<md-button ui-sref="setup" ng-show="curUser.authority.indexOf('admin') > -1 || modules[0].modules.indexOf('setup') > -1" ng-click="close()" class="md-primary" show-gt-md>Setup </md-button> 
 						
-			<md-button ui-sref="proadmin" ng-click="close()" class="md-primary" show-gt-md> Pro Admin </md-button> 
+			<md-button ui-sref="proadmin" ng-show="curUser.authority.indexOf('admin') > -1 || modules[0].modules.indexOf('proadmin') > -1" ng-click="close()" class="md-primary" show-gt-md> Pro Admin </md-button> 
 		
-			<md-button ui-sref="student" ng-click="close()" class="md-primary" show-gt-md>Student </md-button> 
+			<md-button ui-sref="student" ng-show="curUser.authority.indexOf('admin') > -1 || modules[0].modules.indexOf('student') > -1" ng-click="close()" class="md-primary" show-gt-md>Student </md-button> 
 			
-			<md-button ui-sref="attendance" ng-click="close()" class="md-primary" show-gt-md>Attendance </md-button> 
+			<md-button ui-sref="attendance" ng-show="curUser.authority.indexOf('admin') > -1 || modules[0].modules.indexOf('attendance') > -1" ng-click="close()" class="md-primary" show-gt-md>Attendance </md-button> 
 
-			<md-button ui-sref="exam" ng-click="close()" class="md-primary" show-gt-md> Exam </md-button> 
+			<md-button ui-sref="exam" ng-show="curUser.authority.indexOf('admin') > -1 || modules[0].modules.indexOf('exam') > -1" ng-click="close()" class="md-primary" show-gt-md> Exam </md-button> 
 			
-			<md-button ui-sref="scheduledExam" ng-click="close()" class="md-primary" show-gt-md>Scheduled Exam </md-button> 
+			<md-button ui-sref="scheduledExam" ng-show="curUser.authority.indexOf('admin') > -1 || modules[0].modules.indexOf('scheduledExam') > -1" ng-click="close()" class="md-primary" show-gt-md>Scheduled Exam </md-button> 
 			
-			<md-button ui-sref="book" ng-click="close()" class="md-primary" show-gt-md>Book </md-button> 
+			<md-button ui-sref="book" ng-show="curUser.authority.indexOf('admin') > -1 || modules[0].modules.indexOf('book') > -1" ng-click="close()" class="md-primary" show-gt-md>Book </md-button> 
 			
-			<md-button ui-sref="favourite" ng-click="close()" class="md-primary" show-gt-md>Favourite</md-button> 
+			<md-button ui-sref="favourite" ng-show="curUser.authority.indexOf('admin') > -1 || modules[0].modules.indexOf('favourite') > -1" ng-click="close()" class="md-primary" show-gt-md>Favourite</md-button> 
 			
-			<md-button ui-sref="report" ng-click="close()" class="md-primary" show-gt-md> Report </md-button> 
+			<md-button ui-sref="report" ng-show="curUser.authority.indexOf('admin') > -1 || modules[0].modules.indexOf('report') > -1" ng-click="close()" class="md-primary" show-gt-md> Report </md-button> 
 			
-			<md-button ui-sref="syllabus" ng-click="close()" class="md-primary" show-gt-md>Syllabus</md-button>
+			<md-button ui-sref="syllabus" ng-show="curUser.authority.indexOf('admin') > -1 || modules[0].modules.indexOf('syllabus') > -1" ng-click="close()" class="md-primary" show-gt-md>Syllabus</md-button>
 		
-			<md-button ui-sref="updatemyprofile" ng-click="close()" ng-hide="curUser == null" class="md-primary" show-gt-md>Edit profile </md-button> 
+			<md-button ui-sref="updatemyprofile" ng-show="curUser.authority.indexOf('admin') > -1 || modules[0].modules.indexOf('updatemyprofile') > -1" ng-click="close()" ng-hide="curUser == null" class="md-primary" show-gt-md>Edit profile </md-button> 
 			
-			<md-button ui-sref="certificateMgmt" ng-click="close()"	class="md-primary" show-gt-md> Certificate Management </md-button> 
+			<md-button ui-sref="certificateMgmt" ng-show="curUser.authority.indexOf('admin') > -1 || modules[0].modules.indexOf('certificateMgmt') > -1" ng-click="close()"	class="md-primary" show-gt-md> Certificate Management </md-button> 
 			
-			<md-button ui-sref="admissionMgmt" ng-click="close()" class="md-primary" show-gt-md> Admission Management </md-button> 
+			<md-button ui-sref="admissionMgmt" ng-show="curUser.authority.indexOf('admin') > -1 || modules[0].modules.indexOf('admissionMgmt') > -1" ng-click="close()" class="md-primary" show-gt-md> Admission Management </md-button> 
 			
-			<md-button ui-sref="gfe" ng-show="curUser.role == 'Admin'" ng-click="close()" class="md-primary" show-gt-md>Google Apps Integration</md-button> 
+			<md-button ui-sref="gfe" ng-show="curUser.authority.indexOf('admin') > -1 || modules[0].modules.indexOf('gfe') > -1" ng-click="close()" class="md-primary" show-gt-md>Google Apps Integration</md-button> 
 			
 			</md-content> 
 		

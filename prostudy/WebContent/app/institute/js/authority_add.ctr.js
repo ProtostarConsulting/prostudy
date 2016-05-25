@@ -15,8 +15,8 @@ angular.module("prostudyApp").controller(
 						.position("top").hideDelay(3000));
 			};
 
-			$scope.moduleList = ["Authority", "Exam", "Student", "Syllabus",
-					"Institute", "Attendance", "Book", "Favourite", "Report","Certificate Management","Admission Management"]
+			$scope.moduleList = ["authority","partnerSchool","setup","proadmin", "exam", "student", "syllabus",
+					"institute", "attendance", "book", "favourite", "report","certificate management","admission management"]
 
 			$scope.toggleSelection = function toggleSelection(index) {
 				$scope.selected[index] = !$scope.selected[index];

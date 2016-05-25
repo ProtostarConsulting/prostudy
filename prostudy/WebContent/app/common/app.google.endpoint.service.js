@@ -178,13 +178,23 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	UserService.getRoleSecListByInstitute = function(instituteID) {
 		var deferred = $q.defer();
 		gapi.client.userService.getRoleSecListByInstitute({
-			'instituteID' : instituteID
-		}).execute(function(resp) {
+			'instituteID' : instituteID 
+			}).execute(function(resp) {
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
 	}
 
+	UserService.getCurrentUserRoleByInstitute = function(instituteID, role) {
+		var deferred = $q.defer();
+		gapi.client.userService.getCurrentUserRoleByInstitute({
+			'instituteID' : instituteID  , 'role' : role
+		}).execute(function(resp) {
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
 	UserService.getAuthorityByRole = function(role, instituteID) {
 
 		var deferred = $q.defer();

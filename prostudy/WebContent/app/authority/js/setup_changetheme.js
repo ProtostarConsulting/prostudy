@@ -21,7 +21,11 @@ angular.module("prostudyApp").controller(
 			$scope.showselectedInstitute();
 
 			$scope.checkTheme = function(themeName) {
-				var change = confirm("Are you sure to change theme ?");
+				$scope.changeTheme(themeName);
+			}
+			
+			$scope.updateTheme = function(themeName) {
+				//var change = confirm("Are you sure to change theme ?");
 				if (change == true) {
 					$scope.Institute.theme=themeName;
 					var InstituteService = appEndpointSF.getInstituteService();

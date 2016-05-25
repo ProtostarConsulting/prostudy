@@ -46,13 +46,48 @@ angular
 					$scope.loginClick = function() {
 						$state.go("login");
 					};
-
+/*
 					$scope.$on('customLoginEvent', function(event, args) {
 						$log.debug("In side customLogin on Index Page");
 						$scope.curUser = args.curUser;
 
 					});
+*/
+					$scope.$on('moduleData', function(event, args1) {
+						$log.debug("In side customLogin on Index Page");
+						$scope.modules = args1.modules;
+					});
+					
+					
+					
+					
+					$scope.authModule = [];
+					$scope.$on('customLoginEvent', function(event, args) {
+						$log.debug("In side customLogin on Index Page");
+						$scope.curUser = args.curUser;
+						
+						$scope.getCurrentUserRoleByInstitute();
+						$scope.modules = args.modules;
+					});
+					
+					
+					
+					$scope.getCurrentUserRoleByInstitute = function() {
 
+						$scope.selection = [];
+						$scope.data = {instituteID : '',role:'' };
+						var UserService = appEndpointSF.getUserService();
+
+						UserService.getCurrentUserRoleByInstitute(
+								$scope.curUser.instituteID,$scope.curUser.role).then(
+								function(modules) {
+									$scope.modules = modules;
+									console.log("$scope.modules==ROLE=="+$scope.modules);
+									$scope.$emit('moduleData', { modules:$scope.modules });
+								});
+
+					}
+					
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
 

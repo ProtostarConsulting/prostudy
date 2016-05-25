@@ -89,8 +89,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'authorityViewCtr'
 	}).state('setup.changeTheme', {
 		url : "/changeTheme/:currentInstID",
-		templateUrl : '/app/authority/setup_changetheme.html',
-		controller : 'changeThemeCtr'
+		templateUrl : '/app/setup/setup_changetheme.html',
+		controller : 'changeThemeCtr1'
 	}).state('setup.instituteView', {
 		url : "/instituteView/:currentInstID",
 		templateUrl : '/app/institute/institute_view.html',
