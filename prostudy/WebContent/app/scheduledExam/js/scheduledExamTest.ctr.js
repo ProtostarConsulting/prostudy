@@ -20,11 +20,11 @@ angular
 					
 					
 
-					$scope.counter = 200;
+					$scope.counter = 20;
 					$scope.startTime = null;
 					$scope.endTime = null;
 					$scope.examResults;
-					$scope.selectedID;
+				
 
 					$scope.currentPage = 0;
 					$scope.totalPages = 0;
@@ -42,6 +42,8 @@ angular
 						if ($scope.counter === 0) {
 							$scope.$broadcast('timer-stopped', 0);
 							$timeout.cancel(mytimeout);
+							$scope.checkAnswer();
+							$scope.addScheduledExamResult();
 
 							return;
 
@@ -64,10 +66,13 @@ angular
 						$timeout.cancel(mytimeout);
 						$scope.tempScheduledExamResult.endTime = new Date();
 						//$scope.tempScheduledExamResult.endTime = $filter('date')(new Date(), 'hh:mm:ss a');
+						
+							
 					};
 
 					$scope.$on('timer-stopped', function(event, remaining) {
 						if (remaining === 0) {
+							
 							console.log('your time ran out!');
 
 						}
@@ -114,11 +119,8 @@ angular
 							if ($scope.userAnsList[i].userOption == $scope.Test.listOfQuestion[i].correctAns) {
 								$scope.tempScheduledExamResult.score++;
 							}
-
 						}
-						$scope.stopTimer();
-					//	$scope.addScheduledExamResult();
-											
+						$scope.stopTimer();													
 
 					}
 
@@ -261,22 +263,7 @@ angular
 					$scope.selection = [];
 					$scope.userAns = [];
 
-			/*		$scope.getScheduledExamResultbyEmail = function() {
-
-						var ScheduledExamResultService = appEndpointSF
-								.getScheduledExamResultService();
-
-						ScheduledExamResultService
-								.getScheduledExamResultbyEmail(
-										$scope.curUser.email_id)
-								.then(
-										function(practiceExamResultList) {
-
-											$scope.examResults = practiceExamResultList;
-											$log.debug("$$$$$$$$$$$$$$$$$$$$$" +angular.toJson($scope.examResults));
-										});
-					}
-*/
+	
 					$scope.tempScheduledExamResult = {
 
 						ID : "",
@@ -299,7 +286,7 @@ angular
 						$scope.curUser.selectedExam=$scope.selectedExamId;
 						var UserService = appEndpointSF.getUserService();
 						UserService.updateUser($scope.curUser).then(function(msgBean) {
-							$log.debug("User given scheduled Exam :"+ angular.toJson($scope.curUser));
+						
 						});
 
 					}
@@ -314,23 +301,13 @@ angular
 						ScheduledExamResultService.addScheduledExamResult(
 								$scope.tempScheduledExamResult).then(
 								function(msgBean) {
-									$scope.selectedID = msgBean.id;
-									$log.debug("$scope.selectedID :"
-											+ $scope.selectedID);
-									$log.debug("$scope.Test.id :"
-											+ $scope.Test.id);
 									$scope.updateUser();
 									
-									$state.go('scheduledExam.userQuesAnsView', {
-										selectedExamId : $scope.Test.id,
-										selectedResultId : $scope.selectedID
-									});
+								$state.go('scheduledExam.userQuesAnsView', {selectedExamId : $scope.Test.id,selectedEmailId: $scope.curUser.email_id});
 									$scope.showSavedToast();
 
 								});
-
-
-					}
+						}
 					
 					
 					 $scope.showConfirm = function(ev) {
@@ -341,12 +318,10 @@ angular
 						          .targetEvent(ev)
 						          .ok('YES')
 						          .cancel('NO');
-						    $mdDialog.show(confirm).then(function() {
+						    $mdDialog.show(confirm).then(function() {					    	
 						    	
-						    	
-						    	$scope.addScheduledExamResult();
-						    	
-						    			$state.go('scheduledExam.userQuesAnsView', {selectedExamId : $scope.Test.id, selectedResultId : $scope.selectedID});
+						    	$scope.addScheduledExamResult();						    	
+						    			
 						    }, function() {
 						      
 						    });
@@ -356,8 +331,7 @@ angular
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
 
-							$scope.getScheduledExamByInstitute();
-							//$scope.getScheduledExamResultbyEmail();
+							$scope.getScheduledExamByInstitute();						
 							$scope.showselectedExam();
 							
 						} else {

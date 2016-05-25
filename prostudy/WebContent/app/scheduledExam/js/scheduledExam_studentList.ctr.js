@@ -1,12 +1,10 @@
 angular.module("prostudyApp").controller(
 		"scheduledExamStudentListCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,$stateParams,
-				$log, objectFactory, appEndpointSF) {
-
-			$log.debug("Inside scheduledExamStudentListCtr");
+				$log, objectFactory, appEndpointSF) {			
 
 			$scope.selectedExamId = $stateParams.selectedExamId;
-			$log.debug("$scope.selectedExamId : "+$scope.selectedExamId);
+			
 			$scope.getStudentsByScheduledExamID = function() {
 
 				var UserService = appEndpointSF.getUserService();
@@ -14,10 +12,22 @@ angular.module("prostudyApp").controller(
 						.then(
 								function(studentList) {
 									$scope.scheduledExamStudentList = studentList;
-									$log.debug("Inside $scope.scheduledExamStudentList"+angular.toJson($scope.scheduledExamStudentList));
+									
 								});
 			}
+						
 			
-			$scope.getStudentsByScheduledExamID();
+			$scope.waitForServiceLoad = function() {
+				if (appEndpointSF.is_service_ready) {
+
+					$scope.getStudentsByScheduledExamID();
+					
+				} else {
+					$timeout($scope.waitForServiceLoad, 1000);
+				}
+			}
+
+
+			$scope.waitForServiceLoad();
 
 		});

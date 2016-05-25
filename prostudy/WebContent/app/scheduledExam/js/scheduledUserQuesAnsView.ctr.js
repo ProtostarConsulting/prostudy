@@ -4,10 +4,7 @@ angular
 				"scheduledUserQuesAnsViewCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $q, $sce, tableTestDataFactory,
-						appEndpointSF, $state, $filter, $stateParams) {
-
-
-					$scope.selectedResultId = $stateParams.selectedResultId;
+						appEndpointSF, $state, $filter, $stateParams) {				
 				
 					$scope.selectedExamId = $stateParams.selectedExamId;
 					$scope.selectedEmailId = $stateParams.selectedEmailId;
@@ -56,42 +53,54 @@ angular
 											}
 
 										});
-
 					}
 
-					$scope.getScheduledExamResultbyID = function() {
+			
+					$scope.getScheduledExamResultbyEmail = function() {
 
 						var ScheduledExamResultService = appEndpointSF
 								.getScheduledExamResultService();
-
-						ScheduledExamResultService
-								.getScheduledExamResultbyID(
-										$scope.selectedResultId)
-								.then(
-										function(scheduledExamResultList) {
-
-											$scope.examResults = scheduledExamResultList;											
-											$scope.answeredLength = $scope.examResults.userAns.length;											
-
-										});
-					}
-				/*	$scope.getScheduledExamResultbyEmail = function() {
-
-						var ScheduledExamResultService = appEndpointSF
-								.getScheduledExamResultService();
-
+							
 						ScheduledExamResultService
 								.getScheduledExamResultbyEmail(	$scope.selectedEmailId)
 								.then(
 										function(scheduledExamResultList) {
-
-											$scope.examResults = scheduledExamResultList;
-											$log.debug("$$$$$$$$$$$$$$$$$$$$$" +angular.toJson($scope.examResults));
+											for(var i=0 ;i<scheduledExamResultList.length;i++)
+												{
+												if(scheduledExamResultList[i].testID==$scope.selectedExamId)
+													{
+													$scope.examResults = scheduledExamResultList[i];
+													$scope.answeredLength = $scope.examResults.userAns.length;	
+													
+												}
+												}
+											
 										});
-					}*/
+					}
+					$scope.getScheduledExamById=function(){
+						
+					var ScheduledExamService = appEndpointSF.getScheduledExamService();
+
+					ScheduledExamService.getScheduledExamById($scope.selectedExamId).then(
+									function(ScheduledTest) {
+										$scope.ScheduledTest = ScheduledTest;
+									});
+						}
 					
-					//$scope.getScheduledExamResultbyEmail();
-					$scope.getScheduledExamResultbyID();
+
+					$scope.getStudent = function() {
+
+						var UserService = appEndpointSF.getUserService();
+						UserService.getUserByEmailID($scope.selectedEmailId).then(
+								function(student) {
+									$scope.student = student;									
+								});
+					}
+					$scope.getStudent();
+					
+					$scope.getScheduledExamResultbyEmail();
+					$scope.getScheduledExamById();
+					$scope.getStudent();
 					$scope.showselectedExam();
 
 					$scope.cancelButton = function() {						
