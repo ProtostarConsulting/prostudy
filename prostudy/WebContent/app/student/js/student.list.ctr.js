@@ -103,7 +103,7 @@ angular
 						selectedExam : ''
 					}
 
-					$scope.selected = "";
+					$scope.selected = [];
 					$scope.selectedExam = "";
 
 					$scope.assignExamToStudent = function() {
