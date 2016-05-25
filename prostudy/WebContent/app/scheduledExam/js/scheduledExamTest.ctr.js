@@ -293,6 +293,17 @@ angular
 						test : ""
 
 					}
+					
+					
+					$scope.updateUser = function() {	
+						$scope.curUser.selectedExam=$scope.selectedExamId;
+						var UserService = appEndpointSF.getUserService();
+						UserService.updateUser($scope.curUser).then(function(msgBean) {
+							$log.debug("User given scheduled Exam :"+ angular.toJson($scope.curUser));
+						});
+
+					}
+
 
 					$scope.addScheduledExamResult = function() {
 
@@ -308,6 +319,8 @@ angular
 											+ $scope.selectedID);
 									$log.debug("$scope.Test.id :"
 											+ $scope.Test.id);
+									$scope.updateUser();
+									
 									$state.go('scheduledExam.userQuesAnsView', {
 										selectedExamId : $scope.Test.id,
 										selectedResultId : $scope.selectedID

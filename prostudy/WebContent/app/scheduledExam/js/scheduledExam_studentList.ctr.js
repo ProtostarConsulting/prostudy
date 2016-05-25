@@ -10,11 +10,11 @@ angular.module("prostudyApp").controller(
 			$scope.getStudentsByScheduledExamID = function() {
 
 				var UserService = appEndpointSF.getUserService();
-				UserService.getStudentsByScheduledExamID(5070947627302912)
+				UserService.getStudentsByScheduledExamID($scope.selectedExamId)
 						.then(
 								function(studentList) {
 									$scope.scheduledExamStudentList = studentList;
-																	//$log.debug("Inside $scope.scheduledExamStudentList"+angular.toJson($scope.scheduledExamStudentList));
+									$log.debug("Inside $scope.scheduledExamStudentList"+angular.toJson($scope.scheduledExamStudentList));
 								});
 			}
 			
