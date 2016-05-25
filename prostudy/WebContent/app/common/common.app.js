@@ -771,9 +771,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			selectedQuestionId : null,
 			addFlag : null,
 			editFlag : null
-		}	
-
-	
+		}		
 	}).state('scheduledExam.list', {
 		url : "/scheduledexamlist",
 		templateUrl : '/app/scheduledExam/scheduledExam_list.html',
@@ -794,11 +792,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/userQuesAnsView",
 		templateUrl : '/app/scheduledExam/scheduledUserQuesAns_view.html',
 		controller : 'scheduledUserQuesAnsViewCtr',
-		params : {
-			
+		params : {			
 			selectedExamId:null,
-			selectedEmailId:null,
-			selectedResultId:null
+			selectedEmailId:null			
 		}	
 		
 	})
@@ -806,15 +802,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/scheduledExamResultView/:selectedStudEmail",
 		templateUrl : '/app/scheduledExam/schduledExamResult_view.html',
 		controller : 'scheduledExamResultCtr'
-	})
-
-	
+	})	
 	.state('initsetup', {
 		url : "/initsetup",
 		templateUrl : '/app/Initsetup/initsetup.html',
 		controller : 'initsetup',
-	})
-	
+	})	
 	.state('proadmin', {
 		url : "/proadmin",
 		templateUrl : '/app/proadmin/proadmin_module.html',
@@ -830,7 +823,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/institute/institute_list.html',
 		controller : 'instituteListCtr'
 	})
-
 	.state('scheduledExam.resultlist', {
 		url : "/resultlist/:selectedExamId",
 		templateUrl : '/app/scheduledExam/schduledExamResult_list.html',
@@ -843,9 +835,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	})
 	
 });
-
-
-
 
 app.filter('unique', function() {
 	return function(input, key) {
