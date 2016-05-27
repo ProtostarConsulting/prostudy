@@ -35,23 +35,22 @@ public class UserEntity {
 	@Index
 	private Long instituteID;
 	private String schoolName;
+	private String status = "active";
 	
 	private List<SelectedStudents> selectedStudents;
 	@Index
 	private long selectedExam;
 
-/*	Ref<InstituteEntity> instituteEntity;
-	
 
-	public InstituteEntity getInstituteEntity() {
-		return instituteEntity.get();
+	
+	public String getStatus() {
+		return status;
 	}
 
-	public void setInstituteEntity(InstituteEntity instituteEntity) {
-		this.instituteEntity = Ref.create(instituteEntity);
+	public void setStatus(String status) {
+		this.status = status;
 	}
-*/
-	
+
 	public List<String> getAuthority() {
 		return authority;
 	}

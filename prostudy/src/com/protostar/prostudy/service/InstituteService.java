@@ -11,6 +11,7 @@ import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
 import com.protostar.prostudy.entity.BookEntity;
 import com.protostar.prostudy.entity.InstituteEntity;
+import com.protostar.prostudy.entity.UserEntity;
 
 @Api(name = "instituteService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
 public class InstituteService {
@@ -46,6 +47,19 @@ public class InstituteService {
 		
 	}
 
+	@ApiMethod(name = "getInstituteByCurrentUser", path="getInstituteByCurrentUser")
+	public InstituteEntity getInstituteByCurrentUser(@Named("id") Long id) {
+		System.out.println("Inside getInstituteById "+id);
+		InstituteEntity selected = ofy().load().type(InstituteEntity.class).id(id).now();
+		return selected;
+	}
 	
+
+	@ApiMethod(name = "getInstituteUsers", path="getInstituteUsers")
+	public List<UserEntity> getInstituteUsers(@Named("id") Long instituteID) {
+		System.out.println("Inside getInstituteById "+instituteID);
+		List<UserEntity> users = (List<UserEntity>) ofy().load().type(UserEntity.class).filter("instituteID",instituteID).list();
+		return users;
+	}
 	
 }

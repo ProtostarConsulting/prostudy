@@ -17,6 +17,7 @@ import com.googlecode.objectify.Key;
 import com.protostar.prostudy.entity.RoleSecEntity;
 import com.protostar.prostudy.entity.StudSubEntity;
 import com.protostar.prostudy.entity.UserEntity;
+import com.protostar.prostudy.protostarAdmin.entities.AccountType;
 import com.protostar.prostudy.until.data.ServerMsg;
 import com.protostar.prostudy.until.data.UtilityService;
 
@@ -175,7 +176,18 @@ public class UserService {
 	 }
 	
 	
+	@ApiMethod(name = "updateUserStatus", path="updateUserStatus")
+	public void updateUserStatus(UserEntity userEntity) {
 	
+		ofy().save().entity(userEntity).now();
+
+	}
+	
+	
+	@ApiMethod(name = "getAllAccountTypes")
+	public List<AccountType> getAllAccountTypes() {
+		return ofy().load().type(AccountType.class).list();
+	}
 	
 	
 	@ApiMethod(name = "getLogUploadURL")
