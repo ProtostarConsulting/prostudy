@@ -17,9 +17,8 @@ angular.module("prostudyApp").controller(
 						.hideDelay(3000));
 			};
 
-			$scope.moduleList = [ "Authority", "Exam", "Student",
-					"Institute", "Attendance", "Book", "Favourite", "Report",
-					"Certificate Management", "Admission Management" ]
+			$scope.moduleList = ["authority","partnerSchool","setup","proadmin", "exam", "student", "syllabus",
+			 					"institute", "attendance", "book", "favourite", "report","certificate management","admission management"]
 
 			$scope.toggleSelection = function toggleSelection(index) {
 				$scope.selection[index] = !$scope.selection[index];
@@ -39,7 +38,8 @@ angular.module("prostudyApp").controller(
 						});
 			}
 
-			$scope.UpdateRoleSec = function() {
+			$scope.chkValues ={};
+			$scope.UpdateRoleSec = function(a) {
 				$scope.modules.modules = [];
 				for (var i = 0; i < $scope.selection.length; i++) {
 					if ($scope.selection[i])

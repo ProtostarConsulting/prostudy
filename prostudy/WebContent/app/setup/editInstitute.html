@@ -1,0 +1,100 @@
+<h3 class="md-headline">Edit Institute</h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<div layout="column" layout-padding layout-xs="column">
+
+	<form name="editInstituteForm">
+		<div layout="row" layout-xs="column" flex>
+
+			<md-input-container flex> <label>Institute
+				Name<span style="color: red"
+				ng-show="editInstituteForm.name.$error.required" class="mandatory">*</span>
+			</label> <input name="name" ng-model="tempInstitute.name" ng-required="true">
+			<div ng-messages="editInstituteForm.name.$error"
+				ng-if="editInstituteForm.name.$submitted || editInstituteForm.name.$touched">
+				<div ng-message="required">Please Enter Institute Name.</div>
+			</div>
+			</md-input-container>
+
+			<md-input-container flex> <label>Institute
+				Description<span style="color: red"
+				ng-show="editInstituteForm.desc.$error.required" class="mandatory">*</span>
+			</label> <input name=" desc" ng-model="tempInstitute.desc" ng-required="true">
+			<div ng-messages="editInstituteForm.desc.$error"
+				ng-if="editInstituteForm.desc.$submitted || editInstituteForm.desc.$touched">
+				<div ng-message="required">Please Enter Institute Description.</div>
+			</div>
+			</md-input-container>
+		</div>
+
+
+		<div layout="row" layout-xs="column" flex>
+			<md-input-container flex> <label>Institute
+				Address<span style="color: red"
+				ng-show="editInstituteForm.address.$error.required"
+				class="mandatory">*</span>
+			</label> <input name="address" ng-model="tempInstitute.address"
+				ng-required="true">
+			<div ng-messages="editInstituteForm.address.$error"
+				ng-if="editInstituteForm.address.$submitted || editInstituteForm.address.$touched">
+				<div ng-message="required">Please Enter Institute Address.</div>
+			</div>
+			</md-input-container>
+
+			<md-input-container flex> <label>Contact
+				No<span style="color: red"
+				ng-show="editInstituteForm.phone_no.$error.required"
+				class="mandatory">*</span>
+			</label> <input type="number" name="phone_no"
+				ng-model="tempInstitute.phone_no" ng-minlength="10"
+				ng-maxlength="10" ng-required="true">
+			<div ng-messages="editInstituteForm.phone_no.$error"
+				ng-if="editInstituteForm.phone_no.$submitted || editInstituteForm.phone_no.$touched">
+				<div ng-message="required">Please Enter Institute Phone_no.</div>
+				<span class="help-block"
+					ng-show="((editInstituteForm.phone_no.$error.minlength || editInstituteForm.phone_no.$error.maxlength) && editInstituteForm.phone_no.$dirty) ">Phone
+					Number should be 10 digits</span>
+			</div>
+			</md-input-container>
+		</div>
+
+		
+
+
+		<div flex layout="row">
+			<md-input-container flex> <label>Institute
+			Name</label> <input name="Plan"
+			ng-model="tempInstitute.accounttype.accountName" ng-disabled="true"> </md-input-container>
+		</div>
+
+
+			<md-input-container flex="100"> <md-select
+				ng-model="accountName" name="account"
+				placeholder="Account Name"
+				ng-required="true"> <md-option ng-value="{{account.accountName}}" 
+				ng-repeat="account in accountTypes" ng-selected="account">{{account.accountName}} ( {{account.description}} )</md-option>
+			</md-select>
+			
+			
+
+	</form>
+</div>
+
+<div layout="row" layout-align="center center" layout-xs="column">
+
+	<md-button
+			class="md-raised md-primary" ng-click="updateInstitute()"
+			ng-disabled="editInstituteForm.$invalid">Update </md-button> </a>
+
+	<!-- <md-button class="md-raised md-primary" ng-click="showAlert($event)" ng-disabled="editInstituteForm.$invalid">Add
+	Institute </md-button> -->
+
+	<md-button class="md-raised " ng-click="cancelButton()">Cancel</md-button>
+
+</div>
+
+
+
+
+

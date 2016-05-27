@@ -95,7 +95,34 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/instituteView/:currentInstID",
 		templateUrl : '/app/institute/institute_view.html',
 		controller : 'instituteViewCtr'	
-	}).state('exam', {
+	})
+	
+	.state('setup.addInstituteUser', {
+		url : "/addInstituteUser",
+		templateUrl : '/app/setup/addInstituteUser.html',
+		controller : 'addInstituteUserCtr'	
+	})
+	.state('setup.editInstitute', {
+		url : "/editInstitute",
+		templateUrl : '/app/setup/editInstitute.html',
+		controller : 'editInstituteCtr'	
+	})
+	.state('setup.instituteUsersList', {
+		url : "/instituteUsersList",
+		templateUrl : '/app/setup/InstituteUserList.html',
+		controller : 'instituteUserListCtr'	
+	})
+	.state('setup.changePlan', {
+		url : "/changePlan",
+		templateUrl : '/app/setup/changeplan.html',
+		controller : 'changePlanCtr'	
+	})
+	.state('setup.setLogo', {
+		url : "/setLogo",
+		templateUrl : '/app/setup/setLogo.html',
+		controller : 'setLogoCtr'	
+	})
+	.state('exam', {
 		url : "/exam",
 		templateUrl : '/app/exam/exam_module.html',
 		controller : 'examModuleCtr'

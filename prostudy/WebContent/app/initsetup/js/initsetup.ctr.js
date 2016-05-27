@@ -35,8 +35,9 @@ angular
 																});
 											} else {
 
-												$scope.step1 = "Setup Already  Done";
-
+												$scope.step1 = "Setup Already done go to home";
+												//angular.element('addemp').visibility = false;
+												//document.getElementById('addemp')
 											}
 
 										});

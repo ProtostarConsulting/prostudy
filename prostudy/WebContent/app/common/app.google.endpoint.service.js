@@ -105,6 +105,16 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
+	
+	UserService.getAllAccountTypes = function() {
+		var deferred = $q.defer();
+		gapi.client.userService.getAllAccountTypes().execute(function(resp) {
+			deferred.resolve(resp.result);
+		});
+		return deferred.promise;
+	}
+	
+	
 
 	UserService.getLoggedinUser = function() {
 		var user = $localStorage.loggedinUser;
@@ -228,6 +238,18 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}	
+	
+	
+	UserService.updateUserStatus = function(update) {
+		var deferred = $q.defer();
+		gapi.client.userService.updateUserStatus(update).execute(function() {
+			deferred.resolve({
+				"msg" : "User Status Successfully Updated"
+			});
+		});
+		return deferred.promise;
+	}
+	
 	
 	// end of UserService
 	/*------------------------------------------------------------------------------------------------------*/	
@@ -1102,6 +1124,30 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 
+	InstituteService.getInstituteByCurrentUser = function(id) {
+		var deferred = $q.defer();
+		
+		gapi.client.instituteService.getInstituteByCurrentUser({
+			'id' : id
+		}).execute(function(resp) {
+
+			deferred.resolve(resp.result);
+		});
+		return deferred.promise;
+	}
+	
+	InstituteService.getInstituteUsers = function(instituteID) {
+		var deferred = $q.defer();
+		
+		gapi.client.instituteService.getInstituteUsers({
+			'id' : instituteID
+		}).execute(function(resp) {
+
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
 	InstituteService.editInstitute = function(insti) {
 		var deferred = $q.defer();
 		gapi.client.instituteService.editInstitute(insti).execute(
@@ -1120,6 +1166,8 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 
+	
+	
 	// End of InstituteService
 	/*------------------------------------------------------------------------------------------------------*/
 	// start of QuestionService
