@@ -118,7 +118,7 @@
 			Role<span style="color: red"
 			ng-show="instituteAddUserForm.role.$error.required" class="mandatory">*</span>
 		</label> <md-select name="role" ng-model="tempUser.role" ng-required="true">
-		<md-option ng-value="role" ng-repeat="role in instRoles">{{role}}</md-option>
+		<md-option ng-value="role" ng-repeat="role in instRoles" ng-selected="$first">{{role}}</md-option>
 		</md-select>
 		<div ng-messages="instituteAddUserForm.role.$error"
 			ng-if="instituteAddUserForm.role.$submitted || instituteAddUserForm.role.$touched">
