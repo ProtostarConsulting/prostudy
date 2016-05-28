@@ -69,7 +69,7 @@ angular
 												//$window.location.reload();
 												$scope.$emit('customLoginEvent', { curUser: result.result });
 									            $scope.$broadcast('customLoginEvent', { curUser: result.result });
-												$state.go("home");
+												$state.go("welcome");
 
 											} else {
 

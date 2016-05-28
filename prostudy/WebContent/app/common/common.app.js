@@ -19,45 +19,45 @@ app.config(function($mdThemingProvider) {
 	 * deep-orange, brown, grey, blue-grey
 	 */
 	$mdThemingProvider.theme('default').primaryPalette('light-blue')
-			.accentPalette('pink');
+			.accentPalette('pink').warnPalette('red');;
 	$mdThemingProvider.theme('red').primaryPalette('red').accentPalette(
 			'orange').warnPalette('blue');
 	$mdThemingProvider.theme('pink').primaryPalette('pink').accentPalette(
-			'orange').warnPalette('blue');
+			'orange').warnPalette('red');
 	$mdThemingProvider.theme('purple').primaryPalette('purple').accentPalette(
-			'grey').warnPalette('blue');
+			'grey').warnPalette('red');
 	$mdThemingProvider.theme('deep-purple').primaryPalette('deep-purple').accentPalette(
-	'grey').warnPalette('blue');
+	'grey').warnPalette('red');
 	$mdThemingProvider.theme('indigo').primaryPalette('indigo').accentPalette(
-	'grey').warnPalette('blue');
+	'grey').warnPalette('red');
 	$mdThemingProvider.theme('blue').primaryPalette('blue').accentPalette(
-	'grey').warnPalette('blue');
+	'grey').warnPalette('red');
 	$mdThemingProvider.theme('light-blue').primaryPalette('light-blue').accentPalette(
-	'grey').warnPalette('blue');
+	'grey').warnPalette('red');
 	$mdThemingProvider.theme('cyan').primaryPalette('cyan').accentPalette(
-	'grey').warnPalette('blue');
+	'grey').warnPalette('red');
 	$mdThemingProvider.theme('teal').primaryPalette('teal').accentPalette(
-	'grey').warnPalette('blue');
+	'grey').warnPalette('red');
 	$mdThemingProvider.theme('green').primaryPalette('green').accentPalette(
-	'grey').warnPalette('blue');
+	'grey').warnPalette('red');
 	$mdThemingProvider.theme('light-green').primaryPalette('light-green').accentPalette(
-	'grey').warnPalette('blue');
+	'grey').warnPalette('red');
 	$mdThemingProvider.theme('lime').primaryPalette('lime').accentPalette(
-	'grey').warnPalette('blue');
+	'grey').warnPalette('red');
 	$mdThemingProvider.theme('yellow').primaryPalette('yellow').accentPalette(
-	'grey').warnPalette('blue');
+	'grey').warnPalette('red');
 	$mdThemingProvider.theme('amber').primaryPalette('amber').accentPalette(
-	'grey').warnPalette('blue');
+	'grey').warnPalette('red');
 	$mdThemingProvider.theme('orange').primaryPalette('orange').accentPalette(
-	'grey').warnPalette('blue');
+	'grey').warnPalette('red');
 	$mdThemingProvider.theme('deep-orange').primaryPalette('deep-orange').accentPalette(
-	'grey').warnPalette('blue');
+	'grey').warnPalette('red');
 	$mdThemingProvider.theme('brown').primaryPalette('brown').accentPalette(
-	'grey').warnPalette('blue');
+	'grey').warnPalette('red');
 	$mdThemingProvider.theme('grey').primaryPalette('grey').accentPalette(
-	'grey').warnPalette('blue');
+	'grey').warnPalette('red');
 	$mdThemingProvider.theme('blue-grey').primaryPalette('blue-grey').accentPalette(
-	'grey').warnPalette('blue');
+	'grey').warnPalette('red');
 	
 
 	// This is the absolutely vital part, without this, changes will not cascade
@@ -78,6 +78,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider.state('home', {
 		url : "/home",
 		templateUrl : '/home.html',
+		controller : 'homeCtr'
+	}).state('welcome', {
+		url : "/welcome",
+		templateUrl : '/welcome.html',
 		controller : 'homeCtr'
 	}).state('setup', {
 		url : "/setup",

@@ -23,7 +23,16 @@ angular
 					$scope.changeTheme = function(themeName) {
 						$scope.theme = themeName
 					}
-
+					
+					$scope.loginCheck = function() {
+						var currUser = appEndpointSF.getLocalUserService()
+						.getLoggedinUser();
+						if(currUser == undefined || currUser == null){
+							$state.go("login");
+						}
+					}
+					
+					
 					$scope.showUpdateToast = function() {
 						$mdToast.show($mdToast.simple().content(
 								'Changes Saved Successfully.').position("top")

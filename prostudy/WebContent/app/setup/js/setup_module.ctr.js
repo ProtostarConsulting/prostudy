@@ -7,7 +7,7 @@ angular.module("prostudyApp").controller(
 			$scope.curUser = appEndpointSF.getLocalUserService()
 			.getLoggedinUser();
 			$log.debug("Inside authorityModuleCtr");
-			
+			$scope.loginCheck();
 			
 
 			

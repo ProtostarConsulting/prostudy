@@ -7,6 +7,7 @@ angular.module("prostudyApp").controller(
 			$scope.curUser = appEndpointSF.getLocalUserService()
 			.getLoggedinUser();
 			$log.debug("Inside proAdminModuleCtr");
+			$scope.loginCheck();
 			
 			$scope.check = function()
 			{
