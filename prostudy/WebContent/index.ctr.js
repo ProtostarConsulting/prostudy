@@ -12,19 +12,18 @@ angular
 					$scope.googleUser = 'null';
 					$scope.flag = true;
 					$scope.theme = 'default';
+					$scope.imgUrl = '/img/icons/ic_person_24px.svg';
 
-					
 					$scope.themeList = [ 'default', 'red', 'pink', 'purple',
-											'deep-purple', 'indigo', 'blue', 'light-blue',
-											'cyan', 'teal', 'green', 'light-green', 'lime',
-											'yellow', 'amber', 'orange', 'deep-orange',
-											'brown', 'grey', 'blue-grey' ];
+							'deep-purple', 'indigo', 'blue', 'light-blue',
+							'cyan', 'teal', 'green', 'light-green', 'lime',
+							'yellow', 'amber', 'orange', 'deep-orange',
+							'brown', 'grey', 'blue-grey' ];
 
-									$scope.changeTheme = function(themeName) {
-										$scope.theme = themeName
-									}
+					$scope.changeTheme = function(themeName) {
+						$scope.theme = themeName
+					}
 
-									
 					$scope.showUpdateToast = function() {
 						$mdToast.show($mdToast.simple().content(
 								'Changes Saved Successfully.').position("top")
@@ -46,48 +45,53 @@ angular
 					$scope.loginClick = function() {
 						$state.go("login");
 					};
-/*
-					$scope.$on('customLoginEvent', function(event, args) {
-						$log.debug("In side customLogin on Index Page");
-						$scope.curUser = args.curUser;
-
-					});
-*/
+					/*
+					 * $scope.$on('customLoginEvent', function(event, args) {
+					 * $log.debug("In side customLogin on Index Page");
+					 * $scope.curUser = args.curUser;
+					 * 
+					 * });
+					 */
 					$scope.$on('moduleData', function(event, args1) {
 						$log.debug("In side customLogin on Index Page");
 						$scope.modules = args1.modules;
 					});
-					
-					
-					
-					
+
 					$scope.authModule = [];
 					$scope.$on('customLoginEvent', function(event, args) {
 						$log.debug("In side customLogin on Index Page");
 						$scope.curUser = args.curUser;
-						
+						$scope.getInstituteById();
 						$scope.getCurrentUserRoleByInstitute();
 						$scope.modules = args.modules;
 					});
-					
-					
-					
+
 					$scope.getCurrentUserRoleByInstitute = function() {
 
 						$scope.selection = [];
-						$scope.data = {instituteID : '',role:'' };
+						$scope.data = {
+							instituteID : '',
+							role : ''
+						};
 						var UserService = appEndpointSF.getUserService();
 
-						UserService.getCurrentUserRoleByInstitute(
-								$scope.curUser.instituteID,$scope.curUser.role).then(
-								function(modules) {
-									$scope.modules = modules;
-									console.log("$scope.modules==ROLE=="+$scope.modules);
-									$scope.$emit('moduleData', { modules:$scope.modules });
-								});
+						UserService
+								.getCurrentUserRoleByInstitute(
+										$scope.curUser.instituteID,
+										$scope.curUser.role)
+								.then(
+										function(modules) {
+											$scope.modules = modules;
+											console
+													.log("$scope.modules==ROLE=="
+															+ $scope.modules);
+											$scope.$emit('moduleData', {
+												modules : $scope.modules
+											});
+										});
 
 					}
-					
+
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
 
@@ -102,8 +106,14 @@ angular
 										var profile = authResult
 												.getBasicProfile();
 										$scope.googleUser = profile;
+
 										$scope.imgUrl = $scope.googleUser
 												.getImageUrl();
+
+										if ($scope.imgUrl == null
+												|| $scope.imgUrl == '') {
+											$scope.imgUrl = '/img/icons/ic_person_24px.svg';
+										}
 
 										$log.debug('ID: ' + profile.getId());
 
@@ -133,6 +143,7 @@ angular
 																loggedInUser.institute = [];
 															}
 															$scope.curUser = loggedInUser;
+															$scope.getInstituteById();
 
 															if (loggedInUser.id == undefined) {
 
@@ -197,7 +208,16 @@ angular
 								function(institute) {
 									$scope.institute = institute;
 									$scope.theme = $scope.institute.theme;
+									var currUser = appEndpointSF
+											.getLocalUserService()
+											.getLoggedinUser();
 
+									currUser.instituteObj = institute;
+
+									appEndpointSF.getLocalUserService()
+											.saveLoggedInUser(currUser);
+
+									$scope.initCommonSetting();
 								});
 
 					}
@@ -205,8 +225,8 @@ angular
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
 
-							$scope.getRoleSecListByInstitute();
-							$scope.getInstituteById();
+							/*$scope.getRoleSecListByInstitute();
+							$scope.getInstituteById();*/
 
 						} else {
 							$log.debug("Services Not Loaded, watiting...");
@@ -222,25 +242,29 @@ angular
 							$scope.curUser = null;
 							$scope.curUser = appEndpointSF
 									.getLocalUserService().logout();
-
+							$scope.imgUrl = '/img/icons/ic_person_24px.svg';
 							$state.go("home");
 							return;
 						}
 						$log.debug('signOut2');
 						var auth2 = gapi.auth2.getAuthInstance();
-						auth2.signOut().then(
-								function() {
-									$log.debug('User signed out.');
-									// also remove login details from chrome
-									// browser
+						auth2
+								.signOut()
+								.then(
+										function() {
+											$log.debug('User signed out.');
+											// also remove login details from
+											// chrome
+											// browser
 
-									$scope.googleUser = 'null';
-									$scope.curUser = null;
-									$scope.curUser = appEndpointSF
-											.getLocalUserService().logout();
-
-									$state.go("home");
-								});
+											$scope.googleUser = 'null';
+											$scope.curUser = null;
+											$scope.curUser = appEndpointSF
+													.getLocalUserService()
+													.logout();
+											$scope.imgUrl = '/img/icons/ic_person_24px.svg';
+											$state.go("home");
+										});
 					}
 
 					$scope.$on('event:google-plus-signin-failure', function(
@@ -248,11 +272,11 @@ angular
 						// User has not authorized the G+ App!
 						$log.debug('Not signed into Google Plus.');
 						$scope.googleUser = 'null';
+						// $scope.getInstituteById();
 					});
 
 					// $window.initGAPI = function() {}
 
-					
 					$scope.themeList = [ 'default', 'red', 'pink', 'purple',
 							'deep-purple', 'indigo', 'blue', 'light-blue',
 							'cyan', 'teal', 'green', 'light-green', 'lime',
@@ -264,14 +288,24 @@ angular
 					}
 
 					$scope.initCommonSetting = function() {
-						$scope.theme = $scope.curUser.business.theme;
-						
+						$scope.theme = $scope.curUser.instituteObj.theme;
+						$scope.logoURL = '//' + window.location.host
+								+ '/serve?blob-key='
+								+ $scope.institute.logBlobKey;						
 					}
 
+					/*
+					 * $scope.getInstituteById = function() {
+					 * 
+					 * var instituteService =
+					 * appEndpointSF.getInstituteService();
+					 * instituteService.getInstituteById($scope.curUser.instituteID).then(
+					 * function(institute) { $scope.institute = institute; }); }
+					 */
 					$scope.initGAPI = function() {
 						$log.debug("Came to initGAPI");
 
-					//	$scope.theme = $scope.curUser.theme;
+						// $scope.theme = $scope.curUser.theme;
 						// This will load all server side end points
 						// $scope.loadAppGoogleServices();
 						$timeout(
@@ -292,7 +326,6 @@ angular
 
 					$scope.initGAPI();
 
-					
 					$scope.safeApply = function(fn) {
 						var phase = this.$root.$$phase;
 						if (phase == '$apply' || phase == '$digest') {

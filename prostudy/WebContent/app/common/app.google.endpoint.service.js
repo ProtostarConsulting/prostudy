@@ -1389,19 +1389,6 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 	
-
-	var uploadUrlService = {};
-	serviceFactory.getuploadURLService = function() {
-		return uploadUrlService;
-	}
-	
-	uploadUrlService.getStudentCSVUploadURL = function() {
-		var deferred = $q.defer();
-		gapi.client.uploadUrlService.getStudentCSVUploadURL().execute(function(resp) {
-				deferred.resolve(resp);
-		});
-		return deferred.promise;
-	}
 		
 	//End of PartnerSchoolService
 	
@@ -1522,7 +1509,22 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	}
 	
 /*	========================================================================================*/
-		
+
+	
+	var uploadPathService = {};
+	serviceFactory.getuploadURLService = function() {
+		return uploadPathService;
+	}
+	uploadPathService.getLogUploadURL = function() {
+		var deferred = $q.defer();
+		gapi.client.uploadPathService.getLogUploadURL().execute(function(resp) {
+			$log.debug("getURL at enpoint" + angular.toJson(resp));
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
+	
 	/*
 	 * PaymentService.getPaymentByStudent = function(studId) { var deferred =
 	 * $q.defer(); gapi.client.paymentService.getPaymentByStudent({ 'studId' :

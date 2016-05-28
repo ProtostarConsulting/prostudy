@@ -4,7 +4,7 @@
 	<md-content layout="column">
 	<span class="md-headline">Current Logo</span>
 		<div style="height: 80px; width:120px;  float: left; margin: 3px;  padding: 3px;">
-			<img ng-src="{{logBaseURL}}" class="md-card-image" alt="Compnay Logo" style=" max-width: 100%;  max-height: 100%;" />
+			<img ng-src="{{logoURL}}" class="md-card-image" alt="Compnay Logo" style=" max-width: 100%;  max-height: 100%;" />
 		</div>
 	<form name="imageform" method="post" enctype="multipart/form-data">
 		
@@ -19,18 +19,8 @@
 			<md-button ng-click="uplodeimage()" class="md-raised md-primary"
 				show-gt-md> Submit </md-button>
 		</div>
-		<input type="hidden" name="bizID" id="bizID" value={{bizID}}>
+		<input type="hidden" name="instID" id="instID" value={{instID}}>
 
-
-
-
-		<!-- <div class="dropzone" data-width="960" data-height="540" data-resize="true" data-url="canvas.php" style="width: 100%;">
-  <input type="file" name="thumb" />
-</div> -->
 	</form>
-
-	<div>
-		<!-- This is temp second column -->
-	</div>
 	</md-content>
 </div>
