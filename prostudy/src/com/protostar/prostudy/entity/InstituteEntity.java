@@ -20,7 +20,15 @@ public class InstituteEntity {
 	private String registerDate;
 	private Integer totalUser = 1;
 	private String status="active" ;
-	
+	@Index
+	private String LogBlobKey;
+	public String getLogBlobKey() {
+		return LogBlobKey;
+	}
+
+	public void setLogBlobKey(String logBlobKey) {
+		LogBlobKey = logBlobKey;
+	}
 	Ref<AccountType> accounttype;
 		
 

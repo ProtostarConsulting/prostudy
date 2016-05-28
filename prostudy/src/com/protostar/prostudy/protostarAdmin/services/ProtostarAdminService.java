@@ -43,7 +43,8 @@ public class ProtostarAdminService {
 
 	@ApiMethod(name = "getAccountTypeById")
 	public AccountType getAccountTypeById(@Named("id") Long id) {
-		return ofy().load().type(AccountType.class).id(id).now();
+		 AccountType type = ofy().load().type(AccountType.class).id(id).now();
+		 return type;
 	}
 
 	@ApiMethod(name = "initsetupnext")
