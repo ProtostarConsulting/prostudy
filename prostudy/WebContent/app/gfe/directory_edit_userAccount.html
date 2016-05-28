@@ -1,4 +1,4 @@
-<div ng-show="updating">Please Wait, User Account Updating...</div>
+<div ng-show="updating">Please wait, updating details...</div>
 <div ng-hide="loading">
 
 <h3 class="md-headline">Edit User Account</h3>
@@ -46,7 +46,7 @@
 
 	<div layout="row" layout-align="center center">
 		<md-button class="md-raised md-primary" ng-click="updateUser()" ng-disabled="editUserAccountForm.$invalid">Update User Account </md-button>
-		<md-button class="md-raised " ng-click="cancelButton()">
+		<md-button class="md-raised md-accent" ng-click="cancelButton()">
 			Cancel </md-button>
 
 	</div>

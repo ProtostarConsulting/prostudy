@@ -122,7 +122,7 @@ angular
 					$scope.deleteCourse = function(courseId,ev) {							
 						
 						var confirm = $mdDialog.confirm().title(
-						'Are you sure you want to delete this Course ?').ariaLabel('Lucky day')
+						'Are you sure you want to delete this course?').ariaLabel('Lucky day')
 						.targetEvent(ev).ok('YES').cancel('NO');
 						$mdDialog.show(confirm).then(function() {
 					
@@ -156,7 +156,7 @@ angular
 					$scope.changeCourseState = function(courseState,ev) {
 						
 						var confirm = $mdDialog.confirm().title(
-						'Are you sure you want to change Course State ?').ariaLabel('Lucky day')
+						'Are you sure you want to change course state?').ariaLabel('Lucky day')
 						.targetEvent(ev).ok('YES').cancel('NO');
 						$mdDialog.show(confirm).then(function() {
 					

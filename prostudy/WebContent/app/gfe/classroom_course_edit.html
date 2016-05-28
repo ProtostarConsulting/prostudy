@@ -1,7 +1,7 @@
-<h3 class="md-headline">Edit Course {{tempCourse.name}}</h3>
+<h3 class="md-headline">Edit Course: {{tempCourse.name}}</h3>
 <p>&nbsp;</p>
 
-<div ng-show="updating">Please Wait, Course Updating...</div>
+<div ng-show="updating">Please Wait, ...</div>
 <div ng-hide="loading">
 
 
@@ -16,7 +16,7 @@
 				ng-required="true">
 				<div ng-messages="updateCourseForm.name.$error"
 				ng-if="updateCourseForm.name.$submitted || updateCourseForm.name.$touched">
-				<div ng-message="required">Course Name should Not Empty.</div>				
+				<div ng-message="required">Course Name should not empty.</div>				
 			</div> </md-input-container>
 
 			<md-input-container flex> <label>Section</label>
@@ -65,7 +65,7 @@
 
 	<div layout="row" layout-align="center center">
 		<md-button class="md-raised md-primary" ng-click="updateCourse($event)">Update Course </md-button>
-	<md-button class="md-raised" ng-click="cancelButton()"> Cancel </md-button>
+	<md-button class="md-raised md-accent" ng-click="cancelButton()"> Cancel </md-button>
 	</div> 
 
 </form>

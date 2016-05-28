@@ -1,5 +1,4 @@
 <md-content ng-show="loading">Please wait, course list is loading...</md-content>
-<md-content ng-show="deleting">Please wait, course is deleting...</md-content>
 <md-content ng-hide="loading">
 <md-data-table-toolbar ng-show="!selected.length">
 <h3 class="md-headline">Courses List</h3>
@@ -17,7 +16,7 @@
 	</div>
 	<md-data-table-toolbar class="alternate" ng-show="selected.length">
 	<div>{{selected.length}} {{selected.length > 1 ? 'Courses' :
-		'Course'}} selected</div>
+		'Course'}} selected. {{selected.length>1?' Please select only one course to see action buttons.': ''}}</div>
 	</md-data-table-toolbar>
 	<div>
 		<md-data-table-container>
@@ -63,11 +62,11 @@
 			ng-show="selected[0].courseState=='ARCHIVED'"
 			ng-click="changeCourseState('ACTIVE',$event)">Course ACTIVE </md-button>
 
-		<md-button class="md-raised md-primary"
+		<md-button class="md-raised md-warn"
 			ng-show="selected[0].courseState==='ACTIVE'"
 			ng-click="changeCourseState('ARCHIVED',$event)"> ARCHIVE Course</md-button>
 
-		<md-button class="md-raised md-primary"
+		<md-button class="md-raised md-warn"
 			ng-click="deleteCourse(selected[0].id,$event)"> Delete Course </md-button>
 
 		<md-button class="md-raised md-primary"

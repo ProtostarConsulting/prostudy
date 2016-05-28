@@ -30,7 +30,7 @@ angular
 					$scope.updateCourse = function(ev) {
 						
 						var confirm = $mdDialog.confirm().title(
-						'Are you sure you want to Update this Course ?').ariaLabel('Lucky day')
+						'Are you sure you want to update this course ?').ariaLabel('Lucky day')
 						.targetEvent(ev).ok('YES').cancel('NO');
 				$mdDialog.show(confirm).then(function() {
 					
