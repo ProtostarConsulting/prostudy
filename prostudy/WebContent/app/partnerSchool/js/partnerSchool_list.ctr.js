@@ -6,6 +6,12 @@ angular.module("prostudyApp").controller(
 			$scope.selectedChapterId = $stateParams.selectedChapterId;
 			$scope.chapter = [];
 			
+			$scope.query = {
+			         order: 'name',
+			         limit: 5,
+			         page: 1
+			       };
+			
 			$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content(
 						'Chapter Updated!').position("top").hideDelay(
@@ -14,8 +20,8 @@ angular.module("prostudyApp").controller(
 			
 			$scope.getPartnerSchoolByInstitute = function() {
 
-				var PartnerSchoolService = appEndpointSF.getPartnerSchoolService();
-				PartnerSchoolService.getPartnerSchoolByInstitute(
+				var PartnerService = appEndpointSF.getPartnerSchoolService();
+				PartnerService.getPartnerByInstitute(
 						$scope.curUser.instituteID).then(function(pSchoolList) {
 					$scope.pSchoolList = pSchoolList;
 

@@ -1360,18 +1360,15 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	PartnerSchoolService.addPartnerSchool = function(partnerSchool) {
 		var deferred = $q.defer();
 		gapi.client.partnerSchoolService.addPartnerSchool(partnerSchool).execute(
-				function(resp) {
-					
+				function(resp) {					
 					deferred.resolve(resp);
 				});
 		return deferred.promise;
 	}	
 	
-	PartnerSchoolService.getPartnerSchoolByInstitute = function(instituteID) {
+	PartnerSchoolService.getPartnerByInstitute = function(id) {
 		var deferred = $q.defer();
-		gapi.client.partnerSchoolService.getPartnerSchoolByInstitute({
-			'instituteID' : instituteID
-		}).execute(function(resp) {
+		gapi.client.partnerSchoolService.getPartnerByInstitute({'instituteID' : id}).execute(function(resp) {
 			deferred.resolve(resp.items);
 			
 		});

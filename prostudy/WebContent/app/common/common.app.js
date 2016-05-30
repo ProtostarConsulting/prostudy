@@ -847,6 +847,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	.state('proadmin.instituteAddInfo', {
 		url : "/addInfo",
 		templateUrl : '/app/institute/institute_addInfo.html',
+		/*templateUrl : '/app/institute/institute_addNewInstitute.html',*/
 		controller : 'instituteAddInfoCtr'
 	})
 	.state('proadmin.instituteList', {

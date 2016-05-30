@@ -1,87 +1,152 @@
-<h3 class="md-headline" ng-hide="partnerSchool.id">Add Partner
+
+	<div layout-sm="column" layout-align="start start" flex>
+
+		<md-button class="md-icon-button" aria-label="prev"
+			ng-click="back()"> <md-tooltip> go back </md-tooltip> <md-icon
+			md-svg-icon="img/icons/ic_reply_black_24px.svg"
+			aria-label="Prev Week"></md-icon> </md-button>
+
+	</div>
+<section ng-hide="selectedPSchoolId" layout="row" layout-align="end end" flex>
+		<md-button class="md-raised md-primary" id="resetState"
+			ng-click="resetState()">Add New School</md-button>
+	</section>
+	
+<h3 class="md-headline" ng-hide="selectedPSchoolId">Add Partner
 	School</h3>
 
-<h3 class="md-headline" ng-show="partnerSchool.id">Edit Partner
+<h3 class="md-headline" ng-show="selectedPSchoolId">Edit Partner
 	School</h3>
 <form name="partnerSchoolForm">
-
+	<md-content> <md-tabs md-dynamic-height=""
+		md-border-bottom="" md-selected="selectedIndex"> <md-tab
+		label="School Detail"> <md-content class="md-padding">
 	<div layout="column" layout-xs="column">
 
-		<div layout="row" layout-xs="column">
-			<md-input-container flex> <label> Name <span
-				style="color: red;">*</span>
-			</label> <input ng-model="partnerSchool.schoolName" name="schoolName"
-				ng-required="true" minlength="3">
-
-			<div ng-messages="partnerSchoolForm.schoolName.$error"
-				ng-if="partnerSchoolForm.schoolName.$submitted || partnerSchoolForm.schoolName.$touched">
-				<div ng-message="required">Please Enter School Name</div>
-				<div ng-message="minlength">Please Enter more thar 3 character</div>
+		<div layout="row" layout-xs="column" flex>
+			<!-- <span flex="10"></span> -->
+			<md-input-container flex="30"> <label>School
+				Name<span style="color: red"
+				ng-show="partnerSchoolForm.name.$error.required" class="mandatory">*</span>
+			</label> <input name="name" ng-model="partnerSchool.schoolName"
+				ng-required="true">
+			<div ng-messages="partnerSchoolForm.name.$error"
+				ng-if="partnerSchoolForm.name.$submitted || partnerSchoolForm.name.$touched">
+				<div ng-message="required">Please Enter Institute Name.</div>
 			</div>
 			</md-input-container>
+			<span flex="20"></span>
 
-			<md-input-container flex> <label>Level<span
-				style="color: red" ng-show="partnerSchoolForm.level.$error.required"
-				class="mandatory">*</span></label> <md-select name="level"
-				ng-model="partnerSchool.pSLevel" "
-						ng-required="true">
-			<md-option ng-value="pSLevel"
-				ng-repeat="pSLevel in partnerSchoolLevels">{{pSLevel}}</md-option> </md-select>
-			<div ng-messages="partnerSchoolForm.level.$error"
-				ng-if="partnerSchoolForm.level.$submitted || partnerSchoolForm.level.$touched">
-				<div ng-message="required">Please Select Board.</div>
+			<md-input-container flex="30"> <label>Institute
+				Description<span style="color: red"
+				ng-show="partnerSchoolForm.desc.$error.required" class="mandatory">*</span>
+			</label> <input name=" desc" ng-model="partnerSchool.desc" ng-required="true">
+			<div ng-messages="partnerSchoolForm.desc.$error"
+				ng-if="partnerSchoolForm.desc.$submitted || partnerSchoolForm.desc.$touched">
+				<div ng-message="required">Please Enter Institute Description.</div>
 			</div>
 			</md-input-container>
+			<span flex="10"></span>
 		</div>
 
-		<h3 class="md-subhead">Address</h3>
+		<div layout="row" layout-xs="column" flex>
+			<!-- <span flex="10"></span> -->
+			<md-input-container flex="30"> <label>
+				Form Number <span style="color: red"
+				ng-show="partnerSchoolForm.formNumber.$error.required"
+				class="mandatory">*</span>
+			</label> <input type="number" name="formNumber"
+				ng-model="partnerSchool.formNumber" ng-required="true">
+			<div ng-messages="partnerSchoolForm.formNumber.$error"
+				ng-if="partnerSchoolForm.formNumber.$submitted || partnerSchoolForm.formNumber.$touched">
+				<div ng-message="required">Please Enter form number.</div>
+			</div>
+			</md-input-container>
+			<span flex="20"></span>
+			<md-input-container flex="30"> <label>Category<span
+				style="color: red"
+				ng-show="partnerSchoolForm.category.$error.required"
+				class="mandatory">*</span></label> <md-select name="category" id="category"
+				ng-model="partnerSchool.category" placeholder="-Select Category-"
+				ng-required="true"> <md-option>School &
+			Junior College</md-option> <md-option>Jr. & Sr. College</md-option> <md-option>D.Ed
+			College</md-option> <md-option>Prison</md-option> <md-option>B.Ed
+			College</md-option> <md-option>MBBS</md-option> <md-option>Nurses
+			Course</md-option> <md-option>All</md-option> <md-option>Engineearing</md-option>
+			</md-select>
+			<div ng-messages="partnerSchoolForm.category.$error"
+				ng-if="partnerSchoolForm.category.$submitted || partnerSchoolForm.category.$touched">
+				<div ng-message="required">Please Select Category.</div>
+			</div>
 
+
+			</md-input-container>
+			<span flex="10"></span>
+		</div>
+
+		<div layout="row" layout-xs="column" flex>
+			<!-- <span flex="10"></span> -->
+			<h3 class="md-subhead">Address</h3>
+		</div>
 		<div layout="row" layout-xs="column">
-			<md-input-container flex> <label>Line1 <span
-				style="color: red;">*</span></label> <input name="line1" id="line1"
+			<!-- <span flex="10"></span> -->
+			<md-input-container flex="30"> <label>Line1
+				<span style="color: red;"
+				ng-show="partnerSchoolForm.line1.$error.required">*</span>
+			</label> <input name="line1" id="line1"
 				ng-model="partnerSchool.address.line1" ng-required="true">
 			<div ng-messages="partnerSchoolForm.line1.$error"
 				ng-if="partnerSchoolForm.line1.$submitted || partnerSchoolForm.line1.$touched">
 				<div ng-message="required">Please Enter Address Name.</div>
 			</div>
 			</md-input-container>
-
-			<md-input-container flex> <label>Line2</label> <input
-				name="line2" ng-model="partnerSchool.address.line2"> </md-input-container>
+			<span flex="20"></span>
+			<md-input-container flex="30"> <label>Line2</label>
+			<input name="line2" ng-model="partnerSchool.address.line2"> </md-input-container>
+			<span flex="10"></span>
 		</div>
 		<div layout="row" layout-xs="column">
-			<md-input-container flex> <label>State <span
-				style="color: red;">*</span></label> <input name="state" id="state"
+			<!-- 	<span flex="10"></span> -->
+			<md-input-container flex="30"> <label>State
+				<span style="color: red;"
+				ng-show="partnerSchoolForm.state.$error.required">*</span>
+			</label> <input name="state" id="state"
 				ng-model="partnerSchool.address.state" ng-required="true">
 			<div ng-messages="partnerSchoolForm.state.$error"
 				ng-if="partnerSchoolForm.state.$submitted || partnerSchoolForm.state.$touched">
 				<div ng-message="required">Please Enter State Name.</div>
 			</div>
 			</md-input-container>
-
-			<md-input-container flex> <label>Country</label>
+			<span flex="20"></span>
+			<md-input-container flex="30"> <label>Country</label>
 			<input name="country" ng-model="partnerSchool.address.country">
 			</md-input-container>
-
+			<span flex="10"></span>
 
 		</div>
 		<div layout="row" layout-xs="column">
-			<md-input-container flex> <label>City <span
-				style="color: red;">*</span></label> <input name="city" id="city"
-				ng-model="partnerSchool.address.city" ng-required="true">
+			<!-- <span flex="10"></span> -->
+			<md-input-container flex="30"> <label>City
+				<span style="color: red;"
+				ng-show="partnerSchoolForm.city.$error.required">*</span>
+			</label> <input name="city" id="city" ng-model="partnerSchool.address.city"
+				ng-required="true">
 			<div ng-messages="partnerSchoolForm.city.$error"
 				ng-if="partnerSchoolForm.city.$submitted || partnerSchoolForm.city.$touched">
 				<div ng-message="required">Please Enter City Name.</div>
 			</div>
 			</md-input-container>
-
-			<md-input-container flex> <label>Pin</label> <input
-				name="pin" ng-model="partnerSchool.address.pin"> </md-input-container>
+			<span flex="20"></span>
+			<md-input-container flex="30"> <label>Pin</label>
+			<input name="pin" ng-model="partnerSchool.address.pin"> </md-input-container>
+			<span flex="10"></span>
 		</div>
 
 		<div layout="row" layout-xs="column">
-			<md-input-container flex> <label>
-				Primary Contact <span style="color: red;">*</span>
+			<!-- <span flex="10"></span> -->
+			<md-input-container flex="30"> <label>
+				Primary Contact <span style="color: red;"
+				ng-show="partnerSchoolForm.primaryContact.$error.required">*</span>
 			</label> <input ng-model="partnerSchool.primaryContact" name="primaryContact"
 				ng-required="true" minlength="3">
 
@@ -90,25 +155,224 @@
 				<div ng-message="required">Please Enter Primary Contact</div>
 				<div ng-message="minlength">Please Enter more thar 3 character</div>
 			</div>
+
 			</md-input-container>
+			<span flex="60"></span>
 		</div>
 	</div>
 
+	<section layout="row" layout-sm="column" layout-align="end end">
+		<md-button
+			ng-disabled="partnerSchoolForm.primaryContact.$invalid || partnerSchoolForm.city.$invalid || partnerSchoolForm.name.$invalid
+		|| partnerSchoolForm.desc.$invalid || partnerSchoolForm.formNumber.$invalid || partnerSchoolForm.line1.$invalid || partnerSchoolForm.state.$invalid || partnerSchoolForm.category.$invalid"
+			class="md-raised md-primary" ng-click="addPartnerSchool()">Save
+		& Next</md-button>
+	</section>
+
+	</md-content> </md-tab> <md-tab label="Exam Detail"> <md-content class="md-padding">
 	<div layout="row" layout-xs="column">
-		<section layout="row" layout-sm="column" layout-align="left left">
+		<md-input-container flex="30"> <label>Total
+			Number Of Student <span style="color: red;">*</span>
+		</label> <input name="totalStudent" id="totalStudent"
+			ng-model="examDetail.totalStudent" ng-required="true">
+		<div ng-messages="partnerSchoolForm.totalStudent.$error"
+			ng-if="partnerSchoolForm.totalStudent.$submitted || partnerSchoolForm.totalStudent.$touched">
+			<div ng-message="required">Please Enter Total Number Of
+				Student.</div>
+		</div>
+		</md-input-container>
+
+
+	</div>
+	<div layout="row" layout-xs="column">
+
+		<md-input-container flex="20"> <label>Male
+			<span style="color: red;">*</span>
+		</label> <input name="male" id="male" ng-model="examDetail.male" ng-change="calculateTotal()"
+			ng-required="true">
+		<div ng-messages="partnerSchoolForm.male.$error"
+			ng-if="partnerSchoolForm.male.$submitted || partnerSchoolForm.male.$touched">
+			<div ng-message="required">Please Enter Male Number Of Student.</div>
+		</div>
+		</md-input-container>
+		<span flex="20"></span>
+		<md-input-container flex="20"> <label>Female<span
+			style="color: red;">*</span>
+		</label> <input name="female" id="female" ng-model="examDetail.female" ng-change="calculateTotal()"
+			ng-required="true">
+		<div ng-messages="partnerSchoolForm.female.$error"
+			ng-if="partnerSchoolForm.female.$submitted || partnerSchoolForm.female.$touched">
+			<div ng-message="required">Please Enter female Number Of
+				Student.</div>
+		</div>
+		</md-input-container>
+		<span flex="10"></span>
+		<md-input-container flex="30"> Total=
+		<b>{{examDetail.total}} </b>
+						
+		</md-input-container>
+	</div>
+	<div layout="row" layout-xs="column">
+
+		<h3 class="md-subhead" flex="20">Select Exam Medium</h3>
+		<span flex="10"></span>
+		<md-input-container flex="30">
+		<div ng-repeat="item in languages">
+			<md-checkbox ng-checked="exists(item, selected)"
+				ng-click="toggle(item, selected)"> {{ item }} <span
+				ng-if="exists(item, selected)"> <md-icon
+					md-svg-src="img/icons/ic_done_black_24px.svg"></md-icon></span> </md-checkbox>
+		</div>
+		</md-input-container>
+
+
+		<h3 class="md-subhead">Mode Of Exam OnLine / OffLine</h3>
+		<span flex="10"></span>
+		<md-input-container flex="40"> <md-radio-group
+			ng-model="examDetail.modeOfExam"> <md-radio-button
+			value="OffLine" class="md-primary">OffLine</md-radio-button> <md-radio-button
+			value="OnLine" class="md-primary"> OnLine </md-radio-button> </md-radio-group> </md-input-container>
+
+	</div>
+	<div layout="row" layout-xs="column">
+
+		<h3 class="md-subhead" flex="20">Books Required OnLine / OffLine</h3>
+		<span flex="5"></span>
+		<md-input-container flex="30"> <md-radio-group
+			ng-model="examDetail.bookRequired"> <md-radio-button
+			value="OffLine" class="md-primary">OffLine</md-radio-button> <md-radio-button
+			value="OnLine" class="md-primary"> OnLine </md-radio-button> </md-radio-group>
+		 </md-input-container>
+		
+		
+		<h3 class="md-subhead" >Select Year</h3>
+		<span flex="10"></span>
+		<md-input-container flex="40"> <md-select
+			ng-model="yearOfExam" id="selectedYear"> <md-option
+			ng-value="Year" ng-repeat="Year in Years" ng-selected="$first" >{{Year}}</md-option>
+		</md-select> </md-input-container>
+	</div>
+
+	<section layout="row" layout-sm="column" layout-align="end end">
+		<md-button
+			ng-disabled="partnerSchoolForm.primaryContact.$invalid || partnerSchoolForm.city.$invalid || partnerSchoolForm.name.$invalid
+		|| partnerSchoolForm.desc.$invalid || partnerSchoolForm.formNumber.$invalid || partnerSchoolForm.line1.$invalid || partnerSchoolForm.state.$invalid 
+		|| partnerSchoolForm.category.$invalid || partnerSchoolForm.totalStudent.$invalid || partnerSchoolForm.male.$invalid ||partnerSchoolForm.totalStudent.$invalid 
+		|| partnerSchoolForm.female.$invalid "
+			class="md-raised md-primary" ng-click="addPartnerSchool()">Save
+		& Next</md-button>
+	</section>
+	</md-content> </md-tab> <md-tab label="Contact Detail"> <md-content
+		class="md-padding">
+
+	<div layout="row" layout-xs="column" flex>
+
+		<md-input-container flex="70"> <label>Name
+			of Head Master / Principal <span style="color: red"
+			ng-show="partnerSchoolForm.headMasterName.$error.required"
+			class="mandatory">*</span>
+		</label> <input name="headMasterName" ng-model="contactDetail.headMasterName"
+			ng-required="true">
+		<div ng-messages="partnerSchoolForm.headMasterName.$error"
+			ng-if="partnerSchoolForm.headMasterName.$submitted || partnerSchoolForm.headMasterName.$touched">
+			<div ng-message="required">Please Enter headMaster Name.</div>
+		</div>
+		</md-input-container>
+	</div>
+
+	<div layout="row" layout-xs="column" flex>
+
+		<md-input-container flex="30"> <label>Phone/Mobile
+			No <!-- <span style="color: red"
+			ng-show="partnerSchoolForm.headMasterMobile.$error.required"
+			class="mandatory">*</span> -->
+		</label> <input name="headMasterMobile"
+			ng-model="contactDetail.headMasterMobile">
+		<div ng-messages="partnerSchoolForm.headMasterMobile.$error"
+			ng-if="partnerSchoolForm.headMasterMobile.$submitted || partnerSchoolForm.headMasterMobile.$touched">
+			<div ng-message="required">Please Enter Mobile Number.</div>
+		</div>
+		</md-input-container>
+		<span flex="10"></span>
+		<md-input-container flex="30"> <label>Email
+			Id<!--  <span style="color: red"
+			ng-show="partnerSchoolForm.headMasterEmailId.$error.required"
+			class="mandatory">*</span> -->
+		</label> <input name="headMasterEmailId"
+			ng-model="contactDetail.headMasterEmailId">
+		<div ng-messages="partnerSchoolForm.headMasterEmailId.$error"
+			ng-if="partnerSchoolForm.headMasterEmailId.$submitted || partnerSchoolForm.headMasterEmailId.$touched">
+			<div ng-message="required">Please Enter Email Id Name.</div>
+		</div>
+		</md-input-container>
+		<span flex="10"></span>
+	</div>
+	<div layout="row" layout-xs="column" flex>
+
+		<h3 class="md-subhead">Coordinator Details</h3>
+	</div>
+	<div layout="row" layout-xs="column" flex>
+
+		<md-input-container flex="30"> <label>Coordinator
+			Name <span style="color: red"
+			ng-show="partnerSchoolForm.coordinatorName.$error.required"
+			class="mandatory">*</span>
+		</label> <input name="coordinatorName"
+			ng-model="contactDetail.coordinatorName" ng-required="true">
+		<div ng-messages="partnerSchoolForm.coordinatorName.$error"
+			ng-if="partnerSchoolForm.coordinatorName.$submitted || partnerSchoolForm.coordinatorName.$touched">
+			<div ng-message="required">Please Enter Coordinator Name.</div>
+		</div>
+		</md-input-container>
+		<span flex="10"></span>
+		<md-input-container flex="20"> <label>Phone/Mobile
+			No <!-- <span style="color: red"
+			ng-show="partnerSchoolForm.coordinatorPhoneNum.$error.required"
+			class="mandatory">*</span> -->
+		</label> <input name="coordinatorPhoneNum"
+			ng-model="contactDetail.coordinatorPhoneNum">
+		<div ng-messages="partnerSchoolForm.coordinatorPhoneNum.$error"
+			ng-if="partnerSchoolForm.coordinatorPhoneNum.$submitted || partnerSchoolForm.coordinatorPhoneNum.$touched">
+			<div ng-message="required">Please Enter Phone Number.</div>
+		</div>
+		</md-input-container>
+		<span flex="10"></span>
+		<md-input-container flex="20"> <label>Email
+			Id <!-- <span style="color: red"
+			ng-show="partnerSchoolForm.coordinatorEmailId.$error.required"
+			class="mandatory">*</span> -->
+		</label> <input name="coordinatorEmailId"
+			ng-model="contactDetail.coordinatorEmailId">
+		<div ng-messages="partnerSchoolForm.coordinatorEmailId.$error"
+			ng-if="partnerSchoolForm.coordinatorEmailId.$submitted || partnerSchoolForm.coordinatorEmailId.$touched">
+			<div ng-message="required">Please Enter Email.</div>
+		</div>
+		</md-input-container>
+		<span flex="10"></span>
+	</div>
+
+
+
+	<section layout="row" layout-sm="column" layout-align="end end">
+		<md-button ng-disabled="partnerSchoolForm.$invalid "
+			class="md-raised md-primary" ng-click="addPartnerSchool()">Save
+		& Next</md-button>
+	</section>
+	</md-content> </md-tab> <!-- <div layout="row" layout-xs="column">
+		<section layout="row" layout-sm="column" layout-align="end end">
 			<md-button ng-disabled="partnerSchoolForm.$invalid"
 				class="md-raised md-primary" ng-hide="partnerSchool.id"
-				ng-click="addPartnerSchool()">Add</md-button>
+				ng-click="addPartnerSchool()">Save & Next</md-button>
 		</section>
 
-		<section layout="row" layout-sm="column" layout-align="left left">
+		<section layout="row" layout-sm="column" layout-align="end end">
 			<md-button ng-disabled="partnerSchoolForm.$invalid"
 				class="md-raised md-primary" ng-hide="partnerSchool.id == null"
 				ng-click="addPartnerSchool()">Update</md-button>
 		</section>
-		<section layout="row" layout-sm="column" layout-align="left left">
+		<section layout="row" layout-sm="column" layout-align="end end">
 			<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
 		</section>
-	</div>
-
+	</div> --> </md-tabs> </md-content>
 </form>
+
