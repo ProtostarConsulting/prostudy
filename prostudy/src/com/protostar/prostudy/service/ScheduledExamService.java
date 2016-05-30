@@ -10,7 +10,7 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Key;
-import com.protostar.prostudy.entity.ScheduleStudentExamEntity;
+import com.protostar.prostudy.entity.ScheduledStudentExamEntity;
 import com.protostar.prostudy.entity.ScheduledExamEntity;
 import com.protostar.prostudy.entity.UserEntity;
 @Api(name = "scheduledExamService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))

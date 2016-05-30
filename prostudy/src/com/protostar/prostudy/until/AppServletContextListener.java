@@ -16,15 +16,16 @@ import com.protostar.prostudy.entity.CommentEntity;
 import com.protostar.prostudy.entity.DivisionEntity;
 import com.protostar.prostudy.entity.InstallmentEntity;
 import com.protostar.prostudy.entity.InstituteEntity;
+import com.protostar.prostudy.entity.PartnerSchoolEntity;
 import com.protostar.prostudy.entity.PaymentEntity;
 import com.protostar.prostudy.entity.PracticeExamEntity;
 import com.protostar.prostudy.entity.PracticeExamResultEntity;
 import com.protostar.prostudy.entity.QuestionEntity;
 import com.protostar.prostudy.entity.RoleSecEntity;
-import com.protostar.prostudy.entity.ScheduleStudentExamEntity;
 import com.protostar.prostudy.entity.ScheduledExamEntity;
 import com.protostar.prostudy.entity.ScheduledExamResultEntity;
 import com.protostar.prostudy.entity.ScheduledQuestionEntity;
+import com.protostar.prostudy.entity.ScheduledStudentExamEntity;
 import com.protostar.prostudy.entity.StandardEntity;
 import com.protostar.prostudy.entity.StudSubEntity;
 import com.protostar.prostudy.entity.StudentEntity;
@@ -33,7 +34,6 @@ import com.protostar.prostudy.entity.SyllabusEntity;
 import com.protostar.prostudy.entity.TeacherEntity;
 import com.protostar.prostudy.entity.UserEntity;
 import com.protostar.prostudy.entity.userAnsEntity;
-import com.protostar.prostudy.gf.entity.PartnerSchoolEntity;
 import com.protostar.prostudy.protostarAdmin.entities.AccountType;
 import com.protostar.prostudy.until.data.YearCounterEntity;
 
@@ -84,7 +84,7 @@ public class AppServletContextListener implements ServletContextListener {
 		  
 		  ObjectifyService.register(PartnerSchoolEntity.class);
 		  ObjectifyService.register(AccountType.class);
-		  ObjectifyService.register(ScheduleStudentExamEntity.class);
+		  ObjectifyService.register(ScheduledStudentExamEntity.class);
 		  
 		  
 
