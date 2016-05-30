@@ -21,7 +21,7 @@
 		<tbody>
 
 		<tr md-auto-select
-					ng-repeat="student in scheduledExamStudentList | orderBy: query.order | filter:{email_id : searchByEmail} | limitTo: query.limit: (query.page - 1) * query.limit">
+					ng-repeat="student in studentList | orderBy: query.order | filter:{email_id : searchByEmail} | limitTo: query.limit: (query.page - 1) * query.limit">
 
 					<td>{{student.firstName}} {{student.lastName}}</td>
 					<td>{{student.email_id}}</td>
@@ -34,7 +34,7 @@
 
 	</md-data-table-container>
 	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
-		md-total={{scheduledExamStudentList.length}} md-trigger="onpagechange"></md-data-table-pagination>
+		md-total={{studentList.length}} md-trigger="onpagechange"></md-data-table-pagination>
 		
 			<div layout="row" layout-align="center center">
 
@@ -48,5 +48,6 @@
 
 	
 </div>
+
 
 			

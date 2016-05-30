@@ -4,14 +4,14 @@ angular.module("prostudyApp").controller(
 				$log, objectFactory, appEndpointSF) {			
 
 			$scope.selectedExamId = $stateParams.selectedExamId;
-			
-			$scope.getStudentsByScheduledExamID = function() {
+			$scope.studentList=[];
+			$scope.getStudentListByScheduledExamId = function() {
 
-				var UserService = appEndpointSF.getUserService();
-				UserService.getStudentsByScheduledExamID($scope.selectedExamId)
+				var ScheduledStudentExamService = appEndpointSF.getScheduledStudentExamService();
+				ScheduledStudentExamService.getStudentListByScheduledExamId($scope.selectedExamId)
 						.then(
 								function(studentList) {
-									$scope.scheduledExamStudentList = studentList;
+									$scope.studentList = studentList.items;
 									
 								});
 			}
@@ -20,7 +20,7 @@ angular.module("prostudyApp").controller(
 			$scope.waitForServiceLoad = function() {
 				if (appEndpointSF.is_service_ready) {
 
-					$scope.getStudentsByScheduledExamID();
+					$scope.getStudentListByScheduledExamId();
 					
 				} else {
 					$timeout($scope.waitForServiceLoad, 1000);

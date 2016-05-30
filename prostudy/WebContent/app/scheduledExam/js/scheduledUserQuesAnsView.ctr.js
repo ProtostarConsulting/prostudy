@@ -74,6 +74,11 @@ angular
 													
 												}
 												}
+											if($scope.examResults.id==undefined)
+											{
+												alert("User not Attempted this Exam");									
+											}
+											
 											
 										});
 					}
