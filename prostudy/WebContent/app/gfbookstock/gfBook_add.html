@@ -1,0 +1,98 @@
+
+<h3 class="md-headline" ng-hide="tempBookStock.id">Book Add</h3>
+<h3 class="md-headline" ng-show="tempBookStock.id">Update Update</h3>
+
+<div layout="column" layout-padding layout-xs="column">
+
+	<form name="gfBookStockForm">
+
+		<div layout="row" layout-xs="column" flex>
+
+			<md-input-container flex> <label>Book
+				Name <span style="color: red"
+				ng-show="gfBookStockForm.bookName.$error.required" class="mandatory">*</span>
+			</label> <input name="bookName" ng-model="tempBookStock.bookName"
+				ng-required="true">
+			<div ng-messages="gfBookStockForm.bookName.$error"
+				ng-if="gfBookStockForm.bookName.$submitted || gfBookStockForm.bookName.$touched">
+				<div ng-message="required">Please Enter Book Name.</div>
+			</div>
+			</md-input-container>
+
+			<md-input-container flex> <label>Book Auther <span
+				style="color: red"
+				ng-show="gfBookStockForm.bookAuther.$error.required"
+				class="mandatory">*</span>
+			</label> <input name="bookAuther" ng-model="tempBookStock.bookAuther"
+				ng-required="true">
+			<div ng-messages="gfBookStockForm.bookAuther.$error"
+				ng-if="gfBookStockForm.bookAuther.$submitted || gfBookStockForm.bookAuther.$touched">
+				<div ng-message="required">Please Enter Auther Name.</div>
+			</div>
+			</md-input-container>
+		</div>
+		
+		
+		
+			
+			
+		<div layout="row" layout-xs="column" flex>
+		
+		<md-input-container flex> <label>Weight
+				<span style="color: red"
+				ng-show="gfBookStockForm.weight.$error.required" class="mandatory">*</span>
+			</label> <input name="weight" type="number" ng-model="tempBookStock.weight" ng-required="true">
+			<div ng-messages="gfBookStockForm.weight.$error"
+				ng-if="gfBookStockForm.weight.$submitted || gfBookStockForm.weight.$touched">
+				<div ng-message="required">Please Enter Weight Of Book.</div>
+			</div>
+			</md-input-container>
+			
+			
+			<md-input-container flex> <label>Price<span
+				style="color: red" ng-show="gfBookStockForm.bookPrice.$error.required"
+				class="mandatory">*</span>
+			</label> <input name="bookPrice" type="number" ng-model="tempBookStock.bookPrice"
+				ng-required="true">
+			<div ng-messages="gfBookStockForm.bookPrice.$error"
+				ng-if="gfBookStockForm.bookPrice.$submitted || gfBookStockForm.bookPrice.$touched">
+				<div ng-message="required">Please Enter name whome To sent.</div>
+			</div>
+			</md-input-container>
+
+		</div>
+		
+		<div layout="row" layout-xs="column" flex>
+		<md-input-container flex> <label>Publication
+				<span style="color: red"
+				ng-show="gfBookStockForm.bookPublication.$error.required" class="mandatory">*</span>
+			</label> <input name="bookPublication" ng-model="tempBookStock.bookPublication" ng-required="true">
+			<div ng-messages="gfBookStockForm.bookPublication.$error"
+				ng-if="gfBookStockForm.bookPublication.$submitted || gfBookStockForm.bookPublication.$touched">
+				<div ng-message="required">Please Enter Weight Of Courier.</div>
+			</div>
+			</md-input-container>
+
+		</div>
+		
+	</form>
+</div>
+
+<div layout="row" layout-align="center center" layout-xs="column">
+
+	<md-button ng-hide="tempBookStock.id" class="md-raised md-primary"
+		ng-click="addGFBook()" ng-disabled="gfBookStockForm.$invalid">Add
+	</md-button>
+
+	<md-button ng-show="tempBookStock.id" class="md-raised md-primary"
+		ng-click="addGFBook()" ng-disabled="gfBookStockForm.$invalid">Update
+	</md-button>
+
+	<md-button class="md-raised " ng-click="cancelButton()">Cancel</md-button>
+
+</div>
+
+
+
+
+

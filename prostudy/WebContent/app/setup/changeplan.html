@@ -5,15 +5,21 @@
 
 	<div layout layout-xs="column">
 		<md-input-container flex> <b>Your current
-			Account Type :-</b>{{business.accounttype.accountName +" (plan :
-		"+business.accounttype.paymentDesc+")"}} </md-input-container>
+			Account Type :-</b>{{curUser.accounttype.accountName +" (plan :
+		"+curUser.accounttype.paymentDesc+")"}} </md-input-container>
 	</div>
 	<div layout layout-xs="column">
 		<md-input-container flex> <b>Note:-</b>Change Your Paln lower to higher if you want to change higher to lower 
 		contact to help desk <a target="_blank" href="http://www.protostarcs.com/">http://www.protostarcs.com/</a> </md-input-container>
 	</div>
 
-
+<md-input-container flex="100"> <md-select
+				ng-model="accountName" name="account"
+				placeholder="Account Name"
+				ng-required="true"> <md-option ng-value="{{account.accountName}}" 
+				ng-repeat="account in accountTypes" >{{account.accountName}} ( {{account.description}} )</md-option>
+			</md-select>
+			================================
 	<div layout layout-xs="column">
 		<md-input-container>
 		<b>Change Account Type :-</b></md-input-container>
@@ -21,7 +27,7 @@
 		<md-select name="selectedaccount" placeholder="Select Account Type"
 			ng-model="accounttype" ng-required="true"> <md-option
 			value={{list.id}}
-			ng-repeat="list in accountlist | orderBy: 'maxuser'">
+			ng-repeat="list in accountTypes | orderBy: 'maxuser'">
 		{{list.accountName}} ( {{list.description}} ) {{" (plan :
 		"+business.accounttype.paymentDesc+")"}} </md-option> </md-select>
 		<div ng-messages="ChangePlan.selectedaccount.$error"

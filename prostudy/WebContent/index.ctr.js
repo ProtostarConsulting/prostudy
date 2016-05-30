@@ -6,6 +6,20 @@ angular
 						$mdBottomSheet, $state, appEndpointSF) {
 
 					$log.debug("Inside indexCtr");
+					
+					$scope.showUpdateToast = function() {
+						$mdToast.show($mdToast.simple().content(
+								'Changes Saved Successfully.').position("top")
+								.hideDelay(3000));
+					};
+
+					$scope.showAddToast = function() {
+						$mdToast.show($mdToast.simple().content(
+								'New Record Saved Successfully.').position(
+								"top").hideDelay(3000));
+					};
+					
+					
 					$scope.loading = true;
 					$scope.curUser = null;
 					$scope.googleUserDetails = "";

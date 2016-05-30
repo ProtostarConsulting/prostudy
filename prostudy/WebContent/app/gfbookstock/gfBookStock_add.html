@@ -1,0 +1,71 @@
+
+<h3 class="md-headline">Add Book Stock</h3>
+
+<div layout="column" layout-padding layout-xs="column">
+
+	<form name="gfBookStockForm">
+
+
+		<div layout="row" layout-xs="column">
+			<md-datepicker flex ng-model="tempBook.feedStockDate"
+				md-placeholder="Select Date"></md-datepicker>
+		</div>
+
+		<div layout="row" layout-xs="column">
+
+			<md-input-container flex> <label>Book
+				List<span style="color: red"
+				ng-show="gfBookStockForm.book.$error.required"
+				class="mandatory">*</span>
+			</label> <md-select name="book" ng-model="tempBook.book "
+				ng-required="true"> <md-option ng-value="book"
+				ng-repeat="book in tempBooks">{{book.bookName}}</md-option>
+			</md-select>
+			<div ng-messages="gfBookStockForm.book.$error"
+				ng-if="gfBookStockForm.book.$submitted || gfBookStockForm.book.$touched">
+				<div ng-message="required">Please Select Book.</div>
+			</div>
+			</md-input-container>
+
+
+			<md-input-container flex> <label>Medium
+				of Answer<span style="color: red"
+				ng-show="gfBookStockForm.medium.$error.required" class="mandatory">*</span>
+			</label> <md-select name="medium" ng-model="tempBook.medium"
+				ng-required="true"> <md-option ng-value="medium"
+				ng-repeat="medium in answerOfMediumList">{{medium}}</md-option> </md-select>
+			<div ng-messages="gfBookStockForm.medium.$error"
+				ng-if="gfBookStockForm.medium.$submitted || gfBookStockForm.medium.$touched">
+				<div ng-message="required">Please Select Standards.</div>
+			</div>
+			</md-input-container>
+
+
+			<md-input-container flex> <label>Quantity
+				 <span style="color: red"
+				ng-show="gfBookStockForm.bookQty.$error.required" class="mandatory">*</span>
+			</label> <input name="bookQty" type="number" ng-model="tempBook.bookQty"
+				ng-required="true">
+			<div ng-messages="gfBookStockForm.bookQty.$error"
+				ng-if="gfBookStockForm.bookQty.$submitted || gfBookStockForm.bookQty.$touched">
+				<div ng-message="required">Please Enter Book Name.</div>
+			</div>
+			</md-input-container>
+		</div>
+	</form>
+</div>
+
+<div layout="row" layout-align="center center" layout-xs="column">
+
+	<md-button class="md-raised md-primary"
+		ng-click="addGFBookStock()" ng-disabled="gfBookStockForm.$invalid">Add
+	</md-button>
+
+	<md-button class="md-raised " ng-click="cancelButton()">Cancel</md-button>
+
+</div>
+
+
+
+
+

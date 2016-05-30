@@ -115,7 +115,11 @@
 			Apps Integration</md-button> <md-button ui-sref="gfe" ng-click="close()"
 				class="md-primary" show-gt-md>Google for Education
 			Dashboard</md-button> <md-button ui-sref="setup" ng-click="close()"
-				class="md-primary" show-gt-md>Setup </md-button> </md-content> </md-sidenav>
+				class="md-primary" show-gt-md>Setup </md-button> 
+				
+			<md-button ui-sref="gandhifoundation" ng-click="close()" class="md-primary" show-gt-md>Gandhi Foundation </md-button>
+		
+			<md-button ui-sref="gfbookstock" ng-click="close()" class="md-primary" show-gt-md>Book Stock </md-button></md-content> </md-sidenav>
 
 			<!-- ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'" -->
 
@@ -410,5 +414,30 @@
 	<!-- Start ProAdmin -->
 	<script src="/app/proadmin/js/proadmin_module.ctr.js"></script>
 	<!-- End ProAdmin -->
+	
+	<!-- Start Gandhi Found. Student -->
+	<script src="/app/gandhiFoundation/js/gfStudent_module.ctr.js"></script>
+	<script src="/app/gandhiFoundation/js/gfStudent_add.ctr.js"></script>
+	<script src="/app/gandhiFoundation/js/gfStudent_list.ctr.js"></script>
+	<script src="/app/gandhiFoundation/js/gfStudent_view.ctr.js"></script>
+	<!-- End Gandhi Found. Student  -->
+	
+	<!-- Start Gandhi Found. Courier -->
+	<script src="/app/gfcourier/js/gfCourier_module.ctr.js"></script>
+	<script src="/app/gfcourier/js/gfCourier_add.ctr.js"></script>
+	<script src="/app/gfcourier/js/gfCourier_list.ctr.js"></script>
+	<script src="/app/gfcourier/js/gfCourier_view.ctr.js"></script>
+	<!-- End Gandhi Found. Courier  -->
+	
+	<!-- Start Gandhi Found. Book Stock -->
+	<script src="/app/gfbookstock/js/gfBookStock_module.ctr.js"></script>
+	<script src="/app/gfbookstock/js/gfBook_add.ctr.js"></script>
+	<script src="/app/gfbookstock/js/gfBook_list.ctr.js"></script>
+	
+	<script src="/app/gfbookstock/js/gfBookStock_add.ctr.js"></script>
+	<script src="/app/gfbookstock/js/gfBookStock_list.ctr.js"></script>
+	<script src="/app/gfbookstock/js/gfBookStock_view.ctr.js"></script>
+	<!-- End Gandhi Found. Book Stock  -->
+	
 </body>
 </html>

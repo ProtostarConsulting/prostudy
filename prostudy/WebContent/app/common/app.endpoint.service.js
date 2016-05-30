@@ -10,15 +10,28 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 	var endpointFactory = {};
 	endpointFactory.is_service_ready = false;
 	// This will call the function to load services
-/*	 endpointFactory.getuploadURLService = function() {
-			if (isTestMode)
-				return localDBServiceFactory.getuploadURLService();
-			else
-				return googleEndpointSF.getuploadURLService();
-		};
-		// ----------------------------------------------------
-*/	
 	
+	endpointFactory.getGFBookStockService = function() {
+		if (isTestMode)
+			return localDBServiceFactory.getGFBookStockService();
+		else
+			return googleEndpointSF.getGFBookStockService();
+	};
+	// ----------------------------------------------------
+	endpointFactory.getGFCourierService = function() {
+		if (isTestMode)
+			return localDBServiceFactory.getGFCourierService();
+		else
+			return googleEndpointSF.getGFCourierService();
+	};
+	// ----------------------------------------------------
+	endpointFactory.getGFStudentService = function() {
+		if (isTestMode)
+			return localDBServiceFactory.getGFStudentService();
+		else
+			return googleEndpointSF.getGFStudentService();
+	};
+	// ----------------------------------------------------
 	endpointFactory.getuploadURLService = function() {
 		if (isTestMode)
 			return localDBServiceFactory.getuploadURLService();
@@ -362,7 +375,16 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 			   $log.debug("uploadPathService Loaded......");	 
 			  }, apiRoot);
 		 
+		 gapi.client.load('gfStudentService', 'v0.1', function() {
+			   $log.debug("gfStudentService Loaded......");	 
+			  }, apiRoot);
 		 
+		 gapi.client.load('gfCourierService', 'v0.1', function() {
+			   $log.debug("gfCourierService Loaded......");	 
+			  }, apiRoot);
+		 gapi.client.load('gfBookStockService', 'v0.1', function() {
+			   $log.debug("gfBookStockService Loaded......");	 
+			  }, apiRoot);
 		 
 		return deferred.promise;
 

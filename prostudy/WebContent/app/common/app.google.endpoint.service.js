@@ -4,6 +4,145 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 
 	var serviceFactory = {};
 
+	
+	// Gandhi Foundation FStudentService Start
+	
+	var GFStudentService = {};
+
+	serviceFactory.getGFStudentService = function() {
+		return GFStudentService;
+	}
+
+	GFStudentService.addGFStudent = function(user) {
+
+		var deferred = $q.defer();
+		gapi.client.gfStudentService.addGFStudent(user).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+
+		return deferred.promise;
+	}
+
+	GFStudentService.getGFStudentsByInstitute = function(instituteID) {
+		var deferred = $q.defer();
+		gapi.client.gfStudentService.getGFStudentsByInstitute({'instituteID' : instituteID}).execute(function(resp) {
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
+	GFStudentService.getGFStudentById = function(studID) {
+		var deferred = $q.defer();
+		gapi.client.gfStudentService.getGFStudentById({'id' : studID}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
+	// Gandhi Foundation FStudentService End
+	
+	
+// Gandhi Foundation gfCourierService Start
+	
+	var GFCourierService = {};
+
+	serviceFactory.getGFCourierService = function() {
+		return GFCourierService;
+	}
+
+	GFCourierService.addGFCourier = function(courier) {
+
+		var deferred = $q.defer();
+		gapi.client.gfCourierService.addGFCourier(courier).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+
+		return deferred.promise;
+	}
+
+	GFCourierService.getGFCourierByInstitute = function(instituteID) {
+		var deferred = $q.defer();
+		gapi.client.gfCourierService.getGFCourierByInstitute({'instituteID' : instituteID}).execute(function(resp) {
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
+	GFCourierService.getGFCourierById = function(courierID) {
+		var deferred = $q.defer();
+		gapi.client.gfCourierService.getGFCourierById({'id' : courierID}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
+	// Gandhi Foundation gfCourierService End
+	
+	
+// Gandhi Foundation gfBookStockService Start
+	
+	var GFBookStockService = {};
+
+	serviceFactory.getGFBookStockService = function() {
+		return GFBookStockService;
+	}
+
+	GFBookStockService.addGFBook = function(book) {
+
+		var deferred = $q.defer();
+		gapi.client.gfBookStockService.addGFBook(book).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+
+		return deferred.promise;
+	}
+
+	GFBookStockService.getGFBookByInstitute = function(instituteID) {
+		var deferred = $q.defer();
+		gapi.client.gfBookStockService.getGFBookByInstitute({'instituteID' : instituteID}).execute(function(resp) {
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
+	GFBookStockService.getGFBookById = function(bookID) {
+		var deferred = $q.defer();
+		gapi.client.gfBookStockService.getGFBookById({'id' : bookID}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
+	
+	GFBookStockService.getGFBookByInstituteId = function(instituteID) {
+		var deferred = $q.defer();
+		gapi.client.gfBookStockService.getGFBookByInstituteId({'instituteID' : instituteID}).execute(function(resp) {
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
+	
+	GFBookStockService.addGFBookStock = function(book) {
+
+		var deferred = $q.defer();
+		gapi.client.gfBookStockService.addGFBookStock(book).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+
+		return deferred.promise;
+	}
+	
+	GFBookStockService.getGFBookStockByInstituteId = function(instituteID) {
+		var deferred = $q.defer();
+		gapi.client.gfBookStockService.getGFBookStockByInstituteId({'instituteID' : instituteID}).execute(function(resp) {
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	// Gandhi Foundation gfBookStockService End
+	
+	
 	// start of UserService
 	var UserService = {};
 

@@ -875,6 +875,81 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'instituteListCtr'
 	})	
 	
+	.state('gandhifoundation', {
+		url : "/gandhifoundation",
+		templateUrl : '/app/gandhiFoundation/gfStudent_module.html',
+		controller : 'gfStudentModuleCtr'
+	})
+	.state('gandhifoundation.add', {
+		url : "/add/:selectedGFStudID",
+		templateUrl : '/app/gandhiFoundation/gfStudent_add.html',
+		controller : 'gfStudentAddCtr'
+	})
+	.state('gandhifoundation.list', {
+		url : "/list",
+		templateUrl : '/app/gandhiFoundation/gfStudent_list.html',
+		controller : 'gfStudentListCtr'
+	})
+	.state('gandhifoundation.view', {
+		url : "/view/:selectedGFStudID",
+		templateUrl : '/app/gandhiFoundation/gfStudent_view.html',
+		controller : 'gfStudentviewCtr'
+	})
+	
+	.state('gfcourier', {
+		url : "/gfcourier",
+		templateUrl : '/app/gfcourier/gfCourier_module.html',
+		controller : 'gfCourierModuleCtr'
+	})
+	.state('gfcourier.add', {
+		url : "/add/:selectedGFCourierID",
+		templateUrl : '/app/gfcourier/gfCourier_add.html',
+		controller : 'gfCourierAddCtr'
+	})
+	.state('gfcourier.list', {
+		url : "/list",
+		templateUrl : '/app/gfcourier/gfCourier_list.html',
+		controller : 'gfCourierListCtr'
+	})
+	.state('gfcourier.view', {
+		url : "/view/:selectedGFCourierID",
+		templateUrl : '/app/gfcourier/gfCourier_view.html',
+		controller : 'gfCourierviewCtr'
+	})
+	
+	.state('gfbookstock', {
+		url : "/gfbookstock",
+		templateUrl : '/app/gfbookstock/gfBookStock_module.html',
+		controller : 'gfBookStockModuleCtr'
+	})
+	.state('gfbookstock.add', {
+		url : "/add/:selectedGFBookStockID",
+		templateUrl : '/app/gfbookstock/gfBook_add.html',
+		controller : 'gfBookAddCtr'
+	})
+	.state('gfbookstock.list', {
+		url : "/list",
+		templateUrl : '/app/gfbookstock/gfBook_list.html',
+		controller : 'gfBookListCtr'
+	})
+	.state('gfbookstock.view', {
+		url : "/view/:selectedGFBookStockID",
+		templateUrl : '/app/gfbookstock/gfBookStock_view.html',
+		controller : 'gfBookStockviewCtr'
+	})
+	
+	
+	
+	.state('gfbookstock.stockAdd', {
+		url : "/stockAdd/:selectedGFBookStockID",
+		templateUrl : '/app/gfbookstock/gfBookStock_add.html',
+		controller : 'gfBookStockAddCtr'
+	})
+	.state('gfbookstock.stockList', {
+		url : "/stockList",
+		templateUrl : '/app/gfbookstock/gfBookStock_list.html',
+		controller : 'gfBookStockListCtr'
+	})
 });
 
 app.filter('unique', function() {

@@ -4,8 +4,6 @@ angular.module("prostudyApp").controller(
 				$log, $q, appEndpointSF, $state, $stateParams, $mdDialog, objectFactory) {
 
 			
-
-	//		$scope.isGoogleUser = false;
 			$scope.checkConfirmPassword = appEndpointSF.getUtilityService().checkConfirmPassword;
 			
 			$scope.showSavedToast = function() {
@@ -13,16 +11,7 @@ angular.module("prostudyApp").controller(
 						.position("top").hideDelay(3000));
 			};
 	
-		
-	/*		$scope.isDisabled;
-			$scope.disableButton = function() {
-				$scope.isDisabled = !$scope.isDisabled;
-			}
 
-			$scope.tempStudent = objectFactory.newInstituteUser("Student",$scope.currentInstID,$scope.isGoogleUser);
-			$scope.tempTeacher = objectFactory.newInstituteUser("Teacher",$scope.currentInstID,$scope.isGoogleUser);
-			$scope.tempAdmin = objectFactory.newInstituteUser("Admin",$scope.currentInstID,$scope.isGoogleUser);
-	*/
 
 		//	$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
 			$scope.instRoles = ["Admin","Teacher","Student"];
@@ -42,17 +31,7 @@ angular.module("prostudyApp").controller(
 				$scope.tempUser = {};
 				$scope.showSavedToast();
 
-			}
-			
-			
-/*			$scope.getInstitutes = function() {
-
-				var InstituteService = appEndpointSF.getInstituteService();
-				InstituteService.getInstitutes().then(function(instituteList) {
-					$scope.institutes = instituteList;
-				});
-			}
-*/			
+			}	
 			
 			$scope.query = {
 					order : 'description',

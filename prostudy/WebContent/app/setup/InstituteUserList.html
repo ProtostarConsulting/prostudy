@@ -34,12 +34,15 @@
 					<td>{{user.prn}}</td>
 					<td>
 						<section layout="row" layout-sm="column" >
-							<md-button class="md-raised md-primary" ng-hide="businessNo"
-								ui-sref="setup.userview({selecteduserNo:user.id})">View
-							user</md-button>
-							<md-button class="md-raised md-primary" ng-show="businessNo"
-								ui-sref="proAdmin.editBusiness.userview({selecteduserNo:user.id})">View
-							user </md-button>
+							<md-button class="md-raised md-primary" id="student" ng-show="admin" ng-hide="true" 
+								ui-sref="setup.userview({selecteduserNo:user.id})">Edit
+							Student</md-button>
+							<md-button class="md-raised md-primary"  id="admin"
+								ui-sref="proAdmin.editBusiness.userview({selecteduserNo:user.id})">Edit
+							 Admin </md-button>
+							<md-button class="md-raised md-primary" id="teacher"
+								ui-sref="proAdmin.editBusiness.userview({selecteduserNo:user.id})">Edit
+							Teacher </md-button>
 						</section>
 					</td>
 				</tr>

@@ -18,13 +18,17 @@ angular.module("prostudyApp").controller(
 				var InstituteService = appEndpointSF.getInstituteService();
 				InstituteService.getInstituteUsers($scope.curUser.instituteID).then(function(instituteUsersList) {
 					$scope.instituteUsersList = instituteUsersList;
-					
+					$scope.admin = [];
 					$scope.activeUsers = [];
 					$scope.inActiveUsers = [];
 					$scope.suspendedUsers = [];
 					for (var i = 0; i < $scope.instituteUsersList.length; i++) {
 						if ($scope.instituteUsersList[i].status == "active") {
 							$scope.activeUsers.push($scope.instituteUsersList[i]);
+							
+							if($scope.activeUsers[i].role == "Admin"){							
+								$scope.admin.push($scope.instituteUsersList[i]);
+							}
 							
 						} else if ($scope.instituteUsersList[i].status == "inactive") {
 							$scope.inActiveUsers.push($scope.instituteUsersList[i]);
@@ -34,6 +38,8 @@ angular.module("prostudyApp").controller(
 							$scope.suspendedUsers.push($scope.instituteUsersList[i]);
 			
 						}
+						
+
 					}
 				});
 			}
