@@ -16,7 +16,6 @@ import com.protostar.prostudy.entity.CommentEntity;
 import com.protostar.prostudy.entity.DivisionEntity;
 import com.protostar.prostudy.entity.InstallmentEntity;
 import com.protostar.prostudy.entity.InstituteEntity;
-import com.protostar.prostudy.entity.PartnerSchoolEntity;
 import com.protostar.prostudy.entity.PaymentEntity;
 import com.protostar.prostudy.entity.PracticeExamEntity;
 import com.protostar.prostudy.entity.PracticeExamResultEntity;
@@ -34,6 +33,7 @@ import com.protostar.prostudy.entity.SyllabusEntity;
 import com.protostar.prostudy.entity.TeacherEntity;
 import com.protostar.prostudy.entity.UserEntity;
 import com.protostar.prostudy.entity.userAnsEntity;
+import com.protostar.prostudy.gf.entity.PartnerSchoolEntity;
 import com.protostar.prostudy.protostarAdmin.entities.AccountType;
 import com.protostar.prostudy.until.data.YearCounterEntity;
 
