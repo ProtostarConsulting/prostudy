@@ -35,12 +35,12 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getProtostarAdminService();
 	};
 	
-	endpointFactory.getAssignExamService = function() {
+	endpointFactory.getScheduledStudentExamService = function() {
 
 		if (isTestMode)
-			return localDBServiceFactory.getAssignExamService();
+			return localDBServiceFactory.getScheduledStudentExamService();
 		else
-			return googleEndpointSF.getAssignExamService();
+			return googleEndpointSF.getScheduledStudentExamService();
 	};
 	
 /*	endpointFactory.getuploadURLService = function() {
@@ -338,8 +338,8 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 
 		}, apiRoot);
 */		
-		gapi.client.load('assignExamService', 'v0.1', function() {
-			$log.debug("assignExamService Loaded......");
+		gapi.client.load('scheduledStudentExamService', 'v0.1', function() {
+			$log.debug("ScheduledStudentExamService Loaded......");
 			endpointFactory.is_service_ready = true;
 			deferred.resolve();
 

@@ -1466,16 +1466,17 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	//End of protostarAdminService
 
 	/*------------------------------------------------------------------------------------------------------*/
-	//Start of assignExamService
 	
-	var assignExamService = {};
-	serviceFactory.getAssignExamService = function() {
-		return assignExamService;
+	//Start of ScheduledStudentExamService
+	
+	var ScheduledStudentExamService = {};
+	serviceFactory.getScheduledStudentExamService = function() {
+		return ScheduledStudentExamService;
 	}
 
-	assignExamService.assignExamToStudent = function(assign) {
+	ScheduledStudentExamService.assignScheduledExamToStudent = function(data) {
 		var deferred = $q.defer();
-		gapi.client.assignExamService.assignExamToStudent(assign).execute(function() {
+		gapi.client.scheduledStudentExamService.assignScheduledExamToStudent(data).execute(function() {
 			deferred.resolve({
 				"msg" : "Exam Assigned Successfully."
 			});
@@ -1484,29 +1485,42 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 	
-	assignExamService.getExamAssignedStudents = function(id) {
+	ScheduledStudentExamService.getScheduledExamListByStudentId = function(id) {
 		var deferred = $q.defer();
-		gapi.client.assignExamService.getExamAssignedStudents({
+		gapi.client.scheduledStudentExamService.getScheduledExamListByStudentId({
 			'id' : id
 		}).execute(function(resp) {
-			deferred.resolve(resp);
+			deferred.resolve(resp.result);
 		});
 		return deferred.promise;
 	}
-	//End of assignExamService
-	
-	assignExamService.getExamOfStudent = function(selectedExam) {
+	ScheduledStudentExamService.getStudentListByScheduledExamId = function(id) {
 		var deferred = $q.defer();
-		gapi.client.assignExamService.getExamOfStudent({
+		gapi.client.scheduledStudentExamService.getStudentListByScheduledExamId({
+			'id' : id
+		}).execute(function(resp) {
+			deferred.resolve(resp.result);
+		});
+		return deferred.promise;
+	}
+	
+	
+	ScheduledStudentExamService.getExamOfStudent = function(selectedExam) {
+		var deferred = $q.defer();
+		gapi.client.ScheduledStudentExamService.getExamOfStudent({
 			'selectedExam' : selectedExam
 		}).execute(function(resp) {
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
 	}
-	
-/*	========================================================================================*/
 
+	//End of ScheduledStudentExamService
+
+	/*------------------------------------------------------------------------------------------------------*/
+	
+	//Start of uploadPathService
+	
 	
 	var uploadPathService = {};
 	serviceFactory.getuploadURLService = function() {

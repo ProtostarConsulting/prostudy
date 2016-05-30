@@ -833,7 +833,26 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/scheduledExamResultView/:selectedStudEmail",
 		templateUrl : '/app/scheduledExam/schduledExamResult_view.html',
 		controller : 'scheduledExamResultCtr'
-	})	
+	})	.state('scheduledExam.resultlist', {
+		url : "/resultlist/:selectedExamId",
+		templateUrl : '/app/scheduledExam/schduledExamResult_list.html',
+		controller : 'scheduledExamResultListCtr'
+	})
+	.state('scheduledExam.studentlist', {
+		url : "/studentlist/:selectedExamId",
+		templateUrl : '/app/scheduledExam/scheduledExam_studentList.html',
+		controller : 'scheduledExamStudentListCtr'
+	})
+		.state('scheduledExam.assignStudents', {
+		url : "/assignStudents",
+		templateUrl : '/app/scheduledExam/scheduledExam_assignStudents.html',
+		controller : 'scheduledExamAssignStudentsCtr'
+	})
+	.state('scheduledExam.myScheduledExamList', {
+		url : "/myScheduledExamList/:selectedStudId",
+		templateUrl : '/app/scheduledExam/scheduledExam_myScheduledExamList.html',
+		controller : 'studentScheduledExamListCtr'
+	})
 	.state('initsetup', {
 		url : "/initsetup",
 		templateUrl : '/app/Initsetup/initsetup.html',
@@ -854,17 +873,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/list",
 		templateUrl : '/app/institute/institute_list.html',
 		controller : 'instituteListCtr'
-	})
-	.state('scheduledExam.resultlist', {
-		url : "/resultlist/:selectedExamId",
-		templateUrl : '/app/scheduledExam/schduledExamResult_list.html',
-		controller : 'scheduledExamResultListCtr'
-	})
-	.state('scheduledExam.studentlist', {
-		url : "/studentlist/:selectedExamId",
-		templateUrl : '/app/scheduledExam/scheduledExam_studentList.html',
-		controller : 'scheduledExamStudentListCtr'
-	})
+	})	
 	
 });
 
