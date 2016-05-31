@@ -64,6 +64,20 @@
 			</div>
 
 		</div>
+		
+		<div layout="row" layout-align="" layout-xs="column">
+		<md-input-container flex> <label>Duration in Minutes<span
+				style="color: red" ng-show="scheduledExamForm.duration.$error.required"
+				class="mandatory">*</span> </label> <md-select name="duration" ng-model="tempScheduledExam.duration" ng-required="true"> 
+		<md-option ng-value="dur" ng-repeat="dur in durations">{{dur}}</md-option>
+		
+   </md-select> 
+   	<div ng-messages="scheduledExamForm.duration.$error"
+				ng-if="scheduledExamForm.duration.$submitted || scheduledExamForm.duration.$touched">
+				<div ng-message="required">Please Select Exam Duration.</div>
+			</div></md-input-container>    
+   
+   </div>
 		<!-- <div layout="row" layout-align="" layout-xs="column">
 
 			<md-input-container class="md-input-has-placeholder">

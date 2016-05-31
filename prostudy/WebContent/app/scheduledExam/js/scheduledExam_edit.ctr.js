@@ -13,7 +13,7 @@ angular
 					};
 
 				
-					
+					$scope.durations=["30","60","90","120","150","180","210"];
 					$scope.flag = true;
 
 					$scope.selectedExamId = $stateParams.selectedExamId;

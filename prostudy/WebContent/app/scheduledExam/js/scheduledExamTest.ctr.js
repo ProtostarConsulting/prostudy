@@ -20,7 +20,7 @@ angular
 					
 					
 
-					$scope.counter = 20;
+					$scope.counter;
 					$scope.startTime = null;
 					$scope.endTime = null;
 					$scope.examResults;
@@ -225,7 +225,8 @@ angular
 											
 											
 											$scope.Test = scheduledTest;
-
+											$scope.counter=$scope.Test.duration*60;
+											
 											$scope.buttonLimit = function(count) {
 												$scope.totalPages = Math
 														.ceil($scope.Test.listOfQuestion.length / 4);

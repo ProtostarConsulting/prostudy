@@ -5,6 +5,10 @@ angular.module("prostudyApp").controller(
 
 			$scope.selectedStudId = $stateParams.selectedStudId;
 			$scope.scheduledExams=[];
+			$scope.curUser = appEndpointSF.getLocalUserService()
+			.getLoggedinUser();
+			
+			$log.debug("$scope.curUser.id"+$scope.curUser.email_id);
 			
 			$scope.getScheduledExamListByStudentId = function() {
 

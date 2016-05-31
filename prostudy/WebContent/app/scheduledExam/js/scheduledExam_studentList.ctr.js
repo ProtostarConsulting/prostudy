@@ -15,6 +15,31 @@ angular.module("prostudyApp").controller(
 									
 								});
 			}
+			$scope.query = {
+					order : 'name',
+					limit : 5,
+					page : 1
+				};
+
+				$scope.onpagechange = function(page, limit) {
+					var deferred = $q.defer();
+
+					$timeout(function() {
+						deferred.resolve();
+					}, 2000);
+
+					return deferred.promise;
+				};
+
+				$scope.onorderchange = function(order) {
+					var deferred = $q.defer();
+
+					$timeout(function() {
+						deferred.resolve();
+					}, 2000);
+
+					return deferred.promise;
+				};
 						
 			
 			$scope.waitForServiceLoad = function() {

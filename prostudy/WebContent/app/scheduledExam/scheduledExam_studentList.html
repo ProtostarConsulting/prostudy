@@ -35,18 +35,18 @@
 	</md-data-table-container>
 	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
 		md-total={{studentList.length}} md-trigger="onpagechange"></md-data-table-pagination>
-		
-			<div layout="row" layout-align="center center">
 
-		<a ui-sref="scheduledExam.userQuesAnsView({selectedEmailId: selected[0].email_id,selectedExamId:selectedExamId})"><md-button
+	<div layout="row" layout-align="center center">
+
+		<a
+			ui-sref="scheduledExam.userQuesAnsView({selectedEmailId: selected[0].email_id,selectedExamId:selectedExamId})"><md-button
 				ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
-				ng-click="">
-			<md-icon md-svg-src="img/icons/view.svg"></md-icon> <md-tooltip>View Result</md-tooltip></md-button>
-		 </a>
+				ng-click=""> <md-icon md-svg-src="img/icons/view.svg"></md-icon>
+			<md-tooltip>View Result</md-tooltip></md-button> </a>
 
 	</div>
 
-	
+
 </div>
 
 

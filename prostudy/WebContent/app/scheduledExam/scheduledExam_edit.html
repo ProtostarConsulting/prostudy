@@ -22,48 +22,62 @@
 					<div ng-message="required">Please Enter Exam Title.</div>
 				</div>
 				</md-input-container>
-				
-					<md-input-container flex> <label>Description</label>
-			<input name="desc" id="desc" ng-required="true"
-				ng-model="Test.desc">
-			<div ng-messages="scheduledExamEditForm.desc.$error"
-				ng-if="scheduledExamEditForm.desc.$submitted || scheduledExamEditForm.desc.$touched">
-				<div ng-message="required">Please Enter Description.</div>
-			</div>
-			</md-input-container>
-		</div>
 
-		<div layout="row" layout-align="" layout-xs="column">
-			<md-input-container flex><label>Scheduled Exam SelectStartDate <span
-				style="color: red"
-				ng-show="scheduledExamEditForm.startdatentime.$error.required"
-				class="mandatory">*</span>
-			</label></md-input-container>
-			<md-datepicker name="startdatentime"
-				ng-model="Test.startdatentime"
-				md-placeholder=" SelectStartDate" ng-required="true"></md-datepicker>
-
-			<div ng-messages="scheduledExamEditForm.startdatentime.$error"
-				ng-if="scheduledExamEditForm.startdatentime.$submitted || scheduledExamEditForm.startdatentime.$touched">
-				<div ng-message="required">Please Select Scheduled Exam Start
-					Date.</div>
+				<md-input-container flex> <label>Description</label>
+				<input name="desc" id="desc" ng-required="true" ng-model="Test.desc">
+				<div ng-messages="scheduledExamEditForm.desc.$error"
+					ng-if="scheduledExamEditForm.desc.$submitted || scheduledExamEditForm.desc.$touched">
+					<div ng-message="required">Please Enter Description.</div>
+				</div>
+				</md-input-container>
 			</div>
 
+			<div layout="row" layout-align="" layout-xs="column">
+				<md-input-container flex>
+				<label>Scheduled Exam SelectStartDate <span
+					style="color: red"
+					ng-show="scheduledExamEditForm.startdatentime.$error.required"
+					class="mandatory">*</span>
+				</label></md-input-container>
+				<md-datepicker name="startdatentime" ng-model="Test.startdatentime"
+					md-placeholder=" SelectStartDate" ng-required="true"></md-datepicker>
 
-		<md-input-container flex>	<label>Scheduled Exam SelectEndDate <span style="color: red"
-				ng-show="scheduledExamEditForm.enddatentime.$error.required"
-				class="mandatory">*</span>
-			</label></md-input-container>
-			<md-datepicker name="enddatentime"
-				ng-model="Test.enddatentime"
-				md-placeholder=" SelectEndDate" ng-required="true"></md-datepicker>
+				<div ng-messages="scheduledExamEditForm.startdatentime.$error"
+					ng-if="scheduledExamEditForm.startdatentime.$submitted || scheduledExamEditForm.startdatentime.$touched">
+					<div ng-message="required">Please Select Scheduled Exam Start
+						Date.</div>
+				</div>
 
-			<div ng-messages="scheduledExamEditForm.enddatentime.$error"
-				ng-if="scheduledExamEditForm.enddatentime.$submitted || scheduledExamEditForm.enddatentime.$touched">
-				<div ng-message="required">Please Select Scheduled Exam Start
-					Date.</div>
+
+				<md-input-container flex> <label>Scheduled
+					Exam SelectEndDate <span style="color: red"
+					ng-show="scheduledExamEditForm.enddatentime.$error.required"
+					class="mandatory">*</span>
+				</label></md-input-container>
+				<md-datepicker name="enddatentime" ng-model="Test.enddatentime"
+					md-placeholder=" SelectEndDate" ng-required="true"></md-datepicker>
+
+				<div ng-messages="scheduledExamEditForm.enddatentime.$error"
+					ng-if="scheduledExamEditForm.enddatentime.$submitted || scheduledExamEditForm.enddatentime.$touched">
+					<div ng-message="required">Please Select Scheduled Exam Start
+						Date.</div>
+				</div>
+
+
 			</div>
-				
+			<div layout="row" layout-align="" layout-xs="column">
+				<md-input-container flex> <label>Duration in Minutes<span
+					style="color: red"
+					ng-show="scheduledExamEditForm.duration.$error.required"
+					class="mandatory">*</span>
+				</label> <md-select name="duration" ng-model="Test.duration"
+					ng-required="true"> <md-option ng-value="dur"
+					ng-repeat="dur in durations">{{dur}}</md-option> </md-select>
+				<div ng-messages="scheduledExamEditForm.duration.$error"
+					ng-if="scheduledExamEditForm.duration.$submitted || scheduledExamEditForm.duration.$touched">
+					<div ng-message="required">Please Select Exam Duration.</div>
+				</div>
+				</md-input-container>
 
 			</div>
 		</div>
@@ -135,8 +149,8 @@
 		<div layout="row" layout-sm="column" layout-align="center center">
 			<md-button class="md-raised md-primary"
 				ng-click="updateScheduledExam(Test.id)"
-				ng-disabled="scheduledExamEditForm.$invalid"> Update Test
-			</md-button>
+				ng-disabled="scheduledExamEditForm.$invalid"> Update
+			Test </md-button>
 			<md-button class="md-raised" ng-click="cancel()"> cancel</md-button>
 		</div>
 </form>

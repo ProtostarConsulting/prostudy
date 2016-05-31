@@ -16,11 +16,13 @@ angular
 					};	
 					$scope.model;
 					$scope.selected=[];
+					$scope.durations=["30","60","90","120","150","180","210"];
 					$scope.tempScheduledExam = {
 						examtitle : "",
 						desc : "",
 						startdatentime : "",
 						enddatentime : "",
+						duration : "",
 						instituteID : $scope.curUser.instituteID,
 						listOfQuestion : []
 					};

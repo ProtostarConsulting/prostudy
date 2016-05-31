@@ -13,7 +13,8 @@
 	<table md-data-table md-row-select="selected" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onorderchange">
 			<tr>
-
+				<th order-by="firstName" name="Student Name"></th>
+				<th order-by="email_id" name="email_id"></th>
 				<th order-by="examTitle" name="Exam Title"></th>
 				<th order-by="email_id" name="Email_id"></th>
 				<th order-by="score" name="Score"></th>
@@ -25,7 +26,8 @@
 
 			<tr md-auto-select
 				ng-repeat="res in scheduledExamResultList | orderBy: query.order | filter: {examtitle: searchCategory} | limitTo: query.limit: (query.page - 1) * query.limit">
-
+				<td>{{res.firstName}}{{res.lastName}}</td>
+				<td>{{res.email_id}}</td>
 				<td>{{res.examTitle}}</td>
 				<td>{{res.email_id}}</td>				
 				<td>{{res.score}}</td>	
@@ -42,7 +44,7 @@
 		
 		<div layout="row" layout-align="center center">
 
-		<a ui-sref="scheduledExam.userQuesAnsView({selectedResultId: selected[0].id})"><md-button
+		<a ui-sref="scheduledExam.userQuesAnsView({selectedResultId: selected[0].id,selectedEmailId:selected[0].email_id,selectedExamId:selectedExamId})"><md-button
 				ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
 				ng-click="">
 			<md-icon md-svg-src="img/icons/view.svg"></md-icon> <md-tooltip>View Result</md-tooltip></md-button>
