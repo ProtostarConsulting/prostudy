@@ -31,11 +31,11 @@ angular
 										});
 					}
 
-					$scope.getPartnerSchoolByInstitute = function() {
+					$scope.getPartnerByInstitute = function() {
 						var PartnerSchoolService = appEndpointSF
 								.getPartnerSchoolService();
 
-						PartnerSchoolService.getPartnerSchoolByInstitute(
+						PartnerSchoolService.getPartnerByInstitute(
 								$scope.curUser.instituteID).then(
 								function(pSchoolList) {
 
@@ -54,7 +54,7 @@ angular
 								$scope.getStudentByExam();
 							} else {
 								$scope.getGFStudentsByInstitute();
-								$scope.getPartnerSchoolByInstitute();
+								$scope.getPartnerByInstitute();
 							
 							}
 						} else {

@@ -32,11 +32,11 @@ angular
 										});
 					}
 
-					$scope.getPartnerSchoolByInstitute = function() {
+					$scope.getPartnerByInstitute = function() {
 
 						var PartnerSchoolService = appEndpointSF
 								.getPartnerSchoolService();
-						PartnerSchoolService.getPartnerSchoolByInstitute(
+						PartnerSchoolService.getPartnerByInstitute(
 								$scope.curUser.instituteID).then(function(pSchoolList) {
 							$scope.pSchoolList = pSchoolList;
 
@@ -49,7 +49,7 @@ angular
 							if ($scope.selectedGFCourierID != "") {
 								$scope.getGFCourierById();
 							}
-							$scope.getPartnerSchoolByInstitute();
+							$scope.getPartnerByInstitute();
 						} else {
 							$log.debug("Services Not Loaded, watiting...");
 							$timeout($scope.waitForServiceLoad, 1000);
