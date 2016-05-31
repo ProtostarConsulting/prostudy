@@ -16,7 +16,6 @@ import com.protostar.prostudy.entity.CommentEntity;
 import com.protostar.prostudy.entity.DivisionEntity;
 import com.protostar.prostudy.entity.InstallmentEntity;
 import com.protostar.prostudy.entity.InstituteEntity;
-import com.protostar.prostudy.entity.PartnerSchoolEntity;
 import com.protostar.prostudy.entity.PaymentEntity;
 import com.protostar.prostudy.entity.PracticeExamEntity;
 import com.protostar.prostudy.entity.PracticeExamResultEntity;
@@ -38,6 +37,7 @@ import com.protostar.prostudy.gf.entity.GFBookEntity;
 import com.protostar.prostudy.gf.entity.GFBookStockEntity;
 import com.protostar.prostudy.gf.entity.GFCourierEntity;
 import com.protostar.prostudy.gf.entity.GFStudentEntity;
+import com.protostar.prostudy.gf.entity.PartnerSchoolEntity;
 import com.protostar.prostudy.protostarAdmin.entities.AccountType;
 import com.protostar.prostudy.until.data.YearCounterEntity;
 
