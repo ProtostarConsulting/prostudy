@@ -23,5 +23,24 @@ public class UploadURLService {
 		 serverMsg.setMsg(createUploadUrl);		 
 		return serverMsg;
 	}
+	
+	@ApiMethod(name = "getPartnerSchoolsUploadURL", path="getPartnerSchoolsUploadURL")
+	public ServerMsg getPartnerSchoolsUploadURL() {
+		 BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+		 String createUploadUrl = blobstoreService.createUploadUrl("/UplodePartnerSchoolsExcel");
+		 ServerMsg serverMsg = new ServerMsg();
+		 serverMsg.setMsg(createUploadUrl);		 
+		return serverMsg;
+	}
+	
+	
+	@ApiMethod(name = "getPartnerSchoolsUploadURLForDownload", path="getPartnerSchoolsUploadURLForDownload")
+	public ServerMsg getPartnerSchoolsUploadURLForDownload() {
+		 BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+		 String createUploadUrl = blobstoreService.createUploadUrl("/DownloadPartnerSchools");
+		 ServerMsg serverMsg = new ServerMsg();
+		 serverMsg.setMsg(createUploadUrl);		 
+		return serverMsg;
+	}
 
 }// end of uploadUrlService

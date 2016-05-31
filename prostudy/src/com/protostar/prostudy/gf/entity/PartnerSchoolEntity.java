@@ -18,7 +18,7 @@ public class PartnerSchoolEntity {
 	@Index  
 	private Address address;
 	@Index  
-	private String instituteID ;
+	private Long instituteID ;
 	
 	private String schoolName;
 	private String desc;
@@ -34,10 +34,10 @@ public class PartnerSchoolEntity {
 		this.id = id;
 	}
 	
-	public String getInstituteID() {
+	public Long getInstituteID() {
 		return instituteID;
 	}
-	public void setInstituteID(String instituteID) {
+	public void setInstituteID(Long instituteID) {
 		this.instituteID = instituteID;
 	}
 	
