@@ -153,6 +153,7 @@ angular
 										$scope.examDetail=$scope.partnerSchool.examDetail;
 										$scope.contactDetail=$scope.partnerSchool.contactDetail;
 										$scope.Address=$scope.partnerSchool.Address;
+										$scope.selected=$scope.partnerSchool.examDetail.examMedium;
 									});
 						}
 					}
