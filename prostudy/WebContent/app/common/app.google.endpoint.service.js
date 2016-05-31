@@ -1214,10 +1214,12 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 	ScheduledExamResultService.getScheduledExamResultListByExamId = function(testID) {
+		$log.debug("testID"+testID);
 		var deferred = $q.defer();
 		gapi.client.scheduledExamResultService.getScheduledExamResultListByExamId({
 			'testID' : testID
 		}).execute(function(resp) {
+			$log.debug("resp"+resp.items);
 			deferred.resolve(resp.items);
 		});
 		return deferred.promise;

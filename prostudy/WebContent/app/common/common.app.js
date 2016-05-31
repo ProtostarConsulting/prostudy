@@ -825,7 +825,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'scheduledUserQuesAnsViewCtr',
 		params : {			
 			selectedExamId:null,
-			selectedEmailId:null			
+			selectedEmailId:null,
+			selectedResultId:null
 		}	
 		
 	})
@@ -853,6 +854,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/scheduledExam/scheduledExam_myScheduledExamList.html',
 		controller : 'studentScheduledExamListCtr'
 	})
+	
 	.state('initsetup', {
 		url : "/initsetup",
 		templateUrl : '/app/Initsetup/initsetup.html',
