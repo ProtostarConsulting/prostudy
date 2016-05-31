@@ -882,23 +882,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/gandhiFoundation/gandhiFoundation_module.html',
 		controller : 'gfModuleCtr'
 	})
+	
 	.state('gandhifoundation.studentModule', {
 		url : "/studentModule",
 		templateUrl : '/app/gandhiFoundation/gfStudent_module.html',
 		controller : 'gfStudentModuleCtr'
 	})
-	.state('gandhifoundation.courierModule', {
-		url : "/courierModule",
-		templateUrl : '/app/gfcourier/gfCourier_module.html',
-		controller : 'gfCourierModuleCtr'
-	})
-	.state('gandhifoundation.bookModule', {
-		url : "/bookModule",
-		templateUrl : '/app/gfbookstock/gfBookStock_module.html',
-		controller : 'gfBookStockModuleCtr'
-	})
-	
-	
 	.state('gandhifoundation.studentModule.add', {
 		url : "/studentModule.add/:selectedGFStudID",
 		templateUrl : '/app/gandhiFoundation/gfStudent_add.html',
@@ -915,56 +904,55 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'gfStudentviewCtr'
 	})
 	
-	.state('gfcourier', {
-		url : "/gfcourier",
+	
+	.state('gandhifoundation.courierModule', {
+		url : "/courierModule",
 		templateUrl : '/app/gfcourier/gfCourier_module.html',
 		controller : 'gfCourierModuleCtr'
 	})
-	.state('gfcourier.courierModule.add', {
+	.state('gandhifoundation.courierModule.add', {
 		url : "/courierModule.add/:selectedGFCourierID",
 		templateUrl : '/app/gfcourier/gfCourier_add.html',
 		controller : 'gfCourierAddCtr'
 	})
-	.state('gfcourier.courierModule.list', {
+	.state('gandhifoundation.courierModule.list', {
 		url : "/list",
 		templateUrl : '/app/gfcourier/gfCourier_list.html',
 		controller : 'gfCourierListCtr'
 	})
-	.state('gfcourier.courierModule.view', {
+	.state('gandhifoundation.courierModule.view', {
 		url : "/courierModule.view/:selectedGFCourierID",
 		templateUrl : '/app/gfcourier/gfCourier_view.html',
 		controller : 'gfCourierviewCtr'
 	})
 	
-	.state('gfbookstock', {
-		url : "/gfbookstock",
+
+	.state('gandhifoundation.bookModule', {
+		url : "/bookModule",
 		templateUrl : '/app/gfbookstock/gfBookStock_module.html',
 		controller : 'gfBookStockModuleCtr'
 	})
-	.state('gfbookstock.bookModule.add', {
+	.state('gandhifoundation.bookModule.add', {
 		url : "/bookModule.add/:selectedGFBookStockID",
 		templateUrl : '/app/gfbookstock/gfBook_add.html',
 		controller : 'gfBookAddCtr'
 	})
-	.state('gfbookstock.bookModule.list', {
+	.state('gandhifoundation.bookModule.list', {
 		url : "/bookModule.list",
 		templateUrl : '/app/gfbookstock/gfBook_list.html',
 		controller : 'gfBookListCtr'
 	})
-	.state('gfbookstock.bookModule.view', {
+	.state('gandhifoundation.bookModule.view', {
 		url : "/bookModule.view/:selectedGFBookStockID",
 		templateUrl : '/app/gfbookstock/gfBookStock_view.html',
 		controller : 'gfBookStockviewCtr'
 	})
-	
-	
-	
-	.state('gfbookstock.bookModule.stockAdd', {
+	.state('gandhifoundation.bookModule.stockAdd', {
 		url : "/bookModule.stockAdd/:selectedGFBookStockID",
 		templateUrl : '/app/gfbookstock/gfBookStock_add.html',
 		controller : 'gfBookStockAddCtr'
 	})
-	.state('gfbookstock.bookModule.stockList', {
+	.state('gandhifoundation.bookModule.stockList', {
 		url : "/bookModule.stockList",
 		templateUrl : '/app/gfbookstock/gfBookStock_list.html',
 		controller : 'gfBookStockListCtr'
