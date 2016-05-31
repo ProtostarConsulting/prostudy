@@ -26,7 +26,7 @@ public class ScheduledExamResultService {
 	}
 
 	
-	@ApiMethod(name = "getScheduledExamResultbyEmail")
+	@ApiMethod(name = "getScheduledExamResultbyEmail", path="getScheduledExamResultbyEmail")
 	public List<ScheduledExamResultEntity> getScheduledExamResultbyEmail(@Named("email_id") String email_id) {
 		List<ScheduledExamResultEntity> list = ofy().load().type(ScheduledExamResultEntity.class)
 				.filter("email_id", email_id).list();
@@ -34,7 +34,7 @@ public class ScheduledExamResultService {
 	}
 	
 	@ApiMethod(name = "getScheduledExamResultListByExamId" , path="getScheduledExamResultListByExamId")
-	public List<ScheduledExamResultEntity> getScheduledExamResultListByExamId(@Named("testID") String testID) {
+	public List<ScheduledExamResultEntity> getScheduledExamResultListByExamId(@Named("testID") Long testID) {
 		List<ScheduledExamResultEntity> list = ofy().load().type(ScheduledExamResultEntity.class)
 				.filter("testID", testID).list();
 		return list;

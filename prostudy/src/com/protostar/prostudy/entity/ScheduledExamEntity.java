@@ -18,16 +18,24 @@ public class ScheduledExamEntity {
 	private String desc;
 	private Date startdatentime;
 	private Date enddatentime;	
+	private int duration;
 	@Index
 	private Long instituteID;
 	private List<ScheduledQuestionEntity> listOfQuestion;
 	
 	public Long getId() {
 		return id;
-	}
+	}	
 	public void setId(Long id) {
 		this.id = id;
 	}
+	public int getDuration() {
+		return duration;
+	}
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+	
 	
 	public Date getStartdatentime() {
 		return startdatentime;

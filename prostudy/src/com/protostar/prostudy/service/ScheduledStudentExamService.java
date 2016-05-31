@@ -77,28 +77,5 @@ public class ScheduledStudentExamService {
 	   return outPutList;
 	  
 	 }
-	
-	
-	
-	/*@ApiMethod(name = "getScheduledExamStudentList")
-	public List<ScheduledStudentExamEntity> getScheduledExamStudentList(@Named("id") Long id) {
-		
-		List<ScheduledStudentExamEntity> list = (List<ScheduledStudentExamEntity>) ofy().load()
-				.type(ScheduledStudentExamEntity.class).list();
-		
-		return list;
-		
-	}	
-	
-	
-	@ApiMethod(name = "getScheduledExamListOfStudent")
-	public ScheduledStudentExamEntity getExamOfStudent(@Named("selectedExam") Long selectedExam) {
-		
-		ScheduledStudentExamEntity list =  ofy().load()
-				.type(ScheduledStudentExamEntity.class).id(selectedExam).now();
-		
-		return  list;
-		
-	}	*/
 
 }
