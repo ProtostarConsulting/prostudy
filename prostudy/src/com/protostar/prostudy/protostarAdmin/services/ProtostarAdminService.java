@@ -36,9 +36,7 @@ public class ProtostarAdminService {
 		} catch (Exception e) {
 			log.info("Error Ocuured: " + e.getStackTrace());
 		}
-
 		return null;
-
 	}
 
 	@ApiMethod(name = "getAccountTypeById")
@@ -93,6 +91,17 @@ public class ProtostarAdminService {
 			
 			// ------------------------------
 
+			UserEntity userEntity4 = new UserEntity();
+			userEntity4.setInstituteID(instituteEntity.getID());
+			userEntity4.setEmail_id("aniket.bhalsing@protostar.co.in");
+			userEntity4.setFirstName("Aniket");
+			userEntity4.setLastName("Bhalsing");
+			userEntity4.setIsGoogleUser(true);
+			userEntity4.setAuthority(Arrays.asList("admin"));
+			ofy().save().entity(userEntity4).now();
+			
+			// ------------------------------
+			
 			UserEntity userEntity3 = new UserEntity();
 			userEntity3.setInstituteID(instituteEntity.getID());
 			userEntity3.setEmail_id("ashvinigokale@gmail.com");
