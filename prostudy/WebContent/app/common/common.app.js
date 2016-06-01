@@ -854,6 +854,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/scheduledExam/scheduledExam_myScheduledExamList.html',
 		controller : 'studentScheduledExamListCtr'
 	})
+	.state('scheduledExam.addResult', {
+		url : "/addResult",
+		templateUrl : '/app/scheduledExam/scheduledExam_addResult.html',
+		controller : 'addScheduledExamResultCtr'
+	})
+	
 	
 	.state('initsetup', {
 		url : "/initsetup",
