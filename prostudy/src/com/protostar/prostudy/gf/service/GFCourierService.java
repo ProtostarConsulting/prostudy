@@ -19,7 +19,7 @@ public class GFCourierService {
 			
 		 ofy().save().entity(gfCourierEntity).now();
 		 
-		 GFBookTransactionEntity gfBookTransactionEntity = new GFBookTransactionEntity();
+		/* GFBookTransactionEntity gfBookTransactionEntity = new GFBookTransactionEntity();
 		 gfBookTransactionEntity.setBook(gfCourierEntity.getBookLineItemList());
 		
 		 if(gfCourierEntity.getBookLineItemList().size() < 1 ){
@@ -35,7 +35,7 @@ public class GFCourierService {
 				 
 				 ofy().save().entity(gfBookTransactionEntity).now();
 			 }
-		 }
+		 }*/
 		 
 	}
 	
