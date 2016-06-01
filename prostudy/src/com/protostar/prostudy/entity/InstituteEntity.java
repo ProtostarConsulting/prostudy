@@ -22,6 +22,17 @@ public class InstituteEntity {
 	private String status="active" ;
 	@Index
 	private String LogBlobKey;
+	private String bulkBookBlobKey;
+	
+	
+	public String getBulkBookBlobKey() {
+		return bulkBookBlobKey;
+	}
+
+	public void setBulkBookBlobKey(String bulkBookBlobKey) {
+		this.bulkBookBlobKey = bulkBookBlobKey;
+	}
+
 	public String getLogBlobKey() {
 		return LogBlobKey;
 	}

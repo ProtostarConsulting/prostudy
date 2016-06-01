@@ -16,16 +16,24 @@ public class GFCourierEntity {
 	private String courierType;
 	private String logistics;
 	private String registrationID;
-	private String weight;
 	private String courierFrom;
 	private String courierTo;
 	private String status = "Dispathch";
 	private Date courierDispatchDate;
 	private Date courierReceivedDate;
 	private long instituteID;
-	
+	private int bookQty;	
 	Ref<PartnerSchoolEntity> schoolName;
 	List<GFBookEntity> bookLineItemList;
+	
+	public int getBookQty() {
+		return bookQty;
+	}
+
+	public void setBookQty(int bookQty) {
+		this.bookQty = bookQty;
+	}
+	
 	public List<GFBookEntity> getBookLineItemList() {
 		return bookLineItemList;
 	}
@@ -88,12 +96,7 @@ public class GFCourierEntity {
 	public void setRegistrationID(String registrationID) {
 		this.registrationID = registrationID;
 	}
-	public String getWeight() {
-		return weight;
-	}
-	public void setWeight(String weight) {
-		this.weight = weight;
-	}
+	
 	public String getCourierFrom() {
 		return courierFrom;
 	}

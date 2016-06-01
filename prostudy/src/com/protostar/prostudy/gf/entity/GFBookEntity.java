@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 import com.protostar.prostudy.entity.BookEntity;
 
 @Entity
@@ -19,6 +20,7 @@ public class GFBookEntity {
 	private int bookQty;
 	private String bookPublication;
 	private Date bookFeedDate;
+	@Index
 	private long instituteID;
 	private String medium;
 	private Date stockFeedDate;
