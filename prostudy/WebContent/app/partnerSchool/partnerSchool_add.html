@@ -1,17 +1,18 @@
 
-	<div layout-sm="column" layout-align="start start" flex>
+<div layout-sm="column" layout-align="start start" flex>
 
-		<md-button class="md-icon-button" aria-label="prev"
-			ng-click="back()"> <md-tooltip> go back </md-tooltip> <md-icon
-			md-svg-icon="img/icons/ic_reply_black_24px.svg"
-			aria-label="Prev Week"></md-icon> </md-button>
+	<md-button class="md-icon-button" aria-label="prev" ng-click="back()">
+	<md-tooltip> go back </md-tooltip> <md-icon
+		md-svg-icon="img/icons/ic_reply_black_24px.svg" aria-label="Prev Week"></md-icon>
+	</md-button>
 
-	</div>
-<section ng-hide="selectedPSchoolId" layout="row" layout-align="end end" flex>
-		<md-button class="md-raised md-primary" id="resetState"
-			ng-click="resetState()">Add New School</md-button>
-	</section>
-	
+</div>
+<section ng-hide="selectedPSchoolId" layout="row" layout-align="end end"
+	flex>
+	<md-button class="md-raised md-primary" id="resetState"
+		ng-click="resetState()">Add New School</md-button>
+</section>
+
 <h3 class="md-headline" ng-hide="selectedPSchoolId">Add Partner
 	School</h3>
 
@@ -142,8 +143,8 @@
 			<span flex="10"></span>
 		</div>
 
-		<div layout="row" layout-xs="column">
-			<!-- <span flex="10"></span> -->
+		<!-- 	<div layout="row" layout-xs="column">
+			<span flex="10"></span>
 			<md-input-container flex="30"> <label>
 				Primary Contact <span style="color: red;"
 				ng-show="partnerSchoolForm.primaryContact.$error.required">*</span>
@@ -158,7 +159,7 @@
 
 			</md-input-container>
 			<span flex="60"></span>
-		</div>
+		</div> -->
 	</div>
 
 	<section layout="row" layout-sm="column" layout-align="end end">
@@ -188,8 +189,8 @@
 
 		<md-input-container flex="20"> <label>Male
 			<span style="color: red;">*</span>
-		</label> <input name="male" id="male" ng-model="examDetail.male" ng-change="calculateTotal()"
-			ng-required="true">
+		</label> <input name="male" id="male" ng-model="examDetail.male"
+			ng-change="calculateTotal()" ng-required="true">
 		<div ng-messages="partnerSchoolForm.male.$error"
 			ng-if="partnerSchoolForm.male.$submitted || partnerSchoolForm.male.$touched">
 			<div ng-message="required">Please Enter Male Number Of Student.</div>
@@ -198,8 +199,8 @@
 		<span flex="20"></span>
 		<md-input-container flex="20"> <label>Female<span
 			style="color: red;">*</span>
-		</label> <input name="female" id="female" ng-model="examDetail.female" ng-change="calculateTotal()"
-			ng-required="true">
+		</label> <input name="female" id="female" ng-model="examDetail.female"
+			ng-change="calculateTotal()" ng-required="true">
 		<div ng-messages="partnerSchoolForm.female.$error"
 			ng-if="partnerSchoolForm.female.$submitted || partnerSchoolForm.female.$touched">
 			<div ng-message="required">Please Enter female Number Of
@@ -207,10 +208,8 @@
 		</div>
 		</md-input-container>
 		<span flex="10"></span>
-		<md-input-container flex="30"> Total=
-		<b>{{examDetail.total}} </b>
-						
-		</md-input-container>
+		<md-input-container flex="30"> Total= <b>{{examDetail.total}}
+		</b> </md-input-container>
 	</div>
 	<div layout="row" layout-xs="column">
 
@@ -241,15 +240,14 @@
 		<md-input-container flex="30"> <md-radio-group
 			ng-model="examDetail.bookRequired"> <md-radio-button
 			value="OffLine" class="md-primary">OffLine</md-radio-button> <md-radio-button
-			value="OnLine" class="md-primary"> OnLine </md-radio-button> </md-radio-group>
-		 </md-input-container>
-		
-		
-		<h3 class="md-subhead" flex="20" >Select Year</h3>
+			value="OnLine" class="md-primary"> OnLine </md-radio-button> </md-radio-group> </md-input-container>
+
+
+		<h3 class="md-subhead" flex="20">Select Year</h3>
 		<span flex="10"></span>
 		<md-input-container flex="40"> <md-select
 			ng-model="yearOfExam" id="selectedYear"> <md-option
-			ng-value="Year" ng-repeat="Year in Years" ng-selected="$first" >{{Year}}</md-option>
+			ng-value="Year" ng-repeat="Year in Years" ng-selected="$first">{{Year}}</md-option>
 		</md-select> </md-input-container>
 	</div>
 
@@ -358,21 +356,68 @@
 			class="md-raised md-primary" ng-click="addPartnerSchool()">Save
 		& Next</md-button>
 	</section>
-	</md-content> </md-tab> <!-- <div layout="row" layout-xs="column">
-		<section layout="row" layout-sm="column" layout-align="end end">
-			<md-button ng-disabled="partnerSchoolForm.$invalid"
-				class="md-raised md-primary" ng-hide="partnerSchool.id"
-				ng-click="addPartnerSchool()">Save & Next</md-button>
-		</section>
+	</md-content> </md-tab> <md-tab label="Book Detail"> <md-content class="md-padding">
+	<table md-data-table md-progress="deferred" >
+		<thead md-order="query.order" md-trigger="onorderchange">
+			<tr>
 
-		<section layout="row" layout-sm="column" layout-align="end end">
-			<md-button ng-disabled="partnerSchoolForm.$invalid"
-				class="md-raised md-primary" ng-hide="partnerSchool.id == null"
-				ng-click="addPartnerSchool()">Update</md-button>
-		</section>
-		<section layout="row" layout-sm="column" layout-align="end end">
-			<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
-		</section>
-	</div> --> </md-tabs> </md-content>
+				<th width=20% name="Book Name" order-by="bookName"></th>
+				<th width=20% name="Prise"></th>
+				<th width=10% name="Number of Students Hindi" ng-show="selected.indexOf('Hindi') > -1"> </th>
+				<th width=10px name="Number of Students Marathi" ng-show="selected.indexOf('Marathi') > -1"></th>
+				<th width=10px name="Number of Students English" ng-show="selected.indexOf('English') > -1"></th>
+				<th width=10px name="Total Student"></th>
+				<th width=20% name="Total Fees"></th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="test in books track by $index  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit ">
+				<td width=20%>{{test.bookName}}</td>
+				<td width=20%>{{test.bookPrise}}</td>
+				<td width=10% ng-show="selected.indexOf('Hindi') > -1"><input  type="number" name="hindi" ng-blur="calculate($index,test.hindinum,'hindi')" ng-model="test.hindinum" ></td>
+				<td width=10% ng-show="selected.indexOf('Marathi') > -1"><input type="number" name="marathi" ng-blur="calculate($index,test.marathinum,'marathi')" ng-model="test.marathinum"></td>
+				<td width=10% ng-show="selected.indexOf('English') > -1"><input type="number" name="english" ng-blur="calculate($index,test.englishnum,'english')" ng-model="test.englishnum"></td>
+				<td width=10%>{{test.totalStud}}</td>
+				<td width=20%> {{test.totalFees}}</td>
+				
+
+			</tr>
+			<tr>
+			<td>Total :-</td>
+			<td>{{bookSummary.total}}</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td> 
+			</tr>
+			<tr>
+			<td>20% Amount for Institute :-</td>
+			<td>{{bookSummary.amtForInst20per}}</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td> 
+			</tr>
+			<tr>
+			<td>80% Amount for GRF :-</td>
+			<td>{{bookSummary.amtForGRF80per}}</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td> 
+			</tr>
+		</tbody>
+
+	</table>
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{pSchoolList.length}} md-trigger="onpagechange"></md-data-table-pagination>
+
+	</md-data-table-container> </md-content> </md-tab> </md-tabs> </md-content>
+
 </form>
 

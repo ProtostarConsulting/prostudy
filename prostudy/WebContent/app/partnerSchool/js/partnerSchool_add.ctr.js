@@ -13,7 +13,7 @@ angular
 					$scope.partnerSchoolLevels = partnerSchoolLevels;
 
 					// ----------tab control-------
-					$scope.max = 2;
+					$scope.max = 3;
 					$scope.selectedIndex = 0;
 					$scope.tabNext = function() {
 						var index = ($scope.selectedIndex == $scope.max) ? 0
@@ -86,6 +86,23 @@ angular
 						pin : ""
 					}
 
+					$scope.bookSummary = {
+						bookDtail : [],
+						total : 0,
+						amtForInst20per : 0,
+						amtForGRF80per : 0
+					}
+
+					$scope.bookDetail = {
+						bookName : "",
+						bookPrise : "",
+						hindinum : "",
+						marathinum : "",
+						englishnum : "",
+						totalStud : "",
+						totalFees : ""
+					}
+
 					$scope.getNextYears = function() {
 						var date = new Date();
 						for (var i = 0; i < 4; i++) {
@@ -145,16 +162,17 @@ angular
 						var PartnerSchoolService = appEndpointSF
 								.getPartnerSchoolService();
 						if ($scope.selectedPSchoolId != "") {
-							PartnerSchoolService.getPSchoolByPSID(
-									$scope.selectedPSchoolId).then(
-									function(pSchool) {
-										$scope.partnerSchool = pSchool;
-										$scope.partnerSchool.formNumber=Number($scope.partnerSchool.formNumber);
-										$scope.examDetail=$scope.partnerSchool.examDetail;
-										$scope.contactDetail=$scope.partnerSchool.contactDetail;
-										$scope.Address=$scope.partnerSchool.Address;
-										$scope.selected=$scope.partnerSchool.examDetail.examMedium;
-									});
+							PartnerSchoolService
+									.getPSchoolByPSID($scope.selectedPSchoolId)
+									.then(
+											function(pSchool) {
+												$scope.partnerSchool = pSchool;
+												$scope.partnerSchool.formNumber = Number($scope.partnerSchool.formNumber);
+												$scope.examDetail = $scope.partnerSchool.examDetail;
+												$scope.contactDetail = $scope.partnerSchool.contactDetail;
+												$scope.Address = $scope.partnerSchool.Address;
+												$scope.selected = $scope.partnerSchool.examDetail.examMedium;
+											});
 						}
 					}
 
@@ -175,10 +193,87 @@ angular
 
 						$state.go('^', {});
 					};
-					
+
 					$scope.back = function() {
 						window.history.back();
 						// $state.go("^", {});
 					};
+
+					$scope.getGFBookStockByInstituteId = function() {
+
+						var gfBookStockService = appEndpointSF
+								.getGFBookStockService();
+						gfBookStockService
+								.getGFBookStockByInstituteId(
+										$scope.curUser.instituteID)
+								.then(
+										function(tempBooks) {
+
+											$scope.bookStocks = tempBooks;
+											for (i = 0; i < $scope.bookStocks.length; i++) {
+												$scope.bookDetail = {};
+												$scope.bookDetail.bookName = $scope.bookStocks[i].book.bookName;
+												$scope.bookDetail.bookPrise = $scope.bookStocks[i].book.bookPrice;
+												$scope.bookDetail.hindinum = 0;
+												$scope.bookDetail.marathinum = 0;
+												$scope.bookDetail.englishnum = 0;
+												$scope.bookDetail.totalStud = 0;
+												$scope.bookDetail.totalFees = 0;
+												$scope.books[i] = $scope.bookDetail;
+												$log.debug("$scope.books===="
+														+ $scope.books);
+
+											}
+
+										});
+					}
+
+					$scope.bookStocks = [];
+					$scope.books = [];
+
+					$scope.calculate = function(index, val, name) {
+						
+						//book array use to save
+						
+						$log.debug("index=" + index + "val=" + val + "name"
+								+ name);
+						if (name == "hindi") {
+							$scope.books[index].hindinum = val;
+
+						}
+						if (name == "marathi") {
+							$scope.books[index].marathinum = val;
+						}
+						if (name == "english") {
+							$scope.books[index].englishnum = val;
+						}
+						$scope.books[index].totalStud = $scope.books[index].hindinum
+								+ $scope.books[index].marathinum
+								+ $scope.books[index].englishnum;
+						$scope.books[index].totalFees = $scope.books[index].totalStud
+								* $scope.books[index].bookPrise;
+
+						$scope.bookSummary.total = 0;
+						for (count = 0; count < $scope.books.length; count++) {
+							$scope.bookSummary.total += $scope.books[count].totalFees;
+							$scope.bookSummary.amtForInst20per = Math
+									.round(($scope.bookSummary.total / 100) * 20);
+							$scope.bookSummary.amtForGRF80per = Math
+									.round(($scope.bookSummary.total / 100) * 80);
+						}
+					}
+
+					$scope.waitForServiceLoad1 = function() {
+						if (appEndpointSF.is_service_ready) {
+
+							$scope.getGFBookStockByInstituteId();
+
+						} else {
+							$log.debug("Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad1, 1000);
+						}
+					}
+
+					$scope.waitForServiceLoad1();
 
 				});

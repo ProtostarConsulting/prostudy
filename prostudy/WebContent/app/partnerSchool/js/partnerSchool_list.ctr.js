@@ -86,7 +86,7 @@ angular.module("prostudyApp").controller(
 						.show(
 								{
 									controller : DialogController,
-									templateUrl : '/app/partnerSchool/setup_AddPartnerSchool.html',
+									templateUrl : '/app/partnerSchool/AddPartnerSchools.html',
 									parent : angular
 											.element(document.body),
 									targetEvent : ev,
