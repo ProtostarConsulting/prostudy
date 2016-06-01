@@ -52,7 +52,11 @@
 					ng-click="close()" class="md-primary">My Exam Result</md-button>
 
 		
-
+				<md-button ui-sref="scheduledExam.addResult" ng-click="close()"
+					class="md-primary">Add Scheduled Exam Result Offline</md-button>
+					
+					
+					
 				<md-button ui-sref="scheduledExam.assignStudents" ng-click="close()"
 					class="md-primary">Assign Student to Scheduled Exam </md-button>
 
@@ -85,6 +89,9 @@
 			<md-button
 				ui-sref="scheduledExam.myScheduledExamList({selectedStudId:curUser.id})"
 				ng-click="close()" class="md-primary">My Exam Result</md-button>
+				
+				<md-button ui-sref="scheduledExam.addResult" ng-click="close()"
+					class="md-primary">Add Scheduled Exam Result Offline</md-button>
 
 			<md-button ui-sref="scheduledExam.assignStudents" ng-click="close()"
 				class="md-primary">Assign Student to Scheduled Exam </md-button>

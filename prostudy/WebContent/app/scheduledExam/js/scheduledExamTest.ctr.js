@@ -282,17 +282,7 @@ angular
 
 					}
 					
-					
-					$scope.updateUser = function() {	
-						$scope.curUser.selectedExam=$scope.selectedExamId;
-						var UserService = appEndpointSF.getUserService();
-						UserService.updateUser($scope.curUser).then(function(msgBean) {
-						
-						});
-
-					}
-
-
+	
 					$scope.addScheduledExamResult = function() {
 
 						$scope.tempScheduledExamResult.testID = $scope.selectedExamId;
@@ -302,10 +292,9 @@ angular
 						ScheduledExamResultService.addScheduledExamResult(
 								$scope.tempScheduledExamResult).then(
 								function(msgBean) {
-									$scope.updateUser();
-									
+								$scope.showSavedToast();
 								$state.go('scheduledExam.userQuesAnsView', {selectedExamId : $scope.Test.id,selectedEmailId: $scope.curUser.email_id});
-									$scope.showSavedToast();
+									
 
 								});
 						}

@@ -70,13 +70,18 @@ angular
 												if(scheduledExamResultList[i].testID==$scope.selectedExamId)
 													{
 													$scope.examResults = scheduledExamResultList[i];
-													$scope.answeredLength = $scope.examResults.userAns.length;	
+													if($scope.examResults.userAns!=undefined)
+													{	$scope.answeredLength = $scope.examResults.userAns.length;}	
 													
 												}
 												}
 											if($scope.examResults.id==undefined)
 											{
 												alert("User not Attempted this Exam");									
+											}
+											if($scope.examResults.id!=undefined && $scope.examResults.test==undefined &&  $scope.examResults.userAns==undefined)
+											{
+												alert("User Has  Attempted Offline Exam");									
 											}
 											
 											

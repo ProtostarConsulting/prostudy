@@ -4,7 +4,8 @@
 <section>
 	<md-content layout-padding>
 	<div layout="column" layout-align="end end">
-		<span style="color: red">Time left : {{counter}} </span> <label>
+		<span style="color: red">Time left : {{(counter/60) | number:0}} Minutes </span> <label>
+		<!-- <span style="color: red">Time left : {{counter}} Seconds </span> <label> -->
 			<div ng-init="startTimer()">
 		</label>
 	</div>
@@ -63,7 +64,11 @@
 		</div>
 	</div>	
 
+	.......{{selection}}
 
+	<p>&nbsp;</p>
+	
+	.......{{userAnsList}}
 	<p>&nbsp;</p>	
 
 
