@@ -23,7 +23,7 @@ angular
 						courierTo : '',
 						schoolName : '',
 						courierDispatchDate : new Date(),
-
+						bookQty : 0,
 						bookLineItemList : [],
 						otherLineItemList : []
 					}
@@ -37,7 +37,7 @@ angular
 								.getGFCourierService();
 
 						gfCourierService.addGFCourier($scope.tempCourierObj)
-								.then(function() {
+							.then(function() {
 
 									$scope.gfCourierForm.$setPristine();
 									$scope.gfCourierForm.$setValidity();
@@ -112,6 +112,8 @@ angular
 					$scope.lineItemStockChange = function(index, stockItem) {
 
 						var lineSelectedItem = $scope.tempCourierObj.bookLineItemList[index];
+						lineSelectedItem.bookName = stockItem.bookName;
+						lineSelectedItem.bookQty = stockItem.bookQty;
 						lineSelectedItem.bookPrice = stockItem.bookPrice;
 						lineSelectedItem.bookAuther = stockItem.bookAuther;
 						lineSelectedItem.weight = stockItem.weight;

@@ -78,17 +78,6 @@
 
 		<div layout="row" layout-xs="column" flex>
 
-			<md-input-container flex> <label>Weight
-				<span style="color: red"
-				ng-show="gfCourierForm.weight.$error.required" class="mandatory">*</span>
-			</label> <input name="weight" ng-model="tempCourierObj.weight"
-				ng-required="true">
-			<div ng-messages="gfCourierForm.weight.$error"
-				ng-if="gfCourierForm.weight.$submitted || gfCourierForm.weight.$touched">
-				<div ng-message="required">Please Enter Weight Of Courier.</div>
-			</div>
-			</md-input-container>
-
 			<md-input-container flex> <label>From <span
 				style="color: red"
 				ng-show="gfCourierForm.courierFrom.$error.required"
@@ -147,7 +136,7 @@
 					<td><md-input-container flex> <input
 							ng-model="book.bookPrice"></md-input-container></td>
  -->					<td><md-input-container flex> <input
-							ng-model="book.bookQty" type="number"> </b></td>
+							ng-model="tempCourierObj.bookQty" type="number"> </b></td>
 					<td><md-button class="md-raised md-primary" ng-click="removeItem($index)">Remove
 							Book</md-button>
 							</td>

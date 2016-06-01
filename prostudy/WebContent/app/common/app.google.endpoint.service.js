@@ -1701,6 +1701,16 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
+	
+	uploadPathService.getBulkBookUploadURL = function() {
+		var deferred = $q.defer();
+		gapi.client.uploadPathService.getBulkBookUploadURL().execute(function(resp) {
+			$log.debug("getURL at enpoint" + angular.toJson(resp));
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
 	/*
 	 * PaymentService.getPaymentByStudent = function(studId) { var deferred =
 	 * $q.defer(); gapi.client.paymentService.getPaymentByStudent({ 'studId' :

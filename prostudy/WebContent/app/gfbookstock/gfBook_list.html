@@ -3,9 +3,12 @@
 
 	<div layout="row" layout-align="end end" layout-xs="column">
 
-		<md-button class="md-raised md-primary" ng-click="openPopUp()">Add
-		In Bulk </md-button>
+			<md-button class="md-raised md-primary" id="uplodeExcel"
+		ng-click="UplodeExcel($event)">Bulk Upload <md-tooltip>
+	Add Bulk Books</md-tooltip> </md-button>
 	</div>
+
+
 
 	<div layout="row" layout-xs="column">
 		<md-input-container flex> <label>Search
@@ -16,14 +19,14 @@
 
 
 		<md-input-container flex> <label>Search
-			BY Book </label> <md-select name="bookName" ng-model="book.bookName ">
-		<md-option ng-value="book.book.bookName"
-			ng-repeat="book in bookStocks">{{book.book.bookName}}</md-option> 
+			BY Book Name</label> <md-select name="bookName" ng-model="bookName ">
+		<md-option ng-value="book.bookName"
+			ng-repeat="book in bookStocks">{{book.bookName}}</md-option> 
 		</md-select></md-input-container>	
 			
 			<md-input-container
 			flex> <label>Search BY Medium </label> <md-select
-			name="bookName" ng-model="book.medium "> <md-option
+			name="bookName" ng-model="medium "> <md-option
 			ng-value="book.medium" ng-repeat="book in bookStocks">{{book.medium}}</md-option>
 		</md-select> </md-input-container>
 	</div>
@@ -36,21 +39,20 @@
 
 				<tr>
 					<th order-by="bookName" name="Book Name"></th>
+					<th order-by="bookAuther" name="Auther"></th>
 					<th order-by="bookPublication" name="Publication"></th>
-					<th order-by="bookQty" name="Quantity"></th>
-					<th order-by="medium" name="Medium"></th>
+					
 				</tr>
 			</thead>
 			<tbody>
 				<tr md-auto-select
-					ng-repeat="book in bookStocks | orderBy: query.order | filter: book.bookName |filter : book.medium | limitTo: query.limit: (query.page - 1) * query.limit">
+					ng-repeat="book in bookStocks | orderBy: query.order | filter: bookName |filter : medium | limitTo: query.limit: (query.page - 1) * query.limit">
 
-					<td>{{book.book.bookName}}</td>
-					<td>{{book.book.bookPublication}}</td>
-					<td>{{book.bookQty}}</td>
-					<td>{{book.medium}}</td>
-					<td></td>
-					<td></td>
+					<td>{{book.bookName}}</td>
+					<td>{{book.bookAuther}}</td>
+					<td>{{book.bookPublication}}</td>
+					
+					
 				</tr>
 			</tbody>
 		</table>
