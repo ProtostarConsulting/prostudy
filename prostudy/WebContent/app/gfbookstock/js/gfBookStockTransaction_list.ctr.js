@@ -1,7 +1,7 @@
 angular
 		.module("prostudyApp")
 		.controller(
-				"gfBookStockListCtr",
+				"gfBookstockTransactionListCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $q, $mdDialog, $mdMedia,
 						tableTestDataFactory, appEndpointSF) {
@@ -18,13 +18,11 @@ angular
 						page : 1
 					};
 
-					$scope.courierTypelist = [ "Book", "Certificate",
-					       					"Error Certificate", "Error books", "Prize Certificate" ];
 
-					$scope.getGFBookStockByInstituteId = function() {
+					$scope.getGFBookStockTransactionByInstituteId = function() {
 
 						var gfBookStockService = appEndpointSF.getGFBookStockService();
-						gfBookStockService.getGFBookStockByInstituteId($scope.curUser.instituteID)
+						gfBookStockService.getGFBookStockTransactionByInstituteId($scope.curUser.instituteID)
 								.then(function(tempBooks) {
 									
 									$scope.bookStocks = tempBooks;
@@ -35,7 +33,7 @@ angular
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
 
-							$scope.getGFBookStockByInstituteId();
+							$scope.getGFBookStockTransactionByInstituteId();
 								
 							
 							

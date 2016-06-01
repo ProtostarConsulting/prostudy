@@ -86,9 +86,10 @@
 
 
 		<div flex layout="row">
-			<md-radio-group ng-model="tempStudent.gender"> <md-radio-button
-				value="Male" class="md-primary" checked="checked" >Male</md-radio-button> <md-radio-button
-				value="Female"> Female </md-radio-button>
+			<md-input-container> <md-radio-group
+				ng-model="tempStudent.gender"> <md-radio-button
+				value="Male" class="md-primary">Male</md-radio-button> <md-radio-button
+				value="Female" class="md-primary"> Female </md-radio-button> </md-radio-group> </md-input-container>
 		</div>
 
 	</form>
@@ -96,11 +97,13 @@
 
 <div layout="row" layout-align="center center" layout-xs="column">
 
-	<md-button ng-hide="tempStudent.id" class="md-raised md-primary" ng-click="addGFStudent()"
-		ng-disabled="gfStudentForm.$invalid">Add </md-button>
+	<md-button ng-hide="tempStudent.id" class="md-raised md-primary"
+		ng-click="addGFStudent()" ng-disabled="gfStudentForm.$invalid">Add
+	</md-button>
 
-	<md-button ng-show="tempStudent.id" class="md-raised md-primary" ng-click="addGFStudent()"
-		ng-disabled="gfStudentForm.$invalid">Update </md-button>
+	<md-button ng-show="tempStudent.id" class="md-raised md-primary"
+		ng-click="addGFStudent()" ng-disabled="gfStudentForm.$invalid">Update
+	</md-button>
 
 	<!-- <md-button class="md-raised md-primary" ng-click="showAlert($event)" ng-disabled="gfStudentForm.$invalid">Add
 	Institute </md-button> -->

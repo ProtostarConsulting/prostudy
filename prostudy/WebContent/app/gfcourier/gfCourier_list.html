@@ -65,12 +65,12 @@
 </div>
 
 <div layout="row" layout-align="center center">
-	<md-button ui-sref="gfcourier.add({selectedGFCourierID : selected[0].id})"
+	<md-button ui-sref="gfcourier.bookModule.add({selectedGFCourierID : selected[0].id})"
 		ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
 		ng-click=""> <md-icon md-svg-src="img/icons/edit.svg"></md-icon>
 	<md-tooltip>Edit </md-tooltip></md-button>
 
-	<md-button ui-sref="gfcourier.view({selectedGFCourierID : selected[0].id})"
+	<md-button ui-sref="gfcourier.bookModule.view({selectedGFCourierID : selected[0].id})"
 		ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
 		ng-click=""> <md-icon md-svg-src="img/icons/result.svg"></md-icon>
 	<md-tooltip>View </md-tooltip></md-button>

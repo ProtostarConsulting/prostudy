@@ -140,6 +140,14 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
+	
+	GFBookStockService.getGFBookStockTransactionByInstituteId = function(instituteID) {
+		var deferred = $q.defer();
+		gapi.client.gfBookStockService.getGFBookStockTransactionByInstituteId({'instituteID' : instituteID}).execute(function(resp) {
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
 	// Gandhi Foundation gfBookStockService End
 	
 	

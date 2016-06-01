@@ -959,6 +959,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/gfbookstock/gfBookStock_list.html',
 		controller : 'gfBookStockListCtr'
 	})
+	.state('gandhifoundation.bookModule.stockTransaction', {
+		url : "/bookModule.stockTransaction",
+		templateUrl : '/app/gfbookstock/gfBookStockTransaction_list.html',
+		controller : 'gfBookstockTransactionListCtr'
+	})
 });
 
 app.filter('unique', function() {

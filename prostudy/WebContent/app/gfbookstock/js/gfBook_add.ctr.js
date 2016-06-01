@@ -3,14 +3,14 @@ angular.module("prostudyApp").controller(
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, $q, appEndpointSF, $state, $stateParams, $mdDialog,
 				objectFactory) {
-			
+			$scope.answerOfMediumList = [ "Marathi", "Hindi", "English", ];
 			$scope.tempBookStock = {
 					bookName : '',
 					bookAuther : '',
 					weight : '',
 					bookPrice : '',
 					bookPublication : '',
-					feedDate : new Date(),
+					bookFeedDate : new Date(),
 			}
 
 			$scope.selectedGFBookStockID = $stateParams.selectedGFBookStockID;
@@ -34,7 +34,7 @@ angular.module("prostudyApp").controller(
 				} else {
 					$scope.showUpdateToast();
 				}
-				$scope.tempCourier = {};
+				$scope.tempBookStock  = {};
 			}
 
 			$scope.getGFBookStockById = function() {

@@ -1,13 +1,13 @@
 
-<h3 class="md-headline" ng-hide="tempCourier.id">Courier Add</h3>
-<h3 class="md-headline" ng-show="tempCourier.id">Courier Update</h3>
+<h3 class="md-headline" ng-hide="tempCourierObj.id">Courier Add</h3>
+<h3 class="md-headline" ng-show="tempCourierObj.id">Courier Update</h3>
 
 <div layout="column" layout-padding layout-xs="column">
 
 	<form name="gfCourierForm">
 
 		<div layout="row" layout-xs="column">
-			<md-datepicker flex ng-model="tempCourier.courierDispatchDate"
+			<md-datepicker flex ng-model="tempCourierObj.courierDispatchDate"
 				md-placeholder="Select Date"></md-datepicker>
 
 
@@ -19,7 +19,7 @@
 				Type<span style="color: red"
 				ng-show="gfCourierForm.courierType.$error.required"
 				class="mandatory">*</span>
-			</label> <md-select name="courierType" ng-model="tempCourier.courierType "
+			</label> <md-select name="courierType" ng-model="tempCourierObj.courierType "
 				ng-required="true"> <md-option ng-value="courierType"
 				ng-repeat="courierType in courierTypelist">{{courierType}}</md-option>
 			</md-select>
@@ -33,7 +33,7 @@
 			<md-input-container flex> <label>Logistics
 				<span style="color: red"
 				ng-show="gfCourierForm.logistics.$error.required" class="mandatory">*</span>
-			</label> <md-select name="logistics" ng-model="tempCourier.logistics "
+			</label> <md-select name="logistics" ng-model="tempCourierObj.logistics "
 				ng-required="true"> <md-option ng-value="logistics"
 				ng-repeat="logistics in logisticsList">{{logistics}}</md-option> </md-select>
 			<div ng-messages="gfCourierForm.logistics.$error"
@@ -51,7 +51,7 @@
 				ng-show="gfCourierForm.registrationID.$error.required"
 				class="mandatory">*</span>
 			</label> <md-select name="registrationID"
-				ng-model="tempCourier.registrationID" ng-required="true">
+				ng-model="tempCourierObj.registrationID" ng-required="true">
 			<md-option ng-value="registrationID"
 				ng-repeat="registrationID in registrationIDList">{{registrationID}}</md-option>
 			</md-select>
@@ -65,7 +65,7 @@
 			<md-input-container flex> <label>School
 				/ College / Institute<span style="color: red"
 				ng-show="gfCourierForm.level.$error.required" class="mandatory">*</span>
-			</label> <md-select name="level" ng-model="tempCourier.schoolName"
+			</label> <md-select name="level" ng-model="tempCourierObj.schoolName"
 				ng-required="true"> <md-option ng-value="schoolName"
 				ng-repeat="schoolName in pSchoolList">{{schoolName.schoolName}}</md-option>
 			</md-select>
@@ -81,7 +81,8 @@
 			<md-input-container flex> <label>Weight
 				<span style="color: red"
 				ng-show="gfCourierForm.weight.$error.required" class="mandatory">*</span>
-			</label> <input name="weight" ng-model="tempCourier.weight" ng-required="true">
+			</label> <input name="weight" ng-model="tempCourierObj.weight"
+				ng-required="true">
 			<div ng-messages="gfCourierForm.weight.$error"
 				ng-if="gfCourierForm.weight.$submitted || gfCourierForm.weight.$touched">
 				<div ng-message="required">Please Enter Weight Of Courier.</div>
@@ -89,9 +90,11 @@
 			</md-input-container>
 
 			<md-input-container flex> <label>From <span
-				style="color: red" ng-show="gfCourierForm.courierFrom.$error.required"
+				style="color: red"
+				ng-show="gfCourierForm.courierFrom.$error.required"
 				class="mandatory">*</span>
-			</label> <input name="courierFrom" ng-model="tempCourier.courierFrom" ng-required="true">
+			</label> <input name="courierFrom" ng-model="tempCourierObj.courierFrom"
+				ng-required="true">
 			<div ng-messages="gfCourierForm.courierFrom.$error"
 				ng-if="gfCourierForm.courierFrom.$submitted || gfCourierForm.courierFrom.$touched">
 				<div ng-message="required">Please Enter From Name.</div>
@@ -101,7 +104,8 @@
 			<md-input-container flex> <label>To <span
 				style="color: red" ng-show="gfCourierForm.courierTo.$error.required"
 				class="mandatory">*</span>
-			</label> <input name="courierTo" ng-model="tempCourier.courierTo" ng-required="true">
+			</label> <input name="courierTo" ng-model="tempCourierObj.courierTo"
+				ng-required="true">
 			<div ng-messages="gfCourierForm.courierTo.$error"
 				ng-if="gfCourierForm.courierTo.$submitted || gfCourierForm.courierTo.$touched">
 				<div ng-message="required">Please Enter name whome To sent.</div>
@@ -109,16 +113,73 @@
 			</md-input-container>
 
 		</div>
+
+
+		<h3>Prouct/Item Sold</h3>
+		<table md-data-table md-progress="deferred">
+			<thead md-order="query.order" md-trigger="onOrderChange">
+				<tr>
+					<th name="Sr_No"></th>
+					<th name="Book Name"></th>
+<!-- 					<th name="Auther"></th>
+					<th name="Weight"></th>
+					<th name="Price"></th>
+ -->					<th name="Qty"></th>
+					<th name="Actions"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr ng-repeat="item in tempCourierObj.bookLineItemList">
+
+					<td>{{ item.srNo }}</td>
+
+					<td><md-input-container flex> <md-select
+							ng-model="selectedStockItem" placeholder="Item Name"
+							ng-change="lineItemStockChange($index, selectedStockItem)">
+						<md-option ng-value="book" ng-repeat="book in bookList">{{book.bookName
+						}}</md-option> </md-select> </md-input-container></td>
+<!-- 
+					<td><md-input-container flex> <label>Auther
+						</label> <input ng-model="book.bookAuther"> </md-input-container></td>
+					<td><md-input-container flex> <input
+							ng-model="book.weight"></md-input-container></td>
+					<td><md-input-container flex> <input
+							ng-model="book.bookPrice"></md-input-container></td>
+ -->					<td><md-input-container flex> <input
+							ng-model="book.bookQty" type="number"> </b></td>
+					<td><md-button class="md-raised md-primary" ng-click="removeItem($index)">Remove
+							Book</md-button>
+							</td>
+				</tr>
+				<tr>
+				</tr>
+				<tr>
+					<td><section layout="row" layout-sm="column"
+							layout-align="left left">
+							<md-button class="md-raised md-primary" ng-click="addBook()">Add
+							Book</md-button>
+						</section></td>
+				</tr>
+				<tr>
+				<td>-</td>
+								<td></td>
+				
+				</tr>
+				<tr>
+				</tr>
+			</tbody>
+		</table>
 	</form>
 </div>
 
 <div layout="row" layout-align="center center" layout-xs="column">
 
-	<md-button ng-hide="tempCourier.id" class="md-raised md-primary"
+	<md-button ng-hide="tempCourierObj.id" class="md-raised md-primary"
 		ng-click="addGFCourier()" ng-disabled="gfCourierForm.$invalid">Add
 	</md-button>
 
-	<md-button ng-show="tempCourier.id" class="md-raised md-primary"
+	<md-button ng-show="tempCourierObjObj.id" class="md-raised md-primary"
 		ng-click="addGFCourier()" ng-disabled="gfCourierForm.$invalid">Update
 	</md-button>
 

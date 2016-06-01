@@ -11,12 +11,13 @@ angular.module("prostudyApp").controller(
 					medium : '',
 					bookQty : '',
 					feedStockDate : new Date(),
+					transactionType : 'Cr'
 			}
 
 			$scope.selectedGFBookStockID = $stateParams.selectedGFBookStockID;
 
 			$scope.addGFBookStock = function() {
-				$scope.tempBook.instituteID = $scope.curUser.instituteID;
+				$scope.tempBook.instituteID = parseInt($scope.curUser.instituteID);
 
 				var gfBookStockService = appEndpointSF.getGFBookStockService();
 

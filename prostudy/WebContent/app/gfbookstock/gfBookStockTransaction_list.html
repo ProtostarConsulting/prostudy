@@ -1,5 +1,5 @@
 <div id="studentListDiv">
-	<h3 class="md-headline">Book Stock</h3>
+	<h3 class="md-headline">Book Transactions</h3>
 
 	<div layout="row" layout-align="end end" layout-xs="column">
 
@@ -24,16 +24,20 @@
 					<th order-by="bookPublication" name="Publication"></th>
 					<th order-by="bookQty" name="Quantity"></th>
 					<th order-by="medium" name="Medium"></th>
+					<th order-by="transactionDate" name="Transaction Date"></th>
+					<th order-by="transactionType" name="Transaction Type"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr md-auto-select
-					ng-repeat="book in bookStocks | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+					ng-repeat="book in bookStocks | orderBy: query.order | filter:searchByName | limitTo: query.limit: (query.page - 1) * query.limit">
 
 					<td>{{book.book.bookName}}</td>
 					<td>{{book.book.bookPublication}}</td>
 					<td>{{book.bookQty}}</td>
 					<td>{{book.medium}}</td>
+					<td>{{book.transactionDate | formatDate}}</td>
+					<td>{{book.transactionType}}</td>
 					<td></td>
 				</tr>
 			</tbody>
