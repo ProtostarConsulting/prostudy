@@ -23,7 +23,14 @@ angular
 									$scope.scheduledExamResultList = scheduledExamResultList;
 									
 								});
-					}					
+					}	
+					
+					$scope.downloadResultList=function(){
+						
+						document.location.href="DownloadScheduledExamResult?selectedExamId="+$scope.selectedExamId;
+						
+						
+					}
 
 					$scope.query = {
 						order : 'name',
