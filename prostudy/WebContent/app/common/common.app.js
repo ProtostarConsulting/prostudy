@@ -835,14 +835,25 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/scheduledExam/schduledExamResult_view.html',
 		controller : 'scheduledExamResultCtr'
 	})	.state('scheduledExam.resultlist', {
-		url : "/resultlist/:selectedExamId",
+		url : "/resultlist",
 		templateUrl : '/app/scheduledExam/schduledExamResult_list.html',
-		controller : 'scheduledExamResultListCtr'
+		controller : 'scheduledExamResultListCtr',
+		params : {	
+			
+			selectedExamId:null,
+			selectedExamTitle:null
+		}	
+		
 	})
 	.state('scheduledExam.studentlist', {
-		url : "/studentlist/:selectedExamId",
+		url : "/studentlist",
 		templateUrl : '/app/scheduledExam/scheduledExam_studentList.html',
-		controller : 'scheduledExamStudentListCtr'
+		controller : 'scheduledExamStudentListCtr',
+			params : {	
+				
+				selectedExamId:null,
+				selectedExamTitle:null
+			}	
 	})
 		.state('scheduledExam.assignStudents', {
 		url : "/assignStudents",
