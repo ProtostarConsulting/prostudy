@@ -2,6 +2,8 @@ package com.protostar.prostudy.gf.service;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -42,7 +44,11 @@ public class DownloadPartnerSchools extends HttpServlet {
 
 		System.out.println("insid===" + insId);
 		PartnerSchoolService patss=new PartnerSchoolService();
-		 
+		
+		Date date = new Date();
+		String DATE_FORMAT = "dd/MMM/yyyy";
+		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT); 
+		
 		List<PartnerSchoolEntity> patse =patss.getPartnerByInstitute(insId);
 		
 		
@@ -51,8 +57,9 @@ public class DownloadPartnerSchools extends HttpServlet {
 
 			response.setContentType("application/vnd.ms-excel");
 
+			
 			response.setHeader("Content-Disposition",
-					"attachment; filename=sampleName.xls");
+					"attachment; filename=SchoolData_"+sdf.format(date)+".csv");
 
 			WritableWorkbook w = Workbook.createWorkbook(response
 					.getOutputStream());
