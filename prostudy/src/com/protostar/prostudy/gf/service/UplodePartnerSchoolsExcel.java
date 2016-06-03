@@ -20,6 +20,7 @@ import com.google.appengine.api.blobstore.BlobstoreInputStream;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.protostar.prostudy.entity.Address;
+import com.protostar.prostudy.gf.entity.BookSummary;
 import com.protostar.prostudy.gf.entity.ContactDetail;
 import com.protostar.prostudy.gf.entity.ExamDetail;
 import com.protostar.prostudy.gf.entity.PartnerSchoolEntity;
@@ -189,6 +190,11 @@ public class UplodePartnerSchoolsExcel extends HttpServlet {
 					conDetail.setHeadMasterName(split[21]);
 					patschool.setContactDetail(conDetail);
 					
+					
+					//book summary
+					BookSummary bookSummary=new BookSummary();
+					patschool.setBookSummary(bookSummary);
+							
 					PartnerSchoolService partnerSchool=new PartnerSchoolService();
 					partnerSchool.addPartnerSchool(patschool);
 							

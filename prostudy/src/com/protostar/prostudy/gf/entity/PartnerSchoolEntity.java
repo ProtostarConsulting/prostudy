@@ -15,6 +15,8 @@ public class PartnerSchoolEntity {
 	private ExamDetail examDetail;
 	@Index  
 	private ContactDetail contactDetail;
+	@Index
+	private BookSummary bookSummary;
 	@Index  
 	private Address address;
 	@Index  
@@ -89,6 +91,12 @@ public class PartnerSchoolEntity {
 	}
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+	public BookSummary getBookSummary() {
+		return bookSummary;
+	}
+	public void setBookSummary(BookSummary bookSummary) {
+		this.bookSummary = bookSummary;
 	}
 
 
