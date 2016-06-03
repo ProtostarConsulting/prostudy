@@ -66,4 +66,65 @@ angular
 					$scope.waitForServiceLoad();
 
 				
+					
+					$scope.UplodeExcel = function(ev) {
+						var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
+								&& $scope.customFullscreen;
+						$mdDialog
+								.show(
+										{
+											controller : DialogController,
+											templateUrl : '/app/gandhiFoundation/uploadBulkStudent.html',
+											parent : angular
+													.element(document.body),
+											targetEvent : ev,
+											clickOutsideToClose : true,
+											fullscreen : useFullScreen,
+											locals : {
+												curuser : $scope.curUser
+											}
+										})
+								.then(
+										function(answer) {
+											$scope.status = 'You said the information was "'
+													+ answer + '".';
+										},
+										function() {
+											$scope.status = 'You cancelled the dialog.';
+										});
+						
+					};
+
+					function DialogController($scope, $mdDialog, curuser) {
+						
+						$scope.insId=curuser.instituteID;
+						$scope.loding=false;
+						$scope.uplodeExcel=function(){
+							$scope.loding=true;
+						 document.excelform.action = $scope.BulkGFStudentUploadURL;
+					        // calling servlet action 
+						    document.excelform.submit();
+					}
+						
+						$scope.getBulkGFStudentUploadURL=function(){
+							var uploadUrlService = appEndpointSF.getuploadURLService();
+							uploadUrlService.getBulkGFStudentUploadURL()
+									.then(function(url) {
+										$scope.BulkGFStudentUploadURL=url.msg;
+											});
+							
+						}
+						$scope.BulkGFStudentUploadURL;
+						
+						$scope.waitForServiceLoad = function() {
+							if (appEndpointSF.is_service_ready) {
+								$scope.getBulkGFStudentUploadURL();
+							} else {
+								$log.debug("Services Not Loaded, watiting...");
+								$timeout($scope.waitForServiceLoad, 1000);
+							}
+						}
+						$scope.waitForServiceLoad();
+						}
+					
 				});

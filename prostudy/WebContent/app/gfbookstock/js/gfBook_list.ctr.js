@@ -40,7 +40,7 @@ angular
 								.show(
 										{
 											controller : DialogController,
-											templateUrl : '/app/gfbookstock/uploadBulkBook.html',
+											templateUrl : '/app/gfbookstock/uploadBulkBooks.html',
 											parent : angular
 													.element(document.body),
 											targetEvent : ev,
@@ -65,7 +65,8 @@ angular
 						
 						$scope.insId=curuser.instituteID;
 						$scope.loding=false;
-						$scope.uplodeExcel=function(){
+						
+						$scope.UplodeBookCSV=function(){
 							$scope.loding=true;
 						 document.excelform.action = $scope.BulkBookUploadURL;
 					        // calling servlet action 
@@ -84,11 +85,19 @@ angular
 							
 						}
 						
-						
+						$scope.getPartnerSchoolByInstitute = function() {
+
+							var PartnerService = appEndpointSF.getPartnerSchoolService();
+							PartnerService.getPartnerByInstitute(
+									$scope.curUser.instituteID).then(function(pSchoolList) {
+								$scope.pSchoolList = pSchoolList;
+
+							});
+						}
 						$scope.waitForServiceLoad = function() {
 							if (appEndpointSF.is_service_ready) {
 
-								
+								$scope.getPartnerSchoolByInstitute
 									$scope.getBulkBookUploadURL();					
 								
 							} else {
@@ -103,7 +112,7 @@ angular
 					
 					
 						
-	/*					
+						
 						$scope.getLogUploadURLDownload=function(){
 							var uploadUrlService = appEndpointSF.getuploadURLService();
 							uploadUrlService.getBulkBookUploadURLForDownload()
@@ -113,7 +122,7 @@ angular
 							
 						}
 						$scope.BulkBookUploadURLForDownload;
-*/						
+						
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
 
