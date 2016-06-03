@@ -6,17 +6,24 @@ angular
 						$mdUtil, $log, objectFactory, appEndpointSF) {
 
 					$log.debug("Inside gfeModuleCtr");
-					$scope.loginCheck();
+					
+					if(!$scope.loginCheck()){ //If not logged in return control
+						return false;
+					}
+					
 					$scope.authorized = false;
 					$scope.loading = false;
-					$scope.currentClassroomUserDomain = null;
+					$scope.classroomAPIReady = false;
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
+
+					$scope.currentUserDomain = $scope.curUser.email_id
+							.split("@")[1];
 
 					$scope.courseListBackup = null;
 					$scope.directoryUserListBackup = null;
 
-					var CLIENT_ID = '759880535753-3h86dfhcao97655vcnooobn17l4flp8q.apps.googleusercontent.com';
+					var CLIENT_ID = '871660457189-1ishasdcqph3an1eu26262htusofo6v2.apps.googleusercontent.com';
 
 					var SCOPES = [
 
@@ -49,14 +56,10 @@ angular
 						$log.debug("Inside handleAuthResult..");
 
 						if (authResult && !authResult.error) {
-
 							$scope.authorized = true;
-							$scope.loadDirectoryApi();
-							$scope.loadClassroomApi();
-							
-							$scope.$apply(function(){
+							$scope.$apply(function() {
 								$scope.loading = false;
-							});		
+							});
 
 						} else {
 
@@ -74,26 +77,13 @@ angular
 						return false;
 					}
 
-					$scope.loadDirectoryApi = function() {
-						gapi.client.load('admin', 'directory_v1');
-					}
-
 					$scope.loadClassroomApi = function() {
-						gapi.client.load('gmail', 'v1', function() {
-						});
 						gapi.client.load('classroom', 'v1');
-						gapi.client.load('plus', 'v1', function() {
-							var request = gapi.client.plus.people.get({
-								'userId' : 'me'
-							});
-							request.execute(function(resp) {
-								$scope.currentUserDomain = resp.emails[0].value
-										.split("@")[1];
-
-							});
-
+						gapi.client.load('gmail', 'v1', function() {
+						});						
+						gapi.client.load('admin', 'directory_v1', function() {
+							$scope.classroomAPIReady = true;
 						});
-
 					}
 
 					/* Setup menu */
@@ -116,17 +106,16 @@ angular
 							$log.debug("close RIGHT is done");
 						});
 					};
-					
+
 					$scope.waitForServiceLoad = function() {
-						if (appEndpointSF.is_service_ready && gapi.client.classroom !== undefined) {
-							$scope.checkAuth();
+						if (appEndpointSF.is_service_ready) {
+							$scope.loadClassroomApi();
 						} else {
-							$log.debug("Services Not Loaded, watiting...");
+							$log.debug("GfE: Services Not Loaded, watiting...");
 							$timeout($scope.waitForServiceLoad, 1000);
 						}
 					}
-					$scope.waitForServiceLoad();
 
-					
+					$scope.waitForServiceLoad();
 
 				});
