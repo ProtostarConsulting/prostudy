@@ -21,7 +21,7 @@ public class GFCourierService {
 			
 		 ofy().save().entity(gfCourierEntity).now();
 		 
-		/* GFBookTransactionEntity gfBookTransactionEntity = new GFBookTransactionEntity();
+		 GFBookTransactionEntity gfBookTransactionEntity = new GFBookTransactionEntity();
 				
 		 if(gfCourierEntity.getBookLineItemList().size() < 1 ){
 			 gfBookTransactionEntity.setTransactionType("Dr");
@@ -37,7 +37,7 @@ public class GFCourierService {
 				 
 				 ofy().save().entity(gfBookTransactionEntity).now();
 			 }
-		 }*/
+		 }
 		 
 		 
 		 // For Deduct the book Stock

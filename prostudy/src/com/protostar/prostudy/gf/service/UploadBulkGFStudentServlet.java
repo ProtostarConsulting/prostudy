@@ -23,17 +23,14 @@ import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.protostar.prostudy.entity.InstituteEntity;
 import com.protostar.prostudy.service.InstituteService;
 
-
-public class UploadBulkBookServlet extends HttpServlet {
+public class UploadBulkGFStudentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
-    public UploadBulkBookServlet() {
+   
+    public UploadBulkGFStudentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	
     private BlobstoreService blobstoreService = BlobstoreServiceFactory
 			.getBlobstoreService();
 
@@ -80,11 +77,11 @@ public class UploadBulkBookServlet extends HttpServlet {
 			// Save blobKeys into current business entity field
 			 InstituteService ins = new InstituteService();
 			 InstituteEntity getInstituteById = ins.getInstituteById(instID); 
-			 getInstituteById.setBulkGFBookBlobKey(blobKeys.get(0).getKeyString());
+			 getInstituteById.setBulkGFStudentBlobKey(blobKeys.get(0).getKeyString());
 		
 			 ofy().save().entity(getInstituteById).now();
 			
-			 response.sendRedirect("/#/gandhifoundation.bookModule.list");  
+			 response.sendRedirect("/#/gandhifoundation");  
 			 //response.sendRedirect("/serve?blob-key=" +
 			// blobKeys.get(0).getKeyString()+"&user="+user);
 		}

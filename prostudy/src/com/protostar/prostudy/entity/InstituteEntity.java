@@ -22,15 +22,27 @@ public class InstituteEntity {
 	private String status="active" ;
 	@Index
 	private String LogBlobKey;
-	private String bulkBookBlobKey;
+	private String bulkGFBookBlobKey;
+	private String bulkGFStudentBlobKey;
 	
 	
-	public String getBulkBookBlobKey() {
-		return bulkBookBlobKey;
+	
+
+	
+	public String getBulkGFBookBlobKey() {
+		return bulkGFBookBlobKey;
 	}
 
-	public void setBulkBookBlobKey(String bulkBookBlobKey) {
-		this.bulkBookBlobKey = bulkBookBlobKey;
+	public void setBulkGFBookBlobKey(String bulkGFBookBlobKey) {
+		this.bulkGFBookBlobKey = bulkGFBookBlobKey;
+	}
+
+	public String getBulkGFStudentBlobKey() {
+		return bulkGFStudentBlobKey;
+	}
+
+	public void setBulkGFStudentBlobKey(String bulkGFStudentBlobKey) {
+		this.bulkGFStudentBlobKey = bulkGFStudentBlobKey;
 	}
 
 	public String getLogBlobKey() {

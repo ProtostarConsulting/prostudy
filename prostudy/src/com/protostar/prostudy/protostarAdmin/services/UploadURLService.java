@@ -52,4 +52,13 @@ public class UploadURLService {
 		return serverMsg;
 	}
 	
+	@ApiMethod(name = "getBulkGFStudentUploadURL", path="getBulkGFStudentUploadURL")
+	public ServerMsg getBulkGFStudentUploadURL() {
+		 BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+		 String createUploadUrl = blobstoreService.createUploadUrl("/UploadBulkGFStudentServlet");
+		 ServerMsg serverMsg = new ServerMsg();
+		 serverMsg.setMsg(createUploadUrl);		 
+		return serverMsg;
+	}
+	
 }// end of uploadUrlService
