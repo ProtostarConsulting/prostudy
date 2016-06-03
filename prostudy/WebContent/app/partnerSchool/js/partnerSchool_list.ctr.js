@@ -57,7 +57,7 @@ angular.module("prostudyApp").controller(
 				
 				
 			}
-			$scope.getLogUploadURLDownload=function(){
+		/*	$scope.getLogUploadURLDownload=function(){
 				var uploadUrlService = appEndpointSF.getuploadURLService();
 				uploadUrlService.getPartnerSchoolsUploadURLForDownload()
 						.then(function(url) {
@@ -75,7 +75,7 @@ angular.module("prostudyApp").controller(
 					$timeout($scope.waitForServiceLoad1, 1000);
 				}
 			}
-			$scope.waitForServiceLoad1();
+			$scope.waitForServiceLoad1();*/
 			
 			// ----------------------UPLODE EXCEL FILE-------------------------------
 

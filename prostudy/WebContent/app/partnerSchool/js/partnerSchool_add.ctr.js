@@ -50,6 +50,7 @@ angular
 						address : $scope.Address,
 						examDetail : "",
 						contactDetail : "",
+						bookSummary : "",
 						instituteID : '',
 						schoolName : "",
 						desc : "",
@@ -87,12 +88,13 @@ angular
 					}
 
 					$scope.bookSummary = {
-						bookDtail : [],
+						bookDetail : "",
 						total : 0,
 						amtForInst20per : 0,
 						amtForGRF80per : 0
 					}
 
+					// attached the bookdetail to book summery entity
 					$scope.bookDetail = {
 						bookName : "",
 						bookPrise : "",
@@ -102,7 +104,7 @@ angular
 						totalStud : "",
 						totalFees : ""
 					}
-
+					// get last next 4 year to show academic year
 					$scope.getNextYears = function() {
 						var date = new Date();
 						for (var i = 0; i < 4; i++) {
@@ -138,6 +140,8 @@ angular
 						// $scope.partnerSchool.address = $scope.Address;
 						$scope.partnerSchool.examDetail = $scope.examDetail;
 						$scope.partnerSchool.contactDetail = $scope.contactDetail;
+						$scope.partnerSchool.bookSummary.bookDetail = $scope.books;
+						$scope.partnerSchool.bookSummary = $scope.bookSummary;
 
 						var PartnerSchoolService = appEndpointSF
 								.getPartnerSchoolService();
@@ -172,6 +176,14 @@ angular
 												$scope.contactDetail = $scope.partnerSchool.contactDetail;
 												$scope.Address = $scope.partnerSchool.Address;
 												$scope.selected = $scope.partnerSchool.examDetail.examMedium;
+												if ($scope.partnerSchool.bookSummary.bookDetail != undefined) {
+													$scope.books = $scope.partnerSchool.bookSummary.bookDetail;
+													$scope.bookSummary = $scope.partnerSchool.bookSummary;
+												} else {
+													$scope
+															.getGFBookStockByInstituteId();
+												}
+
 											});
 						}
 					}
@@ -220,8 +232,8 @@ angular
 												$scope.bookDetail.totalStud = 0;
 												$scope.bookDetail.totalFees = 0;
 												$scope.books[i] = $scope.bookDetail;
-												$log.debug("$scope.books===="
-														+ $scope.books);
+												// $log.debug("$scope.books===="+
+												// $scope.books);
 
 											}
 
@@ -231,10 +243,12 @@ angular
 					$scope.bookStocks = [];
 					$scope.books = [];
 
+					// -----------------calculate book detail---------------
+
 					$scope.calculate = function(index, val, name) {
-						
-						//book array use to save
-						
+
+						// book array use to save
+
 						$log.debug("index=" + index + "val=" + val + "name"
 								+ name);
 						if (name == "hindi") {
@@ -265,9 +279,9 @@ angular
 
 					$scope.waitForServiceLoad1 = function() {
 						if (appEndpointSF.is_service_ready) {
-
-							$scope.getGFBookStockByInstituteId();
-
+							if ($scope.selectedPSchoolId == "") {
+								$scope.getGFBookStockByInstituteId();
+							}
 						} else {
 							$log.debug("Services Not Loaded, watiting...");
 							$timeout($scope.waitForServiceLoad1, 1000);

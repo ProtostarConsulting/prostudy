@@ -1,10 +1,13 @@
 <div layout="column">
+<md-button class="md-icon-button" aria-label="prev" ng-click="back()">
+	<md-tooltip> go back </md-tooltip> <md-icon
+		md-svg-icon="img/icons/ic_reply_black_24px.svg" aria-label="Prev Week"></md-icon>
+	</md-button>
 
 
 	<div>
-<md-icon ui-sref="gandhifoundation" md-svg-src="img/icons/back.svg"></md-icon>
-		<section layout="col">
-<!-- 			<span hide-xs>
+			<section layout="col">
+			<!-- 			<span hide-xs>
 				<div class="md-toolbar-tools">
 					<md-content layout="col" layout-align="center start">
 						
@@ -15,7 +18,8 @@
 						 </md-content>
 				</div>
 			</span>
- -->			<!--  <span hide-gt-xs> -->
+ -->
+			<!--  <span hide-gt-xs> -->
 			<div class="md-toolbar-tools">
 				<span flex></span>
 				<md-card>
@@ -32,9 +36,8 @@
 				md-component-id="right"> <md-toolbar
 				class="md-theme-light">
 			<h1 class="md-toolbar-tools">Sidenav Right</h1>
-			</md-toolbar> <md-content layout="column"> <md-button
-				ui-sref="" ng-click="close()"
-				class="md-primary" show-gt-md> || </md-button> </md-content></md-sidenav>
+			</md-toolbar> <md-content layout="column"> <md-button ui-sref=""
+				ng-click="close()" class="md-primary" show-gt-md> || </md-button> </md-content></md-sidenav>
 		</section>
 
 	</div>
@@ -42,13 +45,18 @@
 	<div ui-view>
 
 		<div layout="column" layout-align="start start">
-			<md-button ui-sref="gandhifoundation.studentModule" ng-click="close()"
-				class="md-primary" hide-xs> Students </md-button>
-			<md-button ui-sref="gandhifoundation.courierModule" ng-click="close()"
-				class="md-primary" hide-xs> Couriers </md-button>
-			<md-button ui-sref="gandhifoundation.bookModule"
-				ng-click="close()" class="md-primary" hide-xs> Books
+			<md-button ui-sref="gandhifoundation.studentModule"
+				ng-click="close()" class="md-primary" hide-xs> Students
 			</md-button>
+			<md-button ui-sref="gandhifoundation.courierModule"
+				ng-click="close()" class="md-primary" hide-xs> Couriers
+			</md-button>
+			<md-button ui-sref="gandhifoundation.bookModule" ng-click="close()"
+				class="md-primary" hide-xs> Books </md-button>
+			
+		<md-button ui-sref="partnerSchool" ng-click="close()"
+				class="md-primary" hide-xs> Partner School </md-button>
+
 
 
 

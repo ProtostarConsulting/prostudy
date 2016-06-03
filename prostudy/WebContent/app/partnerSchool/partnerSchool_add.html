@@ -1,10 +1,10 @@
 
 <div layout-sm="column" layout-align="start start" flex>
 
-	<md-button class="md-icon-button" aria-label="prev" ng-click="back()">
+	<!-- <md-button class="md-icon-button" aria-label="prev" ng-click="back()">
 	<md-tooltip> go back </md-tooltip> <md-icon
 		md-svg-icon="img/icons/ic_reply_black_24px.svg" aria-label="Prev Week"></md-icon>
-	</md-button>
+	</md-button> -->
 
 </div>
 <section ng-hide="selectedPSchoolId" layout="row" layout-align="end end"
@@ -246,7 +246,7 @@
 		<h3 class="md-subhead" flex="20">Select Year</h3>
 		<span flex="10"></span>
 		<md-input-container flex="40"> <md-select
-			ng-model="yearOfExam" id="selectedYear"> <md-option
+			ng-model="examDetail.yearOfExam" id="selectedYear"> <md-option
 			ng-value="Year" ng-repeat="Year in Years" ng-selected="$first">{{Year}}</md-option>
 		</md-select> </md-input-container>
 	</div>
@@ -382,7 +382,7 @@
 				<td width=10%>{{test.totalStud}}</td>
 				<td width=20%> {{test.totalFees}}</td>
 				
-
+	
 			</tr>
 			<tr>
 			<td>Total :-</td>
@@ -415,7 +415,13 @@
 
 	</table>
 	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
-		md-total={{pSchoolList.length}} md-trigger="onpagechange"></md-data-table-pagination>
+		md-total={{books.length}} md-trigger="onpagechange"></md-data-table-pagination>
+		
+		<section layout="row" layout-sm="column" layout-align="end end">
+		<md-button ng-disabled="partnerSchoolForm.$invalid "
+			class="md-raised md-primary" ng-click="addPartnerSchool()">Save
+		</md-button>
+	</section>
 
 	</md-data-table-container> </md-content> </md-tab> </md-tabs> </md-content>
 
