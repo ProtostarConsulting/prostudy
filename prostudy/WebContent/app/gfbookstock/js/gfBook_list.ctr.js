@@ -85,19 +85,11 @@ angular
 							
 						}
 						
-						$scope.getPartnerSchoolByInstitute = function() {
-
-							var PartnerService = appEndpointSF.getPartnerSchoolService();
-							PartnerService.getPartnerByInstitute(
-									$scope.curUser.instituteID).then(function(pSchoolList) {
-								$scope.pSchoolList = pSchoolList;
-
-							});
-						}
+	
 						$scope.waitForServiceLoad = function() {
 							if (appEndpointSF.is_service_ready) {
 
-								$scope.getPartnerSchoolByInstitute
+								
 									$scope.getBulkBookUploadURL();					
 								
 							} else {

@@ -115,9 +115,23 @@ angular
 							
 						}
 						$scope.BulkGFStudentUploadURL;
+						$scope.selectedSchool;
+						$scope.getSchoolID = function(){
+							$scope.selectedSchoolID = $scope.selectedSchool.id;
+						}
 						
+						$scope.getPartnerSchoolByInstitute = function() {
+
+							var PartnerService = appEndpointSF.getPartnerSchoolService();
+							PartnerService.getPartnerByInstitute(
+									$scope.insId).then(function(pSchoolList) {
+								$scope.pSchoolList = pSchoolList;
+
+							});
+						}
 						$scope.waitForServiceLoad = function() {
 							if (appEndpointSF.is_service_ready) {
+								$scope.getPartnerSchoolByInstitute();
 								$scope.getBulkGFStudentUploadURL();
 							} else {
 								$log.debug("Services Not Loaded, watiting...");

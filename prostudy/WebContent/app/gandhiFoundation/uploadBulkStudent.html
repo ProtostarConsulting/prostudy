@@ -8,13 +8,14 @@
 		<div ng-show="loding">Loding.....</div>
 		<div ng-hide="loding">
 			<input type="hidden" name="insId" id="insId" value={{insId}}>
+			<input type="hidden" name="selectedSchoolID" id="selectedSchoolID" value={{selectedSchoolID}}>
 			<div>
 
 				Please select school :
 				<div layout="row" layout-xs="column">
 					<md-input-container flex> <label>School
 						/ College / Institute </label> <md-select name="level"
-						ng-model="tempStudent.schoolName"> <md-option
+						ng-model="selectedSchool" ng-change="getSchoolID()"> <md-option
 						ng-value="schoolName" ng-repeat="schoolName in pSchoolList">{{schoolName.schoolName}}</md-option>
 					</md-select> </md-input-container>
 				</div>
@@ -31,7 +32,7 @@
 					Students:{{insId}}</label> <input name="myFile" type="file"
 					class="md-raised md-primary" accept=".csv" required>
 			</div>
-
+{{selectedSchoolID}}
 			<div>
 				<md-button ng-click="uplodeExcel()" class="md-raised md-primary"
 					ng-disabled="excelform.$invalid" show-gt-md> Submit </md-button>
