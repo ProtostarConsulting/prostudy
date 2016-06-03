@@ -4,6 +4,8 @@ angular.module("prostudyApp").controller(
 				$log, objectFactory, appEndpointSF) {			
 
 			$scope.selectedExamId = $stateParams.selectedExamId;
+			$scope.selectedExamTitle= $stateParams.selectedExamTitle;
+			
 			$scope.studentList=[];
 			$scope.getStudentListByScheduledExamId = function() {
 

@@ -10,7 +10,9 @@ angular
 					$scope.selected = [];					
 					
 					$scope.selectedExamId= $stateParams.selectedExamId;
-					$log.debug("$scope.selectedExamId"+$scope.selectedExamId);
+					$scope.selectedExamTitle= $stateParams.selectedExamTitle;
+					
+				
 					
 					$scope.getScheduledExamResultListByExamId = function() {
 
@@ -19,7 +21,7 @@ angular
 						ScheduledExamResultService.getScheduledExamResultListByExamId($scope.selectedExamId).then(
 								function(scheduledExamResultList) {
 									$scope.scheduledExamResultList = scheduledExamResultList;
-									$log.debug("$scope.scheduledExamResultList"+angular.toJson($scope.scheduledExamResultList));
+									
 								});
 					}					
 

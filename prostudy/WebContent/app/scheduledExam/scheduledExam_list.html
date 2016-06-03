@@ -43,24 +43,24 @@
 		<a ui-sref="scheduledExam.scheduledtest({selectedExamId: selected[0].id})"><md-button
 				ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
 				ng-click="">
-			<md-icon md-svg-src="img/icons/start.svg"></md-icon> <md-tooltip>Start</md-tooltip></md-button>
+			<md-icon md-svg-src="img/icons/start.svg"></md-icon> <md-tooltip>Start Exam</md-tooltip></md-button>
 		 </a> <a ui-sref="scheduledExam.edit({selectedExamId: selected[0].id})"><md-button
 				ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
 				ng-click="">
-			<md-icon md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit</md-tooltip>
+			<md-icon md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit Exam</md-tooltip>
 			</md-button> </a> 
-			 <a ui-sref="scheduledExam.studentlist({selectedExamId: selected[0].id})"><md-button
+			 <a ui-sref="scheduledExam.studentlist({selectedExamId: selected[0].id,selectedExamTitle:selected[0].examtitle})"><md-button
 				ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
 				ng-click="">
-			<md-icon md-svg-src="img/icons/student.svg"></md-icon> <md-tooltip>Student List</md-tooltip>
+			<md-icon md-svg-src="img/icons/student.svg"></md-icon> <md-tooltip>Exam Student List</md-tooltip>
 			</md-button> </a> 
 			
 		
 			
-			 <a ui-sref="scheduledExam.resultlist({selectedExamId: selected[0].id})"><md-button
+			 <a ui-sref="scheduledExam.resultlist({selectedExamId: selected[0].id,selectedExamTitle:selected[0].examtitle})"><md-button
 				ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
 				ng-click="">
-			<md-icon md-svg-src="img/icons/result.svg"></md-icon>  <md-tooltip>Scheduled Exam Result List</md-tooltip>
+			<md-icon md-svg-src="img/icons/result.svg"></md-icon>  <md-tooltip>Exam Result List</md-tooltip>
 			</md-button> </a> 
 			
 
