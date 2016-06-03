@@ -28,7 +28,7 @@ angular
 
 					$scope.currentPage = 0;
 					$scope.totalPages = 0;
-					$scope.itemsPerPage = 4;
+					$scope.itemsPerPage = 1;
 					$scope.count = 0;
 					$scope.isDisabledPrevious = false;
 					$scope.isDisabledNext = false;
@@ -229,7 +229,7 @@ angular
 											
 											$scope.buttonLimit = function(count) {
 												$scope.totalPages = Math
-														.ceil($scope.Test.listOfQuestion.length / 4);
+														.ceil($scope.Test.listOfQuestion.length / 1);
 
 												return Array.apply(0,
 														Array(+count)).map(
@@ -292,8 +292,9 @@ angular
 						ScheduledExamResultService.addScheduledExamResult(
 								$scope.tempScheduledExamResult).then(
 								function(msgBean) {
+									$log.debug("msgBean.reid-----"+msgBean.id);
 								$scope.showSavedToast();
-								$state.go('scheduledExam.userQuesAnsView', {selectedExamId : $scope.Test.id,selectedEmailId: $scope.curUser.email_id});
+								$state.go('scheduledExam.userQuesAnsView', {selectedExamId : $scope.Test.id,selectedEmailId: $scope.curUser.email_id,selectedResultId:msgBean.id});
 									
 
 								});

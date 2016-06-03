@@ -8,7 +8,7 @@ angular
 				
 					$scope.selectedExamId = $stateParams.selectedExamId;
 					$scope.selectedEmailId = $stateParams.selectedEmailId;
-					
+					$scope.selectedResultId=$stateParams.selectedResultId;
 					
 					$scope.flag = $stateParams.flag;
 
@@ -30,15 +30,15 @@ angular
 						qId : ""
 					} ];
 
-					$scope.showselectedExam = function() {
+					$scope.getScheduledExamById = function() {
 						var ScheduledExamService = appEndpointSF
 								.getScheduledExamService();
 
 						ScheduledExamService
 								.getScheduledExamById($scope.selectedExamId)
 								.then(
-										function(practiceTest) {
-											$scope.Test = practiceTest;
+										function(scheduledTest) {
+											$scope.Test = scheduledTest;
 											
 											$scope.Test.listOfQuestion.description = $sce
 													.trustAsHtml($scope.Test.listOfQuestion.description);
@@ -77,7 +77,8 @@ angular
 												}
 											if($scope.examResults.id==undefined)
 											{
-												alert("User not Attempted this Exam");									
+												alert("User not Attempted this Exam");	
+												$state.go("scheduledExam.myScheduledExamList",{selectedStudId:$scope.curuser.id});													
 											}
 											if($scope.examResults.id!=undefined && $scope.examResults.test==undefined &&  $scope.examResults.userAns==undefined)
 											{
@@ -87,16 +88,7 @@ angular
 											
 										});
 					}
-					$scope.getScheduledExamById=function(){
-						
-					var ScheduledExamService = appEndpointSF.getScheduledExamService();
-
-					ScheduledExamService.getScheduledExamById($scope.selectedExamId).then(
-									function(ScheduledTest) {
-										$scope.ScheduledTest = ScheduledTest;
-									});
-						}
-					
+				
 
 					$scope.getStudent = function() {
 
@@ -106,16 +98,48 @@ angular
 									$scope.student = student;									
 								});
 					}
-					$scope.getStudent();
 					
-					$scope.getScheduledExamResultbyEmail();
-					$scope.getScheduledExamById();
-					$scope.getStudent();
-					$scope.showselectedExam();
-
 					$scope.cancelButton = function() {						
 							$state.go("scheduledExam",{});					
 
 					}
+					$scope.getScheduledExamResultbyID = function() {
+
+						var ScheduledExamResultService = appEndpointSF
+								.getScheduledExamResultService();
+
+						ScheduledExamResultService
+								.getScheduledExamResultbyID(
+										$scope.selectedResultId)
+								.then(
+										function(scheduledExamResultList) {
+
+											$scope.examResults = scheduledExamResultList;											
+											$scope.answeredLength = $scope.examResults.userAns.length;											
+
+										});
+					}
+					
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+
+							$scope.getStudent();
+							$scope.getScheduledExamById();
+							$scope.getStudent();
+							if($scope.selectedResultId==null){
+							$scope.getScheduledExamResultbyEmail();
+							}
+							if($scope.selectedResultId!=null){
+							$scope.getScheduledExamResultbyID();
+							}						
+						
+							
+						} else {
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+
+
+					$scope.waitForServiceLoad();
 
 				});
