@@ -37,16 +37,17 @@ angular
 					$scope.changeTheme = function(themeName) {
 						$scope.theme = themeName
 					}
-					
+
 					$scope.loginCheck = function() {
 						var currUser = appEndpointSF.getLocalUserService()
-						.getLoggedinUser();
-						if(currUser == undefined || currUser == null){
+								.getLoggedinUser();
+						if (currUser == undefined || currUser == null) {
 							$state.go("login");
+							return false;
 						}
+						return true;
 					}
-					
-					
+
 					$scope.showUpdateToast = function() {
 						$mdToast.show($mdToast.simple().content(
 								'Changes Saved Successfully.').position("top")
@@ -118,94 +119,75 @@ angular
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
 
-					$scope
-							.$on(
-									'event:google-plus-signin-success',
-									function(event, authResult) {
+					$scope.$on('event:google-plus-signin-success', function(
+							event, authResult) {
 
-										// User successfully authorized the G+
-										// App!
-										$log.debug('Signed in!');
-										var profile = authResult
-												.getBasicProfile();
-										$scope.googleUser = profile;
+						// User successfully authorized the G+ App!
+						$log.debug('Signed in!');
+						$scope.waitForServiceLoad();
+						
+						var profile = authResult.getBasicProfile();
+						$scope.googleUser = profile;
 
-										$scope.imgUrl = $scope.googleUser
-												.getImageUrl();
+						$scope.imgUrl = $scope.googleUser.getImageUrl();
 
-										if ($scope.imgUrl == null
-												|| $scope.imgUrl == '') {
-											$scope.imgUrl = '/img/icons/ic_person_24px.svg';
-										}
+						if ($scope.imgUrl == null || $scope.imgUrl == '') {
+							$scope.imgUrl = '/img/icons/ic_person_24px.svg';
+						}
 
-										$log.debug('ID: ' + profile.getId());
+						$log.debug('ID: ' + profile.getId());
 
-										$scope.googleUserDetails = profile
-												.getName()
-												+ "<br>" + profile.getEmail()
+						$scope.googleUserDetails = profile.getName() + "<br>"
+								+ profile.getEmail()
 
-										appEndpointSF
-												.getUserService()
-												.getUserByEmailID(
-														profile.getEmail())
-												.then(
-														function(loggedInUser) {
+						appEndpointSF.getUserService().getUserByEmailID(
+								profile.getEmail()).then(
+								function(loggedInUser) {
 
-															appEndpointSF
-																	.getLocalUserService()
-																	.saveLoggedInUser(
-																			loggedInUser);
+									if (loggedInUser == undefined) {
+										loggedInUser = $scope.googleUser;
+									}
 
-															if (loggedInUser.myExams == undefined) {
-																loggedInUser.myExams = [];
-															}
-															if (loggedInUser.myBooks == undefined) {
-																loggedInUser.myBooks = [];
-															}
-															if (loggedInUser.institute == undefined) {
-																loggedInUser.institute = [];
-															}
-															$scope.curUser = loggedInUser;
-															$scope.getInstituteById();
+									if (loggedInUser.myExams == undefined) {
+										loggedInUser.myExams = [];
+									}
+									if (loggedInUser.myBooks == undefined) {
+										loggedInUser.myBooks = [];
+									}
+									if (loggedInUser.institute == undefined) {
+										loggedInUser.institute = [];
+									}
 
-															if (loggedInUser.id == undefined) {
+									appEndpointSF.getLocalUserService()
+											.saveLoggedInUser(loggedInUser);
 
-																loggedInUser.email_id = profile
-																		.getEmail();
-																profile
-																		.getName()
-																		.split(
-																				" ")[0];
-																loggedInUser.firstName = profile
-																		.getName()
-																		.split(
-																				" ")[0];
-																loggedInUser.lastName = profile
-																		.getName()
-																		.split(
-																				" ")[1];
+									$scope.curUser = loggedInUser;
 
-																appEndpointSF
-																		.getLocalUserService()
-																		.saveLoggedInUser(
-																				loggedInUser);
+									if (loggedInUser.id == undefined) {
 
-																$scope.curUser = loggedInUser;
+										loggedInUser.email_id = profile
+												.getEmail();
+										profile.getName().split(" ")[0];
+										loggedInUser.firstName = profile
+												.getName().split(" ")[0];
+										loggedInUser.lastName = profile
+												.getName().split(" ")[1];
 
-																$state
-																		.go(
-																				"updatemyprofile",
-																				{
-																					flag : $scope.flag
-																				});
-																return;
-															}
+										$state.go("updatemyprofile", {
+											flag : $scope.flag
+										});
 
-														})
+									} else {
 
-										$state.go("home");
+										$scope.getInstituteById();
 
-									});
+									}
+
+								});
+
+						$state.go("home");
+
+					});
 
 					$scope.getRoleSecListByInstitute = function() {
 
@@ -239,7 +221,8 @@ angular
 
 									appEndpointSF.getLocalUserService()
 											.saveLoggedInUser(currUser);
-
+									
+									$scope.curUser = currUser;
 									$scope.initCommonSetting();
 								});
 
@@ -247,12 +230,10 @@ angular
 
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
-
-							/*$scope.getRoleSecListByInstitute();
-							$scope.getInstituteById();*/
+							$log.debug("####Index: Loaded All Services, Continuing####");
 
 						} else {
-							$log.debug("Services Not Loaded, watiting...");
+							$log.debug("Index: Services Not Loaded, watiting...");
 							$timeout($scope.waitForServiceLoad, 1000);
 						}
 					}
@@ -314,7 +295,7 @@ angular
 						$scope.theme = $scope.curUser.instituteObj.theme;
 						$scope.logoURL = '//' + window.location.host
 								+ '/serve?blob-key='
-								+ $scope.institute.logBlobKey;						
+								+ $scope.institute.logBlobKey;
 					}
 
 					/*
