@@ -19,9 +19,8 @@ angular
 					$scope.correctAns = [];
 					$scope.score = 0;
 					$scope.totalLength;
-					$scope.answeredLength;
-					$scope.remainingLength;
-
+					$scope.answeredLength=0;
+					
 					$scope.selected = [];
 					$scope.Test = [];
 					$scope.examResults = [];
@@ -70,8 +69,15 @@ angular
 												if(scheduledExamResultList[i].testID==$scope.selectedExamId)
 													{
 													$scope.examResults = scheduledExamResultList[i];
-													if($scope.examResults.userAns!=undefined)
-													{	$scope.answeredLength = $scope.examResults.userAns.length;}	
+												
+													for(var i=0;i<$scope.examResults.userAns.length;i++ )
+													{
+														
+													if($scope.examResults.userAns[i].userOption!=undefined)
+														{
+														$scope.answeredLength++;
+														}
+													}	
 													
 												}
 												}
@@ -114,8 +120,15 @@ angular
 								.then(
 										function(scheduledExamResultList) {
 
-											$scope.examResults = scheduledExamResultList;											
-											$scope.answeredLength = $scope.examResults.userAns.length;											
+											$scope.examResults = scheduledExamResultList;	
+											for(var i=0;i<$scope.examResults.userAns.length;i++ )
+												{
+												
+												if($scope.examResults.userAns[i].userOption!=undefined)
+													{
+													$scope.answeredLength++;
+													}
+												}																		
 
 										});
 					}

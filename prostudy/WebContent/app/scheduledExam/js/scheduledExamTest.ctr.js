@@ -33,9 +33,35 @@ angular
 					$scope.isDisabledPrevious = false;
 					$scope.isDisabledNext = false;
 					$scope.score = 0;
-					$scope.newQues = [ {
-						qId : ""
-					} ];
+
+					$scope.userAnsList = null; // {qID, userOption}
+					$scope.correctAns = [];
+					$scope.selected = [];
+
+					$scope.questions = [];
+					$scope.scheduledTest = [];
+					$scope.Test = [];
+					$scope.selection = [];
+					
+	
+					$scope.tempScheduledExamResult = {
+
+						ID : "",
+						examTitle : "",
+						userId : $scope.curUser.id,
+						email_id : $scope.curUser.email_id,
+						firstName : $scope.curUser.firstName,
+						lastName : $scope.curUser.lastName,
+						startTime : "",
+						endTime : "",
+						score : $scope.score,
+						userAns : $scope.userAnsList,
+						testID : "",
+						test : ""
+
+					}
+					
+					
 					var mytimeout = null;
 
 					$scope.onTimeout = function() {
@@ -80,42 +106,29 @@ angular
 
 
 					
-					$scope.toggleSelection = function toggleSelection(index,id,optionId) {
+					$scope.toggleSelection = function toggleSelection(id, optionId) {
 						
-						var idx = $scope.selection.indexOf(index, id, optionId);
+						var idx = $scope.selection.indexOf(id+''+optionId);
 						
 						if (idx > -1) {
-							$scope.selection.splice(index, 1);
-
+							$scope.selection.splice(idx, 1);
 						} else {
-							$scope.selection.push(optionId);
-							$scope.userAnsList.push({
-								qID : id,
-								userOption : 'option'+optionId
-							});
-						}
-						
-						/*for(i=0;i <$scope.selection.length; i++)
-							{
-								if(index+1 == $scope.selection[i])
-								{
-									
-									$scope.selection.splice(index, 1);
+							$scope.selection.push(id+''+optionId);
+							for(var i = 0; i<$scope.Test.listOfQuestion.length; i++){
+								if(id== $scope.Test.listOfQuestion[i].id){
+									$scope.userAnsList[i].userOption = 'option'+ optionId;
 								}
 							}
-						*/
+						}
+						
 
-					};
+					};				
 					
-					
-					$scope.userAnsList = []; // {qID, userOption}
-					$scope.correctAns = [];
-					$scope.score = 0;
-
+				
 					$scope.checkAnswer = function() {
 
 						for (var i = 0; i < $scope.userAnsList.length; i++) {
-
+								
 							if ($scope.userAnsList[i].userOption == $scope.Test.listOfQuestion[i].correctAns) {
 								$scope.tempScheduledExamResult.score++;
 							}
@@ -136,7 +149,7 @@ angular
 						return -1;
 					}
 
-					$scope.selected = [];
+				
 
 					$scope.onNext = function() {
 						$scope.currentPage++;
@@ -238,7 +251,7 @@ angular
 														});
 
 											}// end of buttonlimit
-
+									
 											$scope.newQues = $scope.Test.listOfQuestion;
 
 											$scope.newQues[0].qId = 1;
@@ -251,48 +264,37 @@ angular
 											$scope.tempScheduledExamResult.examTitle = $scope.Test.examtitle;
 
 											$scope.tempScheduledExamResult.test = $scope.Test.listOfQuestion;
-
+											
+											$scope.userAnsList = [];
+											for(var i = 0; i<$scope.Test.listOfQuestion.length; i++){
+												$scope.userAnsList.push({
+													qID : $scope.Test.listOfQuestion[i].id,
+													userOption : ''
+												});
+											}
+											
+											
+											
 											$scope.onNext();
 											$scope.isDisabledPrevious = true;
 										});
 
 					}// End of showselectedExam
 
-					$scope.questions = [];
-					$scope.scheduledTest = [];
-					$scope.Test = [];
-					$scope.selection = [];
-					$scope.userAns = [];
-
-	
-					$scope.tempScheduledExamResult = {
-
-						ID : "",
-						examTitle : "",
-						userId : $scope.curUser.id,
-						email_id : $scope.curUser.email_id,
-						firstName : $scope.curUser.firstName,
-						lastName : $scope.curUser.lastName,
-						startTime : "",
-						endTime : "",
-						score : $scope.score,
-						userAns : $scope.userAnsList,
-						testID : "",
-						test : ""
-
-					}
 					
 	
 					$scope.addScheduledExamResult = function() {
 
 						$scope.tempScheduledExamResult.testID = $scope.selectedExamId;
+						$scope.tempScheduledExamResult.userAns = $scope.userAnsList;
+						
 						var ScheduledExamResultService = appEndpointSF.getScheduledExamResultService();
-				
+						
 
 						ScheduledExamResultService.addScheduledExamResult(
 								$scope.tempScheduledExamResult).then(
 								function(msgBean) {
-									$log.debug("msgBean.reid-----"+msgBean.id);
+									
 								$scope.showSavedToast();
 								$state.go('scheduledExam.userQuesAnsView', {selectedExamId : $scope.Test.id,selectedEmailId: $scope.curUser.email_id,selectedResultId:msgBean.id});
 									
