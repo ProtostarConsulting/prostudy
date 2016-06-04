@@ -19,7 +19,7 @@
 			<thead md-order="query.order" md-trigger="onorderchange">
 
 				<tr>
-					
+
 					<th order-by="bookName" name="Book Name"></th>
 					<th order-by="bookPublication" name="Publication"></th>
 					<th order-by="bookQty" name="Quantity"></th>
@@ -34,7 +34,11 @@
 					<td>{{book.book.bookPublication}}</td>
 					<td>{{book.bookQty}}</td>
 					<td>{{book.medium}}</td>
-					<td></td>
+					<td><md-button
+							ui-sref="gandhifoundation.bookModule.add({selectedGFBookID : book.id})"
+							class="md-fab md-primary md-hue-2" ng-click=""> <md-icon
+							md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit
+						</md-tooltip></md-button></td>
 				</tr>
 			</tbody>
 		</table>

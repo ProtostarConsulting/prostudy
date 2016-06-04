@@ -952,7 +952,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'gfBookStockModuleCtr'
 	})
 	.state('gandhifoundation.bookModule.add', {
-		url : "/bookModule.add/:selectedGFBookStockID",
+		url : "/bookModule.add/:selectedGFBookID",
 		templateUrl : '/app/gfbookstock/gfBook_add.html',
 		controller : 'gfBookAddCtr'
 	})
@@ -962,7 +962,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'gfBookListCtr'
 	})
 	.state('gandhifoundation.bookModule.view', {
-		url : "/bookModule.view/:selectedGFBookStockID",
+		url : "/bookModule.view/:selectedGFBookID",
 		templateUrl : '/app/gfbookstock/gfBookStock_view.html',
 		controller : 'gfBookStockviewCtr'
 	})

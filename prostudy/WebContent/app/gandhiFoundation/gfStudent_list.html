@@ -4,10 +4,8 @@
 	<div layout="row" layout-align="end end" layout-xs="column">
 
 		<md-button class="md-raised md-primary" id="uplodeExcel"
-			ng-click="UplodeExcel($event)">Bulk Add
-			<md-tooltip>
-			Bulk Add Students</md-tooltip>
-			</md-button>
+			ng-click="UplodeExcel($event)">Bulk Add <md-tooltip>
+		Bulk Add Students</md-tooltip> </md-button>
 	</div>
 
 	<div layout="row" layout-xs="column">
@@ -51,14 +49,14 @@
 					<td>{{student.contact}}</td>
 					<td><md-button
 							ui-sref="gandhifoundation.studentModule.add({selectedGFStudID : student.id})"
-							ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
-							ng-click=""> <md-icon md-svg-src="img/icons/edit.svg"></md-icon>
-						<md-tooltip>Edit </md-tooltip></md-button></td>
+							class="md-fab md-primary md-hue-2" ng-click=""> <md-icon
+							md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit
+						</md-tooltip></md-button></td>
 					<td><md-button
 							ui-sref="gandhifoundation.studentModule.view({selectedGFStudID : student.id})"
-							ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
-							ng-click=""> <md-icon md-svg-src="img/icons/result.svg"></md-icon>
-						<md-tooltip>View </md-tooltip></md-button></td>
+							class="md-fab md-primary md-hue-2" ng-click=""> <md-icon
+							md-svg-src="img/icons/result.svg"></md-icon> <md-tooltip>View
+						</md-tooltip></md-button></td>
 				</tr>
 			</tbody>
 		</table>

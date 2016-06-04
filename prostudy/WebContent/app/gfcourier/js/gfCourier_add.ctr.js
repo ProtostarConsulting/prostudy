@@ -36,7 +36,7 @@ angular
 						var gfCourierService = appEndpointSF
 								.getGFCourierService();
 
-						gfCourierService.addGFCourier($scope.tempCourierObj)
+/*						gfCourierService.addGFCourier($scope.tempCourierObj)
 							.then(function() {
 
 									$scope.gfCourierForm.$setPristine();
@@ -44,7 +44,7 @@ angular
 									$scope.gfCourierForm.$setUntouched();
 
 								});
-						if ($scope.selectedGFStudID == "") {
+*/						if ($scope.selectedGFStudID == "") {
 							$scope.showAddToast();
 						} else {
 							$scope.showUpdateToast();
@@ -103,7 +103,7 @@ angular
 							bookAuther : "",
 							weight : "",
 							bookPrice : "",
-							bookQty : ""
+							bookQty : 1
 						};
 
 						$scope.tempCourierObj.bookLineItemList.push(item);

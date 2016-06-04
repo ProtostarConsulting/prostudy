@@ -4,6 +4,7 @@ angular.module("prostudyApp").controller(
 				$log, $q, appEndpointSF, $state, $stateParams, $mdDialog,
 				objectFactory) {
 			$scope.answerOfMediumList = [ "Marathi", "Hindi", "English", ];
+			
 			$scope.tempBookStock = {
 					bookName : '',
 					bookAuther : '',
@@ -13,7 +14,7 @@ angular.module("prostudyApp").controller(
 					bookFeedDate : new Date(),
 			}
 
-			$scope.selectedGFBookStockID = $stateParams.selectedGFBookStockID;
+			$scope.selectedGFBookID = $stateParams.selectedGFBookID;
 
 			$scope.addGFBook = function() {
 				$scope.tempBookStock.instituteID = $scope.curUser.instituteID;
@@ -31,19 +32,22 @@ angular.module("prostudyApp").controller(
 						});
 				if ($scope.selectedGFStudID == "") {
 					$scope.showAddToast();
+					$state.reload();
 				} else {
 					$scope.showUpdateToast();
 				}
 				$scope.tempBookStock  = {};
+				
 			}
 
-			$scope.getGFBookStockById = function() {
+			$scope.getGFBookById = function() {
 
-				var gfCourierService = appEndpointSF.getGFCourierService();
-				gfCourierService.getGFBookStockById($scope.selectedGFBookStockID)
-						.then(function(tempCourier) {
+				var gfBookStockService = appEndpointSF.getGFBookStockService();
+				
+				gfBookStockService.getGFBookById($scope.selectedGFBookID)
+						.then(function(tempBookStock) {
 							
-							$scope.tempCourier = tempCourier;
+							$scope.tempBookStock = tempBookStock;
 						
 						});
 			}
@@ -66,8 +70,8 @@ angular.module("prostudyApp").controller(
 			$scope.waitForServiceLoad = function() {
 				if (appEndpointSF.is_service_ready) {
 
-					if ($scope.selectedGFBookStockID != "") {
-						$scope.getGFBookStockById();
+					if ($scope.selectedGFBookID != "") {
+						$scope.getGFBookById();
 					}
 					$scope.getPartnerByInstitute();
 

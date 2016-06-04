@@ -51,7 +51,11 @@
 					<td>{{book.bookName}}</td>
 					<td>{{book.bookAuther}}</td>
 					<td>{{book.bookPublication}}</td>
-					
+					<td><md-button
+							ui-sref="gandhifoundation.bookModule.add({selectedGFBookID : book.id})"
+							class="md-fab md-primary md-hue-2" ng-click=""> <md-icon
+							md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit
+						</md-tooltip></md-button></td>
 					
 				</tr>
 			</tbody>

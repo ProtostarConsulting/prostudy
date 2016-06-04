@@ -32,20 +32,20 @@
 					<td>{{user.email_id}}</td>
 					<td>{{user.role}}</td>
 					<td>{{user.prn}}</td>
-					<td>
+<!-- 					<td>
 						<section layout="row" layout-sm="column" >
-							<md-button class="md-raised md-primary" id="student" ng-show="admin" ng-hide="true" 
+							<md-button class="md-raised md-primary" id="student"  ng-show="user.role == 'Student'" 
 								ui-sref="setup.userview({selecteduserNo:user.id})">Edit
 							Student</md-button>
-							<md-button class="md-raised md-primary"  id="admin"
+							<md-button class="md-raised md-primary"  id="admin"  ng-show="user.role == 'Admin'"
 								ui-sref="proAdmin.editBusiness.userview({selecteduserNo:user.id})">Edit
 							 Admin </md-button>
-							<md-button class="md-raised md-primary" id="teacher"
+							<md-button class="md-raised md-primary" id="teacher"  ng-show="user.role=='Teacher'"
 								ui-sref="proAdmin.editBusiness.userview({selecteduserNo:user.id})">Edit
 							Teacher </md-button>
 						</section>
 					</td>
-				</tr>
+ -->				</tr>
 			</tbody>
 		</table>
 
@@ -57,14 +57,14 @@
 	
 
 <div id="changeState" ng-show="activeselected.length == 1">
-
+<!-- 
 	<md-button class="md-raised md-primary" 
 			ng-click="inactiveUserStatus('active')">Inactive
 		</md-button>
 		
 	<md-button class="md-raised md-primary" ng-model="suspend" value="suspend"
 			ng-click="suspendUserStatus('active')">Suspend
-		</md-button>
+		</md-button> -->
 <!--     
      <md-button class="md-primary md-raised" ng-hide="activeselected[0].isGoogleUser" ng-click="changePassword($event)">
       Change Password

@@ -110,10 +110,11 @@
 				<tr>
 					<th name="Sr_No"></th>
 					<th name="Book Name"></th>
-<!-- 					<th name="Auther"></th>
+					<!-- 					<th name="Auther"></th>
 					<th name="Weight"></th>
 					<th name="Price"></th>
- -->					<th name="Qty"></th>
+ -->
+					<th name="Qty"></th>
 					<th name="Actions"></th>
 				</tr>
 			</thead>
@@ -126,37 +127,30 @@
 					<td><md-input-container flex> <md-select
 							ng-model="selectedStockItem" placeholder="Item Name"
 							ng-change="lineItemStockChange($index, selectedStockItem)">
-						<md-option ng-value="book" ng-repeat="book in bookList">{{book.bookName
-						}}</md-option> </md-select> </md-input-container></td>
-<!-- 
-					<td><md-input-container flex> <label>Auther
-						</label> <input ng-model="book.bookAuther"> </md-input-container></td>
-					<td><md-input-container flex> <input
-							ng-model="book.weight"></md-input-container></td>
-					<td><md-input-container flex> <input
-							ng-model="book.bookPrice"></md-input-container></td>
- -->					<td><md-input-container flex> <input
-							ng-model="tempCourierObj.bookQty" type="number"> </b></td>
-					<td><md-button class="md-raised md-primary" ng-click="removeItem($index)">Remove
-							Book</md-button>
-							</td>
-				</tr>
-				<tr>
+						<md-option ng-value="item" ng-repeat="item in bookList">{{item.bookName
+						}}</md-option> </md-select> </md-input-container> </td>
+
+					<td><md-input-container flex> <label>Quantity
+						</label> <input ng-model="item.bookQty" ng-blur="checkStock(item,$event)"
+							type="number" ng-change="calProductSubTotal()"> </md-input-container></td>
+					
+				
+					<td><md-icon
+							md-svg-src="img/icons/remove.svg"
+							ng-click="removeItem($index)" class="name"
+							style="color: Green; height: 40px; width: 40px"></md-icon></td>
+
 				</tr>
 				<tr>
 					<td><section layout="row" layout-sm="column"
 							layout-align="left left">
 							<md-button class="md-raised md-primary" ng-click="addBook()">Add
-							Book</md-button>
+							Item</md-button>
 						</section></td>
+
 				</tr>
-				<tr>
-				<td>-</td>
-								<td></td>
-				
-				</tr>
-				<tr>
-				</tr>
+
+
 			</tbody>
 		</table>
 	</form>
