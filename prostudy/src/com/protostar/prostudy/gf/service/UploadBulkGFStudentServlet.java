@@ -33,6 +33,7 @@ import com.protostar.prostudy.gf.entity.ExamDetail;
 import com.protostar.prostudy.gf.entity.GFStudentEntity;
 import com.protostar.prostudy.gf.entity.PartnerSchoolEntity;
 import com.protostar.prostudy.service.InstituteService;
+import com.protostar.prostudy.until.data.UtilityService;
 
 public class UploadBulkGFStudentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -40,77 +41,7 @@ public class UploadBulkGFStudentServlet extends HttpServlet {
     public UploadBulkGFStudentServlet() {
         super();
         // TODO Auto-generated constructor stub
-    }
-
- /*   private BlobstoreService blobstoreService = BlobstoreServiceFactory
-			.getBlobstoreService();
-
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
-		request.setCharacterEncoding("UTF-8");
-
-		System.out.println("Hi I am in servlet set logo");
-		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
-		List<BlobKey> blobKeys = blobs.get("myFile");
-
-		Long instID = null; 
-		Long selectedSchoolID = null; 
-			 
-
-		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-
-		if (isMultipart) {
-			// Create a factory for disk-based file items
-			FileItemFactory factory = new DiskFileItemFactory();
-			// Create a new file upload handler
-			ServletFileUpload upload = new ServletFileUpload(factory);
-			try {
-				// Parse the request/* FileItem
-				List<?> items = upload.parseRequest(request);
-				Iterator<?> iterator = items.iterator();
-				while (iterator.hasNext()) {
-					FileItem item = (FileItem) iterator.next();
-					if (item.isFormField()) {
-						if (item.getFieldName().equals("insId")) {
-							instID = Long.parseLong(item.getString());
-							System.out.println("instID=" + instID);
-						}
-						if (item.getFieldName().equals("selectedSchoolID")) {
-							selectedSchoolID = Long.parseLong(item.getString());
-							System.out.println("selectedSchoolID=" + selectedSchoolID);
-						}
-					}
-				}
-			} catch (Exception e) {
-
-			}
-		}
-
-		if (blobKeys == null || blobKeys.isEmpty()) {
-			response.sendRedirect("/");
-		} else {
-			// Save blobKeys into current business entity field
-			 InstituteService ins = new InstituteService();
-			 InstituteEntity getInstituteById = ins.getInstituteById(instID); 
-			 getInstituteById.setBulkGFStudentBlobKey(blobKeys.get(0).getKeyString());
-		
-			 ofy().save().entity(getInstituteById).now();
-			
-			 
-			 PartnerSchoolEntity partnerSchoolEntity = new PartnerSchoolEntity();
-			 PartnerSchoolEntity partnerSchoolEntity2 = ofy().load().type(PartnerSchoolEntity.class).id(selectedSchoolID).now();
-			 
-			
-			 response.sendRedirect("/#/gandhifoundation");  
-			 //response.sendRedirect("/serve?blob-key=" +
-			// blobKeys.get(0).getKeyString()+"&user="+user);
-		}
-
-	}
-}*/
-    
-    
+    }    
     
     private BlobstoreService blobstoreService = BlobstoreServiceFactory
 			.getBlobstoreService();
@@ -128,7 +59,7 @@ public class UploadBulkGFStudentServlet extends HttpServlet {
 		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
 		List<BlobKey> blobKeys = blobs.get("myFile");
 
-		Long instID = null; 
+		Long insId = null; 
 		Long selectedSchoolID = null; 
 		
 		System.out.println("blobKeys:" + blobKeys);
@@ -146,11 +77,11 @@ public class UploadBulkGFStudentServlet extends HttpServlet {
 				BlobstoreInputStream stream = new BlobstoreInputStream(
 						new BlobKey(blobKeys.get(0).getKeyString()));
 				if (item.isFormField()) {
-					if (item.getFieldName().equals("instID")) {
-						System.out.println("instID id=="+ request.getParameter(item.getFieldName()));
+					if (item.getFieldName().equals("insId")) {
+						System.out.println("insId id=="+ request.getParameter(item.getFieldName()));
 						if (!request.getParameter(item.getFieldName()).equals(
 								""))
-							instID = Long.parseLong(request.getParameter(item
+							insId = Long.parseLong(request.getParameter(item
 									.getFieldName()));
 					}
 					if (item.getFieldName().equals("selectedSchoolID")) {
@@ -208,7 +139,7 @@ public class UploadBulkGFStudentServlet extends HttpServlet {
 					
 					
 					// insert partner school	
-					PartnerSchoolEntity patschool=new PartnerSchoolEntity();
+					String nextPRN = UtilityService.getNextPRN("Student");
 					
 					GFStudentEntity gfStudentEntity = new GFStudentEntity();
 					
@@ -217,17 +148,17 @@ public class UploadBulkGFStudentServlet extends HttpServlet {
 					gfStudentEntity.setlName(split[2]);
 					gfStudentEntity.setGender(split[3]);
 					gfStudentEntity.setMediumOfAnswer(split[4]);
-					gfStudentEntity.setPrn("1");
+					gfStudentEntity.setPrn(nextPRN);
 					gfStudentEntity.setRole("Student");
 					gfStudentEntity.setSchoolName(partnerSchoolEntity2);
-					//gfStudentEntity.setInstituteID(instID);
+					gfStudentEntity.setInstituteID(insId);
 					
 					ofy().save().entity(gfStudentEntity).now();
 						
 				}
 				  blobstoreService.delete(blobKeys.get(0));
 				  
-				response.sendRedirect("/#/gandhifoundation.bookModule.list");
+				response.sendRedirect("/#/gandhifoundation.studentModule.list");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

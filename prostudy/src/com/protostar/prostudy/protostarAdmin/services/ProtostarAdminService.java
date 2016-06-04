@@ -76,6 +76,7 @@ public class ProtostarAdminService {
 			userEntity1.setLastName("Lawande");
 			userEntity1.setIsGoogleUser(true);
 			userEntity1.setAuthority(Arrays.asList("admin"));
+			userEntity1.setRole("Admin");
 			ofy().save().entity(userEntity1).now();
 
 			// ------------------------------
@@ -87,6 +88,7 @@ public class ProtostarAdminService {
 			userEntity2.setLastName("Pimpale");
 			userEntity2.setIsGoogleUser(true);
 			userEntity2.setAuthority(Arrays.asList("admin"));
+			userEntity2.setRole("Admin");
 			ofy().save().entity(userEntity2).now();
 			
 			// ------------------------------
@@ -98,6 +100,7 @@ public class ProtostarAdminService {
 			userEntity4.setLastName("Bhalsing");
 			userEntity4.setIsGoogleUser(true);
 			userEntity4.setAuthority(Arrays.asList("admin"));
+			userEntity4.setRole("Admin");
 			ofy().save().entity(userEntity4).now();
 			
 			// ------------------------------
@@ -109,6 +112,7 @@ public class ProtostarAdminService {
 			userEntity3.setLastName("Gokale");
 			userEntity3.setIsGoogleUser(true);
 			userEntity3.setAuthority(Arrays.asList("admin"));
+			userEntity3.setRole("Admin");
 			ofy().save().entity(userEntity3).now();			
 		} 
 		catch (Exception e) {
