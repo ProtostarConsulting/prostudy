@@ -564,11 +564,11 @@ angular.module("prostudyApp").controller(
 						});		}	
 			}
 			
-			$scope.getPartnerSchoolByInstitute = function() {
+			$scope.getPartnerByInstitute = function() {
 				var PartnerSchoolService = appEndpointSF
 						.getPartnerSchoolService();
 				
-				PartnerSchoolService.getPartnerSchoolByInstitute(
+				PartnerSchoolService.getPartnerByInstitute(
 						$scope.curUser.instituteID).then(
 						function(pSchoolList) {
 
@@ -581,7 +581,7 @@ angular.module("prostudyApp").controller(
 				  if (appEndpointSF.is_service_ready) {					  
 					  $scope.getStandardByInstitute();
 						$scope.getUserByInstitute();
-						$scope.getPartnerSchoolByInstitute();		  
+						$scope.getPartnerByInstitute();		  
 				  } 
 				  else {
 				   $log.debug("Services Not Loaded, watiting...");
