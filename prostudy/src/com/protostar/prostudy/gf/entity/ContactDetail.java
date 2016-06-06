@@ -1,14 +1,17 @@
 package com.protostar.prostudy.gf.entity;
 
+import java.util.List;
+
 public class ContactDetail {
 
 
 	private String headMasterName;
 	private String headMasterMobile;
 	private String headMasterEmailId;
-	private String coordinatorName;
+	private List<CoordinatorDetail> coordinatorDetail;
+	/*private String coordinatorName;
 	private String coordinatorPhoneNum;
-	private String coordinatorEmailId;
+	private String coordinatorEmailId;*/
 	public String getHeadMasterName() {
 		return headMasterName;
 	}
@@ -27,7 +30,7 @@ public class ContactDetail {
 	public void setHeadMasterEmailId(String headMasterEmailId) {
 		this.headMasterEmailId = headMasterEmailId;
 	}
-	public String getCoordinatorName() {
+/*	public String getCoordinatorName() {
 		return coordinatorName;
 	}
 	public void setCoordinatorName(String coordinatorName) {
@@ -45,6 +48,12 @@ public class ContactDetail {
 	public void setCoordinatorEmailId(String coordinatorEmailId) {
 		this.coordinatorEmailId = coordinatorEmailId;
 	}
-	
+	*/
+	public List<CoordinatorDetail> getCoordinatorDetail() {
+		return coordinatorDetail;
+	}
+	public void setCoordinatorDetail(List<CoordinatorDetail> coordinatorDetail) {
+		this.coordinatorDetail = coordinatorDetail;
+	}
 
 }

@@ -125,9 +125,9 @@ public class DownloadPartnerSchools extends HttpServlet {
 				s.addCell(new Label(21, l, patse.get(i).getContactDetail().getHeadMasterName()));
 				s.addCell(new Label(22, l, patse.get(i).getContactDetail().getHeadMasterMobile()));
 				s.addCell(new Label(23, l, patse.get(i).getContactDetail().getHeadMasterEmailId()));
-				s.addCell(new Label(24, l, patse.get(i).getContactDetail().getCoordinatorName()));
-				s.addCell(new Label(25, l, patse.get(i).getContactDetail().getCoordinatorPhoneNum()));
-				s.addCell(new Label(26, l, patse.get(i).getContactDetail().getCoordinatorEmailId()));
+				//s.addCell(new Label(24, l, patse.get(i).getContactDetail().getCoordinatorName()));
+			//	s.addCell(new Label(25, l, patse.get(i).getContactDetail().getCoordinatorPhoneNum()));
+			//	s.addCell(new Label(26, l, patse.get(i).getContactDetail().getCoordinatorEmailId()));
 				
 				
 			}

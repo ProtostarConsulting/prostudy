@@ -182,9 +182,9 @@ public class UplodePartnerSchoolsExcel extends HttpServlet {
 					//Contact Detail 
 					
 					ContactDetail conDetail=new ContactDetail();
-					conDetail.setCoordinatorEmailId(split[26]);
-					conDetail.setCoordinatorName(split[24]);
-					conDetail.setCoordinatorPhoneNum(split[25]);
+				//	conDetail.setCoordinatorEmailId(split[26]);
+				//	conDetail.setCoordinatorName(split[24]);
+					//conDetail.setCoordinatorPhoneNum(split[25]);
 					conDetail.setHeadMasterEmailId(split[23]);
 					conDetail.setHeadMasterMobile(split[22]);
 					conDetail.setHeadMasterName(split[21]);
