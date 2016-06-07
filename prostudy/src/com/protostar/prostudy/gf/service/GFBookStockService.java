@@ -22,23 +22,45 @@ public class GFBookStockService {
 	@ApiMethod(name = "addGFBook", path = "addGFBook")
 	public GFBookEntity addGFBook(GFBookEntity gfBookEntity) {
 
+		if (gfBookEntity.getFlag() != null) {
+
+			ofy().save().entity(gfBookEntity).now();
+		}
 		String bookname = gfBookEntity.getBookName();
 		String bookmedium = gfBookEntity.getBookMedium();
 
 		GFBookEntity foundBook = ofy().load().type(GFBookEntity.class)
 				.filter("bookName", bookname).filter("bookMedium", bookmedium)
 				.first().now();
-		if(foundBook != null){
-			return gfBookEntity ;
-		}else{
+		if (foundBook != null) {
+			return gfBookEntity;
+		} else {
 			ofy().save().entity(gfBookEntity).now();
 			return gfBookEntity;
-		}	
+		}
 	}
 
 	@ApiMethod(name = "addTranAfterAddBook", path = "addTranAfterAddBook")
 	public void addTranAfterAddBook(GFBookEntity gfBookEntity) {
-		
+
+		long bID = gfBookEntity.getId();
+		GFBookStockEntity filteredbook = ofy()
+				.load()
+				.type(GFBookStockEntity.class)
+				.filter("book", Ref.create(Key.create(GFBookEntity.class, bID)))
+				.first().now();
+
+		if (filteredbook == null) {
+			GFBookStockEntity gfBookStockEntity = new GFBookStockEntity();
+			gfBookStockEntity.setBook(gfBookEntity);
+			gfBookStockEntity.setBookQty(gfBookEntity.getBookQty());
+			gfBookStockEntity.setFeedStockDate(gfBookEntity.getBookFeedDate());
+			gfBookStockEntity.setInstituteID(gfBookEntity.getInstituteID());
+
+			ofy().save().entity(gfBookStockEntity).now();
+
+		}
+
 		GFBookTransactionEntity newTransaction = new GFBookTransactionEntity();
 		newTransaction.setBook(gfBookEntity);
 		newTransaction.setInstituteID(gfBookEntity.getInstituteID());
@@ -46,17 +68,9 @@ public class GFBookStockService {
 		newTransaction.setTransactionDate(gfBookEntity.getBookFeedDate());
 		newTransaction.setBookQty(gfBookEntity.getBookQty());
 		ofy().save().entity(newTransaction).now();
-		
-		GFBookStockEntity gfBookStockEntity = new GFBookStockEntity();
-		gfBookStockEntity.setBook(gfBookEntity);
-		gfBookStockEntity.setBookQty(gfBookEntity.getBookQty());
-		gfBookStockEntity.setFeedStockDate(gfBookEntity.getBookFeedDate());
-		gfBookStockEntity.setInstituteID(gfBookEntity.getInstituteID());
-		
-		ofy().save().entity(gfBookStockEntity).now();	
+
 	}
-	
-	
+
 	@ApiMethod(name = "getGFBookByInstituteId", path = "getGFBookByInstituteId")
 	public List<GFBookEntity> getGFBookByInstituteId(
 			@Named("instituteID") long instituteID) {
@@ -92,7 +106,7 @@ public class GFBookStockService {
 	public void addGFBookStock(GFBookStockEntity gfBookStockEntity) {
 
 		/* Start To Update the Book Transaction Entity */
-		
+
 		GFBookTransactionEntity newTransaction = new GFBookTransactionEntity();
 		newTransaction.setInstituteID(gfBookStockEntity.getInstituteID());
 		newTransaction.setTransactionType("Cr");
@@ -102,14 +116,13 @@ public class GFBookStockService {
 		ofy().save().entity(newTransaction).now();
 
 		/* END Update the Book Transaction Entity */
-		
+
 		/* For increse qty on Book Entity in GFBookEntity */
 
-		
 		long bID = gfBookStockEntity.getBook().getId();
 
 		GFBookEntity book = ofy().load().type(GFBookEntity.class).id(bID).now();
-		
+
 		int totQty = gfBookStockEntity.getBookQty() + book.getBookQty();
 		book.setBookQty(totQty);
 
@@ -119,21 +132,22 @@ public class GFBookStockService {
 
 		/* For Add and Increse qty in GFBookStockEntity Entity */
 
-		GFBookStockEntity filteredbook = ofy().load()
+		GFBookStockEntity filteredbook = ofy()
+				.load()
 				.type(GFBookStockEntity.class)
 				.filter("book", Ref.create(Key.create(GFBookEntity.class, bID)))
 				.first().now();
-		
+
 		if (filteredbook != null) {
-		
+
 			filteredbook.setBookQty(totQty);
 			ofy().save().entity(filteredbook);
-			
-		}else{
+
+		} else {
 			gfBookStockEntity.setBookQty(totQty);
 			ofy().save().entity(gfBookStockEntity).now();
 		}
-		
+
 		/* END Book Entity increse Qty in GFBookStockEntity */
 	}
 

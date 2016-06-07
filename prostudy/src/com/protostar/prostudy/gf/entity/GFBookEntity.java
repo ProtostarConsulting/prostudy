@@ -28,6 +28,7 @@ public class GFBookEntity {
 	private Date stockFeedDate;
 	private Date stockModifiedDate;
 	private String standard;
+	private String flag;
 	// Ref<PartnerSchoolEntity> schoolName;
 
 	
@@ -36,6 +37,16 @@ public class GFBookEntity {
 		return instituteID;
 	}
 	
+
+	public String getFlag() {
+		return flag;
+	}
+
+
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+
 
 	public String getStandard() {
 		return standard;
