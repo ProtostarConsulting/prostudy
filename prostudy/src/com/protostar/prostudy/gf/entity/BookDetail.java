@@ -5,6 +5,7 @@ public class BookDetail {
 	
 	private String bookName;
 	private Integer bookPrise;
+	private String standard;
 	private Integer hindinum;
 	private Integer marathinum;
 	private Integer englishnum;
@@ -52,6 +53,12 @@ public class BookDetail {
 	}
 	public void setTotalFees(Integer totalFees) {
 		this.totalFees = totalFees;
+	}
+	public String getStandard() {
+		return standard;
+	}
+	public void setStandard(String standard) {
+		this.standard = standard;
 	}
 
 	
