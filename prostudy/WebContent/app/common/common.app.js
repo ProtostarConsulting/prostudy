@@ -1,7 +1,7 @@
 var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
 		'ngMessages', "xeditable", "ui.bootstrap", "ui.router",'ngMaterialDatePicker',
 		'md.data.table', 'ngResource', 'textAngular', 'ngRoute', 'ngStorage', "ngAria",
-		'directive.g+signin' ]);
+		'directive.g+signin']);
 
 app.constant('boardList', ["State Board", "CBSE", "ICSE"]);
 app.constant('standardList', ["5 th", "6 th", "7 th", "8 th", "9 th",

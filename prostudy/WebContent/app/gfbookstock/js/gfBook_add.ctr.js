@@ -19,7 +19,7 @@ angular.module("prostudyApp").controller(
 			$scope.standardList = standardList;
 
 			$scope.selectedGFBookID = $stateParams.selectedGFBookID;
-
+			
 			$scope.addGFBook = function(update) {
 				$scope.tempBook.instituteID = $scope.curUser.instituteID;
 				if ($scope.tempBook.id != undefined) {
@@ -39,7 +39,7 @@ angular.module("prostudyApp").controller(
 									$state.reload();
 								} else {
 									$scope.showUpdateToast();
-									$scope.redirectToAddBook();
+									$scope.cancelButton();
 								}
 
 							} else {
@@ -119,9 +119,7 @@ angular.module("prostudyApp").controller(
 						'This book is Already Added.').position("top")
 						.hideDelay(3000));
 			};
-			$scope.redirectToAddBook = function() {
-				$state.go("gandhifoundation.bookModule", {});
-			}
+	
 			$scope.cancelButton = function() {
 				$state.go("gandhifoundation.bookModule", {});
 			}
