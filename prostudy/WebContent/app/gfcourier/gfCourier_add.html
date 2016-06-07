@@ -110,7 +110,7 @@
 				<tr>
 					<th name="Sr_No"></th>
 					<th name="Book Name"></th>
-					<!-- 					<th name="Auther"></th>
+<!-- 					<th name="Auther"></th>
 					<th name="Weight"></th>
 					<th name="Price"></th>
  -->
@@ -128,18 +128,17 @@
 							ng-model="selectedStockItem" placeholder="Item Name"
 							ng-change="lineItemStockChange($index, selectedStockItem)">
 						<md-option ng-value="item" ng-repeat="item in bookList">{{item.bookName
-						}}</md-option> </md-select> </md-input-container> </td>
+						}}</md-option> </md-select> </md-input-container></td>
 
 					<td><md-input-container flex> <label>Quantity
 						</label> <input ng-model="item.bookQty" ng-blur="checkStock(item,$event)"
 							type="number" ng-change="calProductSubTotal()"> </md-input-container></td>
-					
-				
-					<td><md-icon
-							md-svg-src="img/icons/remove.svg"
+
+
+					<td><md-icon md-svg-src="img/icons/remove.svg"
 							ng-click="removeItem($index)" class="name"
 							style="color: Green; height: 40px; width: 40px"></md-icon></td>
-
+<td></td>
 				</tr>
 				<tr>
 					<td><section layout="row" layout-sm="column"
@@ -147,10 +146,15 @@
 							<md-button class="md-raised md-primary" ng-click="addBook()">Add
 							Item</md-button>
 						</section></td>
-
+					<td></td>
+					<td></td><td></td>
 				</tr>
 
-
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td><td></td>
+				</tr>
 			</tbody>
 		</table>
 	</form>

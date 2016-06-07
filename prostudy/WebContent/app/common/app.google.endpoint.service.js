@@ -97,6 +97,16 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 
+	GFBookStockService.addTranAfterAddBook = function(book) {
+
+		var deferred = $q.defer();
+		gapi.client.gfBookStockService.addTranAfterAddBook(book).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+
+		return deferred.promise;
+	}
+	
 	GFBookStockService.getGFBookByInstitute = function(instituteID) {
 		var deferred = $q.defer();
 		gapi.client.gfBookStockService.getGFBookByInstitute({'instituteID' : instituteID}).execute(function(resp) {

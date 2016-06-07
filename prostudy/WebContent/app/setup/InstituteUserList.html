@@ -15,7 +15,8 @@
 	<div>
 		<md-data-table-container>
 
-		<table md-data-table md-row-select="activeselected" md-progress="deferred">
+		<table md-data-table md-row-select="activeselected"
+			md-progress="deferred">
 			<thead md-order="query.order" md-trigger="onOrderChange">
 				<tr>
 					<th name="Name" order-by="name"></th>
@@ -25,39 +26,70 @@
 				</tr>
 			</thead>
 
-			<tbody>
+<!-- 			<tbody>
 				<tr md-auto-select
 					ng-repeat="user in activeUsers | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
 					<td>{{user.firstName}} {{user.lastName}}</td>
 					<td>{{user.email_id}}</td>
 					<td>{{user.role}}</td>
 					<td>{{user.prn}}</td>
-<!-- 					<td>
-						<section layout="row" layout-sm="column" >
-							<md-button class="md-raised md-primary" id="student"  ng-show="user.role == 'Student'" 
-								ui-sref="setup.userview({selecteduserNo:user.id})">Edit
-							Student</md-button>
-							<md-button class="md-raised md-primary"  id="admin"  ng-show="user.role == 'Admin'"
-								ui-sref="proAdmin.editBusiness.userview({selecteduserNo:user.id})">Edit
-							 Admin </md-button>
-							<md-button class="md-raised md-primary" id="teacher"  ng-show="user.role=='Teacher'"
-								ui-sref="proAdmin.editBusiness.userview({selecteduserNo:user.id})">Edit
-							Teacher </md-button>
-						</section>
-					</td>
- -->				</tr>
+					<td>
+					
+					<md-button
+							ui-sref="gandhifoundation.bookModule.add({selectedGFBookID : book.id})"
+							class="md-fab md-primary md-hue-2" ng-click=""> <md-icon
+							md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit Admin
+						</md-tooltip></md-button>
+						
+					 <md-button class="md-raised md-primary"
+							ng-show="user.role == 'Admin'"
+							ui-sref="proAdmin.editBusiness.userview({selecteduserNo:user.id})">Edit
+						Admin </md-button> 
+						
+						
+					<md-button class="md-raised md-primary"
+							ng-show="user.role == 'Student'"
+							ui-sref="setup.userview({selecteduserNo:user.id})">Edit
+						Student</md-button>
+						
+						 <md-button class="md-raised md-primary"
+							ng-show="user.role=='Teacher'"
+							ui-sref="proAdmin.editBusiness.userview({selecteduserNo:user.id})">Edit
+						Teacher </md-button></td>
+
+				</tr>
 			</tbody>
+			
+ -->			
+			<tbody>
+				<tr md-auto-select
+					ng-repeat="user in activeUsers | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+
+					<td>{{user.firstName}} {{user.lastName}}</td>
+					<td>{{user.email_id}}</td>
+					<td>{{user.role}}</td>
+					<td>{{user.prn}}</td>
+<!-- 					<td><md-button
+							ui-sref="institute.list_view.editInstitute({selectedGFUserID : user.id})"
+							class="md-fab md-primary md-hue-2" ng-click=""> <md-icon
+							md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit Admin
+						</md-tooltip></md-button></td>
+ -->					
+				</tr>
+			</tbody>
+			
 		</table>
 
 		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
-			md-total={{users.length}} md-trigger="onpagechange"></md-data-table-pagination>
+			md-total={{activeUsers.length}} md-trigger="onpagechange"></md-data-table-pagination>
 		</md-data-table-container>
 	</div>
 
-	
 
-<div id="changeState" ng-show="activeselected.length == 1">
-<!-- 
+
+	<div id="changeState" ng-show="activeselected.length == 1">
+
+			<!-- 
 	<md-button class="md-raised md-primary" 
 			ng-click="inactiveUserStatus('active')">Inactive
 		</md-button>
@@ -65,16 +97,14 @@
 	<md-button class="md-raised md-primary" ng-model="suspend" value="suspend"
 			ng-click="suspendUserStatus('active')">Suspend
 		</md-button> -->
-<!--     
+			<!--     
      <md-button class="md-primary md-raised" ng-hide="activeselected[0].isGoogleUser" ng-click="changePassword($event)">
       Change Password
     </md-button>
  -->
-</div>
+	</div>
 
-</md-content> </md-tab> 
-		
-<md-tab label="Inactive"> <md-content class="md-padding">
+	</md-content> </md-tab> <md-tab label="Inactive"> <md-content class="md-padding">
 	<!-- 	<h3 class="md-display-10">Day</h3> -->
 	<div layout layout-sm="column">
 		<md-input-container flex> <label>Search</label> <input
@@ -83,7 +113,8 @@
 	<div>
 		<md-data-table-container>
 
-		<table md-data-table md-row-select="inactiveselected" md-progress="deferred">
+		<table md-data-table md-row-select="inactiveselected"
+			md-progress="deferred">
 			<thead md-order="query.order" md-trigger="onOrderChange">
 				<tr>
 					<th name="Name" order-by="name"></th>
@@ -101,7 +132,7 @@
 					<td>{{user.role}}</td>
 					<td>{{user.prn}}</td>
 					<td>
-						<section layout="row" layout-sm="column" >
+						<section layout="row" layout-sm="column">
 							<md-button class="md-raised md-primary" ng-hide="businessNo"
 								ui-sref="setup.userview({selecteduserNo:user.id})">View
 							user</md-button>
@@ -118,39 +149,38 @@
 			md-total={{users.length}} md-trigger="onpagechange"></md-data-table-pagination>
 		</md-data-table-container>
 	</div>
-	
-<div ng-show="inactiveselected.length == 1">
 
- 
- 	<!-- <md-button class="md-raised md-primary" 
+	<div ng-show="inactiveselected.length == 1">
+
+
+		<!-- <md-button class="md-raised md-primary" 
 			ng-click="activeUserStatus('inactive')">Active
 		</md-button> -->
-		
-	<md-button class="md-raised md-primary" ng-model="suspend" value="suspend"
-			ng-click="suspendUserStatus('inactive')">Suspend
- 		</md-button>
 
- <!--  <md-button class="md-primary md-raised" ng-hide="inactiveselected[0].isGoogleUser">
+		<md-button class="md-raised md-primary" ng-model="suspend"
+			value="suspend" ng-click="suspendUserStatus('inactive')">Suspend
+		</md-button>
+
+		<!--  <md-button class="md-primary md-raised" ng-hide="inactiveselected[0].isGoogleUser">
       Change Password
     </md-button> -->
-    
 
-</div>
 
-</md-content> </md-tab> 
-	
-	<md-tab label="Suspended"> <md-content class="md-padding">
+	</div>
+
+	</md-content> </md-tab> <md-tab label="Suspended"> <md-content class="md-padding">
 	<!-- 	<h3 class="md-display-10">Month</h3> -->
-	
-		<div layout layout-sm="column">
+
+	<div layout layout-sm="column">
 		<md-input-container flex> <label>Search</label> <input
 			ng-model="searchText"> </md-input-container>
 	</div>
-	
+
 	<div>
 		<md-data-table-container>
 
-		<table md-data-table md-row-select="suspendselected" md-progress="deferred">
+		<table md-data-table md-row-select="suspendselected"
+			md-progress="deferred">
 			<thead md-order="query.order" md-trigger="onOrderChange">
 				<tr>
 					<th name="Name" order-by="name"></th>
@@ -168,7 +198,7 @@
 					<td>{{user.role}}</td>
 					<td>{{user.prn}}</td>
 					<td>
-						<section layout="row" layout-sm="column" >
+						<section layout="row" layout-sm="column">
 							<md-button class="md-raised md-primary" ng-hide="businessNo"
 								ui-sref="setup.userview({selecteduserNo:user.id})">View
 							user</md-button>
@@ -186,24 +216,22 @@
 		</md-data-table-container>
 	</div>
 
-<div ng-show="suspendselected.length == 1">
+	<div ng-show="suspendselected.length == 1">
 
-  	<md-button class="md-raised md-primary" 
-			ng-click="activeUserStatus('suspend')">Active
-		</md-button>
-		
-	<md-button class="md-raised md-primary" ng-model="suspend" value="suspend"
-			ng-click="inactiveUserStatus('suspend')">Inactive
+		<md-button class="md-raised md-primary"
+			ng-click="activeUserStatus('suspend')">Active </md-button>
+
+		<md-button class="md-raised md-primary" ng-model="suspend"
+			value="suspend" ng-click="inactiveUserStatus('suspend')">Inactive
 		</md-button>
 
- <!--  <md-button class="md-primary md-raised" ng-hide="suspendselected[0].isGoogleUser">
+		<!--  <md-button class="md-primary md-raised" ng-hide="suspendselected[0].isGoogleUser">
       Change Password
     </md-button> -->
-    
 
-   </div>
 
-	</md-content>
-</md-tab>
+	</div>
 
-</div></md-content>
+	</md-content> </md-tab>
+</div>
+</md-content>

@@ -7,6 +7,9 @@ angular
 						tableTestDataFactory, $state, appEndpointSF,
 						$stateParams) {
 
+					$scope.selectedGFUserID = $stateParams.selectedGFUserID;
+					console.log("$scope.selectedGFUserID"+$scope.selectedGFUserID);
+					
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
 

@@ -6,9 +6,8 @@ angular.module("prostudyApp").controller(
 			
 			
 			$scope.answerOfMediumList = [ "Marathi", "Hindi", "English", ];
-			$scope.tempBook = {
+			$scope.tempBookStock = {
 					book : '',
-					medium : '',
 					bookQty : '',
 					feedStockDate : new Date(),
 					transactionType : 'Cr'
@@ -17,13 +16,13 @@ angular.module("prostudyApp").controller(
 			$scope.selectedGFBookStockID = $stateParams.selectedGFBookStockID;
 
 			$scope.addGFBookStock = function() {
-				$scope.tempBook.instituteID = parseInt($scope.curUser.instituteID);
+				$scope.tempBookStock.instituteID = parseInt($scope.curUser.instituteID);
 
 				var gfBookStockService = appEndpointSF.getGFBookStockService();
 
-				gfBookStockService.addGFBookStock($scope.tempBook).then(
-						function() {
-
+				gfBookStockService.addGFBookStock($scope.tempBookStock).then(
+						function(resp) {
+							
 							$scope.gfBookStockForm.$setPristine();
 							$scope.gfBookStockForm.$setValidity();
 							$scope.gfBookStockForm.$setUntouched();
@@ -35,16 +34,17 @@ angular.module("prostudyApp").controller(
 				} else {
 					$scope.showUpdateToast();
 				}
-				$scope.tempBook = {};
+				$scope.tempBookStock = {};
+				$state.reload();
 			}
 
 			$scope.getGFBookByInstituteId = function() {
 
 				var gfBookStockService = appEndpointSF.getGFBookStockService();
 				gfBookStockService.getGFBookByInstituteId($scope.curUser.instituteID)
-						.then(function(tempBooks) {
+						.then(function(tempBookStocks) {
 							
-							$scope.tempBooks = tempBooks;
+							$scope.tempBookStocks = tempBookStocks;
 						
 						});
 			}

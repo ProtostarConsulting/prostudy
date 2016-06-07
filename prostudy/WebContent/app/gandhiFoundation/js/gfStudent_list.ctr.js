@@ -43,7 +43,7 @@ angular
 								});
 					}
 
-	/*				$scope.sendData = function() {
+/*				$scope.sendData = function() {
 						 $scope.$broadcast('studEditEvent', { studDetails: result.result });
 					}
 */

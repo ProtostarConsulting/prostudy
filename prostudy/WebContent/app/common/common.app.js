@@ -4,6 +4,11 @@ var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
 		'directive.g+signin' ]);
 
 app.constant('boardList', ["State Board", "CBSE", "ICSE"]);
+app.constant('standardList', ["5 th", "6 th", "7 th", "8 th", "9 th",
+          					"10 th", "11 th", "12 th", "FY", "SY", "TY", "PG-I",
+        					"PG-II", "course-1", "course-2", "Group I", "Group II",
+        					"Group III" ]);
+app.constant('answerOfMediumList', ["Marathi", "Hindi", "English"]);
 app.constant('installmentList', [1,2,3]);
 app.constant('partnerSchoolLevels', ["Primary", "Secondary", "Higher-Secondary", "School", "College"]);
 /*app.config(function($mdThemingProvider) {
@@ -126,6 +131,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/setup/setLogo.html',
 		controller : 'setLogoCtr'	
 	})
+	
+	.state('institute.editAUser', {
+		url : "/editAUser/:selectedGFUserID",
+		templateUrl : '/app/institute/institute_editUser.html',
+		controller : 'userEditCtr'	
+	})
+	
 	.state('exam', {
 		url : "/exam",
 		templateUrl : '/app/exam/exam_module.html',
@@ -293,7 +305,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/institute/institute_list_view.html',
 		controller : 'instituteListViewCtr'
 	}).state('institute.list_view.editInstitute', {
-		url : "/editInstitute",
+		url : "/editInstitute/:selectedGFUserID",
 		templateUrl : '/app/institute/institute_editInstitute.html',
 		controller : 'instituteListViewCtr'
 	}).state('institute.list_view.studentBySubject', {

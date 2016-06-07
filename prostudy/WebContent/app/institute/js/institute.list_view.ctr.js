@@ -8,7 +8,10 @@ angular.module("prostudyApp").controller(
 			.getLoggedinUser();
 
 			$scope.selectedInstituteID = $stateParams.selectedInstituteID;			
-		
+			
+			
+			console.log("$scope.selectedGFUserID"+$scope.selectedGFUserID);
+			
 			$scope.selectedStdID = $stateParams.selectedStdID;
 			$scope.selectedDivID = $stateParams.selectedDivID; 		
 			

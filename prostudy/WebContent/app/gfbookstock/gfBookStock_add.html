@@ -7,7 +7,7 @@
 
 
 		<div layout="row" layout-xs="column">
-			<md-datepicker flex ng-model="tempBook.feedStockDate"
+			<md-datepicker flex ng-model="tempBookStock.feedStockDate"
 				md-placeholder="Select Date"></md-datepicker>
 		</div>
 
@@ -17,9 +17,9 @@
 				List<span style="color: red"
 				ng-show="gfBookStockForm.book.$error.required"
 				class="mandatory">*</span>
-			</label> <md-select name="book" ng-model="tempBook.book "
+			</label> <md-select name="book" ng-model="tempBookStock.book"
 				ng-required="true"> <md-option ng-value="book"
-				ng-repeat="book in tempBooks">{{book.bookName}}</md-option>
+				ng-repeat="book in tempBookStocks">{{book.bookName}}({{book.bookMedium}})</md-option>
 			</md-select>
 			<div ng-messages="gfBookStockForm.book.$error"
 				ng-if="gfBookStockForm.book.$submitted || gfBookStockForm.book.$touched">
@@ -27,11 +27,11 @@
 			</div>
 			</md-input-container>
 
-
+<!-- 
 			<md-input-container flex> <label>Medium
 				of Answer<span style="color: red"
 				ng-show="gfBookStockForm.medium.$error.required" class="mandatory">*</span>
-			</label> <md-select name="medium" ng-model="tempBook.medium"
+			</label> <md-select name="medium" ng-model="tempBookStockStock.medium"
 				ng-required="true"> <md-option ng-value="medium"
 				ng-repeat="medium in answerOfMediumList">{{medium}}</md-option> </md-select>
 			<div ng-messages="gfBookStockForm.medium.$error"
@@ -39,12 +39,12 @@
 				<div ng-message="required">Please Select Standards.</div>
 			</div>
 			</md-input-container>
-
+ -->
 
 			<md-input-container flex> <label>Quantity
 				 <span style="color: red"
 				ng-show="gfBookStockForm.bookQty.$error.required" class="mandatory">*</span>
-			</label> <input name="bookQty" type="number" ng-model="tempBook.bookQty"
+			</label> <input name="bookQty" type="number" ng-model="tempBookStock.bookQty"
 				ng-required="true">
 			<div ng-messages="gfBookStockForm.bookQty.$error"
 				ng-if="gfBookStockForm.bookQty.$submitted || gfBookStockForm.bookQty.$touched">
@@ -54,7 +54,7 @@
 		</div>
 	</form>
 </div>
-
+{{msg}}
 <div layout="row" layout-align="center center" layout-xs="column">
 
 	<md-button class="md-raised md-primary"
