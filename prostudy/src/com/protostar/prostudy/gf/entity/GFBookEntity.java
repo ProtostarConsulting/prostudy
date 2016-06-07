@@ -13,6 +13,7 @@ public class GFBookEntity {
 
 	@Id
 	private Long id;
+	@Index
 	private String bookName;
 	private String bookAuther;
 	private double weight;
@@ -22,9 +23,11 @@ public class GFBookEntity {
 	private Date bookFeedDate;
 	@Index
 	private long instituteID;
-	private String medium;
+	@Index
+	private String bookMedium;
 	private Date stockFeedDate;
-
+	private Date stockModifiedDate;
+	private String standard;
 	// Ref<PartnerSchoolEntity> schoolName;
 
 	
@@ -33,6 +36,16 @@ public class GFBookEntity {
 		return instituteID;
 	}
 	
+
+	public String getStandard() {
+		return standard;
+	}
+
+
+	public void setStandard(String standard) {
+		this.standard = standard;
+	}
+
 
 	public Date getBookFeedDate() {
 		return bookFeedDate;
@@ -43,14 +56,13 @@ public class GFBookEntity {
 		this.bookFeedDate = bookFeedDate;
 	}
 
-
-	public String getMedium() {
-		return medium;
+	public String getBookMedium() {
+		return bookMedium;
 	}
 
 
-	public void setMedium(String medium) {
-		this.medium = medium;
+	public void setBookMedium(String bookMedium) {
+		this.bookMedium = bookMedium;
 	}
 
 

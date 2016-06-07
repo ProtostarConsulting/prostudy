@@ -9,6 +9,11 @@ import javax.inject.Named;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
+import com.googlecode.objectify.Key;
+import com.googlecode.objectify.LoadResult;
+import com.googlecode.objectify.Ref;
+import com.protostar.prostudy.entity.BookEntity;
+import com.protostar.prostudy.gf.entity.GFBookEntity;
 import com.protostar.prostudy.gf.entity.GFBookStockEntity;
 import com.protostar.prostudy.gf.entity.GFBookTransactionEntity;
 import com.protostar.prostudy.gf.entity.GFCourierEntity;
@@ -16,50 +21,56 @@ import com.protostar.prostudy.gf.entity.GFCourierEntity;
 @Api(name = "gfCourierService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.gf.service", ownerName = "com.protostar.prostudy.gf.service", packagePath = ""))
 public class GFCourierService {
 
-	@ApiMethod(name="addGFCourier")
-	public void addGFCourier(GFCourierEntity gfCourierEntity){
+	@ApiMethod(name = "addGFCourier")
+	public void addGFCourier(GFCourierEntity gfCourierEntity) {
+
+		ofy().save().entity(gfCourierEntity).now();
+
+		GFBookTransactionEntity gfBookTransactionEntity = new GFBookTransactionEntity();
+
+		if (gfCourierEntity.getBookLineItemList().size() < 1) {
+			gfBookTransactionEntity.setTransactionType("Dr");
+			ofy().save().entity(gfBookTransactionEntity).now();
+		} else {
+			for (int i = 0; i < gfCourierEntity.getBookLineItemList().size(); i++) {
+
+				GFBookEntity book = gfCourierEntity.getBookLineItemList()
+						.get(i);
+				gfBookTransactionEntity.setBook(book);
+				gfBookTransactionEntity.setBookQty(gfCourierEntity.getBookLineItemList().get(i).getBookQty());
+				gfBookTransactionEntity.setInstituteID(gfCourierEntity.getInstituteID());
+				gfBookTransactionEntity.setTransactionDate(gfCourierEntity.getCourierDispatchDate());
+				gfBookTransactionEntity.setTransactionType("Dr");
+
+				ofy().save().entity(gfBookTransactionEntity).now();
+			}
+		}
+
+		// For Deduct the book Stock
+
+		for (int i = 0; i < gfCourierEntity.getBookLineItemList().size(); i++) {
+
+			long bID = gfCourierEntity.getBookLineItemList().get(i).getId();
+			String bookmedium = gfCourierEntity.getBookLineItemList().get(i)
+					.getBookMedium();
+
+			GFBookEntity getBook = ofy().load().type(GFBookEntity.class).id(bID).now();
+
+			int bkQty = getBook.getBookQty() - gfCourierEntity.getBookLineItemList().get(i).getBookQty();
+			getBook.setBookQty(bkQty);
+			ofy().save().entity(getBook).now();
 			
-		 ofy().save().entity(gfCourierEntity).now();
-		 
-		 GFBookTransactionEntity gfBookTransactionEntity = new GFBookTransactionEntity();
-				
-		 if(gfCourierEntity.getBookLineItemList().size() < 1 ){
-			 gfBookTransactionEntity.setTransactionType("Dr");
-			 ofy().save().entity(gfBookTransactionEntity).now();
-		 }else{
-			 for( int i=0; i < gfCourierEntity.getBookLineItemList().size(); i++){
-				 gfBookTransactionEntity.setBook(gfCourierEntity.getBookLineItemList().get(i));
-				 gfBookTransactionEntity.setBookQty(gfCourierEntity.getBookQty());
-				 gfBookTransactionEntity.setInstituteID(gfCourierEntity.getInstituteID());
-				 gfBookTransactionEntity.setTransactionDate(gfCourierEntity.getCourierDispatchDate());
-				 gfBookTransactionEntity.setMedium(gfBookTransactionEntity.getMedium());
-				 gfBookTransactionEntity.setTransactionType("Dr");
-				 
-				 ofy().save().entity(gfBookTransactionEntity).now();
-			 }
-		 }
-		 
-		 
-		 // For Deduct the book Stock
-		 
-		 List<GFBookStockEntity> list = ofy().load().type(GFBookStockEntity.class).list();
+			GFBookStockEntity filteredbook = ofy().load()
+					.type(GFBookStockEntity.class)
+					.filter("book", Ref.create(Key.create(GFBookEntity.class, bID)))
+					.first().now();
+			
+			int bkQty1 = filteredbook.getBookQty() - gfCourierEntity.getBookLineItemList().get(i).getBookQty();
+			filteredbook.setBookQty(bkQty1);
+			ofy().save().entity(filteredbook).now();
+			
 
-		 
-			 for(int j=0; j < gfCourierEntity.getBookLineItemList().size(); j++){	 
-
-				 for(int i=0; i < list.size(); i++){
-					 double str = list.get(i).getBook().getWeight();
-					 if(gfCourierEntity.getBookLineItemList().get(j).getInstituteID() == list.get(i).getInstituteID()
-							 && gfCourierEntity.getBookLineItemList().get(j).getWeight() ==(str)){
-
-						 list.get(i).setBookQty(gfCourierEntity.getBookQty());
-						 
-						 ofy().save().entity(list).now();
-					 }
-
-				 }
-		 }
-
+		}
 	}
 
 	@ApiMethod(name = "getGFCourierByInstitute", path = "getGFCourierByInstitute")

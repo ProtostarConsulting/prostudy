@@ -4,7 +4,6 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -13,22 +12,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreInputStream;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
-import com.protostar.prostudy.entity.InstituteEntity;
+import com.googlecode.objectify.Key;
 import com.protostar.prostudy.gf.entity.GFBookEntity;
-import com.protostar.prostudy.gf.entity.GFStudentEntity;
-import com.protostar.prostudy.gf.entity.PartnerSchoolEntity;
-import com.protostar.prostudy.service.InstituteService;
+import com.protostar.prostudy.gf.entity.GFBookStockEntity;
+import com.protostar.prostudy.gf.entity.GFBookTransactionEntity;
 
 public class UploadBulkBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -129,22 +124,43 @@ public class UploadBulkBookServlet extends HttpServlet {
 										
 					GFBookEntity gfBookEntity = new GFBookEntity();
 					
-					List<GFBookEntity> bookList = ofy().load().type(GFBookEntity.class).list();
-					
-/*					for(){int i=0; i< bookList.size(); i++)
-					if(){
-						
-					}}
-*/					gfBookEntity.setBookName(split[0]);
+					gfBookEntity.setBookName(split[0]);
 					gfBookEntity.setBookAuther(split[1]);
 					gfBookEntity.setWeight(Integer.parseInt(split[2]));
 					gfBookEntity.setBookPrice(Integer.parseInt(split[3]));
 					gfBookEntity.setBookPublication(split[4]);
+					gfBookEntity.setBookMedium(split[5]);
+					gfBookEntity.setBookQty(Integer.parseInt(split[6]));
 					gfBookEntity.setBookFeedDate(todaysDate);
 					gfBookEntity.setInstituteID(insId);
 				
 					ofy().save().entity(gfBookEntity).now();
-						
+					
+					Key<GFBookEntity> gfbook = ofy().save().entity(gfBookEntity).now();
+					long bkID = gfbook.getId();
+					
+					GFBookStockService gfBookStockService = new GFBookStockService();
+					GFBookEntity gfEntity = gfBookStockService.getGFBookById(bkID);
+					
+/*					GFBookEntity book = ofy().load().type(GFBookEntity.class).id(bkID)
+							.now();
+					
+*/					
+					GFBookTransactionEntity newTransaction = new GFBookTransactionEntity();
+					newTransaction.setBook(gfEntity);
+					newTransaction.setInstituteID(insId);
+					newTransaction.setTransactionType("Cr");
+					newTransaction.setTransactionDate(todaysDate);
+					newTransaction.setBookQty(gfEntity.getBookQty());
+					ofy().save().entity(newTransaction).now();
+					
+					GFBookStockEntity gfBookStockEntity = new GFBookStockEntity();
+					gfBookStockEntity.setBook(gfEntity);
+					gfBookStockEntity.setBookQty(gfEntity.getBookQty());
+					gfBookStockEntity.setFeedStockDate(todaysDate);
+					gfBookStockEntity.setInstituteID(insId);
+					
+					ofy().save().entity(gfBookStockEntity).now();	
 				}
 				  blobstoreService.delete(blobKeys.get(0));
 				  
