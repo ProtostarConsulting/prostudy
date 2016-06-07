@@ -1,5 +1,5 @@
 var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
-		'ngMessages', "xeditable", "ui.bootstrap", "ui.router",
+		'ngMessages', "xeditable", "ui.bootstrap", "ui.router",'ngMaterialDatePicker',
 		'md.data.table', 'ngResource', 'textAngular', 'ngRoute', 'ngStorage', "ngAria",
 		'directive.g+signin' ]);
 
