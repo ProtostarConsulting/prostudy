@@ -6,6 +6,7 @@ angular
 						$mdUtil, $log, $q, appEndpointSF, $state, $stateParams,
 						boardList) {
 
+					
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
 
@@ -96,5 +97,6 @@ angular
 					}
 
 					$scope.waitForServiceLoad();
-
+				
 				});
+

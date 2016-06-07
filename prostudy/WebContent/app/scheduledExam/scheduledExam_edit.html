@@ -33,41 +33,35 @@
 			</div>
 
 			<div layout="row" layout-align="" layout-xs="column">
-				<md-input-container flex>
-				<label>Scheduled Exam SelectStartDate <span
-					style="color: red"
-					ng-show="scheduledExamEditForm.startdatentime.$error.required"
-					class="mandatory">*</span>
-				</label></md-input-container>
-				<md-datepicker name="startdatentime" ng-model="Test.startdatentime"
-					md-placeholder=" SelectStartDate" ng-required="true"></md-datepicker>
 
+				<md-input-container flex> <label>Start
+					Date/Time</label> <input mdc-datetime-picker date="true" time="true"
+					type="text" name="startdatentime" id="startdatentime"
+					placeholder="StartDateTime" ng-model="Test.startdatentime" />
 				<div ng-messages="scheduledExamEditForm.startdatentime.$error"
 					ng-if="scheduledExamEditForm.startdatentime.$submitted || scheduledExamEditForm.startdatentime.$touched">
 					<div ng-message="required">Please Select Scheduled Exam Start
-						Date.</div>
+						Date And Time.</div>
 				</div>
 
-
-				<md-input-container flex> <label>Scheduled
-					Exam SelectEndDate <span style="color: red"
-					ng-show="scheduledExamEditForm.enddatentime.$error.required"
-					class="mandatory">*</span>
-				</label></md-input-container>
-				<md-datepicker name="enddatentime" ng-model="Test.enddatentime"
-					md-placeholder=" SelectEndDate" ng-required="true"></md-datepicker>
-
+				</md-input-container>
+				<md-input-container flex> <label>Start
+					Date/Time</label> <input mdc-datetime-picker date="true" time="true"
+					type="text" name="enddatentime" id="enddatentime"
+					placeholder="StartDateTime" ng-model="Test.enddatentime" />
 				<div ng-messages="scheduledExamEditForm.enddatentime.$error"
 					ng-if="scheduledExamEditForm.enddatentime.$submitted || scheduledExamEditForm.enddatentime.$touched">
-					<div ng-message="required">Please Select Scheduled Exam Start
-						Date.</div>
+					<div ng-message="required">Please Select Scheduled Exam End
+						Date And Time.</div>
 				</div>
+				</md-input-container>
+
 
 
 			</div>
 			<div layout="row" layout-align="" layout-xs="column">
-				<md-input-container flex> <label>Duration in Minutes<span
-					style="color: red"
+				<md-input-container flex> <label>Duration
+					in Minutes<span style="color: red"
 					ng-show="scheduledExamEditForm.duration.$error.required"
 					class="mandatory">*</span>
 				</label> <md-select name="duration" ng-model="Test.duration"

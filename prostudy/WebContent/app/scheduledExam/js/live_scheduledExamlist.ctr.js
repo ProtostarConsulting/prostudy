@@ -21,7 +21,7 @@ angular
 											for(var i=0;i< $scope.scheduledExams.length;i++)
 											{
 												
-											if (new Date($scope.scheduledExams[i].startdatentime) <=  new Date($scope.scheduledExams[i].enddatentime) && new Date($scope.scheduledExams[i].enddatentime) >= new Date() && new Date($scope.scheduledExams[i].startdatentime) <= new Date())
+											if (new Date($scope.scheduledExams[i].enddatentime) >= new Date() && new Date($scope.scheduledExams[i].startdatentime) <= new Date())
 											{										
 												$scope.liveScheduledExams.push($scope.scheduledExams[i]);
 												
