@@ -2,7 +2,7 @@ angular.module("prostudyApp").controller(
 		"gfBookAddCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
 				$log, $q, appEndpointSF, $state, $stateParams, $mdDialog,
-				objectFactory,standardList) {
+				objectFactory, standardList) {
 			$scope.answerOfMediumList = [ "Marathi", "Hindi", "English", ];
 
 			$scope.tempBook = {
@@ -17,12 +17,15 @@ angular.module("prostudyApp").controller(
 			}
 
 			$scope.standardList = standardList;
-			
+
 			$scope.selectedGFBookID = $stateParams.selectedGFBookID;
 
-			$scope.addGFBook = function() {
+			$scope.addGFBook = function(update) {
 				$scope.tempBook.instituteID = $scope.curUser.instituteID;
-
+				if ($scope.tempBook.id != undefined) {
+					$scope.update = "update";
+					$scope.tempBook.flag = $scope.update;
+				}
 				var gfBookStockService = appEndpointSF.getGFBookStockService();
 
 				gfBookStockService.addGFBook($scope.tempBook).then(
@@ -30,37 +33,38 @@ angular.module("prostudyApp").controller(
 							$scope.backObj = resp;
 							$scope.addTranAfterAddBook();
 							if (resp.id != undefined) {
-								$scope.gfBookStockForm.$setPristine();
-								$scope.gfBookStockForm.$setValidity();
-								$scope.gfBookStockForm.$setUntouched();
 
 								if ($scope.selectedGFStudID == "") {
 									$scope.showAddToast();
 									$state.reload();
 								} else {
 									$scope.showUpdateToast();
+									$scope.redirectToAddBook();
 								}
-								$scope.tempBook = {};
+
 							} else {
 								$scope.showFailToast();
+								$scope.tempBook = {};
 								$state.reload();
 							}
-							
+
 						});
-				
+				$scope.gfBookStockForm.$setPristine();
+				$scope.gfBookStockForm.$setValidity();
+				$scope.gfBookStockForm.$setUntouched();
+				$scope.tempBook = {};
 				$state.reload();
 			}
 
-		
-			$scope.addTranAfterAddBook = function(){
+			$scope.addTranAfterAddBook = function() {
 				var gfBookStockService = appEndpointSF.getGFBookStockService();
 
 				gfBookStockService.addTranAfterAddBook($scope.backObj).then(
 						function(resp) {
-							
-						});	
+
+						});
 			}
-			
+
 			$scope.getGFBookById = function() {
 
 				var gfBookStockService = appEndpointSF.getGFBookStockService();
@@ -115,4 +119,10 @@ angular.module("prostudyApp").controller(
 						'This book is Already Added.').position("top")
 						.hideDelay(3000));
 			};
+			$scope.redirectToAddBook = function() {
+				$state.go("gandhifoundation.bookModule", {});
+			}
+			$scope.cancelButton = function() {
+				$state.go("gandhifoundation.bookModule", {});
+			}
 		});

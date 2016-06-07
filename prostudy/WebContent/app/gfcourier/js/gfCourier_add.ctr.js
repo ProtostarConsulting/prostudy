@@ -151,5 +151,7 @@ angular
 						limit : 5,
 						page : 1
 					};
-
+					$scope.cancelButton = function() {
+						$state.go("gandhifoundation.studentModule", {});
+					}
 				});
