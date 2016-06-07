@@ -1,0 +1,92 @@
+
+
+<div class="md-toolbar-tools">
+	<span flex></span>
+	<!--<md-card>-->
+	<section layout="row">
+
+		<md-button class="md-icon-button md-accent"
+			ng-click="printSalSlipDiv('bookDetailDiv')" aria-label="Favorite">
+		<md-icon md-svg-icon="img/icons/print.svg"></md-icon> </md-button>
+
+	</section>
+	<!--</md-card>-->
+</div>
+<div id="bookDetailDiv">
+<div>
+	<table style="width: 100%">
+			<tr>
+
+				<td width=10% name="Standard" >Standard</td>
+				<td width=20% name="Book Name" >Book Name</td>
+				<td width=5% name="Fees">Fees</td>
+				<td width=20% name="Number of Students Hindi"
+					ng-if="examMedium.indexOf('Hindi') > -1">Number of Students Hindi</td>
+				<td width=20% name="Number of Students Marathi"
+					ng-if="examMedium.indexOf('Marathi') > -1">Number of Students Marathi</td>
+				<td width=20% name="Number of Students English"
+					ng-if="examMedium.indexOf('English') > -1">Number of Students English</td>
+				<td width=5% name="Total Student">Total Student</td>
+				<td width=5% name="Total Fees">Total Fees</td>
+			</tr>
+</table>
+</div>
+<hr>
+<div>
+<table style="width: 100%">
+			<tr 
+				ng-repeat="test in BookDetail track by $index  ">
+				<td width=10%>{{test.standard}}</td>
+				<td width=20%>{{test.bookName}}</td>
+				<td width=5%>{{test.bookPrise}}</td>
+				<td width=20% ng-if="examMedium.indexOf('Hindi') > -1">{{test.hindinum }}</td>
+				<td width=20% ng-if="examMedium.indexOf('Marathi') > -1">{{test.marathinum }}</td>
+				<td width=20% ng-if="examMedium.indexOf('English') > -1">{{test.englishnum }}</td>
+				<td width=5%>{{test.totalStud}}</td>
+				<td width=5%>{{test.totalFees}}</td>
+
+
+			</tr>
+
+</table>
+</div>
+<hr>
+<div>
+<table >			
+			<tr>
+				<td>Total :-</td>
+				<td>{{bookSummary.total}}</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>20% Amount for Institute :-</td>
+				<td>{{bookSummary.amtForInst20per}}</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>80% Amount for GRF :-</td>
+				<td>{{bookSummary.amtForGRF80per}}</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+	<!-- 	</tbody> -->
+
+	</table>
+</div>	
+</div>
+	
+<iframe name="print_frame" width="0" height="0" frameborder="0"
+	src="about:blank"></iframe>
+	
+	

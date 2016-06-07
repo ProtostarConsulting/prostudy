@@ -110,7 +110,8 @@ angular
 						marathinum : "",
 						englishnum : "",
 						totalStud : "",
-						totalFees : ""
+						totalFees : "",
+						standard:""
 					}
 					// get last next 4 year to show academic year
 					$scope.getNextYears = function() {
@@ -210,7 +211,6 @@ angular
 
 					$scope.waitForServiceLoad();
 					$scope.cancelButton = function() {
-
 						$state.go('^', {});
 					};
 
@@ -224,7 +224,7 @@ angular
 						var gfBookStockService = appEndpointSF
 								.getGFBookStockService();
 						gfBookStockService
-								.getGFBookStockByInstituteId(
+								.getGFBookByInstituteId(
 										$scope.curUser.instituteID)
 								.then(
 										function(tempBooks) {
@@ -232,8 +232,9 @@ angular
 											$scope.bookStocks = tempBooks;
 											for (i = 0; i < $scope.bookStocks.length; i++) {
 												$scope.bookDetail = {};
-												$scope.bookDetail.bookName = $scope.bookStocks[i].book.bookName;
-												$scope.bookDetail.bookPrise = $scope.bookStocks[i].book.bookPrice;
+												$scope.bookDetail.bookName = $scope.bookStocks[i].bookName;
+												$scope.bookDetail.bookPrise = $scope.bookStocks[i].bookPrice;
+												$scope.bookDetail.standard = $scope.bookStocks[i].standard;
 												$scope.bookDetail.hindinum = 0;
 												$scope.bookDetail.marathinum = 0;
 												$scope.bookDetail.englishnum = 0;
@@ -317,4 +318,6 @@ angular
 
 					// ---------------------------------------
 
+			
+					
 				});

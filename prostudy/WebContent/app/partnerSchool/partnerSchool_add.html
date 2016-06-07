@@ -285,14 +285,7 @@
 			class="md-raised md-primary" ng-click="addPartnerSchool()">Save
 		& Next</md-button>
 	</section>
-	</md-content> </md-tab>
-	<md-tab	label="Book Standard Details"> <md-content class="md-padding">
-	hi
-		</md-content>
-		</md-tab>
-	
-	
-	 <md-tab label="Contact Detail"> <md-content
+	</md-content> </md-tab> <md-tab label="Contact Detail"> <md-content
 		class="md-padding">
 
 	<div layout="row" layout-xs="column" flex>
@@ -399,9 +392,8 @@
 					<td>{{ co.srno }}</td>
 					<td><md-input-container flex> <label>Coordinator
 							Name</label> <input ng-model="co.coordinatorName"> </md-input-container></td>
-					<td><md-input-container flex>
-						<label>Phone/Mobile No </label> <input
-							ng-model="co.coordinatorPhoneNum"></md-input-container></td>
+					<td><md-input-container flex> <label>Phone/Mobile
+							No </label> <input ng-model="co.coordinatorPhoneNum"></md-input-container></td>
 					<td><md-input-container flex> <label>Email
 							Id</label> <input ng-model="co.coordinatorEmailId"></md-input-container></td>
 					<td><md-button class="md-raised md-primary"
@@ -428,19 +420,51 @@
 			class="md-raised md-primary" ng-click="addPartnerSchool()">Save
 		& Next</md-button>
 	</section>
-	</md-content> </md-tab> <md-tab label="Book Detail"> <md-content class="md-padding">
+	</md-content> </md-tab> <!-- 		<md-tab	label="Book Standard Details"> <md-content class="md-padding">
+
+	<md-input-container flex="30">
+		<div ng-repeat="item in books">
+			<md-checkbox ng-checked="exists(item, selected)"
+				ng-click="toggle(item, selected)"> {{   item.standard }} <span
+				ng-if="exists(item, selected)"> <md-icon
+					md-svg-src="img/icons/ic_done_black_24px.svg"></md-icon></span> </md-checkbox>
+		</div>
+		</md-input-container>
+	
+	
+	
+	
+		</md-content>
+		</md-tab> --> <md-tab label="Book Detail"> <md-content
+		class="md-padding">
+
+
+	<div class="md-toolbar-tools" ng-show="selectedPSchoolId">
+		<span flex></span>
+		<!--<md-card>-->
+		<section layout="row">
+
+
+			<md-button class="md-raised md-primary"
+				ui-sref="partnerSchool.print({PSchoolId: selectedPSchoolId})">print </md-button>
+
+		</section>
+		<!--</md-card>-->
+	</div>
+
 	<table md-data-table md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onorderchange">
 			<tr>
 
+				<th width=20% name="Standard" order-by="standard"></th>
 				<th width=20% name="Book Name" order-by="bookName"></th>
 				<th width=20% name="Fees"></th>
 				<th width=10% name="Number of Students Hindi"
-					ng-show="selected.indexOf('Hindi') > -1"></th>
+					ng-if="selected.indexOf('Hindi') > -1"></th>
 				<th width=10px name="Number of Students Marathi"
-					ng-show="selected.indexOf('Marathi') > -1"></th>
+					ng-if="selected.indexOf('Marathi') > -1"></th>
 				<th width=10px name="Number of Students English"
-					ng-show="selected.indexOf('English') > -1"></th>
+					ng-if="selected.indexOf('English') > -1"></th>
 				<th width=10px name="Total Student"></th>
 				<th width=20% name="Total Fees"></th>
 			</tr>
@@ -449,17 +473,18 @@
 		<tbody>
 			<tr md-auto-select
 				ng-repeat="test in books track by $index  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit ">
+				<td width=20%>{{test.standard}}</td>
 				<td width=20%>{{test.bookName}}</td>
 				<td width=20%>{{test.bookPrise}}</td>
-				<td width=10% ng-show="selected.indexOf('Hindi') > -1"><input
+				<td width=10% ng-if="selected.indexOf('Hindi') > -1"><input
 					type="number" name="hindi"
 					ng-blur="calculate($index,test.hindinum,'hindi')"
 					ng-model="test.hindinum"></td>
-				<td width=10% ng-show="selected.indexOf('Marathi') > -1"><input
+				<td width=10% ng-if="selected.indexOf('Marathi') > -1"><input
 					type="number" name="marathi"
 					ng-blur="calculate($index,test.marathinum,'marathi')"
 					ng-model="test.marathinum"></td>
-				<td width=10% ng-show="selected.indexOf('English') > -1"><input
+				<td width=10% ng-if="selected.indexOf('English') > -1"><input
 					type="number" name="english"
 					ng-blur="calculate($index,test.englishnum,'english')"
 					ng-model="test.englishnum"></td>
@@ -498,6 +523,7 @@
 		</tbody>
 
 	</table>
+
 	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
 		md-total={{books.length}} md-trigger="onpagechange"></md-data-table-pagination>
 
@@ -507,7 +533,7 @@
 		</md-button>
 	</section>
 
-	</md-data-table-container> </md-content> </md-tab> </md-tabs> </md-content>
+
+	</md-content> </md-tab> </md-tabs> </md-content>
 
 </form>
-
