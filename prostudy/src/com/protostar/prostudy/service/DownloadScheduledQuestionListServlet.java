@@ -1,6 +1,5 @@
 package com.protostar.prostudy.service;
 
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
@@ -17,18 +16,18 @@ import jxl.write.Label;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 
-import com.protostar.prostudy.entity.ScheduledExamResultEntity;
+import com.protostar.prostudy.entity.ScheduledQuestionEntity;
 
 /**
- * Servlet implementation class DownloadScheduledExamResult
+ * Servlet implementation class DownloadScheduledQuestionListServlet
  */
-public class DownloadScheduledExamResult extends HttpServlet {
+public class DownloadScheduledQuestionListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DownloadScheduledExamResult() {
+    public DownloadScheduledQuestionListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,19 +37,19 @@ public class DownloadScheduledExamResult extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		System.out.println("hello i am in download servlet");
-		Long selectedExamId = Long.parseLong(request.getParameter("selectedExamId"));
+		Long instituteId = Long.parseLong(request.getParameter("instituteId"));
 
-		System.out.println("selectedExamId===" + selectedExamId);
-		ScheduledExamResultService patss=new ScheduledExamResultService();
+		System.out.println("instituteId===" + instituteId);
+		ScheduledQuestionService sqService= new ScheduledQuestionService();
+		
 		
 		Date date = new Date();
 		String DATE_FORMAT = "dd/MMM/yyyy";
 		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT); 
 		
-		List<ScheduledExamResultEntity> patse =patss.getScheduledExamResultListByExamId(selectedExamId);
-		
+		List<ScheduledQuestionEntity> patse =sqService.getQuestionsByInstitute(instituteId);
+		System.out.println(patse);
 		
 		OutputStream out = null;
 		try {
@@ -59,40 +58,37 @@ public class DownloadScheduledExamResult extends HttpServlet {
 
 			
 			response.setHeader("Content-Disposition",
-					"attachment; filename=ScheduledExamResultList_"+sdf.format(date)+".csv");
+					"attachment; filename=ScheduledQuestionList_"+sdf.format(date)+".csv");
 
 			WritableWorkbook w = Workbook.createWorkbook(response
 					.getOutputStream());
 			WritableSheet s = w.createSheet("Demo", 0);
 
 			s.addCell(new Label(0, 0, "id"));
-			s.addCell(new Label(1, 0, "examTitle"));
-			s.addCell(new Label(2, 0, "userId"));
-			s.addCell(new Label(3, 0, "email_id"));
-			s.addCell(new Label(4, 0, "firstName"));
-			s.addCell(new Label(5, 0, "lastName"));
-			s.addCell(new Label(6, 0, "startTime"));
-			s.addCell(new Label(7, 0, "endTime"));
-			s.addCell(new Label(8, 0, "score"));
-			s.addCell(new Label(9, 0, "testID"));
-				
-		
+			s.addCell(new Label(1, 0, "instituteID"));
+			s.addCell(new Label(2, 0, "description"));
+			s.addCell(new Label(3, 0, "category"));
+			s.addCell(new Label(4, 0, "option1"));
+			s.addCell(new Label(5, 0, "option2"));
+			s.addCell(new Label(6, 0, "option3"));
+			s.addCell(new Label(7, 0, "option4"));
+			s.addCell(new Label(8, 0, "correctAns"));		
+			
 			
 			for (int i = 0; i < patse.size(); i++) {
 				int l=i+1;
 				int k=15;
 			
 				s.addCell(new Label(0,l,patse.get(i).getId().toString()));
-				s.addCell(new Label(1, l,patse.get(i).getExamTitle()));
-				s.addCell(new Label(2, l,patse.get(i).getUserId()));
-				s.addCell(new Label(3, l, patse.get(i).getEmail_id()));
-				s.addCell(new Label(4, l,patse.get(i).getFirstName()));
-				s.addCell(new Label(5, l, patse.get(i).getLastName()));
-				s.addCell(new Label(6, l, patse.get(i).getStartTime()));
-				s.addCell(new Label(7, l, patse.get(i).getEndTime()));
-				s.addCell(new Label(8, l, patse.get(i).getScore()));
-				s.addCell(new Label(9, l, patse.get(i).getTestID().toString()));
-								
+				s.addCell(new Label(1, l,patse.get(i).getInstituteID().toString()));
+				s.addCell(new Label(2, l,patse.get(i).getDescription()));
+				s.addCell(new Label(3, l, patse.get(i).getCategory()));
+				s.addCell(new Label(4, l,patse.get(i).getOption1()));
+				s.addCell(new Label(5, l, patse.get(i).getOption2()));
+				s.addCell(new Label(6, l, patse.get(i).getOption3()));
+				s.addCell(new Label(7, l, patse.get(i).getOption4()));
+				s.addCell(new Label(8, l, patse.get(i).getCorrectAns()));
+												
 			}	
 			
 			
@@ -106,7 +102,8 @@ public class DownloadScheduledExamResult extends HttpServlet {
 				out.close();
 		}
 
-			
+		
+		
 	}
 
 	/**
