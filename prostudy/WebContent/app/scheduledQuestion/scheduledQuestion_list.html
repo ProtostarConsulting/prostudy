@@ -1,7 +1,19 @@
 <h3 class="md-headline">Scheduled Question List</h3>
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
-	
+
+<section layout="row" layout-align="end end" flex>
+<md-button class="md-raised md-primary" id="downloadExcel"
+			ng-click="downloadQuestionList()">Download Scheduled QuestionList
+			<md-tooltip>
+			Download  Scheduled QuestionList</md-tooltip>
+			</md-button>
+		<md-button class="md-raised md-primary" id="uplodeExcel"
+			ng-click="uplodQuestionList($event)">Upload Scheduled QuestionList
+			<md-tooltip>
+			Upload  Scheduled QuestionList</md-tooltip>
+			</md-button>
+	</section>	
  <md-content>
 
 	<div>
