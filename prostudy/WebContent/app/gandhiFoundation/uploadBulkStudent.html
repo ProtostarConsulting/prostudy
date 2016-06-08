@@ -8,7 +8,8 @@
 		<div ng-show="loding">Loding.....</div>
 		<div ng-hide="loding">
 			<input type="hidden" name="insId" id="insId" value={{insId}}>
-			<input type="hidden" name="selectedSchoolID" id="selectedSchoolID" value={{selectedSchoolID}}>
+			<input type="hidden" name="selectedSchoolID" id="selectedSchoolID"
+				value={{selectedSchoolID}}>
 			<div>
 
 				Please select school :
@@ -21,7 +22,7 @@
 				</div>
 
 				<b>Use this format download CSV File click csv image</b> <a
-					href="img/images/app_partnerschoolsStudent.csv" download> <img
+					href="img/images/UploadGFBulkStudent.csv" download> <img
 					border="0" src="img/images/CSV.png" alt="W3Schools" width="60"
 					height="60">
 				</a>
@@ -32,19 +33,18 @@
 					Students:{{insId}}</label> <input name="myFile" type="file"
 					class="md-raised md-primary" accept=".csv" required>
 			</div>
-{{selectedSchoolID}}
+
 			<div>
-				<md-button ng-click="uplodeExcel()" class="md-raised md-primary"
-					ng-disabled="excelform.$invalid" show-gt-md> Submit </md-button>
+				<md-button id="submitBtn" ng-show="selectedSchool.id"
+					ng-click="uplodeExcel()" class="md-raised md-primary" show-gt-md>
+				Submit </md-button>
+			</div>
+			<div>
+				<h3 class="md-subhead" style="color: red"
+					ng-hide="selectedSchool.id">Please Select School before submit</h3>
 			</div>
 
-
 		</div>
-
-
-		<!-- <div class="dropzone" data-width="960" data-height="540" data-resize="true" data-url="canvas.php" style="width: 100%;">
-  <input type="file" name="thumb" />
-</div> -->
 	</form>
 
 	<div>

@@ -51,9 +51,9 @@
 				ng-show="gfCourierForm.registrationID.$error.required"
 				class="mandatory">*</span>
 			</label> <md-select name="registrationID"
-				ng-model="tempCourierObj.registrationID" ng-required="true">
+				ng-model="registrationID1" ng-required="true">
 			<md-option ng-value="registrationID"
-				ng-repeat="registrationID in registrationIDList">{{registrationID}}</md-option>
+				ng-repeat="registrationID in pSchoolList">{{registrationID.govRegisterno}}</md-option>
 			</md-select>
 			<div ng-messages="gfCourierForm.registrationID.$error"
 				ng-if="gfCourierForm.registrationID.$submitted || gfCourierForm.registrationID.$touched">

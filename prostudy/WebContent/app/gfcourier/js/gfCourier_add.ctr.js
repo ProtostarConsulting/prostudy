@@ -29,10 +29,10 @@ angular
 					}
 
 					$scope.selectedGFCourierID = $stateParams.selectedGFCourierID;
-
+					$scope.registrationID1;
 					$scope.addGFCourier = function() {
 						$scope.tempCourierObj.instituteID = $scope.curUser.instituteID;
-
+						$scope.tempCourierObj.registrationID = $scope.registrationID1.govRegisterno;
 						var gfCourierService = appEndpointSF
 								.getGFCourierService();
 

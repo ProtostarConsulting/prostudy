@@ -23,12 +23,13 @@ angular
 
 					$scope.getGFStudentsByInstitute = function() {
 
-						var gfStudentService = appEndpointSF.getGFStudentService();
-						gfStudentService.getGFStudentsByInstitute($scope.curUser.instituteID)
-								.then(
-										function(gfStudentList) {
-											$scope.gfStudentList = gfStudentList;
-										});
+						var gfStudentService = appEndpointSF
+								.getGFStudentService();
+						gfStudentService.getGFStudentsByInstitute(
+								$scope.curUser.instituteID).then(
+								function(gfStudentList) {
+									$scope.gfStudentList = gfStudentList;
+								});
 					}
 
 					$scope.getPartnerByInstitute = function() {
@@ -43,10 +44,11 @@ angular
 								});
 					}
 
-/*				$scope.sendData = function() {
-						 $scope.$broadcast('studEditEvent', { studDetails: result.result });
-					}
-*/
+					/*
+					 * $scope.sendData = function() {
+					 * $scope.$broadcast('studEditEvent', { studDetails:
+					 * result.result }); }
+					 */
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
 
@@ -55,7 +57,7 @@ angular
 							} else {
 								$scope.getGFStudentsByInstitute();
 								$scope.getPartnerByInstitute();
-							
+
 							}
 						} else {
 							$log.debug("Services Not Loaded, watiting...");
@@ -65,8 +67,6 @@ angular
 
 					$scope.waitForServiceLoad();
 
-				
-					
 					$scope.UplodeExcel = function(ev) {
 						var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
 								&& $scope.customFullscreen;
@@ -92,42 +92,49 @@ angular
 										function() {
 											$scope.status = 'You cancelled the dialog.';
 										});
-						
+
 					};
 
 					function DialogController($scope, $mdDialog, curuser) {
-						
-						$scope.insId=curuser.instituteID;
-						$scope.loding=false;
-						$scope.uplodeExcel=function(){
-							$scope.loding=true;
-						 document.excelform.action = $scope.BulkGFStudentUploadURL;
-					        // calling servlet action 
-						    document.excelform.submit();
-					}
-						
-						$scope.getBulkGFStudentUploadURL=function(){
-							var uploadUrlService = appEndpointSF.getuploadURLService();
-							uploadUrlService.getBulkGFStudentUploadURL()
-									.then(function(url) {
-										$scope.BulkGFStudentUploadURL=url.msg;
+
+						$scope.insId = curuser.instituteID;
+						$scope.loding = false;
+						$scope.uplodeExcel = function() {
+							$scope.loding = true;
+							document.excelform.action = $scope.BulkGFStudentUploadURL;
+							// calling servlet action
+							document.excelform.submit();
+						}
+
+						$scope.getBulkGFStudentUploadURL = function() {
+							var uploadUrlService = appEndpointSF
+									.getuploadURLService();
+							uploadUrlService
+									.getBulkGFStudentUploadURL()
+									.then(
+											function(url) {
+												$scope.BulkGFStudentUploadURL = url.msg;
 											});
-							
+
 						}
 						$scope.BulkGFStudentUploadURL;
 						$scope.selectedSchool;
-						$scope.getSchoolID = function(){
+						$scope.getSchoolID = function() {
 							$scope.selectedSchoolID = $scope.selectedSchool.id;
+
 						}
+
+												
 						
 						$scope.getPartnerSchoolByInstitute = function() {
 
-							var PartnerService = appEndpointSF.getPartnerSchoolService();
-							PartnerService.getPartnerByInstitute(
-									$scope.insId).then(function(pSchoolList) {
-								$scope.pSchoolList = pSchoolList;
+							var PartnerService = appEndpointSF
+									.getPartnerSchoolService();
+							PartnerService.getPartnerByInstitute($scope.insId)
+									.then(function(pSchoolList) {
+										$scope.pSchoolList = pSchoolList;
 
-							});
+									});
 						}
 						$scope.waitForServiceLoad = function() {
 							if (appEndpointSF.is_service_ready) {
@@ -139,6 +146,11 @@ angular
 							}
 						}
 						$scope.waitForServiceLoad();
-						}
-					
+					}
+
+					$scope.downloadData=function(){
+						
+						document.location.href="DownloadGFStudents?InstituteId="+$scope.curUser.instituteID;
+						
+					}
 				});

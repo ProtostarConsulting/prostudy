@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="WebApp_ID" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>ProStudy</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -8,7 +9,6 @@
     <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
     <init-param>
       <param-name>services</param-name>
-
       <param-value>com.protostar.prostudy.gf.service.GFBookStockService,com.protostar.prostudy.gf.service.GFCourierService,com.protostar.prostudy.gf.service.GFStudentService,com.protostar.prostudy.gf.service.GF_StudentService,com.protostar.prostudy.gf.service.PartnerSchoolService,com.protostar.prostudy.protostarAdmin.services.ProtostarAdminService,com.protostar.prostudy.protostarAdmin.services.UploadURLService,com.protostar.prostudy.service.AttendanceService,com.protostar.prostudy.service.BookService,com.protostar.prostudy.service.CertificateService,com.protostar.prostudy.service.ChapterService,com.protostar.prostudy.service.DivisionService,com.protostar.prostudy.service.InstituteService,com.protostar.prostudy.service.PaymentService,com.protostar.prostudy.service.PracticeExamResultService,com.protostar.prostudy.service.PracticeExamService,com.protostar.prostudy.service.QuestionService,com.protostar.prostudy.service.ScheduledExamResultService,com.protostar.prostudy.service.ScheduledExamService,com.protostar.prostudy.service.ScheduledQuestionService,com.protostar.prostudy.service.ScheduledStudentExamService,com.protostar.prostudy.service.StandardService,com.protostar.prostudy.service.StudSubService,com.protostar.prostudy.service.StudentService,com.protostar.prostudy.service.SubjectService,com.protostar.prostudy.service.SyllabusService,com.protostar.prostudy.service.TestService,com.protostar.prostudy.service.UploadURLService,com.protostar.prostudy.service.UserService</param-value>
     </init-param>
   </servlet>
@@ -30,7 +30,7 @@
     </listener-class>
   </listener>
   <servlet>
-    <description/>
+    <description></description>
     <display-name>UplodePartnerSchoolsExcel</display-name>
     <servlet-name>UplodePartnerSchoolsExcel</servlet-name>
     <servlet-class>com.protostar.prostudy.gf.service.UplodePartnerSchoolsExcel</servlet-class>
@@ -40,7 +40,7 @@
     <url-pattern>/UplodePartnerSchoolsExcel</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description/>
+    <description></description>
     <display-name>DownloadPartnerSchools</display-name>
     <servlet-name>DownloadPartnerSchools</servlet-name>
     <servlet-class>com.protostar.prostudy.gf.service.DownloadPartnerSchools</servlet-class>
@@ -50,7 +50,7 @@
     <url-pattern>/DownloadPartnerSchools</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description/>
+    <description></description>
     <display-name>UploadLogoServlet</display-name>
     <servlet-name>UploadLogoServlet</servlet-name>
     <servlet-class>com.protostar.prostudy.protostarAdmin.services.UploadLogoServlet</servlet-class>
@@ -60,7 +60,7 @@
     <url-pattern>/UploadLogoServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description/>
+    <description></description>
     <display-name>BlobDocServe</display-name>
     <servlet-name>BlobDocServe</servlet-name>
     <servlet-class>com.protostar.prostudy.until.BlobDocServe</servlet-class>
@@ -70,7 +70,7 @@
     <url-pattern>/serve</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description/>
+    <description></description>
     <display-name>UploadBulkBookServlet</display-name>
     <servlet-name>UploadBulkBookServlet</servlet-name>
     <servlet-class>com.protostar.prostudy.gf.service.UploadBulkBookServlet</servlet-class>
@@ -80,7 +80,7 @@
     <url-pattern>/UploadBulkBookServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description/>
+    <description></description>
     <display-name>UploadBulkGFStudentServlet</display-name>
     <servlet-name>UploadBulkGFStudentServlet</servlet-name>
     <servlet-class>com.protostar.prostudy.gf.service.UploadBulkGFStudentServlet</servlet-class>
@@ -88,5 +88,25 @@
   <servlet-mapping>
     <servlet-name>UploadBulkGFStudentServlet</servlet-name>
     <url-pattern>/UploadBulkGFStudentServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DownloadGFStudents</display-name>
+    <servlet-name>DownloadGFStudents</servlet-name>
+    <servlet-class>com.protostar.prostudy.gf.service.DownloadGFStudents</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DownloadGFStudents</servlet-name>
+    <url-pattern>/DownloadGFStudents</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DownloadGFBooks</display-name>
+    <servlet-name>DownloadGFBooks</servlet-name>
+    <servlet-class>com.protostar.prostudy.gf.service.DownloadGFBooks</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DownloadGFBooks</servlet-name>
+    <url-pattern>/DownloadGFBooks</url-pattern>
   </servlet-mapping>
 </web-app>
