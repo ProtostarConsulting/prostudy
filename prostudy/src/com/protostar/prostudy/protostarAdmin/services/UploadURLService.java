@@ -61,4 +61,21 @@ public class UploadURLService {
 		return serverMsg;
 	}
 	
+	@ApiMethod(name = "getGFStudentsURLForDownload", path="getGFStudentsURLForDownload")
+	public ServerMsg getGFStudentsURLForDownload() {
+		 BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+		 String createUploadUrl = blobstoreService.createUploadUrl("/DownloadGFStudents");
+		 ServerMsg serverMsg = new ServerMsg();
+		 serverMsg.setMsg(createUploadUrl);		 
+		return serverMsg;
+	}
+	
+	@ApiMethod(name = "getGFBooksURLForDownload", path="getGFBooksURLForDownload")
+	public ServerMsg getGFBooksURLForDownload() {
+		 BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+		 String createUploadUrl = blobstoreService.createUploadUrl("/DownloadGFBooks");
+		 ServerMsg serverMsg = new ServerMsg();
+		 serverMsg.setMsg(createUploadUrl);		 
+		return serverMsg;
+	}
 }// end of uploadUrlService
