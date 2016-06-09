@@ -24,6 +24,7 @@ public class InstituteEntity {
 	private String LogBlobKey;
 	private String bulkGFBookBlobKey;
 	private String bulkGFStudentBlobKey;
+	private String authorizations;
 	
 	
 	
@@ -135,5 +136,15 @@ public class InstituteEntity {
 	public void setPhone_no(String phone_no) {
 		this.phone_no = phone_no;
 	}
+
+	public String getAuthorizations() {
+		return authorizations;
+	}
+
+	public void setAuthorizations(String authorizations) {
+		this.authorizations = authorizations;
+	}
+
+
 
 }
