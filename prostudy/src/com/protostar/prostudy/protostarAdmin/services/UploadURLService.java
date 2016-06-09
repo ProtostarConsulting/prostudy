@@ -78,4 +78,15 @@ public class UploadURLService {
 		 serverMsg.setMsg(createUploadUrl);		 
 		return serverMsg;
 	}
+	
+	@ApiMethod(name = "getScheduledQuestionsUploadURL", path = "getScheduledQuestionsUploadURL")
+	public ServerMsg getScheduledQuestionsUploadURL() {
+		BlobstoreService blobstoreService = BlobstoreServiceFactory
+				.getBlobstoreService();
+		String createUploadUrl = blobstoreService
+				.createUploadUrl("/UploadScheduledQuestionListServlet");
+		ServerMsg serverMsg = new ServerMsg();
+		serverMsg.setMsg(createUploadUrl);
+		return serverMsg;
+	}
 }// end of uploadUrlService
