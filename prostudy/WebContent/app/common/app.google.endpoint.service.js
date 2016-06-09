@@ -1443,6 +1443,33 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	}
 
 	// End of StudentService
+	
+	/*------------------------------------------------------------------------------------------------------*/
+	// start of AuthorizationService
+	var authorizationService = {};
+	serviceFactory.getAuthorizationService = function() {
+		return authorizationService;
+	}
+
+	authorizationService.saveAuthorizationMasterEntity = function(auth) {
+		var deferred = $q.defer();
+		gapi.client.authorizationService.saveAuthorizationMasterEntity(auth).execute(function() {
+			deferred.resolve({
+				"msg" : "Auth Saved Successfully."
+			});
+
+		});
+		return deferred.promise;
+	}
+	
+	authorizationService.getAuthorizationMasterEntity = function() {
+		var deferred = $q.defer();
+		gapi.client.authorizationService.getAuthorizationMasterEntity().execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}	
+	//End of authorizationService
 	/*------------------------------------------------------------------------------------------------------*/
 	// start of PaymentService
 	var PaymentService = {};

@@ -46,6 +46,11 @@
 					ng-click="">
 				<md-icon md-svg-src="img/icons/view.svg"></md-icon> <md-tooltip>VIEW</md-tooltip></md-button>
 			</a>
+			<a
+				ui-sref="proadmin.manageinstituteauth({selectedInstituteID: selected[0].id})"><md-button
+					ng-show="selected.length == 1" class="md-primary md-hue-2"
+					ng-click="">Edit Authorizations</md-button>
+			</a>
 
 		</div>
 

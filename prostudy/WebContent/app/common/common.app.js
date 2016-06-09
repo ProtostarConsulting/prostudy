@@ -890,7 +890,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	
 	.state('initsetup', {
 		url : "/initsetup",
-		templateUrl : '/app/Initsetup/initsetup.html',
+		templateUrl : '/app/initsetup/initsetup.html',
 		controller : 'initsetup',
 	})	
 	.state('proadmin', {
@@ -908,10 +908,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/list",
 		templateUrl : '/app/institute/institute_list.html',
 		controller : 'instituteListCtr'
-	})	
-	
-	
-	
+	}).state('proadmin.manageauthmaster', {
+		url : "/manageauthmaster",
+		templateUrl : '/app/proadmin/manage_auth_master.html',
+		controller : 'proAdminManageAuth'
+	}).state('proadmin.manageinstituteauth', {
+		url : "/manageinstituteauth/:selectedInstituteID",
+		templateUrl : '/app/proadmin/manage_institute_auth.html',
+		controller : 'proAdminManageInstituteAuth'
+	})
 	.state('gandhifoundation', {
 		url : "/gandhifoundation",
 		templateUrl : '/app/gandhiFoundation/gandhiFoundation_module.html',

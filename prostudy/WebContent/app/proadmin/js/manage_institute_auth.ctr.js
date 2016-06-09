@@ -3,15 +3,24 @@ angular
 		.controller(
 				"proAdminManageInstituteAuth",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $log, $state, objectFactory, appEndpointSF) {
+						$mdUtil, $log, $state, $stateParams, objectFactory, appEndpointSF) {
 
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
 					$log.debug("Inside proAdminManageAuth");
 
+					$scope.selectedInstituteID = $stateParams.selectedInstituteID;	
+					
+					if(!$scope.selectedInstituteID){
+						return;
+					} 
+					
 					$scope.authorizationMasterEntity = {
 						authorizations : []
 					};
+					$scope.institute = null;
+					$scope.existingInstituteAuthObject = null;
+					
 					function getAuthorizationMasterEntity() {
 						var authService = appEndpointSF
 								.getAuthorizationService();
@@ -29,15 +38,21 @@ angular
 
 												InstituteService
 														.getInstituteById(
-																$scope.curUser.instituteID)
+																$scope.selectedInstituteID)
 														.then(
 																function(
 																		institute) {
 																	$scope.institute = institute;
-																	var jsonString = angular.toJson($scope.institute.authorizations);
-
+																	var jsonString = $scope.institute.authorizations;
+																		
 																	$log.debug("$scope.institute.authorizations:Json: " + jsonString);
-																	getCurrentInstituteAuthorizations();
+																	
+																	if(jsonString){
+																		var jsonObject = angular.fromJson($scope.institute.authorizations);
+																		//Store json on scope
+																		$scope.existingInstituteAuthObject = jsonObject; 
+																		markExistingInstituteAuthorizations($scope.authorizationMasterEntity);
+																	}
 																});
 
 											}
@@ -48,10 +63,10 @@ angular
 
 					}
 
-					$scope.institute = null;
+					
 
 					// for testing only. This will be fetched from server
-					var selectedInstitute = {
+					var selectedInstituteTestAuths = {
 						name : "MBIS",
 						'authorizations' : [ {
 							'authName' : 'gfe',
@@ -71,21 +86,12 @@ angular
 
 					};
 
-					$scope.existingAuthObject = null;
-					function getCurrentInstituteAuthorizations() {
-						// $scope.authObject =
-						// angular.fromJson(selectedInstitute.authorizations);
-						$log.debug("jsonauth: "
-								+ angular.toJson(selectedInstitute));
-						$scope.existingAuthObject = selectedInstitute.authorizations;
-						markExistingInstituteAuthorizations($scope.authorizationMasterEntity);
-
-					}
-
+					
+					
 					function markExistingInstituteAuthorizations(auth) {
 						if (auth.authName != undefined) {
 							auth.selected = containsInAuthTree(auth.authName,
-									selectedInstitute);
+									$scope.existingInstituteAuthObject);
 						}
 						if (auth.authorizations) {
 							angular.forEach(auth.authorizations, function(auth,
@@ -114,9 +120,7 @@ angular
 						}
 					}
 
-					/*
-					 * function getCurrentInstituteAuthorizations() { }
-					 */
+					
 
 					$scope.saveAuthorization = function() {
 
