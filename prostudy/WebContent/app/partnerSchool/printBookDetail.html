@@ -38,12 +38,12 @@
 				ng-repeat="test in BookDetail track by $index  ">
 				<td width=10%>{{test.standard}}</td>
 				<td width=20%>{{test.bookName}}</td>
-				<td width=5%>{{test.bookPrise}}</td>
-				<td width=20% ng-if="examMedium.indexOf('Hindi') > -1">{{test.hindinum }}</td>
-				<td width=20% ng-if="examMedium.indexOf('Marathi') > -1">{{test.marathinum }}</td>
-				<td width=20% ng-if="examMedium.indexOf('English') > -1">{{test.englishnum }}</td>
-				<td width=5%>{{test.totalStud}}</td>
-				<td width=5%>{{test.totalFees}}</td>
+				<td align="right" width=5%>{{test.bookPrise}}</td>
+				<td align="center" width=20% ng-if="examMedium.indexOf('Hindi') > -1">{{test.hindinum }}</td>
+				<td align="center" width=20% ng-if="examMedium.indexOf('Marathi') > -1">{{test.marathinum }}</td>
+				<td align="center" width=20% ng-if="examMedium.indexOf('English') > -1">{{test.englishnum }}</td>
+				<td align="right" width=5%>{{test.totalStud}}</td>
+				<td align="right" width=5%>{{test.totalFees}}</td>
 
 
 			</tr>

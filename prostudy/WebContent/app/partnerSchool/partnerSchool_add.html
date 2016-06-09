@@ -416,7 +416,11 @@
 
 
 	<section layout="row" layout-sm="column" layout-align="end end">
-		<md-button ng-disabled="partnerSchoolForm.$invalid "
+		<md-button
+			ng-disabled="partnerSchoolForm.govRegisterno.$invalid || partnerSchoolForm.city.$invalid || partnerSchoolForm.name.$invalid
+		|| partnerSchoolForm.desc.$invalid || partnerSchoolForm.formNumber.$invalid || partnerSchoolForm.line1.$invalid || partnerSchoolForm.state.$invalid 
+		|| partnerSchoolForm.category.$invalid || partnerSchoolForm.totalStudent.$invalid || partnerSchoolForm.male.$invalid ||partnerSchoolForm.totalStudent.$invalid 
+		|| partnerSchoolForm.female.$invalid || partnerSchoolForm.headMasterName.$invalid"
 			class="md-raised md-primary" ng-click="addPartnerSchool()">Save
 		& Next</md-button>
 	</section>
@@ -446,7 +450,8 @@
 
 
 			<md-button class="md-raised md-primary"
-				ui-sref="partnerSchool.print({PSchoolId: selectedPSchoolId})">print </md-button>
+				ui-sref="partnerSchool.print({PSchoolId: selectedPSchoolId})">print
+			</md-button>
 
 		</section>
 		<!--</md-card>-->
@@ -524,14 +529,118 @@
 
 	</table>
 
-	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
-		md-total={{books.length}} md-trigger="onpagechange"></md-data-table-pagination>
+	<!-- <md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{books.length}} md-trigger="onpagechange"></md-data-table-pagination> -->
+
+	<section layout="row" layout-sm="column" layout-align="end end">
+		<md-button
+			ng-disabled="partnerSchoolForm.govRegisterno.$invalid || partnerSchoolForm.city.$invalid || partnerSchoolForm.name.$invalid
+		|| partnerSchoolForm.desc.$invalid || partnerSchoolForm.formNumber.$invalid || partnerSchoolForm.line1.$invalid || partnerSchoolForm.state.$invalid 
+		|| partnerSchoolForm.category.$invalid || partnerSchoolForm.totalStudent.$invalid || partnerSchoolForm.male.$invalid ||partnerSchoolForm.totalStudent.$invalid 
+		|| partnerSchoolForm.female.$invalid || partnerSchoolForm.headMasterName.$invalid"
+			class="md-raised md-primary" ng-click="addPartnerSchool()">Save
+		</md-button>
+	</section>
+
+
+	</md-content> </md-tab> <md-tab label="Payment Detail"> <md-content
+		class="md-padding">
+
+	<div layout="row" layout-xs="column" flex>
+
+
+
+		<md-input-container flex="20"> <span>Payment
+			Received Vai <span style="color: red"
+			ng-show="partnerSchoolForm.payment.$error.required" class="mandatory">*</span>
+			:-
+		</span> </md-input-container>
+		<md-input-container flex="20"> <md-select
+			name="payment" id="payment" ng-model="PaymentDetail.payReceivedBy"
+			placeholder="-Select Payment Mode-" ng-required="true"> <md-option>Cash
+		Payment </md-option> <md-option>Cheque</md-option> <md-option>D.D </md-option> <md-option>-</md-option>
+		<md-option>--</md-option> </md-select>
+		<div ng-messages="partnerSchoolForm.payment.$error"
+			ng-if="partnerSchoolForm.payment.$submitted || partnerSchoolForm.payment.$touched">
+			<div ng-message="required">Please Select Payment Mode.</div>
+		</div>
+		</md-input-container>
+
+		<span flex="20"></span> <span flex="10">Date:- </span>
+		<md-datepicker name="paymentDate" flex="20"
+			ng-model="PaymentDetail.paymentDate" md-placeholder="Select Date"></md-datepicker>
+	</div>
+	<div layout="row" layout-xs="column" flex>
+		<md-input-container flex="20"> <label>Enter
+			Payment Amnount <span style="color: red"
+			ng-show="partnerSchoolForm.payAmount.$error.required"
+			class="mandatory">*</span>
+		</label> <input type="number" name=" payAmount"
+			ng-blur="calculatepaidandpending()"
+			ng-model="PaymentDetail.payAmount" ng-required="true">
+		<div ng-messages="partnerSchoolForm.payAmount.$error"
+			ng-if="partnerSchoolForm.payAmount.$submitted || partnerSchoolForm.payAmount.$touched">
+			<div ng-message="required">Please Enter Payment Amount.</div>
+		</div>
+		</md-input-container>
+	</div>
+	<div layout="row" layout-xs="column" flex>
+		<md-input-container flex="20"><!--  <label>Total
+			Paid Paymant <span style="color: red"
+			ng-show="partnerSchoolForm.tPaid.$error.required" class="mandatory">*</span>
+		</label> <input type="number" name=" tPaid" ng-model="PaymentDetail.tPaid"
+			ng-required="true">
+		<div ng-messages="partnerSchoolForm.tPaid.$error"
+			ng-if="partnerSchoolForm.tPaid.$submitted || partnerSchoolForm.tPaid.$touched">
+			<div ng-message="required">Please Enter Total Paid amount.</div>
+		</div> --> Total Paid Mapount = {{PaymentDetail.tPaid }} </md-input-container>
+		<span flex="10"></span>
+
+		<md-input-container flex="20"> <!-- <label>Panding
+			Amount <span style="color: red"
+			ng-show="partnerSchoolForm.pAmount.$error.required" class="mandatory">*</span>
+		</label> <input type="number" name="pAmount" ng-model="PaymentDetail.pAmount"
+			ng-required="true">
+		<div ng-messages="partnerSchoolForm.payAmount.$error"
+			ng-if="partnerSchoolForm.pAmount.$submitted || partnerSchoolForm.pAmount.$touched">
+			<div ng-message="required">Please Enter Pending Amount.</div>
+		</div> --> Pending Amount = {{PaymentDetail.pAmount}} </md-input-container>
+
+	</div>
+
+	
 
 	<section layout="row" layout-sm="column" layout-align="end end">
 		<md-button ng-disabled="partnerSchoolForm.$invalid "
 			class="md-raised md-primary" ng-click="addPartnerSchool()">Save
 		</md-button>
 	</section>
+
+<table md-data-table md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onorderchange">
+			<tr>
+
+				<th name="Payment Received Vai" order-by="payReceivedBy"></th>
+				<th name="Date"></th>
+				<th name="Payment Amnount"></th>
+				<th name="Total Paid Mapount "></th>
+				<th name="Pending Amount "></th>
+
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="pd in PaymentDet track by $index  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit ">
+				<td>{{pd.payReceivedBy}}</td>
+				<td>{{pd.paymentDate}}</td>
+				<td>{{pd.payAmount}}</td>
+				<td>{{pd.tPaid}}</td>
+				<td>{{pd.pAmount}}</td>
+
+			</tr>
+		</tbody>
+	</table>
 
 
 	</md-content> </md-tab> </md-tabs> </md-content>
