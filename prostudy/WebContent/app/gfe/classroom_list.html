@@ -25,6 +25,7 @@
 			<thead md-order="query.order" md-trigger="onorderchange">
 				<tr>
 					<th order-by="name" name="Name" unit=""></th>
+					<th name="Teachers" unit=""></th>
 					<th order-by="courseState" name="CourseState"></th>
 					<th order-by="enrollmentCode" name="Enrollment Code"></th>
 					<th order-by="creationTime" name="Creation DateTime"></th>
@@ -35,6 +36,7 @@
 					ng-repeat="course in courseList  | orderBy: query.order | filter: {name: searchName}| limitTo: query.limit: (query.page - 1) * query.limit">
 
 					<td>{{course.name}}</td>
+					<td>{{getTeacherNamesByCourse(course.id)}}</td>
 					<td>{{course.courseState}}</td>
 					<td>{{course.enrollmentCode}}</td>
 					<td>{{course.creationTime}}</td>

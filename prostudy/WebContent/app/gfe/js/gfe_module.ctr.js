@@ -22,6 +22,8 @@ angular
 
 					$scope.courseListBackup = null;
 					$scope.directoryUserListBackup = null;
+					$scope.teacherListBackup = null;
+					
 
 					var CLIENT_ID = '871660457189-1ishasdcqph3an1eu26262htusofo6v2.apps.googleusercontent.com';
 

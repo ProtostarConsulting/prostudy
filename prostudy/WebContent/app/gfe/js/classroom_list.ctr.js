@@ -9,7 +9,8 @@ angular
 					$scope.courseStateList	=["ACTIVE","ARCHIVED","PROVISIONED","DECLINED" ];
 					$scope.courseState="ACTIVE";
 					$scope.classroomCourses = [];
-					$scope.courseList=[];					
+					$scope.courseList=[];				
+					$scope.teacherList=[];				
 					$scope.tempCourse = {
 							'name' : "",
 							'section' : "",
@@ -28,7 +29,7 @@ angular
 						$scope.loading = true;
 						
 						var request = gapi.client.classroom.courses.list({
-							pageSize : 50
+							pageSize : 500
 						});
 
 						request.execute(function(resp) {
@@ -37,19 +38,43 @@ angular
 							if (courses.length > 0) {
 								$scope.classroomCourses = courses;
 								$scope.$parent.courseListBackup = courses;
-								/*for (i = 0; i < courses.length; i++) {
-									var course = courses[i];									
-									$scope.classroomCourses.push(course);									
-								}*/
+								var tempCount = 0;
+								for (i = 0; i < courses.length; i++) {
+									var request = gapi.client.classroom.courses.teachers
+									.list({
+										courseId : courses[i].id,
+										pageSize : 3
+									});
+
+									request.execute(function(resp) {
+										var teachers = resp.result.teachers?resp.result.teachers:[];
+										if(teachers.length ==0)
+											return;
+										
+										$scope.teacherList = $scope.teacherList.concat(teachers);
+										tempCount++;
+										// if this is the last course teachers we
+										// got
+										if(courses.length == tempCount){
+											$scope.$apply(function(){
+												$scope.$parent.teacherListBackup = $scope.teacherList;
+												$scope.loading = false;
+											});
+										}
+									});						
+																	
+								}
+								
 								$scope.selectedCourseList();
 							} else {
 								$log.debug('No courses found.');
 							}
 							
-							//$scope.loading = false;
+							// $scope.loading = false;
 							$scope.$apply(function(){
 								$scope.loading = false;
 							});
+							
 							$log.debug("$scope.courseListBackup: " + $scope.courseListBackup);
 							$log.debug("Inside listCourses...Done loading...");
 
@@ -57,12 +82,11 @@ angular
 						
 					}	
 					
+					/* This method filters the course by selected state */
 					$scope.selectedCourseList = function() {					
-					
 						$scope.courseList=[];
 							if ($scope.classroomCourses.length > 0) {
 								for (i = 0; i < $scope.classroomCourses.length; i++) {
-									
 									if($scope.classroomCourses[i].courseState===$scope.courseState)
 									{									
 									$scope.courseList.push($scope.classroomCourses[i]);
@@ -74,6 +98,18 @@ angular
 
 					}				
 					
+					/* This method filters the course by selected state */
+					$scope.getTeacherNamesByCourse = function(courseId) {					
+							var courseTeachers = [];							
+								for (i = 0; i < $scope.teacherList.length; i++) {									
+									if($scope.teacherList[i].courseId == courseId)
+									{									
+										courseTeachers.push($scope.teacherList[i].profile.name.fullName);
+									}
+								}
+							return courseTeachers.join();	
+					}
+					
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
 							if($scope.$parent.courseListBackup === null){
@@ -82,6 +118,7 @@ angular
 							else{
 								$log.debug('Using Cached List of Courses...');
 								$scope.classroomCourses = $scope.$parent.courseListBackup;
+								$scope.teacherList = $scope.$parent.teacherListBackup;
 								$scope.selectedCourseList();
 							}
 						} else {
