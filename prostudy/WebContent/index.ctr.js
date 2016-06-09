@@ -118,11 +118,11 @@ angular
 
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
-
+					
 					$scope.$on('event:google-plus-signin-success', function(
 							event, authResult) {
-
 						// User successfully authorized the G+ App!
+						
 						$log.debug('Signed in!');
 						$scope.waitForServiceLoad();
 						
@@ -261,7 +261,7 @@ angular
 											// chrome
 											// browser
 
-											$scope.googleUser = 'null';
+											$scope.googleUser = null;
 											$scope.curUser = null;
 											$scope.curUser = appEndpointSF
 													.getLocalUserService()
@@ -275,7 +275,7 @@ angular
 							event, authResult) {
 						// User has not authorized the G+ App!
 						$log.debug('Not signed into Google Plus.');
-						$scope.googleUser = 'null';
+						$scope.googleUser = null;
 						// $scope.getInstituteById();
 					});
 
