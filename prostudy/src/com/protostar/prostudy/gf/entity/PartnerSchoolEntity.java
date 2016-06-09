@@ -1,5 +1,7 @@
 package com.protostar.prostudy.gf.entity;
 
+import java.util.List;
+
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
@@ -17,6 +19,8 @@ public class PartnerSchoolEntity {
 	private ContactDetail contactDetail;
 	@Index
 	private BookSummary bookSummary;
+	@Index
+	private List<PaymentDetail> paymentDetail;
 	@Index  
 	private Address address;
 	@Index  
@@ -113,6 +117,12 @@ public class PartnerSchoolEntity {
 	}
 	public void setGovRegisterno(String govRegisterno) {
 		this.govRegisterno = govRegisterno;
+	}
+	public List<PaymentDetail> getPaymentDetail() {
+		return paymentDetail;
+	}
+	public void setPaymentDetail(List<PaymentDetail> paymentDetail) {
+		this.paymentDetail = paymentDetail;
 	}
 
 
