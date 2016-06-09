@@ -37,7 +37,7 @@ public class DownloadScheduledQuestionListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("hello i am in download servlet");
+		System.out.println("hello i am in download servlet..................");
 		Long instituteId = Long.parseLong(request.getParameter("instituteId"));
 
 		System.out.println("instituteId===" + instituteId);
