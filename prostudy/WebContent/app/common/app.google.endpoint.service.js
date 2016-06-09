@@ -1729,6 +1729,14 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		});
 		return deferred.promise;
 	}
+	uploadPathService.getScheduledQuestionsUploadURL = function() {
+		var deferred = $q.defer();
+		gapi.client.uploadPathService.getScheduledQuestionsUploadURL().execute(function(resp) {
+			$log.debug("getURL at enpoint" + angular.toJson(resp));
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
 	
 	/*
 	 * PaymentService.getPaymentByStudent = function(studId) { var deferred =
