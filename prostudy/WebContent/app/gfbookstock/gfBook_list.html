@@ -44,8 +44,10 @@
 
 				<tr>
 					<th order-by="bookName" name="Book Name"></th>
+						<th order-by="standard" name="Standard"></th>
 					<th order-by="bookAuther" name="Auther"></th>
 					<th order-by="bookPublication" name="Publication"></th>
+					<th order-by="bookQty" name="Quantity"></th>
 					
 				</tr>
 			</thead>
@@ -54,8 +56,10 @@
 					ng-repeat="book in bookStocks | orderBy: query.order | filter: bookName |filter : medium | limitTo: query.limit: (query.page - 1) * query.limit">
 
 					<td>{{book.bookName}}</td>
+					<td>{{book.standard}}</td>
 					<td>{{book.bookAuther}}</td>
 					<td>{{book.bookPublication}}</td>
+					<td>{{book.bookQty}}</td>
 					<td><md-button
 							ui-sref="gandhifoundation.bookModule.add({selectedGFBookID : book.id})"
 							class="md-fab md-primary md-hue-2" ng-click=""> <md-icon

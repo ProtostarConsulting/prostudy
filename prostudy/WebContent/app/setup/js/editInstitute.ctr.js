@@ -56,8 +56,6 @@ angular
 						$scope.editInstituteForm.$setPristine();
 						$scope.editInstituteForm.$setValidity();
 						$scope.editInstituteForm.$setUntouched();
-						$scope.tempInstitute = {};
-
 					}
 
 					$scope.query = {

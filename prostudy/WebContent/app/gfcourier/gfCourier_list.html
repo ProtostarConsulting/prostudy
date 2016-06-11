@@ -12,18 +12,26 @@
 			By Name</label> <input ng-model="searchByName"> </md-input-container>
 	</div>
 
-	<md-input-container flex> <label>Courier
-		Type<span style="color: red"
-		ng-show="gfCourierForm.courierType.$error.required" class="mandatory">*</span>
-	</label> <md-select name="courierType" ng-model="courierType "
-		ng-required="true"> <md-option ng-value="courierType"
-		ng-repeat="courierType in courierTypelist">{{courierType}}</md-option>
-	</md-select>
-	<div ng-messages="gfCourierForm.courierType.$error"
-		ng-if="gfCourierForm.courierType.$submitted || gfCourierForm.courierType.$touched">
-		<div ng-message="required">Please Select Standards.</div>
+	<div layout="row" layout-xs="column">
+		<md-input-container flex> <label>Courier
+			Type </label> <md-select name="courierType" ng-model="courierType ">
+		<md-option ng-value="courierType"
+			ng-repeat="courierType in courierTypelist">{{courierType}}</md-option>
+		</md-select> </md-input-container>
+
+		<md-input-container flex> <label>Logistics
+		</label> <md-select name="logistics" ng-model="tempCourierObj.logistics ">
+		<md-option ng-value="logistics" ng-repeat="logistics in logisticsList">{{logistics}}</md-option>
+		</md-select> </md-input-container>
+		
+		<md-input-container flex> <label>School
+				/ College / Institute
+			</label> <md-select name="level" ng-model="tempCourierObj.schoolName"> <md-option ng-value="schoolName"
+				ng-repeat="schoolName in pSchoolList">{{schoolName.schoolName}}</md-option>
+			</md-select>
+			
+			</md-input-container>
 	</div>
-	</md-input-container>
 	<div>
 		<md-data-table-container>
 		<table md-data-table md-row-select="selected" class="md-primary"
@@ -65,12 +73,14 @@
 </div>
 
 <div layout="row" layout-align="center center">
-	<md-button ui-sref="gfcourier.bookModule.add({selectedGFCourierID : selected[0].id})"
+	<md-button
+		ui-sref="gfcourier.bookModule.add({selectedGFCourierID : selected[0].id})"
 		ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
 		ng-click=""> <md-icon md-svg-src="img/icons/edit.svg"></md-icon>
 	<md-tooltip>Edit </md-tooltip></md-button>
 
-	<md-button ui-sref="gfcourier.bookModule.view({selectedGFCourierID : selected[0].id})"
+	<md-button
+		ui-sref="gfcourier.bookModule.view({selectedGFCourierID : selected[0].id})"
 		ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
 		ng-click=""> <md-icon md-svg-src="img/icons/result.svg"></md-icon>
 	<md-tooltip>View </md-tooltip></md-button>

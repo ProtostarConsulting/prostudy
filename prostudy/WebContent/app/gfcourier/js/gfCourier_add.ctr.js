@@ -4,15 +4,15 @@ angular
 				"gfCourierAddCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $q, appEndpointSF, $state, $stateParams,
-						$mdDialog, objectFactory) {
+						$mdDialog, objectFactory, logisticsList) {
 
 					$scope.courierTypelist = [ "Book", "Certificate",
 							"Error Certificate", "Error books",
 							"Prize Certificate" ];
 					$scope.logisticsList = [ "By Post", "By Hand", "ST Postal",
 							"Tej Courier" ];
-					$scope.registrationIDList = [ "MH100001", "MH100002",
-							"MH100003", "MH100004", "KA100001", "KA100002" ];
+					
+					$scope.logisticsList = logisticsList;
 
 					$scope.tempCourierObj = {
 						courierType : '',
@@ -29,6 +29,11 @@ angular
 					}
 
 					$scope.selectedGFCourierID = $stateParams.selectedGFCourierID;
+					$scope.PSchoolObj = $stateParams.PSchoolObj;
+					$log.debug("$scope.PSchoolObj=="+angular.toJson($scope.PSchoolObj));
+//					$log.debug("$scope.PSchoolObj=="+angular.fromJson($scope.PSchoolObj));
+					
+					$scope.tempCourierObj = angular.toJson($scope.PSchoolObj);
 					$scope.registrationID1;
 					$scope.addGFCourier = function() {
 						$scope.tempCourierObj.instituteID = $scope.curUser.instituteID;

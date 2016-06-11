@@ -9,6 +9,7 @@ app.constant('standardList', ["5 th", "6 th", "7 th", "8 th", "9 th",
         					"PG-II", "course-1", "course-2", "Group I", "Group II",
         					"Group III" ]);
 app.constant('answerOfMediumList', ["Marathi", "Hindi", "English"]);
+app.constant('logisticsList', ["By Post", "By Hand", "ST Postal","Tej Courier" ]);
 app.constant('installmentList', [1,2,3]);
 app.constant('partnerSchoolLevels', ["Primary", "Secondary", "Higher-Secondary", "School", "College"]);
 /*app.config(function($mdThemingProvider) {
@@ -957,14 +958,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'gfCourierModuleCtr'
 	})
 	.state('gandhifoundation.courierModule.add', {
-		url : "/courierModule.add/:selectedGFCourierID",
+		url : "/courierModule.add/:selectedGFCourierID/:PSchoolObj",
 		templateUrl : '/app/gfcourier/gfCourier_add.html',
 		controller : 'gfCourierAddCtr'
 	})
 	.state('gandhifoundation.courierModule.list', {
 		url : "/list",
 		templateUrl : '/app/gfcourier/gfCourier_list.html',
-		controller : 'gfCourierListCtr'
+		controller : 'gfCourierListCtr',
+		
 	})
 	.state('gandhifoundation.courierModule.view', {
 		url : "/courierModule.view/:selectedGFCourierID",

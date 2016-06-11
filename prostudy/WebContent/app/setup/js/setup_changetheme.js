@@ -6,19 +6,13 @@ angular.module("prostudyApp").controller(
 
 			$log.debug("Inside setup.changetheme Ctr...");
 			
-			$scope.Institute = [];
+			
 			
 			$scope.curUser = appEndpointSF.getLocalUserService()
 			.getLoggedinUser();
 			
-			$scope.showselectedInstitute = function() {
-				var InstituteService = appEndpointSF.getInstituteService();
-				InstituteService.getInstituteById($scope.curUser.instituteID)
-						.then(function(institutes) {
-							$scope.Institute = institutes;
-						});
-			}
-			$scope.showselectedInstitute();
+			$scope.Institute = $scope.curUser.instituteObj;
+			
 
 			$scope.checkTheme = function(themeName) {
 					$scope.changeTheme(themeName);
@@ -32,11 +26,9 @@ angular.module("prostudyApp").controller(
 					var InstituteService = appEndpointSF.getInstituteService();
 					InstituteService.updateInstitute($scope.Institute).then(
 							function(msgBean) {
-							
+								$scope.showUpdateToast();
 							});
-					$scope.changeTheme(themeName);
-					$state.go("home");
+					$scope.changeTheme(themeName);					
 			
-			}
-
+			}			
 		});

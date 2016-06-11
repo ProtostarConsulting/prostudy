@@ -17,9 +17,12 @@ angular.module("prostudyApp").controller(
 						+ '/serve?blob-key='
 						+ $scope.currUser.instituteObj.logBlobKey;
 				$log.debug("$scope.logoURL==" + $scope.logoURL);
+				
 
 			}
-
+			
+			$scope.logBaseURL = '//' + window.location.host + '/serve?blob-key='+ $scope.curUser.instituteObj.logBlobKey;
+			
 			$scope.curUser;
 			$scope.getLogUploadURL = function() {
 				var uploadUrlService = appEndpointSF.getuploadURLService();

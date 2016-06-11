@@ -28,6 +28,15 @@ angular
 					$scope.theme = 'default';
 					$scope.imgUrl = '/img/icons/ic_person_24px.svg';
 
+					
+					
+					if($scope.curUser!=undefined || $scope.curUser !==null){
+					$scope.theme = $scope.curUser.instituteObj.theme;
+					$scope.logBaseURL = '//' + window.location.host + '/serve?blob-key='+ $scope.curUser.instituteObj.logBlobKey;
+//					$scope.logFooterURL = '//' + window.location.host + '/serve?blob-key='+ $scope.curUser.instituteObj.footerBlobKey;
+					}
+					
+					
 					$scope.themeList = [ 'default', 'red', 'pink', 'purple',
 							'deep-purple', 'indigo', 'blue', 'light-blue',
 							'cyan', 'teal', 'green', 'light-green', 'lime',
@@ -69,13 +78,7 @@ angular
 					$scope.loginClick = function() {
 						$state.go("login");
 					};
-					/*
-					 * $scope.$on('customLoginEvent', function(event, args) {
-					 * $log.debug("In side customLogin on Index Page");
-					 * $scope.curUser = args.curUser;
-					 * 
-					 * });
-					 */
+
 					$scope.$on('moduleData', function(event, args1) {
 						$log.debug("In side customLogin on Index Page");
 						$scope.modules = args1.modules;
@@ -147,22 +150,7 @@ angular
 
 									$scope.curUser = loggedInUser;
 									
-									if (loggedInUser.id == undefined) {
-//										loggedInUser = $scope.googleUser;
-	
-										loggedInUser.email_id = profile.getEmail();
-										profile.getName().split(" ")[0];
-										loggedInUser.firstName = profile.getName().split(" ")[0];
-										loggedInUser.lastName = profile.getName().split(" ")[1];
-
-										appEndpointSF.getLocalUserService().saveLoggedInUser(loggedInUser);
-
-										$state.go("needRegisterInstitute");
-										
-										return;
-								
-									}
-
+									
 									if (loggedInUser.myExams == undefined) {
 										loggedInUser.myExams = [];
 									}
@@ -177,7 +165,7 @@ angular
 
 //									$scope.curUser = loggedInUser;
 
-/*									if (loggedInUser.id == undefined) {
+									if (loggedInUser.id == undefined) {
 
 										loggedInUser.email_id = profile.getEmail();
 										profile.getName().split(" ")[0];
@@ -195,7 +183,7 @@ angular
 										$scope.getInstituteById();
 
 									}
-*/
+
 								});
 
 						$state.go("home");
@@ -221,8 +209,7 @@ angular
 						var InstituteService = appEndpointSF
 								.getInstituteService();
 
-						InstituteService.getInstituteById(
-								$scope.curUser.instituteID).then(
+						InstituteService.getInstituteById($scope.curUser.instituteID).then(
 								function(institute) {
 									$scope.institute = institute;
 									$scope.theme = $scope.institute.theme;
@@ -294,15 +281,6 @@ angular
 
 					// $window.initGAPI = function() {}
 
-					$scope.themeList = [ 'default', 'red', 'pink', 'purple',
-							'deep-purple', 'indigo', 'blue', 'light-blue',
-							'cyan', 'teal', 'green', 'light-green', 'lime',
-							'yellow', 'amber', 'orange', 'deep-orange',
-							'brown', 'grey', 'blue-grey' ];
-
-					$scope.changeTheme = function(themeName) {
-						$scope.theme = themeName
-					}
 
 					$scope.initCommonSetting = function() {
 						$scope.theme = $scope.curUser.instituteObj.theme;
@@ -311,14 +289,6 @@ angular
 								+ $scope.institute.logBlobKey;
 					}
 
-					/*
-					 * $scope.getInstituteById = function() {
-					 * 
-					 * var instituteService =
-					 * appEndpointSF.getInstituteService();
-					 * instituteService.getInstituteById($scope.curUser.instituteID).then(
-					 * function(institute) { $scope.institute = institute; }); }
-					 */
 					$scope.initGAPI = function() {
 						$log.debug("Came to initGAPI");
 

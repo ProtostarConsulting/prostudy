@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="/lib/base/css/textAngular.css">
 <link rel="stylesheet" href="/lib/base/css/material-datetimepicker.css">
 
-    
+
 </head>
 <body layout="column" ng-cloak md-theme="{{theme}}">
 	<!-- <div layout="column" layout-fill> -->
@@ -24,9 +24,20 @@
 	<md-content ng-hide="loading"> <!-- Top Navigation Pane -->
 	<md-toolbar>
 	<div class="md-toolbar-tools">
+	
+		<div>
+<!-- 	<div style="height: 80px; width:120px;  float: left; margin: 3px;  padding: 3px;">
+			<img ng-src="{{logoURL}}" class="md-card-image" alt="Compnay Logo" style=" max-width: 100%;  max-height: 100%;" />
+		</div>	
+ -->			<img ng-show="institute.logBlobKey" ng-click="show_info()"
+				ng-src="{{logoURL}}" class="md-card-image" height="60px"
+				width="120px" /> <img ng-hide="institute.logBlobKey"
+				ng-click="show_info()" src="img/icons/ic_person_24px.svg"
+				height="60px" width="120px">
+		</div>
 		<span ng-show="curUser==null">ProStudy - Where learning meets
 			teaching, self study, tutorials and practice!</span> <span
-			ng-show="curUser!=null">ProStudy - {{institute.name}}</span>
+			ng-show="curUser!=null">{{institute.name}}</span>
 
 
 		<!-- fill up the space between left and right area -->
@@ -115,14 +126,9 @@
 			Admission Management </md-button> <md-button ui-sref="gfe"
 				ng-show="curUser.authority.indexOf('admin') > -1 || modules[0].modules.indexOf('gfe') > -1"
 				ng-click="close()" class="md-primary" show-gt-md>Google
-			Apps Integration</md-button> <md-button ui-sref="gfe" ng-click="close()"
-				class="md-primary" show-gt-md>Google for Education
-			Dashboard</md-button> <md-button ui-sref="setup" ng-click="close()"
-				class="md-primary" show-gt-md>Setup </md-button> 
-				
-			<md-button ui-sref="gandhifoundation" ng-click="close()" class="md-primary" show-gt-md>Gandhi Foundation </md-button>
-		
-</md-content> </md-sidenav>
+			Apps Integration</md-button> <md-button ui-sref="gandhifoundation"
+				ng-click="close()" class="md-primary" show-gt-md>Gandhi
+			Research Foundation </md-button> </md-content> </md-sidenav>
 
 			<!-- ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'" -->
 
@@ -263,7 +269,7 @@
 	<script src="/lib/base/angular-messages.min.js"></script>
 	<script src="/lib/base/angular-resource.min.js"></script>
 	<script src="/lib/base/angular-material-icons.min.js"></script>
-	
+
 	<script src="/lib/base/angular-material.min.js"></script>
 	<script src="/lib/base/md-data-table.min.js"></script>
 
@@ -274,11 +280,11 @@
 	<script src="/lib/base/textAngular-sanitize.min.js"></script>
 	<script src="/lib/base/textAngular.min.js"></script>
 	<script src="/lib/base/ngStorage.min.js"></script>
-	
-		<!-- Angular Material Dependencies for DateTimePicker -->
-	<script src="/lib/base/moment-with-locales.min.js"></script>	
+
+	<!-- Angular Material Dependencies for DateTimePicker -->
+	<script src="/lib/base/moment-with-locales.min.js"></script>
 	<script src="/lib/base/angular-material-datetimepicker.js"></script>
-	
+
 
 	<script src="/lib/base/google-plus-signin.js"></script>
 
@@ -373,10 +379,11 @@
 	<script src="/app/scheduledExam/js/schduledExamResult_list.ctr.js"></script>
 	<script src="/app/scheduledExam/js/scheduledExam_studentList.ctr.js"></script>
 	<script src="/app/scheduledExam/js/scheduledExam_assignStudents.ctr.js"></script>
-	<script src="/app/scheduledExam/js/scheduledExam_myScheduledExamList.ctr.js"></script>
-	<script src="/app/scheduledExam/js/scheduledExam_addResult.ctr.js"></script>	
-	
-	
+	<script
+		src="/app/scheduledExam/js/scheduledExam_myScheduledExamList.ctr.js"></script>
+	<script src="/app/scheduledExam/js/scheduledExam_addResult.ctr.js"></script>
+
+
 
 	<script src="/app/examdemo/js/examdemo_module.ctr.js"></script>
 	<script src="/app/examdemo/js/examdemo_science.ctr.js"></script>
@@ -461,7 +468,7 @@
 	<script src="/app/proadmin/js/manage_auth_master.ctr.js"></script>
 	<script src="/app/proadmin/js/manage_institute_auth.ctr.js"></script>
 	<!-- End ProAdmin -->
-	
+
 	<!-- Start Gandhi Found. Student -->
 	<script src="/app/gandhiFoundation/js/gandhiFoundation_module.ctr.js"></script>
 	<script src="/app/gandhiFoundation/js/gfStudent_module.ctr.js"></script>
@@ -469,26 +476,26 @@
 	<script src="/app/gandhiFoundation/js/gfStudent_list.ctr.js"></script>
 	<script src="/app/gandhiFoundation/js/gfStudent_view.ctr.js"></script>
 	<!-- End Gandhi Found. Student  -->
-	
+
 	<!-- Start Gandhi Found. Courier -->
 	<script src="/app/gfcourier/js/gfCourier_module.ctr.js"></script>
 	<script src="/app/gfcourier/js/gfCourier_add.ctr.js"></script>
 	<script src="/app/gfcourier/js/gfCourier_list.ctr.js"></script>
 	<script src="/app/gfcourier/js/gfCourier_view.ctr.js"></script>
 	<!-- End Gandhi Found. Courier  -->
-	
+
 	<!-- Start Gandhi Found. Book Stock -->
 	<script src="/app/gfbookstock/js/gfBookStock_module.ctr.js"></script>
 	<script src="/app/gfbookstock/js/gfBook_add.ctr.js"></script>
 	<script src="/app/gfbookstock/js/gfBook_list.ctr.js"></script>
-	
+
 	<script src="/app/gfbookstock/js/gfBookStock_add.ctr.js"></script>
 	<script src="/app/gfbookstock/js/gfBookStock_list.ctr.js"></script>
 	<script src="/app/gfbookstock/js/gfBookStock_view.ctr.js"></script>
 	<script src="/app/gfbookstock/js/gfBookStockTransaction_list.ctr.js"></script>
 	<!-- End Gandhi Found. Book Stock  -->
-	
+
 	<script src="/app/partnerSchool/js/printBookDetail.ctr.js"></script>
-	
+
 </body>
 </html>
