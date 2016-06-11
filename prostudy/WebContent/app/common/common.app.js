@@ -539,7 +539,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/newUserTeacher",
 		templateUrl : '/app/login/newUser.html',
 		controller : 'loginModuleCtr'
-	}).state('newUserStudent', {
+	})
+	.state('needRegisterInstitute', {
+		url : "/needRegisterInstitute",
+		templateUrl : '/app/login/needRegisterInstitute.html',
+		controller : 'loginModuleCtr'
+	})
+	.state('newUserStudent', {
 		url : "/newUserStudent",
 		templateUrl : '/app/login/newUser.html',
 		controller : 'newUserStudentCtr'

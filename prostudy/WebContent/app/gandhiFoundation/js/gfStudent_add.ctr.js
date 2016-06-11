@@ -43,9 +43,13 @@ angular.module("prostudyApp").controller(
 						});
 				if ($scope.selectedGFStudID == "") {
 					$scope.showAddToast();
+					$state.reload();
+					
 				} else {
 					$scope.showUpdateToast();
+					$state.go('gandhifoundation.studentModule');
 				}
+				
 			}
 
 			$scope.getGFStudentById = function() {

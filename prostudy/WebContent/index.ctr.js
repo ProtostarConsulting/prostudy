@@ -106,12 +106,8 @@ angular
 								.then(
 										function(modules) {
 											$scope.modules = modules;
-											console
-													.log("$scope.modules==ROLE=="
-															+ $scope.modules);
-											$scope.$emit('moduleData', {
-												modules : $scope.modules
-											});
+											console.log("$scope.modules==ROLE=="+ $scope.modules);
+											$scope.$emit('moduleData', {modules : $scope.modules});
 										});
 
 					}
@@ -140,12 +136,31 @@ angular
 						$scope.googleUserDetails = profile.getName() + "<br>"
 								+ profile.getEmail()
 
-						appEndpointSF.getUserService().getUserByEmailID(
-								profile.getEmail()).then(
+						appEndpointSF.getUserService().getUserByEmailID(profile.getEmail()).then(
 								function(loggedInUser) {
 
-									if (loggedInUser == undefined) {
-										loggedInUser = $scope.googleUser;
+									
+//									loggedInUser.imageURl = $scope.googleUser.getImageUrl();
+									appEndpointSF.getLocalUserService().saveLoggedInUser(loggedInUser);
+									
+									$log.debug("loggedInUser:"+ angular.toJson(loggedInUser));
+
+									$scope.curUser = loggedInUser;
+									
+									if (loggedInUser.id == undefined) {
+//										loggedInUser = $scope.googleUser;
+	
+										loggedInUser.email_id = profile.getEmail();
+										profile.getName().split(" ")[0];
+										loggedInUser.firstName = profile.getName().split(" ")[0];
+										loggedInUser.lastName = profile.getName().split(" ")[1];
+
+										appEndpointSF.getLocalUserService().saveLoggedInUser(loggedInUser);
+
+										$state.go("needRegisterInstitute");
+										
+										return;
+								
 									}
 
 									if (loggedInUser.myExams == undefined) {
@@ -158,21 +173,19 @@ angular
 										loggedInUser.institute = [];
 									}
 
-									appEndpointSF.getLocalUserService()
-											.saveLoggedInUser(loggedInUser);
+//									appEndpointSF.getLocalUserService().saveLoggedInUser(loggedInUser);
 
-									$scope.curUser = loggedInUser;
+//									$scope.curUser = loggedInUser;
 
-									if (loggedInUser.id == undefined) {
+/*									if (loggedInUser.id == undefined) {
 
-										loggedInUser.email_id = profile
-												.getEmail();
+										loggedInUser.email_id = profile.getEmail();
 										profile.getName().split(" ")[0];
-										loggedInUser.firstName = profile
-												.getName().split(" ")[0];
-										loggedInUser.lastName = profile
-												.getName().split(" ")[1];
+										loggedInUser.firstName = profile.getName().split(" ")[0];
+										loggedInUser.lastName = profile.getName().split(" ")[1];
 
+										appEndpointSF.getLocalUserService().saveLoggedInUser(loggedInUser);
+										
 										$state.go("updatemyprofile", {
 											flag : $scope.flag
 										});
@@ -182,7 +195,7 @@ angular
 										$scope.getInstituteById();
 
 									}
-
+*/
 								});
 
 						$state.go("home");

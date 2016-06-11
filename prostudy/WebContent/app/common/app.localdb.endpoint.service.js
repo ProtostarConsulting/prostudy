@@ -869,6 +869,48 @@ function localDBServiceFactory($log, $q, $timeout, $localStorage) {
 
 	}
 
+	var localUserService = {};
+
+	serviceFactory.getLocalUserService = function() {
+		
+		//var user = $localStorage.loggedinUser;
+		
+		return localUserService;
+	}
+	
+	localUserService.saveLoggedInUser = function(loggedInUser) {
+		$localStorage.loggedinUser = loggedInUser;
+
+	}
+
+	localUserService.logout = function() {
+		$localStorage.loggedinUser = null;
+	}
+	
+	localUserService.getLoggedinUser = function() {
+		var user = $localStorage.loggedinUser;
+		if (user == 'undefined' || user == null)
+			return null;
+		else
+			return $localStorage.loggedinUser;
+	}
+
+	localUserService.getUserById = function(userId) {
+		var foundUser;
+		var userList = angular.fromJson($localStorage.dbUser);
+		for (i = 0; i < userList.length; i++) {
+			if (userId == userList[i].userId) {
+				foundUser = userList[i];
+				break;
+			}
+
+		}
+
+		return foundUser;
+	}
+	
+	
+	
 	var UserService = {};
 
 	serviceFactory.getUserService = function() {

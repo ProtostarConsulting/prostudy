@@ -71,7 +71,7 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 	};
 
 	endpointFactory.getLocalUserService = function() {
-		return localDBServiceFactory.getUserService();
+		return localDBServiceFactory.getLocalUserService();
 	};
 
 	endpointFactory.getUserService = function() {

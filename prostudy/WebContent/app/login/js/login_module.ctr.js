@@ -51,13 +51,15 @@ angular
 						UserService
 								.login($scope.tempUser.email_id,
 										$scope.tempUser.password)
-								.then(
-										function(result) {
+								.then(function(result) {
+									
+									if (result.result.status == "suspended" || result.result.status == "inactive") {
+										$scope.ErrorMsg = "Your account is Inactive or Suspended please contact to admin";
+									}else{
+										
 											if (result.result.email_id) {
-												appEndpointSF
-														.getLocalUserService()
-														.saveLoggedInUser(
-																result.result);
+												
+												appEndpointSF.getLocalUserService().saveLoggedInUser(result.result);
 												$scope.curUser = result.result;
 
 /*												if($scope.curUser !=null){
@@ -86,7 +88,7 @@ angular
 												$scope.loginMsg = "Login failed.";
 											}
 
-										});
+										}});
 					}
 					
 /*					$scope.getCurrentUserRoleByInstitute = function() {

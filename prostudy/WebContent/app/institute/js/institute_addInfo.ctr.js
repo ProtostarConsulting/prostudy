@@ -127,6 +127,15 @@ angular.module("prostudyApp").controller(
 			};
 			$scope.institutes = [];
 
+			$scope.userEntity={
+					instituteID:"",
+					email_id : $scope.curUser.email_id,
+					firstName : $scope.curUser.firstName,
+					lastName : $scope.curUser.lastName,	
+					authority:[],
+					isGoogleUser:true
+			}
+			
 			$scope.addInstitute = function() {
 				
 				$scope.flag4 = false;
@@ -134,13 +143,21 @@ angular.module("prostudyApp").controller(
 
 				InstituteService.addInstitute($scope.tempInstitute,
 						$scope.selectedStudents, $scope.selectedAdmins,
-						$scope.selectedTeachers).then(function(msgBean) {
+						$scope.selectedTeachers).then(function(institute) {
+				
+					$scope.userEntity.instituteID=institute.result.id;
+					$scope.userEntity.authority.push("admin");
+					$scope.userEntity.role = "Admin";
+					
+					var UserService = appEndpointSF.getUserService();
+					UserService.addUser($scope.userEntity).then(function(msgBean) {
 
-					$scope.currentInstID = msgBean.id;
-					$scope.name = msgBean.name;
-					$scope.showSavedToast();
+						});
+/*					$state.reload();
+					$state.go("home");
+*/					
 					$state.go("institute.addAdmins", {
-						currentInstID : $scope.currentInstID
+						currentInstID : $scope.userEntity.instituteID
 					});
 					
 					
@@ -148,7 +165,7 @@ angular.module("prostudyApp").controller(
 				});
 				
 			}
-
+			
 			$scope.accountDDLChange = function(index, selectedaccount) {
 				$log.debug("##Came to accountDDLChange...");
 
