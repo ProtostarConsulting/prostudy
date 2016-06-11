@@ -158,7 +158,7 @@ public class UploadBulkGFStudentServlet extends HttpServlet {
 				}
 				  blobstoreService.delete(blobKeys.get(0));
 				  
-				response.sendRedirect("/#/gandhifoundation.studentModule.list");
+				response.sendRedirect("/#/gandhifoundation/studentModule/studentModule.list");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -10,6 +10,7 @@ public class AccountType{
 	/*private Ref<UserEntity> loggedInUser;*/
 
 	@Id
+	@Index
 	private Long id;
 	@Index
 	private String accountName;

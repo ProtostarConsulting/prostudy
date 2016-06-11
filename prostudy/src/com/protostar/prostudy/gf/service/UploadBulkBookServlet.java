@@ -164,7 +164,7 @@ public class UploadBulkBookServlet extends HttpServlet {
 				}
 				  blobstoreService.delete(blobKeys.get(0));
 				  
-				response.sendRedirect("/#/gandhifoundation.bookModule.list");
+				response.sendRedirect("/#/gandhifoundation/bookModule/bookModule.list");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
