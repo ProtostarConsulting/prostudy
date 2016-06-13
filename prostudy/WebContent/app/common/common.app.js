@@ -132,7 +132,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/setup/setLogo.html',
 		controller : 'setLogoCtr'	
 	})
-	
+	.state('setup.userauth', {
+		url : "/userauth/:selectedUserEmailId",
+		templateUrl : '/app/setup/manage_user_auth.html',
+		controller : 'manageUserAuthCtr'	
+	})
 	.state('institute.editAUser', {
 		url : "/editAUser/:selectedGFUserID",
 		templateUrl : '/app/institute/institute_editUser.html',
