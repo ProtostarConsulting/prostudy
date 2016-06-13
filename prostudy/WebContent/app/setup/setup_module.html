@@ -59,7 +59,10 @@
 				ui-sref="setup.disclaimer" ng-click="close()" class="md-primary"
 				show-gt-md>Add Disclaimer</md-button> <md-button
 				ui-sref="setup.sendmail" ng-click="close()" class="md-primary"
-				show-gt-md>send Email</md-button> </md-content> </md-sidenav>
+				show-gt-md>send Email</md-button>
+				<md-button
+				ui-sref="setup.manageauth({selectedInstituteID: curUser.instituteID})" ng-click="close()" class="md-primary"
+				show-gt-md>Manage User Auth</md-button> </md-content> </md-sidenav>
 		</section>
 
 	</div>

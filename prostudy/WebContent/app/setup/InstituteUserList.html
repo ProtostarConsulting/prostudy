@@ -26,7 +26,7 @@
 				</tr>
 			</thead>
 
-<!-- 			<tbody>
+			<!-- 			<tbody>
 				<tr md-auto-select
 					ng-repeat="user in activeUsers | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
 					<td>{{user.firstName}} {{user.lastName}}</td>
@@ -60,7 +60,7 @@
 				</tr>
 			</tbody>
 			
- -->			
+ -->
 			<tbody>
 				<tr md-auto-select
 					ng-repeat="user in activeUsers | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
@@ -69,15 +69,15 @@
 					<td>{{user.email_id}}</td>
 					<td>{{user.role}}</td>
 					<td>{{user.prn}}</td>
-<!-- 					<td><md-button
+					<!-- 					<td><md-button
 							ui-sref="institute.list_view.editInstitute({selectedGFUserID : user.id})"
 							class="md-fab md-primary md-hue-2" ng-click=""> <md-icon
 							md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit Admin
 						</md-tooltip></md-button></td>
- -->					
+ -->
 				</tr>
 			</tbody>
-			
+
 		</table>
 
 		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
@@ -89,18 +89,19 @@
 
 	<div id="changeState" ng-show="activeselected.length == 1">
 
-			
-	<md-button class="md-raised md-primary" 
-			ng-click="inactiveUserStatus('active')">Inactive
+
+		<md-button class="md-raised md-primary"
+			ng-click="inactiveUserStatus('active')">Inactive </md-button>
+
+		<md-button class="md-raised md-primary" ng-model="suspend"
+			value="suspend" ng-click="suspendUserStatus('active')">Suspend
 		</md-button>
-		
-	<md-button class="md-raised md-primary" ng-model="suspend" value="suspend"
-			ng-click="suspendUserStatus('active')">Suspend
-		</md-button>
-			    
-     <md-button class="md-primary md-raised" ng-hide="activeselected[0].isGoogleUser" ng-click="changePassword($event)">
-      Change Password
-    </md-button>
+
+		<md-button class="md-primary md-raised"
+			ng-hide="activeselected[0].isGoogleUser"
+			ng-click="changePassword($event)"> Change Password </md-button>
+		<md-button ui-sref="setup.userauth({selectedUserEmailId: activeselected[0].email_id})"
+			ng-click="close()" class="md-primary">Edit Auths </md-button>
 
 	</div>
 
