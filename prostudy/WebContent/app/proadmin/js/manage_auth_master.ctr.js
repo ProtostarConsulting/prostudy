@@ -6,7 +6,7 @@ angular
 						$mdUtil, $log, $q, objectFactory, appEndpointSF) {
 
 					$scope.mode = "list";
-					
+					$scope.tempAuth =  getEmptyAuth();
 					$scope.selectedAuthStack=[];
 					$scope.selectedAuth = null;
 					// $scope.mode = "add";
@@ -44,7 +44,7 @@ angular
 								$scope.authorizationMasterEntity).then(
 								function(result) {
 									$log.debug("result:" + result);
-									$scope.showUpdateToast();
+									$scope.showUpdateToast();									
 									$scope.mode = "list";
 								});
 						$log.debug("Called saveAuthorization...");
@@ -54,16 +54,28 @@ angular
 					$scope.editAuthorization = function() {						
 						$log.debug("Called editAuthorization...");
 						$scope.selectedAuth = $scope.selected[0];
-						$scope.selectedAuthStack.push($scope.selected[0]);
+						if(!$scope.selectedAuth.authorizations){
+							$scope.selectedAuth.authorizations=[];
+						}
+						$scope.selectedAuthStack.push($scope.selectedAuth);
 					}
 					
-					$scope.showAddAuthorization = function() {						
+					$scope.jumpToAuth = function(index) {						
+						$log.debug("Called jumpToAuth...");						
+						$scope.selectedAuthStack.splice(index +1, $scope.selectedAuthStack.length - index);						
+						$scope.selectedAuth = $scope.selectedAuthStack[index];
+					}
+					
+					
+					$scope.showAddAuthorization = function() {		
+						$scope.tempAuth =  getEmptyAuth();
 						$scope.mode = "add";						
 					}
 					
 					$scope.addAuthorization = function() {						
-						//Save newly added auth at current auth level and show msg.
+						//Save newly added auth to server an then add it at current auth level and show msg.
 						$scope.selectedAuth.authorizations.push($scope.tempAuth);
+						$scope.tempAuth =  getEmptyAuth();						
 						$scope.saveAuthorization();						
 					}
 
@@ -81,13 +93,18 @@ angular
 					}
 					$scope.waitForServiceLoad();
 
-					$scope.tempAuth = {
-						id : '',
-						authName : '',
-						authDisplayName : '',
-						uiStateName : '',
-						orderNumber : ''
-					};
+					
+					
+					function getEmptyAuth(){
+						return {
+							id : '',
+							authName : '',
+							authDisplayName : '',
+							uiStateName : '',
+							orderNumber : '',
+							authorizations:[]
+						};
+					}
 
 					$scope.selected = []
 					$scope.query = {
@@ -117,6 +134,7 @@ angular
 					};
 
 					$scope.backButton = function() {						
+						$scope.tempAuth =  getEmptyAuth();
 						$scope.selectedAuthStack.pop();
 						if($scope.selectedAuthStack.length>1){
 							$scope.selectedAuth = $scope.selectedAuthStack[$scope.selectedAuthStack.length-1];
@@ -125,6 +143,7 @@ angular
 						}
 						
 						$scope.mode = "list";
+						
 					}
 
 				});
