@@ -120,9 +120,9 @@ angular
 					
 					$scope.$on('event:google-plus-signin-success', function(
 							event, authResult) {
-						// User successfully authorized the G+ App!
-						
 						$log.debug('Signed in!');
+						// User successfully authorized the G+ App!
+						$log.debug('Signed in-processing!');
 						$scope.waitForServiceLoad();
 						
 						var profile = authResult.getBasicProfile();
@@ -141,7 +141,7 @@ angular
 
 						appEndpointSF.getUserService().getUserByEmailID(profile.getEmail()).then(
 								function(loggedInUser) {
-
+									$log.debug('Inside getUserByEmailID...');
 									
 //									loggedInUser.imageURl = $scope.googleUser.getImageUrl();
 									appEndpointSF.getLocalUserService().saveLoggedInUser(loggedInUser);
@@ -166,7 +166,7 @@ angular
 //									$scope.curUser = loggedInUser;
 
 									if (loggedInUser.id == undefined) {
-
+										$log.debug('Inside loggedInUser.id == undefined...');
 										loggedInUser.email_id = profile.getEmail();
 										profile.getName().split(" ")[0];
 										loggedInUser.firstName = profile.getName().split(" ")[0];
@@ -179,14 +179,13 @@ angular
 										});
 
 									} else {
-
+										$log.debug('Inside else of loggedInUser.id == undefined...');
 										$scope.getInstituteById();
+										$state.go("home");
 
 									}
 
 								});
-
-						$state.go("home");
 
 					});
 
