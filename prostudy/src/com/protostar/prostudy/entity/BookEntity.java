@@ -2,6 +2,7 @@ package com.protostar.prostudy.entity;
 
 import java.util.List;
 
+import com.google.appengine.api.blobstore.BlobstoreServicePb.BlobstoreService;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
@@ -25,7 +26,16 @@ public class BookEntity {
 	private List<CommentEntity> comment;
 	private Integer likes;	
 	private Integer dislikes;
+	private Boolean isPDF;
+	private String blobKey;
 	
+	
+	public String getBlobKey() {
+		return blobKey;
+	}
+	public void setBlobKey(String blobKey) {
+		this.blobKey = blobKey;
+	}
 	public Integer getLikes() {
 		return likes;
 	}
@@ -41,6 +51,12 @@ public class BookEntity {
 		this.dislikes = dislikes;
 	}
 
+	public Boolean getIsPDF() {
+		return isPDF;
+	}
+	public void setIsPDF(Boolean isPDF) {
+		this.isPDF = isPDF;
+	}
 	public List<CommentEntity> getComment() {
 		return comment;
 	}
