@@ -32,11 +32,16 @@ angular.module("prostudyApp").controller(
 										$scope.BookDetail = pSchool.bookSummary.bookDetail;
 										$scope.bookSummary=pSchool.bookSummary;
 										$scope.examMedium = pSchool.examDetail.examMedium;
+										$scope.add=pSchool.address;
+										$scope.schoolName=pSchool.schoolName;
 									});
 				}
 			}
 			$scope.BookDetail=[];
 			$scope.examMedium=[];
+			$scope.add;
+			$scope.schoolName;
+		
 			$scope.waitForServiceLoad = function() {
 				if (appEndpointSF.is_service_ready) {
 					if ($scope.selectedPSchoolId != undefined) {
@@ -50,6 +55,30 @@ angular.module("prostudyApp").controller(
 			}
 
 			$scope.waitForServiceLoad();
+			
+			$scope.getGFBookStockByInstituteId = function() {
+				var gfBookStockService = appEndpointSF
+						.getGFBookStockService();
+				gfBookStockService.getGFBookByInstituteId(
+						$scope.curUser.instituteID).then(
+						function(tempBooks) {
+							$scope.bookStocks = tempBooks;
+						});
+			}
+			$scope.bookStocks = [];
+
+			$scope.waitForServiceLoad1 = function() {
+				if (appEndpointSF.is_service_ready) {
+
+					$scope.getGFBookStockByInstituteId();
+
+				} else {
+					$log.debug("Services Not Loaded, watiting...");
+					$timeout($scope.waitForServiceLoad1, 1000);
+				}
+			}
+
+			$scope.waitForServiceLoad1();
 			
 			
 		});
