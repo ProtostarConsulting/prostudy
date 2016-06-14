@@ -499,7 +499,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			division : null,
 			subject : null
 		}
-	}).state('book.edit', {
+	})
+	.state('book.viewbookpdf', {
+		url : "/viewbookpdf",
+		templateUrl : "/app/book/book_viewpdf.html",
+		controller : 'viewPDFBookCtr',
+		params : {
+			blobKey : null	
+		}
+	})
+	
+	.state('book.edit', {
 		url : "/edit/:selectedBookId",
 		templateUrl : "/app/book/book_edit.html",
 		controller : 'bookEditCtr',
