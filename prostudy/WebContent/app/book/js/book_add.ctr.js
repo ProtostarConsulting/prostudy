@@ -4,7 +4,6 @@ angular.module("prostudyApp").controller(
 				$log, $q, tableTestDataFactory, $state, appEndpointSF, $sce,
 				boardList) {
 
-			
 			$scope.curUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
 
@@ -38,7 +37,9 @@ angular.module("prostudyApp").controller(
 				user : "",
 				comment : [],
 				likes : 0,
-				dislikes : 0
+				dislikes : 0,
+				isPDF : false,
+			// blobKey :""
 			};// end of tempBook object
 
 			$scope.getStandardByInstitute = function() {
@@ -95,23 +96,35 @@ angular.module("prostudyApp").controller(
 			}
 
 			$scope.addBook = function() {
+				if ($scope.tempBook.isPDF != true) {
+					
+					$scope.tempBook.user = $scope.curUser;
+					for (i = 0; i < $scope.selectedChapters.length; i++) {
+						$scope.tempBook.chapters
+								.push($scope.selectedChapters[i]);
+					}
+					var BookService = appEndpointSF.getBookService();
+					BookService.addBook($scope.tempBook).then(
+							function(msgBean) {
 
-				$scope.tempBook.user = $scope.curUser;
-				for (i = 0; i < $scope.selectedChapters.length; i++) {
-					$scope.tempBook.chapters.push($scope.selectedChapters[i]);
-				}
-				var BookService = appEndpointSF.getBookService();
-				BookService.addBook($scope.tempBook).then(function(msgBean) {
+								$scope.showSavedToast();
+								$scope.bookForm.$setPristine();
+								$scope.bookForm.$setValidity();
+								$scope.bookForm.$setUntouched();
 
-				$scope.showSavedToast();
-				$scope.bookForm.$setPristine();
-				$scope.bookForm.$setValidity();
-				$scope.bookForm.$setUntouched();
+								$scope.tempBook = {};
 
-				$scope.tempBook = {};
-
-				});
+							});
+				}else
+					{
+					$log.debug("$scope.curUser.instituteID;"+$scope.curUser.instituteID);
+						document.bookForm.action = $scope.logUploadURL;
+						// calling servlet action
+						document.bookForm.submit();
+						
 				
+					}
+
 			}
 
 			$scope.chapters = [];
@@ -119,12 +132,12 @@ angular.module("prostudyApp").controller(
 			$scope.getChaptersByClass = function() {
 
 				var ChapterService = appEndpointSF.getChapterService();
-				ChapterService.getChaptersByClass($scope.curUser.instituteID,$scope.tempBook.standard,
-						$scope.tempBook.division, $scope.tempBook.subject)
-						.then(function(chapterList) {
-							$scope.chapters = chapterList;
+				ChapterService.getChaptersByClass($scope.curUser.instituteID,
+						$scope.tempBook.standard, $scope.tempBook.division,
+						$scope.tempBook.subject).then(function(chapterList) {
+					$scope.chapters = chapterList;
 
-						});
+				});
 			}
 
 			$scope.selectedChapters = [];
@@ -157,6 +170,33 @@ angular.module("prostudyApp").controller(
 			$scope.cancelButton = function() {
 				$state.go('^', {});
 			};
+
+			$scope.uploadBookPDF = function() {
+				document.bookForm.action = $scope.logUploadURL;
+				// calling servlet action
+				document.bookForm.submit();
+
+			}
+
+			$scope.getBookPDFUrl = function() {
+				var uploadUrlService = appEndpointSF.getuploadURLService();
+				uploadUrlService.getBookPDFUrl().then(function(url) {
+					$scope.logUploadURL = url.msg;
+
+				});
+
+			}
+			$scope.logUploadURL;
+
+			$scope.waitForServiceLoad = function() {
+				if (appEndpointSF.is_service_ready) {
+					$scope.getBookPDFUrl();
+				} else {
+					$log.debug("Services Not Loaded, watiting...");
+					$timeout($scope.waitForServiceLoad, 1000);
+				}
+			}
+			$scope.waitForServiceLoad();
 
 		});// end of bookAddCtr
 

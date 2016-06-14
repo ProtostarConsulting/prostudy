@@ -20,6 +20,7 @@ angular.module("prostudyApp").controller(
 				BookService.getBooksByInstitute($scope.curUser.instituteID)
 						.then(function(bookList) {
 							$scope.books = bookList;
+							$log.debug("list:"+angular.toJson($scope.books));
 						});
 			}
 			$scope.getBooksByInstitute();
@@ -112,6 +113,8 @@ angular.module("prostudyApp").controller(
 				$state.go('^', {});
 			};
 			
+	
+			$scope.ServeBookPDFServletURL;
 			$scope.query = {
 					order : 'description',
 					limit : 5,
