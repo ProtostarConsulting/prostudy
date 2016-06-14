@@ -6,9 +6,9 @@ public class BookDetail {
 	private String bookName;
 	private Integer bookPrise;
 	private String standard;
-	private Integer hindinum;
+	/*private Integer hindinum;
 	private Integer marathinum;
-	private Integer englishnum;
+	private Integer englishnum;*/
 	private Integer totalStud;
 	private Integer totalFees;
 	
@@ -24,7 +24,7 @@ public class BookDetail {
 	public void setBookPrise(Integer bookPrise) {
 		this.bookPrise = bookPrise;
 	}
-	public Integer getHindinum() {
+	/*public Integer getHindinum() {
 		return hindinum;
 	}
 	public void setHindinum(Integer hindinum) {
@@ -41,7 +41,7 @@ public class BookDetail {
 	}
 	public void setEnglishnum(Integer englishnum) {
 		this.englishnum = englishnum;
-	}
+	}*/
 	public Integer getTotalStud() {
 		return totalStud;
 	}
