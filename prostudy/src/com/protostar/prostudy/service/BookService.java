@@ -17,9 +17,9 @@ public class BookService {
 
 	@ApiMethod(name = "addBook")
 	public void addBook(BookEntity bookEntity) {
-		System.out.println("addBook ");
+		
 		Key<BookEntity> now = ofy().save().entity(bookEntity).now();
-		System.out.println("addBook " + now);
+		
 	}
 
 	@ApiMethod(name = "getBooks")

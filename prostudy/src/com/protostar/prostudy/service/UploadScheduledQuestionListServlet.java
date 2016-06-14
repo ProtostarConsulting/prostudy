@@ -135,7 +135,7 @@ public class UploadScheduledQuestionListServlet extends HttpServlet {
 				}
 				blobstoreService.delete(blobKeys.get(0));
 
-				response.sendRedirect("/#/scheduledExam.questionList");
+				response.sendRedirect("/#/scheduledExam/questionList");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
