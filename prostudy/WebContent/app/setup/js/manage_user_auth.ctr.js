@@ -26,10 +26,9 @@ angular
 					$scope.institute = $scope.curUser.instituteObj;
 					$scope.existingInstituteAuthObject = angular
 							.fromJson($scope.curUser.instituteObj.authorizations);
-					$log
-					.debug("$scope.curUser.instituteObj.authorizations: "
+					$log.debug("$scope.curUser.instituteObj.authorizations: "
 							+ $scope.curUser.instituteObj.authorizations);
-					
+
 					$scope.selectedUser = null
 					$scope.userAuthObject = null;
 
@@ -45,9 +44,11 @@ angular
 													&& result.authorizations != undefined) {
 												$scope.authorizationMasterEntity.authorizations = result.authorizations;
 
-												collectInstituteAuthMasterEntity(
-														$scope.authorizationMasterEntity,
-														$scope.instituteAuthMasterEntity);
+												$scope.instituteAuthMasterEntity = authService
+														.filterMasterAuthTree(
+																$scope.authorizationMasterEntity,
+																$scope.existingInstituteAuthObject,
+																$scope.instituteAuthMasterEntity);
 
 												var UserService = appEndpointSF
 														.getUserService();
@@ -64,7 +65,10 @@ angular
 																			.fromJson(user.authorizations);
 																	$scope.userAuthObject = jsonUserAuthObject;
 																	if (user.authorizations) {
-																		markExistingInstituteAuthorizations($scope.instituteAuthMasterEntity);
+																		$scope.instituteAuthMasterEntity = authService
+																				.markSelectedAuthorizations(
+																						$scope.instituteAuthMasterEntity,
+																						$scope.userAuthObject);
 																	}
 																});
 
@@ -76,92 +80,15 @@ angular
 
 					}
 
-					function collectInstituteAuthMasterEntity(masterAuth,
-							instituteAuthMaster) {
-						if (masterAuth.authName != undefined) {
-							if (containsInAuthTree(masterAuth.authName,
-									$scope.existingInstituteAuthObject)) {
-								var tempAuth = getAuthCopy(masterAuth);
-								instituteAuthMaster.push(tempAuth);
-								if (masterAuth.authorizations) {									
-									angular.forEach(masterAuth.authorizations,
-											function(auth, index) {
-												collectInstituteAuthMasterEntity(auth,
-														tempAuth.authorizations);
-											});
-								}
-							}
-							return;
-						}
-						
-						if (masterAuth.authorizations) {									
-							angular.forEach(masterAuth.authorizations,
-									function(auth, index) {
-										collectInstituteAuthMasterEntity(auth,
-												instituteAuthMaster.authorizations);
-									});
-						}
-						
-					}
-					
-					function getAuthCopy(auth){
-						return {
-							authName : auth.authName,
-							authDisplayName : auth.authDisplayName,
-							uiStateName : auth.uiStateName,
-							orderNumber : auth.orderNumber,
-							authorizations:[]
-						};
-					}
-
-					function markExistingInstituteAuthorizations(auth) {
-						if (auth.authName != undefined) {
-							auth.selected = containsInAuthTree(auth.authName,
-									$scope.userAuthObject);
-						}
-						if (auth.authorizations) {
-							angular.forEach(auth.authorizations, function(auth,
-									index) {
-								markExistingInstituteAuthorizations(auth)
-							});
-						}
-
-					}
-
-					function containsInAuthTree(authName, authHierarchy) {
-						if (authHierarchy.authName != undefined
-								&& authName == authHierarchy.authName) {
-							return true;
-						} else {
-							if (authHierarchy.authorizations) {
-								for (var i = 0; i < authHierarchy.authorizations.length; i++) {
-									var found = containsInAuthTree(authName,
-											authHierarchy.authorizations[i]);
-									if (found)
-										return true;
-								}
-							} else {
-								return false;
-							}
-						}
-					}
-
 					$scope.saveAuthorization = function() {
 
 						$log.debug("Called saveAuthorization...");
-						var jsonObj = {
-							authorizations : []
-						};
+						var authService = appEndpointSF
+								.getAuthorizationService();
 
-						angular
-								.forEach(
-										$scope.instituteAuthMasterEntity.authorizations,
-										function(auth, index) {
-											getSelectedJsonAuthorizations(auth,
-													jsonObj);
-										});
-
-						var toSaveJsonString = angular.toJson(jsonObj);
+						var toSaveJsonString = angular
+								.toJson(authService
+										.getCurrentSelectedAuthorizations($scope.instituteAuthMasterEntity));
 
 						$log.debug("toSaveJsonString: " + toSaveJsonString);
 
@@ -173,28 +100,6 @@ angular
 									$scope.showUpdateToast();
 								});
 
-					}
-
-					function getSelectedJsonAuthorizations(authHirarachy,
-							jsonObj) {
-						var currentAuth = null;
-						if (authHirarachy.selected) {
-							currentAuth = {
-								'authName' : authHirarachy.authName,
-								'authorizations' : []
-							}
-							jsonObj.authorizations.push(currentAuth);
-						}
-
-						if (currentAuth != null && authHirarachy.authorizations) {
-							for (var i = 0; i < authHirarachy.authorizations.length; i++) {
-								getSelectedJsonAuthorizations(
-										authHirarachy.authorizations[i],
-										currentAuth);
-							}
-						}
-
-						return jsonObj;
 					}
 
 					$scope.cancelButton = function() {

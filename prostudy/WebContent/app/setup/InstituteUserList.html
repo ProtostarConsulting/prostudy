@@ -100,8 +100,9 @@
 		<md-button class="md-primary md-raised"
 			ng-hide="activeselected[0].isGoogleUser"
 			ng-click="changePassword($event)"> Change Password </md-button>
-		<md-button ui-sref="setup.userauth({selectedUserEmailId: activeselected[0].email_id})"
-			ng-click="close()" class="md-primary">Edit Auths </md-button>
+		<md-button class="md-raised md-primary"
+			ui-sref="setup.userauth({selectedUserEmailId: activeselected[0].email_id})">Edit
+		User Authorizations </md-button>
 
 	</div>
 

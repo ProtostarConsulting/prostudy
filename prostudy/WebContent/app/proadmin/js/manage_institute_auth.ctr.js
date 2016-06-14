@@ -3,24 +3,25 @@ angular
 		.controller(
 				"proAdminManageInstituteAuth",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $log, $state, $stateParams, objectFactory, appEndpointSF) {
+						$mdUtil, $log, $state, $stateParams, objectFactory,
+						appEndpointSF) {
 
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
 					$log.debug("Inside proAdminManageAuth");
 
-					$scope.selectedInstituteID = $stateParams.selectedInstituteID;	
-					
-					if(!$scope.selectedInstituteID){
+					$scope.selectedInstituteID = $stateParams.selectedInstituteID;
+
+					if (!$scope.selectedInstituteID) {
 						return;
-					} 
-					
+					}
+
 					$scope.authorizationMasterEntity = {
 						authorizations : []
 					};
 					$scope.institute = null;
 					$scope.existingInstituteAuthObject = null;
-					
+
 					function getAuthorizationMasterEntity() {
 						var authService = appEndpointSF
 								.getAuthorizationService();
@@ -44,14 +45,20 @@ angular
 																		institute) {
 																	$scope.institute = institute;
 																	var jsonString = $scope.institute.authorizations;
-																		
-																	$log.debug("$scope.institute.authorizations:Json: " + jsonString);
-																	
-																	if(jsonString){
-																		var jsonObject = angular.fromJson($scope.institute.authorizations);
-																		//Store json on scope
-																		$scope.existingInstituteAuthObject = jsonObject; 
-																		markExistingInstituteAuthorizations($scope.authorizationMasterEntity);
+
+																	$log
+																			.debug("$scope.institute.authorizations:Json: "
+																					+ jsonString);
+
+																	if (jsonString) {
+																		var jsonObject = angular
+																				.fromJson($scope.institute.authorizations);
+																		$scope.existingInstituteAuthObject = jsonObject;
+
+																		$scope.authorizationMasterEntity = authService
+																				.markSelectedAuthorizations(
+																						$scope.authorizationMasterEntity,
+																						$scope.existingInstituteAuthObject);
 																	}
 																});
 
@@ -62,8 +69,6 @@ angular
 						$log.debug("Called getAllAuthorizations...");
 
 					}
-
-					
 
 					// for testing only. This will be fetched from server
 					var selectedInstituteTestAuths = {
@@ -87,98 +92,31 @@ angular
 					};
 
 					
-					
-					function markExistingInstituteAuthorizations(auth) {
-						if (auth.authName != undefined) {
-							auth.selected = containsInAuthTree(auth.authName,
-									$scope.existingInstituteAuthObject);
-						}
-						if (auth.authorizations) {
-							angular.forEach(auth.authorizations, function(auth,
-									index) {
-								markExistingInstituteAuthorizations(auth)
-							});
-						}
-
-					}
-
-					function containsInAuthTree(authName, authHierarchy) {
-						if (authHierarchy.authName != undefined
-								&& authName == authHierarchy.authName) {
-							return true;
-						} else {
-							if (authHierarchy.authorizations) {
-								for (var i = 0; i < authHierarchy.authorizations.length; i++) {
-									var found = containsInAuthTree(authName,
-											authHierarchy.authorizations[i]);
-									if (found)
-										return true;
-								}
-							} else {
-								return false;
-							}
-						}
-					}
-
-					
 
 					$scope.saveAuthorization = function() {
-
 						$log.debug("Called saveAuthorization...");
-						var jsonObj = {
-							authorizations : []
-						};
+						var authService = appEndpointSF
+								.getAuthorizationService();
 
-						angular
-								.forEach(
-										$scope.authorizationMasterEntity.authorizations,
-										function(auth, index) {
-											getSelectedJsonAuthorizations(auth,
-													jsonObj);
-										});
+						var toSaveJsonString = angular
+								.toJson(authService
+										.getCurrentSelectedAuthorizations($scope.authorizationMasterEntity));
 
-						var jsonString = angular.toJson(jsonObj);
+						$log.debug("toSaveJsonString: " + toSaveJsonString);
 
-						$log.debug("jsonString: " + jsonString);
-
-						$scope.institute.authorizations = jsonString;
+						$scope.institute.authorizations = toSaveJsonString;
 						var InstituteService = appEndpointSF
 								.getInstituteService();
 						InstituteService.updateInstitute($scope.institute)
 								.then(function(msgBean) {
 									$scope.showUpdateToast();
 								});
-
 					}
-
-					function getSelectedJsonAuthorizations(authHirarachy,
-							jsonObj) {
-						var currentAuth = null;
-						if (authHirarachy.selected) {
-							currentAuth = {
-								'authName' : authHirarachy.authName,
-								'authorizations' : []
-							}
-							jsonObj.authorizations.push(currentAuth);
-						}
-
-						if (currentAuth != null && authHirarachy.authorizations) {
-							for (var i = 0; i < authHirarachy.authorizations.length; i++) {
-								getSelectedJsonAuthorizations(
-										authHirarachy.authorizations[i],
-										currentAuth);
-							}
-						}
-
-						return jsonObj;
-					}
-
 					
 					$scope.cancelButton = function() {
 						$state.go("^", {});
 					}
 
-					
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
 							getAuthorizationMasterEntity();

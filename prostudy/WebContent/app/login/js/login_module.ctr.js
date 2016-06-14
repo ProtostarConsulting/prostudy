@@ -70,8 +70,7 @@ angular
 																+ $scope.tempUser.email_id);
 												//$window.location.reload();
 												$scope.$emit('customLoginEvent', { curUser: result.result });
-									            $scope.$broadcast('customLoginEvent', { curUser: result.result });
-												$state.go("welcome");
+									            $scope.$broadcast('customLoginEvent', { curUser: result.result });												
 
 											} else {
 
