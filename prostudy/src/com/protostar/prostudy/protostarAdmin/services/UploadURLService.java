@@ -89,4 +89,13 @@ public class UploadURLService {
 		serverMsg.setMsg(createUploadUrl);
 		return serverMsg;
 	}
+	@ApiMethod(name = "getBookPDFUrl", path="getBookPDFUrl")
+	public ServerMsg getBookPDFUrl() {
+		 BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+		 String createUploadUrl = blobstoreService.createUploadUrl("/UploadBookPDFServlet");
+		 ServerMsg serverMsg = new ServerMsg();
+		 serverMsg.setMsg(createUploadUrl);		 
+		return serverMsg;
+	}
+	
 }// end of uploadUrlService
