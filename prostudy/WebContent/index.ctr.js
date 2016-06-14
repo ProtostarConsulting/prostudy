@@ -6,7 +6,8 @@ angular
 						$mdBottomSheet, $state, appEndpointSF) {
 
 					$log.debug("Inside indexCtr");
-					
+
+					var defaulLogingUserIconURL = '/img/icons/ic_person_24px.svg';
 					$scope.showUpdateToast = function() {
 						$mdToast.show($mdToast.simple().content(
 								'Changes Saved Successfully.').position("top")
@@ -18,25 +19,26 @@ angular
 								'New Record Saved Successfully.').position(
 								"top").hideDelay(3000));
 					};
-					
-					
+
 					$scope.loading = true;
 					$scope.curUser = null;
 					$scope.googleUserDetails = "";
 					$scope.googleUser = 'null';
 					$scope.flag = true;
+					$scope.initDone = false;
 					$scope.theme = 'default';
-					$scope.imgUrl = '/img/icons/ic_person_24px.svg';
+					$scope.imgUrl = defaulLogingUserIconURL;
 
-					
-					
-					if($scope.curUser!=undefined || $scope.curUser !==null){
-					$scope.theme = $scope.curUser.instituteObj.theme;
-					$scope.logBaseURL = '//' + window.location.host + '/serve?blob-key='+ $scope.curUser.instituteObj.logBlobKey;
-//					$scope.logFooterURL = '//' + window.location.host + '/serve?blob-key='+ $scope.curUser.instituteObj.footerBlobKey;
+					if ($scope.curUser != undefined || $scope.curUser !== null) {
+						$scope.theme = $scope.curUser.instituteObj.theme;
+						$scope.logBaseURL = '//' + window.location.host
+								+ '/serve?blob-key='
+								+ $scope.curUser.instituteObj.logBlobKey;
+						// $scope.logFooterURL = '//' + window.location.host +
+						// '/serve?blob-key='+
+						// $scope.curUser.instituteObj.footerBlobKey;
 					}
-					
-					
+
 					$scope.themeList = [ 'default', 'red', 'pink', 'purple',
 							'deep-purple', 'indigo', 'blue', 'light-blue',
 							'cyan', 'teal', 'green', 'light-green', 'lime',
@@ -48,9 +50,9 @@ angular
 					}
 
 					$scope.loginCheck = function() {
-						var currUser = appEndpointSF.getLocalUserService()
+						var curUser = appEndpointSF.getLocalUserService()
 								.getLoggedinUser();
-						if (currUser == undefined || currUser == null) {
+						if (curUser == undefined || curUser == null) {
 							$state.go("login");
 							return false;
 						}
@@ -109,29 +111,42 @@ angular
 								.then(
 										function(modules) {
 											$scope.modules = modules;
-											console.log("$scope.modules==ROLE=="+ $scope.modules);
-											$scope.$emit('moduleData', {modules : $scope.modules});
+											console
+													.log("$scope.modules==ROLE=="
+															+ $scope.modules);
+											$scope.$emit('moduleData', {
+												modules : $scope.modules
+											});
 										});
 
 					}
 
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
-					
+
 					$scope.$on('event:google-plus-signin-success', function(
 							event, authResult) {
 						$log.debug('Signed in!');
 						// User successfully authorized the G+ App!
-						$log.debug('Signed in-processing!');
-						$scope.waitForServiceLoad();
-						
+						continueGoogleLogin(authResult);
+					});
+
+					function continueGoogleLogin(authResult) {
+						$scope.loading = true;
+						if (!appEndpointSF.is_service_ready) {
+							$scope.waitForServiceLoad(authResult);
+							// This is needed when auto login happens after page
+							// refresh
+							return;
+						}
+
 						var profile = authResult.getBasicProfile();
 						$scope.googleUser = profile;
 
 						$scope.imgUrl = $scope.googleUser.getImageUrl();
 
 						if ($scope.imgUrl == null || $scope.imgUrl == '') {
-							$scope.imgUrl = '/img/icons/ic_person_24px.svg';
+							$scope.imgUrl = defaulLogingUserIconURL;
 						}
 
 						$log.debug('ID: ' + profile.getId());
@@ -139,55 +154,67 @@ angular
 						$scope.googleUserDetails = profile.getName() + "<br>"
 								+ profile.getEmail()
 
-						appEndpointSF.getUserService().getUserByEmailID(profile.getEmail()).then(
-								function(loggedInUser) {
-									$log.debug('Inside getUserByEmailID...');
-									
-//									loggedInUser.imageURl = $scope.googleUser.getImageUrl();
-									appEndpointSF.getLocalUserService().saveLoggedInUser(loggedInUser);
-									
-									$log.debug("loggedInUser:"+ angular.toJson(loggedInUser));
+						appEndpointSF
+								.getUserService()
+								.getUserByEmailID(profile.getEmail())
+								.then(
+										function(loggedInUser) {
+											$log
+													.debug('Inside getUserByEmailID...');
 
-									$scope.curUser = loggedInUser;
-									
-									
-									if (loggedInUser.myExams == undefined) {
-										loggedInUser.myExams = [];
-									}
-									if (loggedInUser.myBooks == undefined) {
-										loggedInUser.myBooks = [];
-									}
-									if (loggedInUser.institute == undefined) {
-										loggedInUser.institute = [];
-									}
+											appEndpointSF.getLocalUserService()
+													.saveLoggedInUser(
+															loggedInUser);
 
-//									appEndpointSF.getLocalUserService().saveLoggedInUser(loggedInUser);
+											$log
+													.debug("loggedInUser:"
+															+ angular
+																	.toJson(loggedInUser));
 
-//									$scope.curUser = loggedInUser;
+											$scope.curUser = loggedInUser;
 
-									if (loggedInUser.id == undefined) {
-										$log.debug('Inside loggedInUser.id == undefined...');
-										loggedInUser.email_id = profile.getEmail();
-										profile.getName().split(" ")[0];
-										loggedInUser.firstName = profile.getName().split(" ")[0];
-										loggedInUser.lastName = profile.getName().split(" ")[1];
+											if (loggedInUser.myExams == undefined) {
+												loggedInUser.myExams = [];
+											}
+											if (loggedInUser.myBooks == undefined) {
+												loggedInUser.myBooks = [];
+											}
+											if (loggedInUser.institute == undefined) {
+												loggedInUser.institute = [];
+											}
 
-										appEndpointSF.getLocalUserService().saveLoggedInUser(loggedInUser);
-										
-										$state.go("updatemyprofile", {
-											flag : $scope.flag
+											if (loggedInUser.id == undefined) {
+												$log
+														.debug('Inside loggedInUser.id == undefined...');
+												loggedInUser.email_id = profile
+														.getEmail();
+												profile.getName().split(" ")[0];
+												loggedInUser.firstName = profile
+														.getName().split(" ")[0];
+												loggedInUser.lastName = profile
+														.getName().split(" ")[1];
+
+												appEndpointSF
+														.getLocalUserService()
+														.saveLoggedInUser(
+																loggedInUser);
+
+												$state.go("updatemyprofile", {
+													flag : $scope.flag
+												});
+
+											} else {
+												$log
+														.debug('Inside else of loggedInUser.id == undefined...');
+												$scope.getInstituteById();
+
+											}
+											
+											$scope.loading = false;
+
 										});
 
-									} else {
-										$log.debug('Inside else of loggedInUser.id == undefined...');
-										$scope.getInstituteById();
-										$state.go("home");
-
-									}
-
-								});
-
-					});
+					}
 
 					$scope.getRoleSecListByInstitute = function() {
 
@@ -208,36 +235,77 @@ angular
 						var InstituteService = appEndpointSF
 								.getInstituteService();
 
-						InstituteService.getInstituteById($scope.curUser.instituteID).then(
+						InstituteService.getInstituteById(
+								$scope.curUser.instituteID).then(
 								function(institute) {
-									$scope.institute = institute;
-									$scope.theme = $scope.institute.theme;
-									var currUser = appEndpointSF
+									var curUser = appEndpointSF
 											.getLocalUserService()
 											.getLoggedinUser();
-
-									currUser.instituteObj = institute;
-
+									curUser.instituteObj = institute;
 									appEndpointSF.getLocalUserService()
-											.saveLoggedInUser(currUser);
-									
-									$scope.curUser = currUser;
+											.saveLoggedInUser(curUser);
+
+									$scope.curUser = curUser;
 									$scope.initCommonSetting();
 								});
 
 					}
 
-					$scope.waitForServiceLoad = function() {
-						if (appEndpointSF.is_service_ready) {
-							$log.debug("####Index: Loaded All Services, Continuing####");
+					function getUserAuthTree() {
+						var authService = appEndpointSF
+								.getAuthorizationService();
+						authService
+								.getAuthorizationMasterEntity()
+								.then(
+										function(result) {
+											$log.debug("result:" + result);
+											var authorizationMasterEntity = {
+												authorizations : []
+											};
+											var userAuthMasterEntity = {
+												authorizations : []
+											};
 
-						} else {
-							$log.debug("Index: Services Not Loaded, watiting...");
-							$timeout($scope.waitForServiceLoad, 1000);
-						}
+											var jsonUserAuthObject = angular
+													.fromJson($scope.curUser.authorizations);
+											$scope.userAuthObject = jsonUserAuthObject;
+
+											if (result
+													&& result.authorizations != undefined) {
+
+												authorizationMasterEntity.authorizations = result.authorizations;
+
+												userAuthMasterEntity = authService
+														.filterMasterAuthTree(
+																authorizationMasterEntity,
+																$scope.userAuthObject,
+																userAuthMasterEntity);
+
+												userAuthMasterEntity
+														.authorizations.sort(function(a, b) {
+															return (a.orderNumber > b.orderNumber) ? 1
+																	: -1
+														});
+
+												$log
+														.debug("userAuthMasterEntity:"
+																+ angular
+																		.toJson(userAuthMasterEntity));
+
+												var curUser = appEndpointSF
+														.getLocalUserService()
+														.getLoggedinUser();
+												curUser.userAuthMasterEntity = userAuthMasterEntity;
+												appEndpointSF
+														.getLocalUserService()
+														.saveLoggedInUser(
+																curUser);
+
+												$scope.curUser = curUser;
+												// $scope.safeApply();
+											}
+										});
 					}
-
-					$scope.waitForServiceLoad();
 
 					$scope.signOut = function() {
 						$log.debug('signOut1');
@@ -245,29 +313,27 @@ angular
 							$scope.curUser = null;
 							$scope.curUser = appEndpointSF
 									.getLocalUserService().logout();
-							$scope.imgUrl = '/img/icons/ic_person_24px.svg';
-							$state.go("home");
+							$scope.imgUrl = defaulLogingUserIconURL;
+							$state.go("login");
 							return;
 						}
 						$log.debug('signOut2');
 						var auth2 = gapi.auth2.getAuthInstance();
-						auth2
-								.signOut()
-								.then(
-										function() {
-											$log.debug('User signed out.');
-											// also remove login details from
-											// chrome
-											// browser
+						auth2.signOut().then(
+								function() {
+									$log.debug('User signed out.');
+									// also remove login details from
+									// chrome
+									// browser
 
-											$scope.googleUser = null;
-											$scope.curUser = null;
-											$scope.curUser = appEndpointSF
-													.getLocalUserService()
-													.logout();
-											$scope.imgUrl = '/img/icons/ic_person_24px.svg';
-											$state.go("home");
-										});
+									$scope.googleUser = null;
+									$scope.curUser = null;
+									$scope.curUser = appEndpointSF
+											.getLocalUserService().logout();
+									$scope.imgUrl = defaulLogingUserIconURL;
+									$state.go("login");
+
+								});
 					}
 
 					$scope.$on('event:google-plus-signin-failure', function(
@@ -280,12 +346,27 @@ angular
 
 					// $window.initGAPI = function() {}
 
-
 					$scope.initCommonSetting = function() {
+						$log.debug('Inside initCommonSetting');
+
+						$scope.curUser = appEndpointSF.getLocalUserService()
+								.getLoggedinUser();
+
+						if ($scope.curUser == null) {
+							$state.go("login");
+							return; // else it goes to login state but continues
+							// the this js flow
+						}
 						$scope.theme = $scope.curUser.instituteObj.theme;
 						$scope.logoURL = '//' + window.location.host
 								+ '/serve?blob-key='
-								+ $scope.institute.logBlobKey;
+								+ $scope.curUser.instituteObj.logBlobKey;
+
+						$scope.institute = $scope.curUser.instituteObj;
+						getUserAuthTree();
+						$scope.initDone = true;
+						$state.go("welcome");
+
 					}
 
 					$scope.initGAPI = function() {
@@ -308,9 +389,26 @@ angular
 
 					};
 
-					// initialize local objects
+					$scope.waitForServiceLoad = function(authResult) {
+						if (!appEndpointSF.is_service_ready) {
+							$log
+									.debug("Index: Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+							return;
+						}
+
+						$log
+								.debug("####Index: Loaded All Services, Continuing####");
+						if (authResult) {
+							continueGoogleLogin(authResult);
+						}
+						if (!$scope.initDone) {
+							$scope.initCommonSetting();
+						}
+					}
 
 					$scope.initGAPI();
+					$scope.waitForServiceLoad();
 
 					$scope.safeApply = function(fn) {
 						var phase = this.$root.$$phase;
