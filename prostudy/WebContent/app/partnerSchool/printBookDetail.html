@@ -17,8 +17,8 @@
 		<h3 class="md-title">Address</h3>
 
 		<p class="md-subhead">
-			To,<br>{{schoolName}},<br> {{add.line1}} {{add.line2}},<br> {{add.city}}
-			{{add.state}},<br> {{add.country}} {{add.pin}}.
+			To,<br>{{schoolName}},<br> {{add.line1}} {{add.line2}},<br>
+			{{add.city}} {{add.state}},<br> {{add.country}} {{add.pin}}.
 		</p>
 
 	</div>
@@ -26,29 +26,30 @@
 		<h3 class="md-title">Item Details</h3>
 	</div>
 	<div>
-		<table style="width:100%">
-			<tr >
+		<table style="width: 100%">
+			<tr>
 
 				<td width=20% name="Standard">Standard</td>
 				<td width=50% name="Book Name">Book Name</td>
-				<td width=10% name="Fees">Fees</td>
-				<td width=10% name="Total Student">Total Student</td>
-				<td width=10% name="Total Fees">Total Fees</td>
+				<td width=10% align="center" name="Fees">Fees</td>
+				<td width=10% align="center" name="Total Student">Total Student</td>
+				<td width=10% align="center" name="Total Fees">Total Fees</td>
 			</tr>
 		</table>
 	</div>
 	<hr>
 	<div>
-		<table style="width:100%">
+		<table style="width: 100%">
 			<tr ng-repeat="test in BookDetail track by $index  ">
 				<td width=20%>{{test.standard}}</td>
-				<td width=50%><md-select ng-model="bookName"> <md-option
-						ng-value="book.id" ng-repeat="book in bookStocks "
-						ng-if="book.id==test.bookName">{{book.bookName}}({{book.bookMedium}})</md-option>
-					</md-select></td>
-				<td width=10% align="right">{{test.bookPrise}}</td>
-				<td width=10% align="right">{{test.totalStud}}</td>
-				<td width=10% align="right">{{test.totalFees}}</td>
+				<td width=50%><ol>
+						<li style="list-style-type: none; text-align: left;"
+							ng-value="book.id" ng-repeat="book in bookStocks "
+							ng-if="book.id==test.bookName">{{book.bookName}}({{book.bookMedium}})</li>
+					</ol></td>
+				<td width=10% align="center">{{test.bookPrise}}</td>
+				<td width=10% align="center">{{test.totalStud}}</td>
+				<td width=10% align="center">{{test.totalFees}}</td>
 
 
 			</tr>
@@ -59,8 +60,8 @@
 	<div>
 		<table>
 			<tr>
-				<td>Total :-</td>
-				<td>{{bookSummary.total}}</td>
+				<td>Total :</td>
+				<td align="right">{{bookSummary.total}}</td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -68,8 +69,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td>20% Amount for Institute :-</td>
-				<td>{{bookSummary.amtForInst20per}}</td>
+				<td>20% Amount for Institute :</td>
+				<td align="right">{{bookSummary.amtForInst20per}}</td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -77,8 +78,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td>80% Amount for GRF :-</td>
-				<td>{{bookSummary.amtForGRF80per}}</td>
+				<td>80% Amount for GRF :</td>
+				<td align="right">{{bookSummary.amtForGRF80per}}</td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -89,6 +90,55 @@
 
 		</table>
 	</div>
+<div align="center">
+		<h3 class="md-title"> Payment Detail</h3>
+	</div>
+	<div>
+		<br>
+		<table style="width: 100%">
+
+			<tr>
+				<td width=20%>Date</td>
+				<td width=30%>Payment Received Vai</td>
+				<td width=20%>Payment Fees</td>
+				<td width=20%>Total Paid Fees</td>
+				<td width=10%>Pending Fees</td>
+
+			</tr>
+
+		</table>
+	</div>
+	<hr>
+	<div>
+		<table style="width: 100%">
+
+			<tr md-auto-select
+				ng-repeat="pd in PaymentDet track by $index  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit ">
+				<td width=20%>{{pd.paymentDate | formatDate}}</td>
+				<td width=30%>{{pd.payReceivedBy}}</td>
+				<td width=20%>{{pd.payAmount}}</td>
+				<td width=20%>{{pd.tPaid}}</td>
+				<td width=10%>{{pd.pAmount}}</td>
+
+			</tr>
+
+		</table>
+	</div>
+
+	<div>
+		<br> <br> <br> <br> Created By:
+		{{curUser.firstName}} {{curUser.lastName}}<br> <br> <br>
+		<br>
+		<table width="100%">
+			<tr>
+				<td width="50%" align="left">Packed By:
+					_________________________</td>
+				<td width="50%" align="center">Date and Signature</td>
+			</tr>
+		</table>
+
+	</div>
+	<footer> </footer>
 </div>
 
 <iframe name="print_frame" width="0" height="0" frameborder="0"

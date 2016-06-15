@@ -124,6 +124,7 @@ angular
 						payReceivedBy : "",
 						paymentDate : new Date(),
 						payAmount : 0,
+						note:"",
 						tPaid : 0,
 						pAmount : 0
 					}
@@ -169,6 +170,7 @@ angular
 								payReceivedBy : "",
 								paymentDate : new Date(),
 								payAmount : 0,
+								note:"",
 								tPaid : 0,
 								pAmount : 0
 							}
@@ -364,12 +366,14 @@ angular
 								for (i = 0; i < $scope.PaymentDet.length; i++) {
 
 									$scope.PaymentDetail.tPaid += $scope.PaymentDet[i].payAmount;
+									/*$scope.PaymentDetail.note=$scope.PaymentDet[i].note;*/
+									
 
 								}
 								$scope.PaymentDetail.tPaid += $scope.PaymentDetail.payAmount;
 								$scope.PaymentDetail.pAmount = $scope.bookSummary.amtForGRF80per
 										- $scope.PaymentDetail.tPaid;
-							}
+														}
 					/*	}*/ else {
 
 							$scope.PaymentDetail.tPaid = $scope.PaymentDetail.payAmount;

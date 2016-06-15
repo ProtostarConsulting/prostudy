@@ -4,7 +4,8 @@ angular.module("prostudyApp").controller(
 				$log, appEndpointSF, $state, $sce, $stateParams, $q,$mdDialog,$mdMedia) {
 
 			$scope.selectedPSchoolId = $stateParams.PSchoolId;
-			
+			$scope.curUser = appEndpointSF.getLocalUserService()
+			.getLoggedinUser();
 			var printDivCSS = new String(
 					'<link href="/lib/base/css/angular-material.min.css"" rel="stylesheet" type="text/css">'
 							+ '<link href="/lib/base/css/bootstrap.min.css"" rel="stylesheet" type="text/css">'
@@ -34,6 +35,9 @@ angular.module("prostudyApp").controller(
 										$scope.examMedium = pSchool.examDetail.examMedium;
 										$scope.add=pSchool.address;
 										$scope.schoolName=pSchool.schoolName;
+										if (pSchool.paymentDetail != undefined) {
+										$scope.PaymentDet =pSchool.paymentDetail;
+										}
 									});
 				}
 			}
