@@ -1,13 +1,16 @@
 package com.protostar.prostudy.gf.entity;
 
+import java.util.Date;
+
 public class PaymentDetail {
 
 	
 	private String payReceivedBy;
-	private String paymentDate;
+	private Date paymentDate;
 	private Integer payAmount;
 	private Integer tPaid;
 	private Integer pAmount;
+	private String note;
 	
 	
 	public String getPayReceivedBy() {
@@ -16,10 +19,10 @@ public class PaymentDetail {
 	public void setPayReceivedBy(String payReceivedBy) {
 		this.payReceivedBy = payReceivedBy;
 	}
-	public String getPaymentDate() {
+	public Date getPaymentDate() {
 		return paymentDate;
 	}
-	public void setPaymentDate(String paymentDate) {
+	public void setPaymentDate(Date paymentDate) {
 		this.paymentDate = paymentDate;
 	}
 	public Integer getPayAmount() {
@@ -39,5 +42,11 @@ public class PaymentDetail {
 	}
 	public void setpAmount(Integer pAmount) {
 		this.pAmount = pAmount;
+	}
+	public String getNote() {
+		return note;
+	}
+	public void setNote(String note) {
+		this.note = note;
 	}
 }
