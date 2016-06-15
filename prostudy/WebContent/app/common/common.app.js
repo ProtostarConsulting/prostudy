@@ -805,6 +805,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			params : {
 				sourceSate : null,
 				selectedExamId : null,
+				selectedInstituteId:null,
 				flag : null				
 			}
 	}).state('scheduledExam.questionList', {
