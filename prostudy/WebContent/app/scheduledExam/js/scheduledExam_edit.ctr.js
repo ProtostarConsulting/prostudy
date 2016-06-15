@@ -94,11 +94,12 @@ angular
 
 					
 					$scope.addQuestion = function() {
-
+						
+						
 						$state.go('scheduledExam.addQuestion', {
 							sourceSate : "scheduledExam.edit",
 							selectedExamId : $stateParams.selectedExamId,
-							
+							selectedInstituteId:$scope.Test.instituteID,
 							flag : true
 						});
 
