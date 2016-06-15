@@ -35,7 +35,8 @@ angular.module("prostudyApp").controller(
 									address : $scope.user.address,
 									contact : $scope.user.contact,
 									role : $scope.user.role,
-									password :$scope.user.password
+									password :$scope.user.password,
+									authority:$scope.user.authority
 								};	
 							}
 							else
@@ -52,6 +53,7 @@ angular.module("prostudyApp").controller(
 										contact : $scope.curUser.contact,
 										role : $scope.curUser.role,
 										password : $scope.curUser.password,
+										authority:[],
 										myExams :[],
 										myBooks : [],
 										
