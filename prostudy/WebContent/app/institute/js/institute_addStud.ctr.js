@@ -40,6 +40,7 @@ angular
 						'division' : "",
 						'subject' : "",
 						'password' : "",
+						'authority':[],
 						'isGoogleUser' : $scope.isGoogleUser
 					};
 
