@@ -14,8 +14,13 @@ angular
 								3000));
 					};
 					$scope.sourceSate = $stateParams.sourceSate;
-
+					$scope.selectedInstituteId = $stateParams.selectedInstituteId;
+				
 					$scope.flag = $stateParams.flag;
+					
+					
+					if($scope.selectedInstituteId!=undefined)
+						{$scope.curUser.instituteID= $scope.selectedInstituteId;}
 					
 					$scope.tempQuestion = {
 						instituteID : $scope.curUser.instituteID,
