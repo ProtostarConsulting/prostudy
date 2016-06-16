@@ -158,7 +158,7 @@
 			</md-input-container>
 			<span flex="20"></span>
 			<md-input-container flex="30"> <label>Pin</label>
-			<input name="pin" ng-model="partnerSchool.address.pin"> </md-input-container>
+			<input type="number" name="pin" ng-model="partnerSchool.address.pin"> </md-input-container>
 			<span flex="10"></span>
 		</div>
 
@@ -307,8 +307,8 @@
 			No <!-- <span style="color: red"
 			ng-show="partnerSchoolForm.headMasterMobile.$error.required"
 			class="mandatory">*</span> -->
-		</label> <input name="headMasterMobile"
-			ng-model="contactDetail.headMasterMobile">
+		</label> <input type="number" name="headMasterMobile"
+			ng-model="contactDetail.headMasterMobile" >
 		<div ng-messages="partnerSchoolForm.headMasterMobile.$error"
 			ng-if="partnerSchoolForm.headMasterMobile.$submitted || partnerSchoolForm.headMasterMobile.$touched">
 			<div ng-message="required">Please Enter Mobile Number.</div>
@@ -319,7 +319,7 @@
 			Id<!--  <span style="color: red"
 			ng-show="partnerSchoolForm.headMasterEmailId.$error.required"
 			class="mandatory">*</span> -->
-		</label> <input name="headMasterEmailId"
+		</label> <input  name="headMasterEmailId"
 			ng-model="contactDetail.headMasterEmailId">
 		<div ng-messages="partnerSchoolForm.headMasterEmailId.$error"
 			ng-if="partnerSchoolForm.headMasterEmailId.$submitted || partnerSchoolForm.headMasterEmailId.$touched">
