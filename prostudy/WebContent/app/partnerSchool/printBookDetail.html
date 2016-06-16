@@ -41,8 +41,8 @@
 	<div>
 		<table style="width: 100%">
 			<tr ng-repeat="test in BookDetail track by $index  ">
-				<td width=20%>{{test.standard}}</td>
-				<td width=50%><ol>
+				<td width=20% title={{test.note}}>{{test.standard}}</td>
+				<td width=50%  ><ol>
 						<li style="list-style-type: none; text-align: left;"
 							ng-value="book.id" ng-repeat="book in bookStocks "
 							ng-if="book.id==test.bookName">{{book.bookName}}({{book.bookMedium}})</li>

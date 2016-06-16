@@ -13,11 +13,9 @@
 		ng-click="resetState()">Add New School</md-button>
 </section>
 
-<h3 class="md-headline" ng-hide="selectedPSchoolId">Add 
-	School</h3>
+<h3 class="md-headline" ng-hide="selectedPSchoolId">Add School</h3>
 
-<h3 class="md-headline" ng-show="selectedPSchoolId">Edit 
-	School</h3>
+<h3 class="md-headline" ng-show="selectedPSchoolId">Edit School</h3>
 <form name="partnerSchoolForm">
 	<md-content> <md-tabs md-dynamic-height=""
 		md-border-bottom="" md-selected="selectedIndex"> <md-tab
@@ -473,8 +471,8 @@
 
 					<td><md-input-container flex> <md-select
 							name="standard" ng-model="bb.standard"> <md-option
-							ng-value="standard" ng-repeat="standard in standardList" placeholder="standard"
-							>{{standard}}</md-option> </md-select> </md-input-container></td>
+							ng-value="standard" ng-repeat="standard in standardList"
+							placeholder="standard">{{standard}}</md-option> </md-select> </md-input-container></td>
 					<td><md-input-container flex> <md-select
 							ng-model="bb.bookName" placeholder="Select book"
 							ng-change="setfees(bb.bookName,$index)"> <md-option
@@ -488,13 +486,14 @@
 							ng-blur="calculate($index,bb.totalStud)" ng-model="bb.totalStud">
 						</md-input-container></td>
 					<td><md-input-container flex> <!-- <input
-							type="number" name="totalFees" ng-model="bb.totalFees"> --> {{bb.totalFees}}</md-input-container></td>
-					<td><md-button class="md-icon-button" ng-click="removeBook($index)"
-							layout-align="end end"> <md-tooltip>
-						Remove Book</md-tooltip> <md-icon
+							type="number" name="totalFees" ng-model="bb.totalFees"> -->
+						{{bb.totalFees}}</md-input-container></td>
+					<td><md-button class="md-icon-button"
+							ng-click="removeBook($index)" layout-align="end end">
+						<md-tooltip> Remove Book</md-tooltip> <md-icon
 							md-svg-icon="img/icons/ic_remove_circle_outline_black_24px.svg"
 							aria-label="Prev Week"></md-icon> </md-button></td>
-				</tr>	
+				</tr>
 
 			</tbody>
 
@@ -604,29 +603,28 @@
 
 
 
-		<md-input-container flex="20"> <span>Payment
+		<md-input-container flex="60"> <!-- <span>Payment
 			Received Vai <span style="color: red"
 			ng-show="partnerSchoolForm.payment.$error.required" class="mandatory">*</span>
 			:-
-		</span> </md-input-container>
-		<md-input-container flex="20"> <md-select
+		</span>  -->
+		 <md-select
 			name="payment" id="payment" ng-model="PaymentDetail.payReceivedBy"
-			placeholder="-Select Payment Mode-" ng-required="true"> <md-option>Cash
-		Payment </md-option> <md-option>Cheque</md-option> <md-option>D.D </md-option> <md-option>-</md-option>
-		<md-option>--</md-option> </md-select>
+			placeholder="-Select Payment Mode-" ng-required="true"> <!-- <md-option>Cash
+		Payment </md-option> --> <md-option>Cheque</md-option> <md-option>D.D
+		</md-option> <md-option>NEFT/RTGS</md-option> <md-option>--</md-option> </md-select>
 		<div ng-messages="partnerSchoolForm.payment.$error"
 			ng-if="partnerSchoolForm.payment.$submitted || partnerSchoolForm.payment.$touched">
 			<div ng-message="required">Please Select Payment Mode.</div>
 		</div>
 		</md-input-container>
-
-		<span flex="20"></span> <span flex="10">Date:- </span>
-		<md-datepicker name="paymentDate" flex="20"
+	<!-- 	<span flex="20"></span> -->
+		<md-input-container flex="10"> Date:- </md-input-container>
+		<md-datepicker name="paymentDate" 
 			ng-model="PaymentDetail.paymentDate" md-placeholder="Select Date"></md-datepicker>
-	</div>
+	</div><br>
 	<div layout="row" layout-xs="column" flex>
-		<md-input-container flex="20"> <label>Enter
-			Payment Fees <span style="color: red"
+		<md-input-container flex="20"> <label>Paid Fees<span style="color: red"
 			ng-show="partnerSchoolForm.payAmount.$error.required"
 			class="mandatory">*</span>
 		</label> <input type="number" name=" payAmount"
@@ -635,14 +633,13 @@
 			ng-if="partnerSchoolForm.payAmount.$submitted || partnerSchoolForm.payAmount.$touched">
 			<div ng-message="required">Please Enter Payment Fees.</div>
 		</div>
-	
+
 		</md-input-container>
-	<span flex="20"></span>
-		<md-input-container flex> <label>Note <span style="color: red"
-			ng-show="partnerSchoolForm.note.$error.required"
+		<span flex="20"></span>
+		<md-input-container flex> <label>Note <span
+			style="color: red" ng-show="partnerSchoolForm.note.$error.required"
 			class="mandatory">*</span>
-		</label> <input type="text" name="note"
-			ng-model="PaymentDetail.note" ><!-- ng-blur="calculatepaidandpending()" -->
+		</label> <input type="text" name="note" ng-model="PaymentDetail.note"><!-- ng-blur="calculatepaidandpending()" -->
 		<div ng-messages="partnerSchoolForm.note.$error"
 			ng-if="partnerSchoolForm.note.$submitted || partnerSchoolForm.note.$touched">
 			<div ng-message="required">Please Enter Payment note.</div>
@@ -707,7 +704,7 @@
 		<tbody>
 			<tr md-auto-select
 				ng-repeat="pd in PaymentDet track by $index  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit ">
-				<td>{{pd.payReceivedBy}}</td>
+				<td title={{pd.note}}>{{pd.payReceivedBy}}</td>
 				<td>{{pd.paymentDate | formatDate}}</td>
 				<td>{{pd.payAmount}}</td>
 				<td>{{pd.tPaid}}</td>
