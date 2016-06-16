@@ -75,11 +75,11 @@
 			</md-toolbar> <md-content layout="column" ng-controller="LeftCtrl"> <md-button
 				class="md-primary" ng-click="close()" hide-gt-md> Close
 			Sidenav </md-button> <md-button ui-sref="home" ng-click="close()"
-				class="md-primary" show-gt-md> Home </md-button> <md-button
+				class="md-primary" show-gt-md> Home </md-button> <!-- <md-button
 				ui-sref="partnerSchool"
 				ng-show="curUser.authority.indexOf('admin') > -1 || modules[0].modules.indexOf('partnerSchool') > -1"
 				ng-click="close()" class="md-primary" show-gt-md>
-			Partner School </md-button> <md-button ui-sref="setup"
+			Partner School </md-button> --> <md-button ui-sref="setup"
 				ng-show="curUser.authority.indexOf('admin') > -1 || modules[0].modules.indexOf('setup') > -1"
 				ng-click="close()" class="md-primary" show-gt-md>Setup </md-button>
 
