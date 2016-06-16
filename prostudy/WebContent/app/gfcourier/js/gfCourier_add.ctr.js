@@ -28,12 +28,23 @@ angular
 						otherLineItemList : []
 					}
 
-					$scope.selectedGFCourierID = $stateParams.selectedGFCourierID;
-					$scope.PSchoolObj = $stateParams.PSchoolObj;
-					$log.debug("$scope.PSchoolObj=="+angular.toJson($scope.PSchoolObj));
-//					$log.debug("$scope.PSchoolObj=="+angular.fromJson($scope.PSchoolObj));
+					$scope.partnerSchool = {
+							courierType : '',
+							logistics : '',
+							registrationID : '',
+							weight : '',
+							courierFrom : "Gandhi Foundation",
+							courierTo : '',
+							schoolName : '',
+							courierDispatchDate : new Date(),
+							bookQty : 0,
+							bookLineItemList : [],
+						}
 					
-					$scope.tempCourierObj = angular.toJson($scope.PSchoolObj);
+					$scope.selectedGFCourierID = $stateParams.selectedGFCourierID;
+					$scope.partnerSchool = $stateParams.partnerSchool;
+					$log.debug("$scope.partnerSchool=="+angular.toJson($scope.partnerSchool));
+					
 					$scope.registrationID1;
 					$scope.addGFCourier = function() {
 						$scope.tempCourierObj.instituteID = $scope.curUser.instituteID;
@@ -159,4 +170,48 @@ angular
 					$scope.cancelButton = function() {
 						$state.go("gandhifoundation.studentModule", {});
 					}
+					
+					
+					$scope.getGFBookStockByInstituteId = function() {
+					    var gfBookStockService = appEndpointSF
+					      .getGFBookStockService();
+					    gfBookStockService.getGFBookByInstituteId(
+					      $scope.curUser.instituteID).then(
+					      function(tempBooks) {
+					       $scope.bookStocks = tempBooks;
+					       
+/*					       for(var i; $scope.bookStocks.length > 0; i++){
+					    	 
+					    	   if($scope.bookStocks[i].id == $scope.partnerSchool.bookSummary.bookDetail.bookName){
+					    		   
+					    		   $scope.tempWeight = $scope.bookStocks[i].weight * $scope.partnerSchool.bookSummary.bookDetail.totalStud;
+					    		   $scope.weight.push(tempWeight);
+					    		   
+					    		   $log.debug("Inside $scope.bookStocks[i].id" +$scope.weight);
+					    		   
+					    		   for(var i; $scope.weight.length > 0; i++){
+					    			   $scope.weight1 = + $scope.weight[i];
+					    			   $log.debug("Inside $scope.weight1" +$scope.weight1);
+						    	   }
+					    	   }
+								
+							}
+*/					      });
+					   }
+					   $scope.bookStocks = [];
+
+					   $scope.waitForServiceLoad1 = function() {
+					    if (appEndpointSF.is_service_ready) {
+
+					     $scope.getGFBookStockByInstituteId();
+
+					    } else {
+					     $log.debug("Services Not Loaded, watiting...");
+					     $timeout($scope.waitForServiceLoad1, 1000);
+					    }
+					   }
+
+					   $scope.waitForServiceLoad1();
+					   
+					   
 				});

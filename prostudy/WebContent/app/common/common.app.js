@@ -865,8 +865,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			selectedExamId:null,
 			selectedEmailId:null,
 			selectedResultId:null
-		}	
-		
+		}			
 	})
 	.state('scheduledExam.scheduledExamResultView', {
 		url : "/scheduledExamResultView/:selectedStudEmail",
@@ -887,11 +886,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/studentlist",
 		templateUrl : '/app/scheduledExam/scheduledExam_studentList.html',
 		controller : 'scheduledExamStudentListCtr',
-			params : {	
+		params : {	
 				
 				selectedExamId:null,
 				selectedExamTitle:null
-			}	
+		}	
 	})
 		.state('scheduledExam.assignStudents', {
 		url : "/assignStudents",
@@ -973,9 +972,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'gfCourierModuleCtr'
 	})
 	.state('gandhifoundation.courierModule.add', {
-		url : "/courierModule.add/:selectedGFCourierID/:PSchoolObj",
+		url : "/courierModule.add/:selectedGFCourierID",
 		templateUrl : '/app/gfcourier/gfCourier_add.html',
-		controller : 'gfCourierAddCtr'
+		controller : 'gfCourierAddCtr',
+			
 	})
 	.state('gandhifoundation.courierModule.list', {
 		url : "/list",
@@ -988,7 +988,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/gfcourier/gfCourier_view.html',
 		controller : 'gfCourierviewCtr'
 	})
-	
+	.state('gandhifoundation.courierModule.addFromPS', {
+		url : "/addFromPS",
+		templateUrl : '/app/gfcourier/gfCourier_directAddFromPS.html',
+		controller : 'gfCourierDirectAddCtr',
+		params : {			
+			partnerSchool : null
+			}
+	})
 
 	.state('gandhifoundation.bookModule', {
 		url : "/bookModule",

@@ -13,9 +13,7 @@ angular.module("prostudyApp").controller(
 
 				$log.debug("$scope.currUser.instituteObj.logBlobKey==="
 						+ $scope.currUser.instituteObj.logBlobKey);
-				$scope.logoURL = '//' + window.location.host
-						+ '/serve?blob-key='
-						+ $scope.currUser.instituteObj.logBlobKey;
+				$scope.logoURL = '//' + window.location.host+ '/serve?blob-key='+ $scope.currUser.instituteObj.logBlobKey;
 				$log.debug("$scope.logoURL==" + $scope.logoURL);
 				
 
