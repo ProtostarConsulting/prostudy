@@ -29,7 +29,10 @@ angular.module("prostudyApp").controller(
 				});
 			};
 			
-			
+			$scope.back = function() {
+				window.history.back();
+				// $state.go("^", {});
+			};
 			
 
 		});

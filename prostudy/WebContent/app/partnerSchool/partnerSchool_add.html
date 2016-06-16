@@ -440,15 +440,16 @@
 		</md-tab> --> <md-tab label="Book Detail"> <md-content
 		class="md-padding">
 
-<md-button class="md-raised md-primary"
-				ui-sref="gandhifoundation.courierModule.addFromPS({partnerSchool : partnerSchool})">Add Courier
-			</md-button>
+
 
 	<div class="md-toolbar-tools" ng-show="selectedPSchoolId">
 		<span flex></span>
 		<!--<md-card>-->
 		<section layout="row">
 
+			<md-button  class="md-raised md-primary" ng-show="selectedPSchoolId"
+				ui-sref="courierModule.addFromPS({partnerSchool : partnerSchool})">Add
+			Courier </md-button>
 
 			<md-button class="md-raised md-primary"
 				ui-sref="partnerSchool.print({PSchoolId: selectedPSchoolId})">print
@@ -610,9 +611,8 @@
 			Received Vai <span style="color: red"
 			ng-show="partnerSchoolForm.payment.$error.required" class="mandatory">*</span>
 			:-
-		</span>  -->
-		 <md-select
-			name="payment" id="payment" ng-model="PaymentDetail.payReceivedBy"
+		</span>  --> <md-select name="payment" id="payment"
+			ng-model="PaymentDetail.payReceivedBy"
 			placeholder="-Select Payment Mode-" ng-required="true"> <!-- <md-option>Cash
 		Payment </md-option> --> <md-option>Cheque</md-option> <md-option>D.D
 		</md-option> <md-option>NEFT/RTGS</md-option> <md-option>--</md-option> </md-select>
@@ -621,13 +621,15 @@
 			<div ng-message="required">Please Select Payment Mode.</div>
 		</div>
 		</md-input-container>
-	<!-- 	<span flex="20"></span> -->
+		<!-- 	<span flex="20"></span> -->
 		<md-input-container flex="10"> Date:- </md-input-container>
-		<md-datepicker name="paymentDate" 
-			ng-model="PaymentDetail.paymentDate" md-placeholder="Select Date"></md-datepicker>
-	</div><br>
+		<md-datepicker name="paymentDate" ng-model="PaymentDetail.paymentDate"
+			md-placeholder="Select Date"></md-datepicker>
+	</div>
+	<br>
 	<div layout="row" layout-xs="column" flex>
-		<md-input-container flex="20"> <label>Paid Fees<span style="color: red"
+		<md-input-container flex="20"> <label>Paid
+			Fees<span style="color: red"
 			ng-show="partnerSchoolForm.payAmount.$error.required"
 			class="mandatory">*</span>
 		</label> <input type="number" name=" payAmount"
