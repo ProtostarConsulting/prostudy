@@ -2,7 +2,7 @@
 	<md-content layout-padding>
 	<div layout="column" layout-align="end end">
 		<span style="color: red">Time left : {{counter}} </span> <label>
-			<div ng-init="startTimer()">
+			<div ng-init="startTimer()"></div>
 		</label>
 	</div>
 
@@ -14,13 +14,13 @@
 			<div ng-repeat="i in buttonLimit(totalPages) track by $index">
 				<md-button class="md-raised md-primary"
 					ng-click="onButtonClick($index+1)">Page{{$index+1}}</md-button>
-					
+
 			</div>
 
 		</div>
 
 	</div>
-	
+
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
 
@@ -36,7 +36,7 @@
 			</p>
 
 			<div layout="column">
-			
+
 				<md-checkbox name="answer"
 					ng-model="selected[$index + item.option1]"
 					ng-click="toggleSelection($index,item.id,1)">
@@ -54,41 +54,38 @@
 					ng-click="toggleSelection($index,item.id,4)">
 				{{item.option4 }}</md-checkbox>
 
-			
-				
+
+
 			</div>
 		</div>
 	</div>
-	
-	.......{{selection}}
+
 
 	<p>&nbsp;</p>
-	
-	.......{{userAnsList}}
-
 	<div layout-sm="column">
 		<div layout="row" layout-align="center end">
 			<div layout="row">
 				<div layout-align="start end" ng-init="isDisabled = false">
-					<md-button ng-disabled="isDisabledPrevious" ng-model="isDisabledPrevious"
-						ng-click="onPrevious()"><ng-md-icon
-						icon="skip_previous"></ng-md-icon> </md-button>
+					<md-button ng-disabled="isDisabledPrevious"
+						ng-model="isDisabledPrevious" ng-click="onPrevious()">
+					<ng-md-icon icon="skip_previous"></ng-md-icon> </md-button>
 				</div>
 
 				<div layout-align="start end">
 					<md-button ng-disabled="isDisabledNext" ng-model="isDisabledNext"
-						ng-click="onNext()"><ng-md-icon
-						icon="skip_next"></ng-md-icon>  </md-button>
+						ng-click="onNext()">
+					<ng-md-icon icon="skip_next"></ng-md-icon> </md-button>
 
 				</div>
 			</div>
 		</div>
-		
+
 		<p>&nbsp;</p>
 		<p>&nbsp;</p>
 
 		<div layout="row" layout-align="center end">
-			<md-button class="md-raised md-primary" ng-click="showConfirm($event)">submit</md-button>
+			<md-button class="md-raised md-primary"
+				ng-click="showConfirm($event)">submit</md-button>
 
 		</div>
 	</div>
