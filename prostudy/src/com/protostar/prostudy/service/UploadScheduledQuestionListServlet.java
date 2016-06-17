@@ -127,7 +127,7 @@ public class UploadScheduledQuestionListServlet extends HttpServlet {
 					sq.setOption2(split[4]);
 					sq.setOption3(split[5]);
 					sq.setOption4(split[6]);
-					sq.setCorrectAns(split[7]);
+					sq.setCorrectAns(split[7].trim());
 
 					ScheduledQuestionService sqs = new ScheduledQuestionService();
 					sqs.addQuestion(sq);
