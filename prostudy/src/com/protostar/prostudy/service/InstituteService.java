@@ -21,7 +21,7 @@ public class InstituteService {
 		ofy().save().entity(insti).now();
 		return now;
 	}
-
+	
 	@ApiMethod(name = "getInstitutes")
 	public List<InstituteEntity> getInstitutes() {
 		return ofy().load().type(InstituteEntity.class).list();

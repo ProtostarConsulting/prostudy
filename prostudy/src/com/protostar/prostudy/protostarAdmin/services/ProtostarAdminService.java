@@ -12,6 +12,7 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
+import com.googlecode.objectify.Key;
 import com.protostar.prostudy.entity.InstituteEntity;
 import com.protostar.prostudy.entity.UserEntity;
 import com.protostar.prostudy.protostarAdmin.entities.AccountType;
@@ -27,7 +28,7 @@ public class ProtostarAdminService {
 		ofy().save().entity(account).now();
 
 	}
-
+	
 	@ApiMethod(name = "getallAccountType")
 	public List<AccountType> getallAccountType() {
 		log.info("Inside getallAccountType.");
@@ -45,6 +46,16 @@ public class ProtostarAdminService {
 		 return type;
 	}
 
+/*	@ApiMethod(name = "updateAccountType")
+	public Key<InstituteEntity> updateAccountType(@Named("instituteID") long instituteID , InstituteEntity insti) {
+		
+		InstituteEntity selected = ofy().load().type(InstituteEntity.class).filter("instituteID" , instituteID).first().now();
+		selected.setAccounttype(insti.getAccounttype());
+		
+		Key<InstituteEntity> now = ofy().save().entity(selected).now();
+		return now;
+	}
+*/	
 	@ApiMethod(name = "initsetupnext")
 	public void initsetupnext() {
 		try {
