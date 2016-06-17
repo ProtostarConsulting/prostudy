@@ -3,15 +3,15 @@
 	<p>&nbsp;</p>
 
 <section layout="row" layout-align="end end" flex>
-<md-button class="md-raised md-primary" id="downloadExcel"
-			ng-click="downloadQuestionList()">Download Scheduled QuestionList
+<md-button ng-show="questions.length > 0"  class="md-raised md-primary" id="downloadExcel"
+			ng-click="downloadQuestionList()">Download QuestionList
 			<md-tooltip>
-			Download  Scheduled QuestionList</md-tooltip>
+			Download QuestionList</md-tooltip>
 			</md-button>
-		<md-button class="md-raised md-primary" id="uplodeExcel"
-			ng-click="uplodQuestionList($event)">Upload Scheduled QuestionList
+		<md-button  class="md-raised md-primary" id="uplodeExcel"
+			ng-click="uplodQuestionList($event)">Upload QuestionList
 			<md-tooltip>
-			Upload  Scheduled QuestionList</md-tooltip>
+			Upload QuestionList</md-tooltip>
 			</md-button>
 	</section>	
  <md-content>
@@ -80,9 +80,7 @@
 						<div >
 							{{question.correctAns}}
 						</div>
-						</td>
-
-					
+						</td>					
 						
 					</tr>
 				</tbody>
