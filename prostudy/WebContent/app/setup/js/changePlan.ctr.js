@@ -8,31 +8,32 @@ angular.module("prostudyApp").controller(
 			
 			$scope.curUser;
 			$scope.accounttype;
-			$scope.updatePlan = function(){
+			$scope.inst = {accounttype :''};
+			
+			$scope.updatePlan = function() {
 				
-				
-				$scope.getAccountTypeById = function() {
+				var adminService = appEndpointSF.getProtostarAdminService();
+				adminService.getAccountTypeById($scope.accounttype).then(
+						function(accountType) {
+						//	$scope.inst.accounttype = accountType;
+						//	$scope.inst = $scope.curUser.instituteObj;
+							
+							$scope.curUser.instituteObj.accounttype = accountType;
+							
+							var InstituteService = appEndpointSF.getInstituteService();
 
-					var adminService = appEndpointSF.getProtostarAdminService();
-					adminService.getAccountTypeById($scope.accounttype).then(
-							function(account) {
-								$scope.account = account;
-								$scope.curUser.instituteObj.accounttype = $scope.account;
-								var adminService = appEndpointSF.getProtostarAdminService();
-								
-/*								adminService.updateAccountType($scope.account).then(
-									function() {
-										
+							InstituteService.addInstitute($scope.curUser.instituteObj).then(
+									function(business) {
+										$scope.showUpdateToast();
 									});
-*/							});
-				}
-				
+						});
 
 			}
+
 			
 			
 			$scope.getAllAccountTypes = function() {
-				$scope.getAccountTypeById();
+				
 				var UserService = appEndpointSF.getUserService();
 				UserService.getAllAccountTypes().then(
 						function(planList) {

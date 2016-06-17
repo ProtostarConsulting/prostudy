@@ -1715,9 +1715,9 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return protostarAdminService;
 	}
 
-	protostarAdminService.addAccountType = function(account) {
+	protostarAdminService.addAccountType = function(account, instituteID) {
 		var deferred = $q.defer();
-		gapi.client.protostarAdminService.addAccountType(account).execute(function() {
+		gapi.client.protostarAdminService.addAccountType({'instituteID' : instituteID},account).execute(function() {
 			deferred.resolve({
 				"msg" : "Account Added Successfully."
 			});
