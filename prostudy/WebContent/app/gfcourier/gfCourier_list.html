@@ -3,8 +3,7 @@
 
 	<div layout="row" layout-align="end end" layout-xs="column">
 
-		<md-button class="md-raised md-primary" ng-click="openPopUp()">Add
-		In Bulk </md-button>
+		<md-button class="md-raised md-primary" ng-click="refresh()">Refresh </md-button>
 	</div>
 
 	<div layout="row" layout-xs="column">
@@ -20,7 +19,7 @@
 		</md-select> </md-input-container>
 
 		<md-input-container flex> <label>Logistics
-		</label> <md-select name="logistics" ng-model="tempCourierObj.logistics ">
+		</label> <md-select name="logistics" ng-model="logistics ">
 		<md-option ng-value="logistics" ng-repeat="logistics in logisticsList">{{logistics}}</md-option>
 		</md-select> </md-input-container>
 		
@@ -49,7 +48,7 @@
 			</thead>
 			<tbody>
 				<tr md-auto-select
-					ng-repeat="courier in gfCouriertList | orderBy: query.order | filter: courierType | filter: searchByName | limitTo: query.limit: (query.page - 1) * query.limit">
+					ng-repeat="courier in gfCouriertList | orderBy: query.order | filter: logistics | filter: courierType | filter: searchByName | limitTo: query.limit: (query.page - 1) * query.limit">
 
 					<td>{{courier.schoolName.schoolName}}</td>
 					<td>{{courier.logistics}}</td>
@@ -69,14 +68,9 @@
 </div>
 
 <div layout="row" layout-align="center center">
+	
 	<md-button
-		ui-sref="gfcourier.bookModule.add({selectedGFCourierID : selected[0].id})"
-		ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
-		ng-click=""> <md-icon md-svg-src="img/icons/edit.svg"></md-icon>
-	<md-tooltip>Edit </md-tooltip></md-button>
-
-	<md-button
-		ui-sref="gfcourier.bookModule.view({selectedGFCourierID : selected[0].id})"
+		ui-sref="courierModule.view({selectedGFCourierID : selected[0].id})"
 		ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
 		ng-click=""> <md-icon md-svg-src="img/icons/result.svg"></md-icon>
 	<md-tooltip>View </md-tooltip></md-button>

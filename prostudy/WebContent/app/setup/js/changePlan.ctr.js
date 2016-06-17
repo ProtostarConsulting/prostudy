@@ -7,6 +7,29 @@ angular.module("prostudyApp").controller(
 
 			
 			$scope.curUser;
+			$scope.accounttype;
+			$scope.updatePlan = function(){
+				
+				
+				$scope.getAccountTypeById = function() {
+
+					var adminService = appEndpointSF.getProtostarAdminService();
+					adminService.getAccountTypeById($scope.accounttype).then(
+							function(account) {
+								$scope.account = account;
+								$scope.curUser.instituteObj.accounttype = $scope.account;
+								var adminService = appEndpointSF.getProtostarAdminService();
+								
+/*								adminService.updateAccountType($scope.account).then(
+									function() {
+										
+									});
+*/							});
+				}
+				
+
+			}
+			
 			
 			$scope.getAllAccountTypes = function() {
 				$scope.getAccountTypeById();
@@ -17,14 +40,7 @@ angular.module("prostudyApp").controller(
 						});
 			}
 			
-			$scope.getAccountTypeById = function() {
-
-				var adminService = appEndpointSF.getProtostarAdminService();
-				adminService.getAccountTypeById($scope.curUser.instituteID).then(
-						function(account) {
-							$scope.account = account;
-						});
-			}
+			
 			
 			$scope.showSavedToast = function() {
 				$mdToast.show($mdToast.simple().content('Institute User Saved!')

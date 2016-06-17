@@ -52,12 +52,12 @@
 					<td>{{student.schoolName.schoolName}}</td>
 					<td>{{student.contact}}</td>
 					<td><md-button
-							ui-sref="gandhifoundation.studentModule.add({selectedGFStudID : student.id})"
+							ui-sref="studentModule.add({selectedGFStudID : student.id})"
 							class="md-fab md-primary md-hue-2" ng-click=""> <md-icon
 							md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit
 						</md-tooltip></md-button></td>
 					<td><md-button
-							ui-sref="gandhifoundation.studentModule.view({selectedGFStudID : student.id})"
+							ui-sref="studentModule.view({selectedGFStudID : student.id})"
 							class="md-fab md-primary md-hue-2" ng-click=""> <md-icon
 							md-svg-src="img/icons/result.svg"></md-icon> <md-tooltip>View
 						</md-tooltip></md-button></td>
@@ -66,7 +66,7 @@
 		</table>
 		</md-data-table-container>
 		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
-			md-total={{students.length}} md-trigger="onpagechange"></md-data-table-pagination>
+			md-total={{gfStudentList.length}} md-trigger="onpagechange"></md-data-table-pagination>
 	</div>
 </div>
 

@@ -43,6 +43,18 @@ angular
 						});
 					}
 					
+					$scope.getGFBookStockByInstituteId = function() {
+						var gfBookStockService = appEndpointSF
+								.getGFBookStockService();
+						gfBookStockService.getGFBookByInstituteId(
+								$scope.curUser.instituteID).then(
+								function(tempBooks) {
+									$scope.bookStocks = tempBooks;
+
+									});
+					}
+					$scope.bookStocks = [];
+					
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
 
@@ -50,6 +62,7 @@ angular
 								$scope.getGFCourierById();
 							}
 							$scope.getPartnerByInstitute();
+							$scope.getGFBookStockByInstituteId();
 						} else {
 							$log.debug("Services Not Loaded, watiting...");
 							$timeout($scope.waitForServiceLoad, 1000);

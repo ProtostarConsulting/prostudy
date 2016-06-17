@@ -3,7 +3,7 @@ angular
 		.controller(
 				"gfCourierListCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $log, $q, $mdDialog, $mdMedia,
+						$mdUtil, $log, $q, $mdDialog, $mdMedia,$state,
 						tableTestDataFactory, appEndpointSF) {
 					console.log("Inside studentListPageCtr");
 
@@ -17,7 +17,8 @@ angular
 						limit : 5,
 						page : 1
 					};
-
+					$scope.logisticsList = [ "By Post", "By Hand", "ST Postal",
+												"Tej Courier" ];
 					$scope.courierTypelist = [ "Book", "Certificate",
 					       					"Error Certificate", "Error books", "Prize Certificate" ];
 
@@ -58,5 +59,8 @@ angular
 
 					$scope.waitForServiceLoad();
 
+					$scope.refresh = function() {
+						$state.reload();
+					}
 				
 				});

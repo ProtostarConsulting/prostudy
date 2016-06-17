@@ -266,7 +266,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 	UserService.getAllAccountTypes = function() {
 		var deferred = $q.defer();
 		gapi.client.userService.getAllAccountTypes().execute(function(resp) {
-			deferred.resolve(resp.result);
+			deferred.resolve(resp.items);
 		});
 		return deferred.promise;
 	}
@@ -1728,7 +1728,7 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 
 	protostarAdminService.updateAccountType = function(account) {
 		var deferred = $q.defer();
-		gapi.client.protostarAdminService.addAccountType(account).execute(function() {
+		gapi.client.protostarAdminService.updateAccountType(account).execute(function() {
 			deferred.resolve({
 				"msg" : "Account Update Successfully."
 			});

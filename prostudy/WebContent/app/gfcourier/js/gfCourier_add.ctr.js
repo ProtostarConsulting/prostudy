@@ -49,6 +49,10 @@ angular
 					$scope.addGFCourier = function() {
 						$scope.tempCourierObj.instituteID = $scope.curUser.instituteID;
 						$scope.tempCourierObj.registrationID = $scope.registrationID1.govRegisterno;
+						
+						for(var i=0; i < $scope.tempCourierObj.bookLineItemList.length; i++){
+							$scope.tempCourierObj.totalWeight = + $scope.tempCourierObj.bookLineItemList[i].weight;
+						}
 						var gfCourierService = appEndpointSF
 								.getGFCourierService();
 
