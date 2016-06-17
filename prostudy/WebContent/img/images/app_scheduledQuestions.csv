@@ -1,4 +1,2 @@
 instituteID,description,category,option1,option2,option3,option4,correctAns
 ,Java Source Code is compiled into ______________.?,Java,Source Code,.Obj,Bytecode,.Exe,option3
-,Which of the tool is used to compile java code ?,Java,Jar,Javadoc,java,javac,option4
-,Which of the following tool used to execute java code.,,rmic,Java,javac,javadoc,option3
