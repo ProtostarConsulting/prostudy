@@ -31,6 +31,7 @@ public class UserEntity {
 	@Index
 	private String division;
 	private List<String> authority;
+	private String authorizations;
 
 	@Index
 	private Long instituteID;
@@ -206,6 +207,14 @@ public class UserEntity {
 
 	public void setInstituteID(Long instituteID) {
 		this.instituteID = instituteID;
+	}
+
+	public String getAuthorizations() {
+		return authorizations;
+	}
+
+	public void setAuthorizations(String authorizations) {
+		this.authorizations = authorizations;
 	}
 
 }
