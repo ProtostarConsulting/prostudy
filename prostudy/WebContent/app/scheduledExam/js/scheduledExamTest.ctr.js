@@ -129,7 +129,7 @@ angular
 
 						for (var i = 0; i < $scope.userAnsList.length; i++) {
 								
-							if ($scope.userAnsList[i].userOption == $scope.Test.listOfQuestion[i].correctAns) {
+							if ($scope.userAnsList[i].userOption === $scope.Test.listOfQuestion[i].correctAns) {
 								$scope.tempScheduledExamResult.score++;
 							}
 						}
