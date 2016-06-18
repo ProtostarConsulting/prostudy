@@ -209,7 +209,7 @@ angular
 												$scope.getInstituteById();
 
 											}
-											
+
 											$scope.loading = false;
 
 										});
@@ -268,7 +268,16 @@ angular
 
 											var jsonUserAuthObject = angular
 													.fromJson($scope.curUser.authorizations);
-											$scope.userAuthObject = jsonUserAuthObject;
+
+											if ($scope.curUser.authorizations) {
+												var jsonUserAuthObject = angular
+														.fromJson($scope.curUser.authorizations);
+												$scope.userAuthObject = jsonUserAuthObject;
+											} else {
+												$scope.userAuthObject = {
+													authorizations : []
+												};
+											}
 
 											if (result
 													&& result.authorizations != undefined) {
@@ -281,8 +290,8 @@ angular
 																$scope.userAuthObject,
 																userAuthMasterEntity);
 
-												userAuthMasterEntity
-														.authorizations.sort(function(a, b) {
+												userAuthMasterEntity.authorizations
+														.sort(function(a, b) {
 															return (a.orderNumber > b.orderNumber) ? 1
 																	: -1
 														});
