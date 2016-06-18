@@ -46,16 +46,7 @@ public class ProtostarAdminService {
 		 return type;
 	}
 
-/*	@ApiMethod(name = "updateAccountType")
-	public Key<InstituteEntity> updateAccountType(@Named("instituteID") long instituteID , InstituteEntity insti) {
-		
-		InstituteEntity selected = ofy().load().type(InstituteEntity.class).filter("instituteID" , instituteID).first().now();
-		selected.setAccounttype(insti.getAccounttype());
-		
-		Key<InstituteEntity> now = ofy().save().entity(selected).now();
-		return now;
-	}
-*/	
+	
 	@ApiMethod(name = "initsetupnext")
 	public void initsetupnext() {
 		try {
