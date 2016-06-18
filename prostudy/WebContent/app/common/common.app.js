@@ -119,7 +119,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	})
 	.state('setup.instituteUsersList', {
 		url : "/instituteUsersList",
-		templateUrl : '/app/setup/InstituteUserList.html',
+		templateUrl : '/app/setup/instituteUserList.html',
 		controller : 'instituteUserListCtr'	
 	})
 	.state('setup.changePlan', {
