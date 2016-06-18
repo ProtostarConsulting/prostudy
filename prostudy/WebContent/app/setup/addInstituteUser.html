@@ -2,8 +2,8 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
-<form name="instituteAddUserForm" ng-model=instituteAddUserForm
-	layout-xs="column" layout-gt-sm="column">
+<form name="instituteAddUserForm" layout-gt-sm="column" ng-cloak
+	class="md-inline-form">
 
 	<div layout="column" layout-align="" layout-xs="column">
 
@@ -13,11 +13,11 @@
 				name<span style="color: red"
 				ng-show="instituteAddUserForm.firstName.$error.required"
 				class="mandatory">*</span>
-			</label> <input name="firstName" ng-model="tempUser.firstName"
-				id="firstName" ng-required="true">
+			</label> <input name="firstName" ng-model="tempUser.firstName" id="firstName"
+				ng-required="true">
 			<div ng-messages="instituteAddUserForm.firstName.$error"
 				ng-if="instituteAddUserForm.firstName.$submitted || instituteAddUserForm.firstName.$touched">
-				<div ng-message="required">Please Enter Admin FirstName.</div>
+				<div ng-message="required">Please Enter User First Name.</div>
 			</div>
 			</md-input-container>
 
@@ -29,7 +29,7 @@
 				ng-required="true">
 			<div ng-messages="instituteAddUserForm.lastName.$error"
 				ng-if="instituteAddUserForm.lastName.$submitted || instituteAddUserForm.lastName.$touched">
-				<div ng-message="required">Please Enter Admin LastName.</div>
+				<div ng-message="required">Please Enter User Last Name.</div>
 			</div>
 			</md-input-container>
 
@@ -37,34 +37,31 @@
 
 		<div layout="row" layout-align="centre centre" layout-xs="column">
 
-
 			<md-input-container flex> <label>Address</label>
 			<input name="address " ng-model="tempUser.address" id="address">
 			</md-input-container>
 
-			<md-input-container flex> <label>Contact<span
-				style="color: red"
-				ng-show="instituteAddUserForm.contact.$error.required"
-				class="mandatory">*</span></label> <input type="number" name="contact"
-				id="contact" ng-model="tempUser.contact" ng-required="true"
-				ng-minlength="10" ng-maxlength="10">
-			<div ng-messages="instituteAddUserForm.contact.$error"
-				ng-if="instituteAddUserForm.contact.$submitted || instituteAddUserForm.contact.$touched">
-				<div ng-message="required">Please Enter Contact.</div>
-				<span class="help-block"
-					ng-show="((instituteAddUserForm.contact.$error.minlength || instituteAddUserForm.contact.$error.maxlength) && instituteAddUserForm.contact.$dirty) ">Contact
-					number should be 10 digits</span>
+			<md-input-container class="md-block" flex-gt-sm>
+			<label>Phone Number</label> <input name="contact"
+				ng-model="tempUser.contact" required ng-pattern="/^[0-9]{10}$/"
+				md-maxlength="10">
+			<div ng-messages="instituteAddUserForm.contact.$error" role="alert"
+				multiple>
+				<div ng-message="required" class="my-message">This is a
+					required value.</div>
+				<div ng-message="pattern" class="my-message">Not a valid
+					value.</div>
 			</div>
 			</md-input-container>
+
 		</div>
 	</div>
 
 	<div layout="row" layout-xs="column">
 
-		<md-input-container flex>
-		<md-checkbox ng-model="tempUser.isGoogleUser" ng-true-value="true"
-			ng-false-value="false">
-		<label>Is Google User</label> </md-checkbox> </md-input-container>
+		<md-input-container flex> <md-checkbox
+			ng-model="tempUser.isGoogleUser" ng-true-value="true"
+			ng-false-value="false">Is Google User </md-checkbox></md-input-container>
 
 		<md-input-container flex> <label>Email-id<span
 			style="color: red"
@@ -118,8 +115,8 @@
 			Role<span style="color: red"
 			ng-show="instituteAddUserForm.role.$error.required" class="mandatory">*</span>
 		</label> <md-select name="role" ng-model="tempUser.role" ng-required="true">
-		<md-option ng-value="role" ng-repeat="role in instRoles" ng-selected="$first">{{role}}</md-option>
-		</md-select>
+		<md-option ng-value="role" ng-repeat="role in instRoles"
+			ng-selected="$first">{{role}}</md-option> </md-select>
 		<div ng-messages="instituteAddUserForm.role.$error"
 			ng-if="instituteAddUserForm.role.$submitted || instituteAddUserForm.role.$touched">
 			<div ng-message="required">Please Select School Category.</div>
@@ -132,7 +129,7 @@
 
 		<md-button class="md-raised md-primary" id="addButton"
 			ng-disabled="instituteAddUserForm.$invalid"
-			ng-click="addInstituteUsers()">Add Admin to Institute</md-button>
+			ng-click="addInstituteUsers()">Add User</md-button>
 
 	</div>
 
