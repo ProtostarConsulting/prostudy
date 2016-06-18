@@ -72,14 +72,10 @@
 				md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
 			<md-toolbar class="md-theme-indigo">
 			<h1 class="md-toolbar-tools">Apps Module</h1>
-			</md-toolbar> <md-content layout="column" ng-controller="LeftCtrl"> <md-button
+			</md-toolbar> <md-content layout="column" ng-controller="LeftCtrl">	<!--  <md-button
 				class="md-primary" ng-click="close()" hide-gt-md> Close
 			Sidenav </md-button> <md-button ui-sref="home" ng-click="close()"
-				class="md-primary" show-gt-md> Home </md-button> <!-- <md-button
-				ui-sref="partnerSchool"
-				ng-show="curUser.authority.indexOf('admin') > -1 || modules[0].modules.indexOf('partnerSchool') > -1"
-				ng-click="close()" class="md-primary" show-gt-md>
-			Partner School </md-button> --> <md-button ui-sref="setup"
+				class="md-primary" show-gt-md> Home </md-button> <md-button ui-sref="setup"
 				ng-show="curUser.authority.indexOf('admin') > -1 || modules[0].modules.indexOf('setup') > -1"
 				ng-click="close()" class="md-primary" show-gt-md>Setup </md-button>
 
@@ -128,7 +124,14 @@
 				ng-click="close()" class="md-primary" show-gt-md>Google
 			Apps Integration</md-button> <md-button ui-sref="gandhifoundation"
 				ng-click="close()" class="md-primary" show-gt-md>Gandhi
-			Research Foundation </md-button> </md-content> </md-sidenav>
+			Research Foundation </md-button> -->
+
+			<md-button
+				ng-repeat="auth in curUser.userAuthMasterEntity.authorizations"
+				ui-sref="{{auth.uiStateName}}" ng-click="close()" class="md-primary"
+				show-gt-md> <span ng-bind="auth.authDisplayName">
+			</span></md-button>
+			</md-content> </md-sidenav>
 
 			<!-- ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'" -->
 
