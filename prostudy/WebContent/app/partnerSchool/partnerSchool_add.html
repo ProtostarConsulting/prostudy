@@ -158,7 +158,7 @@
 			</md-input-container>
 		<!-- 	<span flex="20"></span> -->
 			<md-input-container flex> <label>Pin</label>
-			<input type="number" name="pin" ng-model="partnerSchool.address.pin"> </md-input-container>
+			<input name="pin" ng-model="partnerSchool.address.pin"> </md-input-container>
 		<!-- 	<span flex="10"></span> -->
 		</div>
 
@@ -255,6 +255,7 @@
 			value="OffLine" class="md-primary">OffLine</md-radio-button> <md-radio-button
 			value="OnLine" class="md-primary"> OnLine </md-radio-button> </md-radio-group> </md-input-container>
 
+
 	</div>
 	<div layout="row" layout-xs="column">
 
@@ -307,7 +308,7 @@
 			No <!-- <span style="color: red"
 			ng-show="partnerSchoolForm.headMasterMobile.$error.required"
 			class="mandatory">*</span> -->
-		</label> <input type="number" name="headMasterMobile"
+		</label> <input  name="headMasterMobile"
 			ng-model="contactDetail.headMasterMobile" >
 		<div ng-messages="partnerSchoolForm.headMasterMobile.$error"
 			ng-if="partnerSchoolForm.headMasterMobile.$submitted || partnerSchoolForm.headMasterMobile.$touched">

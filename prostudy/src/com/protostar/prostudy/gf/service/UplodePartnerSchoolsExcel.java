@@ -22,6 +22,7 @@ import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.protostar.prostudy.entity.Address;
 import com.protostar.prostudy.gf.entity.BookSummary;
 import com.protostar.prostudy.gf.entity.ContactDetail;
+import com.protostar.prostudy.gf.entity.CoordinatorDetail;
 import com.protostar.prostudy.gf.entity.ExamDetail;
 import com.protostar.prostudy.gf.entity.PartnerSchoolEntity;
 
@@ -30,16 +31,16 @@ import com.protostar.prostudy.gf.entity.PartnerSchoolEntity;
  */
 public class UplodePartnerSchoolsExcel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UplodePartnerSchoolsExcel() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-    private BlobstoreService blobstoreService = BlobstoreServiceFactory
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public UplodePartnerSchoolsExcel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	private BlobstoreService blobstoreService = BlobstoreServiceFactory
 			.getBlobstoreService();
 
 	protected void doPost(HttpServletRequest request,
@@ -112,7 +113,6 @@ public class UplodePartnerSchoolsExcel extends HttpServlet {
 
 			try {
 				// gte business entity
-				
 
 				for (int row = 1; row < split2.length; row++) {
 
@@ -149,18 +149,17 @@ public class UplodePartnerSchoolsExcel extends HttpServlet {
 					System.out.println(" coordinatorPhoneNum: " + split[25]);
 					System.out.println(" coordinatorEmailId: " + split[26]);
 					System.out.println(" Col28: " + split[27]);
-					
-					
-					// insert partner school	
-					PartnerSchoolEntity patschool=new PartnerSchoolEntity();
+
+					// insert partner school
+					PartnerSchoolEntity patschool = new PartnerSchoolEntity();
 					patschool.setSchoolName(split[0]);
 					patschool.setDesc(split[1]);
 					patschool.setFormNumber(split[2]);
 					patschool.setCategory(split[3]);
 					patschool.setPrimaryContact(split[4]);
 					patschool.setInstituteID(insId);
-					//address
-					Address add=new Address();
+					// address
+					Address add = new Address();
 					add.setLine1(split[5]);
 					add.setLine2(split[6]);
 					add.setPin(split[10]);
@@ -168,10 +167,11 @@ public class UplodePartnerSchoolsExcel extends HttpServlet {
 					add.setState(split[8]);
 					add.setCountry(split[9]);
 					patschool.setAddress(add);
-					//ExamDetail					
-					ExamDetail eDtail=new ExamDetail();
+					// ExamDetail
+					ExamDetail eDtail = new ExamDetail();
 					eDtail.setBookRequired(split[19]);
-					eDtail.setExamMedium(Arrays.asList(split[15],split[16],split[17]));
+					eDtail.setExamMedium(Arrays.asList(split[15], split[16],
+							split[17]));
 					eDtail.setFemale(split[13]);
 					eDtail.setMale(split[12]);
 					eDtail.setModeOfExam(split[20]);
@@ -179,28 +179,34 @@ public class UplodePartnerSchoolsExcel extends HttpServlet {
 					eDtail.setTotalStudent(split[11]);
 					eDtail.setYearOfExam(split[18]);
 					patschool.setExamDetail(eDtail);
-					//Contact Detail 
-					
-					ContactDetail conDetail=new ContactDetail();
-				//	conDetail.setCoordinatorEmailId(split[26]);
-				//	conDetail.setCoordinatorName(split[24]);
-					//conDetail.setCoordinatorPhoneNum(split[25]);
+					// Contact Detail
+
+					ContactDetail conDetail = new ContactDetail();
+					// conDetail.setCoordinatorEmailId(split[26]);
+					// conDetail.setCoordinatorName(split[24]);
+					// conDetail.setCoordinatorPhoneNum(split[25]);
+					CoordinatorDetail corddetail = new CoordinatorDetail();
+					corddetail.setSrno(1);
+					corddetail.setCoordinatorEmailId(split[26]);
+					corddetail.setCoordinatorName(split[24]);
+					corddetail.setCoordinatorPhoneNum(split[25]);
+
+					conDetail.setCoordinatorDetail(Arrays.asList(corddetail));
 					conDetail.setHeadMasterEmailId(split[23]);
 					conDetail.setHeadMasterMobile(split[22]);
 					conDetail.setHeadMasterName(split[21]);
 					patschool.setContactDetail(conDetail);
-					
-					
-					//book summary
-					BookSummary bookSummary=new BookSummary();
+
+					// book summary
+					BookSummary bookSummary = new BookSummary();
 					patschool.setBookSummary(bookSummary);
-							
-					PartnerSchoolService partnerSchool=new PartnerSchoolService();
+
+					PartnerSchoolService partnerSchool = new PartnerSchoolService();
 					partnerSchool.addPartnerSchool(patschool);
-							
+
 				}
-				  blobstoreService.delete(blobKeys.get(0));
-				  
+				blobstoreService.delete(blobKeys.get(0));
+
 				response.sendRedirect("/#/partnerSchool/listPartnerSchool");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
