@@ -15,9 +15,7 @@ angular.module("prostudyApp").controller(
 				var adminService = appEndpointSF.getProtostarAdminService();
 				adminService.getAccountTypeById($scope.accounttype).then(
 						function(accountType) {
-						//	$scope.inst.accounttype = accountType;
-						//	$scope.inst = $scope.curUser.instituteObj;
-							
+												
 							$scope.curUser.instituteObj.accounttype = accountType;
 							
 							var InstituteService = appEndpointSF.getInstituteService();
@@ -29,8 +27,6 @@ angular.module("prostudyApp").controller(
 						});
 
 			}
-
-			
 			
 			$scope.getAllAccountTypes = function() {
 				
@@ -39,22 +35,7 @@ angular.module("prostudyApp").controller(
 						function(planList) {
 							$scope.accountTypes = planList;
 						});
-			}
-			
-			
-			
-			$scope.showSavedToast = function() {
-				$mdToast.show($mdToast.simple().content('Institute User Saved!')
-						.position("top").hideDelay(3000));
-			};
-	
-
-				
-			$scope.cancelButton = function() {
-				$state.go("^", {});
-			}
-			
-			
+			}		
 		
 			$scope.waitForServiceLoad = function() {
 				  if (appEndpointSF.is_service_ready) {					  

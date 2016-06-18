@@ -111,9 +111,7 @@ angular
 								.then(
 										function(modules) {
 											$scope.modules = modules;
-											console
-													.log("$scope.modules==ROLE=="
-															+ $scope.modules);
+											console.log("$scope.modules==ROLE=="+ $scope.modules);
 											$scope.$emit('moduleData', {
 												modules : $scope.modules
 											});
@@ -151,8 +149,7 @@ angular
 
 						$log.debug('ID: ' + profile.getId());
 
-						$scope.googleUserDetails = profile.getName() + "<br>"
-								+ profile.getEmail()
+						$scope.googleUserDetails = profile.getName() + "<br>"+ profile.getEmail()
 
 						appEndpointSF
 								.getUserService()
@@ -184,8 +181,7 @@ angular
 											}
 
 											if (loggedInUser.id == undefined) {
-												$log
-														.debug('Inside loggedInUser.id == undefined...');
+												
 												loggedInUser.email_id = profile
 														.getEmail();
 												profile.getName().split(" ")[0];
@@ -194,24 +190,19 @@ angular
 												loggedInUser.lastName = profile
 														.getName().split(" ")[1];
 
-												appEndpointSF
-														.getLocalUserService()
-														.saveLoggedInUser(
-																loggedInUser);
+												appEndpointSF.getLocalUserService().saveLoggedInUser(loggedInUser);
 
 												$state.go("updatemyprofile", {
 													flag : $scope.flag
 												});
 
 											} else {
-												$log
-														.debug('Inside else of loggedInUser.id == undefined...');
+												$log.debug('Inside else of loggedInUser.id == undefined...');
 												$scope.getInstituteById();
 
 											}
 
 											$scope.loading = false;
-
 										});
 
 					}

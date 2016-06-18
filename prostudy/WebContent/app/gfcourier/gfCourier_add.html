@@ -16,8 +16,7 @@
 		<div layout="row" layout-xs="column">
 
 			<md-input-container flex> <label>Courier
-				Type<span style="color: red"
-				ng-show="gfCourierForm.courierType.$error.required"
+				Type<span style="color: red" ng-messages="gfCourierForm.courierType.$error.required"
 				class="mandatory">*</span>
 			</label> <md-select name="courierType" ng-model="tempCourierObj.courierType "
 				ng-required="true"> <md-option ng-value="courierType"
@@ -45,27 +44,26 @@
 		</div>
 
 		<div layout="row" layout-xs="column" flex>
-
+<!-- 
 			<md-input-container flex> <label>Registration
-				ID <span style="color: red"
-				ng-show="gfCourierForm.registrationID.$error.required"
-				class="mandatory">*</span>
-			</label> <md-select name="registrationID"
-				ng-model="registrationID1" ng-required="true">
-			<md-option ng-value="registrationID"
-				ng-repeat="registrationID in pSchoolList">{{registrationID.govRegisterno}}</md-option>
+				ID <span style="color: red" ng-show="gfCourierForm.govRegisterno.$error.required" class="mandatory">*</span>
+			</label> <md-select name="govRegisterno"
+				ng-model="govRegisterno1" ng-required="true">
+			<md-option ng-value="govRegisterno"
+				ng-repeat="govRegisterno in pSchoolList">{{govRegisterno.govRegisterno}}</md-option>
 			</md-select>
-			<div ng-messages="gfCourierForm.registrationID.$error"
-				ng-if="gfCourierForm.registrationID.$submitted || gfCourierForm.registrationID.$touched">
+			<div ng-messages="gfCourierForm.govRegisterno.$error"
+				ng-if="gfCourierForm.govRegisterno.$submitted || gfCourierForm.govRegisterno.$touched">
 				<div ng-message="required">Please Select Standards.</div>
 			</div>
 			</md-input-container>
+ -->
+	
 
-
-			<md-input-container flex> <label>School
-				/ College / Institute<span style="color: red"
-				ng-show="gfCourierForm.level.$error.required" class="mandatory">*</span>
-			</label> <md-select name="level" ng-model="tempCourierObj.schoolName"
+			<md-input-container flex> <label>School / College / Institute
+				<span style="color: red" ng-show="gfCourierForm.level.$error.required" class="mandatory">*</span>
+			</label> <md-select name="level" ng-model="schoolName" 
+			ng-change="schoolChangeDDL($index, schoolName)"
 				ng-required="true"> <md-option ng-value="schoolName"
 				ng-repeat="schoolName in pSchoolList">{{schoolName.schoolName}}</md-option>
 			</md-select>
@@ -74,16 +72,23 @@
 				<div ng-message="required">Please Select School Category.</div>
 			</div>
 			</md-input-container>
+			
+			<md-input-container flex> <label>Gov. Regd. No.</label>
+				
+			<input name="govRegisterno" ng-model="tempCourierObj.govRegisterno"
+				ng-required="true" readonly="only">
+			</md-input-container>
 		</div>
 
 		<div layout="row" layout-xs="column" flex>
 
-			<md-input-container flex> <label>From <span
-				style="color: red"
-				ng-show="gfCourierForm.courierFrom.$error.required"
-				class="mandatory">*</span>
-			</label> <input name="courierFrom" ng-model="tempCourierObj.courierFrom"
-				ng-required="true">
+			<md-input-container flex> <label>From 
+			<span style="color: red" ng-show="gfCourierForm.courierFrom.$error.required" class="mandatory">*</span>
+			</label>
+				
+				 <textarea name="courierFrom" ng-model="tempCourierObj.courierFrom" rows="3"
+				cols="1" ng-required="true"></textarea>
+				
 			<div ng-messages="gfCourierForm.courierFrom.$error"
 				ng-if="gfCourierForm.courierFrom.$submitted || gfCourierForm.courierFrom.$touched">
 				<div ng-message="required">Please Enter From Name.</div>
@@ -93,8 +98,14 @@
 			<md-input-container flex> <label>To <span
 				style="color: red" ng-show="gfCourierForm.courierTo.$error.required"
 				class="mandatory">*</span>
-			</label> <input name="courierTo" ng-model="tempCourierObj.courierTo"
-				ng-required="true">
+			</label>
+				 <textarea name="courierTo" ng-model="tempCourierObj.courierTo" rows="3"
+				cols="1" ng-required="true">
+				
+				
+				
+				</textarea>
+				
 			<div ng-messages="gfCourierForm.courierTo.$error"
 				ng-if="gfCourierForm.courierTo.$submitted || gfCourierForm.courierTo.$touched">
 				<div ng-message="required">Please Enter name whome To sent.</div>

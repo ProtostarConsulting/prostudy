@@ -7,7 +7,7 @@
 
 		<div layout="row" layout-xs="column">
 			<md-datepicker flex ng-model="tempCourier.courierDispatchDate"
-				md-placeholder="Select Date" ng-disabled="true"></md-datepicker>
+				md-placeholder="Select Date" readonly="true"></md-datepicker>
 
 
 		</div>
@@ -16,14 +16,14 @@
 
 			<md-input-container flex> <label>Courier
 				Type </label> <md-select name="courierType"
-				ng-model="tempCourier.courierType " ng-disabled="true"> <md-option
+				ng-model="tempCourier.courierType " readonly="true"> <md-option
 				ng-value="courierType" ng-repeat="courierType in courierTypelist">{{courierType}}</md-option>
 			</md-select> </md-input-container>
 
 
 			<md-input-container flex> <label>Logistics
-			</label> <md-select name="logistics" ng-model="tempCourier.logistics " ng-disabled="true">
-			<md-option ng-value="logistics"
+			</label> <md-select name="logistics" ng-model="tempCourier.logistics "
+				readonly="true"> <md-option ng-value="logistics"
 				ng-repeat="logistics in logisticsList">{{logistics}}</md-option> </md-select> </md-input-container>
 
 		</div>
@@ -39,7 +39,7 @@
 			<md-input-container flex> <label>Weight
 
 			</label> <input name="weight" ng-model="tempCourier.totalWeight"
-				ng-disabled="true"> </md-input-container>
+				readonly="true"> </md-input-container>
 		</div>
 
 		<div layout="row" layout-xs="column" flex>
@@ -48,10 +48,10 @@
 
 			<md-input-container flex> <label>From </label> <input
 				name="courierFrom" ng-model="tempCourier.courierFrom"
-				ng-disabled="true"> </md-input-container>
+				readonly="true"> </md-input-container>
 
 			<md-input-container flex> <label>To </label> <input
-				name="courierTo" ng-model="tempCourier.courierTo" ng-disabled="true">
+				name="courierTo" ng-model="tempCourier.courierTo" readonly="true">
 
 			</md-input-container>
 

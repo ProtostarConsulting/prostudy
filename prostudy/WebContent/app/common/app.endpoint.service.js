@@ -376,7 +376,6 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 		gapi.client.load('gfStudentService', 'v0.1', function() {
 			$log.debug("gfStudentService Loaded......");
 		}, apiRoot);
-
 		gapi.client.load('gfCourierService', 'v0.1', function() {
 			$log.debug("gfCourierService Loaded......");
 		}, apiRoot);

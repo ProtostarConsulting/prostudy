@@ -172,7 +172,7 @@ angular
 						page : 1
 					};
 					$scope.cancelButton = function() {
-						$state.go("gandhifoundation.studentModule", {});
+						$state.go("courierModule", {});
 					}
 					
 					
@@ -182,25 +182,8 @@ angular
 					    gfBookStockService.getGFBookByInstituteId(
 					      $scope.curUser.instituteID).then(
 					      function(tempBooks) {
-					       $scope.bookStocks = tempBooks;
-					       
-/*					       for(var i; $scope.bookStocks.length > 0; i++){
-					    	 
-					    	   if($scope.bookStocks[i].id == $scope.partnerSchool.bookSummary.bookDetail.bookName){
-					    		   
-					    		   $scope.tempWeight = $scope.bookStocks[i].weight * $scope.partnerSchool.bookSummary.bookDetail.totalStud;
-					    		   $scope.weight.push(tempWeight);
-					    		   
-					    		   $log.debug("Inside $scope.bookStocks[i].id" +$scope.weight);
-					    		   
-					    		   for(var i; $scope.weight.length > 0; i++){
-					    			   $scope.weight1 = + $scope.weight[i];
-					    			   $log.debug("Inside $scope.weight1" +$scope.weight1);
-						    	   }
-					    	   }
-								
-							}
-*/					      });
+					       $scope.bookStocks = tempBooks;					       
+					      });
 					   }
 					   $scope.bookStocks = [];
 
@@ -217,5 +200,11 @@ angular
 
 					   $scope.waitForServiceLoad1();
 					   
-					   
+					   $scope.schoolChangeDDL = function(index, schoolName) {
+													
+							$scope.tempCourierObj.courierTo = $scope.tempCourierObj.schoolName+""+ schoolName.address.line1 + "," + schoolName.address.city +","+ schoolName.address.pin;
+							 $scope.tempCourierObj.govRegisterno = schoolName.govRegisterno;
+							 $scope.tempCourierObj.courierFrom = $scope.curUser.instituteObj.name +","+ $scope.curUser.instituteObj.address;
+							 
+						};						
 				});
