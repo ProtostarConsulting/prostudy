@@ -3,11 +3,10 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import java.util.List;
 
-import javax.inject.Named;
-
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
+import com.google.api.server.spi.config.Named;
 import com.protostar.prostudy.gf.entity.GFStudentEntity;
 import com.protostar.prostudy.until.data.UtilityService;
 
