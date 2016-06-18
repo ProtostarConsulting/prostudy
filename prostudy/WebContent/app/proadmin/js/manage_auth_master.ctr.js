@@ -28,6 +28,7 @@ angular
 											if (result
 													&& result.authorizations != undefined) {
 												$scope.authorizationMasterEntity.authorizations = result.authorizations;
+												$log.debug("angular.toJson(result.authorizations):" + angular.toJson(result.authorizations));
 												//initially selected auth is master list
 												$scope.selectedAuth = $scope.authorizationMasterEntity;
 												$scope.selectedAuthStack.push($scope.authorizationMasterEntity);
