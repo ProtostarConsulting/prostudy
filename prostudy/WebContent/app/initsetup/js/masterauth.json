@@ -1,0 +1,65 @@
+{
+"authorizations": [
+	{
+	"authName": "home",
+	"authDisplayName": "Home",
+	"uiStateName": "home",
+	"orderNumber": "0"
+	},
+	{
+	"authName": "proadmin",
+	"authDisplayName": "Proadmin",
+	"uiStateName": "proadmin",
+	"orderNumber": "1"
+	},
+	{
+	"authName": "setup",
+	"authDisplayName": "Setup",
+	"uiStateName": "setup",
+	"orderNumber": "2"
+	},
+	{
+	"authName": "gfe",
+	"authDisplayName": "Google for Education Dashboard",
+	"uiStateName": "gfe",
+	"orderNumber": "3",
+	"authorizations": [
+						{
+						"authName": "list",
+						"authDisplayName": "List",
+						"uiStateName": "list",
+						"orderNumber": "1",
+						"authorizations": [
+								{
+								"authName": "inList",
+								"authDisplayName": "inList"
+								}
+						]
+						},
+						{
+						"authName": "add",
+						"authDisplayName": "Add"
+						}
+						
+		]
+	},
+	{
+	"authName": "GRF",
+	"authDisplayName": "Gandhi Research Foundation",
+	"uiStateName": "gandhifoundation",
+	"orderNumber": "4"
+	},
+	{
+	"authName": "exams",
+	"authDisplayName": "Exams",
+	"uiStateName": "exams",
+	"orderNumber": "5"
+	},	
+	{
+	"authName": "books",
+	"authDisplayName": "Books",
+	"uiStateName": "book",
+	"orderNumber": "4"
+	}
+]
+}

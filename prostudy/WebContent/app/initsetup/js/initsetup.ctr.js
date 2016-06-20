@@ -3,16 +3,19 @@ angular
 		.controller(
 				"initsetup",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $stateParams, $log, objectFactory,
+						$mdUtil, $stateParams, $log, $http, objectFactory,
 						appEndpointSF) {
-
 					$scope.showSimpleToast = function(msgBean) {
 						$mdToast.show($mdToast.simple().content(msgBean)
 								.position("top").hideDelay(3000));
 					};
-					$scope.step1;
+					$scope.userMsg;
 					$scope.step2;
-					$scope.initsetup = function() {
+					$scope.createAccountTypes_Bool = true;
+					$scope.createUsers_Bool = false;
+					$scope.createAuthMaster_Bool = true;
+
+					$scope.createAccountTypes = function() {
 
 						var protostarAdminService = appEndpointSF
 								.getProtostarAdminService();
@@ -29,30 +32,20 @@ angular
 														.then(
 																function(
 																		msgBean) {
-
-																	$scope.step1 = "Account type are created click next to add Protostar Admin ";
-
+																	$scope.createAccountTypes_Bool = false;
+																	$scope.createUsers_Bool = true;
+																	$scope.userMsg = "Account types are created. ";
 																});
 											} else {
-
-												$scope.step1 = "Setup Already done go to home";
-												//angular.element('addemp').visibility = false;
-												//document.getElementById('addemp')
+												$scope.createAccountTypes_Bool = false;
+												$scope.createUsers_Bool = true;
+												$scope.userMsg = "Account types are already created. No action was taken.";
 											}
 
 										});
 					}
 
-					$scope.waitForServiceLoad = function() {
-						if (appEndpointSF.is_service_ready) {
-							$scope.initsetup();
-						} else {
-							$log.debug("Services Not Loaded, watiting...");
-							$timeout($scope.waitForServiceLoad, 1000);
-						}
-					}
-					$scope.waitForServiceLoad();
-					$scope.addemp = function() {
+					$scope.createUsers = function() {
 						var protostarAdminService = appEndpointSF
 								.getProtostarAdminService();
 						protostarAdminService
@@ -62,35 +55,112 @@ angular
 											$scope.accountlist = (gotAccountList == undefined || gotAccountList.items == undefined) ? 0
 													: gotAccountList.items.length;
 
-											if ($scope.accountlist >= 4) {
-												protostarAdminService
-														.getAllemp()
+											protostarAdminService
+													.getAllemp()
+													.then(
+															function(gotEmpList) {
+																$scope.emps = (gotEmpList == undefined || gotEmpList.items == undefined) ? 0
+																		: gotEmpList.items.length;
+
+																if ($scope.emps == 0) {
+																	protostarAdminService
+																			.initsetupnext()
+																			.then(
+																					function(
+																							msgBean) {
+																						$scope.userMsg = "Users created successfully.";
+																						$scope.createUsers_Bool = false;
+																					});
+																} else {
+																	$scope.userMsg = "Users are already created. No action was taken.";
+																	$scope.createUsers_Bool = false;
+																}
+
+															});
+
+										});
+					}
+
+					$scope.createAuthMaster = function() {
+
+						$scope.authorizationMasterEntity = {
+							authorizations : []
+						};
+
+						/*
+						 * $scope.authorizationMasterEntity = { authorizations : [ {
+						 * "authName" : "home", "authDisplayName" : "Home",
+						 * "uiStateName" : "home", "orderNumber" : "0" }, {
+						 * "authName" : "setup", "authDisplayName" : "Setup",
+						 * "uiStateName" : "setup", "orderNumber" : "2" }, {
+						 * "authName" : "proadmin", "authDisplayName" :
+						 * "Proadmin", "uiStateName" : "proadmin", "orderNumber" :
+						 * "1" } ] };
+						 */
+						var authService = appEndpointSF
+								.getAuthorizationService();
+
+						authService
+								.getAuthorizationMasterEntity()
+								.then(
+										function(result) {
+											$log.debug("get result:"
+													+ angular.toJson(result));
+											if (result.authorizations == undefined
+													|| result.authorizations.length == 0) {
+
+												$http
+														.get(
+																"/app/initsetup/js/masterauth.json")
 														.then(
 																function(
-																		gotEmpList) {
-																	$scope.emps = (gotEmpList == undefined || gotEmpList.items == undefined) ? 0
-																			: gotEmpList.items.length;
-
-																	if ($scope.emps == 0) {
-																		protostarAdminService
-																				.initsetupnext()
+																		response) {
+																	$log
+																			.debug("http response:"
+																					+ angular
+																							.toJson(response));
+																	if (response.data.authorizations
+																			&& response.data.authorizations.length > 0) {
+																		$scope.authorizationMasterEntity = response.data;
+																		authService
+																				.saveAuthorizationMasterEntity(
+																						$scope.authorizationMasterEntity)
 																				.then(
 																						function(
-																								msgBean) {
-																							$scope.step2 = "Add User Successfully ";
-
+																								result) {
+																							$log
+																									.debug("save result:"
+																											+ angular
+																													.toJson(result));
+																							$scope.userMsg = "Auth master created successfully.";
+																							$scope.createAuthMaster_Bool = false;
 																						});
 																	} else {
-																		$scope.step2 = "Setup Is Finish";
+																		$log
+																				.debug("ERROR: no valid data found in masterauth.json.");
+																		$scope.userMsg = "ERROR: no valid data found in masterauth.json.";
 																	}
-
 																});
+
 											} else {
-												$scope.step2 = "Account Type Is Not In Database Again Click On Next Button";
+												$scope.userMsg = "Auth master is already created. No action was taken.";
+												$scope.createAuthMaster_Bool = false;
 											}
 
 										});
 					}
+
+					$scope.waitForServiceLoad = function() {
+						if (appEndpointSF.is_service_ready) {
+							// $scope.initsetup();
+						} else {
+							$log
+									.debug("initsetup: Services Not Loaded, watiting...");
+							$timeout($scope.waitForServiceLoad, 1000);
+						}
+					}
+
+					$scope.waitForServiceLoad();
 
 					$scope.toggleRight = buildToggler('right');
 
