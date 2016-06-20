@@ -8,7 +8,9 @@ angular
 					$scope.mode = "list";
 					$scope.tempAuth =  getEmptyAuth();
 					$scope.selectedAuthStack=[];
-					$scope.selectedAuth = null;
+					$scope.selectedAuth = {
+						authorizations : []
+					};;
 					// $scope.mode = "add";
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
@@ -29,7 +31,12 @@ angular
 													&& result.authorizations != undefined) {
 												$scope.authorizationMasterEntity.authorizations = result.authorizations;
 												$log.debug("angular.toJson(result.authorizations):" + angular.toJson(result.authorizations));
-												//initially selected auth is master list
+												// initially selected auth is
+												// master list
+												$scope.selectedAuth = $scope.authorizationMasterEntity;
+												$scope.selectedAuthStack.push($scope.authorizationMasterEntity);
+											}else{
+												//It is empty.
 												$scope.selectedAuth = $scope.authorizationMasterEntity;
 												$scope.selectedAuthStack.push($scope.authorizationMasterEntity);
 											}
@@ -74,7 +81,8 @@ angular
 					}
 					
 					$scope.addAuthorization = function() {						
-						//Save newly added auth to server an then add it at current auth level and show msg.
+						// Save newly added auth to server an then add it at
+						// current auth level and show msg.
 						$scope.selectedAuth.authorizations.push($scope.tempAuth);
 						$scope.tempAuth =  getEmptyAuth();						
 						$scope.saveAuthorization();						
