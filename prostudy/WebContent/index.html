@@ -24,14 +24,15 @@
 	<md-content ng-hide="loading"> <!-- Top Navigation Pane -->
 	<md-toolbar>
 	<div class="md-toolbar-tools">
-	
+
 		<div>
-<!-- 	<div style="height: 80px; width:120px;  float: left; margin: 3px;  padding: 3px;">
+			<!-- 	<div style="height: 80px; width:120px;  float: left; margin: 3px;  padding: 3px;">
 			<img ng-src="{{logoURL}}" class="md-card-image" alt="Compnay Logo" style=" max-width: 100%;  max-height: 100%;" />
 		</div>	
- -->			<img ng-click="show_info()"
-				ng-src="{{logoURL}}" class="md-card-image" height="60px"
-				width="120px" /> <!-- <img ng-hide="institute.logBlobKey"
+ -->
+			<img ng-click="show_info()" ng-src="{{logoURL}}"
+				class="md-card-image" height="60px" width="120px" />
+			<!-- <img ng-hide="institute.logBlobKey"
 				ng-click="show_info()" src="img/images/grf_logo_new.gif"
 				height="60px" width="120px"> -->
 		</div>
@@ -72,7 +73,7 @@
 				md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
 			<md-toolbar class="md-theme-indigo">
 			<h1 class="md-toolbar-tools">Apps Module</h1>
-			</md-toolbar> <md-content layout="column" ng-controller="LeftCtrl">	<!--  <md-button
+			</md-toolbar> <md-content layout="column" ng-controller="LeftCtrl"> <!--  <md-button
 				class="md-primary" ng-click="close()" hide-gt-md> Close
 			Sidenav </md-button> <md-button ui-sref="home" ng-click="close()"
 				class="md-primary" show-gt-md> Home </md-button> <md-button ui-sref="setup"
@@ -124,14 +125,11 @@
 				ng-click="close()" class="md-primary" show-gt-md>Google
 			Apps Integration</md-button> <md-button ui-sref="gandhifoundation"
 				ng-click="close()" class="md-primary" show-gt-md>Gandhi
-			Research Foundation </md-button> -->
-
-			<md-button
+			Research Foundation </md-button> --> <md-button
 				ng-repeat="auth in curUser.userAuthMasterEntity.authorizations"
 				ui-sref="{{auth.uiStateName}}" ng-click="close()" class="md-primary"
-				show-gt-md> <span ng-bind="auth.authDisplayName">
-			</span></md-button>
-			</md-content> </md-sidenav>
+				aria-label="auth.authDisplayName" show-gt-md> <span
+				ng-bind="auth.authDisplayName"> </span></md-button> </md-content> </md-sidenav>
 
 			<!-- ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'" -->
 
@@ -382,7 +380,8 @@
 	<script src="/app/scheduledExam/js/schduledExamResult_list.ctr.js"></script>
 	<script src="/app/scheduledExam/js/scheduledExam_studentList.ctr.js"></script>
 	<script src="/app/scheduledExam/js/scheduledExam_assignStudents.ctr.js"></script>
-	<script src="/app/scheduledExam/js/scheduledExam_myScheduledExamList.ctr.js"></script>
+	<script
+		src="/app/scheduledExam/js/scheduledExam_myScheduledExamList.ctr.js"></script>
 	<script src="/app/scheduledExam/js/scheduledExam_addResult.ctr.js"></script>
 
 
@@ -460,11 +459,11 @@
 	<script src="/app/setup/js/setup_changetheme.js"></script>
 	<script src="/app/setup/js/addInstituteUser.ctr.js"></script>
 	<script src="/app/setup/js/editInstitute.ctr.js"></script>
-<!-- 	<script src="/app/setup/js/instituteUserList.ctr.js"></script> -->
+	<!-- 	<script src="/app/setup/js/instituteUserList.ctr.js"></script> -->
 	<script src="/app/setup/js/instituteUserList.ctr.js"></script>
 	<script src="/app/setup/js/changePlan.ctr.js"></script>
 	<script src="/app/setup/js/setLogo.ctr.js"></script>
-	<script src="/app/setup/js/manage_user_auth.ctr.js"></script>	
+	<script src="/app/setup/js/manage_user_auth.ctr.js"></script>
 	<!-- End setup Setup -->
 
 	<!-- Start ProAdmin -->
@@ -486,7 +485,7 @@
 	<script src="/app/gfcourier/js/gfCourier_add.ctr.js"></script>
 	<script src="/app/gfcourier/js/gfCourier_list.ctr.js"></script>
 	<script src="/app/gfcourier/js/gfCourier_view.ctr.js"></script>
-	
+
 	<script src="/app/gfcourier/js/gfCourier_directAddFromPS.ctr.js"></script>
 	<!-- End Gandhi Found. Courier  -->
 

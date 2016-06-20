@@ -24,23 +24,24 @@ angular
 
 					$scope.loading = true;
 					$scope.curUser = null;
-					$scope.googleUserDetails = "";
-					$scope.googleUser = 'null';
 					$scope.flag = true;
 					$scope.initDone = false;
-					$scope.theme = 'default';
+					var defaultTheme = 'default';
+					$scope.theme = defaultTheme
 					$scope.loginPersonIconUrl = defaulLogingUserIconURL;
 					$scope.logoURL = defaulInstituteLogoURL;
 
-					if ($scope.curUser != undefined || $scope.curUser !== null) {
-						$scope.theme = $scope.curUser.instituteObj.theme;
-						$scope.logBaseURL = '//' + window.location.host
-								+ '/serve?blob-key='
-								+ $scope.curUser.instituteObj.logBlobKey;
-						// $scope.logFooterURL = '//' + window.location.host +
-						// '/serve?blob-key='+
-						// $scope.curUser.instituteObj.footerBlobKey;
-					}
+					/*
+					 * if ($scope.curUser != undefined || $scope.curUser !==
+					 * null) { if($scope.curUser.instituteObj.theme){
+					 * $scope.theme = $scope.curUser.instituteObj.theme; }
+					 * 
+					 * if($scope.curUser.instituteObj.logBlobKey){
+					 * $scope.logBaseURL = '//' + window.location.host +
+					 * '/serve?blob-key=' +
+					 * $scope.curUser.instituteObj.logBlobKey; }
+					 *  }
+					 */
 
 					$scope.themeList = [ 'default', 'red', 'pink', 'purple',
 							'deep-purple', 'indigo', 'blue', 'light-blue',
@@ -144,18 +145,15 @@ angular
 						}
 
 						var profile = authResult.getBasicProfile();
-						$scope.googleUser = profile;
 
-						$scope.loginPersonIconUrl = $scope.googleUser.getImageUrl();
+						$scope.loginPersonIconUrl = profile.getImageUrl();
 
-						if ($scope.loginPersonIconUrl == null || $scope.loginPersonIconUrl == '') {
+						if ($scope.loginPersonIconUrl == null
+								|| $scope.loginPersonIconUrl == '') {
 							$scope.loginPersonIconUrl = defaulLogingUserIconURL;
 						}
 
 						$log.debug('ID: ' + profile.getId());
-
-						$scope.googleUserDetails = profile.getName() + "<br>"
-								+ profile.getEmail()
 
 						appEndpointSF
 								.getUserService()
@@ -293,7 +291,7 @@ angular
 
 												userAuthMasterEntity.authorizations
 														.sort(function(a, b) {
-															return (a.orderNumber > b.orderNumber) ? 1
+															return (parseFloat(a.orderNumber) > parseFloat(b.orderNumber)) ? 1
 																	: -1
 														});
 
@@ -329,28 +327,29 @@ angular
 						}
 						$log.debug('signOut2');
 						var auth2 = gapi.auth2.getAuthInstance();
-						auth2.signOut().then(
-								function() {
-									$log.debug('User signed out.');
-									// also remove login details from
-									// chrome
-									// browser
+						auth2
+								.signOut()
+								.then(
+										function() {
+											$log.debug('User signed out.');
+											// also remove login details from
+											// chrome
+											// browser
 
-									$scope.googleUser = null;
-									$scope.curUser = null;
-									$scope.curUser = appEndpointSF
-											.getLocalUserService().logout();
-									$scope.loginPersonIconUrl = defaulLogingUserIconURL;
-									$state.go("login");
+											$scope.curUser = null;
+											$scope.curUser = appEndpointSF
+													.getLocalUserService()
+													.logout();
+											$scope.loginPersonIconUrl = defaulLogingUserIconURL;
+											$state.go("login");
 
-								});
+										});
 					}
 
 					$scope.$on('event:google-plus-signin-failure', function(
 							event, authResult) {
 						// User has not authorized the G+ App!
 						$log.debug('Not signed into Google Plus.');
-						$scope.googleUser = null;
 						// $scope.getInstituteById();
 					});
 
