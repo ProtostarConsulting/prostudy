@@ -19,9 +19,9 @@
 						<md-button ui-sref="setup.changePlan" ng-click="close()" class="md-primary" show-gt-md>Change Plan</md-button> 
 							
 						<md-button ui-sref="setup.setLogo" ng-click="close()" class="md-primary" show-gt-md>Set Logo</md-button> 
-				
+<!-- 				
 						<md-button ui-sref="setup.authorityView" ng-click="close()" class="md-primary" hide-xs>Authority</md-button> </md-content>
-				</div>
+ -->				</div>
 			</span>
 			<!--  <span hide-gt-xs> -->
 			<div class="md-toolbar-tools">
@@ -40,28 +40,26 @@
 				md-component-id="right"> <md-toolbar
 				class="md-theme-light">
 			<h1 class="md-toolbar-tools">Sidenav Right</h1>
-			</md-toolbar> <md-content layout="column"> <md-button
-				ui-sref="setup.addInstituteUser" ng-click="close()"
-				class="md-primary" show-gt-md> Add User </md-button> <md-button
-				ui-sref="setup.businesssetup({businessNo:businessNo})"
-				ng-click="close()" class="md-primary" show-gt-md>Edit
-			Business </md-button> <md-button
-				ui-sref="setup.userlist({businessNo:businessNo})" ng-click="close()"
-				class="md-primary" show-gt-md> Userlist </md-button> <md-button
-				ui-sref="setup.changeplan({businessNo:businessNo})"
-				ng-click="close()" class="md-primary" show-gt-md>Change
-			Plan</md-button> <md-button ui-sref="setup.setlogo" ng-click="close()"
-				class="md-primary" show-gt-md>Set Company Logo</md-button> <md-button
-				ui-sref="setup.footer" ng-click="close()" class="md-primary"
-				show-gt-md>Set Company Footer</md-button> <md-button
-				ui-sref="setup.disclaimer" ng-click="close()" class="md-primary"
-				show-gt-md>Add Disclaimer</md-button> <md-button
-				ui-sref="setup.sendmail" ng-click="close()" class="md-primary"
-				show-gt-md>send Email</md-button>
-				<md-button
-				ui-sref="setup.manageauth({selectedInstituteID: curUser.instituteID})" ng-click="close()" class="md-primary"
-				show-gt-md>Manage User Auth</md-button> </md-content> </md-sidenav>
-		</section>
+			</md-toolbar> 
+			
+			<md-content layout="column"> 
+			
+			<md-button ui-sref="setup.addInstituteUser" ng-click="close()" class="md-primary" show-gt-md> Add User </md-button>
+						
+						<md-button ui-sref="setup.instituteUsersList" ng-click="close()" class="md-primary" show-gt-md> Userlist </md-button> 
+						
+						<md-button ui-sref="setup.editInstitute" ng-click="close()" class="md-primary" show-gt-md>Edit Institute </md-button> 
+	
+						<md-button ui-sref="setup.changeTheme" ng-click="close()" class="md-primary" hide-xs>Change Theme</md-button> 
+							
+						<md-button ui-sref="setup.changePlan" ng-click="close()" class="md-primary" show-gt-md>Change Plan</md-button> 
+							
+						<md-button ui-sref="setup.setLogo" ng-click="close()" class="md-primary" show-gt-md>Set Logo</md-button> 
+<!-- 				
+						<md-button ui-sref="setup.authorityView" ng-click="close()" class="md-primary" hide-xs>Authority</md-button> </md-content>
+ -->		
+ 
+ </section>
 
 	</div>
 
