@@ -8,6 +8,8 @@ angular
 					$log.debug("Inside indexCtr");
 
 					var defaulLogingUserIconURL = '/img/icons/ic_person_24px.svg';
+					var defaulInstituteLogoURL = '/img/images/grf_logo_new.gif';
+
 					$scope.showUpdateToast = function() {
 						$mdToast.show($mdToast.simple().content(
 								'Changes Saved Successfully.').position("top")
@@ -27,7 +29,8 @@ angular
 					$scope.flag = true;
 					$scope.initDone = false;
 					$scope.theme = 'default';
-					$scope.imgUrl = defaulLogingUserIconURL;
+					$scope.loginPersonIconUrl = defaulLogingUserIconURL;
+					$scope.logoURL = defaulInstituteLogoURL;
 
 					if ($scope.curUser != undefined || $scope.curUser !== null) {
 						$scope.theme = $scope.curUser.instituteObj.theme;
@@ -111,7 +114,9 @@ angular
 								.then(
 										function(modules) {
 											$scope.modules = modules;
-											console.log("$scope.modules==ROLE=="+ $scope.modules);
+											console
+													.log("$scope.modules==ROLE=="
+															+ $scope.modules);
 											$scope.$emit('moduleData', {
 												modules : $scope.modules
 											});
@@ -141,15 +146,16 @@ angular
 						var profile = authResult.getBasicProfile();
 						$scope.googleUser = profile;
 
-						$scope.imgUrl = $scope.googleUser.getImageUrl();
+						$scope.loginPersonIconUrl = $scope.googleUser.getImageUrl();
 
-						if ($scope.imgUrl == null || $scope.imgUrl == '') {
-							$scope.imgUrl = defaulLogingUserIconURL;
+						if ($scope.loginPersonIconUrl == null || $scope.loginPersonIconUrl == '') {
+							$scope.loginPersonIconUrl = defaulLogingUserIconURL;
 						}
 
 						$log.debug('ID: ' + profile.getId());
 
-						$scope.googleUserDetails = profile.getName() + "<br>"+ profile.getEmail()
+						$scope.googleUserDetails = profile.getName() + "<br>"
+								+ profile.getEmail()
 
 						appEndpointSF
 								.getUserService()
@@ -181,7 +187,7 @@ angular
 											}
 
 											if (loggedInUser.id == undefined) {
-												
+
 												loggedInUser.email_id = profile
 														.getEmail();
 												profile.getName().split(" ")[0];
@@ -190,14 +196,18 @@ angular
 												loggedInUser.lastName = profile
 														.getName().split(" ")[1];
 
-												appEndpointSF.getLocalUserService().saveLoggedInUser(loggedInUser);
+												appEndpointSF
+														.getLocalUserService()
+														.saveLoggedInUser(
+																loggedInUser);
 
 												$state.go("updatemyprofile", {
 													flag : $scope.flag
 												});
 
 											} else {
-												$log.debug('Inside else of loggedInUser.id == undefined...');
+												$log
+														.debug('Inside else of loggedInUser.id == undefined...');
 												$scope.getInstituteById();
 
 											}
@@ -313,7 +323,7 @@ angular
 							$scope.curUser = null;
 							$scope.curUser = appEndpointSF
 									.getLocalUserService().logout();
-							$scope.imgUrl = defaulLogingUserIconURL;
+							$scope.loginPersonIconUrl = defaulLogingUserIconURL;
 							$state.go("login");
 							return;
 						}
@@ -330,7 +340,7 @@ angular
 									$scope.curUser = null;
 									$scope.curUser = appEndpointSF
 											.getLocalUserService().logout();
-									$scope.imgUrl = defaulLogingUserIconURL;
+									$scope.loginPersonIconUrl = defaulLogingUserIconURL;
 									$state.go("login");
 
 								});
@@ -358,10 +368,13 @@ angular
 							// the this js flow
 						}
 						$scope.theme = $scope.curUser.instituteObj.theme;
-						$scope.logoURL = '//' + window.location.host
-								+ '/serve?blob-key='
-								+ $scope.curUser.instituteObj.logBlobKey;
-
+						if ($scope.curUser.instituteObj.logBlobKey) {
+							$scope.logoURL = '//' + window.location.host
+									+ '/serve?blob-key='
+									+ $scope.curUser.instituteObj.logBlobKey;
+						} else {
+							$scope.logoURL = defaulInstituteLogoURL;
+						}
 						$scope.institute = $scope.curUser.instituteObj;
 						getUserAuthTree();
 						$scope.initDone = true;

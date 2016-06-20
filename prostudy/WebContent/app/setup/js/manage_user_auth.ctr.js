@@ -24,8 +24,16 @@ angular
 					};
 
 					$scope.institute = $scope.curUser.instituteObj;
+					
+					if($scope.curUser.instituteObj.authorizations){
 					$scope.existingInstituteAuthObject = angular
 							.fromJson($scope.curUser.instituteObj.authorizations);
+					}else{
+						$scope.existingInstituteAuthObject = {
+								authorizations : []
+						};
+					}
+					
 					$log.debug("$scope.curUser.instituteObj.authorizations: "
 							+ $scope.curUser.instituteObj.authorizations);
 
