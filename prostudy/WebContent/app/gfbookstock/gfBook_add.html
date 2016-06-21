@@ -115,29 +115,24 @@
 
 		</div>
 
+		<div layout="row" layout-xs="column" flex>
+
+
+			<md-input-container flex> <label>Threshold<span
+				style="color: red" ng-show="gfBookStockForm.bookThreshold.$error.required"
+				class="mandatory">*</span>
+			</label> <input name="bookThreshold" type="number" ng-model="tempBook.bookThreshold"
+				ng-required="true">
+			<div ng-messages="gfBookStockForm.bookThreshold.$error"
+				ng-if="gfBookStockForm.bookThreshold.$submitted || gfBookStockForm.bookThreshold.$touched">
+				<div ng-message="required">Please Enter Book Quantity.</div>
+			</div>
+			</md-input-container>
+
+		</div>
 	</form>
 </div>
 
-<!-- 
-<div layout="row" layout-xs="column" flex>
-
-	<form name="imageform" method="post" enctype="multipart/form-data">
-
-		<p style="font-size: .8em; width: 100%; text-align: center;">
-			Upload logo height/width of 80px/120px only.</p>
-		<div class="md-block">
-			<label>Upload Logo:</label> <input name="myFile" type="file"
-				class="md-raised md-primary">
-		</div>
-
-		<div>
-			<md-button ng-click="uplodeimage()" class="md-raised md-primary"
-				show-gt-md> Submit </md-button>
-		</div>
-		<input type="hidden" name="instID" id="instID" value={{instID}}>
-
-	</form>
-</div> -->
 <div layout="row" layout-align="center center" layout-xs="column">
 
 	<md-button ng-hide="tempBook.id" class="md-raised md-primary"

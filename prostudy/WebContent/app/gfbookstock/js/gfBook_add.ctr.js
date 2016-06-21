@@ -13,6 +13,7 @@ angular.module("prostudyApp").controller(
 				bookQty : 0,
 				bookMedium : '',
 				bookPublication : '',
+				bookThreshold :0,
 				bookFeedDate : new Date(),
 			}
 
