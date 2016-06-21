@@ -80,7 +80,7 @@ public class UserService {
 	public void updateUser(UserEntity usr) {
 		Key<UserEntity> now = ofy().save().entity(usr).now();
 	}
-
+	
 	@ApiMethod(name = "getUserList")
 	public List<UserEntity> getUserList() {
 		return ofy().load().type(UserEntity.class).list();

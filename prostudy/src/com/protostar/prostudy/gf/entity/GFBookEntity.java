@@ -27,6 +27,7 @@ public class GFBookEntity {
 	private String bookMedium;
 	private Date stockFeedDate;
 	private Date stockModifiedDate;
+	private int bookThreshold;
 	private String standard;
 	private String flag;
 	// Ref<PartnerSchoolEntity> schoolName;
@@ -40,6 +41,26 @@ public class GFBookEntity {
 
 	public String getFlag() {
 		return flag;
+	}
+
+
+	public Date getStockModifiedDate() {
+		return stockModifiedDate;
+	}
+
+
+	public void setStockModifiedDate(Date stockModifiedDate) {
+		this.stockModifiedDate = stockModifiedDate;
+	}
+
+
+	public int getBookThreshold() {
+		return bookThreshold;
+	}
+
+
+	public void setBookThreshold(int bookThreshold) {
+		this.bookThreshold = bookThreshold;
 	}
 
 
