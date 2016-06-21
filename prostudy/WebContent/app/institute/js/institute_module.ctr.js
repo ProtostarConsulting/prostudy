@@ -61,5 +61,8 @@ angular.module("prostudyApp").controller(
 					$log.debug("close RIGHT is done");
 				});
 			};
-
+			$scope.back = function() {
+				window.history.back();
+				// $state.go("^", {});
+			};
 		});

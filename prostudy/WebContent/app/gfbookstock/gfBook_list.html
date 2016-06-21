@@ -44,11 +44,12 @@
 
 				<tr>
 					<th order-by="bookName" name="Book Name"></th>
-						<th order-by="standard" name="Standard"></th>
 					<th order-by="bookAuther" name="Auther"></th>
+					<th order-by="weight" name="Weight"></th>
+					<th order-by="bookPrice" name="Fees"></th>	
 					<th order-by="bookPublication" name="Publication"></th>
 					<th order-by="bookQty" name="Quantity"></th>
-					
+					<th name="Action"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -56,8 +57,9 @@
 					ng-repeat="book in bookStocks | orderBy: query.order | filter: bookName |filter : medium | limitTo: query.limit: (query.page - 1) * query.limit">
 
 					<td>{{book.bookName}}</td>
-					<td>{{book.standard}}</td>
 					<td>{{book.bookAuther}}</td>
+					<td>{{book.weight}}</td>
+					<td>{{book.bookPrice}}</td>
 					<td>{{book.bookPublication}}</td>
 					<td>{{book.bookQty}}</td>
 					<td><md-button

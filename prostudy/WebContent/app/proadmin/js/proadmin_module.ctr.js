@@ -25,7 +25,10 @@ angular.module("prostudyApp").controller(
 				
 			}
 		
-
+			$scope.back = function() {
+				window.history.back();
+				// $state.go("^", {});
+			};
 			$scope.testGAPICall = function() {
 				console.log("in side testGAPICall");
 				var cars = appEndpointSF.getQuestionService().getCars()

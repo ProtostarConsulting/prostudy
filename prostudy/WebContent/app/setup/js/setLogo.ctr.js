@@ -5,7 +5,7 @@ angular.module("prostudyApp").controller(
 				objectFactory) {
 
 			$scope.logoURL;
-
+			$scope.selectedInstituteID = $stateParams.selectedInstituteID;	
 			$scope.currUser = appEndpointSF.getLocalUserService()
 					.getLoggedinUser();
 

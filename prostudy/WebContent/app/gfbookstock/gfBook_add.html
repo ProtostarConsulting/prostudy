@@ -76,8 +76,7 @@
 
 			<md-input-container flex> <label>Standard<span
 				style="color: red"
-				ng-show="gfBookStockForm.standard.$error.required"
-				class="mandatory">*</span>
+				ng-show="gfBookStockForm.standard.$error.required" class="mandatory">*</span>
 			</label> <md-select name="standard" ng-model="tempBook.standard"
 				ng-required="true"> <md-option ng-value="standard"
 				ng-repeat="standard in standardList" ng-selected="$first">{{standard}}</md-option>
@@ -115,9 +114,30 @@
 			</md-input-container>
 
 		</div>
+
 	</form>
 </div>
 
+<!-- 
+<div layout="row" layout-xs="column" flex>
+
+	<form name="imageform" method="post" enctype="multipart/form-data">
+
+		<p style="font-size: .8em; width: 100%; text-align: center;">
+			Upload logo height/width of 80px/120px only.</p>
+		<div class="md-block">
+			<label>Upload Logo:</label> <input name="myFile" type="file"
+				class="md-raised md-primary">
+		</div>
+
+		<div>
+			<md-button ng-click="uplodeimage()" class="md-raised md-primary"
+				show-gt-md> Submit </md-button>
+		</div>
+		<input type="hidden" name="instID" id="instID" value={{instID}}>
+
+	</form>
+</div> -->
 <div layout="row" layout-align="center center" layout-xs="column">
 
 	<md-button ng-hide="tempBook.id" class="md-raised md-primary"

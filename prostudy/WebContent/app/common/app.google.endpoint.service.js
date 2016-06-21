@@ -407,6 +407,16 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 	
+	UserService.getUsersByInstituteId = function(instituteID) {
+		var deferred = $q.defer();
+		gapi.client.userService.getUsersByInstituteId({
+			'instituteID' : instituteID 
+			}).execute(function(resp) {
+			deferred.resolve(resp.items);
+		});
+		return deferred.promise;
+	}
+	
 	
 	// end of UserService
 	/*------------------------------------------------------------------------------------------------------*/	

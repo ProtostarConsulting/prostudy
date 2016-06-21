@@ -345,7 +345,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/view_standards/:selectedStdID",
 		templateUrl : '/app/institute/institute_view_standards.html',
 		controller : 'instituteListViewCtr',
-	}).state('institute.list_view.view_standards.addstandards', {
+	})
+	
+	
+	.state('institute.list_view.view_setLogo', {
+		url : "/view_setLogo/:selectedInstituteID",
+		templateUrl : '/app/setup/setLogo.html',
+		controller : 'instituteListViewCtr',
+	})
+	
+	
+	
+	
+	.state('institute.list_view.view_standards.addstandards', {
 		url : "/addstandards/:currentInstID",
 		templateUrl : '/app/institute/institute_addStandards.html',
 		controller : 'instituteListViewCtr'

@@ -1,4 +1,4 @@
-<div id="studentListDiv">
+<div id="bookStockListDiv">
 	<h3 class="md-headline">Book Stock</h3>
 
 	<div layout="row" layout-align="end end" layout-xs="column">
@@ -20,7 +20,6 @@
 				<tr>
 
 					<th order-by="bookName" name="Book Name"></th>
-					<th order-by="standard" name="Standard"></th>
 					<th order-by="bookPublication" name="Publication"></th>
 					<th order-by="bookQty" name="Quantity"></th>
 					<th order-by="medium" name="Medium"></th>
@@ -31,7 +30,6 @@
 					ng-repeat="book in bookStocks | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
 
 					<td>{{book.book.bookName}}</td>
-					<td>{{book.book.standard}}</td>
 					<td>{{book.book.bookPublication}}</td>
 					
 					<td>{{book.book.bookQty}}</td>
