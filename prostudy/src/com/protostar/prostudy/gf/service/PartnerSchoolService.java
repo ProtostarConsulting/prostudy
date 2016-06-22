@@ -13,7 +13,7 @@ import com.protostar.prostudy.until.data.UtilityService;
 
 @Api(name = "partnerSchoolService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.gf.service", ownerName = "com.protostar.prostudy.gf.service", packagePath = ""))
 public class PartnerSchoolService {
-
+	
 	@ApiMethod(name = "addPartnerSchool")
 	public PartnerSchoolEntity addPartnerSchool(
 			PartnerSchoolEntity partnerSchoolEntity) {

@@ -99,7 +99,7 @@ public class DownloadPartnerSchools extends HttpServlet {
 				int l=i+1;
 				int k=15;	
 				s.addCell(new Label(0,l,patse.get(i).getSchoolName()));
-				s.addCell(new Label(1, l,patse.get(i).getDesc()));
+				s.addCell(new Label(1, l,patse.get(i).getInstName()));
 				s.addCell(new Label(2, l,patse.get(i).getFormNumber()));
 				s.addCell(new Label(3, l, patse.get(i).getCategory()));
 				s.addCell(new Label(4, l,patse.get(i).getPrimaryContact()));
@@ -109,7 +109,7 @@ public class DownloadPartnerSchools extends HttpServlet {
 				s.addCell(new Label(8, l, patse.get(i).getAddress().getState()));
 				s.addCell(new Label(9, l, patse.get(i).getAddress().getCountry()));
 				s.addCell(new Label(10,l, patse.get(i).getAddress().getPin()));
-				s.addCell(new Label(11, l, patse.get(i).getExamDetail().getTotalStudent()));
+			/*	s.addCell(new Label(11, l, patse.get(i).getExamDetail().getTotalStudent()));
 				s.addCell(new Label(12, l, patse.get(i).getExamDetail().getMale()));
 				s.addCell(new Label(13, l, patse.get(i).getExamDetail().getFemale()));
 				s.addCell(new Label(14, l, patse.get(i).getExamDetail().getTotal()));
@@ -121,7 +121,7 @@ public class DownloadPartnerSchools extends HttpServlet {
 							
 				s.addCell(new Label(18, l, patse.get(i).getExamDetail().getYearOfExam()));
 				s.addCell(new Label(19, l, patse.get(i).getExamDetail().getBookRequired()));
-				s.addCell(new Label(20, l, patse.get(i).getExamDetail().getModeOfExam()));
+				s.addCell(new Label(20, l, patse.get(i).getExamDetail().getModeOfExam()));*/
 				s.addCell(new Label(21, l, patse.get(i).getContactDetail().getHeadMasterName()));
 				s.addCell(new Label(22, l, patse.get(i).getContactDetail().getHeadMasterMobile()));
 				s.addCell(new Label(23, l, patse.get(i).getContactDetail().getHeadMasterEmailId()));

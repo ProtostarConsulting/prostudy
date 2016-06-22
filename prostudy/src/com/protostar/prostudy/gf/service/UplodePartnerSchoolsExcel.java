@@ -153,7 +153,7 @@ public class UplodePartnerSchoolsExcel extends HttpServlet {
 					// insert partner school
 					PartnerSchoolEntity patschool = new PartnerSchoolEntity();
 					patschool.setSchoolName(split[0]);
-					patschool.setDesc(split[1]);
+					patschool.setInstName(split[1]);
 					patschool.setFormNumber(split[2]);
 					patschool.setCategory(split[3]);
 					patschool.setPrimaryContact(split[4]);
@@ -170,15 +170,15 @@ public class UplodePartnerSchoolsExcel extends HttpServlet {
 					// ExamDetail
 					ExamDetail eDtail = new ExamDetail();
 					eDtail.setBookRequired(split[19]);
-					eDtail.setExamMedium(Arrays.asList(split[15], split[16],
-							split[17]));
+				/*	eDtail.setExamMedium(Arrays.asList(split[15], split[16],
+							split[17]));*/
 					eDtail.setFemale(split[13]);
 					eDtail.setMale(split[12]);
 					eDtail.setModeOfExam(split[20]);
 					eDtail.setTotal(split[14]);
 					eDtail.setTotalStudent(split[11]);
 					eDtail.setYearOfExam(split[18]);
-					patschool.setExamDetail(eDtail);
+				/*	patschool.setExamDetail(eDtail);*/
 					// Contact Detail
 
 					ContactDetail conDetail = new ContactDetail();
@@ -199,7 +199,7 @@ public class UplodePartnerSchoolsExcel extends HttpServlet {
 
 					// book summary
 					BookSummary bookSummary = new BookSummary();
-					patschool.setBookSummary(bookSummary);
+			/*		patschool.setBookSummary(bookSummary);*/
 
 					PartnerSchoolService partnerSchool = new PartnerSchoolService();
 					partnerSchool.addPartnerSchool(patschool);
