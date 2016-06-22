@@ -24,7 +24,7 @@
 			<tr>
 
 				<th name="School Name" order-by="schoolName"></th>
-				<th name="Discription" order-by="desc"></th>
+				<th name="Institute Name" order-by="instName"></th>
 				<th name="Address" order-by="address.city"></th>
 				<th name="Form Number" order-by="formNumber"></th>
 			</tr>
@@ -34,7 +34,7 @@
 			<tr md-auto-select
 				ng-repeat="pSchool in pSchoolList  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText ">
 				<td>{{pSchool.schoolName}}</td>
-				<td>{{pSchool.desc}}</td>
+				<td>{{pSchool.instName}}</td>
 				<td>{{pSchool.address.city}}</td>
 				<td>{{pSchool.formNumber}}</td>
 				<td>

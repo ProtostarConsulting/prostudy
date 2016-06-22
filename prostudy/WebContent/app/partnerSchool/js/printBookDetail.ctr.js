@@ -34,6 +34,7 @@ angular.module("prostudyApp").controller(
 										$scope.bookSummary=pSchool.bookSummary;
 										$scope.examMedium = pSchool.examDetail.examMedium;
 										$scope.add=pSchool.address;
+										$scope.ContactDetail=pSchool.contactDetail;
 										$scope.schoolName=pSchool.schoolName;
 										if (pSchool.paymentDetail != undefined) {
 										$scope.PaymentDet =pSchool.paymentDetail;
@@ -43,6 +44,7 @@ angular.module("prostudyApp").controller(
 			}
 			$scope.BookDetail=[];
 			$scope.examMedium=[];
+			$scope.ContactDetail;
 			$scope.add;
 			$scope.schoolName;
 		

@@ -1,0 +1,41 @@
+
+
+<div class="md-toolbar-tools">
+	<span flex></span>
+	<!--<md-card>-->
+	<section layout="row">
+
+		<md-button class="md-icon-button md-accent"
+			ng-click="printSalSlipDiv('bookDetailDiv')" aria-label="Favorite">
+		<md-icon md-svg-icon="img/icons/print.svg"></md-icon> </md-button>
+
+	</section>
+	<!--</md-card>-->
+</div>
+<div id="bookDetailDiv">
+	<div><br><br>
+		<table cellspacing="10" style="width: 100%;">
+			<tr>
+				<td width=10%;>342422422232</td>
+				<td width=2%;></td>
+				<td><b> To,</b></td>
+			</tr>
+
+			<tr>
+				<td width=10%;></td>
+				<td width=2%;></td>
+				<td><b>{{ContactDetail.headMasterName}},<br>{{schoolName}},<br>A/P :- {{add.line1}}
+					{{add.line2}},<br> Tal :- {{add.city}}  Dist :-{{add.dist}},<br>
+					 State :- {{add.dist}},  {{add.country}} <br>Pin :- {{add.pin}}.</b>
+				</td>
+			</tr>
+		</table>
+
+	</div>
+
+	<footer> </footer>
+</div>
+
+<iframe name="print_frame" width="0" height="0" frameborder="0"
+	src="about:blank"></iframe>
+
