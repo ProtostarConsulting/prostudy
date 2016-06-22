@@ -9,7 +9,10 @@ app.constant('standardList', ["5 th", "6 th", "7 th", "8 th", "9 th",
         					"PG-II", "course-1", "course-2", "Group I", "Group II",
         					"Group III" ]);
 app.constant('answerOfMediumList', ["Marathi", "Hindi", "English"]);
-app.constant('logisticsList', ["By Post", "By Hand", "ST Postal","Tej Courier" ]);
+app.constant('logisticsList', ["By Post", "By Hand", "ST Postal","Tej Courier","Other"]);
+app.constant('courierTypelist', [ "Book", "Certificate",
+      							"Error Certificate", "Error books",
+    							"Prize Certificate" ,"Other"]);
 app.constant('installmentList', [1,2,3]);
 app.constant('partnerSchoolLevels', ["Primary", "Secondary", "Higher-Secondary", "School", "College"]);
 /*app.config(function($mdThemingProvider) {

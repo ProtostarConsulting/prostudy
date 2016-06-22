@@ -76,7 +76,7 @@
 
 			<md-input-container flex> <label>School
 				/ College / Institute</label> <input name="schoolName"
-				ng-model="tempCourierObj.schoolName"> </md-input-container>
+				ng-model="tempCourierObj.schoolName" readonly="readonly"> </md-input-container>
 
 			<!-- 
 			<md-input-container flex> <label>School / College / Institute </label>
@@ -90,38 +90,25 @@
 
 		<div layout="row" layout-xs="column" flex>
 
-			<md-input-container flex> <label>From <span
-				style="color: red"
-				ng-show="gfCourierForm.courierFrom.$error.required"
-				class="mandatory">*</span>
-			</label> <textarea name="courierFrom" ng-model="tempCourierObj.courierFrom"
-				rows="3" cols="1" ng-required="true"></textarea>
+			<md-input-container flex> <label>From </label> <textarea
+				name="courierFrom" ng-model="tempCourierObj.courierFrom" rows="3"
+				cols="1" readonly="readonly"></textarea> </md-input-container>
 
-			<div ng-messages="gfCourierForm.courierFrom.$error"
-				ng-if="gfCourierForm.courierFrom.$submitted || gfCourierForm.courierFrom.$touched">
-				<div ng-message="required">Please Enter From Name.</div>
-			</div>
-			</md-input-container>
-
-			<md-input-container flex> <label>To <span
-				style="color: red" ng-show="gfCourierForm.courierTo.$error.required"
-				class="mandatory">*</span>
-			</label> <textarea name="courierTo" ng-model="tempCourierObj.courierTo"
-				rows="3" cols="1" ng-required="true">
-				
-				
-				
+			<md-input-container flex> <label>To </label> <textarea
+				name="courierTo" ng-model="tempCourierObj.courierTo" rows="3"
+				cols="1" readonly="readonly">
 				</textarea>
+		</div>
+		
+		<div layout="row" layout-xs="column" flex>
 
-			<div ng-messages="gfCourierForm.courierTo.$error"
-				ng-if="gfCourierForm.courierTo.$submitted || gfCourierForm.courierTo.$touched">
-				<div ng-message="required">Please Enter name whome To sent.</div>
-			</div>
-			</md-input-container>
+			<md-input-container flex> <label>Note </label> <textarea
+				name="courierFrom" ng-model="tempCourierObj.note" rows="3"
+				cols="1"></textarea> </md-input-container>
 
 		</div>
 
-<!-- 		<div class="alert" ng-if="hit">
+		<!-- 		<div class="alert" ng-if="hit">
 			<span class="closebtn"
 				onclick="this.parentElement.style.display='none';">&times;</span> <strong>Alert!</strong>
 			The book quantity hit the threshold value.
@@ -133,10 +120,9 @@
 				<tr>
 					<th name="Sr_No"></th>
 					<th name="Book Name"></th>
-					<th name="Weight"></th>
-					<th name="Price"></th>
-
 					<th name="Qty"></th>
+					<th name="Price"></th>
+					<th name="Weight(Grams)"></th>
 					<th name="Actions"></th>
 				</tr>
 			</thead>
@@ -155,15 +141,19 @@
 					<td><md-input-container flex> <label>Quantity
 						</label> <input ng-model="item.bookQty"
 							ng-blur="checkBookStock(item,$event)" type="number"
-							ng-change="calProductSubTotal()"> </md-input-container></td>
+							ng-change="calBookWeight()"> </md-input-container></td>
 
-					<td><md-input-container flex> <label>Weight
+					<td><md-input-container flex> <b>{{item.bookQty
+							* item.bookPrice | currency:"":"2"}} </b></td>
+
+					<td><md-input-container flex> <b>{{item.bookQty
+							* item.weight | currency:"":"2"}} </b></td>
+
+					<!-- 					<td><md-input-container flex> <label>Weight
 						</label> <input ng-model="item.weight" type="number" readonly="readonly">
 						</md-input-container></td>
+ -->
 
-					<td><md-input-container flex> <label>Price
-						</label> <input ng-model="item.bookPrice" type="number"
-							readonly="readonly"> </md-input-container></td>
 
 					<td><md-icon md-svg-src="img/icons/remove.svg"
 							ng-click="removeItem($index)" class="name"
@@ -183,6 +173,22 @@
 					<td></td>
 				</tr>
 
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><b>Total Fees :</b></td>
+					<td><b>{{tempCourierObj.totalFees | number : 2}}</b></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><b>Total Weight :</b></td>
+					<td><b>{{tempCourierObj.totalWeight | number : 2}}(Grams)</b></td>
+				</tr>
 				<tr>
 					<td></td>
 					<td></td>
