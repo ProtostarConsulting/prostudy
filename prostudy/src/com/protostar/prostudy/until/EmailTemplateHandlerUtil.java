@@ -1,4 +1,4 @@
-package com.protostar.prostudy.until;
+/*package com.protostar.prostudy.until;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -26,13 +26,13 @@ public class EmailTemplateHandlerUtil {
 		if (cfg != null) {
 			return cfg;
 		}
-		/*
+		
 		 * ----------------------------------------------------------------------
 		 * --
-		 */
-		/* You should do this ONLY ONCE in the whole application life-cycle: */
+		 
+		 You should do this ONLY ONCE in the whole application life-cycle: 
 
-		/* Create and adjust the configuration singleton */
+		 Create and adjust the configuration singleton 
 		Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
 
 		// cfg.setDirectoryForTemplateLoading(new
@@ -43,14 +43,14 @@ public class EmailTemplateHandlerUtil {
 		cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
 		cfg.setLogTemplateExceptions(false);
 
-		/*
+		
 		 * ----------------------------------------------------------------------
 		 * --
-		 */
-		/*
+		 
+		
 		 * You usually do these for MULTIPLE TIMES in the application
 		 * life-cycle:
-		 */
+		 
 
 		return cfg;
 
@@ -58,18 +58,18 @@ public class EmailTemplateHandlerUtil {
 
 	public String createNewUserHtmlTemplate(UserEntity user) {
 		try {
-			/* Create a data-model */
+			 Create a data-model 
 			Map root = new HashMap();
 			root.put("firstName", user.getFirstName());
 			root.put("siteUrl", "www.prostudy.in");
 
 			root.put("user", user);
 
-			/* Get the template (uses cache internally) */
+			 Get the template (uses cache internally) 
 			Template temp = getConfiguration().getTemplate(
 					"email_templates/new_user_registration.ftlh");
 
-			/* Merge data-model with template */
+			 Merge data-model with template 
 			Writer out = new PrintWriter(new ByteArrayOutputStream(500));
 			temp.process(root, out);
 			return out.toString();
@@ -97,3 +97,4 @@ public class EmailTemplateHandlerUtil {
 		return "";
 	}
 }
+*/

@@ -131,11 +131,11 @@ angular
 						note : "",
 						tPaid : 0,
 						pAmount : 0,
-						nameOfBank:"",
-						branchName:"",
-						transactionNumber:"",
-						depositDate:new Date(),
-						
+						nameOfBank : "",
+						branchName : "",
+						transactionNumber : "",
+						depositDate : new Date(),
+
 					}
 
 					// get last next 4 year to show academic year
@@ -165,9 +165,9 @@ angular
 					$scope.schoolid;
 
 					$scope.addPartnerSchool = function() {
-						
+
 						$scope.tabNext();
-						
+
 						$scope.waitForServiceLoad2();
 						if ($scope.PaymentDetail.payReceivedBy != "") {
 							$scope.PaymentDet.push($scope.PaymentDetail);
@@ -187,12 +187,14 @@ angular
 						$scope.partnerSchool.contactDetail = $scope.contactDetail;
 
 						if ($scope.schoolid != undefined
-								&& $scope.selectedPSchoolId != "") {
+								&& $scope.selectedPSchoolId == "") {
 							$scope.partnerSchool.id = $scope.schoolid.id;
-							$scope.partnerSchool.examDetailList = $scope.examlist;
-						} else {
-							$scope.partnerSchool.examDetailList[0] = $scope.examDetail;
 						}
+				/*		if ($scope.examlist.length >=1) {*/
+							$scope.partnerSchool.examDetailList = $scope.examlist;
+						/*} else {
+							$scope.partnerSchool.examDetailList[0] = $scope.examDetail;
+						}*/
 
 						var PartnerSchoolService = appEndpointSF
 								.getPartnerSchoolService();
