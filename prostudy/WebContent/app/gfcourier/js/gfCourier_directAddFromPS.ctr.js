@@ -30,19 +30,26 @@ angular
 					$scope.partnerSchoolNew = {
 						bookLineItemList : []
 					};
-					$scope.selectedGFCourierID = $stateParams.selectedGFCourierID;
+					$scope.tempPartnerSchool = {
+						examDetailList : ''
+					};
+					
+					$scope.yearOfExam = $stateParams.yearOfExam;
 					$scope.partnerSchool = $stateParams.partnerSchool;
 					$log.debug("$scope.partnerSchool=="
 							+ angular.toJson($scope.partnerSchool));
 
+				
 					$scope.partnerSchool.courierTo = $scope.partnerSchool.schoolName
-							+ "," + $scope.partnerSchool.address.line1
-							+ "," + $scope.partnerSchool.address.state
-							+ "," + $scope.partnerSchool.address.pin;
-					
-					$scope.partnerSchool.courierFrom = $scope.curUser.instituteObj.name
 							+ ","
-							+ $scope.curUser.instituteObj.address;
+							+ $scope.partnerSchool.address.line1
+							+ ","
+							+ $scope.partnerSchool.address.state
+							+ ","
+							+ $scope.partnerSchool.address.pin;
+
+					$scope.partnerSchool.courierFrom = $scope.curUser.instituteObj.name
+							+ "," + $scope.curUser.instituteObj.address;
 
 					$scope.addGFCourier = function() {
 						$scope.partnerSchoolNew.instituteID = $scope.curUser.instituteID;
@@ -56,12 +63,12 @@ angular
 						$scope.partnerSchoolNew.courierType = $scope.partnerSchool.courierType;
 						$scope.partnerSchoolNew.logistics = $scope.partnerSchool.logistics;
 
-						for (var i = 0; i < $scope.partnerSchool.bookSummary.bookDetail.length; i++) {
+						for (var i = 0; i < $scope.tempPartnerSchool.examDetailList.bookSummary.bookDetail.length; i++) {
 							for (var j = 0; j < $scope.bookStocks.length; j++) {
-								if ($scope.partnerSchool.bookSummary.bookDetail[i].bookName == $scope.bookStocks[j].id) {
-									$scope.bookStocks[j].bookQty = $scope.partnerSchool.bookSummary.bookDetail[i].totalStud;
+								if ($scope.tempPartnerSchool.examDetailList.bookSummary.bookDetail[i].bookName == $scope.bookStocks[j].id) {
+									$scope.bookStocks[j].bookQty = $scope.tempPartnerSchool.examDetailList.bookSummary.bookDetail[i].totalStud;
 									$scope.weight = +$scope.bookStocks[j].weight
-											* $scope.partnerSchool.bookSummary.bookDetail[i].totalStud;
+											* $scope.tempPartnerSchool.examDetailList.bookSummary.bookDetail[i].totalStud;
 									$scope.partnerSchoolNew.bookLineItemList
 											.push($scope.bookStocks[j]);
 
@@ -95,20 +102,40 @@ angular
 										function(pSchool) {
 											$scope.pSchool = pSchool;
 
-											for (var i = 0; i < $scope.partnerSchool.bookSummary.bookDetail.length; i++) {
+											if ($scope.partnerSchool.examDetailList != undefined) {
+												
+												$scope.partnerSchoolNew.totalFees = 0;
+											for (var i = 0; i < $scope.partnerSchool.examDetailList.length; i++) {
+												
+												if ($scope.partnerSchool.examDetailList[i].yearOfExam == $scope.yearOfExam) {
+													$scope.tempPartnerSchool.examDetailList = $scope.partnerSchool.examDetailList[i];
+												}
+												
+												
 												for (var j = 0; j < $scope.bookStocks.length; j++) {
-													if ($scope.partnerSchool.bookSummary.bookDetail[i].bookName == $scope.bookStocks[j].id) {
+													
+													if ($scope.tempPartnerSchool.examDetailList.bookSummary.bookDetail[i].bookName == $scope.bookStocks[j].id) {
 
 														$scope.partnerSchoolNew.totalWeight = +$scope.bookStocks[j].weight
-																* $scope.partnerSchool.bookSummary.bookDetail[i].totalStud;
+																* $scope.tempPartnerSchool.examDetailList.bookSummary.bookDetail[i].totalStud;
 
+														$scope.partnerSchoolNew.totalFees = $scope.partnerSchoolNew.totalFees + $scope.tempPartnerSchool.examDetailList.bookSummary.bookDetail[i].totalFees;
 													}
 												}
+											}
 											}
 										});
 					}
 
-					$scope.getGFBookStockByInstituteId = function() {
+	/*				
+					if ($scope.partnerSchool.examDetailList != undefined) {
+						for (var i = 0; i < $scope.partnerSchool.examDetailList.length; i++) {
+							if ($scope.partnerSchool.examDetailList[i].yearOfExam == $scope.yearOfExam) {
+								$scope.tempPartnerSchool.examDetailList = $scope.partnerSchool.examDetailList[i];
+							}
+						}
+					}
+*/					$scope.getGFBookStockByInstituteId = function() {
 						var gfBookStockService = appEndpointSF
 								.getGFBookStockService();
 						gfBookStockService.getGFBookByInstituteId(

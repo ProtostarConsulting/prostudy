@@ -1012,7 +1012,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/gfcourier/gfCourier_directAddFromPS.html',
 		controller : 'gfCourierDirectAddCtr',
 		params : {			
-			partnerSchool : null
+			partnerSchool : null,
+			yearOfExam : null
 			}
 	})
 

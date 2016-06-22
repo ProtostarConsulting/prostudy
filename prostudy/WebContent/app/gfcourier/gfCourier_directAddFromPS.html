@@ -51,12 +51,13 @@
 
 		<div layout="row" layout-xs="column" flex>
 
-			<md-input-container flex> <label>From </label> <input
-				name="courierFrom" ng-model="partnerSchool.courierFrom" readonly> </md-input-container>
+			<md-input-container flex> <label>From </label> <textarea
+				name="courierFrom" ng-model="partnerSchool.courierFrom" rows="3"
+				cols="1" readonly="readonly"></textarea> </md-input-container>
 
-			<md-input-container flex> <label>To </label> <input
-				name="courierTo" ng-model="partnerSchool.courierTo" ng-value="{{partnerSchool.schoolName}}" readonly> </md-input-container>
-
+			<md-input-container flex> <label>From </label> <textarea
+				name="courierFrom" ng-model="partnerSchool.courierTo" rows="3"
+				cols="1" readonly="readonly"></textarea> </md-input-container>
 		</div>
 
 
@@ -71,14 +72,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="item in partnerSchool.bookSummary.bookDetail">
+				<tr
+					ng-repeat="item in tempPartnerSchool.examDetailList.bookSummary.bookDetail">
 
 					<td>{{ $index + 1 }}</td>
 					<td><ol>
 							<li style="list-style-type: none; text-align: left;"
-							ng-model="item.schoolName"
-								ng-value="book.id" ng-repeat="book in bookStocks "
-								ng-if="book.id==item.bookName">{{book.bookName}}({{book.bookMedium}})</li>
+								ng-model="item.schoolName" ng-value="book.id"
+								ng-repeat="book in bookStocks " ng-if="book.id==item.bookName">{{book.bookName}}({{book.bookMedium}})</li>
 						</ol></td>
 
 					<td><md-input-container flex> <input
@@ -93,7 +94,7 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td>Total : {{partnerSchool.bookSummary.total}}</td>
+					<td>Total Fees: {{partnerSchoolNew.totalFees}}</td>
 				</tr>
 				<tr>
 					<td></td>

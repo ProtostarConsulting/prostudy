@@ -7,14 +7,6 @@ angular
 						tableTestDataFactory, $state, $timeout, appEndpointSF,
 						$stateParams) {
 
-					$scope.courierTypelist = [ "Book", "Certificate",
-							"Error Certificate", "Error books",
-							"Prize Certificate" ];
-					$scope.logisticsList = [ "By Post", "By Hand", "ST Postal",
-							"Tej Courier" ];
-					$scope.registrationIDList = [ "MH100001", "MH100002",
-							"MH100003", "MH100004", "KA100001", "KA100002" ];
-
 					$scope.selectedGFCourierID = $stateParams.selectedGFCourierID;
 					$scope.getGFCourierById = function() {
 
@@ -32,7 +24,7 @@ angular
 										});
 					}
 
-					$scope.getPartnerByInstitute = function() {
+/*					$scope.getPartnerByInstitute = function() {
 
 						var PartnerSchoolService = appEndpointSF
 								.getPartnerSchoolService();
@@ -54,7 +46,7 @@ angular
 									});
 					}
 					$scope.bookStocks = [];
-					
+*/					
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
 
