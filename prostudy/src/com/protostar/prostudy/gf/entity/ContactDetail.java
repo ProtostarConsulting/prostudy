@@ -7,6 +7,7 @@ public class ContactDetail {
 
 	private String headMasterName;
 	private String headMasterMobile;
+	private String  headMasterPhone;
 	private String headMasterEmailId;
 	private List<CoordinatorDetail> coordinatorDetail;
 	/*private String coordinatorName;
@@ -54,6 +55,12 @@ public class ContactDetail {
 	}
 	public void setCoordinatorDetail(List<CoordinatorDetail> coordinatorDetail) {
 		this.coordinatorDetail = coordinatorDetail;
+	}
+	public String getHeadMasterPhone() {
+		return headMasterPhone;
+	}
+	public void setHeadMasterPhone(String headMasterPhone) {
+		this.headMasterPhone = headMasterPhone;
 	}
 
 }

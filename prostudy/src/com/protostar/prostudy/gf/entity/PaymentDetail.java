@@ -12,6 +12,11 @@ public class PaymentDetail {
 	private Integer pAmount;
 	private String note;
 	
+	private String nameOfBank;
+	private String branchName;
+	private String transactionNumber;
+	private Date depositDate;
+	
 	
 	public String getPayReceivedBy() {
 		return payReceivedBy;
@@ -48,5 +53,29 @@ public class PaymentDetail {
 	}
 	public void setNote(String note) {
 		this.note = note;
+	}
+	public String getNameOfBank() {
+		return nameOfBank;
+	}
+	public void setNameOfBank(String nameOfBank) {
+		this.nameOfBank = nameOfBank;
+	}
+	public String getBranchName() {
+		return branchName;
+	}
+	public void setBranchName(String branchName) {
+		this.branchName = branchName;
+	}
+	public String getTransactionNumber() {
+		return transactionNumber;
+	}
+	public void setTransactionNumber(String transactionNumber) {
+		this.transactionNumber = transactionNumber;
+	}
+	public Date getDepositDate() {
+		return depositDate;
+	}
+	public void setDepositDate(Date depositDate) {
+		this.depositDate = depositDate;
 	}
 }

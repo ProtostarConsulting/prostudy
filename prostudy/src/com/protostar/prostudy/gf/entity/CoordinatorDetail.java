@@ -6,6 +6,7 @@ public class CoordinatorDetail {
 	private String coordinatorName;
 	private String coordinatorPhoneNum;
 	private String coordinatorEmailId;
+	private String coordinatorMobileNum;
 	public String getCoordinatorName() {
 		return coordinatorName;
 	}
@@ -29,5 +30,11 @@ public class CoordinatorDetail {
 	}
 	public void setSrno(Integer srno) {
 		this.srno = srno;
+	}
+	public String getCoordinatorMobileNum() {
+		return coordinatorMobileNum;
+	}
+	public void setCoordinatorMobileNum(String coordinatorMobileNum) {
+		this.coordinatorMobileNum = coordinatorMobileNum;
 	}
 }

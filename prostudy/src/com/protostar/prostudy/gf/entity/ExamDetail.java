@@ -9,10 +9,13 @@ private String totalStudent;
 private String male;
 private String female;
 private String total;
-private List<String> examMedium;
+/*private List<String> examMedium;*/
 private String yearOfExam;
 private String bookRequired;
 private String modeOfExam;
+
+private List<PaymentDetail> paymentDetail;
+private BookSummary bookSummary;
 
 public String getTotalStudent() {
 	return totalStudent;
@@ -45,14 +48,14 @@ public String getTotal() {
 public void setTotal(String total) {
 	this.total = total;
 }
-
+/*
 public List<String> getExamMedium() {
-	return examMedium;
+	return examMedium==null ? null : examMedium;
 }
 
 public void setExamMedium(List<String> examMedium) {
 	this.examMedium = examMedium;
-}
+}*/
 
 public String getYearOfExam() {
 	return yearOfExam;
@@ -76,6 +79,24 @@ public String getModeOfExam() {
 
 public void setModeOfExam(String modeOfExam) {
 	this.modeOfExam = modeOfExam;
+}
+
+public List<PaymentDetail> getPaymentDetail() {
+	return paymentDetail==null ? null : paymentDetail;
+
+}
+
+public void setPaymentDetail(List<PaymentDetail> paymentDetail) {
+	this.paymentDetail = paymentDetail;
+	
+}
+
+public BookSummary getBookSummary() {
+	return bookSummary==null ? null : bookSummary;
+}
+
+public void setBookSummary(BookSummary bookSummary) {
+	this.bookSummary = bookSummary;
 }
 
 
