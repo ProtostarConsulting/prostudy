@@ -797,6 +797,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : "/print/:PSchoolId",
 		templateUrl : '/app/partnerSchool/printBookDetail.html',
 		controller : 'printBookDtailCtr'
+	}).state('partnerSchool.printAddress', {
+		url : "/printAddress/:PSchoolId",
+		templateUrl : '/app/partnerSchool/printAddress.html',
+		controller : 'printBookDtailCtr'
 	}).state('partnerSchool.listPartnerSchool', {
 		url : "/listPartnerSchool",
 		templateUrl : '/app/partnerSchool/partnerSchool_list.html',

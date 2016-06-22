@@ -358,15 +358,13 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 		}, apiRoot);
 
 		gapi.client.load('protostarAdminService', 'v0.1', function() {
-			$log.debug("protostarAdminService Loaded......");
-			endpointFactory.is_service_ready = true;
+			$log.debug("protostarAdminService Loaded......");			
 			deferred.resolve();
 
 		}, apiRoot);
 
 		gapi.client.load('uploadUrlService', 'v0.1', function() {
 			$log.debug("uploadUrlService Loaded......");
-			endpointFactory.is_service_ready = true;
 		}, apiRoot);
 
 		gapi.client.load('uploadPathService', 'v0.1', function() {
@@ -381,6 +379,7 @@ function appEndpointSF($log, localDBServiceFactory, googleEndpointSF) {
 		}, apiRoot);
 		gapi.client.load('gfBookStockService', 'v0.1', function() {
 			$log.debug("gfBookStockService Loaded......");
+			endpointFactory.is_service_ready = true;
 		}, apiRoot);
 
 		return deferred.promise;
