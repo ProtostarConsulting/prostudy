@@ -44,8 +44,6 @@ public class UserService {
 		ofy().save().entity(usr).now();
 		System.out.println("now_user :" + now);
 	
-		
-	//	Properties props = new Properties();
 		Properties props = new Properties();
 		
 		Session session = Session.getDefaultInstance(props, null);

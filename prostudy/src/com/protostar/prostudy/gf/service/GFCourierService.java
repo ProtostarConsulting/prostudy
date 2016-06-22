@@ -2,7 +2,19 @@ package com.protostar.prostudy.gf.service;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
@@ -19,12 +31,18 @@ import com.protostar.prostudy.gf.entity.GFCourierEntity;
 public class GFCourierService {
 
 	@ApiMethod(name = "addGFCourier")
-	public void addGFCourier(GFCourierEntity gfCourierEntity) {
+	public void addGFCourier(GFCourierEntity gfCourierEntity) throws MessagingException, IOException {
 
 		ofy().save().entity(gfCourierEntity).now();
 
 		GFBookTransactionEntity gfBookTransactionEntity = new GFBookTransactionEntity();
 
+		int sum = 0;
+		for (int i = 0; i < gfCourierEntity.getBookLineItemList().size(); i++) {
+
+			sum = sum + gfCourierEntity.getBookLineItemList().get(i).getBookQty();
+		}
+		
 		if (gfCourierEntity.getBookLineItemList().size() < 1) {
 			gfBookTransactionEntity.setTransactionType("Dr");
 			ofy().save().entity(gfBookTransactionEntity).now();
@@ -34,9 +52,10 @@ public class GFCourierService {
 				GFBookEntity book = gfCourierEntity.getBookLineItemList()
 						.get(i);
 				gfBookTransactionEntity.setBook(book);
-				gfBookTransactionEntity.setBookQty(gfCourierEntity.getBookLineItemList().get(i).getBookQty());
+				gfBookTransactionEntity.setBookQty(sum);
 				gfBookTransactionEntity.setInstituteID(gfCourierEntity.getInstituteID());
 				gfBookTransactionEntity.setTransactionDate(gfCourierEntity.getCourierDispatchDate());
+				gfBookTransactionEntity.setTotalFees(gfCourierEntity.getTotalFees());
 				gfBookTransactionEntity.setTransactionType("Dr");
 
 				ofy().save().entity(gfBookTransactionEntity).now();
@@ -68,6 +87,29 @@ public class GFCourierService {
 			
 
 		}
+		
+		String emailID = "aniketbhalsing1@gmail.com";
+		Properties props = new Properties();
+		
+		Session session = Session.getDefaultInstance(props, null);
+		String messageBody = "Your Courier Has been Dispatched ";
+		try {
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("ganesh.lawande@protostar.co.in","ProERP"));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(emailID));
+			message.setSubject("Courier Dispatch From Gandhi Foundation " );
+			message.setText(messageBody);
+			Transport.send(message);
+		} catch (AddressException e) {
+			// An email address was invalid.
+			// ...
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			// There was an error contacting the Mail service.
+			// ...
+			e.printStackTrace();
+		}
+		
 	}
 
 	@ApiMethod(name = "getGFCourierByInstitute", path = "getGFCourierByInstitute")
