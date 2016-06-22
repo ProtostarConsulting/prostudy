@@ -21,8 +21,10 @@ public class Address implements Serializable {
 	private String line1 = "";
 	private String line2 = "";
 	private String city = "";
+	private String tal = "";
 	private String state;
 	private String country;
+	private String dist;
 	private String pin;
 
 	/*
@@ -85,6 +87,22 @@ public class Address implements Serializable {
 
 	public void setAddressType(String addressType) {
 		this.addressType = addressType;
+	}
+
+	public String getDist() {
+		return dist;
+	}
+
+	public void setDist(String dist) {
+		this.dist = dist;
+	}
+
+	public String getTal() {
+		return tal;
+	}
+
+	public void setTal(String tal) {
+		this.tal = tal;
 	}
 
 }
