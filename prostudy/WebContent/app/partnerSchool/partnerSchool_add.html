@@ -239,9 +239,9 @@
 		<h3 class="md-subhead">Enter Exam Appeared Student Male and
 			Female</h3>
 	</div>
-	<div layout="row" layout-xs="column">
+	<div layout="row" layout-xs="column" flex>
 
-		<md-input-container flex="20"> <label>Male
+		<md-input-container flex > <label>Male
 			<span style="color: red;">*</span>
 		</label> <input name="male" id="male" ng-model="examDetail.male"
 			ng-change="calculateTotal()" ng-required="true">
@@ -251,7 +251,7 @@
 		</div>
 		</md-input-container>
 		<!-- 	<span flex="20"></span> -->
-		<md-input-container flex="20"> <label>Female<span
+		<md-input-container flex> <label>Female<span
 			style="color: red;">*</span>
 		</label> <input name="female" id="female" ng-model="examDetail.female"
 			ng-change="calculateTotal()" ng-required="true">
@@ -281,16 +281,12 @@
 
 		<h3 class="md-subhead">Mode Of Exam OnLine / OffLine</h3>
 		<!-- 	<span flex="10"></span> -->
-		<md-input-container flex="40"> <md-radio-group
+		<md-input-container flex> <md-radio-group
 			ng-model="examDetail.modeOfExam"> <md-radio-button
 			value="OffLine" class="md-primary">OffLine</md-radio-button> <md-radio-button
 			value="OnLine" class="md-primary"> OnLine </md-radio-button> </md-radio-group> </md-input-container>
 
-
-	</div>
-	<div layout="row" layout-xs="column">
-
-		<h3 class="md-subhead" flex="20">Books Required OnLine / OffLine</h3>
+		<h3 class="md-subhead" >Books Required OnLine / OffLine</h3>
 		<!-- 	<span flex="10"></span> -->
 		<md-input-container flex> <md-radio-group
 			ng-model="examDetail.bookRequired"> <md-radio-button
@@ -298,9 +294,11 @@
 			value="OnLine" class="md-primary"> OnLine </md-radio-button> </md-radio-group> </md-input-container>
 
 
-		<h3 class="md-subhead" flex="20">Select Year</h3>
+	</div>
+	<div layout="row" layout-xs="column" flex>
+		<h3 class="md-subhead" flex="15">Select Year</h3>
 		<!-- 	<span flex="10"></span> -->
-		<md-input-container flex="40"> <md-select
+		<md-input-container flex="25"> <md-select
 			ng-change="getExamByYear(yearOfExam)" ng-model="yearOfExam"
 			id="selectedYear"> <md-option ng-value="Year"
 			ng-repeat="Year in Years" ng-selected="$first">{{Year}}</md-option> </md-select>
@@ -430,9 +428,9 @@
 					<td><md-input-container flex> <label>
 							Name</label> <input ng-model="co.coordinatorName"> </md-input-container></td>
 					<td><md-input-container flex> <label>Phone
-							No. No </label> <input ng-model="co.coordinatorPhoneNum"></md-input-container></td>
+							No.</label> <input ng-model="co.coordinatorPhoneNum"></md-input-container></td>
 					<td><md-input-container flex> <label>Mobile
-							No. No </label> <input ng-model="co.coordinatorMobileNum"></md-input-container></td>
+							No.</label> <input ng-model="co.coordinatorMobileNum"></md-input-container></td>
 					<td><md-input-container flex> <label>Email
 							Id</label> <input ng-model="co.coordinatorEmailId"></md-input-container></td>
 					<td><md-button class="md-raised md-primary"
@@ -488,7 +486,7 @@
 		<!--<md-card>-->
 		<section layout="row">
 
-			<md-button class="md-raised md-primary" ng-show="selectedPSchoolId"
+		<md-button class="md-raised md-primary" ng-show="selectedPSchoolId"
 				ui-sref="courierModule.addFromPS({partnerSchool : partnerSchool , yearOfExam : yearOfExam})">Add
 			Courier </md-button>
 
