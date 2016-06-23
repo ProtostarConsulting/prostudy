@@ -797,7 +797,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/partnerSchool/partnerSchool_add.html',
 		controller : 'partnerSchoolAddCtr'
 	}).state('partnerSchool.print', {
-		url : "/print/:PSchoolId",
+		url : "/print/:PSchoolId/:yearOfExam",
 		templateUrl : '/app/partnerSchool/printBookDetail.html',
 		controller : 'printBookDtailCtr'
 	}).state('partnerSchool.printAddress', {
