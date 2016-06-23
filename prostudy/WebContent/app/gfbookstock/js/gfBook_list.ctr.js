@@ -1,7 +1,7 @@
 angular.module("prostudyApp").controller(
 		"gfBookListCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,
-				$log, $q, $mdDialog, $mdMedia, tableTestDataFactory,
+				$log, $q, $mdDialog, $mdMedia, tableTestDataFactory, $state,
 				appEndpointSF) {
 			console.log("Inside studentListPageCtr");
 
@@ -108,7 +108,29 @@ angular.module("prostudyApp").controller(
 
 			$scope.downloadData = function() {
 
-				document.location.href = "DownloadGFBooks?InstituteId="+ $scope.curUser.instituteID;
+				document.location.href = "DownloadGFBooks?InstituteId="
+						+ $scope.curUser.instituteID;
+
+			}
+
+			$scope.threshold = false;
+			$scope.bookStocks1 = [];
+			$scope.showThresholdBooks = function(index, selected) {
+
+				if ($scope.threshold == true) {
+					for (var i = 0; i < $scope.bookStocks.length; i++) {
+
+						if($scope.bookStocks[i].bookQty <  $scope.bookStocks[i].bookThreshold){
+							
+						$scope.bookStocks1.push($scope.bookStocks[i]);
+						
+						$scope.bookStocks = $scope.bookStocks1;
+						}
+					}
+
+				}else{
+					$state.reload();
+				}
 
 			}
 

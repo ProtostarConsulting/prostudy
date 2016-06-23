@@ -3,14 +3,13 @@
 
 	<div layout="row" layout-align="end end" layout-xs="column">
 
-			<md-button class="md-raised md-primary" id="uplodeExcel"
-		ng-click="UplodeExcel($event)">Upload Books<md-tooltip>
-	Add Bulk Books</md-tooltip> </md-button>
-	
-	<md-button class="md-raised md-primary" id="downloadExcel"
-			ng-click="downloadData()">Import Books
-			<md-tooltip>Import Books</md-tooltip>
-			</md-button>
+		<md-button class="md-raised md-primary" id="uplodeExcel"
+			ng-click="UplodeExcel($event)">Upload Books<md-tooltip>
+		Add Bulk Books</md-tooltip> </md-button>
+
+		<md-button class="md-raised md-primary" id="downloadExcel"
+			ng-click="downloadData()">Import Books <md-tooltip>Import
+		Books</md-tooltip> </md-button>
 	</div>
 
 
@@ -18,23 +17,15 @@
 	<div layout="row" layout-xs="column">
 		<md-input-container flex> <label>Search
 			By Name</label> <input ng-model="searchByName"> </md-input-container>
+
+		<div flex>
+			<label>Book By Threshold </label>
+			<md-checkbox ng-model="threshold" ng-true-value="true"
+				ng-false-value="false" id="changer" id="thresholdID"
+				ng-change="showThresholdBooks()"> </md-checkbox>
+		</div>
 	</div>
 
-	<div layout=col layout-align="end end" layout-xs="column">
-
-
-		<md-input-container flex> <label>Search
-			BY Book Name</label> <md-select name="bookName" ng-model="bookName ">
-		<md-option ng-value="book.bookName"
-			ng-repeat="book in bookStocks">{{book.bookName}}</md-option> 
-		</md-select></md-input-container>	
-<!-- 			
-			<md-input-container
-			flex> <label>Search BY Medium </label> <md-select
-			name="bookName" ng-model="medium "> <md-option
-			ng-value="book.medium" ng-repeat="book in bookStocks">{{book.medium}}</md-option>
-		</md-select> </md-input-container>
- -->	</div>
 
 	<div>
 		<md-data-table-container>
@@ -46,28 +37,45 @@
 					<th order-by="bookName" name="Book Name"></th>
 					<th order-by="bookAuther" name="Auther"></th>
 					<th order-by="weight" name="Weight"></th>
-					<th order-by="bookPrice" name="Fees"></th>	
-					<th order-by="bookPublication" name="Publication"></th>
+					<th order-by="bookPrice" name="Fees"></th>
 					<th order-by="bookQty" name="Quantity"></th>
+					<th order-by="bookThreshold" name="Threshold"></th>
 					<th name="Action"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr md-auto-select
-					ng-repeat="book in bookStocks | orderBy: query.order | filter: bookName |filter : medium | limitTo: query.limit: (query.page - 1) * query.limit">
+					ng-repeat="book in bookStocks | orderBy: query.order | filter: bookName |filter : searchByName | limitTo: query.limit: (query.page - 1) * query.limit">
 
-					<td>{{book.bookName}}</td>
+<!-- 					<td>{{book.bookName}}</td>
 					<td>{{book.bookAuther}}</td>
 					<td>{{book.weight}}</td>
 					<td>{{book.bookPrice}}</td>
-					<td>{{book.bookPublication}}</td>
-					<td>{{book.bookQty}}</td>
+					<td>{{book.bookThreshold}}</td>
+ -->					<td ng-if="book.bookQty < book.bookThreshold"><b><font color="red">{{book.bookName}}</font></b></td>
+					<td ng-if="book.bookQty > book.bookThreshold">{{book.bookName}}</b></td>
+					
+					<td ng-if="book.bookQty < book.bookThreshold"><b><font color="red">{{book.bookAuther}}</font></b></td>
+					<td ng-if="book.bookQty > book.bookThreshold">{{book.bookAuther}}</b></td>
+					
+					<td ng-if="book.bookQty < book.bookThreshold"><b><font color="red">{{book.weight}}</font></b></td>
+					<td ng-if="book.bookQty > book.bookThreshold">{{book.weight}}</b></td>
+					
+					<td ng-if="book.bookQty < book.bookThreshold"><b><font color="red">{{book.bookPrice}}</font></b></td>
+					<td ng-if="book.bookQty > book.bookThreshold">{{book.bookPrice}}</b></td>
+					
+					<td ng-if="book.bookQty < book.bookThreshold"><b><font color="red">{{book.bookQty}}</font></b></td>
+					<td ng-if="book.bookQty > book.bookThreshold">{{book.bookQty}}</b></td>
+										
+					<td ng-if="book.bookQty < book.bookThreshold"><b><font color="red">{{book.bookThreshold}}</font></b></td>
+					<td ng-if="book.bookQty > book.bookThreshold">{{book.bookThreshold}}</b></td>
+					
 					<td><md-button
 							ui-sref="bookModule.add({selectedGFBookID : book.id})"
 							class="md-fab md-primary md-hue-2" ng-click=""> <md-icon
 							md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit
 						</md-tooltip></md-button></td>
-					
+
 				</tr>
 			</tbody>
 		</table>
@@ -76,17 +84,4 @@
 			md-total={{bookStocks.length}} md-trigger="onpagechange"></md-data-table-pagination>
 	</div>
 </div>
-<!-- 
-<div layout="row" layout-align="center center">
-	<md-button ui-sref="gfcourier.add({selectedGFCourierID : selected[0].id})"
-		ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
-		ng-click=""> <md-icon md-svg-src="img/icons/edit.svg"></md-icon>
-	<md-tooltip>Edit </md-tooltip></md-button>
-
-	<md-button ui-sref="gfcourier.view({selectedGFCourierID : selected[0].id})"
-		ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
-		ng-click=""> <md-icon md-svg-src="img/icons/result.svg"></md-icon>
-	<md-tooltip>View </md-tooltip></md-button>
-</div>
- -->
 
