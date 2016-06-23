@@ -19,7 +19,10 @@ app.constant('partnerSchoolLevels', ["Primary", "Secondary", "Higher-Secondary",
 	$mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette(
 			'red').warnPalette('pink').backgroundPalette('grey');
 });*/
-
+//Set up the cache ‘ajsCache’
+app.factory('ajsCache', function($cacheFactory) {
+	return $cacheFactory('browserCache');
+});
 app.config(function($mdThemingProvider) {
 
 	/*
