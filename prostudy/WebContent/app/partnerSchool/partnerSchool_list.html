@@ -1,21 +1,22 @@
-<h3 class="md-headline"> School List</h3>
+<h3 class="md-headline">School List</h3>
 <section layout="row" layout-align="end end" flex>
-<md-button class="md-raised md-primary" id="downloadExcel"
-			ng-click="downloadData()">Export School Data
-			<md-tooltip>
-			download Bulk  Schools Data</md-tooltip>
-			</md-button>
-		<md-button class="md-raised md-primary" id="uplodeExcel"
-			ng-click="UplodeExcel($event)">Import School Data
-			<md-tooltip>
-			Add Bulk  Schools</md-tooltip>
-			</md-button>
-	</section>
+	<md-button class="md-raised md-primary" id="downloadExcel"
+		ng-click="downloadData()">Export School Data <md-tooltip>
+	download Bulk Schools Data</md-tooltip> </md-button>
+	<md-button class="md-raised md-primary" id="uplodeExcel"
+		ng-click="UplodeExcel($event)">Import School Data <md-tooltip>
+	Add Bulk Schools</md-tooltip> </md-button>
+</section>
 
 <div>
-	<div layout layout-sm="column">
+	<div layout="row" layout-xs="column" flex>
 		<md-input-container flex> <label>Search</label> <input
 			ng-model="searchText"> </md-input-container>
+		<md-input-container flex> <md-select
+			ng-model="yearOfExam" id="selectedYear"
+			ng-change="changeSchoolList(yearOfExam)"> <md-option
+			ng-value="Year" ng-repeat="Year in Years" ng-selected="$first">{{Year}}</md-option>
+		</md-select> </md-input-container>
 	</div>
 	<md-content> <md-data-table-container>
 
@@ -32,17 +33,14 @@
 
 		<tbody>
 			<tr md-auto-select
-				ng-repeat="pSchool in pSchoolList  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText ">
+				ng-repeat="pSchool in schools  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText ">
 				<td>{{pSchool.schoolName}}</td>
 				<td>{{pSchool.instName}}</td>
 				<td>{{pSchool.address.city}}</td>
 				<td>{{pSchool.formNumber}}</td>
-				<td>
-				<md-button class="md-raised md-primary"
-							ui-sref="partnerSchool.addPartnerSchool({selectedPSchoolId: pSchool.id})">
-						Edit</md-button>
-				
-				<!-- <a
+				<td><md-button class="md-raised md-primary"
+						ui-sref="partnerSchool.addPartnerSchool({selectedPSchoolId: pSchool.id})">
+					Edit</md-button> <!-- <a
 					ui-sref="partnerSchool.addPartnerSchool({selectedPSchoolId: pSchool.id})"><md-button>
 						<md-icon md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit
 						</md-tooltip></md-button></a> --></td>
