@@ -102,11 +102,11 @@
 			</div>
 			</md-input-container>
 
-			<md-input-container flex> <label>Quantity<span
+			<md-input-container flex  ng-hide="selectedGFBookID"> <label>Quantity<span
 				style="color: red" ng-show="gfBookStockForm.bookQty.$error.required"
 				class="mandatory">*</span>
 			</label> <input name="bookQty" type="number" ng-model="tempBook.bookQty"
-				ng-required="true">
+				ng-required="true" >
 			<div ng-messages="gfBookStockForm.bookQty.$error"
 				ng-if="gfBookStockForm.bookQty.$submitted || gfBookStockForm.bookQty.$touched">
 				<div ng-message="required">Please Enter Book Quantity.</div>
