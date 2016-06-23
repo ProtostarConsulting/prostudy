@@ -78,14 +78,6 @@
 				/ College / Institute</label> <input name="schoolName"
 				ng-model="tempCourierObj.schoolName" readonly="readonly"> </md-input-container>
 
-			<!-- 
-			<md-input-container flex> <label>School / College / Institute </label>
-			 <md-select name="level"
-				ng-model="tempCourierObj.schoolName"> <md-option
-				ng-value="schoolName" ng-repeat="schoolName in pSchoolList">{{schoolName.schoolName}}</md-option>
-			</md-select> </md-input-container>
- -->
-
 		</div>
 
 		<div layout="row" layout-xs="column" flex>
@@ -108,13 +100,7 @@
 
 		</div>
 
-		<!-- 		<div class="alert" ng-if="hit">
-			<span class="closebtn"
-				onclick="this.parentElement.style.display='none';">&times;</span> <strong>Alert!</strong>
-			The book quantity hit the threshold value.
-		</div>
- -->
-		<h3>Books/Item Details</h3>
+		<h3>Books Details</h3>
 		<table md-data-table md-progress="deferred">
 			<thead md-order="query.order" md-trigger="onOrderChange">
 				<tr>
@@ -148,12 +134,6 @@
 
 					<td><md-input-container flex> <b>{{item.bookQty
 							* item.weight | currency:"":"2"}} </b></td>
-
-					<!-- 					<td><md-input-container flex> <label>Weight
-						</label> <input ng-model="item.weight" type="number" readonly="readonly">
-						</md-input-container></td>
- -->
-
 
 					<td><md-icon md-svg-src="img/icons/remove.svg"
 							ng-click="removeItem($index)" class="name"
