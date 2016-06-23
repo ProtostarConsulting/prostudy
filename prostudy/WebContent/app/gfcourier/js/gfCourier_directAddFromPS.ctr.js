@@ -33,13 +33,12 @@ angular
 					$scope.tempPartnerSchool = {
 						examDetailList : ''
 					};
-					
+
 					$scope.yearOfExam = $stateParams.yearOfExam;
 					$scope.partnerSchool = $stateParams.partnerSchool;
 					$log.debug("$scope.partnerSchool=="
 							+ angular.toJson($scope.partnerSchool));
 
-				
 					$scope.partnerSchool.courierTo = $scope.partnerSchool.schoolName
 							+ ","
 							+ $scope.partnerSchool.address.line1
@@ -103,39 +102,42 @@ angular
 											$scope.pSchool = pSchool;
 
 											if ($scope.partnerSchool.examDetailList != undefined) {
-												
+
 												$scope.partnerSchoolNew.totalFees = 0;
-											for (var i = 0; i < $scope.partnerSchool.examDetailList.length; i++) {
-												
-												if ($scope.partnerSchool.examDetailList[i].yearOfExam == $scope.yearOfExam) {
-													$scope.tempPartnerSchool.examDetailList = $scope.partnerSchool.examDetailList[i];
-												}
-												
-												
-												for (var j = 0; j < $scope.bookStocks.length; j++) {
-													
-													if ($scope.tempPartnerSchool.examDetailList.bookSummary.bookDetail[i].bookName == $scope.bookStocks[j].id) {
+												for (var i = 0; i < $scope.partnerSchool.examDetailList.length; i++) {
 
-														$scope.partnerSchoolNew.totalWeight = +$scope.bookStocks[j].weight
-																* $scope.tempPartnerSchool.examDetailList.bookSummary.bookDetail[i].totalStud;
-
-														$scope.partnerSchoolNew.totalFees = $scope.partnerSchoolNew.totalFees + $scope.tempPartnerSchool.examDetailList.bookSummary.bookDetail[i].totalFees;
+													if ($scope.partnerSchool.examDetailList[i].yearOfExam == $scope.yearOfExam) {
+														$scope.tempPartnerSchool.examDetailList = $scope.partnerSchool.examDetailList[i];
 													}
 												}
-											}
+
+												for (var i = 0; i < $scope.partnerSchool.examDetailList.length; i++) {
+													for (var j = 0; j < $scope.bookStocks.length; j++) {
+
+														if ($scope.tempPartnerSchool.examDetailList.bookSummary.bookDetail[i].bookName == $scope.bookStocks[j].id) {
+
+															$scope.partnerSchoolNew.totalWeight = +$scope.bookStocks[j].weight
+																	* $scope.tempPartnerSchool.examDetailList.bookSummary.bookDetail[i].totalStud;
+
+															$scope.partnerSchoolNew.totalFees = $scope.partnerSchoolNew.totalFees
+																	+ $scope.tempPartnerSchool.examDetailList.bookSummary.bookDetail[i].totalFees;
+														}
+													}
+												}
 											}
 										});
 					}
 
-	/*				
-					if ($scope.partnerSchool.examDetailList != undefined) {
-						for (var i = 0; i < $scope.partnerSchool.examDetailList.length; i++) {
-							if ($scope.partnerSchool.examDetailList[i].yearOfExam == $scope.yearOfExam) {
-								$scope.tempPartnerSchool.examDetailList = $scope.partnerSchool.examDetailList[i];
-							}
-						}
-					}
-*/					$scope.getGFBookStockByInstituteId = function() {
+					/*
+					 * if ($scope.partnerSchool.examDetailList != undefined) {
+					 * for (var i = 0; i <
+					 * $scope.partnerSchool.examDetailList.length; i++) { if
+					 * ($scope.partnerSchool.examDetailList[i].yearOfExam ==
+					 * $scope.yearOfExam) {
+					 * $scope.tempPartnerSchool.examDetailList =
+					 * $scope.partnerSchool.examDetailList[i]; } } }
+					 */
+					$scope.getGFBookStockByInstituteId = function() {
 						var gfBookStockService = appEndpointSF
 								.getGFBookStockService();
 						gfBookStockService.getGFBookByInstituteId(

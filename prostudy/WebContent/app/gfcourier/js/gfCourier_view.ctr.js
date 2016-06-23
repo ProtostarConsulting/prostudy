@@ -34,7 +34,7 @@ angular
 
 						});
 					}
-					
+	*/					
 					$scope.getGFBookStockByInstituteId = function() {
 						var gfBookStockService = appEndpointSF
 								.getGFBookStockService();
@@ -46,14 +46,14 @@ angular
 									});
 					}
 					$scope.bookStocks = [];
-*/					
+				
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
 
 							if ($scope.selectedGFCourierID != "") {
 								$scope.getGFCourierById();
 							}
-							$scope.getPartnerByInstitute();
+							
 							$scope.getGFBookStockByInstituteId();
 						} else {
 							$log.debug("Services Not Loaded, watiting...");
