@@ -14,8 +14,8 @@
 			ng-model="searchText"> </md-input-container>
 		<md-input-container flex> <md-select
 			ng-model="yearOfExam" id="selectedYear"
-			ng-change="changeSchoolList(yearOfExam)"> <md-option
-			ng-value="Year" ng-repeat="Year in Years" ng-selected="$first">{{Year}}</md-option>
+			ng-change="changeSchoolList(yearOfExam)" placeholder="--select Exam Year--"> <md-option
+			ng-value="Year" ng-repeat="Year in Years  | orderBy:Year" >{{Year}}</md-option>
 		</md-select> </md-input-container>
 	</div>
 	<md-content> <md-data-table-container>

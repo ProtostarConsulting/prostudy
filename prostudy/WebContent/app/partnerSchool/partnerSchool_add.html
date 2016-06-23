@@ -301,7 +301,7 @@
 		<md-input-container flex="25"> <md-select
 			ng-change="getExamByYear(yearOfExam)" ng-model="yearOfExam"
 			id="selectedYear"> <md-option ng-value="Year"
-			ng-repeat="Year in Years" ng-selected="$first">{{Year}}</md-option> </md-select>
+			ng-repeat="Year in Years | orderBy:Year" >{{Year}}</md-option> </md-select>
 		</md-input-container>
 	</div>
 
@@ -491,7 +491,7 @@
 			Courier </md-button>
 
 			<md-button class="md-raised md-primary"
-				ui-sref="partnerSchool.print({PSchoolId: selectedPSchoolId})">print
+				ui-sref="partnerSchool.print({PSchoolId: selectedPSchoolId, yearOfExam : yearOfExam})">print
 			</md-button>
 			<md-button class="md-raised md-primary"
 				ui-sref="partnerSchool.printAddress({PSchoolId: selectedPSchoolId})">Print

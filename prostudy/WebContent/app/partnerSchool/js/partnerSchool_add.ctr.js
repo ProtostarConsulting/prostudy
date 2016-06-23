@@ -138,10 +138,10 @@ angular
 
 					}
 
-					// get last next 4 year to show academic year
+					// get last next 3 year to show academic year
 					$scope.getNextYears = function() {
 						var date = new Date();
-						for (var i = 0; i < 4; i++) {
+						for (var i = 0; i < 3; i++) {
 							var year = date.getFullYear();
 							year = year.toString().substr(2, 2);
 
@@ -153,7 +153,31 @@ angular
 
 					$scope.Years = [];
 					$scope.getNextYears();
+					//----get pre year to push years----
+					$scope.getPrvYears = function() {
+						var date = new Date();
 
+						for (var i = 0; i < 3; i++) {
+							var year = date.getFullYear();
+							year = year.toString().substr(2, 2);
+
+							$scope.Years.push((date.getFullYear() - 1) + "-"
+									+ (Number(year)));
+							date.setYear(date.getFullYear() - 1);
+						}
+
+					}
+					$scope.getPrvYears();
+					//---get curyear ------
+					$scope.getCurYear = function() {
+						var date = new Date();
+						var curyear = date.getFullYear();
+						curyear = curyear.toString().substr(2, 2);
+						$scope.yearOfExam = date.getFullYear() + "-" + (Number(curyear) + 1);
+					}
+					$scope.getCurYear();
+				
+					
 					$scope.calculateTotal = function() {
 						$scope.examDetail.total = Number($scope.examDetail.male)
 								+ Number($scope.examDetail.female);
@@ -190,11 +214,12 @@ angular
 								&& $scope.selectedPSchoolId == "") {
 							$scope.partnerSchool.id = $scope.schoolid.id;
 						}
-				/*		if ($scope.examlist.length >=1) {*/
-							$scope.partnerSchool.examDetailList = $scope.examlist;
-						/*} else {
-							$scope.partnerSchool.examDetailList[0] = $scope.examDetail;
-						}*/
+						/* if ($scope.examlist.length >=1) { */
+						$scope.partnerSchool.examDetailList = $scope.examlist;
+						/*
+						 * } else { $scope.partnerSchool.examDetailList[0] =
+						 * $scope.examDetail; }
+						 */
 
 						var PartnerSchoolService = appEndpointSF
 								.getPartnerSchoolService();

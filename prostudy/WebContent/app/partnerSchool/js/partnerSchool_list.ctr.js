@@ -23,7 +23,8 @@ angular
 
 					$scope.getNextYears = function() {
 						var date = new Date();
-						for (var i = 0; i < 4; i++) {
+					
+						for (var i = 0; i < 3; i++) {
 							var year = date.getFullYear();
 							year = year.toString().substr(2, 2);
 
@@ -31,10 +32,34 @@ angular
 									+ (Number(year) + 1));
 							date.setYear(date.getFullYear() + 1);
 						}
+						
+						
+						
 					}
 
 					$scope.Years = [];
 					$scope.getNextYears();
+					
+					
+
+					$scope.getPrvYears = function() {
+						var date = new Date();
+					
+						for (var i = 0; i < 3; i++) {
+							var year = date.getFullYear();
+							year = year.toString().substr(2, 2);
+
+							$scope.Years.push((date.getFullYear()-1) + "-"
+									+ (Number(year) ));
+							date.setYear(date.getFullYear() -1);
+						}
+						
+						
+						
+					}
+					$scope.getPrvYears();
+					
+					
 
 					$scope.getPartnerSchoolByInstitute = function() {
 
@@ -50,25 +75,36 @@ angular
 
 					$scope.changeSchoolList = function(selectedyear) {
 						$scope.schools = [];
-						if (selectedyear == undefined) {
-							var date1 = new Date();
-							var selectedyear = date1.getFullYear();
-							selectedyear = selectedyear.toString().substr(2, 2);
-							selectedyear = date1.getFullYear() + "-"
-									+ (Number(selectedyear) + 1);
-						}
-						if ($scope.pSchoolList != undefined) {
-							for (p = 0; p < $scope.pSchoolList.length; p++) {
-								for (q = 0; q < $scope.pSchoolList[p].examDetailList.length; q++) {
+						if (selectedyear != undefined) {
+							/*
+							 * var date1 = new Date(); var selectedyear =
+							 * date1.getFullYear(); selectedyear =
+							 * selectedyear.toString().substr(2, 2);
+							 * selectedyear = date1.getFullYear() + "-" +
+							 * (Number(selectedyear) + 1);
+							 */
 
-									if ($scope.pSchoolList[p].examDetailList[q].yearOfExam == selectedyear) {
-										$scope.schools
-												.push($scope.pSchoolList[p]);
+							if ($scope.pSchoolList != undefined) {
+								for (p = 0; p < $scope.pSchoolList.length; p++) {
+									for (q = 0; q < $scope.pSchoolList[p].examDetailList.length; q++) {
 
+										if ($scope.pSchoolList[p].examDetailList[q].yearOfExam == selectedyear) {
+											$scope.schools
+													.push($scope.pSchoolList[p]);
+
+										}
 									}
-								}
 
+								}
 							}
+						} else {
+							if ($scope.pSchoolList != undefined) {
+								for (p = 0; p < $scope.pSchoolList.length; p++) {
+									$scope.schools.push($scope.pSchoolList[p]);
+
+								}
+							}
+
 						}
 					}
 					$scope.schools = [];
