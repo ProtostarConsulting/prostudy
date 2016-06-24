@@ -9,11 +9,17 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="/lib/base/css/font-awesome.css">
 <link rel="stylesheet" href="/lib/base/css/bootstrap.min.css">
-
+<link rel="stylesheet" href="css/proto.css">
 
 </head>
-<body layout="column" ng-cloak md-theme="{{theme}}">
-	<div layout="column" flex layout-fill ng-cloak>
+<body>
+
+	<!-- <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2"
+		md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+	<md-toolbar md-scroll-shrink class="md-tall md-hue-2"> <span
+		flex><img ng-src="/img/images/SSDEnterprisesLogo.jpg"
+		class="md-card-image" height="124px" width="315px" /></span> </md-toolbar> </md-sidenav> -->
+	<!-- <div layout="column" flex layout-fill ng-cloak>
 		<md-toolbar md-scroll-shrink>
 		<table>
 			<tr>
@@ -22,93 +28,522 @@
 				<td><span class="md-toolbar-tools">SSD Enterprises, Pune</span></td>
 			</tr>
 		</table>
-		</md-toolbar>
+		</md-toolbar> -->
 
 
-		<md-card md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}"
-			md-theme-watch> <!-- <img
-			ng-src="/img/images/companyprofile.png" class="md-card-image" >  -->
-		<md-card-title> <md-card-title-text>
-		<span class="md-headline">SSD ENTERPRISES</span> <span
-			class="md-subhead">Experience& Expertise Make All The
-			Difference!</span> </md-card-title-text> <md-card-title-media>
-		<div class="md-media-md card-media"></div>
-		</md-card-title-media> </md-card-title> <md-card-actions layout="row" layout-align="end center">
-		<md-button>Action 1</md-button> <md-button>Action 2</md-button> </md-card-actions> </md-card>
+	<div layout="column" class="relative" layout-fill role="main">
 
-		<md-content style="height: 600px;">
-		<div ng-cloak>
-			<md-content> <md-tabs md-dynamic-height md-border-bottom>
-			<md-tab label="home"> <md-content class="md-padding">
-			<h1 class="md-display-2">SSD ENTERPRISES</h1>
+		<md-toolbar ng-show="!showSearch"> <md-tabs
+			md-stretch-tabs class="md-primary" md-selected="data.selectedIndex">
+		<md-tab id="tab1" aria-controls="tab1-content"> Home </md-tab> <md-tab
+			id="tab2" aria-controls="tab2-content"> About </md-tab> <md-tab
+			id="tab3" aria-controls="tab3-content"> Services </md-tab> </md-tabs> </md-toolbar>
 
+		<md-content flex md-scroll-y> <ui-view layout="column"
+			layout-fill layout-padding>
+		<div class="inset" hide-sm></div>
+		<ng-switch on="data.selectedIndex" class="tabpanel-container">
 
+		<div role="tabpanel" id="tab1-content" aria-labelledby="tab1"
+			ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()"
+			layout-sm="column">
 
-			<h3>Engineering Spare Parts Supplier</h3>
+			<div layout="row" layout-align="center end" flex>
+				<md-card flex> <md-card-content>
+				<h2 align="center">
+					<b>Experience & Expertise Make All The Difference</b>
+				</h2>
+				<md-tab-body>
 
-			<ul>
-				<li>Belts</li>
-				<ul>
-					<li>V Belt</li>
-					<li>Taper Roller Bearing</li>
-					<li>Timing Belts</li>
-					<li>Special Purpose Belt</li>
-					<li>Mesh Belt</li>
-				</ul>
-				<li>Bearings
-					<ul>
-						<li>Ball Bearing</li>
-						<li>Pedestal Bearing</li>
-						<li>Needle Roller Bearing</li>
+				<p layout="row" layout-align="center center">Professional email,
+					online storage, shared calendars, video meetings and more. Built
+					for business, designed for teams. work files in Drive, access them
+					from any device and share them instantly with teammates. No more
+					sending attachments or merging different versions. More than 5
+					million businesses have gone Google.</p>
+
+				</md-tab-body> </md-card-content> </md-card>
+			</div>
+			<div layout="row" layout-align="center end">
+				<md-card> <md-card-content>
+				<h2 align="center">
+					<b>Engineering Spare Parts Supplier</b>
+				</h2>
+				</md-card-content> <md-tab-body>
+				<div layout="column">
+					<h3 align="center">
+						<b>L & T Products</b>
+					</h3>
+					<ul type="square">
+						<li>Electrical contactor & starters.</li>
+						<li>ACB, MCB, MCCB, switch gears.</li>
+						<li>Change over switches.</li>
 					</ul>
-				</li>
-			</ul>
+				</div>
+				<div layout="column">
+					<h3 align="center">
+						<b>ABB make products</b>
+					</h3>
+					<ul type="square">
+						<li>AC drives.</li>
+						<li>DC drives.</li>
+						<li>Motors (standard, Energy efficient, Flame- proof, Crane
+							duty).</li>
+						<li>Low voltage switch gears.</li>
+						<li>Servo motors & drives.</li>
+					</ul>
+				</div>
+				</md-tab-body> </md-card>
+			</div>
+			<marquee scrollamount="10" onmouseover='this.stop();'
+				onmouseout='this.start();'>
 
-			Turnkey Engineering Projects Plant expansion New project erecting&
-			commissioning. MS/SS fabrication work i.e. steam, water, air piping &
-			structural work. Ammonia based systems. Cold rooms. SS/GI paneling
-			work, doors & cleanrooms systems. Electrical panels (PCC, MCC)
-			installation& commissioning. </md-content> </md-tab> <md-tab label="Our Product">
-			<md-content class="md-padding">
-			<h1 class="md-display-2">Our Product</h1>			
-			<h4>L & T make products-</h4>
+				<div layout="row" layout-align="center center" class="colorNested">
+
+					<div layout="row" layout-align="center end" layout-sm="column">
+
+						<md-card flex-gt-sm="120" flex-gt-md="100"> <md-card-content>
+
+						<h1 align="center">
+							<b>L & T Products</b>
+						</h1>
+						<ul type="square">
+							<li>Electrical contactor & starters.</li>
+							<li>ACB, MCB, MCCB, switch gears.</li>
+							<li>Change over switches.</li>
+						</ul>
+
+						</md-card-content> </md-card>
+					</div>
+
+					<div layout="row" layout-align="center end" layout-sm="column">
+
+						<md-card flex-gt-sm="120" flex-gt-md="100"> <md-card-content>
+						<h1 align="center">
+							<b>ABB make products</b>
+						</h1>
+						<ul type="square">
+							<li>AC drives.</li>
+							<li>DC drives.</li>
+							<li>Motors (standard, Energy efficient, Flame- proof, Crane
+								duty).</li>
+							<li>Low voltage switch gears.</li>
+							<li>Servo motors & drives.</li>
+						</ul>
+						</md-card-content> </md-card>
+					</div>
+
+				</div>
+			</marquee>
+
+			<div layout="row" layout-align="space-between end" layout-sm="column">
+
+				<md-card flex-gt-sm="50" flex-gt-md="40"> <md-card-content>
+				<img src="/img/images/1.png" class="md-card-image"
+					alt="image caption"width:100px;height:50px;>
+				<h2 align="center">
+					<b>Our Employees At Work Aways</b>
+				</h2>
+				<p>
+					Equip your employees with the best tools for work. Let them work
+					the way they live.<br>
+				</p>
+				
+				</md-card-content> </md-card>
+
+				<md-card flex-gt-sm="50" flex-gt-md="40"> <md-card-content>
+				<img src="/img/images/2.png" class="md-card-image"
+					alt="image caption">
+				<h2 align="center">
+					<b>The Highest Quality Services</b>
+				</h2>
+				<p>
+					Our expert Technical Support team is available 24/7 to work with
+					you to resolve all your issues.<br>
+				</p>
+				
+				</md-card-content> </md-card>
+
+			</div>
+
+
+
+
+			<!-- 
+			<div>
+				<md-grid-list md-cols-sm="1" md-cols-md="2" md-cols-gt-md="8"
+					md-row-height="200px" md-gutter="14px" md-gutter-gt-sm="10px">
+
+
+				<md-grid-tile class="yellow" md-rowspan="1" md-colspan="2"
+					md-colspan-sm="1"> <img src="images/amclin-logo.jpg"
+					alt="image caption" style="width: 50%; height: 40%;"> </md-grid-tile> <md-grid-tile
+					class="yellow" md-rowspan="1" md-colspan="2" md-colspan-sm="1">
+				<img src="images/xpanxion_logo.png" alt="image caption"
+					style="width: 50%; height: 40%;"> </md-grid-tile> <md-grid-tile
+					class="yellow" md-rowspan="1" md-colspan="2" md-colspan-sm="1">
+				<img src="images/suruchi_logo.png" alt="image caption"
+					style="width: 60%; height: 40%;"> </md-grid-tile> <md-grid-tile
+					class="yellow" md-rowspan="1" md-colspan="2" md-colspan-sm="1">
+				<img src="images/happiestmind.jpg" alt="image caption"
+					style="width: 60%; height: 40%;"> </md-grid-tile> <md-grid-tile
+					class="yellow" md-rowspan="1" md-colspan="2" md-colspan-sm="1">
+				<img src="images/mrb_logo.jpg" alt="image caption"
+					style="width: 60%; height: 60%;"> </md-grid-tile> </md-grid-list>
+			</div> -->
+
+			<div layout="row" layout-align="center end">
+				<h3>FOLLOW SSD ENTERPRISES</h3>
+			</div>
+
+			<div layout="row" layout-align="center end">
+
+
+				<md-button class="md-fab"> <md-icon
+					md-font-icon="fa-facebook" class="fa s64"
+					style="color:#0000ff;width:30px;height:20px;"></md-icon> </md-button>
+
+				<md-button class="md-fab"> <md-icon
+					md-font-icon="fa-linkedin" class="fa s64"
+					style="color:#0000ff; width:30px;height:20px;"></md-icon> </md-button>
+
+				<md-button class="md-fab"> <md-icon
+					md-font-icon="fa-twitter" class="fa s64"
+					style="color:#0000ff; width:30px;height:20px;"></md-icon> </md-button>
+
+				<md-button class="md-fab"> <md-icon
+					md-font-icon="fa-google-plus" class="fa s64"
+					style="color:#0000ff;width:30px;height:20px;"></md-icon> </md-button>
+
+			</div>
+
+
+		</div>
+
+
+		<div role="tabpanel" id="tab2-content" aria-labelledby="tab2"
+			ng-switch-when="1" md-swipe-left="next()" md-swipe-right="previous()"
+			layout="column">
+
+
+			<!-- 
+			<md-card flex-gt-sm="90" flex-gt-md="80"> <md-card-content>
+			<div layout-sm="column">
+				<img src="images/1.jpg" class="md-card-image" alt="image caption"width:100px;height:50px;>
+			</div>
+
+			<h2 align="center">
+				<b>Protostar Consulting Services</b>
+			</h2>
+			<p>Protostar is a technology Start-up Company specializing in
+				software product development and technology services. We take pride
+				in helping our customers work with latest, evolving and affordable
+				technology solutions. We have industry's best and brightest software
+				engineers and technology consultants whose expertise spans from
+				niche technologies, to the most advanced next generation BPM &
+				Analytics, Cloud, Social and Mobile technologies.</p>
+
+					</md-card-content>
+				</md-card>
+
+		<md-card flex-gt-sm="90" flex-gt-md="80">
+		<md-card-content>
+		  <div layout-sm="column">
+			<img src="images/about6.jpg" class="md-card-image" alt="image caption" width:100px;height:50px;>
+		  </div>
+			<h2 align="center"><b>Vision</b></h2>
+			<p>
+			Make IT affordable to businesses and institutes of all sizes.
+			</p>
+		   
+		</md-card-content>
+		</md-card>
+		 
+		 <md-card flex-gt-sm="90" flex-gt-md="80">
+		 <md-card-content>
+		  <div layout-sm="column">
+			<img src="images/about2.jpg" class="md-card-image" alt="image caption" width:100px;height:50px;>
+		  </div>
+			<h2 align="center"><b>Mission</b></h2>
+			<p>
+			Apply affordable technology to small and medium businesses and institutes to improve their efficiency and effectiveness.
+			</p>
+		   
+		</md-card-content>
+		</md-card>
+
+		<md-card flex-gt-sm="90" flex-gt-md="80">
+		<md-card-content>
+		  <div layout-sm="column">
+			<img src="images/about1.png" class="md-card-image" alt="image caption" width:100px;height:50px;>
+		 </div>
+			<h2 align="center"><b>Values</b></h2>
+			<p>
+			<ol>
+			<li>Be a persistent partner to our customers in their journey to success</li>
+			<li>Always follow a win-win approach with all stakeholders</li>
+			<li>Believe in the team work, and that every employee is the supreme asset of the company</li>
+			<li>Be the best in whatever we do</li>
+			</ol>
+			
+			</p>
+		   
+		</md-card-content>
+		</md-card>
+		 
+		 <div layout="row" layout-align="center end">
+			<h3>FOLLOW SSD ENTERPRISES</h3>
+		 </div>
+		 
+		 <div layout="row" layout-align="center end">
+		
+		<md-button class="md-fab">
+    	<md-icon md-font-icon="fa-facebook" class="fa s64" style="color:#0000ff;width:30px;height:20px;" ></md-icon>  
+  		</md-button>
+ 		
+ 		<md-button class="md-fab">
+    	<md-icon md-font-icon="fa-linkedin" class="fa s64" style="color:#0000ff; width:30px;height:20px;"></md-icon>  
+  		</md-button>
+ 		
+ 		<md-button class="md-fab">
+    	<md-icon md-font-icon="fa-twitter" class="fa s64" style="color:#0000ff; width:30px;height:20px;"></md-icon>  
+  		</md-button>
+ 		
+ 		<md-button class="md-fab">
+    	<md-icon md-font-icon="fa-google-plus" class="fa s64" style="color:#0000ff;width:30px;height:20px;" ></md-icon>  
+  		</md-button>
+		
+		</div> -->
+
+
+		</div>
+
+
+		<div role="tabpanel" id="tab3-content" aria-labelledby="tab3"
+			ng-switch-when="2" md-swipe-left="next()" md-swipe-right="previous()"
+			layout="column">
+
+			<h2>
+				<b>Services</b>
+			</h2>
+			<!-- <div layout="row" layout-sm="column">
+				<div flex>
+					<img src="images/develop.png" alt="logo"
+						style="float: left; width: 400px; height: 300px;">
+				</div>
+				<div flex>We have enterprise and utility products developed on
+					Cloud environments. We provide end to end product development
+					services. We also develop innovative and next generation IT
+					products in association with our partners.</div>
+			</div>
+
+
+			<h2>
+				<b>IT Services</b>
+			</h2>
+			<div layout="row" layout-sm="column">
+				<div flex>
+					<img src="images/services.png" alt="logo"
+						style="float: left; width: 400px; height: 300px;">
+				</div>
+				<div flex>We provide all kind of IT services to Small and
+					Medium enterprises. We serve IT needs end to end as a trusted
+					partner to our clients. We have deep expertise in IT Software
+					Development, IT Consulting, Advisory Services, Domain Registration,
+					Website Designing, and IT Trainings.</div>
+			</div>
+
+			<h2>
+				<b>Google Apps</b>
+			</h2>
+			<div layout="row" layout-sm="column">
+				<div flex>
+					<img src="images/apps.png" alt="logo"
+						style="float: left; width: 400px; height: 300px;">
+				</div>
+				<div flex>We are part of Google Apps Reseller Program and
+					helping local and international businesses and institutes acquire
+					and put Google Applications to use. Google Apps are designed for
+					improving efficiency and effectiveness of any size organization. It
+					provides best in class collaboration and communication services in
+					the world today.</div>
+			</div>
+
+			<div layout="row" layout-align="center end">
+				<h3>FOLLOW SSD ENTERPRISES</h3>
+			</div>
+
+			<div layout="row" layout-align="center end">
+
+				<md-button class="md-fab"> <md-icon
+					md-font-icon="fa-facebook" class="fa s64"
+					style="color:#0000ff;width:30px;height:20px;"></md-icon> </md-button>
+
+				<md-button class="md-fab"> <md-icon
+					md-font-icon="fa-linkedin" class="fa s64"
+					style="color:#0000ff; width:30px;height:20px;"></md-icon> </md-button>
+
+				<md-button class="md-fab"> <md-icon
+					md-font-icon="fa-twitter" class="fa s64"
+					style="color:#0000ff; width:30px;height:20px;"></md-icon> </md-button>
+
+				<md-button class="md-fab"> <md-icon
+					md-font-icon="fa-google-plus" class="fa s64"
+					style="color:#0000ff;width:30px;height:20px;"></md-icon> </md-button>
+
+			</div>
+			<div id="theArt">
+				<div class="artGroup slide">
+					<div class="artwork">
+						<img src="1.jpg">
+						<div class="detail">
+							<h3>Dont Lie</h3>
+							<p>
+								Photo - 2012<br> Lorem ipsum dolor sit amet, consectetur
+								adipisicing elit. Quod, recusandae harum non, repellat aut,
+								voluptate distinctio perspiciatis excepturi totam culpa sapiente
+								beatae provident ipsam consequuntur laudantium. Nisi optio
+								delectus quibusdam.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="artGroup slide">
+					<div class="artwork">
+						<img src="2.jpg">
+						<div class="detail">
+							<h3>Tell the Truth</h3>
+							<p>
+								Photo - 2012<br> Lorem ipsum dolor sit amet, consectetur
+								adipisicing elit. Quod, recusandae harum non, repellat aut,
+								voluptate distinctio perspiciatis excepturi totam culpa sapiente
+								beatae provident ipsam consequuntur laudantium. Nisi optio
+								delectus quibusdam.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="artGroup slide">
+					<div class="artwork">
+						<img src="3.jpg">
+						<div class="detail">
+							<h3>Be Yourself</h3>
+							<p>
+								Photo - 2012<br> Lorem ipsum dolor sit amet, consectetur
+								adipisicing elit. Quod, recusandae harum non, repellat aut,
+								voluptate distinctio perspiciatis excepturi totam culpa sapiente
+								beatae provident ipsam consequuntur laudantium. Nisi optio
+								delectus quibusdam.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="artGroup slide">
+					<div class="artwork">
+						<img src="images/005.jpg">
+						<div class="detail">
+							<h3>No More Hiding</h3>
+							<p>
+								Photo - 2012<br> Lorem ipsum dolor sit amet, consectetur
+								adipisicing elit. Quod, recusandae harum non, repellat aut,
+								voluptate distinctio perspiciatis excepturi totam culpa sapiente
+								beatae provident ipsam consequuntur laudantium. Nisi optio
+								delectus quibusdam.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+ -->
+
+
+		</div>
+
+
+		</ng-switch> </ui-view> </md-content>
+
+	</div>
+	<!-- 
+
+	<md-content style="height: 600px;">
+	<div ng-cloak>
+		<md-content> <md-tabs md-dynamic-height md-border-bottom>
+		<md-tab label="home"> <md-content class="md-padding">
+		<h1 class="md-display-2">SSD ENTERPRISES</h1>
+
+
+
+		<h3>Engineering Spare Parts Supplier</h3>
+
+		<ul>
+			<li>Belts</li>
 			<ul>
+				<li>V Belt</li>
+				<li>Taper Roller Bearing</li>
+				<li>Timing Belts</li>
+				<li>Special Purpose Belt</li>
+				<li>Mesh Belt</li>
+			</ul>
+			<li>Bearings
+				<ul>
+					<li>Ball Bearing</li>
+					<li>Pedestal Bearing</li>
+					<li>Needle Roller Bearing</li>
+				</ul>
+			</li>
+		</ul>
+
+		Turnkey Engineering Projects Plant expansion New project erecting&
+		commissioning. MS/SS fabrication work i.e. steam, water, air piping &
+		structural work. Ammonia based systems. Cold rooms. SS/GI paneling
+		work, doors & cleanrooms systems. Electrical panels (PCC, MCC)
+		installation& commissioning. </md-content> </md-tab> <md-tab label="Our Product"> <md-content
+			class="md-padding">
+		<h1 class="md-display-2">Our Product</h1>
+		<h4>L & T make products-</h4>
+		<ul>
 			<li>Electrical contactor and starters.</li>
 			<li>ACB, MCB, MCCB, switch gears.</li>
-			<li>Change over switches</li></ul>
+			<li>Change over switches</li>
+		</ul>
 
-			<h4>ABB make products-</h4>
-			<ul>
+		<h4>ABB make products-</h4>
+		<ul>
 			<li>AC drives.</li>
 			<li>DC drives.</li>
 			<li>Motors (standard, Energy efficient, Flame- proof, Crane
 				duty).</li>
 			<li>Low voltage switch gears.</li>
 			<li>Servo motors & drives.</li>
-			</ul>
-		
-			</md-content> </md-tab> 
-			
-			
-			
-			<md-tab label="services"> <md-content
-				class="md-padding">
-			<h1 class="md-display-2">Our Services</h1>
-			<p></p>
-			</md-content> </md-tab> </md-tabs>
-			
-			<md-tab label="Contact Us"> <md-content class="md-padding">
-			<h1 class="md-display-2">Contact</h1>
-			Office Address- Flat No.02, Ground Floor, Dhokle Building, Gat no-
-			1337/1, Talegaon Road,Shikrapur, Tal-Shirur,
-			Dist-Pune.Maharashtra.Pune – 412 208. Tel – 09850882315. E-mail id: -
-			ssdenterprises2315@gmail.com </md-content> </md-tab>  </md-content>
-		</div>
-		</md-content>
+		</ul>
+
+		</md-content> </md-tab> <md-tab label="services"> <md-content class="md-padding">
+		<h1 class="md-display-2">Our Services</h1>
+		<p></p>
+		</md-content> </md-tab> </md-tabs> <md-tab label="Contact Us"> <md-content class="md-padding">
+		<h1 class="md-display-2">Contact</h1>
+		Office Address- Flat No.02, Ground Floor, Dhokle Building, Gat no-
+		1337/1, Talegaon Road,Shikrapur, Tal-Shirur,
+		Dist-Pune.Maharashtra.Pune – 412 208. Tel – 09850882315. E-mail id: -
+		ssdenterprises2315@gmail.com </md-content> </md-tab> </md-content>
+	</div>
+	</md-content> -->
 
 	</div>
 
+	<footer>
+		<div layout="row" layout-align="center end">
 
+			<p>
+
+				© 2016 | SSD ENTERPRISES. All rights reserved.<br> The
+				trademarks are of respective companies.<br> Website designed by
+				<a href="#"> www.protostarcs.com</a>
+			</p>
+
+		</div>
+	</footer>
 
 
 	<!-- All JS Dependencies -->
