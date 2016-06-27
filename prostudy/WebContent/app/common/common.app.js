@@ -1,7 +1,7 @@
 var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
 		'ngMessages', "xeditable", "ui.bootstrap", "ui.router",'ngMaterialDatePicker',
 		'md.data.table', 'ngResource', 'textAngular', 'ngRoute', 'ngStorage', "ngAria",
-		'directive.g+signin']);
+		'directive.g+signin','ngFileUpload']);
 
 app.constant('boardList', ["State Board", "CBSE", "ICSE"]);
 app.constant('standardList', ["5 th", "6 th", "7 th", "8 th", "9 th",
@@ -19,10 +19,7 @@ app.constant('partnerSchoolLevels', ["Primary", "Secondary", "Higher-Secondary",
 	$mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette(
 			'red').warnPalette('pink').backgroundPalette('grey');
 });*/
-//Set up the cache ‘ajsCache’
-app.factory('ajsCache', function($cacheFactory) {
-	return $cacheFactory('browserCache');
-});
+
 app.config(function($mdThemingProvider) {
 
 	/*
@@ -804,7 +801,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/partnerSchool/printBookDetail.html',
 		controller : 'printBookDtailCtr'
 	}).state('partnerSchool.printAddress', {
-		url : "/printAddress/:PSchoolId",
+		url : "/printAddress/:PSchoolId/:yearOfExam",
 		templateUrl : '/app/partnerSchool/printAddress.html',
 		controller : 'printBookDtailCtr'
 	}).state('partnerSchool.listPartnerSchool', {
