@@ -51,7 +51,8 @@
 
 			<md-button aria-label="Logout" ng-hide="curUser == null"
 				ng-click="signOut()"> Logout <md-tooltip>
-			{{ curUser.firstName + " " + curUser.lastName + " | " + curUser.email_id}} </md-tooltip> </md-button>
+			{{ curUser.firstName + " " + curUser.lastName + " | " +
+			curUser.email_id}} </md-tooltip> </md-button>
 
 			<!-- <md-button class="md-icon-button" aria-label="More"
 				ng-click="toggleRight()"> <md-icon
@@ -281,6 +282,14 @@
 	<script src="/lib/base/textAngular-sanitize.min.js"></script>
 	<script src="/lib/base/textAngular.min.js"></script>
 	<script src="/lib/base/ngStorage.min.js"></script>
+
+
+	<!-- File Uplode  -->
+
+	<script src="/lib/base/ng-file-upload-shim.min.js"></script>
+	<script src="/lib/base/ng-file-upload.min.js"></script>
+	<!--End of File Uplode  -->
+
 
 	<!-- Angular Material Dependencies for DateTimePicker -->
 	<script src="/lib/base/moment-with-locales.min.js"></script>
