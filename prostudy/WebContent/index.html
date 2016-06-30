@@ -44,7 +44,7 @@
 		<!-- fill up the space between left and right area -->
 		<span flex></span>
 		<section layout="row">
-
+<div  layout="row" layout-align="end start">
 			<md-button aria-label="Login" ng-hide="curUser !== null"
 				ng-show="curUser == null" ng-click="loginClick()"> Login
 			<md-tooltip> Login </md-tooltip> </md-button>
@@ -63,6 +63,7 @@
 			{{ curUser.getName() + "|" + curUser.getEmail()}} </md-tooltip> <ng-md-icon
 				icon="more_vert"></ng-md-icon> </md-button> -->
 			<img ng-show="true" ng-src="{{loginPersonIconUrl}}" class=circular>
+			</div>
 		</section>
 	</div>
 	</md-toolbar>
@@ -494,6 +495,7 @@
 	<script src="/app/gfcourier/js/gfCourier_add.ctr.js"></script>
 	<script src="/app/gfcourier/js/gfCourier_list.ctr.js"></script>
 	<script src="/app/gfcourier/js/gfCourier_view.ctr.js"></script>
+	<script src="/app/gfcourier/js/gfCourier_search.ctr.js"></script>
 
 	<script src="/app/gfcourier/js/gfCourier_directAddFromPS.ctr.js"></script>
 	<!-- End Gandhi Found. Courier  -->

@@ -200,8 +200,43 @@
 
 		</div>
 
+=================================================================================================
 
-		<!-- 	<div layout="row" layout-xs="column">
+<div layout="row" layout-xs="column">
+		
+		
+		<md-input-container flex> <md-select
+							ng-model="selectedState" placeholder="Select State"
+							ng-change="getDistricts($index, selectedState)">
+						<md-option ng-value="states.name" ng-repeat="states in Country.states">{{states.name
+						}}</md-option> </md-select> 
+		</md-input-container>
+									
+		<md-input-container flex> <md-select
+							ng-model="selectedDistrict" placeholder="Select District"
+							ng-change="getTalukas($index, selectedDistrict)">
+						<md-option ng-value="district.name" ng-repeat="district in temp.tempDistricts track by $index">{{district.name
+						}}</md-option> </md-select> 
+		</md-input-container>
+			
+		<md-input-container flex="25"> <md-select
+			ng-change="getVillages($Index, selectedTaluka)" ng-model="selectedTaluka"
+			id="selectedTaluka"> <md-option ng-value="taluka.name"
+			ng-repeat="taluka in temp.tempTalukas track by $index" >{{taluka.name}}</md-option> </md-select>
+		</md-input-container>
+		
+		<md-input-container flex> <md-select
+							ng-model="selectedVillage" placeholder="Select Village"
+							>
+						<md-option ng-value="village.name" ng-repeat="village in temp.tempVillages track by $index">{{village.name
+						}}</md-option> </md-select> 
+		</md-input-container>
+
+</div>
+
+=================================================================================================
+
+	<!-- 	<div layout="row" layout-xs="column">
 			<span flex="10"></span>
 			<md-input-container flex> <label>
 				Primary Contact <span style="color: red;"

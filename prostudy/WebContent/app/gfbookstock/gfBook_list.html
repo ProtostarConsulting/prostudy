@@ -34,26 +34,25 @@
 			<thead md-order="query.order" md-trigger="onorderchange">
 
 				<tr>
+				<th order-by="standard" name="Standard"></th>
 					<th order-by="bookName" name="Book Name"></th>
 					<th order-by="bookAuther" name="Auther"></th>
 					<th order-by="weight" name="Weight"></th>
 					<th order-by="bookPrice" name="Fees"></th>
 					<th order-by="bookQty" name="Quantity"></th>
-					<th order-by="bookThreshold" name="Threshold"></th>
+					
 					<th name="Action"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr md-auto-select
 					ng-repeat="book in bookStocks | orderBy: query.order | filter: bookName |filter : searchByName | limitTo: query.limit: (query.page - 1) * query.limit">
-
-<!-- 					<td>{{book.bookName}}</td>
-					<td>{{book.bookAuther}}</td>
-					<td>{{book.weight}}</td>
-					<td>{{book.bookPrice}}</td>
-					<td>{{book.bookThreshold}}</td>
- -->					<td ng-if="book.bookQty < book.bookThreshold"><b><font color="red">{{book.bookName}}</font></b></td>
-					<td ng-if="book.bookQty > book.bookThreshold">{{book.bookName}}</b></td>
+		
+					 <td ng-if="book.bookQty < book.bookThreshold"><b><font color="red">{{book.standard}}</font></b></td>
+					<td ng-if="book.bookQty > book.bookThreshold">{{book.standard}}</b></td>
+					
+ 					<td ng-if="book.bookQty < book.bookThreshold"><b><font color="red">{{book.bookName}} ({{book.bookMedium}})</font></b></td>
+					<td ng-if="book.bookQty > book.bookThreshold">{{book.bookName}} ({{book.bookMedium}})</b></td>
 					
 					<td ng-if="book.bookQty < book.bookThreshold"><b><font color="red">{{book.bookAuther}}</font></b></td>
 					<td ng-if="book.bookQty > book.bookThreshold">{{book.bookAuther}}</b></td>
@@ -66,10 +65,7 @@
 					
 					<td ng-if="book.bookQty < book.bookThreshold"><b><font color="red">{{book.bookQty}}</font></b></td>
 					<td ng-if="book.bookQty > book.bookThreshold">{{book.bookQty}}</b></td>
-										
-					<td ng-if="book.bookQty < book.bookThreshold"><b><font color="red">{{book.bookThreshold}}</font></b></td>
-					<td ng-if="book.bookQty > book.bookThreshold">{{book.bookThreshold}}</b></td>
-					
+															
 					<td><md-button
 							ui-sref="bookModule.add({selectedGFBookID : book.id})"
 							class="md-fab md-primary md-hue-2" ng-click=""> <md-icon

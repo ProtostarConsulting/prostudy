@@ -1007,6 +1007,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/gfcourier/gfCourier_view.html',
 		controller : 'gfCourierviewCtr'
 	})
+	.state('courierModule.search', {
+		url : "/courierModule.search/",
+		templateUrl : '/app/gfcourier/gfCourier_search.html',
+		controller : 'gfCourierSearchCtr'
+	})
+	
 	.state('courierModule.addFromPS', {
 		url : "/addFromPS",
 		templateUrl : '/app/gfcourier/gfCourier_directAddFromPS.html',

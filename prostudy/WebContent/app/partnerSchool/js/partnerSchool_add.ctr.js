@@ -481,5 +481,144 @@ angular
 						}
 						$scope.calculate(ind, 0);
 					}
-
+	
+									
+					$scope.temp = {
+							tempDistricts : [],
+							tempTalukas : [],
+							tempVillages : []
+					}
+					$scope.getDistricts = function(index, state) {
+						$scope.temp.tempDistricts = [];
+						for(var i=0; i < $scope.Country.states.length; i++){
+							
+							if($scope.Country.states[i].name == state){
+							
+								$scope.temp.tempDistricts = $scope.Country.states[i].districts;
+								
+							}
+						}
+					};
+										
+					$scope.getTalukas = function(index, district) {
+						$scope.temp.tempTalukas = [];				
+								for(var j=0; j< $scope.temp.tempDistricts.length; j++){
+									if($scope.temp.tempDistricts[j].name == district){
+									$scope.temp.tempTalukas = $scope.temp.tempDistricts[j].talukas;									
+								}	
+								}
+					};
+					
+					$scope.getVillages = function(index, taluka) {
+						$scope.temp.tempVillages = [];				
+								for(var k=0; k< $scope.temp.tempTalukas.length; k++){
+									if($scope.temp.tempTalukas[k].name == taluka){
+									$scope.temp.tempVillages = $scope.temp.tempTalukas[k].villages;									
+								}	
+								}
+					};
+					
+					
+				$scope.Country = 	{
+						states:[{
+						name:"Maharashtra", 
+							districts:[{name:"Ahmednagar", talukas:[{name:"Akola"},{name:"Sangamner"},
+							                                        {name:"Kopargaon"},{name:"Rahta"},
+							                                        {name:"Shrirampur"},{name:"Nevasa"},
+							                                        {name:"Shevgaon", villages:[{name:"Wagholi"},{name:"Vadule Khurd"},
+														                                        {name:"Jalgaon"},{name:"Malegaon"},
+														                                        {name:"Samangaon"},{name:"Avhane"},
+														                                        {name:"Shevgaon"},{name:"Varur"},
+														                                        {name:"Bhagur"},{name:"Bodhegaon"},
+														                                        {name:"Hatgaon"},{name:"KamPimpri"},
+														                                        {name:"Vadule Budruk"},{name:"Varkhed"}]},
+														                                        {name:"Chapadgaon"},
+							                                        {name:"Nagar"},{name:"Rahuri"},
+							                                        {name:"Parner"},{name:"Shrigonda"},
+							                                        {name:"Karjat"},{name:"Jamkhed"}]},
+							           
+							           
+							           
+							           
+							           
+							           {name:"Akola", talukas:[{name:"Akola"},{name:"Sangamner"},
+						                                        {name:"Kopargaon"},{name:"Rahta"},
+						                                        {name:"Shrirampur"},{name:"Nevasa"},
+						                                        {name:"Shevgaon"},{name:"Pathardi"},
+						                                        {name:"Nagar"},{name:"Rahuri"},
+						                                        {name:"Parner"},{name:"Shrigonda"},
+						                                        {name:"Karjat"},{name:"Jamkhed"}]},
+						               {name:"Amravati"},{name:"Aurangabad"},
+							           {name:"Beed"},{name:"Bhandara"},{name:"Buldhana"},{name:"Chandrapur"},
+							           {name:"Dhule"},{name:"Gadchiroli"},{name:"Gondia"},{name:"Hingoli"},
+							           {name:"Jalgaon"},{name:"Jalna"},{name:"Kolhapur"},{name:"Latur"},
+							           {name:"Mumbai City"},{name:"Mumbai Suburban"},{name:"Nagpur"},{name:"Nanded"},
+							           {name:"Nandurbar"},{name:"nashik"},{name:"Osmanabad"},{name:"Parbhani"},
+							           {name:"Pune"},{name:"Raigad"},{name:"Ratnagiri"},{name:"Sangli"},
+							           {name:"Satara"},{name:"Sindhudurg"},{name:"Solapur"},{name:"Thane"},
+							           {name:"Wardha"},{name:"Washim"},{name:"Yavatmal"}
+							         
+							           ]
+						},
+						{
+						name:"Gujarat", 
+							districts:[{name:"Ahmedabad"},{name:"Amreli"},{name:"Anand"},{name:"Aravalli"},
+							           {name:"Banaskantha (Palanpur)"},{name:"Bharuch"},{name:"Bhavnagar"},{name:"Botad"},
+							           {name:"Chhota Udepur"},{name:"Dahod"},{name:"Dangs (Ahwa)"},{name:"Devbhoomi Dwarka"},
+							           {name:"Gandhinagar"},{name:"Gir Somnath"},{name:"Jamnagar"},{name:"Junagadh"},
+							           {name:"Kachchh"},{name:"Kheda (Nadiad)"},{name:"Mahisagar"},{name:"Mehsana"},
+							           {name:"Morbi"},{name:"Narmada (Rajpipla)"},{name:"Navsari"},{name:"Panchmahal (Godhra)"},
+							           {name:"Patan"},{name:"Porbandar"},{name:"Rajkot"},{name:"Sabarkantha (Himmatnagar)"},
+							           {name:"Surat"},{name:"Surendranagar"},{name:"Tapi (Vyara)"},{name:"Vadodara"},
+							           {name:"Valsad"}]
+						},
+						{
+						name:"Karnataka", 
+							districts:[{name:"Bagalkot"},{name:"Bangalore Rural"},{name:"Bangalore Urban"},{name:"Belgaum"},
+							           {name:"Bellary"},{name:"Bidar"},{name:"Bijapur"},{name:"Chamarajanagar"},
+							           {name:"Chickmagalur"},{name:"Chikballapur"},{name:"Chitradurga"},{name:"Dakshina Kannada"},
+							           {name:"Davangere"},{name:"Dharwad"},{name:"Gadag"},{name:"Gulbarga"},
+							           {name:"Hassan"},{name:"Haveri"},{name:"Kodagu"},{name:"Kolar"},
+							           {name:"Koppal"},{name:"Mandya"},{name:"Mysore"},{name:"Raichur"},
+							           {name:"Ramnagara"},{name:"Shimoga"},{name:"Tumkur"},{name:"Udupi"},
+							           {name:"Uttara Kannada (Karwar)"},{name:"Yadgir"}]
+						},
+						
+						{name:"Andhra Pradesh"},
+						{name:"Arunachal Pradesh"},
+						{name:"Assam"},
+						{name:"Bihar"},
+						{name:"Chhattisgarh"},
+						{name:"Chandigarh"},
+						{name:"Dadra and Nagar Haveli"},
+						{name:"Daman and Diu"},
+						{name:"Delhi"},
+						{name:"Goa"},
+						{name:"Gujarat"},
+						{name:"Haryana"},
+						{name:"Himachal Pradesh"},
+						{name:"Jammu and Kashmir"},
+						{name:"Jharkhand"},
+						{name:"Karnataka"},
+						{name:"Kerala"},
+						{name:"Madhya Pradesh"},
+						{name:"Manipur"},
+						{name:"Meghalaya"},
+						{name:"Mizoram"},
+						{name:"Nagaland"},
+						{name:"Orissa"},
+						{name:"Punjab"},
+						{name:"Pondicherry"},
+						{name:"Rajasthan"},
+						{name:"Sikkim"},
+						{name:"Tamil Nadu"},
+						{name:"Tripura"},
+						{name:"Uttar Pradesh"},
+						{name:"Uttarakhand"},
+						{name:"West Bengal"}
+						
+						]
+				}
+					
+					
 				});

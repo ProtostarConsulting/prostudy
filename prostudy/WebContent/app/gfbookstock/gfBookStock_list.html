@@ -1,10 +1,7 @@
 <div id="bookStockListDiv">
 	<h3 class="md-headline">Book Stock</h3>
 
-	<div layout="row" layout-align="end end" layout-xs="column">
-
-		
-	</div>
+	<div layout="row" layout-align="end end" layout-xs="column"></div>
 
 	<div layout="row" layout-xs="column">
 		<md-input-container flex> <label>Search
@@ -18,7 +15,7 @@
 			<thead md-order="query.order" md-trigger="onorderchange">
 
 				<tr>
-
+					<th order-by="standard" name="Standard"></th>
 					<th order-by="bookName" name="Book Name"></th>
 					<th order-by="bookPublication" name="Publication"></th>
 					<th order-by="bookQty" name="Quantity"></th>
@@ -27,11 +24,10 @@
 			</thead>
 			<tbody>
 				<tr md-auto-select
-					ng-repeat="book in bookStocks | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
-
+					ng-repeat="book in bookStocks | filter : searchByName | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+					<td>{{book.book.standard}}</td>
 					<td>{{book.book.bookName}}</td>
 					<td>{{book.book.bookPublication}}</td>
-					
 					<td>{{book.book.bookQty}}</td>
 					<td>{{book.book.bookMedium}}</td>
 				</tr>
