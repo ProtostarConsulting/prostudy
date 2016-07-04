@@ -1,6 +1,7 @@
 package com.protostar.prostudy.gf.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
@@ -12,16 +13,34 @@ public class GFBookTransactionEntity {
 
 	@Id
 	private Long id;
-	// private GFBookEntity book;
 	private String transactionType;
-	// private String bookMedium;
 	private Date transactionDate;
 	@Index
 	private long instituteID;
 	private int bookQty;
 	@Index
-	Ref<GFBookEntity> book;
 
+	Ref<GFBookEntity> book;
+	
+public GFBookEntity getBook() {
+		return book.get();
+	}
+
+	public void setBook(GFBookEntity book) {
+		this.book = Ref.create(book);
+	}
+
+	/*	private GFBookEntity book;
+	
+
+	public GFBookEntity getBook() {
+		return book;
+	}
+
+	public void setBook(GFBookEntity book) {
+		this.book = book;
+	}
+*/
 	private float totalFees;
 
 	public float getTotalFees() {
@@ -46,14 +65,6 @@ public class GFBookTransactionEntity {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public GFBookEntity getBook() {
-		return book.get();
-	}
-
-	public void setBook(GFBookEntity book) {
-		this.book = Ref.create(book);
 	}
 
 	public String getTransactionType() {

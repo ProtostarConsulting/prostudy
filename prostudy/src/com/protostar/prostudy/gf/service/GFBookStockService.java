@@ -56,7 +56,6 @@ public class GFBookStockService {
 			gfBookStockEntity.setInstituteID(gfBookEntity.getInstituteID());
 
 			ofy().save().entity(gfBookStockEntity).now();
-
 		}
 
 		GFBookTransactionEntity newTransaction = new GFBookTransactionEntity();
@@ -65,8 +64,8 @@ public class GFBookStockService {
 		newTransaction.setTransactionType("Cr");
 		newTransaction.setTransactionDate(gfBookEntity.getBookFeedDate());
 		newTransaction.setBookQty(gfBookEntity.getBookQty());
-		ofy().save().entity(newTransaction).now();
 
+		ofy().save().entity(newTransaction).now();
 	}
 
 	@ApiMethod(name = "getGFBookByInstituteId", path = "getGFBookByInstituteId")
