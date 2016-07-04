@@ -130,16 +130,12 @@
 				<div ng-message="required">Please Enter Address Name.</div>
 			</div>
 			</md-input-container>
-			<md-input-container flex> <label>Address2<!--  <span
-				style="color: red;"
-				ng-show="partnerSchoolForm.line2.$error.required">*</span> -->
+			<md-input-container flex> <label>Address2
 			</label> <input name="line2" id="line2"
-				ng-model="partnerSchool.address.line2"> <!-- <div ng-messages="partnerSchoolForm.line2.$error"
-				ng-if="partnerSchoolForm.line2.$submitted || partnerSchoolForm.line2.$touched">
-				<div ng-message="required">Please Enter Address Name.</div>
-			</div> --> </md-input-container>
+				ng-model="partnerSchool.address.line2"></md-input-container>
 
 		</div>
+
 		<div layout="row" layout-xs="column">
 			<md-input-container flex> <label>At
 				Post/City <span style="color: red;"
@@ -151,92 +147,135 @@
 				<div ng-message="required">Please Enter City Name.</div>
 			</div>
 			</md-input-container>
-			<md-input-container flex> <label>Taluka<span
-				style="color: red;" ng-show="partnerSchoolForm.tal.$error.required">*</span>
-			</label> <input name="tal" id="tal" ng-model="partnerSchool.address.tal"
-				ng-required="true">
-			<div ng-messages="partnerSchoolForm.tal.$error"
-				ng-if="partnerSchoolForm.tal.$submitted || partnerSchoolForm.tal.$touched">
-				<div ng-message="required">Please Enter Taluka Name.</div>
-			</div>
-			</md-input-container>
 
-
-		</div>
-		<div layout="row" layout-xs="column">
-			<!-- <span flex="10"></span> -->
-			<md-input-container flex> <label>District
-				<span style="color: red;"
-				ng-show="partnerSchoolForm.dist.$error.required">*</span>
-			</label> <input name="dist" id="dist" ng-model="partnerSchool.address.dist"
-				ng-required="true">
-			<div ng-messages="partnerSchoolForm.dist.$error"
-				ng-if="partnerSchoolForm.dist.$submitted || partnerSchoolForm.dist.$touched">
-				<div ng-message="required">Please Enter District Name.</div>
-			</div>
-			</md-input-container>
-			<!-- <span flex="20"></span> -->
-			<md-input-container flex> <label>Pin</label> <input
-				name="pin" ng-model="partnerSchool.address.pin"> </md-input-container>
-			<!-- 	<span flex="10"></span> -->
-		</div>
-		<div layout="row" layout-xs="column">
-			<!-- <span flex="10"></span> -->
-			<md-input-container flex> <label>State <span
-				style="color: red;"
-				ng-show="partnerSchoolForm.state.$error.required">*</span>
-			</label> <input name="state" id="state"
-				ng-model="partnerSchool.address.state" ng-required="true">
+			<md-input-container flex> <label>State<span
+				style="color: red" ng-show="partnerSchoolForm.state.$error.required"
+				class="mandatory">*</span></label> <md-select name="state"
+				ng-model="partnerSchool.address.state"
+				ng-change="getDistricts($index, partnerSchool.address.state)"
+				ng-required="true"> <md-option ng-value="states.name"
+				ng-repeat="states in Country.states |  orderBy : 'states.name'">{{states.name}}</md-option>
+			</md-select>
 			<div ng-messages="partnerSchoolForm.state.$error"
 				ng-if="partnerSchoolForm.state.$submitted || partnerSchoolForm.state.$touched">
-				<div ng-message="required">Please Enter State Name.</div>
+				<div ng-message="required">Please Select State.</div>
 			</div>
 			</md-input-container>
-			<!-- <span flex="20"></span> -->
-			<md-input-container flex> <label>Country</label>
-			<input name="country" ng-model="partnerSchool.address.country">
-			</md-input-container>
-			<!-- 		<span flex="10"></span> -->
 
 		</div>
 
-=================================================================================================
 
-<div layout="row" layout-xs="column">
-		
-		
-		<md-input-container flex> <md-select
-							ng-model="selectedState" placeholder="Select State"
-							ng-change="getDistricts($index, selectedState)">
-						<md-option ng-value="states.name" ng-repeat="states in Country.states">{{states.name
-						}}</md-option> </md-select> 
-		</md-input-container>
-									
-		<md-input-container flex> <md-select
-							ng-model="selectedDistrict" placeholder="Select District"
-							ng-change="getTalukas($index, selectedDistrict)">
-						<md-option ng-value="district.name" ng-repeat="district in temp.tempDistricts track by $index">{{district.name
-						}}</md-option> </md-select> 
-		</md-input-container>
-			
-		<md-input-container flex="25"> <md-select
-			ng-change="getVillages($Index, selectedTaluka)" ng-model="selectedTaluka"
-			id="selectedTaluka"> <md-option ng-value="taluka.name"
-			ng-repeat="taluka in temp.tempTalukas track by $index" >{{taluka.name}}</md-option> </md-select>
-		</md-input-container>
-		
+		<div layout="row" layout-xs="column">
+
+
+			<md-input-container flex> <label>District<span
+				style="color: red"
+				ng-show="partnerSchoolForm.district.$error.required"
+				class="mandatory">*</span></label> <md-select
+				ng-model="partnerSchool.address.dist" placeholder="Select District"
+				ng-change="getTalukas($index, partnerSchool.address.dist)"
+				name="district" ng-required="true"> <md-option
+				ng-value="district.name" ng-repeat="district in temp.tempDistricts">{{district.name
+			}}</md-option> </md-select>
+
+			<div ng-messages="partnerSchoolForm.district.$error"
+				ng-if="partnerSchoolForm.district.$submitted || partnerSchoolForm.district.$touched">
+				<div ng-message="required">Please Select District.</div>
+			</div>
+			</md-input-container>
+
+			<md-input-container flex> <label>Taluka<span
+				style="color: red"
+				ng-show="partnerSchoolForm.taluka.$error.required" class="mandatory">*</span></label>
+			<md-select ng-model="partnerSchool.address.tal"
+				placeholder="Select Taluka"
+				ng-change="getVillages($Index, partnerSchool.address.tal)"
+				name="taluka" ng-required="true"> <md-option
+				ng-value="taluka.name" ng-repeat="taluka in temp.tempTalukas">{{taluka.name
+			}}</md-option> </md-select>
+
+			<div ng-messages="partnerSchoolForm.taluka.$error"
+				ng-if="partnerSchoolForm.taluka.$submitted || partnerSchoolForm.taluka.$touched">
+				<div ng-message="required">Please Select Taluka.</div>
+			</div>
+			</md-input-container>
+		</div>
+
+
+		<div layout="row" layout-xs="column">
+
+			<!--  				
 		<md-input-container flex> <md-select
 							ng-model="selectedVillage" placeholder="Select Village"
 							>
 						<md-option ng-value="village.name" ng-repeat="village in temp.tempVillages track by $index">{{village.name
 						}}</md-option> </md-select> 
 		</md-input-container>
+ 
 
-</div>
 
-=================================================================================================
+			<md-input-container flex> <label>Pin</label> <input
+				name="pin" ng-model="postcode" ng-blur="getaddress(postcode)"> </md-input-container>
+ -->
 
-	<!-- 	<div layout="row" layout-xs="column">
+
+			<md-input-container flex> <label>Pin <span
+				style="color: red;" ng-show="partnerSchoolForm.pin.$error.required">*</span>
+			</label> <input type="number" name="pin" id="pin" ng-model="partnerSchool.address.pin"
+				ng-required="true">
+			<div ng-messages="partnerSchoolForm.pin.$error"
+				ng-if="partnerSchoolForm.pin.$submitted || partnerSchoolForm.pin.$touched">
+				<div ng-message="required">Please Enter PIN Code.</div>
+			</div>
+			</md-input-container>
+		</div>
+<!-- 		===================================================================================================
+
+		<div layout="row" flex>
+			<md-autocomplete flex required ng-model="partnerSchool.address.state"
+				md-input-name="autocompleteField" md-input-minlength="2"
+				md-input-maxlength="18" md-no-cache=true
+				md-selected-item="partnerSchool.address.state"
+				md-search-text="searchTextInput"
+				md-items="item in stateQuerySearch(searchTextInput)"
+				md-item-text="item.name" md-floating-label="State Name">
+			<md-item-template> <span
+				md-highlight-text="searchTextInput">{{item.name }}</span> </md-item-template>
+			<div ng-messages="partnerSchoolForm.autocompleteField.$error"
+				ng-if="partnerSchoolForm.autocompleteField.$touched">
+				<div ng-message="required">
+					You <b>must</b> have to enter Customer Name.
+				</div>
+				<div ng-message="minlength">Your entry is not long enough.</div>
+				<div ng-message="maxlength">Your entry is too long.</div>
+			</div>
+			</md-autocomplete>
+		</div>
+
+		<div layout="row" flex>
+			<md-autocomplete flex required ng-model="partnerSchool.address.dist"
+				md-input-name="autocompleteField" md-input-minlength="2"
+				md-input-maxlength="18" md-no-cache=true
+				md-selected-item="partnerSchool.address.dist"
+				md-search-text="searchTextInput"
+				md-items="item in DistQuerySearch(searchTextInput)"
+				md-item-text="item.name" md-floating-label="District Name">
+			<md-item-template> <span
+				md-highlight-text="searchTextInput">{{item.name }}</span> </md-item-template>
+			<div ng-messages="partnerSchoolForm.autocompleteField.$error"
+				ng-if="partnerSchoolForm.autocompleteField.$touched">
+				<div ng-message="required">
+					You <b>must</b> have to enter Customer Name.
+				</div>
+				<div ng-message="minlength">Your entry is not long enough.</div>
+				<div ng-message="maxlength">Your entry is too long.</div>
+			</div>
+			</md-autocomplete>
+		</div>
+
+		===================================================================================================
+ -->
+		<!-- 	<div layout="row" layout-xs="column">
 			<span flex="10"></span>
 			<md-input-container flex> <label>
 				Primary Contact <span style="color: red;"

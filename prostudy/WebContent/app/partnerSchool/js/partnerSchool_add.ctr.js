@@ -90,13 +90,13 @@ angular
 						} ]
 
 					}
-
+					
 					$scope.Address = {
 						line1 : "",
 						dist : "",
 						city : "",
 						state : "",
-						country : "",
+						country : "India",
 						pin : "",
 						tal : ""
 					}
@@ -257,15 +257,16 @@ angular
 												$scope.partnerSchool.formNumber = Number($scope.partnerSchool.formNumber);
 
 												$scope.contactDetail = $scope.partnerSchool.contactDetail;
-												$scope.Address = $scope.partnerSchool.Address;
-
+												$scope.Address = $scope.partnerSchool.address;
+												$scope.a;
+												$scope.getDistricts($scope.a, $scope.Address.state);
+												$scope.getTalukas($scope.a, $scope.Address.dist);
 												if ($scope.partnerSchool.examDetailList) {
 													$scope.examlist = $scope.partnerSchool.examDetailList;
 												}
 												$scope.getExamByYear();
 												$scope.waitForServiceLoad2();
 											});
-
 						}
 
 					}
@@ -488,7 +489,19 @@ angular
 							tempTalukas : [],
 							tempVillages : []
 					}
+					
+					$scope.Address = {
+							line1 : "",
+							dist : "",
+							city : "",
+							state : "",
+							country : "India",
+							pin : "",
+							tal : ""
+						}
+					
 					$scope.getDistricts = function(index, state) {
+						
 						$scope.temp.tempDistricts = [];
 						for(var i=0; i < $scope.Country.states.length; i++){
 							
@@ -501,6 +514,7 @@ angular
 					};
 										
 					$scope.getTalukas = function(index, district) {
+						
 						$scope.temp.tempTalukas = [];				
 								for(var j=0; j< $scope.temp.tempDistricts.length; j++){
 									if($scope.temp.tempDistricts[j].name == district){
@@ -510,6 +524,7 @@ angular
 					};
 					
 					$scope.getVillages = function(index, taluka) {
+						
 						$scope.temp.tempVillages = [];				
 								for(var k=0; k< $scope.temp.tempTalukas.length; k++){
 									if($scope.temp.tempTalukas[k].name == taluka){
@@ -518,7 +533,7 @@ angular
 								}
 					};
 					
-					
+/*					
 				$scope.Country = 	{
 						states:[{
 						name:"Maharashtra", 
@@ -536,18 +551,10 @@ angular
 							                                        {name:"Nagar"},{name:"Rahuri"},
 							                                        {name:"Parner"},{name:"Shrigonda"},
 							                                        {name:"Karjat"},{name:"Jamkhed"}]},
-							           
-							           
-							           
-							           
-							           
-							           {name:"Akola", talukas:[{name:"Akola"},{name:"Sangamner"},
-						                                        {name:"Kopargaon"},{name:"Rahta"},
-						                                        {name:"Shrirampur"},{name:"Nevasa"},
-						                                        {name:"Shevgaon"},{name:"Pathardi"},
-						                                        {name:"Nagar"},{name:"Rahuri"},
-						                                        {name:"Parner"},{name:"Shrigonda"},
-						                                        {name:"Karjat"},{name:"Jamkhed"}]},
+							           {name:"Akola", talukas:[{name:"Akola"},{name:"Akot"},
+						                                        {name:"Balapur"},{name:"Murtijapur"},
+						                                        {name:"Telhara"},{name:"Barshitakli"},
+						                                        {name:"Patur"}]},
 						               {name:"Amravati"},{name:"Aurangabad"},
 							           {name:"Beed"},{name:"Bhandara"},{name:"Buldhana"},{name:"Chandrapur"},
 							           {name:"Dhule"},{name:"Gadchiroli"},{name:"Gondia"},{name:"Hingoli"},
@@ -583,25 +590,60 @@ angular
 							           {name:"Ramnagara"},{name:"Shimoga"},{name:"Tumkur"},{name:"Udupi"},
 							           {name:"Uttara Kannada (Karwar)"},{name:"Yadgir"}]
 						},
-						
-						{name:"Andhra Pradesh"},
+						{name:"Kerala",
+							districts:[{name:"Alappuzha"},{name:"Ernakulam"},{name:"Idukki"},{name:"Kannur"},
+							           {name:"Kasaragod"},{name:"Kollam"},{name:"Kottayam"},{name:"Kozhikode"},
+							           {name:"Malappuram"},{name:"Palakkad"},{name:"Pathanamthitta"},{name:"Thiruvananthapuram"},
+							           {name:"Thrissur"},{name:"Wayanad"}]},
+						{name:"Madhya Pradesh", 
+							districts:[{name:"Alirajpur"},{name:"Anuppur"},{name:"Ashoknagar"},{name:"Balaghat"},
+										{name:"Barwani"},{name:"Betul"},{name:"Bhind"},{name:"Bhopal"},
+										{name:"Burhanpur"},{name:"Chhatarpur"},{name:"Chhindwara"},{name:"Damoh"},
+										{name:"Datia"},{name:"Dewas"},{name:"Dhar"},{name:"Dindori"},
+										{name:"Guna"},{name:"Gwalior"},{name:"Harda"},{name:"Hoshangabad"},
+										{name:"Indore"},{name:"Jabalpur"},{name:"Jhabua"},{name:"Katni"},
+										{name:"Khandwa"},{name:"Khargone"},{name:"Mandla"},{name:"Mandsaur"},
+										{name:"Morena"},{name:"Narsinghpur"},
+										{name:"Neemuch"},{name:"Panna"},{name:"Raisen"},{name:"Rajgarh"},
+										{name:"Ratlam"},{name:"Rewa"},{name:"Sagar"},{name:"Satna"},
+										{name:"Sehore"},{name:"Seoni"},{name:"Shahdol"},{name:"Shajapur"},
+										{name:"Sheopur"},{name:"Shivpuri"},{name:"Sidhi"},{name:"Singrauli"},
+										{name:"Tikamgarh"},{name:"Ujjain"},{name:"Umaria"},{name:"Vidisha"}]
+					    },	
+						{name:"Andaman and Nicobar Island",
+							districts:[{name:"Nicobar"},{name:"North and Middle Andaman"},{name:"South Andaman"}]
+					    },				
+						{name:"Andhra Pradesh",
+							districts:[{name:"Anantapur"},{name:"Chittoor"},{name:"Cuddapah"},{name:"East Godavari"},
+							           {name:"Guntur"},{name:"Krishna"},{name:"Kurnool"},{name:"Nellore"},
+							           {name:"Prakasam"},{name:"Srikakulam"},{name:"Visakhapatnam"},{name:"Vizianagaram"},
+							           {name:"West Godavari"}]
+					    },
+						{name:"Chandigarh",
+							districts:[{name:"Chandigarh"}]
+					    },
+						{name:"Dadra and Nagar Haveli",
+							districts:[{name:"Dadra and Nagar Haveli"}]
+						},
+						{name:"Daman and Diu",
+							districts:[{name:"Daman"},{name:"Diu"}]
+						},
+						{name:"Delhi",
+							districts:[{name:"Central Delhi"},{name:"East Delhi"},{name:"New Delhi"},{name:"North Delhi"},
+							           {name:"North East Delhi"},{name:"North West Delhi"},{name:"South Delhi"},
+							           {name:"South West Delhi"}]
+						},
+						{name:"Goa",
+							districts:[{name:"North Goa"},{name:"South Goa"}]
+						},
 						{name:"Arunachal Pradesh"},
 						{name:"Assam"},
 						{name:"Bihar"},
 						{name:"Chhattisgarh"},
-						{name:"Chandigarh"},
-						{name:"Dadra and Nagar Haveli"},
-						{name:"Daman and Diu"},
-						{name:"Delhi"},
-						{name:"Goa"},
-						{name:"Gujarat"},
 						{name:"Haryana"},
 						{name:"Himachal Pradesh"},
 						{name:"Jammu and Kashmir"},
 						{name:"Jharkhand"},
-						{name:"Karnataka"},
-						{name:"Kerala"},
-						{name:"Madhya Pradesh"},
 						{name:"Manipur"},
 						{name:"Meghalaya"},
 						{name:"Mizoram"},
@@ -615,10 +657,357 @@ angular
 						{name:"Tripura"},
 						{name:"Uttar Pradesh"},
 						{name:"Uttarakhand"},
-						{name:"West Bengal"}
-						
+						{name:"West Bengal"}	
 						]
 				}
+				
+*/
+				$scope.Country = 	{
+						states:[{
+						name:"Maharashtra", 
+							districts:[{name:"Ahmednagar", talukas:[{name:"Akola"},{name:"Sangamner"},
+							                                        {name:"Kopargaon"},{name:"Rahta"},
+							                                        {name:"Shrirampur"},{name:"Nevasa"},
+							                                        {name:"Shevgaon", villages:[{name:"Wagholi"},{name:"Vadule Khurd"},
+														                                        {name:"Jalgaon"},{name:"Malegaon"},
+														                                        {name:"Samangaon"},{name:"Avhane"},
+														                                        {name:"Shevgaon"},{name:"Varur"},
+														                                        {name:"Bhagur"},{name:"Bodhegaon"},
+														                                        {name:"Hatgaon"},{name:"KamPimpri"},
+														                                        {name:"Vadule Budruk"},{name:"Varkhed"}]},
+														                                        {name:"Chapadgaon"},
+							                                        {name:"Nagar"},{name:"Rahuri"},
+							                                        {name:"Parner"},{name:"Shrigonda"},
+							                                        {name:"Karjat"},{name:"Jamkhed"}]},
+							           {name:"Akola", talukas:[{name:"Akola"},{name:"Akot"},
+						                                        {name:"Balapur"},{name:"Murtijapur"},
+						                                        {name:"Telhara"},{name:"Barshitakli"},
+						                                        {name:"Patur"}]},
+						               {name:"Amravati", talukas:[{name:"Dharni"},{name:"Chikhaldara"},
+							                                        {name:"Anjangaon Surji"},{name:"Achalpur"},
+							                                        {name:"Chandurbazar"},{name:"Morshi"},
+							                                        {name:"Warud"},{name:"Teosa"},
+							                                        {name:"Amravati"},{name:"Bhatkuli"},{name:"Daryapur"},
+							                                        {name:"Nandgaon-Khandeshwar"},
+							                                        {name:"Chandur Railway"},{name:"Dhamangaon Railway"}]},
+							                                      
+							           {name:"Aurangabad",talukas:[{name:"Kannad"},{name:"Soegaon"},
+							                                        {name:"Sillod"},{name:"Phulambri"},
+							                                        {name:"Aurangabad"},{name:"Khuldabad"},
+							                                        {name:"Vaijapur"},{name:"Gangapur"},
+							                                        {name:"Paithan"}]},
+							          
+							           {name:"Beed",talukas:[{name:"Ashti"},{name:"Patoda"},
+						                                        {name:"Shirur (Kasar)"},{name:"Georai"},
+						                                        {name:"Manjlegaon"},{name:"Wadwani"},
+						                                        {name:"Bid"},{name:"Kaij"},
+						                                        {name:"Dharur"},{name:"Parli"},
+						                                        {name:"Ambejogai"}]},
+						                                        
+						               {name:"Bhandara" ,talukas:[{name:"Bhandara"}]},
+						               
+						               {name:"Buldhana",talukas:[{name:"Jalgaon (Jamod)"},{name:"Sangrampur"},
+							                                        {name:"Shegaon"},{name:"Nandura"},
+							                                        {name:"Malkapur"},{name:"Motala"},
+							                                        {name:"Khamgaon"},{name:"Mehkar"},
+							                                        {name:"Chikhli"},{name:"Buldana"},
+							                                        {name:"Deolgaon Raja"},	{name:"Sindkhed Raja"},
+							                                        {name:"Lonar"}]},
+							                                        
+							           {name:"Chandrapur",talukas:[{name:"Warora"},{name:"Chimur"},
+							                                        {name:"Nagbhir"},{name:"Brahmapuri"},
+							                                        {name:"Sawali"},{name:"Sindewahi"},
+							                                        {name:"Bhadravati"},{name:"Chandrapur"},
+							                                        {name:"Mul"},{name:"Pombhurna"},
+							                                        {name:"Ballarpur"},	{name:"Korpana"},
+							                                        {name:"Jiwati"},{name:"Rajura"},{name:"Gondpipri"}]},
+							                               							                                        
+							           {name:"Dhule",talukas:[{name:"Shirpur"},{name:"Sindkhede"},
+						                                        {name:"Sakri"},{name:"Dhule"}]},						                                        
+						                                        
+							           {name:"Gadchiroli",talukas:[{name:"Desaiganj (Vadasa)"},{name:"Armori"},
+							                                        {name:"Kurkheda"},{name:"Korchi"},
+							                                        {name:"Dhanora"},{name:"Gadchiroli"},
+							                                        {name:"Chamorshi"},{name:"Mulchera"},
+							                                        {name:"Etapalli"},{name:"Bhamragad"},
+							                                        {name:"Aheri"},	{name:"Sironcha"}]},
+							                                        
+							           {name:"Gondia",talukas:[{name:"Tirora"},{name:"Goregaon"},
+						                                        {name:"Gondiya"},{name:"Amgaon"},
+						                                        {name:"Salekasa"},{name:"Sadak-Arjuni"},
+						                                        {name:"Arjuni Morgaon"},{name:"Deori"}]},
+						                                        
+							           {name:"Hingoli", talukas:[{name:"Sengaon"},{name:"Hingoli"},
+							                                        {name:"Aundha (Nagnath)"},{name:"Kalamnuri"},
+							                                        {name:"Basmath"}]},
+							                                        
+							           {name:"Jalgaon",talukas:[{name:"Chopda"},{name:"Yawal"},
+						                                        {name:"Raver"},{name:"Muktainagar"},
+						                                        {name:"Bodvad"},{name:"Bhusawal"},
+						                                        {name:"Jalgaon"},{name:"Erandol"},
+						                                        {name:"Dharangaon"},{name:"Amalner"},
+						                                        {name:"Parola"},	{name:"Bhadgaon"},
+						                                        {name:"Chalisgaon"},	{name:"Pachora"},
+						                                        {name:"Jamner"}]},
+						                                  
+						                {name:"Nagpur",talukas:[{name:"Savner"},{name:"Parseoni"},
+						                                        {name:"Ramtek"},{name:"Mauda"},
+						                                        {name:"Kamptee"},{name:"Nagpur (Rural)"},
+						                                        {name:"Nagpur (Urban)"},{name:"Hingna"},
+						                                        {name:"Umred"},{name:"Kuhi"},
+						                                        {name:"Bhiwapur"},	{name:"Narkhed"},
+						                                        {name:"Katol"},	{name:"Kalameshwar"}]},
+						                                        
+						                {name:"Pune",talukas:[{name:"Junnar"},{name:"Ambegaon"},
+						                                        {name:"Shirur"},{name:"Khed"},
+						                                        {name:"Mawal"},{name:"Mulshi"},
+						                                        {name:"Haveli"},{name:"Pune City"},
+						                                        {name:"Daund"},{name:"Purandhar"},
+						                                        {name:"Velhe"},	{name:"Bhor"},
+						                                        {name:"Baramati"},	{name:"Indapur"}]},
+							           
+							           {name:"Jalna"},{name:"Kolhapur"},{name:"Latur"},
+							           {name:"Mumbai City"},{name:"Mumbai Suburban"},{name:"Nanded"},
+							           {name:"Nandurbar"},{name:"nashik"},{name:"Osmanabad"},{name:"Parbhani"},
+							         {name:"Raigad"},{name:"Ratnagiri"},{name:"Sangli"},
+							           {name:"Satara"},{name:"Sindhudurg"},{name:"Solapur"},{name:"Thane"},
+							           {name:"Wardha"},{name:"Washim"},{name:"Yavatmal"}
+							         
+							           ]
+						},
+						{
+						name:"Gujarat", 
+							districts:[{name:"Ahmedabad",talukas:[{name:"Mandal"},{name:"Detroj-Rampura"},
+							                                        {name:"Viramgam"},{name:"Sanand"},
+							                                        {name:"Ahmadabad City"},{name:"Daskroi"},
+							                                        {name:"Dholka"},{name:"Bavla"},
+							                                        {name:"Ranpur"},{name:"Barwala"},
+							                                        {name:"Dhandhuka"}]},
+							                                     
+							          {name:"Amreli",talukas:[{name:"Kunkavav Vadia"},{name:"Babra"},
+						                                        {name:"Lathi"},{name:"Lilia"},
+						                                        {name:"Amreli"},{name:"Bagasara"},
+						                                        {name:"Dhari"},{name:"Savar Kundla"},
+						                                        {name:"Khambha"},{name:"Jafrabad"},
+						                                        {name:"Rajula"}]},
+							                                        
+							         {name:"Anand" ,talukas:[{name:"Tarapur"},{name:"Sojitra"},
+						                                        {name:"Umreth"},{name:"Anand"},
+						                                        {name:"Petlad"},{name:"Khambhat"},
+						                                        {name:"Borsad"},{name:"Anklav"}]},
+							         
+						             {name:"Aravalli",talukas:[{name:"Aravalli"}]},
+							         
+						             {name:"Banaskantha (Palanpur)",talukas:[{name:"Danta"},{name:"Vadgam"},
+										                                        {name:"Palanpur"},{name:"Deesa"},
+										                                        {name:"Deodar"},{name:"Bhabhar"},
+										                                        {name:"Kankrej"},{name:"Vav"},
+										                                        {name:"Tharad"},{name:"Dhanera"},
+										                                        {name:"Dantiwada"},{name:"Amirgadh"}]},
+										                                        
+						            {name:"Bharuch",talukas:[{name:"Jambusar"},{name:"Amod"},
+					                                        {name:"Vagra"},{name:"Bharuch"},
+					                                        {name:"Jhagadia"},{name:"Anklesvar"},
+					                                        {name:"Hansot"},{name:"Valia"}]},
+						            
+						            {name:"Bhavnagar",talukas:[{name:"Botad"},{name:"Vallabhipur"},
+						                                        {name:"Gadhada"},{name:"Umrala"},
+						                                        {name:"Bhavnagar"},{name:"Ghogha"},
+						                                        {name:"Sihor"},{name:"Gariadhar"},
+						                                        {name:"Palitana"},{name:"Talaja"},
+						                                        {name:"Mahuva"}]},
+						            
+						            {name:"Botad",talukas:[{name:"Botad"}]},
+						            
+						            {name:"Chhota Udepur",talukas:[{name:"Chhota Udepur"}]},
+						            
+						            {name:"Dahod",talukas:[{name:"Fatepura"},{name:"Jhalod"},
+					                                        {name:"Limkheda"},{name:"Dohad"},
+					                                        {name:"Garbada"},{name:"Devgadbaria"},
+					                                        {name:"Dhanpur"}]},
+						            
+						            {name:"Dangs (Ahwa)",talukas:[{name:"The Dangs"}]},
+						            
+						            {name:"Devbhoomi Dwarka"},
+						            
+						            {name:"Gandhinagar",talukas:[{name:"Kalol"},{name:"Mansa"},
+							                                        {name:"Gandhinagar"},{name:"Dehgam"}]},
+							                                        
+							        {name:"Gir Somnath"},
+							        
+							        {name:"Jamnagar",talukas:[{name:"Okhamandal"},{name:"Khambhalia"},
+						                                        {name:"Jamnagar"},{name:"Jodiya"},
+						                                        {name:"Dhrol"},{name:"Kalavad"},
+						                                        {name:"Lalpur"},{name:"Kalyanpur"},
+						                                        {name:"Bhanvad"},{name:"Jamjodhpur"}]},
+							        
+							        {name:"Junagadh",talukas:[{name:"Manavadar"},{name:"Vanthali"},
+						                                        {name:"Junagadh"},{name:"Bhesan"},
+						                                        {name:"Visavadar"},{name:"Mendarda"},
+						                                        {name:"Keshod"},{name:"Mangrol"},
+						                                        {name:"Malia"},{name:"Talala"},
+						                                        {name:"Patan-Veraval"}, {name:"Sutrapada"},
+						                                        {name:"Kodinar"},
+						                                        {name:"Una"}]},
+							        
+							        {name:"Kachchh"},{name:"Kheda (Nadiad)"},{name:"Mahisagar"},{name:"Mehsana"},
+							           {name:"Morbi"},{name:"Narmada (Rajpipla)"},{name:"Navsari"},{name:"Panchmahal (Godhra)"},
+							           {name:"Patan"},{name:"Porbandar"},{name:"Rajkot"},{name:"Sabarkantha (Himmatnagar)"},
+							           {name:"Surat"},{name:"Surendranagar"},{name:"Tapi (Vyara)"},{name:"Vadodara"},
+							           {name:"Valsad"}]
+						},
+						{
+						name:"Karnataka", 
+							districts:[{name:"Bagalkot"},{name:"Bangalore Rural"},{name:"Bangalore Urban"},{name:"Belgaum"},
+							           {name:"Bellary"},{name:"Bidar"},{name:"Bijapur"},{name:"Chamarajanagar"},
+							           {name:"Chickmagalur"},{name:"Chikballapur"},{name:"Chitradurga"},{name:"Dakshina Kannada"},
+							           {name:"Davangere"},{name:"Dharwad"},{name:"Gadag"},{name:"Gulbarga"},
+							           {name:"Hassan"},{name:"Haveri"},{name:"Kodagu"},{name:"Kolar"},
+							           {name:"Koppal"},{name:"Mandya"},{name:"Mysore"},{name:"Raichur"},
+							           {name:"Ramnagara"},{name:"Shimoga"},{name:"Tumkur"},{name:"Udupi"},
+							           {name:"Uttara Kannada (Karwar)"},{name:"Yadgir"}]
+						},
+						{name:"Kerala",
+							districts:[{name:"Alappuzha"},{name:"Ernakulam"},{name:"Idukki"},{name:"Kannur"},
+							           {name:"Kasaragod"},{name:"Kollam"},{name:"Kottayam"},{name:"Kozhikode"},
+							           {name:"Malappuram"},{name:"Palakkad"},{name:"Pathanamthitta"},{name:"Thiruvananthapuram"},
+							           {name:"Thrissur"},{name:"Wayanad"}]},
+						{name:"Madhya Pradesh", 
+							districts:[{name:"Alirajpur"},{name:"Anuppur"},{name:"Ashoknagar"},{name:"Balaghat"},
+										{name:"Barwani"},{name:"Betul"},{name:"Bhind"},{name:"Bhopal"},
+										{name:"Burhanpur"},{name:"Chhatarpur"},{name:"Chhindwara"},{name:"Damoh"},
+										{name:"Datia"},{name:"Dewas"},{name:"Dhar"},{name:"Dindori"},
+										{name:"Guna"},{name:"Gwalior"},{name:"Harda"},{name:"Hoshangabad"},
+										{name:"Indore"},{name:"Jabalpur"},{name:"Jhabua"},{name:"Katni"},
+										{name:"Khandwa"},{name:"Khargone"},{name:"Mandla"},{name:"Mandsaur"},
+										{name:"Morena"},{name:"Narsinghpur"},
+										{name:"Neemuch"},{name:"Panna"},{name:"Raisen"},{name:"Rajgarh"},
+										{name:"Ratlam"},{name:"Rewa"},{name:"Sagar"},{name:"Satna"},
+										{name:"Sehore"},{name:"Seoni"},{name:"Shahdol"},{name:"Shajapur"},
+										{name:"Sheopur"},{name:"Shivpuri"},{name:"Sidhi"},{name:"Singrauli"},
+										{name:"Tikamgarh"},{name:"Ujjain"},{name:"Umaria"},{name:"Vidisha"}]
+					    },	
+						{name:"Andaman and Nicobar Island",
+							districts:[{name:"Nicobar"},{name:"North and Middle Andaman"},{name:"South Andaman"}]
+					    },				
+						{name:"Andhra Pradesh",
+							districts:[{name:"Anantapur"},{name:"Chittoor"},{name:"Cuddapah"},{name:"East Godavari"},
+							           {name:"Guntur"},{name:"Krishna"},{name:"Kurnool"},{name:"Nellore"},
+							           {name:"Prakasam"},{name:"Srikakulam"},{name:"Visakhapatnam"},{name:"Vizianagaram"},
+							           {name:"West Godavari"}]
+					    },
+						{name:"Chandigarh",
+							districts:[{name:"Chandigarh"}]
+					    },
+						{name:"Dadra and Nagar Haveli",
+							districts:[{name:"Dadra and Nagar Haveli"}]
+						},
+						{name:"Daman and Diu",
+							districts:[{name:"Daman"},{name:"Diu"}]
+						},
+						{name:"Delhi",
+							districts:[{name:"Central Delhi"},{name:"East Delhi"},{name:"New Delhi"},{name:"North Delhi"},
+							           {name:"North East Delhi"},{name:"North West Delhi"},{name:"South Delhi"},
+							           {name:"South West Delhi"}]
+						},
+						{name:"Goa",
+							districts:[{name:"North Goa"},{name:"South Goa"}]
+						},
+						{name:"Arunachal Pradesh"},
+						{name:"Assam"},
+						{name:"Bihar"},
+						{name:"Chhattisgarh"},
+						
+						{name:"Haryana"},
+						{name:"Himachal Pradesh"},
+						{name:"Jammu and Kashmir"},
+						{name:"Jharkhand"},
+						{name:"Manipur"},
+						{name:"Meghalaya"},
+						{name:"Mizoram"},
+						{name:"Nagaland"},
+						{name:"Orissa"},
+						{name:"Punjab"},
+						{name:"Pondicherry"},
+						{name:"Rajasthan"},
+						{name:"Sikkim"},
+						{name:"Tamil Nadu"},
+						{name:"Tripura"},
+						{name:"Uttar Pradesh"},
+						{name:"Uttarakhand"},
+						{name:"West Bengal"}	
+						]
+				}
+	
+				
+				$scope.getaddress = function(postcode){
+					
+					 $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address=' + postcode + '&sensor=false', function(data) {
+
+						 $scope.data = data.results[0].address_components;
+						 var city = $scope.data[1].long_name;
+						 var tal = $scope.data[1].long_name;
+						 var dist = $scope.data[2].long_name;
+						 var state = $scope.data[3].long_name;
+						 var country = $scope.data[4].long_name;
+						 
+						 $scope.partnerSchool.address.city = city;
+						 $scope.partnerSchool.address.tal = tal;
+						 $scope.partnerSchool.address.dist = dist;
+						 $scope.partnerSchool.address.state = state;
+						 $scope.partnerSchool.address.country = country;
+						 						 
+	/*					    var lat = data.results[0].geometry.location.lat;
+						    var lng = data.results[0].geometry.location.lng;
+	*/			});
+				}
+				
+				$scope.stateQuerySearch = function(query) {
+					var results = query ? $scope.Country.states
+							.filter(createFilterFor(query))
+							: $scope.Country.states;
+							$scope.partnerSchool.address.dist = results[0].districts;
+					var deferred = $q.defer();
+					$timeout(function() {
+						deferred.resolve(results);
+						
+					}, Math.random() * 1000, false);
 					
 					
+					return deferred.promise;
+				}
+				
+				function createFilterFor(query) {
+					var lowercaseQuery = angular.lowercase(query);
+					return function filterFn(state) {
+						var a = state.name;
+						return (angular.lowercase(a).indexOf(
+								lowercaseQuery) >= 0);
+					};
+				}
+/*
+				$scope.DistQuerySearch = function(query) {
+					var results = query ? $scope.partnerSchool.address.dist
+							.filter(createFilterFor(query))
+							: $scope.partnerSchool.address.dist;
+							$scope.partnerSchool.address.tal = results.talukas;
+					var deferred = $q.defer();
+					$timeout(function() {
+						deferred.resolve(results);
+						
+					}, Math.random() * 1000, false);
+					
+					
+					return deferred.promise;
+				}
+				
+				function createFilterFor(query) {
+					var lowercaseQuery = angular.lowercase(query);
+					return function filterFn(taluka) {
+						var a = taluka.name;
+						return (angular.lowercase(a).indexOf(
+								lowercaseQuery) >= 0);
+					};
+				}
+*/				
 				});
