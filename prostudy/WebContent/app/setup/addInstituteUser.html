@@ -22,7 +22,7 @@
 			</md-input-container>
 
 			<md-input-container flex> <label>Last
-				name<span style="color: red"
+				Name<span style="color: red"
 				ng-show="instituteAddUserForm.lastName.$error.required"
 				class="mandatory">*</span>
 			</label> <input name="lastName" ng-model="tempUser.lastName" id="lastName"
@@ -41,8 +41,10 @@
 			<input name="address " ng-model="tempUser.address" id="address">
 			</md-input-container>
 
-			<md-input-container class="md-block" flex-gt-sm>
-			<label>Phone Number</label> <input name="contact"
+			<md-input-container class="md-block" flex-gt-sm> 
+			<label>Phone Number<span style="color: red"
+				ng-show="instituteAddUserForm.contact.$error.required"
+				class="mandatory">*</span></label> <input name="contact"
 				ng-model="tempUser.contact" required ng-pattern="/^[0-9]{10}$/"
 				md-maxlength="10">
 			<div ng-messages="instituteAddUserForm.contact.$error" role="alert"

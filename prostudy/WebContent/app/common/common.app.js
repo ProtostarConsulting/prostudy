@@ -1,10 +1,7 @@
-
-var app = angular.module("prostudyApp",
-		[ 'ngMaterial', 'ngMdIcons', 'ngMessages', "xeditable", "ui.bootstrap",
-				"ui.router", 'ngMaterialDatePicker', 'md.data.table',
-				'ngResource', 'textAngular', 'ngRoute', 'ngStorage', "ngAria",
-				'directive.g+signin' ]);
-
+var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
+		'ngMessages', "xeditable", "ui.bootstrap", "ui.router",
+		'ngMaterialDatePicker', 'md.data.table', 'ngResource', 'textAngular',
+		'ngRoute', 'ngStorage', "ngAria", 'directive.g+signin' ]);
 
 app.constant('boardList', [ "State Board", "CBSE", "ICSE" ]);
 app.constant('standardList', [ "5 th", "6 th", "7 th", "8 th", "9 th", "10 th",
@@ -18,6 +15,12 @@ app.constant('courierTypelist', [ "Book", "Certificate", "Error Certificate",
 app.constant('installmentList', [ 1, 2, 3 ]);
 app.constant('partnerSchoolLevels', [ "Primary", "Secondary",
 		"Higher-Secondary", "School", "College" ]);
+
+// Set up the cache ‘ajsCache’
+app.factory('ajsCache', function($cacheFactory) {
+	return $cacheFactory('browserCache');
+});
+
 /*
  * app.config(function($mdThemingProvider) {
  * $mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette(
