@@ -1,7 +1,6 @@
-/*package com.protostar.prostudy.until;
+package com.protostar.prostudy.until;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
@@ -9,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.protostar.prostudy.entity.UserEntity;
+import com.protostar.prostudy.gf.entity.PartnerSchoolEntity;
 
 import freemarker.core.ParseException;
 import freemarker.template.Configuration;
@@ -18,6 +18,8 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 import freemarker.template.TemplateNotFoundException;
 
+//import static org.apache.commons.lang.StringEscapeUtils.escapeHtml;
+
 public class EmailTemplateHandlerUtil {
 
 	static Configuration cfg = null;
@@ -26,13 +28,7 @@ public class EmailTemplateHandlerUtil {
 		if (cfg != null) {
 			return cfg;
 		}
-		
-		 * ----------------------------------------------------------------------
-		 * --
-		 
-		 You should do this ONLY ONCE in the whole application life-cycle: 
 
-		 Create and adjust the configuration singleton 
 		Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
 
 		// cfg.setDirectoryForTemplateLoading(new
@@ -42,41 +38,67 @@ public class EmailTemplateHandlerUtil {
 		cfg.setDefaultEncoding("UTF-8");
 		cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
 		cfg.setLogTemplateExceptions(false);
-
-		
-		 * ----------------------------------------------------------------------
-		 * --
-		 
-		
-		 * You usually do these for MULTIPLE TIMES in the application
-		 * life-cycle:
-		 
-
 		return cfg;
 
 	}
 
 	public String createNewUserHtmlTemplate(UserEntity user) {
 		try {
-			 Create a data-model 
-			Map root = new HashMap();
-			root.put("firstName", user.getFirstName());
-			root.put("siteUrl", "www.prostudy.in");
 
+			Map<String, Object> root = new HashMap<String, Object>();
+			root.put("firstName", user.getFirstName());
+			root.put("siteUrl", "https://4-dot-prostudy-1051.appspot.com");
 			root.put("user", user);
 
-			 Get the template (uses cache internally) 
 			Template temp = getConfiguration().getTemplate(
 					"email_templates/new_user_registration.ftlh");
 
-			 Merge data-model with template 
-			Writer out = new PrintWriter(new ByteArrayOutputStream(500));
+			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(
+					500);
+			Writer out = new PrintWriter(byteArrayOutputStream);
 			temp.process(root, out);
-			return out.toString();
-			// Note: Depending on what `out` is, you may need to call
-			// `out.close()`.
-			// This is usually the case for file output, but not for servlet
-			// output.
+			// return escapeHtml(byteArrayOutputStream.toString());
+			return byteArrayOutputStream.toString();
+
+		} catch (TemplateNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MalformedTemplateNameException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TemplateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "";
+	}
+	
+	public String registerSchoolForExamTemplate(PartnerSchoolEntity school) {
+		try {
+
+			Map<String, Object> root = new HashMap<String, Object>();
+			root.put("firstName", school.getContactDetail().getHeadMasterName());
+			root.put("totalStudents", school.getExamDetailList()==null?0:school.getExamDetailList().get(0).getTotal());
+			root.put("totalBoys", school.getExamDetailList()==null?0:school.getExamDetailList().get(0).getMale());
+			root.put("totalGirls", school.getExamDetailList()==null?0:school.getExamDetailList().get(0).getFemale());
+
+			Template temp = getConfiguration().getTemplate(
+					"email_templates/exam_school_registration.ftlh");
+
+			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(
+					5000);
+			Writer out = new PrintWriter(byteArrayOutputStream);
+			temp.process(root, out);
+			// return escapeHtml(byteArrayOutputStream.toString());
+			return byteArrayOutputStream.toString();
+
 		} catch (TemplateNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,4 +119,3 @@ public class EmailTemplateHandlerUtil {
 		return "";
 	}
 }
-*/

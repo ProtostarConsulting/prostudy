@@ -3,20 +3,12 @@ package com.protostar.prostudy.service;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
-import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
@@ -29,6 +21,7 @@ import com.protostar.prostudy.entity.RoleSecEntity;
 import com.protostar.prostudy.entity.StudSubEntity;
 import com.protostar.prostudy.entity.UserEntity;
 import com.protostar.prostudy.protostarAdmin.entities.AccountType;
+import com.protostar.prostudy.until.EmailHandler;
 import com.protostar.prostudy.until.data.ServerMsg;
 import com.protostar.prostudy.until.data.UtilityService;
 
@@ -36,41 +29,15 @@ import com.protostar.prostudy.until.data.UtilityService;
 public class UserService {
 
 	@ApiMethod(name = "addUser")
-	public UserEntity addUser(UserEntity usr) throws MessagingException, IOException {
-		String nextPRN = UtilityService.getNextPRN(usr.getRole());
-		usr.setPRN(nextPRN);
+	public UserEntity addUser(UserEntity user) throws MessagingException,
+			IOException {
+		String nextPRN = UtilityService.getNextPRN(user.getRole());
+		user.setPRN(nextPRN);
 
-		UserEntity now = usr;
-		ofy().save().entity(usr).now();
+		UserEntity now = user;
+		ofy().save().entity(user).now();
 		System.out.println("now_user :" + now);
-	
-		Properties props = new Properties();
-		
-		Session session = Session.getDefaultInstance(props, null);
-		String messageBody = "Welcome to Example! Your account has been created. "
-				+ "You can edit your user profile by clicking the "
-				+ "following link:\n\n"
-				+ "http://www.example.com/profile/\n\n"
-				+ "Let us know if you have any questions.\n\n"
-				+ "The Example Team\n";
-		try {
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("ganesh.lawande@protostar.co.in","ProERP"));
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(
-					usr.getEmail_id()));
-			message.setSubject("Welcome to Example.com!");
-			message.setText(messageBody);
-			Transport.send(message);
-		} catch (AddressException e) {
-			// An email address was invalid.
-			// ...
-			e.printStackTrace();
-		} catch (MessagingException e) {
-			// There was an error contacting the Mail service.
-			// ...
-			e.printStackTrace();
-		}
-		
+		new EmailHandler().sendNewUserRegistrationEmail(user);
 		return now;
 	}
 
@@ -78,7 +45,7 @@ public class UserService {
 	public void updateUser(UserEntity usr) {
 		Key<UserEntity> now = ofy().save().entity(usr).now();
 	}
-	
+
 	@ApiMethod(name = "getUserList")
 	public List<UserEntity> getUserList() {
 		return ofy().load().type(UserEntity.class).list();
@@ -90,13 +57,12 @@ public class UserService {
 				.filter("email_id", email).list();
 
 		return (list == null || list.size() == 0) ? null : list.get(0);
-		
-/*		if (list.get(0).getStatus() == "suspended" || list.get(0).getStatus() == "inactive") {
-			return null;
-		} else {
-			return (list == null || list.size() == 0) ? null : list.get(0);
-		}
-*/	}
+
+		/*
+		 * if (list.get(0).getStatus() == "suspended" || list.get(0).getStatus()
+		 * == "inactive") { return null; } else { return (list == null ||
+		 * list.size() == 0) ? null : list.get(0); }
+		 */}
 
 	@ApiMethod(name = "checkUserAlreadyExist")
 	public ServerMsg checkUserAlreadyExist(@Named("email_id") String email_id) {

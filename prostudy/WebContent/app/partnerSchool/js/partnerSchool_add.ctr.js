@@ -257,6 +257,7 @@ angular
 												$scope.partnerSchool.formNumber = Number($scope.partnerSchool.formNumber);
 
 												$scope.contactDetail = $scope.partnerSchool.contactDetail;
+												$scope.partnerSchool.address.pin = Number($scope.partnerSchool.address.pin); 
 												$scope.Address = $scope.partnerSchool.address;
 												$scope.a;
 												$scope.getDistricts($scope.a, $scope.Address.state);
@@ -814,7 +815,7 @@ angular
 				
 				$scope.getaddress = function(postcode){
 					
-					 $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address=' + postcode + '&sensor=false', function(data) {
+					 $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + postcode + '&sensor=false', function(data) {
 
 						 $scope.data = data.results[0].address_components;
 						 var city = $scope.data[1].long_name;
@@ -828,7 +829,9 @@ angular
 						 $scope.partnerSchool.address.dist = dist;
 						 $scope.partnerSchool.address.state = state;
 						 $scope.partnerSchool.address.country = country;
-						 						 
+						 $scope.partnerSchool.address.pin = postcode;
+						 
+						 $scope.getTalukas(0, dist);
 	/*					    var lat = data.results[0].geometry.location.lat;
 						    var lng = data.results[0].geometry.location.lng;
 	*/			});
