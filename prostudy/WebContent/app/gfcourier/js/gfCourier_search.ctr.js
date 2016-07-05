@@ -57,6 +57,16 @@ angular.module("prostudyApp").controller(
 
 			$scope.waitForServiceLoad1();
 			
+			
+			$scope.getCurYear = function() {
+				var date = new Date();
+				var curyear = date.getFullYear();
+				curyear = curyear.toString().substr(2, 2);
+				$scope.yearOfExam = date.getFullYear() + "-"
+						+ (Number(curyear) + 1);
+			}
+			$scope.getCurYear();
+			
 			var printDivCSS = new String(
 					'<link href="/lib/base/css/angular-material.min.css"" rel="stylesheet" type="text/css">'
 							+ '<link href="/lib/base/css/bootstrap.min.css"" rel="stylesheet" type="text/css">')
