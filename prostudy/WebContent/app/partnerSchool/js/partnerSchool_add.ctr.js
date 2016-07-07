@@ -1,5 +1,4 @@
-angular
-		.module("prostudyApp")
+angular.module("prostudyApp")
 		.controller(
 				"partnerSchoolAddCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
@@ -98,7 +97,11 @@ angular
 						state : "",
 						country : "India",
 						pin : "",
-						tal : ""
+						tal : "",
+						otherState :"",
+						otherDist : "",
+						otherTal : "",
+						otherAddressFlag : false
 					}
 
 					$scope.bookSummary = {
@@ -222,6 +225,14 @@ angular
 						 * $scope.examDetail; }
 						 */
 
+						if($scope.partnerSchool.address.state == "Other"){
+							$scope.partnerSchool.address.state = $scope.partnerSchool.address.otherState;
+							$scope.partnerSchool.address.dist = $scope.partnerSchool.address.otherDist;
+							$scope.partnerSchool.address.tal = $scope.partnerSchool.address.otherTaluka;
+							$scope.partnerSchool.address.otherAddressFlag = true;
+						}else{
+							$scope.partnerSchool.address.otherAddressFlag = false;
+						}
 						var PartnerSchoolService = appEndpointSF
 								.getPartnerSchoolService();
 
@@ -259,11 +270,20 @@ angular
 												$scope.contactDetail = $scope.partnerSchool.contactDetail;
 												$scope.partnerSchool.address.pin = Number($scope.partnerSchool.address.pin); 
 												$scope.Address = $scope.partnerSchool.address;
+												$scope.partnerSchool.address.pin = parseInt($scope.partnerSchool.address.pin);
 												$scope.a;
 												$scope.getDistricts($scope.a, $scope.Address.state);
 												$scope.getTalukas($scope.a, $scope.Address.dist);
 												if ($scope.partnerSchool.examDetailList) {
 													$scope.examlist = $scope.partnerSchool.examDetailList;
+												}
+												if($scope.partnerSchool.address.otherAddressFlag == true){
+													var temp = $scope.partnerSchool.address.state;
+													$scope.partnerSchool.address.state = "Other";
+													$scope.partnerSchool.address.otherState = temp;
+													$scope.partnerSchool.address.otherDist = $scope.partnerSchool.address.dist;
+													$scope.partnerSchool.address.otherTaluka = $scope.partnerSchool.address.tal;
+													$scope.partnerSchool.address.otherAddressFlag = true;
 												}
 												$scope.getExamByYear();
 												$scope.waitForServiceLoad2();
@@ -808,11 +828,11 @@ angular
 						{name:"Tripura"},
 						{name:"Uttar Pradesh"},
 						{name:"Uttarakhand"},
-						{name:"West Bengal"}	
+						{name:"West Bengal"}	,
+						{name:"Other"}
 						]
 				}
 	
-				
 				$scope.getaddress = function(postcode){
 					
 					 $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + postcode + '&sensor=false', function(data) {
