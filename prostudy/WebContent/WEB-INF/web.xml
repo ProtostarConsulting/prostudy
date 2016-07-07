@@ -160,4 +160,12 @@
     <servlet-name>DownloadGFBooks</servlet-name>
     <url-pattern>/DownloadGFBooks</url-pattern>
   </servlet-mapping>
+  <servlet>
+		<servlet-name>file_upload</servlet-name>
+		<servlet-class>com.protostar.prostudy.until.NGFileUpload</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>file_upload</servlet-name>
+		<url-pattern>/uploadtestngfile</url-pattern>
+	</servlet-mapping>
 </web-app>
