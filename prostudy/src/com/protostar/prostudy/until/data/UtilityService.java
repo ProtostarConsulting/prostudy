@@ -2,6 +2,10 @@ package com.protostar.prostudy.until.data;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Calendar;
 import java.util.List;
 
@@ -26,22 +30,20 @@ public class UtilityService {
 	private static Long getCurrentYearNextCounter(final long cy) {
 
 		final Key<YearCounterEntity> eKey;
-		
+
 		List<YearCounterEntity> list = ofy().load()
-				.type(YearCounterEntity.class).filter("year", cy)
-				.list();
-		
-		
+				.type(YearCounterEntity.class).filter("year", cy).list();
+
 		if (list == null || list.isEmpty()) {
 			YearCounterEntity yc = new YearCounterEntity();
 			yc.setYear(cy);
 			yc.setCurrentCounter(1L);
 			eKey = ofy().save().entity(yc).now();
-		}else{
+		} else {
 			YearCounterEntity yc = list.get(0);
-			eKey = Key.create(yc);			
+			eKey = Key.create(yc);
 		}
-		
+
 		// If you don't need to return a value, you can use VoidWork
 		YearCounterEntity yc = ofy().transact(new Work<YearCounterEntity>() {
 			public YearCounterEntity run() {
@@ -54,5 +56,26 @@ public class UtilityService {
 
 		return yc.getCurrentCounter();
 
+	}
+
+	public static String read(InputStream stream) {
+		StringBuilder sb = new StringBuilder();
+		BufferedReader reader = new BufferedReader(
+				new InputStreamReader(stream));
+		try {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				sb.append(line);
+			}
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} finally {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				// ignore
+			}
+		}
+		return sb.toString();
 	}
 }

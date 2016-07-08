@@ -3,8 +3,8 @@ package com.protostar.prostudy.gf.service;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -16,14 +16,11 @@ import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import com.google.appengine.api.blobstore.BlobKey;
-import com.google.appengine.api.blobstore.BlobstoreInputStream;
-import com.google.appengine.api.blobstore.BlobstoreService;
-import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.googlecode.objectify.Key;
 import com.protostar.prostudy.gf.entity.GFBookEntity;
 import com.protostar.prostudy.gf.entity.GFBookStockEntity;
 import com.protostar.prostudy.gf.entity.GFBookTransactionEntity;
+import com.protostar.prostudy.until.data.UtilityService;
 
 public class UploadBulkBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -33,57 +30,54 @@ public class UploadBulkBookServlet extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	private BlobstoreService blobstoreService = BlobstoreServiceFactory
-			.getBlobstoreService();
-
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("hi i m in GF Book servlet");
+		System.out.println("In suide UploadBulkBookServlet....");
 		this.doGet(request, response);
 	}
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
-		List<BlobKey> blobKeys = blobs.get("myFile");
-
-		Long insId = null; 
-//		Long selectedSchoolID = null; 
-		
-		System.out.println("blobKeys:" + blobKeys);
-		blobKeys.get(0).getKeyString();
-		String[] split2 = null;
 		try {
-			ServletFileUpload upload = new ServletFileUpload();
-			// res.setContentType("text/plain");
+			if (request.getHeader("Content-Type") != null
+					&& request.getHeader("Content-Type").startsWith(
+							"multipart/form-data")) {
+				ServletFileUpload upload = new ServletFileUpload();
 
-			FileItemIterator iterator = upload.getItemIterator(request);
-			while (iterator.hasNext()) {
+				FileItemIterator iterator = upload.getItemIterator(request);
+				String[] split2 = null;
+				Map parameterMap = request.getParameterMap();
+				for (Object key : parameterMap.keySet()) {
+					System.out.println("key:" + key + "\b value:"
+							+ parameterMap.get(key));
 
-				FileItemStream item = iterator.next();
-				// InputStream stream = item.openStream();
-				BlobstoreInputStream stream = new BlobstoreInputStream(
-						new BlobKey(blobKeys.get(0).getKeyString()));
-				if (item.isFormField()) {
-					if (item.getFieldName().equals("insId")) {
-						System.out.println("insId id=="+ request.getParameter(item.getFieldName()));
-						if (!request.getParameter(item.getFieldName()).equals(
-								""))
-							insId = Long.parseLong(request.getParameter(item
-									.getFieldName()));
+				}
+
+				Long insId = 0L;
+				while (iterator.hasNext()) {
+					FileItemStream item = iterator.next();
+					System.out.println("item.getFieldName(): "
+							+ item.getFieldName());
+
+					if (item.getName() == null) {
+						// It is form field not file.
+
+						if ("instituteId".equalsIgnoreCase(item.getFieldName())) {
+							insId = Long.parseLong(UtilityService.read(item
+									.openStream()));
+
+						}
+						continue;
 					}
-					
-				} else {
+					InputStream openStream = item.openStream();
+					int len = 0;
+					byte[] fileContent = new byte[2000000];
+					// Can handle files upto 20 MB
 
-					int len;
-					byte[] fileContent = new byte[2000000]; // Can handle files
-															// upto 20 MB
-
-					int read = stream.read(fileContent);
+					int read = openStream.read(fileContent);
 					// System.out.println("No of bytes read:" + read);
-					while ((len = stream.read(fileContent, 0,
+					while ((len = openStream.read(fileContent, 0,
 							fileContent.length)) != -1) {
 						// res.getOutputStream().write(fileContent, 0, len);
 					}
@@ -94,17 +88,11 @@ public class UploadBulkBookServlet extends HttpServlet {
 					// database
 
 					String fileAsString = new String(fileContent);
-					
 
 					split2 = fileAsString.split("\n");
-					// Start with 1 not 0, zero holds column headings
 
 				}
 
-			}
-			 
-			try {
-				
 				for (int row = 1; row < split2.length; row++) {
 
 					String[] split = split2[row].split(",");
@@ -113,39 +101,41 @@ public class UploadBulkBookServlet extends HttpServlet {
 					}
 					System.out.println(" Row: " + row);
 					System.out.println(" bookName: " + split[0]);
-					System.out.println(" bookAuther: " + split[1]);	
+					System.out.println(" bookAuther: " + split[1]);
 					System.out.println(" weight: " + split[2]);
 					System.out.println(" bookPrice: " + split[3]);
-					System.out.println(" bookPublication: "+ split[4] );
-		
-					
+					System.out.println(" bookPublication: " + split[4]);
+
 					Date todaysDate = new Date();
-					// insert partner school	
-										
+					// insert partner school
+
 					GFBookEntity gfBookEntity = new GFBookEntity();
-					
-					gfBookEntity.setBookName(split[0]);
-					gfBookEntity.setBookAuther(split[1]);
-					gfBookEntity.setWeight(Integer.parseInt(split[2]));
-					gfBookEntity.setBookPrice(Integer.parseInt(split[3]));
-					gfBookEntity.setBookPublication(split[4]);
+
+					gfBookEntity.setBookName(split[0].trim());
+					gfBookEntity.setBookAuther(split[1].trim());
+					gfBookEntity.setWeight(Integer.parseInt(split[2].trim()));
+					gfBookEntity
+							.setBookPrice(Integer.parseInt(split[3].trim()));
+					gfBookEntity.setBookPublication(split[4].trim());
 					gfBookEntity.setBookMedium(split[5]);
-					gfBookEntity.setBookQty(Integer.parseInt(split[6]));
+					gfBookEntity.setBookQty(Integer.parseInt(split[6].trim()));
 					gfBookEntity.setBookFeedDate(todaysDate);
 					gfBookEntity.setInstituteID(insId);
-				
+
 					ofy().save().entity(gfBookEntity).now();
-					
-					Key<GFBookEntity> gfbook = ofy().save().entity(gfBookEntity).now();
+
+					Key<GFBookEntity> gfbook = ofy().save()
+							.entity(gfBookEntity).now();
 					long bkID = gfbook.getId();
-					
+
 					GFBookStockService gfBookStockService = new GFBookStockService();
-					GFBookEntity gfEntity = gfBookStockService.getGFBookById(bkID);
-					
-/*					GFBookEntity book = ofy().load().type(GFBookEntity.class).id(bkID)
-							.now();
-					
-*/					
+					GFBookEntity gfEntity = gfBookStockService
+							.getGFBookById(bkID);
+
+					/*
+					 * GFBookEntity book =
+					 * ofy().load().type(GFBookEntity.class).id(bkID) .now();
+					 */
 					GFBookTransactionEntity newTransaction = new GFBookTransactionEntity();
 					newTransaction.setBook(gfEntity);
 					newTransaction.setInstituteID(insId);
@@ -153,27 +143,21 @@ public class UploadBulkBookServlet extends HttpServlet {
 					newTransaction.setTransactionDate(todaysDate);
 					newTransaction.setBookQty(gfEntity.getBookQty());
 					ofy().save().entity(newTransaction).now();
-					
+
 					GFBookStockEntity gfBookStockEntity = new GFBookStockEntity();
 					gfBookStockEntity.setBook(gfEntity);
 					gfBookStockEntity.setBookQty(gfEntity.getBookQty());
 					gfBookStockEntity.setFeedStockDate(todaysDate);
 					gfBookStockEntity.setInstituteID(insId);
-					
-					ofy().save().entity(gfBookStockEntity).now();	
+
+					ofy().save().entity(gfBookStockEntity).now();
+					System.out.println("Processed record: "
+							+ gfEntity.getBookName());
 				}
-				  blobstoreService.delete(blobKeys.get(0));
-				  
-				response.sendRedirect("/#/gandhifoundation/bookModule/bookModule.list");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
-
 		} catch (Exception e) {
-			response.getOutputStream().print(
-					"File Uploading Failed!" + e.getMessage());
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
 	}
 }

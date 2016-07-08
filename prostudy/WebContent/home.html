@@ -157,12 +157,30 @@
 	</form>
 
 	<form name="form">
-		<md-input-container>  <input type="text" id="testInput" ng-model="username"> </md-input-container>
-		<div class="button" ngf-select ng-model="file" name="file"
-			ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB"
-			ngf-min-height="100" ngf-resize="{width: 100, height: 100}">Select</div>
-		
-		<button type="submit" ng-click="submit()">submit</button>
+		<md-input-container> <input type="text"
+			id="testInput" ng-model="username"> </md-input-container>
+
+		<md-button class='md-raised md-primary' type="file" ngf-select
+			ng-model="file" name="file" accept="image/*" ngf-max-size="2MB"
+			required ngf-model-invalid="errorFile">Select Photo </md-button>
+		<label>{{file.name}} </label>
+		<md-button class="md-raised md-primary" ng-click="submit()">
+		Submit </md-button>
 	</form>
+
+	<form name="formCsvUpload">
+		<div>
+			<md-button class='md-raised' type="file" ngf-select
+				ng-model="csvFile" name="file2" accept="*.csv" ngf-max-size="2MB"
+				required ngf-model-invalid="errorFile">Choose GF Books
+			CSV</md-button>
+			<label>{{uploadProgressMsg ==
+				null?csvFile.name:uploadProgressMsg}} </label>
+		</div>
+		<br>
+		<md-button class="md-raised md-primary" ng-click="uploadBooksCSV()">
+		Submit </md-button>
+	</form>
+
 
 </div>

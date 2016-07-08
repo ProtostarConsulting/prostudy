@@ -9,47 +9,6 @@ angular.module("prostudyApp").controller(
 						.position("top").hideDelay(3000));
 			};
 
-			$scope.loadCustomerList = function() {
-				console.log("loadCustomerList");
-				gapi.client.customerservice.getAllCustomers().execute(
-						function(resp) {
-							console.log(resp);
-						});
-			};
-
-			$scope.addCustomer = function() {
-				console.log("in side addCustomer");
-				gapi.client.customerservice.addCustomer($scope.cust).execute(
-						function(resp) {
-							console.log("Add Customer Response: " + resp.msg);
-							$scope.showSimpleToast();
-							$scope.cust = $scope.newCustomer();
-
-						})
-			};// end of call to addCustomer
-
-			$scope.newCustomer = function() {
-				return {
-					firstName : '',
-					lastName : '',
-					mobileNo : '',
-					email : '',
-					address : {
-						line1 : '',
-						line2 : '',
-						city : '',
-						state : '',
-						pin : '',
-					}
-				};
-			}
-
-			$scope.cust = $scope.newCustomer();
-
-			// initialize local objects
-			$scope.customer = $scope.newCustomer();
-			$scope.customerList = {};
-
 			$scope.myDate = new Date();
 
 			$scope.showSimpleToast = function() {
@@ -61,16 +20,15 @@ angular.module("prostudyApp").controller(
 				console.log("in side showDateValue");
 				$log.debug("$scope.myDate:" + $scope.myDate);
 
-			};// end of call to addCustomer
+			};
 
 			$scope.submit = function() {
 				if ($scope.form.file.$valid && $scope.file) {
 					$scope.upload($scope.file);
 				}
 			};
-			
-			
-			//Test upload file code
+
+			// Test upload file code
 			$scope.username = "testuser220";
 
 			// upload on file select or drop
@@ -79,27 +37,76 @@ angular.module("prostudyApp").controller(
 					url : 'uploadtestngfile',
 					data : {
 						file : file,
-						'username' : $scope.username
+						'username' : $scope.username,
+						'instituteId' : $scope.curUser.instituteID
 					}
 				}).then(
 						function(resp) {
-							console.log('Success ' + resp.config.data.file.name
-									+ 'uploaded. Response from Servlet: ' + angular.toJson(resp.data));
+							console.log('Successfully '
+									+ resp.config.data.file.name
+									+ 'uploaded. Response from Servlet: '
+									+ angular.toJson(resp.data));
+							$scope.uploadProgressMsg = 'Successfully '
+									+ resp.config.data.file.name + 'uploaded.';
 							$mdToast.show($mdToast.simple().content(
-							'Students Data Uploaded Sucessfully.').position("top")
-							.hideDelay(3000));
+									'Students Data Uploaded Sucessfully.')
+									.position("top").hideDelay(3000));
 						},
 						function(resp) {
-							console.log('Error status: ' + resp.status);
+							console.log('Error Ouccured, Error status: ' + resp.status);
+							$scope.uploadProgressMsg = 'Error: ' + resp.status;
 						},
 						function(evt) {
 							var progressPercentage = parseInt(100.0
 									* evt.loaded / evt.total);
 							console.log('progress: ' + progressPercentage
 									+ '% ' + evt.config.data.file.name);
+							$scope.uploadProgressMsg = 'progress: '
+									+ progressPercentage + '% '
+									+ evt.config.data.file.name;
 						});
 			};
-			
-			//END Test upload file code
+
+			$scope.csvFile;
+			$scope.uploadProgressMsg = null;
+			$scope.uploadBooksCSV = function() {
+				var csvFile = $scope.csvFile;
+				Upload.upload({
+					url : 'UploadBulkBookServlet',
+					data : {
+						file : csvFile,
+						'username' : $scope.username,
+						'instituteId' : $scope.curUser.instituteID
+					}
+				}).then(
+						function(resp) {
+							console.log('Successfully uploaded '
+									+ resp.config.data.file.name
+									+ '.'
+									+ angular.toJson(resp.data));
+							$scope.uploadProgressMsg = 'Successfully uploaded '
+									+ resp.config.data.file.name + '.';
+							$mdToast.show($mdToast.simple().content(
+									'Students Data Uploaded Sucessfully.')
+									.position("top").hideDelay(3000));
+							$scope.csvFile = null;
+						},
+						function(resp) {
+							console.log('Error Ouccured, Error status: ' + resp.status);
+							$scope.uploadProgressMsg = 'Error: ' + resp.status;
+						},
+						function(evt) {
+							var progressPercentage = parseInt(100.0
+									* evt.loaded / evt.total);
+							console.log('Upload progress: ' + progressPercentage
+									+ '% ' + evt.config.data.file.name);
+							$scope.uploadProgressMsg = 'Upload progress: '
+									+ progressPercentage + '% '
+									+ evt.config.data.file.name;
+									+ '...'
+						});
+			};
+
+			// END Test upload file code
 
 		});
