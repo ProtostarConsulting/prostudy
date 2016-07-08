@@ -4,8 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
@@ -18,6 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import com.protostar.prostudy.entity.Address;
+import com.protostar.prostudy.until.data.GjsonGenerator;
 
 
 
@@ -79,10 +84,16 @@ public class NGFileUpload extends HttpServlet {
             }
             sb.append("}}");
             res.setCharacterEncoding("utf-8");
-            System.out.println(sb.toString());
+            log.info(sb.toString());
             
-            System.out.println("Partse your csv file here and add data to datastore.");
-            res.getWriter().write(sb.toString());
+            log.info("Partse your csv file here and add data to datastore.");
+            //res.getWriter().write(sb.toString());
+            List<Address> courseList = new ArrayList<Address>();
+            courseList.add(new Address());
+            courseList.add(new Address());
+            String data = "items:" + GjsonGenerator.converToJson(courseList);
+            log.info("data:" + data);
+            res.getWriter().write(data);
         } catch (Exception ex) {
             throw new ServletException(ex);
         }

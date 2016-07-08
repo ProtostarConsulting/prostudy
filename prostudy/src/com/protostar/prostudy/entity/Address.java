@@ -22,10 +22,10 @@ public class Address implements Serializable {
 	private String line2 = "";
 	private String city = "";
 	private String tal = "";
-	private String state;
-	private String country;
-	private String dist;
-	private String pin;
+	private String state = "";
+	private String country = "";
+	private String dist = "";
+	private String pin = "";
 
 	/*
 	 * public Long getId() { return id; }

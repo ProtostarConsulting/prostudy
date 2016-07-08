@@ -71,6 +71,7 @@ angular
 
 						$scope.csvFile;
 						$scope.uploadProgressMsg = null;
+						
 						$scope.uploadBooksCSV = function() {
 							var csvFile = $scope.csvFile;
 							Upload
@@ -97,7 +98,7 @@ angular
 														.show($mdToast
 																.simple()
 																.content(
-																		'Students Data Uploaded Sucessfully.')
+																		'Books Data Uploaded Sucessfully.')
 																.position("top")
 																.hideDelay(3000));
 												

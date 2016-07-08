@@ -46,13 +46,7 @@ public class UploadBulkBookServlet extends HttpServlet {
 				ServletFileUpload upload = new ServletFileUpload();
 
 				FileItemIterator iterator = upload.getItemIterator(request);
-				String[] split2 = null;
-				Map parameterMap = request.getParameterMap();
-				for (Object key : parameterMap.keySet()) {
-					System.out.println("key:" + key + "\b value:"
-							+ parameterMap.get(key));
-
-				}
+				String[] split2 = null;			
 
 				Long insId = 0L;
 				while (iterator.hasNext()) {
@@ -153,6 +147,7 @@ public class UploadBulkBookServlet extends HttpServlet {
 					ofy().save().entity(gfBookStockEntity).now();
 					System.out.println("Processed record: "
 							+ gfEntity.getBookName());
+					
 				}
 			}
 		} catch (Exception e) {
