@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="templateWebsite" ng-controller="indexCtr">
 <head>
+ <link rel="shortcut icon" href="/img/images/SSDEnterprisesLogo.jpg" type="image/x-icon">
 <title>SSD Enterprises, Pune</title>
 <meta name="viewport" content="initial-scale=1" />
 <link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
@@ -11,33 +12,52 @@
 <link rel="stylesheet" href="/lib/base/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/proto.css">
 
+
 </head>
 <body>
 
-	<!-- <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2"
-		md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-	<md-toolbar md-scroll-shrink class="md-tall md-hue-2"> <span
-		flex><img ng-src="/img/images/SSDEnterprisesLogo.jpg"
-		class="md-card-image" height="124px" width="315px" /></span> </md-toolbar> </md-sidenav> -->
-	<!-- <div layout="column" flex layout-fill ng-cloak>
-		<md-toolbar md-scroll-shrink>
-		<table>
-			<tr>
-				<td><img ng-src="/img/images/SSD Enterprises Logo.jpg"
-					class="md-card-image" height="60px" width="160px" /></td>
-				<td><span class="md-toolbar-tools">SSD Enterprises, Pune</span></td>
-			</tr>
-		</table>
-		</md-toolbar> -->
+<div id="myCarousel" class="carousel slide" data-ride="carousel">   
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+    </ol>
 
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="http://placehold.it/1200x400?text=Experience Expertise
+make all the difference" alt="Image">
+        <div class="carousel-caption">
+          <h3>Sell $</h3>
+          <p>Money Money.</p>
+        </div>
+      </div>
 
-	<div layout="column" class="relative" layout-fill role="main">
+      <div class="item">
+        <img src="http://placehold.it/1200x400?text=Another Image Maybe" alt="Image">
+        <div class="carousel-caption">
+          <h3>More Sell $</h3>
+          <p>Lorem ipsum...</p>
+        </div>
+      </div>
+    </div>   
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+</div>
+<!-- <div style="background-image: url(/img/images/sub-bnr-2.jpg); height: 20%; width:100%;"></div> -->
 
+	<div layout="column" class="relative" layout-fill role="">
 		<md-toolbar ng-show="!showSearch"> <md-tabs
 			md-stretch-tabs class="md-primary" md-selected="data.selectedIndex">
-		<md-tab id="tab1" aria-controls="tab1-content"> Home </md-tab> <md-tab
+			<md-tab id="tab1" aria-controls="tab1-content"> Home </md-tab> <md-tab
 			id="tab2" aria-controls="tab2-content"> About </md-tab> <md-tab
-			id="tab3" aria-controls="tab3-content"> Services </md-tab> </md-tabs> </md-toolbar>
+			id="tab3" aria-controls="tab3-content"> Services </md-tab> <md-tab
+			id="tab4" aria-controls="tab4-content"> ContactUS </md-tab></md-tabs> </md-toolbar>
 
 		<md-content flex md-scroll-y> <ui-view layout="column"
 			layout-fill layout-padding>
@@ -49,7 +69,8 @@
 			layout-sm="column">
 
 			<div layout="row" layout-align="center end" flex>
-				<md-card flex> <md-card-content>
+			<!-- <img src="/img/images/33.jpg" width="100%" height="3%"> -->
+				<!-- <md-card flex> <md-card-content>
 				<h2 align="center">
 					<b>Experience & Expertise Make All The Difference</b>
 				</h2>
@@ -62,7 +83,7 @@
 					sending attachments or merging different versions. More than 5
 					million businesses have gone Google.</p>
 
-				</md-tab-body> </md-card-content> </md-card>
+				</md-tab-body> </md-card-content> </md-card> -->
 			</div>
 			<div layout="row" layout-align="center end">
 				<md-card> <md-card-content>
@@ -148,7 +169,7 @@
 					Equip your employees with the best tools for work. Let them work
 					the way they live.<br>
 				</p>
-				
+
 				</md-card-content> </md-card>
 
 				<md-card flex-gt-sm="50" flex-gt-md="40"> <md-card-content>
@@ -161,16 +182,121 @@
 					Our expert Technical Support team is available 24/7 to work with
 					you to resolve all your issues.<br>
 				</p>
-				
+
 				</md-card-content> </md-card>
 
 			</div>
+			
 
-
-
-
-			<!-- 
-			<div>
+ <div id="theArt">
+ 	<div class="artGroup slide">
+ 		<div class="artwork"> <img src="/img/images/6.png">
+ 			<div class="detail">
+ 				<h3>Dont Lie</h3>
+ 				<p>Photo - 2012<br>
+ 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, recusandae harum non, repellat aut, voluptate distinctio perspiciatis excepturi totam culpa sapiente beatae provident ipsam consequuntur laudantium. Nisi optio delectus quibusdam.</p>
+ 			</div>
+ 		</div>
+ 	</div>
+ 	<div class="artGroup slide">
+ 		<div class="artwork"> <img src="/img/images/3.png">
+			<div class="detail">
+ 				<h3>Tell the Truth</h3>
+ 				<p>Photo - 2012<br>
+ 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, recusandae harum non, repellat aut, voluptate distinctio perspiciatis excepturi totam culpa sapiente beatae provident ipsam consequuntur laudantium. Nisi optio delectus quibusdam.</p>
+ 			</div>
+		</div>
+ 	</div>
+ 	<div class="artGroup slide">
+ 		<div class="artwork"> <img src="/img/images/4.png">
+ 			<div class="detail">
+ 				<h3>Be Yourself</h3>
+ 				<p>Photo - 2012<br>
+ 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, recusandae harum non, repellat aut, voluptate distinctio perspiciatis excepturi totam culpa sapiente beatae provident ipsam consequuntur laudantium. Nisi optio delectus quibusdam.</p>
+ 			</div>
+ 		</div>
+ 	</div>
+ 	<div class="artGroup slide">
+ 		<div class="artwork"> <img src="/img/images/5.png">
+ 			<div class="detail">
+ 				<h3>No More Hiding</h3>
+ 				<p>Photo - 2012<br>
+ 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, recusandae harum non, repellat aut, voluptate distinctio perspiciatis excepturi totam culpa sapiente beatae provident ipsam consequuntur laudantium. Nisi optio delectus quibusdam.</p>
+ 			</div>
+ 		</div>
+ 	</div>
+ </div>
+ <div layout="row">
+ 				<md-card flex-gt-sm="50" flex-gt-md="50">
+		 		<md-card-content>
+				<img src="/img/images/22.png" class="md-card-image" alt="image caption" width:100px;height:50px;>
+				<h2 align="center"><b>Your Employees At Work Aways</b></h2>
+				<p>
+					 Equip your employees with the best tools for work. Let them work the way they live.<br>
+				</p>
+		   		
+			 	</md-card-content>
+		 		</md-card>
+		 		<md-card flex-gt-sm="50" flex-gt-md="50">
+		 		<md-card-content>
+				<img src="/img/images/23.png" class="md-card-image" alt="image caption" width:100px;height:50px;>
+				<h2 align="center"><b>Your Employees At Work Aways</b></h2>
+				<p>
+					 Equip your employees with the best tools for work. Let them work the way they live.<br>
+				</p>
+		   		
+			 	</md-card-content>
+		 		</md-card>
+ 
+ </div>
+  <div layout="row">
+ 				<md-card flex-gt-sm="50" flex-gt-md="50">
+		 		<md-card-content>
+				<img src="/img/images/24.png" class="md-card-image" alt="image caption" width:100px;height:50px;>
+				<h2 align="center"><b>Your Employees At Work Aways</b></h2>
+				<p>
+					 Equip your employees with the best tools for work. Let them work the way they live.<br>
+				</p>
+		   		
+			 	</md-card-content>
+		 		</md-card>
+		 		<md-card flex-gt-sm="50" flex-gt-md="50">
+		 		<md-card-content>
+				<img src="/img/images/25.png" class="md-card-image" alt="image caption" width:100px;height:50px;>
+				<h2 align="center"><b>Your Employees At Work Aways</b></h2>
+				<p>
+					 Equip your employees with the best tools for work. Let them work the way they live.<br>
+				</p>
+		   		
+			 	</md-card-content>
+		 		</md-card>
+ 
+ </div>
+  <div layout="row">
+ 				<md-card flex-gt-sm="50" flex-gt-md="50">
+		 		<md-card-content>
+				<img src="/img/images/26.png" class="md-card-image" alt="image caption" width:100px;height:50px;>
+				<h2 align="center"><b>Your Employees At Work Aways</b></h2>
+				<p>
+					 Equip your employees with the best tools for work. Let them work the way they live.<br>
+				</p>
+		   		
+			 	</md-card-content>
+		 		</md-card>
+		 		<md-card flex-gt-sm="50" flex-gt-md="50">
+		 		<md-card-content>
+				<img src="/img/images/27.png" class="md-card-image" alt="image caption" width:100px;height:50px;>
+				<h2 align="center"><b>Your Employees At Work Aways</b></h2>
+				<p>
+					 Equip your employees with the best tools for work. Let them work the way they live.<br>
+				</p>
+		   		
+			 	</md-card-content>
+		 		</md-card>
+ 
+ </div>
+			
+		<!-- 	<div>
 				<md-grid-list md-cols-sm="1" md-cols-md="2" md-cols-gt-md="8"
 					md-row-height="200px" md-gutter="14px" md-gutter-gt-sm="10px">
 
@@ -531,13 +657,13 @@
 	</md-content> -->
 
 	</div>
+	
+
 
 	<footer>
-		<div layout="row" layout-align="center end">
+		<div layout="row" layout-align="center end" >
 
-			<p>
-
-				© 2016 | SSD ENTERPRISES. All rights reserved.<br> The
+			<p>	© 2016 | SSD ENTERPRISES. All rights reserved.<br> The
 				trademarks are of respective companies.<br> Website designed by
 				<a href="#"> www.protostarcs.com</a>
 			</p>
@@ -549,6 +675,7 @@
 	<!-- All JS Dependencies -->
 	<script src="/lib/base/jquery.min.js"></script>
 	<script src="/lib/base/bootstrap.min.js"></script>
+	
 
 	<script type="text/javascript"
 		src="https://www.gstatic.com/charts/loader.js"></script>
@@ -567,6 +694,8 @@
 
 	<script src="/lib/base/ui-bootstrap-tpls.min.js"></script>
 	<script src="index.ctr.js"></script>
+	
+	
 
 </body>
 </html>

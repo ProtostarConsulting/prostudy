@@ -16,5 +16,5 @@ app.controller("indexCtr", function($scope, $window, $log) {
 	$scope.changeTheme = function(themeName) {
 		$scope.theme = themeName
 	}
-
+	
 });
