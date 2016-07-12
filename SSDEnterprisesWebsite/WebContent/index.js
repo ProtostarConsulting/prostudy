@@ -16,8 +16,4 @@ app.controller("demoCtr",['$mdDialog', function($scope,$mdDialog) {
 		    });
 		  };
 		  
-		  
-
-
-
 }]);

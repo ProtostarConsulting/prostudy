@@ -1,701 +1,625 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="templateWebsite" ng-controller="indexCtr">
+<html ng-app="demoWebsite" ng-controller="demoCtr">
 <head>
- <link rel="shortcut icon" href="/img/images/SSDEnterprisesLogo.jpg" type="image/x-icon">
-<title>SSD Enterprises, Pune</title>
-<meta name="viewport" content="initial-scale=1" />
-<link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
-<link rel="stylesheet" href="/lib/base/css/googleapi.roboto.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-<link rel="stylesheet" href="/lib/base/css/font-awesome.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="/img/images/SSDEnterprisesLogo.jpg"
+	type="image/x-icon">
+<title>SSD Enterprises</title>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto:700,400&amp;subset=cyrillic,latin,greek,vietnamese">
 <link rel="stylesheet" href="/lib/base/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/proto.css">
-
+<link rel="stylesheet" href="/css/animate.min.css">
+<link rel="stylesheet" href="/css/style1.css">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/mbr-additional.css" type="text/css">
+<link rel="stylesheet"
+	href="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/fonts/glyphicons-halflings-regular.woff2"
+	type="text/css">
 
 </head>
 <body>
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">   
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-    </ol>
+	<section
+		class="mbr-navbar mbr-navbar--freeze mbr-navbar--absolute mbr-navbar--transparent mbr-navbar--sticky mbr-navbar--auto-collapse"
+		id="menu-0">
+		<div class="mbr-navbar__section mbr-section">
+			<div class="mbr-section__container container">
+				<div class="mbr-navbar__container">
+					<div
+						class="mbr-navbar__column mbr-navbar__column--s mbr-navbar__brand">
+						<span class="mbr-navbar__brand-link mbr-brand mbr-brand--inline">
+							<span class="mbr-brand__logo"><img
+								src="/img/images/SSDEnterprisesLogo.jpg"
+								class="mbr-navbar__brand-img mbr-brand__img"></span> <span
+							class="mbr-brand__name"><a
+								class="mbr-brand__name text-white" style="color: red;">SSD
+									ENTERPRISES</a></span>
+						</span>
+					</div>
+					<div class="mbr-navbar__hamburger mbr-hamburger">
+						<span class="mbr-hamburger__line"></span>
+					</div>
+					<div class="mbr-navbar__column mbr-navbar__menu">
+						<nav
+							class="mbr-navbar__menu-box mbr-navbar__menu-box--inline-right">
+							<div class="mbr-navbar__column">
+								<ul
+									class="mbr-navbar__items mbr-navbar__items--right float-left mbr-buttons mbr-buttons--freeze mbr-buttons--right btn-decorator mbr-buttons--active mbr-buttons--only-links">
+									<li class="mbr-navbar__item"><a
+										class="mbr-buttons__link btn text-white"
+										style="color: yellow;" href="#header1-1">HOME</a></li>
+									<li class="mbr-navbar__item"><a
+										class="mbr-buttons__link btn text-white"
+										style="color: yellow;" href="#ourproducts">OUR PRODUCTS</a></li>
+									<li class="mbr-navbar__item"><a
+										class="mbr-buttons__link btn text-white"
+										style="color: yellow;" href="#services">SERVICES</a></li>
+									<!-- <li class="mbr-navbar__item"><a
+										class="mbr-buttons__link btn text-white"
+										style="color: yellow;" href="#map2-17">VISIT US</a></li> 
+									<li class="mbr-navbar__item"><a
+										class="mbr-buttons__link btn text-white"
+										style="color: yellow;" href="#aboutus">ABOUT</a></li>-->
+									<li class="mbr-navbar__item"><a
+										class="mbr-buttons__link btn text-white"
+										style="color: yellow;" href="#contact">CONTACT US</a></li>
 
-    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <img src="http://placehold.it/1200x400?text=Experience Expertise
-make all the difference" alt="Image">
-        <div class="carousel-caption">
-          <h3>Sell $</h3>
-          <p>Money Money.</p>
-        </div>
-      </div>
+								</ul>
 
-      <div class="item">
-        <img src="http://placehold.it/1200x400?text=Another Image Maybe" alt="Image">
-        <div class="carousel-caption">
-          <h3>More Sell $</h3>
-          <p>Lorem ipsum...</p>
-        </div>
-      </div>
-    </div>   
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-</div>
-<!-- <div style="background-image: url(/img/images/sub-bnr-2.jpg); height: 20%; width:100%;"></div> -->
-
-	<div layout="column" class="relative" layout-fill role="">
-		<md-toolbar ng-show="!showSearch"> <md-tabs
-			md-stretch-tabs class="md-primary" md-selected="data.selectedIndex">
-			<md-tab id="tab1" aria-controls="tab1-content"> Home </md-tab> <md-tab
-			id="tab2" aria-controls="tab2-content"> About </md-tab> <md-tab
-			id="tab3" aria-controls="tab3-content"> Services </md-tab> <md-tab
-			id="tab4" aria-controls="tab4-content"> ContactUS </md-tab></md-tabs> </md-toolbar>
-
-		<md-content flex md-scroll-y> <ui-view layout="column"
-			layout-fill layout-padding>
-		<div class="inset" hide-sm></div>
-		<ng-switch on="data.selectedIndex" class="tabpanel-container">
-
-		<div role="tabpanel" id="tab1-content" aria-labelledby="tab1"
-			ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()"
-			layout-sm="column">
-
-			<div layout="row" layout-align="center end" flex>
-			<!-- <img src="/img/images/33.jpg" width="100%" height="3%"> -->
-				<!-- <md-card flex> <md-card-content>
-				<h2 align="center">
-					<b>Experience & Expertise Make All The Difference</b>
-				</h2>
-				<md-tab-body>
-
-				<p layout="row" layout-align="center center">Professional email,
-					online storage, shared calendars, video meetings and more. Built
-					for business, designed for teams. work files in Drive, access them
-					from any device and share them instantly with teammates. No more
-					sending attachments or merging different versions. More than 5
-					million businesses have gone Google.</p>
-
-				</md-tab-body> </md-card-content> </md-card> -->
-			</div>
-			<div layout="row" layout-align="center end">
-				<md-card> <md-card-content>
-				<h2 align="center">
-					<b>Engineering Spare Parts Supplier</b>
-				</h2>
-				</md-card-content> <md-tab-body>
-				<div layout="column">
-					<h3 align="center">
-						<b>L & T Products</b>
-					</h3>
-					<ul type="square">
-						<li>Electrical contactor & starters.</li>
-						<li>ACB, MCB, MCCB, switch gears.</li>
-						<li>Change over switches.</li>
-					</ul>
+							</div>
+						</nav>
+					</div>
 				</div>
-				<div layout="column">
-					<h3 align="center">
-						<b>ABB make products</b>
-					</h3>
-					<ul type="square">
-						<li>AC drives.</li>
-						<li>DC drives.</li>
-						<li>Motors (standard, Energy efficient, Flame- proof, Crane
-							duty).</li>
-						<li>Low voltage switch gears.</li>
-						<li>Servo motors & drives.</li>
-					</ul>
-				</div>
-				</md-tab-body> </md-card>
 			</div>
-			<marquee scrollamount="10" onmouseover='this.stop();'
-				onmouseout='this.start();'>
+		</div>
+	</section>
 
-				<div layout="row" layout-align="center center" class="colorNested">
+	<section
+		class="mbr-box mbr-section mbr-section--relative mbr-section--fixed-size mbr-section--full-height mbr-section--bg-adapted mbr-parallax-background"
+		id="header1-1"
+		style="background-image: url(/img/images/sub-bnr-2.jpg);">
+		<div
+			class="mbr-box__magnet mbr-box__magnet--sm-padding mbr-box__magnet--center-left mbr-after-navbar">
 
-					<div layout="row" layout-align="center end" layout-sm="column">
+			<div class="mbr-box__container mbr-section__container container">
+				<div class="mbr-box mbr-box--stretched">
+					<div class="mbr-box__magnet mbr-box__magnet--center-left">
+						<div class="row">
+							<div class=" col-sm-6 col-sm-offset-6">
+								<div class="mbr-hero animated fadeInUp">
+									<h1 class="mbr-hero__text">SSD ENTERPRISES</h1>
+									<h4 class="mbr-hero__subtext">PRIYANKA DNYANESHWAR FARANDE</h4>
+									<h5 class="mbr-hero__subtext">PROPRIETOR</h5>
+								</div>
 
-						<md-card flex-gt-sm="120" flex-gt-md="100"> <md-card-content>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="mbr-arrow mbr-arrow--floating text-center">
+				<div class="mbr-section__container container">
+					<a class="mbr-arrow__link" href="#slider-13"><i
+						class="glyphicon glyphicon-menu-down"></i></a>
+				</div>
+			</div>
+		</div>
+	</section>
 
-						<h1 align="center">
-							<b>L & T Products</b>
-						</h1>
-						<ul type="square">
-							<li>Electrical contactor & starters.</li>
-							<li>ACB, MCB, MCCB, switch gears.</li>
-							<li>Change over switches.</li>
-						</ul>
+	<section
+		class="mbr-slider mbr-section mbr-section--no-padding carousel slide"
+		data-ride="carousel" data-wrap="true" data-interval="5000"
+		id="slider-13" style="background-color: rgb(255, 255, 255);">
+		<div class="mbr-section__container">
+			<div>
+				<ol class="carousel-indicators">
+					<li data-app-prevent-settings="" data-target="#slider-13"
+						data-slide-to="0" class="active"></li>
+					<li data-app-prevent-settings="" data-target="#slider-13" class=""
+						data-slide-to="1"></li>
+					<li data-app-prevent-settings="" data-target="#slider-13"
+						data-slide-to="2"></li>
+				</ol>
+				<div class="carousel-inner" role="listbox">
+					<div
+						class="mbr-box mbr-section mbr-section--relative mbr-section--fixed-size mbr-section--bg-adapted item dark center mbr-section--full-height active"
+						style="background-image: url(/img/images/belts.png);">
+						<div
+							class="mbr-box__magnet mbr-box__magnet--center-right mbr-box__magnet--sm-padding">
 
-						</md-card-content> </md-card>
+							<div class=" container">
+
+								<div class="row">
+									<div class=" col-md-6 col-md-offset-5">
+
+										<div class="mbr-hero">
+											<h1 class="mbr-hero__text">
+												<font color="Green">BELTS</font>
+											</h1>
+
+											<p class="mbr-hero__subtext">
+												<font color="red">V Belt ,Taper Roller Bearing,Timing
+													Belts,Special Purpose Belt,Mesh Belt</font>
+											</p>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div
+						class="mbr-box mbr-section mbr-section--relative mbr-section--fixed-size mbr-section--bg-adapted item dark center mbr-section--full-height"
+						style="background-image: url(/img/images/bearing.png);">
+						<div
+							class="mbr-box__magnet mbr-box__magnet--center-left mbr-box__magnet--sm-padding">
+
+							<div class=" container">
+
+								<div class="row">
+									<div class=" col-md-6 col-md-offset-1">
+
+										<div class="mbr-hero">
+											<h1 class="mbr-hero__text">
+												<font color="Green">BEARINGS</font>
+											</h1>
+
+											<p class="mbr-hero__subtext">
+												<font color="purple"> Ball Bearing ,Pedestal Bearing,
+													Needle Roller Bearing</font>
+											</p>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div
+						class="mbr-box mbr-section mbr-section--relative mbr-section--fixed-size mbr-section--bg-adapted item dark center mbr-section--full-height"
+						style="background-image: url(/img/images/motors.png);">
+						<div
+							class="mbr-box__magnet mbr-box__magnet--center-center mbr-box__magnet--sm-padding">
+
+							<div class=" container">
+
+								<div class="row">
+									<div class=" col-md-8 col-md-offset-2">
+
+										<div class="mbr-hero">
+											<h1 class="mbr-hero__text">
+												<font color="purple"> MOTORS</font>
+											</h1>
+
+											<p class="mbr-hero__subtext">
+												<font color="purple"> Monoblock & KDS PumpsMotors ,
+													Vibro Motors</font>
+											</p>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<a data-app-prevent-settings="" class="left carousel-control"
+					role="button" data-slide="prev" href="#slider-13"> <span
+					class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> <span
+					class="sr-only">Previous</span>
+				</a> <a data-app-prevent-settings="" class="right carousel-control"
+					role="button" data-slide="next" href="#slider-13"> <span
+					class="glyphicon glyphicon-menu-right" aria-hidden="true"></span> <span
+					class="sr-only">Next</span>
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="mbr-section mbr-section--relative" id="services"
+		style="background-color: rgb(255, 255, 255);">
+
+		<div
+			class="mbr-section__container mbr-section__container--isolated container"
+			style="padding-top: 93px; padding-bottom: 93px;">
+			<div class="row">
+				<div class="mbr-box mbr-box--fixed mbr-box--adapted">
+					<div
+						class="mbr-box__magnet mbr-box__magnet--top-right mbr-section__left col-sm-6">
+						<figure
+							class="mbr-figure mbr-figure--adapted mbr-figure--caption-inside-bottom mbr-figure--full-width">
+							<img src="/img/images/custservice.jpg" class="mbr-figure__img">
+						</figure>
+					</div>
+					<div
+						class="mbr-box__magnet mbr-class-mbr-box__magnet--center-left col-sm-6 mbr-section__right">
+						<div class="mbr-section__container mbr-section__container--middle">
+							<div
+								class="mbr-header mbr-header--auto-align mbr-header--wysiwyg">
+								<h3 class="mbr-header__text">We Provide following Services</h3>
+
+							</div>
+						</div>
+						<div class="mbr-section__container mbr-section__container--middle">
+							<div
+								class="mbr-article mbr-article--auto-align mbr-article--wysiwyg">
+								<ul>
+									<li>Engineering Spare Parts Supplier</li>
+									<li>Material Trading</li>
+									<li>Turnkey Engineering Projects</li>
+									<li>Maintenance Services</li>
+									<li>Contract & AMC's</li>
+									<li>ABB Electrical Spares</li>
+									<li>VFD's Electrical Spares</li>
+									<li>L& T Electrical Spares</li>
+								</ul>
+							</div>
+						</div>
+
 					</div>
 
-					<div layout="row" layout-align="center end" layout-sm="column">
+				</div>
+			</div>
+		</div>
+	</section>
 
-						<md-card flex-gt-sm="120" flex-gt-md="100"> <md-card-content>
-						<h1 align="center">
-							<b>ABB make products</b>
-						</h1>
-						<ul type="square">
+
+	<section
+		class="mbr-section mbr-section--relative mbr-section--fixed-size"
+		id="ourproducts" style="background-color: rgb(255, 255, 255);">
+
+		<div
+			class="mbr-section__container container mbr-section__container--std-top-padding"
+			style="padding-top: 93px;">
+			<h3 class="mbr-header__text">
+				<font color="chocolate">OUR PRODUCTS</font>
+			</h3>
+			<div class="mbr-section__row row">
+				<div class="mbr-section__col col-xs-12 col-md-3 col-sm-6">
+					<div
+						class="mbr-section__container mbr-section__container--center mbr-section__container--middle">
+						<figure class="mbr-figure">
+							<img src="/img/images/28.png" class="mbr-figure__img">
+						</figure>
+					</div>
+					<div class="mbr-section__container mbr-section__container--middle">
+						<div
+							class="mbr-header mbr-header--reduce mbr-header--center mbr-header--wysiwyg">
+							<h3 class="mbr-header__text">DC drives</h3>
+						</div>
+					</div>
+
+				</div>
+				<div class="mbr-section__col col-xs-12 col-md-3 col-sm-6">
+					<div
+						class="mbr-section__container mbr-section__container--center mbr-section__container--middle">
+						<figure class="mbr-figure">
+							<img src="/img/images/4.png" class="mbr-figure__img">
+						</figure>
+					</div>
+					<div class="mbr-section__container mbr-section__container--middle">
+						<div
+							class="mbr-header mbr-header--reduce mbr-header--center mbr-header--wysiwyg">
+							<h3 class="mbr-header__text">Bearings</h3>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix visible-sm-block"></div>
+				<div class="mbr-section__col col-xs-12 col-md-3 col-sm-6">
+					<div
+						class="mbr-section__container mbr-section__container--center mbr-section__container--middle">
+						<figure class="mbr-figure">
+							<img src="/img/images/18.png" class="mbr-figure__img">
+						</figure>
+					</div>
+					<div class="mbr-section__container mbr-section__container--middle">
+						<div
+							class="mbr-header mbr-header--reduce mbr-header--center mbr-header--wysiwyg">
+							<h3 class="mbr-header__text">Plant expansion</h3>
+						</div>
+					</div>
+				</div>
+
+				<div class="mbr-section__col col-xs-12 col-md-3 col-sm-6">
+					<div
+						class="mbr-section__container mbr-section__container--center mbr-section__container--middle">
+						<figure class="mbr-figure">
+							<img src="/img/images/31.png" class="mbr-figure__img">
+						</figure>
+					</div>
+					<div class="mbr-section__container mbr-section__container--middle">
+						<div
+							class="mbr-header mbr-header--reduce mbr-header--center mbr-header--wysiwyg">
+							<h3 class="mbr-header__text">Vibro Motors</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div
+			class="mbr-section__container container mbr-section__container--std-top-padding"
+			style="padding-top: 93px;">
+
+			<div class="mbr-section__row row">
+
+				<div class="mbr-section__col col-xs-12 col-md-3 col-sm-6">
+					<div
+						class="mbr-section__container mbr-section__container--center mbr-section__container--middle">
+						<figure class="mbr-figure">
+							<img src="/img/images/13.png" class="mbr-figure__img">
+						</figure>
+					</div>
+					<div class="mbr-section__container mbr-section__container--middle">
+						<div
+							class="mbr-header mbr-header--reduce mbr-header--center mbr-header--wysiwyg">
+							<h3 class="mbr-header__text">Hoses & Pipes</h3>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix visible-sm-block"></div>
+				<div class="mbr-section__col col-xs-12 col-md-3 col-sm-6">
+					<div
+						class="mbr-section__container mbr-section__container--center mbr-section__container--middle">
+						<figure class="mbr-figure">
+							<img src="/img/images/12.png" class="mbr-figure__img">
+						</figure>
+					</div>
+					<div class="mbr-section__container mbr-section__container--middle">
+						<div
+							class="mbr-header mbr-header--reduce mbr-header--center mbr-header--wysiwyg">
+							<h3 class="mbr-header__text">Gaskets (Silicon, Rubber,
+								Steam, Champion).</h3>
+						</div>
+					</div>
+				</div>
+
+				<div class="mbr-section__col col-xs-12 col-md-3 col-sm-6">
+					<div
+						class="mbr-section__container mbr-section__container--center mbr-section__container--middle">
+						<figure class="mbr-figure">
+							<img src="/img/images/29.png" class="mbr-figure__img">
+						</figure>
+					</div>
+					<div class="mbr-section__container mbr-section__container--middle">
+						<div
+							class="mbr-header mbr-header--reduce mbr-header--center mbr-header--wysiwyg">
+							<h3 class="mbr-header__text">Motors</h3>
+						</div>
+					</div>
+				</div>
+				<div class="mbr-section__col col-xs-12 col-md-3 col-sm-6">
+					<div
+						class="mbr-section__container mbr-section__container--center mbr-section__container--middle">
+						<figure class="mbr-figure">
+							<img src="/img/images/24.png" class="mbr-figure__img">
+						</figure>
+					</div>
+					<div class="mbr-section__container mbr-section__container--middle">
+						<div
+							class="mbr-header mbr-header--reduce mbr-header--center mbr-header--wysiwyg">
+							<h3 class="mbr-header__text">Electrical contactor & starters</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section
+		class="mbr-section mbr-section--relative mbr-section--fixed-size"
+		id="features1-15" style="background-color: rgb(255, 255, 255);">
+
+		<div
+			class="mbr-section__container container mbr-section__container--std-top-padding"
+			style="padding-top: 93px;">
+			<h3 class="mbr-header__text">
+				<font color="chocolate">OUR SUPPLIERS</font>
+			</h3>
+
+			<div class="mbr-section__row row">
+
+				<div class="mbr-section__col col-xs-12 col-md-3 col-sm-6">
+					<div
+						class="mbr-section__container mbr-section__container--center mbr-section__container--middle">
+						<figure class="mbr-figure">
+							<img src="/img/images/ABB_logo.svg.png" class="mbr-figure__img">
+						</figure>
+					</div>
+					<div class="mbr-section__container mbr-section__container--middle">
+						<div
+							class="mbr-header mbr-header--reduce mbr-header--center mbr-header--wysiwyg">
+							<h3 class="mbr-header__text">ABB make products</h3>
+						</div>
+					</div>
+					<div class="mbr-section__container mbr-section__container--middle">
+						<div class="mbr-article mbr-article--wysiwyg">
 							<li>AC drives.</li>
 							<li>DC drives.</li>
 							<li>Motors (standard, Energy efficient, Flame- proof, Crane
 								duty).</li>
 							<li>Low voltage switch gears.</li>
 							<li>Servo motors & drives.</li>
-						</ul>
-						</md-card-content> </md-card>
-					</div>
-
-				</div>
-			</marquee>
-
-			<div layout="row" layout-align="space-between end" layout-sm="column">
-
-				<md-card flex-gt-sm="50" flex-gt-md="40"> <md-card-content>
-				<img src="/img/images/1.png" class="md-card-image"
-					alt="image caption"width:100px;height:50px;>
-				<h2 align="center">
-					<b>Our Employees At Work Aways</b>
-				</h2>
-				<p>
-					Equip your employees with the best tools for work. Let them work
-					the way they live.<br>
-				</p>
-
-				</md-card-content> </md-card>
-
-				<md-card flex-gt-sm="50" flex-gt-md="40"> <md-card-content>
-				<img src="/img/images/2.png" class="md-card-image"
-					alt="image caption">
-				<h2 align="center">
-					<b>The Highest Quality Services</b>
-				</h2>
-				<p>
-					Our expert Technical Support team is available 24/7 to work with
-					you to resolve all your issues.<br>
-				</p>
-
-				</md-card-content> </md-card>
-
-			</div>
-			
-
- <div id="theArt">
- 	<div class="artGroup slide">
- 		<div class="artwork"> <img src="/img/images/6.png">
- 			<div class="detail">
- 				<h3>Dont Lie</h3>
- 				<p>Photo - 2012<br>
- 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, recusandae harum non, repellat aut, voluptate distinctio perspiciatis excepturi totam culpa sapiente beatae provident ipsam consequuntur laudantium. Nisi optio delectus quibusdam.</p>
- 			</div>
- 		</div>
- 	</div>
- 	<div class="artGroup slide">
- 		<div class="artwork"> <img src="/img/images/3.png">
-			<div class="detail">
- 				<h3>Tell the Truth</h3>
- 				<p>Photo - 2012<br>
- 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, recusandae harum non, repellat aut, voluptate distinctio perspiciatis excepturi totam culpa sapiente beatae provident ipsam consequuntur laudantium. Nisi optio delectus quibusdam.</p>
- 			</div>
-		</div>
- 	</div>
- 	<div class="artGroup slide">
- 		<div class="artwork"> <img src="/img/images/4.png">
- 			<div class="detail">
- 				<h3>Be Yourself</h3>
- 				<p>Photo - 2012<br>
- 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, recusandae harum non, repellat aut, voluptate distinctio perspiciatis excepturi totam culpa sapiente beatae provident ipsam consequuntur laudantium. Nisi optio delectus quibusdam.</p>
- 			</div>
- 		</div>
- 	</div>
- 	<div class="artGroup slide">
- 		<div class="artwork"> <img src="/img/images/5.png">
- 			<div class="detail">
- 				<h3>No More Hiding</h3>
- 				<p>Photo - 2012<br>
- 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, recusandae harum non, repellat aut, voluptate distinctio perspiciatis excepturi totam culpa sapiente beatae provident ipsam consequuntur laudantium. Nisi optio delectus quibusdam.</p>
- 			</div>
- 		</div>
- 	</div>
- </div>
- <div layout="row">
- 				<md-card flex-gt-sm="50" flex-gt-md="50">
-		 		<md-card-content>
-				<img src="/img/images/22.png" class="md-card-image" alt="image caption" width:100px;height:50px;>
-				<h2 align="center"><b>Your Employees At Work Aways</b></h2>
-				<p>
-					 Equip your employees with the best tools for work. Let them work the way they live.<br>
-				</p>
-		   		
-			 	</md-card-content>
-		 		</md-card>
-		 		<md-card flex-gt-sm="50" flex-gt-md="50">
-		 		<md-card-content>
-				<img src="/img/images/23.png" class="md-card-image" alt="image caption" width:100px;height:50px;>
-				<h2 align="center"><b>Your Employees At Work Aways</b></h2>
-				<p>
-					 Equip your employees with the best tools for work. Let them work the way they live.<br>
-				</p>
-		   		
-			 	</md-card-content>
-		 		</md-card>
- 
- </div>
-  <div layout="row">
- 				<md-card flex-gt-sm="50" flex-gt-md="50">
-		 		<md-card-content>
-				<img src="/img/images/24.png" class="md-card-image" alt="image caption" width:100px;height:50px;>
-				<h2 align="center"><b>Your Employees At Work Aways</b></h2>
-				<p>
-					 Equip your employees with the best tools for work. Let them work the way they live.<br>
-				</p>
-		   		
-			 	</md-card-content>
-		 		</md-card>
-		 		<md-card flex-gt-sm="50" flex-gt-md="50">
-		 		<md-card-content>
-				<img src="/img/images/25.png" class="md-card-image" alt="image caption" width:100px;height:50px;>
-				<h2 align="center"><b>Your Employees At Work Aways</b></h2>
-				<p>
-					 Equip your employees with the best tools for work. Let them work the way they live.<br>
-				</p>
-		   		
-			 	</md-card-content>
-		 		</md-card>
- 
- </div>
-  <div layout="row">
- 				<md-card flex-gt-sm="50" flex-gt-md="50">
-		 		<md-card-content>
-				<img src="/img/images/26.png" class="md-card-image" alt="image caption" width:100px;height:50px;>
-				<h2 align="center"><b>Your Employees At Work Aways</b></h2>
-				<p>
-					 Equip your employees with the best tools for work. Let them work the way they live.<br>
-				</p>
-		   		
-			 	</md-card-content>
-		 		</md-card>
-		 		<md-card flex-gt-sm="50" flex-gt-md="50">
-		 		<md-card-content>
-				<img src="/img/images/27.png" class="md-card-image" alt="image caption" width:100px;height:50px;>
-				<h2 align="center"><b>Your Employees At Work Aways</b></h2>
-				<p>
-					 Equip your employees with the best tools for work. Let them work the way they live.<br>
-				</p>
-		   		
-			 	</md-card-content>
-		 		</md-card>
- 
- </div>
-			
-		<!-- 	<div>
-				<md-grid-list md-cols-sm="1" md-cols-md="2" md-cols-gt-md="8"
-					md-row-height="200px" md-gutter="14px" md-gutter-gt-sm="10px">
-
-
-				<md-grid-tile class="yellow" md-rowspan="1" md-colspan="2"
-					md-colspan-sm="1"> <img src="images/amclin-logo.jpg"
-					alt="image caption" style="width: 50%; height: 40%;"> </md-grid-tile> <md-grid-tile
-					class="yellow" md-rowspan="1" md-colspan="2" md-colspan-sm="1">
-				<img src="images/xpanxion_logo.png" alt="image caption"
-					style="width: 50%; height: 40%;"> </md-grid-tile> <md-grid-tile
-					class="yellow" md-rowspan="1" md-colspan="2" md-colspan-sm="1">
-				<img src="images/suruchi_logo.png" alt="image caption"
-					style="width: 60%; height: 40%;"> </md-grid-tile> <md-grid-tile
-					class="yellow" md-rowspan="1" md-colspan="2" md-colspan-sm="1">
-				<img src="images/happiestmind.jpg" alt="image caption"
-					style="width: 60%; height: 40%;"> </md-grid-tile> <md-grid-tile
-					class="yellow" md-rowspan="1" md-colspan="2" md-colspan-sm="1">
-				<img src="images/mrb_logo.jpg" alt="image caption"
-					style="width: 60%; height: 60%;"> </md-grid-tile> </md-grid-list>
-			</div> -->
-
-			<div layout="row" layout-align="center end">
-				<h3>FOLLOW SSD ENTERPRISES</h3>
-			</div>
-
-			<div layout="row" layout-align="center end">
-
-
-				<md-button class="md-fab"> <md-icon
-					md-font-icon="fa-facebook" class="fa s64"
-					style="color:#0000ff;width:30px;height:20px;"></md-icon> </md-button>
-
-				<md-button class="md-fab"> <md-icon
-					md-font-icon="fa-linkedin" class="fa s64"
-					style="color:#0000ff; width:30px;height:20px;"></md-icon> </md-button>
-
-				<md-button class="md-fab"> <md-icon
-					md-font-icon="fa-twitter" class="fa s64"
-					style="color:#0000ff; width:30px;height:20px;"></md-icon> </md-button>
-
-				<md-button class="md-fab"> <md-icon
-					md-font-icon="fa-google-plus" class="fa s64"
-					style="color:#0000ff;width:30px;height:20px;"></md-icon> </md-button>
-
-			</div>
-
-
-		</div>
-
-
-		<div role="tabpanel" id="tab2-content" aria-labelledby="tab2"
-			ng-switch-when="1" md-swipe-left="next()" md-swipe-right="previous()"
-			layout="column">
-
-
-			<!-- 
-			<md-card flex-gt-sm="90" flex-gt-md="80"> <md-card-content>
-			<div layout-sm="column">
-				<img src="images/1.jpg" class="md-card-image" alt="image caption"width:100px;height:50px;>
-			</div>
-
-			<h2 align="center">
-				<b>Protostar Consulting Services</b>
-			</h2>
-			<p>Protostar is a technology Start-up Company specializing in
-				software product development and technology services. We take pride
-				in helping our customers work with latest, evolving and affordable
-				technology solutions. We have industry's best and brightest software
-				engineers and technology consultants whose expertise spans from
-				niche technologies, to the most advanced next generation BPM &
-				Analytics, Cloud, Social and Mobile technologies.</p>
-
-					</md-card-content>
-				</md-card>
-
-		<md-card flex-gt-sm="90" flex-gt-md="80">
-		<md-card-content>
-		  <div layout-sm="column">
-			<img src="images/about6.jpg" class="md-card-image" alt="image caption" width:100px;height:50px;>
-		  </div>
-			<h2 align="center"><b>Vision</b></h2>
-			<p>
-			Make IT affordable to businesses and institutes of all sizes.
-			</p>
-		   
-		</md-card-content>
-		</md-card>
-		 
-		 <md-card flex-gt-sm="90" flex-gt-md="80">
-		 <md-card-content>
-		  <div layout-sm="column">
-			<img src="images/about2.jpg" class="md-card-image" alt="image caption" width:100px;height:50px;>
-		  </div>
-			<h2 align="center"><b>Mission</b></h2>
-			<p>
-			Apply affordable technology to small and medium businesses and institutes to improve their efficiency and effectiveness.
-			</p>
-		   
-		</md-card-content>
-		</md-card>
-
-		<md-card flex-gt-sm="90" flex-gt-md="80">
-		<md-card-content>
-		  <div layout-sm="column">
-			<img src="images/about1.png" class="md-card-image" alt="image caption" width:100px;height:50px;>
-		 </div>
-			<h2 align="center"><b>Values</b></h2>
-			<p>
-			<ol>
-			<li>Be a persistent partner to our customers in their journey to success</li>
-			<li>Always follow a win-win approach with all stakeholders</li>
-			<li>Believe in the team work, and that every employee is the supreme asset of the company</li>
-			<li>Be the best in whatever we do</li>
-			</ol>
-			
-			</p>
-		   
-		</md-card-content>
-		</md-card>
-		 
-		 <div layout="row" layout-align="center end">
-			<h3>FOLLOW SSD ENTERPRISES</h3>
-		 </div>
-		 
-		 <div layout="row" layout-align="center end">
-		
-		<md-button class="md-fab">
-    	<md-icon md-font-icon="fa-facebook" class="fa s64" style="color:#0000ff;width:30px;height:20px;" ></md-icon>  
-  		</md-button>
- 		
- 		<md-button class="md-fab">
-    	<md-icon md-font-icon="fa-linkedin" class="fa s64" style="color:#0000ff; width:30px;height:20px;"></md-icon>  
-  		</md-button>
- 		
- 		<md-button class="md-fab">
-    	<md-icon md-font-icon="fa-twitter" class="fa s64" style="color:#0000ff; width:30px;height:20px;"></md-icon>  
-  		</md-button>
- 		
- 		<md-button class="md-fab">
-    	<md-icon md-font-icon="fa-google-plus" class="fa s64" style="color:#0000ff;width:30px;height:20px;" ></md-icon>  
-  		</md-button>
-		
-		</div> -->
-
-
-		</div>
-
-
-		<div role="tabpanel" id="tab3-content" aria-labelledby="tab3"
-			ng-switch-when="2" md-swipe-left="next()" md-swipe-right="previous()"
-			layout="column">
-
-			<h2>
-				<b>Services</b>
-			</h2>
-			<!-- <div layout="row" layout-sm="column">
-				<div flex>
-					<img src="images/develop.png" alt="logo"
-						style="float: left; width: 400px; height: 300px;">
-				</div>
-				<div flex>We have enterprise and utility products developed on
-					Cloud environments. We provide end to end product development
-					services. We also develop innovative and next generation IT
-					products in association with our partners.</div>
-			</div>
-
-
-			<h2>
-				<b>IT Services</b>
-			</h2>
-			<div layout="row" layout-sm="column">
-				<div flex>
-					<img src="images/services.png" alt="logo"
-						style="float: left; width: 400px; height: 300px;">
-				</div>
-				<div flex>We provide all kind of IT services to Small and
-					Medium enterprises. We serve IT needs end to end as a trusted
-					partner to our clients. We have deep expertise in IT Software
-					Development, IT Consulting, Advisory Services, Domain Registration,
-					Website Designing, and IT Trainings.</div>
-			</div>
-
-			<h2>
-				<b>Google Apps</b>
-			</h2>
-			<div layout="row" layout-sm="column">
-				<div flex>
-					<img src="images/apps.png" alt="logo"
-						style="float: left; width: 400px; height: 300px;">
-				</div>
-				<div flex>We are part of Google Apps Reseller Program and
-					helping local and international businesses and institutes acquire
-					and put Google Applications to use. Google Apps are designed for
-					improving efficiency and effectiveness of any size organization. It
-					provides best in class collaboration and communication services in
-					the world today.</div>
-			</div>
-
-			<div layout="row" layout-align="center end">
-				<h3>FOLLOW SSD ENTERPRISES</h3>
-			</div>
-
-			<div layout="row" layout-align="center end">
-
-				<md-button class="md-fab"> <md-icon
-					md-font-icon="fa-facebook" class="fa s64"
-					style="color:#0000ff;width:30px;height:20px;"></md-icon> </md-button>
-
-				<md-button class="md-fab"> <md-icon
-					md-font-icon="fa-linkedin" class="fa s64"
-					style="color:#0000ff; width:30px;height:20px;"></md-icon> </md-button>
-
-				<md-button class="md-fab"> <md-icon
-					md-font-icon="fa-twitter" class="fa s64"
-					style="color:#0000ff; width:30px;height:20px;"></md-icon> </md-button>
-
-				<md-button class="md-fab"> <md-icon
-					md-font-icon="fa-google-plus" class="fa s64"
-					style="color:#0000ff;width:30px;height:20px;"></md-icon> </md-button>
-
-			</div>
-			<div id="theArt">
-				<div class="artGroup slide">
-					<div class="artwork">
-						<img src="1.jpg">
-						<div class="detail">
-							<h3>Dont Lie</h3>
-							<p>
-								Photo - 2012<br> Lorem ipsum dolor sit amet, consectetur
-								adipisicing elit. Quod, recusandae harum non, repellat aut,
-								voluptate distinctio perspiciatis excepturi totam culpa sapiente
-								beatae provident ipsam consequuntur laudantium. Nisi optio
-								delectus quibusdam.
-							</p>
 						</div>
 					</div>
+
 				</div>
-				<div class="artGroup slide">
-					<div class="artwork">
-						<img src="2.jpg">
-						<div class="detail">
-							<h3>Tell the Truth</h3>
-							<p>
-								Photo - 2012<br> Lorem ipsum dolor sit amet, consectetur
-								adipisicing elit. Quod, recusandae harum non, repellat aut,
-								voluptate distinctio perspiciatis excepturi totam culpa sapiente
-								beatae provident ipsam consequuntur laudantium. Nisi optio
-								delectus quibusdam.
-							</p>
+				<div class="mbr-section__col col-xs-12 col-md-3 col-sm-6">
+					<div
+						class="mbr-section__container mbr-section__container--center mbr-section__container--middle">
+						<figure class="mbr-figure">
+							<img src="/img/images/turnkey.png" class="mbr-figure__img">
+						</figure>
+					</div>
+					<div class="mbr-section__container mbr-section__container--middle">
+						<div
+							class="mbr-header mbr-header--reduce mbr-header--center mbr-header--wysiwyg">
+							<h3 class="mbr-header__text">Turnkey Engineering Projects</h3>
 						</div>
 					</div>
-				</div>
-				<div class="artGroup slide">
-					<div class="artwork">
-						<img src="3.jpg">
-						<div class="detail">
-							<h3>Be Yourself</h3>
-							<p>
-								Photo - 2012<br> Lorem ipsum dolor sit amet, consectetur
-								adipisicing elit. Quod, recusandae harum non, repellat aut,
-								voluptate distinctio perspiciatis excepturi totam culpa sapiente
-								beatae provident ipsam consequuntur laudantium. Nisi optio
-								delectus quibusdam.
-							</p>
+					<div class="mbr-section__container mbr-section__container--middle">
+						<div class="mbr-article mbr-article--wysiwyg">
+							<li>Plant expansion</li>
+							<li>New project erecting& commissioning.</li>
+							<li>MS/SS fabrication work i.e. steam, water, air piping &
+								structural work.</li>
+							<li>Ammonia based systems.</li>
+							<li>Cold rooms.</li>
+							<li>SS/GI paneling work, doors & cleanrooms systems.</li>
+							<li>Electrical panels (PCC, MCC) installation&
+								commissioning.</li>
+
 						</div>
 					</div>
+
 				</div>
-				<div class="artGroup slide">
-					<div class="artwork">
-						<img src="images/005.jpg">
-						<div class="detail">
-							<h3>No More Hiding</h3>
-							<p>
-								Photo - 2012<br> Lorem ipsum dolor sit amet, consectetur
-								adipisicing elit. Quod, recusandae harum non, repellat aut,
-								voluptate distinctio perspiciatis excepturi totam culpa sapiente
-								beatae provident ipsam consequuntur laudantium. Nisi optio
-								delectus quibusdam.
-							</p>
+				<div class="clearfix visible-sm-block"></div>
+				<div class="mbr-section__col col-xs-12 col-md-3 col-sm-6">
+					<div
+						class="mbr-section__container mbr-section__container--center mbr-section__container--middle">
+						<figure class="mbr-figure">
+							<img src="/img/images/l&t.jpg" class="mbr-figure__img">
+						</figure>
+					</div>
+					<div class="mbr-section__container mbr-section__container--middle">
+						<div
+							class="mbr-header mbr-header--reduce mbr-header--center mbr-header--wysiwyg">
+							<h3 class="mbr-header__text">L & T make products</h3>
+						</div>
+					</div>
+					<div class="mbr-section__container mbr-section__container--middle">
+						<div class="mbr-article mbr-article--wysiwyg">
+							<li>Electrical contactor & starters.</li>
+							<li>ACB, MCB, MCCB, switch gears.</li>
+							<li>Change over switches.</li>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="mbr-section__col col-xs-12 col-md-3 col-sm-6">
+					<div
+						class="mbr-section__container mbr-section__container--center mbr-section__container--middle">
+						<figure class="mbr-figure">
+							<img src="img/images/21.png" class="mbr-figure__img">
+						</figure>
+					</div>
+					<div class="mbr-section__container mbr-section__container--middle">
+						<div
+							class="mbr-header mbr-header--reduce mbr-header--center mbr-header--wysiwyg">
+							<h3 class="mbr-header__text">Maintenance Services</h3>
 						</div>
 					</div>
 				</div>
 			</div>
-
- -->
-
-
 		</div>
-
-
-		</ng-switch> </ui-view> </md-content>
-
-	</div>
+	</section>
 	<!-- 
+	<section class="mbr-section mbr-section--relative" id="contact"
+		style="background-color: rgb(225, 225, 225); align: center"> -->
 
-	<md-content style="height: 600px;">
-	<div ng-cloak>
-		<md-content> <md-tabs md-dynamic-height md-border-bottom>
-		<md-tab label="home"> <md-content class="md-padding">
-		<h1 class="md-display-2">SSD ENTERPRISES</h1>
-
-
-
-		<h3>Engineering Spare Parts Supplier</h3>
-
-		<ul>
-			<li>Belts</li>
-			<ul>
-				<li>V Belt</li>
-				<li>Taper Roller Bearing</li>
-				<li>Timing Belts</li>
-				<li>Special Purpose Belt</li>
-				<li>Mesh Belt</li>
-			</ul>
-			<li>Bearings
-				<ul>
-					<li>Ball Bearing</li>
-					<li>Pedestal Bearing</li>
-					<li>Needle Roller Bearing</li>
-				</ul>
-			</li>
-		</ul>
-
-		Turnkey Engineering Projects Plant expansion New project erecting&
-		commissioning. MS/SS fabrication work i.e. steam, water, air piping &
-		structural work. Ammonia based systems. Cold rooms. SS/GI paneling
-		work, doors & cleanrooms systems. Electrical panels (PCC, MCC)
-		installation& commissioning. </md-content> </md-tab> <md-tab label="Our Product"> <md-content
-			class="md-padding">
-		<h1 class="md-display-2">Our Product</h1>
-		<h4>L & T make products-</h4>
-		<ul>
-			<li>Electrical contactor and starters.</li>
-			<li>ACB, MCB, MCCB, switch gears.</li>
-			<li>Change over switches</li>
-		</ul>
-
-		<h4>ABB make products-</h4>
-		<ul>
-			<li>AC drives.</li>
-			<li>DC drives.</li>
-			<li>Motors (standard, Energy efficient, Flame- proof, Crane
-				duty).</li>
-			<li>Low voltage switch gears.</li>
-			<li>Servo motors & drives.</li>
-		</ul>
-
-		</md-content> </md-tab> <md-tab label="services"> <md-content class="md-padding">
-		<h1 class="md-display-2">Our Services</h1>
-		<p></p>
-		</md-content> </md-tab> </md-tabs> <md-tab label="Contact Us"> <md-content class="md-padding">
-		<h1 class="md-display-2">Contact</h1>
-		Office Address- Flat No.02, Ground Floor, Dhokle Building, Gat no-
-		1337/1, Talegaon Road,Shikrapur, Tal-Shirur,
-		Dist-Pune.Maharashtra.Pune – 412 208. Tel – 09850882315. E-mail id: -
-		ssdenterprises2315@gmail.com </md-content> </md-tab> </md-content>
-	</div>
-	</md-content> -->
-
-	</div>
-	
-
-
-	<footer>
-		<div layout="row" layout-align="center end" >
-
-			<p>	© 2016 | SSD ENTERPRISES. All rights reserved.<br> The
-				trademarks are of respective companies.<br> Website designed by
-				<a href="#"> www.protostarcs.com</a>
-			</p>
-
+	<section
+		class="mbr-section__container--middle"
+		id="contact"
+		style="background-color: rgb(255, 255, 255);">
+<div
+			class="mbr-section__container container mbr-section__container--isolated">
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2">
+					<iframe
+						src="https://docs.google.com/forms/d/e/1FAIpQLScymt7LK5OY_T7fqApro1fPgUz8YMRxNYJKzct_aPj8hHOW9w/viewform?embedded=true"
+						width="800" height="790" frameborder="0" marginheight="0"
+						marginwidth="0">Loading...</iframe>
+				</div>
+			</div>
 		</div>
-	</footer>
+	<!-- </section>
 
+	<section class="mbr-section" id="map2-17"
+		style="background-color: rgb(255, 255, 255);"> -->
+		<div
+			class="mbr-section__container container mbr-section__container--isolated">
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2">
+					<P>VISIT US AT LOCATION</P>
+					<figure
+						class="mbr-figure mbr-figure--wysiwyg mbr-figure--full-width mbr-figure--no-bg mbr-figure--caption-outside-bottom">
+						<div class="mbr-figure__map mbr-google-map">
+							<p class="mbr-google-map__marker"
+								data-coordinates="18.6965552,74.1115079">SSD ENTERPRISES,
+								Shikrapur, Pune</p>
+						</div>
+					</figure>
+				</div>
+			</div>
+		</div>
+	</section>
 
-	<!-- All JS Dependencies -->
+	<section
+		class="mbr-section mbr-section--relative mbr-section--fixed-size"
+		id="aboutus" style="background-color: rgb(255, 255, 255);">
+
+		<div class="mbr-section__container container">
+			<div class="mbr-contacts mbr-contacts--wysiwyg row"
+				style="padding-top: 5px; padding-bottom: 5px;">
+				<div class="col-sm-4">
+					<div>
+						<img src="/img/images/32.png"
+							class="mbr-contacts__img mbr-contacts__img--left">
+					</div>
+				</div>
+
+				<div class="col-sm-8">
+					<div class="row">
+						<div class="col-sm-4">
+							<p class="mbr-contacts__text">
+								<strong>ADDRESS</strong><br>FLAT NO 02, GATE
+								NO,1337/1TALEGAON ROAD, SHIKARAPUR,TAL-SHIRUR,DIST-PUNE-412 208<br>MAHARASHTRA
+							</p>
+						</div>
+						<div class="col-sm-4">
+							<p class="mbr-contacts__text">
+								<strong>CONTACTS</strong><br> Email:
+								info@ssdeneterprises.co.in / ssdenterprises2315@gmail.com<br>
+								Phone: +91-9850882315<br>
+							</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="col-md-6 col-md-offset-5">
+		<p>
+			Copyright (c) 2008 Â© 2016 | SSD ENTERPRISES. All rights reserved.<br>
+			Website designed by <a href="#"> www.protostarcs.com</a>
+		</p>
+	</div>
+
 	<script src="/lib/base/jquery.min.js"></script>
 	<script src="/lib/base/bootstrap.min.js"></script>
-	
+	<script src="https://maps.googleapis.com/maps/api/js"></script>
+	<script src="/lib/base/SmoothScroll.js"></script>
+	<script src="/lib/base/jarallax.js"></script>
+	<script src="/lib/base/bootstrap-carousel-swipe.js"></script>
+	<script src="/lib/base/script.js"></script>
 
-	<script type="text/javascript"
-		src="https://www.gstatic.com/charts/loader.js"></script>
-	<!-- <script src="/lib/base/google-plus-signin.js"></script> -->
-
-	<!-- Angular Material Dependencies -->
 	<script src="/lib/base/angular.min.js"></script>
 	<script src="/lib/base/angular-animate.min.js"></script>
 	<script src="/lib/base/angular-route.min.js"></script>
 	<script src="/lib/base/angular-aria.min.js"></script>
-	<script src="/lib/base/angular-messages.min.js"></script>
 	<script src="/lib/base/angular-resource.min.js"></script>
-	<script src="/lib/base/angular-material-icons.min.js"></script>
-
+	<script src="/lib/base/angular-messages.min.js"></script>
 	<script src="/lib/base/angular-material.min.js"></script>
+	<script src="/lib/base/angular-material-icons.min.js"></script>
+	<script src="index.js"></script>
 
-	<script src="/lib/base/ui-bootstrap-tpls.min.js"></script>
-	<script src="index.ctr.js"></script>
-	
-	
 
 </body>
 </html>
