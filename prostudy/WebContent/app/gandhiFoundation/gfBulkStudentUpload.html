@@ -28,17 +28,19 @@
 				</a>
 			</div>
 
-			<div class="md-block">
-				<label>Upload Only CSV File To Add Partner School's
-					Students:{{insId}}</label> <input name="myFile" type="file"
-					class="md-raised md-primary" accept=".csv" required>
+		
+			<div layout="row" layout-xs="column" flex>
+				<md-button class='md-raised' type="file" ngf-select
+					ng-model="csvFile" name="file2" accept="*.csv" ngf-max-size="2MB"
+					required ngf-model-invalid="errorFile">Choose GF Sudents
+				CSV</md-button>
 			</div>
-
-			<div>
-				<md-button id="submitBtn" ng-show="selectedSchool.id"
-					ng-click="uplodeExcel()" class="md-raised md-primary" show-gt-md>
-				Submit </md-button>
+			<div layout="row" layout-xs="column" flex>
+				<label>{{uploadProgressMsg ==
+					null?csvFile.name:uploadProgressMsg}} </label>
 			</div>
+			<md-button class="md-raised md-primary" ng-click="uploadStudentsCSV()"
+				ng-disabled="excelform.$invalid"> Submit </md-button>
 			<div>
 				<h3 class="md-subhead" style="color: red"
 					ng-hide="selectedSchool.id">Please Select School before submit</h3>

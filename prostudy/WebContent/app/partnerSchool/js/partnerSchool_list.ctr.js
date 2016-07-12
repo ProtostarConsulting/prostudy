@@ -4,7 +4,7 @@ angular
 				"partnerSchoolListCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, appEndpointSF, $state, $sce,
-						$stateParams, $q, $mdDialog, $mdMedia) {
+						$stateParams, $q, $mdDialog, $mdMedia,Upload) {
 
 					$scope.selectedChapterId = $stateParams.selectedChapterId;
 					$scope.chapter = [];
@@ -31,10 +31,7 @@ angular
 							$scope.Years.push(date.getFullYear() + "-"
 									+ (Number(year) + 1));
 							date.setYear(date.getFullYear() + 1);
-						}
-						
-						
-						
+						}	
 					}
 
 					$scope.Years = [];
@@ -129,7 +126,8 @@ angular
 					$scope.query = {
 						order : 'description',
 						limit : 5,
-						page : 1
+						page : 1,
+
 					};
 
 					$scope.downloadData = function() {
@@ -138,22 +136,7 @@ angular
 								+ $scope.curUser.instituteID;
 
 					}
-					/*
-					 * $scope.getLogUploadURLDownload=function(){ var
-					 * uploadUrlService = appEndpointSF.getuploadURLService();
-					 * uploadUrlService.getPartnerSchoolsUploadURLForDownload()
-					 * .then(function(url) {
-					 * $scope.PartnerSchoolsUploadURLForDownload=url.msg; }); }
-					 * $scope.PartnerSchoolsUploadURLForDownload;
-					 * 
-					 * $scope.waitForServiceLoad1 = function() { if
-					 * (appEndpointSF.is_service_ready) {
-					 * $scope.getLogUploadURLDownload(); } else {
-					 * $log.debug("Services Not Loaded, watiting...");
-					 * $timeout($scope.waitForServiceLoad1, 1000); } }
-					 * $scope.waitForServiceLoad1();
-					 */
-
+	
 					// ----------------------UPLODE EXCEL
 					// FILE-------------------------------
 					$scope.UplodeExcel = function(ev) {
@@ -163,14 +146,15 @@ angular
 								.show(
 										{
 											controller : DialogController,
-											templateUrl : '/app/partnerSchool/AddPartnerSchools.html',
+											templateUrl : '/app/partnerSchool/gfBulkSchoolsAdd.html',
 											parent : angular
 													.element(document.body),
 											targetEvent : ev,
 											clickOutsideToClose : true,
 											fullscreen : useFullScreen,
 											locals : {
-												curuser : $scope.curUser
+												curUser : $scope.curUser,
+												getFreshScools: $scope.getPartnerSchoolByInstitute
 											}
 										})
 								.then(
@@ -183,8 +167,74 @@ angular
 										});
 
 					};
+					
+					
+					function DialogController($scope, $mdDialog, curUser, getFreshScools) {
 
-					function DialogController($scope, $mdDialog, curuser) {
+						$scope.csvFile;
+						$scope.uploadProgressMsg = null;
+						$scope.uploadSchoolsCSV = function() {
+							var csvFile = $scope.csvFile;
+							Upload
+									.upload(
+											{
+												url : 'UplodePartnerSchoolsExcel',
+												data : {
+													file : csvFile,
+													'instituteId' : curUser.instituteID
+												}
+											})
+									.then(
+											function(resp) {
+												$log.debug('Successfully uploaded '
+																+ resp.config.data.file.name
+																+ '.'
+																+ angular
+																		.toJson(resp.data));
+												$scope.uploadProgressMsg = 'Successfully uploaded '
+														+ resp.config.data.file.name
+														+ '.';
+												$mdToast
+														.show($mdToast
+																.simple()
+																.content(
+																		'Students Data Uploaded Sucessfully.')
+																.position("top")
+																.hideDelay(3000));
+												
+												$scope.csvFile = null;
+												
+												//Load the books again in the end
+												
+											},
+											function(resp) {
+												$log.debug('Error Ouccured, Error status: '
+																+ resp.status);
+												$scope.uploadProgressMsg = 'Error: '
+														+ resp.status;
+											},
+											function(evt) {
+												var progressPercentage = parseInt(100.0
+														* evt.loaded
+														/ evt.total);
+												$log.debug('Upload progress: '
+																+ progressPercentage
+																+ '% '
+																+ evt.config.data.file.name);
+												$scope.uploadProgressMsg = 'Upload progress: '
+														+ progressPercentage
+														+ '% '
+														+ evt.config.data.file.name;
+												+'...'
+											});
+						};
+
+					}
+					
+					
+					
+
+/*					function DialogController($scope, $mdDialog, curuser) {
 
 						$scope.insId = curuser.instituteID;
 						$scope.loding = false;
@@ -221,5 +271,5 @@ angular
 					}
 
 					// -------------------------------------------------------
-
+*/
 				});

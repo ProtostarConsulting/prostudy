@@ -15,7 +15,7 @@ app.constant('courierTypelist', [ "Book", "Certificate", "Error Certificate",
 		"Error books", "Prize Certificate", "Other" ]);
 app.constant('installmentList', [ 1, 2, 3 ]);
 app.constant('partnerSchoolLevels', [ "Primary", "Secondary",
-		"Higher-Secondary", "School", "College" ]);
+		"Higher-Secondary", "School", "College"]);
 
 // Set up the cache ‘ajsCache’
 app.factory('ajsCache', function($cacheFactory) {

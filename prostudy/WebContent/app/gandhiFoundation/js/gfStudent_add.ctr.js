@@ -4,13 +4,6 @@ angular.module("prostudyApp").controller(
 				$log, $q, appEndpointSF, $state, $stateParams, $mdDialog,
 				objectFactory,answerOfMediumList,standardList) {
 
-/*			$scope.standardList = [ "5 th", "6 th", "7 th", "8 th", "9 th",
-					"10 th", "11 th", "12 th", "FY", "SY", "TY", "PG-I",
-					"PG-II", "course-1", "course-2", "Group I", "Group II",
-					"Group III" ];
-
-			$scope.answerOfMediumList = [ "Marathi", "Hindi", "English" ];
-*/
 			$scope.answerOfMediumList = answerOfMediumList;
 			$scope.standardList = standardList
 
@@ -58,7 +51,7 @@ angular.module("prostudyApp").controller(
 				gfStudentService.getGFStudentById($scope.selectedGFStudID)
 						.then(function(tempStudent) {
 							$scope.tempStudent = tempStudent;
-
+							$scope.tempStudent.schoolName = $scope.tempStudent.schoolName.schoolName;
 						});
 			}
 

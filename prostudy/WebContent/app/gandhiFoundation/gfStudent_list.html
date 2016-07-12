@@ -32,6 +32,23 @@
 		</md-input-container>
 	</div>
 	<div>
+	 <md-toolbar class="md-table-toolbar md-default" ng-hide="selected.length">
+          <div class="md-toolbar-tools">
+            <span>Students List</span>
+            <div flex></div>
+            <md-button class="md-icon-button" ng-click="getGFStudentsByInstitute(true)">
+              <md-icon>refresh</md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+        
+        <md-toolbar class="md-table-toolbar alternate" ng-show="selected.length">
+          <div class="md-toolbar-tools">
+            <span>{{selected.length}} {{selected.length > 1 ? 'Students' : 'Student'}} selected</span>
+          </div>
+        </md-toolbar>
+		<md-data-table-container>
+		
 		<md-data-table-container>
 		<table md-data-table md-row-select="selected" class="md-primary"
 			md-progress="deferred">

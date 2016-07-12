@@ -3,7 +3,7 @@ angular
 		.controller(
 				"gfStudentListCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $log, $q, $mdDialog, $mdMedia,
+						$mdUtil, $log, $q, $mdDialog, $mdMedia,Upload,
 						tableTestDataFactory, appEndpointSF) {
 					console.log("Inside studentListPageCtr");
 
@@ -44,11 +44,6 @@ angular
 								});
 					}
 
-					/*
-					 * $scope.sendData = function() {
-					 * $scope.$broadcast('studEditEvent', { studDetails:
-					 * result.result }); }
-					 */
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
 
@@ -66,7 +61,7 @@ angular
 					}
 
 					$scope.waitForServiceLoad();
-
+					$scope.selectedSchoolID;
 					$scope.UplodeExcel = function(ev) {
 						var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
 								&& $scope.customFullscreen;
@@ -74,14 +69,17 @@ angular
 								.show(
 										{
 											controller : DialogController,
-											templateUrl : '/app/gandhiFoundation/uploadBulkStudent.html',
+											templateUrl : '/app/gandhiFoundation/gfBulkStudentUpload.html',
 											parent : angular
 													.element(document.body),
 											targetEvent : ev,
 											clickOutsideToClose : true,
 											fullscreen : useFullScreen,
 											locals : {
-												curuser : $scope.curUser
+												curUser : $scope.curUser,
+												getFreshSchools : $scope.getPartnerByInstitute,
+												getFreshStudents : $scope.getGFStudentsByInstitute,
+												selectedSchoolID : $scope.selectedSchoolID
 											}
 										})
 								.then(
@@ -95,36 +93,71 @@ angular
 
 					};
 
-					function DialogController($scope, $mdDialog, curuser) {
-
-						$scope.insId = curuser.instituteID;
-						$scope.loding = false;
-						$scope.uplodeExcel = function() {
-							$scope.loding = true;
-							document.excelform.action = $scope.BulkGFStudentUploadURL;
-							// calling servlet action
-							document.excelform.submit();
-						}
-
-						$scope.getBulkGFStudentUploadURL = function() {
-							var uploadUrlService = appEndpointSF
-									.getuploadURLService();
-							uploadUrlService
-									.getBulkGFStudentUploadURL()
+					function DialogController($scope, $mdDialog, curUser, getFreshSchools, selectedSchoolID) {
+						$scope.insId = curUser.instituteID;
+						$scope.csvFile;
+						$scope.uploadProgressMsg = null;
+						$scope.uploadStudentsCSV = function() {
+							var csvFile = $scope.csvFile;
+							Upload
+									.upload(
+											{
+												url : 'UploadBulkGFStudentServlet',
+												data : {
+													file : csvFile,
+													'username' : curUser.email_id,
+													'selectedSchoolID' : $scope.selectedSchoolID
+												}
+											})
 									.then(
-											function(url) {
-												$scope.BulkGFStudentUploadURL = url.msg;
+											function(resp) {
+												$log.debug('Successfully uploaded '
+																+ resp.config.data.file.name
+																+ '.'
+																+ angular
+																		.toJson(resp.data));
+												$scope.uploadProgressMsg = 'Successfully uploaded '
+														+ resp.config.data.file.name
+														+ '.';
+												$mdToast
+														.show($mdToast
+																.simple()
+																.content(
+																		'Students Data Uploaded Sucessfully.')
+																.position("top")
+																.hideDelay(3000));
+												
+												$scope.csvFile = null;
+												
+												//Load the books again in the end
+												getFreshStudents();
+											},
+											function(resp) {
+												$log.debug('Error Ouccured, Error status: '
+																+ resp.status);
+												$scope.uploadProgressMsg = 'Error: '
+														+ resp.status;
+											},
+											function(evt) {
+												var progressPercentage = parseInt(100.0
+														* evt.loaded
+														/ evt.total);
+												$log.debug('Upload progress: '
+																+ progressPercentage
+																+ '% '
+																+ evt.config.data.file.name);
+												$scope.uploadProgressMsg = 'Upload progress: '
+														+ progressPercentage
+														+ '% '
+														+ evt.config.data.file.name;
+												+'...'
 											});
-
-						}
-						$scope.BulkGFStudentUploadURL;
-						$scope.selectedSchool;
+							
+						};
 						$scope.getSchoolID = function() {
 							$scope.selectedSchoolID = $scope.selectedSchool.id;
 
 						}
-
-												
 						
 						$scope.getPartnerSchoolByInstitute = function() {
 
@@ -139,14 +172,13 @@ angular
 						$scope.waitForServiceLoad = function() {
 							if (appEndpointSF.is_service_ready) {
 								$scope.getPartnerSchoolByInstitute();
-								$scope.getBulkGFStudentUploadURL();
+								
 							} else {
 								$log.debug("Services Not Loaded, watiting...");
 								$timeout($scope.waitForServiceLoad, 1000);
 							}
 						}
-						$scope.waitForServiceLoad();
-					}
+						$scope.waitForServiceLoad();					}
 
 					$scope.downloadData=function(){
 						

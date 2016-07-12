@@ -4,7 +4,7 @@ angular
 				"gfBookListCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $q, $mdDialog, $mdMedia,
-						tableTestDataFactory, $state, Upload, appEndpointSF) {
+						tableTestDataFactory,ajsCache, $state, Upload, appEndpointSF) {
 					console.log("Inside studentListPageCtr");
 
 					$scope.curUser = appEndpointSF.getLocalUserService()
@@ -25,15 +25,31 @@ angular
 							"Error Certificate", "Error books",
 							"Prize Certificate" ];
 
-					$scope.getGFBookByInstituteId = function() {
-
+					$scope.getGFBookByInstituteId = function(refresh) {
+/*
+						var bookListCacheKey = "getGFBookByInstituteId";
+						// Note this key has to be unique across application
+						// else it will return unexpected result.
+						if (!angular
+								.isUndefined(ajsCache.get(bookListCacheKey)) && !refresh) {
+							$log.debug("Found List in Cache, return it.")
+							$scope.instituteUsersList = ajsCache
+									.get(bookListCacheKey);
+							
+							return;
+						}
+*/
+						$log.debug("NOT Found List in Cache, fetching from server.")
+						
 						var gfBookStockService = appEndpointSF
 								.getGFBookStockService();
 						gfBookStockService.getGFBookByInstituteId(
 								$scope.curUser.instituteID).then(
 								function(tempBooks) {
 									$scope.bookStocks = tempBooks;
-									$log.debug ("Got books form Server...");
+/*									ajsCache.put(bookListCacheKey,
+											tempBooks);
+*/									$log.debug ("Got books form Server...");
 
 								});
 					}

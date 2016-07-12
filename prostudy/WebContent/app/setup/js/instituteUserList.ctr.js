@@ -28,8 +28,7 @@ angular
 							return;
 						}
 
-						$log
-								.debug("NOT Found List in Cache, fetching from server.")
+						$log.debug("NOT Found List in Cache, fetching from server.")
 
 						var InstituteService = appEndpointSF
 								.getInstituteService();

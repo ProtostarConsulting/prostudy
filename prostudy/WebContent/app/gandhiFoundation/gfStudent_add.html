@@ -11,7 +11,7 @@
 				/ College / Institute<span style="color: red"
 				ng-show="gfStudentForm.level.$error.required" class="mandatory">*</span>
 			</label> <md-select name="level" ng-model="tempStudent.schoolName"
-				ng-required="true"> <md-option ng-value="schoolName"
+				ng-required="true"> <md-option ng-value="schoolName.schoolName"
 				ng-repeat="schoolName in pSchoolList">{{schoolName.schoolName}}</md-option>
 			</md-select>
 			<div ng-messages="gfStudentForm.level.$error"

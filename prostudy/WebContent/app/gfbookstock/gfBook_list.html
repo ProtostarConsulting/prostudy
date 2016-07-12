@@ -2,7 +2,7 @@
 	<h3 class="md-headline">Book List</h3>
 
 	<div layout="row" layout-align="end end" layout-xs="column">
-
+		
 		<md-button class="md-raised md-primary" id="uplodeExcel"
 			ng-click="UplodeExcel($event)">Upload Books<md-tooltip>
 		Add Bulk Books</md-tooltip> </md-button>
@@ -28,6 +28,23 @@
 
 
 	<div>
+	 <md-toolbar class="md-table-toolbar md-default" ng-hide="selected.length">
+          <div class="md-toolbar-tools">
+            <span>Books List</span>
+            <div flex></div>
+            <md-button class="md-icon-button" ng-click="getGFBookByInstituteId(true)">
+              <md-icon>refresh</md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+        
+        <md-toolbar class="md-table-toolbar alternate" ng-show="selected.length">
+          <div class="md-toolbar-tools">
+            <span>{{selected.length}} {{selected.length > 1 ? 'Books' : 'Book'}} selected</span>
+          </div>
+        </md-toolbar>
+		<md-data-table-container>
+		
 		<md-data-table-container>
 		<table md-data-table md-row-select="selected" class="md-primary"
 			md-progress="deferred">
@@ -46,7 +63,7 @@
 			</thead>
 			<tbody>
 				<tr md-auto-select
-					ng-repeat="book in bookStocks | orderBy: query.order | filter: bookName |filter : searchByName | limitTo: query.limit: (query.page - 1) * query.limit">
+					ng-repeat="book in bookStocks | orderBy: query.order | filter: bookName | filter : searchByName | limitTo: query.limit: (query.page - 1) * query.limit">
 		
 					 <td ng-if="book.bookQty < book.bookThreshold"><b><font color="red">{{book.standard}}</font></b></td>
 					<td ng-if="book.bookQty > book.bookThreshold">{{book.standard}}</b></td>
