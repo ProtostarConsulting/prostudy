@@ -62,14 +62,15 @@ public class DownloadGFBooks extends HttpServlet {
 					.getOutputStream());
 			WritableSheet s = w.createSheet("Demo", 0);
 
-			s.addCell(new Label(0, 0, "bookName"));
-			s.addCell(new Label(1, 0, "bookAuther"));
-			s.addCell(new Label(2, 0, "weight"));
-			s.addCell(new Label(3, 0, "bookPrice"));
-			s.addCell(new Label(4, 0, "bookPublication"));
-			s.addCell(new Label(5, 0, "bookMedium"));
-			s.addCell(new Label(6, 0, "bookQty"));
-			s.addCell(new Label(7, 0, "Temp"));
+			s.addCell(new Label(0, 0, "standard"));
+			s.addCell(new Label(1, 0, "bookName"));
+			s.addCell(new Label(2, 0, "bookAuther"));
+			s.addCell(new Label(3, 0, "weight"));
+			s.addCell(new Label(4, 0, "bookPrice"));
+			s.addCell(new Label(5, 0, "bookPublication"));
+			s.addCell(new Label(6, 0, "bookMedium"));
+			s.addCell(new Label(7, 0, "bookQty"));
+			s.addCell(new Label(8, 0, "Temp"));
 			
 			
 			for (int i = 0; i < gfbookEntity.size(); i++) {
@@ -88,9 +89,7 @@ public class DownloadGFBooks extends HttpServlet {
 				s.addCell(new Label(5, l,gfbookEntity.get(i).getBookMedium()));
 				s.addCell(new Label(6, l, qty));
 			}
-			
 		
-			
 			
 			w.write();
 			w.close();

@@ -26,12 +26,17 @@ public class Address implements Serializable {
 	private String country = "";
 	private String dist = "";
 	private String pin = "";
+	private boolean otherAddressFlag;
+	
 
-	/*
-	 * public Long getId() { return id; }
-	 * 
-	 * public void setId(Long id) { this.id = id; }
-	 */
+
+	public boolean isOtherAddressFlag() {
+		return otherAddressFlag;
+	}
+
+	public void setOtherAddressFlag(boolean otherAddressFlag) {
+		this.otherAddressFlag = otherAddressFlag;
+	}
 
 	public String getLine1() {
 		return line1;

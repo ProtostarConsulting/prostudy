@@ -47,7 +47,6 @@ public class UploadBulkBookServlet extends HttpServlet {
 
 				FileItemIterator iterator = upload.getItemIterator(request);
 				String[] split2 = null;			
-
 				Long insId = 0L;
 				while (iterator.hasNext()) {
 					FileItemStream item = iterator.next();
@@ -94,25 +93,27 @@ public class UploadBulkBookServlet extends HttpServlet {
 						continue;
 					}
 					System.out.println(" Row: " + row);
-					System.out.println(" bookName: " + split[0]);
-					System.out.println(" bookAuther: " + split[1]);
-					System.out.println(" weight: " + split[2]);
-					System.out.println(" bookPrice: " + split[3]);
-					System.out.println(" bookPublication: " + split[4]);
+					System.out.println(" standard: " + split[0]);
+					System.out.println(" bookName: " + split[1]);
+					System.out.println(" bookAuther: " + split[2]);
+					System.out.println(" weight: " + split[3]);
+					System.out.println(" bookPrice: " + split[4]);
+					System.out.println(" bookPublication: " + split[5]);
 
 					Date todaysDate = new Date();
 					// insert partner school
 
 					GFBookEntity gfBookEntity = new GFBookEntity();
 
-					gfBookEntity.setBookName(split[0].trim());
-					gfBookEntity.setBookAuther(split[1].trim());
-					gfBookEntity.setWeight(Integer.parseInt(split[2].trim()));
+					gfBookEntity.setStandard(split[0].trim());
+					gfBookEntity.setBookName(split[1].trim());
+					gfBookEntity.setBookAuther(split[2].trim());
+					gfBookEntity.setWeight(Integer.parseInt(split[3].trim()));
 					gfBookEntity
-							.setBookPrice(Integer.parseInt(split[3].trim()));
-					gfBookEntity.setBookPublication(split[4].trim());
-					gfBookEntity.setBookMedium(split[5]);
-					gfBookEntity.setBookQty(Integer.parseInt(split[6].trim()));
+							.setBookPrice(Integer.parseInt(split[4].trim()));
+					gfBookEntity.setBookPublication(split[5].trim());
+					gfBookEntity.setBookMedium(split[6]);
+					gfBookEntity.setBookQty(Integer.parseInt(split[7].trim()));
 					gfBookEntity.setBookFeedDate(todaysDate);
 					gfBookEntity.setInstituteID(insId);
 

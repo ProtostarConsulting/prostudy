@@ -3,6 +3,7 @@ package com.protostar.prostudy.gf.service;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Ref;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -55,51 +56,44 @@ public class UploadBulkGFStudentServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
-		List<BlobKey> blobKeys = blobs.get("myFile");
-
-		Long insId = null; 
-		Long selectedSchoolID = null; 
-		
-		System.out.println("blobKeys:" + blobKeys);
-		blobKeys.get(0).getKeyString();
-		String[] split2 = null;
 		try {
-			ServletFileUpload upload = new ServletFileUpload();
-			// res.setContentType("text/plain");
+			if (request.getHeader("Content-Type") != null
+					&& request.getHeader("Content-Type").startsWith(
+							"multipart/form-data")) {
+				ServletFileUpload upload = new ServletFileUpload();
 
-			FileItemIterator iterator = upload.getItemIterator(request);
-			while (iterator.hasNext()) {
+				FileItemIterator iterator = upload.getItemIterator(request);
+				String[] split2 = null;
+				Map parameterMap = request.getParameterMap();
+				for (Object key : parameterMap.keySet()) {
+					System.out.println("key:" + key + "\b value:"
+							+ parameterMap.get(key));
+				}
 
-				FileItemStream item = iterator.next();
-				// InputStream stream = item.openStream();
-				BlobstoreInputStream stream = new BlobstoreInputStream(
-						new BlobKey(blobKeys.get(0).getKeyString()));
-				if (item.isFormField()) {
-					if (item.getFieldName().equals("insId")) {
-						System.out.println("insId id=="+ request.getParameter(item.getFieldName()));
-						if (!request.getParameter(item.getFieldName()).equals(
-								""))
-							insId = Long.parseLong(request.getParameter(item
-									.getFieldName()));
+				Long selectedSchoolID = 0L;
+				while (iterator.hasNext()) {
+					FileItemStream item = iterator.next();
+					System.out.println("item.getFieldName(): "
+							+ item.getFieldName());
+
+					if (item.getName() == null) {
+						// It is form field not file.
+
+						if ("selectedSchoolID".equalsIgnoreCase(item.getFieldName())) {
+							selectedSchoolID = Long.parseLong(UtilityService.read(item
+									.openStream()));
+
+						}
+						continue;
 					}
-					if (item.getFieldName().equals("selectedSchoolID")) {
-						System.out.println("selectedSchoolID id=="+ request.getParameter(item.getFieldName()));
-						if (!request.getParameter(item.getFieldName()).equals(
-								""))
-							selectedSchoolID = Long.parseLong(request.getParameter(item
-									.getFieldName()));
-					}
-				} else {
+					InputStream openStream = item.openStream();
+					int len = 0;
+					byte[] fileContent = new byte[2000000];
+					// Can handle files upto 20 MB
 
-					int len;
-					byte[] fileContent = new byte[2000000]; // Can handle files
-															// upto 20 MB
-
-					int read = stream.read(fileContent);
+					int read = openStream.read(fileContent);
 					// System.out.println("No of bytes read:" + read);
-					while ((len = stream.read(fileContent, 0,
+					while ((len = openStream.read(fileContent, 0,
 							fileContent.length)) != -1) {
 						// res.getOutputStream().write(fileContent, 0, len);
 					}
@@ -110,18 +104,14 @@ public class UploadBulkGFStudentServlet extends HttpServlet {
 					// database
 
 					String fileAsString = new String(fileContent);
-					
 
 					split2 = fileAsString.split("\n");
-					// Start with 1 not 0, zero holds column headings
 
 				}
 
-			}
-
 			 PartnerSchoolEntity partnerSchoolEntity2 = ofy().load().type(PartnerSchoolEntity.class).id(selectedSchoolID).now();
 			 
-			try {
+			long instituteID = partnerSchoolEntity2.getInstituteID();
 				
 				for (int row = 1; row < split2.length; row++) {
 
@@ -134,10 +124,9 @@ public class UploadBulkGFStudentServlet extends HttpServlet {
 					System.out.println(" mName: " + split[1]);	
 					System.out.println(" lName: " + split[2]);
 					System.out.println(" gender: " + split[3]);
-					System.out.println(" MediumOfAnswer: "+ split[4] );
-		
-					
-					
+					System.out.println(" MediumOfAnswer: "+ split[4]);
+					System.out.println(" standard: "+ split[5]);
+							
 					// insert partner school	
 					String nextPRN = UtilityService.getNextPRN("Student");
 					
@@ -148,23 +137,18 @@ public class UploadBulkGFStudentServlet extends HttpServlet {
 					gfStudentEntity.setlName(split[2]);
 					gfStudentEntity.setGender(split[3]);
 					gfStudentEntity.setMediumOfAnswer(split[4]);
+					gfStudentEntity.setStandard(split[5]);;
 					gfStudentEntity.setPrn(nextPRN);
 					gfStudentEntity.setRole("Student");
 					gfStudentEntity.setSchoolName(partnerSchoolEntity2);
-					gfStudentEntity.setInstituteID(insId);
+					gfStudentEntity.setInstituteID(instituteID);
 					
 					ofy().save().entity(gfStudentEntity).now();
 						
 				}
-				  blobstoreService.delete(blobKeys.get(0));
-				  
-				response.sendRedirect("/#/gandhifoundation/studentModule/studentModule.list");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		} catch (Exception e) {
+			}}
+			
+		catch (Exception e) {
 			response.getOutputStream().print(
 					"File Uploading Failed!" + e.getMessage());
 		}

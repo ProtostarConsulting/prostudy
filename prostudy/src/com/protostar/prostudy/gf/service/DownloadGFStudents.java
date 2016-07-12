@@ -69,7 +69,8 @@ public class DownloadGFStudents extends HttpServlet {
 			s.addCell(new Label(2, 0, "lName"));
 			s.addCell(new Label(3, 0, "gender"));
 			s.addCell(new Label(4, 0, "mediumOfAnswer"));
-			s.addCell(new Label(27, 0, "Temp"));
+			s.addCell(new Label(5, 0, "standard"));
+			s.addCell(new Label(6, 0, "Temp"));
 			
 			
 			for (int i = 0; i < gfStudentEntitie.size(); i++) {
@@ -80,6 +81,7 @@ public class DownloadGFStudents extends HttpServlet {
 				s.addCell(new Label(2, l,gfStudentEntitie.get(i).getlName()));
 				s.addCell(new Label(3, l, gfStudentEntitie.get(i).getGender()));
 				s.addCell(new Label(4, l,gfStudentEntitie.get(i).getMediumOfAnswer()));	
+				s.addCell(new Label(5, l,gfStudentEntitie.get(i).getStandard()));	
 				
 			}
 			

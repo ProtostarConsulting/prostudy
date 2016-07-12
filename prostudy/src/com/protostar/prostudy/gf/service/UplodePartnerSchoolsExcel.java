@@ -1,6 +1,7 @@
 package com.protostar.prostudy.gf.service;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,7 @@ import com.protostar.prostudy.gf.entity.ContactDetail;
 import com.protostar.prostudy.gf.entity.CoordinatorDetail;
 import com.protostar.prostudy.gf.entity.ExamDetail;
 import com.protostar.prostudy.gf.entity.PartnerSchoolEntity;
+import com.protostar.prostudy.until.data.UtilityService;
 
 /**
  * Servlet implementation class UplodePartnerSchoolsExcel
@@ -52,44 +54,44 @@ public class UplodePartnerSchoolsExcel extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
-		List<BlobKey> blobKeys = blobs.get("myFile");
-
-		Long WareHouseID = null;
-		Long insId = null;
-		System.out.println("blobKeys:" + blobKeys);
-		blobKeys.get(0).getKeyString();
-		String[] split2 = null;
 		try {
-			ServletFileUpload upload = new ServletFileUpload();
-			// res.setContentType("text/plain");
+			if (request.getHeader("Content-Type") != null
+					&& request.getHeader("Content-Type").startsWith(
+							"multipart/form-data")) {
+				ServletFileUpload upload = new ServletFileUpload();
 
-			FileItemIterator iterator = upload.getItemIterator(request);
-			while (iterator.hasNext()) {
+				FileItemIterator iterator = upload.getItemIterator(request);
+				String[] split2 = null;
+				Map parameterMap = request.getParameterMap();
+				for (Object key : parameterMap.keySet()) {
+					System.out.println("key:" + key + "\b value:"
+							+ parameterMap.get(key));
+				}
 
-				FileItemStream item = iterator.next();
-				// InputStream stream = item.openStream();
-				BlobstoreInputStream stream = new BlobstoreInputStream(
-						new BlobKey(blobKeys.get(0).getKeyString()));
-				if (item.isFormField()) {
-					if (item.getFieldName().equals("insId")) {
-						System.out.println("insId id=="
-								+ request.getParameter(item.getFieldName()));
-						if (!request.getParameter(item.getFieldName()).equals(
-								""))
-							insId = Long.parseLong(request.getParameter(item
-									.getFieldName()));
+				Long insId = 0L;
+				while (iterator.hasNext()) {
+					FileItemStream item = iterator.next();
+					System.out.println("item.getFieldName(): "
+							+ item.getFieldName());
+
+					if (item.getName() == null) {
+						// It is form field not file.
+
+						if ("instituteId".equalsIgnoreCase(item.getFieldName())) {
+							insId = Long.parseLong(UtilityService.read(item
+									.openStream()));
+
+						}
+						continue;
 					}
-				} else {
+					InputStream openStream = item.openStream();
+					int len = 0;
+					byte[] fileContent = new byte[2000000];
+					// Can handle files upto 20 MB
 
-					int len;
-					byte[] fileContent = new byte[2000000]; // Can handle files
-															// upto 20 MB
-
-					int read = stream.read(fileContent);
+					int read = openStream.read(fileContent);
 					// System.out.println("No of bytes read:" + read);
-					while ((len = stream.read(fileContent, 0,
+					while ((len = openStream.read(fileContent, 0,
 							fileContent.length)) != -1) {
 						// res.getOutputStream().write(fileContent, 0, len);
 					}
@@ -100,18 +102,10 @@ public class UplodePartnerSchoolsExcel extends HttpServlet {
 					// database
 
 					String fileAsString = new String(fileContent);
-					// System.out.println("fileContent:" + fileAsString);
-					// List<PatientInfo> patientInfoList = new
-					// ArrayList<PatientInfo>();
 
 					split2 = fileAsString.split("\n");
-					// Start with 1 not 0, zero holds column headings
 
 				}
-
-			}
-
-			try {
 				// gte business entity
 
 				for (int row = 1; row < split2.length; row++) {
@@ -170,15 +164,17 @@ public class UplodePartnerSchoolsExcel extends HttpServlet {
 					// ExamDetail
 					ExamDetail eDtail = new ExamDetail();
 					eDtail.setBookRequired(split[19]);
-				/*	eDtail.setExamMedium(Arrays.asList(split[15], split[16],
-							split[17]));*/
+					/*
+					 * eDtail.setExamMedium(Arrays.asList(split[15], split[16],
+					 * split[17]));
+					 */
 					eDtail.setFemale(split[13]);
 					eDtail.setMale(split[12]);
 					eDtail.setModeOfExam(split[20]);
 					eDtail.setTotal(split[14]);
 					eDtail.setTotalStudent(split[11]);
 					eDtail.setYearOfExam(split[18]);
-				/*	patschool.setExamDetail(eDtail);*/
+					/* patschool.setExamDetail(eDtail); */
 					// Contact Detail
 
 					ContactDetail conDetail = new ContactDetail();
@@ -199,18 +195,12 @@ public class UplodePartnerSchoolsExcel extends HttpServlet {
 
 					// book summary
 					BookSummary bookSummary = new BookSummary();
-			/*		patschool.setBookSummary(bookSummary);*/
+					/* patschool.setBookSummary(bookSummary); */
 
 					PartnerSchoolService partnerSchool = new PartnerSchoolService();
 					partnerSchool.addPartnerSchool(patschool);
 
 				}
-				blobstoreService.delete(blobKeys.get(0));
-
-				response.sendRedirect("/#/partnerSchool/listPartnerSchool");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 
 		} catch (Exception e) {
