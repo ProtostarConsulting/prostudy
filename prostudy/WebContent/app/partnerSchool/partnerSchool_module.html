@@ -1,84 +1,8 @@
-<!-- 
 <div layout="column">
-
 	<div>
 		<section layout="row">
-			View Specific Toolbar
-			<div class="md-toolbar-tools">
 			<md-button class="md-icon-button" aria-label="prev" ng-click="back()">
-	<md-tooltip> go back </md-tooltip> <md-icon
-		md-svg-icon="img/icons/ic_reply_black_24px.svg" aria-label="Prev Week"></md-icon>
-	</md-button>
-				<span flex></span>
-
-					<div layout="row" layout-align="end start" >
-				
-				
-					<md-button aria-label="Open Settings" ng-click="toggleRight()">
-					<ng-md-icon icon="more_vert"></ng-md-icon> </md-button>
-					</div>
-					
-				
-			</div>
-
-			Right Navigation Pane
-				<md-sidenav class="md-sidenav-right md-whiteframe-z2"
-				md-component-id="right" layout="column"> <md-toolbar
-				class="md-theme-light">
-			<h1 class="md-toolbar-tools">Chapter Page Sub Menu</h1>
-			</md-toolbar> <md-content layout-padding> <md-button
-				ng-click="close()" class="md-primary"> Close Sidenav
-			Right </md-button>
-			
-			<div layout="column">
-			 <md-button ui-sref="chapter.add"
-				ng-click="close()" class="md-primary">  Chapter ADD
-			</md-button> 
-			
-			<md-button ui-sref="chapter.edit"
-				ng-click="close()" class="md-primary">  Chapter List
-			</md-button>
-			</div>
-			</md-content> </md-sidenav>
-
-		</section>
-
-	</div>
-
-	<div ui-view>
-
-		<div layout="column" layout-align="start start">
-			<md-button ui-sref="partnerSchool.addPartnerSchool"
-				ng-click="close()" class="md-primary" hide-xs> ADD  School
-			</md-button> 
-			
-			<md-button ui-sref="partnerSchool.listPartnerSchool"
-				ng-click="close()" class="md-primary" hide-xs>   School List
-			</md-button>
-			
-			<md-button ui-sref="partnerSchool.listPartnerSchoolStudent"
-				ng-click="close()" class="md-primary" hide-xs>  Partner School Student
-			</md-button>
-
-		</div>
-	</div>
-	We'll also add some navigation:
-
-</div>
- -->
-
-
-
-
-
-<div layout="column">
-
-
-	<div>
-
-		<section layout="row">
-			<md-button class="md-icon-button" aria-label="prev" ng-click="back()">
-			<md-tooltip> go back </md-tooltip> <md-icon
+			<md-tooltip> Go Back </md-tooltip> <md-icon
 				md-svg-icon="img/icons/ic_reply_black_24px.svg"
 				aria-label="Prev Week"></md-icon> </md-button>
 			<span hide-xs> </span>
@@ -93,36 +17,32 @@
 				</section>
 				</md-card>
 			</div>
-			<!-- </span> -->
-
-			<md-sidenav class="md-sidenav-right md-whiteframe-z2"
-				md-component-id="right"> <md-toolbar
-				class="md-theme-light">
-			<h1 class="md-toolbar-tools">Sidenav Right</h1>
-			<md-content layout="column"> <md-button
-				ui-sref="partnerSchool.addPartnerSchool" ng-click="close()"
-				class="md-primary"> ADD School </md-button> <md-button
-				ui-sref="partnerSchool.listPartnerSchool" ng-click="close()"
-				class="md-primary"> School List </md-button> <!-- <md-button
+		</section>
+	</div>
+	<div>
+		<md-sidenav class="md-sidenav-right md-whiteframe-z2"
+			md-component-id="right"> <md-toolbar
+			class="md-theme-light">
+		<h1 class="md-toolbar-tools">Sidenav Right</h1>
+		<md-content layout="column"> <md-button
+			ui-sref="partnerSchool.addPartnerSchool" ng-click="close()"
+			class="md-primary"> Add School </md-button> <md-button
+			ui-sref="partnerSchool.listPartnerSchool" ng-click="close()"
+			class="md-primary"> School List </md-button> <!-- <md-button
 				ui-sref="partnerSchool.listPartnerSchoolStudent" ng-click="close()"
 				class="md-primary"> Partner School Student </md-button> --> </md-content> </md-toolbar> </md-sidenav>
-		</section>
-
 	</div>
-
-
-
 
 	<div ui-view>
 		<div class="md-toolbar-tools">
-			<md-content layout="row" layout-align="center start"> <md-button
+			<md-content layout="row" layout-xs="column"
+				layout-align="center start"> <md-button
 				ui-sref="partnerSchool.addPartnerSchool" ng-click="close()"
-				class="md-primary" hide-xs> ADD School </md-button> <md-button
+				class="md-primary"> Add School </md-button> <md-button
 				ui-sref="partnerSchool.listPartnerSchool" ng-click="close()"
-				class="md-primary" hide-xs> School List </md-button><!--  <md-button ui-sref="partnerSchool.listPartnerSchoolStudent"
+				class="md-primary"> School List </md-button><!--  <md-button ui-sref="partnerSchool.listPartnerSchoolStudent"
 						ng-click="close()" class="md-primary" hide-xs> Partner
 					School Student </md-button> --> </md-content>
 		</div>
 	</div>
 </div>
-
