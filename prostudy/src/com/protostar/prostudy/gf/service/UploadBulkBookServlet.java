@@ -101,7 +101,6 @@ public class UploadBulkBookServlet extends HttpServlet {
 					System.out.println(" bookPublication: " + split[5]);
 
 					Date todaysDate = new Date();
-					// insert partner school
 
 					GFBookEntity gfBookEntity = new GFBookEntity();
 
