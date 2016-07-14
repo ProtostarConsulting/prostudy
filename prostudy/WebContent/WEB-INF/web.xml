@@ -167,7 +167,7 @@
     <servlet-name>file_upload</servlet-name>
     <url-pattern>/uploadtestngfile</url-pattern>
   </servlet-mapping>
-  <servlet>
+ <!--  <servlet>
     <description></description>
     <display-name>UploadBook</display-name>
     <servlet-name>UploadBook</servlet-name>
@@ -177,4 +177,5 @@
     <servlet-name>UploadBook</servlet-name>
     <url-pattern>/UploadBook</url-pattern>
   </servlet-mapping>
+  --> 
 </web-app>

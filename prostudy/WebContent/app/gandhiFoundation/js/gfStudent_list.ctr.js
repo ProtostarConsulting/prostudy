@@ -3,7 +3,7 @@ angular
 		.controller(
 				"gfStudentListCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $log, $q, $mdDialog, $mdMedia,Upload,
+						$mdUtil, $log, $q, $mdDialog, $mdMedia,Upload,ajsCache,
 						tableTestDataFactory, appEndpointSF) {
 					console.log("Inside studentListPageCtr");
 
@@ -21,14 +21,27 @@ angular
 					// $scope.curUser=appEndpointSF.getLocalUserService().getLoggedinUser();
 					$scope.students = [];
 
-					$scope.getGFStudentsByInstitute = function() {
+					$scope.getGFStudentsByInstitute = function(refresh) {
 
+						var studentListCacheKey = "getGFStudentsByInstitute";
+						// Note this key has to be unique across application
+						// else it will return unexpected result.
+						if (!angular
+								.isUndefined(ajsCache.get(studentListCacheKey)) && !refresh) {
+							$log.debug("Found List in Cache, return it.")
+							$scope.gfStudentList = ajsCache
+									.get(studentListCacheKey);
+							return;
+						}
+						
 						var gfStudentService = appEndpointSF
 								.getGFStudentService();
 						gfStudentService.getGFStudentsByInstitute(
 								$scope.curUser.instituteID).then(
 								function(gfStudentList) {
 									$scope.gfStudentList = gfStudentList;
+									ajsCache.put(studentListCacheKey,
+											gfStudentList);
 								});
 					}
 

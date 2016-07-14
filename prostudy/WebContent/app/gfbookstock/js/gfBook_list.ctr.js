@@ -26,19 +26,19 @@ angular
 							"Prize Certificate" ];
 
 					$scope.getGFBookByInstituteId = function(refresh) {
-/*
+
 						var bookListCacheKey = "getGFBookByInstituteId";
 						// Note this key has to be unique across application
 						// else it will return unexpected result.
 						if (!angular
 								.isUndefined(ajsCache.get(bookListCacheKey)) && !refresh) {
 							$log.debug("Found List in Cache, return it.")
-							$scope.instituteUsersList = ajsCache
+							$scope.bookStocks = ajsCache
 									.get(bookListCacheKey);
 							
 							return;
 						}
-*/
+
 						$log.debug("NOT Found List in Cache, fetching from server.")
 						
 						var gfBookStockService = appEndpointSF
@@ -47,9 +47,9 @@ angular
 								$scope.curUser.instituteID).then(
 								function(tempBooks) {
 									$scope.bookStocks = tempBooks;
-/*									ajsCache.put(bookListCacheKey,
+									ajsCache.put(bookListCacheKey,
 											tempBooks);
-*/									$log.debug ("Got books form Server...");
+									$log.debug ("Got books form Server...");
 
 								});
 					}

@@ -1,10 +1,10 @@
 <h3 class="md-headline">School List</h3>
 <section layout="row" layout-align="end end" flex>
 	<md-button class="md-raised md-primary" id="downloadExcel"
-		ng-click="downloadData()">Export School Data <md-tooltip>
+		ng-click="downloadData()">Upload Schools <md-tooltip>
 	download Bulk Schools Data</md-tooltip> </md-button>
 	<md-button class="md-raised md-primary" id="uplodeExcel"
-		ng-click="UplodeExcel($event)">Import School Data <md-tooltip>
+		ng-click="UplodeExcel($event)">Download Schools <md-tooltip>
 	Add Bulk Schools</md-tooltip> </md-button>
 </section>
 
@@ -20,6 +20,24 @@
 	</div>
 	<md-content> <md-data-table-container>
 
+
+<md-toolbar class="md-table-toolbar md-default" ng-hide="selected.length">
+          <div class="md-toolbar-tools">
+            <span>Schools List</span>
+            <div flex></div>
+            <md-button class="md-icon-button" ng-click="getPartnerSchoolByInstitute(true)">
+              <md-icon>refresh</md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+        
+        <md-toolbar class="md-table-toolbar alternate" ng-show="selected.length">
+          <div class="md-toolbar-tools">
+            <span>{{selected.length}} {{selected.length > 1 ? 'Schools' : 'School'}} selected</span>
+          </div>
+        </md-toolbar>
+		<md-data-table-container>
+		
 	<table md-data-table md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onorderchange">
 			<tr>

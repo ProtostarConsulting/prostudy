@@ -4,7 +4,7 @@ angular
 				"partnerSchoolListCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, appEndpointSF, $state, $sce,
-						$stateParams, $q, $mdDialog, $mdMedia,Upload) {
+						$stateParams, $q, $mdDialog, $mdMedia,Upload,ajsCache) {
 
 					$scope.selectedChapterId = $stateParams.selectedChapterId;
 					$scope.chapter = [];
@@ -58,14 +58,29 @@ angular
 					
 					
 
-					$scope.getPartnerSchoolByInstitute = function() {
+					$scope.getPartnerSchoolByInstitute = function(refresh) {
 
+						var schoolListCacheKey = "getPartnerByInstitute";
+						// Note this key has to be unique across application
+						// else it will return unexpected result.
+						if (!angular
+								.isUndefined(ajsCache.get(schoolListCacheKey)) && !refresh) {
+							$log.debug("Found List in Cache, return it.")
+							$scope.pSchoolList = ajsCache
+									.get(schoolListCacheKey);
+							return;
+						}
+						
 						var PartnerService = appEndpointSF
 								.getPartnerSchoolService();
 						PartnerService.getPartnerByInstitute(
 								$scope.curUser.instituteID).then(
 								function(pSchoolList) {
 									$scope.pSchoolList = pSchoolList;
+									
+									ajsCache.put(schoolListCacheKey,
+											pSchoolList);
+								
 									$scope.changeSchoolList();
 								});
 					}
