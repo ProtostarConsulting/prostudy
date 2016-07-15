@@ -1,6 +1,6 @@
 <html>
 
-  <h1>Dear ${firstName},</h1>
+  <p>Dear ${firstName},</p>
 
   <p>You account is created on Gandhi Vichar Sanskar Pariksha, Gandhi Research Foundation exam management applications. Please use below details to login and activate your accounts. Thank you.</p>
   <p>Username: ${user.email_id}</p>
