@@ -99,6 +99,8 @@ public class UploadBulkBookServlet extends HttpServlet {
 					System.out.println(" weight: " + split[3]);
 					System.out.println(" bookPrice: " + split[4]);
 					System.out.println(" bookPublication: " + split[5]);
+					System.out.println(" Medium: " + split[6]);
+					System.out.println(" Qty: " + split[7]);
 
 					Date todaysDate = new Date();
 
@@ -107,7 +109,7 @@ public class UploadBulkBookServlet extends HttpServlet {
 					gfBookEntity.setStandard(split[0].trim());
 					gfBookEntity.setBookName(split[1].trim());
 					gfBookEntity.setBookAuther(split[2].trim());
-					gfBookEntity.setWeight(Integer.parseInt(split[3].trim()));
+					gfBookEntity.setWeight(Float.parseFloat(split[3].trim()));
 					gfBookEntity
 							.setBookPrice(Integer.parseInt(split[4].trim()));
 					gfBookEntity.setBookPublication(split[5].trim());
