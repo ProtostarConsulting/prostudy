@@ -57,7 +57,7 @@ angular
 					$scope.getPrvYears();
 					
 					
-
+					$scope.pSchoolList = [];
 					$scope.getPartnerSchoolByInstitute = function(refresh) {
 
 						var schoolListCacheKey = "getPartnerByInstitute";
@@ -66,7 +66,7 @@ angular
 						if (!angular
 								.isUndefined(ajsCache.get(schoolListCacheKey)) && !refresh) {
 							$log.debug("Found List in Cache, return it.")
-							$scope.pSchoolList = ajsCache
+							$scope.schools = ajsCache
 									.get(schoolListCacheKey);
 							return;
 						}
