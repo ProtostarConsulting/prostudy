@@ -82,12 +82,13 @@ public class DownloadGFBooks extends HttpServlet {
 				String price = String.valueOf(gfbookEntity.get(i).getBookPrice());
 				
 				s.addCell(new Label(0,l,gfbookEntity.get(i).getBookName()));
-				s.addCell(new Label(1, l,gfbookEntity.get(i).getBookAuther()));
-				s.addCell(new Label(2, l, weight));
-				s.addCell(new Label(3, l, price));
-				s.addCell(new Label(4, l,gfbookEntity.get(i).getBookPublication()));	
-				s.addCell(new Label(5, l,gfbookEntity.get(i).getBookMedium()));
-				s.addCell(new Label(6, l, qty));
+				s.addCell(new Label(1,l,gfbookEntity.get(i).getBookName()));
+				s.addCell(new Label(2, l,gfbookEntity.get(i).getBookAuther()));
+				s.addCell(new Label(3, l, weight));
+				s.addCell(new Label(4, l, price));
+				s.addCell(new Label(5, l,gfbookEntity.get(i).getBookPublication()));	
+				s.addCell(new Label(6, l,gfbookEntity.get(i).getBookMedium()));
+				s.addCell(new Label(7, l, qty));
 			}
 		
 			
