@@ -70,6 +70,8 @@ angular
 									.get(schoolListCacheKey);
 							return;
 						}
+						if(refresh)
+							$scope.yearOfExam = "";
 						
 						var PartnerService = appEndpointSF
 								.getPartnerSchoolService();

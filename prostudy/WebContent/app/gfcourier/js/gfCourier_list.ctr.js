@@ -48,9 +48,7 @@ angular
 						if (appEndpointSF.is_service_ready) {
 
 								$scope.getGFCourierByInstitute();
-								$scope.getPartnerByInstitute();
-							
-							
+								$scope.getPartnerByInstitute();	
 						} else {
 							$log.debug("Services Not Loaded, watiting...");
 							$timeout($scope.waitForServiceLoad, 1000);

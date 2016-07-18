@@ -91,6 +91,6 @@ angular.module("prostudyApp").controller(
 				page : 1
 			};
 			$scope.cancelButton = function() {
-				$state.go("gandhifoundation.studentModule", {});
+				$state.go("studentModule", {});
 			}
 		});

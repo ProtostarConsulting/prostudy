@@ -60,6 +60,7 @@ angular
 								});
 						if ($scope.selectedGFStudID == "") {
 							$scope.showAddToast();
+							$scope.tempCourierObj = {};
 						} else {
 							$scope.showUpdateToast();
 						}
