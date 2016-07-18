@@ -2,11 +2,13 @@ package com.protostar.prostudy.gf.service;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -54,42 +56,54 @@ public class DownloadGFStudents extends HttpServlet {
 		OutputStream out = null;
 		try {
 
-			response.setContentType("application/vnd.ms-excel");
-
+	//		response.setContentType("application/vnd.ms-excel");
+			response.setContentType("text/csv");
 			
 			response.setHeader("Content-Disposition",
-					"attachment; filename=StudentData_"+sdf.format(date)+".csv");
+					"attachment; filename=GFStudentData_"+sdf.format(date)+".csv");
 
-			WritableWorkbook w = Workbook.createWorkbook(response
-					.getOutputStream());
-			WritableSheet s = w.createSheet("Demo", 0);
+			ServletOutputStream outputStream = response.getOutputStream();
+			OutputStreamWriter writer = new OutputStreamWriter(outputStream);
 
-			s.addCell(new Label(0, 0, "fName"));
-			s.addCell(new Label(1, 0, "mName"));
-			s.addCell(new Label(2, 0, "lName"));
-			s.addCell(new Label(3, 0, "gender"));
-			s.addCell(new Label(4, 0, "mediumOfAnswer"));
-			s.addCell(new Label(5, 0, "standard"));
-			s.addCell(new Label(6, 0, "Temp"));
+			writer.append("fName");
+			writer.append(',');
+			writer.append("mName");
+			writer.append(',');
+			writer.append("lName");
+			writer.append(',');
+			writer.append("gender");
+			writer.append(',');
+			writer.append("mediumOfAnswer");
+			writer.append(',');
+			writer.append("standard");
+			writer.append(',');
+/*			writer.append("Temp");
+			writer.append(',');*/
+			writer.append(System.lineSeparator());
 			
 			
 			for (int i = 0; i < gfStudentEntitie.size(); i++) {
-				int l=i+1;
-				int k=15;	
-				s.addCell(new Label(0,l,gfStudentEntitie.get(i).getfName()));
-				s.addCell(new Label(1, l,gfStudentEntitie.get(i).getmName()));
-				s.addCell(new Label(2, l,gfStudentEntitie.get(i).getlName()));
-				s.addCell(new Label(3, l, gfStudentEntitie.get(i).getGender()));
-				s.addCell(new Label(4, l,gfStudentEntitie.get(i).getMediumOfAnswer()));	
-				s.addCell(new Label(5, l,gfStudentEntitie.get(i).getStandard()));	
+			//	int l=i+1;
+			//	int k=15;	
+
+				writer.append(gfStudentEntitie.get(i).getfName());
+				writer.append(',');
+				writer.append(gfStudentEntitie.get(i).getmName());
+				writer.append(',');
+				writer.append(gfStudentEntitie.get(i).getlName());
+				writer.append(',');
+				writer.append(gfStudentEntitie.get(i).getGender());
+				writer.append(',');
+				writer.append(gfStudentEntitie.get(i).getMediumOfAnswer());
+				writer.append(',');
+				writer.append(gfStudentEntitie.get(i).getStandard());
+				writer.append(',');
+/*				writer.append("Temp");
+				writer.append(" ");
+*/				writer.append(System.lineSeparator());
 				
-			}
-			
-		
-			
-			
-			w.write();
-			w.close();
+			}	
+			writer.close();
 
 		} catch (Exception e) {
 			throw new ServletException("Exception in Excel Sample Servlet", e);
