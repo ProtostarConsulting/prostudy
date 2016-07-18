@@ -204,12 +204,11 @@
 
 
 			<md-input-container flex> <label>District<span
-				style="color: red"
-				ng-show="partnerSchoolForm.district.$error.required"
-				class="mandatory">*</span></label> <md-select
+				style="color: red" ng-show="partnerSchoolForm.district.$error.required"
+				class="mandatory">*</span></label> <md-select name="district"
 				ng-model="partnerSchool.address.dist" placeholder="Select District"
 				ng-change="getTalukas($index, partnerSchool.address.dist)"
-				name="district" ng-required="true"> <md-option
+				 ng-required="true"> <md-option
 				ng-value="district.name" ng-repeat="district in temp.tempDistricts">{{district.name
 			}}</md-option> </md-select>
 
@@ -220,12 +219,12 @@
 			</md-input-container>
 
 			<md-input-container flex> <label>Taluka<span
-				style="color: red"
-				ng-show="partnerSchoolForm.taluka.$error.required" class="mandatory">*</span></label>
-			<md-select ng-model="partnerSchool.address.tal"
+				style="color: red" ng-show="partnerSchoolForm.taluka.$error.required"
+				class="mandatory">*</span></label>
+			<md-select name="taluka" ng-model="partnerSchool.address.tal"
 				placeholder="Select Taluka"
 				ng-change="getVillages($Index, partnerSchool.address.tal)"
-				name="taluka" ng-required="true"> <md-option
+				 ng-required="true"> <md-option
 				ng-value="taluka.name" ng-repeat="taluka in temp.tempTalukas">{{taluka.name
 			}}</md-option> </md-select>
 
@@ -255,7 +254,7 @@
 
  -->
 
-			<md-input-container flex> <label>Pin <span
+			<md-input-container flex="50"> <label>Pin <span
 				style="color: red;" ng-show="partnerSchoolForm.pin.$error.required">*</span>
 			</label> <input type="number" name="pin" id="pin"
 				ng-model="partnerSchool.address.pin" ng-required="true">

@@ -17,6 +17,7 @@ angular.module("prostudyApp").controller(
 				bookFeedDate : new Date(),
 			}
 
+			
 			$scope.standardList = standardList;
 
 			$scope.selectedGFBookID = $stateParams.selectedGFBookID;
@@ -89,10 +90,6 @@ angular.module("prostudyApp").controller(
 				});
 			}
 
-			$scope.cancel = function() {
-				$state.go('gandhifoundation');
-			}
-
 			$scope.waitForServiceLoad = function() {
 				if (appEndpointSF.is_service_ready) {
 
@@ -122,6 +119,6 @@ angular.module("prostudyApp").controller(
 			};
 	
 			$scope.cancelButton = function() {
-				$state.go("gandhifoundation.bookModule", {});
+				$state.go("bookModule", {});
 			}
 		});

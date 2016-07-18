@@ -119,7 +119,9 @@ angular
 																.hideDelay(3000));
 												
 												$scope.csvFile = null;
-												
+												$timeout(function() {
+												$scope.cancel();
+												},3000);
 												//Load the books again in the end
 												getFreshBooks();
 											},
@@ -142,9 +144,18 @@ angular
 														+ '% '
 														+ evt.config.data.file.name;
 												+'...'
+												
+/*												if(progressPercentage == 100%){
+													
+												}
+*/												
 											});
 						};
 
+						
+						$scope.cancel = function() {
+						    $mdDialog.cancel();
+						  };
 					}
 
 					$scope.waitForServiceLoad = function() {
@@ -159,7 +170,11 @@ angular
 					}
 
 					$scope.waitForServiceLoad();
-
+					
+					$scope.cancel = function() {
+						$state.go("bookModule.list", {});
+					}
+					
 					$scope.downloadData = function() {
 
 						document.location.href = "DownloadGFBooks?InstituteId="

@@ -87,7 +87,7 @@
 			</div>
 			</md-input-container>
 		</div>
-		<div layout="row" layout-xs="column" flex>
+		<div ng-hide="tempBook.id"  layout="row" layout-xs="column" flex>
 			<md-input-container flex> <label>Medium
 				of Answer<span style="color: red"
 				ng-show="gfBookStockForm.bookMedium.$error.required"
@@ -102,11 +102,11 @@
 			</div>
 			</md-input-container>
 
-			<md-input-container flex  ng-hide="selectedGFBookID"> <label>Quantity<span
-				style="color: red" ng-show="gfBookStockForm.bookQty.$error.required"
-				class="mandatory">*</span>
+			<md-input-container flex ng-hide="selectedGFBookID">
+			<label>Quantity<span style="color: red"
+				ng-show="gfBookStockForm.bookQty.$error.required" class="mandatory">*</span>
 			</label> <input name="bookQty" type="number" ng-model="tempBook.bookQty"
-				ng-required="true" >
+				ng-required="true">
 			<div ng-messages="gfBookStockForm.bookQty.$error"
 				ng-if="gfBookStockForm.bookQty.$submitted || gfBookStockForm.bookQty.$touched">
 				<div ng-message="required">Please Enter Book Quantity.</div>
@@ -115,14 +115,46 @@
 
 		</div>
 
-		<div layout="row" layout-xs="column" flex>
+		<div ng-hide="tempBook.id" layout="row" layout-xs="column" flex>
 
 
-			<md-input-container flex> <label>Threshold<span
-				style="color: red" ng-show="gfBookStockForm.bookThreshold.$error.required"
+			<md-input-container flex="50"> <label>Threshold<span
+				style="color: red"
+				ng-show="gfBookStockForm.bookThreshold.$error.required"
 				class="mandatory">*</span>
-			</label> <input name="bookThreshold" type="number" ng-model="tempBook.bookThreshold"
-				ng-required="true">
+			</label> <input name="bookThreshold" type="number"
+				ng-model="tempBook.bookThreshold" ng-required="true">
+			<div ng-messages="gfBookStockForm.bookThreshold.$error"
+				ng-if="gfBookStockForm.bookThreshold.$submitted || gfBookStockForm.bookThreshold.$touched">
+				<div ng-message="required">Please Enter Book Quantity.</div>
+			</div>
+			</md-input-container>
+
+		</div>
+
+
+
+		<div ng-show="tempBook.id" layout="row" layout-xs="column" flex>
+			<md-input-container flex> <label>Medium
+				of Answer<span style="color: red"
+				ng-show="gfBookStockForm.bookMedium.$error.required"
+				class="mandatory">*</span>
+			</label> <md-select name="bookMedium" ng-model="tempBook.bookMedium"
+				ng-required="true"> <md-option ng-value="bookMedium"
+				ng-repeat="bookMedium in answerOfMediumList" ng-selected="$first">{{bookMedium}}</md-option>
+			</md-select>
+			<div ng-messages="gfBookStockForm.bookMedium.$error"
+				ng-if="gfBookStockForm.bookMedium.$submitted || gfBookStockForm.bookMedium.$touched">
+				<div ng-message="required">Please Select Medium.</div>
+			</div>
+			</md-input-container>
+
+			<md-input-container flex="50"> <label>Threshold<span
+				style="color: red"
+				ng-show="gfBookStockForm.bookThreshold.$error.required"
+				class="mandatory">*</span>
+			</label> <input name="bookThreshold" type="number"
+				ng-model="tempBook.bookThreshold" ng-required="true">
 			<div ng-messages="gfBookStockForm.bookThreshold.$error"
 				ng-if="gfBookStockForm.bookThreshold.$submitted || gfBookStockForm.bookThreshold.$touched">
 				<div ng-message="required">Please Enter Book Quantity.</div>

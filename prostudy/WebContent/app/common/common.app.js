@@ -1245,45 +1245,37 @@ app
 						templateUrl : '/app/proadmin/manage_auth_master.html',
 						controller : 'proAdminManageAuth'
 					})
-					.state(
-							'proadmin.manageinstituteauth',
+					.state('proadmin.manageinstituteauth',
 							{
 								url : "/manageinstituteauth/:selectedInstituteID",
 								templateUrl : '/app/proadmin/manage_institute_auth.html',
 								controller : 'proAdminManageInstituteAuth'
 							})
-					.state(
-							'gandhifoundation',
-							{
+				
+							
+							
+					.state('gandhifoundation',{
 								url : "/gandhifoundation",
 								templateUrl : '/app/gandhiFoundation/gandhiFoundation_module.html',
 								controller : 'gfModuleCtr'
 							})
 
-					.state(
-							'studentModule',
-							{
+					.state('studentModule',{
 								url : "/studentModule",
 								templateUrl : '/app/gandhiFoundation/gfStudent_module.html',
 								controller : 'gfStudentModuleCtr'
 							})
-					.state(
-							'studentModule.add',
-							{
+					.state('studentModule.add',{
 								url : "/studentModule.add/:selectedGFStudID",
 								templateUrl : '/app/gandhiFoundation/gfStudent_add.html',
 								controller : 'gfStudentAddCtr'
 							})
-					.state(
-							'studentModule.list',
-							{
+					.state('studentModule.list',{
 								url : "/studentModule.list",
 								templateUrl : '/app/gandhiFoundation/gfStudent_list.html',
 								controller : 'gfStudentListCtr'
 							})
-					.state(
-							'studentModule.view',
-							{
+					.state('studentModule.view',{
 								url : "/studentModule.view/:selectedGFStudID",
 								templateUrl : '/app/gandhiFoundation/gfStudent_view.html',
 								controller : 'gfStudentviewCtr'
@@ -1317,9 +1309,7 @@ app
 						controller : 'gfCourierSearchCtr'
 					})
 
-					.state(
-							'courierModule.addFromPS',
-							{
+					.state('courierModule.addFromPS',{
 								url : "/addFromPS",
 								templateUrl : '/app/gfcourier/gfCourier_directAddFromPS.html',
 								controller : 'gfCourierDirectAddCtr',
@@ -1327,15 +1317,13 @@ app
 									partnerSchool : null,
 									yearOfExam : null
 								}
-							})
+					})
 
-					.state(
-							'bookModule',
-							{
+					.state('bookModule',{
 								url : "/bookModule",
 								templateUrl : '/app/gfbookstock/gfBookStock_module.html',
 								controller : 'gfBookStockModuleCtr'
-							})
+					})
 					.state('bookModule.add', {
 						url : "/bookModule.add/:selectedGFBookID",
 						templateUrl : '/app/gfbookstock/gfBook_add.html',

@@ -41,6 +41,8 @@
 			</div>
 			<md-button class="md-raised md-primary" ng-click="uploadStudentsCSV()"
 				ng-disabled="excelform.$invalid"> Submit </md-button>
+				<md-button class="md-raised md-primary" ng-click="cancel()">
+			close </md-button>
 			<div>
 				<h3 class="md-subhead" style="color: red"
 					ng-hide="selectedSchool.id">Please Select School before submit</h3>

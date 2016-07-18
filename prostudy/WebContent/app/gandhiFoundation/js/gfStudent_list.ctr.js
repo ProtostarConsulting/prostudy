@@ -141,7 +141,9 @@ angular
 																.hideDelay(3000));
 												
 												$scope.csvFile = null;
-												
+												$timeout(function() {
+													$scope.cancel();
+													},3000);
 												//Load the books again in the end
 												getFreshStudents();
 											},
@@ -167,6 +169,9 @@ angular
 											});
 							
 						};
+						$scope.cancel = function() {
+						    $mdDialog.cancel();
+						  };
 						$scope.getSchoolID = function() {
 							$scope.selectedSchoolID = $scope.selectedSchool.id;
 
