@@ -74,9 +74,9 @@ public class DownloadGFBooks extends HttpServlet {
 			writer.append(',');
 			writer.append("bookQty");
 			writer.append(',');
-			writer.append("Temp");
+/*			writer.append("Temp");
 			writer.append(',');
-			writer.append(System.lineSeparator());
+*/			writer.append(System.lineSeparator());
 
 			for (int i = 0; i < gfbookEntity.size(); i++) {
 
@@ -102,9 +102,9 @@ public class DownloadGFBooks extends HttpServlet {
 				writer.append(',');
 				writer.append(qty.trim());
 				writer.append(',');
-				writer.append("Temp");
+/*				writer.append("Temp");
 				writer.append(" ");
-				writer.append(System.lineSeparator());
+*/				writer.append(System.lineSeparator());
 			}
 
 			writer.close();
