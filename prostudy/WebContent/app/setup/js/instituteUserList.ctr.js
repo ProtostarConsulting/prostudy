@@ -20,7 +20,8 @@ angular
 						// Note this key has to be unique across application
 						// else it will return unexpected result.
 						if (!angular
-								.isUndefined(ajsCache.get(userListCacheKey)) && !refresh) {
+								.isUndefined(ajsCache.get(userListCacheKey))
+								&& !refresh) {
 							$log.debug("Found List in Cache, return it.")
 							$scope.instituteUsersList = ajsCache
 									.get(userListCacheKey);
@@ -28,7 +29,8 @@ angular
 							return;
 						}
 
-						$log.debug("NOT Found List in Cache, fetching from server.")
+						$log
+								.debug("NOT Found List in Cache, fetching from server.")
 
 						var InstituteService = appEndpointSF
 								.getInstituteService();
@@ -41,6 +43,9 @@ angular
 													instituteUsersList);
 											processUserList();
 
+										},
+										function(errorObject) {
+											$scope.showErrorToast(errorObject.message);
 										});
 					}
 
@@ -156,7 +161,7 @@ angular
 									});
 						}
 					}
-					
+
 					$scope.query = {
 						order : 'description',
 						limit : 5,

@@ -6,6 +6,7 @@ import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -20,6 +21,8 @@ import com.protostar.prostudy.gf.entity.GFBookEntity;
  */
 public class DownloadGFBooks extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private final Logger log = Logger.getLogger(UplodePartnerSchoolsExcel.class
+			.getName());
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -32,10 +35,10 @@ public class DownloadGFBooks extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("hi i am download servlet");
+		log.info("hi i am download servlet");
 		Long insId = Long.parseLong(request.getParameter("InstituteId"));
 
-		System.out.println("insid===" + insId);
+		log.info("insid===" + insId);
 
 		GFBookStockService gfBookStockService = new GFBookStockService();
 
@@ -74,43 +77,54 @@ public class DownloadGFBooks extends HttpServlet {
 			writer.append(',');
 			writer.append("bookQty");
 			writer.append(',');
-/*			writer.append("Temp");
-			writer.append(',');
-*/			writer.append(System.lineSeparator());
+			/*
+			 * writer.append("Temp"); writer.append(',');
+			 */writer.append(System.lineSeparator());
 
 			for (int i = 0; i < gfbookEntity.size(); i++) {
 
-				String qty = String.valueOf(gfbookEntity.get(i).getBookQty());
-				String weight = String.valueOf(gfbookEntity.get(i).getWeight());
-				String price = String.valueOf(gfbookEntity.get(i)
-						.getBookPrice());
+				try {
 
-				writer.append(gfbookEntity.get(i).getStandard());
-				writer.append(',');
+					String qty = String.valueOf(gfbookEntity.get(i)
+							.getBookQty());
+					String weight = String.valueOf(gfbookEntity.get(i)
+							.getWeight());
+					String price = String.valueOf(gfbookEntity.get(i)
+							.getBookPrice());
 
-				writer.append(gfbookEntity.get(i).getBookName());
-				writer.append(',');
-				writer.append(gfbookEntity.get(i).getBookAuther());
-				writer.append(',');
-				writer.append(weight.trim());
-				writer.append(',');
-				writer.append(price.trim());
-				writer.append(',');
-				writer.append(gfbookEntity.get(i).getBookPublication());
-				writer.append(',');
-				writer.append(gfbookEntity.get(i).getBookMedium());
-				writer.append(',');
-				writer.append(qty.trim());
-				writer.append(',');
-/*				writer.append("Temp");
-				writer.append(" ");
-*/				writer.append(System.lineSeparator());
+					writer.append(gfbookEntity.get(i).getStandard());
+					writer.append(',');
+
+					writer.append(gfbookEntity.get(i).getBookName());
+					writer.append(',');
+					writer.append(gfbookEntity.get(i).getBookAuther());
+					writer.append(',');
+					writer.append(weight.trim());
+					writer.append(',');
+					writer.append(price.trim());
+					writer.append(',');
+					writer.append(gfbookEntity.get(i).getBookPublication());
+					writer.append(',');
+					writer.append(gfbookEntity.get(i).getBookMedium());
+					writer.append(',');
+					writer.append(qty.trim());
+					writer.append(',');
+					/*
+					 * writer.append("Temp"); writer.append(" ");
+					 */writer.append(System.lineSeparator());
+				} catch (Exception e) {
+					log.warning(e.getMessage());
+					e.printStackTrace();
+				}
 			}
 
 			writer.close();
 
 		} catch (Exception e) {
-			throw new ServletException("Exception in Excel Sample Servlet", e);
+			log.severe(e.getMessage());
+			e.printStackTrace();
+			throw new ServletException(
+					"Error Occurred while downloading the csv file.", e);
 		} finally {
 			if (out != null)
 				out.close();

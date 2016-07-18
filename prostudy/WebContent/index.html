@@ -30,39 +30,41 @@
 			<img ng-src="{{logoURL}}" class="md-card-image" alt="Compnay Logo" style=" max-width: 100%;  max-height: 100%;" />
 		</div>	
  -->
-			<img ng-click="show_info()" ng-src="{{logoURL}}"
+			<img hide-xs ng-click="show_info()" ng-src="{{logoURL}}"
 				class="md-card-image" height="60px" width="120px" />
 			<!-- <img ng-hide="institute.logBlobKey"
 				ng-click="show_info()" src="img/images/grf_logo_new.gif"
 				height="60px" width="120px"> -->
 		</div>
-		<span ng-show="curUser==null">ProStudy - Where learning meets
-			teaching, self study, tutorials and practice!</span> <span
-			ng-show="curUser!=null">{{institute.name}}</span>
+		<span hide-xs ng-show="curUser==null">ProStudy - Where learning
+			meets teaching, self study, tutorials and practice!</span> <span hide-xs
+			ng-show="curUser!=null">{{institute.name}}</span> <span
+			ng-show="online==false" style="color: red">There is no
+			internet connection. You are offline. </span>
 
 
 		<!-- fill up the space between left and right area -->
 		<span flex></span>
 		<section layout="row">
-<div  layout="row" layout-align="end start">
-			<md-button aria-label="Login" ng-hide="curUser !== null"
-				ng-show="curUser == null" ng-click="loginClick()"> Login
-			<md-tooltip> Login </md-tooltip> </md-button>
+			<div layout="row" layout-align="end start">
+				<md-button aria-label="Login" ng-hide="curUser !== null"
+					ng-show="curUser == null" ng-click="loginClick()">
+				Login <md-tooltip> Login </md-tooltip> </md-button>
 
-			<md-button aria-label="Logout" ng-hide="curUser == null"
-				ng-click="signOut()"> Logout <md-tooltip>
-			{{ curUser.firstName + " " + curUser.lastName + " | " +
-			curUser.email_id}} </md-tooltip> </md-button>
+				<md-button aria-label="Logout" ng-hide="curUser == null"
+					ng-click="signOut()"> Logout <md-tooltip>
+				{{ curUser.firstName + " " + curUser.lastName + " | " +
+				curUser.email_id}} </md-tooltip> </md-button>
 
-			<!-- <md-button class="md-icon-button" aria-label="More"
+				<!-- <md-button class="md-icon-button" aria-label="More"
 				ng-click="toggleRight()"> <md-icon
 				md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
  -->
-			<!-- <md-button aria-label="Open Settings"
+				<!-- <md-button aria-label="Open Settings"
 				ng-click="showListBottomSheet($event)"> <md-tooltip>
 			{{ curUser.getName() + "|" + curUser.getEmail()}} </md-tooltip> <ng-md-icon
 				icon="more_vert"></ng-md-icon> </md-button> -->
-			<img ng-show="true" ng-src="{{loginPersonIconUrl}}" class=circular>
+				<img ng-show="true" ng-src="{{loginPersonIconUrl}}" class=circular>
 			</div>
 		</section>
 	</div>
@@ -196,61 +198,6 @@
 				<p>&nbsp;</p>
 			</div>
 			</md-card> <!--This is a botton section of the app--> <md-divider></md-divider>
-			<md-card>
-
-			<div layout="row" layout-wrap>
-				<div>
-					<a>Tihs is link one </a><a>Tihs is link one </a><a>Tihs is link
-						one </a><a>Tihs is link one </a><a>Tihs is link one </a><a>Tihs is
-						link one </a><a>Tihs is link one </a><a>Tihs is link one </a>
-				</div>
-				<div>
-					<a>Tihs is link two </a><a>Tihs is link two </a><a>Tihs is link
-						two </a><a>Tihs is link two </a><a>Tihs is link two </a><a>Tihs is
-						link two </a><a>Tihs is link two </a><a>Tihs is link two </a>
-				</div>
-				<div>
-					<a>Tihs is link three </a><a>Tihs is link three </a><a>Tihs is
-						link three </a><a>Tihs is link three </a><a>Tihs is link three </a><a>Tihs
-						is link three </a><a>Tihs is link three </a><a>Tihs is link three
-					</a>
-				</div>
-				<div>
-					<a>Tihs is link four </a><a>Tihs is link four </a><a>Tihs is
-						link four </a><a>Tihs is link four </a>
-					<md-button class="md-icon-button md-accent" aria-label="Favorite">
-					<md-icon md-font-icon="icon-home" ng-class="font.theme"
-						class="step"></md-icon> </md-button>
-					<a>Tihs is link four </a><a>Tihs is link four </a><a>Tihs is
-						link four </a><a>Tihs is link four </a>
-					<md-switch ng-model="isActive" aria-label="Finished?">
-					Finished ? </md-switch>
-					<md-switch md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
-					No Ink Effects </md-switch>
-					<md-switch ng-disabled="true" ng-model="isDisabled"
-						aria-label="Disabled"> Disabled </md-switch>
-				</div>
-			</div>
-			<div layout="row" layout-sm="column">
-				<div flex>
-					<md-button class="md-primary"> Click me </md-button>
-					<md-button class="md-accent"> or maybe me </md-button>
-					<md-button class="md-warn"> Careful </md-button>
-					I'm above on mobile, and to the left on larger devices.
-				</div>
-				<div flex>
-					I'm below on mobile, and to the right on larger devices.
-					<md-button class="md-primary"> Click me </md-button>
-					<md-button class="md-primary md-hue-1"> Click me </md-button>
-					<md-button class="md-primary md-hue-2"> Click me </md-button>
-				</div>
-			</div>
-			<div>
-				<md-button ng-click="openBottomSheet()"> Open a Bottom
-				Sheet! </md-button>
-			</div>
-			<!--End---This is a botton section of the app--> </md-card> </md-content>
-
 		</section>
 	</div>
 
@@ -285,12 +232,12 @@
 	<script src="/lib/base/ngStorage.min.js"></script>
 
 
-<!-- Angular Dependencies for ng-file-upload -->
-	
+	<!-- Angular Dependencies for ng-file-upload -->
+
 	<!--Start of File Uplode  -->
-	<script src="/lib/base/ng-file-upload.js"></script>	
-	<script src="/lib/base/ng-file-upload.min.js"></script>	
-	
+	<script src="/lib/base/ng-file-upload.js"></script>
+	<script src="/lib/base/ng-file-upload.min.js"></script>
+
 	<!--End of File Uplode  -->
 
 
@@ -300,8 +247,8 @@
 
 
 	<script src="/lib/base/google-plus-signin.js"></script>
-	
-	
+
+
 	<!--<script src="/lib/base/googleapi.client.js"></script>-->
 	<script src="https://apis.google.com/js/client.js"></script>
 
@@ -514,7 +461,7 @@
 	<!-- End Gandhi Found. Book Stock  -->
 
 	<script src="/app/partnerSchool/js/printBookDetail.ctr.js"></script>
-	
+
 	<!-- <script src="/app/fileUpload/fileup.ctr.js"></script> -->
 
 </body>

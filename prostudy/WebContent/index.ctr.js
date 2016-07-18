@@ -2,8 +2,8 @@ angular
 		.module("prostudyApp")
 		.controller(
 				"indexCtr",
-				function($scope,$rootScope, $window, $log, $q, $timeout, $mdToast,
-						$mdBottomSheet, $state, appEndpointSF) {
+				function($scope, $rootScope, $window, $log, $q, $timeout,
+						$mdToast, $mdBottomSheet, $state, appEndpointSF) {
 
 					$log.debug("Inside indexCtr");
 
@@ -20,6 +20,11 @@ angular
 						$mdToast.show($mdToast.simple().content(
 								'New Record Saved Successfully.').position(
 								"top").hideDelay(3000));
+					};
+
+					$scope.showErrorToast = function(errorMsg) {
+						$mdToast.show($mdToast.simple().content(errorMsg)
+								.position("top").capsule(true).hideDelay(9000));
 					};
 
 					$scope.loading = true;
@@ -39,8 +44,7 @@ angular
 					 * if($scope.curUser.instituteObj.logBlobKey){
 					 * $scope.logBaseURL = '//' + window.location.host +
 					 * '/serve?blob-key=' +
-					 * $scope.curUser.instituteObj.logBlobKey; }
-					 *  }
+					 * $scope.curUser.instituteObj.logBlobKey; } }
 					 */
 
 					$scope.themeList = [ 'default', 'red', 'pink', 'purple',
@@ -453,41 +457,28 @@ angular
 							$log.debug("close LEFT is done");
 						});
 					};
-					
-/*					
-					myFunction();
-					
-					function myFunction() { 
-					     if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) 
-					    {
-					        alert('Opera');
-					    }
-					    else if(navigator.userAgent.indexOf("Chrome") != -1 )
-					    {
-					        alert('Chrome');
-					    }
-					    else if(navigator.userAgent.indexOf("Safari") != -1)
-					    {
-					        alert('Safari');
-					    }
-					    else if(navigator.userAgent.indexOf("Firefox") != -1 ) 
-					    {
-					         alert('Firefox');
-					    }
-					    else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )) //IF IE > 10
-					    {
-					      alert('IE'); 
-					    }  
-					    else 
-					    {
-					       alert('unknown');
-					    }
-					    }
-*/	
-	/*				
-					$rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams) {
-						alert("State Change ");
-				            })
-				            
-*/					
-					});
+
+					/*
+					 * myFunction();
+					 * 
+					 * function myFunction() {
+					 * if((navigator.userAgent.indexOf("Opera") ||
+					 * navigator.userAgent.indexOf('OPR')) != -1 ) {
+					 * alert('Opera'); } else
+					 * if(navigator.userAgent.indexOf("Chrome") != -1 ) {
+					 * alert('Chrome'); } else
+					 * if(navigator.userAgent.indexOf("Safari") != -1) {
+					 * alert('Safari'); } else
+					 * if(navigator.userAgent.indexOf("Firefox") != -1 ) {
+					 * alert('Firefox'); } else
+					 * if((navigator.userAgent.indexOf("MSIE") != -1 ) ||
+					 * (!!document.documentMode == true )) //IF IE > 10 {
+					 * alert('IE'); } else { alert('unknown'); } }
+					 */
+					/*
+					 * $rootScope.$on('$stateChangeStart', function (e, toState,
+					 * toParams, fromState, fromParams) { alert("State Change
+					 * "); })
+					 * 
+					 */
+				});

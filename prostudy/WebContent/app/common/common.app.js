@@ -23,6 +23,20 @@ app.factory('ajsCache', function($cacheFactory) {
 	return $cacheFactory('browserCache');
 });
 
+app.run(function($window, $rootScope) {
+      $rootScope.online = navigator.onLine;
+      $window.addEventListener("offline", function () {
+        $rootScope.$apply(function() {
+          $rootScope.online = false;
+        });
+      }, false);
+      $window.addEventListener("online", function () {
+        $rootScope.$apply(function() {
+          $rootScope.online = true;
+        });
+      }, false);
+});
+
 /*
  * app.config(function($mdThemingProvider) {
  * $mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette(
