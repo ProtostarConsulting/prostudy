@@ -99,20 +99,15 @@
 				ng-show="partnerSchoolForm.category.$error.required"
 				class="mandatory">*</span></label> <md-select name="category" id="category"
 				ng-model="partnerSchool.category" placeholder="-Select Category-"
-				ng-required="true"> <md-option>School &
-			Junior College</md-option> <md-option>Jr. & Sr. College</md-option> <md-option>D.Ed
-			College</md-option> <md-option>Prison</md-option> <md-option>B.Ed
-			College</md-option> <md-option>MBBS</md-option> <md-option>Nurses
-			Course</md-option> <md-option>All</md-option> <md-option>Engineearing</md-option>
+				ng-required="true"> <md-option ng-value="category"
+				ng-repeat="category in partnerSchoolLevels">{{category}}</md-option>
 			</md-select>
 			<div ng-messages="partnerSchoolForm.category.$error"
 				ng-if="partnerSchoolForm.category.$submitted || partnerSchoolForm.category.$touched">
 				<div ng-message="required">Please Select Category.</div>
 			</div>
-
-
 			</md-input-container>
-			<!-- 	<span flex="10"></span> -->
+		
 		</div>
 
 		<div layout="row" layout-xs="column" flex>

@@ -27,7 +27,6 @@ angular.module("prostudyApp").controller(
 
 				gfStudentService.addGFStudent($scope.tempStudent).then(
 						function() {
-
 							$scope.gfStudentForm.$setPristine();
 							$scope.gfStudentForm.$setValidity();
 							$scope.gfStudentForm.$setUntouched();
