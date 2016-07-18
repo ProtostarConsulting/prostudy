@@ -2,15 +2,16 @@ angular
 		.module("prostudyApp")
 		.controller(
 				"directoryNewUserAccountCtr",
-				function($scope, $window, $mdToast, $timeout, $mdSidenav,$state,$stateParams,
-						$mdUtil, $log, $q, tableTestDataFactory, appEndpointSF) {
+				function($scope, $window, $mdToast, $timeout, $mdSidenav,$state,$stateParams,Upload,
+						$mdUtil, $log, $mdDialog, $mdMedia, $q, tableTestDataFactory, appEndpointSF) {
 					
 					
 					$scope.checkConfirmPassword = appEndpointSF
 					.getUtilityService().checkConfirmPassword;
 					
+					$scope.isUploadFlag=false;
 					$scope.currentUserDomain = $stateParams.currentUserDomain;
-					
+					$scope.user=true;
 					
 				$scope.tempUser={
 					'id':"",
@@ -32,12 +33,15 @@ angular
 							'New User Account Added Successfully!').position("top")
 							.hideDelay(3000));
 				};
-				$scope.createNewUserAccount = function() {	
+				$scope.createNewUserAccount = function(user) {	
 					
-					
+					$log.debug(angular.toJson(user));
 					$scope.creating = true;	
-					$scope.tempUser.primaryEmail=$scope.tempUser.primaryEmail+"@"+$scope.currentUserDomain;					
-					var request = gapi.client.directory.users.insert($scope.tempUser);				
+					if($scope.isUploadFlag==false)
+					{
+						//user.primaryEmail=user.primaryEmail+"@"+$scope.currentUserDomain;
+					}					
+					var request = gapi.client.directory.users.insert(user);				
 					request.execute(function(resp) {	
 						$scope.creating = false;	
 						
@@ -47,5 +51,103 @@ angular
 					});
 				
 				}
+				
+				
+				$scope.UplodeExcel = function(ev) {
+					var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
+							&& $scope.customFullscreen;
+					$mdDialog
+							.show(
+									{
+										controller : DialogController,
+										templateUrl : '/app/gfe/directory_uploaduserlist.html',
+										parent : angular.element(document.body),
+										targetEvent : ev,
+										clickOutsideToClose : true,
+										fullscreen : useFullScreen,
+										locals : {
+											createUserRef: $scope.createNewUserAccount,
+											isUploadFlag:$scope.isUploadFlag
+										}										
+										
+									})
+							.then(
+									function(answer) {
+										$scope.status = 'You said the information was "'
+												+ answer + '".';
+									},
+									function() {
+										$scope.status = 'You cancelled the dialog.';
+									});
+
+				};
+
+				function DialogController($scope, $mdDialog,createUserRef,isUploadFlag) {
+
+					$scope.csvFile;
+					$scope.uploadProgressMsg = null;
+					
+					$scope.uploadBooksCSV = function() {
+						var csvFile = $scope.csvFile;
+						Upload
+								.upload(
+										{
+											url : 'UploadDirectoryUserListServlet',
+											data : {
+												file : csvFile,
+											}
+										})
+								.then(
+										function(resp) {
+											$log.debug('Successfully uploaded '
+															+ resp.config.data.file.name
+															+ '.'
+															+ angular
+																	.toJson(resp.data));
+											$scope.uploadProgressMsg = 'Successfully uploaded '
+													+ resp.config.data.file.name
+													+ '.';
+											$mdToast.show($mdToast.simple()
+															.content('UserList Uploaded Sucessfully.')
+															.position("top")
+															.hideDelay(3000));
+											$scope.userList=resp.data;
+						                    console.log('Success '+angular.toJson($scope.userList));
+						                  			                    
+						                    
+						                    for(var i=0; i< $scope.userList.length;i++)
+						                    	{
+						                    	   console.log('Success '+angular.toJson($scope.userList[i]));
+						                    	  isUploadFlag=true;
+						                    	   createUserRef($scope.userList[i]);
+						                    	}
+						                    $mdDialog.hide();			                    
+											$scope.csvFile = null;				
+											
+										},
+										function(resp) {
+											$log.debug('Error Ouccured, Error status: '
+															+ resp.status);
+											$scope.uploadProgressMsg = 'Error: '
+													+ resp.status;
+										},
+										function(evt) {
+											var progressPercentage = parseInt(100.0
+													* evt.loaded
+													/ evt.total);
+											$log.debug('Upload progress: '
+															+ progressPercentage
+															+ '% '
+															+ evt.config.data.file.name);
+											$scope.uploadProgressMsg = 'Upload progress: '
+													+ progressPercentage
+													+ '% '
+													+ evt.config.data.file.name;
+											+'...'
+										});
+					};
+
+				}
+				
 			
 				});
