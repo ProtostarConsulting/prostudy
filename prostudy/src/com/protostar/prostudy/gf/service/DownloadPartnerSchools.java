@@ -74,9 +74,9 @@ public class DownloadPartnerSchools extends HttpServlet {
 			writer.append(',');
 			writer.append("formNumber");
 			writer.append(',');
-/*			writer.append("category");
+			writer.append("category");
 			writer.append(',');
-*//*			writer.append("primaryContact");
+/*			writer.append("primaryContact");
 			writer.append(',');
 */			writer.append("line1");
 			writer.append(',');
@@ -94,7 +94,7 @@ public class DownloadPartnerSchools extends HttpServlet {
 			writer.append(',');
 			writer.append("pin");
 			writer.append(',');
-			writer.append("totalStudent");
+/*			writer.append("totalStudent");
 			writer.append(',');
 			writer.append("male");
 			writer.append(',');
@@ -114,7 +114,7 @@ public class DownloadPartnerSchools extends HttpServlet {
 			writer.append(',');
 			writer.append("modeOfExam");
 			writer.append(',');
-			writer.append("headMasterName");
+*/			writer.append("headMasterName");
 			writer.append(',');
 			writer.append("headMasterMobile");
 			writer.append(',');
@@ -132,7 +132,7 @@ public class DownloadPartnerSchools extends HttpServlet {
 			for (int i = 0; i < patse.size(); i++) {
 				int l=i+1;
 				int k=15;	
-				String cat = patse.get(i).getCategory().trim();
+				
 				
 				writer.append(patse.get(i).getSchoolName());
 				writer.append(',');
@@ -140,9 +140,9 @@ public class DownloadPartnerSchools extends HttpServlet {
 				writer.append(',');
 				writer.append(patse.get(i).getFormNumber());
 				writer.append(',');
-/*				writer.append(cat);
+				writer.append(patse.get(i).getCategory());
 				writer.append(',');
-*//*				writer.append(patse.get(i).getPrimaryContact());
+/*				writer.append(patse.get(i).getPrimaryContact());
  				writer.append(',');
 */		
 				writer.append(patse.get(i).getAddress().getLine1());
@@ -155,12 +155,25 @@ public class DownloadPartnerSchools extends HttpServlet {
 				writer.append(',');
 				writer.append(patse.get(i).getAddress().getDist());
 				writer.append(',');
-				
 				writer.append(patse.get(i).getAddress().getState());
 				writer.append(',');
 				writer.append(patse.get(i).getAddress().getCountry());
 				writer.append(',');
 				writer.append(patse.get(i).getAddress().getPin());
+				writer.append(',');
+				
+				writer.append(patse.get(i).getContactDetail().getHeadMasterName());
+				writer.append(',');
+				writer.append(patse.get(i).getContactDetail().getHeadMasterMobile());
+				writer.append(',');
+				writer.append(patse.get(i).getContactDetail().getHeadMasterEmailId());
+				writer.append(',');
+				
+				writer.append(patse.get(i).getContactDetail().getCoordinatorDetail().get(0).getCoordinatorName());
+				writer.append(',');
+				writer.append(patse.get(i).getContactDetail().getCoordinatorDetail().get(0).getCoordinatorMobileNum());
+				writer.append(',');
+				writer.append(patse.get(i).getContactDetail().getCoordinatorDetail().get(0).getCoordinatorEmailId());
 				writer.append(',');
 				writer.append(System.lineSeparator());
 								

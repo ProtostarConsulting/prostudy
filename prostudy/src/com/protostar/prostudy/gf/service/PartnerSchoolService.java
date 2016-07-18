@@ -28,10 +28,13 @@ public class PartnerSchoolService {
 
 		System.out.println("Inside addPartnerSchool");
 		ofy().save().entity(partnerSchoolEntity).now();
-
-		if (partnerSchoolEntity.getExamDetailList() != null & partnerSchoolEntity.getExamDetailList().get(0).getPaymentDetail() != null) {
-			new EmailHandler()
-					.sendNewSchoolRegistrationEmail(partnerSchoolEntity);
+	
+		if (partnerSchoolEntity.getExamDetailList().size() > 0) {
+			if (partnerSchoolEntity.getExamDetailList() != null
+					& partnerSchoolEntity.getExamDetailList().get(0)
+							.getPaymentDetail() != null) {
+				new EmailHandler().sendNewSchoolRegistrationEmail(partnerSchoolEntity);
+			}
 		}
 		return partnerSchoolEntity;
 	}
