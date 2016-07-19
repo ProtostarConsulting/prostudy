@@ -159,7 +159,6 @@
     <servlet-name>DownloadGFBooks</servlet-name>
     <url-pattern>/DownloadGFBooks</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <servlet-name>file_upload</servlet-name>
     <servlet-class>com.protostar.prostudy.until.NGFileUpload</servlet-class>
@@ -178,7 +177,7 @@
     <servlet-name>UploadCourseListServlet</servlet-name>
     <url-pattern>/UploadCourseListServlet</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <description></description>
     <display-name>UploadDirectoryUserListServlet</display-name>
     <servlet-name>UploadDirectoryUserListServlet</servlet-name>
@@ -188,5 +187,14 @@
     <servlet-name>UploadDirectoryUserListServlet</servlet-name>
     <url-pattern>/UploadDirectoryUserListServlet</url-pattern>
   </servlet-mapping>
-
+  <servlet>
+    <description></description>
+    <display-name>UploadQuestionListServlet</display-name>
+    <servlet-name>UploadQuestionListServlet</servlet-name>
+    <servlet-class>com.protostar.prostudy.service.UploadQuestionListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadQuestionListServlet</servlet-name>
+    <url-pattern>/UploadQuestionListServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
