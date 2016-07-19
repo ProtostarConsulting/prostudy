@@ -7,6 +7,22 @@
 <form name="questionForm" ng-model="questionForm"
 	ng-submit="questionForm.$valid " novalidate>
 
+	<div>
+		<md-radio-group ng-model="isSingleQ"> <md-radio-button
+			ng-model="newclass" ng-value=true aria-label="Through Form">
+		Through Form </md-radio-button> <md-radio-button ng-model="newclasslist" ng-value=false
+			aria-label="Upload Course List"> Upload Question List
+		</md-radio-button> </md-radio-group>
+
+	</div>
+	<div ng-show=isSingleQ===false>
+		<h4>select csv file</h4>
+		<md-button class="md-raised md-primary" id="uplodeExcel"
+			ng-click="UplodeExcel($event)">Upload QuestionList<md-tooltip>
+		Upload QuestionList</md-tooltip> </md-button>
+	</div>
+
+<div  ng-show="isSingleQ">
 	<div layout="column" layout-xs="column">
 
 		<div layout="row" layout-xs="column" ng-show="!flag">
@@ -75,7 +91,7 @@
 				<div ng-message="required">Please Enter Division.</div>
 			</div>
 			</md-input-container>
-			
+
 			<md-input-container flex> <label>Subject<span
 				style="color: red" ng-show="questionForm.subject.$error.required"
 				class="mandatory">*</span>
@@ -87,7 +103,7 @@
 			</div>
 			</md-input-container>
 
-	
+
 		</div>
 
 		<div layout="row" layout-xs="column">
@@ -102,12 +118,11 @@
 				<div ng-message="required">Please Select Board.</div>
 			</div>
 			</md-input-container>
-			
+
 			<md-input-container flex ng-show="flag"> <label>Board<span
 				style="color: red" ng-show="questionForm.board.$error.required"
 				class="mandatory">*</span>
-			</label> <input name="board" ng-model="tempQuestion.board"
-				ng-required="flag">
+			</label> <input name="board" ng-model="tempQuestion.board" ng-required="flag">
 			<div ng-messages="questionForm.board.$error"
 				ng-if="questionForm.board.$submitted || questionForm.board.$touched">
 				<div ng-message="required">Please Enter board.</div>
@@ -233,11 +248,12 @@
 	<p>&nbsp;</p>
 	<div layout="row" layout-align="center center">
 
-		<md-button class="md-raised md-primary" ng-click="addQuestion()" ng-disabled="questionForm.$invalid">Submit</md-button>
+		<md-button class="md-raised md-primary" ng-click="addQuestion()"
+			ng-disabled="questionForm.$invalid">Submit</md-button>
 
 		<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
 
 	</div>
-
+</div>
 </form>
 
