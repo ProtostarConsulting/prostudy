@@ -10,7 +10,7 @@ import com.googlecode.objectify.annotation.Index;
 
 @Entity
 public class GFCourierEntity {
-
+	@Index
 	@Id
 	private Long id;
 	private String courierType;
