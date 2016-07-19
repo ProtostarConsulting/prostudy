@@ -144,7 +144,7 @@ angular
 						$scope.csvFile;
 						$scope.uploadProgressMsg = null;
 						
-						$scope.uploadBooksCSV = function() {
+						$scope.uploadCourseListCSV = function() {
 							var csvFile = $scope.csvFile;
 							Upload
 									.upload(
