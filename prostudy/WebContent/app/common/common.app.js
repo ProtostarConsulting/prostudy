@@ -1390,4 +1390,9 @@ app.filter('formatDate', function($filter) {
 	return function(inputDate) {
 		return $filter('date')(inputDate, 'dd-MM-yyyy');
 	};
+});	
+app.filter('formatFullDate', function($filter) {
+	return function(inputDate) {
+		return $filter('date')(inputDate, 'dd-MM-yyyy HH:MM a');
+	};
 });

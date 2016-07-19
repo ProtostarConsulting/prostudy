@@ -4,16 +4,10 @@ angular
 				"gfCourierDirectAddCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, $q, appEndpointSF, $state, $stateParams,
-						$mdDialog, objectFactory, logisticsList) {
-
-					$scope.courierTypelist = [ "Book", "Certificate",
-							"Error Certificate", "Error books",
-							"Prize Certificate" ];
-					$scope.logisticsList = [ "By Post", "By Hand", "ST Postal",
-							"Tej Courier" ];
+						$mdDialog, objectFactory, logisticsList,courierTypelist) {
 
 					$scope.logisticsList = logisticsList;
-
+					$scope.courierTypelist =courierTypelist;
 					$scope.partnerSchool = {
 						courierType : '',
 						logistics : '',
@@ -103,10 +97,11 @@ angular
 								.then(
 										function(pSchool) {
 											$scope.pSchool = pSchool;
-
+											$scope.partnerSchoolNew.totalWeight = 0 ;
 											if ($scope.partnerSchool.examDetailList != undefined) {
 
 												$scope.partnerSchoolNew.totalFees = 0;
+												
 												for (var i = 0; i < $scope.partnerSchool.examDetailList.length; i++) {
 
 													if ($scope.partnerSchool.examDetailList[i].yearOfExam == $scope.yearOfExam) {
@@ -114,13 +109,14 @@ angular
 													}
 												}
 
-												for (var i = 0; i < $scope.partnerSchool.examDetailList.length; i++) {
+												for (var i = 0; i < $scope.tempPartnerSchool.examDetailList.bookSummary.bookDetail.length; i++) {
 													for (var j = 0; j < $scope.bookStocks.length; j++) {
-
+														
+														
 														if ($scope.tempPartnerSchool.examDetailList.bookSummary.bookDetail[i].bookName == $scope.bookStocks[j].id) {
 
-															$scope.partnerSchoolNew.totalWeight = +$scope.bookStocks[j].weight
-																	* $scope.tempPartnerSchool.examDetailList.bookSummary.bookDetail[i].totalStud;
+															$scope.partnerSchoolNew.totalWeight = ($scope.partnerSchoolNew.totalWeight) + ($scope.bookStocks[j].weight
+																	* $scope.tempPartnerSchool.examDetailList.bookSummary.bookDetail[i].totalStud);
 
 															$scope.partnerSchoolNew.totalFees = $scope.partnerSchoolNew.totalFees
 																	+ $scope.tempPartnerSchool.examDetailList.bookSummary.bookDetail[i].totalFees;
