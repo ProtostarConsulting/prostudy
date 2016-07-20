@@ -9,7 +9,7 @@ angular
 					$scope.checkConfirmPassword = appEndpointSF
 					.getUtilityService().checkConfirmPassword;
 					
-					$scope.isUploadFlag=false;
+					$scope.isUploadFlag={'flag':false};
 					$scope.currentUserDomain = $stateParams.currentUserDomain;
 					$scope.user=true;
 					
@@ -37,9 +37,9 @@ angular
 					
 					$log.debug(angular.toJson(user));
 					$scope.creating = true;	
-					if($scope.isUploadFlag==false)
+					if($scope.isUploadFlag.flag==false)
 					{
-						//user.primaryEmail=user.primaryEmail+"@"+$scope.currentUserDomain;
+						user.primaryEmail=user.primaryEmail+"@"+$scope.currentUserDomain;
 					}					
 					var request = gapi.client.directory.users.insert(user);				
 					request.execute(function(resp) {	
@@ -112,13 +112,11 @@ angular
 															.position("top")
 															.hideDelay(3000));
 											$scope.userList=resp.data;
-						                    console.log('Success '+angular.toJson($scope.userList));
-						                  			                    
+						                   						                  			                    
 						                    
 						                    for(var i=0; i< $scope.userList.length;i++)
-						                    	{
-						                    	   console.log('Success '+angular.toJson($scope.userList[i]));
-						                    	  isUploadFlag=true;
+						                    	{						                    	  					                    	 
+						                    	  isUploadFlag.flag=true;
 						                    	   createUserRef($scope.userList[i]);
 						                    	}
 						                    $mdDialog.hide();			                    
