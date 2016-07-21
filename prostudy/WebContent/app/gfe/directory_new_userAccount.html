@@ -8,24 +8,7 @@
 
 
 	<form name="newUserAccountForm" ng-model="newUserAccountForm">
-	<div>
-			<md-radio-group ng-model="user"> <md-radio-button
-				ng-model="newuser" ng-value=true aria-label="Through Form">
-			Through Form </md-radio-button> <md-radio-button ng-model="newuserlist" ng-value=false
-				aria-label="Upload User List"> Upload User
-			List </md-radio-button> </md-radio-group>
-
-		</div>
-		<div ng-show=user===false>
-			<h4>select csv file</h4>
-			<md-button class="md-raised md-primary" id="uplodeExcel"
-				ng-click="UplodeExcel($event)">Upload UserList<md-tooltip>
-			Upload UserList</md-tooltip> </md-button>		
-		</div>
-
-
-		<div ng-show="user">
-
+	
 		<div layout="column" layout-align="" layout-xs="column">
 
 			<div layout="row" layout-align="centre centre" layout-xs="column">
@@ -117,7 +100,7 @@
 			Cancel </md-button>
 
 		</div>
-</div>
+
 	</form>
 </div>
 

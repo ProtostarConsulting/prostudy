@@ -4,12 +4,11 @@ angular
 				"classroomNewCourseCtr",
 				function(	
 						$scope, $window, $mdToast, $timeout, $mdSidenav,
-						$mdUtil, $log, $q, $mdDialog, $mdMedia,
-						tableTestDataFactory, $state, Upload, appEndpointSF) {
+						$mdUtil, $log, $q,tableTestDataFactory, $state, appEndpointSF) {
 
 					
 					$scope.courseState=["COURSE_STATE_UNSPECIFIED","ACTIVE","ARCHIVED","PROVISIONED","DECLINED"];
-					$scope.course=true;
+				
 					
 					$scope.tempCourse = {
 						'name' : "",
@@ -111,100 +110,6 @@ angular
 
 						});
 					}*/
-					$scope.UplodeExcel = function(ev) {
-						var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))
-								&& $scope.customFullscreen;
-						$mdDialog
-								.show(
-										{
-											controller : DialogController,
-											templateUrl : '/app/gfe/classroom_uploadcourselist.html',
-											parent : angular.element(document.body),
-											targetEvent : ev,
-											clickOutsideToClose : true,
-											fullscreen : useFullScreen,
-											locals : {
-												createCourseRef: $scope.createCourse
-											}
-											
-										})
-								.then(
-										function(answer) {
-											$scope.status = 'You said the information was "'
-													+ answer + '".';
-										},
-										function() {
-											$scope.status = 'You cancelled the dialog.';
-										});
-
-					};
-
-					function DialogController($scope, $mdDialog, createCourseRef) {
-
-						$scope.csvFile;
-						$scope.uploadProgressMsg = null;
-						
-						$scope.uploadCourseListCSV = function() {
-							var csvFile = $scope.csvFile;
-							Upload
-									.upload(
-											{
-												url : 'UploadCourseListServlet',
-												data : {
-													file : csvFile,
-												}
-											})
-									.then(
-											function(resp) {
-												$log.debug('Successfully uploaded '
-																+ resp.config.data.file.name
-																+ '.'
-																+ angular
-																		.toJson(resp.data));
-												$scope.uploadProgressMsg = 'Successfully uploaded '
-														+ resp.config.data.file.name
-														+ '.';
-												$mdToast.show($mdToast.simple()
-																.content('CourseLit Uploaded Sucessfully.')
-																.position("top")
-																.hideDelay(3000));
-												$scope.courseList=resp.data;
-							                    console.log('Success '+angular.toJson($scope.courseList));
-							                  			                    
-							                    
-							                    for(var i=0; i< $scope.courseList.length;i++)
-							                    	{
-							                    	   console.log('Success '+angular.toJson($scope.courseList[i]));
-							                    	   createCourseRef($scope.courseList[i]);
-							                    	}
-							                    $mdDialog.hide();			                    
-												$scope.csvFile = null;				
-												
-											},
-											function(resp) {
-												$log.debug('Error Ouccured, Error status: '
-																+ resp.status);
-												$scope.uploadProgressMsg = 'Error: '
-														+ resp.status;
-											},
-											function(evt) {
-												var progressPercentage = parseInt(100.0
-														* evt.loaded
-														/ evt.total);
-												$log.debug('Upload progress: '
-																+ progressPercentage
-																+ '% '
-																+ evt.config.data.file.name);
-												$scope.uploadProgressMsg = 'Upload progress: '
-														+ progressPercentage
-														+ '% '
-														+ evt.config.data.file.name;
-												+'...'
-											});
-						};
-
-					}
-					
 					
 					$scope.cancelButton = function() {
 						$state.go("gfe.classroomCourseList", {});

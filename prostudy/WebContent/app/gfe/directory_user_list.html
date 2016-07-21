@@ -2,55 +2,68 @@
 <div ng-show="deleting ">Please wait, user is deleting...</div>
 <div ng-hide="loading">
 
-<h3 class="md-headline">Directory User List</h3>
-<p>&nbsp;</p>
+	<h3 class="md-headline">Directory User List</h3>
+	<p>&nbsp;</p>
 
-<div>
-	<md-input-container flex> <label>Search User By Email</label> <input ng-model="searchEmail"> </md-input-container>
-</div>
+	<section layout="row" layout-align="end end" flex>
+		<md-button ng-show="directoryUserList.length > 0"
+			class="md-raised md-primary" id="downloadExcel"
+			ng-click="downloadUserList()">Download UserList <md-tooltip>
+		Download UserList</md-tooltip> </md-button>
+
+		<md-button class="md-raised md-primary" id="uplodeExcel"
+			ng-click="UplodeExcel($event)">Upload UserList<md-tooltip>
+		Upload UserList</md-tooltip> </md-button>
+	</section>
+	<div>
+		<md-input-container flex> <label>Search
+			User By Email</label> <input ng-model="searchEmail"> </md-input-container>
+	</div>
 	<md-data-table-toolbar class="alternate" ng-show="selected.length">
-		<div>
-			{{selected.length}} {{selected.length > 1 ? 'Users' : 'User'}} selected
-		</div>
+	<div>{{selected.length}} {{selected.length > 1 ? 'Users' :
+		'User'}} selected</div>
 	</md-data-table-toolbar>
 	<div>
 		<md-data-table-container>
-			<table md-data-table class="md-primary" md-row-select="selected" md-progress="deferred">
-				<thead md-order="query.order" md-trigger="onorderchange">
-					<tr>
-						<th order-by="name.fullName" name="Users Full Name"></th>
-						<th order-by="primaryEmail" name="Primary Email"></th>
-						<th order-by="isAdmin" name="isAdmin"></th>
+		<table md-data-table class="md-primary" md-row-select="selected"
+			md-progress="deferred">
+			<thead md-order="query.order" md-trigger="onorderchange">
+				<tr>
+					<th order-by="name.fullName" name="Users Full Name"></th>
+					<th order-by="primaryEmail" name="Primary Email"></th>
+					<th order-by="isAdmin" name="isAdmin"></th>
 
-					</tr>
-				</thead>
-				<tbody>
-					<tr md-auto-select  ng-repeat="user in directoryUserList | orderBy: query.order | filter: { primaryEmail : searchEmail} | limitTo: query.limit: (query.page - 1) * query.limit">
+				</tr>
+			</thead>
+			<tbody>
+				<tr md-auto-select
+					ng-repeat="user in directoryUserList | orderBy: query.order | filter: { primaryEmail : searchEmail} | limitTo: query.limit: (query.page - 1) * query.limit">
 
-						<td>{{user.name.fullName}}</td>
-						<td>{{user.primaryEmail}}</td>
-						<td>{{user.isAdmin}}</td>	
-					</tr>
-				</tbody>
-			</table>
+					<td>{{user.name.fullName}}</td>
+					<td>{{user.primaryEmail}}</td>
+					<td>{{user.isAdmin}}</td>
+				</tr>
+			</tbody>
+		</table>
 		</md-data-table-container>
-		<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total={{directoryUserList.length}} md-trigger="onpagechange"></md-data-table-pagination>
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+			md-total={{directoryUserList.length}} md-trigger="onpagechange"></md-data-table-pagination>
 	</div>
 	<div ng-show="selected.length == 1">
-		
+
 		<div layout="row" layout-align="centre centre" layout-xs="column">
-		
-		<md-button  ui-sref="gfe.directoryViewUser({selectedUserPrimaryEmail: selected[0].primaryEmail})" class="md-raised md-primary" >
-			View User
-		</md-button>
-		<md-button  ui-sref="gfe.directoryEditUser({selectedUser: selected[0]})" class="md-raised md-primary" >
-			Edit User
-		</md-button>		
-		<md-button  class="md-raised md-warn" ng-click="deleteUser(selected[0].primaryEmail)">
-			Delete User
-		</md-button>
-		</div>				
-</div>
-	
+
+			<md-button
+				ui-sref="gfe.directoryViewUser({selectedUserPrimaryEmail: selected[0].primaryEmail})"
+				class="md-raised md-primary"> View User </md-button>
+			<md-button
+				ui-sref="gfe.directoryEditUser({selectedUser: selected[0]})"
+				class="md-raised md-primary"> Edit User </md-button>
+			<md-button class="md-raised md-warn"
+				ng-click="deleteUser(selected[0].primaryEmail)"> Delete
+			User </md-button>
+		</div>
+	</div>
+
 </div>
 
