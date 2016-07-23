@@ -1,8 +1,8 @@
-var app = angular.module("prostudyApp", [ 'ngMaterial', 'ngMdIcons',
-		'ngMessages', "xeditable", "ui.bootstrap", "ui.router",
-		'ngMaterialDatePicker', 'md.data.table', 'ngResource', 'textAngular',
-		'ngRoute', 'ngStorage', "ngAria", 'directive.g+signin','ngFileUpload' ]);
-
+var app = angular.module("prostudyApp",
+		[ 'ngMaterial', 'ngMdIcons', 'ngMessages', "xeditable", "ui.bootstrap",
+				"ui.router", 'ngMaterialDatePicker', 'md.data.table',
+				'ngResource', 'textAngular', 'ngRoute', 'ngStorage', "ngAria",
+				'directive.g+signin', 'ngFileUpload' ]);
 
 app.constant('boardList', [ "State Board", "CBSE", "ICSE" ]);
 app.constant('standardList', [ "5 th", "6 th", "7 th", "8 th", "9 th", "10 th",
@@ -14,9 +14,9 @@ app.constant('logisticsList', [ "By Post", "By Hand", "ST Postal",
 app.constant('courierTypelist', [ "Book", "Certificate", "Error Certificate",
 		"Error books", "Prize Certificate", "Other" ]);
 app.constant('installmentList', [ 1, 2, 3 ]);
-app.constant('partnerSchoolLevels', [ "School & Junior College", "Jr.& Sr. College",
-		"D.Ed College", "Prison", "B.Ed College","MBBS","Nurses Course","Engineearing","All"]);
-
+app.constant('partnerSchoolLevels', [ "School & Junior College",
+		"Jr.& Sr. College", "D.Ed College", "Prison", "B.Ed College", "MBBS",
+		"Nurses Course", "Engineearing", "All" ]);
 
 // Set up the cache ‘ajsCache’
 app.factory('ajsCache', function($cacheFactory) {
@@ -24,17 +24,17 @@ app.factory('ajsCache', function($cacheFactory) {
 });
 
 app.run(function($window, $rootScope) {
-      $rootScope.online = navigator.onLine;
-      $window.addEventListener("offline", function () {
-        $rootScope.$apply(function() {
-          $rootScope.online = false;
-        });
-      }, false);
-      $window.addEventListener("online", function () {
-        $rootScope.$apply(function() {
-          $rootScope.online = true;
-        });
-      }, false);
+	$rootScope.online = navigator.onLine;
+	$window.addEventListener("offline", function() {
+		$rootScope.$apply(function() {
+			$rootScope.online = false;
+		});
+	}, false);
+	$window.addEventListener("online", function() {
+		$rootScope.$apply(function() {
+			$rootScope.online = true;
+		});
+	}, false);
 });
 
 /*
@@ -92,6 +92,36 @@ app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('blue-grey').primaryPalette('blue-grey')
 			.accentPalette('grey').warnPalette('red');
 
+	// Custom Themes
+	$mdThemingProvider.definePalette('grfPaletteName', {
+		'50': '#9fd6db',
+        '100': '#8cced4',
+        '200': '#79c6cd',
+        '300': '#67bec6',
+        '400': '#54b6bf',
+        '500': '#44acb6',
+        '600': '#3d9aa3',
+        '700': '#368991',
+        '800': '#2f777e',
+        '900': '#28666c',
+        'A100': '#b1dee2',
+        'A200': '#c4e6e9',
+        'A400': '#d6eef0',
+        'A700': '#215459',
+		'contrastDefaultColor' : 'light', // whether, by default, text
+		// (contrast)
+		// on this palette should be
+		// dark or light
+		'contrastDarkColors' : [ '50', '100', // hues which contrast should be
+		// 'dark' by default
+		'200', '300', '400', 'A100' ],
+		'contrastLightColors' : undefined
+	// could also specify this if
+	// default was 'dark'
+	});
+
+	$mdThemingProvider.theme('grf-theme').primaryPalette('grfPaletteName')
+			.accentPalette('cyan').warnPalette('red');
 	// This is the absolutely vital part, without this, changes will not cascade
 	// down through the DOM.
 	$mdThemingProvider.alwaysWatchTheme(true);
@@ -1260,37 +1290,46 @@ app
 						templateUrl : '/app/proadmin/manage_auth_master.html',
 						controller : 'proAdminManageAuth'
 					})
-					.state('proadmin.manageinstituteauth',
+					.state(
+							'proadmin.manageinstituteauth',
 							{
 								url : "/manageinstituteauth/:selectedInstituteID",
 								templateUrl : '/app/proadmin/manage_institute_auth.html',
 								controller : 'proAdminManageInstituteAuth'
 							})
-				
-							
-							
-					.state('gandhifoundation',{
+
+					.state(
+							'gandhifoundation',
+							{
 								url : "/gandhifoundation",
 								templateUrl : '/app/gandhiFoundation/gandhiFoundation_module.html',
 								controller : 'gfModuleCtr'
 							})
 
-					.state('studentModule',{
+					.state(
+							'studentModule',
+							{
 								url : "/studentModule",
 								templateUrl : '/app/gandhiFoundation/gfStudent_module.html',
 								controller : 'gfStudentModuleCtr'
 							})
-					.state('studentModule.add',{
+					.state(
+							'studentModule.add',
+							{
 								url : "/studentModule.add/:selectedGFStudID",
 								templateUrl : '/app/gandhiFoundation/gfStudent_add.html',
 								controller : 'gfStudentAddCtr'
 							})
-					.state('studentModule.list',{
+					.state(
+							'studentModule.list',
+							{
 								url : "/studentModule.list",
 								templateUrl : '/app/gandhiFoundation/gfStudent_list.html',
 								controller : 'gfStudentListCtr'
 							})
-					.state('studentModule.view',{
+					.state(
+							'studentModule.view',
+							{
 								url : "/studentModule.view/:selectedGFStudID",
 								templateUrl : '/app/gandhiFoundation/gfStudent_view.html',
 								controller : 'gfStudentviewCtr'
@@ -1324,7 +1363,9 @@ app
 						controller : 'gfCourierSearchCtr'
 					})
 
-					.state('courierModule.addFromPS',{
+					.state(
+							'courierModule.addFromPS',
+							{
 								url : "/addFromPS",
 								templateUrl : '/app/gfcourier/gfCourier_directAddFromPS.html',
 								controller : 'gfCourierDirectAddCtr',
@@ -1332,13 +1373,15 @@ app
 									partnerSchool : null,
 									yearOfExam : null
 								}
-					})
+							})
 
-					.state('bookModule',{
+					.state(
+							'bookModule',
+							{
 								url : "/bookModule",
 								templateUrl : '/app/gfbookstock/gfBookStock_module.html',
 								controller : 'gfBookStockModuleCtr'
-					})
+							})
 					.state('bookModule.add', {
 						url : "/bookModule.add/:selectedGFBookID",
 						templateUrl : '/app/gfbookstock/gfBook_add.html',
@@ -1390,7 +1433,7 @@ app.filter('formatDate', function($filter) {
 	return function(inputDate) {
 		return $filter('date')(inputDate, 'dd-MM-yyyy');
 	};
-});	
+});
 app.filter('formatFullDate', function($filter) {
 	return function(inputDate) {
 		return $filter('date')(inputDate, 'dd-MM-yyyy HH:MM a');

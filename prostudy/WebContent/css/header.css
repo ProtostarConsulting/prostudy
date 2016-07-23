@@ -1,5 +1,4 @@
-#logo{
-	
+#logo {
 	background: url(img/images/protostar_logo_pix_313_132.jpg) no-repeat 0 0
 }
 
@@ -9,5 +8,12 @@
 	border-radius: 150px;
 	-webkit-border-radius: 150px;
 	-moz-border-radius: 150px;
+}
 
-	}
+.menu-heading {
+	line-height: 32px;
+	margin: 0;
+	padding: 8px 16px 0;
+	text-align: left;
+	width: 100%;
+}
