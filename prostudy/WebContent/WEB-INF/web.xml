@@ -197,4 +197,15 @@
     <servlet-name>UploadQuestionListServlet</servlet-name>
     <url-pattern>/UploadQuestionListServlet</url-pattern>
   </servlet-mapping>
+ 
+  <servlet>
+    <description></description>
+    <display-name>DownloadQuestionListServlet</display-name>
+    <servlet-name>DownloadQuestionListServlet</servlet-name>
+    <servlet-class>com.protostar.prostudy.service.DownloadQuestionListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DownloadQuestionListServlet</servlet-name>
+    <url-pattern>/DownloadQuestionListServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
