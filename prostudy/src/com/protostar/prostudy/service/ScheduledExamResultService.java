@@ -19,15 +19,8 @@ public class ScheduledExamResultService {
 		ScheduledExamResultEntity now = res;
 		ofy().save().entity(res).now();
 		return now;
-	}
-	
-	/*@ApiMethod(name = "updateScheduledExamResult")
-	public ScheduledExamResultEntity updateScheduledExamResult(ScheduledExamResultEntity res) {
-		ScheduledExamResultEntity now = res;
-		ofy().save().entity(res).now();
-		return now;
-	}*/
-	
+	}	
+		
 	@ApiMethod(name = "updateScheduledExamResult")
 	public ScheduledExamResultEntity updateScheduledExamResult(ScheduledExamResultEntity res) {
 		ScheduledExamResultEntity now = res;
