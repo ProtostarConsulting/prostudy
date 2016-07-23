@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="WebApp_ID" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
   <display-name>BillnStock</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -10,7 +9,7 @@
     <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
     <init-param>
       <param-name>services</param-name>
-      <param-value>com.protostar.billingnstock.account.services.AccountService,com.protostar.billingnstock.assetmanagement.services.AssetService,com.protostar.billingnstock.crm.services.CrmService,com.protostar.billingnstock.crm.services.OpportunityService,com.protostar.billingnstock.cust.services.CustomerService,com.protostar.billingnstock.hr.services.HrService,com.protostar.billingnstock.invoice.services.InvoiceService,com.protostar.billingnstock.proadmin.services.ProAdminService,com.protostar.billingnstock.purchase.services.PurchaseOrderService,com.protostar.billingnstock.purchase.services.SupplierService,com.protostar.billingnstock.sales.services.SalesOrderService,com.protostar.billingnstock.setup.services.UploadURLService,com.protostar.billingnstock.setup.services.setupService,com.protostar.billingnstock.stock.services.StockItemService,com.protostar.billingnstock.tax.services.TaxService,com.protostar.billingnstock.user.services.UserService,com.protostar.billingnstock.warehouse.services.WarehouseService,com.protostar.billnstock.service.TestService</param-value>
+      <param-value>com.protostar.billingnstock.account.services.AccountEntityService,com.protostar.billingnstock.account.services.AccountGroupService,com.protostar.billingnstock.account.services.AccountService,com.protostar.billingnstock.assetmanagement.services.AssetService,com.protostar.billingnstock.crm.services.CrmService,com.protostar.billingnstock.crm.services.OpportunityService,com.protostar.billingnstock.cust.services.CustomerService,com.protostar.billingnstock.hr.services.HrService,com.protostar.billingnstock.invoice.services.InvoiceService,com.protostar.billingnstock.proadmin.services.ProAdminService,com.protostar.billingnstock.purchase.services.PurchaseOrderService,com.protostar.billingnstock.purchase.services.SupplierService,com.protostar.billingnstock.sales.services.SalesOrderService,com.protostar.billingnstock.setup.services.UploadURLService,com.protostar.billingnstock.setup.services.setupService,com.protostar.billingnstock.stock.services.StockItemService,com.protostar.billingnstock.tax.services.TaxService,com.protostar.billingnstock.user.services.UserService,com.protostar.billingnstock.warehouse.services.WarehouseService,com.protostar.billnstock.service.TestService</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>
@@ -31,7 +30,7 @@
     </listener-class>
   </listener>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>UploadLogo</display-name>
     <servlet-name>UploadLogo</servlet-name>
     <servlet-class>com.protostar.billingnstock.document.UploadLogo</servlet-class>
@@ -41,7 +40,7 @@
     <url-pattern>/UploadLogo</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>Serve</display-name>
     <servlet-name>Serve</servlet-name>
     <servlet-class>com.protostar.billingnstock.document.Serve</servlet-class>
@@ -51,7 +50,7 @@
     <url-pattern>/serve</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>UploadFooter</display-name>
     <servlet-name>UploadFooter</servlet-name>
     <servlet-class>com.protostar.billingnstock.document.UploadFooter</servlet-class>
@@ -61,7 +60,7 @@
     <url-pattern>/UploadFooter</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>UploadExcelSheetAddUsers</display-name>
     <servlet-name>UploadExcelSheetAddUsers</servlet-name>
     <servlet-class>com.protostar.billingnstock.document.UploadExcelSheetAddUsers</servlet-class>
@@ -71,7 +70,7 @@
     <url-pattern>/UploadExcelSheetAddUsers</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>ExcelStockUpload</display-name>
     <servlet-name>ExcelStockUpload</servlet-name>
     <servlet-class>com.protostar.billingnstock.document.ExcelStockUpload</servlet-class>
@@ -81,7 +80,7 @@
     <url-pattern>/ExcelStockUpload</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>ExcelCustomerUpload</display-name>
     <servlet-name>ExcelCustomerUpload</servlet-name>
     <servlet-class>com.protostar.billingnstock.document.ExcelCustomerUpload</servlet-class>
@@ -91,7 +90,7 @@
     <url-pattern>/ExcelCustomerUpload</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>ExcelAccountsUpload</display-name>
     <servlet-name>ExcelAccountsUpload</servlet-name>
     <servlet-class>com.protostar.billingnstock.document.ExcelAccountsUpload</servlet-class>
