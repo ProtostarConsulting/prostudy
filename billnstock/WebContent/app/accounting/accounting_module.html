@@ -1,0 +1,37 @@
+<div layout="column">
+	<div>
+		<section layout="row">
+			<div class="md-toolbar-tools">
+				<md-button ui-sref="accounting.accountAdd" ng-click="close()"
+					class="md-primary"> Add Account</md-button>
+				<md-button ui-sref="accounting.accountList" ng-click="close()"
+					class="md-primary"> Account List</md-button>
+				<md-button ui-sref="accounting.accountList" class="md-primary">
+				Add Account Group</md-button>
+				<md-button ui-sref="accounting.accountReceivableList"
+					class="md-primary"> Account Group List</md-button>
+			</div>
+
+			<div class="md-toolbar-tools">
+				<span flex></span>
+				<md-card>
+				<section layout="row">
+					<md-button class="md-icon-button" aria-label="More"
+						ng-click="toggleRight()"> <md-icon
+						md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
+
+				</section>
+				</md-card>
+			</div>
+
+
+			<md-sidenav class="md-sidenav-right md-whiteframe-z2"
+				md-component-id="right"> <md-toolbar
+				class="md-theme-light">
+			<h1 class="md-toolbar-tools">Sidenav Right</h1>
+			</md-toolbar> <!-- 			Sidenav Buttons --> </md-sidenav>
+		</section>
+
+	</div>
+	<div ui-view></div>
+</div>
