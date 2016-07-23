@@ -1,5 +1,8 @@
 package com.protostar.billingnstock.account.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.protostar.billnstock.entity.BaseEntity;
@@ -9,7 +12,7 @@ public class AccountGroupEntity extends BaseEntity {
 
 	private String groupName;
 	private String description;
-	private Ref<AccountEntity> accountList;
+	private List<Ref<AccountEntity>> accountList;
 	private Integer displayOrderNo;
 	private Ref<AccountGroupEntity> parent;
 
@@ -39,12 +42,19 @@ public class AccountGroupEntity extends BaseEntity {
 		this.description = description;
 	}
 
-	public Ref<AccountEntity> getAccountList() {
-		return accountList;
+	public List<AccountEntity> getAccountList() {		
+		List<AccountEntity> accountListTemp = new ArrayList<AccountEntity>();
+		for (Ref<AccountEntity> accountEntityRef : this.accountList) {
+			accountListTemp.add(accountEntityRef.get());
+		}
+		return accountListTemp;
 	}
 
-	public void setAccountList(Ref<AccountEntity> accountList) {
-		this.accountList = accountList;
+	public void setAccountList(List<AccountEntity> accountList) {
+		this.accountList = new ArrayList<Ref<AccountEntity>>();
+		for (AccountEntity accountEntity : accountList) {
+			this.accountList.add(Ref.create(accountEntity));
+		}
 	}
 
 	public Integer getDisplayOrderNo() {

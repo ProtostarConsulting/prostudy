@@ -31,13 +31,13 @@ public class AccountEntityService {
 
 	}
 
-	@ApiMethod(name = "addAccounts")
+	/*@ApiMethod(name = "addAccounts")
 	public void addAccounts(List<AccountEntity> accountEntities) {
 		for (AccountEntity accountEntity : accountEntities) {
 			addAccount(accountEntity);
 		}
 
-	}
+	}*/
 
 	@ApiMethod(name = "getAllAccountsByBusiness")
 	public List<AccountEntity> getAllAccountsByBusiness(@Named("id") Long busId) {
@@ -90,7 +90,7 @@ public class AccountEntityService {
 				AccountEntity.AccountType.NOMINAL)); // Liabilities Group
 		
 
-		this.addAccounts(accountEntities);
+		//this.addAccounts(accountEntities);
 
 	}
 

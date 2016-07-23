@@ -31,13 +31,13 @@ public class AccountGroupService {
 
 	}
 	
-	@ApiMethod(name = "addAccountGroups")
+	/*@ApiMethod(name = "addAccountGroups")
 	public void addAccountGroups(List<AccountGroupEntity> accountGroupEntities) {
 		for (AccountGroupEntity accountGroupEntity : accountGroupEntities) {
 			addAccountGroup(accountGroupEntity);
 		}
 
-	}
+	}*/
 
 	@ApiMethod(name = "getAllAccountGroupsByBusiness")
 	public List<AccountGroupEntity> getAllAccountGroupsByBusiness(
@@ -75,7 +75,7 @@ public class AccountGroupService {
 		accountGroupEntities.add(new AccountGroupEntity("Direct Expesnes", null));
 		accountGroupEntities.add(new AccountGroupEntity("Current Liabilities", null));
 		
-		this.addAccountGroups(accountGroupEntities);
+		//this.addAccountGroups(accountGroupEntities);
 		
 		
 
