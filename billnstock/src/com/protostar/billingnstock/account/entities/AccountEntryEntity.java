@@ -15,7 +15,6 @@ public class AccountEntryEntity extends BaseEntity {
 	private String narration;
 	private Double debit;
 	private Double credit;
-	private Double balance;
 	@Index
 	private Ref<AccountEntity> accountEntity;
 
@@ -54,15 +53,7 @@ public class AccountEntryEntity extends BaseEntity {
 	public void setCredit(Double credit) {
 		this.credit = credit;
 	}
-
-	public Double getBalance() {
-		return balance;
-	}
-
-	public void setBalance(Double balance) {
-		this.balance = balance;
-	}
-
+	
 	public AccountingFYEntity getFyEntity() {
 		return fyEntity == null ? null : fyEntity.get();
 	}
