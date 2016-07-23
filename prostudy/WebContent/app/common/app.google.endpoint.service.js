@@ -1232,6 +1232,16 @@ function googleEndpointSF($log, $q, $localStorage, $timeout) {
 		return deferred.promise;
 	}
 
+	ScheduledExamResultService.updateScheduledExamResult = function(res) {
+		var deferred = $q.defer();
+		gapi.client.scheduledExamResultService.updateScheduledExamResult(res)
+				.execute(function(resp) {
+					deferred.resolve(resp);
+				});
+		return deferred.promise;
+	}
+	
+	
 	ScheduledExamResultService.getScheduledExamResult = function() {
 		var deferred = $q.defer();
 		gapi.client.scheduledExamResultService.getScheduledExamResult()
