@@ -16,13 +16,7 @@ angular
 					page : 1
 				};
 				
-				$scope.downloadUserList=function(){
-					
-					$log.debug("in download ");
-					//document.location.href="DownloadDirectoryUserList?directoryUserList ="+$scope.directoryUserList ;
-					document.location.href="DownloadDirectoryUserList" ;
-						
-				}				
+							
 				
 				$scope.onpagechange = function(page, limit) {
 					var deferred = $q.defer();
