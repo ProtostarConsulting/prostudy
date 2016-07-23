@@ -10,9 +10,9 @@
 			<md-input-container flex> <label>School
 				/ College / Institute<span style="color: red"
 				ng-show="gfStudentForm.level.$error.required" class="mandatory">*</span>
-			</label> <md-select name="level" ng-model="tempStudent.schoolName" ng-change="schoolChange($index, selectedSchool)"
-				ng-required="true"> <md-option ng-value="schoolName"
-				ng-repeat="schoolName in pSchoolList">{{schoolName.schoolName}}</md-option>
+			</label> <md-select name="level" ng-model="tempStudent.schoolName.schoolName" ng-change="schoolChange($index, selectedSchool)"
+				ng-required="true"> <md-option ng-value="school.schoolName"
+				ng-repeat="school in pSchoolList">{{school.schoolName}}</md-option>
 			</md-select>
 			<div ng-messages="gfStudentForm.level.$error"
 				ng-if="gfStudentForm.level.$submitted || gfStudentForm.level.$touched">

@@ -128,10 +128,11 @@ angular
 						var lineSelectedItem = $scope.tempCourierObj.bookLineItemList[index];
 						lineSelectedItem.id = stockItem.id;
 						lineSelectedItem.bookName = stockItem.bookName;
-						lineSelectedItem.bookQty = stockItem.bookQty;
+//						lineSelectedItem.bookQty = stockItem.bookQty;
 						lineSelectedItem.bookPrice = stockItem.bookPrice;
 						lineSelectedItem.bookAuther = stockItem.bookAuther;
 						lineSelectedItem.weight = stockItem.weight;
+						
 						
 						$scope.calBookWeight();
 					};
@@ -222,7 +223,8 @@ angular
 									$scope.qtyErrorMsg = "";
 									if ($scope.bookStocks[i].bookQty < item.bookQty) {
 										$scope.qtyErrorMsg = "Quantity entered is not available in stock";
-										item.bookQty = $scope.bookStocks[i].bookQty;
+										item.bookQty = 1;
+										item.bkQty = $scope.bookStocks[i].bookQty
 										$scope.showAlert(item, $event);
 									}
 									$scope.tempQty = $scope.bookStocks[i].bookQty - item.bookQty;
@@ -256,7 +258,7 @@ angular
 							        .parent(angular.element(document.querySelector('#popupContainer')))
 							        .clickOutsideToClose(true)
 							        .title('Alert')
-							        .textContent('The book quantity entered is not available in stock. The available quantity is shown in your textbox')
+							        .textContent('The book quantity entered is not available in stock. The available quantity is'+":"+item.bkQty)
 							        .ariaLabel('Alert Dialog Demo')
 							        .ok('close!')
 							        .targetEvent(ev)

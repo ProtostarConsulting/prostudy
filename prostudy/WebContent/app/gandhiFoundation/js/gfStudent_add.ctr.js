@@ -25,6 +25,15 @@ angular.module("prostudyApp").controller(
 
 				var gfStudentService = appEndpointSF.getGFStudentService();
 
+				if(!$scope.selectedGFStudID)
+					if($scope.pSchoolList.length == 1){
+						$scope.tempStudent.schoolName =$scope.pSchoolList[0];
+					}else{
+					for(var i=0; i < $scope.pSchoolList.length; i++){
+						if($scope.pSchoolList[i].schoolName == $scope.tempStudent.schoolName.schoolName)
+						$scope.tempStudent.schoolName =$scope.tempStudent[i];
+					}
+					}
 				gfStudentService.addGFStudent($scope.tempStudent).then(
 						function() {
 							$scope.gfStudentForm.$setPristine();
@@ -50,7 +59,7 @@ angular.module("prostudyApp").controller(
 				gfStudentService.getGFStudentById($scope.selectedGFStudID)
 						.then(function(tempStudent) {
 							$scope.tempStudent = tempStudent;
-							$scope.tempStudent.schoolName = $scope.tempStudent.schoolName.schoolName;
+					//		$scope.tempStudent.schoolName = $scope.tempStudent.schoolName.schoolName;
 						});
 			}
 
