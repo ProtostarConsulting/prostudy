@@ -60,8 +60,7 @@ public class UploadQuestionListServlet extends HttpServlet {
 				Long insId = 0L;
 				while (iterator.hasNext()) {
 					FileItemStream item = iterator.next();
-					System.out.println("item.getFieldName(): "
-							+ item.getFieldName());
+					System.out.println("item.getFieldName(): "+ item.getFieldName());
 
 					if (item.getName() == null) {
 						
@@ -84,8 +83,7 @@ public class UploadQuestionListServlet extends HttpServlet {
 							fileContent.length)) != -1) {
 						
 					}
-					System.out.println("File content is : "
-							+ new String(fileContent));
+					System.out.println("File content is : "	+ new String(fileContent));
 					System.out.println("File Read is Done!!");
 					
 					String fileAsString = new String(fileContent);
@@ -97,25 +95,21 @@ public class UploadQuestionListServlet extends HttpServlet {
 				for (int row = 1; row < split2.length; row++) {
 
 					String[] split = split2[row].split(",");
-					if (split == null || split.length < 12) {
-						continue;
-					}
-													
+																	
 				QuestionEntity questionEntity = new QuestionEntity();
 
 					questionEntity.setInstituteID(insId);
 					questionEntity.setBoard(split[0].trim());
 					questionEntity.setStandard(split[1].trim());
-					questionEntity.setDivision(split[2].trim());
-					questionEntity.setSubject(split[3].trim());
-					questionEntity.setDescription(split[4].trim());
-					questionEntity.setCategory(split[5].trim());
-					questionEntity.setNote(split[6].trim());
-					questionEntity.setOption1(split[7].trim());
-					questionEntity.setOption2(split[8].trim());
-					questionEntity.setOption3(split[9].trim());
-					questionEntity.setOption4(split[10].trim());					
-					questionEntity.setCorrectAns(split[11].trim());
+					questionEntity.setDivision(split[2].trim());				
+					questionEntity.setDescription(split[3].trim());
+					questionEntity.setCategory(split[4].trim());
+					questionEntity.setNote(split[5].trim());
+					questionEntity.setOption1(split[6].trim());
+					questionEntity.setOption2(split[7].trim());
+					questionEntity.setOption3(split[8].trim());
+					questionEntity.setOption4(split[9].trim());					
+					questionEntity.setCorrectAns(split[10].trim());
 		
 			
 					QuestionService qs= new QuestionService();

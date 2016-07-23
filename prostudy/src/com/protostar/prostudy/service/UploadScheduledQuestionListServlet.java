@@ -1,8 +1,13 @@
 package com.protostar.prostudy.service;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.List;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Date;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,11 +18,8 @@ import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import com.google.appengine.api.blobstore.BlobKey;
-import com.google.appengine.api.blobstore.BlobstoreInputStream;
-import com.google.appengine.api.blobstore.BlobstoreService;
-import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.protostar.prostudy.entity.ScheduledQuestionEntity;
+import com.protostar.prostudy.until.data.UtilityService;
 
 /**
  * Servlet implementation class UploadScheduledQuestionListServlet
@@ -25,138 +27,139 @@ import com.protostar.prostudy.entity.ScheduledQuestionEntity;
 public class UploadScheduledQuestionListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private final Logger log = Logger.getLogger(UploadScheduledQuestionListServlet.class.getName());
+	
+	class SizeEntry {
+		public int size;
+		public Date time;
+	}
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
+	static Map<String, SizeEntry> sizeMap = new ConcurrentHashMap<>();
+	int counter;
 	public UploadScheduledQuestionListServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	private BlobstoreService blobstoreService = BlobstoreServiceFactory
-			.getBlobstoreService();
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	
+	
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		System.out.println("Hi i m in UploadScheduledQuestionListServlet");
-		
-		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
-		List<BlobKey> blobKeys = blobs.get("myFile");
-
-		
-		Long instituteID = null;
-		System.out.println("blobKeys:" + blobKeys);
-		blobKeys.get(0).getKeyString();
-		String[] split2 = null;
+			System.out.println("inside UploadScheduledQuestionListServlet");	
 		try {
-			ServletFileUpload upload = new ServletFileUpload();
-			// res.setContentType("text/plain");
+			if (request.getHeader("Content-Type") != null
+					&& request.getHeader("Content-Type").startsWith(
+							"multipart/form-data")) {
+				ServletFileUpload upload = new ServletFileUpload();
 
-			FileItemIterator iterator = upload.getItemIterator(request);
-			while (iterator.hasNext()) {
+				FileItemIterator iterator = upload.getItemIterator(request);
+				String[] split2 = null;			
+				Long insId = 0L;
+				while (iterator.hasNext()) {
+					FileItemStream item = iterator.next();
+					System.out.println("item.getFieldName(): "
+							+ item.getFieldName());
 
-				FileItemStream item = iterator.next();
-				// InputStream stream = item.openStream();
-				BlobstoreInputStream stream = new BlobstoreInputStream(
-						new BlobKey(blobKeys.get(0).getKeyString()));
-				if (item.isFormField()) {
-					if (item.getFieldName().equals("instituteID")) {
-						System.out.println("instituteID id=="
-								+ request.getParameter(item.getFieldName()));
-						if (!request.getParameter(item.getFieldName()).equals(
-								""))
-							instituteID = Long.parseLong(request.getParameter(item
-									.getFieldName()));
+					if (item.getName() == null) {
+						
+
+						if ("instituteID".equalsIgnoreCase(item.getFieldName())) {
+							insId = Long.parseLong(UtilityService.read(item
+									.openStream()));
+
+						}
+						continue;
 					}
-				} else {
+					InputStream openStream = item.openStream();
+					int len = 0;
+					byte[] fileContent = new byte[2000000];
+				
 
-					int len;
-					byte[] fileContent = new byte[2000000]; // Can handle files
-															// upto 20 MB
-
-					int read = stream.read(fileContent);
-					// System.out.println("No of bytes read:" + read);
-					while ((len = stream.read(fileContent, 0,
+					int read = openStream.read(fileContent);
+					
+					while ((len = openStream.read(fileContent, 0,
 							fileContent.length)) != -1) {
-						// res.getOutputStream().write(fileContent, 0, len);
+						
 					}
 					System.out.println("File content is : "
 							+ new String(fileContent));
 					System.out.println("File Read is Done!!");
-					// Write code here to parse sheet of patients and upload to
-					// database
-
+					
 					String fileAsString = new String(fileContent);
-					// System.out.println("fileContent:" + fileAsString);
-					// List<PatientInfo> patientInfoList = new
-					// ArrayList<PatientInfo>();
 
 					split2 = fileAsString.split("\n");
-					// Start with 1 not 0, zero holds column headings
 
 				}
-
-			}
-
-			try {
-				// gte business entity
 
 				for (int row = 1; row < split2.length; row++) {
 
 					String[] split = split2[row].split(",");
-					if (split == null || split.length < 8) {
-						System.out.println(", inserted!!");
-						continue;
-					}
-					
 				
-
 					// insert ScheduledQuestion
 					ScheduledQuestionEntity sq = new ScheduledQuestionEntity();
-					//sq.setDescription(split[0]);
-					sq.setInstituteID(instituteID);
-					sq.setDescription(split[1]);
-					sq.setCategory(split[2]);
-					sq.setOption1(split[3]);
-					sq.setOption2(split[4]);
-					sq.setOption3(split[5]);
-					sq.setOption4(split[6]);
-					sq.setCorrectAns(split[7].trim());
+					
+					sq.setInstituteID(insId);
+					sq.setDescription(split[0].trim());
+					sq.setCategory(split[1].trim());
+					sq.setOption1(split[2].trim());
+					sq.setOption2(split[3].trim());
+					sq.setOption3(split[4].trim());
+					sq.setOption4(split[5].trim());
+					sq.setCorrectAns(split[6].trim());
 
 					ScheduledQuestionService sqs = new ScheduledQuestionService();
 					sqs.addQuestion(sq);
-
+					
 				}
-				blobstoreService.delete(blobKeys.get(0));
-
-				response.sendRedirect("/#/scheduledExam/questionList");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
-
 		} catch (Exception e) {
-			response.getOutputStream().print(
-					"File Uploading Failed!" + e.getMessage());
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+	}
+	
+	protected int size(String key, InputStream stream) {
+		int length = sizeMap.get(key) == null ? 0 : sizeMap.get(key).size;
+		try {
+			byte[] buffer = new byte[200000];
+			int size;
+			while ((size = stream.read(buffer)) != -1) {
+				length += size;
+				SizeEntry entry = new SizeEntry();
+				entry.size = length;
+				entry.time = new Date();
+				sizeMap.put(key, entry);
+
+			}
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		System.out.println(length);
+		return length;
 
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("Inside UploadScheduledQuestionListServlet");
-		this.doGet(request, response);
+	protected String read(InputStream stream) {
+		StringBuilder sb = new StringBuilder();
+		BufferedReader reader = new BufferedReader(
+				new InputStreamReader(stream));
+		try {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				sb.append(line);
+			}
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} finally {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				// ignore
+			}
+		}
+		return sb.toString();
 	}
-
+	
 }

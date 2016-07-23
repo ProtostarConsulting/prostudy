@@ -8,6 +8,7 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
+import com.protostar.prostudy.entity.QuestionEntity;
 import com.protostar.prostudy.entity.ScheduledExamResultEntity;
 
 @Api(name = "scheduledExamResultService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.service", ownerName = "com.protostar.prostudy.service", packagePath = ""))
@@ -17,6 +18,21 @@ public class ScheduledExamResultService {
 	public ScheduledExamResultEntity addScheduledExamResult(ScheduledExamResultEntity res) {
 		ScheduledExamResultEntity now = res;
 		ofy().save().entity(res).now();
+		return now;
+	}
+	
+	/*@ApiMethod(name = "updateScheduledExamResult")
+	public ScheduledExamResultEntity updateScheduledExamResult(ScheduledExamResultEntity res) {
+		ScheduledExamResultEntity now = res;
+		ofy().save().entity(res).now();
+		return now;
+	}*/
+	
+	@ApiMethod(name = "updateScheduledExamResult")
+	public ScheduledExamResultEntity updateScheduledExamResult(ScheduledExamResultEntity res) {
+		ScheduledExamResultEntity now = res;
+		ofy().save().entity(res).now();
+		System.out.println("inside update R now" + now);
 		return now;
 	}
 	
