@@ -16,6 +16,11 @@ import com.protostar.prostudy.gf.entity.PartnerSchoolEntity;
 
 public class EmailHandler {
 
+	private static final String EMAIL_FROM_NAME = "GRF-Gandhi Vichar Sanskar Pariksha";
+	private static final String EMAIL_FROM = "ganesh.lawande@protostar.co.in";
+	private static final String EMAIL_NEW_SCHOOL_SUBJECT = "Gandhi Vichar Sanskar Pariksha School/College Registration!";
+	private static final String EMAIL_NEW_USER_SUBJECT = "Welcome to Gandhi Research Foundation!";
+
 	public void sendNewSchoolRegistrationEmail(
 			PartnerSchoolEntity partnerSchoolEntity) throws MessagingException,
 			IOException {
@@ -29,9 +34,7 @@ public class EmailHandler {
 		System.out.println("messageBody :" + messageBody);
 		try {
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(
-					"ganesh.lawande@protostar.co.in",
-					"Gandhi Research Foundation"));
+			message.setFrom(new InternetAddress(EMAIL_FROM, EMAIL_FROM_NAME));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(
 					partnerSchoolEntity.getContactDetail()
 							.getHeadMasterEmailId()));
@@ -39,7 +42,7 @@ public class EmailHandler {
 					partnerSchoolEntity.getContactDetail()
 							.getCoordinatorDetail().get(0)
 							.getCoordinatorEmailId()));
-			message.setSubject("Gandhi Research Foundation Exam Registration!");
+			message.setSubject(EMAIL_NEW_SCHOOL_SUBJECT);
 			message.setContent(messageBody, "text/html");
 			Transport.send(message);
 		} catch (AddressException e) {
@@ -65,12 +68,10 @@ public class EmailHandler {
 		System.out.println("messageBody :" + messageBody);
 		try {
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(
-					"ganesh.lawande@protostar.co.in",
-					"Gandhi Research Foundation"));
+			message.setFrom(new InternetAddress(EMAIL_FROM, EMAIL_FROM_NAME));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(
 					user.getEmail_id()));
-			message.setSubject("Welcome to Gandhi Research Foundation!");
+			message.setSubject(EMAIL_NEW_USER_SUBJECT);
 			message.setContent(messageBody, "text/html");
 			Transport.send(message);
 		} catch (AddressException e) {

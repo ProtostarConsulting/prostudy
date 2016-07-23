@@ -13,6 +13,7 @@ import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.protostar.prostudy.gf.entity.PartnerSchoolEntity;
 import com.protostar.prostudy.until.EmailHandler;
+import com.protostar.prostudy.until.TextLocalSMSHandler;
 import com.protostar.prostudy.until.data.UtilityService;
 
 @Api(name = "partnerSchoolService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.gf.service", ownerName = "com.protostar.prostudy.gf.service", packagePath = ""))
@@ -29,15 +30,26 @@ public class PartnerSchoolService {
 		System.out.println("Inside addPartnerSchool");
 		ofy().save().entity(partnerSchoolEntity).now();
 
-		if (partnerSchoolEntity.getExamDetailList() != null) {
-			if (partnerSchoolEntity.getExamDetailList().size() > 0) {
-				if (partnerSchoolEntity.getExamDetailList() != null
-						& partnerSchoolEntity.getExamDetailList().get(0)
-								.getPaymentDetail() != null) {
-					new EmailHandler()
-							.sendNewSchoolRegistrationEmail(partnerSchoolEntity);
-				}
-			}
+		if (partnerSchoolEntity.getExamDetailList() != null
+				&& partnerSchoolEntity.getExamDetailList().size() > 0) {
+			// Send email
+			new EmailHandler()
+					.sendNewSchoolRegistrationEmail(partnerSchoolEntity);
+			// Send SMS
+			String smsMsg = "GVSP Exam Registration for your school/college is completed. Total number of students:"
+					+ partnerSchoolEntity.getExamDetailList().get(0).getTotal()
+					+ ". For any query, email to gandhiexam@gandhifoundation.net";
+			String mobileNumbers = partnerSchoolEntity.getContactDetail()
+					.getHeadMasterMobile();
+
+			mobileNumbers += (partnerSchoolEntity.getContactDetail()
+					.getCoordinatorDetail() != null && partnerSchoolEntity
+					.getContactDetail().getCoordinatorDetail().size() > 0) ? ("," + partnerSchoolEntity
+					.getContactDetail().getCoordinatorDetail().get(0)
+					.getCoordinatorMobileNum())
+					: "";
+			TextLocalSMSHandler.sendSms(smsMsg, mobileNumbers);
+
 		}
 		return partnerSchoolEntity;
 	}
