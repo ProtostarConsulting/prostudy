@@ -1,17 +1,38 @@
 package com.protostar.billingnstock.account.entities;
 
+import java.util.List;
+
 import com.googlecode.objectify.annotation.Entity;
-import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Ignore;
 import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
-public class AccountEntity extends BaseEntity{
+public class AccountEntity extends BaseEntity {
 
+	public static enum AccountType {
+		PERSONAL, REAL, NOMINAL
+	};
 
 	private String accountName;
+	private AccountType accountType;
 	private Long accountNo;
 	private String description;
+	private Integer displayOrderNo;
+	private Boolean contra;
 	
+	public AccountEntity(){
+		
+	}
+
+	public AccountEntity(String accountName, AccountType accountType){
+		this.accountName = accountName;
+		this.accountType = accountType;
+		
+	}
+
+	@Ignore
+	private List<AccountEntryEntity> accountLedgerEntries;
+
 	public Long getAccountNo() {
 		return accountNo;
 	}
@@ -20,7 +41,6 @@ public class AccountEntity extends BaseEntity{
 		this.accountNo = accountNo;
 	}
 
-	
 	public String getAccountName() {
 		return accountName;
 	}
@@ -37,15 +57,37 @@ public class AccountEntity extends BaseEntity{
 		this.description = description;
 	}
 
-	/*
-	 * @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL) private
-	 * Address address;
-	 * 
-	 * @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) private
-	 * List<CreditCard> credits;
-	 * 
-	 * @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) private
-	 * List<Tag> tags;
-	 */
+	public AccountType getAccountType() {
+		return accountType;
+	}
+
+	public void setAccountType(AccountType accountType) {
+		this.accountType = accountType;
+	}
+
+	public Integer getDisplayOrderNo() {
+		return displayOrderNo;
+	}
+
+	public void setDisplayOrderNo(Integer displayOrderNo) {
+		this.displayOrderNo = displayOrderNo;
+	}
+
+	public List<AccountEntryEntity> getAccountLedgerEntries() {
+		return accountLedgerEntries;
+	}
+
+	public void setAccountLedgerEntries(
+			List<AccountEntryEntity> accountLedgerEntries) {
+		this.accountLedgerEntries = accountLedgerEntries;
+	}
+
+	public Boolean getContra() {
+		return contra;
+	}
+
+	public void setContra(Boolean contra) {
+		this.contra = contra;
+	}
 
 }
