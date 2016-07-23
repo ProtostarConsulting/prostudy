@@ -133,8 +133,8 @@ public class PartnerSchoolEntity {
 	}
 
 	public void setExamDetailList(List<ExamDetail> examDetailList) {
+		if(examDetailList == null)
+			this.examDetailList = examDetailList=null;
 		this.examDetailList = examDetailList;
 	}
-
-
 }// end of PartnerSchoolEntity

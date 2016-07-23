@@ -102,7 +102,7 @@ public class UplodePartnerSchoolsExcel extends HttpServlet {
 				for (int row = 1; row < split2.length; row++) {
 					try {
 						String[] split = split2[row].split(",");
-						if (split == null || split.length < 27) {
+						if (split == null || split.length < 17) {
 							continue;
 						}
 						log.fine(" Row: " + row);
@@ -110,30 +110,21 @@ public class UplodePartnerSchoolsExcel extends HttpServlet {
 						log.fine(" desc: " + split[1]);
 						log.fine(" formNumber: " + split[2]);
 						log.fine(" category: " + split[3]);
-						log.fine(" primaryContact: " + split[4]);
-						log.fine(" line1: " + split[5]);
-						log.fine(" line2: " + split[6]);
-						log.fine(" city: " + split[7]);
-						log.fine(" state: " + split[8]);
-						log.fine(" country: " + split[9]);
-						log.fine(" pin: " + split[10]);
-						log.fine(" totalStudent: " + split[11]);
-						log.fine(" male: " + split[12]);
-						log.fine(" female: " + split[13]);
-						log.fine(" total: " + split[14]);
-						log.fine(" examMedium1: " + split[15]);
-						log.fine(" examMedium2: " + split[16]);
-						log.fine(" examMedium3: " + split[17]);
-						log.fine(" yearOfExam: " + split[18]);
-						log.fine(" bookRequired: " + split[19]);
-						log.fine(" modeOfExam: " + split[20]);
-						log.fine(" headMasterName: " + split[21]);
-						log.fine(" headMasterMobile: " + split[22]);
-						log.fine(" headMasterEmailId: " + split[23]);
-						log.fine(" coordinatorName: " + split[24]);
-						log.fine(" coordinatorPhoneNum: " + split[25]);
-						log.fine(" coordinatorEmailId: " + split[26]);
-						log.fine(" Col28: " + split[27]);
+						log.fine(" line1: " + split[4]);
+						log.fine(" line2: " + split[5]);
+						log.fine(" city: " + split[6]);
+						log.fine(" taluka: " + split[7]);
+						log.fine(" Dist: " + split[8]);
+						log.fine(" state: " + split[9]);
+						log.fine(" country: " + split[10]);
+						log.fine(" pin: " + split[11]);
+						log.fine(" headMasterName: " + split[12]);
+						log.fine(" headMasterMobile: " + split[13]);
+						log.fine(" headMasterEmailId: " + split[14]);
+						log.fine(" coordinatorName: " + split[15]);
+						log.fine(" coordinatorPhoneNum: " + split[16]);
+						log.fine(" coordinatorEmailId: " + split[17]);
+
 
 						// insert partner school
 						PartnerSchoolEntity patschool = new PartnerSchoolEntity();
@@ -141,52 +132,59 @@ public class UplodePartnerSchoolsExcel extends HttpServlet {
 						patschool.setInstName(split[1]);
 						patschool.setFormNumber(split[2]);
 						patschool.setCategory(split[3]);
-						patschool.setPrimaryContact(split[4]);
+/*						patschool.setPrimaryContact(split[4]);*/
 						patschool.setInstituteID(insId);
 						// address
 						Address add = new Address();
-						add.setLine1(split[5]);
-						add.setLine2(split[6]);
-						add.setPin(split[10]);
-						add.setCity(split[7]);
-						add.setState(split[8]);
-						add.setCountry(split[9]);
+						add.setLine1(split[4]);
+						add.setLine2(split[5]);
+						add.setCity(split[6]);
+						add.setTal(split[7]);
+						add.setDist(split[8]);
+						add.setState(split[9]);
+						add.setCountry(split[10]);
+						add.setPin(split[11]);
 						patschool.setAddress(add);
-						// ExamDetail
-						ExamDetail eDtail = new ExamDetail();
-						eDtail.setBookRequired(split[19]);
-						/*
-						 * eDtail.setExamMedium(Arrays.asList(split[15],
-						 * split[16], split[17]));
-						 */
-						eDtail.setFemale(split[13]);
-						eDtail.setMale(split[12]);
-						eDtail.setModeOfExam(split[20]);
-						eDtail.setTotal(split[14]);
-						eDtail.setTotalStudent(split[11]);
-						eDtail.setYearOfExam(split[18]);
-						/* patschool.setExamDetail(eDtail); */
-						// Contact Detail
 
+						// Contact Detail
 						ContactDetail conDetail = new ContactDetail();
-						// conDetail.setCoordinatorEmailId(split[26]);
-						// conDetail.setCoordinatorName(split[24]);
-						// conDetail.setCoordinatorPhoneNum(split[25]);
+
+						conDetail.setHeadMasterEmailId(split[12]);
+						conDetail.setHeadMasterMobile(split[13]);
+						conDetail.setHeadMasterName(split[14]);
+						patschool.setContactDetail(conDetail);
+						
 						CoordinatorDetail corddetail = new CoordinatorDetail();
-						corddetail.setSrno(1);
+						corddetail.setCoordinatorName(split[15]);
+						corddetail.setCoordinatorPhoneNum(split[16]);
+						corddetail.setCoordinatorEmailId(split[17]);
+
+/*						corddetail.setSrno(1);
 						corddetail.setCoordinatorEmailId(split[26]);
 						corddetail.setCoordinatorName(split[24]);
 						corddetail.setCoordinatorPhoneNum(split[25]);
 
 						conDetail.setCoordinatorDetail(Arrays
 								.asList(corddetail));
-						conDetail.setHeadMasterEmailId(split[23]);
-						conDetail.setHeadMasterMobile(split[22]);
-						conDetail.setHeadMasterName(split[21]);
-						patschool.setContactDetail(conDetail);
+*/	
 
+						// ExamDetail
+						ExamDetail eDtail = new ExamDetail();
+						/*						eDtail.setBookRequired(split[19]);
+*/						/*
+						 * eDtail.setExamMedium(Arrays.asList(split[15],
+						 * split[16], split[17]));
+						 */
+						eDtail.setFemale("");
+						eDtail.setMale("");
+						eDtail.setModeOfExam("");
+						eDtail.setTotal("");
+						eDtail.setTotalStudent("");
+						eDtail.setYearOfExam("");
+						 patschool.setExamDetailList(null); 
+						
 						// book summary
-						BookSummary bookSummary = new BookSummary();
+	//					BookSummary bookSummary = new BookSummary();
 						/* patschool.setBookSummary(bookSummary); */
 
 						PartnerSchoolService partnerSchool = new PartnerSchoolService();

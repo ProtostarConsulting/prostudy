@@ -169,12 +169,14 @@ public class DownloadPartnerSchools extends HttpServlet {
 				writer.append(patse.get(i).getContactDetail().getHeadMasterEmailId());
 				writer.append(',');
 				
+				if(patse.get(i).getContactDetail().getCoordinatorDetail() != null){
 				writer.append(patse.get(i).getContactDetail().getCoordinatorDetail().get(0).getCoordinatorName());
 				writer.append(',');
 				writer.append(patse.get(i).getContactDetail().getCoordinatorDetail().get(0).getCoordinatorMobileNum());
 				writer.append(',');
 				writer.append(patse.get(i).getContactDetail().getCoordinatorDetail().get(0).getCoordinatorEmailId());
 				writer.append(',');
+				}
 				writer.append(System.lineSeparator());
 								
 			}
