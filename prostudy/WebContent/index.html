@@ -83,7 +83,7 @@
       
 <div id="container">
   <img id="image" src="img/images/Capture.PNG"  style="height: 100px; width: 100%"/>
-
+<!-- <img id="image" hide-gt-md hide-xl src="img/images/grf_logo_new.gif"  style="height: 100px; width: 100%"/> -->
   <p id="text">
 <!--     <md-button layout-align="end start" class="md-raised " ng-click="">Login</md-button>
     <button style="position: relative; right: 1px;">Login1</button> -->
@@ -170,14 +170,14 @@
 		<div layout="column" layout-align="start start">
 			<md-button  ng-click="toggleMenu('school')"
 				class="md-primary"> School						
-						<md-icon ng-if="!schoolCounter"
+						<md-icon ng-if="!schoolCounter" class="md-fab md-primary md-hue-2"
 							md-svg-src="img/icons/ic_keyboard_arrow_right_black_24px.svg"></md-icon><md-icon ng-if="schoolCounter"
 							md-svg-src="img/icons/ic_keyboard_arrow_down_black_24px.svg">&nbsp;&nbsp;&nbsp;&nbsp;</md-button>
 				
-				<div id="content" ng-if="schoolCounter == 1" style = "margin-left: 15px; color: red;">
+				<div ng-if="schoolCounter == 1" style = "margin-left: 15px;">
 					<md-content layout="column" layout-xs="column" layout-align="center start"> 
-						<md-button ui-sref="partnerSchool.addPartnerSchool" class="md-primary"> Add School </md-button> 
-						<md-button ui-sref="partnerSchool.listPartnerSchool"  class="md-primary"> School List </md-button>
+						<md-button ui-sref="partnerSchool.addPartnerSchool" ng-click=close() class="md-primary"> Add School </md-button> 
+						<md-button ui-sref="partnerSchool.listPartnerSchool" ng-click=close()  class="md-primary"> School List </md-button>
 					</md-content>
 				</div>
 				
@@ -185,8 +185,8 @@
 				class="md-primary"> Students <md-icon ng-if="!studentsCounter"
 							md-svg-src="img/icons/ic_keyboard_arrow_right_black_24px.svg"></md-icon><md-icon ng-if="studentsCounter"
 							md-svg-src="img/icons/ic_keyboard_arrow_down_black_24px.svg"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</md-button>
-			<div ng-if="studentsCounter == 1" style = "margin-left: 15px; color: blue">
-				<md-content layout="column"  layout-xs="column" layout-align="center start" style = "color: blue"> 
+			<div ng-if="studentsCounter == 1" style = "margin-left: 15px;"">
+				<md-content layout="column"  layout-xs="column" layout-align="center start"> 
 					<md-button ui-sref="studentModule.add" ng-click="close()" class="md-primary">Add Student</md-button> 
 					<md-button ui-sref="studentModule.list" ng-click="close()" class="md-primary">Student List </md-button> 
 				</md-content>
@@ -196,7 +196,7 @@
 				class="md-primary"> Books <md-icon ng-if="!booksCounter"
 							md-svg-src="img/icons/ic_keyboard_arrow_right_black_24px.svg"></md-icon><md-icon ng-if="booksCounter"
 							md-svg-src="img/icons/ic_keyboard_arrow_down_black_24px.svg"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</md-button>
-			<div ng-if="booksCounter == 1" style = "margin-left: 15px; background-color: yellow;">
+			<div ng-if="booksCounter == 1" style = "margin-left: 15px;">
 				<md-content layout="column" layout-xs="column" layout-align="center start"> 
 					<md-button ui-sref="bookModule.add" ng-click="close()" class="md-primary">Add Book</md-button> 
 					<md-button ui-sref="bookModule.stockAdd" ng-click="close()" class="md-primary">Book Stock Add </md-button> 
@@ -209,7 +209,7 @@
 				class="md-primary"> Couriers <md-icon ng-if="!courierCounter"
 							md-svg-src="img/icons/ic_keyboard_arrow_right_black_24px.svg"></md-icon><md-icon ng-if="courierCounter"
 							md-svg-src="img/icons/ic_keyboard_arrow_down_black_24px.svg">  &nbsp;&nbsp;&nbsp;&nbsp;</md-button>
-			<div  ng-if="courierCounter == 1" style = "margin-left: 15px; background-color: yellow;">
+			<div  ng-if="courierCounter == 1" style = "margin-left: 15px;">
 				<md-content layout="column" layout-xs="column" layout-align="center start"> 
 					<md-button ui-sref="courierModule.add" ng-click="close()" class="md-primary">Add Courier</md-button> 
 					<md-button ui-sref="courierModule.list" ng-click="close()" class="md-primary">Courier List </md-button>
@@ -217,14 +217,14 @@
 				</md-content>
 			</div>
 		</div>
-				 <md-button 
+	<!-- 			 <md-button 
 				ng-repeat="auth in curUser.userAuthMasterEntity.authorizations"
 				ui-sref="{{auth.uiStateName}}" ng-click="close()" class="menu-heading md-primary"
 				aria-label="auth.authDisplayName" show-gt-md><menu-link
 						section="child" ng-if="auth.authDisplayName === 'Home'"></menu-link> <menu-toggle
 						section="child" ng-if="auth.authDisplayName === 'Setup'"></menu-toggle> <span
 				ng-bind="auth.authDisplayName"> </span></md-button> 
-				</md-content> </md-sidenav>
+ -->				</md-content> </md-sidenav>
 
 			<!-- ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'" -->
 
