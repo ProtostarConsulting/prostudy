@@ -3,7 +3,7 @@ angular
 		.controller(
 				"indexCtr",
 				function($scope, $rootScope, $window, $log, $q, $timeout,
-						$mdToast, $mdBottomSheet, $state, appEndpointSF) {
+						$mdToast, $mdBottomSheet, $state, appEndpointSF, $localStorage) {
 
 					$log.debug("Inside indexCtr");
 
@@ -458,6 +458,77 @@ angular
 						});
 					};
 
+					
+					$scope.menu = '';
+					$scope.toggleMenu = function(menu) {
+						$scope.menu = menu;
+						$scope.schoolCounter;
+						$scope.studentsCounter;
+						$scope.booksCounter;
+						$scope.courierCounter;
+				
+				//FOR SCHOOL		
+						var schoolCounter = angular.fromJson(localStorage.dbSchoolCounter);
+						if (typeof schoolCounter === 'undefined')
+							schoolCounter = 0;
+						
+						if(menu == "school"){
+							if(schoolCounter == 0){
+								$scope.schoolCounter = schoolCounter + 1;
+								localStorage.dbSchoolCounter = angular.toJson($scope.schoolCounter);
+							}else{
+								$scope.schoolCounter = schoolCounter - 1;
+								localStorage.dbSchoolCounter = angular.toJson($scope.schoolCounter);
+							}
+						}
+					
+				//FOR STUDENT
+						var studentsCounter = angular.fromJson(localStorage.dbStudentsCounter);
+						if (typeof studentsCounter === 'undefined')
+							studentsCounter = 0;
+						
+						if(menu == "students"){
+							if(studentsCounter == 0){
+								$scope.studentsCounter = studentsCounter + 1;
+								localStorage.dbStudentsCounter = angular.toJson($scope.studentsCounter);
+							}else{
+								$scope.studentsCounter = studentsCounter - 1;
+								localStorage.dbStudentsCounter = angular.toJson($scope.studentsCounter);
+							}
+						}
+						
+				//FOR Book
+						var booksCounter = angular.fromJson(localStorage.dbBooksCounter);
+						if (typeof booksCounter === 'undefined')
+							booksCounter = 0;
+						
+						if(menu == "books"){
+							if(booksCounter == 0){
+								$scope.booksCounter = booksCounter + 1;
+								localStorage.dbBooksCounter = angular.toJson($scope.booksCounter);
+							}else{
+								$scope.booksCounter = booksCounter - 1;
+								localStorage.dbBooksCounter = angular.toJson($scope.booksCounter);
+							}
+						}
+						
+				//FOR COURIER
+						var courierCounter = angular.fromJson(localStorage.dbCourierCounter);
+						if (typeof courierCounter === 'undefined')
+							courierCounter = 0;
+						
+						if(menu == "courier"){
+							if(courierCounter == 0){
+								$scope.courierCounter = courierCounter + 1;
+								localStorage.dbCourierCounter = angular.toJson($scope.courierCounter);
+							}else{
+								$scope.courierCounter = courierCounter - 1;
+								localStorage.dbCourierCounter = angular.toJson($scope.courierCounter);
+							}
+						}		
+					}
+					
+					
 					/*
 					 * myFunction();
 					 * 

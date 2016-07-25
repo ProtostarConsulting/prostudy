@@ -1068,23 +1068,17 @@ app
 						templateUrl : '/app/gfe/directory_user_list.html',
 						controller : 'directoryUserListCtr'
 					})
-					.state(
-							'partnerSchool',
-							{
+					.state('partnerSchool',{
 								url : "/partnerSchool",
 								templateUrl : '/app/partnerSchool/partnerSchool_module.html',
 								controller : 'partnerSchoolModuleCtr'
 							})
-					.state(
-							'partnerSchool.addPartnerSchool',
-							{
+					.state('partnerSchool.addPartnerSchool',{
 								url : "/addPartnerSchool/:selectedPSchoolId",
 								templateUrl : '/app/partnerSchool/partnerSchool_add.html',
 								controller : 'partnerSchoolAddCtr'
 							})
-					.state(
-							'partnerSchool.print',
-							{
+					.state('partnerSchool.print',{
 								url : "/print/:PSchoolId/:yearOfExam",
 								templateUrl : '/app/partnerSchool/printBookDetail.html',
 								controller : 'printBookDtailCtr'
@@ -1094,49 +1088,38 @@ app
 						templateUrl : '/app/partnerSchool/printAddress.html',
 						controller : 'printBookDtailCtr'
 					})
-					.state(
-							'partnerSchool.listPartnerSchool',
-							{
+					.state('partnerSchool.listPartnerSchool',{
 								url : "/listPartnerSchool",
 								templateUrl : '/app/partnerSchool/partnerSchool_list.html',
 								controller : 'partnerSchoolListCtr'
 							})
-					.state(
-							'partnerSchool.listPartnerSchoolStudent',
-							{
+					.state('partnerSchool.listPartnerSchoolStudent',{
 								url : "/listPartnerSchoolStudent",
 								templateUrl : '/app/partnerSchool/partnerSchool_studentList.html',
 								controller : 'studentListPageCtr'
 							})
-					.state(
-							'scheduledExam',
-							{
+					.state('scheduledExam',{
 								url : "/scheduledExam",
 								templateUrl : '/app/scheduledExam/scheduledExam_module.html',
 								controller : 'scheduledExamModuleCtr'
 							})
-					.state(
-							'scheduledExam.addQuestion',
-							{
-								url : "/addQuestion",
-								templateUrl : '/app/scheduledQuestion/scheduledQuestion_new.html',
-								controller : 'scheduledQuestionNewCtr',
-								params : {
+					.state('scheduledExam.addQuestion',{
+						url : "/addQuestion",
+						templateUrl : '/app/scheduledQuestion/scheduledQuestion_new.html',
+						controller : 'scheduledQuestionNewCtr',
+						params : {
 									sourceSate : null,
 									selectedExamId : null,
 									selectedInstituteId : null,
 									flag : null
 								}
 							})
-					.state(
-							'scheduledExam.questionList',
-							{
-								url : "/questionList",
-								templateUrl : '/app/scheduledQuestion/scheduledQuestion_list.html',
-								controller : 'scheduledQuestionListCtr'
-							})
-					.state(
-							'scheduledExam.questionEdit',
+					.state('scheduledExam.questionList',{
+							url : "/questionList",
+							templateUrl : '/app/scheduledQuestion/scheduledQuestion_list.html',
+							controller : 'scheduledQuestionListCtr'
+					})
+					.state('scheduledExam.questionEdit',
 							{
 								url : "/questionEdit",
 								templateUrl : '/app/scheduledQuestion/scheduledQuestion_edit.html',
@@ -1290,50 +1273,38 @@ app
 						templateUrl : '/app/proadmin/manage_auth_master.html',
 						controller : 'proAdminManageAuth'
 					})
-					.state(
-							'proadmin.manageinstituteauth',
-							{
-								url : "/manageinstituteauth/:selectedInstituteID",
-								templateUrl : '/app/proadmin/manage_institute_auth.html',
-								controller : 'proAdminManageInstituteAuth'
-							})
+					.state('proadmin.manageinstituteauth',{
+						url : "/manageinstituteauth/:selectedInstituteID",
+						templateUrl : '/app/proadmin/manage_institute_auth.html',
+						controller : 'proAdminManageInstituteAuth'
+					})
 
-					.state(
-							'gandhifoundation',
-							{
-								url : "/gandhifoundation",
-								templateUrl : '/app/gandhiFoundation/gandhiFoundation_module.html',
-								controller : 'gfModuleCtr'
-							})
+					.state('gandhifoundation',{
+						url : "/gandhifoundation",
+						templateUrl : '/app/gandhiFoundation/gandhiFoundation_module.html',
+						controller : 'gfModuleCtr'
+					})
 
-					.state(
-							'studentModule',
-							{
-								url : "/studentModule",
-								templateUrl : '/app/gandhiFoundation/gfStudent_module.html',
-								controller : 'gfStudentModuleCtr'
-							})
-					.state(
-							'studentModule.add',
-							{
-								url : "/studentModule.add/:selectedGFStudID",
-								templateUrl : '/app/gandhiFoundation/gfStudent_add.html',
-								controller : 'gfStudentAddCtr'
-							})
-					.state(
-							'studentModule.list',
-							{
-								url : "/studentModule.list",
-								templateUrl : '/app/gandhiFoundation/gfStudent_list.html',
-								controller : 'gfStudentListCtr'
-							})
-					.state(
-							'studentModule.view',
-							{
-								url : "/studentModule.view/:selectedGFStudID",
-								templateUrl : '/app/gandhiFoundation/gfStudent_view.html',
-								controller : 'gfStudentviewCtr'
-							})
+					.state('studentModule',{
+						url : "/studentModule",
+						templateUrl : '/app/gandhiFoundation/gfStudent_module.html',
+						controller : 'gfStudentModuleCtr'
+					})
+					.state('studentModule.add',{
+						url : "/studentModule.add/:selectedGFStudID",
+						templateUrl : '/app/gandhiFoundation/gfStudent_add.html',
+						controller : 'gfStudentAddCtr'
+					})
+					.state('studentModule.list',{
+						url : "/studentModule.list",
+						templateUrl : '/app/gandhiFoundation/gfStudent_list.html',
+						controller : 'gfStudentListCtr'
+					})
+					.state('studentModule.view',{
+						url : "/studentModule.view/:selectedGFStudID",
+						templateUrl : '/app/gandhiFoundation/gfStudent_view.html',
+						controller : 'gfStudentviewCtr'
+					})
 
 					.state('courierModule', {
 						url : "/courierModule",
@@ -1363,25 +1334,21 @@ app
 						controller : 'gfCourierSearchCtr'
 					})
 
-					.state(
-							'courierModule.addFromPS',
-							{
-								url : "/addFromPS",
-								templateUrl : '/app/gfcourier/gfCourier_directAddFromPS.html',
-								controller : 'gfCourierDirectAddCtr',
-								params : {
-									partnerSchool : null,
-									yearOfExam : null
+					.state('courierModule.addFromPS',{
+						url : "/addFromPS",
+						templateUrl : '/app/gfcourier/gfCourier_directAddFromPS.html',
+						controller : 'gfCourierDirectAddCtr',
+						params : {
+								partnerSchool : null,
+								yearOfExam : null
 								}
-							})
+					})
 
-					.state(
-							'bookModule',
-							{
+					.state('bookModule',{
 								url : "/bookModule",
 								templateUrl : '/app/gfbookstock/gfBookStock_module.html',
 								controller : 'gfBookStockModuleCtr'
-							})
+					})
 					.state('bookModule.add', {
 						url : "/bookModule.add/:selectedGFBookID",
 						templateUrl : '/app/gfbookstock/gfBook_add.html',
@@ -1407,13 +1374,11 @@ app
 						templateUrl : '/app/gfbookstock/gfBookStock_list.html',
 						controller : 'gfBookStockListCtr'
 					})
-					.state(
-							'bookModule.stockTransaction',
-							{
-								url : "/bookModule.stockTransaction",
-								templateUrl : '/app/gfbookstock/gfBookStockTransaction_list.html',
-								controller : 'gfBookstockTransactionListCtr'
-							})
+					.state('bookModule.stockTransaction',{
+						url : "/bookModule.stockTransaction",
+						templateUrl : '/app/gfbookstock/gfBookStockTransaction_list.html',
+						controller : 'gfBookstockTransactionListCtr'
+					})
 		});
 
 app.filter('unique', function() {
