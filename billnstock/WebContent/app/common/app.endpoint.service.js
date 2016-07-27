@@ -52,6 +52,28 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			return googleEndpointSF.getAccountService();
 	};
 	// ----------------------------------------------------
+	endpointFactory.getAccountEntryService = function() {
+		if (isTestMode)
+			return localDBServiceFactory.getAccountEntryService();
+		else
+			return googleEndpointSF.getAccountEntryService();
+	};
+	
+	// ----------------------------------------------------
+	endpointFactory.getGeneralJournalService = function() {
+		if (isTestMode)
+			return localDBServiceFactory.getGeneralJournalService();
+		else
+			return googleEndpointSF.getGeneralJournalService();
+	};
+	// ----------------------------------------------------
+	endpointFactory.getGeneralEntryService = function() {
+		if (isTestMode)
+			return localDBServiceFactory.getGeneralEntryService();
+		else
+			return googleEndpointSF.getGeneralEntryService();
+	};
+	// ----------------------------------------------------
 	endpointFactory.gethrService = function() {
 		if (isTestMode)
 			return localDBServiceFactory.gethrService();
@@ -220,7 +242,18 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			$log.debug("accountService Loaded....");
 		}, apiRoot);
 		
-
+		gapi.client.load('accountEntryService', 'v0.1', function() {
+			$log.debug("accountEntryService Loaded....");
+		}, apiRoot);
+		
+		gapi.client.load('generalJournalService', 'v0.1', function() {
+			$log.debug("generalJournalService Loaded....");
+		}, apiRoot);		
+		
+		gapi.client.load('generalEntryService', 'v0.1', function() {
+			$log.debug("generalEntryService Loaded....");
+		}, apiRoot);
+		
 		gapi.client.load('hrService', 'v0.1', function() {
 			$log.debug("hr Loaded....");
 		}, apiRoot);
