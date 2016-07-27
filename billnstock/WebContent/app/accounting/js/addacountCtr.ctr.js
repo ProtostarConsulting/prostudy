@@ -15,8 +15,7 @@ app.controller("addacountCtr", function($scope, $window, $mdToast, $timeout,
 			accountNo:"",
 			displayOrderNo:"",
 			description:"",
-			contra : false
-			
+			contra : false,			
 	};
 	$scope.cancle=function(){
 		

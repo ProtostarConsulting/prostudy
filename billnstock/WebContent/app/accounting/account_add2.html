@@ -29,15 +29,15 @@
 		</div>
 		</md-input-container>
 
-		<span style="color: red;">*</span>
-		<md-input-container flex> <md-select flex
-			ng-model="account.accountType"> <label>AccountType</label>
+	
+		<md-input-container flex> <md-select  
+			ng-model="account.accountType" required > 	<label>AccountType<span style="color: red;">*</span></label>
 
 		<md-option ng-repeat="type in accountType "> {{type}} </md-option> </md-select>
 
-		<div ng-messages="accountForm.accountType.$error"
+		<div ng-messages="accountForm.accountType.$error" 
 			ng-if="accountForm.accountType.$submitted || accountForm.accountType.$touched">
-			<div ng-message="required">Please Select the Type</div>
+			<div ng-message="Please Select the Type">Please Select the Type</div>
 
 		</div>
 		</md-input-container>
