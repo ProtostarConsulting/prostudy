@@ -1011,6 +1011,37 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 
+	//--------------------ADDACCOUNT--------------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22@@@@@@@@@@@
+	AccountService.addAccount1 = function(account) {
+		var deferred = $q.defer();
+
+		gapi.client.accountService.addAccount1(account).execute(function(resp) {
+			$log.debug("addAccount1#resp at enpoint:" + resp);
+			deferred.resolve(resp);
+		});
+
+		return deferred.promise;
+	}
+	
+	
+	
+	
+	
+	AccountService.getaccountlist=function(){
+		var deferred = $q.defer();
+		gapi.client.accountService.getaccountlist().execute(
+				function(resp) {
+					$log.debug("getaccountlist#resp at enpoint:"
+							+ angular.toJson(resp));
+					deferred.resolve(resp.items);
+				});
+		return deferred.promise;
+	}
+	
+	
+	
+	
+	
 	AccountService.getAccountById = function(Id) {
 		var deferred = $q.defer();
 		gapi.client.accountService.getAccountById({

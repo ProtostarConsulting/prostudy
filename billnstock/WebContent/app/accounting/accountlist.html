@@ -1,0 +1,72 @@
+
+<md-content layout-padding>
+<!-- <section layout="row" layout-align="end end" flex>
+	<md-button class="md-raised md-primary" id="uplodeExcel"
+		ng-click="UplodeExcel($event)">UplodeExcel</md-button>
+</section> -->
+<h3 class="md-headline" >
+	<u>Account List</u>
+</h3>
+
+
+<div>
+	<md-data-table-container>
+	<table md-data-table md-row-select="selected" md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onOrderChange">
+		
+			<tr>
+				<th name="Account Name" order-by="accountName"></th>
+				<th name="Account No" order-by="accountNo"></th>
+				<th name="Account Type" order-by="accountType"></th>
+				<th name="Order No" order-by="displayOrderNo"></th>
+				<th name="Description" order-by="description"></th>
+				<th name="Contra" order-by="contra"></th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="account in accounts | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
+
+				<td>{{account.accountName}}</td>
+				<td>{{account.accountNo}}</td>
+				<td>{{account.accountType}}</td>
+				<td>{{account.displayOrderNo}}</td>
+				<td>{{account.description}}</td>
+				<td>{{account.contra}}</td>
+
+				<td><section layout="row" layout-sm="column">
+						 <md-button class="md-raised md-primary"
+							ui-sref="account.accountAdd({selectedAccountId: account.id})">
+						Edit</md-button> 
+					</section></td>
+				<td>
+			</tr>
+
+		</tbody>
+	</table>
+
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{accounts.length}} md-trigger="onpagechange"></md-data-table-pagination>
+	</md-data-table-container>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</md-content>

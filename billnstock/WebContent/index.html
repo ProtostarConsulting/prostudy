@@ -162,7 +162,23 @@
 				<md-button ui-sref="account"
 					ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('account') > -1"
 					ng-click="close()" class="md-primary" show-gt-md>Account
-				</md-button> <md-button ui-sref="stock"
+				</md-button> 
+				
+	
+				<md-button ui-sref="accounting"
+					ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('account') > -1"
+					ng-click="close()" class="md-primary" show-gt-md>Accounting
+				</md-button> 
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<md-button ui-sref="stock"
 					ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('stock') > -1"
 					ng-click="close()" ng-show="loader.stock" class="md-primary"
 					show-gt-md>Stock </md-button> <!-- <md-button ui-sref="stock" ng-click="close()" class="md-primary" show-gt-md> Stock </md-button>  -->
@@ -538,6 +554,17 @@
 	<script src="/app/ProAdmin/js/AddAccountType.js"></script>
 	<script src="/app/ProAdmin/js/ListAccountType.js"></script>
 	<!-- setup module js -->
+
+<!-- Accounting entity -->
+
+<script src="/app/accounting/js/accounting_module.ctr.js"></script>
+<script src="/app/accounting/js/addacountCtr.ctr.js"></script>
+<script src="/app/accounting/js/accountlistCtr.ctr.js"></script>
+
+<!-- Accounting entity -->
+
+
+
 
 
 	<script src="/app/setup/js/setup_module.js"></script>

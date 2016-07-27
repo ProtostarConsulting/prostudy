@@ -650,6 +650,27 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/setup/setup_viewuser.html',
 		controller : 'setup.viewuser',
 
-	});
+	})
+	
+	
+	.state('accounting', {
+		url : "/accounting",
+		templateUrl : '/app/accounting/accounting_module.html',
+		controller : 'accountModuleCtr',
+	})
+	
+	.state('accounting.account_add2', {
+		url : "/account_add",
+		templateUrl : '/app/accounting/account_add2.html',
+		controller : 'addacountCtr',
+	})
+	.state('accounting.accountlist', {
+		url : "/accountlist",
+		templateUrl : '/app/accounting/accountlist.html',
+		controller : 'accountlistCtr',
+	})
+	
+	
+	
 
 });
