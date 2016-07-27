@@ -107,7 +107,7 @@
 				<div ng-message="required">Please Select Category.</div>
 			</div>
 			</md-input-container>
-		
+
 		</div>
 
 		<div layout="row" layout-xs="column" flex>
@@ -157,7 +157,8 @@
 			</md-input-container>
 		</div>
 
-		<div layout="row" layout-xs="column" ng-if="partnerSchool.address.state == 'Other'">
+		<div layout="row" layout-xs="column"
+			ng-if="partnerSchool.address.state == 'Other'">
 			<md-input-container flex> <label>State <span
 				style="color: red;"
 				ng-show="partnerSchoolForm.otherState.$error.required">*</span>
@@ -169,8 +170,8 @@
 			</div>
 			</md-input-container>
 
-			<md-input-container flex> <label>District <span
-				style="color: red;"
+			<md-input-container flex> <label>District
+				<span style="color: red;"
 				ng-show="partnerSchoolForm.otherDist.$error.required">*</span>
 			</label> <input name="otherDist" id="otherDist"
 				ng-model="partnerSchool.address.otherDist" ng-required="true">
@@ -179,10 +180,11 @@
 				<div ng-message="required">Please Enter District Name.</div>
 			</div>
 			</md-input-container>
-</div>
-		<div layout="row" layout-xs="column" ng-if="partnerSchool.address.state == 'Other'">
-			<md-input-container flex> <label>Taluka <span
-				style="color: red;"
+		</div>
+		<div layout="row" layout-xs="column"
+			ng-if="partnerSchool.address.state == 'Other'">
+			<md-input-container flex> <label>Taluka
+				<span style="color: red;"
 				ng-show="partnerSchoolForm.otherTaluka.$error.required">*</span>
 			</label> <input name="otherTaluka" id="otherTaluka"
 				ng-model="partnerSchool.address.otherTaluka" ng-required="true">
@@ -193,8 +195,9 @@
 			</md-input-container>
 
 
-<md-input-container flex="50"> <label>Pin <span
-				style="color: red;" ng-show="partnerSchoolForm.pin.$error.required">*</span>
+			<md-input-container flex="50"> <label>Pin
+				<span style="color: red;"
+				ng-show="partnerSchoolForm.pin.$error.required">*</span>
 			</label> <input type="number" name="pin" id="pin"
 				ng-model="partnerSchool.address.pin" ng-required="true">
 			<div ng-messages="partnerSchoolForm.pin.$error"
@@ -206,14 +209,16 @@
 		</div>
 
 
-		<div layout="row" layout-xs="column"  ng-if="partnerSchool.address.state != 'Other'">
+		<div layout="row" layout-xs="column"
+			ng-if="partnerSchool.address.state != 'Other'">
 			<md-input-container flex> <label>District<span
-				style="color: red" ng-show="partnerSchoolForm.district.$error.required"
+				style="color: red"
+				ng-show="partnerSchoolForm.district.$error.required"
 				class="mandatory">*</span></label> <md-select name="district"
 				ng-model="partnerSchool.address.dist" placeholder="Select District"
 				ng-change="getTalukas($index, partnerSchool.address.dist)"
-				 ng-required="true"> <md-option
-				ng-value="district.name" ng-repeat="district in temp.tempDistricts">{{district.name
+				ng-required="true"> <md-option ng-value="district.name"
+				ng-repeat="district in temp.tempDistricts">{{district.name
 			}}</md-option> </md-select>
 
 			<div ng-messages="partnerSchoolForm.district.$error"
@@ -223,14 +228,14 @@
 			</md-input-container>
 
 			<md-input-container flex> <label>Taluka<span
-				style="color: red" ng-show="partnerSchoolForm.taluka.$error.required"
-				class="mandatory">*</span></label>
+				style="color: red"
+				ng-show="partnerSchoolForm.taluka.$error.required" class="mandatory">*</span></label>
 			<md-select name="taluka" ng-model="partnerSchool.address.tal"
 				placeholder="Select Taluka"
 				ng-change="getVillages($Index, partnerSchool.address.tal)"
-				 ng-required="true"> <md-option
-				ng-value="taluka.name" ng-repeat="taluka in temp.tempTalukas">{{taluka.name
-			}}</md-option> </md-select>
+				ng-required="true"> <md-option ng-value="taluka.name"
+				ng-repeat="taluka in temp.tempTalukas">{{taluka.name }}</md-option>
+			</md-select>
 
 			<div ng-messages="partnerSchoolForm.taluka.$error"
 				ng-if="partnerSchoolForm.taluka.$submitted || partnerSchoolForm.taluka.$touched">
@@ -258,8 +263,10 @@
 
  -->
 
-			<md-input-container flex="50"   ng-if="partnerSchool.address.state != 'Other'"> <label>Pin <span
-				style="color: red;" ng-show="partnerSchoolForm.pin.$error.required">*</span>
+			<md-input-container flex="50"
+				ng-if="partnerSchool.address.state != 'Other'">
+			<label>Pin <span style="color: red;"
+				ng-show="partnerSchoolForm.pin.$error.required">*</span>
 			</label> <input type="number" name="pin" id="pin"
 				ng-model="partnerSchool.address.pin" ng-required="true">
 			<div ng-messages="partnerSchoolForm.pin.$error"
@@ -269,7 +276,7 @@
 			</md-input-container>
 
 
-</div>
+		</div>
 		<!-- 		===================================================================================================
 
 		<div layout="row" flex>
@@ -465,19 +472,36 @@
 
 	<div layout="row" layout-xs="column" flex>
 
-		<md-input-container flex> <label>Mobile
-			No <!-- <span style="color: red"
+<!-- 		<md-input-container flex> <label>Mobile
+			No <span style="color: red"
 			ng-show="partnerSchoolForm.headMasterMobile.$error.required"
-			class="mandatory">*</span> -->
+			class="mandatory">*</span>
 		</label> <input name="headMasterMobile"
-			ng-model="contactDetail.headMasterMobile"> <!-- <div ng-messages="partnerSchoolForm.headMasterMobile.$error"
+			ng-model="contactDetail.headMasterMobile">
+		<div ng-messages="partnerSchoolForm.headMasterMobile.$error"
 			ng-if="partnerSchoolForm.headMasterMobile.$submitted || partnerSchoolForm.headMasterMobile.$touched">
 			<div ng-message="required">Please Enter Mobile Number.</div>
-		</div> --> </md-input-container>
+		</div>
+		</md-input-container>
+ -->		
+		
+		<md-input-container flex> <label>Mobile No.
+							<span style="color: red"
+							ng-show="partnerSchoolForm.headMasterMobile.$error.required"
+							class="mandatory">*</span>
+						</label> <input name="headMasterMobile" ng-model="contactDetail.headMasterMobile"
+							ng-required="true">
+						<div ng-messages="partnerSchoolForm.headMasterMobile.$error"
+							ng-if="partnerSchoolForm.headMasterMobile.$submitted || partnerSchoolForm.headMasterMobile.$touched">
+							<div ng-message="required">Please Enter Mobile No.</div>
+						</div>
+						</md-input-container>
+		
 		<!-- 	<span flex="10"></span> -->
-		<md-input-container flex> <label>Email Id<!--  <span style="color: red"
+<!-- 		<md-input-container flex> <label>Email Id
+			<span style="color: red"
 			ng-show="partnerSchoolForm.headMasterEmailId.$error.required"
-			class="mandatory">*</span> -->
+			class="mandatory">*</span>
 		</label> <input name="headMasterEmailId"
 			ng-model="contactDetail.headMasterEmailId">
 		<div ng-messages="partnerSchoolForm.headMasterEmailId.$error"
@@ -485,6 +509,20 @@
 			<div ng-message="required">Please Enter Email Id Name.</div>
 		</div>
 		</md-input-container>
+ -->		
+		
+		<md-input-container flex> <label>E-mail ID
+							<span style="color: red"
+							ng-show="partnerSchoolForm.headMasterEmailId.$error.required"
+							class="mandatory">*</span>
+						</label> <input name="headMasterEmailId" ng-model="contactDetail.headMasterEmailId"
+							ng-required="true">
+						<div ng-messages="partnerSchoolForm.headMasterEmailId.$error"
+							ng-if="partnerSchoolForm.headMasterEmailId.$submitted || partnerSchoolForm.headMasterEmailId.$touched">
+							<div ng-message="required">Please Enter E-mail ID.</div>
+						</div>
+						</md-input-container>
+						
 		<!-- 		<span flex="10"></span> -->
 	</div>
 	<div layout="row" layout-xs="column" flex>
@@ -547,14 +585,55 @@
 			<tbody>
 				<tr ng-repeat="co in  contactDetail.coordinatorDetail">
 					<td>{{ co.srno }}</td>
-					<td><md-input-container flex> <label>
-							Name</label> <input ng-model="co.coordinatorName"> </md-input-container></td>
+					<td><md-input-container flex> <label>Name
+							<span style="color: red"
+							ng-show="partnerSchoolForm.cordName.$error.required"
+							class="mandatory">*</span>
+						</label> <input name="cordName" ng-model="co.coordinatorName"
+							ng-required="true">
+						<div ng-messages="partnerSchoolForm.cordName.$error"
+							ng-if="partnerSchoolForm.cordName.$submitted || partnerSchoolForm.cordName.$touched">
+							<div ng-message="required">Please Enter Name.</div>
+						</div>
+						</md-input-container> 
+<!-- 						<md-input-container flex> <label>
+							Name</label> <input ng-model="co.coordinatorName"> </md-input-container>
+							
+ -->				</td>
 					<td><md-input-container flex> <label>Phone
 							No.</label> <input ng-model="co.coordinatorPhoneNum"></md-input-container></td>
-					<td><md-input-container flex> <label>Mobile
-							No.</label> <input ng-model="co.coordinatorMobileNum"></md-input-container></td>
-					<td><md-input-container flex> <label>Email
-							Id</label> <input ng-model="co.coordinatorEmailId"></md-input-container></td>
+				
+					<td><md-input-container flex> <label>Mobile No.
+							<span style="color: red"
+							ng-show="partnerSchoolForm.cordMobileNo.$error.required"
+							class="mandatory">*</span>
+						</label> <input name="cordMobileNo" ng-model="co.coordinatorMobileNum"
+							ng-required="true">
+						<div ng-messages="partnerSchoolForm.cordMobileNo.$error"
+							ng-if="partnerSchoolForm.cordMobileNo.$submitted || partnerSchoolForm.cordMobileNo.$touched">
+							<div ng-message="required">Please Enter Mobile No.</div>
+						</div>
+						</md-input-container>
+						
+<!-- 						<md-input-container flex> <label>Mobile
+							No.</label> <input ng-model="co.coordinatorMobileNum"></md-input-container>
+ -->							
+							</td>
+					<td><md-input-container flex> <label>E-mail ID
+							<span style="color: red"
+							ng-show="partnerSchoolForm.cordEmail.$error.required"
+							class="mandatory">*</span>
+						</label> <input name="cordEmail" ng-model="co.coordinatorEmailId"
+							ng-required="true">
+						<div ng-messages="partnerSchoolForm.cordEmail.$error"
+							ng-if="partnerSchoolForm.cordEmail.$submitted || partnerSchoolForm.cordEmail.$touched">
+							<div ng-message="required">Please Enter E-mail ID.</div>
+						</div>
+						</md-input-container>
+						
+<!-- 						<md-input-container flex> <label>Email
+							Id</label> <input ng-model="co.coordinatorEmailId"></md-input-container> -->
+						</td>
 					<td><md-button class="md-raised md-primary"
 							ng-click="removeCoordinator($index)">Remove
 						Coordinator</md-button></td>

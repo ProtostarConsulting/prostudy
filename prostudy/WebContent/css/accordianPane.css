@@ -1,31 +1,3 @@
-#logo {
-	background: url(img/images/protostar_logo_pix_313_132.jpg) no-repeat 0 0
-}
-
-.circular {
-	width: 60px;
-	height: 60px;
-	border-radius: 150px;
-	-webkit-border-radius: 150px;
-	-moz-border-radius: 150px;
-}
-
-.menu-heading {
-	line-height: 32px;
-	margin: 0;
-	padding: 8px 16px 0;
-	text-align: left;
-	width: 100%;
-}
-
-#content {
-  background-color: red;
-  color : blue;
-  font-weight:600;
-  border: 0px solid #aeaeae;
-  border-top:none;
-}
-
 
 .md-accordion .expandCollapse { 
   width:30px;
@@ -36,9 +8,9 @@
   cursor:pointer;
   color:#fff;
   display:block;
-/*   margin-top: -2px;
+  margin-top: -2px;
   margin-left: -2px;
- */  overflow:hidden;
+  overflow:hidden;
 }
 .md-accordion .expandCollapse:active {
   border:0px;

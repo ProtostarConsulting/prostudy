@@ -15,20 +15,15 @@
 	<div layout="row" layout-xs="column">
 		<md-input-container flex> <label>Search
 			By Name</label> <input ng-model="searchByName"> </md-input-container>
-	</div>
-	<div layout="row" layout-xs="column">
+	
 		<md-input-container flex> <label>Search
-			By School / College / Institute<span style="color: red"
-			ng-show="instituteStudentForm.level.$error.required"
-			class="mandatory">*</span>
-		</label> <md-select name="level" ng-model="schoolName " ng-required="true">
+			By School / College / Institute
+		</label> <md-select name="level" ng-model="schoolName">
 		<md-option ng-value="schoolName.schoolName"
 			ng-repeat="schoolName in pSchoolList">{{schoolName.schoolName}}</md-option>
+			<md-option ng-value="Other" ng-model="other">All</md-option>
 		</md-select>
-		<div ng-messages="instituteStudentForm.level.$error"
-			ng-if="instituteStudentForm.level.$submitted || instituteStudentForm.level.$touched">
-			<div ng-message="required">Please Select School Category.</div>
-		</div>
+
 		</md-input-container>
 	</div>
 	<div>

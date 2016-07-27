@@ -25,7 +25,7 @@ angular.module("prostudyApp").controller(
 
 				var gfStudentService = appEndpointSF.getGFStudentService();
 
-				if(!$scope.selectedGFStudID)
+				if(!$scope.selectedGFStudID){
 					if($scope.pSchoolList.length == 1){
 						$scope.tempStudent.schoolName =$scope.pSchoolList[0];
 					}else{
@@ -34,6 +34,12 @@ angular.module("prostudyApp").controller(
 						$scope.tempStudent.schoolName =$scope.tempStudent[i];
 					}
 					}
+				}else{
+					for(var i=0; i < $scope.pSchoolList.length; i++){
+						if($scope.pSchoolList[i].schoolName == $scope.tempStudent.schoolName.schoolName)
+						$scope.tempStudent.schoolName =$scope.pSchoolList[i];
+					}
+				}
 				gfStudentService.addGFStudent($scope.tempStudent).then(
 						function() {
 							$scope.gfStudentForm.$setPristine();
@@ -48,7 +54,7 @@ angular.module("prostudyApp").controller(
 					
 				} else {
 					$scope.showUpdateToast();
-					$state.go('gandhifoundation.studentModule');
+					$state.go('studentModule.list');
 				}
 				
 			}

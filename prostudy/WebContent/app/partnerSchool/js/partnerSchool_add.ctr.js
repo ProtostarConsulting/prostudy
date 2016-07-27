@@ -437,14 +437,33 @@ angular.module("prostudyApp")
 
 					// -----------add coordinator--------------
 					$scope.addCoordinator = function() {
-						$scope.CoordinatorDetail = {
-							srno : $scope.contactDetail.coordinatorDetail.length + 1,
-							coordinatorName : "",
-							coordinatorPhoneNum : "",
-							coordinatorEmailId : "",
+						if($scope.contactDetail.coordinatorDetail == undefined){
+							$scope.contactDetail = {
+									headMasterName : "",
+									headMasterMobile : "",
+									headMasterPhone : "",
+									headMasterEmailId : "",
+									coordinatorDetail : [ {
+										srno : 1,
+										coordinatorName : "",
+										coordinatorPhoneNum : "",
+										coordinatorMobileNum : "",
+										coordinatorEmailId : "",
+									} ]
+
+								}
+							$scope.contactDetail.coordinatorDetail;
+						
+						}else{
+							$scope.CoordinatorDetail = {
+									srno : $scope.contactDetail.coordinatorDetail.length + 1,
+									coordinatorName : "",
+									coordinatorPhoneNum : "",
+									coordinatorEmailId : "",
+								}
+								$scope.contactDetail.coordinatorDetail
+										.push($scope.CoordinatorDetail);
 						}
-						$scope.contactDetail.coordinatorDetail
-								.push($scope.CoordinatorDetail);
 					}
 
 					$scope.removeCoordinator = function(index) {
