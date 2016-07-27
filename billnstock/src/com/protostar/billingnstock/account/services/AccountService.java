@@ -35,6 +35,33 @@ public class AccountService {
 
 	}
 
+	
+@ApiMethod(name = "addAccount1")
+	public void addAccount1(AccountEntity accountEntity) {
+		ofy().save().entity(accountEntity).now();
+	}
+
+	
+@ApiMethod(name = "getaccountlist")
+	public List<AccountEntity> getaccountlist() {
+
+		List<AccountEntity> filteredAccounts = ofy().load().type(AccountEntity.class)
+				.list();
+
+		return filteredAccounts;
+	}
+
+@ApiMethod(name = "getAccountById")
+	public AccountEntity getAccountById(@Named("id") Long accountId) {
+
+		AccountEntity accountById = ofy().load().type(AccountEntity.class).id(accountId).now();
+
+		return accountById;
+	}
+	
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/	
+	
+	
 	@ApiMethod(name = "getAllAccountsByBusiness")
 	public List<AccountEntity> getAllAccountsByBusiness(@Named("id") Long busId) {
 
@@ -48,13 +75,7 @@ public class AccountService {
 		return filteredAccounts;
 	}
 
-	@ApiMethod(name = "getAccountById")
-	public AccountEntity getAccountById(@Named("id") Long accountId) {
-
-		AccountEntity accountById = ofy().load().type(AccountEntity.class).id(accountId).now();
-
-		return accountById;
-	}
+	
 	
 	@ApiMethod(name = "getCustomerByID")
 	public Customer getCustomerByID(@Named("Id") Long Id) {
