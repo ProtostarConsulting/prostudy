@@ -9,35 +9,39 @@ import com.protostar.billnstock.entity.BaseEntity;
 @Entity
 public class AccountEntity extends BaseEntity {
 
-	public static enum AccountType {
+/*	public static enum AccountType {
 		PERSONAL, REAL, NOMINAL
 	};
-
+*/
 	private String accountName;
-	private AccountType accountType;
-	private Long accountNo;
+//	private AccountType accountType;
+	//private Long accountNo;
+	private String accountNo;
 	private String description;
 	private Integer displayOrderNo;
-	private Boolean contra;
+	private Boolean contra = false;
+	private String accountType;
 	
 	public AccountEntity(){
 		
 	}
 
-	public AccountEntity(String accountName, AccountType accountType){
+/*	public AccountEntity(String accountName, AccountType accountType){
 		this.accountName = accountName;
 		this.accountType = accountType;
 		
 	}
-
+*/
 	@Ignore
 	private List<AccountEntryEntity> accountLedgerEntries;
 
-	public Long getAccountNo() {
+	
+
+	public String getAccountNo() {
 		return accountNo;
 	}
 
-	public void setAccountNo(Long accountNo) {
+	public void setAccountNo(String accountNo) {
 		this.accountNo = accountNo;
 	}
 
@@ -56,7 +60,7 @@ public class AccountEntity extends BaseEntity {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+/*
 	public AccountType getAccountType() {
 		return accountType;
 	}
@@ -64,9 +68,19 @@ public class AccountEntity extends BaseEntity {
 	public void setAccountType(AccountType accountType) {
 		this.accountType = accountType;
 	}
-
+*/
+	
+	
 	public Integer getDisplayOrderNo() {
 		return displayOrderNo;
+	}
+
+	public String getAccountType() {
+		return accountType;
+	}
+
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
 	}
 
 	public void setDisplayOrderNo(Integer displayOrderNo) {
