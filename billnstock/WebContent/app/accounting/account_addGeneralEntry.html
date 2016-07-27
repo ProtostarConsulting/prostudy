@@ -1,0 +1,65 @@
+
+<md-content layout-padding>
+
+<h3 class="md-headline">
+	<u>Add General Account Entry</u>
+</h3>
+
+<form name="generalEntryForm">
+	[<span style="color: red;">Field Marked as asterik (*) are
+		mandetory</span>]
+		
+		<div layout layout-sm="column">
+		<md-input-container flex> <label>Date</label>
+		<input name="date" id="date" ng-model="date"> </md-input-container>
+
+	</div>
+	
+		
+	<div layout layout-sm="column">
+
+		<md-input-container flex> <label> Choose
+			DebitAccount<span style="color: red;">*</span>
+		</label> <md-select name="debitAcc" ng-model="tempQuestion.standard"
+			ng-required="true"> <md-option ng-value="standard"
+			ng-repeat="standard in standards">{{standard}}</md-option> </md-select>
+
+
+		<div ng-messages="generalEntryForm.debitAcc.$error"
+			ng-if="generalEntryForm.debitAcc.$submitted || generalEntryForm.debitAcc.$touched">
+			<div ng-message="required">Please Choose Debit Account</div>
+		</div>
+		</md-input-container>
+
+		<md-input-container flex> <label> Choose
+			CreditAccount<span style="color: red;">*</span>
+		</label> <input ng-model="yy" name="creditAcc" ng-required="true">
+
+		<div ng-messages="generalEntryForm.creditAcc.$error"
+			ng-if="generalEntryForm.creditAcc.$submitted || generalEntryForm.creditAcc.$touched">
+			<div ng-message="required">Please Choose Credit Account</div>
+		</div>
+		</md-input-container>
+
+
+	</div>
+	<div layout layout-sm="column">
+		<md-input-container flex> <label>Narration</label>
+		<input name="narration" id="narration" ng-model="narration"> </md-input-container>
+
+		<md-input-container flex> <label>Amount</label> <input
+			name="amount" id="amount" ng-model="amount"> </md-input-container>
+
+	</div>
+	
+	
+	
+	
+	<section layout="row" layout-sm="column" layout-align="left left">
+		<md-button class="md-raised md-primary"
+			ng-disabled="generalEntryForm.$invalid" ng-click="">Add
+		general Entry</md-button>
+	</section>
+
+</form>
+</md-content>

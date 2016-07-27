@@ -38,11 +38,11 @@ app.controller("addacountCtr", function($scope, $window, $mdToast, $timeout,
 			
 		});
 		
-		if ($scope.accountId == "") {
+		/*if ($scope.accountId == "") {
 			$scope.showAddToast();
 		} else {
 			$scope.showUpdateToast();
-		}
+		}*/
 		$scope.account="";
 		$scope.accountForm.$setPristine();
         $scope.accountForm.$setValidity();
