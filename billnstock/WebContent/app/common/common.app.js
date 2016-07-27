@@ -660,7 +660,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	})
 	
 	.state('accounting.account_add2', {
-		url : "/account_add",
+		url : "/account_add/:AccountId",
 		templateUrl : '/app/accounting/account_add2.html',
 		controller : 'addacountCtr',
 	})

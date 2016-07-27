@@ -8,17 +8,14 @@ app.controller("addacountCtr", function($scope, $window, $mdToast, $timeout,
 		limit : 5,
 		page : 1
 	};
-
+	$scope.accountId = $stateParams.AccountId;
 	
 	$scope.account={
-			
-			
 			accountName:"",
-   
 			accountNo:"",
 			displayOrderNo:"",
 			description:"",
-			contra:false
+			contra : false
 			
 	};
 	$scope.cancle=function(){
@@ -41,11 +38,33 @@ app.controller("addacountCtr", function($scope, $window, $mdToast, $timeout,
 		
 			
 		});
+		
+		if ($scope.accountId == "") {
+			$scope.showAddToast();
+		} else {
+			$scope.showUpdateToast();
+		}
 		$scope.account="";
 		$scope.accountForm.$setPristine();
         $scope.accountForm.$setValidity();
         $scope.accountForm.$setUntouched();
 	}
+	
+$scope.getAccByid=function(){
+		
+		var getrecord=appEndpointSF.getAccountService();
+		getrecord.getAccountById($scope.accountId).then(function(account){
+			$scope.account=account;
+			
+		});
+	
+		
+	}
+
+	
+$scope.getAccByid();
+	
+	
 	
 	
 });

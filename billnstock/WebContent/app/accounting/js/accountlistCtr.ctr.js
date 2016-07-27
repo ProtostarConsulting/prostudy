@@ -19,5 +19,13 @@ app.controller("accountlistCtr", function($scope, $window, $mdToast, $timeout,
 		}
 	$scope.getaccountlist();
 	
+	$scope.getAccByid=function(){
+		
+		var getrecord=appEndpointSF
+		
+		
+	}
+	
+	
 	
 });

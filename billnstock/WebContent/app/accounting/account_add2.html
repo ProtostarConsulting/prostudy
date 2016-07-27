@@ -12,16 +12,15 @@
 </h3>
 <form name="accountForm">
 	[<span style="color: red;">Field Marked as asterik (*) are
-		mandetory</span>]
-		<br>
-		
+		mandetory</span>] <br>
+
 	<div layout layout-sm="column">
-		
-		
+
+
 		<md-input-container flex> <label>Account
 			Name <span style="color: red;">*</span>
-		</label> <input ng-model="account.accountName" name="accountName" ng-required="true"
-			minlength="3">
+		</label> <input ng-model="account.accountName" name="accountName"
+			ng-required="true" minlength="3">
 
 		<div ng-messages="accountForm.accountName.$error"
 			ng-if="accountForm.accountName.$submitted || accountForm.accountName.$touched">
@@ -29,28 +28,24 @@
 			<div ng-message="minlength">Please Enter more than 3 character</div>
 		</div>
 		</md-input-container>
-		
-	<span style="color: red;">*</span>	
-	<md-input-container flex>
-		 
-	     <md-select flex ng-model="account.accountType"> <label>AccountType</label>
-      
-          <md-option ng-repeat="type in accountType " >
-            {{type}}
-          </md-option>       
-        </md-select>
-        
-        <div ng-messages="accountForm.accountType.$error"
+
+		<span style="color: red;">*</span>
+		<md-input-container flex> <md-select flex
+			ng-model="account.accountType"> <label>AccountType</label>
+
+		<md-option ng-repeat="type in accountType "> {{type}} </md-option> </md-select>
+
+		<div ng-messages="accountForm.accountType.$error"
 			ng-if="accountForm.accountType.$submitted || accountForm.accountType.$touched">
 			<div ng-message="required">Please Select the Type</div>
-			
+
 		</div>
-      </md-input-container>
-		 
+		</md-input-container>
+
 	</div>
-	
-	
-		
+
+
+
 
 	<div layout layout-sm="column">
 		<md-input-container flex> <label>Account
@@ -63,8 +58,8 @@
 			<div ng-message="required">Please Enter Account No</div>
 		</div>
 		</md-input-container>
-	
-		
+
+
 		<md-input-container flex> <label>Description
 			<span style="color: red;">*</span>
 		</label> <textarea name="description" ng-model="account.description"
@@ -73,73 +68,72 @@
 		<div ng-messages="accountForm.description.$error"
 			ng-if="accountForm.description.$submitted || accountForm.description.$touched">
 			<div ng-message="required">Please Enter Description</div>
-			
-				
+
+
 		</div>
-				
+
 		</md-input-container>
 	</div>
 
 	<div layout layout-sm="column">
-	
-	<md-input-container flex> <label>displayOrderNo
+
+		<md-input-container flex> <label>displayOrderNo
 			<span style="color: red;">*</span>
-		</label> <input name="displayOrderNo" type="number" ng-model="account.displayOrderNo"
-			ng-required="true"  maxlength="4" min="1" ></input>
+		</label> <input name="displayOrderNo" type="number"
+			ng-model="account.displayOrderNo" ng-required="true" maxlength="4"
+			min="1"></input>
 
 		<div ng-messages="accountForm.displayOrderNo.$error"
 			ng-if="accountForm.displayOrderNo.$submitted || accountForm.displayOrderNo.$touched">
-			<div ng-message="required">Please Enter Integer Only! </div>
-			<div ng-message="maxlength">Please Enter value less than 4 digit! </div>
-						
-				<div ng-message="min">Please Enter Positive No! </div>
-			
-						
+			<div ng-message="required">Please Enter Integer Only!</div>
+			<div ng-message="maxlength">Please Enter value less than 4
+				digit!</div>
+			<div ng-message="min">Please Enter Positive No!</div>
 		</div>
-				
 		</md-input-container>
-	
-			<label>Contra</label> 
-		<md-checkbox ng-model="account.contra" ng-true-value="true"
-			ng-false-value="false" id="ch" flex>
-			</md-checkbox>
 
-			
+		
+
+
 	</div>
-	
-	
-	
-	
+
+<label>Contra</label>
+		<md-checkbox ng-model="account.contra" ng-true-value="true"
+			ng-false-value="false" > </md-checkbox>
+
+
 
 	<section layout="row" layout-sm="column" layout-align="left left">
 		<md-button class="md-raised md-primary"
-			ng-disabled="accountForm.$invalid" ng-hide="account.id"
+			ng-disabled="accountForm.$invalid || accountForm.$pristine || accountForm.$touched" ng-hide="account.id"
 			ng-click="addAccount()">Add</md-button>
-			
-			
-			<md-button class="md-raised md-primary"
-			 ng-click="cancle()">Cancle</md-button>
-	</section>
-	
-	
-	<section  layout-sm="column" >
-		
-	</section>
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
-	<section layout="row" layout-sm="column" layout-align="left left">
+
+		<md-button class="md-raised md-primary" ng-click="cancle()">Cancle</md-button>
+
+		<md-button class="md-raised md-primary"
+			ng-disabled="accountForm.$invalid" ng-show="account.id"
+			ng-click="addAccount()">Update</md-button>
+
+	</section>
+
+
+	<section layout-sm="column"></section>
+
+
+
+
+
+
+
+
+
+
+	<!-- <section layout="row" layout-sm="column" >
 		<md-button class="md-raised md-primary"
 			ng-disabled="accountForm.$invalid" ng-show="account.id"
 			ng-click="addAccount()">Update</md-button>
 	</section>
-
+ -->
 </form>
 </md-content>
