@@ -12,9 +12,9 @@ public class AccountGroupEntity extends BaseEntity {
 
 	private String groupName;
 	private String description;
-	private List<Ref<AccountEntity>> accountList;
+	//private List<Ref<AccountEntity>> accountList;
 	private Integer displayOrderNo;
-	private Ref<AccountGroupEntity> parent;
+	//private Ref<AccountGroupEntity> parent;
 
 	
 	public AccountGroupEntity() {
@@ -23,7 +23,7 @@ public class AccountGroupEntity extends BaseEntity {
 
 	public AccountGroupEntity(String groupName, Ref<AccountGroupEntity> parent) {
 		this.groupName = groupName;
-		this.parent = parent;
+		//this.parent = parent;
 	}
 
 	public String getGroupName() {
@@ -42,7 +42,7 @@ public class AccountGroupEntity extends BaseEntity {
 		this.description = description;
 	}
 
-	public List<AccountEntity> getAccountList() {		
+	/*public List<AccountEntity> getAccountList() {		
 		List<AccountEntity> accountListTemp = new ArrayList<AccountEntity>();
 		for (Ref<AccountEntity> accountEntityRef : this.accountList) {
 			accountListTemp.add(accountEntityRef.get());
@@ -55,7 +55,7 @@ public class AccountGroupEntity extends BaseEntity {
 		for (AccountEntity accountEntity : accountList) {
 			this.accountList.add(Ref.create(accountEntity));
 		}
-	}
+	}*/
 
 	public Integer getDisplayOrderNo() {
 		return displayOrderNo;
@@ -65,12 +65,12 @@ public class AccountGroupEntity extends BaseEntity {
 		this.displayOrderNo = displayOrderNo;
 	}
 
-	public AccountGroupEntity getParent() {
+	/*public AccountGroupEntity getParent() {
 		return (parent == null) ? null : parent.get();
 	}
 
 	public void setParent(AccountGroupEntity parent) {
 		this.parent = Ref.create(parent);
-	}
+	}*/
 
 }

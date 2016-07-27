@@ -31,6 +31,11 @@ public class AccountGroupService {
 
 	}
 	
+	@ApiMethod(name = "getAccountGroupList")
+	public List<AccountGroupEntity> getAccountGroupList() {
+		return ofy().load().type(AccountGroupEntity.class).list();
+	}
+	
 	/*@ApiMethod(name = "addAccountGroups")
 	public void addAccountGroups(List<AccountGroupEntity> accountGroupEntities) {
 		for (AccountGroupEntity accountGroupEntity : accountGroupEntities) {
