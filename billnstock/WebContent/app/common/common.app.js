@@ -193,7 +193,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		 * "/customerInvoiceList/:selectedCustomerId", templateUrl :
 		 * '/app/customer/customer_invoiceList.html', controller :
 		 * 'customerInvoiceListCtr' })
-		 */.state('customer.list', {
+		 */
+	.state('customer.list', {
 		url : "/list",
 		templateUrl : '/app/customer/customer_list.html',
 		controller : 'customerListCtr'
@@ -234,6 +235,48 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/demo/fileUpload.html',
 		controller : 'AppController'
 	})
+	
+
+	
+	.state('accounting', {
+  url : "/accounting",
+  templateUrl : '/app/accounting/accounting_module.html',
+  controller : 'accountModuleCtr',
+ })
+
+ .state('accounting.addGeneralEntry', {
+		url : "/addGeneralEntry",
+		templateUrl : '/app/accounting/account_addGeneralEntry.html',
+		controller : 'addAccountGeneralEntryCtr'
+	})
+ 
+		.state('accounting.addEntry', {
+		url : "/addEntry",
+		templateUrl : '/app/accounting/account_addEntry.html',
+		controller : 'addAccountEntryController'
+	}).state('accounting.entryList', {
+		url : "/entryList",
+		templateUrl : '/app/accounting/account_entryList.html',
+		controller : 'accountEntryListController'
+	})
+	
+	.state('journal', {
+		url : "/journal",
+		templateUrl : '/app/journal/journal_module.html',
+		controller : 'journalModuleCtr'
+	})
+	.state('journal.add', {
+		url : "/addJournal",
+		templateUrl : '/app/journal/journal_addEntry.html',
+		controller : 'addJournalCtr'
+	})	
+	.state('journal.journalList', {
+		url : "/journalList",
+		templateUrl : '/app/journal/journal_entryList.html',
+		controller : 'journalEntryListCtr'
+	})
+	
+	
 	.state('report', {
 		url : "/report",
 		templateUrl : '/app/report/report_module.html',
@@ -648,16 +691,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	}).state('proAdmin.editBusiness.userview', {
 		url : "/userview/:selecteduserNo",
 		templateUrl : '/app/setup/setup_viewuser.html',
-		controller : 'setup.viewuser',
-
+		controller : 'setup.viewuser'
 	})
 	
-	
-	.state('accounting', {
+	/*.state('accounting', {
 		url : "/accounting",
 		templateUrl : '/app/accounting/accounting_module.html',
 		controller : 'accountModuleCtr',
-	})
+	})*/
 	
 	.state('accounting.account_add2', {
 		url : "/account_add/:AccountId",
@@ -670,7 +711,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'accountlistCtr',
 	})
 	
-	
-	
+
 
 });
