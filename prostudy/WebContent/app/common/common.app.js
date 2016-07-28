@@ -1076,7 +1076,10 @@ app
 					.state('partnerSchool.addPartnerSchool',{
 								url : "/addPartnerSchool/:selectedPSchoolId",
 								templateUrl : '/app/partnerSchool/partnerSchool_add.html',
-								controller : 'partnerSchoolAddCtr'
+								controller : 'partnerSchoolAddCtr',
+								params: {
+									selectedPSchool: null
+								}
 							})
 					.state('partnerSchool.print',{
 								url : "/print/:PSchoolId/:yearOfExam",
