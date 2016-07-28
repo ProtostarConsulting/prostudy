@@ -1018,7 +1018,7 @@ function googleEndpointSF($log, $q) {
 	AccountService.addAccount1 = function(account) {
 		var deferred = $q.defer();
 
-		gapi.client.accountService.addAccount1(account).execute(function(resp) {
+		gapi.client.accountService.addAccount(account).execute(function(resp) {
 			$log.debug("addAccount1#resp at enpoint:" + resp);
 			deferred.resolve(resp);
 		});
@@ -1141,9 +1141,90 @@ function googleEndpointSF($log, $q) {
 		return deferred.promise;
 	}
 	// End of AccountService
-
+	
 	/* =============================================================================================================================== */
+	// Add AccountEntryService Service
+	
+	var AccountEntryService = {};
 
+	serviceFactory.getAccountEntryService = function() {
+		return AccountEntryService;
+	}
+
+	AccountEntryService.addAccountEntry = function(accountEntry) {
+		var deferred = $q.defer();
+		gapi.client.accountEntryService.addAccountEntry(accountEntry).execute(function(resp) {
+			$log.debug("accountEntryService  at enpoint:" + resp);
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+
+	AccountEntryService.getAccountEntryList = function() {
+		var deferred = $q.defer();
+		gapi.client.accountEntryService.getAccountEntryList().execute(function(resp) {
+			$log.debug("List at enpoint" + resp);
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	/* =============================================================================================================================== */
+	
+	
+	// Add GeneralEntryService Service
+	
+	var GeneralEntryService = {};
+
+	serviceFactory.getGeneralEntryService = function() {
+		return GeneralEntryService;
+	}
+
+	GeneralEntryService.addGeneralEntry = function(accountEntry) {
+		var deferred = $q.defer();
+		gapi.client.generalEntryService.addGeneralEntry(accountEntry).execute(function(resp) {
+			$log.debug("GeneralEntryService  at enpoint:" + resp);
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+
+	GeneralEntryService.getGeneralEntryList = function() {
+		var deferred = $q.defer();
+		gapi.client.generalEntryService.getGeneralEntryList().execute(function(resp) {
+			$log.debug("List at enpoint" + resp);
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	/* =============================================================================================================================== */
+	
+	// Add GeneralJournal Service
+
+	var GeneralJournalService = {};
+
+	serviceFactory.getGeneralJournalService = function() {
+		return GeneralJournalService;
+	}
+
+	GeneralJournalService.addJournal = function(journal) {
+		var deferred = $q.defer();
+
+		gapi.client.generalJournalService.addJournal(journal).execute(function(resp) {
+			$log.debug("generalJournalService  at enpoint:" + resp);
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+
+	GeneralJournalService.getAllJournalList = function() {
+		var deferred = $q.defer();
+		gapi.client.generalJournalService.getAllJournalList().execute(function(resp) {
+			$log.debug("List at enpoint" + resp);
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	/* =============================================================================================================================== */
 	// Start of StockService
 	var StockService = {};
 
