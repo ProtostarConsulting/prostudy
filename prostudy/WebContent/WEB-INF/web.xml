@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="WebApp_ID" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
   <display-name>ProStudy</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -30,7 +29,7 @@
     </listener-class>
   </listener>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>UplodePartnerSchoolsExcel</display-name>
     <servlet-name>UplodePartnerSchoolsExcel</servlet-name>
     <servlet-class>com.protostar.prostudy.gf.service.UplodePartnerSchoolsExcel</servlet-class>
@@ -40,7 +39,7 @@
     <url-pattern>/UplodePartnerSchoolsExcel</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>DownloadPartnerSchools</display-name>
     <servlet-name>DownloadPartnerSchools</servlet-name>
     <servlet-class>com.protostar.prostudy.gf.service.DownloadPartnerSchools</servlet-class>
@@ -50,7 +49,7 @@
     <url-pattern>/DownloadPartnerSchools</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>UploadLogoServlet</display-name>
     <servlet-name>UploadLogoServlet</servlet-name>
     <servlet-class>com.protostar.prostudy.protostarAdmin.services.UploadLogoServlet</servlet-class>
@@ -60,7 +59,7 @@
     <url-pattern>/UploadLogoServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>BlobDocServe</display-name>
     <servlet-name>BlobDocServe</servlet-name>
     <servlet-class>com.protostar.prostudy.until.BlobDocServe</servlet-class>
@@ -70,7 +69,7 @@
     <url-pattern>/serve</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>UploadBulkBookServlet</display-name>
     <servlet-name>UploadBulkBookServlet</servlet-name>
     <servlet-class>com.protostar.prostudy.gf.service.UploadBulkBookServlet</servlet-class>
@@ -80,7 +79,7 @@
     <url-pattern>/UploadBulkBookServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>DownloadScheduledExamResult</display-name>
     <servlet-name>DownloadScheduledExamResult</servlet-name>
     <servlet-class>com.protostar.prostudy.service.DownloadScheduledExamResult</servlet-class>
@@ -90,7 +89,7 @@
     <url-pattern>/DownloadScheduledExamResult</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>UploadScheduledQuestionListServlet</display-name>
     <servlet-name>UploadScheduledQuestionListServlet</servlet-name>
     <servlet-class>com.protostar.prostudy.service.UploadScheduledQuestionListServlet</servlet-class>
@@ -100,7 +99,7 @@
     <url-pattern>/UploadScheduledQuestionListServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>DownloadScheduledQuestionListServlet</display-name>
     <servlet-name>DownloadScheduledQuestionListServlet</servlet-name>
     <servlet-class>com.protostar.prostudy.service.DownloadScheduledQuestionListServlet</servlet-class>
@@ -110,7 +109,7 @@
     <url-pattern>/DownloadScheduledQuestionListServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>UploadBookPDFServlet</display-name>
     <servlet-name>UploadBookPDFServlet</servlet-name>
     <servlet-class>com.protostar.prostudy.service.UploadBookPDFServlet</servlet-class>
@@ -120,7 +119,7 @@
     <url-pattern>/UploadBookPDFServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>ServeBookPDFServlet</display-name>
     <servlet-name>ServeBookPDFServlet</servlet-name>
     <servlet-class>com.protostar.prostudy.service.ServeBookPDFServlet</servlet-class>
@@ -130,7 +129,7 @@
     <url-pattern>/ServeBookPDFServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>UploadBulkGFStudentServlet</display-name>
     <servlet-name>UploadBulkGFStudentServlet</servlet-name>
     <servlet-class>com.protostar.prostudy.gf.service.UploadBulkGFStudentServlet</servlet-class>
@@ -140,7 +139,7 @@
     <url-pattern>/UploadBulkGFStudentServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>DownloadGFStudents</display-name>
     <servlet-name>DownloadGFStudents</servlet-name>
     <servlet-class>com.protostar.prostudy.gf.service.DownloadGFStudents</servlet-class>
@@ -150,7 +149,7 @@
     <url-pattern>/DownloadGFStudents</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>DownloadGFBooks</display-name>
     <servlet-name>DownloadGFBooks</servlet-name>
     <servlet-class>com.protostar.prostudy.gf.service.DownloadGFBooks</servlet-class>
@@ -168,7 +167,7 @@
     <url-pattern>/uploadtestngfile</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>UploadCourseListServlet</display-name>
     <servlet-name>UploadCourseListServlet</servlet-name>
     <servlet-class>com.protostar.prostudy.service.UploadCourseListServlet</servlet-class>
@@ -178,7 +177,7 @@
     <url-pattern>/UploadCourseListServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>UploadDirectoryUserListServlet</display-name>
     <servlet-name>UploadDirectoryUserListServlet</servlet-name>
     <servlet-class>com.protostar.prostudy.service.UploadDirectoryUserListServlet</servlet-class>
@@ -188,7 +187,7 @@
     <url-pattern>/UploadDirectoryUserListServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>UploadQuestionListServlet</display-name>
     <servlet-name>UploadQuestionListServlet</servlet-name>
     <servlet-class>com.protostar.prostudy.service.UploadQuestionListServlet</servlet-class>
@@ -199,7 +198,7 @@
   </servlet-mapping>
  
   <servlet>
-    <description></description>
+    <description/>
     <display-name>DownloadQuestionListServlet</display-name>
     <servlet-name>DownloadQuestionListServlet</servlet-name>
     <servlet-class>com.protostar.prostudy.service.DownloadQuestionListServlet</servlet-class>
