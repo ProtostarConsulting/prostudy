@@ -1,5 +1,5 @@
 <html>
-  <p>Dear Sir ${firstName},</p>
+  <p>Dear ${firstName} Sir,</p>
   <p>You school/college has been registered for Gandhi Research Foundation Exam for year 2017-17. Please details below. Thank you.</p>
   <p>Total number of students participating in exam: ${totalStudents}</p>
   <p>Boys: ${totalBoys}</p>

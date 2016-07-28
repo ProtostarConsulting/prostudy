@@ -1,4 +1,4 @@
-package com.protostar.prostudy.until;
+package com.protostar.prostudy.gf.service;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

@@ -20,8 +20,8 @@ import com.googlecode.objectify.Key;
 import com.protostar.prostudy.entity.RoleSecEntity;
 import com.protostar.prostudy.entity.StudSubEntity;
 import com.protostar.prostudy.entity.UserEntity;
+import com.protostar.prostudy.gf.service.EmailHandler;
 import com.protostar.prostudy.protostarAdmin.entities.AccountType;
-import com.protostar.prostudy.until.EmailHandler;
 import com.protostar.prostudy.until.data.ServerMsg;
 import com.protostar.prostudy.until.data.UtilityService;
 

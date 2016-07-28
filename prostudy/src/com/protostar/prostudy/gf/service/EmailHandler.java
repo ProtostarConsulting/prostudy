@@ -1,4 +1,4 @@
-package com.protostar.prostudy.until;
+package com.protostar.prostudy.gf.service;
 
 import java.io.IOException;
 import java.util.Properties;
