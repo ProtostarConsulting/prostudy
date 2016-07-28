@@ -173,6 +173,16 @@
 					ng-clock>
 				<div style="padding-top: 1px;"></div>
 				<div class="md-accordion">
+					<md-toolbar flex ui-sref="welcome"
+							ng-click="close()">
+					<div class="md-toolbar-tools">
+						<h2>
+							<span>Home</span>
+						</h2>						
+					</div>
+					</md-toolbar>				
+				</div>
+				<div class="md-accordion">
 					<md-toolbar ng-init="data.expanded = false"
 						ng-click="data.expanded = !data.expanded">
 					<div class="md-toolbar-tools">
@@ -233,7 +243,7 @@
 							ui-sref="bookModule.add" ng-click="close()" class="md-primary">Add
 						Book</md-button> <md-button ui-sref="bookModule.stockAdd" ng-click="close()"
 							class="md-primary">Book Stock Add </md-button> <md-button
-							ui-sref="bookModule.stockList" ng-click="close()"
+							ui-sref="bookModule.list" ng-click="close()"
 							class="md-primary">Book List </md-button> <md-button
 							ui-sref="bookModule.stockTransaction" ng-click="close()"
 							class="md-primary">Book Transactions </md-button> </md-content>
