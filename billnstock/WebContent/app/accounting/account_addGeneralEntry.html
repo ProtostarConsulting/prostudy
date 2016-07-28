@@ -8,21 +8,22 @@
 <form name="generalEntryForm">
 	[<span style="color: red;">Field Marked as asterik (*) are
 		mandetory</span>]
-		
-		<div layout layout-sm="column">
-		<md-input-container flex> <label>Date</label>
-		<input name="date" id="date" ng-model="date"> </md-input-container>
+
+	<div layout layout-sm="column">
+		<md-input-container flex> <label>Date</label> <input
+			name="date" id="date" ng-model="tempGeneralEntry.date" readonly>
+		</md-input-container>
 
 	</div>
-	
-		
+
+
 	<div layout layout-sm="column">
 
 		<md-input-container flex> <label> Choose
 			DebitAccount<span style="color: red;">*</span>
-		</label> <md-select name="debitAcc" ng-model="tempQuestion.standard"
-			ng-required="true"> <md-option ng-value="standard"
-			ng-repeat="standard in standards">{{standard}}</md-option> </md-select>
+		</label> <md-select name="debitAcc" ng-model="debitAccount"
+			ng-required="true"> <md-option ng-value="account"
+			ng-repeat="account in accounts">{{account.accountName}}</md-option> </md-select>
 
 
 		<div ng-messages="generalEntryForm.debitAcc.$error"
@@ -31,9 +32,13 @@
 		</div>
 		</md-input-container>
 
+
 		<md-input-container flex> <label> Choose
 			CreditAccount<span style="color: red;">*</span>
-		</label> <input ng-model="yy" name="creditAcc" ng-required="true">
+		</label> <md-select name="creditAcc"
+			ng-model="creditAccount" ng-required="true">
+		<md-option ng-value="account" ng-repeat="account in accounts">{{account.accountName}}</md-option>
+		</md-select>
 
 		<div ng-messages="generalEntryForm.creditAcc.$error"
 			ng-if="generalEntryForm.creditAcc.$submitted || generalEntryForm.creditAcc.$touched">
@@ -45,21 +50,42 @@
 	</div>
 	<div layout layout-sm="column">
 		<md-input-container flex> <label>Narration</label>
-		<input name="narration" id="narration" ng-model="narration"> </md-input-container>
+		<input name="narration" id="narration"
+			ng-model="tempGeneralEntry.narration" ng-required="true">
+		<div ng-messages="generalEntryForm.narration.$error"
+			ng-if="generalEntryForm.narration.$submitted || generalEntryForm.narration.$touched">
+			<div ng-message="required">Please Enter Narration</div>
+		</div>
+		</md-input-container>
 
-		<md-input-container flex> <label>Amount</label> <input
-			name="amount" id="amount" ng-model="amount"> </md-input-container>
+		<md-input-container flex> <label>Amount</label> <input type="number"
+			name="amount" id="amount" ng-model="tempGeneralEntry.amount"
+			ng-required="true">
+
+		<div ng-messages="generalEntryForm.amount.$error"
+			ng-if="generalEntryForm.amount.$submitted || generalEntryForm.amount.$touched">
+			<div ng-message="required">Please Enter Account</div>
+		</div>
+		</md-input-container>
 
 	</div>
-	
-	
-	
-	
-	<section layout="row" layout-sm="column" layout-align="left left">
+	<div layout="row" layout-align="center center">
+		<md-button class="md-raised md-primary" name="btn"
+			ng-disabled="generalEntryForm.$invalid" ng-click="addGeneralEntry()">Add
+		general Entry</md-button>
+		<md-button class="md-raised md-primary" ng-click="cancelButton()">Cancel</md-button>
+
+	</div>
+
+
+
+	<!-- <section layout="row" layout-sm="column" layout-align="left left">
 		<md-button class="md-raised md-primary"
 			ng-disabled="generalEntryForm.$invalid" ng-click="">Add
 		general Entry</md-button>
 	</section>
-
+	<section layout="row" layout-sm="column" layout-align="left left">
+		<md-button class="md-raised md-primary" ng-click="cancelButton()">Cancel</md-button>
+	</section> -->
 </form>
 </md-content>
