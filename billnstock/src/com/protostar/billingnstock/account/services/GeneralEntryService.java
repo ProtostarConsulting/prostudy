@@ -40,7 +40,8 @@ public class GeneralEntryService {
 		creditAcc.setCreatedDate(new Date());
 		
 		aes.addAccountEntry(creditAcc);
-		
+		entryEntity.setCreatedDate(new Date());
+		entryEntity.setModifiedDate(new Date());
 		ofy().save().entity(entryEntity).now();
 	}
 	
