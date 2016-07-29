@@ -2,7 +2,7 @@
 angular.module("prostudyApp").controller(
 		"questionListCtr",
 		function($scope, $window, $mdToast, $timeout, $mdSidenav, $mdUtil,$mdDialog,Upload, $mdMedia,
-				$log, $q, appEndpointSF, $state) {
+				$log, $q, appEndpointSF, $state,ajsCache) {
 
 			$scope.curUser = appEndpointSF.getLocalUserService()
 			.getLoggedinUser();
@@ -26,15 +26,28 @@ angular.module("prostudyApp").controller(
 			$scope.questions = [];
 			$scope.qcategory = [];
 		
-			$scope.getQuestionsByInstitute = function() {
-
-				var QuestionService = appEndpointSF.getQuestionService();
-				QuestionService.getQuestionsByInstitute($scope.curUser.instituteID).then(
-						function(questionsList) {
-							$scope.questions = questionsList;
-
-						});
-			}
+			
+			$scope.getQuestionsByInstitute=function(refresh){
+				  
+				  var QuestionServiceCacheKey = "getQuestions";
+				       
+				       if (!angular.isUndefined(ajsCache.get(QuestionServiceCacheKey)) && !refresh)
+				       {
+				        $log.debug("Found List in Cache, return it.");
+				        $scope.questions = ajsCache.get(QuestionServiceCacheKey);
+				        return;
+				       }
+				  
+				       var QuestionService = appEndpointSF.getQuestionService();
+						QuestionService.getQuestionsByInstitute($scope.curUser.instituteID).then(
+								function(questionsList) {
+									$scope.questions = questionsList;
+									ajsCache.put(QuestionServiceCacheKey,$scope.questions);
+								});
+				       
+				 };
+			
+			
 			$scope.addQuestion = function(tempQuestion) {
 
 				
