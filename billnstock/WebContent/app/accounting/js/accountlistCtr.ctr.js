@@ -9,6 +9,7 @@ app.controller("accountlistCtr", function($scope, $window, $mdToast, $timeout,
 		page : 1
 	};
 
+
 	$scope.getaccountlist=function(){
 		
 	var getlist=appEndpointSF.getAccountService();
@@ -19,9 +20,17 @@ app.controller("accountlistCtr", function($scope, $window, $mdToast, $timeout,
 		}
 	$scope.getaccountlist();
 	
-	$scope.getAccByid=function(){
+	$scope.delAccByid=function(daccountid){
 		
-		var getrecord=appEndpointSF
+		var delrecord=appEndpointSF.getAccountService();
+		
+		delrecord.deleteaccByid(daccountid).then(function(){
+			$scope.showDelToast();
+			$scope.getaccountlist();
+			
+			
+		});
+		
 		
 		
 	}

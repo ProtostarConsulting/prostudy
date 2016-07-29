@@ -17,10 +17,13 @@ app.controller("addacountCtr", function($scope, $window, $mdToast, $timeout,
 			description:"",
 			contra : false,			
 	};
-	$scope.cancle=function(){
+	$scope.cancle=function(accountId){
 		
-		 $state.go('accounting',{});
-		
+		if(accountId != undefined){
+			$state.go('accounting.accountlist',{});
+		}else{
+		$state.go('accounting',{});
+		}
 		
 	}
 	

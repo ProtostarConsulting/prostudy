@@ -1,9 +1,9 @@
 
 <md-content layout-padding>
-<section layout="row" layout-align="end end" flex>
+<!-- <section layout="row" layout-align="end end" flex>
 	<md-button class="md-raised md-primary" id="uplodeExcel"
 		ng-click="UplodeExcel($event)">UplodeExcel</md-button>
-</section>
+</section> -->
 <h3 class="md-headline" ng-hide="account.id">
 	<u>Create Account</u>
 </h3>
@@ -14,7 +14,7 @@
 	[<span style="color: red;">Field Marked as asterik (*) are
 		mandetory</span>] <br>
 
-	<div layout layout-sm="column">
+	<div layout layout-xs="column">
 
 
 		<md-input-container flex> <label>Account
@@ -47,7 +47,7 @@
 
 
 
-	<div layout layout-sm="column">
+	<div layout layout-xs="column">
 		<md-input-container flex> <label>Account
 			No <span style="color: red;">*</span>
 		</label> <input ng-model="account.accountNo" name="accountNo"
@@ -75,7 +75,7 @@
 		</md-input-container>
 	</div>
 
-	<div layout layout-sm="column">
+	<div layout layout-xs="column">
 
 		<md-input-container flex> <label>displayOrderNo
 			<span style="color: red;">*</span>
@@ -103,13 +103,13 @@
 
 
 
-	<section layout="row" layout-sm="column" layout-align="left left">
+	<section layout="row" layout-xs="column" layout-align="left left">
 		<md-button class="md-raised md-primary"
 			ng-disabled="accountForm.$invalid || accountForm.$pristine || accountForm.$touched" ng-hide="account.id"
 			ng-click="addAccount()">Add</md-button>
 
 
-		<md-button class="md-raised md-primary" ng-click="cancle()">Cancle</md-button>
+		<md-button class="md-raised md-primary" ng-click="cancle(account.id)">Cancle</md-button>
 
 		<md-button class="md-raised md-primary"
 			ng-disabled="accountForm.$invalid" ng-show="account.id"
@@ -118,7 +118,7 @@
 	</section>
 
 
-	<section layout-sm="column"></section>
+	<section layout-xs="column"></section>
 
 
 
@@ -129,7 +129,7 @@
 
 
 
-	<!-- <section layout="row" layout-sm="column" >
+	<!-- <section layout="row" layout-xs="column" >
 		<md-button class="md-raised md-primary"
 			ng-disabled="accountForm.$invalid" ng-show="account.id"
 			ng-click="addAccount()">Update</md-button>
