@@ -5,14 +5,13 @@ angular
 			$log.debug("hello");
 			$scope.tempAccountGrp={"groupName":"","description":"","displayOrderNo":""};
 			
-			$scope.addAccountGroup=function(){
-				
-				$log.debug("hellOOOOOOOOOOOo");
+			$scope.addAccountGroup=function(){				
+			
 				var addAccountGroupService=appEndpointSF.getAccountGroupService();
 				addAccountGroupService.addAccountGroup($scope.tempAccountGrp)
 				.then(function(msgbean) {
 					$scope.showSavedToast();
-					$scope.addAccountGroup={};
+					$scope.tempAccountGrp={};
 					
 					}
 			
