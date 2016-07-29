@@ -11,12 +11,7 @@ app.controller("accountEntryListController", function($scope, $window, $mdToast,
 		page : 1
 	};
 
-	
-
 	$scope.curUser = appEndpointSF.getLocalUserService().getLoggedinUser();
-	$log.debug("$scope.curUser++++++++" + angular.toJson($scope.curUser));
-
-	
 			
 		$scope.waitForServiceLoad = function() {
 			if (appEndpointSF.is_service_ready) {
