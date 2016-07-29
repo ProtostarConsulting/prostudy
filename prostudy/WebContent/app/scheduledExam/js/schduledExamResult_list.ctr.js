@@ -27,8 +27,7 @@ angular
 					
 					$scope.downloadResultList=function(){
 						
-						document.location.href="DownloadScheduledExamResult?selectedExamId="+$scope.selectedExamId;
-						
+						document.location.href="DownloadScheduledExamResult?selectedExamId="+$scope.selectedExamId;						
 						
 					}
 

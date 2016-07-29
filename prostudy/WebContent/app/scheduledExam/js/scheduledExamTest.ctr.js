@@ -46,7 +46,7 @@ angular
 	
 					$scope.tempScheduledExamResult = {
 
-						ID : "",
+						
 						examTitle : "",
 						userId : $scope.curUser.id,
 						email_id : $scope.curUser.email_id,
@@ -69,8 +69,8 @@ angular
 							$scope.$broadcast('timer-stopped', 0);
 							$timeout.cancel(mytimeout);
 							$scope.checkAnswer();
-							$scope.addScheduledExamResult();
-
+							
+							$scope.getScheduledExamResultbyEmail();
 							return;
 
 						}
@@ -303,6 +303,7 @@ angular
 						}
 					
 					
+					
 					 $scope.showConfirm = function(ev) {
 						  
 						 	$scope.checkAnswer();
@@ -312,14 +313,68 @@ angular
 						          .ok('YES')
 						          .cancel('NO');
 						    $mdDialog.show(confirm).then(function() {					    	
+						    	//check User already attempted the test
 						    	
-						    	$scope.addScheduledExamResult();						    	
+						    	$scope.getScheduledExamResultbyEmail();					    	
+						    					    	
 						    			
 						    }, function() {
 						      
 						    });
 						  };
 					
+							$scope.updateScheduledExamResult = function(selectedResult) {
+															
+								selectedResult.userAns=$scope.userAnsList;
+								selectedResult.startTime=$scope.tempScheduledExamResult.startTime ;
+								selectedResult.endTime=$scope.tempScheduledExamResult.endTime ;
+								selectedResult.score = $scope.tempScheduledExamResult.score;
+									
+								
+								var ScheduledExamResultService = appEndpointSF.getScheduledExamResultService();						
+								ScheduledExamResultService.updateScheduledExamResult(selectedResult).then(
+										function(msgBean) {
+											
+										$scope.showSavedToast();
+										$state.go('scheduledExam.userQuesAnsView', {selectedExamId : $scope.Test.id,selectedEmailId: $scope.curUser.email_id,selectedResultId:msgBean.id});
+											
+
+										});
+								}
+						  
+						  
+						  $scope.list=[];
+							$scope.getScheduledExamResultbyEmail = function() {
+
+								var ScheduledExamResultService = appEndpointSF
+										.getScheduledExamResultService();
+								ScheduledExamResultService.getScheduledExamResultbyEmail($scope.curUser.email_id).then(
+										function(resultList) {
+											$scope.list = resultList;											
+											
+											for(var i=0;i<$scope.list.length ;i++)
+											{
+												/*	If already  attempted*/
+											if($scope.list[i].testID==$scope.Test.id)
+											{
+												$scope.selectedResult=$scope.list[i];									
+												
+												$scope.updateScheduledExamResult($scope.selectedResult);
+												break;
+											}
+											}
+										/*	For First attempt*/
+											if($scope.list.length==0)
+												{																								
+												$scope.addScheduledExamResult();
+												}
+											
+										});
+							}
+						  
+						  					  
+						  
+						  
 
 					$scope.waitForServiceLoad = function() {
 						if (appEndpointSF.is_service_ready) {
