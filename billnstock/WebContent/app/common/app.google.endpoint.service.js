@@ -1071,7 +1071,6 @@ function googleEndpointSF($log, $q) {
 	
 	
 	
-	
 	AccountService.getaccountlist=function(){
 		var deferred = $q.defer();
 		gapi.client.accountService.getaccountlist().execute(
@@ -1086,7 +1085,6 @@ function googleEndpointSF($log, $q) {
 	
 	
 	
-	
 	AccountService.getAccountById = function(accountId) {
 		var deferred = $q.defer();
 		gapi.client.accountService.getAccountById({
@@ -1097,6 +1095,22 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
+	
+	
+	AccountService.deleteaccByid = function(accountId) {
+		var deferred = $q.defer();
+		gapi.client.accountService.deleteaccByid({
+			"id" : accountId
+		}).execute(function(resp) {
+			$log.debug("getAccountById at enpoint" + resp);
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
+	
+	
+	
 	
 	AccountService.getAllAccountsByBusiness = function(id) {
 		var deferred = $q.defer();
@@ -1158,8 +1172,8 @@ function googleEndpointSF($log, $q) {
 
 		return deferred.promise;
 	}
-
-	AccountService.getAllReceivablesByBusiness = function(id) {
+	
+		AccountService.getAllReceivablesByBusiness = function(id) {
 		var deferred = $q.defer();
 		gapi.client.accountService.getAllReceivablesByBusiness({
 			"id" : id
@@ -1171,6 +1185,9 @@ function googleEndpointSF($log, $q) {
 				});
 		return deferred.promise;
 	}
+	
+	
+	
 	
 	AccountService.getReceivableByID = function(Id) {
 		var deferred = $q.defer();
