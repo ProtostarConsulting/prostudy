@@ -36,6 +36,21 @@ public class AccountGroupService {
 		return ofy().load().type(AccountGroupEntity.class).list();
 	}
 	
+	@ApiMethod(name = "updateAccountGrp")
+	public AccountGroupEntity updateAccountGrp(AccountGroupEntity update) {
+		AccountGroupEntity	 now = update;
+		ofy().save().entity(update).now();
+		System.out.println("inside update details now" + now);
+		return now;
+	}
+	
+	@ApiMethod(name = "deleteAccountGrp")
+	 public void deleteAccountGrp(@Named("id") Long id) {
+
+		  ofy().delete().type(AccountGroupEntity.class).id(id).now();
+
+		 
+		 }
 	/*@ApiMethod(name = "addAccountGroups")
 	public void addAccountGroups(List<AccountGroupEntity> accountGroupEntities) {
 		for (AccountGroupEntity accountGroupEntity : accountGroupEntities) {
