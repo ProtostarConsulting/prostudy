@@ -62,9 +62,9 @@
 
 
 		<!-- fill up the space between left and right area -->
-		 <span flex></span>
+		<span flex></span>
 		<section layout="row">
-			<div  layout="row" layout-align="end start">
+			<div layout="row" layout-align="end start">
 				<!-- <md-button hide-xs class="md-icon-button md-accent" aria-label="Favorite">
 				<md-icon md-font-icon="icon-home" ng-class="font.theme" class="step"></md-icon>
 				</md-button>
@@ -89,12 +89,10 @@
 				<md-button ng-show="curUser" popover-template="'popover.html'"
 					popover-placement="bottom" popover-trigger="focus"
 					data-container="body" data-toggle="popover" data-trigger="focus">
-				<md-tooltip>
-				{{ curUser.firstName + " " +  curUser.lastName + "|" + curUser.email_id}} </md-tooltip> 
-
-				<img ng-show="true" ng-show="curUser.imageURl"
-					ngf-src="curUser.imageURl" class=circular> <img alt="Logo"
-					ng-hide="curUser.imageURl"
+				<md-tooltip> {{ curUser.firstName + " " +
+				curUser.lastName + "|" + curUser.email_id}} </md-tooltip> <img ng-show="true"
+					ng-show="curUser.imageURl" ngf-src="curUser.imageURl"
+					class=circular> <img alt="Logo" ng-hide="curUser.imageURl"
 					src="img/images/ic_person_black_24px.svg" class=circular> </md-button>
 
 				<script type="text/ng-template" id="popover.html">
@@ -161,20 +159,18 @@
 				Profile </md-button> <!-- 		<md-button ui-sref="customer" ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('customer') > -1" class="md-primary" show-gt-md> Customer </md-button> -->
 				<md-button ui-sref="account"
 					ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('account') > -1"
-					ng-click="close()" class="md-primary" show-gt-md>Account</md-button> 
+					ng-click="close()" class="md-primary" show-gt-md>Account</md-button>
 
-				
+
 				<md-button ui-sref="accounting"
 					ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('account') > -1"
 					ng-click="close()" class="md-primary" show-gt-md>Accounting
-				</md-button> 
-				
-					<md-button ui-sref="journal"
+				</md-button> <md-button ui-sref="journal"
 					ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('account') > -1"
-					ng-click="close()" class="md-primary" show-gt-md>Journal</md-button> 
-				
-				
-				
+					ng-click="close()" class="md-primary" show-gt-md>Journal</md-button>
+
+
+
 				<md-button ui-sref="stock"
 					ng-show="curUser.authority.indexOf('admin') > -1|| curUser.authority.indexOf('stock') > -1"
 					ng-click="close()" ng-show="loader.stock" class="md-primary"
@@ -354,23 +350,35 @@
 	<script src="/app/account/js/account_receivable.ctr.js"></script>
 	<script src="/app/account/js/account_payableList.ctr.js"></script>
 	<script src="/app/account/js/account_receivableList.ctr.js"></script>
-	
-	
-	<script src="/app/accounting/js/account_addEntry.ctr.js"></script>
-	<script src="/app/accounting/js/account_entryList.ctr.js"></script>	
-	
-	
 	<script src="/app/demo/js/fileUpload.ctr.js"></script>
 	<!-- 	Complete Account js  -->
-	
-		<!-- 	Journal js  -->
+
+	<!-- Accounting entity -->
+
+	<script src="/app/accounting/js/accounting_module.ctr.js"></script>
+	<script src="/app/accounting/js/addacountCtr.ctr.js"></script>
+	<script src="/app/accounting/js/accountlistCtr.ctr.js"></script>
+	<script src="/app/accounting/js/account_addGeneralEntry.ctr.js"></script>
+	<script src="/app/accounting/js/account_addEntry.ctr.js"></script>
+	<script src="/app/accounting/js/account_entryList.ctr.js"></script>
+
+	<script src="/app/accounting/js/accountGroupAdd.js"></script>
+	<script src="/app/accounting/js/accountGroupEdit.js"></script>
+	<script src="/app/accounting/js/accountGroupList.js"></script>
+
+	<!-- Complete Accounting entity -->
+
+
+
+
+	<!-- 	Journal js  -->
 
 	<script src="/app/journal/js/journal_module.ctr.js"></script>
 	<script src="/app/journal/js/journal_addEntry.ctr.js"></script>
 	<script src="/app/journal/js/journal_entryList.ctr.js"></script>
-	
+
 	<!-- 	Complete Journal js  -->
-	
+
 
 	<!-- 	Warehouse js  -->
 	<!-- 	<script src="/app/warehouse/js/warehouse_module.ctr.js"></script>
@@ -566,19 +574,6 @@
 	<script src="/app/ProAdmin/js/AddAccountType.js"></script>
 	<script src="/app/ProAdmin/js/ListAccountType.js"></script>
 	<!-- setup module js -->
-
-<!-- Accounting entity -->
-
-<script src="/app/accounting/js/accounting_module.ctr.js"></script>
-<script src="/app/accounting/js/addacountCtr.ctr.js"></script>
-<script src="/app/accounting/js/accountlistCtr.ctr.js"></script>
-<script src="/app/accounting/js/account_addGeneralEntry.ctr.js"></script>
-
-
-<!-- Accounting entity -->
-
-
-
 
 
 	<script src="/app/setup/js/setup_module.js"></script>
