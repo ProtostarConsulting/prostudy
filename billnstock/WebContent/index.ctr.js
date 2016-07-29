@@ -20,6 +20,13 @@ angular
 								"top").hideDelay(3000));
 					};
 					
+					$scope.showDelToast = function() {
+					     $mdToast.show($mdToast.simple().content(
+					       'Account  Deleted ...!').position("top").hideDelay(
+					       3000));
+					    };
+					
+					
 					//use popover
 					/*$('[data-toggle="popover"]').popover({
 		                 trigger: 'manual',
