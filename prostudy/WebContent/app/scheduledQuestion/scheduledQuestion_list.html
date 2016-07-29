@@ -19,6 +19,17 @@
 			By Category</label> <input ng-model="searchCategory"> </md-input-container>
 	</div>
 
+<md-toolbar class="md-table-toolbar md-default" >
+          <div class="md-toolbar-tools">
+            <span>Scheduled Question List</span>
+            <div flex></div>
+            <md-button class="md-icon-button" ng-click="getQuestionsByInstitute(true)">
+              <md-icon md-svg-src="img/icons/ic_refresh_24px.svg">refresh</md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+
+
 	<md-data-table-container>
 	<table md-data-table md-row-select="selected" md-progress="deferred">
 		<thead md-order="query.order" md-trigger="onorderchange">
