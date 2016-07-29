@@ -241,6 +241,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 	.state('accounting', {
 		url : "/accounting",
+		
+		
 		templateUrl : '/app/accounting/accounting_module.html',
 		controller : 'accountModuleCtr'
 	})
