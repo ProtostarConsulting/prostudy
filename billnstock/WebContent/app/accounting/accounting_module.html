@@ -2,14 +2,17 @@
 	<div>
 		<section layout="row">
 			<div class="md-toolbar-tools">
-				<md-button ui-sref="accounting.account_add2" ng-click="close()"
+				<md-button hide-xs ui-sref="accounting.account_add2" ng-click="close()"
 					class="md-primary"> Add Account</md-button>
-				<md-button ui-sref="accounting.accountlist" ng-click="close()"
+					
+				<md-button hide-xs ui-sref="accounting.accountlist" ng-click="close()"
 					class="md-primary"> Account List</md-button>
-				<md-button ui-sref="account.accountlist" class="md-primary">
-				Add Account Group</md-button>
-				<md-button ui-sref="account.accountReceivableList"
-					class="md-primary"> Account Group List</md-button>
+
+
+				<md-button hide-xs ui-sref="accounting.accountGroupAdd" class="md-primary">Add Account Group</md-button>
+
+				<md-button hide-xs ui-sref="accounting.accountGroupList" class="md-primary"> Account Group List</md-button>
+
 					
 				<md-button ui-sref="accounting.addGeneralEntry"	class="md-primary">Add Account General Entry</md-button>	
 					
@@ -31,8 +34,20 @@
 			<md-sidenav class="md-sidenav-right md-whiteframe-z2"
 				md-component-id="right"> <md-toolbar
 				class="md-theme-light">
-			<h1 class="md-toolbar-tools">Sidenav Right</h1>
-			</md-toolbar> <!-- 			Sidenav Buttons --> </md-sidenav>
+			<h1 class="md-toolbar-tools">Accounting </h1>
+			
+			</md-toolbar>
+			<md-button show-xs ui-sref="accounting.account_add2" ng-click="close()"	class="md-primary"> Add Account</md-button>
+					
+				<md-button show-xs ui-sref="accounting.accountlist" ng-click="close()"	class="md-primary"> Account List</md-button>
+
+				<md-button show-xs ui-sref="accounting.accountGroupAdd" class="md-primary">Add Account Group</md-button>
+
+				<md-button show-xs ui-sref="accounting.accountGroupList" class="md-primary"> Account Group List</md-button>
+			
+			
+			
+			 <!-- 			Sidenav Buttons --> </md-sidenav>
 		</section>
 
 	</div>

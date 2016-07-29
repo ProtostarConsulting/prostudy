@@ -1,0 +1,50 @@
+<md-content layout-padding>
+	<section layout="row" layout-align="end end" flex>
+	<md-button class="md-raised md-primary" id="uplodeExcel"
+		ng-click="UplodeExcel($event)">UplodeExcel</md-button>
+	</section>
+	
+	<div class="md-headline"><u>Edit Accounting Group</u></div>
+	<form name="accGrpEdit">
+	
+		[<span style="color: red;">Field Marked as asterik (*) are mandetory</span>]
+	
+
+	<div layout layout-sm="column">
+		<md-input-container flex>
+		<label>Enter Group Name <span style="color: red;">*</span></label>
+		<input type="text" ng-model="tempAccountGrp.groupName" name="grpName" ng-required="true">
+		
+		<div ng-messages="accGrpEdit.grpName.$error" ng-if="accGrpEdit.grpName.$submitted || accGrpEdit.grpName.$touched">
+			<div ng-message="required">Please Enter Account Group Name</div>
+			</div>
+		</md-input-container>
+	
+		<md-input-container flex>
+		<label>Enter Description<span style="color: red;">*</span></label>
+		<input type="text" ng-model="tempAccountGrp.description" name="descrip" ng-required="true">
+		
+			<div ng-messages="accGrpEdit.descrip.$error" ng-if="accGrpEdit.descrip.$submitted || accGrpEdit.descrip.$touched">
+			<div ng-message="required">Please Enter Account Group Name</div>
+			</div>
+		</md-input-container>
+	</div>
+	<div layout layout-sm="column">
+		<md-input-container flex>
+		<label>Enter Order No <span style="color: red;">*</span></label>
+		<input type="number" ng-model="tempAccountGrp.displayOrderNo" name="orderNo" ng-required="true">
+			
+			<div ng-messages="accGrpEdit.orderNo.$error" ng-if="accGrpEdit.orderNo.$submitted || accGrpEdit.orderNo.$touched">
+			<div ng-message="required">Please Enter Account Group Name</div>
+			</div>
+		</md-input-container>
+	</div>
+<section layout="row" layout-sm="column" layout-align="center center">
+	<md-button class="md-raised md-primary" ng-click="updateAccountGrp()">Update</md-button>
+	
+	<md-button class="md-raised md-primary" ng-click="cancelBtn()">Cancel</md-button>
+	</section>
+	
+	</form>
+</md-content>
+
