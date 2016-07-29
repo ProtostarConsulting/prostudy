@@ -271,6 +271,12 @@ angular.module("prostudyApp")
 												$scope.partnerSchool.address.pin = Number($scope.partnerSchool.address.pin); 
 												$scope.Address = $scope.partnerSchool.address;
 												$scope.partnerSchool.address.pin = parseInt($scope.partnerSchool.address.pin);
+												
+												$scope.partnerSchool.contactDetail.headMasterMobile = parseInt($scope.partnerSchool.contactDetail.headMasterMobile);
+												
+												for(var i=0; i < $scope.partnerSchool.contactDetail.coordinatorDetail.length; i++){
+													$scope.contactDetail.coordinatorDetail.coordinatorMobileNum = parseInt($scope.partnerSchool.contactDetail.coordinatorDetail.coordinatorMobileNum);
+												}
 												$scope.a;
 												$scope.getDistricts($scope.a, $scope.Address.state);
 												$scope.getTalukas($scope.a, $scope.Address.dist);

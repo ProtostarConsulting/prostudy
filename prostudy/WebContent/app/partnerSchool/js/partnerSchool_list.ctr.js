@@ -6,20 +6,13 @@ angular
 						$mdUtil, $log, appEndpointSF, $state, $sce,
 						$stateParams, $q, $mdDialog, $mdMedia,Upload,ajsCache) {
 
-					$scope.selectedChapterId = $stateParams.selectedChapterId;
-					$scope.chapter = [];
-
+					
 					$scope.query = {
 						order : 'name',
 						limit : 5,
 						page : 1
 					};
 
-					$scope.showSavedToast = function() {
-						$mdToast.show($mdToast.simple().content(
-								'Chapter Updated!').position("top").hideDelay(
-								3000));
-					};
 
 					$scope.getNextYears = function() {
 						var date = new Date();
@@ -50,9 +43,6 @@ angular
 									+ (Number(year) ));
 							date.setYear(date.getFullYear() -1);
 						}
-						
-						
-						
 					}
 					$scope.getPrvYears();
 					
