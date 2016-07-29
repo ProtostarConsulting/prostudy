@@ -11,19 +11,26 @@
 			<div>
 				<b>Use this format download CSV File click csv image</b>
 
-				<a href="img/images/UploadScheduledQuestionList.csv" download>
+				<a href="img/BulkUploadFormats/UploadScheduledQuestionList.csv" download>
   <img border="0" src="img/images/CSV.png" alt="W3Schools" width="60" height="60">
 		</a>
 			</div>
 
-			<div class="md-block">
+		<!-- 	<div class="md-block">
 				<label>Upload Only CSV File To Add ScheduledQuestion:</label> <input
 					name="myFile" type="file" class="md-raised md-primary"
 					accept=".csv" required>
+			</div> -->
+			<div>
+				<md-button class='md-raised' type="file" ngf-select
+					ng-model="csvFile" name="file2" accept=".csv" ngf-max-size="2MB"
+					required ngf-model-invalid="errorFile">Choose Course List CSV</md-button>
+				<label>{{uploadProgressMsg ==
+					null?csvFile.name:uploadProgressMsg}} </label>
 			</div>
 
 			<div>
-				<md-button ng-click="uplodeExcel()" class="md-raised md-primary"
+				<md-button ng-click="uploadQuestionListCSV()" class="md-raised md-primary"
 					ng-disabled="excelform.$invalid" show-gt-md> Submit </md-button>
 			</div>
 
