@@ -81,6 +81,9 @@ app.config(function($logProvider) {
 	// $logProvider.debugEnabled(false);
 	$logProvider.debugEnabled(true);// this is default
 });
+app.factory('ajsCache', function($cacheFactory) {
+	 return $cacheFactory('browserCache');
+	});
 
 app.config(function($stateProvider, $urlRouterProvider) {
 	// This adds config 2
@@ -235,14 +238,45 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/demo/fileUpload.html',
 		controller : 'AppController'
 	})
+
+	.state('accounting', {
+		url : "/accounting",
+		templateUrl : '/app/accounting/accounting_module.html',
+		controller : 'accountModuleCtr'
+	})
 	
 
+	.state('accounting.account_add2', {
+		url : "/account_add/:AccountId",
+		templateUrl : '/app/accounting/account_add2.html',
+		controller : 'addacountCtr',
+	})
+	.state('accounting.accountlist', {
+		url : "/accountlist",
+		templateUrl : '/app/accounting/accountlist.html',
+		controller : 'accountlistCtr',
+	})
 	
-	.state('accounting', {
-  url : "/accounting",
-  templateUrl : '/app/accounting/accounting_module.html',
-  controller : 'accountModuleCtr',
- })
+	.state('accounting.accountGroupAdd', {
+		url : "/accountGroupAdd",
+		templateUrl : '/app/accounting/accountGroupAdd.html',
+		controller : 'accountGroupCtr'
+	})
+	.state('accounting.accountGroupList', {
+		url : "/accountGroupList",
+		templateUrl : '/app/accounting/accountGroupList.html',
+		controller : 'accountGrpListCtr'
+	})
+	.state('accounting.accountGroupEdit', {
+		url : "/accountGroupEdit",
+		templateUrl : '/app/accounting/accountGroupEdit.html',
+		controller : 'accountGrpEditCtr',
+			params:{
+				record:null
+			
+			}
+	})
+
 
  .state('accounting.addGeneralEntry', {
 		url : "/addGeneralEntry",
@@ -277,6 +311,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	})
 	
 	
+
 	.state('report', {
 		url : "/report",
 		templateUrl : '/app/report/report_module.html',
@@ -694,23 +729,5 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'setup.viewuser'
 	})
 	
-	/*.state('accounting', {
-		url : "/accounting",
-		templateUrl : '/app/accounting/accounting_module.html',
-		controller : 'accountModuleCtr',
-	})*/
-	
-	.state('accounting.account_add2', {
-		url : "/account_add/:AccountId",
-		templateUrl : '/app/accounting/account_add2.html',
-		controller : 'addacountCtr',
-	})
-	.state('accounting.accountlist', {
-		url : "/accountlist",
-		templateUrl : '/app/accounting/accountlist.html',
-		controller : 'accountlistCtr',
-	})
-	
-
 
 });

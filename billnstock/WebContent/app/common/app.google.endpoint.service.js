@@ -191,6 +191,48 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}*/
+	
+	//===============================start ofaacGroupService======================================================//
+	var AccountGroupService={};
+	serviceFactory.getAccountGroupService = function() {
+		return AccountGroupService;
+	}
+	AccountGroupService.addAccountGroup=function(s1){
+		var deferred = $q.defer();
+		gapi.client.accountGroupService.addAccountGroup(s1).execute(function() {
+			deferred.resolve({
+				"msg" : "AccountGroupService Added Successfully."
+			});
+		});
+		return deferred.promise;	
+	}
+	AccountGroupService.getAccountGroupList=function(){
+		var deferred = $q.defer();
+		gapi.client.accountGroupService.getAccountGroupList().execute(function(resp) {
+			
+			deferred.resolve(resp.items);
+			$log.debug("resp :"+resp);
+		});
+		return deferred.promise;	
+	}
+	AccountGroupService.updateAccountGrp = function(updateAccountGrp) {
+		var deferred = $q.defer();
+		gapi.client.accountGroupService.updateAccountGrp(updateAccountGrp).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	AccountGroupService.deleteAccountGrp = function(id) {
+		var deferred = $q.defer();
+		gapi.client.accountGroupService.deleteAccountGrp({"id":id}).execute(function(resp) {
+			deferred.resolve(resp);
+		});
+		return deferred.promise;
+	}
+	
+
+//==================================================================================================================================//	
+	
 	// ---------------------------assetService--------------------------------
 
 	var assetService = {};

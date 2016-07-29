@@ -28,6 +28,15 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 		 };// end of getUserService
 	
 //------------------------------------------------
+//accGroupService		 
+		 endpointFactory.getAccountGroupService = function() {
+				if (isTestMode)
+					return localDBServiceFactory.getAccountGroupService();
+				else
+					return googleEndpointSF.getAccountGroupService();
+			};
+		//============================================
+		 
 	endpointFactory.getCustomerService = function() {
 		if (isTestMode)
 			return localDBServiceFactory.getCustomerService();
@@ -242,6 +251,13 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			$log.debug("accountService Loaded....");
 		}, apiRoot);
 		
+
+		gapi.client.load('accountGroupService', 'v0.1', function() {
+			$log.debug("accountGroupService Loaded....");
+		}, apiRoot);
+		
+
+
 		gapi.client.load('accountEntryService', 'v0.1', function() {
 			$log.debug("accountEntryService Loaded....");
 		}, apiRoot);
@@ -254,6 +270,7 @@ function appEndpointSFFn($log, localDBServiceFactory, googleEndpointSF) {
 			$log.debug("generalEntryService Loaded....");
 		}, apiRoot);
 		
+
 		gapi.client.load('hrService', 'v0.1', function() {
 			$log.debug("hr Loaded....");
 		}, apiRoot);
