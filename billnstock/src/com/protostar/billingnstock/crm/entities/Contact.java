@@ -5,38 +5,30 @@ import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Index;
 import com.protostar.billingnstock.cust.entities.Customer;
 import com.protostar.billingnstock.user.entities.UserEntity;
+import com.protostar.billnstock.entity.Address;
 import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
 public class Contact extends BaseEntity {
 
-	
 	private Ref<UserEntity> loggedInUser;
 	@Index
 	private Ref<Customer> customer;
-	/*@Id
-	private Long id;
+	/*
+	 * @Id private Long id;
+	 * 
+	 * public Long getId() { return id; }
+	 * 
+	 * public void setId(Long id) { this.id = id; }
+	 * 
+	 * @Index private Ref<BusinessEntity> business;
+	 * 
+	 * 
+	 * public BusinessEntity getBusiness() { return business.get(); } public
+	 * void setBusiness(BusinessEntity business) { this.business =
+	 * Ref.create(business); }
+	 */
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	@Index
-	private Ref<BusinessEntity> business;
-	
-	
-	public BusinessEntity getBusiness() {
-		return business.get();
-	}
-	public void setBusiness(BusinessEntity business) {
-		this.business = Ref.create(business);
-	}*/
-	
-	
 	private String fName;
 	private String lName;
 	private String status;
@@ -48,25 +40,31 @@ public class Contact extends BaseEntity {
 	private String cust;
 	private String salespartner;
 
-	
-	
+	private Address address;
+
+	public Address getAddress() {
+		return address == null ? null : address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	public UserEntity getLoggedInUser() {
-		return loggedInUser== null ? null : loggedInUser.get();
+		return loggedInUser == null ? null : loggedInUser.get();
 	}
 
 	public void setLoggedInUser(UserEntity loggedInUser) {
 		this.loggedInUser = Ref.create(loggedInUser);
 	}
-	
+
 	public Customer getCustomer() {
-			return customer== null ? null : customer.get();
+		return customer == null ? null : customer.get();
 	}
 
 	public void setCustomer(Customer customer) {
-		this.customer = customer==null ? null : Ref.create(customer);
+		this.customer = customer == null ? null : Ref.create(customer);
 	}
-
-	
 
 	public String getfName() {
 		return fName;

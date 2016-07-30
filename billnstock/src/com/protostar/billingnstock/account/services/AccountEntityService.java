@@ -2,7 +2,6 @@ package com.protostar.billingnstock.account.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +13,8 @@ import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Ref;
 import com.protostar.billingnstock.account.entities.AccountEntity;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
+import com.protostar.billnstock.until.data.SequenceGeneratorService;
+import com.protostar.billnstock.until.data.SequenceGeneratorService.SequenceKind;
 
 @Api(name = "accountEntityService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.billingnstock.services", ownerName = "com.protostar.billingnstock.services", packagePath = ""))
 public class AccountEntityService {
@@ -27,24 +28,21 @@ public class AccountEntityService {
 		} else {
 			accountEntity.setModifiedDate(new Date());
 		}
+		Long nextSequenceNumber = new SequenceGeneratorService()
+				.getNextSequenceNumber(SequenceKind.AccountNumber,
+						accountEntity.getBusiness().getId());
+		accountEntity.setAccountNo(nextSequenceNumber.toString());
 		ofy().save().entity(accountEntity).now();
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	/*@ApiMethod(name = "addAccounts")
-	public void addAccounts(List<AccountEntity> accountEntities) {
-		for (AccountEntity accountEntity : accountEntities) {
-			addAccount(accountEntity);
-		}
 
-	}*/
+	/*
+	 * @ApiMethod(name = "addAccounts") public void
+	 * addAccounts(List<AccountEntity> accountEntities) { for (AccountEntity
+	 * accountEntity : accountEntities) { addAccount(accountEntity); }
+	 * 
+	 * }
+	 */
 
 	@ApiMethod(name = "getAllAccountsByBusiness")
 	public List<AccountEntity> getAllAccountsByBusiness(@Named("id") Long busId) {
@@ -68,42 +66,38 @@ public class AccountEntityService {
 		return accountById;
 	}
 
-	
-	
-	
-	
-	
-/*	public void createDefaltAccounts() {
-
-		// check if not there then only add esle return;
-
-		List<AccountEntity> accountEntities = new ArrayList<AccountEntity>(10);
-		accountEntities.add(new AccountEntity("ICIC Bank Current A/c",
-				AccountEntity.accountType.PERSONAL)); // Assets Group
-		accountEntities.add(new AccountEntity("ICIC Bank Personal A/c",
-				AccountEntity.accountType.PERSONAL)); // Assets Group
-		accountEntities.add(new AccountEntity("Capital A/c",
-				AccountEntity.accountType.PERSONAL)); // Capital/Equity Group
-		accountEntities.add(new AccountEntity("Cash A/c",
-				AccountEntity.accountType.PERSONAL)); // Assets Group
-		accountEntities.add(new AccountEntity("Computers A/c",
-				AccountEntity.accountType.REAL)); // Assets Group
-		accountEntities.add(new AccountEntity("Furniture A/c",
-				AccountEntity.accountType.REAL)); // Assets Group
-		accountEntities.add(new AccountEntity("Salary A/c",
-				AccountEntity.accountType.NOMINAL)); // Expense Group
-		accountEntities.add(new AccountEntity("Rent A/c",
-				AccountEntity.accountType.NOMINAL)); // Expense Group
-		accountEntities.add(new AccountEntity("Utility Expesnes A/c",
-				AccountEntity.accountType.NOMINAL)); // Expense Group
-		accountEntities.add(new AccountEntity("Payables A/c",
-				AccountEntity.accountType.NOMINAL)); // Liabilities Group
-		accountEntities.add(new AccountEntity("HDFC Biz Loan (Feb-2016) A/c",
-				AccountEntity.accountType.NOMINAL)); // Liabilities Group
-		
-
-		//this.addAccounts(accountEntities);
-
-	}*/
+	/*
+	 * public void createDefaltAccounts() {
+	 * 
+	 * // check if not there then only add esle return;
+	 * 
+	 * List<AccountEntity> accountEntities = new ArrayList<AccountEntity>(10);
+	 * accountEntities.add(new AccountEntity("ICIC Bank Current A/c",
+	 * AccountEntity.accountType.PERSONAL)); // Assets Group
+	 * accountEntities.add(new AccountEntity("ICIC Bank Personal A/c",
+	 * AccountEntity.accountType.PERSONAL)); // Assets Group
+	 * accountEntities.add(new AccountEntity("Capital A/c",
+	 * AccountEntity.accountType.PERSONAL)); // Capital/Equity Group
+	 * accountEntities.add(new AccountEntity("Cash A/c",
+	 * AccountEntity.accountType.PERSONAL)); // Assets Group
+	 * accountEntities.add(new AccountEntity("Computers A/c",
+	 * AccountEntity.accountType.REAL)); // Assets Group accountEntities.add(new
+	 * AccountEntity("Furniture A/c", AccountEntity.accountType.REAL)); //
+	 * Assets Group accountEntities.add(new AccountEntity("Salary A/c",
+	 * AccountEntity.accountType.NOMINAL)); // Expense Group
+	 * accountEntities.add(new AccountEntity("Rent A/c",
+	 * AccountEntity.accountType.NOMINAL)); // Expense Group
+	 * accountEntities.add(new AccountEntity("Utility Expesnes A/c",
+	 * AccountEntity.accountType.NOMINAL)); // Expense Group
+	 * accountEntities.add(new AccountEntity("Payables A/c",
+	 * AccountEntity.accountType.NOMINAL)); // Liabilities Group
+	 * accountEntities.add(new AccountEntity("HDFC Biz Loan (Feb-2016) A/c",
+	 * AccountEntity.accountType.NOMINAL)); // Liabilities Group
+	 * 
+	 * 
+	 * //this.addAccounts(accountEntities);
+	 * 
+	 * }
+	 */
 
 }

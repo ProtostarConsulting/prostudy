@@ -11,7 +11,7 @@ import com.protostar.billingnstock.user.entities.UserEntity;
 import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
-public class Lead extends BaseEntity{
+public class Lead extends Contact{
 
 	private Ref<UserEntity> loggedInUser;
 

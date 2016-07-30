@@ -2,10 +2,11 @@ package com.protostar.billingnstock.cust.entities;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Index;
+import com.protostar.billnstock.entity.Address;
 import com.protostar.billnstock.entity.BaseEntity;
 
 @Entity
-public class Customer extends BaseEntity{
+public class Customer extends BaseEntity {
 
 	@Index
 	private String firstName;
@@ -13,10 +14,20 @@ public class Customer extends BaseEntity{
 	private Long mobile;
 	@Index
 	private String email;
-	/*private String address;*/
+	/* private String address; */
 	private String companyName;
-	private Boolean isCompany=false;
-	
+	private Boolean isCompany = false;
+
+	private Address address;
+
+	public Address getAddress() {
+		return address == null ? null : address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	public String getCompanyName() {
 		return companyName;
 	}
@@ -24,6 +35,7 @@ public class Customer extends BaseEntity{
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
+
 	public Boolean getIsCompany() {
 		return isCompany;
 	}
@@ -64,15 +76,11 @@ public class Customer extends BaseEntity{
 		this.email = email;
 	}
 
-	/*public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-*/
-	
+	/*
+	 * public String getAddress() { return address; }
+	 * 
+	 * public void setAddress(String address) { this.address = address; }
+	 */
 
 	/*
 	 * @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL) private
