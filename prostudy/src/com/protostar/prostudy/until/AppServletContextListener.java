@@ -39,7 +39,7 @@ import com.protostar.prostudy.gf.entity.GFBookTransactionEntity;
 import com.protostar.prostudy.gf.entity.GFCourierEntity;
 import com.protostar.prostudy.gf.entity.GFStudentEntity;
 import com.protostar.prostudy.gf.entity.PartnerSchoolEntity;
-import com.protostar.prostudy.protostarAdmin.entities.AccountType;
+import com.protostar.prostudy.proadmin.entities.PaymentPlanType;
 import com.protostar.prostudy.until.data.YearCounterEntity;
 
 public class AppServletContextListener implements ServletContextListener {
@@ -88,7 +88,7 @@ public class AppServletContextListener implements ServletContextListener {
 		  ObjectifyService.register(RoleSecEntity.class);
 		  
 		  ObjectifyService.register(PartnerSchoolEntity.class);
-		  ObjectifyService.register(AccountType.class);
+		  ObjectifyService.register(PaymentPlanType.class);
 		  ObjectifyService.register(ScheduledStudentExamEntity.class);
 		  ObjectifyService.register(GFStudentEntity.class);
 		  ObjectifyService.register(GFCourierEntity.class);

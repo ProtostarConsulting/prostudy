@@ -1,4 +1,4 @@
-package com.protostar.prostudy.protostarAdmin.services;
+package com.protostar.prostudy.proadmin.services;
 
 import java.util.logging.Logger;
 
@@ -9,7 +9,7 @@ import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.protostar.prostudy.until.data.ServerMsg;
 
-@Api(name = "uploadPathService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.protostarAdmin.services", ownerName = "com.protostar.prostudy.protostarAdmin.services", packagePath = ""))
+@Api(name = "uploadPathService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.proadmin.services", ownerName = "com.protostar.prostudy.proadmin.services", packagePath = ""))
 public class UploadURLService {
 
 	private static final Logger log = Logger.getLogger(UploadURLService.class

@@ -1,4 +1,4 @@
-package com.protostar.prostudy.protostarAdmin.services;
+package com.protostar.prostudy.proadmin.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
@@ -12,28 +12,27 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
-import com.googlecode.objectify.Key;
 import com.protostar.prostudy.entity.InstituteEntity;
 import com.protostar.prostudy.entity.UserEntity;
-import com.protostar.prostudy.protostarAdmin.entities.AccountType;
+import com.protostar.prostudy.proadmin.entities.PaymentPlanType;
 
-@Api(name = "protostarAdminService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.protostarAdmin.services", ownerName = "com.protostar.prostudy.protostarAdmin.services", packagePath = ""))
+@Api(name = "protostarAdminService", version = "v0.1", namespace = @ApiNamespace(ownerDomain = "com.protostar.prostudy.proadmin.services", ownerName = "com.protostar.prostudy.proadmin.services", packagePath = ""))
 public class ProtostarAdminService {
 
 	private static final Logger log = Logger.getLogger(ProtostarAdminService.class
 			.getName());
 
 	@ApiMethod(name = "addAccountType")
-	public void addAccountType(AccountType account) {
+	public void addAccountType(PaymentPlanType account) {
 		ofy().save().entity(account).now();
 
 	}
 	
 	@ApiMethod(name = "getallAccountType")
-	public List<AccountType> getallAccountType() {
+	public List<PaymentPlanType> getallAccountType() {
 		log.info("Inside getallAccountType.");
 		try {
-			return ofy().load().type(AccountType.class).list();
+			return ofy().load().type(PaymentPlanType.class).list();
 		} catch (Exception e) {
 			log.info("Error Ocuured: " + e.getStackTrace());
 		}
@@ -41,8 +40,8 @@ public class ProtostarAdminService {
 	}
 
 	@ApiMethod(name = "getAccountTypeById")
-	public AccountType getAccountTypeById(@Named("id") Long id) {
-		 AccountType type = ofy().load().type(AccountType.class).id(id).now();
+	public PaymentPlanType getAccountTypeById(@Named("id") Long id) {
+		 PaymentPlanType type = ofy().load().type(PaymentPlanType.class).id(id).now();
 		 return type;
 	}
 
@@ -54,9 +53,9 @@ public class ProtostarAdminService {
 			String DATE_FORMAT = "dd/MM/yyyy";
 			SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
 
-			List<AccountType> accountt = ofy().load().type(AccountType.class)
+			List<PaymentPlanType> accountt = ofy().load().type(PaymentPlanType.class)
 					.list();
-			AccountType filteredaccount = new AccountType();
+			PaymentPlanType filteredaccount = new PaymentPlanType();
 			for (int i = 0; i < accountt.size(); i++) {
 				if (accountt.get(i).getAccountName().equals("Platinum")) {
 					filteredaccount = accountt.get(i);
@@ -72,7 +71,7 @@ public class ProtostarAdminService {
 			ofy().save().entity(instituteEntity).now();
 
 			UserEntity userEntity1 = new UserEntity();
-			userEntity1.setInstituteID(instituteEntity.getID());
+			userEntity1.setInstituteID(instituteEntity.getId());
 			userEntity1.setEmail_id("ganesh.lawande@protostar.co.in");
 			userEntity1.setFirstName("Ganesh");
 			userEntity1.setLastName("Lawande");
@@ -84,7 +83,7 @@ public class ProtostarAdminService {
 			// ------------------------------
 
 			UserEntity userEntity2 = new UserEntity();
-			userEntity2.setInstituteID(instituteEntity.getID());
+			userEntity2.setInstituteID(instituteEntity.getId());
 			userEntity2.setEmail_id("pushpak.pimpale@protostarcs.com");
 			userEntity2.setFirstName("Pushpak");
 			userEntity2.setLastName("Pimpale");
@@ -96,7 +95,7 @@ public class ProtostarAdminService {
 			// ------------------------------
 
 			UserEntity userEntity4 = new UserEntity();
-			userEntity4.setInstituteID(instituteEntity.getID());
+			userEntity4.setInstituteID(instituteEntity.getId());
 			userEntity4.setEmail_id("aniket.bhalsing@protostar.co.in");
 			userEntity4.setFirstName("Aniket");
 			userEntity4.setLastName("Bhalsing");
@@ -108,7 +107,7 @@ public class ProtostarAdminService {
 			// ------------------------------
 			
 			UserEntity userEntity3 = new UserEntity();
-			userEntity3.setInstituteID(instituteEntity.getID());
+			userEntity3.setInstituteID(instituteEntity.getId());
 			userEntity3.setEmail_id("ashvinigokale@gmail.com");
 			userEntity3.setFirstName("Ashvini");
 			userEntity3.setLastName("Gokale");
@@ -127,25 +126,25 @@ public class ProtostarAdminService {
 	@ApiMethod(name = "initsetup")
 	public void initsetup() {
 		try {
-			AccountType accounttype = new AccountType();
+			PaymentPlanType accounttype = new PaymentPlanType();
 			accounttype.setAccountName("Free");
 			accounttype.setDescription("Free for upto 250 users");
 			accounttype.setMaxuser("250");
 			accounttype.setPaymentDesc("Free no charges");
 			ofy().save().entity(accounttype).now();
-			AccountType accounttype1 = new AccountType();
+			PaymentPlanType accounttype1 = new PaymentPlanType();
 			accounttype1.setAccountName("Silver");
 			accounttype1.setDescription("Good for upto 500 users");
 			accounttype1.setMaxuser("500");
 			accounttype1.setPaymentDesc("Rs. 4000 PM + Tax");
 			ofy().save().entity(accounttype1).now();
-			AccountType accounttype2 = new AccountType();
+			PaymentPlanType accounttype2 = new PaymentPlanType();
 			accounttype2.setAccountName("Gold");
 			accounttype2.setDescription("Good for 500 to 750 users");
 			accounttype2.setMaxuser("750");
 			accounttype2.setPaymentDesc("Rs. 8000 PM + Tax");
 			ofy().save().entity(accounttype2).now();
-			AccountType accounttype3 = new AccountType();
+			PaymentPlanType accounttype3 = new PaymentPlanType();
 			accounttype3.setAccountName("Platinum");
 			accounttype3.setDescription("Good for 750 to 1000 users");
 			accounttype3.setMaxuser("1000");

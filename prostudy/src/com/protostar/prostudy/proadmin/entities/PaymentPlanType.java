@@ -1,11 +1,11 @@
-package com.protostar.prostudy.protostarAdmin.entities;
+package com.protostar.prostudy.proadmin.entities;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 
 @Entity
-public class AccountType{
+public class PaymentPlanType{
 
 	/*private Ref<UserEntity> loggedInUser;*/
 

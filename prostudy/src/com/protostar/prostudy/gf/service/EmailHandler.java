@@ -2,6 +2,7 @@ package com.protostar.prostudy.gf.service;
 
 import java.io.IOException;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -15,6 +16,9 @@ import com.protostar.prostudy.entity.UserEntity;
 import com.protostar.prostudy.gf.entity.PartnerSchoolEntity;
 
 public class EmailHandler {
+
+	private final Logger logger = Logger
+			.getLogger(EmailHandler.class.getName());
 
 	private static final String EMAIL_FROM_NAME = "GRF-Gandhi Vichar Sanskar Pariksha";
 	private static final String EMAIL_FROM = "ganesh.lawande@protostar.co.in";
@@ -31,7 +35,7 @@ public class EmailHandler {
 		String messageBody = "";
 		messageBody = new EmailTemplateHandlerUtil()
 				.registerSchoolForExamTemplate(partnerSchoolEntity);
-		System.out.println("messageBody :" + messageBody);
+		logger.info("messageBody :" + messageBody);
 		try {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(EMAIL_FROM, EMAIL_FROM_NAME));
@@ -65,7 +69,7 @@ public class EmailHandler {
 		String messageBody = "";
 		messageBody = new EmailTemplateHandlerUtil()
 				.createNewUserHtmlTemplate(user);
-		System.out.println("messageBody :" + messageBody);
+		logger.info("messageBody :" + messageBody);
 		try {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(EMAIL_FROM, EMAIL_FROM_NAME));
@@ -78,9 +82,9 @@ public class EmailHandler {
 			// An email address was invalid.
 			// ...
 			e.printStackTrace();
+			logger.warning(e.getMessage() + e.getStackTrace());
 		} catch (MessagingException e) {
-			// There was an error contacting the Mail service.
-			// ...
+			logger.warning(e.getMessage() + e.getStackTrace());
 			e.printStackTrace();
 		}
 	}

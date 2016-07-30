@@ -21,7 +21,7 @@ import com.protostar.prostudy.entity.RoleSecEntity;
 import com.protostar.prostudy.entity.StudSubEntity;
 import com.protostar.prostudy.entity.UserEntity;
 import com.protostar.prostudy.gf.service.EmailHandler;
-import com.protostar.prostudy.protostarAdmin.entities.AccountType;
+import com.protostar.prostudy.proadmin.entities.PaymentPlanType;
 import com.protostar.prostudy.until.data.ServerMsg;
 import com.protostar.prostudy.until.data.UtilityService;
 
@@ -205,8 +205,8 @@ public class UserService {
 	}
 
 	@ApiMethod(name = "getAllAccountTypes")
-	public List<AccountType> getAllAccountTypes() {
-		return ofy().load().type(AccountType.class).list();
+	public List<PaymentPlanType> getAllAccountTypes() {
+		return ofy().load().type(PaymentPlanType.class).list();
 	}
 
 	@ApiMethod(name = "getLogUploadURL")

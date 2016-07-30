@@ -1,4 +1,4 @@
-package com.protostar.prostudy.protostarAdmin.services;
+package com.protostar.prostudy.proadmin.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 

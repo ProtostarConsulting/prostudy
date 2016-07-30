@@ -2,49 +2,25 @@ package com.protostar.prostudy.entity;
 
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
-import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
-import com.protostar.prostudy.protostarAdmin.entities.AccountType;
+import com.protostar.prostudy.proadmin.entities.PaymentPlanType;
 
 @Entity
-public class InstituteEntity {
+public class InstituteEntity extends BaseEntity {
 
-	@Id
-	@Index
-	private Long id;
 	private String name;
 	private String desc;
-	private String address;
+	private Address address;
 	private String phone_no;
 	private String theme;
 	private String registerDate;
 	private Integer totalUser = 1;
-	private String status="active" ;
+	private String status = "active";
 	@Index
 	private String LogBlobKey;
-	private String bulkGFBookBlobKey;
-	private String bulkGFStudentBlobKey;
 	private String authorizations;
-	
-	
-	
 
-	
-	public String getBulkGFBookBlobKey() {
-		return bulkGFBookBlobKey;
-	}
-
-	public void setBulkGFBookBlobKey(String bulkGFBookBlobKey) {
-		this.bulkGFBookBlobKey = bulkGFBookBlobKey;
-	}
-
-	public String getBulkGFStudentBlobKey() {
-		return bulkGFStudentBlobKey;
-	}
-
-	public void setBulkGFStudentBlobKey(String bulkGFStudentBlobKey) {
-		this.bulkGFStudentBlobKey = bulkGFStudentBlobKey;
-	}
+	private AppSettingEntity settings;
 
 	public String getLogBlobKey() {
 		return LogBlobKey;
@@ -53,14 +29,14 @@ public class InstituteEntity {
 	public void setLogBlobKey(String logBlobKey) {
 		LogBlobKey = logBlobKey;
 	}
-	Ref<AccountType> accounttype;
-		
 
-	public AccountType getAccounttype() {
+	Ref<PaymentPlanType> accounttype;
+
+	public PaymentPlanType getAccounttype() {
 		return accounttype.get();
 	}
 
-	public void setAccounttype(AccountType accounttype) {
+	public void setAccounttype(PaymentPlanType accounttype) {
 		this.accounttype = Ref.create(accounttype);
 	}
 
@@ -88,7 +64,6 @@ public class InstituteEntity {
 		this.status = status;
 	}
 
-	
 	public String getTheme() {
 		return theme;
 	}
@@ -97,14 +72,7 @@ public class InstituteEntity {
 		this.theme = theme;
 	}
 
-	public Long getID() {
-		return id;
-	}
-
-	public void setID(Long iD) {
-		id = iD;
-	}
-
+	
 	public String getName() {
 		return name;
 	}
@@ -121,13 +89,7 @@ public class InstituteEntity {
 		this.desc = desc;
 	}
 
-	public String getAddress() {
-		return address;
-	}
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
 
 	public String getPhone_no() {
 		return phone_no;
@@ -145,6 +107,20 @@ public class InstituteEntity {
 		this.authorizations = authorizations;
 	}
 
+	public AppSettingEntity getSettings() {
+		return settings;
+	}
 
+	public void setSettings(AppSettingEntity settings) {
+		this.settings = settings;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
 }
