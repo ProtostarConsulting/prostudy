@@ -1097,16 +1097,22 @@ function googleEndpointSF($log, $q) {
 	}
 	
 	
-	AccountService.deleteaccByid = function(accountId) {
+	
+	
+	/*AccountService.getaccountlist = function() {
 		var deferred = $q.defer();
-		gapi.client.accountService.deleteaccByid({
+		gapi.client.accountService.getaccountlist({
 			"id" : accountId
 		}).execute(function(resp) {
-			$log.debug("getAccountById at enpoint" + resp);
+			$log.debug("getaccountlist at enpoint" + resp);
 			deferred.resolve(resp);
 		});
 		return deferred.promise;
-	}
+	}*/
+	
+	
+	
+	
 	
 	
 	
@@ -1255,6 +1261,36 @@ function googleEndpointSF($log, $q) {
 		});
 		return deferred.promise;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	GeneralEntryService.getGeneralEntryList=function(){
+		var deferred = $q.defer();
+		gapi.client.generalEntryService.getGeneralEntryList().execute(
+				function(resp) {
+					$log.debug("getgenerallist#resp at enpoint:"
+							+ angular.toJson(resp));
+					deferred.resolve(resp.items);
+				});
+		return deferred.promise;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/* =============================================================================================================================== */
 	
 	// Add GeneralJournal Service

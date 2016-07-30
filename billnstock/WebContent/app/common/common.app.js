@@ -295,6 +295,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : '/app/accounting/account_entryList.html',
 		controller : 'accountEntryListController'
 	})
+	.state('accounting.generalEntitylist', {
+		url : "/generalEntitylist",
+		templateUrl : '/app/accounting/generalEntitylist.html',
+		controller :'generalListCtr'
+	})
+	
+	
+	
+	
 	
 	.state('journal', {
 		url : "/journal",
