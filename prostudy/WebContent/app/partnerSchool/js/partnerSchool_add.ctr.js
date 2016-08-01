@@ -258,9 +258,9 @@ angular
 
 										});
 						$scope.waitForServiceLoad2();
-						console.log("$state.current : "
+/*						console.log("$state.current : "
 								+ angular.toJson($state.current));
-						// $state.reload($state.current);
+*/						// $state.reload($state.current);
 
 					}
 					$scope.resetState = function() {
@@ -294,7 +294,7 @@ angular
 												$scope.Address = $scope.partnerSchool.address;
 												$scope.partnerSchool.address.pin = parseInt($scope.partnerSchool.address.pin);
 
-												$scope.partnerSchool.contactDetail.headMasterMobile = parseInt($scope.partnerSchool.contactDetail.headMasterMobile);
+									//			$scope.partnerSchool.contactDetail.headMasterMobile = parseInt($scope.partnerSchool.contactDetail.headMasterMobile);
 
 												for (var i = 0; i < $scope.partnerSchool.contactDetail.coordinatorDetail.length; i++) {
 													$scope.contactDetail.coordinatorDetail.coordinatorMobileNum = parseInt($scope.partnerSchool.contactDetail.coordinatorDetail.coordinatorMobileNum);

@@ -344,7 +344,10 @@
 		<section layout="row" layout-sm="column" layout-align="end end">
 			<md-button
 				ng-disabled="partnerSchoolForm.govRegisterno.$invalid || partnerSchoolForm.city.$invalid ||partnerSchoolForm.dist.$invalid || partnerSchoolForm.name.$invalid
-		|| partnerSchoolForm.instName.$invalid || partnerSchoolForm.tal.$invalid || partnerSchoolForm.formNumber.$invalid || partnerSchoolForm.line1.$invalid || partnerSchoolForm.state.$invalid || partnerSchoolForm.category.$invalid"
+		|| partnerSchoolForm.instName.$invalid || partnerSchoolForm.tal.$invalid || partnerSchoolForm.formNumber.$invalid || partnerSchoolForm.line1.$invalid
+		|| partnerSchoolForm.state.$invalid || partnerSchoolForm.category.$invalid
+		|| partnerSchoolForm.district.$invalid || partnerSchoolForm.taluka.$invalid || partnerSchoolForm.pin.$invalid
+		"
 				class="md-raised md-primary" ng-click="addPartnerSchool()">Save
 			& Next</md-button>
 		</section>
@@ -473,16 +476,22 @@
 		<div layout="row" layout-xs="column" flex>
 
 			<md-input-container flex> <label>Mobile
-				No. <span style="color: red"
+				No<span style="color: red"
 				ng-show="partnerSchoolForm.headMasterMobile.$error.required"
 				class="mandatory">*</span>
-			</label> <input name="headMasterMobile" type="number" min="1"
-				ng-model="contactDetail.headMasterMobile" ng-required="true">
+			</label> <input type="number" name="headMasterMobile"
+				ng-model="contactDetail.headMasterMobile" ng-minlength="10"
+				ng-maxlength="10" ng-required="true">
 			<div ng-messages="partnerSchoolForm.headMasterMobile.$error"
 				ng-if="partnerSchoolForm.headMasterMobile.$submitted || partnerSchoolForm.headMasterMobile.$touched">
 				<div ng-message="required">Please Enter Mobile No.</div>
+				<span class="help-block"
+					ng-show="((partnerSchoolForm.headMasterMobile.$error.minlength || partnerSchoolForm.headMasterMobile.$error.maxlength) && partnerSchoolForm.headMasterMobile.$dirty) ">Mobile
+					Number should be 10 digits</span>
 			</div>
 			</md-input-container>
+
+
 
 			<md-input-container flex> <label>E-mail
 				ID <!-- <span style="color: red"
@@ -575,19 +584,23 @@
 						<td><md-input-container flex> <label>Phone
 								No.</label> <input ng-model="co.coordinatorPhoneNum"></md-input-container></td>
 
-						<td><md-input-container flex> <label>Mobile
-								No. <span style="color: red"
+						<td>				
+							
+							<md-input-container flex> <label>Mobile
+								No<span style="color: red"
 								ng-show="partnerSchoolForm.cordMobileNo.$error.required"
 								class="mandatory">*</span>
-							</label> <input name="cordMobileNo" min="1"
-								ng-model="co.coordinatorMobileNum" ng-required="true">
+							</label> <input type="number" name="cordMobileNo"
+								ng-model="co.coordinatorMobileNum" min="1" ng-minlength="10"
+								ng-maxlength="10" ng-required="true">
 							<div ng-messages="partnerSchoolForm.cordMobileNo.$error"
 								ng-if="partnerSchoolForm.cordMobileNo.$submitted || partnerSchoolForm.cordMobileNo.$touched">
 								<div ng-message="required">Please Enter Mobile No.</div>
+								<span class="help-block"
+									ng-show="((partnerSchoolForm.cordMobileNo.$error.minlength || partnerSchoolForm.cordMobileNo.$error.maxlength) && partnerSchoolForm.cordMobileNo.$dirty) ">Mobile
+									Number should be 10 digits</span>
 							</div>
-							</md-input-container> <!-- 						<md-input-container flex> <label>Mobile
-							No.</label> <input ng-model="co.coordinatorMobileNum"></md-input-container>
- --></td>
+							</md-input-container></td>
 						<td><md-input-container flex> <label>E-mail
 								ID <!-- <span style="color: red"
 							ng-show="partnerSchoolForm.cordEmail.$error.required"
@@ -891,12 +904,13 @@
 					Fees<span style="color: red"
 					ng-show="partnerSchoolForm.payAmount.$error.required"
 					class="mandatory">*</span>
-				</label> <input type="number" name=" payAmount"
+				</label> <input type="number" name="payAmount"
 					ng-model="PaymentDetail.payAmount" ng-required="true"><!-- ng-blur="calculatepaidandpending()" -->
 				<div ng-messages="partnerSchoolForm.payAmount.$error"
 					ng-if="partnerSchoolForm.payAmount.$submitted || partnerSchoolForm.payAmount.$touched">
 					<div ng-message="required">Please Enter Payment Fees.</div>
 				</div>
+				
 
 				</md-input-container>
 				<span flex="20"></span>
@@ -951,12 +965,12 @@
 			</section>
 		</section>
 
-		<section layout="row" layout-sm="column" layout-align="start start" name="Payment Add Button" ng-show="!addPaymentFlag">
-			<md-button 
-					class="md-raised md-primary" ng-click="enableAddPaymentFlag()"> Add Payment
-			</md-button>
+		<section layout="row" layout-sm="column" layout-align="start start"
+			name="Payment Add Button" ng-show="!addPaymentFlag">
+			<md-button class="md-raised md-primary"
+				ng-click="enableAddPaymentFlag()"> Add Payment </md-button>
 		</section>
-		
+
 		<table md-data-table md-progress="deferred">
 			<thead md-order="query.order" md-trigger="onorderchange">
 				<tr>

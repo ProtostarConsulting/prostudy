@@ -4,19 +4,17 @@ angular
 				"partnerSchoolListCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,
 						$mdUtil, $log, appEndpointSF, $state, $sce,
-						$stateParams, $q, $mdDialog, $mdMedia,Upload,ajsCache) {
+						$stateParams, $q, $mdDialog, $mdMedia, Upload, ajsCache) {
 
-					
 					$scope.query = {
 						order : 'name',
 						limit : 5,
 						page : 1
 					};
 
-
 					$scope.getNextYears = function() {
 						var date = new Date();
-					
+
 						for (var i = 0; i < 3; i++) {
 							var year = date.getFullYear();
 							year = year.toString().substr(2, 2);
@@ -24,55 +22,53 @@ angular
 							$scope.Years.push(date.getFullYear() + "-"
 									+ (Number(year) + 1));
 							date.setYear(date.getFullYear() + 1);
-						}	
+						}
 					}
 
 					$scope.Years = [];
 					$scope.getNextYears();
-					
-					
 
 					$scope.getPrvYears = function() {
 						var date = new Date();
-					
+
 						for (var i = 0; i < 3; i++) {
 							var year = date.getFullYear();
 							year = year.toString().substr(2, 2);
 
-							$scope.Years.push((date.getFullYear()-1) + "-"
-									+ (Number(year) ));
-							date.setYear(date.getFullYear() -1);
+							$scope.Years.push((date.getFullYear() - 1) + "-"
+									+ (Number(year)));
+							date.setYear(date.getFullYear() - 1);
 						}
 					}
 					$scope.getPrvYears();
-					
-					
+
 					$scope.pSchoolList = [];
 					$scope.getPartnerSchoolByInstitute = function(refresh) {
 
 						var schoolListCacheKey = "getPartnerByInstitute";
 						// Note this key has to be unique across application
 						// else it will return unexpected result.
-						if (!angular
-								.isUndefined(ajsCache.get(schoolListCacheKey)) && !refresh) {
+						if (!angular.isUndefined(ajsCache
+								.get(schoolListCacheKey))
+								&& !refresh) {
 							$log.debug("Found List in Cache, return it.")
-							$scope.schools = ajsCache
-									.get(schoolListCacheKey);
+							$scope.schools = ajsCache.get(schoolListCacheKey);
 							return;
 						}
-						if(refresh)
+						if (refresh)
 							$scope.yearOfExam = "";
-						
+
 						var PartnerService = appEndpointSF
 								.getPartnerSchoolService();
 						PartnerService.getPartnerByInstitute(
 								$scope.curUser.instituteID).then(
 								function(pSchoolList) {
 									$scope.pSchoolList = pSchoolList;
-									
+									$scope.schools = pSchoolList;
+
 									ajsCache.put(schoolListCacheKey,
 											pSchoolList);
-								
+
 									$scope.changeSchoolList();
 								});
 					}
@@ -80,25 +76,23 @@ angular
 					$scope.changeSchoolList = function(selectedyear) {
 						$scope.schools = [];
 						if (selectedyear != undefined) {
-							/*
-							 * var date1 = new Date(); var selectedyear =
-							 * date1.getFullYear(); selectedyear =
-							 * selectedyear.toString().substr(2, 2);
-							 * selectedyear = date1.getFullYear() + "-" +
-							 * (Number(selectedyear) + 1);
-							 */
 
 							if ($scope.pSchoolList != undefined) {
 								for (p = 0; p < $scope.pSchoolList.length; p++) {
-									for (q = 0; q < $scope.pSchoolList[p].examDetailList.length; q++) {
+									if ($scope.pSchoolList[p].examDetailList == null) {
+										console.log("No record Found");
+										$scope.errorMsg = "No record Found";
+										// $scope.schools = $scope.pSchoolList;
+									} else {
+										for (q = 0; q < $scope.pSchoolList[p].examDetailList.length; q++) {
 
-										if ($scope.pSchoolList[p].examDetailList[q].yearOfExam == selectedyear) {
-											$scope.schools
-													.push($scope.pSchoolList[p]);
+											if ($scope.pSchoolList[p].examDetailList[q].yearOfExam == selectedyear) {
+												$scope.schools
+														.push($scope.pSchoolList[p]);
 
+											}
 										}
 									}
-
 								}
 							}
 						} else {
@@ -143,7 +137,7 @@ angular
 								+ $scope.curUser.instituteID;
 
 					}
-	
+
 					// ----------------------UPLODE EXCEL
 					// FILE-------------------------------
 					$scope.UplodeExcel = function(ev) {
@@ -161,7 +155,7 @@ angular
 											fullscreen : useFullScreen,
 											locals : {
 												curUser : $scope.curUser,
-												getFreshScools: $scope.getPartnerSchoolByInstitute
+												getFreshScools : $scope.getPartnerSchoolByInstitute
 											}
 										})
 								.then(
@@ -174,26 +168,26 @@ angular
 										});
 
 					};
-					
-					
-					function DialogController($scope, $mdDialog, curUser, getFreshScools) {
+
+					function DialogController($scope, $mdDialog, curUser,
+							getFreshScools) {
 
 						$scope.csvFile;
 						$scope.uploadProgressMsg = null;
 						$scope.uploadSchoolsCSV = function() {
 							var csvFile = $scope.csvFile;
 							Upload
-									.upload(
-											{
-												url : 'UplodePartnerSchoolsExcel',
-												data : {
-													file : csvFile,
-													'instituteId' : curUser.instituteID
-												}
-											})
+									.upload({
+										url : 'UplodePartnerSchoolsExcel',
+										data : {
+											file : csvFile,
+											'instituteId' : curUser.instituteID
+										}
+									})
 									.then(
 											function(resp) {
-												$log.debug('Successfully uploaded '
+												$log
+														.debug('Successfully uploaded '
 																+ resp.config.data.file.name
 																+ '.'
 																+ angular
@@ -208,16 +202,18 @@ angular
 																		'Students Data Uploaded Sucessfully.')
 																.position("top")
 																.hideDelay(3000));
-												
+
 												$scope.csvFile = null;
 												$timeout(function() {
 													$scope.cancel();
-													},3000);
-												//Load the books again in the end
-												
+												}, 3000);
+												// Load the books again in the
+												// end
+
 											},
 											function(resp) {
-												$log.debug('Error Ouccured, Error status: '
+												$log
+														.debug('Error Ouccured, Error status: '
 																+ resp.status);
 												$scope.uploadProgressMsg = 'Error: '
 														+ resp.status;
@@ -226,7 +222,8 @@ angular
 												var progressPercentage = parseInt(100.0
 														* evt.loaded
 														/ evt.total);
-												$log.debug('Upload progress: '
+												$log
+														.debug('Upload progress: '
 																+ progressPercentage
 																+ '% '
 																+ evt.config.data.file.name);
@@ -237,52 +234,37 @@ angular
 												+'...'
 											});
 						};
-						
+
 						$scope.cancel = function() {
-						    $mdDialog.cancel();
-						  };
-
-					}
-					
-					
-					
-
-/*					function DialogController($scope, $mdDialog, curuser) {
-
-						$scope.insId = curuser.instituteID;
-						$scope.loding = false;
-						$scope.uplodeExcel = function() {
-							$scope.loding = true;
-							document.excelform.action = $scope.PartnerSchoolsUploadURL;
-							// calling servlet action
-							document.excelform.submit();
-						}
-
-						$scope.getLogUploadURL = function() {
-							var uploadUrlService = appEndpointSF
-									.getuploadURLService();
-							uploadUrlService
-									.getPartnerSchoolsUploadURL()
-									.then(
-											function(url) {
-												$scope.PartnerSchoolsUploadURL = url.msg;
-											});
-
-						}
-						$scope.PartnerSchoolsUploadURL;
-
-						$scope.waitForServiceLoad = function() {
-							if (appEndpointSF.is_service_ready) {
-								$scope.getLogUploadURL();
-							} else {
-								$log.debug("Services Not Loaded, watiting...");
-								$timeout($scope.waitForServiceLoad, 1000);
-							}
-						}
-						$scope.waitForServiceLoad();
+							$mdDialog.cancel();
+						};
 
 					}
 
-					// -------------------------------------------------------
-*/
+					/*
+					 * function DialogController($scope, $mdDialog, curuser) {
+					 * 
+					 * $scope.insId = curuser.instituteID; $scope.loding =
+					 * false; $scope.uplodeExcel = function() { $scope.loding =
+					 * true; document.excelform.action =
+					 * $scope.PartnerSchoolsUploadURL; // calling servlet action
+					 * document.excelform.submit(); }
+					 * 
+					 * $scope.getLogUploadURL = function() { var
+					 * uploadUrlService = appEndpointSF .getuploadURLService();
+					 * uploadUrlService .getPartnerSchoolsUploadURL() .then(
+					 * function(url) { $scope.PartnerSchoolsUploadURL = url.msg;
+					 * });
+					 *  } $scope.PartnerSchoolsUploadURL;
+					 * 
+					 * $scope.waitForServiceLoad = function() { if
+					 * (appEndpointSF.is_service_ready) {
+					 * $scope.getLogUploadURL(); } else { $log.debug("Services
+					 * Not Loaded, watiting...");
+					 * $timeout($scope.waitForServiceLoad, 1000); } }
+					 * $scope.waitForServiceLoad();
+					 *  }
+					 *  //
+					 * -------------------------------------------------------
+					 */
 				});
