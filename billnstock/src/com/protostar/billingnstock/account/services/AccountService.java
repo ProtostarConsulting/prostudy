@@ -59,6 +59,18 @@ public class AccountService {
 		return accountById;
 	}
 	
+
+@ApiMethod(name = "deleteaccByid")
+public void deleteaccByid(@Named("id") Long accountId) {
+
+ ofy().delete().type(AccountEntity.class).id(accountId).now(); 
+
+	
+}
+
+
+
+
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/	
 	
 	
