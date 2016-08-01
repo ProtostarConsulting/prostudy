@@ -12,7 +12,7 @@ angular
 				$scope.selected = [];
 				$scope.query = {
 					order : 'name',
-					limit : 5,
+					limit : 10,
 					page : 1
 				};
 				
@@ -110,16 +110,18 @@ angular
 													+ resp.config.data.file.name
 													+ '.';
 											$mdToast.show($mdToast.simple()
-															.content('UserList Uploaded Sucessfully.')
+															.content('User List Uploaded Sucessfully. The uploaded courses will be listed here after sometime. Please refresh the list.')
 															.position("top")
 															.hideDelay(3000));
 											$scope.userList=resp.data;
 						                   						                  			                    
 						                    
 						                    for(var i=0; i< $scope.userList.length;i++)
-						                    	{						                    	  					                    	 
-						                    	
-						                    	   createUserRef($scope.userList[i]);
+						                    	{		
+							                    	var request = gapi.client.directory.users.insert($scope.userList[i]);				
+							    					request.execute(function(resp) {						
+							    						$log.debug('Added user:  ' + resp);						    						
+							    					});						                    	   
 						                    	}
 						                    $mdDialog.hide();			                    
 											$scope.csvFile = null;				

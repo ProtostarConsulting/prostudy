@@ -25,8 +25,13 @@ angular
 					
 					$log.debug("$scope.$parent.courseListBackup: " + $scope.$parent.courseListBackup);
 					$scope.listCourses = function() {
-						$log.debug("Inside listCourses..");
+						$log.debug("Inside listCourses..");						
 						$scope.loading = true;
+						//Empty data first, needed for refresh button
+						$scope.classroomCourses = [];
+						$scope.courseList=[];				
+						$scope.teacherList=[];	
+						
 						
 						var request = gapi.client.classroom.courses.list({
 							pageSize : 500
@@ -48,12 +53,13 @@ angular
 
 									request.execute(function(resp) {
 										var teachers = resp.result.teachers?resp.result.teachers:[];
-										if(teachers.length ==0)
-											return;
+										/*if(teachers.length ==0)
+											return;*/
 										
 										$scope.teacherList = $scope.teacherList.concat(teachers);
 										tempCount++;
-										// if this is the last course teachers we
+										// if this is the last course teachers
+										// we
 										// got
 										if(courses.length == tempCount){
 											$scope.$apply(function(){
@@ -132,7 +138,7 @@ angular
 					$scope.selected = [];
 					$scope.query = {
 						order : 'name',
-						limit : 5,
+						limit : 10,
 						page : 1
 					};
 
@@ -239,8 +245,8 @@ angular
 						request.execute(function(resp) {
 							
 							$scope.showSavedToast();
-							//$state.go("gfe.classroomCourseList",{});
-							//$scope.sendEmailMessage();
+							// $state.go("gfe.classroomCourseList",{});
+							// $scope.sendEmailMessage();
 						});
 					}
 						$scope.UplodeExcel = function(ev) {
@@ -297,9 +303,9 @@ angular
 															+ resp.config.data.file.name
 															+ '.';
 													$mdToast.show($mdToast.simple()
-																	.content('CourseLit Uploaded Sucessfully.')
+																	.content('Course List Uploaded Sucessfully. The uploaded courses will be listed here after sometime. Please refresh the list.')
 																	.position("top")
-																	.hideDelay(3000));
+																	.hideDelay(6000));
 													$scope.courseList=resp.data;
 								                    console.log('Success '+angular.toJson($scope.courseList));
 								                  			                    
@@ -307,7 +313,16 @@ angular
 								                    for(var i=0; i< $scope.courseList.length;i++)
 								                    	{
 								                    	   console.log('Success '+angular.toJson($scope.courseList[i]));
-								                    	   createCourseRef($scope.courseList[i]);
+								                    	   $scope.courseList[i].ownerId = 'me';
+								                    	   $scope.courseList[i].courseState = 'ACTIVE';	
+								                    	   
+								                    	   var request = gapi.client.classroom.courses
+															.create($scope.courseList[i]);
+
+															request.execute(function(resp) {
+																console.log('Added Course: ' + angular.toJson(resp));																
+															});
+								                    	   // createCourseRef($scope.courseList[i]);
 								                    	}
 								                    $mdDialog.hide();			                    
 													$scope.csvFile = null;				
@@ -340,7 +355,7 @@ angular
 					$scope.downloadCourseList=function(){
 						
 						$log.debug("in download ");
-						//document.location.href="DownloadScheduledExamResult?selectedExamId="+$scope.selectedExamId;
+						// document.location.href="DownloadScheduledExamResult?selectedExamId="+$scope.selectedExamId;
 										
 					}
 				});
