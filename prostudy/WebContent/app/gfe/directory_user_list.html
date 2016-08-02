@@ -1,4 +1,10 @@
-<div ng-show="loading">Please wait, school user list loading...</div>
+<div ng-show="loading">
+
+<h4 class="md-title">Loading...Please wait...</h4>
+
+<md-progress-linear class="md-warn" md-mode="buffer" value="30"
+	md-buffer-value="70" ng-disabled="false"></md-progress-linear>
+</div>
 <div ng-show="deleting ">Please wait, user is deleting...</div>
 <div ng-hide="loading">
 

@@ -1,5 +1,8 @@
-<md-content ng-show="loading">Please wait, course list is
-loading...</md-content>
+<md-content ng-show="loading">
+<h4 class="md-title">Loading...Please wait...</h4>
+
+<md-progress-linear class="md-warn" md-mode="buffer" value="30"
+	md-buffer-value="70" ng-disabled="false"></md-progress-linear> </md-content>
 <md-content ng-hide="loading"> <md-data-table-toolbar
 	ng-show="!selected.length">
 <h3 class="md-headline">Courses List</h3>
@@ -9,7 +12,7 @@ loading...</md-content>
 	<md-button ng-show="courseList.length > 0" class="md-raised md-primary"
 		id="downloadExcel" ng-click="downloadCourseList()">Download
 	CourseList <md-tooltip> Download CourseList</md-tooltip> </md-button>
-	
+
 	<md-button class="md-raised md-primary" id="uplodeExcel"
 		ng-click="UplodeExcel($event)">Upload CourseList<md-tooltip>
 	Upload CourseList</md-tooltip> </md-button>
