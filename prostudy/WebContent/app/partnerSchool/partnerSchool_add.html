@@ -617,7 +617,6 @@
 								ng-click="removeCoordinator($index)" class="name"
 								style="color: Green; height: 30px; width: 20px"></md-icon></td>
 					</tr>
-
 				</tbody>
 			</table>
 
@@ -689,7 +688,7 @@
 						<td><md-input-container flex> <!-- <input
 							type="number" ng-model="bb.bookPrise"> --> {{bb.bookPrise}}</md-input-container></td>
 						<td><md-input-container flex> <input
-								type="number" name="totalStud"
+								type="number" name="totalStud" min="1"
 								ng-blur="calculate($index,bb.totalStud)" ng-model="bb.totalStud">
 							</md-input-container></td>
 						<td><md-input-container flex> <!-- <input

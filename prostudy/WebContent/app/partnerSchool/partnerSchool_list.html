@@ -22,7 +22,7 @@
 			
 		</md-select> </md-input-container>
 	</div>
-	<md-content> <md-data-table-container> <md-toolbar class="md-table-toolbar md-default"
+ 	<md-toolbar class="md-table-toolbar md-default"
 		ng-hide="selected.length">
 	<div class="md-toolbar-tools">
 		<span>Schools List</span>
@@ -39,43 +39,6 @@
           </div>
         </md-toolbar>
 	
-<!-- 		
-	<table md-data-table md-progress="deferred">
-		<thead md-order="query.order" md-trigger="onorderchange">
-			<tr>
-
-				<th name="School Name" order-by="schoolName"></th>
-				<th name="Institute Name" order-by="instName"></th>
-				<th name="Address" order-by="address.city"></th>
-				<th name="Form Number" order-by="formNumber"></th>
-			</tr>
-		</thead>
-
-		<tbody>
-			<tr md-auto-select
-				ng-repeat="pSchool in schools  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: searchText ">
-				<td>{{pSchool.schoolName}}</td>
-				<td>{{pSchool.instName}}</td>
-				<td>{{pSchool.address.city}}</td>
-				<td>{{pSchool.formNumber}}</td>
-				<td><md-button class="md-raised md-primary"
-						ui-sref="partnerSchool.addPartnerSchool({selectedPSchoolId: pSchool.id, selectedPSchool: pSchool})">
-					Edit</md-button> <a
-					ui-sref="partnerSchool.addPartnerSchool({selectedPSchoolId: pSchool.id})"><md-button>
-						<md-icon md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit
-						</md-tooltip></md-button></a></td>
-
-
-			</tr>
-		</tbody>
-
-	</table>
-	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
-		md-total={{pSchoolList.length}} md-trigger="onpagechange"></md-data-table-pagination>
-
-
- -->
-
 	<div>
 		<md-data-table-container>
 		<table md-data-table md-row-select="selected" class="md-primary"

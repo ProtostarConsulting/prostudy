@@ -208,7 +208,6 @@ angular
 								tPaid : 0,
 								pAmount : 0
 							}
-
 						}
 						$scope.examDetail.bookSummary = $scope.bookSummary;
 						$scope.partnerSchool.instituteID = $scope.curUser.instituteID;
@@ -287,17 +286,17 @@ angular
 									.then(
 											function(pSchool) {
 												$scope.partnerSchool = pSchool;
-												$scope.partnerSchool.formNumber = Number($scope.partnerSchool.formNumber);
+												$scope.partnerSchool.formNumber = parseInt($scope.partnerSchool.formNumber);
 
 												$scope.contactDetail = $scope.partnerSchool.contactDetail;
-												$scope.partnerSchool.address.pin = Number($scope.partnerSchool.address.pin);
+												$scope.partnerSchool.address.pin = parseInt($scope.partnerSchool.address.pin);
 												$scope.Address = $scope.partnerSchool.address;
 												$scope.partnerSchool.address.pin = parseInt($scope.partnerSchool.address.pin);
 
-									//			$scope.partnerSchool.contactDetail.headMasterMobile = parseInt($scope.partnerSchool.contactDetail.headMasterMobile);
+												$scope.partnerSchool.contactDetail.headMasterMobile = parseInt($scope.partnerSchool.contactDetail.headMasterMobile);
 
 												for (var i = 0; i < $scope.partnerSchool.contactDetail.coordinatorDetail.length; i++) {
-													$scope.contactDetail.coordinatorDetail.coordinatorMobileNum = parseInt($scope.partnerSchool.contactDetail.coordinatorDetail.coordinatorMobileNum);
+													$scope.partnerSchool.contactDetail.coordinatorDetail[i].coordinatorMobileNum = parseInt($scope.partnerSchool.contactDetail.coordinatorDetail[i].coordinatorMobileNum);
 												}
 												$scope.a;
 												$scope.getDistricts($scope.a,

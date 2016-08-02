@@ -22,13 +22,14 @@ angular
 					$scope.courierTypelist = [ "Book", "Certificate",
 					       					"Error Certificate", "Error books", "Prize Certificate" ];
 
-					$scope.getGFCourierByInstitute = function() {
+					$scope.getGFCourierByInstitute = function(refresh) {
 
 						var gfCourierService = appEndpointSF.getGFCourierService();
 						gfCourierService.getGFCourierByInstitute($scope.curUser.instituteID)
 								.then(
 										function(gfCouriertList) {
 											$scope.gfCouriertList = gfCouriertList;
+											
 										});
 					}
 

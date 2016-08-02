@@ -19,9 +19,10 @@
 		<md-input-container flex> <label>Search
 			By School / College / Institute
 		</label> <md-select name="level" ng-model="schoolName">
+		<md-option ng-value="Other" ng-model="other">All</md-option>
 		<md-option ng-value="schoolName.schoolName"
 			ng-repeat="schoolName in pSchoolList">{{schoolName.schoolName}}</md-option>
-			<md-option ng-value="Other" ng-model="other">All</md-option>
+			
 		</md-select>
 
 		</md-input-container>

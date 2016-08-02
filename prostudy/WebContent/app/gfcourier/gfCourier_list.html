@@ -14,23 +14,45 @@
 	<div layout="row" layout-xs="column">
 		<md-input-container flex> <label>Courier
 			Type </label> <md-select name="courierType" ng-model="courierType ">
+			<md-option ng-value="Other" ng-model="other">All</md-option>
 		<md-option ng-value="courierType"
 			ng-repeat="courierType in courierTypelist">{{courierType}}</md-option>
 		</md-select> </md-input-container>
 
 		<md-input-container flex> <label>Logistics
-		</label> <md-select name="logistics" ng-model="logistics ">
+		</label> <md-select name="logistics" ng-model="logistics">
+		<md-option ng-value="Other" ng-model="other">All</md-option>
 		<md-option ng-value="logistics" ng-repeat="logistics in logisticsList">{{logistics}}</md-option>
 		</md-select> </md-input-container>
-		
-		<md-input-container flex> <label>School
-				/ College / Institute
-			</label> <md-select name="level" ng-model="tempCourierObj.schoolName"> <md-option ng-value="schoolName"
-				ng-repeat="schoolName in pSchoolList">{{schoolName.schoolName}}</md-option>
-			</md-select>
+
+		<md-input-container flex> <label>Search
+			By School / College / Institute
+		</label> <md-select name="level" ng-model="schoolName">
+		<md-option ng-value="Other" ng-model="other">All</md-option>
+		<md-option ng-value="schoolName.schoolName"
+			ng-repeat="schoolName in pSchoolList">{{schoolName.schoolName}}</md-option>
 			
-			</md-input-container>
+		</md-select>
+
+		</md-input-container>
+				
 	</div>
+	<md-toolbar class="md-table-toolbar md-default"
+		ng-hide="selected.length">
+	<div class="md-toolbar-tools">
+		<span>Courier List</span>
+		<div flex></div>
+		<md-button class="md-icon-button"
+			ng-click="getGFCourierByInstitute(true)"> <md-icon src="img/icon/ic_refresh_24px.svg">refresh</md-icon>
+		</md-button>
+	</div>
+	</md-toolbar>
+        
+        <md-toolbar class="md-table-toolbar alternate" ng-show="selected.length">
+          <div class="md-toolbar-tools">
+            <span>{{selected.length}} {{selected.length > 1 ? 'Couriers' : 'Courier'}} selected</span>
+          </div>
+        </md-toolbar>
 	<div>
 		<md-data-table-container>
 		<table md-data-table md-row-select="selected" class="md-primary"
@@ -48,7 +70,7 @@
 			</thead>
 			<tbody>
 				<tr md-auto-select
-					ng-repeat="courier in gfCouriertList | orderBy: query.order | filter: logistics | filter: courierType | filter: searchByName | limitTo: query.limit: (query.page - 1) * query.limit">
+					ng-repeat="courier in gfCouriertList | orderBy: query.order | filter: schoolName | filter: logistics | filter: courierType | filter: searchByName | limitTo: query.limit: (query.page - 1) * query.limit">
 
 					<td>{{courier.schoolName.schoolName}}</td>
 					<td>{{courier.logistics}}</td>
