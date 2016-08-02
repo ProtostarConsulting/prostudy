@@ -352,10 +352,5 @@ angular
 
 						}
 						
-					$scope.downloadCourseList=function(){
-						
-						$log.debug("in download ");
-						// document.location.href="DownloadScheduledExamResult?selectedExamId="+$scope.selectedExamId;
-										
-					}
+					
 				});
