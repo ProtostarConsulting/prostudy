@@ -3,7 +3,7 @@ angular
 		.controller(
 				"classroomCourseListCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,$state,$mdDialog, $mdMedia,Upload,
-						$mdUtil, $log, $q, tableTestDataFactory, appEndpointSF) {
+						$mdUtil, $log, $q, $location, $anchorScroll, tableTestDataFactory, appEndpointSF) {
 										
 					
 					$scope.courseStateList	=["ACTIVE","ARCHIVED","PROVISIONED","DECLINED" ];
@@ -27,7 +27,7 @@ angular
 					$scope.listCourses = function() {
 						$log.debug("Inside listCourses..");						
 						$scope.loading = true;
-						//Empty data first, needed for refresh button
+						// Empty data first, needed for refresh button
 						$scope.classroomCourses = [];
 						$scope.courseList=[];				
 						$scope.teacherList=[];	
@@ -53,8 +53,9 @@ angular
 
 									request.execute(function(resp) {
 										var teachers = resp.result.teachers?resp.result.teachers:[];
-										/*if(teachers.length ==0)
-											return;*/
+										/*
+										 * if(teachers.length ==0) return;
+										 */
 										
 										$scope.teacherList = $scope.teacherList.concat(teachers);
 										tempCount++;
@@ -89,18 +90,22 @@ angular
 					}	
 					
 					/* This method filters the course by selected state */
-					$scope.selectedCourseList = function() {					
+					$scope.selectedCourseList = function() {
+						
 						$scope.courseList=[];
 							if ($scope.classroomCourses.length > 0) {
 								for (i = 0; i < $scope.classroomCourses.length; i++) {
 									if($scope.classroomCourses[i].courseState===$scope.courseState)
 									{									
-									$scope.courseList.push($scope.classroomCourses[i]);
+										$scope.courseList.push($scope.classroomCourses[i]);
 									}
 								}								
 							} else {
 								$log.debug('No courses found.');
 							}		
+							
+							
+						    $scope.loading = false;
 
 					}				
 					
@@ -169,29 +174,28 @@ angular
 						.targetEvent(ev).ok('YES').cancel('NO');
 						$mdDialog.show(confirm).then(function() {
 					
+							$location.hash('topRight');						    
+						    $anchorScroll();
+						    
+							$scope.loading = true;
+							$scope.selected = [];
+							$scope.deleting = true;
+							var request = gapi.client.classroom.courses.delete({id:courseId});
 
-					$scope.loading = true;
-					$scope.selected = [];
-					$scope.deleting = true;
-					var request = gapi.client.classroom.courses.delete({id:courseId});
-
-					request.execute(function(resp) {
-						$log.debug("resp:" + angular.toJson(resp));
-						$scope.showCourseDeletedToast();
+							request.execute(function(resp) {
+								$log.debug("resp:" + angular.toJson(resp));
+								$scope.showCourseDeletedToast();
+							
+								$scope.deleting = false;
+								$scope.classroomCourses=[];
+								
+								$scope.searchName="";
+								$scope.listCourses();
+							});
 					
-						$scope.deleting = false;
-						$scope.classroomCourses=[];
-						
-						$scope.searchName="";
-						$scope.listCourses();
-					});
-					
-					
-					
-				}, function() {							
-					
-				});
-				
+						}, function() {							
+							
+						});
 						
 					}				
 									
@@ -201,23 +205,28 @@ angular
 						'Are you sure you want to change course state?').ariaLabel('Lucky day')
 						.targetEvent(ev).ok('YES').cancel('NO');
 						$mdDialog.show(confirm).then(function() {
-					
-					$scope.selected[0].courseState=courseState;
-					$scope.tempCourse=angular.toJson($scope.selected[0]);
-				
-					var request = gapi.client.classroom.courses.update({id:$scope.selected[0].id},$scope.tempCourse);
-					
-					request.execute(function(resp) {
-						
-						$scope.showCourseStateChangedToast();
-						$state.go("gfe.classroomCourseList",{});
-						
-					});
-					
-					
-				}, function() {							
-					
-				});										
+							$location.hash('topRight');						    
+						    $anchorScroll();
+							$scope.loading = true;
+							var counter = 0;
+							 for(var i=0; i< $scope.selected.length;i++)
+		                    	{
+								 	$scope.selected[i].courseState = courseState;
+									$scope.tempCourse=angular.toJson($scope.selected[i]);
+									
+									var request = gapi.client.classroom.courses.update({id: $scope.selected[i].id}, $scope.tempCourse);
+									
+									request.execute(function(resp) {
+										counter++;
+										if(counter == $scope.selected.length){											
+											$scope.showCourseStateChangedToast();
+											$scope.selectedCourseList();
+										}										
+									});								 
+		                    	}
+							}, function() {							
+								// Error fn
+							});										
 				
 					}						
 					

@@ -1,80 +1,86 @@
-<md-content ng-show="loading">Please wait, course list is loading...</md-content>
-<md-content ng-hide="loading">
-<md-data-table-toolbar ng-show="!selected.length">
+<md-content ng-show="loading">Please wait, course list is
+loading...</md-content>
+<md-content ng-hide="loading"> <md-data-table-toolbar
+	ng-show="!selected.length">
 <h3 class="md-headline">Courses List</h3>
 </md-data-table-toolbar>
 
-<section layout="row" layout-align="end end" flex>	
+<section layout="row" layout-align="end end" flex>
+	<md-button ng-show="courseList.length > 0" class="md-raised md-primary"
+		id="downloadExcel" ng-click="downloadCourseList()">Download
+	CourseList <md-tooltip> Download CourseList</md-tooltip> </md-button>
+	
+	<md-button class="md-raised md-primary" id="uplodeExcel"
+		ng-click="UplodeExcel($event)">Upload CourseList<md-tooltip>
+	Upload CourseList</md-tooltip> </md-button>
+</section>
 
-		<md-button class="md-raised md-primary" id="uplodeExcel"
-			ng-click="UplodeExcel($event)">Upload CourseList<md-tooltip>
-		Upload CourseList</md-tooltip> </md-button>
-	</section>
 
 
 
+<div layout="row" layout-align="centre centre" layout-xs="column">
+	<md-input-container flex> <label>Search
+		Course By Name</label> <input ng-model="searchName"> </md-input-container>
 
-	<div layout="row" layout-align="centre centre" layout-xs="column">
-		<md-input-container flex> <label>Search
-			Course By Name</label> <input ng-model="searchName"> </md-input-container>
-
-		<md-input-container flex> <label>Course
-			State</label> <md-select ng-model="courseState"
-			ng-change="selectedCourseList()"> <md-option
-			ng-value="courseState" ng-repeat="courseState in courseStateList">{{courseState}}</md-option>
-		</md-select> </md-input-container>
-	</div>
-	<!-- <md-data-table-toolbar class="alternate" ng-show="selected.length">
+	<md-input-container flex> <label>Course
+		State</label> <md-select ng-model="courseState"
+		ng-change="selectedCourseList()"> <md-option
+		ng-value="courseState" ng-repeat="courseState in courseStateList">{{courseState}}</md-option>
+	</md-select> </md-input-container>
+</div>
+<!-- <md-data-table-toolbar class="alternate" ng-show="selected.length">
 	<div>{{selected.length}} {{selected.length > 1 ? 'Courses' :
 		'Course'}} selected. {{selected.length>1?' Please select only one course to see action buttons.': ''}}</div>
 	</md-data-table-toolbar> -->
-	
-	<div>
-		<md-toolbar class="md-table-toolbar md-default" ng-hide="selected.length">
-          <div class="md-toolbar-tools">
-            <span>Courses List</span>
-            <div flex></div>
-            <md-button class="md-icon-button" ng-click="listCourses(true)">
-              <md-icon>refresh</md-icon>
-            </md-button>
-          </div>
-        </md-toolbar>
-        
-        <md-toolbar class="md-table-toolbar alternate" ng-show="selected.length">
-          <div class="md-toolbar-tools">
-            <span>{{selected.length}} {{selected.length > 1 ? 'Courses' :
-		'Course'}} selected. {{selected.length>1?' Please select only one course to see action buttons.': ''}}</span>
-          </div>
-        </md-toolbar>
-        
-		<md-data-table-container>
-		<table md-data-table class="md-primary" md-row-select="selected"
-			md-progress="deferred">
-			<thead md-order="query.order" md-trigger="onorderchange">
-				<tr>
-					<th order-by="name" name="Name" unit=""></th>
-					<th name="Teachers" unit=""></th>
-					<th order-by="courseState" name="CourseState"></th>
-					<th order-by="enrollmentCode" name="Enrollment Code"></th>
-					<th order-by="creationTime" name="Created Date"></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr md-auto-select
-					ng-repeat="course in courseList  | orderBy: query.order | filter: {name: searchName}| limitTo: query.limit: (query.page - 1) * query.limit">
 
-					<td>{{course.name}}</td>
-					<td>{{getTeacherNamesByCourse(course.id)}}</td>
-					<td>{{course.courseState}}</td>
-					<td>{{course.enrollmentCode}}</td>
-					<td>{{course.creationTime | formatDate}}</td>
-				</tr>
-			</tbody>
-		</table>
-		</md-data-table-container>
-		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
-			md-total={{courseList.length}} md-trigger="onpagechange"></md-data-table-pagination>
+<div>
+	<md-toolbar class="md-table-toolbar md-default"
+		ng-hide="selected.length">
+	<div class="md-toolbar-tools">
+		<span>Courses List</span>
+		<div flex></div>
+		<md-button class="md-icon-button" ng-click="listCourses(true)">
+		<md-icon>refresh</md-icon> </md-button>
 	</div>
+	</md-toolbar>
+
+	<md-toolbar class="md-table-toolbar alternate"
+		ng-show="selected.length">
+	<div class="md-toolbar-tools">
+		<span>{{selected.length}} {{selected.length > 1 ? 'Courses' :
+			'Course'}} selected. {{selected.length>1?' Please select only one
+			course to see action buttons.': ''}}</span>
+	</div>
+	</md-toolbar>
+
+	<md-data-table-container>
+	<table md-data-table class="md-primary" md-row-select="selected"
+		md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onorderchange">
+			<tr>
+				<th order-by="name" name="Name" unit=""></th>
+				<th name="Teachers" unit=""></th>
+				<th order-by="courseState" name="CourseState"></th>
+				<th order-by="enrollmentCode" name="Enrollment Code"></th>
+				<th order-by="creationTime" name="Created Date"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="course in courseList  | orderBy: query.order | filter: {name: searchName}| limitTo: query.limit: (query.page - 1) * query.limit">
+
+				<td>{{course.name}}</td>
+				<td>{{getTeacherNamesByCourse(course.id)}}</td>
+				<td>{{course.courseState}}</td>
+				<td>{{course.enrollmentCode}}</td>
+				<td>{{course.creationTime | formatDate}}</td>
+			</tr>
+		</tbody>
+	</table>
+	</md-data-table-container>
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{courseList.length}} md-trigger="onpagechange"></md-data-table-pagination>
+</div>
 </div>
 
 
@@ -90,14 +96,17 @@
 
 		<md-button class="md-raised md-primary"
 			ng-show="selected[0].courseState=='ARCHIVED'"
-			ng-click="changeCourseState('ACTIVE',$event)">Course ACTIVE </md-button>
+			ng-click="changeCourseState('ACTIVE',$event)">Course
+		ACTIVE </md-button>
 
 		<md-button class="md-raised md-warn"
 			ng-show="selected[0].courseState==='ACTIVE'"
-			ng-click="changeCourseState('ARCHIVED',$event)"> ARCHIVE Course</md-button>
+			ng-click="changeCourseState('ARCHIVED',$event)"> ARCHIVE
+		Course</md-button>
 
 		<md-button class="md-raised md-warn"
-			ng-click="deleteCourse(selected[0].id,$event)"> Delete Course </md-button>
+			ng-click="deleteCourse(selected[0].id,$event)"> Delete
+		Course </md-button>
 
 		<md-button class="md-raised md-primary"
 			ng-href="{{selected[0].alternateLink}}" target="_blank">Goto
@@ -118,5 +127,15 @@
 			ui-sref="gfe.classroomCourseUserList({selectedCourseId: selected[0].id, userType: 'Student',courseName:selected[0].name})"
 			class="md-raised md-primary"> View Class Students </md-button>
 	</div>
+</div>
+
+<div ng-show="selected.length > 1">
+	<md-button class="md-raised md-warn"
+		ng-show="selected[0].courseState==='ACTIVE'"
+		ng-click="changeCourseState('ARCHIVED',$event)"> ARCHIVE
+	Courses</md-button>
+</div>
 </md-content>
+
+
 

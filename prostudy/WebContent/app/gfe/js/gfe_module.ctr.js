@@ -25,7 +25,7 @@ angular
 					$scope.teacherListBackup = null;
 					
 
-					var CLIENT_ID = '871660457189-1ishasdcqph3an1eu26262htusofo6v2.apps.googleusercontent.com';
+					var CLIENT_ID = '759880535753-3h86dfhcao97655vcnooobn17l4flp8q.apps.googleusercontent.com';
 
 					var SCOPES = [
 
