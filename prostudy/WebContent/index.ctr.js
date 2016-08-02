@@ -3,7 +3,8 @@ angular
 		.controller(
 				"indexCtr",
 				function($scope, $rootScope, $window, $log, $q, $timeout,
-						$mdToast, $mdBottomSheet, $state, appEndpointSF, $localStorage) {
+						$mdToast, $mdBottomSheet, $state,
+						$localStorage, $location, $anchorScroll, appEndpointSF) {
 
 					$log.debug("Inside indexCtr");
 
@@ -26,25 +27,10 @@ angular
 						$mdToast.show($mdToast.simple().content(errorMsg)
 								.position("top").capsule(true).hideDelay(9000));
 					};
-					$scope.data = {expanded : true};
-					
-					$scope.accordianData = [
-					                		{
-					                			"heading" : "HOLDEN",
-					                			"content" : "GM Holden Ltd, commonly known as Holden, is an Australian automaker that operates in Australasia and is headquartered in Port Melbourne, Victoria. The company was founded in 1856 as a saddlery manufacturer in South Australia."
-					                		},
-					                		{
-					                			"heading" : "FORD",
-					                			"content" : "The Ford Motor Company (commonly referred to as simply Ford) is an American multinational automaker headquartered in Dearborn, Michigan, a suburb of Detroit. It was founded by Henry Ford and incorporated on June 16, 1903."
-					                		},
-					                		{
-					                			"heading" : "TOYOTA",
-					                			"content" : "Toyota Motor Corporation is a Japanese automotive manufacturer which was founded by Kiichiro Toyoda in 1937 as a spinoff from his father's company Toyota Industries, which is currently headquartered in Toyota, Aichi Prefecture, Japan."
-					                		}
-					                	];
-					
-					
-					
+					$scope.data = {
+						expanded : true
+					};
+
 					$scope.loading = true;
 					$scope.curUser = null;
 					$scope.flag = true;
@@ -454,6 +440,13 @@ angular
 							this.$apply(fn);
 						}
 					};
+					
+					$rootScope.$on('$stateChangeSuccess', function(event,
+							toState, toParams, fromState, fromParams) {
+						//On any state change go the the top
+						$location.hash('topRight');						    
+					    $anchorScroll();
+					});
 
 				}).controller('AppCtrl',
 				function($scope, $timeout, $mdSidenav, $mdUtil, $log) {
@@ -468,7 +461,8 @@ angular
 						return debounceFn;
 					}
 
-				}).controller('LeftCtrl',
+				}).controller(
+				'LeftCtrl',
 				function($scope, $timeout, $mdSidenav, $log) {
 					$scope.close = function() {
 						$mdSidenav('left').close().then(function() {
@@ -476,7 +470,6 @@ angular
 						});
 					};
 
-					
 					$scope.menu = '';
 					$scope.toggleMenu = function(menu) {
 						$scope.menu = menu;
@@ -484,69 +477,80 @@ angular
 						$scope.studentsCounter;
 						$scope.booksCounter;
 						$scope.courierCounter;
-				
-				//FOR SCHOOL		
-						var schoolCounter = angular.fromJson(localStorage.dbSchoolCounter);
+
+						// FOR SCHOOL
+						var schoolCounter = angular
+								.fromJson(localStorage.dbSchoolCounter);
 						if (typeof schoolCounter === 'undefined')
 							schoolCounter = 0;
-						
-						if(menu == "school"){
-							if(schoolCounter == 0){
+
+						if (menu == "school") {
+							if (schoolCounter == 0) {
 								$scope.schoolCounter = schoolCounter + 1;
-								localStorage.dbSchoolCounter = angular.toJson($scope.schoolCounter);
-							}else{
+								localStorage.dbSchoolCounter = angular
+										.toJson($scope.schoolCounter);
+							} else {
 								$scope.schoolCounter = schoolCounter - 1;
-								localStorage.dbSchoolCounter = angular.toJson($scope.schoolCounter);
+								localStorage.dbSchoolCounter = angular
+										.toJson($scope.schoolCounter);
 							}
 						}
-					
-				//FOR STUDENT
-						var studentsCounter = angular.fromJson(localStorage.dbStudentsCounter);
+
+						// FOR STUDENT
+						var studentsCounter = angular
+								.fromJson(localStorage.dbStudentsCounter);
 						if (typeof studentsCounter === 'undefined')
 							studentsCounter = 0;
-						
-						if(menu == "students"){
-							if(studentsCounter == 0){
+
+						if (menu == "students") {
+							if (studentsCounter == 0) {
 								$scope.studentsCounter = studentsCounter + 1;
-								localStorage.dbStudentsCounter = angular.toJson($scope.studentsCounter);
-							}else{
+								localStorage.dbStudentsCounter = angular
+										.toJson($scope.studentsCounter);
+							} else {
 								$scope.studentsCounter = studentsCounter - 1;
-								localStorage.dbStudentsCounter = angular.toJson($scope.studentsCounter);
+								localStorage.dbStudentsCounter = angular
+										.toJson($scope.studentsCounter);
 							}
 						}
-						
-				//FOR Book
-						var booksCounter = angular.fromJson(localStorage.dbBooksCounter);
+
+						// FOR Book
+						var booksCounter = angular
+								.fromJson(localStorage.dbBooksCounter);
 						if (typeof booksCounter === 'undefined')
 							booksCounter = 0;
-						
-						if(menu == "books"){
-							if(booksCounter == 0){
+
+						if (menu == "books") {
+							if (booksCounter == 0) {
 								$scope.booksCounter = booksCounter + 1;
-								localStorage.dbBooksCounter = angular.toJson($scope.booksCounter);
-							}else{
+								localStorage.dbBooksCounter = angular
+										.toJson($scope.booksCounter);
+							} else {
 								$scope.booksCounter = booksCounter - 1;
-								localStorage.dbBooksCounter = angular.toJson($scope.booksCounter);
+								localStorage.dbBooksCounter = angular
+										.toJson($scope.booksCounter);
 							}
 						}
-						
-				//FOR COURIER
-						var courierCounter = angular.fromJson(localStorage.dbCourierCounter);
+
+						// FOR COURIER
+						var courierCounter = angular
+								.fromJson(localStorage.dbCourierCounter);
 						if (typeof courierCounter === 'undefined')
 							courierCounter = 0;
-						
-						if(menu == "courier"){
-							if(courierCounter == 0){
+
+						if (menu == "courier") {
+							if (courierCounter == 0) {
 								$scope.courierCounter = courierCounter + 1;
-								localStorage.dbCourierCounter = angular.toJson($scope.courierCounter);
-							}else{
+								localStorage.dbCourierCounter = angular
+										.toJson($scope.courierCounter);
+							} else {
 								$scope.courierCounter = courierCounter - 1;
-								localStorage.dbCourierCounter = angular.toJson($scope.courierCounter);
+								localStorage.dbCourierCounter = angular
+										.toJson($scope.courierCounter);
 							}
-						}		
+						}
 					}
-					
-					
+
 					/*
 					 * myFunction();
 					 * 
@@ -569,5 +573,5 @@ angular
 					 * toParams, fromState, fromParams) { alert("State Change
 					 * "); })
 					 * 
-					 */
+					 */					
 				});
