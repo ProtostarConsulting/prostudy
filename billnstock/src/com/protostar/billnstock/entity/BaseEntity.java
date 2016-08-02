@@ -1,13 +1,11 @@
 package com.protostar.billnstock.entity;
 
 import java.util.Date;
-import java.util.List;
 
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
-import com.protostar.billingnstock.crm.entities.Task;
-import com.protostar.billingnstock.cust.entities.Customer;
+import com.googlecode.objectify.annotation.Parent;
 import com.protostar.billingnstock.user.entities.BusinessEntity;
 
 public abstract class BaseEntity {
@@ -15,15 +13,16 @@ public abstract class BaseEntity {
 	@Id
 	private Long id;
 	@Index
+	@Parent
 	Ref<BusinessEntity> business;
 	private Date createdDate;
-	private Date modifiedDate;	
+	private Date modifiedDate;
 	private String modifiedBy;
-			
+
 	public BaseEntity() {
 		super();
 	}
-	
+
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -48,9 +47,8 @@ public abstract class BaseEntity {
 		this.modifiedBy = modifiedBy;
 	}
 
-
 	public BusinessEntity getBusiness() {
-		return business== null ? null : business.get();
+		return business == null ? null : business.get();
 	}
 
 	public void setBusiness(BusinessEntity business) {
